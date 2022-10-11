@@ -1,0 +1,39 @@
+{
+  "name": "@actilitypub/milesight-ws301",
+  "version": "1.0.0",
+  "description": "Milesight WS301 simply enables you to know when someone enters the office/building through door/window or something has been moved. The minimal magnet is placed inside the portable part, while the sensor is inside the fixed part that can be attached on door/window or other objects. With a style of minimalism and compact size, the wire-free WS301 can be easily mounted on the doors, panes, or cabinets, greatly providing real applications for smart homes, smart office or smart factories.",
+  "specification": "https://resource.milesight-iot.com/milesight/document/ws301-datasheet-en.pdf",
+  "deviceImageUrl": "https://resource.milesight-iot.com/Support/kevin/ws301.png",
+  "manufacturerLogoUrl": "https://resource.milesight-iot.com/Support/kevin/Logo.png",
+  "providerLogoUrl": "https://resource.milesight-iot.com/Support/kevin/Logo.png",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --collectCoverage"
+  },
+  "driver": {
+    "description": "ws301 decoder",
+    "producerId": "milesight",
+    "type": "thingpark-x-js",
+    "private": false,
+    "application": {
+      "producerId": "milesight",
+      "moduleId": "ws301",
+      "version": "1"
+    },
+    "points": {
+      "battery": {
+        "unitId": "%",
+        "type": "int64"
+      },
+      "state": {
+        "type": "string"
+      },
+      "install": {
+        "type": "string"
+      }
+    }
+  },
+  "devDependencies": {
+    "jest": "^25.4.0"
+  }
+}

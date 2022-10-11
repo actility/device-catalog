@@ -1,0 +1,39 @@
+{
+  "name": "@actilitypub/milesight-ws202",
+  "version": "1.0.0",
+  "description": "Milesight WS202 is a LoRa PIR sensor based on passive infrared technology to detect a motion or occupancy. WS202 can detect whether there is movement within the range of 6-8 m and send the changes via LoRaWAN® network. Besides, WS202 equips with light sensor which can link PIR detection results to trigger scenes. With compact size and powered battery, WS202 is easy to install everywhere. Compliant with Milesight LoRaWAN® gateway and Milesight IoT Cloud solution, users can know the alarms or occupancy of rooms and trigger other sensors or appliances easily via webpage or mobile App remotely. WS202 can bewidely used in smart homes, smart offices, schools, warehouses, etc.",
+  "specification": "https://resource.milesight-iot.com/milesight/document/ws202-datasheet-en.pdf",
+  "deviceImageUrl": "https://resource.milesight-iot.com/Support/kevin/ws202.png",
+  "manufacturerLogoUrl": "https://resource.milesight-iot.com/Support/kevin/Logo.png",
+  "providerLogoUrl": "https://resource.milesight-iot.com/Support/kevin/Logo.png",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --collectCoverage"
+  },
+  "driver": {
+    "description": "ws202 decoder",
+    "producerId": "milesight",
+    "type": "thingpark-x-js",
+    "private": false,
+    "application": {
+      "producerId": "milesight",
+      "moduleId": "ws202",
+      "version": "1"
+    },
+    "points": {
+      "battery": {
+        "unitId": "%",
+        "type": "int64"
+      },
+      "pir": {
+        "type": "string"
+      },
+      "daylight": {
+        "type": "string"
+      }
+    }
+  },
+  "devDependencies": {
+    "jest": "^25.4.0"
+  }
+}

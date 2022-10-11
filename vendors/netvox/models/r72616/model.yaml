@@ -1,0 +1,43 @@
+# Commercial name of the model 
+name: R72616 - Wireless Outdoor PM2.5/Temperature/Humidity Sensor with Solar Panel
+# Functional description of the product. Maximum 500 characters. 
+description: "The R72616 is equipped with a temperature and humidity sensor that detects and transmits ambient temperature and humidity data. It is a wireless communication method that uses the SX1276 wireless communication module. The R72616 has a PM2.5 sensor that detects the concentration of PM2.5 in the air."
+# Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
+ISMbands: eu868,kr920,in865
+# Logo of the device
+logo: netvox-r72616.png
+# Product name & Version
+product:
+    name: NETV/R7616
+    version: 1
+# ID of the profile that defines the LoRaWAN characteristics of this model. 
+deviceProfileId: 
+    - NETV/R7616A.1.0.2b_AS923
+    - NETV/R7616A.1.0.2b_ETSI
+    - NETV/R7616A.1.0.2b_FCC
+ 
+# You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
+# Maximum device TX Conducted output power in dBm. 
+maxTxPower: 16
+# Minimum device TX Conducted output power in dBm. 
+minTxPower: null
+# Maximum device TX Radiated output power in dBm.  
+maxTxEIRP: 16
+# Minimum device TX Radiated output power in dBm.  
+minTxEIRP: null
+# Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'  
+# or 'random' (not known, changes over time). 
+motionIndicator: RANDOM
+ 
+# Is your device certified by the LoRa Alliance? Possible values: true, false. 
+LoRaWANCertified: 
+# modelId // [RSS] Is it really needed? 
+modelId: netvox:r72616:1
+# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
+protocolId: netvox:lorawan:1
+# DataSheet URL (optional) 
+specificationURL: 
+# User Guide URL (optional) 
+userGuideURL: 
+# Available sensors following Actility ontology: https://github.com/actility/thingpark-iot-flow-js-driver/blob/master/UNITS.md 
+sensors: null

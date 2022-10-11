@@ -1,0 +1,43 @@
+# Commercial name of the model 
+name: Sentrius RS1xx Ext Temp 1W Sensor
+# Functional description of the product. Maximum 500 characters. 
+description: "The Laird Sentrius™ RS1xx Temp/-RH has an external temperature sensor probe and humidity sensor making it a perfect fit for industrial applications. It uses LoRaWAN® and Bluetooth Low Energy (BLE) for data communication. The robust IP65 sensor enclosure allows it to be used in harsh environments."
+# Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
+ISMbands: eu868
+# Logo of the device
+logo: laird-rs1xx-ext-temp-1w-sensor.png
+# Product name & Version
+product:
+    name: LAIR/RSNSO
+    version: 1
+# ID of the profile that defines the LoRaWAN characteristics of this model. 
+deviceProfileId: 
+    - LAIR/RSNSOA.1.0.2b_AS923
+    - LAIR/RSNSOA.1.0.2b_ETSI
+    - LAIR/RSNSOA.1.0.2b_FCC
+ 
+# You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
+# Maximum device TX Conducted output power in dBm. 
+maxTxPower: 14
+# Minimum device TX Conducted output power in dBm. 
+minTxPower: null
+# Maximum device TX Radiated output power in dBm.  
+maxTxEIRP: 14
+# Minimum device TX Radiated output power in dBm.  
+minTxEIRP: null
+# Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'  
+# or 'random' (not known, changes over time). 
+motionIndicator: RANDOM
+ 
+# Is your device certified by the LoRa Alliance? Possible values: true, false. 
+LoRaWANCertified: 
+# modelId // [RSS] Is it really needed? 
+modelId: laird:ext-temp-1w:1
+# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
+protocolId: laird:ext-temp-1w:1
+# DataSheet URL (optional) 
+specificationURL: 
+# User Guide URL (optional) 
+userGuideURL: 
+# Available sensors following Actility ontology: https://github.com/actility/thingpark-iot-flow-js-driver/blob/master/UNITS.md 
+sensors: null

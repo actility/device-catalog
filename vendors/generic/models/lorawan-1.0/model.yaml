@@ -1,0 +1,46 @@
+# Commercial name of the model 
+name: LoRaWAN 1.0
+# Functional description of the product. Maximum 500 characters. 
+description: "Generic profile LoRaWAN 1.0 for ETSI class A devices using default LoRaWAN boot settings (868 MHz band)."
+# Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
+ISMbands: eu868
+# Logo of the device
+logo: lorawanA.jpg
+# Product name & Version
+product:
+    name: LORA/Generic
+    version: 1
+# ID of the profile that defines the LoRaWAN characteristics of this model. 
+deviceProfileId: 
+    - LORA/GenericA.1_AS923_Rx2-SF10_1.0
+    - LORA/GenericA.1_ETSI_Rx2-SF12
+    - LORA/GenericA.1_FCC_Rx2-SF12
+    - LORA/GenericC.1_AS923_Rx2-SF10_1.0
+    - LORA/GenericC.1_ETSI_Rx2-SF12
+    - LORA/GenericC.1_FCC_Rx2-SF12
+ 
+# You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
+# Maximum device TX Conducted output power in dBm. 
+maxTxPower: 14
+# Minimum device TX Conducted output power in dBm. 
+minTxPower: null
+# Maximum device TX Radiated output power in dBm.  
+maxTxEIRP: 14
+# Minimum device TX Radiated output power in dBm.  
+minTxEIRP: null
+# Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'  
+# or 'random' (not known, changes over time). 
+motionIndicator: RANDOM
+ 
+# Is your device certified by the LoRa Alliance? Possible values: true, false. 
+LoRaWANCertified: 
+# modelId // [RSS] Is it really needed? 
+modelId: null
+# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
+protocolId: null
+# DataSheet URL (optional) 
+specificationURL: 
+# User Guide URL (optional) 
+userGuideURL: 
+# Available sensors following Actility ontology: https://github.com/actility/thingpark-iot-flow-js-driver/blob/master/UNITS.md 
+sensors: null

@@ -1,0 +1,71 @@
+{
+  "name": "@actilitypub/milesight-am319",
+  "version": "1.0.0",
+  "description": "Milesight AM319 collects various indoor ambience conditions through 9 built-in sensors and delivers the data to the mobile App and its 4.2-inch E-ink screen. It supports batteries or DC power supply and can be easily equipped via NFC. It features a tri-color LED indicator, anti-theft design, and emoticon indication. AM307 is widely used for offices, stores, classrooms, hospitals, etc.",
+  "specification": "https://resource.milesight-iot.com/milesight/document/am300-series-datasheet-en.pdf",
+  "deviceImageUrl": "https://resource.milesight-iot.com/Support/kevin/am319.png",
+  "manufacturerLogoUrl": "https://resource.milesight-iot.com/Support/kevin/Logo.png",
+  "providerLogoUrl": "https://resource.milesight-iot.com/Support/kevin/Logo.png",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --collectCoverage"
+  },
+  "driver": {
+    "description": "AM319 decoder",
+    "producerId": "milesight",
+    "type": "thingpark-x-js",
+    "private": false,
+    "application": {
+      "producerId": "milesight",
+      "moduleId": "AM319",
+      "version": "1"
+    },
+    "points": {
+      "temperature": {
+        "unitId": "Cel",
+        "type": "double"
+      },
+      "humidity": {
+        "unitId": "%RH",
+        "type": "double"
+      },
+      "co2": {
+        "unitId": "ppm",
+        "type": "int64"
+      },
+      "tvoc": {
+        "type": "int64"
+      },
+      "pressure": {
+        "unitId": "hPa",
+        "type": "double"
+      },
+      "light": {
+        "unitId": "level",
+        "type": "int64"
+      },
+      "pm2.5": {
+        "unitId": "ug/m3",
+        "type": "double"
+      },
+      "pm10": {
+        "unitId": "ug/m3",
+        "type": "double"
+      },
+      "o3": {
+        "unitId": "ppm",
+        "type": "double"
+      },
+      "hcho": {
+        "unitId": "ppm",
+        "type": "double"
+      },
+      "pir": {
+        "type": "string"
+      }
+    }
+  },
+  "devDependencies": {
+    "jest": "^25.4.0"
+  }
+}

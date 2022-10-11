@@ -1,0 +1,87 @@
+[
+    {
+        "description": "uplink containing only light_level",
+        "type": "uplink",
+        "bytes": "06cb02",
+        "fPort": 1,
+        "time": "2020-08-02T20:00:00.000+05:00",
+        "data": {
+            "light_level": 2
+        },
+        "points": {
+            "light_level": {
+                "type": "int64",
+                "record": 2
+            }
+        }
+    },
+    {
+        "description": "uplink containing all measurements",
+        "type": "uplink",
+        "bytes": "0367EE0004687C05000106CB02077DA803087D2500097366270A7D04000B7D20000C7D3000",
+        "fPort": 1,
+        "time": "2020-08-02T20:00:00.000+05:00",
+        "data": {
+            "temperature": 23.8,
+            "humidity": 62,
+            "activity": "trigger",
+            "light_level": 2,
+            "co2": 936,
+            "tvoc": 37,
+            "pressure": 1008.6,
+            "hcho": 0.04,
+            "pm2.5": 32,
+            "pm10": 48
+        },
+        "points": {
+            "temperature": {
+                "unitId": "Cel",
+                "type": "double",
+                "record": 23.8
+            },
+            "humidity": {
+                "unitId": "%RH",
+                "type": "double",
+                "record": 62
+            },
+            "activity": {
+                "type": "string",
+                "record": "trigger"
+            },
+            "light_level": {
+                "type": "int64",
+                "record": 2
+            },
+            "co2": {
+                "unitId": "ppm",
+                "type": "int64",
+                "record": 936
+            },
+            "tvoc": {
+                "unitId": "ppm",
+                "type": "int64",
+                "record": 37
+            },
+            "pressure": {
+                "unitId": "hPa",
+                "type": "double",
+                "record": 1008.6
+            },
+            "hcho": {
+                "unitId": "ppm",
+                "type": "double",
+                "record": 0.04
+            },
+            "pm2.5": {
+                "unitId": "ug/m3",
+                "type": "double",
+                "record": 32
+            },            
+            "pm10": {
+                "unitId": "ug/m3",
+                "type": "double",
+                "record": 48
+            }
+        }
+    }
+]

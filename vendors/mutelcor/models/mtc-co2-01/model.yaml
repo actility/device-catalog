@@ -1,0 +1,44 @@
+# Commercial name of the model 
+name: Smart CO2 LoRa Sensor (IP30, IP54)
+# Functional description of the product. Maximum 500 characters. 
+description: "The Mutelcor Smart CO2 LoRa Sensor is a unique power-driven Air Quality sensor. It measures CO2, Temperature and Humidity every 2 seconds with a robust dual-channel NDIR sensor and offers automatic Traffic Light Feature with local and LoRa-based Alarms based on multi-color LEDs and Sound. The device offers plug-and-play handling with multiple Threshold settings and quick and easy Calibration."
+# Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
+ISMbands: eu868,in865,kr920
+# Logo of the device
+logo: mutelcor-mtc-co2-01.png
+# Product name & Version
+product:
+    name: MUTE/MT201
+    version: 1
+# ID of the profile that defines the LoRaWAN characteristics of this model. 
+deviceProfileId: 
+    - MUTE/MT201A.1.0.3a_AS923
+    - MUTE/MT201A.1.0.3a_AU
+    - MUTE/MT201A.1.0.3a_ETSI
+    - MUTE/MT201A.1.0.3a_FCC
+ 
+# You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
+# Maximum device TX Conducted output power in dBm. 
+maxTxPower: 20
+# Minimum device TX Conducted output power in dBm. 
+minTxPower: null
+# Maximum device TX Radiated output power in dBm.  
+maxTxEIRP: 20
+# Minimum device TX Radiated output power in dBm.  
+minTxEIRP: null
+# Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'  
+# or 'random' (not known, changes over time). 
+motionIndicator: RANDOM
+ 
+# Is your device certified by the LoRa Alliance? Possible values: true, false. 
+LoRaWANCertified: 
+# modelId // [RSS] Is it really needed? 
+modelId: mutelcor:mtc-co2-01:1
+# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
+protocolId: null
+# DataSheet URL (optional) 
+specificationURL: 
+# User Guide URL (optional) 
+userGuideURL: 
+# Available sensors following Actility ontology: https://github.com/actility/thingpark-iot-flow-js-driver/blob/master/UNITS.md 
+sensors: null

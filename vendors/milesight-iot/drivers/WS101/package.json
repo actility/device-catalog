@@ -1,0 +1,36 @@
+{
+  "name": "@actilitypub/milesight-WS101",
+  "version": "1.0.0",
+  "description": "Milesight WS101 is a LoRaWAN®-based smart button for wireless controls, triggers and alarms. WS101 supports multiple press actions, all of which can be defined by the user to control devices or trigger scenes. Besides, Milesight also provides a red button that is primarily used to send SOS alarms. Compact and battery-powered, WS101 is easy to install and carry everywhere. Compliant with Milesight LoRaWAN® gateways and Milesight IoT Cloud solutions, users can know the alarms and use the WS101 to easily trigger other sensors or appliances remotely via web or mobile Apps. WS101 can be widely used in smart homes, smart offices, hotels, schools, etc.",
+  "specification": "https://resource.milesight-iot.com/milesight/document/ws101-datasheet-en.pdf",
+  "deviceImageUrl": "https://resource.milesight-iot.com/Support/kevin/WS101.png",
+  "manufacturerLogoUrl": "https://resource.milesight-iot.com/Support/kevin/Logo.png",
+  "providerLogoUrl": "https://resource.milesight-iot.com/Support/kevin/Logo.png",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --collectCoverage"
+  },
+  "driver": {
+    "description": "WS101 decoder",
+    "producerId": "milesight",
+    "type": "thingpark-x-js",
+    "private": false,
+    "application": {
+      "producerId": "milesight",
+      "moduleId": "WS101",
+      "version": "1"
+    },
+    "points": {
+      "battery": {
+        "unitId": "%",
+        "type": "int64"
+      },
+      "press": {
+        "type": "string"
+      }
+    }
+  },
+  "devDependencies": {
+    "jest": "^25.4.0"
+  }
+}

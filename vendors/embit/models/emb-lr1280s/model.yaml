@@ -1,0 +1,41 @@
+# Commercial name of the model 
+name: EMB-LR1280S
+# Functional description of the product. Maximum 500 characters. 
+description: "The embit EMB-LR1280S is an ultra-low-power OEM Embit module. It is based on Semtech’s SX1280 long-range 2.4 GHz transceiver coupled with STM32L073 MCU. EMB-LR1280S can communicate with other devices through a wide range of serial interfaces such as UART, I2C, USB, SPI, and several digital and analog I/O."
+# Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
+ISMbands: eu868
+# Logo of the device
+logo: embit-emb-lr1280s.png
+# Product name & Version
+product:
+    name: EMBI/EM80S
+    version: 1
+# ID of the profile that defines the LoRaWAN characteristics of this model. 
+deviceProfileId: 
+    - EMBI/EM80SA.1.0.3a_ETSI
+ 
+# You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
+# Maximum device TX Conducted output power in dBm. 
+maxTxPower: 12
+# Minimum device TX Conducted output power in dBm. 
+minTxPower: null
+# Maximum device TX Radiated output power in dBm.  
+maxTxEIRP: 12
+# Minimum device TX Radiated output power in dBm.  
+minTxEIRP: null
+# Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'  
+# or 'random' (not known, changes over time). 
+motionIndicator: RANDOM
+ 
+# Is your device certified by the LoRa Alliance? Possible values: true, false. 
+LoRaWANCertified: 
+# modelId // [RSS] Is it really needed? 
+modelId: null
+# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
+protocolId: null
+# DataSheet URL (optional) 
+specificationURL: 
+# User Guide URL (optional) 
+userGuideURL: 
+# Available sensors following Actility ontology: https://github.com/actility/thingpark-iot-flow-js-driver/blob/master/UNITS.md 
+sensors: null

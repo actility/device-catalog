@@ -1,0 +1,66 @@
+{
+  "name": "@actilitypub/milesight-am103l",
+  "version": "1.0.0",
+  "description": "AM103L is a compact indoor ambience monitoring sensor for measurement of temperature, humidity and CO2. These data will be shown on the E-ink screen in real-time, which allow to quantify the indoor environment and comfort. AM103L is widely used for office, store, classroom, hospital, etc.",
+  "specification": "https://resource.milesight-iot.com/milesight/document/am103&am103l-datasheet-en.pdf",
+  "deviceImageUrl": "https://resource.milesight-iot.com/Support/kevin/AM103&AM103L.png",
+  "manufacturerLogoUrl": "https://resource.milesight-iot.com/Support/kevin/Logo.png",
+  "providerLogoUrl": "https://resource.milesight-iot.com/Support/kevin/Logo.png",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --collectCoverage"
+  },
+  "driver": {
+    "description": "AM103L decoder",
+    "producerId": "milesight",
+    "type": "thingpark-x-js",
+    "private": false,
+    "application": {
+      "producerId": "milesight",
+      "moduleId": "AM103L",
+      "version": "1"
+    },
+    "points": {
+      "battery": {
+        "unitId": "%",
+        "type": "int64"
+      },
+      "temperature": {
+        "unitId": "cel",
+        "type": "double"
+      },
+      "humidity": {
+        "unitId": "%RH",
+        "type": "double"
+      },
+      "activity": {
+        "type": "int64"
+      },
+      "illumination": {
+        "unitId": "lux",
+        "type": "int64"
+      },
+      "infrared_and_visible": {
+        "type": "int64"
+      },
+      "infrared": {
+        "type": "int64"
+      },
+      "co2": {
+        "unitId": "ppm",
+        "type": "int64"
+      },
+      "tvoc": {
+        "unitId": "ppb",
+        "type": "int64"
+      },
+      "pressure": {
+        "unitId": "hPa",
+        "type": "double"
+      }
+    }
+  },
+  "devDependencies": {
+    "jest": "^25.4.0"
+  }
+}

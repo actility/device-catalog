@@ -1,0 +1,30 @@
+[
+  {
+    "description": "uplink config alarm",
+    "type": "uplink",
+    "bytes": "FF05AC007c924980439149005043480050c347010000964300809543000089430080884303",
+    "fPort": 1,
+    "time": "2022-06-28T14:00:00.000+02:00",
+    "data": {
+      "messageType" : "CONFIG",
+      "configType" : "ALARM",
+      "status" : "0xac",
+      "alarms": [
+        {
+          "lowIsActive" : false,
+          "highIsActive" : true,
+          "highThreshold": 1200000.0,
+          "highHysteresis": 1190000.0
+
+        }, {
+          "lowIsActive" : true,
+          "lowThreshold": 273.0,
+          "lowHysteresis": 274.0,
+          "highIsActive" : true,
+          "highThreshold": 300.0,
+          "highHysteresis": 299.0
+        }
+      ]
+    }
+  }
+]

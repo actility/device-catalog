@@ -1,0 +1,407 @@
+*******************************************************************************
+* Device catalog public
+*******************************************************************************
+
+Version : 1.0.0
+Date    : 2022-09-21
+
+
+New Features:
+-------------
+The new catalogue brings together all the information in our possession:
+- Information from the sellers
+- Seller's logo
+- A folder for all drivers
+- A folder for all models
+- A folder for all profiles
+
+You can find out more about the README.md, which contains the entire structure of our new format in detail.
+
+Fixed Things:
+-------------
+We have a philosophy that you should not mix model-specific and profile-specific information.
+We then had to clean up all the model descriptions including terms related to the radio profile, here is the list of vendors impacted:
+
+- Abeeway
+- Adeunis
+- Advantech
+- Atim
+- Axioma
+- Cisco
+- Decentlab
+- Digital_matter
+- Ellenex
+- Elsys
+- Elvaco
+- Espeasy
+- Flashnet
+- Foxconn
+- Globalsat
+- Itron
+- Laird
+- Langyang
+- Life_plus
+- Mclimate
+- Micropelt
+- Moko
+- Mutelcor
+- Nasys
+- Parametric
+- Pnicrop
+- Semtech
+- Senlab
+- Sensative
+- Solvera
+- Swisscom
+- Turbo-tech
+- Twave_tech
+- Yokogawa
+- Zenner
+
+That not impact the radio profile content (old "profiles.json", new "<profileId>.yaml"), only about the model description.
+
+
+In the old database several inconsistencies surfaced during the transfer.
+Some modelIdentifier had to be rethought, here is the list:
+
+Advantech:
+    - ADVAN/WISE2200A.1.0.2a_<ISMBand>
+        modelIdentifier: advantec:wise-2410:1 --> advantec:wise-2200:1
+
+Decentlab:
+    - DL/DL-ZN1-001A.1.0.1_<ISMBand>
+        modelIdentifier: dl:dl-zn110:1 --> dl:dl-zn1-001:1
+    - DL/DL-ZN1-002A.1.0.1_<ISMBand>
+        modelIdentifier: dl:dl-zn110:1 --> dl:dl-zn1-002:1
+    - DL/DL-ZN2-001A.1.0.1_<ISMBand>
+        modelIdentifier: dl:dl-zn110:1 --> dl:dl-zn2-001:1
+    - DL/DL-ZN2-002A.1.0.1_<ISMBand>
+        modelIdentifier: dl:dl-zn110:1 --> dl:dl-zn1-002:1
+
+Globalsat:
+    - GLBSAT/LT-100E_A.1_<ISMBand>
+        modelIdentifier: glbsat:lt-100:1 --> glbsat:lt-100-e:1
+    - GLBSAT/LT-100H_A.1_<ISMBand>
+        modelIdentifier: glbsat:lt-100:1 --> glbsat:lt-100-h:1
+
+Yokogawa:
+    - YOKO/VibA.1.0.2b_<ISMBand>
+        modelIdentifier: yokogawa:sushi:1 --> yokogawa:sushi-vib:1
+    - YOKO/TempA.1.0.2b_<ISMBand>
+        modelIdentifier: yokogawa:sushi:1 --> yokogawa:sushi-temp:1
+    - YOKO/PressureA.1.0.2b_<ISMBand>
+        modelIdentifier: yokogawa:sushi:1 --> yokogawa:sushi-pressure:1
+
+Volley_boast:
+    - VoBo/HLIA.1.0.3a_FCC
+        modelIdentifier: vobo:gp-1:1 --> vobo:hl-1:1
+
+We set to 270 Heltec profiles with a null modelIdentifier a new one:
+
+HELT/CUTAAA.1.0.2b_ETSI --> heltec:cc-ab02s-otaa:1
+HELT/CUTAAA.1.0.2b_FCC --> heltec:cc-ab02s-otaa:1
+HELT/CUTAAA.1.0.2b_AS923 --> heltec:cc-ab02s-otaa:1
+HELT/CUOTAA.1.0.2b_ETSI --> heltec:cc-ab02s-otaa-a:1
+HELT/CUOTAC.1.0.2b_ETSI --> heltec:cc-ab02s-otaa-c:1
+HELT/CUOTAA.1.0.2b_FCC --> heltec:cc-ab02s-otaa-a:1
+HELT/CUOTAC.1.0.2b_FCC --> heltec:cc-ab02s-otaa-c:1
+HELT/CUOTAA.1.0.2b_AS923 --> heltec:cc-ab02s-otaa-a:1
+HELT/CUOTAC.1.0.2b_AS923 --> heltec:cc-ab02s-otaa-c:1
+HELT/CUABPA.1.0.2b_ETSI --> heltec:cc-ab02s-abp:1
+HELT/CUABPA.1.0.2b_FCC --> heltec:cc-ab02s-abp:1
+HELT/CUABPA.1.0.2b_AS923 --> heltec:cc-ab02s-abp:1
+HELT/CUCABA.1.0.2b_ETSI --> heltec:cc-ab02s-abp-a:1
+HELT/CUCABC.1.0.2b_ETSI --> heltec:cc-ab02s-abp-c:1
+HELT/CUCABA.1.0.2b_FCC --> heltec:cc-ab02s-abp-a:1
+HELT/CUCABC.1.0.2b_FCC --> heltec:cc-ab02s-abp-c:1
+HELT/CUCABA.1.0.2b_AS923 --> heltec:cc-ab02s-abp-a:1
+HELT/CUCABC.1.0.2b_AS923 --> heltec:cc-ab02s-abp-c:1
+HELT/CUAOTA.1.0.2b_ETSI --> heltec:cc-ab01-otaa:1
+HELT/CUAOTA.1.0.2b_FCC --> heltec:cc-ab01-otaa:1
+HELT/CUAOTA.1.0.2b_AS923 --> heltec:cc-ab01-otaa:1
+HELT/CUCOTA.1.0.2b_ETSI --> heltec:cc-ab01-otaa-a:1
+HELT/CUCOTC.1.0.2b_ETSI --> heltec:cc-ab01-otaa-c:1
+HELT/CUCOTA.1.0.2b_FCC --> heltec:cc-ab01-otaa-a:1
+HELT/CUCOTC.1.0.2b_FCC --> heltec:cc-ab01-otaa-c:1
+HELT/CUCOTA.1.0.2b_AS923 --> heltec:cc-ab01-otaa-a:1
+HELT/CUCOTC.1.0.2b_AS923 --> heltec:cc-ab01-otaa-c:1
+HELT/CUAABA.1.0.2b_ETSI --> heltec:cc-ab01-abp:1
+HELT/CUAABA.1.0.2b_FCC --> heltec:cc-ab01-abp:1
+HELT/CUAABA.1.0.2b_AS923 --> heltec:cc-ab01-abp:1
+HELT/CUSCAA.1.0.2b_ETSI --> heltec:cc-ab01-abp-a:1
+HELT/CUSCAC.1.0.2b_ETSI --> heltec:cc-ab01-abp-c:1
+HELT/CUSCAA.1.0.2b_FCC --> heltec:cc-ab01-abp-a:1
+HELT/CUSCAC.1.0.2b_FCC --> heltec:cc-ab01-abp-c:1
+HELT/CUSCAA.1.0.2b_AS923 --> heltec:cc-ab01-abp-a:1
+HELT/CUSCAC.1.0.2b_AS923 --> heltec:cc-ab01-abp-c:1
+HELT/CUSAOA.1.0.2b_ETSI --> heltec:cc-ab02-otaa:1
+HELT/CUSAOA.1.0.2b_FCC --> heltec:cc-ab02-otaa:1
+HELT/CUSAOA.1.0.2b_AS923 --> heltec:cc-ab02-otaa:1
+HELT/CUSCOA.1.0.2b_ETSI --> heltec:cc-ab02-otaa-a:1
+HELT/CUSCOC.1.0.2b_ETSI --> heltec:cc-ab02-otaa-c:1
+HELT/CUSCOA.1.0.2b_FCC --> heltec:cc-ab02-otaa-a:1
+HELT/CUSCOC.1.0.2b_FCC --> heltec:cc-ab02-otaa-c:1
+HELT/CUSCOA.1.0.2b_AS923 --> heltec:cc-ab02-otaa-a:1
+HELT/CUSCOC.1.0.2b_AS923 --> heltec:cc-ab02-otaa-c:1
+HELT/CUSAAA.1.0.2b_ETSI --> heltec:cc-ab02-abp:1
+HELT/CUSAAA.1.0.2b_FCC --> heltec:cc-ab02-abp:1
+HELT/CUSAAA.1.0.2b_AS923 --> heltec:cc-ab02-abp:1
+HELT/CUSSCA.1.0.2b_ETSI --> heltec:cc-ab02-abp-a:1
+HELT/CUSSCC.1.0.2b_ETSI --> heltec:cc-ab02-abp-c:1
+HELT/CUSSCA.1.0.2b_FCC --> heltec:cc-ab02-abp-a:1
+HELT/CUSSCC.1.0.2b_FCC --> heltec:cc-ab02-abp-c:1
+HELT/CUSSCA.1.0.2b_AS923 --> heltec:cc-ab02-abp-a:1
+HELT/CUSSCC.1.0.2b_AS923 --> heltec:cc-ab02-abp-c:1
+HELT/CUSSAA.1.0.2b_ETSI --> heltec:cc-ab02a-otaa:1
+HELT/CUSSAA.1.0.2b_FCC --> heltec:cc-ab02a-otaa:1
+HELT/CUSSAA.1.0.2b_AS923 --> heltec:cc-ab02a-otaa:1
+HELT/CUASSA.1.0.2b_ETSI --> heltec:cc-ab02a-otaa-a:1
+HELT/CUASSC.1.0.2b_ETSI --> heltec:cc-ab02a-otaa-c:1
+HELT/CUASSA.1.0.2b_FCC --> heltec:cc-ab02a-otaa-a:1
+HELT/CUASSC.1.0.2b_FCC --> heltec:cc-ab02a-otaa-c:1
+HELT/CUASSA.1.0.2b_AS923 --> heltec:cc-ab02a-otaa-a:1
+HELT/CUASSC.1.0.2b_AS923 --> heltec:cc-ab02a-otaa-c:1
+HELT/CULASA.1.0.2b_ETSI --> heltec:cc-ab02a-abp:1
+HELT/CULASA.1.0.2b_FCC --> heltec:cc-ab02a-abp:1
+HELT/CULASA.1.0.2b_AS923 --> heltec:cc-ab02a-abp:1
+HELT/CUCLAA.1.0.2b_ETSI --> heltec:cc-ab02a-abp-a:1
+HELT/CUCLAC.1.0.2b_ETSI --> heltec:cc-ab02a-abp-c:1
+HELT/CUCLAA.1.0.2b_FCC --> heltec:cc-ab02a-abp-a:1
+HELT/CUCLAC.1.0.2b_FCC --> heltec:cc-ab02a-abp-c:1
+HELT/CUCLAA.1.0.2b_AS923 --> heltec:cc-ab02a-abp-a:1
+HELT/CUCLAC.1.0.2b_AS923 --> heltec:cc-ab02a-abp-c:1
+HELT/CURCLA.1.0.2b_ETSI --> heltec:cc-ac01-otaa:1
+HELT/CURCLA.1.0.2b_FCC --> heltec:cc-ac01-otaa:1
+HELT/CURCLA.1.0.2b_AS923 --> heltec:cc-ac01-otaa:1
+HELT/CUORCA.1.0.2b_ETSI --> heltec:cc-ac01-otaa-a:1
+HELT/CUORCC.1.0.2b_ETSI --> heltec:cc-ac01-otaa-c:1
+HELT/CUORCA.1.0.2b_FCC --> heltec:cc-ac01-otaa-a:1
+HELT/CUORCC.1.0.2b_FCC --> heltec:cc-ac01-otaa-c:1
+HELT/CUORCA.1.0.2b_AS923 --> heltec:cc-ac01-otaa-a:1
+HELT/CUORCC.1.0.2b_AS923 --> heltec:cc-ac01-otaa-c:1
+HELT/CUSORA.1.0.2b_ETSI --> heltec:cc-ac01-abp:1
+HELT/CUSORA.1.0.2b_FCC --> heltec:cc-ac01-abp:1
+HELT/CUSORA.1.0.2b_AS923 --> heltec:cc-ac01-abp:1
+HELT/CUNSOA.1.0.2b_ETSI --> heltec:cc-ac01-abp-a:1
+HELT/CUNSOC.1.0.2b_ETSI --> heltec:cc-ac01-abp-c:1
+HELT/CUNSOA.1.0.2b_FCC --> heltec:cc-ac01-abp-a:1
+HELT/CUNSOC.1.0.2b_FCC --> heltec:cc-ac01-abp-c:1
+HELT/CUNSOA.1.0.2b_AS923 --> heltec:cc-ac01-abp-a:1
+HELT/CUNSOC.1.0.2b_AS923 --> heltec:cc-ac01-abp-c:1
+HELT/CUENSA.1.0.2b_ETSI --> heltec:cc-ac02-otaa:1
+HELT/CUENSA.1.0.2b_FCC --> heltec:cc-ac02-otaa:1
+HELT/CUENSA.1.0.2b_AS923 --> heltec:cc-ac02-otaa:1
+HELT/CUSENA.1.0.2b_ETSI --> heltec:bcc-ac02-otaa:1
+HELT/CUSENA.1.0.2b_FCC --> heltec:bcc-ac02-otaa:1
+HELT/CUSENA.1.0.2b_AS923 --> heltec:bcc-ac02-otaa:1
+HELT/CURSEA.1.0.2b_ETSI --> heltec:cc-ac02-abp-a:1
+HELT/CURSEC.1.0.2b_ETSI --> heltec:cc-ac02-abp-c:1
+HELT/CURSEA.1.0.2b_FCC --> heltec:cc-ac02-abp-a:1
+HELT/CURSEC.1.0.2b_FCC --> heltec:cc-ac02-abp-c:1
+HELT/CURSEA.1.0.2b_AS923 --> heltec:cc-ac02-abp-a:1
+HELT/CURSEC.1.0.2b_AS923 --> heltec:cc-ac02-abp-c:1
+HELT/CUARSA.1.0.2b_ETSI --> heltec:bcc-ac02-abp-a:1
+HELT/CUARSC.1.0.2b_ETSI --> heltec:bcc-ac02-abp-c:1
+HELT/CUARSA.1.0.2b_FCC --> heltec:bcc-ac02-abp-a:1
+HELT/CUARSC.1.0.2b_FCC --> heltec:bcc-ac02-abp-c:1
+HELT/CUARSA.1.0.2b_AS923 --> heltec:bcc-ac02-abp-a:1
+HELT/CUARSC.1.0.2b_AS923 --> heltec:bcc-ac02-abp-c:1
+HELT/CUECLA.1.0.2b_ETSI --> heltec:cc-am01-otaa:1
+HELT/CUECLA.1.0.2b_FCC --> heltec:cc-am01-otaa:1
+HELT/CUECLA.1.0.2b_AS923 --> heltec:cc-am01-otaa:1
+HELT/CULECA.1.0.2b_ETSI --> heltec:cc-am01-otaa-a:1
+HELT/CULECC.1.0.2b_ETSI --> heltec:cc-am01-otaa-c:1
+HELT/CULECA.1.0.2b_FCC --> heltec:cc-am01-otaa-a:1
+HELT/CULECC.1.0.2b_FCC --> heltec:cc-am01-otaa-c:1
+HELT/CULECA.1.0.2b_AS923 --> heltec:cc-am01-otaa-a:1
+HELT/CULECC.1.0.2b_AS923 --> heltec:cc-am01-otaa-c:1
+HELT/CUULEA.1.0.2b_ETSI --> heltec:cc-am01-abp:1
+HELT/CUULEA.1.0.2b_FCC --> heltec:cc-am01-abp:1
+HELT/CUULEA.1.0.2b_AS923 --> heltec:cc-am01-abp:1
+HELT/CUDULA.1.0.2b_ETSI --> heltec:cc-am01-abp-a:1
+HELT/CUDULC.1.0.2b_ETSI --> heltec:cc-am01-abp-c:1
+HELT/CUDULA.1.0.2b_FCC --> heltec:cc-am01-abp-a:1
+HELT/CUDULC.1.0.2b_FCC --> heltec:cc-am01-abp-c:1
+HELT/CUDULA.1.0.2b_AS923 --> heltec:cc-am01-abp-a:1
+HELT/CUDULC.1.0.2b_AS923 --> heltec:cc-am01-abp-c:1
+HELT/CUSCLA.1.0.2b_ETSI --> heltec:cc-am02-otaa:1
+HELT/CUSCLA.1.0.2b_FCC --> heltec:cc-am02-otaa:1
+HELT/CUSCLA.1.0.2b_AS923 --> heltec:cc-am02-otaa:1
+HELT/CUUSCA.1.0.2b_ETSI --> heltec:cc-am02-otaa-a:1
+HELT/CUUSCC.1.0.2b_ETSI --> heltec:cc-am02-otaa-c:1
+HELT/CUUSCA.1.0.2b_FCC --> heltec:cc-am02-otaa-a:1
+HELT/CUUSCC.1.0.2b_FCC --> heltec:cc-am02-otaa-c:1
+HELT/CUUSCA.1.0.2b_AS923 --> heltec:cc-am02-otaa-a:1
+HELT/CUUSCC.1.0.2b_AS923 --> heltec:cc-am02-otaa-c:1
+HELT/CULUSA.1.0.2b_ETSI --> heltec:cc-am02-abp:1
+HELT/CULUSA.1.0.2b_FCC --> heltec:cc-am02-abp:1
+HELT/CULUSA.1.0.2b_AS923 --> heltec:cc-am02-abp:1
+HELT/CUPLUA.1.0.2b_ETSI --> heltec:cc-am02-abp-a:1
+HELT/CUPLUC.1.0.2b_ETSI --> heltec:cc-am02-abp-c:1
+HELT/CUPLUA.1.0.2b_FCC --> heltec:cc-am02-abp-a:1
+HELT/CUPLUC.1.0.2b_FCC --> heltec:cc-am02-abp-c:1
+HELT/CUPLUA.1.0.2b_AS923 --> heltec:cc-am02-abp-a:1
+HELT/CUPLUC.1.0.2b_AS923 --> heltec:cc-am02-abp-c:1
+HELT/WITAAA.1.0.2b_ETSI --> heltec:wifi-lora-otaa:2
+HELT/WITAAA.1.0.2b_FCC --> heltec:wifi-lora-otaa:2
+HELT/WITAAA.1.0.2b_AS923 --> heltec:wifi-lora-otaa:2
+HELT/WIOTAA.1.0.2b_ETSI --> heltec:wifi-lora-otaa-a:2
+HELT/WIOTAC.1.0.2b_ETSI --> heltec:wifi-lora-otaa-c:2
+HELT/WIOTAA.1.0.2b_FCC --> heltec:wifi-lora-otaa-a:2
+HELT/WIOTAC.1.0.2b_FCC --> heltec:wifi-lora-otaa-c:2
+HELT/WIOTAA.1.0.2b_AS923 --> heltec:wifi-lora-otaa-a:2
+HELT/WIOTAC.1.0.2b_AS923 --> heltec:wifi-lora-otaa-c:2
+HELT/WIABPA.1.0.2b_ETSI --> heltec:wifi-lora-abp:2
+HELT/WIABPA.1.0.2b_FCC --> heltec:wifi-lora-abp:2
+HELT/WIABPA.1.0.2b_AS923 --> heltec:wifi-lora-abp:2
+HELT/WICABA.1.0.2b_ETSI --> heltec:wifi-lora-abp-a:2
+HELT/WICABC.1.0.2b_ETSI --> heltec:wifi-lora-abp-c:2
+HELT/WICABA.1.0.2b_FCC --> heltec:wifi-lora-abp-a:2
+HELT/WICABC.1.0.2b_FCC --> heltec:wifi-lora-abp-c:2
+HELT/WICABA.1.0.2b_AS923 --> heltec:wifi-lora-abp-a:2
+HELT/WICABC.1.0.2b_AS923 --> heltec:wifi-lora-abp-c:2
+HELT/WIAOTA.1.0.2b_ETSI --> heltec:wire-stic-otaa:1
+HELT/WIAOTA.1.0.2b_FCC --> heltec:wire-stic-otaa:1
+HELT/WIAOTA.1.0.2b_AS923 --> heltec:wire-stic-otaa:1
+HELT/WICOTA.1.0.2b_ETSI --> heltec:wire-stic-otaa-a:1
+HELT/WICOTC.1.0.2b_ETSI --> heltec:wire-stic-otaa-c:1
+HELT/WICOTA.1.0.2b_FCC --> heltec:wire-stic-otaa-a:1
+HELT/WICOTC.1.0.2b_FCC --> heltec:wire-stic-otaa-c:1
+HELT/WICOTA.1.0.2b_AS923 --> heltec:wire-stic-otaa-a:1
+HELT/WICOTC.1.0.2b_AS923 --> heltec:wire-stic-otaa-c:1
+HELT/WIAABA.1.0.2b_ETSI --> heltec:wire-stic-abp:1
+HELT/WIAABA.1.0.2b_FCC --> heltec:wire-stic-abp:1
+HELT/WIAABA.1.0.2b_AS923 --> heltec:wire-stic-abp:1
+HELT/WISCAA.1.0.2b_ETSI --> heltec:wire-stic-abp-a:1
+HELT/WISCAC.1.0.2b_ETSI --> heltec:wire-stic-abp-c:1
+HELT/WISCAA.1.0.2b_FCC --> heltec:wire-stic-abp-a:1
+HELT/WISCAC.1.0.2b_FCC --> heltec:wire-stic-abp-c:1
+HELT/WISCAA.1.0.2b_AS923 --> heltec:wire-stic-abp-a:1
+HELT/WISCAC.1.0.2b_AS923 --> heltec:wire-stic-abp-c:1
+HELT/WISAOA.1.0.2b_ETSI --> heltec:lite-stic-otaa:1
+HELT/WISAOA.1.0.2b_FCC --> heltec:lite-stic-otaa:1
+HELT/WISAOA.1.0.2b_AS923 --> heltec:lite-stic-otaa:1
+HELT/WISCOA.1.0.2b_ETSI --> heltec:lite-stic-otaa-a:1
+HELT/WISCOC.1.0.2b_ETSI --> heltec:lite-stic-otaa-c:1
+HELT/WISCOA.1.0.2b_FCC --> heltec:lite-stic-otaa-a:1
+HELT/WISCOC.1.0.2b_FCC --> heltec:lite-stic-otaa-c:1
+HELT/WISCOA.1.0.2b_AS923 --> heltec:lite-stic-otaa-a:1
+HELT/WISCOC.1.0.2b_AS923 --> heltec:lite-stic-otaa-c:1
+HELT/WISAAA.1.0.2b_ETSI --> heltec:lite-stic-abp:1
+HELT/WISAAA.1.0.2b_FCC --> heltec:lite-stic-abp:1
+HELT/WISAAA.1.0.2b_AS923 --> heltec:lite-stic-abp:1
+HELT/WISSCA.1.0.2b_ETSI --> heltec:lite-stic-abp-a:1
+HELT/WISSCC.1.0.2b_ETSI --> heltec:lite-stic-abp-c:1
+HELT/WISSCA.1.0.2b_FCC --> heltec:lite-stic-abp-a:1
+HELT/WISSCC.1.0.2b_FCC --> heltec:lite-stic-abp-c:1
+HELT/WISSCA.1.0.2b_AS923 --> heltec:lite-stic-abp-a:1
+HELT/WISSCC.1.0.2b_AS923 --> heltec:lite-stic-abp-c:1
+HELT/WISSAA.1.0.2b_ETSI --> heltec:bwire-she-otaa-a:1
+HELT/WISSAA.1.0.2b_FCC --> heltec:wire-shel-otaa:1
+HELT/WISSAA.1.0.2b_AS923 --> heltec:wire-shel-otaa:1
+HELT/WIASSA.1.0.2b_ETSI --> heltec:wire-shel-otaa-a:1
+HELT/WIASSC.1.0.2b_ETSI --> heltec:wire-shel-otaa-c:1
+HELT/WIASSA.1.0.2b_FCC --> heltec:wire-shel-otaa-a:1
+HELT/WIASSC.1.0.2b_FCC --> heltec:wire-shel-otaa-c:1
+HELT/WIASSA.1.0.2b_AS923 --> heltec:wire-shel-otaa-a:1
+HELT/WIASSC.1.0.2b_AS923 --> heltec:wire-shel-otaa-c:1
+HELT/WILASA.1.0.2b_ETSI --> heltec:wire-shel-abp:1
+HELT/WILASA.1.0.2b_FCC --> heltec:wire-shel-abp:1
+HELT/WILASA.1.0.2b_AS923 --> heltec:wire-shel-abp:1
+HELT/WICLAA.1.0.2b_ETSI --> heltec:wire-shel-abp-a:1
+HELT/WICLAC.1.0.2b_ETSI --> heltec:wire-shel-abp-c:1
+HELT/WICLAA.1.0.2b_FCC --> heltec:wire-shel-abp-a:1
+HELT/WICLAC.1.0.2b_FCC --> heltec:wire-shel-abp-c:1
+HELT/WICLAA.1.0.2b_AS923 --> heltec:wire-shel-abp-a:1
+HELT/WICLAC.1.0.2b_AS923 --> heltec:wire-shel-abp-c:1
+HELT/LOTAAA.1.0.2b_ETSI --> heltec:lora-kit-otaa:1
+HELT/LOTAAA.1.0.2b_FCC --> heltec:lora-kit-otaa:1
+HELT/LOTAAA.1.0.2b_AS923 --> heltec:lora-kit-otaa:1
+HELT/LOOTAA.1.0.2b_ETSI --> heltec:lora-kit-otaa-a:1
+HELT/LOOTAC.1.0.2b_ETSI --> heltec:lora-kit-otaa-c:1
+HELT/LOOTAA.1.0.2b_FCC --> heltec:lora-kit-otaa-a:1
+HELT/LOOTAC.1.0.2b_FCC --> heltec:lora-kit-otaa-c:1
+HELT/LOOTAA.1.0.2b_AS923 --> heltec:lora-kit-otaa-a:1
+HELT/LOOTAC.1.0.2b_AS923 --> heltec:lora-kit-otaa-c:1
+HELT/LOABPA.1.0.2b_ETSI --> heltec:lora-kit-abp:1
+HELT/LOABPA.1.0.2b_FCC --> heltec:lora-kit-abp:1
+HELT/LOABPA.1.0.2b_AS923 --> heltec:lora-kit-abp:1
+HELT/LOCABA.1.0.2b_ETSI --> heltec:lora-kit-abp-a:1
+HELT/LOCABC.1.0.2b_ETSI --> heltec:lora-kit-abp-c:1
+HELT/LOCABA.1.0.2b_FCC --> heltec:lora-kit-abp-a:1
+HELT/LOCABC.1.0.2b_FCC --> heltec:lora-kit-abp-c:1
+HELT/LOCABA.1.0.2b_AS923 --> heltec:lora-kit-abp-a:1
+HELT/LOCABC.1.0.2b_AS923 --> heltec:lora-kit-abp-c:1
+HELT/LOAOTA.1.0.2b_ETSI --> heltec:lora-node-otaa:1
+HELT/LOAOTA.1.0.2b_FCC --> heltec:lora-node-otaa:1
+HELT/LOAOTA.1.0.2b_AS923 --> heltec:lora-node-otaa:1
+HELT/LOCOTA.1.0.2b_ETSI --> heltec:lora-node-otaa-a:1
+HELT/LOCOTC.1.0.2b_ETSI --> heltec:lora-node-otaa-c:1
+HELT/LOCOTA.1.0.2b_FCC --> heltec:lora-node-otaa-a:1
+HELT/LOCOTC.1.0.2b_FCC --> heltec:lora-node-otaa-c:1
+HELT/LOCOTA.1.0.2b_AS923 --> heltec:lora-node-otaa-a:1
+HELT/LOCOTC.1.0.2b_AS923 --> heltec:lora-node-otaa-c:1
+HELT/LOAABA.1.0.2b_ETSI --> heltec:lora-node-abp:1
+HELT/LOAABA.1.0.2b_FCC --> heltec:lora-node-abp:1
+HELT/LOAABA.1.0.2b_AS923 --> heltec:lora-node-abp:1
+HELT/LOSCAA.1.0.2b_ETSI --> heltec:lora-node-abp-a:1
+HELT/LOSCAC.1.0.2b_ETSI --> heltec:lora-node-abp-c:1
+HELT/LOSCAA.1.0.2b_FCC --> heltec:lora-node-abp-a:1
+HELT/LOSCAC.1.0.2b_FCC --> heltec:lora-node-abp-c:1
+HELT/LOSCAA.1.0.2b_AS923 --> heltec:lora-node-abp-a:1
+HELT/LOSCAC.1.0.2b_AS923 --> heltec:lora-node-abp-c:1
+HELT/TUTAAA.1.0.2b_ETSI --> heltec:turt-boar-otaa:1
+HELT/TUTAAA.1.0.2b_FCC --> heltec:turt-boar-otaa:1
+HELT/TUTAAA.1.0.2b_AS923 --> heltec:turt-boar-otaa:1
+HELT/TUOTAA.1.0.2b_ETSI --> heltec:turt-boar-otaa-a:1
+HELT/TUOTAC.1.0.2b_ETSI --> heltec:turt-boar-otaa-c:1
+HELT/TUOTAA.1.0.2b_FCC --> heltec:turt-boar-otaa-a:1
+HELT/TUOTAC.1.0.2b_FCC --> heltec:turt-boar-otaa-c:1
+HELT/TUOTAA.1.0.2b_AS923 --> heltec:turt-boar-otaa-a:1
+HELT/TUOTAC.1.0.2b_AS923 --> heltec:turt-boar-otaa-c:1
+HELT/TUABPA.1.0.2b_ETSI --> heltec:turt-boar-abp:1
+HELT/TUABPA.1.0.2b_FCC --> heltec:turt-boar-abp:1
+HELT/TUABPA.1.0.2b_AS923 --> heltec:turt-boar-abp:1
+HELT/TUCABA.1.0.2b_ETSI --> heltec:turt-boar-abp-a:1
+HELT/TUCABC.1.0.2b_ETSI --> heltec:turt-boar-abp-c:1
+HELT/TUCABA.1.0.2b_FCC --> heltec:turt-boar-abp-a:1
+HELT/TUCABC.1.0.2b_FCC --> heltec:turt-boar-abp-c:1
+HELT/TUCABA.1.0.2b_AS923 --> heltec:turt-boar-abp-a:1
+HELT/TUCABC.1.0.2b_AS923 --> heltec:turt-boar-abp-c:1
+
+We deleted the TPE/TPO Version for all profiles, those one are affected:
+IMST/RADERA.1.0.4a_ETSI
+KULE/DRUNOA.1.0.4a_ETSI
+LORA/GenericA.1.0.4a_AS923
+LORA/GenericA.1.0.4a_AU
+LORA/GenericA.1.0.4a_ETSI
+LORA/GenericA.1.0.4a_FCC
+LORA/GenericA.1.1a_AS923_Rx2-SF12
+LORA/GenericA.1.1a_ETSI_Rx2-SF12
+LORA/GenericA.1.1a_FCC_Rx2-SF12
+LORA/GenericB.1.0.4a_AS923
+LORA/GenericB.1.0.4a_AU
+LORA/GenericB.1.0.4a_ETSI
+LORA/GenericB.1.0.4a_FCC
+LORA/GenericB.1.1a_AS923_Rx2-SF12
+LORA/GenericB.1.1a_ETSI_Rx2-SF12
+LORA/GenericB.1.1a_FCC_Rx2-SF12
+LORA/GenericC.1.0.4a_AS923
+LORA/GenericC.1.0.4a_AU
+LORA/GenericC.1.0.4a_ETSI
+LORA/GenericC.1.0.4a_FCC
+LORA/GenericC.1.1a_AS923_Rx2-SF12
+LORA/GenericC.1.1a_ETSI_Rx2-SF12
+LORA/GenericC.1.1a_FCC_Rx2-SF12
+SENS/STRIPSA.1.0.4d_AS923
+SMTC/LoRaMoteC.1_EU
+STMI/NUJC1A.1.0.4a_AS923
+STMI/NUJC1A.1.0.4a_AU
+STMI/NUJC1A.1.0.4a_ETSI
+STMI/NUJC1A.1.0.4a_FCC
+STMI/NUJC2A.1.0.4a_ETSI
+STMI/NUJC2A.1.0.4a_FCC
+
+Aslo we fix the Zenner this when he do not precise if he is OTAA or ABP, we put it by default on OTAA: 
+ZENNER/CO2A.1.0.3a_ETSI
+-------------------------------------------------------------------------
