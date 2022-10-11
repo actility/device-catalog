@@ -1,9 +1,10 @@
 # Commercial name of the model 
 name: Industrial Tracker
 # Functional description of the product. Maximum 500 characters. 
-description: "The Industrial Tracker designed to withstand harsh environment combines high performance GPS receiver, a WiFi receiver and a Semtech Lora transceiver making this product ideal for low-power industrial indoor and outdoor tracking applications."
+description: "The Industrial Tracker designed to withstand harsh environment combines high performance GPS receiver, a WiFi receiver and a Semtech Lora transceiver making this product ideal for low-power industrial indoor and outdoor tracking applications. LoRaWAN 1.0.2 revB - class A - European deployments."
 # Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
-ISMbands: eu868
+ISMbands: 
+    - eu868
 # Logo of the device
 logo: abeeway-indus-tracker.png
 # Product name & Version
@@ -34,10 +35,11 @@ motionIndicator: RANDOM
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# modelId // [RSS] Is it really needed? 
+# Mandatory whenever you have a driver for the model
 modelId: abeeway:indus-tracker:2
-# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
-protocolId: abeeway:asset-tracker:2
+# <vendorId>:<modelId>:<modelVersion> Needed for linking the model with a specific driver (you can have several ones)
+protocolId: 
+    - abeeway:asset-tracker:2
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 

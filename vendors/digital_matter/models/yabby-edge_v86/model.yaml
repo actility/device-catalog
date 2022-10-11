@@ -3,7 +3,8 @@ name: Yabby Edge
 # Functional description of the product. Maximum 500 characters. 
 description: "The Digital Matter Yabby Edge is a LoRaWAN® indoor/outdoor asset tracker that combines GNSS and WiFi scanning. It is the first industrial asset tracking device to feature Semtech’s LoRa Edge™ LR1110 Asset Management platform and advanced cloud-based location calculations, significantly reducing power consumption and extending battery life."
 # Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
-ISMbands: us915
+ISMbands: 
+    - us915
 # Logo of the device
 logo: digital_matter-yabby-edge.png
 # Product name & Version
@@ -32,10 +33,11 @@ motionIndicator: RANDOM
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# modelId // [RSS] Is it really needed? 
+# Mandatory whenever you have a driver for the model
 modelId: digi-mat:yabby-edge:86
-# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
-protocolId: null
+# <vendorId>:<modelId>:<modelVersion> Needed for linking the model with a specific driver (you can have several ones)
+protocolId: 
+    - os1-digi:yabby-edge:86
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 

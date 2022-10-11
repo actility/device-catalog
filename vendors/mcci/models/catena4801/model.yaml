@@ -3,7 +3,10 @@ name: MCCI Catena® 4801 Modbus Node
 # Functional description of the product. Maximum 500 characters. 
 description: "The MCCI Catena® 4801 RS-485 Node for LoRaWAN® technology networks is a complete open-source single-board IoT device that can monitor and control remote Modbus, M-Bus and other industrial devices. It also allows connecting external sensors. Based on the Murata CMWX1ZZABZ-078, the Catena 4801 is a great platform for RS-485/Modbus based LoRaWAN investigation and deployment."
 # Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
-ISMbands: eu868,kr920,in865
+ISMbands: 
+    - eu868
+    - kr920
+    - in865
 # Logo of the device
 logo: mcci-catena4801.png
 # Product name & Version
@@ -32,10 +35,11 @@ motionIndicator: RANDOM
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# modelId // [RSS] Is it really needed? 
+# Mandatory whenever you have a driver for the model
 modelId: mcci:catena4801:1
-# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
-protocolId: null
+# <vendorId>:<modelId>:<modelVersion> Needed for linking the model with a specific driver (you can have several ones)
+protocolId: 
+    - os1-mcci:catena4801:1
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 

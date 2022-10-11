@@ -3,7 +3,10 @@ name: R718F2 - Wireless 2-Gang Reed Switch Open/Close Detection Sensor
 # Functional description of the product. Maximum 500 characters. 
 description: "R718F2 is a 2-gang open/close detection sensor that utilizes 2 reed switches to detect whether two objects are separated or not. An example of R718F2’s application is to detect the state of a door or window for security purposes. It is based on SX1276 wireless communication module, and the communication is fully compatible with LoRaWAN™ protocol (Class A)."
 # Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
-ISMbands: eu868,kr920,in865
+ISMbands: 
+    - eu868
+    - kr920
+    - in865
 # Logo of the device
 logo: netvox-r718f2.png
 # Product name & Version
@@ -31,10 +34,12 @@ motionIndicator: RANDOM
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# modelId // [RSS] Is it really needed? 
+# Mandatory whenever you have a driver for the model
 modelId: netvox:r718f2:1
-# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
-protocolId: netvox:lorawan:1
+# <vendorId>:<modelId>:<modelVersion> Needed for linking the model with a specific driver (you can have several ones)
+protocolId: 
+    - netvox:lorawan:1
+    - os1-netv:r718f2:10
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 

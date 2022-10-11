@@ -3,7 +3,8 @@ name: Industrial GPS Asset Tracker
 # Functional description of the product. Maximum 500 characters. 
 description: "The Tektelic Industrial GPS Asset Tracker combines a GPS tracker and an accelerometer for precisely tracking assets in industrial environments."
 # Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
-ISMbands: eu868
+ISMbands: 
+    - eu868
 # Logo of the device
 logo: tektelic-t0006129-industrial-gps-asset-track.png
 # Product name & Version
@@ -30,10 +31,11 @@ motionIndicator: RANDOM
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# modelId // [RSS] Is it really needed? 
+# Mandatory whenever you have a driver for the model
 modelId: tektelic:t0006129-industr:0
-# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
-protocolId: null
+# <vendorId>:<modelId>:<modelVersion> Needed for linking the model with a specific driver (you can have several ones)
+protocolId: 
+    - os1-tekt:t0006129-industr:0
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 

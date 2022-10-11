@@ -1,9 +1,10 @@
 # Commercial name of the model 
 name: CO2 Indicator L868
 # Functional description of the product. Maximum 500 characters. 
-description: "Compact indoor LoRaWAN radio sensor (868MHz) for measuring the CO2 content of indoor air."
+description: "Compact indoor LoRaWAN radio sensor (868MHz) for measuring the CO2 content of indoor air. This profile is based on LoRaWAN 1.0.3 for ETSI deployments (Europe, India and Russia)."
 # Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
-ISMbands: eu868
+ISMbands: 
+    - eu868
 # Logo of the device
 logo: zenner_co2.png
 # Product name & Version
@@ -29,10 +30,11 @@ motionIndicator: RANDOM
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# modelId // [RSS] Is it really needed? 
+# Mandatory whenever you have a driver for the model
 modelId: zenner:co2-ind-ID-A:1
-# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
-protocolId: zenner:co2-ind-ID-A:1
+# <vendorId>:<modelId>:<modelVersion> Needed for linking the model with a specific driver (you can have several ones)
+protocolId: 
+    - zenner:co2-ind-ID-A:1
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 

@@ -3,7 +3,8 @@ name: Atm'O
 # Functional description of the product. Maximum 500 characters. 
 description: "The nke WATTECO Atm’O has sensors for measuring temperature, relative humidity, and atmospheric pressure in outdoors and industrial environments, and transmits the data over a public or private LoRaWAN® radio network."
 # Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
-ISMbands: eu868
+ISMbands: 
+    - eu868
 # Logo of the device
 logo: nke-atmo-sensor.png
 # Product name & Version
@@ -29,10 +30,12 @@ motionIndicator: RANDOM
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# modelId // [RSS] Is it really needed? 
+# Mandatory whenever you have a driver for the model
 modelId: nke:atmo:3
-# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
-protocolId: nke:zcl:1
+# <vendorId>:<modelId>:<modelVersion> Needed for linking the model with a specific driver (you can have several ones)
+protocolId: 
+    - nke:zcl:1
+    - os1-nke:atmo-sensor:3
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 

@@ -3,7 +3,8 @@ name: kuando Busylight IoT Omega LoRaWAN
 # Functional description of the product. Maximum 500 characters. 
 description: "A visual indicator for status, cues & notification"
 # Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
-ISMbands: eu868
+ISMbands: 
+    - eu868
 # Logo of the device
 logo: plenom-busylight.png
 # Product name & Version
@@ -34,10 +35,11 @@ motionIndicator: RANDOM
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# modelId // [RSS] Is it really needed? 
+# Mandatory whenever you have a driver for the model
 modelId: plenom:busylight:4
-# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
-protocolId: null
+# <vendorId>:<modelId>:<modelVersion> Needed for linking the model with a specific driver (you can have several ones)
+protocolId: 
+    - os1-plen:busylight:4
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 

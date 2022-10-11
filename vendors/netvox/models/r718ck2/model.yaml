@@ -3,7 +3,10 @@ name: R718CK2 - Wireless 2-Gang Thermocouple Sensor
 # Functional description of the product. Maximum 500 characters. 
 description: "This equipment is used to detect temperature of the object and medium which thermocouple is contacted. It can be connected to two thermocouples for testing. It uses SX1276 wireless communication module. R718CX2 can be connected according to requirements [ type K (R718CK2), type T thermocouple (R718CT2), type R thermocouple (R718CR2), type N thermocouple (R718CN2). The collected data is displayed in the gateway.]"
 # Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
-ISMbands: eu868,kr920,in865
+ISMbands: 
+    - eu868
+    - kr920
+    - in865
 # Logo of the device
 logo: netvox-r718ck2.png
 # Product name & Version
@@ -31,10 +34,12 @@ motionIndicator: RANDOM
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# modelId // [RSS] Is it really needed? 
+# Mandatory whenever you have a driver for the model
 modelId: netvox:r718ck2:1
-# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
-protocolId: netvox:lorawan:1
+# <vendorId>:<modelId>:<modelVersion> Needed for linking the model with a specific driver (you can have several ones)
+protocolId: 
+    - netvox:lorawan:1
+    - os1-netv:r718ck2:10
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 

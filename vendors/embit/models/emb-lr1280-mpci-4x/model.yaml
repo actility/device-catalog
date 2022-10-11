@@ -1,9 +1,10 @@
 # Commercial name of the model 
 name: EMB-LR1280-mPCI-4x
 # Functional description of the product. Maximum 500 characters. 
-description: "The embit EMB-LR1280-mPCIe-4x is a mini PCI express multichannel LoRa® card. It is suitable for applications that require long-range connectivity like logistic and supply chain, industrial monitoring and control, factory automation, home & building automation, and wireless alarm & security systems."
+description: "The embit EMB-LR1280-mPCIe-4x is a mini PCI express multichannel LoRa® card. It can operate worldwide being fully compliant with 2.4 GHz frequency band regulation. It is suitable for applications that require long-range connectivity like logistic and supply chain, industrial monitoring and control, factory automation, home & building automation, and wireless alarm & security systems."
 # Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
-ISMbands: eu868
+ISMbands: 
+    - eu868
 # Logo of the device
 logo: embit-emb-lr1280-mpci-4x.png
 # Product name & Version
@@ -30,9 +31,9 @@ motionIndicator: RANDOM
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# modelId // [RSS] Is it really needed? 
+# Mandatory whenever you have a driver for the model
 modelId: null
-# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
+# <vendorId>:<modelId>:<modelVersion> Needed for linking the model with a specific driver (you can have several ones)
 protocolId: null
 # DataSheet URL (optional) 
 specificationURL: 

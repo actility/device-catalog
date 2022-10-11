@@ -3,7 +3,8 @@ name: EMB-LR1280S
 # Functional description of the product. Maximum 500 characters. 
 description: "The embit EMB-LR1280S is an ultra-low-power OEM Embit module. It is based on Semtech’s SX1280 long-range 2.4 GHz transceiver coupled with STM32L073 MCU. EMB-LR1280S can communicate with other devices through a wide range of serial interfaces such as UART, I2C, USB, SPI, and several digital and analog I/O."
 # Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
-ISMbands: eu868
+ISMbands: 
+    - eu868
 # Logo of the device
 logo: embit-emb-lr1280s.png
 # Product name & Version
@@ -29,9 +30,9 @@ motionIndicator: RANDOM
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# modelId // [RSS] Is it really needed? 
+# Mandatory whenever you have a driver for the model
 modelId: null
-# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
+# <vendorId>:<modelId>:<modelVersion> Needed for linking the model with a specific driver (you can have several ones)
 protocolId: null
 # DataSheet URL (optional) 
 specificationURL: 

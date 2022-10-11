@@ -3,7 +3,8 @@ name: The Things Uno
 # Functional description of the product. Maximum 500 characters. 
 description: "The Things Uno is based on the Arduino Leonardo with an added Microchip LoRaWAN® module. It is fully compatible with the Arduino IDE and existing shields."
 # Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
-ISMbands: eu868
+ISMbands: 
+    - eu868
 # Logo of the device
 logo: the-things-products-the-things-uno.png
 # Product name & Version
@@ -29,10 +30,11 @@ motionIndicator: RANDOM
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# modelId // [RSS] Is it really needed? 
+# Mandatory whenever you have a driver for the model
 modelId: ttprod:the-things-uno:2
-# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
-protocolId: null
+# <vendorId>:<modelId>:<modelVersion> Needed for linking the model with a specific driver (you can have several ones)
+protocolId: 
+    - os1-thts:the-things-uno:2
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 

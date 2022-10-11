@@ -1,9 +1,10 @@
 # Commercial name of the model 
 name: Senlab M - Water and Energies Metering
 # Functional description of the product. Maximum 500 characters. 
-description: "Indoor/outdoor water & energies monitoring sensors."
+description: "Indoor/outdoor water & energies monitoring sensors. This profile is based on LoraWAN 1.0.3revA for European  deployments in 868MHz band."
 # Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
-ISMbands: eu868
+ISMbands: 
+    - eu868
 # Logo of the device
 logo: senlab_wa_en.png
 # Product name & Version
@@ -29,10 +30,11 @@ motionIndicator: NEAR_STATIC
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# modelId // [RSS] Is it really needed? 
+# Mandatory whenever you have a driver for the model
 modelId: senlab:pul-41ns:1
-# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
-protocolId: senlab:m:1
+# <vendorId>:<modelId>:<modelVersion> Needed for linking the model with a specific driver (you can have several ones)
+protocolId: 
+    - senlab:m:1
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 

@@ -1,9 +1,11 @@
 # Commercial name of the model 
 name: LoRaMote EU fw4
 # Functional description of the product. Maximum 500 characters. 
-description: "LoRaMote EU fw4."
+description: "LoRaMote EU fw4 - classA - LoRaWAN 1.0/1.0.1."
 # Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
-ISMbands: eu868,ru864
+ISMbands: 
+    - eu868
+    - ru864
 # Logo of the device
 logo: smtc_loramoteA.png
 # Product name & Version
@@ -12,7 +14,6 @@ product:
     version: 1
 # ID of the profile that defines the LoRaWAN characteristics of this model. 
 deviceProfileId: 
-    - SMTC-LoRaMoteA.1_AS923
     - SMTC/LoRaMoteA.1_EU
     - SMTC/LoRaMoteC.1_EU
  
@@ -31,9 +32,9 @@ motionIndicator: RANDOM
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# modelId // [RSS] Is it really needed? 
+# Mandatory whenever you have a driver for the model
 modelId: null
-# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
+# <vendorId>:<modelId>:<modelVersion> Needed for linking the model with a specific driver (you can have several ones)
 protocolId: null
 # DataSheet URL (optional) 
 specificationURL: 

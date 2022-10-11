@@ -3,7 +3,8 @@ name: ESP32-Paxcounter
 # Functional description of the product. Maximum 500 characters. 
 description: "The ESP32-Paxcounter has sensors for battery, GPS, altitude, temperature, humidity, barometer, pm2.5, and pm10. It is an ESP32 MCU-based device for metering passenger flows in real-time. It counts how many mobile devices are around by scanning WiFi and Bluetooth signals in the air and provides an estimation of how many people are around. The captured data is transmitted over a public or private LoRaWAN® radio network."
 # Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
-ISMbands: eu868
+ISMbands: 
+    - eu868
 # Logo of the device
 logo: the-things-network-esp32-paxcounter.png
 # Product name & Version
@@ -30,10 +31,11 @@ motionIndicator: RANDOM
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# modelId // [RSS] Is it really needed? 
+# Mandatory whenever you have a driver for the model
 modelId: ttn:esp32-paxcounter:3
-# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
-protocolId: null
+# <vendorId>:<modelId>:<modelVersion> Needed for linking the model with a specific driver (you can have several ones)
+protocolId: 
+    - os1-ttn:esp32-paxcounter:3
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 

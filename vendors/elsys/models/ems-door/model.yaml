@@ -3,7 +3,8 @@ name: EMS DOOR
 # Functional description of the product. Maximum 500 characters. 
 description: "The ELSYS EMS Door is equipped with a door switch (reed switch) for detecting the opening and closing of doors, windows, garage doors, vaults, and entryways. It also includes an accelerometer for movement detection. The EMS Door is suitable for applications such as door activity detection, movement detection, smart buildings, and workplace management. It utilizes LoRaWAN® connectivity to transmit data."
 # Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
-ISMbands: eu868
+ISMbands: 
+    - eu868
 # Logo of the device
 logo: elsys-ems-door.png
 # Product name & Version
@@ -32,10 +33,12 @@ motionIndicator: RANDOM
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# modelId // [RSS] Is it really needed? 
+# Mandatory whenever you have a driver for the model
 modelId: elsys:ems-door:1
-# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
-protocolId: elsys:generic:1
+# <vendorId>:<modelId>:<modelVersion> Needed for linking the model with a specific driver (you can have several ones)
+protocolId: 
+    - elsys:generic:1
+    - os1-elsy:ems-door:1
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 

@@ -3,7 +3,10 @@ name: RA0715 - Wireless CO2/Temperature/Humidity Sensor
 # Functional description of the product. Maximum 500 characters. 
 description: "The Netvox RA0715-Wireless CO2/Temperature/Humidity Sensor for measuring temperature and humidity. It also has a built-in PM2.5 sensor for measuring CO2 concentration in the air to ensure air quality."
 # Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
-ISMbands: eu868,kr920,in865
+ISMbands: 
+    - eu868
+    - kr920
+    - in865
 # Logo of the device
 logo: netvox-ra0715.png
 # Product name & Version
@@ -31,10 +34,12 @@ motionIndicator: RANDOM
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# modelId // [RSS] Is it really needed? 
+# Mandatory whenever you have a driver for the model
 modelId: netvox:ra0715:1
-# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
-protocolId: netvox:lorawan:1
+# <vendorId>:<modelId>:<modelVersion> Needed for linking the model with a specific driver (you can have several ones)
+protocolId: 
+    - netvox:lorawan:1
+    - os1-netv:ra0715:13
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 

@@ -3,7 +3,8 @@ name: Wireless Air Temperature and Humidity Sensor - LoRaWAN
 # Functional description of the product. Maximum 500 characters. 
 description: "The Seeed Studio SenseCAP Wireless Air Temperature and Humidity Sensor measures temperature and humidity in the atmosphere. It's designed with a 2-in-1 sensor, a custom battery, and an IP66 enclosure, optimized for outdoor use cases that need reliable data collected over years. The collected data is sent over the LoRaWAN® network for further processing and decision making."
 # Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
-ISMbands: eu868
+ISMbands: 
+    - eu868
 # Logo of the device
 logo: sensecap-air-th.png
 # Product name & Version
@@ -31,10 +32,11 @@ motionIndicator: RANDOM
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# modelId // [RSS] Is it really needed? 
+# Mandatory whenever you have a driver for the model
 modelId: sensecap:air-th:1
-# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
-protocolId: null
+# <vendorId>:<modelId>:<modelVersion> Needed for linking the model with a specific driver (you can have several ones)
+protocolId: 
+    - os1-seap:air-th:1
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 

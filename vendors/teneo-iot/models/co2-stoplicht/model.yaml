@@ -3,7 +3,8 @@ name: CO2 stoplicht
 # Functional description of the product. Maximum 500 characters. 
 description: "The Teneo IoT CO2 stoplicht is equipped with a CO2 sensor, temperature sensor, and humidity sensor that alarms by means of the traffic light function when the measured values exceed the set standards. The CO2 traffic light has digital communication via LoRaWAN® or WiFi, which makes it possible to log in all measured values and view them remotely."
 # Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
-ISMbands: eu868
+ISMbands: 
+    - eu868
 # Logo of the device
 logo: teneo-iot-co2-stoplicht.png
 # Product name & Version
@@ -29,10 +30,11 @@ motionIndicator: RANDOM
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# modelId // [RSS] Is it really needed? 
+# Mandatory whenever you have a driver for the model
 modelId: teneoiot:co2-stoplicht:1
-# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
-protocolId: null
+# <vendorId>:<modelId>:<modelVersion> Needed for linking the model with a specific driver (you can have several ones)
+protocolId: 
+    - os1-tene:co2-stoplicht:1
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 

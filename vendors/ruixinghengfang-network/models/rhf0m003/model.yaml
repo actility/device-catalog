@@ -3,7 +3,12 @@ name: RHF0M003
 # Functional description of the product. Maximum 500 characters. 
 description: "The RisingHF RHF0M003 module is a low-cost, low-power, ultra-small LoRaWAN® module consisting of the LoRa chip SX127x from Semtech and the low-power microcontroller STM32L07x from ST. The RHF0M003 module is mainly used in wireless sensors, AMRs, wearables, and other low-power IoT devices powered by batteries."
 # Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
-ISMbands: eu868,cn779,eu433,kr920,in865
+ISMbands: 
+    - eu868
+    - cn779
+    - eu433
+    - kr920
+    - in865
 # Logo of the device
 logo: ruixinghengfang-network-rhf0m003.png
 # Product name & Version
@@ -36,9 +41,9 @@ motionIndicator: RANDOM
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# modelId // [RSS] Is it really needed? 
+# Mandatory whenever you have a driver for the model
 modelId: null
-# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
+# <vendorId>:<modelId>:<modelVersion> Needed for linking the model with a specific driver (you can have several ones)
 protocolId: null
 # DataSheet URL (optional) 
 specificationURL: 

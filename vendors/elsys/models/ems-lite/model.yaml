@@ -3,7 +3,8 @@ name: EMS Lite
 # Functional description of the product. Maximum 500 characters. 
 description: "The ELSYS EMS Lite is equipped with a temperature and humidity sensor for indoor environmental monitoring. It also includes a leak sensor for detecting water leakage. The EMS Lite is suitable for applications such as indoor environment measuring, smart buildings, workplace management, and water leakage detection. It utilizes LoRaWAN® connectivity to transmit data."
 # Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
-ISMbands: eu868
+ISMbands: 
+    - eu868
 # Logo of the device
 logo: elsys-ems-lite.png
 # Product name & Version
@@ -32,10 +33,12 @@ motionIndicator: RANDOM
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# modelId // [RSS] Is it really needed? 
+# Mandatory whenever you have a driver for the model
 modelId: elsys:ems-lite:1
-# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
-protocolId: elsys:generic:1
+# <vendorId>:<modelId>:<modelVersion> Needed for linking the model with a specific driver (you can have several ones)
+protocolId: 
+    - elsys:generic:1
+    - os1-elsy:ems-lite:1
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 

@@ -3,7 +3,8 @@ name: Remote temperature sensor
 # Functional description of the product. Maximum 500 characters. 
 description: "The nke WATTECO Remote temperature sensor is dedicated to connecting a temperature sensor probe for measuring temperature in buildings, temperature-controlled rooms, cooling towers. It transmits the data over a public or private LoRaWAN® radio network."
 # Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
-ISMbands: eu868
+ISMbands: 
+    - eu868
 # Logo of the device
 logo: nke-remote-t-sensor.png
 # Product name & Version
@@ -29,10 +30,12 @@ motionIndicator: RANDOM
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# modelId // [RSS] Is it really needed? 
+# Mandatory whenever you have a driver for the model
 modelId: nke:remote-t:3
-# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
-protocolId: nke:zcl:1
+# <vendorId>:<modelId>:<modelVersion> Needed for linking the model with a specific driver (you can have several ones)
+protocolId: 
+    - nke:zcl:1
+    - os1-nke:remote-t-sensor:3
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 

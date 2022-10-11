@@ -3,7 +3,10 @@ name: LoRa Manhole Sensor
 # Functional description of the product. Maximum 500 characters. 
 description: "The Mutelcor LoRa Manhole Sensor is a LoRaWAN® Device that detects opening and closing of manholes and/or any external doors. The device notifies alerts in real time to prevent accidents and to quickly react to unauthorized opening of manholes and external doors."
 # Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
-ISMbands: eu868,in865,kr920
+ISMbands: 
+    - eu868
+    - in865
+    - kr920
 # Logo of the device
 logo: mutelcor-mtc-mh01.png
 # Product name & Version
@@ -32,10 +35,11 @@ motionIndicator: RANDOM
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# modelId // [RSS] Is it really needed? 
+# Mandatory whenever you have a driver for the model
 modelId: mutelcor:mtc-mh01:1
-# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
-protocolId: null
+# <vendorId>:<modelId>:<modelVersion> Needed for linking the model with a specific driver (you can have several ones)
+protocolId: 
+    - os1-mute:mtc-mh01:1
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 

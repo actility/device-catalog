@@ -3,7 +3,10 @@ name: R311D - Wireless Asset Sensor
 # Functional description of the product. Maximum 500 characters. 
 description: "he device is a simple positioning function (which can detect the position status of the device), periodically reports RSSI and SNR information to the gateway for processing and can locate the position status of the device according to the reported RSSI and SNR information, and adopts SX1276 wireless communication module."
 # Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
-ISMbands: eu868,kr920,in865
+ISMbands: 
+    - eu868
+    - kr920
+    - in865
 # Logo of the device
 logo: netvox-r311d.png
 # Product name & Version
@@ -31,10 +34,12 @@ motionIndicator: RANDOM
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# modelId // [RSS] Is it really needed? 
+# Mandatory whenever you have a driver for the model
 modelId: netvox:r311d:1
-# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
-protocolId: netvox:lorawan:1
+# <vendorId>:<modelId>:<modelVersion> Needed for linking the model with a specific driver (you can have several ones)
+protocolId: 
+    - netvox:lorawan:1
+    - os1-netv:r311d:10
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 

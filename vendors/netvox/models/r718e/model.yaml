@@ -3,7 +3,10 @@ name: R718E - Three-Axis Digital Accelerometer&NTC Thermistor
 # Functional description of the product. Maximum 500 characters. 
 description: "The Netvox R718E Three-Axis Digital Accelerometer & NTC Thermistor is a LoRaWAN® end device that contains a 3-axis accelerometer and an external NTC thermistor that can detect the movement or vibration and the surface temperature of the measured object."
 # Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
-ISMbands: eu868,kr920,in865
+ISMbands: 
+    - eu868
+    - kr920
+    - in865
 # Logo of the device
 logo: netvox-r718e.png
 # Product name & Version
@@ -31,10 +34,12 @@ motionIndicator: RANDOM
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# modelId // [RSS] Is it really needed? 
+# Mandatory whenever you have a driver for the model
 modelId: netvox:r718e:1
-# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
-protocolId: netvox:lorawan:1
+# <vendorId>:<modelId>:<modelVersion> Needed for linking the model with a specific driver (you can have several ones)
+protocolId: 
+    - netvox:lorawan:1
+    - os1-netv:r718e:10
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 

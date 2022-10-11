@@ -3,7 +3,8 @@ name: Toran'O AtEx Zone 1
 # Functional description of the product. Maximum 500 characters. 
 description: "The nke WATTECO Toran’O AtEx Zone 1 sensor is used to report status changes, pulse count values, and analog measurements of equipment in the AtEx 1 sensitive zone such as water, gas, electricity, or thermal energy meters, mechanical pressure switches, pressure transducers. It makes existing equipment communicate on a public or private LoRaWAN® network."
 # Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
-ISMbands: eu868
+ISMbands: 
+    - eu868
 # Logo of the device
 logo: nke-torano-atex-zone-1-sensor.png
 # Product name & Version
@@ -29,10 +30,12 @@ motionIndicator: RANDOM
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# modelId // [RSS] Is it really needed? 
+# Mandatory whenever you have a driver for the model
 modelId: nke:torano-atex:3
-# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
-protocolId: nke:zcl:1
+# <vendorId>:<modelId>:<modelVersion> Needed for linking the model with a specific driver (you can have several ones)
+protocolId: 
+    - nke:zcl:1
+    - os1-nke:torano-atex-zone:3
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 

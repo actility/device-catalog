@@ -3,7 +3,8 @@ name: RDR LORA NFC/RFID READER
 # Functional description of the product. Maximum 500 characters. 
 description: "The device reads NFC tags, stores the content together with a timestamp in an internal data buffer. The data is transmitted via a standard LoRaWAN network. The small and stylish device can be mounted on a wall or used as a table top device. The unit is powered by 4x AAA alkaline or NiMH batteries and a USB power supply."
 # Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
-ISMbands: eu868
+ISMbands: 
+    - eu868
 # Logo of the device
 logo: parametric-rdr.png
 # Product name & Version
@@ -29,10 +30,11 @@ motionIndicator: RANDOM
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# modelId // [RSS] Is it really needed? 
+# Mandatory whenever you have a driver for the model
 modelId: parametr:rdr:1
-# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
-protocolId: null
+# <vendorId>:<modelId>:<modelVersion> Needed for linking the model with a specific driver (you can have several ones)
+protocolId: 
+    - os1-para:rdr:1
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 

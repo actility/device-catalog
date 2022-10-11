@@ -3,7 +3,11 @@ name: RHF0M0E5
 # Functional description of the product. Maximum 500 characters. 
 description: "The RisingHF RHF0M0E5 is a low-cost, ultra-low power, ultra-small LoRaWAN® module that adopts ST system-level package chip STM32WLE5JC, integrated high-performance LoRa® SX126X IP, and ultra-low power consumption MCU. The module is embedded with the LoRaWAN protocol."
 # Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
-ISMbands: eu868,cn779,kr920,in865
+ISMbands: 
+    - eu868
+    - cn779
+    - kr920
+    - in865
 # Logo of the device
 logo: ruixinghengfang-network-rhf0m0e5.png
 # Product name & Version
@@ -36,9 +40,9 @@ motionIndicator: RANDOM
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# modelId // [RSS] Is it really needed? 
+# Mandatory whenever you have a driver for the model
 modelId: null
-# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
+# <vendorId>:<modelId>:<modelVersion> Needed for linking the model with a specific driver (you can have several ones)
 protocolId: null
 # DataSheet URL (optional) 
 specificationURL: 

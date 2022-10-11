@@ -1,9 +1,11 @@
 # Commercial name of the model 
 name: ESPEasy RN2903 (Class A OTAA)
 # Functional description of the product. Maximum 500 characters. 
-description: "The ESPEasy RN2903 is a LoRaWAN® development board on Microchip RN2903 that supports Over The Air Activation. It supports over 100 sensors."
+description: "The ESPEasy RN2903 (Class A OTAA) is a LoRaWAN® development board on Microchip RN2903 that supports Over The Air Activation (OTAA). It supports over 100 sensors."
 # Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
-ISMbands: us915,au915
+ISMbands: 
+    - us915
+    - au915
 # Logo of the device
 logo: espeasy-rn2903-node-class-a-otaa.png
 # Product name & Version
@@ -30,10 +32,11 @@ motionIndicator: RANDOM
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# modelId // [RSS] Is it really needed? 
+# Mandatory whenever you have a driver for the model
 modelId: espeasy:rn2903-nodeotaa:1
-# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
-protocolId: null
+# <vendorId>:<modelId>:<modelVersion> Needed for linking the model with a specific driver (you can have several ones)
+protocolId: 
+    - os1-espe:rn2903-nodeotaa:1
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 

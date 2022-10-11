@@ -3,7 +3,10 @@ name: R720F - Wireless Liquid Hand Soap Sensor
 # Functional description of the product. Maximum 500 characters. 
 description: "R720F series is a wireless communication device that can detect the existence of hand sanitizer / water leakage. This device is connected with two electrode rods which can be used to detect the state of the insufficient amount of hand sanitizer in the hand sanitizer box or whether there is the water leakage in the detection area.The shape and orientation of electrode rod can be selected according to the needs (R720FLO,R720FLD,R720FU). The electrode rod can be trimmed to the required length by self according to the demand.The function of water leakage detection can choose R720FW."
 # Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
-ISMbands: eu868,kr920,in865
+ISMbands: 
+    - eu868
+    - kr920
+    - in865
 # Logo of the device
 logo: netvox-r720f.png
 # Product name & Version
@@ -31,10 +34,12 @@ motionIndicator: RANDOM
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# modelId // [RSS] Is it really needed? 
+# Mandatory whenever you have a driver for the model
 modelId: netvox:r720f:1
-# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
-protocolId: netvox:lorawan:1
+# <vendorId>:<modelId>:<modelVersion> Needed for linking the model with a specific driver (you can have several ones)
+protocolId: 
+    - netvox:lorawan:1
+    - os1-netv:r720f:10
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 

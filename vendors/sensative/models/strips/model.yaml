@@ -1,9 +1,10 @@
 # Commercial name of the model 
 name: Strips Multi-sensor and Presence
 # Functional description of the product. Maximum 500 characters. 
-description: "This profile is valid for Strips MS + Guard, Strips MS + Drip, Strips MS + Comfort and Presence sensors."
+description: "This profile is valid for Strips MS + Guard, Strips MS + Drip, Strips MS + Comfort and Presence sensors. It is based on LoRaWAN 1.0.3 revA for European deployments."
 # Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
-ISMbands: eu868
+ISMbands: 
+    - eu868
 # Logo of the device
 logo: strips_ms.png
 # Product name & Version
@@ -31,10 +32,12 @@ motionIndicator: RANDOM
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# modelId // [RSS] Is it really needed? 
+# Mandatory whenever you have a driver for the model
 modelId: sensativ:strips:1
-# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
-protocolId: sensativ:strips:1
+# <vendorId>:<modelId>:<modelVersion> Needed for linking the model with a specific driver (you can have several ones)
+protocolId: 
+    - sensativ:strips:1
+    - os1-sens:strips:1
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 

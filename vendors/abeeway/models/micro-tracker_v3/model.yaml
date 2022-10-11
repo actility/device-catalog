@@ -1,9 +1,10 @@
 # Commercial name of the model 
 name: Micro Tracker
 # Functional description of the product. Maximum 500 characters. 
-description: "The Abeeway Micro Tracker is a small size multi-mode tracker combining GPS/Low power GPS, WIFI, LoRaWAN, BLE radios with embedded sensors to support accurate outdoor and indoor geolocation."
+description: "The Abeeway Micro Tracker is a small size multi-mode tracker combining GPS/Low power GPS, WIFI, LoRaWAN, BLE radios with embedded sensors to support accurate outdoor and indoor geolocation. LoRaWAN 1.0.2 revB - class A - European deployments."
 # Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
-ISMbands: eu868
+ISMbands: 
+    - eu868
 # Logo of the device
 logo: abeeway-micro-tracker.jpg
 # Product name & Version
@@ -34,10 +35,11 @@ motionIndicator: RANDOM
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# modelId // [RSS] Is it really needed? 
+# Mandatory whenever you have a driver for the model
 modelId: abeeway:micro-tracker:3
-# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
-protocolId: abeeway:asset-tracker:2
+# <vendorId>:<modelId>:<modelVersion> Needed for linking the model with a specific driver (you can have several ones)
+protocolId: 
+    - abeeway:asset-tracker:2
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 

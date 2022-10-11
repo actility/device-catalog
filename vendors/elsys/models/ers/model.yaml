@@ -1,9 +1,15 @@
 # Commercial name of the model 
 name: ERS/ELT/EMS sensors - 1.0.3 revA
 # Functional description of the product. Maximum 500 characters. 
-description: "Elsys sensors (ERS/ELT/EMS series)."
+description: "Elsys sensors (ERS/ELT/EMS series) using LoRaWAN 1.0.3 revA for ETSI class C devices."
 # Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
-ISMbands: eu868,cn779,in865,eu433,kr920,ru864
+ISMbands: 
+    - eu868
+    - cn779
+    - in865
+    - eu433
+    - kr920
+    - ru864
 # Logo of the device
 logo: elsys.png
 # Product name & Version
@@ -32,10 +38,11 @@ motionIndicator: RANDOM
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# modelId // [RSS] Is it really needed? 
+# Mandatory whenever you have a driver for the model
 modelId: elsys:ers:1
-# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
-protocolId: elsys:generic:1
+# <vendorId>:<modelId>:<modelVersion> Needed for linking the model with a specific driver (you can have several ones)
+protocolId: 
+    - elsys:generic:1
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 

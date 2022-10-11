@@ -3,7 +3,8 @@ name: Smart Room Sensor - Base
 # Functional description of the product. Maximum 500 characters. 
 description: "The TEKTELIC Kona Smart Room Sensor (Base Edition) is a multi-purpose LoRaWAN® end device suitable for home and office environment monitoring. It contains a temperature sensor, humidity sensor, light sensor, magnetic switch, accelerometer, pulse reader, capacitive transducer, and external contacts for adding extra sensors. The smart room sensor can be powered by a single CR2477 battery and allows retrieving battery status for easy maintenance."
 # Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
-ISMbands: eu868
+ISMbands: 
+    - eu868
 # Logo of the device
 logo: tektelic-t000489x-smart-room-base.png
 # Product name & Version
@@ -30,10 +31,11 @@ motionIndicator: RANDOM
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# modelId // [RSS] Is it really needed? 
+# Mandatory whenever you have a driver for the model
 modelId: tektelic:t000489x-smart-r:4
-# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
-protocolId: null
+# <vendorId>:<modelId>:<modelVersion> Needed for linking the model with a specific driver (you can have several ones)
+protocolId: 
+    - os1-tekt:t000489x-smart-r:4
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 

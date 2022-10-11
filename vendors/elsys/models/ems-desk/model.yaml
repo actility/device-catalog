@@ -3,7 +3,8 @@ name: EMS Desk
 # Functional description of the product. Maximum 500 characters. 
 description: "The ELSYS EMS Desk is equipped with a body heat sensor (thermopile) for detecting desk occupancy. It also includes a temperature sensor, humidity sensor (for indoor environment monitoring), and accelerometer (for movement detection). The EMS Desk is suitable for applications such as occupancy detection, indoor environment measuring, smart buildings, workplace management, and movement detection. It utilizes LoRaWAN® connectivity to transmit data."
 # Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
-ISMbands: eu868
+ISMbands: 
+    - eu868
 # Logo of the device
 logo: elsys-ems-desk.png
 # Product name & Version
@@ -32,10 +33,12 @@ motionIndicator: RANDOM
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# modelId // [RSS] Is it really needed? 
+# Mandatory whenever you have a driver for the model
 modelId: elsys:ems-desk:1
-# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
-protocolId: elsys:generic:1
+# <vendorId>:<modelId>:<modelVersion> Needed for linking the model with a specific driver (you can have several ones)
+protocolId: 
+    - elsys:generic:1
+    - os1-elsy:ems-desk:1
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 

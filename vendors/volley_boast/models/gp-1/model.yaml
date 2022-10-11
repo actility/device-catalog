@@ -3,7 +3,8 @@ name: VoBo GP-1
 # Functional description of the product. Maximum 500 characters. 
 description: "Universal industrial grade LoRaWAN endpoint that converts wired industrial sensors into wireless sensors, designed for rugged outdoor use."
 # Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
-ISMbands: us915
+ISMbands: 
+    - us915
 # Logo of the device
 logo: vobo_gp1.png
 # Product name & Version
@@ -13,6 +14,7 @@ product:
 # ID of the profile that defines the LoRaWAN characteristics of this model. 
 deviceProfileId: 
     - VoBo/GP1A.1.0.3a_FCC
+    - VoBo/HL1A.1.0.3a_FCC
  
 # You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
 # Maximum device TX Conducted output power in dBm. 
@@ -29,10 +31,11 @@ motionIndicator: NEAR_STATIC
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# modelId // [RSS] Is it really needed? 
+# Mandatory whenever you have a driver for the model
 modelId: vobo:gp-1:1
-# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
-protocolId: vobo:node:1
+# <vendorId>:<modelId>:<modelVersion> Needed for linking the model with a specific driver (you can have several ones)
+protocolId: 
+    - vobo:node:1
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 

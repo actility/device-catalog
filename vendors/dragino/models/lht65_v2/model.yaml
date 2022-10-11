@@ -3,7 +3,12 @@ name: LHT65
 # Functional description of the product. Maximum 500 characters. 
 description: "LoRaWAN Temperature & Humidity sensor"
 # Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
-ISMbands: eu868,eu433,in865,kr920,ru864
+ISMbands: 
+    - eu868
+    - eu433
+    - in865
+    - kr920
+    - ru864
 # Logo of the device
 logo: dragino-lht65.png
 # Product name & Version
@@ -32,10 +37,11 @@ motionIndicator: RANDOM
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# modelId // [RSS] Is it really needed? 
+# Mandatory whenever you have a driver for the model
 modelId: dragino:lht65:2
-# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
-protocolId: null
+# <vendorId>:<modelId>:<modelVersion> Needed for linking the model with a specific driver (you can have several ones)
+protocolId: 
+    - os1-drag:lht65:2
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 

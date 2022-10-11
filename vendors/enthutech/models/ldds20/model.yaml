@@ -3,7 +3,12 @@ name: LDDS20
 # Functional description of the product. Maximum 500 characters. 
 description: "The Dragino LDDS20 consists of an ultrasonic liquid level sensor for measuring liquid levels. It uses a non-contact method to measure the height of liquid in a container without opening the container. The measured liquid levels are sent to a LoRaWAN® network for further analysis."
 # Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
-ISMbands: eu868,eu433,kr920,ru864,in865
+ISMbands: 
+    - eu868
+    - eu433
+    - kr920
+    - ru864
+    - in865
 # Logo of the device
 logo: enthutech-ldss20.png
 # Product name & Version
@@ -31,9 +36,9 @@ motionIndicator: RANDOM
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# modelId // [RSS] Is it really needed? 
+# Mandatory whenever you have a driver for the model
 modelId: null
-# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
+# <vendorId>:<modelId>:<modelVersion> Needed for linking the model with a specific driver (you can have several ones)
 protocolId: null
 # DataSheet URL (optional) 
 specificationURL: 
