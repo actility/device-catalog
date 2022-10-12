@@ -3,7 +3,9 @@ name: NLN500A
 # Functional description of the product. Maximum 500 characters. 
 description: "The NebuLink Node NLN500a is the First and Smallest STM32WL Based LoRa Module. It is built on the STM32WL SoC which has an Embedded LoRaWAN Transceiver for a wide range of Smart Applications. It offers long-range, low-power, and secure data transmission for M2M and IoT applications. This Module is designed to be extremely low-power and is based on the high-performance STM32WLE5JC Arm® Cortex®-M4 32-bit RISC core operating at a frequency of up to 48 MHz. This core implements a full set of DSP instructions and an independent memory protection unit (MPU) that enhances the application security."
 # Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
-ISMbands: eu868,in865
+ISMbands: 
+    - eu868
+    - in865
 # Logo of the device
 logo: slscorp-nln500a.png
 # Product name & Version
@@ -32,9 +34,9 @@ motionIndicator: RANDOM
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# modelId // [RSS] Is it really needed? 
+# Mandatory whenever you have a driver for the model
 modelId: null
-# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
+# <vendorId>:<modelId>:<modelVersion> (needed for linking the model with a specific driver)
 protocolId: null
 # DataSheet URL (optional) 
 specificationURL: 

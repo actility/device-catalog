@@ -3,7 +3,10 @@ name: LoRaWAN Soil Moisture, Temperature and Air temperature/humidity
 # Functional description of the product. Maximum 500 characters. 
 description: "LoRaWAN IO module with optional Soil and Air Lux sensors and optional boosted 12v reversible polarity output for latching valves."
 # Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
-ISMbands: eu868,kr920,in865
+ISMbands: 
+    - eu868
+    - kr920
+    - in865
 # Logo of the device
 logo: tinovi-pm-io-5-sm.png
 # Product name & Version
@@ -32,10 +35,11 @@ motionIndicator: RANDOM
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# modelId // [RSS] Is it really needed? 
+# Mandatory whenever you have a driver for the model
 modelId: tinovi:pm-io-5-sm:1
-# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
-protocolId: null
+# <vendorId>:<modelId>:<modelVersion> (needed for linking the model with a specific driver)
+protocolId: 
+    - os1-tino:pm-io-5-sm:1
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 

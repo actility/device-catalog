@@ -3,7 +3,8 @@ name: Vaqa'O+Plus
 # Functional description of the product. Maximum 500 characters. 
 description: "The nke WATTECO Vaqa’O+ has sensors for measuring temperature, relative humidity, atmospheric pressure, the concentration of volatile organic compounds (VOC), and carbon dioxide (CO2) in the ambient air of a room in a building, an apartment, or a house. It allows Indoor Air Quality (IAQ) monitoring based on the presence of individuals using luminosity (lighting) and motion (PIR) detection in the room. The data is transmitted via a public or private LoRaWAN® network."
 # Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
-ISMbands: eu868
+ISMbands: 
+    - eu868
 # Logo of the device
 logo: nke-vaqao-plus-sensor.png
 # Product name & Version
@@ -29,10 +30,12 @@ motionIndicator: RANDOM
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# modelId // [RSS] Is it really needed? 
+# Mandatory whenever you have a driver for the model
 modelId: nke:vaqao-plus:3
-# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
-protocolId: nke:zcl:1
+# <vendorId>:<modelId>:<modelVersion> (needed for linking the model with a specific driver)
+protocolId: 
+    - nke:zcl:1
+    - os1-nke:vaqao-plus-senso:3
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 

@@ -3,7 +3,10 @@ name: R72616A - Wireless PM2.5/Temperature/Humidity Sensor
 # Functional description of the product. Maximum 500 characters. 
 description: "R72616A with temperature and humidity sensor can detect and send the temperature and humidity data of the environment. The device is in line with the LoRa protocol standard. R72616A with PM2.5 dust sensor can be used to obtain the concentration of suspended particulates in air per unit volume."
 # Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
-ISMbands: eu868,kr920,in865
+ISMbands: 
+    - eu868
+    - kr920
+    - in865
 # Logo of the device
 logo: netvox-r72616a.png
 # Product name & Version
@@ -31,10 +34,12 @@ motionIndicator: RANDOM
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# modelId // [RSS] Is it really needed? 
+# Mandatory whenever you have a driver for the model
 modelId: netvox:r72616a:1
-# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
-protocolId: netvox:lorawan:1
+# <vendorId>:<modelId>:<modelVersion> (needed for linking the model with a specific driver)
+protocolId: 
+    - netvox:lorawan:1
+    - os1-netv:r72616a:13
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 

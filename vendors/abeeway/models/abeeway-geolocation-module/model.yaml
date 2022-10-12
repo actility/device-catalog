@@ -3,7 +3,8 @@ name: Abeeway Geolocation Module
 # Functional description of the product. Maximum 500 characters. 
 description: "The Abeeway Geolocation module for outdoor geolocation contains a high-performance multi-constellation GNSS receiver (GPS, GLONASS, Beidou, and Galileo) and supports a patented ultra Low-Power GPS (LP GPS) mode. Indoor positioning can be achieved by combining the Bluetooth Low Energy receiver and the ultra-low power Wi-Fi receiver."
 # Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
-ISMbands: eu868
+ISMbands: 
+    - eu868
 # Logo of the device
 logo: abeeway-geolocation-module.png
 # Product name & Version
@@ -34,9 +35,9 @@ motionIndicator: RANDOM
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# modelId // [RSS] Is it really needed? 
+# Mandatory whenever you have a driver for the model
 modelId: null
-# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
+# <vendorId>:<modelId>:<modelVersion> (needed for linking the model with a specific driver)
 protocolId: null
 # DataSheet URL (optional) 
 specificationURL: 

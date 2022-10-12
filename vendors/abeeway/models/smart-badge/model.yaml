@@ -3,7 +3,8 @@ name: Smart Badge
 # Functional description of the product. Maximum 500 characters. 
 description: "The Abeeway Smart Badge is sleek, smart, and multi-functional. It combines GPS/Low power GPS, WIFI, LoRaWAN, BLE radios with embedded sensors to support accurate outdoor and indoor geolocation."
 # Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
-ISMbands: eu868
+ISMbands: 
+    - eu868
 # Logo of the device
 logo: abeeway-smart-badge.png
 # Product name & Version
@@ -34,10 +35,11 @@ motionIndicator: RANDOM
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# modelId // [RSS] Is it really needed? 
+# Mandatory whenever you have a driver for the model
 modelId: abeeway:smart-badge:1
-# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
-protocolId: abeeway:asset-tracker:2
+# <vendorId>:<modelId>:<modelVersion> (needed for linking the model with a specific driver)
+protocolId: 
+    - abeeway:asset-tracker:2
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 

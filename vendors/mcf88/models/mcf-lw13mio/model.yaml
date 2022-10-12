@@ -3,7 +3,8 @@ name: MCF-LW13MIO
 # Functional description of the product. Maximum 500 characters. 
 description: "The mcf88 MCF-LW13MIO is a LoRaWAN® multi I/O module that transmits the state of its 16 inputs and controls 8 outputs through the LoRaWAN® network. All these inputs and outputs are galvanically isolated. It can be used for industrial process control, home automation, water treatment, agriculture irrigation, and similar applications."
 # Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
-ISMbands: eu868
+ISMbands: 
+    - eu868
 # Logo of the device
 logo: mcf88-mcf-lw13mio.png
 # Product name & Version
@@ -34,10 +35,11 @@ motionIndicator: RANDOM
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# modelId // [RSS] Is it really needed? 
+# Mandatory whenever you have a driver for the model
 modelId: mcf88:mcf-lw13mio:1
-# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
-protocolId: null
+# <vendorId>:<modelId>:<modelVersion> (needed for linking the model with a specific driver)
+protocolId: 
+    - os1-mcf8:mcf-lw13mio:1
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 

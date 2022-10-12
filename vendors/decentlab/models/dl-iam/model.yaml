@@ -3,7 +3,8 @@ name: DecentLab DL-IAM
 # Functional description of the product. Maximum 500 characters. 
 description: "Indoor Ambiance Monitor including CO2, TVOC and Motion sensor."
 # Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
-ISMbands: au915
+ISMbands: 
+    - au915
 # Logo of the device
 logo: decentlab-DL-IAM.png
 # Product name & Version
@@ -32,10 +33,12 @@ motionIndicator: NEAR_STATIC
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# modelId // [RSS] Is it really needed? 
+# Mandatory whenever you have a driver for the model
 modelId: dl:dl-iam:1
-# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
-protocolId: dl:dl-iam:1
+# <vendorId>:<modelId>:<modelVersion> (needed for linking the model with a specific driver)
+protocolId: 
+    - dl:dl-iam:1
+    - os1-dece:dl-iam:1
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 

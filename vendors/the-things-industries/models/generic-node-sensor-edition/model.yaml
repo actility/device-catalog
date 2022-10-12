@@ -3,7 +3,8 @@ name: Generic Node (Sensor Edition)
 # Functional description of the product. Maximum 500 characters. 
 description: "The Things Industries Generic Node Sensor Edition is a LoRaWAN® development board that consists of a temperature and humidity sensor and an accelerometer. These onboard sensors can be used to measure temperature, humidity, motion, free fall, and orientation. In addition to that, it provides expansion slots for connecting various sensors. It is suitable for a wide range of use cases that cover industrial, farming, facility management, and leisure."
 # Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
-ISMbands: eu868
+ISMbands: 
+    - eu868
 # Logo of the device
 logo: the-things-industries-generic-node-sensor-edition.png
 # Product name & Version
@@ -30,9 +31,9 @@ motionIndicator: RANDOM
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# modelId // [RSS] Is it really needed? 
+# Mandatory whenever you have a driver for the model
 modelId: null
-# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
+# <vendorId>:<modelId>:<modelVersion> (needed for linking the model with a specific driver)
 protocolId: null
 # DataSheet URL (optional) 
 specificationURL: 

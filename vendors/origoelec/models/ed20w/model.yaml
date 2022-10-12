@@ -3,7 +3,8 @@ name: ed20w
 # Functional description of the product. Maximum 500 characters. 
 description: "ED20W is a smart IoT watch based on LoRaWAN. Combined with motion sensor, it can achieve indoor and outdoor real-time positioning. With wearing detection, it can realize a real-time collection of health data such as heart rate, body temperature,blood pressure, and steps. The data will be transmitted to the platform through the LoRaWAN Network."
 # Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
-ISMbands: eu868
+ISMbands: 
+    - eu868
 # Logo of the device
 logo: origoelec-ed20w.png
 # Product name & Version
@@ -31,9 +32,9 @@ motionIndicator: RANDOM
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# modelId // [RSS] Is it really needed? 
+# Mandatory whenever you have a driver for the model
 modelId: null
-# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
+# <vendorId>:<modelId>:<modelVersion> (needed for linking the model with a specific driver)
 protocolId: null
 # DataSheet URL (optional) 
 specificationURL: 

@@ -1,9 +1,11 @@
 # Commercial name of the model 
-name: ESPEasy RN2483 (Class A OTAA)
+name: ESPEasy RN2483
 # Functional description of the product. Maximum 500 characters. 
 description: "The ESPEasy RN2483 is a LoRaWAN® development board on Microchip RN2483 that supports Over The Air Activation. It supports over 100 sensors."
 # Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
-ISMbands: eu868,eu433
+ISMbands: 
+    - eu868
+    - eu433
 # Logo of the device
 logo: espeasy-rn2483-node-class-a-otaa.png
 # Product name & Version
@@ -29,10 +31,11 @@ motionIndicator: RANDOM
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# modelId // [RSS] Is it really needed? 
+# Mandatory whenever you have a driver for the model
 modelId: espeasy:rn2483-nodeotaa:1
-# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
-protocolId: null
+# <vendorId>:<modelId>:<modelVersion> (needed for linking the model with a specific driver)
+protocolId: 
+    - os1-espe:rn2483-nodeotaa:1
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 

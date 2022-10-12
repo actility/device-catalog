@@ -3,7 +3,10 @@ name: ADT1 Tube
 # Functional description of the product. Maximum 500 characters. 
 description: "The KELLER ADT1-Tube is a remote transmission unit with a data logger compatible with selected KELLER level probes and pressure transmitters. It is suitable for use in groundwater level monitoring, flood early warning systems, tank level monitoring, and pressure monitoring applications."
 # Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
-ISMbands: eu868,kr920,in865
+ISMbands: 
+    - eu868
+    - kr920
+    - in865
 # Logo of the device
 logo: keller-adt1-tube.png
 # Product name & Version
@@ -31,10 +34,11 @@ motionIndicator: RANDOM
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# modelId // [RSS] Is it really needed? 
+# Mandatory whenever you have a driver for the model
 modelId: keller:adt1-tube:1
-# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
-protocolId: null
+# <vendorId>:<modelId>:<modelVersion> (needed for linking the model with a specific driver)
+protocolId: 
+    - os1-kell:adt1-tube:1
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 

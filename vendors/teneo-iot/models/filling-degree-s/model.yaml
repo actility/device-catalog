@@ -3,7 +3,8 @@ name: Filling Degree Sensor
 # Functional description of the product. Maximum 500 characters. 
 description: "The Teneo IoT Filling Degree Sensor is a LoRaWAN® waste bin management solution that combines a fillgrade laser sensor that measures the distance to the waste and a GPS receiver to obtain the location of the waste bin. The distance data (from the sensor to the top of the waste) will be sent to the LoRaWAN® network and an online dashboard can be used to display the location of the waste bins."
 # Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
-ISMbands: eu868
+ISMbands: 
+    - eu868
 # Logo of the device
 logo: teneo-iot-filling-degree-sensor.png
 # Product name & Version
@@ -29,10 +30,11 @@ motionIndicator: RANDOM
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# modelId // [RSS] Is it really needed? 
+# Mandatory whenever you have a driver for the model
 modelId: teneoiot:filling-degree-s:1
-# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
-protocolId: null
+# <vendorId>:<modelId>:<modelVersion> (needed for linking the model with a specific driver)
+protocolId: 
+    - os1-tene:filling-degree-s:1
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 

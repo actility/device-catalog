@@ -1,9 +1,10 @@
 # Commercial name of the model 
 name: NKE-Watteco fw 3.4 - Generic
 # Functional description of the product. Maximum 500 characters. 
-description: "NKE-Watteco firmware 3.4."
+description: "NKE-Watteco firmware 3.4, class A."
 # Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
-ISMbands: eu868
+ISMbands: 
+    - eu868
 # Logo of the device
 logo: nke-generic.png
 # Product name & Version
@@ -32,10 +33,11 @@ motionIndicator: NEAR_STATIC
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# modelId // [RSS] Is it really needed? 
+# Mandatory whenever you have a driver for the model
 modelId: nke:ino:1
-# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
-protocolId: nke:zcl:1
+# <vendorId>:<modelId>:<modelVersion> (needed for linking the model with a specific driver)
+protocolId: 
+    - nke:zcl:1
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 

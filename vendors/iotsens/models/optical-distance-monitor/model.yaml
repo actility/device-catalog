@@ -3,7 +3,8 @@ name: Optical Distance Monitor
 # Functional description of the product. Maximum 500 characters. 
 description: "The IoTsens LoRaWAN® Optical Distance Monitor is equipped with a LIDAR sensor for monitoring filling levels. Thus, it becomes an optimal tool in waste management, and can also be used in the detection of liquid levels in tanks, among other applications."
 # Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
-ISMbands: eu868
+ISMbands: 
+    - eu868
 # Logo of the device
 logo: iotsens-lidar-device.png
 # Product name & Version
@@ -31,9 +32,9 @@ motionIndicator: RANDOM
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# modelId // [RSS] Is it really needed? 
+# Mandatory whenever you have a driver for the model
 modelId: null
-# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
+# <vendorId>:<modelId>:<modelVersion> (needed for linking the model with a specific driver)
 protocolId: null
 # DataSheet URL (optional) 
 specificationURL: 

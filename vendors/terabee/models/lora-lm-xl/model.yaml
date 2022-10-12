@@ -3,7 +3,8 @@ name: Terabee LoRa Level Monitoring XL
 # Functional description of the product. Maximum 500 characters. 
 description: "Monitor material fill levels inside your silos and tanks using wireless, low-energy Terabee IoT devices. Our LED Time-of-Flight technology can reach up to 60m range for non-intrusive inventory management - from small to even the largest silos!"
 # Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
-ISMbands: eu868
+ISMbands: 
+    - eu868
 # Logo of the device
 logo: terabee-lora-lm-xl.png
 # Product name & Version
@@ -30,10 +31,11 @@ motionIndicator: RANDOM
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# modelId // [RSS] Is it really needed? 
+# Mandatory whenever you have a driver for the model
 modelId: terabee:lora-lm-xl:1
-# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
-protocolId: null
+# <vendorId>:<modelId>:<modelVersion> (needed for linking the model with a specific driver)
+protocolId: 
+    - os1-tera:lora-lm-xl:1
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 

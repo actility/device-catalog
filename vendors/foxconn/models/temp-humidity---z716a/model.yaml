@@ -1,9 +1,10 @@
 # Commercial name of the model 
 name: Temp Humidity - Z716A
 # Functional description of the product. Maximum 500 characters. 
-description: "Temperature and Humidity sensor - Z716A"
+description: "Temperature and Humidity sensor - Z716A."
 # Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
-ISMbands: as923
+ISMbands: 
+    - as923
 # Logo of the device
 logo: Foxconn_temp_humidity_Z716A.png
 # Product name & Version
@@ -29,9 +30,9 @@ motionIndicator: NEAR_STATIC
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# modelId // [RSS] Is it really needed? 
+# Mandatory whenever you have a driver for the model
 modelId: null
-# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
+# <vendorId>:<modelId>:<modelVersion> (needed for linking the model with a specific driver)
 protocolId: null
 # DataSheet URL (optional) 
 specificationURL: 

@@ -3,7 +3,12 @@ name: LT22222-L
 # Functional description of the product. Maximum 500 characters. 
 description: "The Dragino LT22222-L is a LoRaWAN® I/O module that contains different I/O Interfaces such as analog current input, analog voltage input, relay output, digital input, and digital output. The LT series I/O modules are designed to simplify the installation of I/O monitoring."
 # Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
-ISMbands: eu868,eu433,in865,kr920,ru864
+ISMbands: 
+    - eu868
+    - eu433
+    - in865
+    - kr920
+    - ru864
 # Logo of the device
 logo: dragino-lt22222-l.png
 # Product name & Version
@@ -36,10 +41,11 @@ motionIndicator: RANDOM
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# modelId // [RSS] Is it really needed? 
+# Mandatory whenever you have a driver for the model
 modelId: dragino:lt22222-l:2
-# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
-protocolId: null
+# <vendorId>:<modelId>:<modelVersion> (needed for linking the model with a specific driver)
+protocolId: 
+    - os1-drag:lt22222-l:2
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 

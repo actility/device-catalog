@@ -3,7 +3,8 @@ name: Sentrius RS1xx Ext Temp RTD Sensor
 # Functional description of the product. Maximum 500 characters. 
 description: "The Laird Sentrius™ RS1xx Ext Temp RTD has an external temperature sensor probe making it a perfect fit for monitoring low and slow cooking temps mounted inside a smoker. It transmits data over LoRaWAN® and Bluetooth Low Energy (BLE). The robust IP65 sensor enclosure allows it to be used in harsh environments and suitable for food safety management, agricultural environment monitoring, and industrial heating and cooling."
 # Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
-ISMbands: eu868
+ISMbands: 
+    - eu868
 # Logo of the device
 logo: laird-rs1xx-ext-temp-rtd-sensor.png
 # Product name & Version
@@ -31,10 +32,11 @@ motionIndicator: RANDOM
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# modelId // [RSS] Is it really needed? 
+# Mandatory whenever you have a driver for the model
 modelId: laird:ext-temp-rtd:1
-# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
-protocolId: null
+# <vendorId>:<modelId>:<modelVersion> (needed for linking the model with a specific driver)
+protocolId: 
+    - os1-lair:rs1xx-ext-temp-r:1
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 

@@ -3,12 +3,13 @@ name: Oyster Tracker
 # Functional description of the product. Maximum 500 characters. 
 description: "The Oyster LoRaWAN is an asset tracker, with internal LoRa and GPS antennas, an accelerometer for detecting movement, and a robust case with strong mounting tabs."
 # Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
-ISMbands: as923
+ISMbands: 
+    - as923
 # Logo of the device
 logo: digital_matter_oyster_tracker.jpg
 # Product name & Version
 product:
-    name: DIGI/OYTER
+    name: DMAT/OysterTrack
     version: 1
 # ID of the profile that defines the LoRaWAN characteristics of this model. 
 deviceProfileId: 
@@ -32,10 +33,11 @@ motionIndicator: RANDOM
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# modelId // [RSS] Is it really needed? 
+# Mandatory whenever you have a driver for the model
 modelId: digi-mat:oyster:60
-# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
-protocolId: null
+# <vendorId>:<modelId>:<modelVersion> (needed for linking the model with a specific driver)
+protocolId: 
+    - os1-digi:oyster:60
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 

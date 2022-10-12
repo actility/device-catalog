@@ -3,7 +3,8 @@ name: TEKZIPARK
 # Functional description of the product. Maximum 500 characters. 
 description: "The TEKZITEL TEKZIPARK is a smart parking sensor that uses radar technology. It enables occupancy status updates of parking spots wirelessly to the cloud environment through a LoRaWAN® network. This helps to efficiently manage the parking spaces in real-time."
 # Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
-ISMbands: eu868
+ISMbands: 
+    - eu868
 # Logo of the device
 logo: tekzitel-tekzipark.png
 # Product name & Version
@@ -30,10 +31,11 @@ motionIndicator: RANDOM
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# modelId // [RSS] Is it really needed? 
+# Mandatory whenever you have a driver for the model
 modelId: tekzitel:tekzipark:1
-# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
-protocolId: null
+# <vendorId>:<modelId>:<modelVersion> (needed for linking the model with a specific driver)
+protocolId: 
+    - os1-tekz:tekzipark:1
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 

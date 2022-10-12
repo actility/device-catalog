@@ -1,0 +1,54 @@
+# Commercial name of the model 
+name: Sushi Vibration sensor (XS770A)
+# Functional description of the product. Maximum 500 characters. 
+description: "Yokogawa's wireless vibration sensor."
+# Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
+ISMbands: 
+    - eu868
+    - in865
+    - kr920
+    - ru864
+# Logo of the device
+logo: sushi_vib.png
+# Product name & Version
+product:
+    name: YOKO/VIBRATION
+    version: 1
+# ID of the profile that defines the LoRaWAN characteristics of this model. 
+deviceProfileId: 
+    - YOKO/PressureA.1.0.2b_AS923
+    - YOKO/PressureA.1.0.2b_ETSI
+    - YOKO/PressureA.1.0.2b_FCC
+    - YOKO/TempA.1.0.2b_AS923
+    - YOKO/TempA.1.0.2b_ETSI
+    - YOKO/TempA.1.0.2b_FCC
+    - YOKO/VibA.1.0.2b_AS923
+    - YOKO/VibA.1.0.2b_ETSI
+    - YOKO/VibA.1.0.2b_FCC
+ 
+# You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
+# Maximum device TX Conducted output power in dBm. 
+maxTxPower: 7
+# Minimum device TX Conducted output power in dBm. 
+minTxPower: 7
+# Maximum device TX Radiated output power in dBm.  
+maxTxEIRP: 5
+# Minimum device TX Radiated output power in dBm.  
+minTxEIRP: 5
+# Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'  
+# or 'random' (not known, changes over time). 
+motionIndicator: RANDOM
+ 
+# Is your device certified by the LoRa Alliance? Possible values: true, false. 
+LoRaWANCertified: 
+# Mandatory whenever you have a driver for the model
+modelId: yokogawa:sushi:1
+# <vendorId>:<modelId>:<modelVersion> (needed for linking the model with a specific driver)
+protocolId: 
+    - yokogawa:sushi:1
+# DataSheet URL (optional) 
+specificationURL: 
+# User Guide URL (optional) 
+userGuideURL: 
+# Available sensors following Actility ontology: https://github.com/actility/thingpark-iot-flow-js-driver/blob/master/UNITS.md 
+sensors: null

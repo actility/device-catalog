@@ -1,9 +1,10 @@
 # Commercial name of the model 
 name: DL-PM
 # Functional description of the product. Maximum 500 characters. 
-description: "The Decentlab DL-PM is equipped with PM1, PM2.5, PM4, PM10, temperature, humidity, and barometric pressure sensors for air quality and environmental monitoring."
+description: "The Decentlab DL-PM is equipped with PM1, PM2.5, PM4, PM10, temperature, humidity, and barometric pressure sensors."
 # Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
-ISMbands: eu868
+ISMbands: 
+    - eu868
 # Logo of the device
 logo: decentlab-dl-pm.png
 # Product name & Version
@@ -32,10 +33,11 @@ motionIndicator: NEAR_STATIC
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# modelId // [RSS] Is it really needed? 
+# Mandatory whenever you have a driver for the model
 modelId: dl:dl-pm:1
-# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
-protocolId: null
+# <vendorId>:<modelId>:<modelVersion> (needed for linking the model with a specific driver)
+protocolId: 
+    - os1-dece:dl-pm:1
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 

@@ -1,9 +1,10 @@
 # Commercial name of the model 
 name: Bob Assistant
 # Functional description of the product. Maximum 500 characters. 
-description: "NKE-Watteco Bob Assistant providing vibration analysis for predictive maintenance."
+description: "NKE-Watteco Bob Assistant providing vibration analysis for predictive maintenance.Class A - LoRaWAN 1.0.2 revB - European deployments"
 # Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
-ISMbands: eu868
+ISMbands: 
+    - eu868
 # Logo of the device
 logo: bob.png
 # Product name & Version
@@ -30,10 +31,13 @@ motionIndicator: NEAR_STATIC
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# modelId // [RSS] Is it really needed? 
+# Mandatory whenever you have a driver for the model
 modelId: nke:bob:1
-# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
-protocolId: nke:bob:1,eolane:bob:1
+# <vendorId>:<modelId>:<modelVersion> (needed for linking the model with a specific driver)
+protocolId: 
+    - nke:bob:1
+    - eolane:bob:1
+    - os1-nke:bob-assistant:0
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 

@@ -3,7 +3,11 @@ name: EM500-CO2
 # Functional description of the product. Maximum 500 characters. 
 description: "The Milesight EM500-CO2 consists of CO2, temperature, humidity, and barometric pressure sensors for measuring gaseous carbon dioxide (CO2) concentration in harsh environments. It is useful in the application where knowing CO2 level is important like greenhouses, wine cellars, building ventilation, fruit and vegetable storage."
 # Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
-ISMbands: eu868,kr920,in865,ru864
+ISMbands: 
+    - eu868
+    - kr920
+    - in865
+    - ru864
 # Logo of the device
 logo: milesight-iot-em500-co2.png
 # Product name & Version
@@ -32,10 +36,11 @@ motionIndicator: RANDOM
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# modelId // [RSS] Is it really needed? 
+# Mandatory whenever you have a driver for the model
 modelId: msight:em500-co2:1
-# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
-protocolId: null
+# <vendorId>:<modelId>:<modelVersion> (needed for linking the model with a specific driver)
+protocolId: 
+    - os1-mile:em500-co2:1
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 

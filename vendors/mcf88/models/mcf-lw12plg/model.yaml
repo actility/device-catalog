@@ -3,7 +3,8 @@ name: MCF-LW12PLG
 # Functional description of the product. Maximum 500 characters. 
 description: "The mcf88 MCF-LW12PLG is a LoRaWAN® Energy Meter plug with On/Off capability that supports metering and switching of a 230Vac – 16 Amp Load (active, reactive, and apparent energy; Class 0.2)."
 # Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
-ISMbands: eu868
+ISMbands: 
+    - eu868
 # Logo of the device
 logo: mcf88-mcf-lw12plg.png
 # Product name & Version
@@ -34,10 +35,11 @@ motionIndicator: RANDOM
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# modelId // [RSS] Is it really needed? 
+# Mandatory whenever you have a driver for the model
 modelId: mcf88:mcf-lw12plg:1
-# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
-protocolId: null
+# <vendorId>:<modelId>:<modelVersion> (needed for linking the model with a specific driver)
+protocolId: 
+    - os1-mcf8:mcf-lw12plg:1
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 

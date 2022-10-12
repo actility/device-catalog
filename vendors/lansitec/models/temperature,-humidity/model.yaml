@@ -3,7 +3,9 @@ name: Temperature, Humidity
 # Functional description of the product. Maximum 500 characters. 
 description: "Lansitec temperature and humidity sensor is based on the advanced LoRa modulation and powered by lithium battery with 5-year operation time. It offers cost effective LoRaWAN end device for a variety of application."
 # Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
-ISMbands: eu868,ru864
+ISMbands: 
+    - eu868
+    - ru864
 # Logo of the device
 logo: lansitec_temp_hu_Sensor.jpg
 # Product name & Version
@@ -29,9 +31,9 @@ motionIndicator: NEAR_STATIC
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# modelId // [RSS] Is it really needed? 
+# Mandatory whenever you have a driver for the model
 modelId: null
-# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
+# <vendorId>:<modelId>:<modelVersion> (needed for linking the model with a specific driver)
 protocolId: null
 # DataSheet URL (optional) 
 specificationURL: 

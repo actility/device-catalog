@@ -1,9 +1,10 @@
 # Commercial name of the model 
 name: Dry Contact Sensor
 # Functional description of the product. Maximum 500 characters. 
-description: "Dry Contact Sensor. Ready-to-use radio transmitter to transfer statuses/alarms and control relays via the LoRaWAN network."
+description: "Dry Contact Sensor.Ready-to-use radio transmitter to transfer statuses/alarms and control relays via the LoRaWAN network."
 # Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
-ISMbands: eu868
+ISMbands: 
+    - eu868
 # Logo of the device
 logo: adrf_dry_contacts.png
 # Product name & Version
@@ -29,10 +30,11 @@ motionIndicator: NEAR_STATIC
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# modelId // [RSS] Is it really needed? 
+# Mandatory whenever you have a driver for the model
 modelId: adeunis:dry-contacts:2
-# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
-protocolId: adeunis:dry-contacts:2
+# <vendorId>:<modelId>:<modelVersion> (needed for linking the model with a specific driver)
+protocolId: 
+    - adeunis:dry-contacts:2
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 

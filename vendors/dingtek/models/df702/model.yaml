@@ -3,7 +3,9 @@ name: df702
 # Functional description of the product. Maximum 500 characters. 
 description: "The CNDingtek DF702 is a waste bin sensor that consists of a level sensor, fire sensor, and accelerometer. The measured data is reported to a LoRaWAN® network that notifies garbage collecting authorities to collect and empty the bins."
 # Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
-ISMbands: eu868,ru864
+ISMbands: 
+    - eu868
+    - ru864
 # Logo of the device
 logo: dingtek-df702.png
 # Product name & Version
@@ -32,10 +34,11 @@ motionIndicator: RANDOM
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# modelId // [RSS] Is it really needed? 
+# Mandatory whenever you have a driver for the model
 modelId: dingtek:df702:1
-# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
-protocolId: null
+# <vendorId>:<modelId>:<modelVersion> (needed for linking the model with a specific driver)
+protocolId: 
+    - os1-ding:df702:1
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 

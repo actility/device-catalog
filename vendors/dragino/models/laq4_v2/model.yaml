@@ -3,7 +3,12 @@ name: LAQ4
 # Functional description of the product. Maximum 500 characters. 
 description: "Air Quality Sensor"
 # Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
-ISMbands: eu868,eu433,in865,kr920,ru864
+ISMbands: 
+    - eu868
+    - eu433
+    - in865
+    - kr920
+    - ru864
 # Logo of the device
 logo: dragino-laq4.png
 # Product name & Version
@@ -32,10 +37,11 @@ motionIndicator: RANDOM
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# modelId // [RSS] Is it really needed? 
+# Mandatory whenever you have a driver for the model
 modelId: dragino:laq4:2
-# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
-protocolId: null
+# <vendorId>:<modelId>:<modelVersion> (needed for linking the model with a specific driver)
+protocolId: 
+    - os1-drag:laq4:2
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 

@@ -3,7 +3,13 @@ name: RHF1S052
 # Functional description of the product. Maximum 500 characters. 
 description: "The RHF1S052 is a LoRaWAN water meter that consists of a magnetic pulse counter for water flow reading and a ball valve for water cut-off."
 # Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
-ISMbands: eu868,cn779,eu433,kr920,in865,ru864
+ISMbands: 
+    - eu868
+    - cn779
+    - eu433
+    - kr920
+    - in865
+    - ru864
 # Logo of the device
 logo: ruixinghengfang-network-rhf1s052.png
 # Product name & Version
@@ -36,9 +42,9 @@ motionIndicator: RANDOM
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# modelId // [RSS] Is it really needed? 
+# Mandatory whenever you have a driver for the model
 modelId: null
-# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
+# <vendorId>:<modelId>:<modelVersion> (needed for linking the model with a specific driver)
 protocolId: null
 # DataSheet URL (optional) 
 specificationURL: 

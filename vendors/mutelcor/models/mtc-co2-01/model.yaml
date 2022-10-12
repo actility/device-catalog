@@ -3,7 +3,10 @@ name: Smart CO2 LoRa Sensor (IP30, IP54)
 # Functional description of the product. Maximum 500 characters. 
 description: "The Mutelcor Smart CO2 LoRa Sensor is a unique power-driven Air Quality sensor. It measures CO2, Temperature and Humidity every 2 seconds with a robust dual-channel NDIR sensor and offers automatic Traffic Light Feature with local and LoRa-based Alarms based on multi-color LEDs and Sound. The device offers plug-and-play handling with multiple Threshold settings and quick and easy Calibration."
 # Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
-ISMbands: eu868,in865,kr920
+ISMbands: 
+    - eu868
+    - in865
+    - kr920
 # Logo of the device
 logo: mutelcor-mtc-co2-01.png
 # Product name & Version
@@ -32,10 +35,11 @@ motionIndicator: RANDOM
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# modelId // [RSS] Is it really needed? 
+# Mandatory whenever you have a driver for the model
 modelId: mutelcor:mtc-co2-01:1
-# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
-protocolId: null
+# <vendorId>:<modelId>:<modelVersion> (needed for linking the model with a specific driver)
+protocolId: 
+    - os1-mute:mtc-co2-01:1
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 

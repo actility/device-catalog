@@ -3,7 +3,11 @@ name: LW004
 # Functional description of the product. Maximum 500 characters. 
 description: "The Moko LW004-CT is a wearable tracker and a social safety distance reminder suitable for COVID-19 contact tracing. It can be used to track close contacts by advertising and scanning Bluetooth low-energy beacons. The LW004-CT also includes a 3-axis accelerometer. The scanned data will be sent to the LoRaWAN® network to trace all contacts."
 # Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
-ISMbands: eu868,in865,ru864,kr920
+ISMbands: 
+    - eu868
+    - in865
+    - ru864
+    - kr920
 # Logo of the device
 logo: moko-lw004.png
 # Product name & Version
@@ -32,10 +36,11 @@ motionIndicator: RANDOM
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# modelId // [RSS] Is it really needed? 
+# Mandatory whenever you have a driver for the model
 modelId: moko:lw004:1
-# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
-protocolId: null
+# <vendorId>:<modelId>:<modelVersion> (needed for linking the model with a specific driver)
+protocolId: 
+    - os1-moko:lw004:1
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 

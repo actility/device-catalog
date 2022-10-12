@@ -3,7 +3,12 @@ name: LSN50-V2
 # Functional description of the product. Maximum 500 characters. 
 description: "The Dragino LSN50-V2 is a LoRaWAN® end device that allows connecting various external sensors, for example, a temperature sensor probe. It can be used with many applications such as wireless alarm and security systems, home and building automation, automated meter reading, industrial monitoring, and control, and irrigation systems."
 # Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
-ISMbands: eu868,eu433,in865,kr920,ru864
+ISMbands: 
+    - eu868
+    - eu433
+    - in865
+    - kr920
+    - ru864
 # Logo of the device
 logo: dragino-lsn50-v2.png
 # Product name & Version
@@ -32,10 +37,11 @@ motionIndicator: RANDOM
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# modelId // [RSS] Is it really needed? 
+# Mandatory whenever you have a driver for the model
 modelId: dragino:lsn50-v2:2
-# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
-protocolId: null
+# <vendorId>:<modelId>:<modelVersion> (needed for linking the model with a specific driver)
+protocolId: 
+    - os1-drag:lsn50-v2:2
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 

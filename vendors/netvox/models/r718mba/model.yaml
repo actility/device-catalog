@@ -3,7 +3,10 @@ name: R718MBA - Wireless Activity Detection
 # Functional description of the product. Maximum 500 characters. 
 description: "The Netvox R718MBA Wireless Activity Detection Sensor detects sudden movements or vibrations and alerts through the LoRaWAN® network."
 # Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
-ISMbands: eu868,kr920,in865
+ISMbands: 
+    - eu868
+    - kr920
+    - in865
 # Logo of the device
 logo: netvox-r718mba.png
 # Product name & Version
@@ -31,10 +34,12 @@ motionIndicator: RANDOM
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# modelId // [RSS] Is it really needed? 
+# Mandatory whenever you have a driver for the model
 modelId: netvox:r718mba:1
-# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
-protocolId: netvox:lorawan:1
+# <vendorId>:<modelId>:<modelVersion> (needed for linking the model with a specific driver)
+protocolId: 
+    - netvox:lorawan:1
+    - os1-netv:r718mba:10
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 

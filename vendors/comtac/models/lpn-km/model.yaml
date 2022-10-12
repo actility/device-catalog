@@ -3,7 +3,8 @@ name: LPN KM - Short-circuit monitor
 # Functional description of the product. Maximum 500 characters. 
 description: "The Comtac LPN KM Short Circuit monitor detects short-circuit and ground fault. The integrated battery-supported power supply and the easy integration into private or public LoRaWAN® networks allow a cost-effective upgrade of stations for faster fault localization and resupply."
 # Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
-ISMbands: eu868
+ISMbands: 
+    - eu868
 # Logo of the device
 logo: comtac-lpn-km.png
 # Product name & Version
@@ -30,10 +31,11 @@ motionIndicator: RANDOM
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# modelId // [RSS] Is it really needed? 
+# Mandatory whenever you have a driver for the model
 modelId: comtac:lpn-km:1
-# <vendorId>:<modelId>:<modelVersion> (optional) // [RSS] To be renamed 'driverId'? 
-protocolId: null
+# <vendorId>:<modelId>:<modelVersion> (needed for linking the model with a specific driver)
+protocolId: 
+    - os1-comt:lpn-km:1
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 
