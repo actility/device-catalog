@@ -1,62 +1,15 @@
 {
-  "name": "@actilitypub/sensative-strips",
+  "name": "@actility/sensative-strips",
   "version": "1.0.6",
   "repository": "https://github.com/actility/thingpark-iot-flow-driver-catalogue/blob/main/sensative/strip",
   "author": "Lars Mats <lars.mats@sensative.com>",
   "homepage": "www.sensative.com",
-  "specification": "https://sensative.com/product/strips-lorawan/",
-  "deviceImageUrl": "https://sensative.com/wp-content/uploads/2020/09/Strips-LoRa-Presence-standing-thin.webp",
-  "manufacturerLogoUrl": "https://sensative.com/wp-content/uploads//2019/12/Sensative_logo.BRG_.svg",
-  "providerLogoUrl": "https://sensative.com/wp-content/uploads//2019/12/Sensative_logo.BRG_.svg",
   "license": "Copyright (C) 2021, Sensative AB, All rights reserved",
   "description": "",
   "main": "main.js",
   "scripts": {
     "build": "webpack",
     "test": "jest --collectCoverage"
-  },
-  "driver": {
-    "private": true,
-    "description": "Decoder for Sensative Strips Presence",
-    "producerId": "actilitypub",
-    "type": "thingpark-x-js",
-    "application": {
-      "producerId": "sensativ",
-      "moduleId": "strips",
-      "version": "1"
-    },
-    "points": {
-      "version": {
-        "type": "string"
-      },
-      "idddata": {
-        "type": "string"
-      },
-      "battery": {
-        "type": "int64"
-      },
-      "proximity": {
-        "type": "int64"
-      },
-      "presence": {
-        "type": "boolean"
-      },
-      "closeProximity": {
-        "type": "int64"
-      },
-      "closeProximityAlarm": {
-        "type": "boolean"
-      },
-      "disinfectAlarm": {
-        "type": "int64"
-      },
-      "statusText": {
-        "type": "string"
-      },
-      "statusCode": {
-        "type": "int64"
-      }
-    }
   },
   "devDependencies": {
     "jest": "^25.4.0",

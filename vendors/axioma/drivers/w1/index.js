@@ -5,7 +5,7 @@
  * @returns {Object} The status object
  */
 
-function parseStatus(statusCode) {
+ function parseStatus(statusCode) {
     let status = {
         lowBattery:     (0b00000100 & statusCode) !== 0,
         permanentError: (0b00001000 & statusCode) !== 0,
@@ -83,7 +83,7 @@ function decodeUplink(input) {
             time: firstLogTime, 
             volume: firstLogVolume
         });
-        for (let i=17; i < length-1; i+=2) {
+        for (let i=17; i < length; i+=2) {
             deltaVolume = bytes.readUIntLE(i, 2);
             deltaVolumes.push(deltaVolume);
             v += deltaVolume;
