@@ -1,18 +1,5 @@
 const translator = require('./strips-translate');
 
-const transformTable = {
-    // Indexed by result's value
-    CheckInConfirmed:        { func: (r,o,t)=>{ r.version=o.version; r.idddata = o.idddata; } },
-    EmptyReport:             { func: (r,o,t)=>{ }},
-    BatteryReport:           { func: (r,o,t)=>{r.battery=o.value} },
-    IRProximityReport:       { func: (r,o,t)=>{r.proximity=o.value } },
-    PresenceReport:          { func: (r,o,t)=>{r.presence=o.value } },
-    IRCloseProximityReport:  { func: (r,o,t)=>{r.closeProximity=o.value} },
-    CloseProximityAlarm:     { func: (r,o,t)=>{r.closeProximityAlarm=o.value} },
-    DisinfectAlarm:          { func: (r,o,t)=>{r.disinfectAlarm=o.value } },
-    statusCode:              { func: (r,o,t)=>{r.statusCode=o.value; r.statusText=o.status}}, 
-};
-
 const hiddenFields = {
     historyStart: true,
 };
@@ -78,25 +65,6 @@ function decodeDownlink(input) {
 // Full strips downlink encoder, all functionality
 function encodeDownlink(input) {
     return transformStripsEncodeDownlinkFromActilityFormat(input);
-}
-
-// I am confused over the function of this function...
-function extractPoints(input) {
-    let result = {}
-    let message = input.message;
-    const time = new Date(input.time);
-    for (const key in message) {
-        if (transformTable.hasOwnProperty(key)) {
-            let transform = transformTable[key];
-            transform.func(result, message[key], time);
-        } else {
-            if (hiddenFields.hasOwnProperty(key))
-                continue;
-            else
-                throw new Error("The message contained '" + key + "' which is currently not supported for point transformation.");
-        }
-    }
-    return result;
 }
 
 exports.decodeUplink   = decodeUplink;
