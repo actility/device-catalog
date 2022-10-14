@@ -143,17 +143,5 @@ function decimalToHexBytes(n) {
   return [n >> 8, n & 0xFF];
 }
 
-function extractPoints(input) {
-    var result = {};
-    if (typeof input.message.level !== "undefined") {
-        result.level = input.message.level;
-    }
-    if (typeof input.message.battery !== "undefined") {
-        result.batteryVoltage = input.message.battery;
-    }
-    return result;
-}
-
 exports.decodeUplink = decodeUplink;
 exports.encodeDownlink = encodeDownlink;
-exports.extractPoints = extractPoints;

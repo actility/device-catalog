@@ -138,29 +138,7 @@ function encodeDownlink(input) {}
  */
 function decodeDownlink(input) {}
 
-/**
- * Extract points
- * @param {Object} input - An object provided by the IoT Flow framework
- * @param {number[]} input.message - The decoded payload
- * @param {number} [input.time] - The time of the message
- * @returns {Object} The extracted points
- */
-function extractPoints(input) {
-    let result = {};
-    let elements = input.message.volumes;
-    if (typeof elements !== "undefined") {
-        result.volume = [];
-        elements.forEach(element => {
-            result.volume.push({
-                eventTime: element.time,
-                value: element.volume
-            })
-        });
-    }
-    return result;
-}
 
 exports.decodeUplink = decodeUplink;
 exports.decodeDownlink = decodeDownlink;
 exports.encodeDownlink = encodeDownlink;
-exports.extractPoints = extractPoints;
