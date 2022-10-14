@@ -70,4 +70,3 @@ function encodeDownlink(input) {
 exports.decodeUplink   = decodeUplink;
 exports.decodeDownlink = decodeDownlink;
 exports.encodeDownlink = encodeDownlink;
-exports.extractPoints  = extractPoints;

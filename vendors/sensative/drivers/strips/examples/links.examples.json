@@ -5,17 +5,7 @@
         "bytes": "FFFF13355E1201",
         "fPort": 1,
         "time": "2020-08-02T20:00:00.000+05:00",
-        "data": {"IRProximityReport": {"unit": "", "value": 13662}, "PresenceReport": {"unit": "", "value": true}, "historyStart": 65535},
-        "points": {
-            "proximity": {
-                "type": "int64",
-                "record": 13662
-            },
-            "presence": {
-                "type": "boolean",
-                "record": true
-            }
-        }
+        "data": {"IRProximityReport": {"unit": "", "value": 13662}, "PresenceReport": {"unit": "", "value": true}, "historyStart": 65535}
     },
     {
         "description": "strips presence object detect uplink",
@@ -27,16 +17,6 @@
             "CloseProximityAlarm": { "unit": "", "value": true },
             "IRCloseProximityReport": { "unit": "", "value": 255 },
             "historyStart": 65535
-        },
-        "points": {
-            "closeProximity": {
-                "type": "int64",
-                "record": 255
-            },
-            "closeProximityAlarm": {
-                "type": "boolean",
-                "record": true
-            }
         }
     },
     {
@@ -48,12 +28,6 @@
         "data": {
             "DisinfectAlarm": { "unit": "", "value": 2 },
             "historyStart": 65535
-        },
-        "points": {
-            "disinfectAlarm": {
-                "type": "int64",
-                "record": 2
-            }
         }
     },
     {
@@ -65,12 +39,6 @@
         "data": {
             "BatteryReport": { "unit": "%", "value": 100 },
             "historyStart": 65535
-        },
-        "points": {
-            "battery": {
-                "type": "int64",
-                "record": 100
-            }
         }
     },
     {
@@ -82,8 +50,6 @@
         "data":  {
             "EmptyReport": { "unit": "", "value": 0 },
             "historyStart": 65535
-        },
-        "points": {
         }
     },
     {
@@ -96,16 +62,6 @@
             "CheckInConfirmed": { "idddata": "09000000", "version": "098934b1" },
             "historyStart": 65535
         },
-        "points": {
-            "version": {
-                "type": "string",
-                "record": "098934b1"
-            },
-            "idddata": {
-                "type": "string",
-                "record": "09000000"
-            }
-        }
     },
     {
         "description": "strips command status uplink",
@@ -115,16 +71,6 @@
         "time": "2020-08-02T20:00:00.000+05:00",
         "data": {
             "statusCode": { "status": "Bad setting", "value": 1 }
-        },
-        "points": {
-            "statusText": {
-                "type": "string",
-                "record": "Bad setting"
-            },
-            "statusCode": {
-                "type": "int64",
-                "record": 1
-            }
         }
     },
     {
