@@ -191,11 +191,11 @@ mac:
 
     devicesTxPowerCapabilities:
         # Minimum device TX Conducted output power in dBm.
-        minTxPower: null
+        minTxPower:
         # Maximum device TX Conducted output power in dBm.
         maxTxPower: 14
         # Minimum device TX Radiated output power in dBm.
-        minTxEIRP: null
+        minTxEIRP: 
         # Maximum device TX Radiated output power in dBm.
         maxTxEIRP: 16
 
@@ -226,7 +226,7 @@ bootSettings:
     downlinkDwellTime: 0
     # beaconFrequency is the boot value used by the Device to set the beacon broadcast frequency.
     # This frequency is then aligned by the Network Server to the target value set in the RF region."
-    beaconFrequency: null
+    beaconFrequency: 
     # Default uplink dwell time (valid only for AS923 and AU915 profiles). Possible values 0 (no limit) or 1 (400ms).
     uplinkDwellTime: 1
 

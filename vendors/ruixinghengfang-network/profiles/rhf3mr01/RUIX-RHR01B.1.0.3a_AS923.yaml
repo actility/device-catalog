@@ -26,19 +26,19 @@ mac:
 
     devicesTxPowerCapabilities:
         # Minimum device TX Conducted output power in dBm.
-        minTxPower: null
+        minTxPower:
         # Maximum device TX Conducted output power in dBm.
         maxTxPower: 14
         # Minimum device TX Radiated output power in dBm.
-        minTxEIRP: null
+        minTxEIRP:
         # Maximum device TX Radiated output power in dBm.
         maxTxEIRP: 14
 
     uplinkFrameRepetition: 
         # Maximum number of transmissions per uplink frame, supported by the device. 
-        maxNbTrans: null
+        maxNbTrans:
         # How many uplink transmissions does the device use in Confirmed mode if it doesn't receive any DL ACK?
-        maxRedundancyForConfirmedUL: null
+        maxRedundancyForConfirmedUL:
 
 # The following section defines the default settings used by the device during iniial boot stage. Leave empty if your device respects the 
 # default values indicated by LoRaWAN Regional Parameters (PHY) specification. Personalize fields only when different from default PHY values.
@@ -47,18 +47,18 @@ bootSettings:
     # Specification.
     rx1Delay: 1000
     # RX1 data rate offset, defining the offset between uplink data rate and the corresponding downlink data rate used for RX1 slot.
-    rx1DROffset: null
+    rx1DROffset:
     # Rx2 DataRate, used to send DL packets over RX2 slot. Note: Data Rate encoding is region-specific, see the applicable LoRaWAN Regional 
     # Profile.
-    rx2DataRate: null
+    rx2DataRate:
     # Rx2 Frequency expressed in MHz, used to send DL packets over RX2 slot.
-    rx2Frequency: null
+    rx2Frequency:
     # Default data rate used for Class B ping slots. Note: Data Rate encoding is region-specific, see the applicable LoRaWAN Regional Profile.
-    pingSlotChannelDataRate: null
+    pingSlotChannelDataRate:
     # Default frequency (in MHz) used for Class B ping slots.
     pingSlotChannelFrequency: 923.4
     # beaconFrequency Boot value used by the Device to set the beacon broadcast frequency. This frequency is then aligned by the Network Server to the target value set in RF region.
-    beaconFrequency: null
+    beaconFrequency:
     # Default downlink dwell time (valid only for AS923 and AU915 profiles). Possible values 0 (no limit) or 1 (400ms).
     downlinkDwellTime: 1
     # Default uplink dwell time (valid only for AS923 and AU915 profiles). Possible values 0 (no limit) or 1 (400ms).
@@ -88,4 +88,4 @@ devNonceCounterBased: 0
 
 # ProfileID as specified by LoRa Alliance in https://lora-alliance.org/wp-content/uploads/2020/10/LoRa_Alliance_Vendor_ID_for_QR_Code_02142022.pdf. 
 # This ID consists of 8 upper-case hexadecimal characters, 4 characters for VendorID + 4 characters for VendorProfileID.
-lorawanDeviceProfileID: null
+lorawanDeviceProfileID:
