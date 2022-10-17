@@ -1,0 +1,36 @@
+{
+  "name": "@actilitypub/milesight-WS156",
+  "version": "1.0.0",
+  "description": "WS156 LoRaWAN® Smart Scene Panel gives a multi button control panel that can simply activate different pre-defined scenes with one-press. Without any additional cable, WS156 can be easily installed anywhere and used to control devices via LoRaWAN® or Milesight LoRa D2D communication protocol. Besides, it’s equipped a user-defined E-ink screen to suit different scenes. Compliant with Milesight LoRaWAN® gateway and Milesight IoT Cloud solution, WS156 can be linked to control another Milesight devices without any development. WS156 can be widely used for wireless control in smart office, smart home and hotel multi-scene controls, etc.",
+  "specification": "https://resource.milesight-iot.com/milesight/document/ws136&ws156-datasheet-en.pdf",
+  "deviceImageUrl": "https://resource.milesight-iot.com/Support/kevin/WS156.png",
+  "manufacturerLogoUrl": "https://resource.milesight-iot.com/Support/kevin/Logo.png",
+  "providerLogoUrl": "https://resource.milesight-iot.com/Support/kevin/Logo.png",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --collectCoverage"
+  },
+  "driver": {
+    "description": "WS156 decoder",
+    "producerId": "milesight",
+    "type": "thingpark-x-js",
+    "private": false,
+    "application": {
+      "producerId": "milesight",
+      "moduleId": "WS156",
+      "version": "1"
+    },
+    "points": {
+      "battery": {
+        "unitId": "%",
+        "type": "int64"
+      },
+      "button_": {
+        "type": "string"
+      }
+    }
+  },
+  "devDependencies": {
+    "jest": "^25.4.0"
+  }
+}

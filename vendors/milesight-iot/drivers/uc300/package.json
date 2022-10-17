@@ -1,0 +1,50 @@
+{
+  "name": "@actilitypub/milesight-UC300",
+  "version": "1.0.0",
+  "description": "UC300 series is an IoT controller used for remote control and data acquisition from diverse devices. It contains multiple I/O interfaces including analog input, digital input, relay output, serial port, PT100 RTD input, which support remote device data transmission via LoRaWAN® or 3/4G networks. Besides, UC300 series supports multiple trigger conditions and actions which can work autonomously even when the network dropped. Combining with Milesight IoT Cloud solution, it can monitor and control remote devices via web server or mobile App easily. Adopting industrial design and IP30 metal case, UC300 is widely used in indoor applications like smart factory, building automation, etc.",
+  "specification": "https://resource.milesight-iot.com/milesight/document/uc300-datasheet-en.pdf",
+  "deviceImageUrl": "https://resource.milesight-iot.com/Support/kevin/uc300.png",
+  "manufacturerLogoUrl": "https://resource.milesight-iot.com/Support/kevin/Logo.png",
+  "providerLogoUrl": "https://resource.milesight-iot.com/Support/kevin/Logo.png",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --collectCoverage"
+  },
+  "driver": {
+    "description": "UC300 decoder",
+    "producerId": "milesight",
+    "type": "thingpark-x-js",
+    "private": false,
+    "application": {
+      "producerId": "milesight",
+      "moduleId": "UC300",
+      "version": "1"
+    },
+    "points": {
+      "gpio_in_": {
+        "type": "string"
+      },
+      "gpio_out_": {
+        "type": "string"
+      },
+      "counter_": {
+        "type": "int64"
+      },
+      "pt100_": {
+        "type": "double"
+      },
+      "adc_": {
+        "type": "int64"
+      },
+      "adv_": {
+        "type": "int64"
+      },
+      "chn": {
+        "type": "double"
+      }
+    }
+  },
+  "devDependencies": {
+    "jest": "^25.4.0"
+  }
+}

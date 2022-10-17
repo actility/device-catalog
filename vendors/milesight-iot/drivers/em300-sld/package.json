@@ -1,0 +1,45 @@
+{
+  "name": "@actilitypub/milesight-em310-udl",
+  "version": "1.0.0",
+  "description": "EM300-SLD is a compact spot leakage detection sensor for detecting presence of water (or other liquids) and transmitting alarm using LoRaWAN® technology. With this low power consumption technology, EM300-SLD can work up to 5 years with 4000 mAh battery. Combining with Milesight LoRaWAN® gateway and Milesight IoT Cloud solution, users can manage all sensor data remotely and visually and receive alarms via mobile APP. EM300-SLD also integrates temperature and humidity sensors, which has a great use for applications such as pipe leakage monitoring, basement flooding, pump failure, etc.",
+  "specification": "https://resource.milesight-iot.com/milesight/document/em300-sld-datasheet-en.pdf",
+  "deviceImageUrl": "https://resource.milesight-iot.com/Support/kevin/em310-udl.png",
+  "manufacturerLogoUrl": "https://resource.milesight-iot.com/Support/kevin/Logo.png",
+  "providerLogoUrl": "https://resource.milesight-iot.com/Support/kevin/Logo.png",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --collectCoverage"
+  },
+  "driver": {
+    "description": "em310-udl decoder",
+    "producerId": "milesight",
+    "type": "thingpark-x-js",
+    "private": false,
+    "application": {
+      "producerId": "milesight",
+      "moduleId": "em310-udl",
+      "version": "1"
+    },
+    "points": {
+      "battery": {
+        "unitId": "%",
+        "type": "int64"
+      },
+      "temperature": {
+        "unitId": "Cel",
+        "type": "double"
+      },
+      "humidity": {
+        "unitId": "%RH",
+        "type": "double"
+      },
+      "water_leak": {
+        "unitId": "N/A",
+        "type": "string"
+      }
+    }
+  },
+  "devDependencies": {
+    "jest": "^25.4.0"
+  }
+}
