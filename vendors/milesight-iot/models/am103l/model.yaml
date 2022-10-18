@@ -1,14 +1,14 @@
 # Commercial name of the model 
 name: Milesight AM103-LoRaWAN Indoor Air Quality Sensor (3 in 1)
 # Functional description of the product. Maximum 500 characters. 
-description: Milesight AM103 is a compact indoor ambience monitoring sensor that supports long-lasting battery life, wall-mounted installation, and visual display via an E-ink screen. Meanwhile, AM103L is a more economical model without E-ink screen to meet your various needs. Their built-in NFC lead to easy batch installation. The clean and modern design of AM103 and AM103L is ideal for offices, classrooms, libraries, hospitals, etc.
+description: Milesight AM103l is a compact indoor ambience monitoring sensor that supports long-lasting battery life, wall-mounted installation, and visual display via an E-ink screen. Meanwhile, AM103L is a more economical model without E-ink screen to meet your various needs. Their built-in NFC lead to easy batch installation. The clean and modern design of AM103 and AM103L is ideal for offices, classrooms, libraries, hospitals, etc.
 # Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
 ISMbands: eu868,us915,au915,cn470,kr920,in865,ru864,as923
 # Logo of the device
-logo: am103am103l.png
+logo: am103l.png
 # Product name & Version
 product:
-    name: MILE/AM103AM103L
+    name: MILE/AM103L
     version: 1
 # ID of the profile that defines the LoRaWAN characteristics of this model. 
 deviceProfileId: 
@@ -37,9 +37,9 @@ motionIndicator: RANDOM
 # Is your device certified by the LoRa Alliance? Possible values: true, false.
 LoRaWANCertified: true
 # Mandatory whenever you have a driver for the model
-modelId: milesight-iot/:am103am103l:1
+modelId: milesight-iot:am103l:1
 # <vendorId>:<modelId>:<modelVersion> (needed for linking the model with a specific driver)
-protocolId: null
+protocolId: milesight-iot:am103l:1
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 
@@ -50,3 +50,7 @@ sensors:
     - temperature
     - humidity
     - co2
+    - illumination
+    - co2
+    - tvoc
+    - pressure
