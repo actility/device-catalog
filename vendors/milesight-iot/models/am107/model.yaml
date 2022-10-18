@@ -39,18 +39,16 @@ LoRaWANCertified: true
 # Mandatory whenever you have a driver for the model
 modelId: milesight-iot:am107:1
 # <vendorId>:<modelId>:<modelVersion> (needed for linking the model with a specific driver)
-protocolId: null
+protocolId: milesight-iot:am100:1
 # DataSheet URL (optional) 
-specificationURL: 
+specificationURL: https://resource.milesight-iot.com/milesight/document/am100-series-datasheet-en.pdf
 # User Guide URL (optional) 
 userGuideURL: 
 # Available sensors following Actility ontology: https://github.com/actility/thingpark-iot-flow-js-driver/blob/master/UNITS.md 
 sensors: 
-    - battery
-    - temperature
-    - humidity
-    - co2
-    - tvoc
-    - pressure
-    - pir
-    - light
+    - batteryLevel:%
+    - temperature:Cel
+    - humidity:%RH
+    - light:lm
+    - co2:ppm
+    - pressure:hPa

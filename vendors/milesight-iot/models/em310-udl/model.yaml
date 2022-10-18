@@ -41,10 +41,10 @@ modelId: milesight-iot:em310-udl:1
 # <vendorId>:<modelId>:<modelVersion> (needed for linking the model with a specific driver)
 protocolId: milesight-iot:em310-udl:1
 # DataSheet URL (optional) 
-specificationURL: 
+specificationURL: https://resource.milesight-iot.com/milesight/document/em310-udl-datasheet-en.pdf
 # User Guide URL (optional) 
 userGuideURL: 
 # Available sensors following Actility ontology: https://github.com/actility/thingpark-iot-flow-js-driver/blob/master/UNITS.md 
 sensors: 
-    - battery
-    - distance
+    - batteryLevel:%
+    - distance:cm

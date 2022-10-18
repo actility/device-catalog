@@ -1,11 +1,11 @@
-function decodeUplink(input) {
-    var result = {};
-    var result = Decoder(input.bytes, input.fPort);
-    return result;
-}
-
-
-function Decoder(bytes, port) {
+/**
+ * Payload Decoder for The Things Network
+ * 
+ * Copyright 2021 Milesight IoT
+ * 
+ * @product AM104 / AM107
+ */
+ function Decoder(bytes, port) {
     var decoded = {};
 
     for (var i = 0; i < bytes.length;) {
@@ -77,24 +77,3 @@ function readInt16LE(bytes) {
     var ref = readUInt16LE(bytes);
     return ref > 0x7fff ? ref - 0x10000 : ref;
 }
-
-function extractPoints(input) {
-    let result = {};
-    let elements = input.message.volumes;
-    if (typeof elements !== "undefined") {
-        result.volume = [];
-        elements.forEach(element => {
-            result.volume.push({
-                eventTime: element.time,
-                value: element.volume
-            })
-        });
-    }
-    return result;
-}
-
-
-
-
-exports.decodeUplink = decodeUplink;
-exports.extractPoints = extractPoints;

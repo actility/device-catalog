@@ -41,12 +41,10 @@ modelId: milesight-iot:em500-smtc:1
 # <vendorId>:<modelId>:<modelVersion> (needed for linking the model with a specific driver)
 protocolId: null
 # DataSheet URL (optional) 
-specificationURL: 
+specificationURL: https://resource.milesight-iot.com/milesight/document/em500-smtc-datasheet-en.pdf
 # User Guide URL (optional) 
 userGuideURL: 
 # Available sensors following Actility ontology: https://github.com/actility/thingpark-iot-flow-js-driver/blob/master/UNITS.md 
 sensors: 
-    - battery
-    - temperature
-    - moisture
-    - conductivity
+    - batteryLevel:%
+    - temperature:Cel
