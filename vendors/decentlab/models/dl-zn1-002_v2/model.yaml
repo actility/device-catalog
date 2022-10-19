@@ -8,7 +8,7 @@ logo: decentlab-DL-ZN1-002.png
 product:
     name: DL/ZN1-002
     version: 1
-# ID of the profile that defines the LoRaWAN characteristics of this model. 
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
 deviceProfileId: 
     - DL/DL-ZN1-002A.1.0.1_AU915
  
@@ -27,9 +27,9 @@ motionIndicator: NEAR_STATIC
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# Mandatory whenever you have a driver for the model
+# Mandatory whenever you have a driver for the model: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
 modelId: dl:dl-zn1-002:2
-# <vendorId>:<modelId>:<modelVersion> Needed for linking the model with a specific driver (you can have several ones)
+# <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId: dl:dl-zn11O:1
 # DataSheet URL (optional) 
 specificationURL: 

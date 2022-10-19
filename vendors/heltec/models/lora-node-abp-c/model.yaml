@@ -8,7 +8,7 @@ logo: heltec-lora-node-151-class-c-abp.png
 product:
     name: HELT/LOSCA
     version: 1
-# ID of the profile that defines the LoRaWAN characteristics of this model. 
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model. 
 deviceProfileId: 
     - HELT/LOSCAC.1.0.2b_AS923
     - HELT/LOSCAC.1.0.2b_ETSI
@@ -29,9 +29,9 @@ motionIndicator: RANDOM
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# Mandatory whenever you have a driver for the model
+# Mandatory whenever you have a driver for the model: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
 modelId: heltec:lora-node-abp-c:1
-# <vendorId>:<modelId>:<modelVersion> Needed for linking the model with a specific driver (you can have several ones)
+# <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId: 
 # DataSheet URL (optional) 
 specificationURL: 

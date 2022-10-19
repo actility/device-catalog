@@ -8,7 +8,7 @@ logo: NAS_KLM_1-1.png
 product:
     name: NASYS/Multical1
     version: 1
-# ID of the profile that defines the LoRaWAN characteristics of this model. 
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
 deviceProfileId: 
     - NASYS/MULTICAL-M1-A.1.0.2b_EU_Rx2-SF12
  
@@ -27,9 +27,9 @@ motionIndicator: RANDOM
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# Mandatory whenever you have a driver for the model
+# Mandatory whenever you have a driver for the model: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
 modelId: 
-# <vendorId>:<modelId>:<modelVersion> Needed for linking the model with a specific driver (you can have several ones)
+# <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId: 
 # DataSheet URL (optional) 
 specificationURL: 

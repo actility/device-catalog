@@ -101,7 +101,7 @@ description: The Abeeway Micro Tracker is a small size multi-mode tracker combin
 ISMbands: eu868,us915,as923,au915
 # Logo of the model
 logo: abeeway-micro-tracker.png
-# ID of the profile that defines the LoRaWAN characteristics of this model.
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
 deviceProfileId:
     - eu868_1.0.2revB_classA
     - us915_1.0.2revB_classA
@@ -278,8 +278,8 @@ description: Generic driver of all Abeeway trackers.
 developedBy: Abeeway
 # Email of the developer
 developerEmail: abeeway.support@actility.com
-# In case of a driver per model: `<vendorId>:<modelId>:<modelVersion>`
-# In case of a driver for multiples model: `<vendorId>:generic:<genericVersion>`
+# In case of a driver per model: `<vendorId>:<protocolName>:<protocolVersion>`
+# In case of one driver for all models: `<vendorId>:generic:<protocolVersion>`
 protocolId: abeeway:micro-tracker:2
 ```
 > Pay attention when choosing a `protocolId`, this information is important for establishing a link between the model and the expected driver.

@@ -8,7 +8,7 @@ logo: netvox-r72616.png
 product:
     name: NETV/R7616
     version: 1
-# ID of the profile that defines the LoRaWAN characteristics of this model. 
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
 deviceProfileId: 
     - NETV/R7616A.1.0.2b_AS923
     - NETV/R7616A.1.0.2b_ETSI
@@ -29,9 +29,9 @@ motionIndicator: RANDOM
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# Mandatory whenever you have a driver for the model
+# Mandatory whenever you have a driver for the model: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
 modelId: netvox:r72616:1
-# <vendorId>:<modelId>:<modelVersion> Needed for linking the model with a specific driver (you can have several ones)
+# <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId: 
     - netvox:lorawan:1
     - os1-netv:r72616:13

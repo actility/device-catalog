@@ -8,7 +8,7 @@ logo: espeasy-rn2903-node-class-a-abp.png
 product:
     name: ESPE/RNAAB
     version: 1
-# ID of the profile that defines the LoRaWAN characteristics of this model. 
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
 deviceProfileId: 
     - ESPE/RNAABA.1.0.2a_AS923
     - ESPE/RNAABA.1.0.2a_FCC
@@ -28,9 +28,9 @@ motionIndicator: RANDOM
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
-# Mandatory whenever you have a driver for the model
+# Mandatory whenever you have a driver for the model: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
 modelId: espeasy:rn2903-node-cla:1
-# <vendorId>:<modelId>:<modelVersion> Needed for linking the model with a specific driver (you can have several ones)
+# <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId: 
     - os1-espe:rn2903-node-cla:1
 # DataSheet URL (optional) 
