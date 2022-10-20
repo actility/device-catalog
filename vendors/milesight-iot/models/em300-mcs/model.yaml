@@ -23,17 +23,17 @@ deviceProfileId:
  
 # You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
 # Maximum device TX Conducted output power in dBm. 
-maxTxPower: 16
+maxTxPower: 20
 # Minimum device TX Conducted output power in dBm. 
-minTxPower: null
+minTxPower: 2
 # Maximum device TX Radiated output power in dBm.  
-maxTxEIRP: 16
+maxTxEIRP: 20
 # Minimum device TX Radiated output power in dBm.  
-minTxEIRP: null
+minTxEIRP: 2
 # Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'  
 # or 'random' (not known, changes over time). 
-motionIndicator: RANDOM
- 
+motionIndicator: NEAR_STATIC
+
 # Is your device certified by the LoRa Alliance? Possible values: true, false.
 LoRaWANCertified: true
 # Mandatory whenever you have a driver for the model

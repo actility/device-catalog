@@ -10,7 +10,7 @@ loRaWANClass: A
 ISMbands: ru864
 # Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'
 # or 'random' (not known, changes over time).
-motionIndicator: RANDOM
+motionIndicator: NEAR_STATIC
 
 mac:
     # Activation modes supported by the device (put true where applicable).
@@ -26,17 +26,17 @@ mac:
 
     devicesTxPowerCapabilities:
         # Minimum device TX Conducted output power in dBm.
-        minTxPower: null
+        minTxPower: 2
         # Maximum device TX Conducted output power in dBm.
-        maxTxPower: null
+        maxTxPower: 20
         # Minimum device TX Radiated output power in dBm.
-        minTxEIRP: null
+        minTxEIRP: 2
         # Maximum device TX Radiated output power in dBm.
-        maxTxEIRP: null
+        maxTxEIRP: 20
 
     uplinkFrameRepetition: 
         # Maximum number of transmissions per uplink frame, supported by the device. 
-        maxNbTrans: null
+        maxNbTrans: 1
         # How many uplink transmissions does the device use in Confirmed mode if it doesn't receive any DL ACK?
         maxRedundancyForConfirmedUL: null
 
@@ -84,7 +84,7 @@ unsupportedMACCommands:
 # Does your device support [Technical Recommendation for LoRaWAN L2 1.0.x Join Security] recommending implemeting the DevNonce as a counter for 
 # OTAA devices? See https://lora-alliance.org/resource_hub/technical-recommendations-for-preventing-state-synchronization-issues-around-lorawan-1-0-x-join-procedure/
 # Possible values: true, false. This field is automatically forced to true for LoRaWAN MAC versions 1.0.4 and 1.1.
-devNonceCounterBased: 1
+devNonceCounterBased: true
 
 # ProfileID as specified by LoRa Alliance in https://lora-alliance.org/wp-content/uploads/2020/10/LoRa_Alliance_Vendor_ID_for_QR_Code_02142022.pdf. 
 # This ID consists of 8 upper-case hexadecimal characters, 4 characters for VendorID + 4 characters for VendorProfileID.
