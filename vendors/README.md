@@ -246,6 +246,7 @@ unsupportedMACCommands:
     pingSlotChannelReqAns: true
     pingSlotInfoReqAns: false
     deviceTimeReqAns: false
+    beaconFreqReqAns: true
 
     # Does your device support [Technical Recommendation for LoRaWAN L2 1.0.x Join Security] recommending implemeting the DevNonce as a counter for 
     # OTAA devices? See https://lora-alliance.org/resource_hub/technical-recommendations-for-preventing-state-synchronization-issues-around-lorawan-1-0-x-join-procedure/
