@@ -1,16 +1,14 @@
-# Commercial name of the model 
+# Commercial name of the model
 name: Milesight VS121 AI Workplace Occupancy Sensor
-# Functional description of the product. Maximum 500 characters. 
+# Functional description of the product. Maximum 500 characters.
 description: Milesight VS121, based on Artificial Intelligence (AI) technology, is an AI workplace sensor designed to monitor occupancy & utilization in modern workspace, which can reach up to 95% recognition rate. With the ability to sense from up to more than 78 m2, few sensors are needed to cover the same area, decreasing the deploy costs for users. Milesight VS121 sensors are equipped with Wi-Fi for easy configuration without any configuration tools.
-# Comma-separated list of regional profiles supported by this model: eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470. 
-ISMbands: eu868,us915,au915,cn470,kr920,in865,ru864,as923
 # Logo of the device
 logo: vs121.png
 # Product name & Version
 product:
     name: MILE/VS121
     version: 1
-# ID of the profile that defines the LoRaWAN characteristics of this model. 
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
 deviceProfileId: 
     - milesight-iot_eu868_RP001-1.0.3-RevA_classA
     - milesight-iot_us915_RP001-1.0.3-RevA_classA
@@ -20,7 +18,7 @@ deviceProfileId:
     - milesight-iot_in865_RP001-1.0.3-RevA_classA
     - milesight-iot_ru864_RP001-1.0.3-RevA_classA
     - milesight-iot_as923_RP001-1.0.3-RevA_classA
- 
+
 # You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
 # Maximum device TX Conducted output power in dBm. 
 maxTxPower: 20
@@ -33,13 +31,13 @@ minTxEIRP: 2
 # Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'  
 # or 'random' (not known, changes over time). 
 motionIndicator: NEAR_STATIC
- 
-# Is your device certified by the LoRa Alliance? Possible values: true, false.
+
+# Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: true
-# Mandatory whenever you have a driver for the model
+# Mandatory whenever you have a driver for the model: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
 modelId: milesight-iot:vs121:1
-# <vendorId>:<modelId>:<modelVersion> (needed for linking the model with a specific driver)
-protocolId: milesight-iot:vs121:1
+# <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
+protocolId: 
 # DataSheet URL (optional) 
 specificationURL: https://resource.milesight-iot.com/milesight/document/vs121-datasheet-en.pdf
 # User Guide URL (optional) 

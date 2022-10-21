@@ -60,9 +60,9 @@ bootSettings:
     # beaconFrequency Boot value used by the Device to set the beacon broadcast frequency. This frequency is then aligned by the Network Server to the target value set in RF region.
     beaconFrequency: null
     # Default downlink dwell time (valid only for AS923 and AU915 profiles). Possible values 0 (no limit) or 1 (400ms).
-    downlinkDwellTime: 0
+    downlinkDwellTime: 1
     # Default uplink dwell time (valid only for AS923 and AU915 profiles). Possible values 0 (no limit) or 1 (400ms).
-    uplinkDwellTime: 0
+    uplinkDwellTime: 1
 
 # Which MAC commands are NOT supported by your device? Leave empty if your device supports all the MAC commands specified for your regional 
 # profile. Put 'true' only if a command is not supported.
@@ -74,9 +74,9 @@ unsupportedMACCommands:
     linkCheckReqAns: true
     rxParamSetupReqAns: true
     rxTimingSetupReqAns: true
-    newChannelReqAns: true
+    newChannelReqAns: false
     dlChannelReqAns: false
-    txParamSetupReqAns: true
+    txParamSetupReqAns: false
     pingSlotChannelReqAns: true
     pingSlotInfoReqAns: true
     deviceTimeReqAns: false
@@ -84,7 +84,7 @@ unsupportedMACCommands:
 # Does your device support [Technical Recommendation for LoRaWAN L2 1.0.x Join Security] recommending implemeting the DevNonce as a counter for 
 # OTAA devices? See https://lora-alliance.org/resource_hub/technical-recommendations-for-preventing-state-synchronization-issues-around-lorawan-1-0-x-join-procedure/
 # Possible values: true, false. This field is automatically forced to true for LoRaWAN MAC versions 1.0.4 and 1.1.
-devNonceCounterBased: true
+devNonceCounterBased: 1
 
 # ProfileID as specified by LoRa Alliance in https://lora-alliance.org/wp-content/uploads/2020/10/LoRa_Alliance_Vendor_ID_for_QR_Code_02142022.pdf. 
 # This ID consists of 8 upper-case hexadecimal characters, 4 characters for VendorID + 4 characters for VendorProfileID.
