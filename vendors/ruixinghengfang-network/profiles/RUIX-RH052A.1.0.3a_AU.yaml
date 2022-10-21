@@ -73,23 +73,23 @@ bootSettings:
     # Default uplink dwell time (valid only for AS923 and AU915 profiles). Possible values 0 (no limit) or 1 (400ms).
     uplinkDwellTime: 1
 
-# Which MAC commands are NOT supported by your device? Leave it as the template if your device supports all the MAC commands specified for your regional
-# profile. Put 'true' only if a command is not supported.
-unsupportedMACCommands: 
-    linkADRReqAns: false
-    devStatusReqAns: false
-    joinRequestAccept: false
-    dutyCycleReqAns: false
-    linkCheckReqAns: false
-    rxParamSetupReqAns: false
-    rxTimingSetupReqAns: false
-    newChannelReqAns: true
-    dlChannelReqAns: true
-    txParamSetupReqAns: false
-    pingSlotChannelReqAns: false
-    pingSlotInfoReqAns: true
-    deviceTimeReqAns: false
-    beaconFreqReqAns: true
+# Which MAC commands are supported by your device and which are not? Leave it as the template if your device supports all the MAC commands specified for your regional
+# profile. Put 'true' only if a command is supported.
+supportedMACCommands:
+    linkADRReqAns: true
+    devStatusReqAns: true
+    joinRequestAccept: true
+    dutyCycleReqAns: true
+    linkCheckReqAns: true
+    rxParamSetupReqAns: true
+    rxTimingSetupReqAns: true
+    newChannelReqAns: false
+    dlChannelReqAns: false
+    txParamSetupReqAns: true
+    pingSlotChannelReqAns: true
+    pingSlotInfoReqAns: false
+    deviceTimeReqAns: true
+    beaconFreqReqAns: false
 
 # Does your device support [Technical Recommendation for LoRaWAN L2 1.0.x Join Security] recommending implemeting the DevNonce as a counter for 
 # OTAA devices? See https://lora-alliance.org/resource_hub/technical-recommendations-for-preventing-state-synchronization-issues-around-lorawan-1-0-x-join-procedure/

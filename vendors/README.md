@@ -246,21 +246,21 @@ bootSettings:
 
 # Which MAC commands are NOT supported by your device?
 # Put 'true' only if a command is not supported.
-unsupportedMACCommands: 
-    linkADRReqAns: false
-    devStatusReqAns: false
-    joinRequestAccept: false
-    dutyCycleReqAns: false
-    linkCheckReqAns: false
-    rxParamSetupReqAns: false
-    rxTimingSetupReqAns: false
-    newChannelReqAns: false
-    dlChannelReqAns: false
-    txParamSetupReqAns: true
-    pingSlotChannelReqAns: true
-    pingSlotInfoReqAns: false
-    deviceTimeReqAns: false
-    beaconFreqReqAns: true
+supportedMACCommands: 
+    linkADRReqAns: true
+    devStatusReqAns: true
+    joinRequestAccept: true
+    dutyCycleReqAns: true
+    linkCheckReqAns: true
+    rxParamSetupReqAns: true
+    rxTimingSetupReqAns: true
+    newChannelReqAns: true
+    dlChannelReqAns: true
+    txParamSetupReqAns: false
+    pingSlotChannelReqAns: false
+    pingSlotInfoReqAns: true
+    deviceTimeReqAns: true
+    beaconFreqReqAns: false
 
     # Does your device support [Technical Recommendation for LoRaWAN L2 1.0.x Join Security] recommending implemeting the DevNonce as a counter for 
     # OTAA devices? See https://lora-alliance.org/resource_hub/technical-recommendations-for-preventing-state-synchronization-issues-around-lorawan-1-0-x-join-procedure/
