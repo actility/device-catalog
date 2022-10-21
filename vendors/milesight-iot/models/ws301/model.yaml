@@ -1,0 +1,47 @@
+# Commercial name of the model
+name: Milesight WS301-Wireless Magnetic Contact Switch
+# Functional description of the product. Maximum 500 characters.
+description: Milesight WS301 can be mounted on any doors or windows to detect an opening or closing event. It adds physical security monitoring to your location by warning of intrusion or unauthorized entry. Besides, it provides more than 4 years service life without battery replacement. Compliant with Milesight LoRaWAN® gateway and Milesight IoT Cloud solution, WS301 will surely monitor the real-time open/close status and receive alarms via mobile App.
+# Logo of the device
+logo: ws301.png
+# Product name & Version
+product:
+    name: MILE/WS301
+    version: 1
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
+deviceProfileId: 
+    - milesight-iot_eu868_RP001-1.0.3-RevA_classA
+    - milesight-iot_us915_RP001-1.0.3-RevA_classA
+    - milesight-iot_au915_RP001-1.0.3-RevA_classA
+    - milesight-iot_cn470_RP001-1.0.3-RevA_classA
+    - milesight-iot_kr920_RP001-1.0.3-RevA_classA
+    - milesight-iot_in865_RP001-1.0.3-RevA_classA
+    - milesight-iot_ru864_RP001-1.0.3-RevA_classA
+    - milesight-iot_as923_RP001-1.0.3-RevA_classA
+
+# You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
+# Maximum device TX Conducted output power in dBm. 
+maxTxPower: 20
+# Minimum device TX Conducted output power in dBm. 
+minTxPower: 2
+# Maximum device TX Radiated output power in dBm.  
+maxTxEIRP: 20
+# Minimum device TX Radiated output power in dBm.  
+minTxEIRP: 2
+# Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'  
+# or 'random' (not known, changes over time). 
+motionIndicator: NEAR_STATIC
+
+# Is your device certified by the LoRa Alliance? Possible values: true, false. 
+LoRaWANCertified: true
+# Mandatory whenever you have a driver for the model: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
+modelId: milesight-iot:ws301:1
+# <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
+protocolId: 
+# DataSheet URL (optional) 
+specificationURL: https://resource.milesight-iot.com/milesight/document/ws301-datasheet-en.pdf
+# User Guide URL (optional) 
+userGuideURL: 
+# Available sensors following Actility ontology: https://github.com/actility/thingpark-iot-flow-js-driver/blob/master/UNITS.md 
+sensors: 
+    - batteryLevel:%

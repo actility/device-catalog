@@ -1,0 +1,48 @@
+# Commercial name of the model
+name: Milesight WS202 PIR & Light Sensor
+# Functional description of the product. Maximum 500 characters.
+description: Milesight WS202 is a LoRa PIR sensor based on passive infrared technology to detect a motion or occupancy. WS202 can detect whether there is movement within the range of 6-8 m and send the changes via LoRaWAN® network. Besides, WS202 equips with light sensor which can link PIR detection results to trigger scenes. With compact size and powered battery, WS202 is easy to install everywhere.
+# Logo of the device
+logo: ws202.png
+# Product name & Version
+product:
+    name: MILE/WS202
+    version: 1
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
+deviceProfileId: 
+    - milesight-iot_eu868_RP001-1.0.3-RevA_classA
+    - milesight-iot_us915_RP001-1.0.3-RevA_classA
+    - milesight-iot_au915_RP001-1.0.3-RevA_classA
+    - milesight-iot_cn470_RP001-1.0.3-RevA_classA
+    - milesight-iot_kr920_RP001-1.0.3-RevA_classA
+    - milesight-iot_in865_RP001-1.0.3-RevA_classA
+    - milesight-iot_ru864_RP001-1.0.3-RevA_classA
+    - milesight-iot_as923_RP001-1.0.3-RevA_classA
+
+# You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
+# Maximum device TX Conducted output power in dBm. 
+maxTxPower: 20
+# Minimum device TX Conducted output power in dBm. 
+minTxPower: 2
+# Maximum device TX Radiated output power in dBm.  
+maxTxEIRP: 20
+# Minimum device TX Radiated output power in dBm.  
+minTxEIRP: 2
+# Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'  
+# or 'random' (not known, changes over time). 
+motionIndicator: NEAR_STATIC
+
+# Is your device certified by the LoRa Alliance? Possible values: true, false. 
+LoRaWANCertified: true
+# Mandatory whenever you have a driver for the model: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
+modelId: milesight-iot:ws202:1
+# <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
+protocolId: 
+# DataSheet URL (optional) 
+specificationURL: https://resource.milesight-iot.com/milesight/document/ws202-datasheet-en.pdf
+# User Guide URL (optional) 
+userGuideURL: 
+# Available sensors following Actility ontology: https://github.com/actility/thingpark-iot-flow-js-driver/blob/master/UNITS.md 
+sensors: 
+    - batteryLevel:%
+    - light:%lm

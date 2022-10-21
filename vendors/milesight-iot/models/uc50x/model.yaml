@@ -1,0 +1,46 @@
+# Commercial name of the model
+name: Milesight UC50x Series LoRaWAN® Controller
+# Functional description of the product. Maximum 500 characters.
+description: Milesight UC50x series is a LoRaWAN® controller used for data acquisition from various sensors and equipments. It contains different I/O interfaces such as analog input, digital input, digital output, serial port and so on, which simplify the deployment and replacement of LoRaWAN® networks. For outdoor applications, it provides flexible power like built-in solar panel or high-capacity battery and is equipped with an IP67-rated enclosure and M12 connectors to protect itself from water and dust in harsh environments.
+# Logo of the device
+logo: uc50x.png
+# Product name & Version
+product:
+    name: MILE/UC50X
+    version: 1
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
+deviceProfileId: 
+    - milesight-iot_eu868_RP001-1.0.3-RevA_classA
+    - milesight-iot_us915_RP001-1.0.3-RevA_classA
+    - milesight-iot_au915_RP001-1.0.3-RevA_classA
+    - milesight-iot_cn470_RP001-1.0.3-RevA_classA
+    - milesight-iot_kr920_RP001-1.0.3-RevA_classA
+    - milesight-iot_in865_RP001-1.0.3-RevA_classA
+    - milesight-iot_ru864_RP001-1.0.3-RevA_classA
+    - milesight-iot_as923_RP001-1.0.3-RevA_classA
+
+# You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
+# Maximum device TX Conducted output power in dBm. 
+maxTxPower: 20
+# Minimum device TX Conducted output power in dBm. 
+minTxPower: 2
+# Maximum device TX Radiated output power in dBm.  
+maxTxEIRP: 20
+# Minimum device TX Radiated output power in dBm.  
+minTxEIRP: 2
+# Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'  
+# or 'random' (not known, changes over time). 
+motionIndicator: NEAR_STATIC
+
+# Is your device certified by the LoRa Alliance? Possible values: true, false. 
+LoRaWANCertified: true
+# Mandatory whenever you have a driver for the model: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
+modelId: milesight-iot:uc50x:1
+# <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
+protocolId: 
+# DataSheet URL (optional) 
+specificationURL: https://www.milesight-iot.com/lorawan/controller/uc500/
+# User Guide URL (optional) 
+userGuideURL: 
+# Available sensors following Actility ontology: https://github.com/actility/thingpark-iot-flow-js-driver/blob/master/UNITS.md 
+sensors: 
