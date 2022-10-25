@@ -406,7 +406,7 @@ function decodeUplink(input) {
   };
 }
 
-
+module = {};
 // Exporting for testing only, don't copy the lines below
 // To Network Server Decoder
 module.exports = {
