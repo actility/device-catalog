@@ -10,14 +10,14 @@ product:
     version: 1
 # ID(s) of the profile that defines the LoRaWAN characteristics of this model.
 deviceProfileId: 
-    - milesight-iot_eu868_RP001-1.0.3-RevA_classA
-    - milesight-iot_us915_RP001-1.0.3-RevA_classA
-    - milesight-iot_au915_RP001-1.0.3-RevA_classA
-    - milesight-iot_cn470_RP001-1.0.3-RevA_classA
-    - milesight-iot_kr920_RP001-1.0.3-RevA_classA
-    - milesight-iot_in865_RP001-1.0.3-RevA_classA
-    - milesight-iot_ru864_RP001-1.0.3-RevA_classA
-    - milesight-iot_as923_RP001-1.0.3-RevA_classA
+    - msight_eu868_RP001-1.0.3-RevA_classA
+    - msight_us915_RP001-1.0.3-RevA_classA
+    - msight_au915_RP001-1.0.3-RevA_classA
+    - msight_cn470_RP001-1.0.3-RevA_classA
+    - msight_kr920_RP001-1.0.3-RevA_classA
+    - msight_in865_RP001-1.0.3-RevA_classA
+    - msight_ru864_RP001-1.0.3-RevA_classA
+    - msight_as923_RP001-1.0.3-RevA_classA
 
 # You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
 # Maximum device TX Conducted output power in dBm. 
@@ -35,9 +35,10 @@ motionIndicator: NEAR_STATIC
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: true
 # Mandatormilesight-iot:ws301:1y whenever you have a driver for the model: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
-modelId: milesight-iot:ws301:1
+modelId: msight:ws301:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
-protocolId: milesight-iot:ws301:1
+protocolId: 
+    - msight:ws301:1
 # DataSheet URL (optional) 
 specificationURL: https://resource.milesight-iot.com/milesight/document/ws301-datasheet-en.pdf
 # User Guide URL (optional) 
