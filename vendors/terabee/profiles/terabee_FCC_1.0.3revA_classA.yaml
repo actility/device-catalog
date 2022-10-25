@@ -7,7 +7,7 @@
 #    RFGroup3:   au915-928 (starting from LoRaWAN 1.0.2revC)
 #    RFGroup4: as923
 # Please do not change the existing IDs (Some may follow the old format)
-id: TERA/LOMXLA.1.0.2b_FCC
+id: terabee_FCC_1.0.3revA_classA.yaml
 # LoRaWAN class of the Device: Possible values: [ A, B, C ] (Should not have several values)
 # 'A': Class A (Bi-directional end-devices with downlink listening only after uplink transmission)
 # 'B': Class B (Bi-directional end-devices with downlink listening on predefined synchronized pingslots)
@@ -18,30 +18,30 @@ ISMbands: us915
 # Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'
 # or 'random' (not known, changes over time).
 # The motion indication property will not be taken into consideration here if it is overwritten in the model.yaml
-motionIndicator: RANDOM
+motionIndicator: NEAR_STATIC
 
 mac:
     # Activation modes supported by the device (put true where applicable).
     # (ABP)
-    activationByPersonalization: true
+    activationByPersonalization: false
     #(OTAA)
-    overTheAirActivation: false
+    overTheAirActivation: true
     # Supported version of the LoRaWAN MAC (Layer-2) specification. Possible values are '1.0.0/1.0.1', '1.0.2', '1.0.3', '1.0.4', '1.1'
-    loRaWANMacVersion: 1.0.2
+    loRaWANMacVersion: 1.0.3
     # Supported version of the LoRaWAN regional parameters (PHY) specification. Possible values are '1.0.2revA', '1.0.2revB', '1.0.2revC', 
     # '1.0.3revA', 'RP2-1.0.0', 'RP2-1.0.1', 'RP2-1.0.2', 'RP2-1.0.3', 'RP2-1.0.4', 'RP2-1.0.5'.
-    regionalParameterVersion: 1.0.2revB
+    regionalParameterVersion: 1.0.3revA
 
     # The device Tx Power Capabilities here will not be taken into consideration if it is overwritten in the model.yaml
     devicesTxPowerCapabilities:
         # Minimum device TX Conducted output power in dBm.
-        minTxPower:
+        minTxPower: 10
         # Maximum device TX Conducted output power in dBm.
         maxTxPower: 30
         # Minimum device TX Radiated output power in dBm.
-        minTxEIRP:
+        minTxEIRP: 2
         # Maximum device TX Radiated output power in dBm.
-        maxTxEIRP: 30
+        maxTxEIRP: 16
 
     uplinkFrameRepetition: 
         # Maximum number of transmissions per uplink frame, supported by the device. 
@@ -76,25 +76,25 @@ bootSettings:
 # Which MAC commands are supported by your device and which are not? Leave it as the template if your device supports all the MAC commands specified for your regional
 # profile. Put 'true' only if a command is supported.
 supportedMACCommands:
-    linkADRReqAns: true
-    devStatusReqAns: true
+    linkADRReqAns: false
+    devStatusReqAns: false
     joinRequestAccept: true
-    dutyCycleReqAns: true
+    dutyCycleReqAns: false
     linkCheckReqAns: true
-    rxParamSetupReqAns: true
-    rxTimingSetupReqAns: true
+    rxParamSetupReqAns: false
+    rxTimingSetupReqAns: false
     newChannelReqAns: false
     dlChannelReqAns: false
     txParamSetupReqAns: false
     pingSlotChannelReqAns: false
     pingSlotInfoReqAns: false
     deviceTimeReqAns: true
-    beaconFreqReqAns: false
+    beaconFreqReqAns: true
 
 # Does your device support [Technical Recommendation for LoRaWAN L2 1.0.x Join Security] recommending implemeting the DevNonce as a counter for 
 # OTAA devices? See https://lora-alliance.org/resource_hub/technical-recommendations-for-preventing-state-synchronization-issues-around-lorawan-1-0-x-join-procedure/
 # Possible values: true, false. This field is automatically forced to true for LoRaWAN MAC versions 1.0.4 and 1.1.
-devNonceCounterBased: false
+devNonceCounterBased: true
 
 # ProfileID as specified by LoRa Alliance in https://lora-alliance.org/wp-content/uploads/2020/10/LoRa_Alliance_Vendor_ID_for_QR_Code_02142022.pdf. 
 # This ID consists of 8 upper-case hexadecimal characters, 4 characters for VendorID + 4 characters for VendorProfileID.
