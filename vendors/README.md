@@ -164,9 +164,21 @@ Example: `abeeway_eu868_1.0.2revB_classA.yaml`
 The file `<Device ID>.yaml` contains:
 ```yaml
 # ID that represents the profile of your device model.
-# Recommended practice: <vendorID> (lowercase) + '_' + <ISM band> + '_' <LoRaWAN L2 & PHY versions> + '_class' + <LoRaWAN class A, B or C> 
+# SHALL Follow this convention: <vendorID> (lowercase) + '_' + <Profile Group> + '_' <LoRaWAN L2 & PHY versions> + '_class' + <LoRaWAN class A, B or C>
+# Follow the information below to know the profile group to use in the ID
+#    PROFILES GROUP                
+#    ETSI:  eu863-870, kr920-923, in865-867, ru864-870
+#    FCC:  us902-928, cn470-510, au915-928 (only for LoRaWAN 1.0.2revB or below)     
+#    AU:   au915-928 (starting from LoRaWAN 1.0.2revC)    
+#    AS923: as923 
+# Follow the information below to know the profile group to use in the ID
+#    PROFILES GROUP                
+#    ETSI:  eu863-870, kr920-923, in865-867, ru864-870
+#    FCC:  us902-928, cn470-510, au915-928 (only for LoRaWAN 1.0.2revB or below)     
+#    AU:   au915-928 (starting from LoRaWAN 1.0.2revC)    
+#    AS923: as923 
 id: abeeway_eu868_1.0.2revB_classA
-# LoRaWAN class of the Device: Possible values: [ A, B, C ]
+# LoRaWAN class of the Device: Possible values: [ A, B, C ] (Should not have several values)
 # 'A': Class A (Bi-directional end-devices with downlink listening only after uplink transmission)
 # 'B': Class B (Bi-directional end-devices with downlink listening on predefined synchronized pingslots)
 # 'C': Class C (Bi-directional end-devices with permanent downlink listening)
@@ -175,7 +187,8 @@ loRaWANClass: A
 ISMbands: eu868,in865,ru864
 # Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'
 # or 'random' (not known, changes over time).
-motionIndicator: random
+# The motion indication property will not be taken into consideration here if it is overwritten in the model.yaml
+motionIndicator: RANDOM
 
 mac:
     # Activation modes supported by the device (put true where applicable).
@@ -189,6 +202,7 @@ mac:
     # '1.0.3revA', 'RP2-1.0.0', 'RP2-1.0.1', 'RP2-1.0.2', 'RP2-1.0.3', 'RP2-1.0.4', 'RP2-1.0.5'.
     regionalParameterVersion: 1.0.2revB
 
+    # The device Tx Power Capabilities here will not be taken into consideration if it is overwritten in the model.yaml
     devicesTxPowerCapabilities:
         # Minimum device TX Conducted output power in dBm.
         minTxPower:
@@ -232,20 +246,21 @@ bootSettings:
 
 # Which MAC commands are NOT supported by your device?
 # Put 'true' only if a command is not supported.
-unsupportedMACCommands: 
-    linkADRReqAns: false
-    devStatusReqAns: false
-    joinRequestAccept: false
-    dutyCycleReqAns: false
-    linkCheckReqAns: false
-    rxParamSetupReqAns: false
-    rxTimingSetupReqAns: false
-    newChannelReqAns: false
-    dlChannelReqAns: false
-    txParamSetupReqAns: true
-    pingSlotChannelReqAns: true
-    pingSlotInfoReqAns: false
-    deviceTimeReqAns: false
+supportedMACCommands: 
+    linkADRReqAns: true
+    devStatusReqAns: true
+    joinRequestAccept: true
+    dutyCycleReqAns: true
+    linkCheckReqAns: true
+    rxParamSetupReqAns: true
+    rxTimingSetupReqAns: true
+    newChannelReqAns: true
+    dlChannelReqAns: true
+    txParamSetupReqAns: false
+    pingSlotChannelReqAns: false
+    pingSlotInfoReqAns: true
+    deviceTimeReqAns: true
+    beaconFreqReqAns: false
 
     # Does your device support [Technical Recommendation for LoRaWAN L2 1.0.x Join Security] recommending implemeting the DevNonce as a counter for 
     # OTAA devices? See https://lora-alliance.org/resource_hub/technical-recommendations-for-preventing-state-synchronization-issues-around-lorawan-1-0-x-join-procedure/
