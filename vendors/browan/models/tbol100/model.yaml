@@ -1,0 +1,40 @@
+# Commercial name of the model 
+name: TBOL100
+# Functional description of the product. Maximum 500 characters. 
+description: "The Tabs object locator is a multi-purpose tracker designed for asset tracking, pet tracking, personal objects, and valuable assets. The sensor is composed of a GNSS receive, a push button, an LED indicator, and a USB-C connector. It contains a LiPo battery that can be recharged through the USB-C connector, and also includes a three-axis accelerometer which is optimized for different asset applications for response time and battery life."
+# Logo of the device
+logo: tbol100-logo.png
+# Product name & Version
+product:
+    name: BROW/TBOL
+    version: 1
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
+deviceProfileId: 
+    - browan_ETSI_1.0.3revA_classA.yaml
+    - browan_FCC_1.0.3revA_classA.yaml
+
+# You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
+# Maximum device TX Conducted output power in dBm. 
+maxTxPower:
+# Minimum device TX Conducted output power in dBm. 
+minTxPower:
+# Maximum device TX Radiated output power in dBm.  
+maxTxEIRP:
+# Minimum device TX Radiated output power in dBm.  
+minTxEIRP:
+# Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'  
+# or 'random' (not known, changes over time). 
+motionIndicator:
+ 
+# Is your device certified by the LoRa Alliance? Possible values: true, false. 
+LoRaWANCertified: 
+# Mandatory whenever you have a driver for the model: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
+modelId: browan:tbol100:1
+# <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
+protocolId: 
+# DataSheet URL (optional) 
+specificationURL: https://www.browan.com/download/6A/stream
+# User Guide URL (optional) 
+userGuideURL: https://www.browan.com/download/DBk/stream
+# <sensor>:<unitId> Available sensors following Actility ontology: https://
+sensors:
