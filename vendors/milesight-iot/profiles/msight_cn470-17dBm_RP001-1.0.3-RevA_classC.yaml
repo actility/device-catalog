@@ -7,14 +7,14 @@
 #    RFGroup3:   au915-928 (starting from LoRaWAN 1.0.2revC)
 #    RFGroup4: as923
 # Please do not change the existing IDs (Some may follow the old format)
-id: msight_au915-22dBm_RP001-1.0.3-RevA_classA
+id: msight_cn470-17dBm_RP001-1.0.3-RevA_classC
 # LoRaWAN class of the Device: Possible values: [ A, B, C ] (Should not have several values)
 # 'A': Class A (Bi-directional end-devices with downlink listening only after uplink transmission)
 # 'B': Class B (Bi-directional end-devices with downlink listening on predefined synchronized pingslots)
 # 'C': Class C (Bi-directional end-devices with permanent downlink listening)
-loRaWANClass: A
+loRaWANClass: C
 # Comma-separated list of regional profiles supported by this device. Possible values are eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470.
-ISMbands: au915
+ISMbands: cn470
 # Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'
 # or 'random' (not known, changes over time).
 # The motion indication property will not be taken into consideration here if it is overwritten in the model.yaml
@@ -37,11 +37,11 @@ mac:
         # Minimum device TX Conducted output power in dBm.
         minTxPower:
         # Maximum device TX Conducted output power in dBm.
-        maxTxPower: 22
+        maxTxPower: 17
         # Minimum device TX Radiated output power in dBm.
         minTxEIRP:
         # Maximum device TX Radiated output power in dBm.
-        maxTxEIRP: 22
+        maxTxEIRP: 17
 
     uplinkFrameRepetition: 
         # Maximum number of transmissions per uplink frame, supported by the device. 
