@@ -1,7 +1,14 @@
 # ID that represents the profile of your device model.
-# Recommended practice: <vendorID> (lowercase) + '_' + <ISM band> + '_' <LoRaWAN L2 & PHY versions> + '_class' + <LoRaWAN class A, B or C> 
+# SHALL Follow this convention: <vendorID> (lowercase) + '_' + <Profile Group> + '_' <LoRaWAN L2 & PHY versions> + '_class' + <LoRaWAN class A, B or C>
+# Follow the information below to know the profile group to use in the ID
+#    Profile Group
+#    RFGroup1:  eu863-870, kr920-923, in865-867, ru864-870
+#    RFGroup2:  us902-928, cn470-510, au915-928 (only for LoRaWAN 1.0.2revB or below)
+#    RFGroup3:   au915-928 (starting from LoRaWAN 1.0.2revC)
+#    RFGroup4: as923
+# Please do not change the existing IDs (Some may follow the old format)
 id: GLBSAT/LT-100H_A.1_AS
-# LoRaWAN class of the Device: Possible values: [ A, B, C ]
+# LoRaWAN class of the Device: Possible values: [ A, B, C ] (Should not have several values)
 # 'A': Class A (Bi-directional end-devices with downlink listening only after uplink transmission)
 # 'B': Class B (Bi-directional end-devices with downlink listening on predefined synchronized pingslots)
 # 'C': Class C (Bi-directional end-devices with permanent downlink listening)
@@ -10,6 +17,7 @@ loRaWANClass: A
 ISMbands: as923
 # Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'
 # or 'random' (not known, changes over time).
+# The motion indication property will not be taken into consideration here if it is overwritten in the model.yaml
 motionIndicator: RANDOM
 
 mac:
@@ -22,8 +30,9 @@ mac:
     loRaWANMacVersion: 1.0.2
     # Supported version of the LoRaWAN regional parameters (PHY) specification. Possible values are '1.0.2revA', '1.0.2revB', '1.0.2revC', 
     # '1.0.3revA', 'RP2-1.0.0', 'RP2-1.0.1', 'RP2-1.0.2', 'RP2-1.0.3', 'RP2-1.0.4', 'RP2-1.0.5'.
-    regionalParameterVersion: A
+    regionalParameterVersion: 1.0.2revA
 
+    # The device Tx Power Capabilities here will not be taken into consideration if it is overwritten in the model.yaml
     devicesTxPowerCapabilities:
         # Minimum device TX Conducted output power in dBm.
         minTxPower:
@@ -64,27 +73,28 @@ bootSettings:
     # Default uplink dwell time (valid only for AS923 and AU915 profiles). Possible values 0 (no limit) or 1 (400ms).
     uplinkDwellTime: 1
 
-# Which MAC commands are NOT supported by your device? Leave empty if your device supports all the MAC commands specified for your regional 
+# Which MAC commands are NOT supported by your device? Leave it as the template if your device supports all the MAC commands specified for your regional 
 # profile. Put 'true' only if a command is not supported.
-unsupportedMACCommands: 
-    linkADRReqAns: false
-    devStatusReqAns: false
-    joinRequestAccept: false
-    dutyCycleReqAns: false
-    linkCheckReqAns: false
-    rxParamSetupReqAns: false
-    rxTimingSetupReqAns: false
-    newChannelReqAns: false
-    dlChannelReqAns: false
-    txParamSetupReqAns: false
-    pingSlotChannelReqAns: true
-    pingSlotInfoReqAns: true
-    deviceTimeReqAns: false
+supportedMACCommands:
+    linkADRReqAns: true
+    devStatusReqAns: true
+    joinRequestAccept: true
+    dutyCycleReqAns: true
+    linkCheckReqAns: true
+    rxParamSetupReqAns: true
+    rxTimingSetupReqAns: true
+    newChannelReqAns: true
+    dlChannelReqAns: true
+    txParamSetupReqAns: true
+    pingSlotChannelReqAns: false
+    pingSlotInfoReqAns: false
+    deviceTimeReqAns: true
+    beaconFreqReqAns: false
 
 # Does your device support [Technical Recommendation for LoRaWAN L2 1.0.x Join Security] recommending implemeting the DevNonce as a counter for 
 # OTAA devices? See https://lora-alliance.org/resource_hub/technical-recommendations-for-preventing-state-synchronization-issues-around-lorawan-1-0-x-join-procedure/
 # Possible values: true, false. This field is automatically forced to true for LoRaWAN MAC versions 1.0.4 and 1.1.
-devNonceCounterBased: 0
+devNonceCounterBased: false
 
 # ProfileID as specified by LoRa Alliance in https://lora-alliance.org/wp-content/uploads/2020/10/LoRa_Alliance_Vendor_ID_for_QR_Code_02142022.pdf. 
 # This ID consists of 8 upper-case hexadecimal characters, 4 characters for VendorID + 4 characters for VendorProfileID.
