@@ -18,7 +18,7 @@ The file `logo.png` presents the logo of the vendor, it should be:
 
 ## Directories
 1. `models`: Directory contains model information of all devices. [Template](vendor/models/modelx/model.yaml)
-2. `profiles`: Directory contains LoRaWAN network characteristics of all devices. [Template](vendor/profiles/vendor_eu868_1.0.2revB_classA.yaml)
+2. `profiles`: Directory contains LoRaWAN network characteristics of all devices. [Template](vendor/profiles/vendor_RFGroup1_1.0.2revB_classA.yaml)
 3. `drivers`: Directory contains the drivers of all devices. [Full Guide](vendor/drivers/README.md)
 
 > All files and folders must be named in lowercase and seperated by dashes '`-`' only.
@@ -145,7 +145,6 @@ It could be generic for a part of all your devices or device-specific.
 A driver could either be public (Open-source) or private and not exposed (contact us in this case at **tpx-iot-flow@actility.com**).
 
 The file `driver.yaml` contains the information related to driver.
-If you have a driver already follows the LoRa Alliance standard codec API, then you need just to add this file.
 
 > Pay attention when choosing a `protocolId`, it should be the same used in `model.yaml`, it is important for establishing a link between the model and the expected driver.
 

@@ -1,5 +1,7 @@
 # JavaScript driver structure
 
+> If you have a driver already follows the LoRa Alliance standard codec API, then you need just to add `driver.yaml` file as the one [here](driverx/driver.yaml).
+
 This section describes how to build a javascript driver for actility.
 
 You can either follow the LoRa Alliance standard codec API described [here](https://resources.lora-alliance.org/document/ts013-1-0-0-payload-codec-api), or follow this documentation.
@@ -397,7 +399,7 @@ use cases as well as error cases.
 
 > A pre-implemented [spec file](./driverx/driver-examples.spec.js) for testing can be copied from the template in order to test the driver with all the provided examples.
 
-
+##
 # Sample driver developer guide
 
 This example describes how you to create a simple driver using ThingPark X IoT Flow framework.
