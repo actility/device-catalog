@@ -7,7 +7,7 @@
  */
 function Decoder(bytes, port) {
     var decoded = {};
-
+    
     for (var i = 0; i < bytes.length;) {
         var channel_id = bytes[i++];
         var channel_type = bytes[i++];
@@ -21,7 +21,7 @@ function Decoder(bytes, port) {
             // ℃
             decoded.temperature = readInt16LE(bytes.slice(i, i + 2)) / 10;
             i += 2;
-
+            
             // ℉
             // decoded.temperature = readInt16LE(bytes.slice(i, i + 2)) / 10 * 1.8 + 32;
             // i +=2;
@@ -61,7 +61,7 @@ function Decoder(bytes, port) {
             break;
         }
     }
-
+    
     return decoded;
 }
 
@@ -77,3 +77,5 @@ function readInt16LE(bytes) {
     var ref = readUInt16LE(bytes);
     return ref > 0x7fff ? ref - 0x10000 : ref;
 }
+
+console.log(Decoder(['01','75','5C','03','67','34','01','04','68','65','05','6A','49','00','06','65','1C','00','79','00','14','00','07','7D','E7','04','08','7D','07','00','09','73','3F','27'], 1));
