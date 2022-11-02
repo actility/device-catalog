@@ -1,4 +1,4 @@
-var driver = require("../index");
+var driver = require("./am100-series/index");
 const fs = require("fs");
 const vm2 = require("vm2");
 const yaml = require("js-yaml");
