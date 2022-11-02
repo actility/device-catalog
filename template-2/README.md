@@ -124,7 +124,7 @@ The file `<Model Name>.png` presents the image of the device, it should be:
 ## Profile
 A profile contains the technical LoRaWAN characteristics used by the device, including the LoRaWAN L2 and PHY versions, the RX1/RX2 settings used during boot stage until they are eventually updated by the Network Server through appropriate MAC commands etc.
 > Start from the predefined templates to build your own profiles, if your devices do not follow the default LoRaWAN configuration.
-> All generic profile templates are contained on a directory named `generic` on root. Pick the right template based on the below information:
+> All generic profile templates are contained on the directory [`profiles-template`](profiles-templates). Pick the right template based on the below information:
 > - ISMBand (eu868, us915, as923, ...)
 > - LoRaWAN MAC version (1.0.2, 1.0.3b, ...)
 > - LoRaWAN Regional Parameters' version (1.0.2revA, 1.0.2revB, 1.0.2revC, RP2-1.0.1, RP2-1.0.2, RP2-1.0.3...)
@@ -135,7 +135,7 @@ This ID of your profile should be used on your `model.yaml` on the field `device
 
 Example: `vendor_RFGroup1_1.0.2revB_classA.yaml`
 
-You can find several generic templates under `/vendors/generic`. It is highly recommended to start by copying one/several of them according to the characteristics of your models and then customize.
+You can find several generic templates [here](profiles-templates). It is highly recommended to start by copying one/several of them according to the characteristics of your models and then customize it.
 
 
 ## Driver
