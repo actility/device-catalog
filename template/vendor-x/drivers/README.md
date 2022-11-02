@@ -1,6 +1,6 @@
 # JavaScript driver structure
 
-> If you have a driver already follows the LoRa Alliance standard codec API, then you need just to add `driver.yaml` file as the one [here](driverx/driver.yaml).
+> If you have a driver already follows the LoRa Alliance standard codec API, then you need just to add `driver.yaml` file as the one [here](driver-x/driver.yaml).
 
 This section describes how to build a javascript driver for actility.
 
@@ -17,7 +17,7 @@ You can either follow the LoRa Alliance standard codec API described [here](http
       - [Json schemas](#json-schemas)
     - [Packaging](#packaging)
     - [Testing](#testing)
-    - [Template](./driverx)
+    - [Template](./driver-x)
 - [Sample driver developer guide](#sample-driver-developer-guide)
 
 
@@ -397,7 +397,7 @@ use cases as well as error cases.
 
 **Important:** The test of your driver is needed to prove a minimum test coverage of 85% to be valid on our framework.
 
-> A pre-implemented [spec file](./driverx/driver-examples.spec.js) for testing can be copied from the template in order to test the driver with all the provided examples.
+> A pre-implemented [spec file](driver-x/driver-examples.spec.js) for testing can be copied from the template in order to test the driver with all the provided examples.
 
 ##
 # Sample driver developer guide

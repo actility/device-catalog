@@ -7,7 +7,7 @@ Each vendor has his own Device Catalog composed of a set of files and directorie
 
 All vendors information are stored in the root directory dedicated to a vendor.
 
-You can find [template](vendor/vendor.yaml) of `vendor.yaml` in this directory. It is highly recommended to start by copying then customizing it with specific vendor information.
+You can find [template](vendor-x/vendor.yaml) of `vendor.yaml` in this directory. It is highly recommended to start by copying then customizing it with specific vendor information.
 
 The file `logo.png` presents the logo of the vendor, it should be:
 - named `logo.png`
@@ -17,9 +17,9 @@ The file `logo.png` presents the logo of the vendor, it should be:
 
 
 ## Directories
-1. `models`: Directory contains model information of all devices. [Template](vendor/models/modelx/model.yaml)
-2. `profiles`: Directory contains LoRaWAN network characteristics of all devices. [Template](vendor/profiles/vendor_RFGroup1_1.0.2revB_classA.yaml)
-3. `drivers`: Directory contains the drivers of all devices. [Full Guide](vendor/drivers/README.md)
+1. `models`: Directory contains model information of all devices. [Template](vendor-x/models/model-x/model.yaml)
+2. `profiles`: Directory contains LoRaWAN network characteristics of all devices. [Template](vendor-x/profiles/vendor_RFGroup1_1.0.2revB_classA.yaml)
+3. `drivers`: Directory contains the drivers of all devices. [Full Guide](vendor-x/drivers/README.md)
 
 > All files and folders must be named in lowercase and seperated by dashes '`-`' only.
 > The separator underscore '`_`' is reserved for [versioning](#versioning).
