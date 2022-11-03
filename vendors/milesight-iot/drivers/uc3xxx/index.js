@@ -172,13 +172,3 @@ function decode_UART_F4(buffer) {
     }
 }
 
-const payload = `   7EF4 6D00 021C 8256 5D11 0000 0405 0000 
-                    0003 0100 0009 0009 0004 0500 0000 0301 
-                    0000 0A00 0A00 0405 0000 0003 0100 000B 
-                    000B 0004 0500 0000 0301 0000 0C00 0C00 
-                    0405 0000 0003 0100 000D 000D 0004 0500 
-                    0000 0301 0000 0F00 0F00 0005 0000 0003 
-                    0100 0000 0500 0000 0301 0000 7E`;
-
-const result = decode_UART_F4(payload);
-console.log(JSON.stringify(result, null, 2));
