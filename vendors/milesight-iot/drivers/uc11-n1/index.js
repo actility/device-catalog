@@ -132,11 +132,3 @@ function readFloatLE(bytes) {
     var f = sign * m * Math.pow(2, e - 150);
     return f;
 }
-
-function hexToBytes(hex) {
-    let bytes = [];
-    for (c = 0; c < hex.length; c += 2) bytes.push(parseInt(hex.substr(c, 2), 16));
-    return bytes;
-}
-
-console.log(Decoder(hexToBytes("01755C03C80104C8010501010101020202020202020206FF0E01030607")));
