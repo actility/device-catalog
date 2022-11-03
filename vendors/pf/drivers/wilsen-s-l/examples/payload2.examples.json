@@ -1,0 +1,45 @@
+[
+    {
+        "description": "uplink playload 2 containing proximity in cm, filling level, temperature, battery voltage and location",
+        "type": "uplink",
+        "bytes": "040B010021030B066406020141C8947D0351012606500102F4006F0650020081336D",
+        "fPort": 1,
+        "time": "2020-08-02T20:00:00.000+05:00",
+        "data": {
+            "battery_vol": 3.8,
+            "fillinglvl": 100,
+            "latitude": 49.545327,
+            "longitude": 8.467309,
+            "payload": "040B010021030B066406020141C8947D0351012606500102F4006F0650020081336D",
+            "proxx": 33,
+            "temp": 25.1
+        },
+        "points": {
+            "temperature": {
+                "unitId": "Cel",
+                "type": "double",
+                "record": 25.1
+            },
+            "distance": {
+                "unitId": "cm",
+                "type": "double",
+                "record": 33
+            },
+            "fillingLevel": {
+                "unitId": "%",
+                "type": "double",
+                "record": 100
+            },
+            "batteryVoltage": {
+                "unitId": "V",
+                "type": "double",
+                "record": 3.8
+            },
+            "location": {
+                "unitId": "GPS",
+                "type": "object",
+                "record": [8.467309, 49.545327]
+            }
+        }
+    }
+]
