@@ -9,4 +9,7 @@ developerEmail:
 # In case of a driver per model: `<vendorId>:<protocolName>:<protocolVersion>`
 # In case of one driver for all models: `<vendorId>:generic:<protocolVersion>`
 # Needed for linking the model with a specific driver -> must be the same one used in model.yaml in the corresponding model
-protocolId: os1-tera:pc-l-xl:1
+protocolId: terrabee:pc-l-xl:1
+# This is to specify the type of functions signature used in this driver. Possible values: actility, lora-alliance, ttn, chirpstack.
+# Keep it empty if you followed the lora-alliance payload codec api
+signature: actility
