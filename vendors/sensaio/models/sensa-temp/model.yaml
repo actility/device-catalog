@@ -1,0 +1,43 @@
+# Commercial name of the model 
+name: sensaio-temp
+# Functional description of the product. Maximum 500 characters. 
+description: "The industrial wireless temperature sensors from SENSA.iO are designed to measure the temperature of gas and liquid in production pipelines and have two connection options; in-line and surface-mounted."
+# Logo of the device
+logo: logo.webp
+# Product name & Version
+product:
+    name: SENSA/TEMP
+    version: 1
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
+deviceProfileId: 
+    - sensaio_ETSI_1.0.3revA_classA
+    - sensaio_FCC_1.0.3revA_classA
+    - sensaio_AU_1.0.3revA_classA
+    - sensaio_AS923_1.0.3revA_classA
+
+# You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
+# Maximum device TX Conducted output power in dBm. 
+maxTxPower: 17
+# Minimum device TX Conducted output power in dBm. 
+minTxPower:
+# Maximum device TX Radiated output power in dBm.  
+maxTxEIRP: 16
+# Minimum device TX Radiated output power in dBm.  
+minTxEIRP: 
+# Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'  
+# or 'random' (not known, changes over time). 
+motionIndicator: NEAR_STATIC
+
+# Is your device certified by the LoRa Alliance? Possible values: true, false. 
+LoRaWANCertified: true
+# Mandatory whenever you have a driver for the model: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
+modelId: sensaio:sensaio-temp:1
+# <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
+protocolId: sensaio:sensaio:1
+# DataSheet URL (optional) 
+specificationURL: https://sensa.io/wp-content/uploads/2022/07/temp-sensor-ds-v3.pdf
+# User Guide URL (optional) 
+userGuideURL: 
+# Available sensors following Actility ontology: https://github.com/actility/thingpark-iot-flow-js-driver/blob/master/UNITS.md 
+sensors:
+    - temparature:Cel
