@@ -1,0 +1,102 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "sensorType": {
+      "type": "string"
+    },
+    "messageType": {
+      "type": "string"
+    },
+    "batteryLevel": {
+      "type": "number"
+    },
+    "version": {
+      "type": "string"
+    },
+    "deviceTemperature": {
+      "type": "number"
+    },
+    "deviceShock": {
+      "type": "number"
+    },
+    "flags": {
+      "type": "string"
+    },
+    "sensorData": {
+      "type": "object",
+      "properties": {
+        "pressure": {
+          "type": "number"
+        },
+        "temperature": {
+          "type": "number"
+        },
+        "motion": {
+          "type": "number"
+        }
+      }
+    },
+    "configType": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "txDataRate": {
+      "type": "number"
+    },
+    "txPower": {
+      "type": "number"
+    },
+    "txRetries": {
+      "type": "number"
+    },
+    "appPort": {
+      "type": "number"
+    },
+    "txPeriodicity": {
+      "type": "number"
+    },
+    "isTxConfirmed": {
+      "type": "boolean"
+    },
+    "adrEnable": {
+      "type": "boolean"
+    },
+    "publicNetworkEnable": {
+      "type": "boolean"
+    },
+    "alarms": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "lowIsActive" : {
+            "type": "boolean"
+          },
+          "lowThreshold" : {
+            "type": "number"
+          },
+          "lowHysteresis" : {
+            "type": "number"
+          },
+          "highIsActive" : {
+            "type": "boolean"
+          },
+          "highThreshold" : {
+            "type": "number"
+          },
+          "highHysteresis" : {
+            "type": "number"
+          }
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}
+
+
+
+
