@@ -6,11 +6,12 @@ description: "TIC Sensor."
 logo: adrf_sensor.jpg
 # Product name & Version
 product:
-    name: ADRF/SENSOR
+    name: ADRF/TIC
     version: 1
 # ID(s) of the profile that defines the LoRaWAN characteristics of this model.
 deviceProfileId: 
     - ADRF/TICA.1.0.2_EU
+    - adeunis_AS923_1.0.2revB_classA.yaml
  
 # You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
 # Maximum device TX Conducted output power in dBm. 
@@ -30,8 +31,7 @@ LoRaWANCertified:
 # Mandatory whenever you have a driver for the model: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
 modelId: adeunis:tic:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
-protocolId: 
-    - adeunis:tic:1
+protocolId: adeunis:tic:1
 # DataSheet URL (optional) 
 specificationURL: https://www.adeunis.com/wp-content/uploads/2017/08/TIC_LoRaWAN_UG_V2.0.0_FR_EN.pdf
 # User Guide URL (optional) 
