@@ -1,0 +1,43 @@
+# Commercial name of the model
+name: Milesigt EM310-TILT Angle and Movement Sensor
+# Functional description of the product. Maximum 500 characters.
+description: Milesight EM310-TILT is a LoRaWAN® tilt sensor mainly for angle measurement and asset movement detection. With a compact size and3-axis accelerometer, EM310-TILT can be installed to the objects easily to measure its X, Y, Z tilt angles.
+# Logo of the device
+logo: em310-tilt.png
+# Product name & Version
+product:
+    name: MILE/EM310-TILT
+    version: 1
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
+deviceProfileId: 
+    - msight_RFGroup1_RP001-1.0.3-RevA_classA
+    - msight_RFGroup4_RP001-1.0.3-RevA_classA
+    - msight_us915-22dBm_RP001-1.0.3-RevA_classA
+    - msight_au915-22dBm_RP001-1.0.3-RevA_classA
+    - msight_cn470-19dBm_RP001-1.0.3-RevA_classA
+
+# You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
+# Maximum device TX Conducted output power in dBm. 
+maxTxPower:
+# Minimum device TX Conducted output power in dBm. 
+minTxPower:
+# Maximum device TX Radiated output power in dBm.  
+maxTxEIRP:
+# Minimum device TX Radiated output power in dBm.  
+minTxEIRP:
+# Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'  
+# or 'random' (not known, changes over time). 
+motionIndicator:
+
+# Is your device certified by the LoRa Alliance? Possible values: true, false. 
+LoRaWANCertified: true
+# Mandatory whenever you have a driver for the model: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
+modelId: msight:em310-tilt:1
+# <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
+protocolId: msight:em310-tilt:1
+# DataSheet URL (optional) 
+specificationURL: https://www.milesight-iot.com/lorawan/sensor/em310-tilt/
+# User Guide URL (optional) 
+userGuideURL: 
+# Available sensors following Actility ontology: https://github.com/actility/thingpark-iot-flow-js-driver/blob/master/UNITS.md 
+sensors:

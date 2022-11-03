@@ -1,20 +1,21 @@
-# Commercial name of the model 
-name: EM500-CO2
-# Functional description of the product. Maximum 500 characters. 
-description: "The Milesight EM500-CO2 consists of CO2, temperature, humidity, and barometric pressure sensors for measuring gaseous carbon dioxide (CO2) concentration in harsh environments. It is useful in the application where knowing CO2 level is important like greenhouses, wine cellars, building ventilation, fruit and vegetable storage."
+# Commercial name of the model
+name: Milesight EM500-CO2-LoRaWAN® Carbon Dioxide Sensor (4 in 1)
+# Functional description of the product. Maximum 500 characters.
+description: EM500-CO2 is an outdoor environment monitoring sensor designed for measuring CO2, temperature, humidity and barometric pressure in harsh environments. EM500-CO2 is battery powered and designed for multiple mounting ways. It's equipped with NFC and can easily be configured by a smartphone or PC software.
 # Logo of the device
-logo: milesight-iot-em500-co2.png
+logo: em500-co2.png
 # Product name & Version
 product:
-    name: MILE/EMCO2
+    name: MILE/EM500-CO2
     version: 1
-# ID(s) of the profile that defines the LoRaWAN characteristics of this model. 
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
 deviceProfileId: 
-    - MILE/EMCO2A.1.0.3a_AS923
-    - MILE/EMCO2A.1.0.3a_AU
-    - MILE/EMCO2A.1.0.3a_ETSI
-    - MILE/EMCO2A.1.0.3a_FCC
- 
+    - msight_RFGroup1_RP001-1.0.3-RevA_classA
+    - msight_RFGroup4_RP001-1.0.3-RevA_classA
+    - msight_us915-20dBm_RP001-1.0.3-RevA_classA
+    - msight_au915-20dBm_RP001-1.0.3-RevA_classA
+    - msight_cn470-19dBm_RP001-1.0.3-RevA_classA
+
 # You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
 # Maximum device TX Conducted output power in dBm. 
 maxTxPower:
@@ -29,15 +30,21 @@ minTxEIRP:
 motionIndicator:
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
-LoRaWANCertified: 
+LoRaWANCertified: true
 # Mandatory whenever you have a driver for the model: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
 modelId: msight:em500-co2:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId: 
     - os1-mile:em500-co2:1
+    - msight:em500-co2:1
 # DataSheet URL (optional) 
-specificationURL: 
+specificationURL: https://resource.milesight-iot.com/milesight/document/em500-co2-datasheet-en.pdf
 # User Guide URL (optional) 
 userGuideURL: 
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
+    - batteryLevel:%
+    - co2Level:ppm
+    - temperature:Cel
+    - humidity:%RH
+    - pressure:hPa

@@ -1,20 +1,21 @@
-# Commercial name of the model 
-name: EM500-UDL
-# Functional description of the product. Maximum 500 characters. 
-description: "The Milesight EM500-UDL consists of an ultrasonic distance/level sensor that provides highly accurate distance measurement for a variety of applications in harsh environments like snow level monitoring, flood monitoring, wastewater management, fill level monitoring in grains or fertilizer. The measurement is based on ultrasonic waves transmitted and reflected back from nearby objects."
+# Commercial name of the model
+name: Milesight EM500-UDL-LoRaWAN® Ultrasonic Distance/Level Sensor
+# Functional description of the product. Maximum 500 characters.
+description: EM500-UDL is an outdoor environment monitoring sensor for object distance or level detection in harsh environments. It's equipped with NFC and can easily be configured by a smartphone or PC software. The EM500's built-in high-capacity, the replaceable battery can work for ten years without replacement. It is widely used in water treatment plants, grain silos and to measure snow depth.
 # Logo of the device
-logo: milesight-iot-em500-udl.png
+logo: em500-udl.png
 # Product name & Version
 product:
-    name: MILE/EMUDL
+    name: MILE/EM500-UDL
     version: 1
 # ID(s) of the profile that defines the LoRaWAN characteristics of this model.
 deviceProfileId: 
-    - MILE/EMUDLA.1.0.3a_AS923
-    - MILE/EMUDLA.1.0.3a_AU
-    - MILE/EMUDLA.1.0.3a_ETSI
-    - MILE/EMUDLA.1.0.3a_FCC
- 
+    - msight_RFGroup1_RP001-1.0.3-RevA_classA
+    - msight_RFGroup4_RP001-1.0.3-RevA_classA
+    - msight_us915-20dBm_RP001-1.0.3-RevA_classA
+    - msight_au915-20dBm_RP001-1.0.3-RevA_classA
+    - msight_cn470-19dBm_RP001-1.0.3-RevA_classA
+
 # You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
 # Maximum device TX Conducted output power in dBm. 
 maxTxPower:
@@ -29,15 +30,18 @@ minTxEIRP:
 motionIndicator:
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
-LoRaWANCertified: 
+LoRaWANCertified: true
 # Mandatory whenever you have a driver for the model: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
 modelId: msight:em500-udl:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId: 
     - os1-mile:em500-udl:1
+    - msight:em500-udl:1
 # DataSheet URL (optional) 
-specificationURL: 
+specificationURL: https://resource.milesight-iot.com/milesight/document/em500-udl-datasheet-en.pdf
 # User Guide URL (optional) 
 userGuideURL: 
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
+    - batteryLevel:%
+    - distance:m

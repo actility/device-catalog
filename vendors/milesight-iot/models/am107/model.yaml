@@ -1,20 +1,21 @@
-# Commercial name of the model 
-name: AM107
-# Functional description of the product. Maximum 500 characters. 
-description: "Ambience Monitoring Sensors"
+# Commercial name of the model
+name: AMilesight AM107 - LoRaWAN® Indoor Air Quality Sensor (7 in 1)
+# Functional description of the product. Maximum 500 characters.
+description: Milesight AM107 is a compact indoor ambience monitoring sensor that supports long-lasting battery life, wall-mounted installation, and visual display via an E-ink screen. It's equipped with NFC and can easily be configured via a smartphone or PC software. Its clean and modern design is ideal for offices, classrooms, libraries, hospitals, etc.
 # Logo of the device
-logo: milesight-iot-am107.png
+logo: am107.png
 # Product name & Version
 product:
     name: MILE/AM107
     version: 1
 # ID(s) of the profile that defines the LoRaWAN characteristics of this model.
 deviceProfileId: 
-    - MILE/AM107A.1.0.3a_AS923
-    - MILE/AM107A.1.0.3a_AU
-    - MILE/AM107A.1.0.3a_ETSI
-    - MILE/AM107A.1.0.3a_FCC
- 
+    - msight_RFGroup1_RP001-1.0.3-RevA_classA
+    - msight_RFGroup4_RP001-1.0.3-RevA_classA
+    - msight_us915-20dBm_RP001-1.0.3-RevA_classA
+    - msight_au915-20dBm_RP001-1.0.3-RevA_classA
+    - msight_cn470-19dBm_RP001-1.0.3-RevA_classA
+
 # You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
 # Maximum device TX Conducted output power in dBm. 
 maxTxPower:
@@ -29,15 +30,22 @@ minTxEIRP:
 motionIndicator:
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
-LoRaWANCertified: 
+LoRaWANCertified: true
 # Mandatory whenever you have a driver for the model: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
 modelId: msight:am107:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId: 
     - os1-mile:am107:1
+    - msight:am100-series:1
 # DataSheet URL (optional) 
-specificationURL: 
+specificationURL: https://resource.milesight-iot.com/milesight/document/am100-series-datasheet-en.pdf
 # User Guide URL (optional) 
 userGuideURL: 
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
+    - batteryLevel:%
+    - temperature:Cel
+    - humidity:%RH
+    - light:%lm
+    - co2:ppm
+    - pressure:hPa

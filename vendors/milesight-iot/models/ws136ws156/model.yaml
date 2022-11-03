@@ -1,0 +1,45 @@
+# Commercial name of the model
+name: Milesight WS136/WS156-Smart Scene Panel
+# Functional description of the product. Maximum 500 characters.
+description: Milesight WS136 & WS156 LoRaWAN® Smart Scene Panel gives a multi button control panel that can simply activate different pre-defined scenes with one-press. Without any additional cable, WS136 & WS156 can be easily installed anywhere and used to control devices via LoRaWAN® or Milesight LoRa D2D communication protocol. Besides, It's equipped a user-defined E-ink screen to suit different scenes.
+# Logo of the device
+logo: ws136ws156.png
+# Product name & Version
+product:
+    name: MILE/WS136WS156
+    version: 1
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
+deviceProfileId: 
+    - msight_RFGroup1_RP001-1.0.3-RevA_classA
+    - msight_RFGroup4_RP001-1.0.3-RevA_classA
+    - msight_us915-22dBm_RP001-1.0.3-RevA_classA
+    - msight_au915-22dBm_RP001-1.0.3-RevA_classA
+    - msight_cn470-19dBm_RP001-1.0.3-RevA_classA
+
+# You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
+# Maximum device TX Conducted output power in dBm. 
+maxTxPower:
+# Minimum device TX Conducted output power in dBm. 
+minTxPower:
+# Maximum device TX Radiated output power in dBm.  
+maxTxEIRP:
+# Minimum device TX Radiated output power in dBm.  
+minTxEIRP:
+# Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'  
+# or 'random' (not known, changes over time). 
+motionIndicator:
+
+# Is your device certified by the LoRa Alliance? Possible values: true, false. 
+LoRaWANCertified: true
+# Mandatory whenever you have a driver for the model: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
+modelId: msight:ws136ws156:1
+# <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
+protocolId: 
+    - msight:ws136ws156:1
+# DataSheet URL (optional) 
+specificationURL: https://resource.milesight-iot.com/milesight/document/ws136&ws156-datasheet-en.pdf
+# User Guide URL (optional) 
+userGuideURL: 
+# Available sensors following Actility ontology: https://github.com/actility/thingpark-iot-flow-js-driver/blob/master/UNITS.md 
+sensors:
+    - batteryLevel:%

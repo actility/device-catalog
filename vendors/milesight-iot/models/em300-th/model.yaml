@@ -1,20 +1,21 @@
-# Commercial name of the model 
+# Commercial name of the model
 name: EM300-TH
-# Functional description of the product. Maximum 500 characters. 
-description: "The Milesight LoRaWAN® EM300-TH consists of a temperature and a humidity sensor monitoring indoor and outdoor environments. It is suitable for applications such as greenhouses, cold chains, food prevention, warehouses, residences, offices, and labs."
+# Functional description of the product. Maximum 500 characters.
+description: The Milesight LoRaWAN® EM300-TH consists of a temperature and a humidity sensor monitoring indoor and outdoor environments. It is suitable for applications such as greenhouses, cold chains, food prevention, warehouses, residences, offices, and labs.
 # Logo of the device
-logo: milesight-iot-em300-th.png
+logo: em300-th.png
 # Product name & Version
 product:
-    name: MILE/EM0TH
+    name: MILE/EM300-TH
     version: 1
 # ID(s) of the profile that defines the LoRaWAN characteristics of this model.
 deviceProfileId: 
-    - MILE/EM0THA.1.0.3a_AS923
-    - MILE/EM0THA.1.0.3a_AU
-    - MILE/EM0THA.1.0.3a_ETSI
-    - MILE/EM0THA.1.0.3a_FCC
- 
+    - msight_RFGroup1_RP001-1.0.3-RevA_classA
+    - msight_RFGroup4_RP001-1.0.3-RevA_classA
+    - msight_us915-20dBm_RP001-1.0.3-RevA_classA
+    - msight_au915-20dBm_RP001-1.0.3-RevA_classA
+    - msight_cn470-17dBm_RP001-1.0.3-RevA_classA
+
 # You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
 # Maximum device TX Conducted output power in dBm. 
 maxTxPower:
@@ -29,15 +30,19 @@ minTxEIRP:
 motionIndicator:
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
-LoRaWANCertified: 
+LoRaWANCertified: true
 # Mandatory whenever you have a driver for the model: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
 modelId: msight:em300-th:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId: 
     - os1-mile:em300-th:1
+    - msight:em300-th:1
 # DataSheet URL (optional) 
-specificationURL: 
+specificationURL: https://www.milesight-iot.com/lorawan/sensor/em300-th/
 # User Guide URL (optional) 
 userGuideURL: 
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
+    - batteryLevel:%
+    - temperature:Cel
+    - humidity:%RH
