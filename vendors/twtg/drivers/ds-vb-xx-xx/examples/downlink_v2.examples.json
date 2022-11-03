@@ -1,0 +1,228 @@
+[
+    {
+        "description": "downlink example for encoder v2",
+        "type": "downlink",
+        "bytes": "270600A0053C000500000000000000000000000000000000000000000203007E003D00001001022134DB87",
+        "fPort": 15,
+        "time": "2020-08-02T20:00:00.000+05:00",
+        "data": {
+            "header": {
+                "message_type": "sensor_data_configuration",
+                "protocol_version": 2
+            },
+            "device_type": "vb",
+            "calculation_trigger": {
+                "on_event": false,
+                "on_threshold": false,
+                "on_button_press": false
+            },
+            "calculation_interval": 1440,
+            "fragment_message_interval": 60,
+            "threshold_window": 10,
+            "trigger_thresholds": [
+                {
+                    "unit": "velocity",
+                    "frequency": 0,
+                    "magnitude": 0
+                },
+                {
+                    "unit": "velocity",
+                    "frequency": 0,
+                    "magnitude": 0
+                },
+                {
+                    "unit": "velocity",
+                    "frequency": 0,
+                    "magnitude": 0
+                },
+                {
+                    "unit": "velocity",
+                    "frequency": 0,
+                    "magnitude": 0
+                },
+                {
+                    "unit": "velocity",
+                    "frequency": 0,
+                    "magnitude": 0
+                }
+            ],
+            "selection": {
+                "axis": "z",
+                "resolution": "low_res",
+                "enable_hanning_window": false
+            },
+            "frequency": {
+                "span": {
+                    "velocity": {
+                        "start": 3,
+                        "stop": 126
+                    },
+                    "acceleration": {
+                        "start": 61,
+                        "stop": 4096
+                    }
+                },
+                "resolution": {
+                    "velocity": 1,
+                    "acceleration": 2
+                }
+            },
+            "scale": {
+                "velocity": 1,
+                "acceleration": 40
+            }
+        }
+    },
+    {
+        "description": "Config_base Complete message 868 v2",
+        "type": "downlink",
+        "bytes": "250903013CA00501020100000000000000000000D513",
+        "fPort": 15,
+        "time": "2020-08-02T20:00:00.000+05:00",
+        "data": {
+            "header": {
+                "message_type": "base_configuration",
+                "protocol_version": 2
+            },
+            "switch_mask": {
+                "enable_confirmed_event_message": true,
+                "enable_confirmed_data_message": false,
+                "allow_deactivation": true
+            },
+            "communication_max_retries": 3,
+            "number_of_unconfirmed_messages": 1,
+            "periodic_message_random_delay_seconds": 60,
+            "status_message_interval_seconds": 86400,
+            "status_message_confirmed_interval": 1,
+            "lora_failure_holdoff_count": 2,
+            "lora_system_recover_count": 1,
+            "lorawan_fsb_mask": [
+                0,
+                0,
+                0,
+                0,
+                0
+            ]
+        }
+    },
+    {
+        "description": "Config_base Complete message 868 v2",
+        "type": "downlink",
+        "bytes": "2606840310000201000002BC7F03FFFF0464000544800601006A24",
+        "fPort": 15,
+        "time": "2020-08-02T20:00:00.000+05:00",
+        "data": {
+            "header": {
+                "message_type": "sensor_configuration",
+                "protocol_version": 2
+            },
+            "device_type": "vb",
+            "measurement_interval_seconds": 900,
+            "periodic_event_message_interval": 16,
+            "frequency_range": {
+                "rms_velocity": "range_1",
+                "peak_acceleration": "range_2"
+            },
+            "events": [
+                {
+                    "mode": "rms_velocity_x",
+                    "mode_value": 0
+                },
+                {
+                    "mode": "peak_acceleration_x",
+                    "mode_value": 327
+                },
+                {
+                    "mode": "rms_velocity_y",
+                    "mode_value": -0.01
+                },
+                {
+                    "mode": "peak_acceleration_y",
+                    "mode_value": 1
+                },
+                {
+                    "mode": "rms_velocity_z",
+                    "mode_value": -327
+                },
+                {
+                    "mode": "peak_acceleration_z",
+                    "mode_value": 0.01
+                }
+            ]
+        }
+    },
+    {
+        "description": "Config_base Complete message 868 v2",
+        "type": "downlink",
+        "bytes": "27060005003C00050200C800060090010A0058020E0020031200E8030203007E003D00001001022134B65F",
+        "fPort": 15,
+        "time": "2020-08-02T20:00:00.000+05:00",
+        "data": {
+            "header": {
+                "message_type": "sensor_data_configuration",
+                "protocol_version": 2
+            },
+            "device_type": "vb",
+            "calculation_trigger": {
+                "on_event": false,
+                "on_threshold": false,
+                "on_button_press": false
+            },
+            "calculation_interval": 5,
+            "fragment_message_interval": 60,
+            "threshold_window": 10,
+            "trigger_thresholds": [
+                {
+                    "unit": "velocity",
+                    "frequency": 1,
+                    "magnitude": 2
+                },
+                {
+                    "unit": "velocity",
+                    "frequency": 3,
+                    "magnitude": 4
+                },
+                {
+                    "unit": "velocity",
+                    "frequency": 5,
+                    "magnitude": 6
+                },
+                {
+                    "unit": "velocity",
+                    "frequency": 7,
+                    "magnitude": 8
+                },
+                {
+                    "unit": "velocity",
+                    "frequency": 9,
+                    "magnitude": 10
+                }
+            ],
+            "selection": {
+                "axis": "z",
+                "resolution": "low_res",
+                "enable_hanning_window": false
+            },
+            "frequency": {
+                "span": {
+                    "velocity": {
+                        "start": 3,
+                        "stop": 126
+                    },
+                    "acceleration": {
+                        "start": 61,
+                        "stop": 4096
+                    }
+                },
+                "resolution": {
+                    "velocity": 1,
+                    "acceleration": 2
+                }
+            },
+            "scale": {
+                "velocity": 1,
+                "acceleration": 40
+            }
+        }
+    }
+]
