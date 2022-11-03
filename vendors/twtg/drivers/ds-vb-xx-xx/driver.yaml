@@ -1,0 +1,15 @@
+# Formal driver name
+name: Vibration sensor driver
+# Simple description of the driver functionalities
+description: A simple driver that is able to decode/encode data from our vibration sensor.
+# Company that developed the driver
+developedBy: twtg
+# Email of the developer
+developerEmail: support.neon@twtg.io
+# In case of a driver per model: `<vendorId>:<modelId>:<modelVersion>`
+# In case of a driver for multiples model: `<vendorId>:generic:<genericVersion>`
+# Needed for linking the model with a specific driver -> must be the same one used in model.yaml in the corresponding model
+protocolId: twtg:ds-vb-xx-xx:2
+# This is to specify the type of functions signature used in this driver. Possible values: actility, lora-alliance, ttn, chirpstack.
+# Keep it empty if you followed the lora-alliance payload codec api
+signature: actility
