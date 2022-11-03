@@ -4,6 +4,10 @@ name: Wilsen Sonic Level 2500
 description: "Wilsen Sonic Level 2500"
 # Logo of the device
 logo: wsl-2500.png
+# Product name & Version
+product:
+    name: PF/WSL2500
+    version: 1
 # ID of the profile that defines the LoRaWAN characteristics of this model. 
 deviceProfileId: 
     - pf_eu868_1.0.2revB_classA
@@ -25,13 +29,14 @@ LoRaWANCertified: true
 # Mandatory whenever you have a driver for the model
 modelId: pf:wsl-2500:1
 # <vendorId>:<modelId>:<modelVersion> Needed for linking the model with a specific driver (you can have several ones)
-protocolId: 
-    - pf:wsl:1
+protocolId: pf:wsl:1
 # DataSheet URL (optional) 
 specificationURL: https://files.pepperl-fuchs.com/webcat/navi/productInfo/pds/70124842_fra.pdf?v=20221012111825
 # User Guide URL (optional) 
 userGuideURL: https://files.pepperl-fuchs.com/webcat/navi/productInfo/doct/tdoct7000a_eng.pdf?v=20210810144202
 # Available sensors following Actility ontology: https://github.com/actility/thingpark-iot-flow-js-driver/blob/master/UNITS.md 
 sensors: 
-    - location:GPS
     - temperature:Cel
+    - distance:cm
+    - batteryVoltage:V
+    - location:GPS
