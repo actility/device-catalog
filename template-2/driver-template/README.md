@@ -274,7 +274,7 @@ The uplink/downlink decode example used is an object represented by the followin
             "required": true
           },
           "recvTime": {
-            "description": "the uplin/downlink message time",
+            "description": "the uplink/downlink message time",
             "type": "string",
             "format": "date-time",
             "required": true
@@ -388,7 +388,7 @@ To simplify the open distribution and integration with our platform, a packaging
 NPM was chosen because it is the most widely used packaging system for JavaScript code. Also, this approach defines a
 clear code layout that can be distributed independently using the developer preferred version control tool.
 
-You can find a full description of packaging in the guide of simple driver [here](#simple-driver-guide).
+You can find a full description of packaging in the guide of simple driver [here](#sample-driver-developer-guide).
 
 ## Testing
 
@@ -406,7 +406,7 @@ This example describes how you to create a simple driver using ThingPark X IoT F
 
 The concept and API is described [here](#api)
 
--   [Sample driver](#sample-driver-guide)
+-   [Sample driver developer guide](#sample-driver-developer-guide)
     -   [Minimal driver](#minimal-driver)
     -   [Encoding and decoding downlinks](#encoding-and-decoding-downlinks)
     -   [Returning errors](#returning-errorswarnings)
@@ -443,7 +443,7 @@ After completing all the information requested by npm you will find a new file `
 }
 ```
 
-***Important:*** make sure to respect the constraints on the length of some fields. [Here](#limitations-on-length-of-fields) you can find the details.
+***Important:*** Please make sure to scope your package with "@actility".
 
 **PS**: In the simple driver, the `require()` method is not allowed to import an external module.
 If your driver is split into several javascript file, you have to switch to a *complex-driver* and use webpack.
@@ -674,7 +674,7 @@ Then, you will be able to launch tests using command `npm test`.
 
 ### Test the different cases of your driver
 
-In order to facilitate the use cases testing process, we provide the file [driver-examples.spec.js](driver-examples.spec.js).
+In order to facilitate the use cases testing process, we provide the file [driver-examples.spec.js](sample-driver/driver-examples.spec.js).
 
 This file will automatically get all your examples inside `examples.json` and test them using [Jest](https://jestjs.io/).
 

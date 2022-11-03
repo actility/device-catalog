@@ -7,7 +7,7 @@ Each vendor has his own Device Catalog composed of a set of files and directorie
 
 All vendors information are stored in the root directory dedicated to a vendor.
 
-You can find [template](vendor-x/vendor.yaml) of `vendor.yaml` in this directory. It is highly recommended to start by copying then customizing it with specific vendor information.
+You can find [sample](sample-vendor/vendor.yaml) of `vendor.yaml` in this directory. It is highly recommended to start by copying then customizing it with specific vendor information.
 
 The file `logo.png` presents the logo of the vendor, it should be:
 - named `logo.png`
@@ -17,9 +17,9 @@ The file `logo.png` presents the logo of the vendor, it should be:
 
 
 ## Directories
-1. `models`: Directory contains model information of all devices. [Template](vendor-x/models/model-x/model.yaml)
-2. `profiles`: Directory contains LoRaWAN network characteristics of all devices. [Template](vendor-x/profiles/vendor_RFGroup1_1.0.2revB_classA.yaml)
-3. `drivers`: Directory contains the drivers of all devices. [Full Guide](vendor-x/drivers/README.md)
+1. `models`: Directory contains model information of all devices. [Sample](sample-vendor/models/sample-model/model.yaml)
+2. `profiles`: Directory contains LoRaWAN network characteristics of all devices. [Sample](sample-vendor/profiles/vendor_RFGroup1_1.0.2b_classA.yaml)
+3. `drivers`: Directory contains the drivers of all devices. [Full Guide with sample](sample-vendor/drivers/README.md)
 
 > All files and folders must be named in lowercase and seperated by dashes '`-`' only.
 > The separator underscore '`_`' is reserved for [versioning](#versioning).
@@ -124,7 +124,7 @@ The file `<Model Name>.png` presents the image of the device, it should be:
 ## Profile
 A profile contains the technical LoRaWAN characteristics used by the device, including the LoRaWAN L2 and PHY versions, the RX1/RX2 settings used during boot stage until they are eventually updated by the Network Server through appropriate MAC commands etc.
 > Start from the predefined templates to build your own profiles, if your devices do not follow the default LoRaWAN configuration.
-> All generic profile templates are contained on a directory named `generic` on root. Pick the right template based on the below information:
+> All generic profile templates are defined under [/profiles-templates](profiles-templates). Pick the right template based on the below information:
 > - ISMBand (eu868, us915, as923, ...)
 > - LoRaWAN MAC version (1.0.2, 1.0.3b, ...)
 > - LoRaWAN Regional Parameters' version (1.0.2revA, 1.0.2revB, 1.0.2revC, RP2-1.0.1, RP2-1.0.2, RP2-1.0.3...)
@@ -135,7 +135,7 @@ This ID of your profile should be used on your `model.yaml` on the field `device
 
 Example: `vendor_RFGroup1_1.0.2revB_classA.yaml`
 
-You can find several generic templates under `/vendors/generic`. It is highly recommended to start by copying one/several of them according to the characteristics of your models and then customize.
+You can find several generic templates under [here](profiles-templates). It is highly recommended to start by copying one/several of them according to the characteristics of your models and then customize.
 
 
 ## Driver
