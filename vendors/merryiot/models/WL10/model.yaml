@@ -10,8 +10,8 @@ product:
     version: 1
 # ID(s) of the profile that defines the LoRaWAN characteristics of this model.
 deviceProfileId: 
-    - merryiot_RFGroup1_1.0.3revA_classA.yaml
-    - merryiot_RFGroup2_1.0.3revA_classA.yaml
+    - merryiot_eu868_1.0.3revA_classA.yaml
+    - merryiot_us915_1.0.3revA_classA.yaml
  
 # You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
 # Maximum device TX Conducted output power in dBm. 
@@ -27,7 +27,7 @@ minTxEIRP:
 motionIndicator:
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
-LoRaWANCertified: 
+LoRaWANCertified: false
 # Mandatory whenever you have a driver for the model: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
 modelId: merryiot:wl10:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
@@ -37,6 +37,4 @@ specificationURL: https://www.browan.com/download/20O/stream
 # User Guide URL (optional) 
 userGuideURL: https://www.browan.com/login?rollback=https%3A%2F%2Fwww.browan.com%2Fproduct%2Fleak-detection%2Fdetail
 # <sensor>:<unitId> Available sensors following Actility ontology: https://
-sensors: 
-    - temperature:Cel
-    - humidity:%RH
+sensors:
