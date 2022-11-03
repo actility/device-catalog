@@ -29,7 +29,7 @@ function Decoder(bytes, port) {
                     decoded.press = "double";
                     break;
                 default:
-                    console.log("unsupported");
+                    decoded.press = "unsupported";
             }
             i += 1;
         } else {

@@ -76,10 +76,3 @@ function readUInt32LE(bytes) {
     return value & 0xffffffff;
 }
 
-function hexToBytes(hex) {
-    let bytes = [];
-    for (c = 0; c < hex.length; c += 2) bytes.push(parseInt(hex.substr(c, 2), 16));
-    return bytes;
-}
-
-console.log(Decoder(hexToBytes("058E0006010107010108905CFFA65CFF3F01")))
