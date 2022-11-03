@@ -8,6 +8,6 @@ This repository is designed to be improved by you! For this, in order to add Dev
 
 Thanks to this, the integrity of the catalog is guaranteed and the experience as well.
 
-You can find a template [here](./template-2) to start from, with a **README.md** that explains the structure and guide the developer.
+You can find a template [here](./template) to start from, with a **README.md** that explains the structure and guide the developer.
 
 >Any modification on this repository should be done by creating a new merge request to be reviewed by Actility before submission.
