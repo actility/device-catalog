@@ -402,7 +402,7 @@ use cases as well as error cases.
 ##
 # Sample driver developer guide
 
-This example describes how you to create a simple driver using ThingPark X IoT Flow framework.
+This example describes how you to create a simple driver for actility following the LoRa Alliance standard Codec API.
 
 The concept and API is described [here](#api)
 
