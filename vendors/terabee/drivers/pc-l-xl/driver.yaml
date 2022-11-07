@@ -3,7 +3,7 @@ name: People counting driver
 # Simple description of the driver functionalities
 description:
 # Mandatory - id of the company that developed the driver
-# This id will be used to construct the id of the driver, thus no special characters are allowed
+# This id will be used to construct the id of the driver (Should be in lowecase, no special characters, maximum 8 characters)
 producerId: terabee
 # Email of the developer
 developerEmail:
@@ -11,7 +11,7 @@ developerEmail:
 # In case of one driver for all models: `<vendorId>:generic:<protocolVersion>`
 # Needed for linking the model with a specific driver -> must be the same one used in model.yaml in the corresponding model
 # You should have only one protocolId per driver
-protocolId: terrabee:pc-l-xl:1
+protocolId: terabee:pc-l-xl:1
 # This is to specify the type of functions signature used in this driver. Possible values: actility, lora-alliance, ttn, chirpstack.
 # Keep it empty if you followed the lora-alliance payload codec api
 signature: actility
