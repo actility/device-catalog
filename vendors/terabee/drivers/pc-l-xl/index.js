@@ -406,22 +406,4 @@ function decodeUplink(input) {
   };
 }
 
-module = {};
-// Exporting for testing only, don't copy the lines below
-// To Network Server Decoder
-module.exports = {
-  bytesToBitsString,
-  bitsStringToXYpoints,
-  isKthBitSet,
-  uint32,
-  uint16,
-  decodeUplink,
-  parseHeader,
-  registerCommand,
-  getCommand,
-  parseCounts,
-  parseCountDirection,
-  parseAccessPointState,
-  parseMountingHeight,
-  parsePushPeriod,
-};
+exports.decodeUplink = decodeUplink;
