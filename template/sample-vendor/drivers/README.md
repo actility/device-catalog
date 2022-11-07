@@ -431,7 +431,7 @@ After completing all the information requested by npm you will find a new file `
 
 ```json
 {
-    "name": "@actility/simple-driver",
+    "name": "simple-driver",
     "version": "1.0.0",
     "description": "My simple driver",
     "main": "index.js",
@@ -443,7 +443,7 @@ After completing all the information requested by npm you will find a new file `
 }
 ```
 
-***Important:*** Please make sure to scope your package with "@actility".
+***Important:*** Please make sure to NOT scope your package.
 
 **PS**: In the simple driver, the `require()` method is not allowed to import an external module.
 If your driver is split into several javascript file, you have to switch to a *complex-driver* and use webpack.
