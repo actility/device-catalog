@@ -31,7 +31,9 @@ LoRaWANCertified:
 # Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
 modelId: adeunis:motion:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
-protocolId: adeunis:motion:1
+protocolId: 
+    - adeunis:motion:1
+    - adeunis:motion:2
 # DataSheet URL (optional) 
 specificationURL: https://www.adeunis.com/wp-content/uploads/2019/09/User_Guide_MOTION_LoRaWAN_V2.0.1.pdf
 # User Guide URL (optional) 
