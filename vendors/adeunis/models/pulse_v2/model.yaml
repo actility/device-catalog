@@ -31,7 +31,9 @@ LoRaWANCertified:
 # Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
 modelId: adeunis:pulse:2
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
-protocolId: adeunis:pulse:2
+protocolId:
+    - adeunis:pulse:2
+    - adeunis:pulse:3
 # DataSheet URL (optional) 
 specificationURL: https://adeunis.freshdesk.com/helpdesk/attachments/22040103139
 # User Guide URL (optional) 
