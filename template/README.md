@@ -40,14 +40,8 @@ Device catalog
     │      │      │      └── image.png
     │      │      └── ... 
     │      ├── profiles
-    │      │      ├── <ModelId #1>
-    │      │      │      ├── <profileId #1>.yaml    # Specific LoRaWAN characteristics for this ISMBand and model of device
-    │      │      │      ├── <profileId #2>.yaml          
-    │      │      │      └── ...
-    │      │      ├── <ModelId #2>
-    │      │      │      ├── <profileId #1>.yaml 
-    │      │      │      ├── <profileId #2>.yaml 
-    │      │      │      └── ... 
+    │      │      ├── <profileId #1>.yaml    # Specific LoRaWAN characteristics for this ISMBand and model of device
+    │      │      ├── <profileId #2>.yaml 
     │      │      └── ... 
     │      └── drivers
     │             ├── <ModelId #1>
@@ -85,14 +79,8 @@ Device catalog
     │      │      │      └── image.png
     │      │      └── ... 
     │      ├── profiles
-    │      │      ├── <ModelId #1>
-    │      │      │      ├── <profileId #1>.yaml    # Specific LoRaWAN characteristics for this ISMBand and model of device
-    │      │      │      ├── <profileId #2>.yaml          
-    │      │      │      └── ...
-    │      │      ├── <ModelId #2>_v<version>
-    │      │      │      ├── <profileId #1>.yaml 
-    │      │      │      ├── <profileId #2>.yaml 
-    │      │      │      └── ... 
+    │      │      ├── <profileId #1>.yaml    # Specific LoRaWAN characteristics for this ISMBand and model of device
+    │      │      ├── <profileId #2>.yaml 
     │      │      └── ... 
     │      └── drivers
     │             ├── <ModelId #1>
