@@ -47,10 +47,14 @@ function decodeUplink(input) {
     const fPort = input.fPort;
     let bytes = Buffer.from(input.bytes);
     let length = bytes.length;
-    let result = {};
+    let result = {
+        data: {},
+        errors: [],
+        warnings: []
+    };
 
     if (fPort != 100) {
-        throw new Error("Invalid fPort!");
+        result.errors.push("Invalid fPort!");
     }
 
     if (fPort === 100) {
@@ -98,7 +102,7 @@ function decodeUplink(input) {
             volume: lastVolume
         });
 
-        result = {
+        result.data = {
             status: status,
             // lastLogTimeStamp: lastLogTimeStamp,
             lastLogTime: lastLogTime,
@@ -115,30 +119,5 @@ function decodeUplink(input) {
 
 }
 
-/**
- * @typedef {Object} EncodedDownlink
- * @property {number[]} bytes - Array of numbers as it will be sent to the device
- * @property {number} fPort - The fPort on which the downlink must be sent
- */
-
-/**
- * Downlink encode
- * @param {Object} input - An object provided by the IoT Flow framework
- * @param {Object} input.message - The higher-level object representing your downlink
- * @returns {EncodedDownlink} The encoded object
- */
-function encodeDownlink(input) {}
-
-/**
- * Downlink decode
- * @param {Object} input - An object provided by the IoT Flow framework
- * @param {number[]} input.bytes - Array of numbers as it will be sent to the device
- * @param {number} [input.fPort] - The fPort on which the downlink must be sent
- * @returns {Object} The decoded object
- */
-function decodeDownlink(input) {}
-
 
 exports.decodeUplink = decodeUplink;
-exports.decodeDownlink = decodeDownlink;
-exports.encodeDownlink = encodeDownlink;

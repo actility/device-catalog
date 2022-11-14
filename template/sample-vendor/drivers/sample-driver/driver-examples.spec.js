@@ -14,7 +14,7 @@ describe("Decode uplink", () => {
             it(example.description, () => {
                 // Given
                 const input = {
-                    bytes: example.input.bytes,
+                    bytes: Buffer.from(example.input.bytes, "hex"),
                     fPort: example.input.fPort,
                 };
 
