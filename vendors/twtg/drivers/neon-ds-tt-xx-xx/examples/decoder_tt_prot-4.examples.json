@@ -1,0 +1,109 @@
+[
+    {
+        "description": "V4 TT Boot message – Payload pattern",
+        "type": "uplink",
+        "bytes": "4001",
+        "fPort": 1,
+        "time": "2020-08-02T20:00:00.000+05:00",
+        "data": {
+            "boot": {
+                "protocol_version": 4,
+                "reboot_reason": {
+                    "major": "config update",
+                    "minor": "success"
+                }
+            }
+        }
+    },
+    {
+        "description": "V4 TT Activated message – Payload pattern",
+        "type": "uplink",
+        "bytes": "4104",
+        "fPort": 5,
+        "time": "2020-08-02T20:00:00.000+05:00",
+        "data": {
+            "activated": {
+                "protocol_version": 4,
+                "device_type": "tt"
+            }
+        }
+    },
+    {
+        "description": "V4 TT Deactivated message – Payload pattern",
+        "type": "uplink",
+        "bytes": "410000",
+        "fPort": 6,
+        "time": "2020-08-02T20:00:00.000+05:00",
+        "data": {
+            "deactivated": {
+                "protocol_version": 4,
+                "reason": "user_triggered"
+            }
+        }
+    },
+    {
+        "description": "V4 TT Sensor normal event message – Payload pattern",
+        "type": "uplink",
+        "bytes": "43024A9CFF",
+        "fPort": 3,
+        "time": "2020-08-02T20:00:00.000+05:00",
+        "data": {
+            "sensor_event": {
+                "protocol_version": 4,
+                "selection": "max_only",
+                "trigger": "periodic",
+                "condition_0": 0,
+                "condition_1": 1,
+                "condition_2": 0,
+                "condition_3": 1,
+                "temperature": {
+                    "max": -10,
+                    "status": "OK"
+                }
+            }
+        }
+    },
+    {
+        "description": "V4 TT Sensor extended event message – Payload pattern",
+        "type": "uplink",
+        "bytes": "43004A44489CFFC800",
+        "fPort": 3,
+        "time": "2020-08-02T20:00:00.000+05:00",
+        "data": {
+            "sensor_event": {
+                "protocol_version": 4,
+                "selection": "extended",
+                "trigger": "periodic",
+                "condition_0": 0,
+                "condition_1": 1,
+                "condition_2": 0,
+                "condition_3": 1,
+                "temperature": {
+                    "max": -10,
+                    "min": 1850,
+                    "avg": 20,
+                    "status": "OK"
+                }
+            }
+        }
+    },
+    {
+        "description": "V4 TT Device status message – Payload pattern",
+        "type": "uplink",
+        "bytes": "447515030002060102",
+        "fPort": 2,
+        "time": "2020-08-02T20:00:00.000+05:00",
+        "data": {
+            "device_status": {
+                "protocol_version": 4,
+                "battery_voltage": 2.9176470588235293,
+                "temperature": 21,
+                "lora_tx_counter": 3,
+                "avg_rssi": "-100..-129",
+                "bist": "0x06",
+                "event_counter": 1,
+                "sensor_type": "K"
+            }
+        }
+    }
+]

@@ -1,0 +1,140 @@
+[
+    {
+        "description": "V3: TT boot message Payload - pattern",
+        "type": "uplink",
+        "bytes": "3004EFBEADDE0100020003040610203040506070800708",
+        "fPort": 15,
+        "time": "2020-08-02T20:00:00.000+05:00",
+        "data": {
+            "header": {
+                "protocol_version": 3,
+                "message_type": "boot"
+            },
+            "boot": {
+                "device_type": "tt",
+                "version_hash": "0xDEADBEEF",
+                "base_config_crc": "0x0001",
+                "sensor_config_crc": "0x0002",
+                "reset_flags": "0x03",
+                "reboot_counter": 4,
+                "reboot_info": "unknown (0x10, 0x20, 0x30, 0x40, 0x50, 0x60, 0x70, 0x80)",
+                "last_device_state": 7,
+                "bist": "0x08"
+            }
+        }
+    },
+    {
+        "description": "V3: TT activated message Payload - pattern",
+        "type": "uplink",
+        "bytes": "31",
+        "fPort": 15,
+        "time": "2020-08-02T20:00:00.000+05:00",
+        "data": {
+            "header": {
+                "message_type": "activated",
+                "protocol_version": 3
+            }
+        }
+    },
+    {
+        "description": "V3: TT deactivated message Payload - pattern",
+        "type": "uplink",
+        "bytes": "32",
+        "fPort": 15,
+        "time": "2020-08-02T20:00:00.000+05:00",
+        "data": {
+            "header": {
+                "message_type": "deactivated",
+                "protocol_version": 3
+            }
+        }
+    },
+    {
+        "description": "V3: TT sensor event message Payload - pattern",
+        "type": "uplink",
+        "bytes": "330102000300040005",
+        "fPort": 15,
+        "time": "2020-08-02T20:00:00.000+05:00",
+        "data": {
+            "header": {
+                "message_type": "sensor_event",
+                "protocol_version": 3
+            },
+            "sensor_event": {
+                "trigger": "condition_0",
+                "temperature": {
+                    "min": 0.2,
+                    "max": 0.3,
+                    "avg": 0.4,
+                    "status": "OK"
+                },
+                "condition_0": 1,
+                "condition_1": 0,
+                "condition_2": 1,
+                "condition_3": 0
+            }
+        }
+    },
+    {
+        "description": "V3: TT device status message - pattern",
+        "type": "uplink",
+        "bytes": "34ADDEEFBE030B000C000D00151617060708",
+        "fPort": 15,
+        "time": "2020-08-02T20:00:00.000+05:00",
+        "data": {
+            "header": {
+                "message_type": "device_status",
+                "protocol_version": 3
+            },
+            "device_status": {
+                "base_config_crc": "0xDEAD",
+                "sensor_config_crc": "0xBEEF",
+                "event_counter": 3,
+                "battery_voltage": {
+                    "low": 0.011,
+                    "high": 0.012,
+                    "settle": 0.013
+                },
+                "temperature": {
+                    "min": 21,
+                    "max": 22,
+                    "avg": 23
+                },
+                "tx_counter": 6,
+                "avg_rssi": -7,
+                "avg_snr": 8
+            }
+        }
+    },
+    {
+        "description": "V3: TT device status message payload - battery extreme 1",
+        "type": "uplink",
+        "bytes": "340000000000A00F00000000000000000000",
+        "fPort": 15,
+        "time": "2020-08-02T20:00:00.000+05:00",
+        "data": {
+            "header": {
+                "message_type": "device_status",
+                "protocol_version": 3
+            },
+            "device_status": {
+                "sensor_config_crc": "0x0000",
+                "base_config_crc": "0x0000",
+                "event_counter": 0,
+                "battery_voltage": {
+                    "low": 4,
+                    "high": 0,
+                    "settle": 0
+                },
+                "temperature": {
+                    "min": 0,
+                    "max": 0,
+                    "avg": 0
+                },
+                "tx_counter": 0,
+                "avg_rssi": -0,
+                "avg_snr": 0
+            }
+        }
+    }
+]

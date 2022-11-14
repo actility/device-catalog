@@ -1,0 +1,262 @@
+[
+    {
+        "description": "V4 TT Complete Base message - Zeros",
+        "type": "downlink",
+        "bytes": "40000000000000",
+        "fPort": 7,
+        "time": "2020-08-02T20:00:00.000+05:00",
+        "data": {
+            "config_update_req": {
+                "config_type": "base",
+                "protocol_version": 4,
+                "tag": "0x00000000",
+                "payload": {
+                    "switch_mask": {
+                        "enable_confirmed_event_message": false,
+                        "enable_confirmed_data_message": false,
+                        "allow_deactivation": false
+                    },
+                    "periodic_message_random_delay_seconds": 0,
+                    "status_message_interval": "2 minutes"
+                }
+            }
+        }
+    },
+    {
+        "description": "V4 TT BaseLD Complete Message Pattern",
+        "type": "downlink",
+        "bytes": "400000000005D1",
+        "fPort": 7,
+        "time": "2020-08-02T20:00:00.000+05:00",
+        "data": {
+            "config_update_req": {
+                "config_type": "base",
+                "protocol_version": 4,
+                "tag": "0x00000000",
+                "payload": {
+                    "switch_mask": {
+                        "enable_confirmed_event_message": true,
+                        "enable_confirmed_data_message": false,
+                        "allow_deactivation": true
+                    },
+                    "periodic_message_random_delay_seconds": 17,
+                    "status_message_interval": "2 days"
+                }
+            }
+        }
+    },
+    {
+        "description": "V4 TT BaseLD Complete Message Max",
+        "type": "downlink",
+        "bytes": "400000000007FF",
+        "fPort": 7,
+        "time": "2020-08-02T20:00:00.000+05:00",
+        "data": {
+            "config_update_req": {
+                "config_type": "base",
+                "protocol_version": 4,
+                "tag": "0x00000000",
+                "payload": {
+                    "switch_mask": {
+                        "enable_confirmed_event_message": true,
+                        "enable_confirmed_data_message": true,
+                        "allow_deactivation": true
+                    },
+                    "periodic_message_random_delay_seconds": 31,
+                    "status_message_interval": "5 days"
+                }
+            }
+        }
+    },
+    {
+        "description": "V4 TT BaseLD Complete Message Offic. configuration",
+        "type": "downlink",
+        "bytes": "4070496c0907FF",
+        "fPort": 7,
+        "time": "2020-08-02T20:00:00.000+05:00",
+        "data": {
+            "config_update_req": {
+                "config_type": "base",
+                "protocol_version": 4,
+                "tag": "0x096c4970",
+                "payload": {
+                    "switch_mask": {
+                        "enable_confirmed_event_message": true,
+                        "enable_confirmed_data_message": true,
+                        "allow_deactivation": true
+                    },
+                    "periodic_message_random_delay_seconds": 31,
+                    "status_message_interval": "5 days"
+                }
+            }
+        }
+    },
+    {
+        "description": "V4 TT Region Config Payload only Complete Msg - No payload",
+        "type": "downlink",
+        "bytes": "41",
+        "fPort": 7,
+        "time": "2020-08-02T20:00:00.000+05:00",
+        "data": {
+            "config_update_req": {
+                "config_type": "region",
+                "protocol_version": 4
+            }
+        }
+    },
+    {
+        "description": "V4 TT Region Config Payload only Complete Msg - Min config",
+        "type": "downlink",
+        "bytes": "41000000000100000000000000",
+        "fPort": 7,
+        "time": "2020-08-02T20:00:00.000+05:00",
+        "data": {
+            "config_update_req": {
+                "config_type": "region",
+                "protocol_version": 4,
+                "tag": "0x00000000",
+                "payload": {
+                    "channel_plan": "EU868",
+                    "join_trials": {
+                        "holdoff_hours_max": 0,
+                        "holdoff_steps": 0,
+                        "burst_count": 1
+                    },
+                    "disable_switch": {
+                        "frequency_bands": "0x0000",
+                        "dwell_time": false
+                    },
+                    "rx1_delay": 0,
+                    "adr": {
+                        "ack_limit_exp": 0,
+                        "ack_delay_exp": 0,
+                        "mode": 0
+                    },
+                    "max_tx_power": 0
+                }
+            }
+        }
+    },
+    {
+        "description": "V4 Region config message – Compl – Max",
+        "type": "downlink",
+        "bytes": "41FFFFFFFF0DFFFFFE1F0FFE0E",
+        "fPort": 7,
+        "time": "2020-08-02T20:00:00.000+05:00",
+        "data": {
+            "config_update_req": {
+                "config_type": "region",
+                "protocol_version": 4,
+                "tag": "0xFFFFFFFF",
+                "payload": {
+                    "channel_plan": "AS923-4",
+                    "join_trials": {
+                        "holdoff_hours_max": 255,
+                        "holdoff_steps": 7,
+                        "burst_count": 32
+                    },
+                    "disable_switch": {
+                        "frequency_bands": "0x0FFE",
+                        "dwell_time": true
+                    },
+                    "rx1_delay": 15,
+                    "adr": {
+                        "ack_limit_exp": 7,
+                        "ack_delay_exp": 7,
+                        "mode": 2
+                    },
+                    "max_tx_power": 14
+                }
+            }
+        }
+    },
+    {
+        "description": "V4 Region config message – Compl – EU868",
+        "type": "downlink",
+        "bytes": "41FFFFFFFF01185C000000300E",
+        "fPort": 7,
+        "time": "2020-08-02T20:00:00.000+05:00",
+        "data": {
+            "config_update_req": {
+                "config_type": "region",
+                "protocol_version": 4,
+                "tag": "0xFFFFFFFF",
+                "payload": {
+                    "channel_plan": "EU868",
+                    "join_trials": {
+                        "holdoff_hours_max": 24,
+                        "holdoff_steps": 4,
+                        "burst_count": 12
+                    },
+                    "disable_switch": {
+                        "frequency_bands": "0x0000",
+                        "dwell_time": false
+                    },
+                    "rx1_delay": 0,
+                    "adr": {
+                        "ack_limit_exp": 4,
+                        "ack_delay_exp": 1,
+                        "mode": 0
+                    },
+                    "max_tx_power": 14                    
+                }
+            }
+        }
+    },
+    {
+        "description": "V4 Region config message – Compl – US915",
+        "type": "downlink",
+        "bytes": "41FFFFFFFF02188D0000003008",
+        "fPort": 7,
+        "time": "2020-08-02T20:00:00.000+05:00",
+        "data": {
+            "config_update_req": {
+                "config_type": "region",
+                "protocol_version": 4,
+                "tag": "0xFFFFFFFF",
+                "payload": {
+                    "channel_plan": "US915",
+                    "join_trials": {
+                        "holdoff_hours_max": 24,
+                        "holdoff_steps": 5,
+                        "burst_count": 18
+                    },
+                    "disable_switch": {
+                        "frequency_bands": "0x0000",
+                        "dwell_time": false
+                    },
+                    "rx1_delay": 0,
+                    "adr": {
+                        "ack_limit_exp": 4,
+                        "ack_delay_exp": 1,
+                        "mode": 0
+                    },
+                    "max_tx_power": 8                    
+                }
+            }
+        }
+    },
+    {
+        "description": "V4 TT Sensor config message – Compl. - official config",
+        "type": "downlink",
+        "bytes": "43DC9258E8040203050C00",
+        "fPort": 7,
+        "time": "2020-08-02T20:00:00.000+05:00",
+        "data": {
+            "config_update_req": {
+                "config_type": "sensor",
+                "protocol_version": 4,
+                "tag": "0xE85892DC",
+                "payload": {
+                    "device_type": "tt",
+                    "sensor_type": "K",
+                    "switch_mask": {
+                        "selection": "avg_only"
+                    },
+                    "measurement_interval_minutes": 5,
+                    "periodic_event_message_interval": 12
+                }
+            }
+        }
+    }
+]
