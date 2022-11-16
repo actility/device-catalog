@@ -38,14 +38,12 @@ function Decoder(bytes, port) {
         }
         // LIGHT
         else if (channel_id === 0x06 && channel_type === 0x65) {
-            decoded.illumination = readUInt16LE(bytes.slice(i, i + 2));
-            decoded.infrared_and_visible = readUInt16LE(bytes.slice(i + 2, i + 4));
-            decoded.infrared = readUInt16LE(bytes.slice(i + 4, i + 6));
-            i += 6;
+            decoded.lm = readUInt16LE(bytes.slice(i, i + 2));
+            i += 2;
         }
         // CO2
         else if (channel_id === 0x07 && channel_type === 0x7D) {
-            decoded.co2 = readUInt16LE(bytes.slice(i, i + 2));
+            decoded.co2Level = readUInt16LE(bytes.slice(i, i + 2));
             i += 2;
         }
         // TVOC
@@ -77,3 +75,11 @@ function readInt16LE(bytes) {
     var ref = readUInt16LE(bytes);
     return ref > 0x7fff ? ref - 0x10000 : ref;
 }
+
+function hexToBytes(hex) {
+    let bytes = [];
+    for (c = 0; c < hex.length; c += 2) bytes.push(parseInt(hex.substr(c, 2), 16));
+    return bytes;
+}
+
+console.log(Decoder(hexToBytes("01755C036734010468650665F000077DA50409739225")));
