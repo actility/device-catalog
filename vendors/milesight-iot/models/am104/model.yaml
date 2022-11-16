@@ -36,8 +36,6 @@ modelId: msight:am104:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId: 
     - msight:am100-series:1
-examples:
-    - "Example am104"
 # DataSheet URL (optional) 
 specificationURL: https://resource.milesight-iot.com/milesight/document/am100-series-datasheet-en.pdf
 # User Guide URL (optional) 
@@ -50,3 +48,8 @@ sensors:
     - light:lm
     - co2Level:ppm
     - pressure:hPa
+# Driver examples
+# A list of examples description that are compatible with this model
+examples:
+    - msight:am100-series:1:
+        - "Example am104"
