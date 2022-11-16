@@ -18,7 +18,7 @@ function Decoder(bytes, port) {
         }
         // LIGHT
         else if (channel_id === 0x03 && channel_type === 0x94) {
-            decoded.illumination = readUInt32LE(bytes.slice(i, i + 4));
+            decoded.light = readUInt32LE(bytes.slice(i, i + 4));
             i += 4;
         }
     }
