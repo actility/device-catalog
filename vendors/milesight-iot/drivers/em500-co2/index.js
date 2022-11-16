@@ -33,7 +33,7 @@ function Decoder(bytes, port) {
         }
         // CO2
         else if (channel_id === 0x05 && channel_type === 0x7D) {
-            decoded.co2 = readUInt16LE(bytes.slice(i, i + 2));
+            decoded.co2Level = readUInt16LE(bytes.slice(i, i + 2));
             i += 2;
         }
         // PRESSURE
@@ -60,3 +60,11 @@ function readInt16LE(bytes) {
     var ref = readUInt16LE(bytes);
     return ref > 0x7fff ? ref - 0x10000 : ref;
 }
+
+function hexToBytes(hex) {
+    let bytes = [];
+    for (c = 0; c < hex.length; c += 2) bytes.push(parseInt(hex.substr(c, 2), 16));
+    return bytes;
+}
+
+console.log(Decoder(hexToBytes("01756403671901046873057D670406736827")));
