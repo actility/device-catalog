@@ -18,7 +18,7 @@ function Decoder(bytes, port) {
         }
         // WATER LEVEL
         else if (channel_id === 0x03 && channel_type === 0x77) {
-            decoded.water_level = readUInt16LE(bytes.slice(i, i + 2));
+            decoded.distance = readUInt16LE(bytes.slice(i, i + 2));
             i += 2;
         } else {
             break;
