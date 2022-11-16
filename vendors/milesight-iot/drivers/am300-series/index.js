@@ -13,7 +13,7 @@
         var channel_type = bytes[i++];
         // BATTERY
         if (channel_id === 0x01 && channel_type === 0x75) {
-            decoded.batteryLevel = bytes[i];
+            decoded.batteryLevelLevel = bytes[i];
             i += 1;
         }
         // TEMPERATURE

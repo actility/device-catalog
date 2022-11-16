@@ -16,7 +16,7 @@ function Decoder(bytes, port) {
     decoded.protocol = bytes[0] & 0x0f;
     decoded.type = getSensorType(bytes[1]);
     decoded.event = getMessageType(bytes[1] & 0x0f);
-    decoded.battery = bytes[2] & 0xff;
+    decoded.batteryLevel = bytes[2] & 0xff;
     decoded.concentration = bytes[3];
     decoded.temperature = getTemperature(bytes[4]);
 
