@@ -13,7 +13,7 @@
         var channel_type = bytes[i++];
         // BATTERY
         if (channel_id === 0x01 && channel_type === 0x75) {
-            decoded.battery = bytes[i];
+            decoded.batteryLevel = bytes[i];
             i += 1;
         }
         // TEMPERATURE
@@ -38,12 +38,12 @@
         }
         // LIGHT
         else if (channel_id === 0x06 && channel_type === 0xCB) {
-            decoded.light_level = bytes[i];
+            decoded.light = bytes[i];
             i += 1;
         }
         // CO2
         else if (channel_id === 0x07 && channel_type === 0x7D) {
-            decoded.co2 = readUInt16LE(bytes.slice(i, i + 2));
+            decoded.co2Level = readUInt16LE(bytes.slice(i, i + 2));
             i += 2;
         }
         // TVOC

@@ -38,7 +38,7 @@ function Decoder(bytes, port) {
         }
         // LIGHT
         else if (channel_id === 0x06 && channel_type === 0x65) {
-            decoded.lm = readUInt16LE(bytes.slice(i, i + 2));
+            decoded.light = readUInt16LE(bytes.slice(i, i + 2));
             i += 2;
         }
         // CO2
