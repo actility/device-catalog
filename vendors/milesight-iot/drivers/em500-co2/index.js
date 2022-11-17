@@ -13,7 +13,7 @@ function Decoder(bytes, port) {
         var channel_type = bytes[i++];
         // BATTERY
         if (channel_id === 0x01 && channel_type === 0x75) {
-            decoded.batteryLevel = bytes[i];
+            decoded.battery = bytes[i];
             i += 1;
         }
         // TEMPERATURE
@@ -33,7 +33,7 @@ function Decoder(bytes, port) {
         }
         // CO2
         else if (channel_id === 0x05 && channel_type === 0x7D) {
-            decoded.co2Level = readUInt16LE(bytes.slice(i, i + 2));
+            decoded.co2 = readUInt16LE(bytes.slice(i, i + 2));
             i += 2;
         }
         // PRESSURE

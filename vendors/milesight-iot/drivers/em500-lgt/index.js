@@ -13,12 +13,12 @@ function Decoder(bytes, port) {
         var channel_type = bytes[i++];
         // BATTERY
         if (channel_id === 0x01 && channel_type === 0x75) {
-            decoded.batteryLevel = bytes[i];
+            decoded.battery = bytes[i];
             i += 1;
         }
         // LIGHT
         else if (channel_id === 0x03 && channel_type === 0x94) {
-            decoded.light = readUInt32LE(bytes.slice(i, i + 4));
+            decoded.illumination = readUInt32LE(bytes.slice(i, i + 4));
             i += 4;
         }
     }

@@ -14,7 +14,7 @@
 
         // BATTERY
         if (channel_id === 0x01 && channel_type === 0x75) {
-            decoded.batteryLevel = bytes[i];
+            decoded.battery = bytes[i];
             i += 1;
         }
         // ANGLE
