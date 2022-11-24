@@ -127,26 +127,11 @@ function extractPoints(input) {
     if (typeof input.message.proxx !== "undefined") {
         result.distance = input.message.proxx;
     }
-    if (typeof input.message.fillinglvl !== "undefined") {
-        result.fillingLevel = input.message.fillinglvl;
-    }
     if (typeof input.message.battery_vol !== "undefined") {
         result.batteryVoltage = input.message.battery_vol;
     }
     if (typeof input.message.longitude !== "undefined" && typeof input.message.latitude !== "undefined") {
         result.location = [input.message.longitude, input.message.latitude];
-    }
-    if (typeof input.message.gps_count !== "undefined") {
-        result.gpsCount = input.message.gps_count;
-    }
-    if (typeof input.message.lora_count !== "undefined") {
-        result.loraCount = input.message.lora_count;
-    }
-    if (typeof input.message.us_sensor_count !== "undefined") {
-        result.UsSensorCount = input.message.us_sensor_count;
-    }
-    if (typeof input.message.serial_nr !== "undefined") {
-        result.serialNumber = input.message.serial_nr;
     }
     return result;
 }
