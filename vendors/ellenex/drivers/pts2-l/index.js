@@ -1,18 +1,23 @@
 function decodeUplink(input) {
+    let result = {
+      data: {},
+      errors: [],
+      warnings: []
+    };
     // return error if length of Bytes is not 8
     if (input.bytes.length != 8) {
-        return {errors: ['Invalid uplink payload: length is not 8 byte']};
+        result.errors.push('Invalid uplink payload: length is not 8 byte');
+        return result;
     }
+    let pressure = readHex2bytes(input.bytes[3], input.bytes[4]);
     let batteryVoltage = input.bytes[7] * 0.1;
-    return {
       // Decoded data
-      data: {
-        pressure: pressure,
-        batteryVoltage: +batteryVoltage.toFixed(1),
-      },
-    };
+    result.data = {
+      pressure: pressure,
+      batteryVoltage: +batteryVoltage.toFixed(1),
+    }
+    return result;
 }
-
 /*
  * The readHex2bytes function is to decode a signed 16-bit integer
  * represented by 2 bytes.  
