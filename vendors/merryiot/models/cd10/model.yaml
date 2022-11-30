@@ -1,0 +1,44 @@
+
+# Commercial name of the model 
+name: cd10
+# Functional description of the product. Maximum 500 characters. 
+description: "Browan's new MerryIoT range of LoRaWAN sensors includes this compact but high-performance CO2 sensor. The sensor measures Temperature, Humidity and CO2. Using an NDIR (Nondispersive Infrared) CO2 sensor, the device gives very accurate CO2 readings. The sensor features red/yellow/green LED CO2 level indication, and includes a buzzer to warn users of high CO2 levels. Cleverly, the LED indication is triggered when users wave a hand over the unit using a proximity detector. This reduces power usage so the included 3.6V Lithium batteries should power the sensor for around two years."
+# Logo of the device
+logo: logo-cd10.jpg
+# Product name & Version
+product:
+    name: MERR/CD10
+    version: 1
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
+deviceProfileId: 
+    - merryiot_eu868_1.0.3revA_classA.yaml
+    - merryiot_us915_1.0.3revA_classA.yaml
+
+# You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
+# Maximum device TX Conducted output power in dBm. 
+maxTxPower:
+# Minimum device TX Conducted output power in dBm. 
+minTxPower:
+# Maximum device TX Radiated output power in dBm.  
+maxTxEIRP:
+# Minimum device TX Radiated output power in dBm.  
+minTxEIRP:
+# Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'  
+# or 'random' (not known, changes over time). 
+motionIndicator:
+
+# Is your device certified by the LoRa Alliance? Possible values: true, false. 
+LoRaWANCertified: 
+# Mandatory whenever you have a driver for the model: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
+modelId: merryiot:cd10:1
+# <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
+protocolId: 
+# DataSheet URL (optional) 
+specificationURL: https://connectedthings.store/gb/index.php?controller=attachment&id_attachment=144
+# User Guide URL (optional) 
+userGuideURL: 
+# <sensor>:<unitId> Available sensors following Actility ontology: https://
+sensors: 
+    - co2Level:ppm
+    - temperature:Cel
+    - humidity:%RH
