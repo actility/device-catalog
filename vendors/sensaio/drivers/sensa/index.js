@@ -153,12 +153,3 @@ function decodeTrameDate(binary, type, bytes) {
 
     return result;
 }
-
-// Convert hex string to bytes array
-function hexToBytes(hex) {
-    let bytes = [];
-    for (c = 0; c < hex.length; c += 2) bytes.push(parseInt(hex.substr(c, 2), 16));
-    return bytes;
-}
-console.log(decodeUplink({bytes: hexToBytes("014591a40c6b00243bd6489a999343")}))
-exports.decodeUplink = decodeUplink;
