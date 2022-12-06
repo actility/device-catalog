@@ -45,7 +45,7 @@
  * 2022-12-01 revision 8
  * - Added resolution to sensor data
  * - Added decoder for TS006 DevVersion
- * - Changed "acceleration.avg" to "acceleration.RMS" in sensor event
+ * - Changed "acceleration.avg" to "acceleration.rms" in sensor event
  * - Changed "acceleration.max" to "acceleration.peak" in sensor event
  * - Removed minor reboot reason config
  * 
