@@ -91,7 +91,7 @@ This is the ontology supported by Actility. you can define a sensor inside your 
 | pH                                     | pH        | double | pH                  | acidity                                         |
 | Pulse per hour                         | pulse/h   | double | pulse/h             | frequency, sound                                |
 | Radian                                 | rad       | double | rad                 | angle                                           |
-| Rate                                   | /         | double | rate                | rate                                            |
+| Rate                                   | /         | double | rate                | rate, powerFactor                               |
 | Rotations per minute                   | rpm       | double | rpm                 | angularVelocity                                 |
 | Second                                 | s         | double | s                   | time, duration, interval, age                   |
 | Siemens                                | S         | double | S                   | conductance                                     |
@@ -104,7 +104,7 @@ This is the ontology supported by Actility. you can define a sensor inside your 
 | Volt-Ampere hour                       | VAh       | double | VAh                 | apparentEnergy                                  |
 | Volt-Ampere reactive                   | var       | double | var                 | reactivePower                                   |
 | Volt-Ampere reactive hour              | varh      | double | varh                | reactiveEnergy                                  |
-| Volt                                   | V         | double | V                   | batteryVoltage, rmsVoltage                      |
+| Volt                                   | V         | double | V                   | batteryVoltage, rmsVoltage, volatge             |
 | Watt                                   | W         | double | W                   | power, activePower                              |
 | Watt per hour                          | W/h       | double | W/h                 | powerRate                                       |
 | Watt per second                        | W/s       | double | W/s                 | powerRate                                       |
