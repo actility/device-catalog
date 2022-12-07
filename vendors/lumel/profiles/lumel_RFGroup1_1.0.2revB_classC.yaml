@@ -4,44 +4,44 @@
 #    Profile Group
 #    RFGroup1:  eu863-870, kr920-923, in865-867, ru864-870
 #    RFGroup2:  us902-928, cn470-510, au915-928 (only for LoRaWAN 1.0.2revB or below)
-#    RFGroup3:   au915-928 (starting from LoRaWAN 1.0.2revC)
-#    RFGroup4: as923
+#    RFGroup3:  au915-928 (starting from LoRaWAN 1.0.2revC)
+#    RFGroup4:  as923
 # Please do not change the existing IDs (Some may follow the old format)
-id: merryiot_FCC_1.0.3revA_classA
+id: lumel_RFGroup1_1.0.2revB_classC
 # LoRaWAN class of the Device: Possible values: [ A, B, C ] (Should not have several values)
 # 'A': Class A (Bi-directional end-devices with downlink listening only after uplink transmission)
 # 'B': Class B (Bi-directional end-devices with downlink listening on predefined synchronized pingslots)
 # 'C': Class C (Bi-directional end-devices with permanent downlink listening)
-loRaWANClass: A
+loRaWANClass: C
 # Comma-separated list of regional profiles supported by this device. Possible values are eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470.
-ISMbands: us915
+ISMbands: eu868
 # Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'
 # or 'random' (not known, changes over time).
 # The motion indication property will not be taken into consideration here if it is overwritten in the model.yaml
-motionIndicator: NEAR_STATIC
+motionIndicator: RAMDOM
 
 mac:
     # Activation modes supported by the device (put true where applicable).
     # (ABP)
-    activationByPersonalization: false
+    activationByPersonalization: true
     #(OTAA)
     overTheAirActivation: true
     # Supported version of the LoRaWAN MAC (Layer-2) specification. Possible values are '1.0.0/1.0.1', '1.0.2', '1.0.3', '1.0.4', '1.1'
-    loRaWANMacVersion: 1.0.3
+    loRaWANMacVersion: 1.0.2
     # Supported version of the LoRaWAN regional parameters (PHY) specification. Possible values are '1.0.2revA', '1.0.2revB', '1.0.2revC', 
     # '1.0.3revA', 'RP2-1.0.0', 'RP2-1.0.1', 'RP2-1.0.2', 'RP2-1.0.3', 'RP2-1.0.4', 'RP2-1.0.5'.
-    regionalParameterVersion: 1.0.3revA
+    regionalParameterVersion: 1.0.2revB
 
     # The device Tx Power Capabilities here will not be taken into consideration if it is overwritten in the model.yaml
     devicesTxPowerCapabilities:
         # Minimum device TX Conducted output power in dBm.
-        minTxPower: 14
+        minTxPower: 
         # Maximum device TX Conducted output power in dBm.
-        maxTxPower: 20
+        maxTxPower: 13
         # Minimum device TX Radiated output power in dBm.
-        minTxEIRP: 14
+        minTxEIRP:
         # Maximum device TX Radiated output power in dBm.
-        maxTxEIRP: 20
+        maxTxEIRP: 13
 
     uplinkFrameRepetition: 
         # Maximum number of transmissions per uplink frame, supported by the device. 
@@ -69,15 +69,15 @@ bootSettings:
     # beaconFrequency Boot value used by the Device to set the beacon broadcast frequency. This frequency is then aligned by the Network Server to the target value set in RF region.
     beaconFrequency:
     # Default downlink dwell time (valid only for AS923 and AU915 profiles). Possible values 0 (no limit) or 1 (400ms).
-    downlinkDwellTime:
+    downlinkDwellTime: 
     # Default uplink dwell time (valid only for AS923 and AU915 profiles). Possible values 0 (no limit) or 1 (400ms).
-    uplinkDwellTime:
+    uplinkDwellTime: 
 
 # Which MAC commands are supported by your device and which are not? Leave it as the template if your device supports all the MAC commands specified for your regional
 # profile. Put 'true' only if a command is supported.
 supportedMACCommands:
     linkADRReqAns: true
-    devStatusReqAns: false
+    devStatusReqAns: true
     joinRequestAccept: true
     dutyCycleReqAns: true
     linkCheckReqAns: true
@@ -85,7 +85,7 @@ supportedMACCommands:
     rxTimingSetupReqAns: true
     newChannelReqAns: true
     dlChannelReqAns: true
-    txParamSetupReqAns: true
+    txParamSetupReqAns: false
     pingSlotChannelReqAns: false
     pingSlotInfoReqAns: false
     deviceTimeReqAns: true
