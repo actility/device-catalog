@@ -38,3 +38,22 @@ specificationURL: https://adeunis.freshdesk.com/helpdesk/attachments/22047399406
 userGuideURL: 
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
+# Driver examples
+# A list of examples description that are compatible with this model
+examples:
+    - adeunis:comfort:1:
+        - "uplink containing the information frame on device configuration"
+        - "uplink containing the information frame on digital inputs configuration"
+        - "uplink containing the information frame on network configuration"
+        - "uplink containing the keep alive frame"
+        - "uplink containing the response frame of updating a register when the request status is success"
+        - "uplink containing the response frame of updating a register when an error occured"
+        - "uplink containing the periodic data frame when having two values of temperature and humidity"
+        - "uplink containing the periodic data frame when having six values of temperature and humidity"
+        - "uplink containing the temperature and humidity alarm frame"
+        - "uplink containing the digital input 1 alarm frame"
+        - "uplink containing the digital input 2 alarm frame"
+        - "downlink message containing the product configuration request frame"
+        - "downlink message containing the network configuration request frame"
+        - "downlink message containing specific register value request frame"
+        - "downlink message containing the frame for updating the value of a specific register"

@@ -38,3 +38,16 @@ specificationURL: https://adeunis.freshdesk.com/helpdesk/attachments/22067168139
 userGuideURL: 
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
+# Driver examples
+# A list of examples description that are compatible with this model
+examples:
+    - adeunis:dry-contacts:2:
+        - "uplink containing the information frame on device configuration"
+        - "uplink containing the information frame on network configuration"
+        - "uplink containing the keep alive frame"
+        - "uplink containing the data frame"
+        - "downlink message containing the product configuration request frame"
+        - "downlink message containing the network configuration request frame"
+        - "downlink message containing the output control frame"
+        - "downlink message containing specific register value request frame"
+        - "downlink message containing the frame for updating the value of a specific register"

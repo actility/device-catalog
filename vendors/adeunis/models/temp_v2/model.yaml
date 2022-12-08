@@ -40,3 +40,34 @@ specificationURL: https://adeunis.freshdesk.com/helpdesk/attachments/22059939941
 userGuideURL: 
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
+# Driver examples
+# A list of examples description that are compatible with this model
+examples:
+    - adeunis:temp:2:
+        - "uplink containing the information frame on product configuration 1"
+        - "uplink containing the information frame on product configuration 2"
+        - "uplink containing the information frame on product configuration 3"
+        - "uplink containing the information frame on network configuration"
+        - "uplink containing the keep alive frame"
+        - "uplink containing the data frame"
+        - "downlink message containing the product configuration request frame"
+        - "downlink message containing the network configuration request frame"
+        - "downlink message containing specific register value request frame"
+        - "downlink message containing the frame for updating the value of a specific register"
+    - adeunis:temp:3:
+        - "uplink containing the information frame on product configuration"
+        - "uplink containing the information frame on network configuration"
+        - "uplink containing the keep alive frame when one channel activated"
+        - "uplink containing the keep alive frame when both channels activated"
+        - "uplink containing the periodic data frame when one channel activated"
+        - "uplink containing the periodic data frame when both channels activated"
+        - "uplink containing the alarm frame when one channel activated"
+        - "uplink containing the alarm frame when both channels activated"
+        - "uplink containing the response frame of updating a register when the request status is success"
+        - "uplink containing the response frame of updating a register when an error occurred"
+        - "uplink containing the alert frame"
+        - "downlink message containing the product configuration request frame"
+        - "downlink message containing the network configuration request frame"
+        - "downlink message containing reading piece of data request frame"
+        - "downlink message containing the frame of specific register value request"
+        - "downlink message containing the frame of updating the value specific registers"

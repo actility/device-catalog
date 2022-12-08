@@ -38,3 +38,27 @@ specificationURL: https://adeunis.freshdesk.com/helpdesk/attachments/22047399270
 userGuideURL: 
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
+# Driver examples
+# A list of examples description that are compatible with this model
+examples:
+    - adeunis:delta-p:1:
+        - "uplink containing the information frame on device configuration"
+        - "uplink containing the information frame on product configuration"
+        - "uplink containing the information frame on network configuration"
+        - "uplink containing the information frame on digital inputs configuration"
+        - "uplink containing the keep alive frame"
+        - "uplink containing the periodic data frame when having four values of pressure"
+        - "uplink containing the periodic data frame when having five values of pressure where some are negative"
+        - "uplink containing the pressure alarm frame"
+        - "uplink containing the periodic data frame when having four values of analog inputs"
+        - "uplink containing the periodic data frame when having four values of analog inputs where some are negative"
+        - "uplink containing the analog alarm frame"
+        - "uplink containing the button input 1 alarm frame"
+        - "uplink containing the digital input 2 alarm frame"
+        - "uplink containing the response frame of updating a register when the request status is success"
+        - "uplink containing the response frame of updating a register when an error occurred"
+        - "uplink containing the acknowledgement frame"
+        - "downlink message containing the product configuration request frame"
+        - "downlink message containing the network configuration request frame"
+        - "downlink message containing specific register value request frame"
+        - "downlink message containing the frame for updating the value of a specific register"

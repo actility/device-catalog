@@ -40,3 +40,34 @@ specificationURL: https://www.adeunis.com/wp-content/uploads/2019/09/DS_PULSE-IP
 userGuideURL: https://adeunis.freshdesk.com/helpdesk/attachments/22040103139
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
+# Driver examples
+# A list of examples description that are compatible with this model
+examples:
+    - adeunis:pulse:2:
+        - "uplink containing the information frame on product configuration"
+        - "uplink containing the information frame on product configuration"
+        - "uplink containing the keep alive frame"
+        - "uplink containing the data frame"
+        - "uplink containing the alarm frame"
+        - "uplink containing the periodic frame with wrong payload length"
+        - "uplink containing the periodic frame with 24 hours history and frame index 0"
+        - "uplink containing the periodic frame with 24 hours history and frame index 1"
+        - "uplink containing the periodic frame with 24 hours history and frame index 2"
+        - "downlink message containing the product configuration request frame"
+        - "downlink message containing the network configuration request frame"
+        - "downlink message containing the frame of adding an offset"
+        - "downlink message containing specific register value request frame"
+        - "downlink message containing the frame for updating the value of a specific register"
+    - adeunis:pulse:3:
+        - "uplink containing the information frame on product configuration"
+        - "uplink containing the information frame on network configuration"
+        - "uplink containing the keep alive frame"
+        - "uplink containing the data frame"
+        - "uplink containing the alarm frame"
+        - "uplink containing the periodic frame with history for channel A"
+        - "uplink containing the periodic frame with history for channel B"
+        - "downlink message containing the product configuration request frame"
+        - "downlink message containing the network configuration request frame"
+        - "downlink message containing the frame of adding an offset"
+        - "downlink message containing specific register value request frame"
+        - "downlink message containing the frame for updating the value of a specific register"
