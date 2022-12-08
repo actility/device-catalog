@@ -1,6 +1,6 @@
 /**
- * Filename          : decoder_vb_doc-F_rev-6.js
- * Latest commit     : 8519fb8aa
+ * Filename          : decoder_vb_doc-F_rev-8.js
+ * Latest commit     : b30254406
  * Protocol document : F
  *
  * Release History
@@ -37,8 +37,19 @@
  * - Used throw new Error instead of throw
  * - For normal event message include selection in structure
  *
+ * 2022-11-22 revision 7
+ * - Updated scale and added resolution in sensor data message
+ * -- scale is now defined as index of a lookup table
+ * -- resolution indicates if it is in either low or high resolution
+ *
+ * 2022-12-01 revision 8
+ * - Added resolution to sensor data
+ * - Added decoder for TS006 DevVersion
+ * - Changed "acceleration.avg" to "acceleration.rms" in sensor event
+ * - Changed "acceleration.max" to "acceleration.peak" in sensor event
+ * - Removed minor reboot reason config
+ * 
  * YYYY-MM-DD revision X
- * -
  *
  */
 
@@ -61,6 +72,7 @@ if (typeof module !== 'undefined') {
     decode_reboot_info: decode_reboot_info,
     decode_battery_voltage: decode_battery_voltage,
     decode_sensor_data_config: decode_sensor_data_config,
+    decode_sensor_data_config_v3: decode_sensor_data_config_v3,
     from_hex_string: from_hex_string,
     decode_velocity_v3: decode_velocity_v3,
     decode_acceleration_v3: decode_acceleration_v3,
@@ -142,50 +154,54 @@ function Decode(fPort, bytes) { // Used for ChirpStack (aka LoRa Network Server)
   var STR_SENSOR_DATA = "sensor_data";
 
   var decoded = {};
-  var cursor = {};   // keeping track of which byte to process.
-  cursor.value = 0;  // Start from 0
 
   if (fPort == 0 || bytes.length == 0) {
     // Ignore null payload OR MAC uplink
     return decoded;
   }
 
+  // Handle generic LoRaWAN specified messages
+  if (handle_generic_messages(fPort, bytes, decoded)) {
+    return decoded;
+  }
+
+  var cursor = {};   // keeping track of which byte to process.
+  cursor.value = 0;  // Start from 0
   var protocol_version = get_protocol_version(bytes);
 
   switch (protocol_version) {
     case PROTOCOL_VERSION_V1:
     case PROTOCOL_VERSION_V2:
       decoded.header = decode_header(bytes, cursor);
-      if (fPort == FPORT_DEFAULT_APP) {
-        switch (decoded.header.message_type) {
-          case STR_BOOT:
-            decoded.boot = decode_boot_msg(bytes, cursor);
-            break;
+      switch (decoded.header.message_type) {
+        case STR_BOOT:
+          decoded.boot = decode_boot_msg(bytes, cursor);
+          break;
 
-          case STR_ACTIVATED:
-            decoded.activated = decode_activated_msg(bytes, cursor);
-            break;
+        case STR_ACTIVATED:
+          decoded.activated = decode_activated_msg(bytes, cursor);
+          break;
 
-          case STR_DEACTIVATED:
-            decoded.deactivated = decode_deactivated_msg(bytes, cursor);
-            break;
+        case STR_DEACTIVATED:
+          decoded.deactivated = decode_deactivated_msg(bytes, cursor);
+          break;
 
-          case STR_SENSOR_EVENT:
-            decoded.sensor_event = decode_sensor_event_msg(bytes, cursor);
-            break;
+        case STR_SENSOR_EVENT:
+          decoded.sensor_event = decode_sensor_event_msg(bytes, cursor);
+          break;
 
-          case STR_DEVICE_STATUS:
-            decoded.device_status = decode_device_status_msg(bytes, cursor);
-            break;
+        case STR_DEVICE_STATUS:
+          decoded.device_status = decode_device_status_msg(bytes, cursor);
+          break;
 
-          case STR_SENSOR_DATA:
-            decoded.sensor_data = decode_sensor_data_msg(bytes, cursor, decoded.header.protocol_version);
-            break;
+        case STR_SENSOR_DATA:
+          decoded.sensor_data = decode_sensor_data_msg(bytes, cursor, decoded.header.protocol_version);
+          break;
 
-          default:
-            throw new Error("Invalid message type!");
-        }
+        default:
+          throw new Error("Invalid message type!");
       }
+      break;
 
     case PROTOCOL_VERSION_V3:
       // Protocol V3 reserves each fPort for different purpose
@@ -458,7 +474,6 @@ function decode_device_id(bytes, cursor) {
 function decode_sensor_data_config(bytes, cursor, protocol_version) {
   var PROTOCOL_VERSION_V1 = 1;
   var PROTOCOL_VERSION_V2 = 2;
-  var PROTOCOL_VERSION_V3 = 3;
 
   config = decode_uint32(bytes, cursor);
   var result = {};
@@ -505,8 +520,7 @@ function decode_sensor_data_config(bytes, cursor, protocol_version) {
       }
       break;
 
-    case PROTOCOL_VERSION_V2:  // Fall through case PROTOCOL_VERSION_V3
-    case PROTOCOL_VERSION_V3:
+    case PROTOCOL_VERSION_V2:
       // bits[13..16]
       var scale_coefficient = ((config >> 13) & 0x0F);
       if (scale_coefficient < 1 || scale_coefficient > 15) {
@@ -535,6 +549,83 @@ function decode_sensor_data_config(bytes, cursor, protocol_version) {
 
 
   return result;
+}
+
+// helper function to parse fft config in sensor_data
+function decode_sensor_data_config_v3(bytes, cursor) {
+  var result = {};
+
+  result.frame_number = decode_uint8(bytes, cursor);
+
+  var b = decode_uint8(bytes, cursor);
+
+  // bits[0..1]
+  result.sequence_number = b & 0x03;
+
+  // bits[2..3]
+  result.axis = "";
+  switch ((b >> 2) & 0x3) {
+    case 0:
+      result.axis = "x";
+      break;
+    case 1:
+      result.axis = "y";
+      break;
+    case 2:
+      result.axis = "z";
+      break;
+    default:
+      throw new Error("Invalid axis value in sensor data config!");
+  }
+
+  // bits[4]
+  switch ((b >> 4) & 0x1) {
+    case 0:
+      result.resolution = "low_res";
+      break;
+    case 1:
+    default:
+      result.resolution = "high_res";
+      break;
+  }
+
+  // bits[5]
+  switch ((b >> 5) & 0x1) {
+    case 0:
+      result.unit = "velocity";
+      break;
+    case 1:
+    default:
+      result.unit = "acceleration";
+      break;
+  }
+
+  // bytes[3..4]
+  result.start_frequency = decode_uint16(bytes, cursor);
+  if (result.start_frequency > 8191) {
+    throw new Error("Invalid start_frequency value in sensor data config!");
+  }
+
+  // bytes[5]
+  result.spectral_line_frequency = decode_uint8(bytes, cursor);
+  if (result.spectral_line_frequency == 0) {
+    throw new Error("Invalid spectral_line_frequency value in sensor data config!");
+  }
+
+  // bytes[6]
+  result.scale = data_scale_lookup(decode_uint8(bytes, cursor));
+
+  return result;
+}
+
+function data_scale_lookup(scale_idx) {
+  var scale_value = [0.0100000000000000, 0.0108175019990394, 0.0117018349499221, 0.0126584622963211, 0.0136932941195217, 0.0148127236511360, 0.0160236667707382, 0.0173336047324401, 0.0187506303843729, 0.0202834981666202, 0.0219416781964925, 0.0237354147752836, 0.0256757896779659, 0.0277747906168310, 0.0300453853020469, 0.0325016015566801, 0.0351586139811367, 0.0380328377024400, 0.0411420297875284, 0.0445053989471126, 0.0481437242078435, 0.0520794832859547, 0.0563369914554751, 0.0609425517689466, 0.0659246175587139, 0.0713139682227294, 0.0771438993808804, 0.0834504285766365, 0.0902725177948457, 0.0976523141704060, 0.105635410374919, 0.114271126290003, 0.123612813707458, 0.133718185938731, 0.144649674370014, 0.156474814165802, 0.169266661503788, 0.183104244918794, 0.198073053544165, 0.214265565266983, 0.231781818060089, 0.250730028020599, 0.271227257933203, 0.293400140488639, 0.317385660625428, 0.343332001828200, 0.371399461611073, 0.401761441841993, 0.434605520026269, 0.470134608167771, 0.508568206367245, 0.550143758902554, 0.595118121168740, 0.643769146540740, 0.696397402962432, 0.753328029867193, 0.814912746902074, 0.881532026865585, 0.953597446283568, 1.03155422814513, 1.11588399250775, 1.20710773196486, 1.30578903035857, 1.41253754462275, 1.52801277126748, 1.65292812077436, 1.78805532507451, 1.93422920533864, 2.09235282953511, 2.26340309161917, 2.44843674682223, 2.64859694032709, 2.86512026966378, 3.09934442445761, 3.35271645072817, 3.62680169079642, 3.92329345403096, 4.24402347817979, 4.59097324591799, 4.96628622652541, 5.37228111832403, 5.81146617368716, 6.28655469512105, 6.80048179815422, 7.35642254459641, 7.95781155819499, 8.60836424387529, 9.31209974165798, 10.0733657570639, 10.8968654214094, 11.7876863479359, 12.7513320632845, 13.7937560084995, 14.9213983196205, 16.1412256150957, 17.4607740358243, 18.8881958037304, 20.4323095865101, 22.1026549797064, 23.9095514427051, 25.8641620527597, 27.9785624709206, 30.2658155459431, 32.7400520170796, 35.4165578143412, 38.3118684955729, 41.4438714037792, 44.8319161758313, 48.4969342852820, 52.4615683578319, 56.7503120583586, 61.3896614137401, 66.4082785063484, 71.8371685495186, 77.7098714389746, 84.0626689636199, 90.9348089558542, 98.3687477662216, 106.410412560410, 115.109485059084, 124.519708473503, 134.699219533192, 145.710907656935, 157.622803486073, 170.508499180478, 184.447603073803, 199.526231496888];
+
+  if (scale_idx >= 127) {
+    throw new Error("Invalid scale index in sensor data config!");
+  }
+
+  return scale_value[scale_idx];
 }
 
 // helper function to parse reboot_info
@@ -761,14 +852,7 @@ function reboot_lookup_minor(reboot_reason) {
     case 0:
       return ""; // No minor reboot reason
     case 1:
-      switch (minor_reboot_reason) {
-        case 0:
-          return "success";
-        case 1:
-          return "rejected";
-        default:
-          return "unknown";
-      }
+      return ""; // No minor reboot reason
     case 2:
       switch (minor_reboot_reason) {
         case 0:
@@ -834,7 +918,7 @@ function deactivation_reason_lookup(deactivation_id) {
   }
 }
 
-Object.prototype.in = function() {
+Object.prototype.in = function () {
   for (var i = 0; i < arguments.length; i++)
     if (arguments[i] == this) return true;
   return false;
@@ -1142,16 +1226,16 @@ function decode_sensor_event_msg_normal(bytes, cursor) {
 
   // byte[9,10]
   temperature = decode_int16(bytes, cursor) / 100;
-  
+
   if (sensor_event.selection == "min_only") {
-    sensor_event.rms_velocity = {x:  { min: x}, y:  { min: y}, z:  { min: z}};
-    sensor_event.temperature = {min: temperature};
+    sensor_event.rms_velocity = { x: { min: x }, y: { min: y }, z: { min: z } };
+    sensor_event.temperature = { min: temperature };
   } else if (sensor_event.selection == "max_only") {
-    sensor_event.rms_velocity = {x:  { max: x}, y:  { max: y}, z:  { max: z}};
-    sensor_event.temperature = {max: temperature};
+    sensor_event.rms_velocity = { x: { max: x }, y: { max: y }, z: { max: z } };
+    sensor_event.temperature = { max: temperature };
   } else if (sensor_event.selection == "avg_only") {
-    sensor_event.rms_velocity = {x:  { avg: x}, y:  { avg: y}, z:  { avg: z}};
-    sensor_event.temperature = {avg: temperature};
+    sensor_event.rms_velocity = { x: { avg: x }, y: { avg: y }, z: { avg: z } };
+    sensor_event.temperature = { avg: temperature };
   } else {
     throw new Error("Only min, max, or, avg is accepted!");
   }
@@ -1206,20 +1290,20 @@ function decode_sensor_event_msg_extended(bytes, cursor) {
   // byte[20..25]
   sensor_event.acceleration.x = {};
   sensor_event.acceleration.x.min = decode_acceleration_v3(bytes, cursor);
-  sensor_event.acceleration.x.max = decode_acceleration_v3(bytes, cursor);
-  sensor_event.acceleration.x.avg = decode_acceleration_v3(bytes, cursor);
+  sensor_event.acceleration.x.peak = decode_acceleration_v3(bytes, cursor);
+  sensor_event.acceleration.x.rms = decode_acceleration_v3(bytes, cursor);
 
   // byte[26..31]
   sensor_event.acceleration.y = {};
   sensor_event.acceleration.y.min = decode_acceleration_v3(bytes, cursor);
-  sensor_event.acceleration.y.max = decode_acceleration_v3(bytes, cursor);
-  sensor_event.acceleration.y.avg = decode_acceleration_v3(bytes, cursor);
+  sensor_event.acceleration.y.peak = decode_acceleration_v3(bytes, cursor);
+  sensor_event.acceleration.y.rms = decode_acceleration_v3(bytes, cursor);
 
   // byte[32..37]
   sensor_event.acceleration.z = {};
   sensor_event.acceleration.z.min = decode_acceleration_v3(bytes, cursor);
-  sensor_event.acceleration.z.max = decode_acceleration_v3(bytes, cursor);
-  sensor_event.acceleration.z.avg = decode_acceleration_v3(bytes, cursor);
+  sensor_event.acceleration.z.peak = decode_acceleration_v3(bytes, cursor);
+  sensor_event.acceleration.z.rms = decode_acceleration_v3(bytes, cursor);
 
   // byte[38..43]
   sensor_event.temperature = {};
@@ -1396,16 +1480,20 @@ function decode_sensor_data_msg(bytes, cursor, protocol_version) {
     throw new Error("Invalid sensor_data message length " + bytes.length + " instead of " + expected_length);
   }
 
-  // byte[1..5]
-  sensor_data.config = decode_sensor_data_config(bytes, cursor, protocol_version);
-
-  // byte[6..45]
-  sensor_data.raw = [];
-  while (cursor.value < bytes.length) {
-    sensor_data.raw[cursor.value - 6] = bytes[cursor.value];
-
-    cursor.value += 1;
+  if (protocol_version == 3) {
+    // byte[1..6]
+    sensor_data.config = decode_sensor_data_config_v3(bytes, cursor);
+    chunk_size = 39;
+    data_offset = 7;
+  } else {
+    // byte[1..5]
+    sensor_data.config = decode_sensor_data_config(bytes, cursor, protocol_version);
+    chunk_size = 40;
+    data_offset = 6;
   }
+
+  // byte[data_offset..45] data_offset depending on protocol version
+  sensor_data.raw = bytes.slice(data_offset);
 
   // Process raw data
   sensor_data.frequency = [];
@@ -1413,20 +1501,45 @@ function decode_sensor_data_msg(bytes, cursor, protocol_version) {
 
   // convert from bin to Hz
   var binToHzFactor = 1.62762;
-  for (i = 0; i < 40; i++) {
-    sensor_data.frequency[i] = sensor_data.config.start_frequency * binToHzFactor +
-      (sensor_data.config.frame_number * 40 * sensor_data.config.spectral_line_frequency * binToHzFactor) +
-      (i * sensor_data.config.spectral_line_frequency * binToHzFactor);
+  var spectral_line_frequency = sensor_data.config.spectral_line_frequency * binToHzFactor;
+  // Start frequency
+  var frequency_offset = sensor_data.config.start_frequency * binToHzFactor;
+  // Frequency offset for the chunk
+  frequency_offset += sensor_data.config.frame_number * chunk_size * spectral_line_frequency;
+  for (i = 0; i < chunk_size; i++) {
+    var sample_fre
+    sensor_data.frequency[i] = frequency_offset + i * spectral_line_frequency;
     sensor_data.magnitude[i] = sensor_data.raw[i] * sensor_data.config.scale / 255;
-    sensor_data.frequency[i] = sensor_data.frequency[i];
+
   }
 
   return sensor_data;
 }
 
+function handle_generic_messages(fPort, bytes, decoded) {
+  var FPORT_FIRMWARE_MANAGEMENT_PROTOCOL_SPECIFICATION = 203; // Firmware Management Protocol Specification TS006-1.0.0
+  var cursor = {};   // keeping track of which byte to process.
+  cursor.value = 0;  // Start from 0
+
+  switch (fPort) {
+    case FPORT_FIRMWARE_MANAGEMENT_PROTOCOL_SPECIFICATION: {
+      var CID_DEV_VERSION = 0x01;
+      var cid = decode_uint8(bytes, cursor);
+      switch (cid) {
+        case CID_DEV_VERSION:
+          decoded.DevVersion = { FW_version: "0x" + uint32_to_hex(decode_uint32(bytes, cursor)), HW_version: "0x" + uint32_to_hex(decode_uint32(bytes, cursor)) }
+          break;
+      }
+      return true;
+    }
+    default:
+      return false;
+  }
+}
+
 /**
- * Filename          : encoder_vb_doc-F_rev-6.js
- * Latest commit     : 02cd34799
+ * Filename          : encoder_vb_doc-F_rev-8.js
+ * Latest commit     : 5a3490992
  * Protocol document : F
  *
  * Release History
@@ -1462,9 +1575,16 @@ function decode_sensor_data_msg(bytes, cursor, protocol_version) {
  * -- Updated lorawan_fsb_mask representation to disable_switch to dedicate 1 bit to every band (8 channels)
  * -- Uses ThingPark as default entry point where fPort is not an input but an output.
  *
- * YYYY-MM-DD revision X
- * -
+ * 2022-11-22 revision 7
+ * - Remove velocity and acceleration scale from sensor data config as VB now has auto scaling
  *
+ * 2022-12-01 revision 8
+ * - Removed scaling from sensor data config, as it is obsolete due to  auto scaling
+ * - Changed "frequency_range.peak_acceleration" to "frequency_range.acceleration" in sensor configuration message
+ * - Changed "frequency_range.rms_velocity" to "frequency_range.velocity" in sensor configuration message
+ * 
+ * YYYY-MM-DD revision X
+ * 
  */
 
 var mask_byte = 255;
@@ -1749,8 +1869,8 @@ function encode_vb_sensor_config_v3(bytes, payload) {
   }
 
   encode_frequency_range(bytes,
-    payload.frequency_range.rms_velocity,
-    payload.frequency_range.peak_acceleration);
+    payload.frequency_range.velocity,
+    payload.frequency_range.acceleration);
 }
 
 function encode_vb_sensor_config(bytes, obj) {
@@ -1916,12 +2036,6 @@ function encode_vb_sensor_data_config_v3(bytes, payload) {
   encode_uint8(bytes, payload.frequency.resolution.velocity);
   // byte[38]
   encode_uint8(bytes, payload.frequency.resolution.acceleration);
-
-  // byte[39]
-  encode_sci_6(bytes, payload.scale.velocity);
-
-  // byte[40]
-  encode_sci_6(bytes, payload.scale.acceleration);
 }
 
 function encode_region_config_v3(bytes, payload) {
