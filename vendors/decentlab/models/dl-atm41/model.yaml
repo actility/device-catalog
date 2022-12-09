@@ -45,3 +45,13 @@ sensors:
     - temperature:Cel
     - humidity:%RH
     - batteryVoltage:V
+# Driver examples
+# A list of examples description that are compatible with this model
+examples:
+    - dl:dl-atm41:1:
+        - "uplink containing only the first sensor's data that gives battery voltage"
+        - "uplink containing only second sensor's data that gives the weather parameters"
+        - "uplink containing both sensor's data that gives the full measurements"
+    - os1-dece:dl-atm41:1:
+        - "Example 1"
+        - "Example 2"
