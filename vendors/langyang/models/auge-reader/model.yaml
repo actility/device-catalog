@@ -39,3 +39,25 @@ specificationURL: https://www.langyangtech.com/?page_id=2032&lang=en#
 userGuideURL: 
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors: 
+# Driver examples
+# A list of examples description that are compatible with this model
+examples:
+    - langyang:smart-meter:5:
+        - "uplink containing dummy data"
+        - "uplink containing upload pic frame"
+        - "uplink containing check the completion of the picture frame"
+        - "uplink containing upload result value frame"
+        - "uplink containing upload result value frame with negative finalResult"
+        - "uplink containing upload errlist frame when configuration file without image"
+        - "uplink containing upload errlist frame when false device type"
+        - "uplink containing the device registration"
+        - "uplink containing the request of configuration"
+        - "downlink containing server response on the pic check frame"
+        - "downlink containing server response on data upload frame when no pic upload and alarm wakeup mode"
+        - "downlink containing server response on data upload frame when alarm wakeup mode"
+        - "downlink containing server response on data upload frame when interval wakeup mode"
+        - "downlink containing server response when analysis failed"
+        - "downlink containing dummy data"
+        - "downlink containing registration response when the state is failed"
+        - "downlink containing registration response when the state is success"
+        - "downlink containing configuration response"
