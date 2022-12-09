@@ -34,7 +34,6 @@ LoRaWANCertified:
 modelId: ellenex:pts2-l:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId: 
-    - ellenex:pts2-l:1
     - os1-elle:pts2-l:1
 # DataSheet URL (optional) 
 specificationURL: https://www.ellenex.com/_files/ugd/dc15ca_bb06e1e8b657409a82507858ef2ff81d.pdf
@@ -43,3 +42,9 @@ userGuideURL:
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
     - batteryVoltage:V
+# Driver examples
+# A list of examples description that are compatible with this model
+examples:
+    - os1-elle:pts2-l:1:
+        - "payload 01 e8 00 fb 58 00 00 22 -> pressure -1192 bar, batteryVoltage 3.4V"
+        - "positive payload 01 e8 00 00 d6 00 00 22 -> pressure 214 bar, batteryVoltage 3.4V"
