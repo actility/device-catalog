@@ -1,7 +1,7 @@
 # Commercial name of the model 
 name: Atm'O
 # Functional description of the product. Maximum 500 characters. 
-description: "The nke WATTECO Atm’O has sensors for measuring temperature, relative humidity, and atmospheric pressure in outdoors and industrial environments, and transmits the data over a public or private LoRaWAN® radio network."
+description: "The WATTECO Atm’O has sensors for measuring temperature, relative humidity, and atmospheric pressure in outdoors and industrial environments, and transmits the data over a public or private LoRaWAN® radio network."
 # Logo of the device
 logo: nke-atmo-sensor.png
 # Product name & Version
@@ -14,19 +14,19 @@ deviceProfileId:
  
 # You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
 # Maximum device TX Conducted output power in dBm. 
-maxTxPower:
+maxTxPower:14
 # Minimum device TX Conducted output power in dBm. 
-minTxPower:
+minTxPower:2
 # Maximum device TX Radiated output power in dBm.  
-maxTxEIRP:
+maxTxEIRP:16
 # Minimum device TX Radiated output power in dBm.  
-minTxEIRP:
+minTxEIRP:2
 # Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'  
 # or 'random' (not known, changes over time). 
-motionIndicator:
+motionIndicator: near_static
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
-LoRaWANCertified: 
+LoRaWANCertified: false
 # Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
 modelId: nke:atmo:3
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
@@ -36,6 +36,10 @@ protocolId:
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 
-userGuideURL: 
+userGuideURL: https://support.watteco.com/atmo/
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
+    - pressure:hPa
+    - temperature:Cel
+    - humidity:%RH
+    - batteryVoltage:mV
