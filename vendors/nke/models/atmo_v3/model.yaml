@@ -16,7 +16,7 @@ deviceProfileId:
 # Maximum device TX Conducted output power in dBm. 
 maxTxPower:14
 # Minimum device TX Conducted output power in dBm. 
-minTxPower:0
+minTxPower:2
 # Maximum device TX Radiated output power in dBm.  
 maxTxEIRP:16
 # Minimum device TX Radiated output power in dBm.  
@@ -38,4 +38,8 @@ specificationURL:
 # User Guide URL (optional) 
 userGuideURL: https://support.watteco.com/atmo/
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
-sensors: pressure,temperature,humidity,batteryVoltage
+sensors:
+    - pressure:hPa
+    - temperature:Cel
+    - humidity:%RH
+    - batteryVoltage:mV
