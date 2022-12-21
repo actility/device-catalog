@@ -122,16 +122,16 @@ function extractPoints(input) {
     var result = {};
 
     if (typeof input.message.temp !== "undefined") {
-        result.temperature = input.message.temp;
+        result.temperature = { unitId: "Cel", record: input.message.temp };
     }
     if (typeof input.message.proxx !== "undefined") {
-        result.distance = input.message.proxx;
+        result.distance = { unitId: "m", record: input.message.proxx };
     }
     if (typeof input.message.battery_vol !== "undefined") {
-        result.batteryVoltage = input.message.battery_vol;
+        result.batteryVoltage = { unitId: "V", record: input.message.battery_vol };
     }
     if (typeof input.message.longitude !== "undefined" && typeof input.message.latitude !== "undefined") {
-        result.location = [input.message.longitude, input.message.latitude];
+        result.location = { unitId: "GPS", record: [input.message.longitude, input.message.latitude] };
     }
     return result;
 }
