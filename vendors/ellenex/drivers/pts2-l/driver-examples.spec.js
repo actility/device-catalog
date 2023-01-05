@@ -1,8 +1,5 @@
 const driver = require("./index.js");
-const fs = require("fs");
-
-// Get the list of examples
-const examples = JSON.parse(fs.readFileSync(__dirname + "/examples.json"));
+const examples = require("./examples.json");
 
 /*..............
 Test suites

@@ -1,4 +1,3 @@
-var driver = require("../index");
 const fs = require("fs");
 const vm2 = require("vm2");
 const yaml = require("js-yaml");
