@@ -1,0 +1,236 @@
+[
+    {
+        "description": "Base_LD_config complete_message v3",
+        "type": "downlink",
+        "bytes": "300000000005D1",
+        "fPort": 7,
+        "time": "2020-08-02T20:00:00.000+05:00",
+        "data": {
+            "config_update_req": {
+                "config_type": "base",
+                "protocol_version": 3,
+                "tag": "0x00000000",
+                "payload": {
+                    "switch_mask": {
+                        "enable_confirmed_event_message": true,
+                        "enable_confirmed_data_message": false,
+                        "allow_deactivation": true
+                    },
+                    "periodic_message_random_delay_seconds": 17,
+                    "status_message_interval": "2 days"
+                }
+            }
+        }
+    },
+    {
+        "description": "Base_LD_config payload_only none v3",
+        "type": "downlink",
+        "bytes": "30000000000000",
+        "fPort": 7,
+        "time": "2020-08-02T20:00:00.000+05:00",
+        "data": {
+            "config_update_req": {
+                "config_type": "base",
+                "protocol_version": 3,
+                "tag": "0x00000000",
+                "payload": {
+                    "switch_mask": {
+                        "enable_confirmed_event_message": false,
+                        "enable_confirmed_data_message": false,
+                        "allow_deactivation": false
+                    },
+                    "periodic_message_random_delay_seconds": 0,
+                    "status_message_interval": "2 minutes"
+                }
+            }
+        }
+    },
+    {
+        "description": "Base_LD_Config officialconfig v3",
+        "type": "downlink",
+        "bytes": "3070496c0907FF",
+        "fPort": 7,
+        "time": "2020-08-02T20:00:00.000+05:00",
+        "data": {
+            "config_update_req": {
+                "config_type": "base",
+                "protocol_version": 3,
+                "tag": "0x096c4970",
+                "payload": {
+                    "switch_mask": {
+                        "enable_confirmed_event_message": true,
+                        "enable_confirmed_data_message": true,
+                        "allow_deactivation": true
+                    },
+                    "periodic_message_random_delay_seconds": 31,
+                    "status_message_interval": "5 days"
+                }
+            }
+        }
+    },
+    {
+        "description": "V3 Region config message – Compl – EU868",
+        "type": "downlink",
+        "bytes": "31FFFFFFFF01185C000000300E",
+        "fPort": 7,
+        "time": "2020-08-02T20:00:00.000+05:00",
+        "data": {
+            "config_update_req": {
+                "config_type": "region",
+                "protocol_version": 3,
+                "tag": "0xFFFFFFFF",
+                "payload": {
+                    "channel_plan": "EU868",
+                    "join_trials": {
+                        "holdoff_hours_max": 24,
+                        "holdoff_steps": 4,
+                        "burst_count": 12
+                    },
+                    "disable_switch": {
+                        "frequency_bands": "0x0000",
+                        "dwell_time": false
+                    },
+                    "rx1_delay": 0,
+                    "adr": {
+                        "ack_limit_exp": 4,
+                        "ack_delay_exp": 1,
+                        "mode": 0
+                    },
+                    "max_tx_power": 14                    
+                }
+            }
+        }
+    },
+    {
+        "description": "V3 Region config message – Compl – US915",
+        "type": "downlink",
+        "bytes": "31FFFFFFFF02188D0000003008",
+        "fPort": 7,
+        "time": "2020-08-02T20:00:00.000+05:00",
+        "data": {
+            "config_update_req": {
+                "config_type": "region",
+                "protocol_version": 3,
+                "tag": "0xFFFFFFFF",
+                "payload": {
+                    "channel_plan": "US915",
+                    "join_trials": {
+                        "holdoff_hours_max": 24,
+                        "holdoff_steps": 5,
+                        "burst_count": 18
+                    },
+                    "disable_switch": {
+                        "frequency_bands": "0x0000",
+                        "dwell_time": false
+                    },
+                    "rx1_delay": 0,
+                    "adr": {
+                        "ack_limit_exp": 4,
+                        "ack_delay_exp": 1,
+                        "mode": 0
+                    },
+                    "max_tx_power": 8                    
+                }
+            }
+        }
+    },
+    {
+        "description": "VB_Sens_config complete official v3",
+        "type": "downlink",
+        "bytes": "33F2DA77FD06030F100003",
+        "fPort": 7,
+        "time": "2020-08-02T20:00:00.000+05:00",
+        "data": {
+            "config_update_req": {
+                "config_type": "sensor",
+                "protocol_version": 3,
+                "tag": "0xfd77daf2",
+                "payload": {
+                    "device_type": "vb",
+                    "switch_mask": {
+                        "selection": "avg_only"
+                    },
+                    "measurement_interval_minutes": 15,
+                    "periodic_event_message_interval": 16,
+                    "frequency_range": {
+                        "velocity": "range_2",
+                        "acceleration": "range_2"
+                    }
+                }
+            }
+        }
+    },
+    {
+        "description": "VB_Sens_data_config complete official v3",
+        "type": "downlink",
+        "bytes": "34EB23C8EE0600A0053C000500000000000000000000000000000000000000000203007E003D0000100102",
+        "fPort": 7,
+        "time": "2020-08-02T20:00:00.000+05:00",
+        "data": {
+            "config_update_req": {
+                "config_type": "sensor_data",
+                "protocol_version": 3,
+                "tag": "0xeec823eb",
+                "payload": {
+                    "device_type": "vb",
+                    "calculation_trigger": {
+                        "on_event": false,
+                        "on_threshold": false,
+                        "on_button_press": false
+                    },
+                    "calculation_interval": 1440,
+                    "fragment_message_interval": 60,
+                    "threshold_window": 10,
+                    "trigger_thresholds": [
+                        {
+                            "unit": "velocity",
+                            "frequency": 0,
+                            "magnitude": 0
+                        },
+                        {
+                            "unit": "velocity",
+                            "frequency": 0,
+                            "magnitude": 0
+                        },
+                        {
+                            "unit": "velocity",
+                            "frequency": 0,
+                            "magnitude": 0
+                        },
+                        {
+                            "unit": "velocity",
+                            "frequency": 0,
+                            "magnitude": 0
+                        },
+                        {
+                            "unit": "velocity",
+                            "frequency": 0,
+                            "magnitude": 0
+                        }
+                    ],
+                    "selection": {
+                        "axis": "z",
+                        "resolution": "low_res",
+                        "enable_hanning_window": false
+                    },
+                    "frequency": {
+                        "span": {
+                            "velocity": {
+                                "start": 3,
+                                "stop": 126
+                            },
+                            "acceleration": {
+                                "start": 61,
+                                "stop": 4096
+                            }
+                        },
+                        "resolution": {
+                            "velocity": 1,
+                            "acceleration": 2
+                        }
+                    }
+                }
+            }
+        }
+    }
+]
