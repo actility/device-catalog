@@ -49,7 +49,9 @@
  * - Changed "acceleration.max" to "acceleration.peak" in sensor event
  * - Removed minor reboot reason config
  * 
- * YYYY-MM-DD revision X
+ * 2023-01-18 revision 8a
+ *  - Added US conversion
+ *  - This is a local change in Actility repo only, it will be overwritten by upstream changes later
  *
  */
 
@@ -153,6 +155,10 @@ function Decode(fPort, bytes) { // Used for ChirpStack (aka LoRa Network Server)
   var STR_DEVICE_STATUS = "device_status";
   var STR_SENSOR_DATA = "sensor_data";
 
+  var CONVERT_UNIT_VELOCITY = "mm->in";
+  var CONVERT_UNIT_ACCELERATION = "m->ft";
+  var CONVERT_UNIT_TEMPERATURE = "C->F";
+
   var decoded = {};
 
   if (fPort == 0 || bytes.length == 0) {
@@ -187,11 +193,11 @@ function Decode(fPort, bytes) { // Used for ChirpStack (aka LoRa Network Server)
           break;
 
         case STR_SENSOR_EVENT:
-          decoded.sensor_event = decode_sensor_event_msg(bytes, cursor);
+          decoded.sensor_event = decode_sensor_event_msg(bytes, cursor, CONVERT_UNIT_VELOCITY, CONVERT_UNIT_ACCELERATION, CONVERT_UNIT_TEMPERATURE);
           break;
 
         case STR_DEVICE_STATUS:
-          decoded.device_status = decode_device_status_msg(bytes, cursor);
+          decoded.device_status = decode_device_status_msg(bytes, cursor, CONVERT_UNIT_TEMPERATURE);
           break;
 
         case STR_SENSOR_DATA:
@@ -214,13 +220,13 @@ function Decode(fPort, bytes) { // Used for ChirpStack (aka LoRa Network Server)
 
         case FPORT_DEVICE_STATUS:
           header = decode_header_v3(bytes, cursor);
-          decoded.device_status = decode_device_status_msg_v3(bytes, cursor);
+          decoded.device_status = decode_device_status_msg_v3(bytes, cursor, CONVERT_UNIT_TEMPERATURE);
           decoded.device_status.protocol_version = header.protocol_version;
           break;
 
         case FPORT_SENSOR_EVENT:
           header = decode_header_v3(bytes, cursor);
-          decoded.sensor_event = decode_sensor_event_msg_v3(bytes, cursor);
+          decoded.sensor_event = decode_sensor_event_msg_v3(bytes, cursor, CONVERT_UNIT_VELOCITY, CONVERT_UNIT_ACCELERATION, CONVERT_UNIT_TEMPERATURE);
           decoded.sensor_event.protocol_version = header.protocol_version;
           break;
 
@@ -1108,7 +1114,7 @@ function decode_deactivated_msg(bytes, cursor) {
   return deactivated;
 }
 
-function decode_sensor_event_msg(bytes, cursor) {
+function decode_sensor_event_msg(bytes, cursor, velocity_conversion, acceleration_conversion, temperature_conversion) {
   var sensor_event = {};
 
   var expected_length = 45;
@@ -1124,47 +1130,47 @@ function decode_sensor_event_msg(bytes, cursor) {
 
   // byte[2..7]
   sensor_event.rms_velocity.x = {};
-  sensor_event.rms_velocity.x.min = decode_uint16(bytes, cursor) / 100;
-  sensor_event.rms_velocity.x.max = decode_uint16(bytes, cursor) / 100;
-  sensor_event.rms_velocity.x.avg = decode_uint16(bytes, cursor) / 100;
+  sensor_event.rms_velocity.x.min = convert_unit(velocity_conversion, decode_uint16(bytes, cursor) / 100);
+  sensor_event.rms_velocity.x.max = convert_unit(velocity_conversion, decode_uint16(bytes, cursor) / 100);
+  sensor_event.rms_velocity.x.avg = convert_unit(velocity_conversion, decode_uint16(bytes, cursor) / 100);
 
   // byte[8..13]
   sensor_event.rms_velocity.y = {};
-  sensor_event.rms_velocity.y.min = decode_uint16(bytes, cursor) / 100;
-  sensor_event.rms_velocity.y.max = decode_uint16(bytes, cursor) / 100;
-  sensor_event.rms_velocity.y.avg = decode_uint16(bytes, cursor) / 100;
+  sensor_event.rms_velocity.y.min = convert_unit(velocity_conversion, decode_uint16(bytes, cursor) / 100);
+  sensor_event.rms_velocity.y.max = convert_unit(velocity_conversion, decode_uint16(bytes, cursor) / 100);
+  sensor_event.rms_velocity.y.avg = convert_unit(velocity_conversion, decode_uint16(bytes, cursor) / 100);
 
   // byte[14..19]
   sensor_event.rms_velocity.z = {};
-  sensor_event.rms_velocity.z.min = decode_uint16(bytes, cursor) / 100;
-  sensor_event.rms_velocity.z.max = decode_uint16(bytes, cursor) / 100;
-  sensor_event.rms_velocity.z.avg = decode_uint16(bytes, cursor) / 100;
+  sensor_event.rms_velocity.z.min = convert_unit(velocity_conversion, decode_uint16(bytes, cursor) / 100);
+  sensor_event.rms_velocity.z.max = convert_unit(velocity_conversion, decode_uint16(bytes, cursor) / 100);
+  sensor_event.rms_velocity.z.avg = convert_unit(velocity_conversion, decode_uint16(bytes, cursor) / 100);
 
   sensor_event.acceleration = {};
 
   // byte[20..25]
   sensor_event.acceleration.x = {};
-  sensor_event.acceleration.x.min = decode_int16(bytes, cursor) / 100;
-  sensor_event.acceleration.x.max = decode_int16(bytes, cursor) / 100;
-  sensor_event.acceleration.x.avg = decode_int16(bytes, cursor) / 100;
+  sensor_event.acceleration.x.min = convert_unit(acceleration_conversion, decode_int16(bytes, cursor) / 100);
+  sensor_event.acceleration.x.max = convert_unit(acceleration_conversion, decode_int16(bytes, cursor) / 100);
+  sensor_event.acceleration.x.avg = convert_unit(acceleration_conversion, decode_int16(bytes, cursor) / 100);
 
   // byte[26..31]
   sensor_event.acceleration.y = {};
-  sensor_event.acceleration.y.min = decode_int16(bytes, cursor) / 100;
-  sensor_event.acceleration.y.max = decode_int16(bytes, cursor) / 100;
-  sensor_event.acceleration.y.avg = decode_int16(bytes, cursor) / 100;
+  sensor_event.acceleration.y.min = convert_unit(acceleration_conversion, decode_int16(bytes, cursor) / 100);
+  sensor_event.acceleration.y.max = convert_unit(acceleration_conversion, decode_int16(bytes, cursor) / 100);
+  sensor_event.acceleration.y.avg = convert_unit(acceleration_conversion, decode_int16(bytes, cursor) / 100);
 
   // byte[32..37]
   sensor_event.acceleration.z = {};
-  sensor_event.acceleration.z.min = decode_int16(bytes, cursor) / 100;
-  sensor_event.acceleration.z.max = decode_int16(bytes, cursor) / 100;
-  sensor_event.acceleration.z.avg = decode_int16(bytes, cursor) / 100;
+  sensor_event.acceleration.z.min = convert_unit(acceleration_conversion, decode_int16(bytes, cursor) / 100);
+  sensor_event.acceleration.z.max = convert_unit(acceleration_conversion, decode_int16(bytes, cursor) / 100);
+  sensor_event.acceleration.z.avg = convert_unit(acceleration_conversion, decode_int16(bytes, cursor) / 100);
 
   // byte[38..43]
   sensor_event.temperature = {};
-  sensor_event.temperature.min = decode_int16(bytes, cursor) / 100;
-  sensor_event.temperature.max = decode_int16(bytes, cursor) / 100;
-  sensor_event.temperature.avg = decode_int16(bytes, cursor) / 100;
+  sensor_event.temperature.min = convert_unit(temperature_conversion, decode_int16(bytes, cursor) / 100);
+  sensor_event.temperature.max = convert_unit(temperature_conversion, decode_int16(bytes, cursor) / 100);
+  sensor_event.temperature.avg = convert_unit(temperature_conversion, decode_int16(bytes, cursor) / 100);
 
   // byte[44]
   var conditions = decode_uint8(bytes, cursor);
@@ -1178,21 +1184,21 @@ function decode_sensor_event_msg(bytes, cursor) {
   return sensor_event;
 }
 
-function decode_sensor_event_msg_v3(bytes, curser) {
+function decode_sensor_event_msg_v3(bytes, curser, velocity_conversion, acceleration_conversion, temperature_conversion) {
   var expected_length_normal = 11;
   var expected_length_extended = 45;
   if (bytes.length == expected_length_normal) {
-    return decode_sensor_event_msg_normal(bytes, curser);
+    return decode_sensor_event_msg_normal(bytes, curser, velocity_conversion, temperature_conversion);
   }
   else if (bytes.length == expected_length_extended) {
-    return decode_sensor_event_msg_extended(bytes, curser);
+    return decode_sensor_event_msg_extended(bytes, curser, velocity_conversion, acceleration_conversion, temperature_conversion);
   }
   else {
     throw new Error("Invalid sensor_event message length " + bytes.length + " instead of " + expected_length_normal + " or " + expected_length_extended);
   }
 }
 
-function decode_sensor_event_msg_normal(bytes, cursor) {
+function decode_sensor_event_msg_normal(bytes, cursor, velocity_conversion, temperature_conversion) {
   var sensor_event = {};
 
   // byte[1]
@@ -1216,16 +1222,16 @@ function decode_sensor_event_msg_normal(bytes, cursor) {
   sensor_event.rms_velocity = {};
 
   // byte[3,4]
-  x = decode_uint16(bytes, cursor) / 100;
+  x = convert_unit(velocity_conversion, decode_uint16(bytes, cursor) / 100);
 
   // byte[5,6]
-  y = decode_uint16(bytes, cursor) / 100;
+  y = convert_unit(velocity_conversion, decode_uint16(bytes, cursor) / 100);
 
   // byte[7,8]
-  z = decode_uint16(bytes, cursor) / 100;
+  z = convert_unit(velocity_conversion, decode_uint16(bytes, cursor) / 100);
 
   // byte[9,10]
-  temperature = decode_int16(bytes, cursor) / 100;
+  temperature = convert_unit(temperature_conversion, decode_int16(bytes, cursor) / 100);
 
   if (sensor_event.selection == "min_only") {
     sensor_event.rms_velocity = { x: { min: x }, y: { min: y }, z: { min: z } };
@@ -1244,7 +1250,7 @@ function decode_sensor_event_msg_normal(bytes, cursor) {
   return sensor_event;
 }
 
-function decode_sensor_event_msg_extended(bytes, cursor) {
+function decode_sensor_event_msg_extended(bytes, cursor, velocity_conversion, acceleration_conversion, temperature_conversion) {
   var sensor_event = {};
 
   // byte[1]
@@ -1269,65 +1275,65 @@ function decode_sensor_event_msg_extended(bytes, cursor) {
 
   // byte[2..7]
   sensor_event.rms_velocity.x = {};
-  sensor_event.rms_velocity.x.min = decode_velocity_v3(bytes, cursor);
-  sensor_event.rms_velocity.x.max = decode_velocity_v3(bytes, cursor);
-  sensor_event.rms_velocity.x.avg = decode_velocity_v3(bytes, cursor);
+  sensor_event.rms_velocity.x.min = decode_velocity_v3(bytes, cursor, velocity_conversion);
+  sensor_event.rms_velocity.x.max = decode_velocity_v3(bytes, cursor, velocity_conversion);
+  sensor_event.rms_velocity.x.avg = decode_velocity_v3(bytes, cursor, velocity_conversion);
 
   // byte[8..13]
   sensor_event.rms_velocity.y = {};
-  sensor_event.rms_velocity.y.min = decode_velocity_v3(bytes, cursor);
-  sensor_event.rms_velocity.y.max = decode_velocity_v3(bytes, cursor);
-  sensor_event.rms_velocity.y.avg = decode_velocity_v3(bytes, cursor);
+  sensor_event.rms_velocity.y.min = decode_velocity_v3(bytes, cursor, velocity_conversion);
+  sensor_event.rms_velocity.y.max = decode_velocity_v3(bytes, cursor, velocity_conversion);
+  sensor_event.rms_velocity.y.avg = decode_velocity_v3(bytes, cursor, velocity_conversion);
 
   // byte[14..19]
   sensor_event.rms_velocity.z = {};
-  sensor_event.rms_velocity.z.min = decode_velocity_v3(bytes, cursor);
-  sensor_event.rms_velocity.z.max = decode_velocity_v3(bytes, cursor);
-  sensor_event.rms_velocity.z.avg = decode_velocity_v3(bytes, cursor);
+  sensor_event.rms_velocity.z.min = decode_velocity_v3(bytes, cursor, velocity_conversion);
+  sensor_event.rms_velocity.z.max = decode_velocity_v3(bytes, cursor, velocity_conversion);
+  sensor_event.rms_velocity.z.avg = decode_velocity_v3(bytes, cursor, velocity_conversion);
 
   sensor_event.acceleration = {};
 
   // byte[20..25]
   sensor_event.acceleration.x = {};
-  sensor_event.acceleration.x.min = decode_acceleration_v3(bytes, cursor);
-  sensor_event.acceleration.x.peak = decode_acceleration_v3(bytes, cursor);
-  sensor_event.acceleration.x.rms = decode_acceleration_v3(bytes, cursor);
+  sensor_event.acceleration.x.min = decode_acceleration_v3(bytes, cursor, acceleration_conversion);
+  sensor_event.acceleration.x.peak = decode_acceleration_v3(bytes, cursor, acceleration_conversion);
+  sensor_event.acceleration.x.rms = decode_acceleration_v3(bytes, cursor, acceleration_conversion);
 
   // byte[26..31]
   sensor_event.acceleration.y = {};
-  sensor_event.acceleration.y.min = decode_acceleration_v3(bytes, cursor);
-  sensor_event.acceleration.y.peak = decode_acceleration_v3(bytes, cursor);
-  sensor_event.acceleration.y.rms = decode_acceleration_v3(bytes, cursor);
+  sensor_event.acceleration.y.min = decode_acceleration_v3(bytes, cursor, acceleration_conversion);
+  sensor_event.acceleration.y.peak = decode_acceleration_v3(bytes, cursor, acceleration_conversion);
+  sensor_event.acceleration.y.rms = decode_acceleration_v3(bytes, cursor, acceleration_conversion);
 
   // byte[32..37]
   sensor_event.acceleration.z = {};
-  sensor_event.acceleration.z.min = decode_acceleration_v3(bytes, cursor);
-  sensor_event.acceleration.z.peak = decode_acceleration_v3(bytes, cursor);
-  sensor_event.acceleration.z.rms = decode_acceleration_v3(bytes, cursor);
+  sensor_event.acceleration.z.min = decode_acceleration_v3(bytes, cursor, acceleration_conversion);
+  sensor_event.acceleration.z.peak = decode_acceleration_v3(bytes, cursor, acceleration_conversion);
+  sensor_event.acceleration.z.rms = decode_acceleration_v3(bytes, cursor, acceleration_conversion);
 
   // byte[38..43]
   sensor_event.temperature = {};
-  sensor_event.temperature.min = decode_acceleration_v3(bytes, cursor);
-  sensor_event.temperature.max = decode_acceleration_v3(bytes, cursor);
-  sensor_event.temperature.avg = decode_acceleration_v3(bytes, cursor);
+  sensor_event.temperature.min = decode_acceleration_v3(bytes, cursor, temperature_conversion);
+  sensor_event.temperature.max = decode_acceleration_v3(bytes, cursor, temperature_conversion);
+  sensor_event.temperature.avg = decode_acceleration_v3(bytes, cursor, temperature_conversion);
 
   return sensor_event;
 }
 
-function decode_velocity_v3(bytes, cursor) {
-  return decode_uint16(bytes, cursor) / 100;
+function decode_velocity_v3(bytes, cursor, unit_conversion) {
+  return convert_unit(unit_conversion, decode_uint16(bytes, cursor) / 100);
 }
 
-function decode_acceleration_v3(bytes, cursor) {
-  return decode_int16(bytes, cursor) / 100;
+function decode_acceleration_v3(bytes, cursor, unit_conversion) {
+  return convert_unit(unit_conversion, decode_int16(bytes, cursor) / 100);
 }
 
-function decode_temperature_v3(bytes, cursor) {
-  return decode_int16(bytes, cursor) / 100;
+function decode_temperature_v3(bytes, cursor, unit_conversion) {
+  return convert_unit(unit_conversion, decode_int16(bytes, cursor) / 100);
 }
 
 
-function decode_device_status_msg(bytes, cursor) {
+function decode_device_status_msg(bytes, cursor, temperature_conversion) {
   var device_status = {};
 
   var expected_length = 24;
@@ -1350,9 +1356,9 @@ function decode_device_status_msg(bytes, cursor) {
 
   // byte[9..11]
   device_status.base.temperature = {}
-  device_status.base.temperature.min = decode_int8(bytes, cursor);
-  device_status.base.temperature.max = decode_int8(bytes, cursor);
-  device_status.base.temperature.avg = decode_int8(bytes, cursor);
+  device_status.base.temperature.min = convert_unit(temperature_conversion, decode_int8(bytes, cursor));
+  device_status.base.temperature.max = convert_unit(temperature_conversion, decode_int8(bytes, cursor));
+  device_status.base.temperature.avg = convert_unit(temperature_conversion, decode_int8(bytes, cursor));
 
   // byte[12]
   device_status.base.lvds_error_counter = decode_uint8(bytes, cursor);
@@ -1388,7 +1394,7 @@ function decode_device_status_msg(bytes, cursor) {
   return device_status;
 }
 
-function decode_device_status_msg_v3(bytes, cursor) {
+function decode_device_status_msg_v3(bytes, cursor, temperature_conversion) {
   var expected_length_normal = 9;
   var expected_length_debug = 12;
   if (bytes.length != expected_length_normal && bytes.length != expected_length_debug) {
@@ -1404,7 +1410,7 @@ function decode_device_status_msg_v3(bytes, cursor) {
   device_status.base.battery_voltage = decode_battery_voltage(bytes, cursor);
 
   // byte[2]
-  device_status.base.temperature = decode_int8(bytes, cursor);
+  device_status.base.temperature = convert_unit(temperature_conversion, decode_int8(bytes, cursor));
 
   // byte[3,4]
   device_status.base.lora_tx_counter = decode_uint16(bytes, cursor);
@@ -1620,6 +1626,10 @@ function encodeDownlink(input) {
   var STR_SENSOR_DATA_CONFIG = "sensor_data";
   var STR_SENSOR_CONDITIONS_CONFIG = "sensor_conditions";
 
+  var CONVERT_UNIT_VELOCITY = "in->mm";
+  var CONVERT_UNIT_ACCELERATION = "ft->m";
+  var CONVERT_UNIT_TEMPERATURE = "F->C";
+
   // Prepare output with its default value
   var output = {};
   var bytes = [];
@@ -1653,7 +1663,7 @@ function encodeDownlink(input) {
             switch (input.device_type) {
               case "vb":
                 encode_header(bytes, MSGID_SENSOR_CONFIG, input.header.protocol_version);
-                encode_vb_sensor_config(bytes, input);
+                encode_vb_sensor_config(bytes, input, CONVERT_UNIT_VELOCITY, CONVERT_UNIT_ACCELERATION);
                 encode_uint16(bytes, calc_crc(bytes.slice(1)));
 
                 break;
@@ -1739,7 +1749,7 @@ function encodeDownlink(input) {
               // Ignore tag if there is no payload
               if (typeof req.payload != "undefined") {
                 encode_uint32(bytes, req.tag);
-                encode_vb_sensor_conditions_configuration_v3(bytes, req.payload);
+                encode_vb_sensor_conditions_configuration_v3(bytes, req.payload, CONVERT_UNIT_VELOCITY, CONVERT_UNIT_ACCELERATION);
               }
               break;
             }
@@ -1873,7 +1883,7 @@ function encode_vb_sensor_config_v3(bytes, payload) {
     payload.frequency_range.acceleration);
 }
 
-function encode_vb_sensor_config(bytes, obj) {
+function encode_vb_sensor_config(bytes, obj, velocity_conversion, acceleration_conversion) {
   encode_device_type(bytes, obj.device_type);
 
   // Timing configs
@@ -1890,7 +1900,15 @@ function encode_vb_sensor_config(bytes, obj) {
 
     // mode values
     if (obj.events[idx].mode != "off") {
-      encode_int16(bytes, obj.events[idx].mode_value / 0.01);
+      var unit_conversion = "none";
+      if (obj.events[idx].mode.startsWith("rms_velocity")) {
+        unit_conversion = velocity_conversion;
+
+      }
+      else if (obj.events[idx].mode.startsWith("peak_acceleration")) {
+        unit_conversion = acceleration_conversion;
+      }
+      encode_int16(bytes, convert_unit(unit_conversion, obj.events[idx].mode_value) / 0.01);
     } else {
       encode_int16(bytes, 0);
     }
@@ -2077,7 +2095,7 @@ function encode_region_config_v3(bytes, payload) {
   encode_int8(bytes, payload.max_tx_power);
 }
 
-function encode_vb_sensor_conditions_configuration_v3(bytes, payload) {
+function encode_vb_sensor_conditions_configuration_v3(bytes, payload, velocity_conversion, acceleration_conversion) {
   if (typeof payload == "undefined") {
     return;
   }
@@ -2090,6 +2108,7 @@ function encode_vb_sensor_conditions_configuration_v3(bytes, payload) {
   // Events configs
   var idx = 0;
   for (idx = 0; idx < 5; idx++) {                             // Unit: -
+    var unit_conversion = "none";
     // mode values
     if (payload.event_conditions[idx].mode == 'rms_velocity_x' ||
       payload.event_conditions[idx].mode == 'rms_velocity_y' ||
@@ -2097,6 +2116,7 @@ function encode_vb_sensor_conditions_configuration_v3(bytes, payload) {
       if (payload.event_conditions[idx].mode_value >= 200) {
         throw new Error("mode_value is outside of specification: " + payload.event_conditions[idx].mode_value);
       }
+      unit_conversion = velocity_conversion;
     }
     else if (payload.event_conditions[idx].mode == 'peak_acceleration_x' ||
       payload.event_conditions[idx].mode == 'peak_acceleration_y' ||
@@ -2104,8 +2124,9 @@ function encode_vb_sensor_conditions_configuration_v3(bytes, payload) {
       if (payload.event_conditions[idx].mode_value >= 150) {
         throw new Error("mode_value is outside of specification: " + payload.event_conditions[idx].mode_value);
       }
+      unit_conversion = acceleration_conversion;
     }
-    encode_event_condition_v3(bytes, payload.event_conditions[idx]);
+    encode_event_condition_v3(bytes, payload.event_conditions[idx], unit_conversion);
   }
 }
 
@@ -2157,14 +2178,14 @@ function encode_device_type(bytes, type) {
 }
 
 // helper function to encode the event condition
-function encode_event_condition_v3(bytes, event_condition) {
+function encode_event_condition_v3(bytes, event_condition, unit_conversion) {
   var event_condition_most_significant = 0;
   var temporary_mode = []; // to store the mode
 
   encode_events_mode(temporary_mode, event_condition.mode);
   event_condition_most_significant |= (temporary_mode[0] << 12);
 
-  encode_uint16(bytes, (event_condition.mode_value * 10) | event_condition_most_significant);
+  encode_uint16(bytes, convert_unit(unit_conversion, (event_condition.mode_value) * 10) | event_condition_most_significant);
 }
 
 // helper function to encode event.mode
@@ -2579,5 +2600,26 @@ function lookup_config_type(config_type) {
       return 5;
     default:
       throw new Error("Unknown config_type: " + config_type);
+  }
+}
+
+function convert_unit(conversion_type, value) {
+  switch (conversion_type) {
+    case "none":
+      return value;
+    case "m->ft":
+      return 3.28 * value;
+    case "mm->in":
+      return value / 25.4;
+    case "C->F":
+      return value * 9 / 5 + 32;
+    case "ft->m":
+      return value / 3.28;
+    case "in->mm":
+      return value * 25.4;
+    case "F->C":
+      return (value - 32) * 5 / 9;
+    default:
+      throw new Error("Invalid conversion: " + conversion_type);
   }
 }
