@@ -1589,6 +1589,10 @@ function handle_generic_messages(fPort, bytes, decoded) {
  * - Changed "frequency_range.peak_acceleration" to "frequency_range.acceleration" in sensor configuration message
  * - Changed "frequency_range.rms_velocity" to "frequency_range.velocity" in sensor configuration message
  * 
+ * 2023-01-18 revision 8a
+ *  - Added US conversion
+ *  - This is a local change in Actility repo only, it will be overwritten by upstream changes later
+ * 
  * YYYY-MM-DD revision X
  * 
  */
