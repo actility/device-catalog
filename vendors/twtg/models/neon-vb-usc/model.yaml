@@ -1,7 +1,7 @@
 # Commercial name of the model 
-name: TWTG NEON Vibration Sensor
+name: TWTG NEON Vibration Sensor (USC)
 # Functional description of the product. Maximum 500 characters. 
-description: "The NEON Vibration Sensor provides insight on vibrations (acceleration and velocity) of industrial equipment. Triggers can be set, based on which the sensors can send alerts."
+description: "The NEON Vibration Sensor provides insight on vibrations (acceleration and velocity) of industrial equipment (using United States customary units). Triggers can be set, based on which the sensors can send alerts."
 # Logo of the device
 logo: twtg-vb.png
 # Product name & Version
@@ -28,18 +28,18 @@ motionIndicator: NEAR_STATIC
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: true
 # Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
-modelId: twtg:neon-vb-us:1
+modelId: twtg:neon-vb-usc:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
-protocolId: twtg:neon-vb-us:3
+protocolId: twtg:neon-vb-usc:3
 # DataSheet URL (optional) 
 specificationURL: https://github.com/TWTG-R-D-B-V/neon-product-documentation/blob/main/VB/6016_P20-002_Data-Sheet-NEON-Vibration-Sensor_C.pdf
 # User Guide URL (optional) 
 userGuideURL: https://github.com/TWTG-R-D-B-V/neon-product-documentation/tree/main/VB/Installation%20%26%20Use
 # Available sensors following Actility ontology: https://github.com/actility/thingpark-iot-flow-js-driver/blob/master/UNITS.md 
 sensors: 
-    - temperature:Cel
-    - velocity:mm/s
-    - acceleration:m/s2
+    - temperature:Far
+    - velocity:in/s
+    - acceleration:ft/s2
     - frequency:hertz
 # Driver examples
 # A list of examples description that are compatible with this model
