@@ -96,7 +96,7 @@
                         "ack_delay_exp": 1,
                         "mode": 0
                     },
-                    "max_tx_power": 14                    
+                    "max_tx_power": 14
                 }
             }
         }
@@ -129,7 +129,7 @@
                         "ack_delay_exp": 1,
                         "mode": 0
                     },
-                    "max_tx_power": 8                    
+                    "max_tx_power": 8
                 }
             }
         }
@@ -229,6 +229,45 @@
                             "acceleration": 2
                         }
                     }
+                }
+            }
+        }
+    },
+    {
+        "description": "VB_Sens_cond_config complete v3",
+        "type": "downlink",
+        "bytes": "35000000000600100520043001400360",
+        "fPort": 7,
+        "time": "2020-08-02T20:00:00.000+05:00",
+        "data": {
+            "config_update_req": {
+                "config_type": "sensor_conditions",
+                "protocol_version": 3,
+                "tag": "0x00000000",
+                "payload": {
+                    "device_type": "vb",
+                    "event_conditions": [
+                        {
+                            "mode": "rms_velocity_x",
+                            "mode_value": 0
+                        },
+                        {
+                            "mode": "peak_acceleration_x",
+                            "mode_value": 0.5
+                        },
+                        {
+                            "mode": "rms_velocity_y",
+                            "mode_value": 0.4
+                        },
+                        {
+                            "mode": "peak_acceleration_y",
+                            "mode_value": 0.1
+                        },
+                        {
+                            "mode": "peak_acceleration_z",
+                            "mode_value": 0.3
+                        }
+                    ]
                 }
             }
         }
