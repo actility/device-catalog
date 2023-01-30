@@ -7,7 +7,7 @@
 #    RFGroup3:   au915-928 (starting from LoRaWAN 1.0.2revC)
 #    RFGroup4: as923
 # Please do not change the existing IDs (Some may follow the old format)
-id: twtg_RFGroup2_RP2-1.0.4_classA
+id: twtg_RFGroup2_RP-1.0.2revB_classA
 # LoRaWAN class of the Device: Possible values: [ A, B, C ] (Should not have several values)
 # 'A': Class A (Bi-directional end-devices with downlink listening only after uplink transmission)
 # 'B': Class B (Bi-directional end-devices with downlink listening on predefined synchronized pingslots)
@@ -27,21 +27,21 @@ mac:
     #(OTAA)
     overTheAirActivation: true
     # Supported version of the LoRaWAN MAC (Layer-2) specification. Possible values are '1.0.0/1.0.1', '1.0.2', '1.0.3', '1.0.4', '1.1'
-    loRaWANMacVersion: 1.0.4
+    loRaWANMacVersion: 1.0.2
     # Supported version of the LoRaWAN regional parameters (PHY) specification. Possible values are '1.0.2revA', '1.0.2revB', '1.0.2revC',
     # '1.0.3revA', 'RP2-1.0.0', 'RP2-1.0.1', 'RP2-1.0.2', 'RP2-1.0.3', 'RP2-1.0.4', 'RP2-1.0.5'.
-    regionalParameterVersion: RP2-1.0.4
+    regionalParameterVersion: 1.0.2revB
 
     # The device Tx Power Capabilities here will not be taken into consideration if it is overwritten in the model.yaml
     devicesTxPowerCapabilities:
         # Minimum device TX Conducted output power in dBm.
-        minTxPower: 5
+        minTxPower: -3
         # Maximum device TX Conducted output power in dBm.
         maxTxPower: 14
         # Minimum device TX Radiated output power in dBm.
-        minTxEIRP: 4
+        minTxEIRP: 8
         # Maximum device TX Radiated output power in dBm.
-        maxTxEIRP: 6
+        maxTxEIRP: 12
 
     uplinkFrameRepetition:
         # Maximum number of transmissions per uplink frame, supported by the device.
@@ -49,12 +49,12 @@ mac:
         # How many uplink transmissions does the device use in Confirmed mode if it doesn't receive any DL ACK?
         maxRedundancyForConfirmedUL:
 
-# The following section defines the default settings used by the device during iniial boot stage. Leave empty if your device respects the
+# The following section defines the default settings used by the device during initial boot stage. Leave empty if your device respects the
 # default values indicated by LoRaWAN Regional Parameters (PHY) specification. Personalize fields only when different from default PHY values.
 bootSettings:
     # Delay between the end of uplink transmission and the start of downlink RX1 slot, in milliseconds. Refer to 'receiveDelay1' in LoRaWAN
     # Specification.
-    rx1Delay:
+    rx1Delay: 1000
     # RX1 data rate offset, defining the offset between uplink data rate and the corresponding downlink data rate used for RX1 slot.
     rx1DROffset:
     # Rx2 DataRate, used to send DL packets over RX2 slot. Note: Data Rate encoding is region-specific, see the applicable LoRaWAN Regional
@@ -80,16 +80,16 @@ supportedMACCommands:
     devStatusReqAns: true
     joinRequestAccept: true
     dutyCycleReqAns: true
-    linkCheckReqAns: true
+    linkCheckReqAns: false
     rxParamSetupReqAns: true
     rxTimingSetupReqAns: true
     newChannelReqAns: true
     dlChannelReqAns: true
     txParamSetupReqAns: true
     pingSlotChannelReqAns: false
-    pingSlotInfoReqAns: true
-    deviceTimeReqAns: true
-    beaconFreqReqAns: true
+    pingSlotInfoReqAns: false
+    deviceTimeReqAns: false
+    beaconFreqReqAns: false
 
 # Does your device support [Technical Recommendation for LoRaWAN L2 1.0.x Join Security] recommending implemeting the DevNonce as a counter for
 # OTAA devices? See https://lora-alliance.org/resource_hub/technical-recommendations-for-preventing-state-synchronization-issues-around-lorawan-1-0-x-join-procedure/
