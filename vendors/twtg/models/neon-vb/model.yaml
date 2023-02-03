@@ -31,7 +31,9 @@ LoRaWANCertified: true
 # Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
 modelId: twtg:neon-vb:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
-protocolId: twtg:neon-vb:3
+protocolId:
+    - twtg:neon-vb:3
+    - twtg:neon-vb-usc:3
 # DataSheet URL (optional) 
 specificationURL: https://github.com/TWTG-R-D-B-V/neon-product-documentation/blob/main/VB/6016_P20-002_Data-Sheet-NEON-Vibration-Sensor_C.pdf
 # User Guide URL (optional) 
@@ -39,6 +41,7 @@ userGuideURL: https://github.com/TWTG-R-D-B-V/neon-product-documentation/tree/ma
 # Available sensors following Actility ontology: https://github.com/actility/thingpark-iot-flow-js-driver/blob/master/UNITS.md 
 sensors: 
     - temperature:Cel
+    - temperature:Far
     - velocity:mm/s
     - acceleration:m/s2
     - frequency:hertz
