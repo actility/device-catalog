@@ -1,6 +1,6 @@
-# Commercial name of the model 
+# Commercial name of the model
 name: TWTG NEON Vibration Sensor
-# Functional description of the product. Maximum 500 characters. 
+# Functional description of the product. Maximum 500 characters.
 description: "The NEON Vibration Sensor provides insight on vibrations (acceleration and velocity) of industrial equipment. Triggers can be set, based on which the sensors can send alerts."
 # Logo of the device
 logo: twtg-vb.png
@@ -9,25 +9,27 @@ product:
     name: TWTG/VB
     version: 1
 # ID(s) of the profile that defines the LoRaWAN characteristics of this model.
-deviceProfileId: 
+deviceProfileId:
+    - twtg_RFGroup1_1.0.2revB_classA
+    - twtg_RFGroup2_1.0.2revB_classA
     - twtg_RFGroup1_RP2-1.0.4_classA
     - twtg_RFGroup2_RP2-1.0.4_classA
- 
-# You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
-# Maximum device TX Conducted output power in dBm. 
-maxTxPower: 14
-# Minimum device TX Conducted output power in dBm. 
-minTxPower: 5
-# Maximum device TX Radiated output power in dBm.  
-maxTxEIRP: 6
-# Minimum device TX Radiated output power in dBm.  
-minTxEIRP: 4
-# Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'  
-# or 'random' (not known, changes over time). 
+
+# You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings.
+# Maximum device TX Conducted output power in dBm.
+maxTxPower:
+# Minimum device TX Conducted output power in dBm.
+minTxPower:
+# Maximum device TX Radiated output power in dBm.
+maxTxEIRP:
+# Minimum device TX Radiated output power in dBm.
+minTxEIRP:
+# Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'
+# or 'random' (not known, changes over time).
 motionIndicator: NEAR_STATIC
- 
-# Is your device certified by the LoRa Alliance? Possible values: true, false. 
-LoRaWANCertified: true
+
+# Is your device certified by the LoRa Alliance? Possible values: true, false.
+LoRaWANCertified: false
 # Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
 modelId: twtg:neon-vb:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
@@ -36,10 +38,10 @@ protocolId:
     - twtg:neon-vb-usc:3
 # DataSheet URL (optional) 
 specificationURL: https://github.com/TWTG-R-D-B-V/neon-product-documentation/blob/main/VB/6016_P20-002_Data-Sheet-NEON-Vibration-Sensor_C.pdf
-# User Guide URL (optional) 
+# User Guide URL (optional)
 userGuideURL: https://github.com/TWTG-R-D-B-V/neon-product-documentation/tree/main/VB/Installation%20%26%20Use
-# Available sensors following Actility ontology: https://github.com/actility/thingpark-iot-flow-js-driver/blob/master/UNITS.md 
-sensors: 
+# Available sensors following Actility ontology: https://github.com/actility/thingpark-iot-flow-js-driver/blob/master/UNITS.md
+sensors:
     - temperature:Cel
     - temperature:Far
     - velocity:mm/s
@@ -49,14 +51,14 @@ sensors:
 # A list of examples description that are compatible with this model
 examples:
     - twtg:neon-vb:3:
-        - "Config_update_ans payload sensor_cond_conf v3"
-        - "sensor data example for decoder v3"
-        - "Boot payload pattern v3"
-        - "Device_status payload pattern v3"
-        - "Sensor_event payload normal pattern v3"
-        - "Sensor_event payload extended pattern v3"
-        - "Sensor_event payload extended pattern v3"
-        - "Decoder activated_message v3"
-        - "Decoder deactivated_message payload pattern user_tiggered v3"
-        - "Decoder deactivated_message payload pattern activation_user_timeout v3"
-        - "Decoder deactivated_message payload pattern activation_sensor_comm_fail v3"
+          - "Config_update_ans payload sensor_cond_conf v3"
+          - "sensor data example for decoder v3"
+          - "Boot payload pattern v3"
+          - "Device_status payload pattern v3"
+          - "Sensor_event payload normal pattern v3"
+          - "Sensor_event payload extended pattern v3"
+          - "Sensor_event payload extended pattern v3"
+          - "Decoder activated_message v3"
+          - "Decoder deactivated_message payload pattern user_tiggered v3"
+          - "Decoder deactivated_message payload pattern activation_user_timeout v3"
+          - "Decoder deactivated_message payload pattern activation_sensor_comm_fail v3"
