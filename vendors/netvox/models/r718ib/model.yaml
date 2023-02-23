@@ -1,0 +1,45 @@
+# Commercial name of the model 
+name: R718IB - Wireless 0-10V ADC Sampling Interface
+# Functional description of the product. Maximum 500 characters. 
+description: "This device can be connected to an ADC sampling interface device. As shown in the figure, black is the ground line, red is the ADC sampling interface line, and the ADC sampling voltage range is 0-10V."
+# Logo of the device
+logo: netvox-r718ib.png
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
+deviceProfileId: 
+    - netvox_EU868_1.0.2revB_classA
+    - netvox_IN865_1.0.2revB_classA
+    - netvox_KR920_1.0.2revB_classA
+    - netvox_RFGroup2_1.0.2revB_classA
+    - netvox_RFGroup4_1.0.2revB_classA
+
+# You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
+# Maximum device TX Conducted output power in dBm. 
+maxTxPower: 
+# Minimum device TX Conducted output power in dBm. 
+minTxPower:
+# Maximum device TX Radiated output power in dBm.  
+maxTxEIRP:
+# Minimum device TX Radiated output power in dBm.  
+minTxEIRP:
+# Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'  
+# or 'random' (not known, changes over time). 
+motionIndicator:
+ 
+# Is your device certified by the LoRa Alliance? Possible values: true, false. 
+LoRaWANCertified: false
+# Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
+modelId: netvox:r718ib:1
+# <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
+protocolId: 
+    - netvox:lorawan:1
+# DataSheet URL (optional) 
+specificationURL: http://www.netvox.com.tw/um/R718IB/R718IBdatasheet.pdf
+# User Guide URL (optional) 
+userGuideURL: http://www.netvox.com.tw/um/R718IB/R718IBUsermanual.pdf
+# <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
+sensors:
+# Driver examples
+# A list of examples description that are compatible with this model
+examples:
+    - netvox:lorawan:1:
+        - "uplink containing battery level, and ADC raw value from R718IB device"
