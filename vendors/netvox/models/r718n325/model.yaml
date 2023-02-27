@@ -1,10 +1,10 @@
 # Commercial name of the model 
-name: RB11E-Wireless Occupancy/Temperature/Light Sensor
+name: R718N325-Wireless 3-Phase Current Meter with 3 x 250A Clamp-On CT
 # Functional description of the product. Maximum 500 characters. 
-description: "RB11E is a Wireless Occupancy/Light/Temperature Sensor for Netvox ClassA type devices based on the LoRaWAN open protocol and is compatible with the LoRaWAN protocol. It combines occupancy ,temperature, tamper switch and light sensors that suitable for detecting human movement indoors, illuminance and temperature."
+description: "R718N325 is powered by a battery and receives AC current through a current transformer. This device adopts clamp-on current transformer, which can be easily connected to the device to be tested. The A phase line, the B phase line and the C phase line of the three-phase electric power are respectively connected to the corresponding current transformers."
 # Logo of the device
-logo: netvox-rb11e.png
-# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
+logo: netvox-r718n325.png
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model. 
 deviceProfileId: 
     - netvox_EU868_1.0.2revB_classA
     - netvox_IN865_1.0.2revB_classA
@@ -20,33 +20,33 @@ minTxPower:
 # Maximum device TX Radiated output power in dBm.  
 maxTxEIRP:
 # Minimum device TX Radiated output power in dBm.  
-minTxEIRP:
+minTxEIRP: 
 # Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'  
 # or 'random' (not known, changes over time). 
 motionIndicator:
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
-LoRaWANCertified: true
+LoRaWANCertified: false
 # Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
-modelId: netvox:rb11e:1
+modelId: netvox:r718n325:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId: 
     - netvox:lorawan:1
 
-#    - os1-netv:rb11e:10
+#    - os1-netv:r718n3:10
 
 # DataSheet URL (optional) 
-specificationURL: http://www.netvox.com.tw/um/RB11E/RB11Edatasheet.pdf
+specificationURL: http://www.netvox.com.tw/um/R718N325/R718N325datasheet.pdf
 # User Guide URL (optional) 
-userGuideURL: http://www.netvox.com.tw/um/RB11E/RB11EUsermanual.pdf
+userGuideURL: http://www.netvox.com.tw/um/R718N325/R718N325Usermanual.pdf
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
-sensors:
+sensors: 
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
-    -netvox:lorawan:1:
-        - "uplink containing battery level, temperature, illuminance, and occupacity from RB11E device"
-#    - os1-netv:rb11e:10:
+#    - netvox:lorawan:1:
+#        - "uplink containing battery level, and ADC raw value from R718IB device"
+#    - os1-netv:r718n3:10:
 #        - "Startup version report"
 #        - "Status report"
 #        - "Configure report response"
