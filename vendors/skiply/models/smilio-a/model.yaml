@@ -1,0 +1,45 @@
+# Commercial name of the model
+name: Smilio A - Pointage
+# Functional description of the product. Maximum 500 characters.
+description: "Smilio A - Pointage est un boîtier de pointage mobile composé de 5 boutons connectés permettant de piloter efficacement les interventions de personnel sur sites distants : preuve de présence (pointage des arrivées et départs), authentification par un code unique à 5 chiffres."
+# Logo of the device
+logo: smilio-a.png
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
+deviceProfileId:
+  - skiply_RFGroup1_1.0.2_classA.yaml
+  - skiply_RFGroup1_1.0.2_classC.yaml
+
+# You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings.
+# Maximum device TX Conducted output power in dBm.
+maxTxPower:
+# Minimum device TX Conducted output power in dBm.
+minTxPower:
+# Maximum device TX Radiated output power in dBm.
+maxTxEIRP:
+# Minimum device TX Radiated output power in dBm.
+minTxEIRP:
+# Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'
+# or 'random' (not known, changes over time).
+motionIndicator:
+
+# Is your device certified by the LoRa Alliance? Possible values: true, false.
+LoRaWANCertified: false
+# Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
+# Be careful: Once you chose a model, it cannot be changed later
+modelId: skiply:smilio-a:1
+# <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
+# Be careful: Once you chose a protocolId, it cannot be changed later
+protocolId:
+  - skiply:smilio-a:1
+# DataSheet URL (optional)
+specificationURL: https://documentation-dot-skiply-prod.ew.r.appspot.com/docs/smilio-a
+# User Guide URL (optional)
+userGuideURL: https://drive.google.com/file/d/1AOJRVLQeojSSFi0B9ycL-M-GgXtvD4DJ/view
+# <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
+sensors:
+
+examples:
+  - skiply:smilio-a:1:
+    - "Payload containing battery voltage in IDLE mode and during emissions (Tx) for Smilio Action"
+    - "Payload containing all incremental counters for a normal data frame with Smilio Action"
+    - "Payload containing all incremental counters for a Hall effect sensor activation data frame with Smilio Action"
