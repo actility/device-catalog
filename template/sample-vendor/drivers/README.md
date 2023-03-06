@@ -2,7 +2,7 @@
 
 > If you have a driver already follows the LoRa Alliance standard codec API, then you need just to add `driver.yaml` file as the one [here](sample-driver/driver.yaml).
 
-This section describes how to build a javascript driver for actility.
+This section describes how to build a javascript driver for Actility.
 
 You can either follow the LoRa Alliance standard codec API described [here](https://resources.lora-alliance.org/document/ts013-1-0-0-payload-codec-api), or follow this documentation.
 
@@ -55,7 +55,7 @@ function decodeUplink(input) {
 }
 ```
 
-The `input` is an object provided by the actility framework that is represented by the following json-schema:
+The `input` is an object provided by the Actility framework that is represented by the following json-schema:
 
 ```json
 {
@@ -388,7 +388,7 @@ To simplify the open distribution and integration with our platform, a packaging
 NPM was chosen because it is the most widely used packaging system for JavaScript code. Also, this approach defines a
 clear code layout that can be distributed independently using the developer preferred version control tool.
 
-You can find a full description of packaging in the guide of simple driver [here](#sample-driver-developer-guide).
+You can find a full description of packaging in the guide of a driver [here](#sample-driver-developer-guide).
 
 ## Testing
 
@@ -402,7 +402,7 @@ use cases as well as error cases.
 ##
 # Sample driver developer guide
 
-This example describes how you to create a simple driver for actility following the LoRa Alliance standard Codec API.
+This example describes how you to create a driver for Actility following the LoRa Alliance standard Codec API.
 
 The concept and API is described [here](#api)
 
@@ -431,9 +431,9 @@ After completing all the information requested by npm you will find a new file `
 
 ```json
 {
-    "name": "simple-driver",
+    "name": "driver",
     "version": "1.0.0",
-    "description": "My simple driver",
+    "description": "My driver",
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
@@ -445,8 +445,8 @@ After completing all the information requested by npm you will find a new file `
 
 ***Important:*** Please make sure to NOT scope your package.
 
-**PS**: In the simple driver, the `require()` method is not allowed to import an external module.
-If your driver is split into several javascript file, you have to switch to a *complex-driver* and use webpack.
+**PS**: In the driver, the `require()` method is not allowed to import an external module.
+If your driver is split into several javascript file, you have to use webpack to generate a single Javascript file.
 
 
 Now that we have a valid npm project, we will create the driver itself. Open a new file named `index.js` where we will
@@ -534,7 +534,7 @@ This will create a new file with the `.tgz` extension in the current folder cont
 
 ## Encoding and decoding downlinks
 
-In the previous step we wrote and packaged a simple driver, which implemented the minimal functionality (i.e.: an uplink decode function).
+In the previous step we wrote and packaged a driver, which implemented the minimal functionality (i.e.: an uplink decode function).
 Now let's extend that driver in order to encode and decode downlinks.
 
 First, lets add a `encodDownlink(input)` function in `index.js`:
@@ -625,7 +625,7 @@ function decodeDownlink(input) {
 }
 ```
 
-The function takes an `input` object (see [here](#downlink-decode)) that will contain `bytes`. This simple driver will only
+The function takes an `input` object (see [here](#downlink-decode)) that will contain `bytes`. This driver will only
 decode both objects as returned from `encodeDownlink(input)`: `pulseCounterThreshold` and `alarm`.
 
 After adding `encodeDownlink(input)` and `decodeDownlink(input)` functions you can re-package your driver.
