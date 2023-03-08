@@ -9,10 +9,7 @@ product:
     name: PLEN/BUGHT
     version: 1
 # ID(s) of the profile that defines the LoRaWAN characteristics of this model.
-deviceProfileId: 
-    - PLEN/BUGHTA.1.0.3a_AU
-    - PLEN/BUGHTA.1.0.3a_ETSI
-    - PLEN/BUGHTA.1.0.3a_FCC
+deviceProfileId:
     - PLEN/BUGHTC.1.0.3a_AU
     - PLEN/BUGHTC.1.0.3a_ETSI
     - PLEN/BUGHTC.1.0.3a_FCC
@@ -31,16 +28,16 @@ minTxEIRP:
 motionIndicator:
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
-LoRaWANCertified: 
+LoRaWANCertified: true
 # Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
 modelId: plenom:busylight:4
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId: 
     - os1-plen:busylight:4
 # DataSheet URL (optional) 
-specificationURL: 
+specificationURL: https://www.plenom.com/wp-content/uploads/2021/10/kuando_Busylight_IoT-Busylight_2021.pdf
 # User Guide URL (optional) 
-userGuideURL: 
+userGuideURL: https://www.plenom.com/download/202547/
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
 # Driver examples
