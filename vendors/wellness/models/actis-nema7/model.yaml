@@ -1,0 +1,37 @@
+# Commercial name of the model
+name: Actis Plus Nema7
+# Functional description of the product. Maximum 500 characters.
+description: "Actis Nema is a smart and autonomous device for the remote control of light points equipped with 1- 10 V or DALI-2 protocol drivers. Specially designed for every type of street light, including applications such as residential, urban and road. It is enabled with LoRaWAN communications and compatible with Nema 7 standard socket lamps"
+# Logo of the device
+logo: actis-nema7.png
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
+deviceProfileId:
+    - WELLNESS-ACTISNEMA7.1.0.2b-AU_Rx2-SF10
+
+# You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings.
+# Maximum device TX Conducted output power in dBm.
+maxTxPower:
+# Minimum device TX Conducted output power in dBm.
+minTxPower:
+# Maximum device TX Radiated output power in dBm.
+maxTxEIRP:
+# Minimum device TX Radiated output power in dBm.
+minTxEIRP:
+# Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'
+# or 'random' (not known, changes over time).
+motionIndicator: 
+# Is your device certified by the LoRa Alliance? Possible values: true, false.
+LoRaWANCertified: false
+# Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
+modelId: wellness:actis-nema7:1
+# <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
+protocolId: wellness:actis-nema7:1
+# DataSheet URL (optional)
+specificationURL: https://wellnesstg.com/wp-content/uploads/2019/11/Datasheet_Actis-Nema_ENG_LW.pdf
+# User Guide URL (optional)
+userGuideURL: 
+# Available sensors following Actility ontology: https://github.com/actility/thingpark-iot-flow-js-driver/blob/master/UNITS.md
+sensors:
+# Driver examples
+# A list of examples description that are compatible with this model
+examples:
