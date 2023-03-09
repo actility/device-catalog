@@ -1,0 +1,53 @@
+[
+  {
+    "description": "RT v1 Activation message",
+    "type": "uplink",
+    "input": {
+      "bytes": "1008",
+      "recvTime": "2023-02-15T13:58:57.743Z",
+      "fPort": 5
+    },
+    "output": {
+      "data": {
+        "activated": {
+          "protocol_version": 1,
+          "device_type": "rt"
+        }
+      }
+    }
+  },
+  {
+    "description": "RT v1 Activation message, other device type",
+    "type": "uplink",
+    "input": {
+      "bytes": "1005",
+      "recvTime": "2023-02-15T13:58:57.743Z",
+      "fPort": 5
+    },
+    "output": {
+      "data": {
+        "activated": {
+          "protocol_version": 1,
+          "device_type": "ld"
+        }
+      }
+    }
+  },
+  {
+    "description": "RT v1 Activation message, unknown device type",
+    "type": "uplink",
+    "input": {
+      "bytes": "10FF",
+      "recvTime": "2023-02-15T13:58:57.743Z",
+      "fPort": 5
+    },
+    "output": {
+      "data": {
+        "activated": {
+          "protocol_version": 1,
+          "device_type": "unknown"
+        }
+      }
+    }
+  }
+]

@@ -1,0 +1,106 @@
+[
+  {
+    "description": "RT v1 Config request base, default",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "config_update_req": {
+          "config_type": "base",
+          "protocol_version": 1,
+          "tag": "0x11223344",
+          "payload": {
+            "switch_mask": {
+              "enable_confirmed_event_message": false,
+              "enable_confirmed_data_message": false,
+              "allow_deactivation": true
+            },
+            "periodic_message_random_delay_seconds": 30,
+            "status_message_interval": "1 day"
+          }
+        }
+      }
+    },
+    "output": {
+      "fPort": 7,
+      "bytes": "104433221104be"
+    }
+  },
+  {
+    "description": "RT v1 Config request base, too big random delay",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "config_update_req": {
+          "config_type": "base",
+          "protocol_version": 1,
+          "tag": "0x11223344",
+          "payload": {
+            "switch_mask": {
+              "enable_confirmed_event_message": false,
+              "enable_confirmed_data_message": false,
+              "allow_deactivation": true
+            },
+            "periodic_message_random_delay_seconds": 32,
+            "status_message_interval": "1 day"
+          }
+        }
+      }
+    },
+    "output": {
+      "errors": [
+        "periodic_message_random_delay_seconds is outside of specification: 32"
+      ]
+    }
+  },
+  {
+    "description": "RT v1 Config request base, invalid interval",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "config_update_req": {
+          "config_type": "base",
+          "protocol_version": 1,
+          "tag": "0x11223344",
+          "payload": {
+            "switch_mask": {
+              "enable_confirmed_event_message": false,
+              "enable_confirmed_data_message": false,
+              "allow_deactivation": true
+            },
+            "periodic_message_random_delay_seconds": 30,
+            "status_message_interval": "8 days"
+          }
+        }
+      }
+    },
+    "output": {
+      "errors": ["message interval is outside of specification: 8 days"]
+    }
+  },
+  {
+    "description": "RT v1 Config request base, pattern",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "config_update_req": {
+          "config_type": "base",
+          "protocol_version": 1,
+          "tag": "0xAABBCCDD",
+          "payload": {
+            "switch_mask": {
+              "enable_confirmed_event_message": true,
+              "enable_confirmed_data_message": true,
+              "allow_deactivation": false
+            },
+            "periodic_message_random_delay_seconds": 10,
+            "status_message_interval": "15 minutes"
+          }
+        }
+      }
+    },
+    "output": {
+      "fPort": 7,
+      "bytes": "10ddccbbaa032a"
+    }
+  }
+]

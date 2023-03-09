@@ -1,0 +1,40 @@
+[
+  {
+    "description": "RT v1 Config answer message",
+    "type": "uplink",
+    "input": {
+      "bytes": "13AABBCCDD03",
+      "recvTime": "2023-02-15T13:58:57.743Z",
+      "fPort": 7
+    },
+    "output": {
+      "data": {
+        "config_update_ans": {
+          "protocol_version": 1,
+          "config_type": "sensor",
+          "tag": "0xDDCCBBAA",
+          "counter": 3
+        }
+      }
+    }
+  },
+  {
+    "description": "RT v1 Config answer message, unknown config type",
+    "type": "uplink",
+    "input": {
+      "bytes": "1FAABBCCDD03",
+      "recvTime": "2023-02-15T13:58:57.743Z",
+      "fPort": 7
+    },
+    "output": {
+      "data": {
+        "config_update_ans": {
+          "protocol_version": 1,
+          "config_type": "unknown",
+          "tag": "0xDDCCBBAA",
+          "counter": 3
+        }
+      }
+    }
+  }
+]

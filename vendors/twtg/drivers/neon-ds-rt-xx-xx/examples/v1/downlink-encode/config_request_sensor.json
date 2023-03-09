@@ -1,0 +1,175 @@
+[
+  {
+    "description": "RT v1 Config request sensor, default",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "config_update_req": {
+          "config_type": "sensor",
+          "protocol_version": 1,
+          "tag": "0x11223344",
+          "payload": {
+            "device_type": "rt",
+            "switch_mask": {
+              "selection": "avg_only"
+            },
+            "measurement_interval_minutes": 5,
+            "periodic_event_message_interval": 12
+          }
+        }
+      }
+    },
+    "output": {
+      "fPort": 7,
+      "bytes": "13443322110803050c00"
+    }
+  },
+  {
+    "description": "RT v1 Config request sensor, wrong selection",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "config_update_req": {
+          "config_type": "sensor",
+          "protocol_version": 1,
+          "tag": "0x11223344",
+          "payload": {
+            "device_type": "rt",
+            "switch_mask": {
+              "selection": "wrong"
+            },
+            "measurement_interval_minutes": 5,
+            "periodic_event_message_interval": 12
+          }
+        }
+      }
+    },
+    "output": {
+      "errors": ["Out of bound, selection: wrong"]
+    }
+  },
+  {
+    "description": "RT v1 Config request sensor, too high measurement interval",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "config_update_req": {
+          "config_type": "sensor",
+          "protocol_version": 1,
+          "tag": "0x11223344",
+          "payload": {
+            "device_type": "rt",
+            "switch_mask": {
+              "selection": "avg_only"
+            },
+            "measurement_interval_minutes": 241,
+            "periodic_event_message_interval": 12
+          }
+        }
+      }
+    },
+    "output": {
+      "errors": ["measurement_interval_minutes outside of specification: 241"]
+    }
+  },
+  {
+    "description": "RT v1 Config request sensor, too low measurement interval",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "config_update_req": {
+          "config_type": "sensor",
+          "protocol_version": 1,
+          "tag": "0x11223344",
+          "payload": {
+            "device_type": "rt",
+            "switch_mask": {
+              "selection": "avg_only"
+            },
+            "measurement_interval_minutes": 0,
+            "periodic_event_message_interval": 12
+          }
+        }
+      }
+    },
+    "output": {
+      "errors": ["measurement_interval_minutes outside of specification: 0"]
+    }
+  },
+  {
+    "description": "RT v1 Config request sensor, too hight message interval",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "config_update_req": {
+          "config_type": "sensor",
+          "protocol_version": 1,
+          "tag": "0x11223344",
+          "payload": {
+            "device_type": "rt",
+            "switch_mask": {
+              "selection": "avg_only"
+            },
+            "measurement_interval_minutes": 5,
+            "periodic_event_message_interval": 10081
+          }
+        }
+      }
+    },
+    "output": {
+      "errors": [
+        "periodic_event_message_interval outside of specification: 10081"
+      ]
+    }
+  },
+  {
+    "description": "RT v1 Config request sensor, maximized values",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "config_update_req": {
+          "config_type": "sensor",
+          "protocol_version": 1,
+          "tag": "0x11223344",
+          "payload": {
+            "device_type": "rt",
+            "switch_mask": {
+              "selection": "avg_only"
+            },
+            "measurement_interval_minutes": 240,
+            "periodic_event_message_interval": 10080
+          }
+        }
+      }
+    },
+    "output": {
+      "fPort": 7,
+      "bytes": "13443322110803f06027"
+    }
+  },
+  {
+    "description": "RT v1 Config request sensor, minimized values",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "config_update_req": {
+          "config_type": "sensor",
+          "protocol_version": 1,
+          "tag": "0x11223344",
+          "payload": {
+            "device_type": "rt",
+            "switch_mask": {
+              "selection": "extended"
+            },
+            "measurement_interval_minutes": 1,
+            "periodic_event_message_interval": 0
+          }
+        }
+      }
+    },
+    "output": {
+      "fPort": 7,
+      "bytes": "13443322110800010000"
+    }
+  }
+]

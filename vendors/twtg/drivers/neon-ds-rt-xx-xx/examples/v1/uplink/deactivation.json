@@ -1,0 +1,48 @@
+[
+  {
+    "description": "RT v1 Deactivation message",
+    "type": "uplink",
+    "input": {
+      "bytes": "100000",
+      "recvTime": "2023-02-15T13:58:57.743Z",
+      "fPort": 6
+    },
+    "output": {
+      "data": {
+        "deactivated": {
+          "protocol_version": 1,
+          "reason": "user_triggered"
+        }
+      }
+    }
+  },
+  {
+    "description": "RT v1 Deactivation message, unknown reason",
+    "type": "uplink",
+    "input": {
+      "bytes": "100100",
+      "recvTime": "2023-02-15T13:58:57.743Z",
+      "fPort": 6
+    },
+    "output": {
+      "data": {
+        "deactivated": {
+          "protocol_version": 1,
+          "reason": "unknown"
+        }
+      }
+    }
+  },
+  {
+    "description": "RT v1 Deactivation message, invalid reserved",
+    "type": "uplink",
+    "input": {
+      "bytes": "100101",
+      "recvTime": "2023-02-15T13:58:57.743Z",
+      "fPort": 6
+    },
+    "output": {
+      "errors": ["Unsupported reserved byte"]
+    }
+  }
+]

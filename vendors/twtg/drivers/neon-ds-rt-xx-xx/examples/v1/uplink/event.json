@@ -1,0 +1,106 @@
+[
+  {
+    "description": "RT v1 Sensor event message",
+    "type": "uplink",
+    "input": {
+      "bytes": "10028D295CA341",
+      "recvTime": "2023-02-15T13:58:57.743Z",
+      "fPort": 3
+    },
+    "output": {
+      "data": {
+        "sensor_event": {
+          "protocol_version": 1,
+          "selection": "max_only",
+          "condition_0": 1,
+          "condition_1": 0,
+          "condition_2": 1,
+          "condition_3": 1,
+          "trigger": "button press",
+          "value": {
+            "max": 20.420000076293945,
+            "status": "OK"
+          }
+        }
+      }
+    }
+  },
+  {
+    "description": "RT v1 Sensor event message extended",
+    "type": "uplink",
+    "input": {
+      "bytes": "10004A0000a03f0000b03f0000a83f",
+      "recvTime": "2023-02-15T13:58:57.743Z",
+      "fPort": 3
+    },
+    "output": {
+      "data": {
+        "sensor_event": {
+          "protocol_version": 1,
+          "selection": "extended",
+          "condition_0": 0,
+          "condition_1": 1,
+          "condition_2": 0,
+          "condition_3": 1,
+          "trigger": "periodic",
+          "value": {
+            "min": 1.25,
+            "max": 1.375,
+            "avg": 1.3125,
+            "status": "OK"
+          }
+        }
+      }
+    }
+  },
+  {
+    "description": "RT v1 Sensor event message, measurement error",
+    "type": "uplink",
+    "input": {
+      "bytes": "10014A030080FF",
+      "recvTime": "2023-02-15T13:58:57.743Z",
+      "fPort": 3
+    },
+    "output": {
+      "data": {
+        "sensor_event": {
+          "protocol_version": 1,
+          "selection": "min_only",
+          "condition_0": 0,
+          "condition_1": 1,
+          "condition_2": 0,
+          "condition_3": 1,
+          "trigger": "periodic",
+          "value": {
+            "status": "Lower Bound Error"
+          }
+        }
+      }
+    }
+  },
+  {
+    "description": "RT v1 Sensor event message extended, measurement error",
+    "type": "uplink",
+    "input": {
+      "bytes": "100005040080FF040080FF040080FF",
+      "recvTime": "2023-02-15T13:58:57.743Z",
+      "fPort": 3
+    },
+    "output": {
+      "data": {
+        "sensor_event": {
+          "protocol_version": 1,
+          "selection": "extended",
+          "condition_0": 1,
+          "condition_1": 0,
+          "condition_2": 1,
+          "condition_3": 0,
+          "trigger": "condition change",
+          "value": {
+            "status": "Factory Calibration Error"
+          }
+        }
+      }
+    }
+  }
+]

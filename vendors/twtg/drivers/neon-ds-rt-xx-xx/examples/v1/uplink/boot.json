@@ -1,0 +1,43 @@
+[
+    {
+        "description": "RT v1 Boot message pattern",
+        "type": "uplink",
+        "input": {
+            "bytes": "1001",
+            "recvTime": "2023-02-15T13:58:57.743Z",
+            "fPort": 1
+        },
+        "output": {
+            "data": {
+                "boot": {
+                    "protocol_version": 1,
+                    "reboot_reason": {
+                        "major": "config update",
+                        "minor": ""
+                    }
+                }
+            }
+        }
+    },
+    {
+        "description": "RT v1 Boot message pattern with debug info",
+        "type": "uplink",
+        "input": {
+            "bytes": "1024000102030405060708090a0b0c0d0e0f",
+            "recvTime": "2023-02-15T13:58:57.743Z",
+            "fPort": 1
+        },
+        "output": {
+            "data": {
+                "boot": {
+                    "protocol_version": 1,
+                    "reboot_reason": {
+                        "major": "power",
+                        "minor": "power safe state"
+                    },
+                    "debug": "0x000102030405060708090A0B0C0D0E0F"
+                }
+            }
+        }
+    }
+]

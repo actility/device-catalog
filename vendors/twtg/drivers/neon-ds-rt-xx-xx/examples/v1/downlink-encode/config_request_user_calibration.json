@@ -1,0 +1,92 @@
+[
+  {
+    "description": "RT v1 Config request user calibration, default",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "config_update_req": {
+          "config_type": "user_calibration",
+          "protocol_version": 1,
+          "tag": "0x11223344",
+          "payload": {
+            "device_type": "rt",
+            "coefficients": {
+              "a": 0.0,
+              "b": 0.0
+            }
+          }
+        }
+      }
+    },
+    "output": {
+      "fPort": 7,
+      "bytes": "1644332211080000000000000000"
+    }
+  },
+  {
+    "description": "RT v1 Config request user calibration, pattern",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "config_update_req": {
+          "config_type": "user_calibration",
+          "protocol_version": 1,
+          "tag": "0x11223344",
+          "payload": {
+            "device_type": "rt",
+            "coefficients": {
+              "a": 1.25,
+              "b": 1.125
+            }
+          }
+        }
+      }
+    },
+    "output": {
+      "fPort": 7,
+      "bytes": "1644332211080000a03f0000903f"
+    }
+  },
+  {
+    "description": "RT v1 Config request user calibration, offset only",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "config_update_req": {
+          "config_type": "user_calibration",
+          "protocol_version": 1,
+          "tag": "0x11223344",
+          "payload": {
+            "device_type": "rt",
+            "coefficients": {
+              "a": 1.25
+            }
+          }
+        }
+      }
+    },
+    "output": {
+      "fPort": 7,
+      "bytes": "1644332211080000a03f00000000"
+    }
+  },
+  {
+    "description": "RT v1 Config request user calibration, missing coefficients",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "config_update_req": {
+          "config_type": "user_calibration",
+          "protocol_version": 1,
+          "tag": "0x11223344",
+          "payload": {
+            "device_type": "rt"
+          }
+        }
+      }
+    },
+    "output": {
+      "errors": ["coefficients not defined"]
+    }
+  }
+]
