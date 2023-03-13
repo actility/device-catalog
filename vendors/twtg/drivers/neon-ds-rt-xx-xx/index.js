@@ -1,3 +1,4 @@
+var driver;
 /******/ (function() { // webpackBootstrap
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
@@ -73,6 +74,7 @@ var Deserializer = /** @class */ (function () {
     Deserializer.prototype.pullFloat32 = function () {
         var bits = this.pullUint32();
         var v = this._decodeFloat(bits);
+        // Note: don't use `Number.isNaN()` as it is not supported by `js2py`
         if (!isNaN(v)) {
             return [v, undefined];
         }
@@ -130,7 +132,7 @@ exports.Deserializer = Deserializer;
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.hexFromUint32 = exports.hexFromUint16 = exports.hexFromUint8 = exports.decodeSensorValue = exports.decodeSensorSingleValue = exports.convertBatteryVoltage = exports.lookupSensorEventTrigger = exports.lookupSensorEventSelection = exports.lookupRebootReasonMinor = exports.lookupRebootReasonMajor = exports.lookupDeviceType = exports.lookupRssi = exports.peekVersion = void 0;
+exports.byteArrayFromHexString = exports.hexFromUint32 = exports.hexFromUint16 = exports.hexFromUint8 = exports.decodeSensorValue = exports.decodeSensorSingleValue = exports.convertBatteryVoltage = exports.lookupSensorEventTrigger = exports.lookupSensorEventSelection = exports.lookupRebootReasonMinor = exports.lookupRebootReasonMajor = exports.lookupDeviceType = exports.lookupRssi = exports.peekVersion = void 0;
 /**
  * The device types. Note the index corresponds with their numerical counterpart -1
  */
@@ -371,20 +373,31 @@ function decodeSensorSingleValue(des, selection) {
         return { status: lookupMeasurementValueError(error) };
     }
     else {
+        // For reference this code does not work for `js2py`: TypeError: 'undefined' is not a function (tried calling property 'assign' of 'Function')
+        // It is not clear what is the cause of it, but the workaround is not to use `Object.assign` in this function.
+        // const measurementValue = { status: 'OK' };
+        // if (selection == 'min_only') {
+        //   Object.assign(measurementValue, { min: value });
+        // } else if (selection == 'max_only') {
+        //   Object.assign(measurementValue, { max: value });
+        // } else if (selection == 'avg_only') {
+        //   Object.assign(measurementValue, { avg: value });
+        // } else {
+        //   throw new Error('Only min_only, max_only, or, avg_only is accepted!');
+        // }
         var measurementValue = { status: 'OK' };
         if (selection == 'min_only') {
-            Object.assign(measurementValue, { min: value });
+            return { status: 'OK', min: value };
         }
         else if (selection == 'max_only') {
-            Object.assign(measurementValue, { max: value });
+            return { status: 'OK', max: value };
         }
         else if (selection == 'avg_only') {
-            Object.assign(measurementValue, { avg: value });
+            return { status: 'OK', avg: value };
         }
         else {
             throw new Error('Only min_only, max_only, or, avg_only is accepted!');
         }
-        return measurementValue;
     }
 }
 exports.decodeSensorSingleValue = decodeSensorSingleValue;
@@ -435,6 +448,28 @@ function hexFromUint32(d) {
     return ('0000000' + Number(d).toString(16).toUpperCase()).slice(-8);
 }
 exports.hexFromUint32 = hexFromUint32;
+/**
+ * Decode a hex string into a byte array
+ *
+ * This is a copy from old code as is. TODO: Use typescript to do the conversion
+ * @param hexString The hex string to decode
+ * @returns byte array
+ */
+function byteArrayFromHexString(hexString) {
+    if (typeof hexString != 'string')
+        throw new Error('hex_string must be a string');
+    if (!hexString.match(/^[0-9A-F]*$/gi))
+        throw new Error('hex_string contain only 0-9, A-F characters');
+    if ((hexString.length & 0x01) > 0)
+        throw new Error('hex_string length must be a multiple of two');
+    var byteString = [];
+    for (var i = 0; i < hexString.length; i += 2) {
+        var hex = hexString.slice(i, i + 2);
+        byteString.push(parseInt(hex, 16));
+    }
+    return byteString;
+}
+exports.byteArrayFromHexString = byteArrayFromHexString;
 
 
 /***/ }),
@@ -740,7 +775,6 @@ function decodeSensorEventMessageExtended(des) {
     if (selection != 'extended') {
         throw new Error('Mismatch between extended bit flag and message length!');
     }
-    Object.assign(sensor_event, { selection: selection });
     // byte[2]
     var conditions = des.pullUint8();
     // byte[3..14]
@@ -986,7 +1020,8 @@ var Serializer = /** @class */ (function () {
                 bytes = 0x00000000;
                 break;
             default: {
-                if (Number.isNaN(value)) {
+                // Note: don't use `Number.isNaN()` as it is not supported by `js2py`
+                if (isNaN(value)) {
                     bytes = 0x7fc00000;
                     break;
                 }
@@ -1082,7 +1117,22 @@ exports.lookupDeviceType = lookupDeviceType;
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.encodeSensorSelection = exports.encodeConfigMessagePayloadBase = void 0;
+exports.encodeSensorSelection = exports.encodeConfigMessagePayloadRegion = exports.encodeConfigMessagePayloadBase = void 0;
+var CHANNEL_PLANS = [
+    'EU868',
+    'US915',
+    'CN779',
+    'EU433',
+    'AU915',
+    'CN470',
+    'AS923',
+    'AS923-2',
+    'AS923-3',
+    'KR920',
+    'IN865',
+    'RU864',
+    'AS923-4' // 13
+];
 /**
  * Converting the payload of the base config message to a byte array
  * @param ser The Serializer
@@ -1101,38 +1151,44 @@ function encodeConfigMessagePayloadBase(ser, payload) {
         (lookupMessageInterval(payload.status_message_interval) << 5));
 }
 exports.encodeConfigMessagePayloadBase = encodeConfigMessagePayloadBase;
-// function encode_region_config_v4(bytes, payload) {
-//   if (typeof payload == 'undefined') {
-//     return;
-//   }
-//   encode_channel_plan_v4(bytes, payload.channel_plan);
-//   // join_trials
-//   if (payload.join_trials.holdoff_steps > 7) {
-//     throw new Error('Hold off steps too large');
-//   }
-//   const burst_min1 = (payload.join_trials.burst_count - 1) & 0xff;
-//   if (burst_min1 > 31) {
-//     throw new Error('Burst range 1..32');
-//   }
-//   let join_trials = payload.join_trials.holdoff_hours_max & 0xff;
-//   join_trials |= payload.join_trials.holdoff_steps << 8;
-//   join_trials |= burst_min1 << 11;
-//   encode_uint16(bytes, join_trials);
-//   // disable_switch
-//   let disable_switch = payload.disable_switch.frequency_bands & 0x0fff;
-//   if ((disable_switch ^ 0x0fff) == 0) {
-//     throw new Error('Not disable all bands');
-//   }
-//   disable_switch |= payload.disable_switch.dwell_time ? 0x1000 : 0x0000;
-//   encode_uint16(bytes, disable_switch);
-//   encode_uint8(bytes, payload.rx1_delay & 0x0f);
-//   // ADR
-//   let adr = payload.adr.mode;
-//   adr |= (payload.adr.ack_limit_exp & 0x07) << 2;
-//   adr |= (payload.adr.ack_delay_exp & 0x07) << 5;
-//   encode_uint8(bytes, adr);
-//   encode_int8(bytes, payload.max_tx_power);
-// }
+/**
+ * Converting the payload of the region config message to a byte array
+ * @param ser The Serializer
+ * @param payload The region payload object of the config message
+ */
+function encodeConfigMessagePayloadRegion(ser, payload) {
+    if (typeof payload == 'undefined') {
+        return;
+    }
+    ser.pushUint8(lookupChannelPlan(payload.channel_plan));
+    // join_trials
+    if (payload.join_trials.holdoff_steps > 7) {
+        throw new Error('Hold off steps too large');
+    }
+    var burstMin1 = (payload.join_trials.burst_count - 1) & 0xff;
+    if (burstMin1 > 31) {
+        throw new Error('Burst range 1..32');
+    }
+    var joinTrials = payload.join_trials.holdoff_hours_max & 0xff;
+    joinTrials |= payload.join_trials.holdoff_steps << 8;
+    joinTrials |= burstMin1 << 11;
+    ser.pushUint16(joinTrials);
+    // disable_switch
+    var disableSwitch = payload.disable_switch.frequency_bands & 0x0fff;
+    if ((disableSwitch ^ 0x0fff) == 0) {
+        throw new Error('Not disable all bands');
+    }
+    disableSwitch |= payload.disable_switch.dwell_time ? 0x1000 : 0x0000;
+    ser.pushUint16(disableSwitch);
+    ser.pushUint8(payload.rx1_delay & 0x0f);
+    // ADR
+    var adr = payload.adr.mode;
+    adr |= (payload.adr.ack_limit_exp & 0x07) << 2;
+    adr |= (payload.adr.ack_delay_exp & 0x07) << 5;
+    ser.pushUint8(adr);
+    ser.pushUint8(payload.max_tx_power);
+}
+exports.encodeConfigMessagePayloadRegion = encodeConfigMessagePayloadRegion;
 /**
  * Converts the booleans of base switch to a bitmask
  * @param switchMask The object of booleans of base switch
@@ -1183,64 +1239,21 @@ function lookupMessageInterval(messageInterval) {
             throw new Error('message interval is outside of specification: ' + messageInterval);
     }
 }
-// function encode_channel_plan_v4(bytes, channel_plan) {
-//   switch (channel_plan) {
-//     case 'EU868': {
-//       bytes.push(1);
-//       break;
-//     }
-//     case 'US915': {
-//       bytes.push(2);
-//       break;
-//     }
-//     case 'CN779': {
-//       bytes.push(3);
-//       break;
-//     }
-//     case 'EU433': {
-//       bytes.push(4);
-//       break;
-//     }
-//     case 'AU915': {
-//       bytes.push(5);
-//       break;
-//     }
-//     case 'CN470': {
-//       bytes.push(6);
-//       break;
-//     }
-//     case 'AS923': {
-//       bytes.push(7);
-//       break;
-//     }
-//     case 'AS923-2': {
-//       bytes.push(8);
-//       break;
-//     }
-//     case 'AS923-3': {
-//       bytes.push(9);
-//       break;
-//     }
-//     case 'KR920': {
-//       bytes.push(10);
-//       break;
-//     }
-//     case 'IN865': {
-//       bytes.push(11);
-//       break;
-//     }
-//     case 'RU864': {
-//       bytes.push(12);
-//       break;
-//     }
-//     case 'AS923-4': {
-//       bytes.push(13);
-//       break;
-//     }
-//     default:
-//       throw new Error('channel_plan outside of specification: ' + channel_plan);
-//   }
-// }
+/**
+ * Convert channel plan string to the corresponding ID
+ * @param channel_plan The channel plan string
+ * @returns the corresponding ID
+ */
+function lookupChannelPlan(channel_plan) {
+    var channelPlanIndex = CHANNEL_PLANS.indexOf(channel_plan);
+    if (channelPlanIndex != -1) {
+        // found
+        return channelPlanIndex + 1; // channel plan ID is index off by one
+    }
+    else {
+        throw new Error('channel_plan outside of specification: ' + channel_plan);
+    }
+}
 /**
  * Convert the selection of which information the sensor event should send.
  * Either the minimum, maximum, average, or all together. The main reason
@@ -1397,15 +1410,10 @@ function encodeDownlinkExcept(input) {
                             (0, config_common_payloads_1.encodeConfigMessagePayloadBase)(ser, req.payload);
                             break;
                         }
-                        // case STR_REGION_CONFIG: {
-                        //   encode_header_v4(bytes, req);
-                        //   // Ignore tag and payload if there is no payload
-                        //   if (typeof req.payload != 'undefined') {
-                        //     encode_uint32(bytes, req.tag);
-                        //     encode_region_config_v4(bytes, req.payload);
-                        //   }
-                        //   break;
-                        // }
+                        case STR_REGION_CONFIG: {
+                            (0, config_common_payloads_1.encodeConfigMessagePayloadRegion)(ser, req.payload);
+                            break;
+                        }
                         case STR_SENSOR_CONFIG: {
                             if (req.payload.device_type != 'rt') {
                                 throw new Error('Invalid device type!');
@@ -1595,6 +1603,7 @@ var exports = __webpack_exports__;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 var enc = __webpack_require__(/*! ../lib/encoding/rt */ "./src/lib/encoding/rt.ts");
 var dec = __webpack_require__(/*! ../lib/decoding/rt */ "./src/lib/decoding/rt.ts");
+var common_1 = __webpack_require__(/*! ../lib/decoding/common */ "./src/lib/decoding/common.ts");
 var decodeUplink = function (input) {
     var result = {};
     try {
@@ -1621,6 +1630,12 @@ var decodeDownlink = function (input) {
     var result = {};
     return result;
 };
+/**
+ * Decoder for plain HEX string
+ */
+function DecodeHexString(fPort, hex_string) {
+    return dec.Decode(fPort, (0, common_1.byteArrayFromHexString)(hex_string));
+}
 var Decode = dec.Decode; // ChirpStack v3 interface
 var Decoder = dec.Decoder; // ThingsNetwork v2 interface
 /**
@@ -1629,28 +1644,62 @@ var Decoder = dec.Decoder; // ThingsNetwork v2 interface
 function Encode(fPort, obj) {
     return enc.encodeDownlinkExcept(obj).bytes;
 }
-/**
- * Entry point for ThingsNetwork v2 interface
- */
-function Encoder(obj, fPort) {
-    // Used for The Things Network server
-    return Encode(fPort, obj);
-}
 exports["default"] = {
     decodeUplink: decodeUplink,
     encodeDownlink: encodeDownlink,
     decodeDownlink: decodeDownlink,
     Decode: Decode,
     Decoder: Decoder,
-    Encode: Encode,
-    Encoder: Encoder
+    DecodeHexString: DecodeHexString,
+    Encode: Encode
 };
 
 }();
-var __webpack_export_target__ = typeof exports == 'undefined' ? this : exports;
-var __webpack_exports_export__ = __webpack_exports__["default"];
-for(var i in __webpack_exports_export__) __webpack_export_target__[i] = __webpack_exports_export__[i];
-if(__webpack_exports_export__.__esModule) Object.defineProperty(__webpack_export_target__, "__esModule", { value: true });
+driver = __webpack_exports__;
 /******/ })()
-;
+;// Export it for NodeJS if available
+if (typeof exports != 'undefined') {
+  for (var name in driver.default) {
+    exports[name] = driver.default[name];
+  }
+}
+
+/*
+ * LoRaWan Payload Codec interface
+ *
+ * @reference ts013-1-0-0-payload-codec-api.pdf
+ */
+function decodeUplink(input) {
+  return driver.default.decodeUplink(input);
+}
+
+function encodeDownlink(input) {
+  return driver.default.encodeDownlink(input);
+}
+
+function decodeDownlink(input) {
+  throw new Error('Not implemented');
+}
+
+/**
+ * Entry point for ChirpStack v3 interface
+ */
+function Encode(fPort, obj) {
+  return driver.default.Encode(fPort, obj);
+}
+
+/**
+ * Entry point for ThingsNetwork v2 interface
+ */
+function Encoder(obj, fPort) {
+  return Encode(fPort, obj);
+}
+
+/**
+ * Decoder for plain HEX string
+ */
+function DecodeHexString(fPort, hex_string) {
+  return driver.default.DecodeHexString(fPort, hex_string);
+}
+
 //# sourceMappingURL=index.js.map
