@@ -1,9 +1,9 @@
 # Commercial name of the model 
-name: SenseCAP S2101- LoRaWAN® Air Temperature and Humidity Sensor
+name: SenseCAP S2105- LoRaWAN® Soil Moisture, Temperature and EC Sensor
 # Functional description of the product. Maximum 500 characters. 
-description: "A battery-powered IP66 wireless air temperature and humidity sensor, range from -40°C to 85°C and 0 to 100 %RH, equipped with built-in Bluetooth and APP service for OTA configuration and remote device management. Used in smart farming, smart yard, smart city, and smart cold chain solutions."
+description: "A battery-powered IP66 wireless soil moisture, temperature, and EC sensor, range from 0 ~ 100% (m³/m³), -40 ~ 80℃, and 0 to 23 dS/m, equipped with built-in Bluetooth and APP service for OTA configuration and remote device management. Used in smart farming, smart yard, and environment monitoring solutions."
 # Logo of the device
-logo: sensecap-s2101.png
+logo: sensecap-s2105.png
 # ID(s) of the profile that defines the LoRaWAN characteristics of this model.
 deviceProfileId: 
     - sensecap_RFGroup1_1.0.3a_classA
@@ -25,17 +25,18 @@ motionIndicator:
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
 # Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
-modelId: sensecap:s2101:1
+modelId: sensecap:s2105:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId: sensecap:s210x:1
 # DataSheet URL (optional) 
-specificationURL: https://www.seeedstudio.com/SenseCAP-S2101-LoRaWAN-Air-Temperature-and-Humidity-Sensor-p-5354.html
+specificationURL: https://www.seeedstudio.com/SenseCAP-S2105-LoRaWAN-Soil-Temperature-Moisture-and-EC-Sensor-p-5358.html
 # User Guide URL (optional) 
 userGuideURL: https://files.seeedstudio.com/products/SenseCAP/S210X/SenseCAP%20S210X%20LoRaWAN%20Sensor%20User%20Guide.pdf
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:    
     - temperature:Cel
     - humidity:%RH
+    - EC:dm/s
 
 # Driver examples
 # A list of examples description that are compatible with this model
