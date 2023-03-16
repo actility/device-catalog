@@ -446,8 +446,20 @@ After completing all the information requested by npm you will find a new file `
 ***Important:*** Please make sure to NOT scope your package.
 
 **PS**: In the driver, the `require()` method is not allowed to import an external module.
-If your driver is split into several javascript file, you have to use webpack to generate a single Javascript file.
-
+If your driver is split into several javascript file (not recommended), you have to use webpack to generate a single Javascript file.
+Here is the webpack configuration to be used in that case: 
+```javascript
+module.exports = {
+  target: "node",
+  mode: "production",
+  entry: "./index.js",
+  output: {
+    filename: "main.js",
+    path: path.resolve(__dirname, "."),
+    library: "driver",
+  },
+}
+```
 
 Now that we have a valid npm project, we will create the driver itself. Open a new file named `index.js` where we will
 define only an uplink decode:
