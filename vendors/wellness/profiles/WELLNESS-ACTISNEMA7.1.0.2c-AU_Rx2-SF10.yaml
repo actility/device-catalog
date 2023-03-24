@@ -59,9 +59,9 @@ bootSettings:
     rx1DROffset: 
     # Rx2 DataRate, used to send DL packets over RX2 slot. Note: Data Rate encoding is region-specific, see the applicable LoRaWAN Regional 
     # Profile.
-    rx2DataRate: 
+    rx2DataRate: 10
     # Rx2 Frequency expressed in MHz, used to send DL packets over RX2 slot.
-    rx2Frequency: 
+    rx2Frequency: 923.3
     # Default data rate used for Class B ping slots. Note: Data Rate encoding is region-specific, see the applicable LoRaWAN Regional Profile.
     pingSlotChannelDataRate: 
     # Default frequency (in MHz) used for Class B ping slots.
@@ -78,10 +78,10 @@ bootSettings:
 supportedMACCommands:
     linkADRReqAns: true
     devStatusReqAns: true
-    joinRequestAccept: true
+    joinRequestAccept: false
     dutyCycleReqAns: true
     linkCheckReqAns: true
-    rxParamSetupReqAns: true
+    rxParamSetupReqAns: false
     rxTimingSetupReqAns: true
     newChannelReqAns: false
     dlChannelReqAns: false
