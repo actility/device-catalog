@@ -5,7 +5,8 @@ function decodeUplink (input) {
   // data split
   var bytes = input['bytes']
   bytes = Buffer.from(bytes).toString()
-  console.log(bytes)
+  // console.log(bytes)
+  // let bytes = input
   // init
   let result = {
     data: {}, errors: [], warnings: []
@@ -20,7 +21,7 @@ function decodeUplink (input) {
     let messages = dataIdAndDataValueJudge(dataId, dataValue)
     decoderArray.push(messages)
   }
-  result.data = decoderArray[0]
+  result.data = { ...decoderArray[0] }
   return result
 }
 
