@@ -20,7 +20,10 @@ describe('Decode uplink', () => {
 
         // When
         const result = driver.decodeUplink(input)
-        console.log(result)
+
+        // Then
+        const expected = example.output
+        expect(result).toStrictEqual(expected)
       })
     }
   })

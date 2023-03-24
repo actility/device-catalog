@@ -5,7 +5,6 @@ function decodeUplink (input) {
   // data split
   var bytes = input['bytes']
   bytes = Buffer.from(bytes).toString()
-  // console.log(bytes)
   // let bytes = input
   // init
   let result = {
