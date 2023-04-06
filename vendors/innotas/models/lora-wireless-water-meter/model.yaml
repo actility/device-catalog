@@ -1,5 +1,5 @@
 # Commercial name of the model 
-name: LoRa wireless water meter
+name: LoRa Modularis wireless water meter
 # Functional description of the product. Maximum 500 characters. 
 description: "The Innotas Modularis water meter attachment consists of a pulse sensor that counts pulses for calculating the water flow volume. It can be attached to water meters with Modularis metering shaft (E. Wehrle GmbH, Wasser-Geräte GmbH, Meibes Systemtechnik GmbH, Maddalena GmbH, QUNDIS and others), ingle-jet and multi-jet dry dial water meters, annular piston, and measuring capsule water meters."
 # Logo of the device
@@ -26,14 +26,14 @@ minTxEIRP:
 motionIndicator:
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
-LoRaWANCertified: 
+LoRaWANCertified: false
 # Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
 modelId: innotas:water-meter:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
-protocolId:
+protocolId: innotas:water-meter:1
 # DataSheet URL (optional) 
-specificationURL: 
+specificationURL: https://irp.cdn-website.com/0a3fa4dd/files/uploaded/Produktblatt%20LoRa_Funkwasserzaehleraufsatz_V1.6_ENG.pdf
 # User Guide URL (optional) 
-userGuideURL: 
+userGuideURL: https://irp-cdn.multiscreensite.com/0a3fa4dd/files/uploaded/Montage-Betriebsanleitung_WZ_LoRa_V1.0_ENG.pdf
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
