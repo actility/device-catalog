@@ -130,5 +130,3 @@ function Decode(fPort, bytes, variables)
   }    
   return data;
 }
-
-exports.Decode = Decode;
