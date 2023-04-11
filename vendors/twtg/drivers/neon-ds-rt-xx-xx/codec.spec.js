@@ -1,21 +1,14 @@
 const driver = require('./index');
 const fs = require('fs');
-const glob = require('glob');
 
-examplesFiles = glob.sync(__dirname + '/examples/**/*.json');
-
-// Storing all the examples files in an array
-let examples = [];
-for (const exampleFile of examplesFiles) {
-  let example = fs.readFileSync(exampleFile, 'utf8', (err, content) => {
+// Storing all the examples in an array
+const examples = JSON.parse(
+  fs.readFileSync(__dirname + '/examples.json', 'utf8', (err, content) => {
     if (err) {
-      throw err.message;
+      throw new Error(err.message);
     }
-    return content;
-  });
-  const parsedExample = JSON.parse(example);
-  examples = examples.concat(parsedExample);
-}
+  })
+);
 
 /*..............
 Test suites
