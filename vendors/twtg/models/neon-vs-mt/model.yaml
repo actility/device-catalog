@@ -31,10 +31,17 @@ LoRaWANCertified: false
 # Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
 modelId: twtg:neon-vs-mt:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
-protocolId:
+protocolId: twtg:vs-mt:1
 # DataSheet URL (optional)
 specificationURL: https://github.com/TWTG-R-D-B-V/neon-product-documentation/blob/main/VS-MT/TWTG%20-NEON_Valve%20-Sensor-MT_Product-Sheet_B1.pdf
 # User Guide URL (optional)
 userGuideURL: https://github.com/TWTG-R-D-B-V/neon-product-documentation/tree/main/VS-MT/Installation%20%26%20Use
 # Available sensors following Actility ontology: https://github.com/actility/thingpark-iot-flow-js-driver/blob/master/UNITS.md
 sensors:
+
+examples:
+    - twtg:vs-mt:1:
+        - "Payload for Neon Valve Sensor MT 1"
+        - "Payload for Neon Valve Sensor MT 2"
+        - "Payload for Neon Valve Sensor MT 3"
+        - "Payload for Neon Valve Sensor MT 4"
