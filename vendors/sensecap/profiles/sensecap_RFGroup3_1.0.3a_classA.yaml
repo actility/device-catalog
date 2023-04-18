@@ -7,14 +7,14 @@
 #    RFGroup3:   au915-928 (starting from LoRaWAN 1.0.2revC)
 #    RFGroup4: as923
 # Please do not change the existing IDs (Some may follow the old format)
-id: sensecap_RFGroup1_1.0.3a_classA
+id: lora-generic_RFGroup3_1.0.3a_classA
 # LoRaWAN class of the Device: Possible values: [ A, B, C ] (Should not have several values)
 # 'A': Class A (Bi-directional end-devices with downlink listening only after uplink transmission)
 # 'B': Class B (Bi-directional end-devices with downlink listening on predefined synchronized pingslots)
 # 'C': Class C (Bi-directional end-devices with permanent downlink listening)
 loRaWANClass: A
 # Comma-separated list of regional profiles supported by this device. Possible values are eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470.
-ISMbands: eu868,in865,kr920
+ISMbands: au915
 # Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'
 # or 'random' (not known, changes over time).
 # The motion indication property will not be taken into consideration here if it is overwritten in the model.yaml
@@ -23,9 +23,9 @@ motionIndicator: RANDOM
 mac:
     # Activation modes supported by the device (put true where applicable).
     # (ABP)
-    activationByPersonalization: false
+    activationByPersonalization: true
     #(OTAA)
-    overTheAirActivation: true
+    overTheAirActivation: false
     # Supported version of the LoRaWAN MAC (Layer-2) specification. Possible values are '1.0.0/1.0.1', '1.0.2', '1.0.3', '1.0.4', '1.1'
     loRaWANMacVersion: 1.0.3
     # Supported version of the LoRaWAN regional parameters (PHY) specification. Possible values are '1.0.2revA', '1.0.2revB', '1.0.2revC', 
@@ -37,11 +37,11 @@ mac:
         # Minimum device TX Conducted output power in dBm.
         minTxPower:
         # Maximum device TX Conducted output power in dBm.
-        maxTxPower: 14
+        maxTxPower: 20
         # Minimum device TX Radiated output power in dBm.
         minTxEIRP:
         # Maximum device TX Radiated output power in dBm.
-        maxTxEIRP: 16
+        maxTxEIRP: 20
 
     uplinkFrameRepetition: 
         # Maximum number of transmissions per uplink frame, supported by the device. 
@@ -71,7 +71,7 @@ bootSettings:
     # Default downlink dwell time (valid only for AS923 and AU915 profiles). Possible values 0 (no limit) or 1 (400ms).
     downlinkDwellTime: 0
     # Default uplink dwell time (valid only for AS923 and AU915 profiles). Possible values 0 (no limit) or 1 (400ms).
-    uplinkDwellTime: 0
+    uplinkDwellTime: 1
 
 # Which MAC commands are supported by your device and which are not? Leave it as the template if your device supports all the MAC commands specified for your regional
 # profile. Put 'true' only if a command is supported.
@@ -83,9 +83,9 @@ supportedMACCommands:
     linkCheckReqAns: true
     rxParamSetupReqAns: true
     rxTimingSetupReqAns: true
-    newChannelReqAns: true
-    dlChannelReqAns: true
-    txParamSetupReqAns: false
+    newChannelReqAns: false
+    dlChannelReqAns: false
+    txParamSetupReqAns: true
     pingSlotChannelReqAns: false
     pingSlotInfoReqAns: true
     deviceTimeReqAns: true
