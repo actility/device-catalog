@@ -1,7 +1,7 @@
 # Commercial name of the model
-name: TWTG NEON Temperature Transmitter (DS-TT-02-00)
+name: NEON Temperature Transmitter (DS-TT-02-00)
 # Functional description of the product. Maximum 500 characters.
-description: "The NEON Temperature Transmitter provides insight on extreme temperatures and can send alerts if set triggers are reached. This folder contains the latest product documentation, please note that documents may be updated regularly."
+description: "The NEON Temperature Transmitter provides insight on extreme temperatures and can send alerts if set triggers are reached."
 # Logo of the device
 logo: twtg-tt.png
 # Product name & Version
@@ -10,8 +10,8 @@ product:
     version: 1
 # ID(s) of the profile that defines the LoRaWAN characteristics of this model.
 deviceProfileId:
-    - twtg_RFGroup1_RP2-1.0.4_classA
-    - twtg_RFGroup2_RP2-1.0.4_classA
+    - twtg_RFGroup1_RP2-1.0.4_classA # FIXME: deviceProfileId does not reflect the actual RP version
+    - twtg_RFGroup2_RP2-1.0.4_classA # FIXME: deviceProfileId does not reflect the actual RP version
 
 # You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings.
 # Maximum device TX Conducted output power in dBm.
@@ -38,7 +38,7 @@ specificationURL: https://github.com/TWTG-R-D-B-V/neon-product-documentation/blo
 userGuideURL: https://github.com/TWTG-R-D-B-V/neon-product-documentation/tree/main/TT/Installation%20%26%20Use
 # Available sensors following Actility ontology: https://github.com/actility/thingpark-iot-flow-js-driver/blob/master/UNITS.md
 sensors:
-    - temperature:K
+    - temperature:Cel
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
