@@ -19,7 +19,8 @@ describe('Decode uplink', () => {
                 }
                 // When
                 const result = driver.decodeUplink(input)
-                console.log(JSON.stringify(result))
+                const expected = example.output
+                expect(result).toStrictEqual(expected)
             })
         }
     })
