@@ -83,7 +83,7 @@ function decodeUplink(input){
             }
             result.data = {
                 frameType: "Life frame",
-                frameVersion: hexToDecimal(input.slice(2, 4)),
+                version: hexToDecimal(input.slice(2, 4)),
                 batteryLevel: hexToDecimal(input.slice(4, 8)),
                 accTemp: hexToDecimal(input.slice(8, 10)),
                 versionProgram: hexToDecimal(input.slice(10, 14)),
@@ -99,7 +99,7 @@ function decodeUplink(input){
                 frameType: "Shock frame",
                 deviceType: hexToDecimal(input.slice(0, 1)),
                 shockHeader: hexToDecimal(input.slice(1, 2)),
-                frameVersion: hexToDecimal(input.slice(2, 4)),
+                versionShockFrame: hexToDecimal(input.slice(2, 4)),
             };
             break;
         case 14:
@@ -173,12 +173,12 @@ function decodeUplink(input){
                     deviceState = "SLEEP";
                     break;
                 default:
-                    deviceState = "No Process Read";
+                    deviceState = "No Device State Read";
             }
 
             result.data = {
                 frameType: "Log frame",
-                frameVersion: hexToDecimal(input.slice(2, 4)),
+                versionLogFrame: hexToDecimal(input.slice(2, 4)),
                 processState: processState,
                 deviceState: deviceState,
                 settings: {
@@ -200,9 +200,15 @@ function decodeUplink(input){
             }
             result.data = {
                 frameType: "Ack frame",
-                frameVersion: hexToDecimal(input.slice(2, 4)),
+                deviceType: hexToDecimal(input.slice(0, 1)),
+                ackHeader: hexToDecimal(input.slice(1, 2)),
+                ackVersion: hexToDecimal(input.slice(2, 4)),
+                ID_downlink: hexToDecimal(input.slice(4, 8)),
+                /*
+                
+                    Frame Type Description is Unclear. To Correct.
 
-
+                */
             };
             break;
         case 17:
@@ -212,7 +218,12 @@ function decodeUplink(input){
             }
             result.data = {
                 frameType: "Recovery frame",
-                frameVersion: hexToDecimal(input.slice(2, 4)),
+                deviceType: hexToDecimal(input.slice(0, 1)),
+                recoveryHeader: hexToDecimal(input.slice(1, 2)),
+                payloadGNSS_1: hexToDecimal(input.slice(2, 46)),
+                timeLoc_1: hexToDecimal(input.slice(46, 50)),
+                payloadGNSS_2: hexToDecimal(input.slice(50, 94)),
+                timeLoc_2: hexToDecimal(input.slice(94)),
             };
             break;
     }
