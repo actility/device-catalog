@@ -1,16 +1,15 @@
 # Commercial name of the model 
-name: SenseCAP S2104- LoRaWAN® Soil Moisture and Temperature Sensor
+name: SenseCAP S2120 8-in-1 LoRaWAN Weather Sensor
 # Functional description of the product. Maximum 500 characters. 
-description: "A battery-powered IP66 wireless soil moisture and temperature sensor, range from 0 ~ 100% (m³/m³) and -40 ~ 80℃, equipped with built-in Bluetooth and APP service for OTA configuration and remote device management. Used in smart farming, smart yard, and environment monitoring solutions."
+description: "SenseCAP LoRaWAN S2120 Weather Station provides you with hyperlocal weather at your fingertips. It supports multi-scenario applications like backyard, garden, agriculture, meteorology, urban environmental monitoring, and so on. It enables low maintenance cost for its ultra-low power consumption, reliable performance, and built-in Bluetooth for OTA configuration and remote device management."
 # Logo of the device
-logo: sensecap-s2104.png
+logo: sensecap-s2120.png
 # ID(s) of the profile that defines the LoRaWAN characteristics of this model.
 deviceProfileId: 
     - sensecap_RFGroup1_1.0.3a_classA
     - sensecap_RFGroup2_1.0.3a_classA
     - sensecap_RFGroup3_1.0.3a_classA
     - sensecap_RFGroup4_1.0.3a_classA
-
  
 # You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
 # Maximum device TX Conducted output power in dBm. 
@@ -28,18 +27,22 @@ motionIndicator:
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
 # Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
-modelId: sensecap:s2104:1
+modelId: sensecap:s2120:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
-protocolId: sensecap:s210x:1
+protocolId: sensecap:s2120:1
 # DataSheet URL (optional) 
-specificationURL: https://www.seeedstudio.com/SenseCAP-S2104-LoRaWAN-Soil-Temperature-and-Moisture-Sensor-p-5357.html
+specificationURL: https://www.seeedstudio.com/sensecap-s2120-lorawan-8-in-1-weather-sensor-p-5436.html
 # User Guide URL (optional) 
-userGuideURL: https://files.seeedstudio.com/products/SenseCAP/S210X/SenseCAP%20S210X%20LoRaWAN%20Sensor%20User%20Guide.pdf
+userGuideURL: https://files.seeedstudio.com/products/SenseCAP/101990961_SenseCAP%20S2120/SenseCAP%20S2120%20LoRaWAN%208-in-1%20Weather%20Station%20User%20Guide.pdf
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:    
     - temperature:Cel
     - humidity:%RH
-
+    - pressure:Pa
+    - speed:m/s
+    - angle:°
+    - illuminance:lx
+    - velocity:mm/h
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
