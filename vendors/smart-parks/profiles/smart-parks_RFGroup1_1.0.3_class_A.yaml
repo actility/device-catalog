@@ -7,7 +7,7 @@
 #    RFGroup3:   au915-928 (starting from LoRaWAN 1.0.2revC)
 #    RFGroup4: as923
 # Please do not change the existing IDs (Some may follow the old format)
-id: SMAR/OPLARA.1.0.2b_ETSI
+id: smart-parks_RFGroup1_1.0.3_class_A
 # LoRaWAN class of the Device: Possible values: [ A, B, C ] (Should not have several values)
 # 'A': Class A (Bi-directional end-devices with downlink listening only after uplink transmission)
 # 'B': Class B (Bi-directional end-devices with downlink listening on predefined synchronized pingslots)
@@ -27,17 +27,17 @@ mac:
     #(OTAA)
     overTheAirActivation: false
     # Supported version of the LoRaWAN MAC (Layer-2) specification. Possible values are '1.0.0/1.0.1', '1.0.2', '1.0.3', '1.0.4', '1.1'
-    loRaWANMacVersion: 1.0.2
+    loRaWANMacVersion: 1.0.3
     # Supported version of the LoRaWAN regional parameters (PHY) specification. Possible values are '1.0.2revA', '1.0.2revB', '1.0.2revC', 
     # '1.0.3revA', 'RP2-1.0.0', 'RP2-1.0.1', 'RP2-1.0.2', 'RP2-1.0.3', 'RP2-1.0.4', 'RP2-1.0.5'.
-    regionalParameterVersion: 1.0.2revB
+    regionalParameterVersion: 1.0.3revA
 
     # The device Tx Power Capabilities here will not be taken into consideration if it is overwritten in the model.yaml
     devicesTxPowerCapabilities:
         # Minimum device TX Conducted output power in dBm.
         minTxPower:
         # Maximum device TX Conducted output power in dBm.
-        maxTxPower: 16
+        maxTxPower: 14
         # Minimum device TX Radiated output power in dBm.
         minTxEIRP:
         # Maximum device TX Radiated output power in dBm.
@@ -59,9 +59,9 @@ bootSettings:
     rx1DROffset:
     # Rx2 DataRate, used to send DL packets over RX2 slot. Note: Data Rate encoding is region-specific, see the applicable LoRaWAN Regional 
     # Profile.
-    rx2DataRate: 3
+    rx2DataRate:
     # Rx2 Frequency expressed in MHz, used to send DL packets over RX2 slot.
-    rx2Frequency: 868.525
+    rx2Frequency:
     # Default data rate used for Class B ping slots. Note: Data Rate encoding is region-specific, see the applicable LoRaWAN Regional Profile.
     pingSlotChannelDataRate:
     # Default frequency (in MHz) used for Class B ping slots.
@@ -83,7 +83,7 @@ supportedMACCommands:
     linkCheckReqAns: true
     rxParamSetupReqAns: true
     rxTimingSetupReqAns: true
-    newChannelReqAns: true
+    newChannelReqAns: false
     dlChannelReqAns: true
     txParamSetupReqAns: false
     pingSlotChannelReqAns: false
