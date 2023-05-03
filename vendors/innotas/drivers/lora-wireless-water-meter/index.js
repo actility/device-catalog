@@ -13,17 +13,51 @@ function Decode(fPort, bytes)
       	data.ZS = value;
     break;
     case 2:
-        value = bytes[index++] << 24;
-    	value |= bytes[index++]<< 16;
-    	value |= bytes[index++]<< 8;
-    	value |= bytes[index++];  
-      	data.ZS = value;
-        value = bytes[index++] << 24;
-    	value |= bytes[index++]<< 16;
-    	value |= bytes[index++]<< 8;
-    	value |= bytes[index++];  
-      	data.STZS = value;
-      break;
+
+      value = bytes[index++] << 24;
+      value |= bytes[index++]<< 16;
+      value |= bytes[index++]<< 8;
+      value |= bytes[index++]; 
+      data.ZS = value;
+
+      value = bytes[index++] << 24;
+      value |= bytes[index++]<< 16;
+      value |= bytes[index++]<< 8;
+      value |= bytes[index++]; 
+      data.STZS = value;
+	  
+      if (typeof(data.STATUS) == "undefined")
+	  {
+        data.STATUS = {};
+      }
+
+      data.STATUS.ERROR_RESET = bytes[index] & 32;
+      data.STATUS.ERROR_RF = bytes[index] & 16;
+      data.STATUS.ERROR_CS = bytes[index] & 8;
+      data.STATUS.ERROR_BATT = bytes[index] & 4;
+      data.STATUS.ERROR_SABOT = bytes[index] & 2;
+      data.STATUS.ERROR_MESS = bytes[index] & 1;
+
+      index++;
+
+      data.STATUS.ERROR_LECK = bytes[index] & 128;
+      data.STATUS.ST_TYPE = bytes[index] & 8;
+
+      if ((bytes[index] & 4) >> 2) data.STATUS.INTERVALL= "2min";
+
+      else if ((bytes[index] & 3) == 3) data.STATUS.INTERVALL= "14tägl";
+
+      else if ((bytes[index] & 3) == 2) data.STATUS.INTERVALL= "7tägl";
+
+      else if ((bytes[index] & 3) == 1) data.STATUS.INTERVALL= "1tägl"; 
+
+      else data.STATUS.INTERVALL= "norm";
+
+	  index++;
+
+	  data.STATUS.ST_MON = bytes[index];
+
+	  break;
 	case 3:
     	value = bytes[index++] << 24;
     	value |= bytes[index++]<< 16;
