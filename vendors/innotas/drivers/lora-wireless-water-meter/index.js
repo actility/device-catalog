@@ -130,15 +130,3 @@ function Decode(fPort, bytes)
   }    
   return data;
 }
-
-let bytes = [
-	0,   3, 134, 191, 0,
-	2, 191,  27,   0, 0,
-   12
- ];
-  console.log(Decode(1, bytes));
-  console.log(Decode(2, bytes));
-  console.log(Decode(3, bytes));
-  console.log(Decode(4, bytes));
-  console.log(Decode(9, bytes));
-  console.log(Decode(10, bytes));
