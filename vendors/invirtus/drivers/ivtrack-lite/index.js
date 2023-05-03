@@ -1,6 +1,6 @@
 function twosHexToDecimal(input){
     // Convert hex string to integer
-    let intVal = parseInt(hexStr, 16);
+    let intVal = parseInt(input, 16);
 
     // Check if the most significant bit is set (i.e., negative number)
     if ((intVal & 0x80000000) !== 0) {
@@ -17,21 +17,33 @@ function hexToDecimal(input){
     return parseInt(input, 16);
 }
 
+function decimalToHex(input){
+    return input.toString(16);
+}
 
-function decodeUplink(input){
-    var result = {};
 
-    var frameType = input.slice(0, 2);
-    var payloadByteLength = input.length/2;
+function decodeUplink(inputObject){
+    var result = {
+        data: {
+
+        },
+        warnings: [],
+        errors: []
+    };
+
+    var input = inputObject.bytes;
+
+    var frameType = input[0];
+    var payloadByteLength = input.length;
 
     switch(frameType){
-        case 11:
+        case 17:
             if(payloadByteLength != 21){
                 result.errors = ["Payload ust be 21 bytes long."];
                 return result;
             }
             var motionState = "";
-            switch(hexToDec(input.slice(28, 30))){
+            switch(input[14]){
                 case 0:
                     motionState = "MOTION_UNKNOWN";
                     break;
@@ -49,25 +61,25 @@ function decodeUplink(input){
             }
             result.data = {
                 frameType: "GNSS frame",
-                frameVersion: hexToDecimal(input.slice(2, 4)),
-                latitude: twosHexToDecimal(input.slice(4, 12))/1000000,
-                longitude: twosHexToDecimal(input.slice(12, 20))/1000000,
-                gnssCount: hexToDecimal(input.slice(20, 24)),
-                tripID: hexToDecimal(input.slice(24, 28)),
+                frameVersion: input[1],
+                latitude: twosHexToDecimal(decimalToHex(((input[2]*16*16 + input[3])*16*16 + input[4])*16*16 + input[5]))/1000000,
+                longitude: twosHexToDecimal(decimalToHex(((input[6]*16*16 + input[7])*16*16 + input[8])*16*16 + input[9]))/1000000,
+                gnssCount: input[10]*16*16 + input[11],
+                tripID: input[12]*16*16 + input[13],
                 motionState: motionState,
-                TTFF: hexToDecimal(input.slice(30, 32)),
-                nbrOfSats: hexToDecimal(input.slice(32, 34)),
-                HDOP: hexToDecimal(input.slice(34, 38))/100,
-                EPE: hexToDecimal(input.slice(38, 42))/100,
+                TTFF: input[15],
+                nbrOfSats: input[16],
+                HDOP: (input[17]*16*16 + input[18])/100,
+                EPE: (input[19]*16*16 + input[20])/100,
             }
             break;
-        case 12:
+        case 18:
             if(payloadByteLength != 8){
                 result.errors = ["Payload must be 8 bytes long."];
                 return result;
             }
             var trackerMode = "";
-            switch(hexToDecimal(input.slice(14, 16))){
+            switch(input.slice[7]){
                 case 1:
                     trackerMode = "TRACKER_NORMAL";
                     break;
@@ -83,26 +95,26 @@ function decodeUplink(input){
             }
             result.data = {
                 frameType: "Life frame",
-                version: hexToDecimal(input.slice(2, 4)),
-                batteryLevel: hexToDecimal(input.slice(4, 8)),
-                accTemp: hexToDecimal(input.slice(8, 10)),
-                versionProgram: hexToDecimal(input.slice(10, 14)),
+                version: input[1],
+                batteryLevel: input[2]*16*16 + input[3],
+                accTemp: input[4],
+                versionProgram: input[5]*16*16 + input[6],
                 trackerMode: trackerMode,
             };
             break;
-        case 13:
+        case 19:
             if(payloadByteLength != 2){
                 result.errors = ["Payload must be 2 bytes long."];
                 return result;
             }
             result.data = {
                 frameType: "Shock frame",
-                deviceType: hexToDecimal(input.slice(0, 1)),
-                shockHeader: hexToDecimal(input.slice(1, 2)),
-                versionShockFrame: hexToDecimal(input.slice(2, 4)),
+                deviceType: (input[0] & 0b11110000) >> 4,
+                shockHeader: (input[0] & 0b00001111),
+                versionShockFrame: input[1],
             };
             break;
-        case 14:
+        case 20:
             if(payloadByteLength != 4){
                 result.errors = ["Payload must be 4 bytes long."];
                 return result;
@@ -110,7 +122,7 @@ function decodeUplink(input){
             
             var processState = "";
             var deviceState = "";
-            switch(hexToDecimal(input.slice())){
+            switch((input[2] & 0b11110000) >> 4){
                 case 0:
                     processState = "PROCESS_AVAILABLE";
                     break;
@@ -129,7 +141,7 @@ function decodeUplink(input){
                 default:
                     processState = "No Process Read";
             }
-            switch(hexToDecimal(input.slice())){
+            switch(input[2] & 0b00001111){
                 case 0:
                     deviceState = "INIT_FROM_FSTORAGE";
                     break;
@@ -178,52 +190,72 @@ function decodeUplink(input){
 
             result.data = {
                 frameType: "Log frame",
-                versionLogFrame: hexToDecimal(input.slice(2, 4)),
+                versionLogFrame: input[1],
                 processState: processState,
                 deviceState: deviceState,
                 settings: {
-                    motionStateBit1: hexToDecimal(input.slice(8, 9)) == 1,
-                    motionStateBit2: hexToDecimal(input.slice(9, 10)) == 1,
-                    motionStateBit3: hexToDecimal(input.slice(10, 11)) == 1,
-                    timerGNSS_on: hexToDecimal(input.slice(11, 12)) == 1,
-                    timerLF_on: hexToDecimal(input.slice(12, 13)) == 1,
-                    callbackGNSSFrame: hexToDecimal(input.slice(13, 14)) == 1,
-                    callbackLifeFrame: hexToDecimal(input.slice(14, 15)) == 1,
-                    callbackShockFrame: hexToDecimal(input.slice(15, 16)) == 1,
+                    motionStateBit1: input[3] & 0b10000000 == 1,
+                    motionStateBit2: input[3] & 0b01000000 == 1,
+                    motionStateBit3: input[3] & 0b00100000 == 1,
+                    timerGNSS_on: input[3] & 0b00010000 == 1,
+                    timerLF_on: input[3] & 0b00001000 == 1,
+                    callbackGNSSFrame: input[3] & 0b00000100 == 1,
+                    callbackLifeFrame: input[3] & 0b00000010 == 1,
+                    callbackShockFrame: input[3] & 0b00000001 == 1,
                 }
             };
             break;
-        case 15:
-            if(payloadByteLength != 8 || payloadByteLength != 10){
-                result.errors = ["Payload must be 8 bytes long."];
+        case 21:
+            if(payloadByteLength != 9){
+                result.errors = ["Payload must be 9 bytes long."];
                 return result;
             }
             result.data = {
                 frameType: "Ack frame",
-                deviceType: hexToDecimal(input.slice(0, 1)),
-                ackHeader: hexToDecimal(input.slice(1, 2)),
-                ackVersion: hexToDecimal(input.slice(2, 4)),
-                ID_downlink: hexToDecimal(input.slice(4, 8)),
-                /*
-                
-                    Frame Type Description is Unclear. To Correct.
-
-                */
+                deviceType: (input[0] & 0b11110000) >> 4,
+                ackHeader: input[0] & 0b00001111,
+                ackVersion: input[1],
+                ID_downlink: input[2]*16*16 + input[3],
+                state: input[4] & 0b00000001,
+                index: input[5],
+                min_value: input[6],
+                max_value: input[7],
+                error_value: input[8],
             };
+
             break;
-        case 17:
+        case 23:
             if(payloadByteLength != 2){
                 result.errors = ["Payload must be 2 bytes long."];
                 return result;
             }
+            var gnss1 = () => {
+                var result = 0;
+                for(var i = 1 ; i < 23 ; i++){
+                    result += input[i];
+                    result = result*16*16;
+                }
+                result /= 16*16;
+                return result;
+            }
+            var gnss2 = () => {
+                var result = 0;
+                for(var i = 25 ; i < 47 ; i++){
+                    result += input[i];
+                    result = result*16*16;
+                }
+                result /= 16*16;
+                return result;
+            }
+
             result.data = {
                 frameType: "Recovery frame",
-                deviceType: hexToDecimal(input.slice(0, 1)),
-                recoveryHeader: hexToDecimal(input.slice(1, 2)),
-                payloadGNSS_1: hexToDecimal(input.slice(2, 46)),
-                timeLoc_1: hexToDecimal(input.slice(46, 50)),
-                payloadGNSS_2: hexToDecimal(input.slice(50, 94)),
-                timeLoc_2: hexToDecimal(input.slice(94)),
+                deviceType: (input[0] & 0b11110000) >> 4,
+                recoveryHeader: input[0] & 0b00001111,
+                payloadGNSS_1: gnss1(),
+                timeLoc_1: input[23]*16*16 + input[24],
+                payloadGNSS_2: gnss2(),
+                timeLoc_2: input[47]*16*16 + input[48],
             };
             break;
     }
