@@ -459,5 +459,11 @@ function decodeUplink(input){
     return result;
 }
 
+function encodeDownlink(input){
+    var result = "";
+
+    return result;
+}
 
 exports.decodeUplink = decodeUplink;
+exports.encodeDownlink = encodeDownlink;
