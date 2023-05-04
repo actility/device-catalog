@@ -41,32 +41,58 @@ function decimalToHex(decimal) {
     return hex;
 }
 
+function hexStrFromDecimals(input){
+    var hex = "";
+
+    for(var i = 0 ; i < input.length ; i++){
+        var value = (decimalToHex(input[i]).length == 2) ? "" : "0";
+        value += decimalToHex(input[i]);
+        hex += value;
+    }
+
+    return hex;
+}
+
+function getHalfByteHexArray(input){
+    var hexArray = [];
+
+    var inputHexStr = hexStrFromDecimals(input);
+
+    for(var i = 0 ; i < inputHexStr.length ; i++){
+        hexArray.push(parseInt(inputHexStr[i], 16));
+    }
+
+    return hexArray;
+}
+
 
 function decodeUplink(input){
     var result = {};
 
-    var type = input.slice(0, 2);
+    hexStr = getHalfByteHexArray(input);
+
+    var type = hexStr[0]*16 + hexStr[1];
 
     if(type != 2){
         result.errors = ["The first hexadecimal character of the payload must be 2 for an uplink"];
         return result;
     }
 
-    result.profileNbr = input.slice(2, 3);
-    result.profileVersion = input.slice(3, 4);
+    result.profileNbr = hexStr[2];
+    result.profileVersion = hexStr[3];
 
     switch(result.profileNbr){
         case 1:
-            result.dateTime = ((input.slice(4, 5)*16 + input.slice(5, 6))*16 + input.slice(6, 7))*16 + input.slice(7, 8);
+            result.dateTime = ((hexStr[4]*16 + hexStr[5])*16 + hexStr[6])*16 + hexStr[7];
 
-            result["Ea+"] = ((((((input.slice(8, 9)*16 + input.slice(9, 10))*16 + input.slice(10, 11))*16 + input.slice(11, 12))*16 + input.slice(12, 13))*16 + input.slice(13, 14))*16 + input.slice(14, 15))*16 + input.slice(15, 16);
-            result["Ea-"] = ((((((input.slice(16, 17)*16 + input.slice(17, 18))*16 + input.slice(18, 19))*16 + input.slice(19, 20))*16 + input.slice(20, 21))*16 + input.slice(21, 22))*16 + input.slice(22, 23))*16 + input.slice(23, 24);
-            result["Er+"] = ((((((input.slice(24, 25)*16 + input.slice(25, 26))*16 + input.slice(26, 27))*16 + input.slice(27, 28))*16 + input.slice(28, 29))*16 + input.slice(29, 30))*16 + input.slice(30, 31))*16 + input.slice(31, 32);
-            result["Er-"] = ((((((input.slice(32, 33)*16 + input.slice(33, 34))*16 + input.slice(34, 35))*16 + input.slice(35, 36))*16 + input.slice(36, 37))*16 + input.slice(37, 38))*16 + input.slice(38, 39))*16 + input.slice(39, 40);
+            result["Ea+"] = ((((((hexStr[8]*16 + hexStr[9])*16 + hexStr[10])*16 + hexStr[11])*16 + hexStr[12])*16 + hexStr[13])*16 + hexStr[14])*16 + hexStr[15];
+            result["Ea-"] = (((((hexStr[16]*16 + hexStr[17]*16 + hexStr[18])*16 + hexStr[19])*16 + hexStr[20])*16 + hexStr[21])*16 + hexStr[22])*16 + hexStr[23];
+            result["Er+"] = ((((((hexStr[24]*16 + hexStr[25])*16 + hexStr[26])*16 + hexStr[27])*16 + hexStr[28])*16 + hexStr[29])*16 + hexStr[30])*16 + hexStr[31];
+            result["Er-"] = ((((((hexStr[32]*16 + hexStr[33])*16 + hexStr[34])*16 + hexStr[35])*16 + hexStr[36])*16 + hexStr[37])*16 + hexStr[38])*16 + hexStr[39];
 
-            result.pulseMeter = ((((((input.slice(40, 41)*16 + input.slice(41, 42))*16 + input.slice(42, 43))*16 + input.slice(43, 44))*16 + input.slice(44, 45))*16 + input.slice(45, 46))*16 + input.slice(46, 47))*16 + input.slice(47, 48);
+            result.pulseMeter = ((((((hexStr[40]*16 + hexStr[41])*16 + hexStr[42])*16 + hexStr[43])*16 + hexStr[44])*16 + hexStr[45])*16 + hexStr[46])*16 + hexStr[47];
             
-            var decimalInputs = input.slice(48, 49)*16 + input.slice(49, 50);
+            var decimalInputs = hexStr[48]*16 + hexStr[49];
             var binaryInputs = decimalToBinary(decimalInputs);
 
             result.native = {digitalInput1: binaryInputs.substring(0, 1), digitalInput2: binaryInputs.substring(1, 2)};
@@ -83,39 +109,39 @@ function decodeUplink(input){
             
             result.statusChangeCounter = {
                 native: {
-                    input1: decimalToHex(input.slice(50, 51)).substring(0, 4),
-                    input2: decimalToHex(input.slice(50, 51)).substring(4, 8),
+                    input1: decimalToHex(hexStr[50]).substring(0, 4),
+                    input2: decimalToHex(hexStr[50]).substring(4, 8),
                 },
                 module1: {
-                    digitalInput1: decimalToHex(input.slice(51, 52)).substring(0, 4),
-                    digitalInput2: decimalToHex(input.slice(51, 52)).substring(4, 8),
+                    digitalInput1: decimalToHex(hexStr[51]).substring(0, 4),
+                    digitalInput2: decimalToHex(hexStr[51]).substring(4, 8),
                 }
             };
 
             break;
         case 2:
-            result.dateTime = ((input.slice(4, 5)*16 + input.slice(5, 6))*16 + input.slice(6, 7))*16 + input.slice(7, 8);
+            result.dateTime = ((hexStr[4]*16 + hexStr[5])*16 + hexStr[6])*16 + hexStr[7];
 
             result.load1 = {
-                "Ea+": ((input.slice(8, 9)*16 + input.slice(9, 10))*16 + input.slice(10, 11))*16 + input.slice(11, 12),
-                "Er+": ((input.slice(12, 13)*16 + input.slice(13, 14))*16 + input.slice(14, 15))*16 + input.slice(15, 16),
+                "Ea+": ((hexStr[8]*16 + hexStr[9])*16 + hexStr[10])*16 + hexStr[11],
+                "Er+": ((hexStr[12]*16 + hexStr[13])*16 + hexStr[14])*16 + hexStr[15],
             };
             result.load2 = {
-                "Ea+": ((input.slice(16, 17)*16 + input.slice(17, 18))*16 + input.slice(18, 19))*16 + input.slice(19, 20),
-                "Er+": ((input.slice(20, 21)*16 + input.slice(21, 22))*16 + input.slice(22, 23))*16 + input.slice(23, 24),
+                "Ea+": ((hexStr[16]*16 + hexStr[17])*16 + hexStr[18])*16 + hexStr[19],
+                "Er+": ((hexStr[20]*16 + hexStr[21])*16 + hexStr[22])*16 + hexStr[23],
             };
             result.load3 = {
-                "Ea+": ((input.slice(24, 25)*16 + input.slice(25, 26))*16 + input.slice(26, 27))*16 + input.slice(27, 28),
-                "Er+": ((input.slice(28, 29)*16 + input.slice(29, 30))*16 + input.slice(30, 31))*16 + input.slice(31, 32),
+                "Ea+": ((hexStr[24]*16 + hexStr[25])*16 + hexStr[26])*16 + hexStr[27],
+                "Er+": ((hexStr[28]*16 + hexStr[29])*16 + hexStr[30])*16 + hexStr[31],
             };
             result.load4 = {
-                "Ea+": ((input.slice(32, 33)*16 + input.slice(33, 34))*16 + input.slice(34, 35))*16 + input.slice(35, 36),
-                "Er+": ((input.slice(36, 37)*16 + input.slice(37, 38))*16 + input.slice(38, 39))*16 + input.slice(39, 40),
+                "Ea+": ((hexStr[32]*16 + hexStr[33])*16 + hexStr[34])*16 + hexStr[35],
+                "Er+": ((hexStr[36]*16 + hexStr[37])*16 + hexStr[38])*16 + hexStr[39],
             };
 
-            result.pulseMeter = ((((((input.slice(40, 41)*16 + input.slice(41, 42))*16 + input.slice(42, 43))*16 + input.slice(43, 44))*16 + input.slice(44, 45))*16 + input.slice(45, 46))*16 + input.slice(46, 47))*16 + input.slice(47, 48);
+            result.pulseMeter = ((((((hexStr[40]*16 + hexStr[41])*16 + hexStr[42])*16 + hexStr[43])*16 + hexStr[44])*16 + hexStr[45])*16 + hexStr[46])*16 + hexStr[47];
             
-            var decimalInputs = input.slice(48, 49)*16 + input.slice(49, 50);
+            var decimalInputs = hexStr[48]*16 + hexStr[49];
             var binaryInputs = decimalToBinary(decimalInputs);
 
             result.native = {digitalInput1: binaryInputs.substring(0, 1), digitalInput2: binaryInputs.substring(1, 2)};
@@ -132,39 +158,39 @@ function decodeUplink(input){
             
             result.statusChangeCounter = {
                 native: {
-                    input1: decimalToHex(input.slice(50, 51)).substring(0, 4),
-                    input2: decimalToHex(input.slice(50, 51)).substring(4, 8),
+                    input1: decimalToHex(hexStr[50]).substring(0, 4),
+                    input2: decimalToHex(hexStr[50]).substring(4, 8),
                 },
                 module1: {
-                    digitalInput1: decimalToHex(input.slice(51, 52)).substring(0, 4),
-                    digitalInput2: decimalToHex(input.slice(51, 52)).substring(4, 8),
+                    digitalInput1: decimalToHex(hexStr[51]).substring(0, 4),
+                    digitalInput2: decimalToHex(hexStr[51]).substring(4, 8),
                 }
             };
 
             break;
         case 3:
-            result.dateTime = ((input.slice(4, 5)*16 + input.slice(5, 6))*16 + input.slice(6, 7))*16 + input.slice(7, 8);
+            result.dateTime = ((hexStr[4]*16 + hexStr[5])*16 + hexStr[6])*16 + hexStr[7];
             
             result.load1 = {
-                "Ea+": ((input.slice(8, 9)*16 + input.slice(9, 10))*16 + input.slice(10, 11))*16 + input.slice(11, 12),
-                "Ea-": ((input.slice(12, 13)*16 + input.slice(13, 14))*16 + input.slice(14, 15))*16 + input.slice(15, 16),
+                "Ea+": ((hexStr[8]*16 + hexStr[9])*16 + hexStr[10])*16 + hexStr[11],
+                "Ea-": ((hexStr[12]*16 + hexStr[13])*16 + hexStr[14])*16 + hexStr[15],
             };
             result.load2 = {
-                "Ea+": ((input.slice(16, 17)*16 + input.slice(17, 18))*16 + input.slice(18, 19))*16 + input.slice(19, 20),
-                "Ea-": ((input.slice(20, 21)*16 + input.slice(21, 22))*16 + input.slice(22, 23))*16 + input.slice(23, 24),
+                "Ea+": ((hexStr[16]*16 + hexStr[17])*16 + hexStr[18])*16 + hexStr[19],
+                "Ea-": ((hexStr[20]*16 + hexStr[21])*16 + hexStr[22])*16 + hexStr[23],
             };
             result.load3 = {
-                "Ea+": ((input.slice(24, 25)*16 + input.slice(25, 26))*16 + input.slice(26, 27))*16 + input.slice(27, 28),
-                "Ea-": ((input.slice(28, 29)*16 + input.slice(29, 30))*16 + input.slice(30, 31))*16 + input.slice(31, 32),
+                "Ea+": ((hexStr[24]*16 + hexStr[25])*16 + hexStr[26])*16 + hexStr[27],
+                "Ea-": ((hexStr[28]*16 + hexStr[29])*16 + hexStr[30])*16 + hexStr[31],
             };
             result.load4 = {
-                "Ea+": ((input.slice(32, 33)*16 + input.slice(33, 34))*16 + input.slice(34, 35))*16 + input.slice(35, 36),
-                "Ea-": ((input.slice(36, 37)*16 + input.slice(37, 38))*16 + input.slice(38, 39))*16 + input.slice(39, 40),
+                "Ea+": ((hexStr[32]*16 + hexStr[33])*16 + hexStr[34])*16 + hexStr[35],
+                "Ea-": ((hexStr[36]*16 + hexStr[37])*16 + hexStr[38])*16 + hexStr[39],
             };
             
-            result.pulseMeter = ((((((input.slice(40, 41)*16 + input.slice(41, 42))*16 + input.slice(42, 43))*16 + input.slice(43, 44))*16 + input.slice(44, 45))*16 + input.slice(45, 46))*16 + input.slice(46, 47))*16 + input.slice(47, 48);
+            result.pulseMeter = ((((((hexStr[40]*16 + hexStr[41])*16 + hexStr[42])*16 + hexStr[43])*16 + hexStr[44])*16 + hexStr[45])*16 + hexStr[46])*16 + hexStr[47];
             
-            var decimalInputs = input.slice(48, 49)*16 + input.slice(49, 50);
+            var decimalInputs = hexStr[48]*16 + hexStr[49];
             var binaryInputs = decimalToBinary(decimalInputs);
 
             result.native = {digitalInput1: binaryInputs.substring(0, 1), digitalInput2: binaryInputs.substring(1, 2)};
@@ -181,29 +207,29 @@ function decodeUplink(input){
             
             result.statusChangeCounter = {
                 native: {
-                    input1: decimalToHex(input.slice(50, 51)).substring(0, 4),
-                    input2: decimalToHex(input.slice(50, 51)).substring(4, 8),
+                    input1: decimalToHex(hexStr[50]).substring(0, 4),
+                    input2: decimalToHex(hexStr[50]).substring(4, 8),
                 },
                 module1: {
-                    digitalInput1: decimalToHex(input.slice(51, 52)).substring(0, 4),
-                    digitalInput2: decimalToHex(input.slice(51, 52)).substring(4, 8),
+                    digitalInput1: decimalToHex(hexStr[51]).substring(0, 4),
+                    digitalInput2: decimalToHex(hexStr[51]).substring(4, 8),
                 }
             };
 
             break;
         case 4:
-            result.dateTime = ((input.slice(4, 5)*16 + input.slice(5, 6))*16 + input.slice(6, 7))*16 + input.slice(7, 8);
+            result.dateTime = ((hexStr[4]*16 + hexStr[5])*16 + hexStr[6])*16 + hexStr[7];
             
-            result.plotAvg = ((input.slice(8, 9)*16 + input.slice(9, 10))*16 + input.slice(10, 11))*16 + input.slice(11, 12);
-            result.qTotAvg = ((input.slice(12, 13)*16 + input.slice(13, 14))*16 + input.slice(14, 15))*16 + input.slice(15, 16);
-            result.sTotAvg = ((input.slice(16, 17)*16 + input.slice(17, 18))*16 + input.slice(18, 19))*16 + input.slice(19, 20);
-            result.pFTotAvg = input.slice(20, 21)*16 + input.slice(21, 22);
-            result.I1Avg = ((input.slice(22, 23)*16 + input.slice(23, 24))*16 + input.slice(24, 25))*16 + input.slice(25, 26);
-            result.I2Avg = ((input.slice(26, 27)*16 + input.slice(27, 28))*16 + input.slice(28, 29))*16 + input.slice(29, 30);
-            result.I3Avg = ((input.slice(30, 31)*16 + input.slice(31, 32))*16 + input.slice(32, 33))*16 + input.slice(33, 34);
-            result.FAvg = ((input.slice(34, 35)*16 + input.slice(35, 36))*16 + input.slice(36, 37))*16 + input.slice(37, 38);
+            result.plotAvg = ((hexStr[8]*16 + hexStr[9])*16 + hexStr[10])*16 + hexStr[11];
+            result.qTotAvg = ((hexStr[12]*16 + hexStr[13])*16 + hexStr[14])*16 + hexStr[15];
+            result.sTotAvg = ((hexStr[16]*16 + hexStr[17])*16 + hexStr[18])*16 + hexStr[19];
+            result.pFTotAvg = hexStr[20]*16 + hexStr[21];
+            result.I1Avg = ((hexStr[22]*16 + hexStr[23])*16 + hexStr[24])*16 + hexStr[25];
+            result.I2Avg = ((hexStr[26]*16 + hexStr[27])*16 + hexStr[28])*16 + hexStr[29];
+            result.I3Avg = ((hexStr[30]*16 + hexStr[31])*16 + hexStr[32])*16 + hexStr[33];
+            result.FAvg = ((hexStr[34]*16 + hexStr[35])*16 + hexStr[36])*16 + hexStr[37];
             
-            var decimalInputs = input.slice(38, 39)*16 + input.slice(39, 40);
+            var decimalInputs = hexStr[38]*16 + hexStr[39];
             var binaryInputs = decimalToBinary(decimalInputs);
 
             result.native = {digitalInput1: binaryInputs.substring(0, 1), digitalInput2: binaryInputs.substring(1, 2)};
@@ -218,43 +244,43 @@ function decodeUplink(input){
                 iTR4: binaryInputs.substring(13, 14)  
             };
             
-            result.temperatureInput1 = input.slice(40, 41)*16 + input.slice(41, 42);
-            result.temperatureInput2 = input.slice(42, 43)*16 + input.slice(43, 44);
-            result.temperatureInput3 = input.slice(44, 45)*16 + input.slice(45, 46);
+            result.temperatureInput1 = hexStr[40]*16 + hexStr[41];
+            result.temperatureInput2 = hexStr[42]*16 + hexStr[43];
+            result.temperatureInput3 = hexStr[44]*16 + hexStr[45];
 
             result.statusChangeCounter = {
                 native: {
-                    input1: decimalToHex(input.slice(46, 47)).substring(0, 4),
-                    input2: decimalToHex(input.slice(46, 47)).substring(4, 8),
+                    input1: decimalToHex(hexStr[46]).substring(0, 4),
+                    input2: decimalToHex(hexStr[46]).substring(4, 8),
                 },
                 module1: {
-                    digitalInput1: decimalToHex(input.slice(47, 48)).substring(0, 4),
-                    digitalInput2: decimalToHex(input.slice(47, 48)).substring(4, 8),
+                    digitalInput1: decimalToHex(hexStr[47]).substring(0, 4),
+                    digitalInput2: decimalToHex(hexStr[47]).substring(4, 8),
                 }
             };
 
             break;
         case 5:
-            result.dateTimeOfAvgValue = ((input.slice(4, 5)*16 + input.slice(5, 6))*16 + input.slice(6, 7))*16 + input.slice(7, 8);
+            result.dateTimeOfAvgValue = ((hexStr[4]*16 + hexStr[5])*16 + hexStr[6])*16 + hexStr[7];
 
             result.load1 = {
-                plotAvg: ((input.slice(8, 9)*16 + input.slice(9, 10))*16 + input.slice(10, 11))*16 + input.slice(11, 12),
-                qTotAvg: ((input.slice(12, 13)*16 + input.slice(13, 14))*16 + input.slice(14, 15))*16 + input.slice(15, 16),
+                plotAvg: ((hexStr[8]*16 + hexStr[9])*16 + hexStr[10])*16 + hexStr[11],
+                qTotAvg: ((hexStr[12]*16 + hexStr[13])*16 + hexStr[14])*16 + hexStr[15],
             };
             result.load2 = {
-                plotAvg: ((input.slice(16, 17)*16 + input.slice(17, 18))*16 + input.slice(18, 19))*16 + input.slice(19, 20),
-                qTotAvg: ((input.slice(20, 21)*16 + input.slice(21, 22))*16 + input.slice(22, 23))*16 + input.slice(23, 24),
+                plotAvg: ((hexStr[16]*16 + hexStr[17])*16 + hexStr[18])*16 + hexStr[19],
+                qTotAvg: ((hexStr[20]*16 + hexStr[21])*16 + hexStr[22])*16 + hexStr[23],
             };
             result.load3 = {
-                plotAvg: ((input.slice(24, 25)*16 + input.slice(25, 26))*16 + input.slice(26, 27))*16 + input.slice(27, 28),
-                qTotAvg: ((input.slice(28, 29)*16 + input.slice(29, 30))*16 + input.slice(30, 31))*16 + input.slice(31, 32),
+                plotAvg: ((hexStr[24]*16 + hexStr[25])*16 + hexStr[26])*16 + hexStr[27],
+                qTotAvg: ((hexStr[28]*16 + hexStr[29])*16 + hexStr[30])*16 + hexStr[31],
             };
             result.load4 = {
-                plotAvg: ((input.slice(32, 33)*16 + input.slice(33, 34))*16 + input.slice(34, 35))*16 + input.slice(35, 36),
-                qTotAvg: ((input.slice(36, 37)*16 + input.slice(37, 38))*16 + input.slice(38, 39))*16 + input.slice(39, 40),
+                plotAvg: ((hexStr[32]*16 + hexStr[33])*16 + hexStr[34])*16 + hexStr[35],
+                qTotAvg: ((hexStr[36]*16 + hexStr[37])*16 + hexStr[38])*16 + hexStr[39],
             };
 
-            var decimalInputs = input.slice(40, 41)*16 + input.slice(41, 42);
+            var decimalInputs = hexStr[40]*16 + hexStr[41];
             var binaryInputs = decimalToBinary(decimalInputs);
 
             result.native = {digitalInput1: binaryInputs.substring(0, 1), digitalInput2: binaryInputs.substring(1, 2)};
@@ -271,25 +297,25 @@ function decodeUplink(input){
             
             result.statusChangeCounter = {
                 native: {
-                    input1: decimalToHex(input.slice(42, 43)).substring(0, 4),
-                    input2: decimalToHex(input.slice(42, 43)).substring(4, 8),
+                    input1: decimalToHex(hexStr[42]).substring(0, 4),
+                    input2: decimalToHex(hexStr[42]).substring(4, 8),
                 },
                 module1: {
-                    digitalInput1: decimalToHex(input.slice(43, 44)).substring(0, 4),
-                    digitalInput2: decimalToHex(input.slice(43, 44)).substring(4, 8),
+                    digitalInput1: decimalToHex(hexStr[43]).substring(0, 4),
+                    digitalInput2: decimalToHex(hexStr[43]).substring(4, 8),
                 },
                 virtualMonitor: {
-                    iTR1: decimalToHex(input.slice(44, 45)).substring(0, 4),
-                    iTR2: decimalToHex(input.slice(44, 45)).substring(4, 8),
-                    iTR3: decimalToHex(input.slice(45, 46)).substring(0, 4),
-                    iTR4: decimalToHex(input.slice(45, 46)).substring(4, 8)
+                    iTR1: decimalToHex(hexStr[44]).substring(0, 4),
+                    iTR2: decimalToHex(hexStr[44]).substring(4, 8),
+                    iTR3: decimalToHex(hexStr[45]).substring(0, 4),
+                    iTR4: decimalToHex(hexStr[45]).substring(4, 8)
                 }
             };
 
             break;
         case 6:
             var flagValue = "";
-            switch(input.slice(24, 25)*16 + input.slice(25, 26)){
+            switch(hexStr[24]*16 + hexStr[25]){
                 case 0:
                     flagValue = "Complete period and date configured";
                     break;
@@ -307,16 +333,16 @@ function decodeUplink(input){
             }
 
             result.lastPoint = {
-                dateTime: ((input.slice(4, 5)*16 + input.slice(5, 6))*16 + input.slice(6, 7))*16 + input.slice(7, 8),
-                "pTot+": ((input.slice(8, 9)*16 + input.slice(9, 10))*16 + input.slice(10, 11))*16 + input.slice(11, 12),
-                "pTot-": ((input.slice(12, 13)*16 + input.slice(13, 14))*16 + input.slice(14, 15))*16 + input.slice(15, 16),
-                "qTot+": ((input.slice(16, 17)*16 + input.slice(17, 18))*16 + input.slice(18, 19))*16 + input.slice(19, 20),
-                "qTot-": ((input.slice(20, 21)*16 + input.slice(21, 22))*16 + input.slice(22, 23))*16 + input.slice(23, 24),
+                dateTime: ((hexStr[4]*16 + hexStr[5])*16 + hexStr[6])*16 + hexStr[7],
+                "pTot+": ((hexStr[8]*16 + hexStr[9])*16 + hexStr[10])*16 + hexStr[11],
+                "pTot-": ((hexStr[12]*16 + hexStr[13])*16 + hexStr[14])*16 + hexStr[15],
+                "qTot+": ((hexStr[16]*16 + hexStr[17])*16 + hexStr[18])*16 + hexStr[19],
+                "qTot-": ((hexStr[20]*16 + hexStr[21])*16 + hexStr[22])*16 + hexStr[23],
                 flag: flagValue
             };
 
             var flagValue = "";
-            switch(input.slice(46, 47)*16 + input.slice(47, 48)){
+            switch(hexStr[46]*16 + hexStr[47]){
                 case 0:
                     flagValue = "Complete period and date configured";
                     break;
@@ -334,15 +360,15 @@ function decodeUplink(input){
             }
 
             result.pointBeforeLast = {
-                dateTime: ((input.slice(26, 27)*16 + input.slice(27, 28))*16 + input.slice(28, 29))*16 + input.slice(29, 30),
-                "pTot+": ((input.slice(30, 31)*16 + input.slice(31, 32))*16 + input.slice(32, 33))*16 + input.slice(33, 34),
-                "pTot-": ((input.slice(34, 35)*16 + input.slice(35, 36))*16 + input.slice(36, 37))*16 + input.slice(37, 38),
-                "qTot+": ((input.slice(38, 39)*16 + input.slice(39, 40))*16 + input.slice(40, 41))*16 + input.slice(41, 42),
-                "qTot-": ((input.slice(42, 43)*16 + input.slice(43, 44))*16 + input.slice(44, 45))*16 + input.slice(45, 46),
+                dateTime: ((hexStr[26]*16 + hexStr[27])*16 + hexStr[28])*16 + hexStr[29],
+                "pTot+": ((hexStr[30]*16 + hexStr[31])*16 + hexStr[32])*16 + hexStr[33],
+                "pTot-": ((hexStr[34]*16 + hexStr[35])*16 + hexStr[36])*16 + hexStr[37],
+                "qTot+": ((hexStr[38]*16 + hexStr[39])*16 + hexStr[40])*16 + hexStr[41],
+                "qTot-": ((hexStr[42]*16 + hexStr[43])*16 + hexStr[44])*16 + hexStr[45],
                 flag: flagValue
             };
 
-            var decimalInputs = input.slice(48, 49)*16 + input.slice(49, 50);
+            var decimalInputs = hexStr[48]*16 + hexStr[49];
             var binaryInputs = decimalToBinary(decimalInputs);
 
             result.native = {digitalInput1: binaryInputs.substring(0, 1), digitalInput2: binaryInputs.substring(1, 2)};
@@ -359,19 +385,19 @@ function decodeUplink(input){
             
             result.statusChangeCounter = {
                 native: {
-                    input1: decimalToHex(input.slice(50, 51)).substring(0, 4),
-                    input2: decimalToHex(input.slice(50, 51)).substring(4, 8),
+                    input1: decimalToHex(hexStr[50]).substring(0, 4),
+                    input2: decimalToHex(hexStr[50]).substring(4, 8),
                 },
                 module1: {
-                    digitalInput1: decimalToHex(input.slice(51, 52)).substring(0, 4),
-                    digitalInput2: decimalToHex(input.slice(51, 52)).substring(4, 8),
+                    digitalInput1: decimalToHex(hexStr[51]).substring(0, 4),
+                    digitalInput2: decimalToHex(hexStr[51]).substring(4, 8),
                 }
             };
 
             break;
         case 7:
             var flagValue = "";
-            switch(input.slice(24, 25)*16 + input.slice(25, 26)){
+            switch(hexStr[24]*16 + hexStr[25]){
                 case 0:
                     flagValue = "Complete period and date configured";
                     break;
@@ -389,16 +415,16 @@ function decodeUplink(input){
             }
 
             result.lastPoint = {
-                dateTime: ((input.slice(4, 5)*16 + input.slice(5, 6))*16 + input.slice(6, 7))*16 + input.slice(7, 8),
-                "load1PTot+": ((input.slice(8, 9)*16 + input.slice(9, 10))*16 + input.slice(10, 11))*16 + input.slice(11, 12),
-                "load2PTot+": ((input.slice(12, 13)*16 + input.slice(13, 14))*16 + input.slice(14, 15))*16 + input.slice(15, 16),
-                "load3PTot+": ((input.slice(16, 17)*16 + input.slice(17, 18))*16 + input.slice(18, 19))*16 + input.slice(19, 20),
-                "load4PTot+": ((input.slice(20, 21)*16 + input.slice(21, 22))*16 + input.slice(22, 23))*16 + input.slice(23, 24),
+                dateTime: ((hexStr[4]*16 + hexStr[5])*16 + hexStr[6])*16 + hexStr[7],
+                "load1PTot+": ((hexStr[8]*16 + hexStr[9])*16 + hexStr[10])*16 + hexStr[11],
+                "load2PTot+": ((hexStr[12]*16 + hexStr[13])*16 + hexStr[14])*16 + hexStr[15],
+                "load3PTot+": ((hexStr[16]*16 + hexStr[17])*16 + hexStr[18])*16 + hexStr[19],
+                "load4PTot+": ((hexStr[20]*16 + hexStr[21])*16 + hexStr[22])*16 + hexStr[23],
                 flag: flagValue
             };
 
             var flagValue = "";
-            switch(input.slice(46, 47)*16 + input.slice(47, 48)){
+            switch(hexStr[46]*16 + hexStr[47]){
                 case 0:
                     flagValue = "Complete period and date configured";
                     break;
@@ -416,15 +442,15 @@ function decodeUplink(input){
             }
 
             result.pointBeforeLast = {
-                dateTime: ((input.slice(26, 27)*16 + input.slice(27, 28))*16 + input.slice(28, 29))*16 + input.slice(29, 30),
-                "load1PTot+": ((input.slice(30, 31)*16 + input.slice(31, 32))*16 + input.slice(32, 33))*16 + input.slice(33, 34),
-                "load2PTot+": ((input.slice(34, 35)*16 + input.slice(35, 36))*16 + input.slice(36, 37))*16 + input.slice(37, 38),
-                "load3PTot+": ((input.slice(38, 39)*16 + input.slice(39, 40))*16 + input.slice(40, 41))*16 + input.slice(41, 42),
-                "load4PTot+": ((input.slice(42, 43)*16 + input.slice(43, 44))*16 + input.slice(44, 45))*16 + input.slice(45, 46),
+                dateTime: ((hexStr[26]*16 + hexStr[27])*16 + hexStr[28])*16 + hexStr[29],
+                "load1PTot+": ((hexStr[30]*16 + hexStr[31])*16 + hexStr[32])*16 + hexStr[33],
+                "load2PTot+": ((hexStr[34]*16 + hexStr[35])*16 + hexStr[36])*16 + hexStr[37],
+                "load3PTot+": ((hexStr[38]*16 + hexStr[39])*16 + hexStr[40])*16 + hexStr[41],
+                "load4PTot+": ((hexStr[42]*16 + hexStr[43])*16 + hexStr[44])*16 + hexStr[45],
                 flag: flagValue
             };
 
-            var decimalInputs = input.slice(48, 49)*16 + input.slice(49, 50);
+            var decimalInputs = hexStr[48]*16 + hexStr[49];
             var binaryInputs = decimalToBinary(decimalInputs);
 
             result.native = {digitalInput1: binaryInputs.substring(0, 1), digitalInput2: binaryInputs.substring(1, 2)};
@@ -441,12 +467,12 @@ function decodeUplink(input){
             
             result.statusChangeCounter = {
                 native: {
-                    input1: decimalToHex(input.slice(50, 51)).substring(0, 4),
-                    input2: decimalToHex(input.slice(50, 51)).substring(4, 8),
+                    input1: decimalToHex(hexStr[50]).substring(0, 4),
+                    input2: decimalToHex(hexStr[50]).substring(4, 8),
                 },
                 module1: {
-                    digitalInput1: decimalToHex(input.slice(51, 52)).substring(0, 4),
-                    digitalInput2: decimalToHex(input.slice(51, 52)).substring(4, 8),
+                    digitalInput1: decimalToHex(hexStr[51]).substring(0, 4),
+                    digitalInput2: decimalToHex(hexStr[51]).substring(4, 8),
                 }
             };
             
