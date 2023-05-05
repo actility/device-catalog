@@ -263,4 +263,17 @@ function decodeUplink(inputObject){
 }
 
 
+function encodeDownlink(input){
+    var result = {
+        bytes: [],
+        errors: [],
+        warnings: []
+    };
+
+    
+
+    return result;
+}
+
+
 exports.decodeUplink = decodeUplink;
