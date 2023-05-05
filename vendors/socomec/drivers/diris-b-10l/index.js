@@ -65,6 +65,12 @@ function getHalfByteHexArray(input){
     return hexArray;
 }
 
+function getSigned(array, start, end){
+    var result = 0;
+
+    return result;
+}
+
 
 function decodeUplink(input){
     var result = {};
@@ -123,20 +129,20 @@ function decodeUplink(input){
             result.dateTime = ((hexStr[4]*16 + hexStr[5])*16 + hexStr[6])*16 + hexStr[7];
 
             result.load1 = {
-                "Ea+": ((hexStr[8]*16 + hexStr[9])*16 + hexStr[10])*16 + hexStr[11],
-                "Er+": ((hexStr[12]*16 + hexStr[13])*16 + hexStr[14])*16 + hexStr[15],
+                "Ea+": (((hexStr[8]*16 + hexStr[9])*16 + hexStr[10])*16 + hexStr[11])*1000,
+                "Er+": (((hexStr[12]*16 + hexStr[13])*16 + hexStr[14])*16 + hexStr[15])*1000,
             };
             result.load2 = {
-                "Ea+": ((hexStr[16]*16 + hexStr[17])*16 + hexStr[18])*16 + hexStr[19],
-                "Er+": ((hexStr[20]*16 + hexStr[21])*16 + hexStr[22])*16 + hexStr[23],
+                "Ea+": (((hexStr[16]*16 + hexStr[17])*16 + hexStr[18])*16 + hexStr[19])*1000,
+                "Er+": (((hexStr[20]*16 + hexStr[21])*16 + hexStr[22])*16 + hexStr[23])*1000,
             };
             result.load3 = {
-                "Ea+": ((hexStr[24]*16 + hexStr[25])*16 + hexStr[26])*16 + hexStr[27],
-                "Er+": ((hexStr[28]*16 + hexStr[29])*16 + hexStr[30])*16 + hexStr[31],
+                "Ea+": (((hexStr[24]*16 + hexStr[25])*16 + hexStr[26])*16 + hexStr[27])*1000,
+                "Er+": (((hexStr[28]*16 + hexStr[29])*16 + hexStr[30])*16 + hexStr[31])*1000,
             };
             result.load4 = {
-                "Ea+": ((hexStr[32]*16 + hexStr[33])*16 + hexStr[34])*16 + hexStr[35],
-                "Er+": ((hexStr[36]*16 + hexStr[37])*16 + hexStr[38])*16 + hexStr[39],
+                "Ea+": (((hexStr[32]*16 + hexStr[33])*16 + hexStr[34])*16 + hexStr[35])*1000,
+                "Er+": (((hexStr[36]*16 + hexStr[37])*16 + hexStr[38])*16 + hexStr[39])*1000,
             };
 
             result.pulseMeter = ((((((hexStr[40]*16 + hexStr[41])*16 + hexStr[42])*16 + hexStr[43])*16 + hexStr[44])*16 + hexStr[45])*16 + hexStr[46])*16 + hexStr[47];
@@ -172,20 +178,20 @@ function decodeUplink(input){
             result.dateTime = ((hexStr[4]*16 + hexStr[5])*16 + hexStr[6])*16 + hexStr[7];
             
             result.load1 = {
-                "Ea+": ((hexStr[8]*16 + hexStr[9])*16 + hexStr[10])*16 + hexStr[11],
-                "Ea-": ((hexStr[12]*16 + hexStr[13])*16 + hexStr[14])*16 + hexStr[15],
+                "Ea+": (((hexStr[8]*16 + hexStr[9])*16 + hexStr[10])*16 + hexStr[11])*1000,
+                "Ea-": (((hexStr[12]*16 + hexStr[13])*16 + hexStr[14])*16 + hexStr[15])*1000,
             };
             result.load2 = {
-                "Ea+": ((hexStr[16]*16 + hexStr[17])*16 + hexStr[18])*16 + hexStr[19],
-                "Ea-": ((hexStr[20]*16 + hexStr[21])*16 + hexStr[22])*16 + hexStr[23],
+                "Ea+": (((hexStr[16]*16 + hexStr[17])*16 + hexStr[18])*16 + hexStr[19])*1000,
+                "Ea-": (((hexStr[20]*16 + hexStr[21])*16 + hexStr[22])*16 + hexStr[23])*1000,
             };
             result.load3 = {
-                "Ea+": ((hexStr[24]*16 + hexStr[25])*16 + hexStr[26])*16 + hexStr[27],
-                "Ea-": ((hexStr[28]*16 + hexStr[29])*16 + hexStr[30])*16 + hexStr[31],
+                "Ea+": (((hexStr[24]*16 + hexStr[25])*16 + hexStr[26])*16 + hexStr[27])*1000,
+                "Ea-": (((hexStr[28]*16 + hexStr[29])*16 + hexStr[30])*16 + hexStr[31])*1000,
             };
             result.load4 = {
-                "Ea+": ((hexStr[32]*16 + hexStr[33])*16 + hexStr[34])*16 + hexStr[35],
-                "Ea-": ((hexStr[36]*16 + hexStr[37])*16 + hexStr[38])*16 + hexStr[39],
+                "Ea+": (((hexStr[32]*16 + hexStr[33])*16 + hexStr[34])*16 + hexStr[35])*1000,
+                "Ea-": (((hexStr[36]*16 + hexStr[37])*16 + hexStr[38])*16 + hexStr[39])*1000,
             };
             
             result.pulseMeter = ((((((hexStr[40]*16 + hexStr[41])*16 + hexStr[42])*16 + hexStr[43])*16 + hexStr[44])*16 + hexStr[45])*16 + hexStr[46])*16 + hexStr[47];
@@ -227,7 +233,7 @@ function decodeUplink(input){
             result.I1Avg = ((hexStr[22]*16 + hexStr[23])*16 + hexStr[24])*16 + hexStr[25];
             result.I2Avg = ((hexStr[26]*16 + hexStr[27])*16 + hexStr[28])*16 + hexStr[29];
             result.I3Avg = ((hexStr[30]*16 + hexStr[31])*16 + hexStr[32])*16 + hexStr[33];
-            result.FAvg = ((hexStr[34]*16 + hexStr[35])*16 + hexStr[36])*16 + hexStr[37];
+            result.FAvg = (((hexStr[34]*16 + hexStr[35])*16 + hexStr[36])*16 + hexStr[37])/1000;
             
             var decimalInputs = hexStr[38]*16 + hexStr[39];
             var binaryInputs = decimalToBinary(decimalInputs);
@@ -244,9 +250,9 @@ function decodeUplink(input){
                 iTR4: binaryInputs.substring(13, 14)  
             };
             
-            result.temperatureInput1 = hexStr[40]*16 + hexStr[41];
-            result.temperatureInput2 = hexStr[42]*16 + hexStr[43];
-            result.temperatureInput3 = hexStr[44]*16 + hexStr[45];
+            result.temperatureInput1 = (hexStr[40]*16 + hexStr[41])*0.01;
+            result.temperatureInput2 = (hexStr[42]*16 + hexStr[43])*0.01;
+            result.temperatureInput3 = (hexStr[44]*16 + hexStr[45])*0.01;
 
             result.statusChangeCounter = {
                 native: {
