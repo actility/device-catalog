@@ -53,6 +53,17 @@ function hexStrFromDecimals(input){
     return hex;
 }
 
+function hexStrFromHalfBytesDecimals(input){
+    var hex = "";
+
+    for(var i = 0 ; i < input.length ; i++){
+        var value = decimalToHex(input[i]);
+        hex += value;
+    }
+
+    return hex;
+}
+
 function getHalfByteHexArray(input){
     var hexArray = [];
 
@@ -66,9 +77,26 @@ function getHalfByteHexArray(input){
 }
 
 function getSigned(array, start, end){
-    var result = 0;
+    var input = hexStrFromHalfBytesDecimals(array.slice(start, end));
+
+    result = twosHexToDecimal(input);
 
     return result;
+}
+
+function twosHexToDecimal(input){
+    // Convert hex string to integer
+    let intVal = parseInt(input, 16);
+
+    // Check if the most significant bit is set (i.e., negative number)
+    if ((intVal & 0x80000000) !== 0) {
+        // Compute the two's complement by inverting all bits and adding one
+        intVal = (~intVal & 0xFFFFFFFF) + 1;
+        // Convert back to negative integer
+        intVal = -intVal;
+    }
+
+    return intVal;
 }
 
 
@@ -92,7 +120,7 @@ function decodeUplink(input){
             result.dateTime = ((hexStr[4]*16 + hexStr[5])*16 + hexStr[6])*16 + hexStr[7];
 
             result["Ea+"] = ((((((hexStr[8]*16 + hexStr[9])*16 + hexStr[10])*16 + hexStr[11])*16 + hexStr[12])*16 + hexStr[13])*16 + hexStr[14])*16 + hexStr[15];
-            result["Ea-"] = (((((hexStr[16]*16 + hexStr[17]*16 + hexStr[18])*16 + hexStr[19])*16 + hexStr[20])*16 + hexStr[21])*16 + hexStr[22])*16 + hexStr[23];
+            result["Ea-"] = ((((((hexStr[16]*16 + hexStr[17])*16 + hexStr[18])*16 + hexStr[19])*16 + hexStr[20])*16 + hexStr[21])*16 + hexStr[22])*16 + hexStr[23];
             result["Er+"] = ((((((hexStr[24]*16 + hexStr[25])*16 + hexStr[26])*16 + hexStr[27])*16 + hexStr[28])*16 + hexStr[29])*16 + hexStr[30])*16 + hexStr[31];
             result["Er-"] = ((((((hexStr[32]*16 + hexStr[33])*16 + hexStr[34])*16 + hexStr[35])*16 + hexStr[36])*16 + hexStr[37])*16 + hexStr[38])*16 + hexStr[39];
 
@@ -226,10 +254,10 @@ function decodeUplink(input){
         case 4:
             result.dateTime = ((hexStr[4]*16 + hexStr[5])*16 + hexStr[6])*16 + hexStr[7];
             
-            result.plotAvg = ((hexStr[8]*16 + hexStr[9])*16 + hexStr[10])*16 + hexStr[11];
-            result.qTotAvg = ((hexStr[12]*16 + hexStr[13])*16 + hexStr[14])*16 + hexStr[15];
+            result.pTotAvg = getSigned(hexStr, 8, 12);
+            result.qTotAvg = getSigned(hexStr, 12, 16);
             result.sTotAvg = ((hexStr[16]*16 + hexStr[17])*16 + hexStr[18])*16 + hexStr[19];
-            result.pFTotAvg = hexStr[20]*16 + hexStr[21];
+            result.pFTotAvg = getSigned(hexStr, 20, 22);
             result.I1Avg = ((hexStr[22]*16 + hexStr[23])*16 + hexStr[24])*16 + hexStr[25];
             result.I2Avg = ((hexStr[26]*16 + hexStr[27])*16 + hexStr[28])*16 + hexStr[29];
             result.I3Avg = ((hexStr[30]*16 + hexStr[31])*16 + hexStr[32])*16 + hexStr[33];
@@ -250,11 +278,11 @@ function decodeUplink(input){
                 iTR4: binaryInputs.substring(13, 14)  
             };
             
-            result.temperatureInput1 = (hexStr[40]*16 + hexStr[41])*0.01;
-            result.temperatureInput2 = (hexStr[42]*16 + hexStr[43])*0.01;
-            result.temperatureInput3 = (hexStr[44]*16 + hexStr[45])*0.01;
+            result.temperatureInput1 = getSigned(hexStr, 40, 42)*0.01;
+            result.temperatureInput2 = getSigned(hexStr, 42, 44)*0.01;
+            result.temperatureInput3 = getSigned(hexStr, 44, 46)*0.01;
 
-            result.statusChangeCounter = {
+        result.statusChangeCounter = {
                 native: {
                     input1: decimalToHex(hexStr[46]).substring(0, 4),
                     input2: decimalToHex(hexStr[46]).substring(4, 8),
@@ -270,20 +298,20 @@ function decodeUplink(input){
             result.dateTimeOfAvgValue = ((hexStr[4]*16 + hexStr[5])*16 + hexStr[6])*16 + hexStr[7];
 
             result.load1 = {
-                plotAvg: ((hexStr[8]*16 + hexStr[9])*16 + hexStr[10])*16 + hexStr[11],
-                qTotAvg: ((hexStr[12]*16 + hexStr[13])*16 + hexStr[14])*16 + hexStr[15],
+                pTotAvg: getSigned(hexStr, 8, 12),
+                qTotAvg: getSigned(hexStr, 12, 16),
             };
             result.load2 = {
-                plotAvg: ((hexStr[16]*16 + hexStr[17])*16 + hexStr[18])*16 + hexStr[19],
-                qTotAvg: ((hexStr[20]*16 + hexStr[21])*16 + hexStr[22])*16 + hexStr[23],
+                pTotAvg: getSigned(hexStr, 16, 20),
+                qTotAvg: getSigned(hexStr, 20, 24),
             };
             result.load3 = {
-                plotAvg: ((hexStr[24]*16 + hexStr[25])*16 + hexStr[26])*16 + hexStr[27],
-                qTotAvg: ((hexStr[28]*16 + hexStr[29])*16 + hexStr[30])*16 + hexStr[31],
+                pTotAvg: getSigned(hexStr, 24, 28),
+                qTotAvg: getSigned(hexStr, 28, 32),
             };
             result.load4 = {
-                plotAvg: ((hexStr[32]*16 + hexStr[33])*16 + hexStr[34])*16 + hexStr[35],
-                qTotAvg: ((hexStr[36]*16 + hexStr[37])*16 + hexStr[38])*16 + hexStr[39],
+                pTotAvg: getSigned(hexStr, 32, 36),
+                qTotAvg: getSigned(hexStr, 36, 40),
             };
 
             var decimalInputs = hexStr[40]*16 + hexStr[41];
