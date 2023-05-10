@@ -6,7 +6,7 @@ description: "PMi vous permettra d'analyser l'exposition réelle d'un espace à 
 logo: pmi.png
 # ID(s) of the profile that defines the LoRaWAN characteristics of this model. 
 deviceProfileId: 
-    - 
+    - lora-generic_RFGroup1_1.0.2a_classC
  
 # You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
 # Maximum device TX Conducted output power in dBm. 
@@ -33,7 +33,20 @@ specificationURL: https://www.nexelec.fr/_files/ugd/7f2846_7fae73763aba494294611
 userGuideURL: 
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
+    - concentration:ug/m3
+    - temperature:Cel
+    - humidity:%RH
+    - co2Level:ppm
+    - amount:ug/m3
+    - concentration:ppb
+    - interval:minute
+    - interval:hour
+    - concentration:ppm
+    - illuminance:lx
+    - intensity:dB
+    - percentage:%
+    - pressure:hPa
+    - time:s
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
-    - nexelec:generic:1:
