@@ -1594,5 +1594,3 @@ function decodeUplink(input){
 
     return result;
 }
-
-exports.decodeUplink = decodeUplink;
