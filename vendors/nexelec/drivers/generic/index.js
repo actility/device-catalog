@@ -173,6 +173,7 @@ if (product_type== ATMO_LoRa || product_type== SENSE_LoRa || product_type== AERO
     			decode[7]={"Button enable": active(tab_bin[7])};
     			decode[8]={"Keepalive enable": active(tab_bin[8])};
     			decode[9]={"NFC_status":nfc_status(tab_bin[9])};
+                decode[10]={"undefined": "undefined"};
     			decode[11]={"LoRa Region": LoRa_Region(tab_bin[11])};
     			decode[12]={"Period between measurements (minutes)": tab_bin[12]};
     			decode[13]={"Keepalive period (hours)": tab_bin[13]};
@@ -955,6 +956,7 @@ if (product_type== ATMO_LoRa || product_type== SENSE_LoRa || product_type== AERO
     			decode[7]={"Button enable": active(tab_bin[7])};
     			decode[8]={"Keepalive enable": active(tab_bin[8])};
     			decode[9]={"NFC_status":nfc_status(tab_bin[9])};
+                decode[10]={"undefined": "undefined"};
     			decode[11]={"LoRa Region": LoRa_Region(tab_bin[11])};
     			decode[12]={"Period between measurements (minutes)": tab_bin[12]};
     			decode[13]={"Keepalive period (hours)": tab_bin[13]};
@@ -1570,8 +1572,25 @@ function LED_function(a){
 } // fin de la fonction Decoder
 )
 
+function bytesToHex(bytes) {
+
+	return Array.from(bytes, (byte) => {
+
+		return ("0" + (byte & 0xff).toString(16)).slice(-2);
+
+	}).join("");
+
+}
+
 function decodeUplink(input){
     var fPort = input.fPort;
-    var bytes = input.bytes;
-    return Decoder(bytes);
+    var bytes = bytesToHex(input.bytes);
+    
+    var result = {
+        data: Decoder(bytes),
+        errors: [],
+        warnings: []
+    };
+
+    return result;
 }
