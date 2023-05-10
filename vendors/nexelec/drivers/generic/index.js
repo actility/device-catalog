@@ -1569,3 +1569,9 @@ function LED_function(a){
 
 } // fin de la fonction Decoder
 )
+
+function decodeUplink(input){
+    var fPort = input.fPort;
+    var bytes = input.bytes;
+    return Decoder(bytes);
+}
