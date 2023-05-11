@@ -1582,6 +1582,8 @@ function bytesToHex(bytes) {
 
 }
 
+//Adding decodeUplink wrapper function to adapt signature to lora-alliance.
+
 function decodeUplink(input){
     var fPort = input.fPort;
     var bytes = bytesToHex(input.bytes);
