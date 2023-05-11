@@ -154,11 +154,11 @@ function Decode(fPort, bytes)
       	data.STATUS.ST = bytes[index] & 8;
       	if (bytes[index] & 4) data.STATUS.INTERVALL= "2min";
       	else
-        if ((bytes[index] & 3)==3) data.STATUS.INTERVALL= "14tägl";
+        if ((bytes[index] & 3)==3) data.STATUS.INTERVALL= "14days";
       	else
-        if ((bytes[index] & 3)==2) data.STATUS.INTERVALL= "7tägl";
+        if ((bytes[index] & 3)==2) data.STATUS.INTERVALL= "7days";
       	else
-        if ((bytes[index] & 3)==1) data.STATUS.INTERVALL= "1tägl";  
+        if ((bytes[index] & 3)==1) data.STATUS.INTERVALL= "1day";  
       	else data.STATUS.INTERVALL= "norm";
     break;
   }    
