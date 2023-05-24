@@ -1582,6 +1582,10 @@ function bytesToHex(bytes) {
 
 }
 
+/*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!ADDED BY ACTILITY!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+
 //Adding decodeUplink wrapper function to adapt signature to lora-alliance.
 
 function decodeUplink(input){
@@ -1596,3 +1600,5 @@ function decodeUplink(input){
 
     return result;
 }
+
+exports.decodeUplink = decodeUplink;
