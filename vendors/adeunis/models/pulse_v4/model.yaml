@@ -27,13 +27,23 @@ LoRaWANCertified: true
 # Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
 modelId: adeunis:pulse:4
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
-protocolId:
+protocolId: adeunis:pulse4:1
 # DataSheet URL (optional) 
 specificationURL: https://www.adeunis.com/wp-content/uploads/2019/09/Datasheet_PULSE.pdf
 # User Guide URL (optional) 
 userGuideURL: https://adeunis.notion.site/Guide-Utilisateur-PULSE-IP68-LoRaWAN-EU863-870-d9c689347eac4335b32789c63a461e52
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
+    - duration:s
+    - time:s
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
+    - adeunis:pulse4:1:
+        - "0x10 Pulse 4 configuration"
+        - "0x30 Pulse 4 keep alive"
+        - "0x33 Set register status"
+        - "0x46 Pulse 4 data"
+        - "0x47 Pulse 4 alarm"
+        - "0x5a Pulse 4 data - channel A"
+        - "0x5b Pulse 4 data - channel B"
