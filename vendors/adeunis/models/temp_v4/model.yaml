@@ -27,13 +27,24 @@ LoRaWANCertified: true
 # Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
 modelId: adeunis:temp:4
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
-protocolId:
+protocolId: adeunis:temp4:1
 # DataSheet URL (optional) 
 specificationURL: https://www.adeunis.com/wp-content/uploads/2019/09/Datasheet_TEMP.pdf
 # User Guide URL (optional) 
 userGuideURL: https://adeunis.notion.site/Guide-Utilisateur-TEMP-TEMP2S-LoRaWAN-EU863-870-417bcf8c6f9d4fd9a65158c71c7b43ef
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
+    - duration:s
+    - temperature:Cel
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
+    - adeunis:temp4:1:
+        - "0x10 Temp 4 configuration"
+        - "0x2f Downlink ack"
+        - "0x30 Temp 4 keep alive"
+        - "0x33 Set register status"
+        - "0x36 Alert message"
+        - "0x37 Software version"
+        - "0x57 Temp 4 periodic data"
+        - "0x58 Temp 4 alarm"
