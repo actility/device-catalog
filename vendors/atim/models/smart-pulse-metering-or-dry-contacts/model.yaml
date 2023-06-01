@@ -26,11 +26,11 @@ minTxEIRP:
 motionIndicator:
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
-LoRaWANCertified: 
+LoRaWANCertified: false
 # Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
 modelId: atim:smart-pulse:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
-protocolId: os1-atim:decode1:1
+protocolId: os1-atim:generic:1
 # DataSheet URL (optional) 
 specificationURL: https://www.atim.com/wp-content/uploads/documentation/ACW/ACW-MR4/ENGLISH/ATIM_ACW-MR4_UG_EN.pdf
 # User Guide URL (optional) 
@@ -39,11 +39,32 @@ userGuideURL: https://www.atim.com/wp-content/uploads/documentation/ACW/ACW-MR2-
 sensors: 
 examples:
     - os1-atim:decode1:1:
-        - "MR4 measuring frame with counters on 4 tracks"
-        - "MR4 measuring frame with counter on 1 track"
-        - "MR4 measuring frame with input states"
-        - "MR4 measuring frame with state-change detections"
-        - "MR4 measuring frame with input states and timestamps"
-        - "MR4 Keep Alive frame"
-        - "MR4 measuring test frame with input states"
-        - "MR4 measuring frame with sampling and archiving"
+        - "Example Température"
+        - "Example Humidité"
+        - "Example COV"
+        - "Example CO2"
+        - "Example CO2, COV, Humidité, Température"
+        - "Example Horodatage, Période, Température"
+        - "Example Humidités 0 & 1"
+        - "Example Entrées 1, 2, 3 & 4"
+        - "Example Entrées 1, 2, 3, 4 & Période"
+        - "Example Entrées 1, 2, 3 & 4 - état bas"
+        - "Example Compte 0 & 1"
+        - "Example Horodatage & Distance"
+        - "Example Température test"
+        - "Example Humidity test"
+        - "Example COV test"
+        - "Example CO2 test"
+        - "Example CO2, COV, Température & Humidité test"
+        - "Example Pression Différentielle test"
+        - "Example Compte 0 test"
+        - "Example CO2, COV, Horodatage, Humidité & Température test"
+        - "Example Température erreur"
+        - "Example Wirecut coupé spécifique"
+        - "Example Température alerte"
+        - "Example CO2 alerte"
+        - "Example Horodatage & Distance alerte"
+        - "Example Trame de vie"
+        - "Example EEPROM erreur"
+        - "Example Boitier ouvert erreur"
+        - "Example Capteur erreur"
