@@ -1,0 +1,49 @@
+# Commercial name of the model 
+name: Pulse Sensor V4
+# Functional description of the product. Maximum 500 characters. 
+description: "Pulse Sensor. Ready-to-use radio transmitter t that can be used to transform any type of meter into a wireless meter (smart meter). "
+# Logo of the device
+logo: adrf_pulse.png
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
+deviceProfileId: 
+    - ADRF/PulseA.1.0.2_EU
+    - adeunis_AS923_1.0.2revB_classA
+ 
+# You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
+# Maximum device TX Conducted output power in dBm. 
+maxTxPower:
+# Minimum device TX Conducted output power in dBm. 
+minTxPower:
+# Maximum device TX Radiated output power in dBm.  
+maxTxEIRP:
+# Minimum device TX Radiated output power in dBm.  
+minTxEIRP:
+# Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'  
+# or 'random' (not known, changes over time). 
+motionIndicator:
+ 
+# Is your device certified by the LoRa Alliance? Possible values: true, false. 
+LoRaWANCertified: true
+# Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
+modelId: adeunis:pulse:4
+# <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
+protocolId: adeunis:pulse4:1
+# DataSheet URL (optional) 
+specificationURL: https://www.adeunis.com/wp-content/uploads/2019/09/Datasheet_PULSE.pdf
+# User Guide URL (optional) 
+userGuideURL: https://adeunis.notion.site/Guide-Utilisateur-PULSE-IP68-LoRaWAN-EU863-870-d9c689347eac4335b32789c63a461e52
+# <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
+sensors:
+    - duration:s
+    - time:s
+# Driver examples
+# A list of examples description that are compatible with this model
+examples:
+    - adeunis:pulse4:1:
+        - "0x10 Pulse 4 configuration"
+        - "0x30 Pulse 4 keep alive"
+        - "0x33 Set register status"
+        - "0x46 Pulse 4 data"
+        - "0x47 Pulse 4 alarm"
+        - "0x5a Pulse 4 data - channel A"
+        - "0x5b Pulse 4 data - channel B"
