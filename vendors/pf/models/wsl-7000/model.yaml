@@ -1,12 +1,12 @@
 # Commercial name of the model 
-name: Wilsen Sonic Level 4000
+name: Wilsen Sonic Level 7000
 # Functional description of the product. Maximum 500 characters. 
-description: "Wilsen Sonic Level 4000"
+description: "Wilsen Sonic Level 7000"
 # Logo of the device
-logo: wsl-4000.png
+logo: wsl-7000.png
 # Product name & Version
 product:
-    name: PF/WSL4000
+    name: PF/WSL7000
     version: 1
 # ID of the profile that defines the LoRaWAN characteristics of this model. 
 deviceProfileId: 
@@ -27,7 +27,7 @@ motionIndicator: NEAR_STATIC
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: true
 # Mandatory whenever you have a driver for the model
-modelId: pf:wsl-4000:1
+modelId: pf:wsl-7000:1
 # <vendorId>:<modelId>:<modelVersion> Needed for linking the model with a specific driver (you can have several ones)
 protocolId: 
     - pf:wilsen:1
@@ -44,11 +44,9 @@ sensors:
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
-    - pf:wsl:1:
-        - "Example 4000 1"
     - pf:wilsen:1:
-        - "WILSEN.sonic.level Payload - 1"
-        - "WILSEN.sonic.level Payload - 2"
+        - "WILSEN.sonic.level (mm) Payload - 1"
+        - "WILSEN.sonic.level (mm) Payload - 2"
         - "WILSEN.sonic Payload - 3"
         - "WILSEN.sonic.level Downlink Acknowledgement - 1"
         - "WILSEN.sonic Downlink Acknowledgement - 1"

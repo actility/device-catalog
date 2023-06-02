@@ -7,7 +7,7 @@ logo: wsl-4000.png
 # Product name & Version
 product:
     name: PF/WSL4000
-    version: 1
+    version: 2
 # ID of the profile that defines the LoRaWAN characteristics of this model. 
 deviceProfileId: 
     - pf_eu868_1.0.2revB_classA
@@ -27,9 +27,9 @@ motionIndicator: NEAR_STATIC
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: true
 # Mandatory whenever you have a driver for the model
-modelId: pf:wsl-4000:1
+modelId: pf:wsl-4000:2
 # <vendorId>:<modelId>:<modelVersion> Needed for linking the model with a specific driver (you can have several ones)
-protocolId: 
+protocolId:
     - pf:wilsen:1
 # DataSheet URL (optional) 
 specificationURL: https://files.pepperl-fuchs.com/webcat/navi/productInfo/pds/70124843_fra.pdf?v=20221012111825
@@ -38,17 +38,15 @@ userGuideURL: https://files.pepperl-fuchs.com/webcat/navi/productInfo/doct/tdoct
 # Available sensors following Actility ontology: https://github.com/actility/thingpark-iot-flow-js-driver/blob/master/UNITS.md 
 sensors:
     - temperature:Cel
-    - distance:cm
+    - distance:mm
     - batteryVoltage:V
     - location:GPS
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
-    - pf:wsl:1:
-        - "Example 4000 1"
     - pf:wilsen:1:
-        - "WILSEN.sonic.level Payload - 1"
-        - "WILSEN.sonic.level Payload - 2"
+        - "WILSEN.sonic.level (mm) Payload - 1"
+        - "WILSEN.sonic.level (mm) Payload - 2"
         - "WILSEN.sonic Payload - 3"
         - "WILSEN.sonic.level Downlink Acknowledgement - 1"
         - "WILSEN.sonic Downlink Acknowledgement - 1"
