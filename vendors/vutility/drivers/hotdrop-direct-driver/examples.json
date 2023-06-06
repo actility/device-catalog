@@ -1,0 +1,929 @@
+[
+  {
+    "type": "uplink",
+    "description": "standard uplink, empty",
+    "input": {
+      "bytes": [50, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      "fPort": 3,
+      "recvTime": "2023-05-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "data": {
+        "ampHourAccumulation": 0,
+        "averageAmps": 0,
+        "maximumAmps": 0,
+        "minimumAmps": 0,
+        "capacitorVoltage": 0,
+        "temperatureCelsius": -40
+      },
+      "errors": [],
+      "warnings": ["Low capacitor voltage may reduce transmit interval."]
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "standard uplink, whole numbers",
+    "input": {
+      "bytes": [50, 0, 0, 13, 232, 0, 120, 100, 50, 255, 17],
+      "fPort": 3,
+      "recvTime": "2023-05-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "data": {
+        "ampHourAccumulation": 356,
+        "averageAmps": 12,
+        "maximumAmps": 24,
+        "minimumAmps": 6,
+        "capacitorVoltage": 5,
+        "temperatureCelsius": -32
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "standard uplink, fractional numbers",
+    "input": {
+      "bytes": [50, 0, 0, 13, 232, 0, 120, 111, 79, 197, 125],
+      "fPort": 3,
+      "recvTime": "2023-05-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "data": {
+        "ampHourAccumulation": 356,
+        "averageAmps": 12,
+        "maximumAmps": 25.32,
+        "minimumAmps": 2.52,
+        "capacitorVoltage": 3.8627450980392157,
+        "temperatureCelsius": 18.823529411764703
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "warning: minimum amps below 0",
+    "input": {
+      "bytes": [50, 0, 0, 13, 232, 0, 120, 100, 150, 255, 17],
+      "fPort": 3,
+      "recvTime": "2023-05-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "data": {
+        "ampHourAccumulation": 356,
+        "averageAmps": 12,
+        "maximumAmps": 24,
+        "minimumAmps": -6,
+        "capacitorVoltage": 5,
+        "temperatureCelsius": -32
+      },
+      "errors": [],
+      "warnings": ["Minimum amps is less than 0."]
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Error: uplink length greater than 11 bytes",
+    "input": {
+      "bytes": [50, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      "fPort": 3,
+      "recvTime": "2023-05-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "errors": ["Payload length must be 11 bytes"],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Error: uplink length less than 11 bytes",
+    "input": {
+      "bytes": [50, 0, 0, 0, 0, 0, 0, 0],
+      "fPort": 3,
+      "recvTime": "2023-05-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "errors": ["Payload length must be 11 bytes"],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Error: packet type is not 50",
+    "input": {
+      "bytes": [15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      "fPort": 3,
+      "recvTime": "2023-05-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "errors": ["Payload packet ID is not equal to 50"],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "downlink transmit interval (1 min) [default configuration]",
+    "input": {
+      "data": {
+        "transmitIntervalSeconds": 60
+      }
+    },
+    "output": {
+      "bytes": [84, 0, 0, 0, 112, 66, 0, 0, 0, 0],
+      "fPort": 3,
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "downlink transmit interval (2 min)",
+    "input": {
+      "data": {
+        "transmitIntervalSeconds": 120
+      }
+    },
+    "output": {
+      "bytes": [84, 0, 0, 0, 240, 66, 0, 0, 0, 0],
+      "fPort": 3,
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "downlink transmit interval (5 min)",
+    "input": {
+      "data": {
+        "transmitIntervalSeconds": 300
+      }
+    },
+    "output": {
+      "bytes": [84, 0, 0, 0, 150, 67, 0, 0, 0, 0],
+      "fPort": 3,
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "downlink transmit interval (15 min)",
+    "input": {
+      "data": {
+        "transmitIntervalSeconds": 900
+      }
+    },
+    "output": {
+      "bytes": [84, 0, 0, 0, 97, 68, 0, 0, 0, 0],
+      "fPort": 3,
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "downlink transmit interval (30 min)",
+    "input": {
+      "data": {
+        "transmitIntervalSeconds": 1800
+      }
+    },
+    "output": {
+      "bytes": [84, 0, 0, 0, 225, 68, 0, 0, 0, 0],
+      "fPort": 3,
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Error: downlink transmit interval less than 1 min",
+    "input": {
+      "data": {
+        "transmitIntervalSeconds": -60
+      }
+    },
+    "output": {
+      "errors": [
+        "Invalid downlink: transmit interval cannot be less than 1 min"
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Error: downlink transmit interval greater than 30 min",
+    "input": {
+      "data": {
+        "transmitIntervalSeconds": 1801
+      }
+    },
+    "output": {
+      "errors": [
+        "Invalid downlink: transmit interval cannot be greater than 30 min"
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "measurement interval (200 ms)",
+    "input": {
+      "data": {
+        "measurementIntervalMs": 200
+      }
+    },
+    "output": {
+      "bytes": [77, 0, 0, 0, 72, 67, 0, 0, 0, 0],
+      "fPort": 3,
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "measurement interval (500 ms)",
+    "input": {
+      "data": {
+        "measurementIntervalMs": 500
+      }
+    },
+    "output": {
+      "bytes": [77, 0, 0, 0, 250, 67, 0, 0, 0, 0],
+      "fPort": 3,
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "measurement interval (1000 ms) [default configuration]",
+    "input": {
+      "data": {
+        "measurementIntervalMs": 1000
+      }
+    },
+    "output": {
+      "bytes": [77, 0, 0, 0, 122, 68, 0, 0, 0, 0],
+      "fPort": 3,
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "measurement interval (2000 ms)",
+    "input": {
+      "data": {
+        "measurementIntervalMs": 2000
+      }
+    },
+    "output": {
+      "bytes": [77, 0, 0, 0, 250, 68, 0, 0, 0, 0],
+      "fPort": 3,
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "measurement interval (10000 ms)",
+    "input": {
+      "data": {
+        "measurementIntervalMs": 10000
+      }
+    },
+    "output": {
+      "bytes": [77, 0, 0, 64, 28, 70, 0, 0, 0, 0],
+      "fPort": 3,
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Error: downlink measurement interval less than 200",
+    "input": {
+      "data": {
+        "measurementIntervalMs": -1000
+      }
+    },
+    "output": {
+      "errors": [
+        "Invalid downlink: measurement interval cannot be less than 200 ms"
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Error: downlink measurement interval greater than 10000 ms",
+    "input": {
+      "data": {
+        "measurementIntervalMs": 10001
+      }
+    },
+    "output": {
+      "errors": [
+        "Invalid downlink: measurement interval cannot be greater than 10000 ms"
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "low power threshold (3.9 v)",
+    "input": {
+      "data": {
+        "lowPowerThreshold": 3.9
+      }
+    },
+    "output": {
+      "bytes": [80, 0, 154, 153, 121, 64, 0, 0, 0, 0],
+      "fPort": 3,
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "low power threshold (3.4 v) [default configuration]",
+    "input": {
+      "data": {
+        "lowPowerThreshold": 3.4
+      }
+    },
+    "output": {
+      "bytes": [80, 0, 154, 153, 89, 64, 0, 0, 0, 0],
+      "fPort": 3,
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "low power threshold (2.1 v)",
+    "input": {
+      "data": {
+        "lowPowerThreshold": 2.1
+      }
+    },
+    "output": {
+      "bytes": [80, 0, 102, 102, 6, 64, 0, 0, 0, 0],
+      "fPort": 3,
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "low power threshold (1.8 v)",
+    "input": {
+      "data": {
+        "lowPowerThreshold": 1.8
+      }
+    },
+    "output": {
+      "bytes": [80, 0, 102, 102, 230, 63, 0, 0, 0, 0],
+      "fPort": 3,
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Error: low power threshold less than 1.8 v",
+    "input": {
+      "data": {
+        "lowPowerThreshold": -0.1
+      }
+    },
+    "output": {
+      "errors": [
+        "Invalid downlink: low power threshold cannot be less than 1.8 v"
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Error: low power threshold greater than 3.9 v",
+    "input": {
+      "data": {
+        "lowPowerThreshold": 5
+      }
+    },
+    "output": {
+      "errors": [
+        "Invalid downlink: low power threshold cannot be greater than 3.9 v"
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "factory reset",
+    "input": {
+      "data": {
+        "factoryReset": true
+      }
+    },
+    "output": {
+      "bytes": [90, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      "fPort": 3,
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Error: factory reset is false",
+    "input": {
+      "data": {
+        "factoryReset": false
+      }
+    },
+    "output": {
+      "errors": ["Invalid downlink: valid factoryReset value is true"],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Error: invalid data field",
+    "input": {
+      "data": {
+        "invalid": 112
+      }
+    },
+    "output": {
+      "errors": ["Invalid downlink: invalid downlink parameter name"],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Error: More than one downlink defined",
+    "input": {
+      "data": {
+        "transmitIntervalSeconds": 60,
+        "lowPowerThreshold": 1.8
+      }
+    },
+    "output": {
+      "errors": ["Invalid downlink: More than one downlink type defined"],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Error: More than one downlink defined",
+    "input": {
+      "data": {
+        "measurementIntervalMs": 1000,
+        "lowPowerThreshold": 1.8
+      }
+    },
+    "output": {
+      "errors": ["Invalid downlink: More than one downlink type defined"],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Error: More than one downlink defined",
+    "input": {
+      "data": {
+        "lowPowerThreshold": 1.8,
+        "factoryReset": true
+      }
+    },
+    "output": {
+      "errors": ["Invalid downlink: More than one downlink type defined"],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "downlink transmit interval (1 min) [default configuration]",
+    "input": {
+      "bytes": [84, 0, 0, 0, 112, 66, 0, 0, 0, 0],
+      "fPort": 2,
+      "recvTime": "2023-05-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "data": {
+        "transmitIntervalSeconds": 60
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "downlink transmit interval (2 min)",
+    "input": {
+      "bytes": [84, 0, 0, 0, 240, 66, 0, 0, 0, 0],
+      "fPort": 2,
+      "recvTime": "2023-05-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "data": {
+        "transmitIntervalSeconds": 120
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "downlink transmit interval (5 min)",
+    "input": {
+      "bytes": [84, 0, 0, 0, 150, 67, 0, 0, 0, 0],
+      "fPort": 2,
+      "recvTime": "2023-05-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "data": {
+        "transmitIntervalSeconds": 300
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "downlink transmit interval (15 min)",
+    "input": {
+      "bytes": [84, 0, 0, 0, 97, 68, 0, 0, 0, 0],
+      "fPort": 2,
+      "recvTime": "2023-05-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "data": {
+        "transmitIntervalSeconds": 900
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "downlink transmit interval (30 min)",
+    "input": {
+      "bytes": [84, 0, 0, 0, 225, 68, 0, 0, 0, 0],
+      "fPort": 2,
+      "recvTime": "2023-05-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "data": {
+        "transmitIntervalSeconds": 1800
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "Warning: downlink transmit interval reserved bytes not 0",
+    "input": {
+      "bytes": [84, 0, 0, 0, 225, 68, 0, 1, 0, 0],
+      "fPort": 2,
+      "recvTime": "2023-05-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "data": {
+        "transmitIntervalSeconds": 1800
+      },
+      "errors": [],
+      "warnings": ["Warning: Byte index 6-9 are not 0"]
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "Error: downlink transmit interval cannot be less than 1 min",
+    "input": {
+      "bytes": [84, 0, 0, 0, 112, 194, 0, 0, 0, 0],
+      "fPort": 2,
+      "recvTime": "2023-05-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "errors": [
+        "Invalid downlink: transmit interval cannot be less than 1 min"
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "Error: downlink transmit interval greater than 30 m",
+    "input": {
+      "bytes": [84, 0, 0, 32, 225, 68, 0, 0, 0, 0],
+      "fPort": 2,
+      "recvTime": "2023-05-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "errors": [
+        "Invalid downlink: transmit interval cannot be greater than 30 min"
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "measurement interval (200 ms)",
+    "input": {
+      "bytes": [77, 0, 0, 0, 72, 67, 0, 0, 0, 0],
+      "fPort": 2,
+      "recvTime": "2023-05-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "data": {
+        "measurementIntervalMs": 200
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "measurement interval (500 ms)",
+    "input": {
+      "bytes": [77, 0, 0, 0, 250, 67, 0, 0, 0, 0],
+      "fPort": 2,
+      "recvTime": "2023-05-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "data": {
+        "measurementIntervalMs": 500
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "measurement interval (1000 ms) [default configuration]",
+    "input": {
+      "bytes": [77, 0, 0, 0, 122, 68, 0, 0, 0, 0],
+      "fPort": 2,
+      "recvTime": "2023-05-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "data": {
+        "measurementIntervalMs": 1000
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "measurement interval (2000 ms)",
+    "input": {
+      "bytes": [77, 0, 0, 0, 250, 68, 0, 0, 0, 0],
+      "fPort": 2,
+      "recvTime": "2023-05-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "data": {
+        "measurementIntervalMs": 2000
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "measurement interval (10000 ms)",
+    "input": {
+      "bytes": [77, 0, 0, 64, 28, 70, 0, 0, 0, 0],
+      "fPort": 2,
+      "recvTime": "2023-05-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "data": {
+        "measurementIntervalMs": 10000
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "Warning: reserved bytes not 0",
+    "input": {
+      "bytes": [77, 0, 0, 64, 28, 70, 0, 0, 1, 0],
+      "fPort": 2,
+      "recvTime": "2023-05-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "data": {
+        "measurementIntervalMs": 10000
+      },
+      "errors": [],
+      "warnings": [
+        "Warning: Measurement interval reserved bytes are not equal to 0"
+      ]
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "Error: downlink measurement interval less than 200 ms",
+    "input": {
+      "bytes": [77, 0, 0, 66, 28, 255, 0, 0, 0, 0],
+      "fPort": 2,
+      "recvTime": "2023-05-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "errors": [
+        "Invalid downlink: measurement interval cannot be less than 200 ms"
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "Error: downlink measurement interval greater than 10000 ms",
+    "input": {
+      "bytes": [77, 0, 0, 68, 28, 70, 0, 0, 0, 0],
+      "fPort": 2,
+      "recvTime": "2023-05-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "errors": [
+        "Invalid downlink: measurement interval cannot be greater than 10000 ms"
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "low power threshold (3.9 v)",
+    "input": {
+      "bytes": [80, 0, 154, 153, 121, 64, 0, 0, 0, 0],
+      "fPort": 2,
+      "recvTime": "2023-05-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "data": {
+        "lowPowerThreshold": 3.9
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "low power threshold (3.4 v) [default configuration]",
+    "input": {
+      "bytes": [80, 0, 154, 153, 89, 64, 0, 0, 0, 0],
+      "fPort": 2,
+      "recvTime": "2023-05-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "data": {
+        "lowPowerThreshold": 3.4
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "low power threshold (2.1 v)",
+    "input": {
+      "bytes": [80, 0, 102, 102, 6, 64, 0, 0, 0, 0],
+      "fPort": 2,
+      "recvTime": "2023-05-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "data": {
+        "lowPowerThreshold": 2.1
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "low power threshold (1.8 v)",
+    "input": {
+      "bytes": [80, 0, 102, 102, 230, 63, 0, 0, 0, 0],
+      "fPort": 2,
+      "recvTime": "2023-05-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "data": {
+        "lowPowerThreshold": 1.8
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "Warning: low power threshold reserved bytes not 0",
+    "input": {
+      "bytes": [80, 0, 102, 102, 230, 63, 0, 0, 1, 0],
+      "fPort": 2,
+      "recvTime": "2023-05-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "data": {
+        "lowPowerThreshold": 1.8
+      },
+      "errors": [],
+      "warnings": [
+        "Warning: Low power threshold reserved bytes are not equal to 0"
+      ]
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "Error: low power threshold less than 1.8 v",
+    "input": {
+      "bytes": [80, 0, 0, 0, 128, 191, 0, 0, 0, 0],
+      "fPort": 2,
+      "recvTime": "2023-05-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "errors": [
+        "Invalid downlink: low power threshold cannot be less than 1.8 v"
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "Error: low power threshold greater than 3.9 v",
+    "input": {
+      "bytes": [80, 0, 0, 0, 192, 64, 0, 0, 0, 0],
+      "fPort": 2,
+      "recvTime": "2023-05-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "errors": [
+        "Invalid downlink: low power threshold cannot be greater than 3.9 v"
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "factory reset",
+    "input": {
+      "bytes": [90, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      "fPort": 2,
+      "recvTime": "2023-05-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "data": { "factoryReset": true },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "Error: factory reset reserved bytes not 0",
+    "input": {
+      "bytes": [90, 0, 0, 0, 0, 0, 0, 1, 0, 0],
+      "fPort": 2,
+      "recvTime": "2023-05-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "errors": [
+        "Invalid downlink: Factory reset reserved bytes are not equal to 0"
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "Error: downlink not 10 bytes",
+    "input": {
+      "bytes": [30, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      "fPort": 2,
+      "recvTime": "2023-05-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "errors": ["Invalid downlink: unknown downlink type"],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "Error: downlink not 10 bytes",
+    "input": {
+      "bytes": [0, 0, 0, 0, 0, 0, 0, 0],
+      "fPort": 2,
+      "recvTime": "2023-05-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "errors": ["Invalid downlink: downlink must be 10 bytes"],
+      "warnings": []
+    }
+  }
+]
