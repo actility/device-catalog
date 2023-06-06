@@ -186,14 +186,17 @@ function encodeDownlink(input) {
   }
 
   if (typeof input.data.lowPowerThreshold !== "undefined") {
-    if (input.data.lowPowerThreshold < 1.8) {
+    var lowPowerTolerance = 0.000001;
+    // Have leniant lower tolerance due to floating point
+    if (input.data.lowPowerThreshold + lowPowerTolerance < 1.8) {
       result.errors.push(
         "Invalid downlink: low power threshold cannot be less than 1.8 v"
       );
       delete result.bytes;
       return result;
     }
-    if (input.data.lowPowerThreshold > 3.9) {
+    // Have leniant upper tolerance due to floating point
+    if (input.data.lowPowerThreshold - lowPowerTolerance > 3.9) {
       result.errors.push(
         "Invalid downlink: low power threshold cannot be greater than 3.9 v"
       );
@@ -309,6 +312,7 @@ function decodeDownlink(input) {
       result.data.measurementIntervalMs = measurementIntervalMs;
       break;
     case 0x50: // low power threshold
+      var lowPowerTolerance = 0.000001;
       var lowPowerThreshold = raw.readFloatLE(2);
       var reserved = raw.readFloatLE(6);
       if (reserved !== 0) {
@@ -316,14 +320,16 @@ function decodeDownlink(input) {
           "Warning: Low power threshold reserved bytes are not equal to 0"
         );
       }
-      if (lowPowerThreshold < 0) {
+      // Have leniant lower tolerance due to floating point
+      if (lowPowerThreshold + lowPowerTolerance < 1.8) {
         result.errors.push(
           "Invalid downlink: low power threshold cannot be less than 1.8 v"
         );
         delete result.bytes;
         return result;
       }
-      if (lowPowerThreshold >= 5) {
+      // Have leniant upper tolerance due to floating point
+      if (lowPowerThreshold - lowPowerTolerance > 3.9) {
         result.errors.push(
           "Invalid downlink: low power threshold cannot be greater than 3.9 v"
         );

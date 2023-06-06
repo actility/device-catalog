@@ -50,16 +50,19 @@ describe("Decode downlink", () => {
         // Then
         const expected = example.output;
         if (expected.data?.lowPowerThreshold) {
+          expect(result.data.lowPowerThreshold).not.toBeUndefined();
           expect(result.data.lowPowerThreshold).toBeCloseTo(
             expected.data.lowPowerThreshold,
             6
           );
         } else if (expected.data?.measurementIntervalMs) {
+          expect(result.data.measurementIntervalMs).not.toBeUndefined();
           expect(result.data.measurementIntervalMs).toBeCloseTo(
             expected.data.measurementIntervalMs,
             6
           );
         } else if (expected.data?.transmitIntervalSeconds) {
+          expect(result.data.transmitIntervalSeconds).not.toBeUndefined();
           expect(result.data.transmitIntervalSeconds).toBeCloseTo(
             expected.data.transmitIntervalSeconds,
             6
