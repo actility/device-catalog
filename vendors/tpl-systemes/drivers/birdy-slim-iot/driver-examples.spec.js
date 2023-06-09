@@ -14,38 +14,12 @@ describe("Decode uplink", () => {
                     bytes: Buffer.from(example.input.bytes, "hex"),
                     fPort: example.input.fPort,
                 };
-
                 if (example.input.recvTime !== undefined) {
                     input.recvTime = example.input.recvTime;
-                }
 
+                }
                 // When
                 const result = driver.decodeUplink(input);
-
-                // Then
-                const expected = example.output;
-                expect(result).toStrictEqual(expected);
-            });
-        }
-    });
-});
-
-describe("Decode downlink", () => {
-    examples.forEach((example) => {
-        if (example.type === "downlink-decode") {
-            it(example.description, () => {
-                // Given
-                const input = {
-                    bytes: example.input.bytes,
-                    fPort: example.input.fPort,
-                };
-
-                if (example.input.recvTime !== undefined) {
-                    input.recvTime = example.input.recvTime;
-                }
-
-                // When
-                const result = driver.decodeDownlink(input);
 
                 // Then
                 const expected = example.output;
@@ -61,9 +35,11 @@ describe("Encode downlink", () => {
             it(example.description, () => {
                 // When
                 const result = driver.encodeDownlink(example.input);
-
                 // Then
+
                 const expected = example.output;
+                console.log(result);
+                console.log(expected);
                 expect(result).toStrictEqual(expected);
             });
         }

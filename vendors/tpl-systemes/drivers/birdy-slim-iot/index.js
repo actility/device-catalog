@@ -33,12 +33,13 @@ function hexaToAscii(hexx) {
  */
 function decodeUplink(input) {
     let result = {
-        data: {},
+        message: "",
+        fPort: null,
         errors: [],
         warnings: []
     };
-    const raw = Buffer.from(input.bytes);
-    result.data.message = hexaToAscii(raw);
+    result.fPort = input.fPort;
+    result.message = input.bytes.toString();//hexaToAscii(input.bytes.toString());
     return result;
 }
 
@@ -58,15 +59,13 @@ function decodeUplink(input) {
  */
 function encodeDownlink(input) {
     let result = {
+        bytes: [],
+        fPort: null,
         errors: [],
         warnings: []
     };
-    let raw = new Buffer(4);
-    let index = 0;
-
-    result.data = asciiToHexa(input.data);
-
-    result.bytes = Array.from(raw).slice(0,index);
+    // console.log(asciiToHexa(input.data))
+    result.bytes = [...Buffer.from(asciiToHexa(input.data.message))];
     result.fPort = 16;
     return result;
 }
