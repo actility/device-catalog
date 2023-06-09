@@ -36,10 +36,7 @@ describe("Encode downlink", () => {
                 // When
                 const result = driver.encodeDownlink(example.input);
                 // Then
-
                 const expected = example.output;
-                console.log(result);
-                console.log(expected);
                 expect(result).toStrictEqual(expected);
             });
         }
