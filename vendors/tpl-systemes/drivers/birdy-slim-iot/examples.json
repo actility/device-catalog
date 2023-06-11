@@ -1,0 +1,37 @@
+[
+  {
+    "description": "Example1: uplink containing message",
+    "type": "uplink",
+    "input": {
+      "bytes": "5765206E65656420796F75204153415021",
+      "fPort": 10,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "message": "We need you ASAP!",
+      "fPort": 10,
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Encode downlink containing message",
+    "input": {
+      "data": {
+        "message": "We need you ASAP!"
+      }
+    },
+    "output": {
+      "bytes": [
+        53,  55, 54, 53, 50, 48, 54, 101, 54,
+        53,  54, 53, 54, 52, 50, 48,  55, 57,
+        54, 102, 55, 53, 50, 48, 52,  49, 53,
+        51,  52, 49, 53, 48, 50, 49
+      ],
+      "fPort": 16,
+      "errors": [],
+      "warnings": []
+    }
+  }
+]
