@@ -1,4 +1,4 @@
-function asciiToHexa(str){
+function asciiToHex(str){
     var arr1 = [];
     for (var n = 0, l = str.length; n < l; n ++) {
         var hex = Number(str.charCodeAt(n)).toString(16);
@@ -25,7 +25,7 @@ function asciiToHexa(str){
 function decodeUplink(input) {
     return {
         data: {
-            message: input.bytes.toString()
+            message: Buffer.from(input.bytes).toString('ascii')
         },
         errors: [],
         warnings: []
