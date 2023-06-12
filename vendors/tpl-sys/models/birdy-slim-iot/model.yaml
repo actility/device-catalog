@@ -1,13 +1,17 @@
 # Commercial name of the model
 name: Birdy Slim IoT
 # Functional description of the product. Maximum 500 characters.
-description: Compact, lightweight and robust POCSAG receiver.
+description: "Compact, lightweight and robust pager. Warning: ABP, SF7-BW250 and FSK are not supported."
 # Logo of the device
 logo: birdy-slim-iot.png
 # ID(s) of the profile that defines the LoRaWAN characteristics of this model.
 deviceProfileId:
-  - tpl-systemes_RFGroup1_1.0.2b_classA.yaml
-  - tpl-systemes_RFGroup1_1.0.2b_classC.yaml
+  - tpl-sys_RFGroup1_1.0.2b_classA
+  - tpl-sys_RFGroup1_1.0.2b_classC
+  - tpl-sys_RFGroup2_1.0.2b_classA
+  - tpl-sys_RFGroup2_1.0.2b_classC
+  - tpl-sys_RFGroup4_1.0.2b_classA
+  - tpl-sys_RFGroup4_1.0.2b_classC
 
 # You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings.
 # Maximum device TX Conducted output power in dBm.
@@ -20,17 +24,17 @@ maxTxEIRP:
 minTxEIRP:
 # Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'
 # or 'random' (not known, changes over time).
-motionIndicator: vehicular_speed
+motionIndicator:
 
 # Is your device certified by the LoRa Alliance? Possible values: true, false.
 LoRaWANCertified:
 # Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
 # Be careful: Once you chose a model, it cannot be changed later
-modelId: tpls-systemes:birdy-slim-iot:1
+modelId: tpl-sys:birdy-slim-iot:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 # Be careful: Once you chose a protocolId, it cannot be changed later
 protocolId:
-  - tpls-systemes:birdy-slim-iot:1
+  - tpl-sys:birdy-slim-iot:1
 # DataSheet URL (optional)
 specificationURL: https://tplsystemes.com/images/uploadsPDF/FP_BIRDY_SLIM_LITE_TPL_SYSTEMES_V1.3_FR.pdf
 # User Guide URL (optional)

@@ -7,15 +7,6 @@ function asciiToHexa(str){
     return arr1.join('');
 }
 
-function hexaToAscii(hexx) {
-    var hex = hexx.toString();//force conversion
-    var str = '';
-    for (var i = 0; i < hex.length; i += 2)
-        str += String.fromCharCode(parseInt(hex.substr(i, 2), 16));
-    return str;
-}
-
-
 /**
  * @typedef {Object} DecodedUplink
  * @property {Object} data - The open JavaScript object representing the decoded uplink payload when no errors occurred
@@ -32,15 +23,13 @@ function hexaToAscii(hexx) {
  * @returns {DecodedUplink} The decoded object
  */
 function decodeUplink(input) {
-    let result = {
-        message: "",
-        fPort: null,
+    return {
+        data: {
+            message: input.bytes.toString()
+        },
         errors: [],
         warnings: []
     };
-    result.fPort = input.fPort;
-    result.message = input.bytes.toString();//hexaToAscii(input.bytes.toString());
-    return result;
 }
 
 /**
@@ -58,16 +47,12 @@ function decodeUplink(input) {
  * @returns {EncodedDownlink} The encoded object
  */
 function encodeDownlink(input) {
-    let result = {
-        bytes: [],
-        fPort: null,
+    return {
+        bytes: [...Buffer.from(asciiToHexa(input.data.message))],
+        fPort: 16,
         errors: [],
         warnings: []
     };
-    // console.log(asciiToHexa(input.data))
-    result.bytes = [...Buffer.from(asciiToHexa(input.data.message))];
-    result.fPort = 16;
-    return result;
 }
 
 
