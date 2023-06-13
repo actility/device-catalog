@@ -48,13 +48,23 @@ function decodeUplink(input) {
  */
 function encodeDownlink(input) {
     return {
-        bytes: [...Buffer.from(asciiToHexa(input.data.message))],
+        bytes: [...Buffer.from(asciiToHex(input.data.message))],
         fPort: 16,
         errors: [],
         warnings: []
     };
 }
 
+function decodeDownlink(input){
+    return {
+        data: {
+            message: Buffer.from(input.bytes).toString('ascii')
+        },
+        errors: [],
+        warnings: []
+    };
+}
 
 exports.decodeUplink = decodeUplink;
+exports.decodeDownlink= decodeDownlink;
 exports.encodeDownlink = encodeDownlink;
