@@ -78,17 +78,11 @@ function readInt16LE(bytes) {
 ************************************/
 
 function decodeUplink(input){
-    let output = {
-        data: {
-
-        },
+    return {
+        data: Decode(input.fPort, input.bytes),
         errors: [],
         warnings: []
     }
-
-    output.data = Decode(input.fPort, input.bytes);
-
-    return output;
 }
 
 exports.decodeUplink = decodeUplink;
