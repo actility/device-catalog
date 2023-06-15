@@ -29,13 +29,21 @@ LoRaWANCertified: false
 # Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
 modelId: msight:wts305:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
-protocolId: 
+protocolId: msight:wts305:1
 # DataSheet URL (optional) 
 specificationURL: https://www.lastmile.no/media/multicase/documents//datablad%20-%20milesight%20wts-series.pdf
 # User Guide URL (optional) 
 userGuideURL: https://www.lastmile.no/media/multicase/documents//manual%20-%20milesight%20wts-series.pdf
 # Available sensors following Actility ontology: https://github.com/actility/thingpark-iot-flow-js-driver/blob/master/UNITS.md 
 sensors: 
+    - batteryLevel:%
+    - humidity:%RH
+    - pressure:hPa
+    - temperature:Cel
+    - angle:deg
+    - velocity:km/h
 # Driver examples
 # A list of examples description that are compatible with this model
-examples:
+examples: 
+    - msight:wts305:1:
+        - "WTS305: Example 1"
