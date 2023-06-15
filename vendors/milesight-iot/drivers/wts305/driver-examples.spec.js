@@ -19,7 +19,7 @@ describe('Decode uplink', () => {
         }
 
         // When
-        const result = driver.Decode(input.fPort, input.bytes)
+        const result = driver.decodeUplink(input)
 
         // Then
         const expected = example.output

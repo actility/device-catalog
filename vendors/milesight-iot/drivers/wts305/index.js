@@ -77,4 +77,18 @@ function readInt16LE(bytes) {
 **********ADDED BY ACTILITY**********
 ************************************/
 
-exports.Decode = Decode;
+function decodeUplink(input){
+    let output = {
+        data: {
+
+        },
+        errors: [],
+        warnings: []
+    }
+
+    output.data = Decode(input.fPort, input.bytes);
+
+    return output;
+}
+
+exports.decodeUplink = decodeUplink;
