@@ -8,7 +8,7 @@ function decodeUplink(input) {
     }
 
     var bytes = input['bytes']
-    bytes = Buffer.from(bytes, 'utf8').toString()
+    bytes = Buffer.from(bytes, 'utf8').toString('hex')
     // init
     // bytes = bytes2HexString(bytes)
     //     .toLocaleUpperCase()
