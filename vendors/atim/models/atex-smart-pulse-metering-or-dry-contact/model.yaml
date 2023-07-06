@@ -26,14 +26,27 @@ minTxEIRP:
 motionIndicator:
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
-LoRaWANCertified: 
+LoRaWANCertified: false
 # Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
 modelId: atim:atex-smart:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
-protocolId: 
+protocolId: atim:generic:1
 # DataSheet URL (optional) 
-specificationURL: 
+specificationURL: https://www.atim.com/wp-content/uploads/documentation/ACW/ACW-MR2-EX/ENGLISH/ATIM_ACW-MR2-EX_UG_EN.pdf
 # User Guide URL (optional) 
-userGuideURL: 
+userGuideURL: https://www.atim.com/wp-content/uploads/documentation/ACW/ACW-MR4/ENGLISH/ATIM_ACW-MRx_DS_EN.pdf
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
+    - batteryVoltage:V
+examples:
+    - atim:generic:1:
+        - "Example MR2 Trame de vie"
+        - "Example MR2 Trame de compteur standard"
+        - "Example MR2 Trame alerte état câble coupé"
+        - "Example MR2 Trame de détection de changement d'état (TOR)"
+        - "Example MR2 Trame Compteur mode ECO (Compteur 1 22 bits et 5 deltas 32 bits LoraWan )"
+        - "Example MR2 Trame Test LoraWan"
+        - "Example MR2 Trame Compteur mode ECO (Compteur 1 20 bits et 5 deltas 12 bits concaténés SIGFOX) 1"
+        - "Example MR2 Trame Compteur mode ECO (Compteur 1 20 bits et 5 deltas 12 bits concaténés SIGFOX) 2"
+        - "Example MR2 Trame Compteur mode ECO (Compteur 1 20 bits et 5 deltas 12 bits concaténés SIGFOX) 3"
+        

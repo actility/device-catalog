@@ -26,14 +26,25 @@ minTxEIRP:
 motionIndicator:
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
-LoRaWANCertified: 
+LoRaWANCertified: false
 # Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
 modelId: atim:smart-pulse:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
-protocolId: 
+protocolId: atim:generic:1
 # DataSheet URL (optional) 
-specificationURL: 
+specificationURL: https://www.atim.com/wp-content/uploads/documentation/ACW/ACW-MR4/ENGLISH/ATIM_ACW-MR4_UG_EN.pdf
 # User Guide URL (optional) 
-userGuideURL: 
+userGuideURL: https://www.atim.com/wp-content/uploads/documentation/ACW/ACW-MR2-EX/ENGLISH/ATIM_ACW-MRx_DS_EN.pdf
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
-sensors:
+sensors: 
+    - batteryVoltage:V
+examples:
+    - os1-atim:decode1:1:
+        - "Example MR4 trame de mesure sur 4 voie"
+        - "Example MR4 trame de mesure sur 1 voie"
+        - "Example MR4 trame de mesure de l'état des entrées"
+        - "Example MR4 trame de mesure avec détection de changement d'état"
+        - "Example MR4 trame de mesure de l'état des entrées avec horodatage"
+        - "Example MR4 trame de vie"
+        - "Example MR4 trame de test avec mesure de l'état des entrées"
+        - "Example MR4 trame de mesure avec échantillonnage + historisation"
