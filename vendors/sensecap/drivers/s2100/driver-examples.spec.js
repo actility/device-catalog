@@ -1,5 +1,6 @@
 const driver = require('./index.js')
 const examples = require('./examples.json')
+
 /*..............
 Test suites
 ..............*/
@@ -16,7 +17,6 @@ describe('Decode uplink', () => {
                 if (example.input.recvTime !== undefined) {
                     input.recvTime = example.input.recvTime
                 }
-
                 // When
                 const result = driver.decodeUplink(input)
                 const expected = example.output
