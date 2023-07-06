@@ -8,7 +8,7 @@ function decodeUplink(input) {
     }
 
     var bytes = input['bytes']
-    bytes = Buffer.from(bytes, 'utf8').toString()
+    bytes = Buffer.from(bytes).toString()
     // init
     // bytes = bytes2HexString(bytes)
     //     .toLocaleUpperCase()
@@ -20,10 +20,13 @@ function decodeUplink(input) {
         let dataId = item.dataId
         let dataValue = item.dataValue
         let messages = dataIdAndDataValueJudge(dataId, dataValue)
-        decoderArray.push(messages)
+        // decoderArray.push(messages)
+        decoderArray.push(...messages)
     }
-    console.log(decoderArray[0])
-    result.data = {...decoderArray[0]}
+    result.data = {}
+    for (let i = 0; i < decoderArray.length; i++) {
+        result.data[i.toString()] = decoderArray[i]
+    }
     return result
 }
 
