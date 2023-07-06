@@ -1,80 +1,34 @@
 [
   {
     "type": "uplink",
-    "description": "uplink containing only pulse counter",
+    "description": "uplink containing soil moisture and soil temperature",
     "input": {
-      "bytes": [
-        48,
-        49,
-        48,
-        49,
-        49,
-        48,
-        97,
-        98,
-        54,
-        55,
-        48,
-        48,
-        48,
-        48,
-        48,
-        49,
-        48,
-        97,
-        49,
-        48,
-        54,
-        102,
-        49,
-        99,
-        48,
-        48,
-        48,
-        48,
-        48,
-        48,
-        48,
-        55,
-        48,
-        48,
-        54,
-        52,
-        48,
-        48,
-        48,
-        53,
-        48,
-        48,
-        54,
-        97,
-        98,
-        100
-      ]
+      "bytes": "010610dc500000010710687400009091"
     ,
       "fPort": 1,
       "recvTime": "2020-08-02T20:00:00.000+05:00"
     },
     "output": {
       "data": {
-        "0": {
-          "measurementId": 4097,
-          "measurementValue": 26.539,
-          "type": "report_telemetry"
-        },
-        "1": {
-          "measurementId": 4106,
-          "measurementValue": 7.279,
-          "type": "report_telemetry"
-        },
-        "2": {
-          "battery": 100,
-          "type": "upload_battery"
-        },
-        "3": {
-          "interval": 300,
-          "type": "upload_interval"
-        }
+        "valid": true,
+        "err": 0,
+        "payload": "010610DC500000010710687400009091",
+        "messages": [
+          {
+            "type": "report_telemetry",
+            "measurementId": 4102,
+            "measurementValue": 20.7,
+            "measurement": "Soil Temperature",
+            "unit": "Cel"
+          },
+          {
+            "type": "report_telemetry",
+            "measurementId": 4103,
+            "measurementValue": 29.8,
+            "measurement": "Soil Moisture",
+            "unit": "%"
+          }
+        ]
       },
       "errors": [],
       "warnings": []

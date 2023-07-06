@@ -10,7 +10,7 @@ function decodeUplink(input, port) {
         .toLocaleUpperCase()
 
     let result = {
-        data: {}, errors: [], warnings: []
+        'err': 0, 'payload': bytes, 'valid': true, messages: []
     }
     let splitArray = dataSplit(bytes)
     // data decoder
@@ -20,10 +20,13 @@ function decodeUplink(input, port) {
         let dataId = item.dataId
         let dataValue = item.dataValue
         let messages = dataIdAndDataValueJudge(dataId, dataValue)
-        decoderArray.push(messages)
+        decoderArray.push(...messages)
     }
-    result.data = {...decoderArray[0]}
-    return result
+    result.messages = decoderArray
+
+    enrichMeasurements(result.messages);
+
+    return { data: result }
 }
 
 /**
@@ -40,18 +43,18 @@ function dataSplit(bytes) {
         let dataValue
         let dataObj = {}
         switch (dataId) {
-            case '01' :
-            case '20' :
-            case '21' :
-            case '30' :
-            case '31' :
-            case '33' :
-            case '40' :
-            case '41' :
-            case '42' :
-            case '43' :
-            case '44' :
-            case '45' :
+            case '01':
+            case '20':
+            case '21':
+            case '30':
+            case '31':
+            case '33':
+            case '40':
+            case '41':
+            case '42':
+            case '43':
+            case '44':
+            case '45':
                 dataValue = remainingValue.substring(2, 22)
                 bytes = remainingValue.substring(22)
                 dataObj = {
@@ -65,7 +68,7 @@ function dataSplit(bytes) {
                     'dataId': '02', 'dataValue': dataValue
                 }
                 break
-            case '03' :
+            case '03':
             case '06':
                 dataValue = remainingValue.substring(2, 4)
                 bytes = remainingValue.substring(4)
@@ -73,7 +76,7 @@ function dataSplit(bytes) {
                     'dataId': dataId, 'dataValue': dataValue
                 }
                 break
-            case '05' :
+            case '05':
             case '34':
                 dataValue = bytes.substring(2, 10)
                 bytes = remainingValue.substring(10)
@@ -117,15 +120,15 @@ function dataIdAndDataValueJudge(dataId, dataValue) {
             let uv = dataValue.substring(14, 16)
             let windSpeed = dataValue.substring(16, 20)
             messages = [{
-                measurementValue: loraWANV2DataFormat(temperature, 10), measurementId: '4097', type: 'Air Temperature'
+                measurementValue: loraWANV2DataFormat(temperature, 10), measurementId: 4097, type: 'Air Temperature'
             }, {
-                measurementValue: loraWANV2DataFormat(humidity), measurementId: '4098', type: 'Air Humidity'
+                measurementValue: loraWANV2DataFormat(humidity), measurementId: 4098, type: 'Air Humidity'
             }, {
-                measurementValue: loraWANV2DataFormat(illumination), measurementId: '4099', type: 'Light Intensity'
+                measurementValue: loraWANV2DataFormat(illumination), measurementId: 4099, type: 'Light Intensity'
             }, {
-                measurementValue: loraWANV2DataFormat(uv, 10), measurementId: '4190', type: 'UV Index'
+                measurementValue: loraWANV2DataFormat(uv, 10), measurementId: 4190, type: 'UV Index'
             }, {
-                measurementValue: loraWANV2DataFormat(windSpeed, 10), measurementId: '4105', type: 'Wind Speed'
+                measurementValue: loraWANV2DataFormat(windSpeed, 10), measurementId: 4105, type: 'Wind Speed'
             }]
             break
         case '02':
@@ -133,16 +136,12 @@ function dataIdAndDataValueJudge(dataId, dataValue) {
             let rainfall = dataValue.substring(4, 12)
             let airPressure = dataValue.substring(12, 16)
             messages = [{
-                measurementValue: loraWANV2DataFormat(windDirection),
-                measurementId: '4104',
-                type: 'Wind Direction Sensor'
+                measurementValue: loraWANV2DataFormat(windDirection), measurementId: 4104, type: 'Wind Direction Sensor'
             }, {
-                measurementValue: loraWANV2DataFormat(rainfall, 1000), measurementId: '4113', type: 'Rain Gauge'
+                measurementValue: loraWANV2DataFormat(rainfall, 1000), measurementId: 4113, type: 'Rain Gauge'
             }, {
 
-                measurementValue: loraWANV2DataFormat(airPressure, 0.1),
-                measurementId: '4101',
-                type: 'Barometric Pressure'
+                measurementValue: loraWANV2DataFormat(airPressure, 0.1), measurementId: 4101, type: 'Barometric Pressure'
             }]
             break
         case '03':
@@ -251,12 +250,12 @@ function dataIdAndDataValueJudge(dataId, dataValue) {
                     break
             }
             messages = [{
-                measurementId: '4101', type: 'sensor_error_event', errCode: errorCode, descZh
+                measurementId: 4101, type: 'sensor_error_event', errCode: errorCode, descZh
             }]
             break
         case '10':
             let statusValue = dataValue.substring(0, 2)
-            let {status, type} = loraWANV2BitDataFormat(statusValue)
+            let { status, type } = loraWANV2BitDataFormat(statusValue)
             let sensecapId = dataValue.substring(2)
             messages = [{
                 status: status, channelType: type, sensorEui: sensecapId
@@ -421,7 +420,7 @@ function dataIdAndDataValueJudge(dataId, dataValue) {
             // Z
             let accelerateZ = dataValue.substring(16, 20)
             messages = [{
-                measurementValue: loraWANV2DataFormat(lightIntensity), measurementId: '4193', type: 'Light Intensity'
+                measurementValue: loraWANV2DataFormat(lightIntensity), measurementId: 4193, type: 'Light Intensity'
             }, {
                 measurementValue: loraWANV2DataFormat(loudness), measurementId: '4192', type: 'Sound Intensity'
             }, {
@@ -429,10 +428,10 @@ function dataIdAndDataValueJudge(dataId, dataValue) {
                 measurementValue: loraWANV2DataFormat(accelerateX, 100), measurementId: '4150', type: 'AccelerometerX'
             }, {
 
-                measurementValue: loraWANV2DataFormat(accelerateY, 100), measurementId: '4151', type: 'AccelerometerY'
+                measurementValue: loraWANV2DataFormat(accelerateY, 100), measurementId: 4151, type: 'AccelerometerY'
             }, {
 
-                measurementValue: loraWANV2DataFormat(accelerateZ, 100), measurementId: '4152', type: 'AccelerometerZ'
+                measurementValue: loraWANV2DataFormat(accelerateZ, 100), measurementId: 4152, type: 'AccelerometerZ'
             }]
             break
         case '42':
@@ -442,21 +441,15 @@ function dataIdAndDataValueJudge(dataId, dataValue) {
             let CO2eq = dataValue.substring(12, 16)
             let soilMoisture = dataValue.substring(16, 20)
             messages = [{
-                measurementValue: loraWANV2DataFormat(airTemperature, 100),
-                measurementId: '4097',
-                type: 'Air Temperature'
+                measurementValue: loraWANV2DataFormat(airTemperature, 100), measurementId: 4097, type: 'Air Temperature'
             }, {
-                measurementValue: loraWANV2DataFormat(AirHumidity, 100), measurementId: '4098', type: 'Air Humidity'
+                measurementValue: loraWANV2DataFormat(AirHumidity, 100), measurementId: 4098, type: 'Air Humidity'
             }, {
-                measurementValue: loraWANV2DataFormat(tVOC),
-                measurementId: '4195',
-                type: 'Total Volatile Organic Compounds'
+                measurementValue: loraWANV2DataFormat(tVOC), measurementId: 4195, type: 'Total Volatile Organic Compounds'
             }, {
-                measurementValue: loraWANV2DataFormat(CO2eq), measurementId: '4100', type: 'CO2'
+                measurementValue: loraWANV2DataFormat(CO2eq), measurementId: 4100, type: 'CO2'
             }, {
-                measurementValue: loraWANV2DataFormat(soilMoisture),
-                measurementId: '4196',
-                type: 'Soil moisture intensity'
+                measurementValue: loraWANV2DataFormat(soilMoisture), measurementId: 4196, type: 'Soil moisture intensity'
             }]
             break
         case '43':
@@ -481,9 +474,7 @@ function dataIdAndDataValueJudge(dataId, dataValue) {
                 let detectionType = loraWANV2DataFormat(dataValue.substring(i + 2, i + 4))
                 let aiTailValues = `${modelId}.${detectionType}`
                 messages.push({
-                    measurementValue: aiTailValues,
-                    measurementId: initTailDevKitmeasurementId,
-                    type: `AI Detection ${i}`
+                    measurementValue: aiTailValues, measurementId: initTailDevKitmeasurementId, type: `AI Detection ${i}`
                 })
                 initTailDevKitmeasurementId++
             }
@@ -566,7 +557,7 @@ function loraWANV2BitDataFormat(str) {
     let channel = parseInt(str2.substring(0, 4), 2)
     let status = parseInt(str2.substring(4, 5), 2)
     let type = parseInt(str2.substring(5), 2)
-    return {channel, status, type}
+    return { channel, status, type }
 }
 
 /**
@@ -620,4 +611,490 @@ function bytes2HexString(arrBytes) {
     return str
 }
 
-exports.decodeUplink = decodeUplink
+function enrichMeasurements(messages){
+    for(let message of messages){
+        switch(message.measurementId){
+            case 4097:
+                if(message.type !== "Air Temperature"){
+                    message.measurement = "Air Temperature";
+                }
+                message.unit = "Cel";
+                break;
+            case 4098:
+                if(message.type !== "Air Humidity"){
+                    message.measurement = "Air Humidity";
+                }
+                message.unit = "%RH";
+                break;
+            case 4099:
+                if(message.type !== "Light Intensity"){
+                    message.measurement = "Light Intensity";
+                }
+                message.unit = "lx";
+                break;
+            case 4100:
+                if(message.type !== "CO2"){
+                    message.measurement = "CO2";
+                }
+                message.unit = "ppm";
+                break;
+            case 4101:
+                if(message.type !== "Barometric Pressure"){
+                    message.measurement = "Barometric Pressure";
+                }
+                message.unit = "Pa";
+                break;
+            case 4102:
+                if(message.type !== "Soil Temperature"){
+                    message.measurement = "Soil Temperature";
+                }
+                message.unit = "Cel";
+                break;
+            case 4103:
+                if(message.type !== "Soil Moisture"){
+                    message.measurement = "Soil Moisture";
+                }
+                message.unit = "%";
+                break;
+            case 4104:
+                if(message.type !== "Wind direction"){
+                    message.measurement = "Wind direction";
+                }
+                message.unit = "deg";
+                break;
+            case 4105:
+                if(message.type !== "Wind speed"){
+                    message.measurement = "Wind speed";
+                }
+                message.unit = "m/s";
+                break;
+            case 4106:
+                if(message.type !== "pH"){
+                    message.measurement = "pH";
+                }
+                message.unit = "pH";
+                break;
+            case 4107:
+                if(message.type !== "Light Quantum"){
+                    message.measurement = "Light Quantum";
+                }
+                message.unit = "umol/m2.s";
+                break;
+            case 4108:
+                if(message.type !== "Electrical Conductivity"){
+                    message.measurement = "Electrical Conductivity";
+                }
+                message.unit = "dS/m";
+                break;
+            case 4109:
+                if(message.type !== "Dissolved Oxygen"){
+                    message.measurement = "Dissolved Oxygen";
+                }
+                message.unit = "mg/L";
+                break;
+            case 4110:
+                if(message.type !== "Soil Volumetric Water Content"){
+                    message.measurement = "Soil Volumetric Water Content";
+                }
+                message.unit = "%";
+                break;
+            case 4113:
+                if(message.type !== "Rainfall Hourly"){
+                    message.measurement = "Rainfall Hourly";
+                }
+                message.unit = "mm/h";
+                break;
+            case 4115:
+                if(message.type !== "Distance"){
+                    message.measurement = "Distance";
+                }
+                message.unit = "cm";
+                break;
+            case 4116:
+                if(message.type !== "Water Leak"){
+                    message.measurement = "Water Leak";
+                }
+                break;
+            case 4117:
+                if(message.type !== "Liquid Level"){
+                    message.measurement = "Liquid Level";
+                }
+                message.unit = "cm";
+                break;
+            case 4118:
+                if(message.type !== "NH3"){
+                    message.measurement = "NH3";
+                }
+                message.unit = "ppm";
+                break;
+            case 4119:
+                if(message.type !== "H2S"){
+                    message.measurement = "H2S";
+                }
+                message.unit = "ppm";
+                break;
+            case 4120:
+                if(message.type !== "Flow Rate"){
+                    message.measurement = "Flow Rate";
+                }
+                message.unit = "m3/h";
+                break;
+            case 4121:
+                if(message.type !== "Total Flow"){
+                    message.measurement = "Total Flow";
+                }
+                message.unit = "m3";
+                break;
+            case 4122:
+                if(message.type !== "Oxygen Concentration"){
+                    message.measurement = "Oxygen Concentration";
+                }
+                message.unit = "%vol";
+                break;
+            case 4123:
+                if(message.type !== "Water Electrical Conductivity"){
+                    message.measurement = "Water Electrical Conductivity";
+                }
+                message.unit = "uS/cm";
+                break;
+            case 4124:
+                if(message.type !== "Water Temperature"){
+                    message.measurement = "Water Temperature";
+                }
+                message.unit = "Cel";
+                break;
+            case 4125:
+                if(message.type !== "Soil Heat Flux"){
+                    message.measurement = "Soil Heat Flux";
+                }
+                message.unit = "W/m2";
+                break;
+            case 4126:
+                if(message.type !== "Sunshine Duration"){
+                    message.measurement = "Sunshine Duration";
+                }
+                message.unit = "h";
+                break;
+            case 4127:
+                if(message.type !== "Total Solar Radiation"){
+                    message.measurement = "Total Solar Radiation";
+                }
+                message.unit = "W/m2";
+                break;
+            case 4128:
+                if(message.type !== "Water Surface Evaporation"){
+                    message.measurement = "Water Surface Evaporation";
+                }
+                message.unit = "mm";
+                break;
+            case 4129:
+                if(message.type !== "Photosynthetically Active Radiation"){
+                    message.measurement = "Photosynthetically Active Radiation";
+                }
+                message.unit = "umol/m2s";
+                break;
+            case 4130:
+                if(message.type !== "Accelerometer"){
+                    message.measurement = "Accelerometer";
+                }
+                message.unit = "m/s";
+                break;
+            case 4131:
+                if(message.type !== "Sound Intensity"){
+                    message.measurement = "Sound Intensity";
+                }
+                break;
+            case 4133:
+                if(message.type !== "Soil Tension"){
+                    message.measurement = "Soil Tension";
+                }
+                message.unit = "kPa";
+                break;
+            case 4134:
+                if(message.type !== "Salinity"){
+                    message.measurement = "Salinity";
+                }
+                message.unit = "mg/L";
+                break;
+            case 4135:
+                if(message.type !== "TDS"){
+                    message.measurement = "TDS";
+                }
+                message.unit = "mg/L";
+                break;
+            case 4136:
+                if(message.type !== "Leaf Temperature"){
+                    message.measurement = "Leaf Temperature";
+                }
+                message.unit = "Cel";
+                break;
+            case 4137:
+                if(message.type !== "Leaf Wetness"){
+                    message.measurement = "Leaf Wetness";
+                }
+                message.unit = "%";
+                break;
+            case 4138:
+                if(message.type !== "Soil Moisture-10cm"){
+                    message.measurement = "Soil Moisture-10cm";
+                }
+                message.unit = "%";
+                break;
+            case 4139:
+                if(message.type !== "Soil Moisture-20cm"){
+                    message.measurement = "Soil Moisture-20cm";
+                }
+                message.unit = "%";
+                break;
+            case 4140:
+                if(message.type !== "Soil Moisture-30cm"){
+                    message.measurement = "Soil Moisture-30cm";
+                }
+                message.unit = "%";
+                break;
+            case 4141:
+                if(message.type !== "Soil Moisture-30cm"){
+                    message.measurement = "Soil Moisture-30cm";
+                }
+                message.unit = "%";
+                break;
+            case 4142:
+                if(message.type !== "Soil Temperature-10cm"){
+                    message.measurement = "Soil Temperature-10cm";
+                }
+                message.unit = "Cel";
+                break;
+            case 4143:
+                if(message.type !== "Soil Temperature-20cm"){
+                    message.measurement = "Soil Temperature-20cm";
+                }
+                message.unit = "Cel";
+                break;
+            case 4144:
+                if(message.type !== "Soil Temperature-30cm"){
+                    message.measurement = "Soil Temperature-30cm";
+                }
+                message.unit = "Cel";
+                break;
+            case 4145:
+                if(message.type !== "Soil Temperature-40cm"){
+                    message.measurement = "Soil Temperature-40cm";
+                }
+                message.unit = "Cel";
+                break;
+            case 4146:
+                if(message.type !== "PM2.5"){
+                    message.measurement = "PM2.5";
+                }
+                message.unit = "ug/m3";
+                break;
+            case 4147:
+                if(message.type !== "PM10"){
+                    message.measurement = "PM10";
+                }
+                message.unit = "ug/m3";
+                break;
+            case 4148:
+                if(message.type !== "Noise"){
+                    message.measurement = "Noise";
+                }
+                message.unit = "dB";
+                break;
+            case 4150:
+                if(message.type !== "AccelerometerX"){
+                    message.measurement = "AccelerometerX";
+                }
+                message.unit = "m/s2";
+                break;
+            case 4151:
+                if(message.type !== "AccelerometerY"){
+                    message.measurement = "AccelerometerY";
+                }
+                message.unit = "m/s2";
+                break;
+            case 4152:
+                if(message.type !== "AccelerometerZ"){
+                    message.measurement = "AccelerometerZ";
+                }
+                message.unit = "m/s2";
+                break;
+            case 4154:
+                if(message.type !== "Salinity"){
+                    message.measurement = "Salinity";
+                }
+                message.unit = "PSU";
+                break;
+            case 4155:
+                if(message.type !== "ORP"){
+                    message.measurement = "ORP";
+                }
+                message.unit = "mV";
+                break;
+            case 4156:
+                if(message.type !== "Turbidity"){
+                    message.measurement = "Turbidity";
+                }
+                message.unit = "NTU";
+                break;
+            case 4157:
+                if(message.type !== "Ammonia ion"){
+                    message.measurement = "Ammonia ion";
+                }
+                message.unit = "mg/L";
+                break;
+            case 4162:
+                if(message.type !== "N Content"){
+                    message.measurement = "N Content";
+                }
+                message.unit = "mg/kg";
+                break;
+            case 4163:
+                if(message.type !== "P Content"){
+                    message.measurement = "P Content";
+                }
+                message.unit = "mg/kg";
+                break;
+            case 4164:
+                if(message.type !== "K Content"){
+                    message.measurement = "K Content";
+                }
+                message.unit = "mg/kg";
+                break;
+            case 4175:
+                if(message.type !== "AI Detection No.01"){
+                    message.measurement = "AI Detection No.01";
+                }
+                break;
+            case 4176:
+                if(message.type !== "AI Detection No.02"){
+                    message.measurement = "AI Detection No.02";
+                }
+                break;
+            case 4177:
+                if(message.type !== "AI Detection No.03"){
+                    message.measurement = "AI Detection No.03";
+                }
+                break;
+            case 4178:
+                if(message.type !== "AI Detection No.04"){
+                    message.measurement = "AI Detection No.04";
+                }
+                break;
+            case 4179:
+                if(message.type !== "AI Detection No.05"){
+                    message.measurement = "AI Detection No.05";
+                }
+                break;
+            case 4180:
+                if(message.type !== "AI Detection No.06"){
+                    message.measurement = "AI Detection No.06";
+                }
+                break;
+            case 41781:
+                if(message.type !== "AI Detection No.07"){
+                    message.measurement = "AI Detection No.07";
+                }
+                break;
+            case 4182:
+                if(message.type !== "AI Detection No.08"){
+                    message.measurement = "AI Detection No.08";
+                }
+                break;
+            case 4183:
+                if(message.type !== "AI Detection No.09"){
+                    message.measurement = "AI Detection No.09";
+                }
+                break;
+            case 4184:
+                if(message.type !== "AI Detection No.10"){
+                    message.measurement = "AI Detection No.10";
+                }
+                break;
+            case 4190:
+                if(message.type !== "UV Index"){
+                    message.measurement = "UV Index";
+                }
+                break;
+            case 4191:
+                if(message.type !== "Peak Wind Gust"){
+                    message.measurement = "Peak Wind Gust";
+                }
+                message.unit = "m/s";
+                break;
+            case 4192:
+                if(message.type !== "Sound Intensity"){
+                    message.measurement = "Sound Intensity";
+                }
+                message.unit = "dB";
+                break;
+            case 4193:
+                if(message.type !== "Light Intensity"){
+                    message.measurement = "Light Intensity";
+                }
+                break;
+            case 4195:
+                if(message.type !== "TVOC"){
+                    message.measurement = "TVOC";
+                }
+                message.unit = "ppb";
+                break;
+            case 4196:
+                if(message.type !== "Soil moisture intensity"){
+                    message.measurement = "Soil moisture intensity";
+                }
+                break;
+            case 4197:
+                if(message.type !== "longitude"){
+                    message.measurement = "longitude";
+                }
+                message.unit = "deg";
+                break;
+            case 4198:
+                if(message.type !== "latitude"){
+                    message.measurement = "latitude";
+                }
+                message.unit = "deg";
+                break;
+            case 4199:
+                if(message.type !== "Light"){
+                    message.measurement = "Light";
+                }
+                message.unit = "%";
+                break;
+            case 4200:
+                if(message.type !== "SOS Event"){
+                    message.measurement = "SOS Event";
+                }
+                break;
+            case 4201:
+                if(message.type !== "Ultraviolet Radiation"){
+                    message.measurement = "Ultraviolet Radiation";
+                }
+                message.unit = "W/m2";
+                break;
+            case 4202:
+                if(message.type !== "Dew point temperature"){
+                    message.measurement = "Dew point temperature";
+                }
+                message.unit = "Cel";
+                break;
+            case 5001:
+                if(message.type !== "Wi-Fi MAC Address"){
+                    message.measurement = "Wi-Fi MAC Address";
+                }
+                break;
+            case 5002:
+                if(message.type !== "Bluetooth Beacon MAC Address"){
+                    message.measurement = "Bluetooth Beacon MAC Address";
+                }
+                break;
+            case 5100:
+                if(message.type !== "Switch"){
+                    message.measurement = "Switch";
+                }
+                break;
+        }
+    }
+}
+
+exports.decodeUplink = decodeUplink;

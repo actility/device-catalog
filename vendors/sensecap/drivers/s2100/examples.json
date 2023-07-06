@@ -3,68 +3,48 @@
     "type": "uplink",
     "description": "example uplink",
     "input": {
-      "bytes": [
-        51,
-        49,
-        49,
-        48,
-        48,
-        49,
-        48,
-        48,
-        48,
-        48,
-        54,
-        53,
-        102,
-        52,
-        56,
-        48,
-        48,
-        48,
-        48,
-        48,
-        48,
-        48,
-        51,
-        57,
-        54,
-        52,
-        48,
-        49,
-        48,
-        49,
-        48,
-        50,
-        48,
-        55,
-        48,
-        48,
-        51,
-        99,
-        102,
-        102,
-        102,
-        102
-      ],
+      "bytes": "010610dc500000010710687400009091",
       "fPort": 1,
       "recvTime": "2020-08-02T20:00:00.000+05:00"
     },
     "output": {
       "data": {
-        "0": {
-          "measurementValue": 808464.688,
-          "measurementId": 3,
-          "type": "Measurement"
-        },
-        "1": {
-          "measurementValue": 808464.438,
-          "measurementId": 1,
-          "type": "Measurement"
-        }
-      },
-      "errors": [],
-      "warnings": []
+        "err": 0,
+        "payload": "010610DC500000010710687400009091",
+        "valid": true,
+        "messages": [
+          {
+            "measurementValue": 155.2,
+            "measurementId": 4097,
+            "type": "Air Temperature",
+            "unit": "Cel"
+          },
+          {
+            "measurementValue": "-36",
+            "measurementId": 4098,
+            "type": "Air Humidity",
+            "unit": "%RH"
+          },
+          {
+            "measurementValue": 1342177281,
+            "measurementId": 4099,
+            "type": "Light Intensity",
+            "unit": "lx"
+          },
+          {
+            "measurementValue": 0.7,
+            "measurementId": 4190,
+            "type": "UV Index"
+          },
+          {
+            "measurementValue": 420,
+            "measurementId": 4105,
+            "type": "Wind Speed",
+            "measurement": "Wind speed",
+            "unit": "m/s"
+          }
+        ]
+      }
     }
   }
 ]
