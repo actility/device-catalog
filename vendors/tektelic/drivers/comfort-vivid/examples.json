@@ -1,15 +1,95 @@
 [
     {
-        "description": "Example 1",
+        "description": "Example 1: Temperature and RH",
         "type": "uplink",
         "input": {
-            "bytes": "",
-            "fPort": 1,
+            "bytes": "0367000A046828",
+            "fPort": 10,
             "time": "2020-08-02T20:00:00.000+05:00"
         },
         "output": {
             "data": {
-
+                "ambient_temperature": "1.0",
+                "fPort": 10,
+                "raw": "03 67 00 0A 04 68 28",
+                "relative_humidity": "20.0"
+            },
+            "errors": [],
+            "warnings": []
+        }
+    },
+    {
+        "description": "Example 2: RH and Hall-effect sensor",
+        "type": "uplink",
+        "input": {
+            "bytes": "0468140100FF08040005",
+            "fPort": 10,
+            "time": "2020-08-02T20:00:00.000+05:00"
+        },
+        "output": {
+            "data": {
+                "fPort": 10,
+                "hall_effect_count": 5,
+                "hall_effect_state": "Magnet Absent",
+                "raw": "04 68 14 01 00 FF 08 04 00 05",
+                "relative_humidity": "10.0"
+            },
+            "errors": [],
+            "warnings": []
+        }
+    },
+    {
+        "description": "Example 3: Temperature, RH and voltage",
+        "type": "uplink",
+        "input": {
+            "bytes": "04682A0367FFFF00BA0BB8",
+            "fPort": 10,
+            "time": "2020-08-02T20:00:00.000+05:00"
+        },
+        "output": {
+            "data": {
+                "ambient_temperature": "-0.1",
+                "battery_voltage": "3.000",
+                "fPort": 10,
+                "raw": "04 68 2A 03 67 FF FF 00 BA 0B B8",
+                "relative_humidity": "21.0"
+            },
+            "errors": [],
+            "warnings": []
+        }
+    },
+    {
+        "description": "Example 4: Light and digital input",
+        "type": "uplink",
+        "input": {
+            "bytes": "0200FF0E0000",
+            "fPort": 10,
+            "time": "2020-08-02T20:00:00.000+05:00"
+        },
+        "output": {
+            "data": {
+                "extconnector_state": "Low(short-circuit)",
+                "fPort": 10,
+                "light_detected": "Bright",
+                "raw": "02 00 FF 0E 00 00"
+            },
+            "errors": [],
+            "warnings": []
+        }
+    },
+    {
+        "description": "Example 5: Motion event count",
+        "type": "uplink",
+        "input": {
+            "bytes": "0D040002",
+            "fPort": 10,
+            "time": "2020-08-02T20:00:00.000+05:00"
+        },
+        "output": {
+            "data": {
+                "fPort": 10,
+                "motion_event_count": 2,
+                "raw": "0D 04 00 02"
             },
             "errors": [],
             "warnings": []
