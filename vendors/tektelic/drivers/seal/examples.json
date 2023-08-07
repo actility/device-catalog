@@ -3,13 +3,15 @@
         "description": "Example 1",
         "type": "uplink",
         "input": {
-            "bytes": "",
-            "fPort": 1,
+            "bytes": "00D30BB8",
+            "fPort": 10,
             "time": "2020-08-02T20:00:00.000+05:00"
         },
         "output": {
             "data": {
-
+                "battery_voltage": "3.000",
+                "fPort": 10,
+                "raw": "00 D3 0B B8"
             },
             "errors": [],
             "warnings": []
@@ -19,13 +21,19 @@
         "description": "Example 2",
         "type": "uplink",
         "input": {
-            "bytes": "",
-            "fPort": 1,
+            "bytes": "008812115A65665B1E9C",
+            "fPort": 10,
             "time": "2020-08-02T20:00:00.000+05:00"
         },
         "output": {
             "data": {
-
+                "coordinates": {
+                  "altitude": "636.220",
+                  "latitude": "12.6697630",
+                  "longitude": "142.8747885"
+                },
+                "fPort": 10,
+                "raw": "00 88 12 11 5A 65 66 5B 1E 9C"
             },
             "errors": [],
             "warnings": []
@@ -35,13 +43,19 @@
         "description": "Example 3",
         "type": "uplink",
         "input": {
-            "bytes": "",
-            "fPort": 1,
+            "bytes": "0071001500C803E8",
+            "fPort": 10,
             "time": "2020-08-02T20:00:00.000+05:00"
         },
         "output": {
             "data": {
-
+                "acceleration_vector": {
+                    "acceleration_x": "0.021",
+                    "acceleration_y": "0.200",
+                    "acceleration_z": "1.000"
+                },
+                "fPort": 10,
+                "raw": "00 71 00 15 00 C8 03 E8"
             },
             "errors": [],
             "warnings": []
