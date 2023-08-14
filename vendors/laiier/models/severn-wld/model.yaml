@@ -1,0 +1,40 @@
+# Commercial name of the model 
+name: Severn WLD™ Smart Water Leak Detection
+# Functional description of the product. Maximum 500 characters. 
+description: "Protect your building from even the tiniest water leaks in the smallest spaces."
+# Logo of the device
+logo: severn-wld.png
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model. 
+deviceProfileId:
+    - laiier_RFGroup1_1.0.3a_classB
+    - laiier_RFGroup2_1.0.3a_classB
+ 
+# You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
+# Maximum device TX Conducted output power in dBm. 
+maxTxPower:
+# Minimum device TX Conducted output power in dBm. 
+minTxPower:
+# Maximum device TX Radiated output power in dBm.  
+maxTxEIRP:
+# Minimum device TX Radiated output power in dBm.  
+minTxEIRP:
+# Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'  
+# or 'random' (not known, changes over time). 
+motionIndicator:
+ 
+# Is your device certified by the LoRa Alliance? Possible values: true, false. 
+LoRaWANCertified: false
+# Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
+modelId: laiier:severn-wld:1
+# <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
+protocolId: os1-laiier:severn-wld:1
+# DataSheet URL (optional) 
+specificationURL: https://docs.rs-online.com/15a3/A700000008903993.pdf
+# User Guide URL (optional) 
+userGuideURL: https://manuals.plus/m/dae1d63e256ef071d2d1e991e90917def593976a3c4d3551cae0b10794029972_optim.pdf
+# <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
+sensors:
+examples:
+    - os1-laiier:severn-wld:1:
+        - "Example 1: Severn dry"
+        - "Example 2: Severn 3 electrodes wet"
