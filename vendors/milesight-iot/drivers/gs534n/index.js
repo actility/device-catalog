@@ -63,3 +63,5 @@ function readInt8LE(bytes) {
     var ref = readUInt8LE(bytes);
     return ref > 0x7f ? ref - 0x100 : ref;
 }
+
+exports.Decoder = Decoder;

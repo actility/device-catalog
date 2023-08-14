@@ -46,3 +46,5 @@ function Decoder(bytes, port) {
     "switch_3_change": "yes|no"
 }
 */
+
+exports.Decoder = Decoder;
