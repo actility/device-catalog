@@ -57,3 +57,5 @@ function readInt32LE(bytes) {
     var ref = readUInt32LE(bytes);
     return ref > 0x7fffffff ? ref - 0x100000000 : ref;
 }
+
+exports.Decoder = Decoder;

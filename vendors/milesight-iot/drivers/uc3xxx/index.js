@@ -172,3 +172,5 @@ function decode_UART_F4(buffer) {
     }
 }
 
+
+exports.Decoder = Decoder;
