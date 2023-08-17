@@ -171,6 +171,3 @@ function decode_UART_F4(buffer) {
         endFlag: reader.readUInt8(),
     }
 }
-
-
-exports.Decoder = Decoder;
