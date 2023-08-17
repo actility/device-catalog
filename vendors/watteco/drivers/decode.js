@@ -29,9 +29,13 @@ function watteco_decodeUplink(input, batch_parameters, endpoint_parameters) {
                 }
             }
         } else {
+            let warnings = [];
+            if(Array.isArray(decoded.warning) && decoded.warning.length === 1){
+                warnings = decoded.warning;
+            }
             return {
                 data: decoded.data,
-                warnings: [decoded.warning],
+                warnings: warnings,
             };
         }
     } catch (error) {
