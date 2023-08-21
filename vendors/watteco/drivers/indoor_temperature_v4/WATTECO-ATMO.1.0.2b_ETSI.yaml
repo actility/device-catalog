@@ -1,0 +1,94 @@
+# Please do not change the existing IDs (Some may follow the old format)
+# The name of the profile .yaml file should be the same as the following ID
+id: WATTECO-ATMO.1.0.2b_ETSI
+# LoRaWAN class of the Device: Possible values: [ A, B, C ] (Should not have several values)
+# 'A': Class A (Bi-directional end-devices with downlink listening only after uplink transmission)
+# 'B': Class B (Bi-directional end-devices with downlink listening on predefined synchronized pingslots)
+# 'C': Class C (Bi-directional end-devices with permanent downlink listening)
+loRaWANClass: A
+# Comma-separated list of regional profiles supported by this device. Possible values are eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470.
+ISMbands: eu868
+# Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'
+# or 'random' (not known, changes over time).
+# The motion indication property will not be taken into consideration here if it is overwritten in the model.yaml
+motionIndicator: RANDOM
+
+mac:
+  # Activation modes supported by the device (put true where applicable).
+  # (ABP)
+  activationByPersonalization: true
+  #(OTAA)
+  overTheAirActivation: false
+  # Supported version of the LoRaWAN MAC (Layer-2) specification. Possible values are '1.0.0/1.0.1', '1.0.2', '1.0.3', '1.0.4', '1.1'
+  loRaWANMacVersion: 1.0.2
+  # Supported version of the LoRaWAN regional parameters (PHY) specification. Possible values are '1.0.2revA', '1.0.2revB', '1.0.2revC',
+  # '1.0.3revA', 'RP2-1.0.0', 'RP2-1.0.1', 'RP2-1.0.2', 'RP2-1.0.3', 'RP2-1.0.4', 'RP2-1.0.5'.
+  regionalParameterVersion: 1.0.2revB
+
+  # The device Tx Power Capabilities here will not be taken into consideration if it is overwritten in the model.yaml
+  devicesTxPowerCapabilities:
+    # Minimum device TX Conducted output power in dBm.
+    minTxPower:
+    # Maximum device TX Conducted output power in dBm.
+    maxTxPower: 16
+    # Minimum device TX Radiated output power in dBm.
+    minTxEIRP:
+    # Maximum device TX Radiated output power in dBm.
+    maxTxEIRP: 16
+
+  uplinkFrameRepetition:
+    # Maximum number of transmissions per uplink frame, supported by the device.
+    maxNbTrans:
+    # How many uplink transmissions does the device use in Confirmed mode if it doesn't receive any DL ACK?
+    maxRedundancyForConfirmedUL:
+
+# The following section defines the default settings used by the device during iniial boot stage. Leave empty if your device respects the
+# default values indicated by LoRaWAN Regional Parameters (PHY) specification. Personalize fields only when different from default PHY values.
+bootSettings:
+  # Delay between the end of uplink transmission and the start of downlink RX1 slot, in milliseconds. Refer to 'receiveDelay1' in LoRaWAN
+  # Specification.
+  rx1Delay: 1000
+  # RX1 data rate offset, defining the offset between uplink data rate and the corresponding downlink data rate used for RX1 slot.
+  rx1DROffset:
+  # Rx2 DataRate, used to send DL packets over RX2 slot. Note: Data Rate encoding is region-specific, see the applicable LoRaWAN Regional
+  # Profile.
+  rx2DataRate:
+  # Rx2 Frequency expressed in MHz, used to send DL packets over RX2 slot.
+  rx2Frequency:
+  # Default data rate used for Class B ping slots. Note: Data Rate encoding is region-specific, see the applicable LoRaWAN Regional Profile.
+  pingSlotChannelDataRate:
+  # Default frequency (in MHz) used for Class B ping slots.
+  pingSlotChannelFrequency:
+  # beaconFrequency Boot value used by the Device to set the beacon broadcast frequency. This frequency is then aligned by the Network Server to the target value set in RF region.
+  beaconFrequency:
+  # Default downlink dwell time (valid only for AS923 and AU915 profiles). Possible values 0 (no limit) or 1 (400ms).
+  downlinkDwellTime: 0
+  # Default uplink dwell time (valid only for AS923 and AU915 profiles). Possible values 0 (no limit) or 1 (400ms).
+  uplinkDwellTime: 0
+
+# Which MAC commands are supported by your device and which are not? Leave it as the template if your device supports all the MAC commands specified for your regional
+# profile. Put 'true' only if a command is supported.
+supportedMACCommands:
+  linkADRReqAns: true
+  devStatusReqAns: true
+  joinRequestAccept: true
+  dutyCycleReqAns: true
+  linkCheckReqAns: true
+  rxParamSetupReqAns: true
+  rxTimingSetupReqAns: true
+  newChannelReqAns: true
+  dlChannelReqAns: true
+  txParamSetupReqAns: false
+  pingSlotChannelReqAns: false
+  pingSlotInfoReqAns: true
+  deviceTimeReqAns: true
+  beaconFreqReqAns: false
+
+# Does your device support [Technical Recommendation for LoRaWAN L2 1.0.x Join Security] recommending implemeting the DevNonce as a counter for
+# OTAA devices? See https://lora-alliance.org/resource_hub/technical-recommendations-for-preventing-state-synchronization-issues-around-lorawan-1-0-x-join-procedure/
+# Possible values: true, false. This field is automatically forced to true for LoRaWAN MAC versions 1.0.4 and 1.1.
+devNonceCounterBased: false
+
+# ProfileID as specified by LoRa Alliance in https://lora-alliance.org/wp-content/uploads/2020/10/LoRa_Alliance_Vendor_ID_for_QR_Code_02142022.pdf.
+# This ID consists of 8 upper-case hexadecimal characters, 4 characters for VendorID + 4 characters for VendorProfileID.
+lorawanDeviceProfileID:
