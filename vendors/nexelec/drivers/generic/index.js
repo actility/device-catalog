@@ -804,18 +804,3 @@ function decodeUplink(input){
 }
 
 exports.decodeUplink = decodeUplink;
-
-
-let meta = {
-    "lorawan": {
-        "fPort": 1
-    }
-}
-let time = new Date("2022-05-17T17:30:37.377+00:00");
-
-let operation= "decodeUplink";
-let input= {
-        bytes: Buffer.from("a30100400c01c78c012e0c0203a6080007f326c07658000000000000e0", "hex"),
-        fPort: meta.lorawan && meta.lorawan.fPort ? meta.lorawan.fPort : null,
-        recvTime: time,
-}
