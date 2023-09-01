@@ -15,7 +15,7 @@
 function Decoder(input)
 {
 //let hex2=[];
-let decode=[];
+let decode={};
 let string_bin=""
 let tab_bin=[];
 let string_bin_elements="";
@@ -72,19 +72,19 @@ const Aero_CO2_LoRa=0xA7;
 switch(product_type){
 
 	case  ATMO_LoRa:
-        decode[0]={"Type_of_Product":"ATMO_LoRa"};	
+        decode["Type_of_Product"] = "ATMO_LoRa";
 		break;
 	case  SENSE_LoRa:
-        decode[0]={"Type_of_Product":"SENSE_LoRa"};	
+        decode["Type_of_Product"] = "SENSE_LoRa";
 		break;	
 	case  Aero_CO2_LoRa:
-        decode[0]={"Type_of_Product":"Aero_CO2_LoRa"};	
+        decode["Type_of_Product"] = "Aero_CO2_LoRa";
 		break;		
     case  AERO_LoRa:
-        decode[0]={"Type_of_Product":"AERO_LoRa"};	
+        decode["Type_of_Product"] = "AERO_LoRa";
 		break;
 	case  PMI_LoRa:
-        decode[0]={"Type_of_Product":"PMI_LoRa"};	
+        decode["Type_of_Product"] = "PMI_LoRa";
 		break;
 }
 
@@ -111,91 +111,90 @@ switch(product_type){
         switch (message_type) {
             case Type_ATMO_Real_Time:
                 tab_decode(tab_decodage_ATMO_Real_Time);
-                decode[1] = {"Type_of_message": "Real_Time"};
-                decode[2] = {"Concentration_PM_1": tab_bin[2]};
-                decode[3] = {"Concentration_PM_2.5": tab_bin[3]};
-                decode[4] = {"Concentration_PM_10": tab_bin[4]};
-                decode[5] = {"Temperature(°C)": temp_PM(tab_bin[5])};
-                decode[6] = {"Relative_Humidity_(%RH)": RH(tab_bin[6])};
-                decode[7] = {"Total_CO2(ppm)": tab_bin[7]};
-                decode[8] = {"Total_COV(ppm)": tab_bin[8]};
-                decode[9] = {"Formaldehydes(ppb)": tab_bin[9]};
-                decode[10] = {"IZIAIR_Level": get_iaq(tab_bin[10])};
-                decode[11] = {"IZIAIR_Source": get_iaq_SRC(tab_bin[11])};
-                decode[12] = {"IAQ_CO2": get_iaq(tab_bin[12])};
-                decode[13] = {"IAQ_VOCs": get_iaq(tab_bin[13])};
-                decode[14] = {"IAQ_Formaldehyde": get_iaq(tab_bin[14])};
-                decode[15] = {"IAQ_PM1.0": get_iaq(tab_bin[15])};
-                decode[16] = {"IAQ_PM2.5": get_iaq(tab_bin[16])};
-                decode[17] = {"IAQ_PM10": get_iaq(tab_bin[17])};
-                decode[18] = {"IAQ_TH": get_iaq(tab_bin[18])};
-                decode[19] = {"Luminosity(lux)": 5 * (tab_bin[19])};
-                decode[20] = {"Average_Noise(dB)": tab_bin[20]};
-                decode[21] = {"Peak_Noise(dB)": tab_bin[21]};
-                decode[22] = {"Presence_counter": tab_bin[22]};
-                decode[23] = {"Pressure": pressure(tab_bin[23])};
-                decode[24] = {"Frame_index": tab_bin[33]};
+                decode["Type_of_message"] = "Real_Time";
+                decode["Concentration_PM_1"] = tab_bin[2];
+                decode["Concentration_PM_2.5"] = tab_bin[3];
+                decode["Concentration_PM_10"] =  tab_bin[4];
+                decode["Temperature(°C)"] =  temp_PM(tab_bin[5]);
+                decode["Relative_Humidity_(%RH)"] = RH(tab_bin[6]);
+                decode["Total_CO2(ppm)"] = tab_bin[7];
+                decode["Total_COV(ppm)"] = tab_bin[8];
+                decode["Formaldehydes(ppb)"] = tab_bin[9];
+                decode["IZIAIR_Level"] = get_iaq(tab_bin[10]);
+                decode["IZIAIR_Source"] = get_iaq_SRC(tab_bin[11]);
+                decode["IAQ_CO2"] = get_iaq(tab_bin[12]);
+                decode["IAQ_VOCs"] = get_iaq(tab_bin[13]);
+                decode["IAQ_Formaldehyde"] = get_iaq(tab_bin[14]);
+                decode["IAQ_PM1.0"] = get_iaq(tab_bin[15]);
+                decode["IAQ_PM2.5"] = get_iaq(tab_bin[16]);
+                decode["IAQ_PM10"] = get_iaq(tab_bin[17]);
+                decode["IAQ_TH"] = get_iaq(tab_bin[18]);
+                decode["Luminosity(lux)"] = 5 * (tab_bin[19]);
+                decode["Average_Noise(dB)"] = tab_bin[20];
+                decode["Peak_Noise(dB)"] = tab_bin[21];
+                decode["Presence_counter"] = tab_bin[22];
+                decode["Pressure"] = pressure(tab_bin[23]);
+                decode["Frame_index"] = tab_bin[33];
                 break;
 
             case Type_Atmo_Product_Status_Message:
                 tab_decode(tab_decodage_Atmo_Product_Status_Message);
-                decode[1] = {"Type_of_message": "Product_Status"};
-                decode[2] = {"HW_Version": tab_bin[2]};
-                decode[3] = {"SW_Version": tab_bin[3]};
-                decode[4] = {"Product_HW_Status": hardware_status(tab_bin[6])};
-                decode[5] = {"PM_sensor_status": sensor_status(tab_bin[7])};
-                decode[6] = {"Temperature_sensor_status": sensor_status(tab_bin[8])};
-                decode[7] = {"Formaldehyde_sensor_status": sensor_status(tab_bin[9])};
-                decode[8] = {"CO2_sensor_status": sensor_status(tab_bin[10])};
-                decode[9] = {"COV_sensor_status": sensor_status(tab_bin[11])};
-                decode[10] = {"PIR_sensor_status": sensor_status(tab_bin[12])};
-                decode[11] = {"Microphone_status": sensor_status(tab_bin[13])};
-                decode[12] = {"Pressure Sensor Status": sensor_status(tab_bin[14])};
-                decode[13] = {"Accelerometer Sensor Status": sensor_status(tab_bin[15])};
-                decode[14] = {"Luminosity Sensor Status": sensor_status(tab_bin[16])};
-                decode[15] = {"Pending Join": PendingJoin(tab_bin[17])};
-                decode[16] = {"Product Activation time-counter": tab_bin[18]};
-                decode[17] = {"Product Date Year": tab_bin[19]};
-                decode[18] = {"Product Date Month": tab_bin[20]};
-                decode[19] = {"Product Date Day": tab_bin[21]};
-                decode[20] = {"Product Date Hour": tab_bin[22]};
-                decode[21] = {"Product Date Minute": tab_bin[23]};
+                decode["Type_of_message"] =  "Product_Status";
+                decode["HW_Version"] = tab_bin[2];
+                decode["SW_Version"] = tab_bin[3];
+                decode["Product_HW_Status"] = hardware_status(tab_bin[6]);
+                decode["PM_sensor_status"] = sensor_status(tab_bin[7]);
+                decode["Temperature_sensor_status"] = sensor_status(tab_bin[8]);
+                decode["Formaldehyde_sensor_status"] = sensor_status(tab_bin[9]);
+                decode["CO2_sensor_status"] = sensor_status(tab_bin[10]);
+                decode["COV_sensor_status"] = sensor_status(tab_bin[11]);
+                decode["PIR_sensor_status"] = sensor_status(tab_bin[12]);
+                decode["Microphone_status"] = sensor_status(tab_bin[13]);
+                decode["Pressure Sensor Status"] = sensor_status(tab_bin[14]);
+                decode["Accelerometer Sensor Status"] = sensor_status(tab_bin[15]);
+                decode["Luminosity Sensor Status"] = sensor_status(tab_bin[16]);
+                decode["Pending Join"] = PendingJoin(tab_bin[17]);
+                decode["Product Activation time-counter"] = tab_bin[18];
+                decode["Product Date Year"] = tab_bin[19];
+                decode["Product Date Month"] = tab_bin[20];
+                decode["Product Date Day"] = tab_bin[21];
+                decode["Product Date Hour"] = tab_bin[22];
+                decode["Product Date Minute"] = tab_bin[23];
                 break;
 
             case Type_Atmo_Product_Configuration_Message:
                 tab_decode(tab_decodage_Atmo_Product_Configuration_Message);
-                decode[1] = {"Type_of_message": "Product_Configuration_Message"};
-                decode[2] = {"Reconfiguration source": reconfiguration_source(tab_bin[2])};
-                decode[3] = {"Reconfiguration status": reconfiguration_status(tab_bin[3])};
-                decode[4] = {"LED enable": active(tab_bin[4])};
-                decode[5] = {"LED function": LED_function(tab_bin[5])};
-                decode[6] = {"IAQ Medium levels indication enable": active(tab_bin[6])};
-                decode[7] = {"Button enable": active(tab_bin[7])};
-                decode[8] = {"Keepalive enable": active(tab_bin[8])};
-                decode[9] = {"NFC_status": nfc_status(tab_bin[9])};
-                decode[10] = {"undefined": "undefined"};
-                decode[11] = {"LoRa Region": LoRa_Region(tab_bin[11])};
-                decode[12] = {"Period between measurements (minutes)": tab_bin[12]};
-                decode[13] = {"Keepalive period (hours)": tab_bin[13]};
-                decode[14] = {"Altitude": 50 * tab_bin[14]};
-                decode[15] = {"CO2 threshold 1": 20 * tab_bin[15]};
-                decode[16] = {"CO2 threshold 2": 20 * tab_bin[16]};
+                decode["Type_of_message"] = "Product_Configuration_Message";
+                decode["Reconfiguration source"] = reconfiguration_source(tab_bin[2]);
+                decode["Reconfiguration status"] = reconfiguration_status(tab_bin[3]);
+                decode["LED enable"] = active(tab_bin[4]);
+                decode["LED function"] = LED_function(tab_bin[5]);
+                decode["IAQ Medium levels indication enable"] = active(tab_bin[6]);
+                decode["Button enable"] = active(tab_bin[7]);
+                decode["Keepalive enable"] = active(tab_bin[8]);
+                decode["NFC_status"] = nfc_status(tab_bin[9]);
+                decode["LoRa Region"] = LoRa_Region(tab_bin[11]);
+                decode["Period between measurements (minutes)"] = tab_bin[12];
+                decode["Keepalive period (hours)"] = tab_bin[13];
+                decode["Altitude"] = 50 * tab_bin[14];
+                decode["CO2 threshold 1"] = 20 * tab_bin[15];
+                decode["CO2 threshold 2"] = 20 * tab_bin[16];
                 break;
 
             case Type_Atmo_Button_Frame:
                 tab_decode(tab_decodage_Atmo_Button_Frame_Message);
-                decode[1] = {"Type_of_message": "Button Frame"};
+                decode["Type_of_message"] = "Button Frame";
                 break;
 
             case Type_Atmo_Keepalive_Message:
                 tab_decode(tab_decodage_Atmo_Keepalive_Message);
-                decode[1] = {"Type_of_message": "Keepalive_Message"};
+                decode["Type_of_message"] = "Keepalive_Message";
                 break;
 
         }
     }
 
-    return {payload: decode};
+    return decode;
 
 function tab_decode (tab){ // on rentre en paramÃ¨tre la table propre Ã  chaque message 
 	let compteur=0;
