@@ -42,12 +42,11 @@ sensors:
 # A list of examples description that are compatible with this model
 examples:
     adeunis:dry-contacts:2:
-        - "uplink containing the information frame on device configuration"
-        - "uplink containing the information frame on network configuration"
-        - "uplink containing the keep alive frame"
-        - "uplink containing the data frame"
-        - "downlink message containing the product configuration request frame"
-        - "downlink message containing the network configuration request frame"
-        - "downlink message containing the output control frame"
-        - "downlink message containing specific register value request frame"
-        - "downlink message containing the frame for updating the value of a specific register"
+        - "0x10 Dry Contacts 2 configuration"
+        - "0x20 Configuration"
+        - "0x2f Downlink ack"
+        - "0x30 Dry Contacts 2 keep alive"
+        - "0x33 Set register status"
+        - "0x40 Dry Contacts 2 data"
+        - "0x41 Dry Contacts 2 duration alarm"
+        - "0x59 Dry Contacts 2 time counting data"
