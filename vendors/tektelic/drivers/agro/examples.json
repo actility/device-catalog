@@ -1,0 +1,78 @@
+[
+    {
+        "description": "Example 1: Soil moisture",
+        "type": "uplink",
+        "input": {
+            "bytes": "01040552",
+            "fPort": 10,
+            "time": "2020-08-02T20:00:00.000+05:00"
+        },
+        "output": {
+            "data": {
+                "fPort": 10,
+                "input1_frequency": 1362,
+                "input1_frequency_to_moisture": 0.8,
+                "raw": "01 04 05 52"
+            },
+            "errors": [],
+            "warnings": []
+        }
+    },
+    {
+        "description": "Example 2: Soil temperature",
+        "type": "uplink",
+        "input": {
+            "bytes": "02020160",
+            "fPort": 10,
+            "time": "2020-08-02T20:00:00.000+05:00"
+        },
+        "output": {
+            "data": {
+                "Input2_voltage": "0.352",
+                "Input2_voltage_to_temp": "46.0",
+                "fPort": 10,
+                "raw": "02 02 01 60"
+            },
+            "errors": [],
+            "warnings": []
+        }
+    },
+    {
+        "description": "Example 3: Analog thermistor and Digital Onewire probes",
+        "type": "uplink",
+        "input": {
+            "bytes": "030202BC",
+            "fPort": 10,
+            "time": "2020-08-02T20:00:00.000+05:00"
+        },
+        "output": {
+            "data": {
+                "Input3_voltage": "0.700",
+                "Input3_voltage_to_temp": "7.3",
+                "fPort": 10,
+                "raw": "03 02 02 BC"
+            },
+            "errors": [],
+            "warnings": []
+        }
+    },
+    {
+        "description": "Example 4: Watermark 1 & 2",
+        "type": "uplink",
+        "input": {
+            "bytes": "0504060A",
+            "fPort": 10,
+            "time": "2020-08-02T20:00:00.000+05:00"
+        },
+        "output": {
+            "data": {
+                "fPort": 10,
+                "raw": "05 04 06 0A",
+                "watermark1_frequency": 1546,
+                "watermark1_tension": "30"
+            },
+            "errors": [],
+            "warnings": []
+        }
+    }
+]  

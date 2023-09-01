@@ -1,0 +1,39 @@
+[
+    {
+        "description": "Example 1: Temperature",
+        "type": "uplink",
+        "input": {
+            "bytes": "0367000A",
+            "fPort": 10,
+            "time": "2020-08-02T20:00:00.000+05:00"
+        },
+        "output": {
+            "data": {
+                "fPort": 10,
+                "raw": "03 67 00 0A",
+                "temperature": "1.0"
+            },
+            "errors": [],
+            "warnings": []
+        }
+    },
+    {
+        "description": "Example 2: Input",
+        "type": "uplink",
+        "input": {
+            "bytes": "05000108040005",
+            "fPort": 10,
+            "time": "2020-08-02T20:00:00.000+05:00"
+        },
+        "output": {
+            "data": {
+                "fPort": 10,
+                "input_1": "True",
+                "input_1_count": 5,
+                "raw": "05 00 01 08 04 00 05"
+            },
+            "errors": [],
+            "warnings": []
+        }
+    }
+]  

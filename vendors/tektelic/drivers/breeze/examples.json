@@ -1,0 +1,60 @@
+[
+    {
+        "description": "Example 1: Temperature and RH",
+        "type": "uplink",
+        "input": {
+            "bytes": "0367000A046828",
+            "fPort": 10,
+            "time": "2020-08-02T20:00:00.000+05:00"
+        },
+        "output": {
+            "data": {
+                "fPort": 10,
+                "raw": "03 67 00 0A 04 68 28",
+                "relative_humidity": "20.0",
+                "temperature": "1.0"
+            },
+            "errors": [],
+            "warnings": []
+        }
+    },
+    {
+        "description": "Example 2: Pressure and battery level",
+        "type": "uplink",
+        "input": {
+            "bytes": "0BE401E00C73232800D356",
+            "fPort": 10,
+            "time": "2020-08-02T20:00:00.000+05:00"
+        },
+        "output": {
+            "data": {
+                "barometric_pressure": "900.0",
+                "co2_pressure_compensated": 480,
+                "fPort": 10,
+                "raw": "0B E4 01 E0 0C 73 23 28 00 D3 56",
+                "rem_batt_capacity_sensor": 86
+            },
+            "errors": [],
+            "warnings": []
+        }
+    },
+    {
+        "description": "Example 3: Temperature and motion event",
+        "type": "uplink",
+        "input": {
+            "bytes": "0367FFCC0D040002",
+            "fPort": 10,
+            "time": "2020-08-02T20:00:00.000+05:00"
+        },
+        "output": {
+            "data": {
+                "fPort": 10,
+                "motion_event_count": 2,
+                "raw": "03 67 FF CC 0D 04 00 02",
+                "temperature": "-5.2"
+            },
+            "errors": [],
+            "warnings": []
+        }
+    }
+]  

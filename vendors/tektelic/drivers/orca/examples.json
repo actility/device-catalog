@@ -1,0 +1,90 @@
+[
+    {
+        "description": "Example 1: Temperature",
+        "type": "uplink",
+        "input": {
+            "bytes": "006700EC",
+            "fPort": 10,
+            "time": "2020-08-02T20:00:00.000+05:00"
+        },
+        "output": {
+            "data": {
+                "fPort": 10,
+                "raw": "00 67 00 EC",
+                "temperature": "23.6"
+            },
+            "errors": [],
+            "warnings": []
+        }
+    },
+    {
+        "description": "Example 2: Temperature and battery voltage",
+        "type": "uplink",
+        "input": {
+            "bytes": "0067FFFF01BA63",
+            "fPort": 10,
+            "time": "2020-08-02T20:00:00.000+05:00"
+        },
+        "output": {
+            "data": {
+                "battery1_status": {
+                  "eos_alert_1": "Inactive",
+                  "voltage_1": "3.49"
+                },
+                "fPort": 10,
+                "raw": "00 67 FF FF 01 BA 63",
+                "temperature": "-0.1"
+            },
+            "errors": [],
+            "warnings": []
+        }
+    },
+    {
+        "description": "Example 3: Fix status and acceleration",
+        "type": "uplink",
+        "input": {
+            "bytes": "009500007102440046033E",
+            "fPort": 10,
+            "time": "2020-08-02T20:00:00.000+05:00"
+        },
+        "output": {
+            "data": {
+                "acceleration_vector": {
+                  "xaxis": "0.830",
+                  "yaxis": "0.070",
+                  "zaxis": "0.580"
+                },
+                "fPort": 10,
+                "fix_status": {
+                  "position": "Invalid",
+                  "utc": "Invalid"
+                },
+                "raw": "00 95 00 00 71 02 44 00 46 03 3E"
+            },
+            "errors": [],
+            "warnings": []
+        }
+    },
+    {
+        "description": "Example 4: Position coordinates",
+        "type": "uplink",
+        "input": {
+            "bytes": "00883E50B0BC022D60082A",
+            "fPort": 10,
+            "time": "2020-08-02T20:00:00.000+05:00"
+        },
+        "output": {
+            "data": {
+                "coordinates": {
+                  "altitude": "1045.0",
+                  "latitude": "51.0486000",
+                  "longitude": "-114.0708000"
+                },
+                "fPort": 10,
+                "raw": "00 88 3E 50 B0 BC 02 2D 60 08 2A"
+            },
+            "errors": [],
+            "warnings": []
+        }
+    }
+]  

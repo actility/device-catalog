@@ -1,0 +1,83 @@
+[
+    {
+        "description": "Example 1: Normal mode of reporting",
+        "type": "uplink",
+        "input": {
+            "bytes": "EA900C05FF5548FF19",
+            "fPort": 10,
+            "time": "2020-08-02T20:00:00.000+05:00"
+        },
+        "output": {
+            "data": {
+                "af": 0,
+                "af_2": 25,
+                "battery": "92.17",
+                "body_temperature": "37.20",
+                "body_temperature_2": 255,
+                "ce": 5,
+                "csc": 255,
+                "fPort": 10,
+                "heart_rate": 72,
+                "position": 85,
+                "raw": "EA 90 0C 05 FF 55 48 FF 19",
+                "respiratory_rate": 12,
+                "rest_mode_status": 0,
+                "ua_mode_active": 0
+            },
+            "errors": [],
+            "warnings": []
+        }
+    },
+    {
+        "description": "Example 2: UA mode of reporting",
+        "type": "uplink",
+        "input": {
+            "bytes": "B69F0F97FF0837FF03",
+            "fPort": 10,
+            "time": "2020-08-02T20:00:00.000+05:00"
+        },
+        "output": {
+            "data": {
+                "af": 0,
+                "af_2": 3,
+                "battery": "71.83",
+                "body_temperature": "37.95",
+                "body_temperature_2": 255,
+                "ce": 7,
+                "csc": 255,
+                "fPort": 10,
+                "heart_rate": 55,
+                "position": 8,
+                "raw": "B6 9F 0F 97 FF 08 37 FF 03",
+                "respiratory_rate": 15,
+                "rest_mode_status": 0,
+                "ua_mode_active": 1
+            },
+            "errors": [],
+            "warnings": []
+        }
+    },
+    {
+        "description": "Example 3: Metadata report",
+        "type": "uplink",
+        "input": {
+            "bytes": "71F0200001",
+            "fPort": 100,
+            "time": "2020-08-02T20:00:00.000+05:00"
+        },
+        "output": {
+            "data": {
+                "fPort": 100,
+                "metadata": {
+                  "app_major_version": 240,
+                  "app_minor_version": 32,
+                  "app_revision": 0,
+                  "region": "US915"
+                },
+                "raw": "71 F0 20 00 01"
+            },
+            "errors": [],
+            "warnings": []
+        }
+    }
+]  
