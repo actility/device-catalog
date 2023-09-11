@@ -25,10 +25,17 @@ LoRaWANCertified: false
 # Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
 modelId: gwf:rcm-lrw10:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
-protocolId: 
+protocolId: gwf:rcm-lrw10:1
 # DataSheet URL (optional) 
 specificationURL: https://products.gwf.ch/wp-content/uploads/2019/07/RCM-LoRaWAN_EPe40261.pdf
 # User Guide URL (optional) 
 userGuideURL: https://products.gwf.ch/wp-content/uploads/2018/10/GWFcoder-RCMsplit-Installation-instuctions-BAe40220.pdf
+examples:
+    - gwf:rcm-lrw10:1:
+        - "Example 1: Generic payload"
+        - "Example 2: No ACK received from Concentrator"
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors: 
+    - duration:hour
+    - volume:m3
+    - age:hour
