@@ -1,0 +1,364 @@
+[
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing simple metering | payload:310a00520000410c000047ffffbe0063002fffd6",
+    "input": {
+      "bytes": [
+        49, 10, 0, 82,   0,   0,  65,
+        12,  0, 0, 71, 255, 255, 190,
+        0, 99, 0, 47, 255, 214
+      ],
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": [
+        {
+          "variable": "active_energy",
+          "value": 71,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        },
+        {
+          "variable": "reactive_energy",
+          "value": -66,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        },
+        {
+          "variable": "nb_samples",
+          "value": 99,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        },
+        {
+          "variable": "active_power",
+          "value": 47,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        },
+        {
+          "variable": "reactive_power",
+          "value": -42,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        }
+      ],
+      "warnings": [ "" ]
+    }
+
+  },
+  {
+    "type": "uplink",
+    "description": "payload:110A005601004113240205144515040C0A09210001968200F17FC5",
+    "input": {
+      "bytes": [
+        17,  10,   0, 86,  1,   0,  65, 19,
+        36,   2,   5, 20, 69,  21,   4, 12,
+        10,   9,  33,  0,  1, 150, 130,  0,
+        241, 127, 197
+      ],
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data":[
+        {
+          "variable":"_TICFrameType",
+          "value":"Standard",
+          "date":"2023-07-19T07:51:25.508306410Z"
+        },
+        {
+          "variable":"_Descriptor",
+          "value":{
+            "Bytes":"24020514",
+            "Indexes":[2,5,20]
+          },
+          "date":"2023-07-19T07:51:25.508306410Z"},
+        {
+          "variable":"DATE",
+          "value":{
+            "S":"E",
+            "Date":"21/04/12 10:09:33"
+          },
+          "date":"2023-07-19T07:51:25.508306410Z"
+        },
+        {
+          "variable":"EAST",
+          "value":104066,
+          "date":"2023-07-19T07:51:25.508306410Z"
+        },
+        {
+          "variable":"EAIT",
+          "value":15826885,
+          "date":"2023-07-19T07:51:25.508306410Z"
+        }
+      ],
+      "warnings":[""]}
+  },
+  {
+    "type": "uplink",
+    "description": "payload:110a00540000410c0000000000000040242d0e6a",
+    "input": {
+      "bytes": [
+        17, 10,  0, 84,  0,   0, 65,
+        12,  0,  0,  0,  0,   0,  0,
+        0, 64, 36, 45, 14, 106
+      ],
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data":[
+        {
+          "variable":"_TICFrameType",
+          "value":"CBE/Historique",
+          "date":"2023-07-19T07:51:25.508306410Z"
+        },
+        {
+          "variable":"_Descriptor",
+          "value":{
+            "Bytes":"0000000000000040",
+            "Indexes":[6]
+          },
+          "date":"2023-07-19T07:51:25.508306410Z"
+        },
+        {
+          "variable":"BASE",
+          "value":606932586,
+          "date":"2023-07-19T07:51:25.508306410Z"
+        }
+      ],
+      "warnings":[""]
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "payload:110a005700004115650328292a0c0415093b3527f7e5a0000004064410",
+    "input":{
+      "bytes": [
+        17, 10,   0,  87,   0, 0, 65, 21, 101,
+        3, 40,  41,  42,  12, 4, 21,  9,  59,
+        53, 39, 247, 229, 160, 0,  0,  4,   6,
+        68, 16
+      ],
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    }
+  ,
+    "output":{
+      "data": [
+        {
+          "variable": "_TICFrameType",
+          "value": "PMEPMI",
+          "date": "2023-07-19T07:51:25.508306410Z"
+        },
+        {
+          "variable": "_Descriptor",
+          "value": {"Bytes":"650328292A","Indexes":[3,40,41,42]},
+          "date": "2023-07-19T07:51:25.508306410Z"
+        },
+        {
+          "variable": "DATE",
+          "value": "12/04/21 09:59:53",
+          "date": "2023-07-19T07:51:25.508306410Z"
+        },
+        {
+          "variable": "DebP",
+          "value": "01/03/2021 04:00:00",
+          "date": "2023-07-19T07:51:25.508306410Z"
+        },
+        {
+          "variable": "EAP_s",
+          "value": 4,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        },
+        {
+          "variable": "EAP_i",
+          "value": 410640,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        }
+      ],
+      "warnings": [ "" ]
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "payload:110a0056010041170410003445140a0313000283494e440000462c00233f4c",
+    "input": {
+      "bytes": [
+        17,  10,  0, 86,  1,  0, 65, 23,  4,
+        16,   0, 52, 69, 20, 10,  3, 19,  0,
+        2, 131, 73, 78, 68,  0,  0, 70, 44,
+        0,  35, 63, 76
+      ],
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": [
+        {
+          "variable": "_TICFrameType",
+          "value": "Standard",
+          "date": "2023-07-19T07:51:25.508306410Z"
+        },
+        {
+          "variable": "_Descriptor",
+          "value": {"Bytes":"04100034","Indexes":[2,4,5,20]},
+          "date": "2023-07-19T07:51:25.508306410Z"
+        },
+        {
+          "variable": "DATE",
+          "value": {"S":"E","Date":"20/10/03 19:00:02"},
+          "date": "2023-07-19T07:51:25.508306410Z"
+        },
+        {
+          "variable": "LTARF",
+          "value": "IND",
+          "date": "2023-07-19T07:51:25.508306410Z"
+        },
+        {
+          "variable": "EAST",
+          "value": 17964,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        },
+        {
+          "variable": "EAIT",
+          "value": 2309964,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        }
+      ],
+      "warnings": [ "" ]
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "payload:110a0056010041132402051445140a180525190001a81401cd4593",
+    "input": {
+      "bytes": [
+        17, 10,   0, 86,  1,   0, 65, 19,
+        36,  2,   5, 20, 69,  20, 10, 24,
+        5, 37,  25,  0,  1, 168, 20,  1,
+        205, 69, 147
+      ],
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": [
+        {
+          "variable": "_TICFrameType",
+          "value": "Standard",
+          "date": "2023-07-19T07:51:25.508306410Z"
+        },
+        {
+          "variable": "_Descriptor",
+          "value": {"Bytes":"24020514","Indexes":[2,5,20]},
+          "date": "2023-07-19T07:51:25.508306410Z"
+        },
+        {
+          "variable": "DATE",
+          "value": {"S":"E","Date":"20/10/24 05:37:25"},
+          "date": "2023-07-19T07:51:25.508306410Z"
+        },
+        {
+          "variable": "EAST",
+          "value": 108564,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        },
+        {
+          "variable": "EAIT",
+          "value": 30229907,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        }
+      ],
+      "warnings": [ "" ]
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing firmware version | payload:110100000002000D0305020015E2",
+    "input": {
+      "bytes": [
+        17,
+        1,
+        0,
+        0,
+        0,
+        2,
+        0,
+        13,
+        3,
+        5,
+        2,
+        0,
+        21,
+        226
+      ],
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": [
+        {
+          "variable": "firmware",
+          "value": "3.5.2.5602",
+          "date": "2023-07-19T07:51:25.508306410Z"
+        }
+      ],
+      "warnings": [
+        ""
+      ]
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report  containing battery charge | payload:110A00500006410503040E6804",
+    "input": {
+      "bytes": [
+        17,
+        10,
+        0,
+        80,
+        0,
+        6,
+        65,
+        5,
+        3,
+        4,
+        14,
+        104,
+        4
+      ],
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": [{
+        "variable": "disposable_battery_voltage",
+        "value": 3.688,
+        "date": "2023-07-19T07:51:25.508306410Z"
+      }],
+      "warnings": [
+        ""
+      ]
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing dataup info | payload:110180040000000800",
+    "input": {
+      "bytes": [
+        17, 1, 128, 4, 0,
+        0, 0,   8, 0
+      ],
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": [
+        {
+          "variable": "message_type",
+          "value": "unconfirmed",
+          "date": "2023-07-19T07:51:25.508306410Z"
+        }
+      ],
+      "warnings": [ "" ]
+    }
+  }
+]
