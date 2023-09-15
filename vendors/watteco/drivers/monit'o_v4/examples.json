@@ -1,34 +1,94 @@
 [
   {
     "type": "uplink",
-    "description": "uplink containing temperature value",
+    "description": "uplink standard report containing volt value | payload:310A000C00553941500000",
     "input": {
       "bytes": [
-        17,
-        10,
-        4,
-        2,
-        0,
-        0,
-        41,
-        11,
-        137
+        49, 10,  0, 12, 0,
+        85, 57, 65, 80, 0,
+        0
       ],
       "fPort": 125,
-      "recvTime": "2023-07-19T07:51:31.598957793Z"
-    },
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    }
+  ,
     "output": {
-      "data": {
-        "variable": "temperature",
-        "value": 29.53,
-        "date": "2023-07-19T07:51:31.598957793Z"
-      },
-      "warnings": [""]
+      "data": [
+        {
+          "variable": "0-70_V",
+          "value": 13,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        }
+      ],
+      "warnings": [ "" ]
+    }
+
+  },
+
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing volt value | payload:110A000C00553941500000",
+    "input": {
+      "bytes": [
+        17, 10,  0, 12, 0,
+        85, 57, 65, 80, 0,
+        0
+      ],
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    }
+
+  ,
+    "output": {
+      "data": [
+        {
+          "variable": "0-100_mV",
+          "value": 13,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        }
+      ],
+      "warnings": [ "" ]
     }
   },
   {
     "type": "uplink",
-    "description": "uplink containing baterry charge",
+    "description": "uplink standard report containing firmware version | payload:110100000002000D0305020015E2",
+    "input": {
+      "bytes": [
+        17,
+        1,
+        0,
+        0,
+        0,
+        2,
+        0,
+        13,
+        3,
+        5,
+        2,
+        0,
+        21,
+        226
+      ],
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": [
+        {
+          "variable": "firmware",
+          "value": "3.5.2.5602",
+          "date": "2023-07-19T07:51:25.508306410Z"
+        }
+      ],
+      "warnings": [
+        ""
+      ]
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report  containing battery charge | payload:110A00500006410503040E6804",
     "input": {
       "bytes": [
         17,
@@ -49,11 +109,11 @@
       "recvTime": "2023-07-19T07:51:25.508306410Z"
     },
     "output": {
-      "data": {
+      "data": [{
         "variable": "disposable_battery_voltage",
         "value": 3.688,
         "date": "2023-07-19T07:51:25.508306410Z"
-      },
+      }],
       "warnings": [
         ""
       ]
@@ -61,257 +121,53 @@
   },
   {
     "type": "uplink",
-    "description": "uplink containing temperature value",
+    "description": "uplink standard report containing dataup info | payload:110180040000000800",
     "input": {
       "bytes": [
-        17,
-        10,
-        4,
-        5,
-        0,
-        0,
-        33,
-        14,
-        137
+        17, 1, 128, 4, 0,
+        0, 0,   8, 0
       ],
       "fPort": 125,
       "recvTime": "2023-07-19T07:51:25.508306410Z"
-    },
-    "output": {
-      "data": {
-        "variable": "humidity",
-        "value": 37.21,
-        "date": "2023-07-19T07:51:25.508306410Z"
-      },
-      "warnings": [
-        ""
-      ]
-    }
-  },
-  {
-    "type": "uplink",
-    "description": "uplink containing open detection value",
-    "input": {
-      "bytes": [
-        17,
-        10,
-        0,
-        15,
-        0,
-        85,
-        16,
-        1
-      ],
-      "fPort": 125,
-      "recvTime": "2023-07-19T07:51:25.508306410Z"
-    },
-    "output": {
-      "data": {
-        "variable": "pin_state",
-        "value": true,
-        "date": "2023-07-19T07:51:25.508306410Z"
-      },
-      "warnings": [
-        ""
-      ]
-    }
-  },
-  {
-    "type": "uplink",
-    "description": "uplink containing number of open detection",
-    "input": {
-      "bytes": [
-        17,
-        10,
-        0,
-        15,
-        4,
-        2,
-        35,
-        0,
-        0,
-        0,
-        0
-      ],
-      "fPort": 125,
-      "recvTime": "2023-07-19T07:51:25.508306410Z"
-    },
-    "output": {
-      "data": {
-        "variable": "counter",
-        "value": 0,
-        "date": "2023-07-19T07:51:25.508306410Z"
-      },
-      "warnings": [""]
-    }
-  },
-  {
-    "type": "uplink",
-    "description": "uplink containing config status",
-    "input": {
-      "bytes": [
-        17,
-        7,
-        4,
-        2,
-        0,
-        128,
-        0,
-        0
-      ],
-      "fPort": 125,
-      "recvTime": "2023-07-19T07:51:25.508306410Z"
-    },
-    "output": {
-      "data": {
-        "variable": "configure reporting response status",
-        "value": 0,
-        "date": "2023-07-19T07:51:25.508306410Z"
-      },
-      "warnings": [""]
-    }
-  },
-  {
-    "type": "uplink",
-    "description": "uplink containing config status",
-    "input": {
-      "bytes": [
-        17,
-        9,
-        0,
-        80,
-        0,
-        128,
-        0,
-        6,
-        65,
-        0,
-        60,
-        0,
-        60,
-        4,
-        72,
-        4,
-        0,
-        0
-      ],
-      "fPort": 125,
-      "recvTime": "2023-07-19T07:51:25.508306410Z"
-    },
-    "output": {
-      "data": {
-        "variable": "read reporting configuration response status",
-        "value": 0,
-        "date": "2023-07-19T07:51:25.508306410Z"
-      },
-      "warnings": [
-        ""
-      ]
-    }
-  },
-  {
-    "type": "uplink",
-    "description": "uplink containing read config status",
-    "input": {
-      "bytes": [
-        17,
-        1,
-        0,
-        0,
-        2,
-        0,
-        13,
-        3,
-        5,
-        2,
-        0,
-        21,
-        226
-      ],
-      "fPort": 125,
-      "recvTime": "2023-07-19T07:51:25.508306410Z"
-    },
-    "output": {
-      "data": {
-        "variable": "read reporting configuration response status",
-        "value": "no data",
-        "date": "2023-07-19T07:51:25.508306410Z"
-      },
-      "warnings": [
-        ""
-      ]
-    }
-  },
-  {
-    "type": "uplink",
-    "description": "uplink containing alarm on temperature",
-    "input": {
-      "bytes": [
-        17,
-        138,
-        4,
-        2,
-        0,
-        0,
-        41,
-        12,
-        19
-      ],
-      "fPort": 125,
-      "recvTime": "2023-07-19T07:51:31.598957793Z"
-    },
-    "output": {
-      "data": {
-        "variable": "temperature",
-        "value": 30.91,
-        "date": "2023-07-19T07:51:31.598957793Z"
-      },
-      "warnings": [["alarm triggered"]]
-    }
-  },
-  {
-    "type": "uplink",
-    "description": "uplink containing a batch of values",
-    "input": {
-      "bytes": [
-        54,
-        33,
-        0,
-        128,
-        128,
-        152,
-        195,
-        30,
-        203,
-        130,
-        77,
-        123,
-        7,
-        186,
-        61
-      ],
-      "fPort": 125,
-      "recvTime": "2023-07-18T12:19:53.243Z"
     },
     "output": {
       "data": [
         {
-          "variable": "temperature",
-          "value": 28.7,
-          "date": "2023-07-18T12:19:53.243Z"
-        },
-        {
-          "variable": "humidity",
-          "value": 37,
-          "date": "2023-07-18T12:19:53.243Z"
-        },
-        {
-          "variable": "battery_voltage",
-          "value": 3.707,
-          "date": "2023-07-18T12:19:52.243Z"
+          "variable": "message_type",
+          "value": "unconfirmed",
+          "date": "2023-07-19T07:51:25.508306410Z"
         }
       ],
-      "warnings": [""]
+      "warnings": [ "" ]
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink batch report  | payload:3620000000230708EC7DD60B3DB20F4204005800",
+    "input": {
+      "bytes": [
+        54,  32,   0,   0,  0, 35,   7,
+        8, 236, 125, 214, 11, 61, 178,
+        15,  66,   4,   0, 88,  0
+      ],
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": [
+        {
+          "variable": "0-100_mV",
+          "value": 0.4599999785423279,
+          "date": "2023-07-19T07:51:24.508Z"
+        },
+        { "variable": "0-70_V", "value": 17, "date": "2023-07-19T07:51:24.508Z" },
+        {
+          "variable": "battery_voltage",
+          "value": 3.6,
+          "date": "2023-07-19T07:51:24.508Z"
+        }
+      ],
+      "warnings": [ "" ]
     }
   }
 ]
