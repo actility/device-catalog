@@ -1,5 +1,6 @@
 const standard = require("./standard.js");
 const batch = require("./batch.js");
+
 function watteco_decodeUplink(input, batch_parameters, endpoint_parameters) {
     let bytes = input.bytes;
     let port = input.fPort;
@@ -20,28 +21,24 @@ function watteco_decodeUplink(input, batch_parameters, endpoint_parameters) {
                 let decoded = batch.normalisation_batch(batchInput)
                 return {
                     data: decoded,
-                    warnings: [],
+                    warnings: [""],
                 }
             } catch (error) {
                 return {
                     error: error.message,
-                    warnings: [],
+                    warnings: [""],
                 }
             }
         } else {
-            let warnings = [];
-            if(Array.isArray(decoded.warning) && decoded.warning.length === 1){
-                warnings = decoded.warning;
-            }
             return {
                 data: decoded.data,
-                warnings: warnings,
+                warnings: decoded.warning,
             };
         }
     } catch (error) {
         return {
             error: error.message,
-            warnings: [],
+            warnings: [""],
         };
     }
 }

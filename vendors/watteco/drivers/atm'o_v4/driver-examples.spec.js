@@ -1,5 +1,5 @@
 let examples = require("./examples.json");
-let driver = require("./atm'O.js");
+let driver = require("./atm'o.js");
 /*..............
 Test suites
 ..............*/
