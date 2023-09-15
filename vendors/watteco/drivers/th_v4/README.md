@@ -1,6 +1,6 @@
 ## générer main.js
 
-        npm run build
+        npx webpack --config webpack.config.js
 
 ## tester le codec
 
@@ -12,7 +12,3 @@
 <p>il est complété par un fichier spécifique à sa gamme.</p>
 
 <p>le lien entre les fichier est fait avec <code>require()</code> de <code>node.js</code>. </p>
-
-## yaml
-
-<p>les .yaml sont provisoires, car incomplets</p>
