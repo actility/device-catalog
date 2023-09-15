@@ -1,5 +1,5 @@
 let examples = require("./examples.json");
-let driver = require("./index.js");
+let driver = require("./toran'o_atex.js");
 /*..............
 Test suites
 ..............*/
