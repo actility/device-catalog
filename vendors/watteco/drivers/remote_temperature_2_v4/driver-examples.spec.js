@@ -1,5 +1,5 @@
 let examples = require("./examples.json");
-let driver = require("./index.js");
+let driver = require("./remote_temperature_2.js");
 /*..............
 Test suites
 ..............*/
