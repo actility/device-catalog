@@ -1,0 +1,47 @@
+# Commercial name of the model 
+name: YO H2O
+# Functional description of the product. Maximum 500 characters. 
+description: "YO H2O is used for instant flood detection. It also transmits temperature and humidity data and its own position on the x, y, and z axes (via a built-in accelerometer). On detecting a leak, the device immediately alerts the system about the risk of flooding. Simultaneously, the leak is indicated by a colour-changing LED."
+# Logo of the device
+logo: h2o.png
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model. 
+deviceProfileId:
+    - yosensi_RFGroup1_1.0.2a_classA
+    - yosensi_RFGroup1_1.0.2b_classA
+    - yosensi_RFGroup1_1.0.2c_classA
+    - yosensi_RFGroup2_1.0.2a_classA
+    - yosensi_RFGroup2_1.0.2b_classA
+    - yosensi_RFGroup2_1.0.2c_classA
+    - yosensi_RFGroup3_1.0.2c_classA
+    - yosensi_RFGroup4_1.0.2a_classA
+    - yosensi_RFGroup4_1.0.2b_classA
+    - yosensi_RFGroup4_1.0.2c_classA
+ 
+# You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
+# Maximum device TX Conducted output power in dBm. 
+maxTxPower:
+# Minimum device TX Conducted output power in dBm. 
+minTxPower:
+# Maximum device TX Radiated output power in dBm.  
+maxTxEIRP:
+# Minimum device TX Radiated output power in dBm.  
+minTxEIRP:
+# Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'  
+# or 'random' (not known, changes over time). 
+motionIndicator:
+ 
+# Is your device certified by the LoRa Alliance? Possible values: true, false. 
+LoRaWANCertified: false
+# Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
+modelId: yosensi:h2o:1
+# <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
+protocolId: yosensi:generic:1
+# DataSheet URL (optional) 
+specificationURL: https://www.yosensi.io/support/datasheets/YO_H2O_datasheet.pdf
+# User Guide URL (optional) 
+userGuideURL: https://www.yosensi.io/support/user-guides/YO_H2O_user_guide.pdf
+# <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
+sensors:
+# Driver examples
+# A list of examples description that are compatible with this model
+examples:
