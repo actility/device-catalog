@@ -21,12 +21,12 @@ function watteco_decodeUplink(input, batch_parameters, endpoint_parameters) {
                 let decoded = batch.normalisation_batch(batchInput)
                 return {
                     data: decoded,
-                    warnings: [""],
+                    warnings: [],
                 }
             } catch (error) {
                 return {
                     error: error.message,
-                    warnings: [""],
+                    warnings: [],
                 }
             }
         } else {
@@ -38,7 +38,7 @@ function watteco_decodeUplink(input, batch_parameters, endpoint_parameters) {
     } catch (error) {
         return {
             error: error.message,
-            warnings: [""],
+            warnings: [],
         };
     }
 }
