@@ -458,7 +458,6 @@ function computeDataAbsoluteTimestamp(bat, brt, drt) {
 function normalisation_batch(input){
     let date = input.date;
     let decoded = brUncompress(input.batch1, input.batch2, input.payload, date)
-    console.log(decoded)
     let dataListe = []
     for (let i = 0; i < decoded.dataset.length; i++) {
         let data = decoded.dataset[i]

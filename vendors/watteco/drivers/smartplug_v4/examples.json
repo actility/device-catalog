@@ -1,0 +1,220 @@
+[
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing state value | payload:110A000600001001",
+    "input": {
+      "bytes": [
+        17, 10,  0, 6,
+        0,  0, 16, 1
+      ],
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": [
+        {
+          "variable": "output",
+          "value": "ON",
+          "date": "2023-07-19T07:51:25.508306410Z"
+        }
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing state value | payload:110A000600001000",
+    "input": {
+      "bytes": [
+        17, 10,  0, 6,
+        0,  0, 16, 0
+      ],
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": [
+        {
+          "variable": "output",
+          "value": "OFF",
+          "date": "2023-07-19T07:51:25.508306410Z"
+        }
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing simple metering | payload:310a00520000410c000047ffffbe0063002fffd6",
+    "input": {
+      "bytes": [
+        49, 10, 0, 82,   0,   0,  65,
+        12,  0, 0, 71, 255, 255, 190,
+        0, 99, 0, 47, 255, 214
+      ],
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": [
+        {
+          "variable": "active_energy",
+          "value": 71,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        },
+        {
+          "variable": "reactive_energy",
+          "value": -66,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        },
+        {
+          "variable": "nb_samples",
+          "value": 99,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        },
+        {
+          "variable": "active_power",
+          "value": 47,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        },
+        {
+          "variable": "reactive_power",
+          "value": -42,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        }
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing power quality | payload:310a80520000411822221111FFFF000100000003001100002222000100020003",
+    "input": {
+      "bytes": [
+        49, 10, 128,  82,   0, 0, 65, 24, 34,
+        34, 17,  17, 255, 255, 0,  1,  0,  0,
+        0,  3,   0,  17,   0, 0, 34, 34,  0,
+        1,  0,   2,   0,   3
+      ],
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": [
+        {
+          "variable": "frequency",
+          "value": 30.97,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        },
+        {
+          "variable": "frequency_min",
+          "value": 26.601,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        },
+        {
+          "variable": "frequency_max",
+          "value": 22.231,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        },
+        {
+          "variable": "Vrms",
+          "value": 0.1,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        },
+        {
+          "variable": "Vrms_min",
+          "value": 0,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        },
+        {
+          "variable": "Vrms_max",
+          "value": 0.3,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        },
+        {
+          "variable": "Vpeak",
+          "value": 1.7,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        },
+        {
+          "variable": "Vpeak_min",
+          "value": 0,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        },
+        {
+          "variable": "Vpeak_max",
+          "value": 873.8,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        },
+        {
+          "variable": "over_voltage",
+          "value": 1,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        },
+        {
+          "variable": "sag_voltage",
+          "value": 2,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        }
+      ],
+      "warnings": []
+    }
+
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing firmware version | payload:110100000002000D0305020015E2",
+    "input": {
+      "bytes": [
+        17,
+        1,
+        0,
+        0,
+        0,
+        2,
+        0,
+        13,
+        3,
+        5,
+        2,
+        0,
+        21,
+        226
+      ],
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": [
+        {
+          "variable": "firmware",
+          "value": "3.5.2.5602",
+          "date": "2023-07-19T07:51:25.508306410Z"
+        }
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing dataup info | payload:110180040000000800",
+    "input": {
+      "bytes": [
+        17, 1, 128, 4, 0,
+        0, 0,   8, 0
+      ],
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": [
+        {
+          "variable": "message_type",
+          "value": "unconfirmed",
+          "date": "2023-07-19T07:51:25.508306410Z"
+        }
+      ],
+      "warnings": []
+    }
+  }
+]

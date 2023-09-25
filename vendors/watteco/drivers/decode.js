@@ -8,7 +8,6 @@ function watteco_decodeUplink(input, batch_parameters, endpoint_parameters) {
     try {
         let decoded = standard.normalisation_standard(input, endpoint_parameters)
         let payload = decoded.payload;
-        //console.log(decoded)
         if (decoded.type === "batch") {
             let batchInput = {
                 batch1: batch_parameters[0],
@@ -29,13 +28,10 @@ function watteco_decodeUplink(input, batch_parameters, endpoint_parameters) {
                 }
             }
         } else {
-            let warnings = [];
-            if(Array.isArray(decoded.warning) && decoded.warning.length === 1){
-                warnings = decoded.warning;
-            }
             return {
                 data: decoded.data,
-                warnings: warnings,
+                warnings: decoded.warning,
+
             };
         }
     } catch (error) {
@@ -48,3 +44,4 @@ function watteco_decodeUplink(input, batch_parameters, endpoint_parameters) {
 module.exports = {
     watteco_decodeUplink: watteco_decodeUplink,
 }
+

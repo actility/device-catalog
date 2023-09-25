@@ -18,7 +18,7 @@ mac:
   # (ABP)
   activationByPersonalization: true
   #(OTAA)
-  overTheAirActivation: false
+  overTheAirActivation: true
   # Supported version of the LoRaWAN MAC (Layer-2) specification. Possible values are '1.0.0/1.0.1', '1.0.2', '1.0.3', '1.0.4', '1.1'
   loRaWANMacVersion: 1.0.2
   # Supported version of the LoRaWAN regional parameters (PHY) specification. Possible values are '1.0.2revA', '1.0.2revB', '1.0.2revC',
@@ -40,7 +40,7 @@ mac:
     # Maximum number of transmissions per uplink frame, supported by the device.
     maxNbTrans:
     # How many uplink transmissions does the device use in Confirmed mode if it doesn't receive any DL ACK?
-    maxRedundancyForConfirmedUL:
+    maxRedundancyForConfirmedUL: 7
 
 # The following section defines the default settings used by the device during iniial boot stage. Leave empty if your device respects the
 # default values indicated by LoRaWAN Regional Parameters (PHY) specification. Personalize fields only when different from default PHY values.
@@ -81,7 +81,7 @@ supportedMACCommands:
   txParamSetupReqAns: false
   pingSlotChannelReqAns: false
   pingSlotInfoReqAns: true
-  deviceTimeReqAns: true
+  deviceTimeReqAns: false
   beaconFreqReqAns: false
 
 # Does your device support [Technical Recommendation for LoRaWAN L2 1.0.x Join Security] recommending implemeting the DevNonce as a counter for
@@ -91,5 +91,4 @@ devNonceCounterBased: false
 
 # ProfileID as specified by LoRa Alliance in https://lora-alliance.org/wp-content/uploads/2020/10/LoRa_Alliance_Vendor_ID_for_QR_Code_02142022.pdf.
 # This ID consists of 8 upper-case hexadecimal characters, 4 characters for VendorID + 4 characters for VendorProfileID.
-# Please consider using single (') or double (") quotation
-lorawanDeviceProfileID:
+lorawanDeviceProfileID: 01280001

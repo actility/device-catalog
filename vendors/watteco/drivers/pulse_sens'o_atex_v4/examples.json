@@ -1,0 +1,277 @@
+[
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing state of pin 1 | payload:110A000F00551001",
+    "input": {
+      "bytes": [
+        17,
+        10,
+        0,
+        15,
+        0,
+        85,
+        16,
+        1
+      ],
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": [{
+        "variable": "pin_state_1",
+        "value": true,
+        "date": "2023-07-19T07:51:25.508306410Z"
+      }],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing number of pulse detection on input 1 | payload:110A000F04022300000000",
+    "input": {
+      "bytes": [
+        17,
+        10,
+        0,
+        15,
+        4,
+        2,
+        35,
+        0,
+        0,
+        0,
+        0
+      ],
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": [
+        {
+          "variable": "index_1",
+          "value": 0,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        }
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing 3 state values | payload:110A80050000190371",
+    "input": {
+      "bytes": [
+        17, 10, 128,   5, 0,
+        0, 25,   3, 113
+      ],
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": [
+        {
+          "variable": "pin_state_1",
+          "value": true,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        },
+        {
+          "variable": "pin_state_2",
+          "value": false,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        },
+        {
+          "variable": "pin_state_3",
+          "value": false,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        },
+        {
+          "variable": "NA",
+          "value": "NA",
+          "date": "2023-07-19T07:51:25.508306410Z"
+        },
+        {
+          "variable": "NA",
+          "value": "NA",
+          "date": "2023-07-19T07:51:25.508306410Z"
+        },
+        {
+          "variable": "NA",
+          "value": "NA",
+          "date": "2023-07-19T07:51:25.508306410Z"
+        },
+        {
+          "variable": "NA",
+          "value": "NA",
+          "date": "2023-07-19T07:51:25.508306410Z"
+        },
+        {
+          "variable": "NA",
+          "value": "NA",
+          "date": "2023-07-19T07:51:25.508306410Z"
+        },
+        {
+          "variable": "NA",
+          "value": "NA",
+          "date": "2023-07-19T07:51:25.508306410Z"
+        },
+        {
+          "variable": "NA",
+          "value": "NA",
+          "date": "2023-07-19T07:51:25.508306410Z"
+        }
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing firmware version | payload:110100000002000D0305020015E2",
+    "input": {
+      "bytes": [
+        17,
+        1,
+        0,
+        0,
+        0,
+        2,
+        0,
+        13,
+        3,
+        5,
+        2,
+        0,
+        21,
+        226
+      ],
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": [
+        {
+          "variable": "firmware",
+          "value": "3.5.2.5602",
+          "date": "2023-07-19T07:51:25.508306410Z"
+        }
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report  containing battery charge | payload:110A00500006410503040E6804",
+    "input": {
+      "bytes": [
+        17,
+        10,
+        0,
+        80,
+        0,
+        6,
+        65,
+        5,
+        3,
+        4,
+        14,
+        104,
+        4
+      ],
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": [{
+        "variable": "disposable_battery_voltage",
+        "value": 3.688,
+        "date": "2023-07-19T07:51:25.508306410Z"
+      }],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing dataup info | payload:110180040000000800",
+    "input": {
+      "bytes": [
+        17, 1, 128, 4, 0,
+        0, 0,   8, 0
+      ],
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": [
+        {
+          "variable": "message_type",
+          "value": "unconfirmed",
+          "date": "2023-07-19T07:51:25.508306410Z"
+        }
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink batch report | payload:3203032cd2dc00000000117b02000080903d005000401040801d11604704d8119024912492247b",
+    "input": {
+      "bytes": [
+        50,   3,   3, 44, 210, 220,   0,  0,   0,  0,
+        17, 123,   2,  0,   0, 128, 144, 61,   0, 80,
+        0,  64,  16, 64, 128,  29,  17, 96,  71,  4,
+        216,  17, 144, 36, 145,  36, 146, 36, 123
+      ],
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": [
+        { "variable": "index_1", "value": 0, "date": "2023-07-19T04:51:25.508Z" },
+        { "variable": "index_1", "value": 0, "date": "2023-07-19T05:51:25.508Z" },
+        { "variable": "index_1", "value": 0, "date": "2023-07-19T06:51:25.508Z" },
+        { "variable": "index_1", "value": 0, "date": "2023-07-19T07:51:25.508Z" },
+        {
+          "variable": "index_2",
+          "value": 67108864,
+          "date": "2023-07-19T04:51:25.508Z"
+        },
+        {
+          "variable": "index_2",
+          "value": 67108864,
+          "date": "2023-07-19T05:51:25.508Z"
+        },
+        {
+          "variable": "index_2",
+          "value": 67108864,
+          "date": "2023-07-19T06:51:25.508Z"
+        },
+        {
+          "variable": "index_2",
+          "value": 67108864,
+          "date": "2023-07-19T07:51:25.508Z"
+        },
+        {
+          "variable": "index_3",
+          "value": 4194560,
+          "date": "2023-07-19T04:51:25.508Z"
+        },
+        {
+          "variable": "index_3",
+          "value": 4194560,
+          "date": "2023-07-19T05:51:25.508Z"
+        },
+        {
+          "variable": "index_3",
+          "value": 4194560,
+          "date": "2023-07-19T06:51:25.508Z"
+        },
+        {
+          "variable": "index_3",
+          "value": 4194560,
+          "date": "2023-07-19T07:51:25.508Z"
+        }
+      ],
+      "warnings": []
+    }
+
+  }
+]
