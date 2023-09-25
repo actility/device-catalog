@@ -51,3 +51,5 @@ function readInt16LE(bytes) {
     var ref = readUInt16LE(bytes);
     return (ref > 0x7FFF) ? ref - 0x10000 : ref;
 }
+
+exports.Decoder = Decoder;

@@ -30,3 +30,5 @@ function Decoder(bytes, port) {
 
     return decoded;
 }
+
+exports.Decoder = Decoder;

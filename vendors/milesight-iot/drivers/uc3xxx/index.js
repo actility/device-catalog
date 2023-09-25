@@ -172,3 +172,8 @@ function decode_UART_F4(buffer) {
     }
 }
 
+function Decoder(bytes, fPort){
+    return decode_UART_F4(Buffer.from(bytes, "hex"));
+}
+
+exports.Decoder = Decoder;
