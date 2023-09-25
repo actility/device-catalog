@@ -1429,7 +1429,6 @@ function int(value){
     return parseInt(value, 2)
 }
 function alarmShort(length, listMess, flag, bytes, decoded, i1){
-    console.log("alarmShort")
     let i = 0
     while(flag === 0) {
         let bi = bytes[(i1+(length*i))]
@@ -1460,8 +1459,6 @@ function alarmShort(length, listMess, flag, bytes, decoded, i1){
     }
 }
 function alarmLong(clustID, attID, length, listMess, flag, bytes, decoded, i1, attribute_type, divider, ftype, field_index){
-    console.log("alarmLong")
-    console.log(ftype)
     let type = attribute_types[attribute_type]
     let function_type = ftype
     let field_driven = 0
@@ -1772,8 +1769,6 @@ function alarmLong3Bytes(length, listMess, flag, bytes, decoded, i1,divider,name
     }
 }
 function alarmLong2Bytes(length, listMess, flag, bytes, decoded, i1,divider,name, function_type, field_driven, clustID, attID){
-    console.log("alarmLong2Bytes")
-    console.log(function_type)
     let i = 0
     let count = 0
     let countUp=0
@@ -1821,18 +1816,13 @@ function alarmLong2Bytes(length, listMess, flag, bytes, decoded, i1,divider,name
             if (i2===0){
                 if (function_type==="none"){
                     temp = ((bytes[i1 + 1 + ((length)*i)+shift] * 256 + bytes[i1 + 2 + ((length)*i)+shift]) / divider).toString()
-                    console.log(bytes[i1 + 1 + ((length)*i)+shift])
 
                     gap = ((bytes[i1 + 3 + ((length)*i)+shift] * 256 + bytes[i1 + 4 + ((length)*i)+shift]) / divider).toString()
-                    console.log(bytes[i1 + 3 + ((length)*i)+shift])
-                    console.log(bytes[i1 + 4 + ((length)*i)+shift])
 
                 }
                 else if (function_type==="int"){
                     temp = UintToInt((bytes[i1 + 1 + ((length)*i)+shift] * 256 + bytes[i1 + 2 + ((length)*i)+shift])/divider).toString()
-                    console.log(bytes[i1 + 1 + ((length)*i)+shift])
                     gap = UintToInt((bytes[i1 + 3 + ((length)*i)+shift] * 256 + bytes[i1 + 4 + ((length)*i)+shift])/divider).toString()
-                    console.log(bytes[i1 + 3 + ((length)*i)+shift])
 
                 }
                 else if (function_type==="float"){
@@ -1928,7 +1918,6 @@ function alarmLong2Bytes(length, listMess, flag, bytes, decoded, i1,divider,name
 }
 
 function alarmLong4Bytes(length, listMess, flag, bytes, decoded, i1,divider,name, function_type, field_driven, clustID, attID){
-    console.log("alarmLong4Bytes")
     let i = 0
     let shift = 0
     let count = 0
@@ -1937,7 +1926,6 @@ function alarmLong4Bytes(length, listMess, flag, bytes, decoded, i1,divider,name
     let i2 = 0
     if (field_driven===1){
         length+=1
-        console.log("length:"+length)
         i2=1
     }
     if (function_type===undefined){
@@ -1958,10 +1946,7 @@ function alarmLong4Bytes(length, listMess, flag, bytes, decoded, i1,divider,name
     }
     while(flag===0) {
         if (field_driven===1){
-            console.log("field_driven")
-            console.log((i1+((length)*i))+1)
             let fi =bytes[(i1+((length)*i)+1)+shift]
-            console.log("fi:"+fi)
             divider = field[clustID][attID][fi].divider
             function_type = field[clustID][attID][fi].function_type
         }
@@ -2031,7 +2016,6 @@ function alarmLong4Bytes(length, listMess, flag, bytes, decoded, i1,divider,name
                 } else {
                     mess = "alarm, criterion_index: "+index + ", mode: threshold" + ", crossing: "+qual +  ", value: "+temp + ", gap: "+ gap + ", occurences: " + count + ", field: " + alarm_field
                 }            }
-            console.log(mess)
             listMess.push(mess)
         }
         if ((csd[3] === "0") && (csd[4] === "1")) {
@@ -2217,9 +2201,7 @@ function Decoder(bytes, port) {
                 if ((clustID === 0x0405 ) && (attID === 0x0000)){
                     let attribute_type = bytes[i1-1]
                     decoded.data.humidity = (bytes[i1]*256+bytes[i1+1])/100;
-                    console.log(i1)
                     let ia = i1+2
-                    console.log(ia)
                     if ((cmdID===0x8a)||(bytes[ia]!==undefined)) {
                         let listMess = []
                         let flag = 0
@@ -2749,8 +2731,6 @@ function Decoder(bytes, port) {
                 if ((clustID === 0x0050 ) && (attID === 0x0006)) {
                     let i2 = i1 + 3;
                     let attribute_type = bytes[i1-1];
-                    console.log(i2)
-                    console.log("attribute_type",attribute_type)
                     if ((bytes[i1+2] &0x01) === 0x01) {decoded.data.main_or_external_voltage = (bytes[i2]*256+bytes[i2+1])/1000;i2=i2+2;}
                     if ((bytes[i1+2] &0x02) === 0x02) {decoded.data.rechargeable_battery_voltage = (bytes[i2]*256+bytes[i2+1])/1000;i2=i2+2;}
                     if ((bytes[i1+2] &0x04) === 0x04) {decoded.data.disposable_battery_voltage = (bytes[i2]*256+bytes[i2+1])/1000;i2=i2+2;}
@@ -2764,9 +2744,8 @@ function Decoder(bytes, port) {
                         let ftype = "multistate"
                         let rc = ""
                         rc = decimalToBitString(bytes[ia])
-                        console.log(rc)
+
                         ia+=1
-                        console.log("ia:"+ia)
                         let field_index = bytes[ia+1]
                         if ((rc[2] === "0") && (rc[3] === "0")) {
                             listMess.push("alarm triggered")
@@ -2819,9 +2798,7 @@ function Decoder(bytes, port) {
                         let ftype = "multistate"
                         let rc = ""
                         rc = decimalToBitString(bytes[ia])
-                        console.log(rc)
                         ia+=1
-                        console.log("ia:"+ia)
                         let field_index = bytes[ia+1]
                         if ((rc[2] === "0") && (rc[3] === "0")) {
                             listMess.push("alarm triggered")
@@ -2856,7 +2833,6 @@ function Decoder(bytes, port) {
                         let rc = ""
                         rc = decimalToBitString(bytes[ia])
                         ia+=1
-                        console.log("ia:"+ia)
                         let field_index = bytes[ia+1]
                         if ((rc[2] === "0") && (rc[3] === "0")) {
                             listMess.push("alarm triggered")
@@ -2890,7 +2866,6 @@ function Decoder(bytes, port) {
                         let rc = ""
                         rc = decimalToBitString(bytes[ia])
                         ia+=1
-                        console.log("ia:"+ia)
                         let field_index = bytes[ia+1]
                         if ((rc[2] === "0") && (rc[3] === "0")) {
                             listMess.push("alarm triggered")
@@ -2922,9 +2897,7 @@ function Decoder(bytes, port) {
                         let ftype = "multistate"
                         let rc = ""
                         rc = decimalToBitString(bytes[ia])
-                        console.log(rc)
                         ia+=1
-                        console.log("ia:"+ia)
                         let field_index = bytes[ia+1]
                         if ((rc[2] === "0") && (rc[3] === "0")) {
                             listMess.push("alarm triggered")
@@ -2960,7 +2933,6 @@ function Decoder(bytes, port) {
                         let rc = ""
                         rc = decimalToBitString(bytes[ia])
                         ia+=1
-                        console.log("ia:"+ia)
                         let field_index = bytes[ia+1]
                         if ((rc[2] === "0") && (rc[3] === "0")) {
                             listMess.push("alarm triggered")
@@ -3217,7 +3189,6 @@ function Decoder(bytes, port) {
                     let i=0
                     while(nb>0){
                         decoded.zclheader.modepower = bytes[14+i*5];
-                        console.log(bytes[14+i*5])
                         decoded.zclheader.powersource = bytes[15+i*5];
                         decoded.zclheader.delta = bytes[16+i*5]*256+bytes[17+i*5];
                         decoded.zclheader.changedpowersource = bytes[18+i*5];
@@ -3236,17 +3207,14 @@ function Decoder(bytes, port) {
     return decoded;
 }
 function normalisation_standard(input, endpoint_parameters){
-    let warning = [""];
+    let warning = [];
     let bytes = input.bytes;
     let flagstandard = true;
     let indent = 0;
-    console.log(input)
     let decoded = Decoder(bytes, input.fPort);
-    console.log(decoded)
     if (decoded.zclheader !== undefined){
         if (decoded.zclheader.alarmmsg !== undefined){
             warning = decoded.zclheader.alarmmsg
-            console.log(warning)
         }
 
         if (bytes[1] === 0x07 && bytes[0]%2 !== 0){
@@ -3296,7 +3264,6 @@ function normalisation_standard(input, endpoint_parameters){
         }
     }
     if (decoded.zclheader !== undefined){
-        console.log("je rentre dans le zclheader")
         if (endpoint_parameters !== undefined) {
             let access = decoded.zclheader.endpoint;
             let flagstandard = true;
@@ -3304,17 +3271,12 @@ function normalisation_standard(input, endpoint_parameters){
             let data = []
             let type = ""
             while (flagstandard) {
-                console.log("bekbncnien")
                 let firstKey = Object.keys(decoded.data)[indent];
-                console.log(firstKey)
                 if (firstKey === undefined) {
                     flagstandard = false;
                     break;
                 } else {
-                    console.log("poucevert")
-                    console.log(endpoint_parameters[firstKey])
                     if (endpoint_parameters[firstKey] === undefined) {
-                        console.log("pas de type")
                         data.push({variable: firstKey,
                             value: decoded.data[firstKey],
                             date: input.recvTime
@@ -3370,7 +3332,6 @@ function normalisation_standard(input, endpoint_parameters){
             }
         }
     }
-    console.log("je sort en batch")
     return {
         type: decoded.batch.report,
         payload: decoded.lora.payload,
