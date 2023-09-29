@@ -8,12 +8,12 @@
 #    RFGroup4: as923
 # Please do not change the existing IDs (Some may follow the old format)
 # The name of the profile .yaml file should be the same as the following ID
-id: adeunis_RFGroup1_1.0.2b_classA_Breath
+id: adeunis_RFGroup1_1.0.2revB_classC
 # LoRaWAN class of the Device: Possible values: [ A, B, C ] (Should not have several values)
 # 'A': Class A (Bi-directional end-devices with downlink listening only after uplink transmission)
 # 'B': Class B (Bi-directional end-devices with downlink listening on predefined synchronized pingslots)
 # 'C': Class C (Bi-directional end-devices with permanent downlink listening)
-loRaWANClass: A
+loRaWANClass: C
 # Comma-separated list of regional profiles supported by this device. Possible values are eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470.
 ISMbands: eu868
 # Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'
@@ -76,7 +76,7 @@ bootSettings:
 
 # Which MAC commands are supported by your device and which are not? Leave it as the template if your device supports all the MAC commands specified for your regional
 # profile. Put 'true' only if a command is supported.
-supportedMACCommands: 
+supportedMACCommands:
     linkADRReqAns: true
     devStatusReqAns: true
     joinRequestAccept: true
@@ -85,7 +85,7 @@ supportedMACCommands:
     rxParamSetupReqAns: true
     rxTimingSetupReqAns: true
     newChannelReqAns: true
-    dlChannelReqAns: true
+    dlChannelReqAns: false
     txParamSetupReqAns: false
     pingSlotChannelReqAns: false
     pingSlotInfoReqAns: true
