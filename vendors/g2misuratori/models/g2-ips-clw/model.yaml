@@ -28,10 +28,16 @@ LoRaWANCertified: true
 # Format: `<8 characters max>:<16 characters max>:<digits only>`
 modelId: g2misura:g2-ips-clw:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
-protocolId: 
+protocolId: g2misura:generic:1
 # DataSheet URL (optional) 
 specificationURL: https://lora-alliance.org/lora_products/g2-ips-clw/
 # User Guide URL (optional) 
 userGuideURL: https://lora-alliance.org/lora_products/g2-ips-clw/
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
-sensors: 
+sensors:
+    - volume:m3
+examples:
+    g2misura:generic:1:
+        - "I'm Alive Frame"
+        - "Instant reading frame"
+        - "Historical reading frame"
