@@ -1,5 +1,5 @@
 # Commercial name of the model 
-name: Dry Contacts or Smart Metering Inputs and Outputs
+name: ACW-DINDxx
 # Functional description of the product. Maximum 500 characters. 
 description: "The DINDxx facilitates the reporting of the status of up to 8 dry contacts or up to 8 pulse counter indices."
 # Logo of the device
@@ -29,9 +29,10 @@ motionIndicator:
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
 # Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
+# Format: `<8 characters max>:<16 characters max>:<digits only>`
 modelId: atim:dry-contact-io:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
-protocolId:
+protocolId: atim:generic:1
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 

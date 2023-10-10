@@ -76,3 +76,4 @@ function readUInt32LE(bytes) {
     return value & 0xffffffff;
 }
 
+exports.Decoder = Decoder;

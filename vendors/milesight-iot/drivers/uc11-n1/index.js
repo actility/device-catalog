@@ -132,3 +132,5 @@ function readFloatLE(bytes) {
     var f = sign * m * Math.pow(2, e - 150);
     return f;
 }
+
+exports.Decoder = Decoder;

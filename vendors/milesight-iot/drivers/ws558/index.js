@@ -37,7 +37,7 @@ function Decoder(bytes, port) {
             i += 2;
         }
         // SWITCH STATUS
-        else if (channel_id === 0xFF && channel_type === 0x31) {
+        else if (channel_id === 0x08 && channel_type === 0x31) {
             var switchFlags = bytes[i + 1];
 
             // output all switch status
@@ -87,3 +87,5 @@ function readInt32LE(bytes) {
     var ref = readUInt32LE(bytes);
     return (ref > 0x7FFFFFFF) ? ref - 0x100000000 : ref;
 }
+
+exports.Decoder = Decoder;

@@ -1,0 +1,42 @@
+[
+    {
+        "description": "Example 1: Energy",
+        "type": "uplink",
+        "input": {
+            "bytes": "00FE0001518000006A50000000",
+            "fPort": 10,
+            "recvTime": "2020-08-02T20:00:00.000+05:00"
+        },
+        "output": {
+            "data": {
+                "energy_consumption_meter.consumed": 27216,
+                "energy_consumption_meter.elapsed": 86400,
+                "energy_consumption_meter_status": 0,
+                "port": 10,
+                "raw": "[0,254,0,1,81,128,0,0,106,80,0,0,0]"
+            },
+            "errors": [],
+            "warnings": []
+        }
+    },
+    {
+        "description": "Example 2: Power",
+        "type": "uplink",
+        "input": {
+            "bytes": "0080CB750180415C0081FF",
+            "fPort": 10,
+            "recvTime": "2020-08-02T20:00:00.000+05:00"
+        },
+        "output": {
+            "data": {
+                "apparent_power": 167320,
+                "port": 10,
+                "power_factor_meter": 255,
+                "raw": "[0,128,203,117,1,128,65,92,0,129,255]",
+                "real_power": -134510
+            },
+            "errors": [],
+            "warnings": []
+        }
+    }
+]  

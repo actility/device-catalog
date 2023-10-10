@@ -25,6 +25,7 @@ motionIndicator:
 # Is your device certified by the LoRa Alliance? Possible values: true, false.
 LoRaWANCertified: false
 # Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
+# Format: `<8 characters max>:<16 characters max>:<digits only>`
 # Be careful: Once you chose a model, it cannot be changed later
 modelId: skiply:smilio-a:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
@@ -39,7 +40,7 @@ userGuideURL: https://drive.google.com/file/d/1AOJRVLQeojSSFi0B9ycL-M-GgXtvD4DJ/
 sensors:
 
 examples:
-  - skiply:smilio-a:1:
+  skiply:smilio-a:1:
     - "Payload containing battery voltage in IDLE mode and during emissions (Tx) for Smilio Action"
     - "Payload containing all incremental counters for a normal data frame with Smilio Action"
     - "Payload containing all incremental counters for a Hall effect sensor activation data frame with Smilio Action"

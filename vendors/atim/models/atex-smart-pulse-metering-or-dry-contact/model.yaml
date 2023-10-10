@@ -1,5 +1,5 @@
 # Commercial name of the model 
-name: ATEX Smart Pulse Metering or Dry Contact
+name: ACW-MR2-EX
 # Functional description of the product. Maximum 500 characters. 
 description: "The MR2-EX allows the remote reading of one or two meters with pulse type output (dry contacts)."
 # Logo of the device
@@ -28,6 +28,7 @@ motionIndicator:
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: false
 # Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
+# Format: `<8 characters max>:<16 characters max>:<digits only>`
 modelId: atim:atex-smart:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId: atim:generic:1
@@ -39,7 +40,7 @@ userGuideURL: https://www.atim.com/wp-content/uploads/documentation/ACW/ACW-MR4/
 sensors:
     - batteryVoltage:V
 examples:
-    - atim:generic:1:
+    atim:generic:1:
         - "Example MR2 Trame de vie"
         - "Example MR2 Trame de compteur standard"
         - "Example MR2 Trame alerte état câble coupé"
