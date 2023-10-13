@@ -8,7 +8,7 @@
 #    RFGroup4: as923
 # Please do not change the existing IDs (Some may follow the old format)
 # The name of the profile .yaml file should be the same as the following ID
-id: nexelec_RFGroup1_1.0.2a_classC
+id: nexelec_RFGroup1_1.0.2b_classC
 # LoRaWAN class of the Device: Possible values: [ A, B, C ] (Should not have several values)
 # 'A': Class A (Bi-directional end-devices with downlink listening only after uplink transmission)
 # 'B': Class B (Bi-directional end-devices with downlink listening on predefined synchronized pingslots)
@@ -24,14 +24,14 @@ motionIndicator: RANDOM
 mac:
     # Activation modes supported by the device (put true where applicable).
     # (ABP)
-    activationByPersonalization: true
+    activationByPersonalization: false
     #(OTAA)
-    overTheAirActivation: false
+    overTheAirActivation: true
     # Supported version of the LoRaWAN MAC (Layer-2) specification. Possible values are '1.0.0/1.0.1', '1.0.2', '1.0.3', '1.0.4', '1.1'
     loRaWANMacVersion: 1.0.2
     # Supported version of the LoRaWAN regional parameters (PHY) specification. Possible values are '1.0.2revA', '1.0.2revB', '1.0.2revC', 
     # '1.0.3revA', 'RP2-1.0.0', 'RP2-1.0.1', 'RP2-1.0.2', 'RP2-1.0.3', 'RP2-1.0.4', 'RP2-1.0.5'.
-    regionalParameterVersion: 1.0.2revA
+    regionalParameterVersion: 1.0.2revB
 
     # The device Tx Power Capabilities here will not be taken into consideration if it is overwritten in the model.yaml
     devicesTxPowerCapabilities:
