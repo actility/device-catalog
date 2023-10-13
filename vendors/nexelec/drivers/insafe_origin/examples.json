@@ -1,0 +1,516 @@
+[
+    {
+        "description": "Example 1: InSafe Origin Product Status",
+        "type": "uplink",
+        "input": {
+            "bytes": "A20000006400C8B400001452E697AD78000000",
+            "fPort": 1,
+            "recvTime": "2020-08-02T20:00:00.000+05:00"
+        },
+        "output": {
+            "data": {
+                "payload": [
+                    {
+                        "Type_of_Product": "Insafe_Origin_LoRa"
+                    },
+                    {
+                        "Type_of_message": "Product_Status_Message"
+                    },
+                    {
+                        "HW_Revision": "A"
+                    },
+                    {
+                        "SW_Revision": "A"
+                    },
+                    {
+                        "Remaining_Product_lifetime_(months)": 100
+                    },
+                    {
+                        "Smoke_sensor_fault_mode": "Sensor OK"
+                    },
+                    {
+                        "Temperature_Humidity_sensor_fault_mode": "Sensor OK"
+                    },
+                    {
+                        "Not_used": ""
+                    },
+                    {
+                        "Battery1_voltage_(mV)": 3000
+                    },
+                    {
+                        "Battery2_voltage_(mV)": 2900
+                    },
+                    {
+                        "Battery_level": "High"
+                    },
+                    {
+                        "Pending_Join": "Non-Active"
+                    },
+                    {
+                        "Not_Used": ""
+                    },
+                    {
+                        "Number_of_frames_sent": 200
+                    },
+                    {
+                        "Product_RTC_date_since_2000_(years)": 20
+                    },
+                    {
+                        "Product_RTC_date_Month_of_the_year": 11
+                    },
+                    {
+                        "Product_RTC_date__Day_of_the_month": 19
+                    },
+                    {
+                        "Product_RTC_date_Hours_of_the_day": 9
+                    },
+                    {
+                        "Product_RTC_date_Minutes_of_the_hour": 30
+                    },
+                    {
+                        "Product_RTC_date_Seconds_of_the_hour": 45
+                    },
+                    {
+                        "Remaining_connectivity_duration_(months)": 120
+                    },
+                    {
+                        "Reserved_Nexelec": 0
+                    },
+                    {
+                        "Not_Used": ""
+                    }
+                ]
+            },
+            "errors": [],
+            "warnings": []
+        }
+    }
+    ,
+    {
+        "description": "Example 2: InSafe Origin Configuration of Product Function",
+        "type": "uplink",
+        "input": {
+          "bytes": "A201D8001800000A30018017CD200000000000000000",
+          "fPort": 1,
+          "recvTime": "2020-08-02T20:00:00.000+05:00"
+        },
+        "output": {
+          "data": {
+            "payload": [
+                {
+                    "Type_of_Product": "Insafe_Origin_LoRa"
+                },
+                {
+                    "Type_of_message": "Product_General_Config_Message"
+                },
+                {
+                    "Temperature_Datalog_Enable": "Active"
+                },
+                {
+                    "Humidity_Datalog_Enable": "Active"
+                },
+                {
+                    "Daily_Air_Quality_Enable": "Non-Active"
+                },
+                {
+                    "Temperature_Alert_Enable": "Active"
+                },
+                {
+                    "Keepalive_Enable": "Active"
+                },
+                {
+                    "Not_Used": ""
+                },
+                {
+                    "Keepalive_period_(hours)": 24
+                },
+                {
+                    "Not_Used": ""
+                },
+                {
+                    "Measuring_Period_(minutes)": 10
+                },
+                {
+                    "Temperature_Datalog_decimation_factor_(Record_only_1_on_x_samples)": 3
+                },
+                {
+                    "Not_Used": ""
+                },
+                {
+                    "Humidity_Datalog_decimation_factor_(Record_only_1_on_x_samples)": 3
+                },
+                {
+                    "Not_Used": ""
+                },
+                {
+                    "Temperature_Alert_Threshold_1_(°C)": 19
+                },
+                {
+                    "Temperature_Alert_Threshold_2_(°C)": 21
+                },
+                {
+                    "Not_Used": ""
+                }
+            ]
+          },
+          "errors": [],
+          "warnings": []
+        }
+    },
+    {
+        "description": "Example 3: InSafe Origin Keepalive frame",
+        "type": "uplink",
+        "input": {
+        "bytes": "A202",
+        "fPort": 1,
+        "recvTime": "2020-08-02T20:00:00.000+05:00"
+        },
+        "output": {
+            "data": {
+                "payload": [
+                    {
+                        "Type_of_Product": "Insafe_Origin_LoRa"
+                    },
+                    {
+                        "Type_of_message": "Keepalive"
+                    }
+                ]
+            },
+        "errors": [],
+        "warnings": []
+        }
+    },
+    {
+        "description": "Example 4: InSafe Origin Smoke Alarm Status",
+        "type": "uplink",
+        "input": {
+            "bytes": "A203800200",
+            "fPort": 1,
+            "recvTime": "2020-08-02T20:00:00.000+05:00"
+        },
+        "output": {
+            "data": {
+                "payload": [
+                    {
+                        "Type_of_Product": "Insafe_Origin_LoRa"
+                    },
+                    {
+                        "Type_of_message": "Smoke_Alarm_Status_Message"
+                    },
+                    {
+                        "Smoke_Alarm": "Active"
+                    },
+                    {
+                        "Smoke_Alarm_Hush": "Alarm stopped because no smoke anymore"
+                    },
+                    {
+                        "Smoke_Test": "Non-Active"
+                    },
+                    {
+                        "Alarm_due_to_lack_of_maintenance": "No"
+                    },
+                    {
+                        "Alarm_due_to_humidity_out_of_range": "No"
+                    },
+                    {
+                        "Alarm_due_to_temperature_out_of_range": "No"
+                    },
+                    {
+                        "Not_Used": ""
+                    },
+                    {
+                        "Time_since_last_maintenance_(weeks)": 2
+                    },
+                    {
+                        "Frame_index": 0
+                    },
+                    {
+                        "Not_Used": ""
+                    }
+                ]
+            },
+            "errors": [],
+            "warnings": []
+        }
+    },
+    {
+        "description": "Example 5: InSafe Origin Daily Air Quality",
+        "type": "uplink",
+        "input": {
+            "bytes": "A20420647D6E64827280",
+            "fPort": 1,
+            "recvTime": "2020-08-02T20:00:00.000+05:00"
+        },
+        "output": {
+            "data": {
+                "payload": [
+                    {
+                        "Type_of_Product": "Insafe_Origin_LoRa"
+                    },
+                    {
+                        "Type_of_message": "Daily_Air_Quality_Message"
+                    },
+                    {
+                        "IAQ_GLOBAL": "Good"
+                    },
+                    {
+                        "IAQ_SOURCE": "All"
+                    },
+                    {
+                        "Not_Used": ""
+                    },
+                    {
+                        "Temperature_min_(°C)": 20
+                    },
+                    {
+                        "Temperature_max_(°C)": 25
+                    },
+                    {
+                        "Temperature_averaged_(°C)": 22
+                    },
+                    {
+                        "Relative_Humidity_min_(%RH)": 50
+                    },
+                    {
+                        "Relative_Humidity_max_(%RH)": 65
+                    },
+                    {
+                        "Relative_Humidity_averaged_(%RH)": 57
+                    },
+                    {
+                        "Frame_index": 4
+                    },
+                    {
+                        "Not_Used": ""
+                    }
+                ]
+            },
+            "errors": [],
+            "warnings": []
+        }
+    },
+    {
+        "description": "Example 6: InSafe Origin Real-Time Data",
+        "type": "uplink",
+        "input": {
+            "bytes": "A2050000703790",
+            "fPort": 1,
+            "recvTime": "2020-08-02T20:00:00.000+05:00"
+        },
+        "output": {
+            "data": {
+                "payload": [
+                    {
+                        "Type_of_Product": "Insafe_Origin_LoRa"
+                    },
+                    {
+                        "Type_of_message": "Real_Time_Message"
+                    },
+                    {
+                        "IAQ_GLOBAL": "Very Good"
+                    },
+                    {
+                        "IAQ_SOURCE": "All"
+                    },
+                    {
+                        "IAQ_DRY": "Very Good"
+                    },
+                    {
+                        "IAQ_MOULD": "Very Good"
+                    },
+                    {
+                        "IAQ_DUST_MITES": "Very Good"
+                    },
+                    {
+                        "Temperature_(°C)": 22.4
+                    },
+                    {
+                        "Relative_Humidity_(%RH)": 55.5
+                    },
+                    {
+                        "Frame_index": 1
+                    }
+                ]
+            },
+            "errors": [],
+            "warnings": []
+        }
+    },
+    {
+        "description": "Example 7: InSafe Origin Datalog Temperature",
+        "type": "uplink",
+        "input": {
+            "bytes": "A2060C31643218EC7633198CC562B158AC40",
+            "fPort": 1,
+            "recvTime": "2020-08-02T20:00:00.000+05:00"
+        },
+        "output": {
+            "data": {
+                "payload": [
+                    {
+                        "Type_of_Product": "Insafe_Origin_LoRa"
+                    },
+                    {
+                        "Type_of_message": "Temperature_Datalog_Message"
+                    },
+                    {
+                        "Number_Data": 12
+                    },
+                    {
+                        "Time_between_measurements_(minutes)": 30
+                    },
+                    {
+                        "Not_used": ""
+                    },
+                    {
+                        "Frame_index": 1
+                    },
+                    {
+                        "Temperature_data_[n-11]": 20
+                    },
+                    {
+                        "Temperature_data_[n-10]": 20
+                    },
+                    {
+                        "Temperature_data_[n-9]": 19.9
+                    },
+                    {
+                        "Temperature_data_[n-8]": 19.9
+                    },
+                    {
+                        "Temperature_data_[n-7]": 19.8
+                    },
+                    {
+                        "Temperature_data_[n-6]": 19.8
+                    },
+                    {
+                        "Temperature_data_[n-5]": 19.8
+                    },
+                    {
+                        "Temperature_data_[n-4]": 19.7
+                    },
+                    {
+                        "Temperature_data_[n-3]": 19.7
+                    },
+                    {
+                        "Temperature_data_[n-2]": 19.7
+                    },
+                    {
+                        "Temperature_data_[n-1]": 19.7
+                    },
+                    {
+                        "Temperature_data_[n-0]": 19.6
+                    }
+                ]
+            },
+            "errors": [],
+            "warnings": []
+        }
+    },
+    {
+        "description": "Example 8: InSafe Origin Datalog Humidity",
+        "type": "uplink",
+        "input": {
+            "bytes": "A2070C357879797A7B7B7B7C7C7C7C7C",
+            "fPort": 1,
+            "recvTime": "2020-08-02T20:00:00.000+05:00"
+        },
+        "output": {
+            "data": {
+                "payload": [
+                    {
+                        "Type_of_Product": "Insafe_Origin_LoRa"
+                    },
+                    {
+                        "Type_of_message": "Humidity_Datalog_Message"
+                    },
+                    {
+                        "Number_Data": 12
+                    },
+                    {
+                        "Time_between_measurements_(minutes)": 30
+                    },
+                    {
+                        "Not_used": ""
+                    },
+                    {
+                        "Frame_index": 5
+                    },
+                    {
+                        "Humidity_data_[n-11]": 60
+                    },
+                    {
+                        "Humidity_data_[n-10]": 60.5
+                    },
+                    {
+                        "Humidity_data_[n-9]": 60.5
+                    },
+                    {
+                        "Humidity_data_[n-8]": 61
+                    },
+                    {
+                        "Humidity_data_[n-7]": 61.5
+                    },
+                    {
+                        "Humidity_data_[n-6]": 61.5
+                    },
+                    {
+                        "Humidity_data_[n-5]": 61.5
+                    },
+                    {
+                        "Humidity_data_[n-4]": 62
+                    },
+                    {
+                        "Humidity_data_[n-3]": 62
+                    },
+                    {
+                        "Humidity_data_[n-2]": 62
+                    },
+                    {
+                        "Humidity_data_[n-1]": 62
+                    },
+                    {
+                        "Humidity_data_[n-0]": 62
+                    }
+                ]
+            },
+            "errors": [],
+            "warnings": []
+        }
+    },
+    {
+    "description": "Example 9: InSafe Origin Temperature Alerts",
+        "type": "uplink",
+        "input": {
+            "bytes": "A20866C4",
+            "fPort": 1,
+            "recvTime": "2020-08-02T20:00:00.000+05:00"
+        },
+        "output": {
+            "data": {
+                "payload": [
+                    {
+                        "Type_of_Product": "Insafe_Origin_LoRa"
+                    },
+                    {
+                        "Type_of_message": "Temperature_Alerts_Message"
+                    },
+                    {
+                        "Temperature_(°C)": 20.5
+                    },
+                    {
+                        "Threshold_1_reached": "Yes"
+                    },
+                    {
+                        "Threshold_2_reached": "No"
+                    },
+                    {
+                        "Frame_Index": 1
+                    }
+                ]
+            },
+            "errors": [],
+            "warnings": []
+        }
+    }
+]
