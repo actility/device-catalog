@@ -1,5 +1,5 @@
 # Commercial name of the model 
-name: Ultrasonic Level Measurement
+name: ACW-LVL
 # Functional description of the product. Maximum 500 characters. 
 description: "Sensor intended for remote monitoring of the levels of many types of containers, such as dumpsters, agricultural silos or even liquid tanks."
 # Logo of the device
@@ -28,9 +28,10 @@ motionIndicator:
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
 # Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
+# Format: `<8 characters max>:<16 characters max>:<digits only>`
 modelId: atim:ultra-level:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
-protocolId: 
+protocolId: atim:generic:1
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 

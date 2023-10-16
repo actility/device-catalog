@@ -28,6 +28,7 @@ motionIndicator:
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: false
 # Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
+# Format: `<8 characters max>:<16 characters max>:<digits only>`
 modelId: msight:wts305:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId: msight:wts305:1
@@ -46,5 +47,5 @@ sensors:
 # Driver examples
 # A list of examples description that are compatible with this model
 examples: 
-    - msight:wts305:1:
+    msight:wts305:1:
         - "WTS305: Example 1"

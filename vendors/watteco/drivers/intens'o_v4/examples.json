@@ -1,0 +1,151 @@
+[
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing intensity value | payload:110A000C00553941500000",
+    "input": {
+      "bytes": [
+        17, 10,  0, 12, 0,
+        85, 57, 65, 80, 0,
+        0
+      ],
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    }
+  ,
+    "output": {
+      "data": [
+        {
+          "variable": "Irms",
+          "value": 13,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        }
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing firmware version | payload:110100000002000D0305020015E2",
+    "input": {
+      "bytes": [
+        17,
+        1,
+        0,
+        0,
+        0,
+        2,
+        0,
+        13,
+        3,
+        5,
+        2,
+        0,
+        21,
+        226
+      ],
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": [
+        {
+          "variable": "firmware",
+          "value": "3.5.2.5602",
+          "date": "2023-07-19T07:51:25.508306410Z"
+        }
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report  containing battery charge | payload:110A00500006410503040E6804",
+    "input": {
+      "bytes": [
+        17,
+        10,
+        0,
+        80,
+        0,
+        6,
+        65,
+        5,
+        3,
+        4,
+        14,
+        104,
+        4
+      ],
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": [{
+        "variable": "disposable_battery_voltage",
+        "value": 3.688,
+        "date": "2023-07-19T07:51:25.508306410Z"
+      }],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing dataup info | payload:110180040000000800",
+    "input": {
+      "bytes": [
+        17, 1, 128, 4, 0,
+        0, 0,   8, 0
+      ],
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": [
+        {
+          "variable": "message_type",
+          "value": "unconfirmed",
+          "date": "2023-07-19T07:51:25.508306410Z"
+        }
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink batch report| payload:20100000C08F0344D0030000008804FCF941C08B8B15",
+    "input": {
+      "bytes": [
+        32,  16,   0,  0, 192, 143,   3,
+        68, 208,   3,  0,   0,   0, 136,
+        4, 252, 249, 65, 192, 139, 139,
+        21
+      ],
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": [
+        { "variable": "Irms", "value": 0, "date": "2023-07-19T07:50:43.508Z" },
+        { "variable": "Irms", "value": 0, "date": "2023-07-19T07:51:03.508Z" },
+        { "variable": "Irms", "value": 0, "date": "2023-07-19T07:51:23.508Z" },
+        {
+          "variable": "battery_voltage",
+          "value": 3.6,
+          "date": "2023-07-19T07:49:57.508Z"
+        },
+        {
+          "variable": "battery_voltage",
+          "value": 3.6,
+          "date": "2023-07-19T07:50:27.508Z"
+        },
+        {
+          "variable": "battery_voltage",
+          "value": 3.6,
+          "date": "2023-07-19T07:50:57.508Z"
+        }
+      ],
+      "warnings": []
+    }
+
+  }
+]

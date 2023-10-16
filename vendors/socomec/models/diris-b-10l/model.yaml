@@ -24,6 +24,7 @@ motionIndicator:
 # Is your device certified by the LoRa Alliance? Possible values: true, false.
 LoRaWANCertified: true
 # Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
+# Format: `<8 characters max>:<16 characters max>:<digits only>`
 # Be careful: Once you chose a model, it cannot be changed later
 modelId: socomec:diris-b-10l:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
@@ -47,7 +48,7 @@ sensors:
   - temperature:Cel
 
 examples:
-  - socomec:diris-b-10l:1:
+  socomec:diris-b-10l:1:
     - "uplink example 1"
     - "uplink example 2"
     - "uplink example 3"

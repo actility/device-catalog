@@ -67,4 +67,4 @@ function hexToBytes(hex) {
     return bytes;
 }
 
-console.log(Decoder(hexToBytes("01756403671901046873057D670406736827")));
+exports.Decoder = Decoder;

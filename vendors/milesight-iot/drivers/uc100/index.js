@@ -154,3 +154,5 @@ function readSerialNumber(bytes) {
     }
     return temp.join("");
 }
+
+exports.Decoder = Decoder;

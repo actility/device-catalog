@@ -29,6 +29,7 @@ motionIndicator:
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: 
 # Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
+# Format: `<8 characters max>:<16 characters max>:<digits only>`
 modelId: adeunis:delta-p:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId: adeunis:delta-p:1
@@ -42,23 +43,16 @@ sensors:
 # A list of examples description that are compatible with this model
 examples:
     adeunis:delta-p:1:
-        - "uplink containing the information frame on device configuration"
-        - "uplink containing the information frame on product configuration"
-        - "uplink containing the information frame on network configuration"
-        - "uplink containing the information frame on digital inputs configuration"
-        - "uplink containing the keep alive frame"
-        - "uplink containing the periodic data frame when having four values of pressure"
-        - "uplink containing the periodic data frame when having five values of pressure where some are negative"
-        - "uplink containing the pressure alarm frame"
-        - "uplink containing the periodic data frame when having four values of analog inputs"
-        - "uplink containing the periodic data frame when having four values of analog inputs where some are negative"
-        - "uplink containing the analog alarm frame"
-        - "uplink containing the button input 1 alarm frame"
-        - "uplink containing the digital input 2 alarm frame"
-        - "uplink containing the response frame of updating a register when the request status is success"
-        - "uplink containing the response frame of updating a register when an error occurred"
-        - "uplink containing the acknowledgement frame"
-        - "downlink message containing the product configuration request frame"
-        - "downlink message containing the network configuration request frame"
-        - "downlink message containing specific register value request frame"
-        - "downlink message containing the frame for updating the value of a specific register"
+        - "0x10 Delta P configuration"
+        - "0x11 Delta P 0-10V configuration"
+        - "0x1f digital input configuration"
+        - "0x20 Configuration"
+        - "0x2f Delta P Downlink ack"
+        - "0x30 Keep alive"
+        - "0x33 Set register status"
+        - "0x51 digital input 1 alarm"
+        - "0x52 digital input 2 alarm"
+        - "0x53 Delta P periodic data"
+        - "0x54 Delta P alarm"
+        - "0x55 Delta P - periodic 0-10 V"
+        - "0x56 Delta P - alarm 0-10 V"

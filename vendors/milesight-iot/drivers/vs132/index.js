@@ -93,3 +93,5 @@ function readString(bytes) {
     }
     return temp.join("");
 }
+
+exports.Decoder = Decoder;
