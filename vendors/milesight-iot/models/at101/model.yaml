@@ -31,13 +31,20 @@ LoRaWANCertified: false
 # Format: `<8 characters max>:<16 characters max>:<digits only>`
 modelId: msight:at101:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
-protocolId: 
+protocolId: msight:at101:1
 # DataSheet URL (optional) 
 specificationURL: https://resource.milesight.com/milesight/iot/document/at101-datasheet-en.pdf
 # User Guide URL (optional) 
 userGuideURL: https://resource.milesight.com/milesight/iot/document/at101-user-guide-en.pdf
 # Available sensors following Actility ontology: https://github.com/actility/thingpark-iot-flow-js-driver/blob/master/UNITS.md 
 sensors:
+    - batteryLevel:%
+    - temperature:Cel
+    - position:GPS
+    - rssi:dBm
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
+    msight:at101:1:
+        - "AT101: Example 1"
+        - "AT101: Example 2"
