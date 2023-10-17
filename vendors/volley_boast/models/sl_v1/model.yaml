@@ -27,9 +27,42 @@ LoRaWANCertified:
 modelId: vobo:sl:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId:
+    - vobo:node:1
 # DataSheet URL (optional) 
 specificationURL: https://volleyboast.com/products/Latest/VoBoSL/DCM-SL04-A1_VoBo_SL_Datasheet.pdf
 # User Guide URL (optional) 
 userGuideURL: 
+examples:
+    vobo:node:1:
+examples:
+    vobo:node:1:
+        - "VoBo-XX Standard Payload."
+        - "VoBo Heartbeat V1 Payload."
+        - "VoBo Heartbeat V2 Payload."
+        - "VoBo-XX Engineering Units AIN1 & AIN2 Payload."
+        - "VoBo-XX Engineering Units AIN3 & Battery Level Payload."
+        - "VoBo-XX Engineering Units ADC Temperature Payload."
+        - "VoBo-XX Engineering Units Digital Inputs Payload."
+        - "VoBo-XX Event Log Payload."
+        - "VoBo General Configuration Payload."
+        - "VoBo VoBoSync Part 1 Configuration Payload."
+        - "VoBo VoBoSync Part 2 Configuration Payload."
+        - "VoBo-XX General Configuration Payload."
+        - "VoBo-XX Engineering Units AIN1 Part 1 Configuration Payload."
+        - "VoBo-XX Engineering Units AIN1 Part 2 Configuration Payload."
+        - "VoBo-XX Engineering Units AIN1 Part 3 Configuration Payload."
+        - "VoBo-XX Engineering Units AIN2 Part 1 Configuration Payload."
+        - "VoBo-XX Engineering Units AIN2 Part 2 Configuration Payload."
+        - "VoBo-XX Engineering Units AIN2 Part 3 Configuration Payload."
+        - "VoBo-XX Engineering Units AIN3 Part 1 Configuration Payload."
+        - "VoBo-XX Engineering Units AIN3 Part 2 Configuration Payload."
+        - "VoBo-XX Engineering Units AIN3 Part 3 Configuration Payload."
+        - "Payload with invalid FPort"
+        - "Analog Sensor payload with unknown Sensor Number."
+        - "Analog Sensor payload with unknown Engineering Unit Code."
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
+    - batteryVoltage:mV
+    - voltage:V
+    - temperature:Cel
+    - current:mA
