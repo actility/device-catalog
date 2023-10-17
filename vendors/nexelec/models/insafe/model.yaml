@@ -1,9 +1,9 @@
 # Commercial name of the model 
-name: PMi
+name: INSAFE Origin LoRa
 # Functional description of the product. Maximum 500 characters. 
-description: "PMi vous permettra d'analyser l'exposition réelle d'un espace à cette pollution de l'air et permet de mettre en place des mesures de correction selon la situation : ventilation, filtration de l'air, purification de l'air..."
+description: "En moins de 5 minutes, un incendie a la capacité de se propager et de remplir une pièce de fumée toxique et dangereuse.\nChaque seconde compte pour avertir les occupants et leur permettre de réagir rapidement.\nNos détecteurs de fumée sont conçus pour fonctionner pendant 10 ans de manière optimale et réagir rapidement à la moindre indication de danger."
 # Logo of the device
-logo: pmi.png
+logo: insafe.png
 # ID(s) of the profile that defines the LoRaWAN characteristics of this model. 
 deviceProfileId: 
     - nexelec_RFGroup1_1.0.2b_classA
@@ -24,16 +24,25 @@ motionIndicator:
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: false
 # Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
-# Format: `<8 characters max>:<16 characters max>:<digits only>`
-modelId: nexelec:pmi:1
+modelId: nexelec:insafe:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
-protocolId: nexelec:generic:1
+protocolId: nexelec:insafe-origin:1
 # DataSheet URL (optional) 
-specificationURL: https://www.nexelec.fr/_files/ugd/7f2846_7fae73763aba494294611407e74ee0d2.pdf
+specificationURL: https://support.nexelec.fr/helpdesk/attachments/80254066550
 # User Guide URL (optional) 
-userGuideURL: 
+userGuideURL: https://support.nexelec.fr/helpdesk/attachments/80046155851
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
+    nexelec:insafe-origin:1:
+        - "Example 1: InSafe Origin Product Status"
+        - "Example 2: InSafe Origin Configuration of Product Function"
+        - "Example 3: InSafe Origin Keepalive frame"
+        - "Example 4: InSafe Origin Smoke Alarm Status"
+        - "Example 5: InSafe Origin Daily Air Quality"
+        - "Example 6: InSafe Origin Real-Time Data"
+        - "Example 7: InSafe Origin Datalog Temperature"
+        - "Example 8: InSafe Origin Datalog Humidity"
+        - "Example 9: InSafe Origin Temperature Alerts"
