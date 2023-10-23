@@ -10,8 +10,7 @@ product:
     version: 1
 # ID(s) of the profile that defines the LoRaWAN characteristics of this model.
 deviceProfileId:
-    - g2misuratori_RFGroup1_1.0.1_classA
-    - g2misuratori_RFGroup3_1.0.2c_classA
+    - g2misuratori_RFGroup1_1.0.2b_classA
  
 # You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
 # Maximum device TX Conducted output power in dBm. 
@@ -27,15 +26,21 @@ minTxEIRP:
 motionIndicator:
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
-LoRaWANCertified: 
+LoRaWANCertified: true
 # Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
 # Format: `<8 characters max>:<16 characters max>:<digits only>`
 modelId: g2misura:g2-rf-slw:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
-protocolId:
+protocolId: g2misura:generic:1
 # DataSheet URL (optional) 
 specificationURL: https://oms-group.org/fileadmin/products/g2_misuratori/g2-rf-s868wmb/datasheet_G2-RF-SLW-en.pdf
 # User Guide URL (optional) 
 userGuideURL: 
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
+    - volume:m3
+examples:
+    g2misura:generic:1:
+        - "I'm Alive Frame"
+        - "Instant reading frame"
+        - "Historical reading frame"
