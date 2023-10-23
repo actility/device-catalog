@@ -110,6 +110,17 @@ function decodeUplink(input) {
  * @returns {EncodedDownlink} The encoded object
  */
 function encodeDownlink(input) {
+
+  let data = input;
+  if(data == null){
+    return {
+      errors: ["No data to encode"]
+    }
+  }
+  if(input.data != null) {
+    data = input.data;
+  }
+
   let result = {
     bytes: [],
     errors: [],
@@ -117,16 +128,16 @@ function encodeDownlink(input) {
   };
 
   let definedDownlinkVars = 0;
-  if (typeof input.data.transmitIntervalSeconds !== "undefined") {
+  if (typeof data.transmitIntervalSeconds !== "undefined") {
     definedDownlinkVars += 1;
   }
-  if (typeof input.data.measurementIntervalMs !== "undefined") {
+  if (typeof data.measurementIntervalMs !== "undefined") {
     definedDownlinkVars += 1;
   }
-  if (typeof input.data.lowPowerThreshold !== "undefined") {
+  if (typeof data.lowPowerThreshold !== "undefined") {
     definedDownlinkVars += 1;
   }
-  if (typeof input.data.factoryReset !== "undefined") {
+  if (typeof data.factoryReset !== "undefined") {
     definedDownlinkVars += 1;
   }
 
@@ -136,15 +147,15 @@ function encodeDownlink(input) {
     return result;
   }
 
-  if (typeof input.data.transmitIntervalSeconds !== "undefined") {
-    if (input.data.transmitIntervalSeconds < 60) {
+  if (typeof data.transmitIntervalSeconds !== "undefined") {
+    if (data.transmitIntervalSeconds < 60) {
       result.errors.push(
         "Invalid downlink: transmit interval cannot be less than 1 min"
       );
       delete result.bytes;
       return result;
     }
-    if (input.data.transmitIntervalSeconds > 1800) {
+    if (data.transmitIntervalSeconds > 1800) {
       result.errors.push(
         "Invalid downlink: transmit interval cannot be greater than 30 min"
       );
@@ -153,22 +164,22 @@ function encodeDownlink(input) {
     }
     var downlink = Buffer.alloc(10);
     downlink.writeUInt16LE(0x0054, 0);
-    downlink.writeFloatLE(input.data.transmitIntervalSeconds, 2);
+    downlink.writeFloatLE(data.transmitIntervalSeconds, 2);
     downlink.writeFloatLE(0, 6);
     result.bytes = Array.from(new Uint8Array(downlink.buffer));
     result.fPort = 3;
     return result;
   }
 
-  if (typeof input.data.measurementIntervalMs !== "undefined") {
-    if (input.data.measurementIntervalMs < 200) {
+  if (typeof data.measurementIntervalMs !== "undefined") {
+    if (data.measurementIntervalMs < 200) {
       result.errors.push(
         "Invalid downlink: measurement interval cannot be less than 200 ms"
       );
       delete result.bytes;
       return result;
     }
-    if (input.data.measurementIntervalMs > 10000) {
+    if (data.measurementIntervalMs > 10000) {
       result.errors.push(
         "Invalid downlink: measurement interval cannot be greater than 10000 ms"
       );
@@ -178,17 +189,17 @@ function encodeDownlink(input) {
 
     var downlink = Buffer.alloc(10);
     downlink.writeUInt16LE(0x004d, 0);
-    downlink.writeFloatLE(input.data.measurementIntervalMs, 2);
+    downlink.writeFloatLE(data.measurementIntervalMs, 2);
     downlink.writeFloatLE(0, 6);
     result.bytes = Array.from(new Uint8Array(downlink.buffer));
     result.fPort = 3;
     return result;
   }
 
-  if (typeof input.data.lowPowerThreshold !== "undefined") {
+  if (typeof data.lowPowerThreshold !== "undefined") {
     var lowPowerTolerance = 0.000001;
     // Have leniant lower tolerance due to floating point
-    if (input.data.lowPowerThreshold + lowPowerTolerance < 1.8) {
+    if (data.lowPowerThreshold + lowPowerTolerance < 1.8) {
       result.errors.push(
         "Invalid downlink: low power threshold cannot be less than 1.8 v"
       );
@@ -196,7 +207,7 @@ function encodeDownlink(input) {
       return result;
     }
     // Have leniant upper tolerance due to floating point
-    if (input.data.lowPowerThreshold - lowPowerTolerance > 3.9) {
+    if (data.lowPowerThreshold - lowPowerTolerance > 3.9) {
       result.errors.push(
         "Invalid downlink: low power threshold cannot be greater than 3.9 v"
       );
@@ -206,15 +217,15 @@ function encodeDownlink(input) {
 
     var downlink = Buffer.alloc(10);
     downlink.writeUInt16LE(0x0050, 0);
-    downlink.writeFloatLE(input.data.lowPowerThreshold, 2);
+    downlink.writeFloatLE(data.lowPowerThreshold, 2);
     downlink.writeFloatLE(0, 6);
     result.bytes = Array.from(new Uint8Array(downlink.buffer));
     result.fPort = 3;
     return result;
   }
 
-  if (typeof input.data.factoryReset !== "undefined") {
-    if (input.data.factoryReset === true) {
+  if (typeof data.factoryReset !== "undefined") {
+    if (data.factoryReset === true) {
       result.bytes = [
         0x5a, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
       ];
@@ -282,7 +293,7 @@ function decodeDownlink(input) {
         result.errors.push(
           "Invalid downlink: transmit interval cannot be greater than 30 min"
         );
-        delete result.bytes;
+        delete result.data;
         return result;
       }
       result.data.transmitIntervalSeconds = transmitIntervalSeconds;
@@ -299,21 +310,21 @@ function decodeDownlink(input) {
         result.errors.push(
           "Invalid downlink: measurement interval cannot be less than 200 ms"
         );
-        delete result.bytes;
+        delete result.data;
         return result;
       }
       if (measurementIntervalMs > 10000) {
         result.errors.push(
           "Invalid downlink: measurement interval cannot be greater than 10000 ms"
         );
-        delete result.bytes;
+        delete result.data;
         return result;
       }
       result.data.measurementIntervalMs = measurementIntervalMs;
       break;
     case 0x50: // low power threshold
       var lowPowerTolerance = 0.000001;
-      var lowPowerThreshold = raw.readFloatLE(2);
+      var lowPowerThreshold = parseFloat(raw.readFloatLE(2).toFixed(1));
       var reserved = raw.readFloatLE(6);
       if (reserved !== 0) {
         result.warnings.push(
@@ -325,7 +336,7 @@ function decodeDownlink(input) {
         result.errors.push(
           "Invalid downlink: low power threshold cannot be less than 1.8 v"
         );
-        delete result.bytes;
+        delete result.data;
         return result;
       }
       // Have leniant upper tolerance due to floating point
@@ -333,7 +344,7 @@ function decodeDownlink(input) {
         result.errors.push(
           "Invalid downlink: low power threshold cannot be greater than 3.9 v"
         );
-        delete result.bytes;
+        delete result.data;
         return result;
       }
       result.data.lowPowerThreshold = lowPowerThreshold;
