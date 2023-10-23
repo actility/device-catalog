@@ -339,28 +339,38 @@ function encodeDownlink(input) {
     var errors = [];
     var warnings = [];
     var bytes = [];
-    switch (input.data.profile) {
+
+    let data = input;
+    if(data == null){
+        return {
+            errors: ["No data to encode"]
+        }
+    }
+    if(input.data != null) {
+        data = input.data;
+    }
+    switch (data.profile) {
         case 0:
             // Profile 0 - message interval in seconds, no profile number change
-            if (typeof input.data.critically_wet_threshold != "number") {
-                errors.push("Critically wet threshold: ".concat(input.data.critically_wet_threshold, " is not a number."));
+            if (typeof data.critically_wet_threshold != "number") {
+                errors.push("Critically wet threshold: ".concat(data.critically_wet_threshold, " is not a number."));
             }
             else {
-                if (input.data.critically_wet_threshold > 255 || input.data.critically_wet_threshold < 1) {
-                    errors.push("Critically wet threshold: ".concat(input.data.critically_wet_threshold, " is outside valid range (1-255)."));
+                if (data.critically_wet_threshold > 255 || data.critically_wet_threshold < 1) {
+                    errors.push("Critically wet threshold: ".concat(data.critically_wet_threshold, " is outside valid range (1-255)."));
                 }
-                else if (input.data.critically_wet_threshold > 12) {
+                else if (data.critically_wet_threshold > 12) {
                     warnings.push("Critically wet threshold > 12, disabling emergency messaging.");
                 }
-                bytes.push(input.data.critically_wet_threshold);
+                bytes.push(data.critically_wet_threshold);
             }
-            if (typeof input.data.regular_message_interval_min != "number") {
-                errors.push("Regular message interval: ".concat(input.data.regular_message_interval_min, " is not a number"));
+            if (typeof data.regular_message_interval_min != "number") {
+                errors.push("Regular message interval: ".concat(data.regular_message_interval_min, " is not a number"));
             }
             else {
-                var reg_msg_interval_sec = input.data.regular_message_interval_min * 60;
+                var reg_msg_interval_sec = data.regular_message_interval_min * 60;
                 if (reg_msg_interval_sec > 65535 || reg_msg_interval_sec < 60) {
-                    errors.push("Regular message interval:  ".concat(input.data.regular_message_interval_min, " is outside valid range (1-1092)."));
+                    errors.push("Regular message interval:  ".concat(data.regular_message_interval_min, " is outside valid range (1-1092)."));
                 }
                 // Big-endian encoding, largest byte in [1]
                 bytes.push((reg_msg_interval_sec & 0xFF00) >> 8);
@@ -380,45 +390,45 @@ function encodeDownlink(input) {
             }
         case 1:
             // Profile 1 - 4-bit wetness threshold, 12-bit regular message interval in minutes
-            if (typeof input.data.regular_message_interval_min != "number") {
-                errors.push("Regular message interval: ".concat(input.data.regular_message_interval_min, " is not a number"));
+            if (typeof data.regular_message_interval_min != "number") {
+                errors.push("Regular message interval: ".concat(data.regular_message_interval_min, " is not a number"));
                 // Error - set first two bytes to 0
                 bytes.push(0, 0);
             }
             else {
-                if (input.data.regular_message_interval_min > 1440 || input.data.regular_message_interval_min < 1) {
-                    errors.push("Regular message interval:  ".concat(input.data.critically_wet_threshold, " is outside valid range (1-1440)."));
+                if (data.regular_message_interval_min > 1440 || data.regular_message_interval_min < 1) {
+                    errors.push("Regular message interval:  ".concat(data.critically_wet_threshold, " is outside valid range (1-1440)."));
                     // Error - set first two bytes to 0
                     bytes.push(0, 0);
                 }
                 else {
-                    bytes.push((input.data.regular_message_interval_min & 0x0F00) >> 8);
-                    bytes.push(input.data.regular_message_interval_min & 0x00FF);
+                    bytes.push((data.regular_message_interval_min & 0x0F00) >> 8);
+                    bytes.push(data.regular_message_interval_min & 0x00FF);
                 }
             }
-            if (typeof input.data.critically_wet_threshold != "number") {
-                errors.push("Critically wet threshold: ".concat(input.data.critically_wet_threshold, " is not a number."));
+            if (typeof data.critically_wet_threshold != "number") {
+                errors.push("Critically wet threshold: ".concat(data.critically_wet_threshold, " is not a number."));
             }
             else {
-                if (input.data.critically_wet_threshold > 15 || input.data.critically_wet_threshold < 1) {
-                    errors.push("Critically wet threshold: ".concat(input.data.critically_wet_threshold, " is outside valid range (1-15)."));
+                if (data.critically_wet_threshold > 15 || data.critically_wet_threshold < 1) {
+                    errors.push("Critically wet threshold: ".concat(data.critically_wet_threshold, " is outside valid range (1-15)."));
                 }
                 else {
                     // Set bits 4..7 of byte 0 to critical wetness threshold as unsigned 4-bit integer
-                    bytes[0] = bytes[0] | ((input.data.critically_wet_threshold & 0xF) << 4);
+                    bytes[0] = bytes[0] | ((data.critically_wet_threshold & 0xF) << 4);
                 }
-                if (input.data.critically_wet_threshold > 12) {
+                if (data.critically_wet_threshold > 12) {
                     warnings.push("Critically wet threshold > 12, disabling emergency messaging.");
                 }
             }
             // Set byte 2 to profile as unsigned 8-bit integer
-            if (input.data.new_profile != null) {
+            if (data.new_profile != null) {
                 // Use this downlink to set a new profile
-                bytes.push(input.data.new_profile);
-                warnings.push("Changing profile to: ".concat(input.data.new_profile, "."));
+                bytes.push(data.new_profile);
+                warnings.push("Changing profile to: ".concat(data.new_profile, "."));
             }
             else {
-                bytes.push(input.data.profile);
+                bytes.push(data.profile);
             }
             if (errors.length > 0) {
                 // Errors have occurred in encoding, return mandatory fPort and error string array only.
@@ -433,7 +443,7 @@ function encodeDownlink(input) {
                 }
             }
         default:
-            return { fPort: 999, errors: ["Unexpected profile: ".concat(input.data.profile, ", cannot encode.")] };
+            return { fPort: 999, errors: ["Unexpected profile: ".concat(data.profile, ", cannot encode.")] };
     }
 }
 function decodeDownlink(input) {
@@ -483,6 +493,7 @@ function decodeDownlink(input) {
             return { errors: ["Unexpected fPort: ".concat(input.fPort)] };
     }
 }
+
 exports.decodeUplink = decodeUplink;
 exports.encodeDownlink = encodeDownlink;
 exports.decodeDownlink = decodeDownlink;
