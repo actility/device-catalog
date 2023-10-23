@@ -1,15 +1,11 @@
 # Commercial name of the model 
-name: G2-RF-SLW
+name: g2-ips-clw
 # Functional description of the product. Maximum 500 characters. 
-description: "G2-RF-SLW"
+description: "G2-IPS-CLW radio module with LoRaWAN protocol for fixed network to be assembled on single jet, multijet, volumetric, Woltmann water meters preset for inductive sensor."
 # Logo of the device
-logo: g2-rf-slw.png
-# Product name & Version
-product:
-    name: G2MI/SLW
-    version: 1
+logo: g2-ips-clw.png
 # ID(s) of the profile that defines the LoRaWAN characteristics of this model.
-deviceProfileId:
+deviceProfileId: 
     - g2misuratori_RFGroup1_1.0.2b_classA
  
 # You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
@@ -29,13 +25,13 @@ motionIndicator:
 LoRaWANCertified: true
 # Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
 # Format: `<8 characters max>:<16 characters max>:<digits only>`
-modelId: g2misura:g2-rf-slw:1
+modelId: g2misura:g2-ips-clw:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId: g2misura:generic:1
 # DataSheet URL (optional) 
-specificationURL: https://oms-group.org/fileadmin/products/g2_misuratori/g2-rf-s868wmb/datasheet_G2-RF-SLW-en.pdf
+specificationURL: https://lora-alliance.org/lora_products/g2-ips-clw/
 # User Guide URL (optional) 
-userGuideURL: 
+userGuideURL: https://lora-alliance.org/lora_products/g2-ips-clw/
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
     - volume:m3
