@@ -47,8 +47,17 @@ function decodeUplink(input) {
  * @returns {EncodedDownlink} The encoded object
  */
 function encodeDownlink(input) {
+    let data = input;
+    if(data == null){
+        return {
+            errors: ["No data to encode"]
+        }
+    }
+    if(input.data != null) {
+        data = input.data;
+    }
     return {
-        bytes: [...Buffer.from(asciiToHex(input.data.message))],
+        bytes: [...Buffer.from(asciiToHex(data.message))],
         fPort: 16,
         errors: [],
         warnings: []
