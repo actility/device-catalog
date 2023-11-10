@@ -25,7 +25,7 @@ minTxEIRP:
 motionIndicator:
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
-LoRaWANCertified: false #Edited by Actility
+LoRaWANCertified: false
 # Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
 # Format: `<8 characters max>:<16 characters max>:<digits only>`
 modelId: sensecap:t1110:1
@@ -36,9 +36,39 @@ specificationURL: https://files.seeedstudio.com/products/SenseCAP/Wio-WM1110/Wio
 # User Guide URL (optional) 
 userGuideURL: https://files.seeedstudio.com/products/SenseCAP/Wio-Tracker/Wio%20Tracker%201110%20v1.0_SCH_PDF_20230822.pdf
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
-sensors: #Sensors removed by Actility
+sensors:
+    - temperature:Cel
+    - humidity:%RH
+    - acceleration:m/s2
 
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
-
+    sensecap:t1110:1:
+        - "Measurements: Event Status, Air Temperature, Air Humidity, AccelerometerX, AccelerometerY, AccelerometerZ 1"
+        - "Measurements: Positioning Status, Event Status 1"
+        - "Measurements: Event Status, Air Temperature, Air Humidity, AccelerometerX, AccelerometerY, AccelerometerZ 2"
+        - "Measurements: Event Status 1"
+        - "Measurements: GNSS payload 1"
+        - "Measurements: GNSS payload 2"
+        - "Measurements: Event Status, Air Temperature, Air Humidity, AccelerometerX, AccelerometerY, AccelerometerZ 3"
+        - "Measurements: Event Status 2"
+        - "Measurements: GNSS payload 3"
+        - "Measurements: Event Status, Air Temperature, Air Humidity, AccelerometerX, AccelerometerY, AccelerometerZ 4"
+        - "Measurements: Event Status 3"
+        - "Measurements: GNSS payload 4"
+        - "Measurements: GNSS payload 5"
+        - "Measurements: Event Status, Air Temperature, Air Humidity, AccelerometerX, AccelerometerY, AccelerometerZ 5"
+        - "Measurements: Positioning Status, Event Status 2"
+        - "Measurements: Event Status, Air Temperature, Air Humidity, AccelerometerX, AccelerometerY, AccelerometerZ 6"
+        - "Measurements: Event Status 4"
+        - "Measurements: GNSS payload 6"
+        - "Measurements: GNSS payload 7"
+        - "Measurements: Event Status, Air Temperature, Air Humidity, AccelerometerX, AccelerometerY, AccelerometerZ 7"
+        - "Measurements: Event Status 5"
+        - "Measurements: GNSS payload 8"
+        - "Measurements: GNSS payload 9"
+        - "Measurements: Event Status, Air Temperature, Air Humidity, AccelerometerX, AccelerometerY, AccelerometerZ 8"
+        - "Measurements: Positioning Status, Event Status 3"
+        - "Measurements: Event Status, Air Temperature, Air Humidity, AccelerometerX, AccelerometerY, AccelerometerZ 9"
+        - "Measurements: Event Status 6"
