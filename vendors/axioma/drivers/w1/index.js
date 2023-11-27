@@ -53,7 +53,7 @@ function decodeUplink(input) {
         warnings: []
     };
 
-    if (fPort != 100) {
+    if (fPort != 100 && fPort != 101 && fPort != 103) {
         result.errors.push("Invalid fPort!");
     }
 
@@ -114,6 +114,13 @@ function decodeUplink(input) {
             volumes: volumes
         }
     }
+    else if(fPort === 101) {
+        
+    }
+    else if(fPort === 103) {
+
+    }
+    
 
     return result;
 
