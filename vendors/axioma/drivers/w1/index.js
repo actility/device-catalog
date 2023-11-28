@@ -111,14 +111,116 @@ function decodeUplink(input) {
             firstLogTime: firstLogTime,
             firstLogVolume: firstLogVolume,
             deltaVolumes: deltaVolumes,
-            volumes: volumes
+            volumes: volumes,
+
+            payloadType: "Basic"
         }
     }
     else if(fPort === 101) {
-        
+        bytes = input.bytes;
+        let values = [];
+
+        let VIF = {
+            time: 0xFF8913,
+            status: 0xFD17,
+            totalVolume: 0x13,
+            volume: 0x93
+        };
+
+        let byteLengths = [[1, 3], [1, 2], [1, 1], [1, 3], [1, 1], [1, 1, 1]];
+        let i = 0;
+        for(let valueLength of byteLengths) {
+            let valueItem = {
+                dataType: "",
+                bytesLength: 0,
+                variableLength: false,
+                compactProfile: false,
+                withStorage: false,
+                imperial: false
+            };
+
+            let valueDIF = bytes[i];
+
+            valueItem.withStorage = (valueDIF & 0xF0) === 0x40;
+
+            valueItem.bytesLength = valueDIF & 0x0F;
+            if(valueItem.bytesLength === 13) {
+                valueItem.bytesLength = null;
+                valueItem.variableLength = true;
+            }
+            i += valueLength[0];
+
+            let valueVIF = 0;
+            for(let j = 0 ; j < valueLength[1] ; j++) {
+                valueVIF *= 16*16;
+                valueVIF += bytes[i++];
+            }
+            
+            valueItem.DIF = valueDIF;
+            valueItem.VIF = valueVIF;
+
+            switch(valueVIF) {
+                case VIF.time:
+                    valueItem.dataType = "Current date and time, Unix time";
+                    break;
+                case VIF.status:
+                    valueItem.dataType = "Status byte";
+                    break;
+                case VIF.totalVolume:
+                    valueItem.dataType = "Current volume, L";
+                    break;
+                case VIF.volume:
+                    valueItem.dataType = "Volume, L";
+                    break;
+                default:
+                    result.errors.push("Unknown data type");
+                    valueItem.dataType = "unknown";
+            }
+            if(bytes[i] === 0xBD) {
+                valueItem.imperial = true;
+                i++;
+            }
+
+            if(valueLength[2]) {
+                valueItem.compactProfile = bytes[i] === 0x1E;
+                i += valueLength[2];
+            }
+            values.push(valueItem);
+        }
+
+        result.data.values = values;
+        result.data.lengthByte = bytes[i++];
+
+        let spacingUnitUnit;
+        switch((bytes[i] & 0b00110000) >> 4) {
+            case 0:
+                spacingUnitUnit = "seconds";
+            case 1:
+                spacingUnitUnit = "minutes";
+            case 2:
+                spacingUnitUnit = "hours";
+            case 3:
+                spacingUnitUnit = "days";
+            default:
+                result.errors.push("Unknown spacing unit");
+                spacingUnitUnit = "unknown";
+        }
+
+        result.data.spacingUnit = {
+            changeType: (bytes[i] & 0b11000000) >> 6 === 0b01 ? "positive difference" : result.errors.push("Unknown spacing change type"),
+            unit: spacingUnitUnit,
+            recordSize: bytes[i] & 0b00001111
+        };
+        i++;
+        result.data.spacing = bytes[i];
+        result.data.payloadType = "Configuration parameters";
     }
     else if(fPort === 103) {
+        bytes = input.bytes;
 
+
+
+        result.data.payloadType = "Device alarms";
     }
     
 
