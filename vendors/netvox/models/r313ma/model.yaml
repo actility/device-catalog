@@ -1,0 +1,42 @@
+# Commercial name of the model 
+name: R313MA - Wireless Emergency Button
+# Functional description of the product. Maximum 500 characters. 
+description: "The R313MA is a wireless emergency button that detects after pressing the emergency button and sends an alarm message to the gateway. It uses the SX1276 wireless communication module."
+# Logo of the device
+logo: netvox-r313ma.png
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
+deviceProfileId:
+    - netvox_EU868_1.0.2revB_classA
+    - netvox_IN865_1.0.2revB_classA
+    - netvox_KR920_1.0.2revB_classA
+    - netvox_RFGroup2_1.0.2revB_classA
+    - netvox_RFGroup4_1.0.2revB_classA 
+# You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
+# Maximum device TX Conducted output power in dBm. 
+maxTxPower:
+# Minimum device TX Conducted output power in dBm. 
+minTxPower:
+# Maximum device TX Radiated output power in dBm.  
+maxTxEIRP:
+# Minimum device TX Radiated output power in dBm.  
+minTxEIRP:
+# Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'  
+# or 'random' (not known, changes over time). 
+motionIndicator:
+ 
+# Is your device certified by the LoRa Alliance? Possible values: true, false. 
+LoRaWANCertified: false
+# Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
+# Format: `<8 characters max>:<16 characters max>:<digits only>`
+modelId: netvox:r313ma:1
+# <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
+protocolId:
+# DataSheet URL (optional) 
+specificationURL: http://www.netvox.com.tw/um/R313MA/R313MAdatasheet.pdf
+# User Guide URL (optional) 
+userGuideURL: http://www.netvox.com.tw/um/R313MA/R313MAUsermanual.pdf
+# <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
+sensors:
+# Driver examples
+# A list of examples description that are compatible with this model
+examples:
