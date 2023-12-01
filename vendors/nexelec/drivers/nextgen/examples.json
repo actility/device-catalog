@@ -1,0 +1,126 @@
+[
+    {
+        "description": "FEEL CO2, 2 measurements",
+        "type": "uplink",
+        "input": {
+            "bytes": "A902083C450140",
+            "fPort": 1,
+            "recvTime": "2020-08-02T20:00:00.000+05:00"
+        },
+        "output": {
+            "data": {
+                "co2": {
+                  "unit": "ppm",
+                  "value": [
+                    1600,
+                    1600
+                  ]
+                },
+                "numberOfRecord": 2,
+                "periodBetweenRecord": {
+                  "unit": "minutes",
+                  "value": 15
+                },
+                "redundancyOfRecord": 4,
+                "typeOfMessage": "CO2 Historical Data",
+                "typeOfProduct": "Feel LoRa"
+            },
+            "errors": [],
+            "warnings": []
+        }
+    },
+    {
+        "description": "RISE CO2, 4 measurements",
+        "type": "uplink",
+        "input": {
+            "bytes": "AA02102800A82B0B42C0",
+            "fPort": 1,
+            "recvTime": "2020-08-02T20:00:00.000+05:00"
+        },
+        "output": {
+            "data": {
+              "co2": {
+                "unit": "ppm",
+                "value": [
+                  210,
+                  215,
+                  225,
+                  220
+                ]
+              },
+              "numberOfRecord": 4,
+              "periodBetweenRecord": {
+                "unit": "minutes",
+                "value": 10
+              },
+              "redundancyOfRecord": 0,
+              "typeOfMessage": "CO2 Historical Data",
+              "typeOfProduct": "Rise LoRa"
+            },
+            "errors": [],
+            "warnings": []
+        }
+    },
+    {
+        "description": "MOVE Temperature, 2 measurements",
+        "type": "uplink",
+        "input": {
+            "bytes": "AB03087800DC32",
+            "fPort": 1,
+            "recvTime": "2020-08-02T20:00:00.000+05:00"
+        },
+        "output": {
+            "data": {
+                "numberOfRecord": 2,
+                "periodBetweenRecord": {
+                  "unit": "minutes",
+                  "value": 30
+                },
+                "redundancyOfRecord": 0,
+                "temperature": {
+                  "unit": "°C",
+                  "value": [
+                    -24,
+                    -25
+                  ]
+                },
+                "typeOfMessage": "Temperature Historical Data",
+                "typeOfProduct": "Move LoRa"
+            },
+            "errors": [],
+            "warnings": []
+        }
+    },
+    {
+        "description": "SIGN Temperature, 4 measurements",
+        "type": "uplink",
+        "input": {
+            "bytes": "AD03105000DC320C8330",
+            "fPort": 1,
+            "recvTime": "2020-08-02T20:00:00.000+05:00"
+        },
+        "output": {
+            "data": {
+                "numberOfRecord": 4,
+                "periodBetweenRecord": {
+                  "unit": "minutes",
+                  "value": 20
+                },
+                "redundancyOfRecord": 0,
+                "temperature": {
+                  "unit": "°C",
+                  "value": [
+                    -24,
+                    -25,
+                    -25,
+                    -25
+                  ]
+                },
+                "typeOfMessage": "Temperature Historical Data",
+                "typeOfProduct": "Sign LoRa"
+            },
+            "errors": [],
+            "warnings": []
+        }
+    }
+]

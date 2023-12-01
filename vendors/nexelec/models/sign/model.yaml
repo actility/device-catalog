@@ -27,7 +27,7 @@ LoRaWANCertified: false
 # Format: `<8 characters max>:<16 characters max>:<digits only>`
 modelId: nexelec:sign:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
-protocolId: 
+protocolId: nexelec:nextgen:1
 # DataSheet URL (optional) 
 specificationURL: https://nexelec.eu/wp-content/uploads/2023/08/D850A_FR-Datasheet-SIGN.pdf
 # User Guide URL (optional) 
@@ -37,3 +37,5 @@ sensors:
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
+    nexelec:nextgen:1:
+        - "SIGN Temperature, 4 measurements"
