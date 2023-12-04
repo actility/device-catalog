@@ -30,7 +30,7 @@ LoRaWANCertified: false
 # Format: `<8 characters max>:<16 characters max>:<digits only>`
 modelId: netvox:r313ma:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
-protocolId:
+protocolId: os1-netv:r312a:10
 # DataSheet URL (optional) 
 specificationURL: http://www.netvox.com.tw/um/R313MA/R313MAdatasheet.pdf
 # User Guide URL (optional) 
@@ -40,3 +40,10 @@ sensors:
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
+    os1-netv:r312a:10:
+        - "Startup version report"
+        - "Status report"
+        - "Configure report response"
+        - "Read configure report response"
+        - "Configure report request"
+        - "Read configure report request"
