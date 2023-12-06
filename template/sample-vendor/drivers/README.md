@@ -243,6 +243,7 @@ An `examples.json` file of uplink and downlink payloads must be declared directl
 
 These examples will be used in order to provide for the users of the driver some examples of the payload to be decoded/encoded to test the driver. In addition, it will be used to facilitate the testing of the driver while development.
 
+**IMPORTANT:** Description should be unique on each driver.
 #### Example
 
 The uplink/downlink decode example used is an object represented by the following json-schema:
