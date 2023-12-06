@@ -153,3 +153,5 @@ function decodeTrameDate(binary, type, bytes) {
 
     return result;
 }
+
+exports.decodeUplink = decodeUplink;
