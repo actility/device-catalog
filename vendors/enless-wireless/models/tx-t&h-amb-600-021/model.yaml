@@ -1,16 +1,12 @@
 # Commercial name of the model 
-name: Tx Pulse 600-036
+name: TX T&H AMB 600-021
 # Functional description of the product. Maximum 500 characters. 
-description: "The Enless Wireless Tx Pulse 600-036 consists of a pulse sensor that is compatible with pulse meters with a dry contact interface or an open collector inlet. It transmits pulse counts over the LoRaWAN® network. Tx Pulse 600-036 will quickly and economically transform your conventional gas meter into a smart meter."
+description: "The Enless Wireless Wireless LoRa / LoRaWAN humidity and temperature transmitter allows you to monitor occupant comfort levels, thanks to its integrated sensors of temperature and humidity and save energy by monitoring HVAC systems – Heating Ventilation Air Conditioning – in situ."
 # Logo of the device
-logo: enless-wireless-tx-pulse-600.png
-# Product name & Version
-product:
-    name: ENLE/TX600
-    version: 1
+logo: tx-t&h-amb-600.png
 # ID(s) of the profile that defines the LoRaWAN characteristics of this model.
 deviceProfileId: 
-    - ENLE/TX600A.1.0.3a_ETSI
+    - enless_RFGroup1_1.0.2b_classA
  
 # You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
 # Maximum device TX Conducted output power in dBm. 
@@ -26,18 +22,18 @@ minTxEIRP:
 motionIndicator:
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
-LoRaWANCertified: 
+LoRaWANCertified: true
 # Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
 # Format: `<8 characters max>:<16 characters max>:<digits only>`
-modelId: enless-w:tx-pulse-600-036:1
+modelId: enless-w:tx-amb-600-021:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
-protocolId: enless-w:600-036:1
+protocolId: enless-w:600-021:1
 # DataSheet URL (optional) 
-specificationURL: 
+specificationURL: https://enless-wireless.com/wp-content/uploads/2022/06/EN-600-021.pdf
 # User Guide URL (optional) 
-userGuideURL: 
+userGuideURL: https://enless-wireless.com/wp-content/uploads/2023/07/Installation_guide_LoRaWAN_DTM85_A.pdf
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors: 
 examples:
-    enless-w:600-036:1:
-        - "Example: 600-036"
+    enless-w:600-021:1:
+        - "Example: 600-021"
