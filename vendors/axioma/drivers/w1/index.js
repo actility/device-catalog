@@ -120,73 +120,46 @@ function decodeUplink(input) {
         bytes = input.bytes;
         let values = [];
 
-        let VIF = {
-            time: 0xFF8913,
-            status: 0xFD17,
-            totalVolume: 0x13,
-            volume: 0x93
-        };
-
-        let byteLengths = [[1, 3], [1, 2], [1, 1], [1, 3], [1, 1], [1, 1, 1]];
         let i = 0;
-        for(let valueLength of byteLengths) {
-            let valueItem = {
-                dataType: "",
-                bytesLength: 0,
-                variableLength: false,
-                compactProfile: false,
-                withStorage: false,
-                imperial: false
-            };
+        while(i < bytes.length - 3) {
 
             let valueDIF = bytes[i];
 
-            valueItem.withStorage = (valueDIF & 0xF0) === 0x40;
+            function dataDIFVIF(index) {
+                let dataSize = (valueDIF & 0x0F) !== 0x0D ? valueDIF & 0x0F : "variable";
 
-            valueItem.bytesLength = valueDIF & 0x0F;
-            if(valueItem.bytesLength === 13) {
-                valueItem.bytesLength = null;
-                valueItem.variableLength = true;
-            }
-            i += valueLength[0];
+                if(bytes[index+1] === 0xFF && bytes[index+2] === 0x89 && bytes[index+3] === 0x13) return { dataSize: dataSize, length: 4, type: "Current date and time, Unix time" };
 
-            let valueVIF = 0;
-            for(let j = 0 ; j < valueLength[1] ; j++) {
-                valueVIF *= 16*16;
-                valueVIF += bytes[i++];
-            }
-            
-            valueItem.DIF = valueDIF;
-            valueItem.VIF = valueVIF;
+                if(bytes[index+1] === 0xFD && bytes[index+2] === 0x17) return { dataSize: dataSize, length: 3, type: "Status byte" };
 
-            switch(valueVIF) {
-                case VIF.time:
-                    valueItem.dataType = "Current date and time, Unix time";
-                    break;
-                case VIF.status:
-                    valueItem.dataType = "Status byte";
-                    break;
-                case VIF.totalVolume:
-                    valueItem.dataType = "Current volume, L";
-                    break;
-                case VIF.volume:
-                    valueItem.dataType = "Volume, L";
-                    break;
-                default:
-                    result.errors.push("Unknown data type");
-                    valueItem.dataType = "unknown";
-            }
-            if(bytes[i] === 0xBD) {
-                valueItem.imperial = true;
-                i++;
+                if(bytes[index+1] === 0x13) return { dataSize: dataSize, length: 2, type: "Total volume, L" };
+                if(bytes[index+1] === 0x93 && bytes[index+2] === 0x3D) return { dataSize: dataSize, length: 2, type: "Total volume, oz" };
+
+                if(bytes[index+1] === 0xFF && bytes[index+2] === 0x89 && bytes[index+3] === 0x13) return { dataSize: dataSize, length: 4, type: "Log date" };
+                
+                if(bytes[index+1] === 0x93 && bytes[index+2] === 0xBD && bytes[index+3] === 0x1E) return { dataSize: dataSize, length: 4, type: "Historical total volume, oz" };
+                if(bytes[index+1] === 0x93 && bytes[index+2] === 0x1E) return { dataSize: dataSize, length: 3, type: "Historical total volume, L" };
+
+                if(bytes[index+1] === 0x93 && bytes[index+2] !== 0xBD) return { dataSize: dataSize, length: 2, type: "Volume at log date, L" };
+                if(bytes[index+1] === 0x93) return { dataSize: dataSize, length: 3, type: "Volume at log date, oz" };
             }
 
-            if(valueLength[2]) {
-                valueItem.compactProfile = bytes[i] === 0x1E;
-                i += valueLength[2];
-            }
+            let obj = dataDIFVIF(i);
+
+            let valueItem = {
+                dataType: obj.type,
+                size: obj.dataSize,
+                compactProfile: obj.type.includes("Historical total volume"),
+                withStorage: (bytes[i] & 0xF0) === 0x40,
+                imperial: obj.type.includes("oz")
+            };
+
             values.push(valueItem);
+
+            i += obj.length;
         }
+
+        i = (bytes.length - 1) - 2;
 
         result.data.values = values;
         result.data.lengthByte = bytes[i++];
@@ -195,12 +168,16 @@ function decodeUplink(input) {
         switch((bytes[i] & 0b00110000) >> 4) {
             case 0:
                 spacingUnitUnit = "seconds";
+                break;
             case 1:
                 spacingUnitUnit = "minutes";
+                break;
             case 2:
                 spacingUnitUnit = "hours";
+                break;
             case 3:
                 spacingUnitUnit = "days";
+                break;
             default:
                 result.errors.push("Unknown spacing unit");
                 spacingUnitUnit = "unknown";
@@ -218,7 +195,26 @@ function decodeUplink(input) {
     else if(fPort === 103) {
         bytes = input.bytes;
 
+        let dateData = 0;
+        let i = 0;
+        for(i ; i < 4 ; i++) {
+            dateData <<= 8;
+            dateData += bytes[3-i];
+        }
+        result.data.date = new Date(dateData*1000).toISOString();
+        
+        let errors = {
+            0x00: "NO ERROR",
+            0x04: "POWER LOW",
+            0x08: "PERMANENT ERROR",
+            0x10: "EMPTY PIPE", 
+            0x30: "LEAKAGE",
+            0xB0: "BURST",
+            0x70: "BACKFLOW",
+            0x90: "FREEZE"
+        }
 
+        result.data.alarmDescription = errors[bytes[i]];
 
         result.data.payloadType = "Device alarms";
     }

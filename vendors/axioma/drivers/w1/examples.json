@@ -1,6 +1,6 @@
 [
   {
-    "description": "Example1: uplink containing consumption data",
+    "description": "Example 1: uplink containing consumption data",
     "type": "uplink",
     "input": {
       "bytes": "bfc7e7600028950100c0e8e660f79301001e0004000f000b00200005001d0054002d000f000a000a00000003000300",
@@ -16,6 +16,7 @@
         },
         "lastLogTime": "2021-07-09T03:51:27.000Z",
         "lastVolume": 103720,
+        "payloadType": "Basic",
         "firstLogTime": "2021-07-08T12:00:00.000Z",
         "firstLogVolume": 103415,
         "deltaVolumes": [
@@ -111,7 +112,7 @@
     }
   },
   {
-    "description": "Example2: uplink containing consumption data",
+    "description": "Example 2: uplink containing consumption data",
     "type": "uplink",
     "input": {
       "bytes": "cfd5e7600038950100d0f6e6601594010004000f000b00200005001d0054002d000f000a000a000000030003000900",
@@ -127,6 +128,7 @@
         },
         "lastLogTime": "2021-07-09T04:51:27.000Z",
         "lastVolume": 103736,
+        "payloadType": "Basic",
         "firstLogTime": "2021-07-08T13:00:00.000Z",
         "firstLogVolume": 103445,
         "deltaVolumes": [
@@ -222,7 +224,7 @@
     }
   },
   {
-    "description": "Example3: uplink containing configuration parameters",
+    "description": "Example 3: uplink containing configuration parameters",
     "type": "uplink",
     "input": {
       "bytes": "04FF891331FD17041344FF891344934D931E206201",
@@ -231,14 +233,65 @@
     },
     "output": {
       "data": {
-        
+        "lengthByte": 32,
+        "payloadType": "Configuration parameters",
+        "spacing": 1,
+        "spacingUnit": {
+          "changeType": "positive difference",
+          "recordSize": 2,
+          "unit": "hours"
+        },
+        "values": [
+          {
+            "compactProfile": false,
+            "dataType": "Current date and time, Unix time",
+            "imperial": false,
+            "size": 4,
+            "withStorage": false
+          },
+          {
+            "compactProfile": false,
+            "dataType": "Status byte",
+            "imperial": false,
+            "size": 1,
+            "withStorage": false
+          },
+          {
+            "compactProfile": false,
+            "dataType": "Total volume, L",
+            "imperial": false,
+            "size": 4,
+            "withStorage": false
+          },
+          {
+            "compactProfile": false,
+            "dataType": "Current date and time, Unix time",
+            "imperial": false,
+            "size": 4,
+            "withStorage": true
+          },
+          {
+            "compactProfile": false,
+            "dataType": "Volume at log date, L",
+            "imperial": false,
+            "size": 4,
+            "withStorage": true
+          },
+          {
+            "compactProfile": true,
+            "dataType": "Historical total volume, L",
+            "imperial": false,
+            "size": "variable",
+            "withStorage": true
+          }
+        ]
       },
       "errors": [],
       "warnings": []
     }
   },
   {
-    "description": "Example4: uplink containing configuration parameters",
+    "description": "Example 4: uplink containing configuration parameters",
     "type": "uplink",
     "input": {
       "bytes": "04FF891331FD17041344FF89134493BD4D93BD1E206201",
@@ -247,7 +300,76 @@
     },
     "output": {
       "data": {
-        
+        "lengthByte": 32,
+        "payloadType": "Configuration parameters",
+        "spacing": 1,
+        "spacingUnit": {
+          "changeType": "positive difference",
+          "recordSize": 2,
+          "unit": "hours"
+        },
+        "values": [
+          {
+            "compactProfile": false,
+            "dataType": "Current date and time, Unix time",
+            "imperial": false,
+            "size": 4,
+            "withStorage": false
+          },
+          {
+            "compactProfile": false,
+            "dataType": "Status byte",
+            "imperial": false,
+            "size": 1,
+            "withStorage": false
+          },
+          {
+            "compactProfile": false,
+            "dataType": "Total volume, L",
+            "imperial": false,
+            "size": 4,
+            "withStorage": false
+          },
+          {
+            "compactProfile": false,
+            "dataType": "Current date and time, Unix time",
+            "imperial": false,
+            "size": 4,
+            "withStorage": true
+          },
+          {
+            "compactProfile": false,
+            "dataType": "Volume at log date, oz",
+            "imperial": true,
+            "size": 4,
+            "withStorage": true
+          },
+          {
+            "compactProfile": true,
+            "dataType": "Historical total volume, oz",
+            "imperial": true,
+            "size": "variable",
+            "withStorage": true
+          }
+        ]
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "description": "Example 5: uplink containing an alarm telegram",
+    "type": "uplink",
+    "input": {
+      "bytes": "DD48AE6010",
+      "fPort": 103,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "alarmDescription": "EMPTY PIPE",
+        "date": "2021-05-26T13:10:53.000Z",
+        "payloadType": "Device alarms"
       },
       "errors": [],
       "warnings": []
