@@ -53,7 +53,7 @@ function decodeUplink(input) {
         warnings: []
     };
 
-    if (fPort != 100) {
+    if (fPort != 100 && fPort != 101 && fPort != 103) {
         result.errors.push("Invalid fPort!");
     }
 
@@ -111,9 +111,114 @@ function decodeUplink(input) {
             firstLogTime: firstLogTime,
             firstLogVolume: firstLogVolume,
             deltaVolumes: deltaVolumes,
-            volumes: volumes
+            volumes: volumes,
+
+            payloadType: "Basic"
         }
     }
+    else if(fPort === 101) {
+        bytes = input.bytes;
+        let values = [];
+
+        let i = 0;
+        while(i < bytes.length - 3) {
+
+            let valueDIF = bytes[i];
+
+            function dataDIFVIF(index) {
+                let dataSize = (valueDIF & 0x0F) !== 0x0D ? valueDIF & 0x0F : "variable";
+
+                if(bytes[index+1] === 0xFF && bytes[index+2] === 0x89 && bytes[index+3] === 0x13) return { dataSize: dataSize, length: 4, type: "Current date and time, Unix time" };
+
+                if(bytes[index+1] === 0xFD && bytes[index+2] === 0x17) return { dataSize: dataSize, length: 3, type: "Status byte" };
+
+                if(bytes[index+1] === 0x13) return { dataSize: dataSize, length: 2, type: "Total volume, L" };
+                if(bytes[index+1] === 0x93 && bytes[index+2] === 0x3D) return { dataSize: dataSize, length: 2, type: "Total volume, oz" };
+
+                if(bytes[index+1] === 0xFF && bytes[index+2] === 0x89 && bytes[index+3] === 0x13) return { dataSize: dataSize, length: 4, type: "Log date" };
+                
+                if(bytes[index+1] === 0x93 && bytes[index+2] === 0xBD && bytes[index+3] === 0x1E) return { dataSize: dataSize, length: 4, type: "Historical total volume, oz" };
+                if(bytes[index+1] === 0x93 && bytes[index+2] === 0x1E) return { dataSize: dataSize, length: 3, type: "Historical total volume, L" };
+
+                if(bytes[index+1] === 0x93 && bytes[index+2] !== 0xBD) return { dataSize: dataSize, length: 2, type: "Volume at log date, L" };
+                if(bytes[index+1] === 0x93) return { dataSize: dataSize, length: 3, type: "Volume at log date, oz" };
+            }
+
+            let obj = dataDIFVIF(i);
+
+            let valueItem = {
+                dataType: obj.type,
+                size: obj.dataSize,
+                compactProfile: obj.type.includes("Historical total volume"),
+                withStorage: (bytes[i] & 0xF0) === 0x40,
+                imperial: obj.type.includes("oz")
+            };
+
+            values.push(valueItem);
+
+            i += obj.length;
+        }
+
+        i = (bytes.length - 1) - 2;
+
+        result.data.values = values;
+        result.data.lengthByte = bytes[i++];
+
+        let spacingUnitUnit;
+        switch((bytes[i] & 0b00110000) >> 4) {
+            case 0:
+                spacingUnitUnit = "seconds";
+                break;
+            case 1:
+                spacingUnitUnit = "minutes";
+                break;
+            case 2:
+                spacingUnitUnit = "hours";
+                break;
+            case 3:
+                spacingUnitUnit = "days";
+                break;
+            default:
+                result.errors.push("Unknown spacing unit");
+                spacingUnitUnit = "unknown";
+        }
+
+        result.data.spacingUnit = {
+            changeType: (bytes[i] & 0b11000000) >> 6 === 0b01 ? "positive difference" : result.errors.push("Unknown spacing change type"),
+            unit: spacingUnitUnit,
+            recordSize: bytes[i] & 0b00001111
+        };
+        i++;
+        result.data.spacing = bytes[i];
+        result.data.payloadType = "Configuration parameters";
+    }
+    else if(fPort === 103) {
+        bytes = input.bytes;
+
+        let dateData = 0;
+        let i = 0;
+        for(i ; i < 4 ; i++) {
+            dateData <<= 8;
+            dateData += bytes[3-i];
+        }
+        result.data.date = new Date(dateData*1000).toISOString();
+        
+        let errors = {
+            0x00: "NO ERROR",
+            0x04: "POWER LOW",
+            0x08: "PERMANENT ERROR",
+            0x10: "EMPTY PIPE", 
+            0x30: "LEAKAGE",
+            0xB0: "BURST",
+            0x70: "BACKFLOW",
+            0x90: "FREEZE"
+        }
+
+        result.data.alarmDescription = errors[bytes[i]];
+
+        result.data.payloadType = "Device alarms";
+    }
+    
 
     return result;
 
