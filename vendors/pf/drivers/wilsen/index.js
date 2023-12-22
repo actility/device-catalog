@@ -84,6 +84,19 @@ function payloadParser(hexStr) {
         else if (sID == '0B07') { // 'Amplitude'
             obj.amplitude = parseInt(hexStr.substr(i + 6, 2), 16); // uint8
         }
+        else if (sID == '0C01') { // 'Valve'
+            obj.valve = parseInt(hexStr.substr(i + 6, 2), 16); // uint8
+            obj.valveChecksum = parseInt(hexStr.substr(i + 8, 2), 16); // uint8
+        }
+        else if (sID == '0C02') { // 'Valve Status'
+            obj.valve_status = parseInt(hexStr.substr(i + 6, 2), 16); // uint8
+        }
+        else if (sID == '0C03') { // 'Sensor Details'
+            obj.sensor_details = parseInt(hexStr.substr(i + 6, 4), 16); // uint16
+        }
+        else if (sID == '0C04') { // 'Sensor Status'
+            obj.sensor_status = parseInt(hexStr.substr(i + 6, 2), 16); // uint8
+        }
         else if (sID == '2A25') { // 'Serial Number'
             obj.serial_nr = hex2string(hexStr.substr(i + 6, 28));
         }
@@ -123,7 +136,13 @@ function payloadParser(hexStr) {
         }
         else if (sID == 'F105') {
             obj.change_password = 'done';
-        }   
+        }
+        else if (sID == 'F108') {
+            obj.device_name_1 = hex2string(hexStr.substr(i + 6, 16));
+        }
+        else if (sID == 'F109') {
+            obj.device_name_2 = hex2string(hexStr.substr(i + 6, 16));
+        }
  
         // Downlink ACK: GPS Config
         else if (sID == 'F201') {
@@ -162,6 +181,9 @@ function payloadParser(hexStr) {
         }
         else if (sID == 'F308') {
             obj.lora_downlink_config_ack = (parseInt(hexStr.substr(i + 6, 2), 16) == 1);
+        }
+        else if (sID == 'F309') {
+            obj.lora_sub_band = parseInt(hexStr.substr(i + 6, 2), 16);
         }
 
         // Downlink ACK: UltraSonic Config
