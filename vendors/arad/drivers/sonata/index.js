@@ -1,5 +1,4 @@
 
-
 function msgTypeText(type) {
     switch (type) {
         case 0x06:
@@ -75,7 +74,7 @@ function getAlarms(bitmap) {
     if ((bitmap>>3) & 1) { alarms.push("leak"); };	
     if ((bitmap>>2) & 1) { alarms.push("backFlow"); };	
     if ((bitmap>>1) & 1) { alarms.push("commFailureCutWire"); };	
-    if ((bitmap>>1) & 1) { alarms.push("tamper"); };
+    if ((bitmap>>0) & 1) { alarms.push("tamper"); };
     return alarms;
 }
 
@@ -110,7 +109,7 @@ function getAlarms1(bitmap) {
     if ((bitmap>>3) & 1) { alarms.push("leak"); };	
     if ((bitmap>>2) & 1) { alarms.push("backFlow"); };	
     if ((bitmap>>1) & 1) { alarms.push("commFailureCutWire"); };	
-    if ((bitmap>>1) & 1) { alarms.push("tamper"); };
+    if ((bitmap>>0) & 1) { alarms.push("tamper"); };
     return alarms;
 }
 
@@ -137,6 +136,13 @@ function decodeUplink(input) {
         errors: [],
         warnings: []
     };
+
+    if (input.fPort != 1) {
+        result.errors.push("Invalid FPort value: " + input.fPort);
+        delete result.data;
+        return result;
+    }
+
     const raw = Buffer.from(input.bytes);
 
     switch (raw[0]) {
@@ -144,8 +150,8 @@ function decodeUplink(input) {
 
         // Data Logger - 42 bytes
         case 0x06: {
-            if (raw.byteLength != 42) {
-                result.errors.push("Invalid 'Arad Data Log' payload: length must be 42 bytes");
+            if ((raw.byteLength < 20) || (raw.byteLength > 210)) {
+                result.errors.push("Invalid 'Data Log' payload: length must be between 20 and 210 bytes");
                 delete result.data;
                 return result;
             }
@@ -174,16 +180,28 @@ function decodeUplink(input) {
             // readTimeRoundedHour.setMinutes(0, 0, 0);
 
 
-
-            const archieve = [];
-            for (let i=0; i<12; i++) {
-                const previousVolume = i>0 ? archieve[i-1].volume : readVolume;
+            const archievedDeltaVolumes = [];
+            const archievedCumulatedVolumes = [];
+            for (let i=0; 18+2*i < raw.length-1; i++) {
+                const previousVolume = i>0 ? archievedCumulatedVolumes[i-1].volume : readVolume;
                 const rawDelta = raw.readUInt16BE(18+2*i)
                 const err = errorText(rawDelta);
-                archieve.push(
+
+                const time = (new Date(readTime.getTime() - (i+1)*timeBetweenRecords*60_000)).toISOString();
+                const deltaVolume = err=="" ? rawDelta * deltaFactor : 0;
+
+                archievedDeltaVolumes.push(
                     {
-                        time: (new Date(readTime.getTime() - (i+1)*timeBetweenRecords*60_000)).toISOString(), 
-                        volume: previousVolume - (err=="" ? rawDelta * deltaFactor : 0),
+                        time, 
+                        volume: Math.round(deltaVolume*1000)/1000,
+                        error: err,
+                    }
+                )
+
+                archievedCumulatedVolumes.push(
+                    {
+                        time, 
+                        volume: previousVolume - deltaVolume,
                         error: err,
                     }
                 );
@@ -207,6 +225,7 @@ function decodeUplink(input) {
                 batteryLevel,
 
                 alarmBitmap,
+                alarmBitmapHex: alarmBitmap.toString(16).padStart(4, '0'),
                 alarms: getAlarms(alarmBitmap),
 
                 timeFromLastRecord,
@@ -215,7 +234,8 @@ function decodeUplink(input) {
                 readTime: readTime.toISOString(),
                 readVolume,
 
-                archieve,
+                archievedDeltaVolumes,
+                archievedCumulatedVolumes,
 
             }
         } break;
@@ -226,14 +246,20 @@ function decodeUplink(input) {
         // Alarm Burst - 11 bytes
         case 0x9d: {
 
+            if (raw.byteLength != 11) {
+                result.errors.push("'Standard'/'Alarm Burst' payload: length must be 11 bytes");
+                delete result.data;
+                return result;
+            }
+
             const msgType = raw[0];
             const deviceTypeID = raw[1];
             const alarmBitmap = raw.readUInt16BE(2);
             const extendedAlarmBitmap = raw.readUInt16BE(4);
                      
-            const currentRawVolume = raw.readUInt32BE(6);
+            const readRawVolume = raw.readUInt32BE(6);
             const factor = Math.pow(10,(raw[10]&0x0f)-7);
-            const currentVolume = currentRawVolume * factor;
+            const readVolume = readRawVolume * factor;
 
             result.data = {
                 
@@ -246,13 +272,15 @@ function decodeUplink(input) {
                 deviceTypeText: deviceTypeText(deviceTypeID),
 
                 alarmBitmap,
+                alarmBitmapHex: alarmBitmap.toString(16).padStart(4, '0'),
                 alarms: getAlarms(alarmBitmap),
 
                 extendedAlarmBitmap,
+                extendedAlarmBitmapHex: extendedAlarmBitmap.toString(16).padStart(2, '0'),
                 extendedAlarms: getExtendedAlarms(extendedAlarmBitmap),
 
                 recvTime: input.recvTime,
-                currentVolume,
+                readVolume,
 
             }
         } break;
@@ -269,7 +297,8 @@ function decodeUplink(input) {
             const msgType = raw[0];
             const deviceTypeID = raw[1];
             
-            const fwVersion = raw[2] + "." + raw[3]; 
+            const fwVersion = raw[2].toString(10) + "." + raw[3].toString(10); 
+            const fwVersionHex = raw[2].toString(16).padStart(2, '0').toUpperCase() + "." + raw[3].toString(16).padStart(2, '0').toUpperCase(); 
 
             const rssi = raw.readInt8(4);
 
@@ -279,33 +308,44 @@ function decodeUplink(input) {
             let dateTimeRoundedDay = new Date(dateTime.getTime());;
             dateTimeRoundedDay.setUTCHours(0, 0, 0, 0);
             
-            const currentRawVolume = raw.readUInt32BE(9);
+            const readRawVolume = raw.readUInt32BE(9);
             const factor = Math.pow(10,(raw[13]&0x0f)-7);
-            const currentVolume = currentRawVolume * factor;
+            const readVolume = readRawVolume * factor;
 
             const alarmBitmap = raw.readUInt16BE(14);
 
             const batteryLevel = raw.readUInt16BE(16)/1000;
 
-            const hourlyArchive = [];
+            const hourlyArchivedDeltaVolumes = [];
+            const hourlyArchivedCumulatedVolumes = [];
+
             for (let i=0; i<6; i++) {
-                const previousVolume = i>0 ? hourlyArchive[i-1].volume : currentVolume;
+                const previousVolume = i>0 ? hourlyArchivedCumulatedVolumes[i-1].volume : readVolume;
                 const rawDelta = raw.readUInt16BE(18+2*i)
                 const err = errorText(rawDelta);
-                hourlyArchive.push(
-                    {
-                        time: (new Date(dateTimeRoundedHour.getTime() - i*3_600_000)).toISOString(),
-                        volume: previousVolume - (err=="" ? rawDelta * factor : 0), // TODO: deltaFactor ????
-                        error: err,
-                    }
-                );
+
+                const time = (new Date(dateTimeRoundedHour.getTime() - i*3_600_000)).toISOString();
+                const deltaVolume = err=="" ? rawDelta * factor : 0;
+
+                hourlyArchivedDeltaVolumes[i] = {
+                    time,
+                    volume: deltaVolume,
+                    error: err,
+                };
+
+                hourlyArchivedCumulatedVolumes[i] = {
+                    time,
+                    volume: previousVolume - deltaVolume,
+                    error: err,
+                };
+
             }
 
-            const weeklyArchive = [];
+            const weeklyArchivedDeltaVolumes = [];
             for (let i=0; i<5; i++) {
                 const rawVolume = raw.readUInt32BE(30+4*i)
                 const err = errorText(rawVolume);
-                weeklyArchive.push(
+                weeklyArchivedDeltaVolumes.push(
                     {
                         time: (new Date(dateTimeRoundedDay.getTime() - i*604_800_000)).toISOString(),
                         volume: err=="" ? rawVolume * factor : 0, // TODO: do we need factor here ????
@@ -325,25 +365,28 @@ function decodeUplink(input) {
                 deviceTypeText: deviceTypeText(deviceTypeID),
 
                 fwVersion,
+                fwVersionHex,
 
                 rssi,
 
                 batteryLevel,
 
                 alarmBitmap,
+                alarmBitmapHex: alarmBitmap.toString(16).padStart(4, '0'),
                 alarms: getAlarms(alarmBitmap),
 
                 readTime: dateTime.toISOString(),
                 readVolume,
-                hourlyArchive,
-                weeklyArchive,
+                hourlyArchivedDeltaVolumes,
+                weeklyArchivedDeltaVolumes,
+                hourlyArchivedCumulatedVolumes,
 
             };
         } break;
 
 
         default: {
-            result.errors.push("Invalid uplink payload: unknown id '" + raw[i] + "'");
+            result.errors.push("Invalid uplink payload: unknown id '" + raw[0].toString(16) + "'");
             delete result.data;
             return result;
         }
@@ -357,25 +400,33 @@ exports.decodeUplink = decodeUplink;
 
 
 
+
+/*
+
 // const exampleDataHex = "80594b58a9636af5d9000004200714400cd400df008700000000008d0035000003cc80000000800000008000000080000000";
 // const exampleDataHex = "80592b4ed165797ab90006fcff0700080ce303e803e803e803e803e803e80006d79300044737800000008000000080000000";
 
 // From Doc
-// const exampleDataHex = "80590302B26166FCAF00008FD70714140DCA003C006B00A0001A006C008400008B350000874B00006C73000027DB0000257D";
+// const exampleDataHex = "90590302B26166FCAF00008FD70714140DCA003C006B00A0001A006C008400008B350000874B00006C73000027DB0000257D";
 
 // const exampleDataHex = "9D590C880004001AA94607";
-// const exampleDataHex = "0600005910daadf1060000000104080cde06034103420341034103420341034103420341034103420341";
-const exampleDataHex = "0600005910daadf1060000000104080cde06034103420341034103420341034103420341034180000341";
+const exampleDataHex = "0600005910daadf1060000000104080cde06034103420341034103420341034103420341034103420341";
+// const exampleDataHex = "0600005910daadf1060000000104080cde06034103420341034103420341034103420341034180000341";
+// const exampleDataHex = "0600005a00037f71070000000100080e4307000000000000000000640000000000000000006400000000000000000064000000000000000000640000000000000000006400000000000000000064000000000000000000640000000000000000006400000000000000000064000000000000000000640000000000000000006400000000000000000064000000000000000000640000000000000000006400000000000000000064000000000000000000640000000000000000006400000000000000000064000000000000000000640000";
 
+function hex2bytes(hex) {
+    return hex
+        .split('')
+        .map((element, index, array) => index % 2 ? null : element + array[index + 1])
+        .filter(element => element !== null)
+        .map(x => parseInt(x, 16));
+}
 
-const exampleDataBytes = exampleDataHex
-    .split('')
-    .map((element, index, array) => index % 2 ? null : element + array[index + 1])
-    .filter(element => element !== null)
-    .map(x => parseInt(x, 16));
 const decoded = decodeUplink({
-    bytes: exampleDataBytes,
+    bytes: hex2bytes(exampleDataHex),
     fPort: 1,
     recvTime: "2022-11-09T00:35:37.000Z"
 });
-console.log(JSON.stringify(decoded.data, null, 4));
+console.log(JSON.stringify(decoded, null, 4));
+
+*/
