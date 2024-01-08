@@ -521,7 +521,7 @@ function parseFramesIBeacon(buf,offset,obj,reason)
 function parseFrames4_20mA(buf,offset,obj,reason) 
 {
   var frame = {};
-  frame.type = '4_20mA'; 
+  frame.type = '4_20mA';
   if( reason == 0x00 ) frame.reason = 'regular';
   else if( reason == 0x01 ) frame.reason = 'alarm';
   else frame.reason = 'unknown';
@@ -1126,6 +1126,5 @@ function decodeUplink(input) {
     errors : errors
   };
 }
-
 
 exports.decodeUplink = decodeUplink;

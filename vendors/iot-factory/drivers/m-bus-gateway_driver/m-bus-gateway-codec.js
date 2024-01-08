@@ -176,6 +176,8 @@ function parseFramesMBUS(buf,offset,obj,reason)
           frame.error_debug_info = 'type='+frame.type+'|offset='+(offset)+'|unknown_type_data';
         }
 
+        frame.measurement.raw = Array.isArray(frame.measurement.raw) ? frame.measurement.raw : Array.from(frame.measurement.raw);
+
         if( frame.error === undefined && frame.units !== undefined )
         {
           // frame.units
