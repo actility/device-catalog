@@ -603,7 +603,4 @@ function decodeUplink(input)
         return output
 } // end of decoder
 
-
-module.exports={
-    decodeUplink : decodeUplink
-}
+exports.decodeUplink = decodeUplink;
