@@ -1,7 +1,7 @@
 /**
  * Entry, decoder.js
  */
-function decodeUplink(input, port) {
+function decodeUplink(input) {
     // data split
 
     var bytes = input['bytes']
