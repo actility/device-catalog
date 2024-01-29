@@ -1,0 +1,688 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "commonFrameProperties": {
+      "type": "object",
+      "properties": {
+        "frame_isotime": {
+          "type": "string"
+        },
+        "frame_unixtime": {
+          "type": "integer"
+        },
+        "reason": {
+          "type": "string",
+          "enum": ["regular", "alarm", "unknown", "sos_1_detect", "sos_2_detect", "shock_detect", "stop_movement", "start_movement", "change_mode", "result_request", "boot", "waste_flush", "temperature_alarm", "open_alarm", "turn_detect", "normal"]
+        },
+        "type": {
+          "type": "string",
+          "enum": ["device_info", "analog_input", "pulse_counter", "digital_input", "movement", "wifi", "gnss", "motion_activity", "shock_detect", "waste_sensor", "modbus", "ibeacon", "4_20mA", "lbs_geolocation", "rs485", "sos", "turn", "IMU", "ODK", "modern_state", "humidity", "illuminance", "acceleration", "guard", "inclination", "temperature"]
+        }
+      }
+    }
+  },
+  "type": "object",
+  "properties": {
+    "data" : {
+      "type": "object",
+      "properties": {
+        "battery_pct": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "frames": {
+          "type": "array",
+          "items" : {
+            "anyOf": [
+              {
+                "allOf": [
+                  { "$ref": "#/definitions/commonFrameProperties" },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "input_status": {
+                        "type": "string",
+                        "enum": ["ok", "overvoltage", "no_sensor","input_error", "unknown"]
+                      },
+                      "mV": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 4294967295
+                      },
+                      "pin_number": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 255
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "allOf": [
+                  { "$ref": "#/definitions/commonFrameProperties" },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "counter": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 4294967295
+                      },
+                      "pin_number": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 255
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "allOf": [
+                  { "$ref": "#/definitions/commonFrameProperties" },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "pin_number": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 255
+                      },
+                      "pin_state": {
+                        "type": "string",
+                        "enum": ["low", "high", "unknown"]
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "allOf": [
+                  { "$ref": "#/definitions/commonFrameProperties" },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "is_movement": {
+                        "oneOf": [
+                          { "type": "boolean" },
+                          { "type": "string", "enum": ["unknown"] }
+                        ]  
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "allOf": [
+                  { "$ref": "#/definitions/commonFrameProperties" },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "in_movement": {
+                        "type": "boolean"
+                      },
+                      "wifi_ap_list": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "is_home_network": {
+                              "type": "boolean"
+                            },
+                            "mac": {
+                              "type": "string",
+                              "pattern": "^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$"
+                            },
+                            "rssi": {
+                              "type": "number",
+                              "minimum": -128,
+                              "maximum": 0
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "allOf": [
+                  { "$ref": "#/definitions/commonFrameProperties" },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "lat": {
+                        "type": "number",
+                        "minimum": -9000000,
+                        "maximum": 9000000
+                      },
+                      "lon": {
+                        "type": "number",
+                        "minimum": -18000000,
+                        "maximum": 18000000
+                      },
+                      "alt": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 255
+                      },
+                      "speed_kmh": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 65535
+                      },
+                      "hdop": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 255
+                      },
+                      "used_sat": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 31
+                      },
+                      "geofence1": {
+                        "type": "string",
+                        "enum": ["inside", "outside"]
+                      },
+                      "geofence2": {
+                        "type": "string",
+                        "enum": ["inside", "outside"]
+                      },
+                      "in_movement": {
+                        "type": "boolean"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "allOf": [
+                  { "$ref": "#/definitions/commonFrameProperties" },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "model_id": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 65535
+                      },
+                      "model_name": {
+                        "type": "string",
+                        "enum": ["Airbit light controller", "IXOCAT-LW-FULL", "IXOCAT-LW-LIGHT", "Betar LoRaWAN water meter LC", "Betar Nb-IoT water meter LC", "IXOCAT-NB-FULL", "IXOCAT-NB-LIGHT", "ERTX-L01", "Construtag", "MTBO-01-Nb", "TaigaBikeTracker", "'MTBO-01-2G", "SST_GAS_radio_module", "NbIoT Button", "МКРС-02", "BS controller", "Airbit light controller NbIoT", "IoT node", "NIS_METER", "RoadsignTracker-LW-FULL", "Stels Smoke Sensor", "Betar LoRaWAN water meter HALL", "Betar Nb-IoT water meter HALL", "NodeG", "TaigaTracker LoRaWAN", "TaigaTracker Nb-IoT", "TaigaBeacon", "ERTX-ODK-2CH", "ERTX crypto kit", "TaigaPersonalTracker LW", "TaigaPersonalTracker NB", "TaigaPersonalTracker 2G", "TaigaNode Lw", "TaigaNode Nb", "TaigaTracker2G", "AirbitSensorHub-LW", "AuroraNodeODK", "TaigaBigTracker", "NhrsPersonalTracker", "WasteSensor-UKS", "TaigaBikeTrackerE", "ClickButton", "FannaConcentrator", "MyLogger", "TaigaCartTracker", "NtmPulseNB", "SoftControl-Pass", "TempButton", "Uveos", "McsmPulseNB", "FannaConcentrator IN PWR", "AuroraNodeOdkBoard", "Siltrack V1 EXT ANT", "RaceAnalyse", "MaximaContainerTracker", "FannaEframe", "MaximaWasteSensorV2", "Module SGMB-USPD-NB-1", "AuroraNodeLTE", "AuroraNodeNB", "AuroraNodeETH", "TaigaPulseCounterNb", "FannaAnchor", "AuroraNodeExtBoards", "TaigaPersonalTracker LW_without GNSS", "TaigaPersonalTracker NB_without GNSS", "AuroraNodeGTS", "TetronTrackerLight", "SGMB-NB-2G", "TaigaPulseCounterLW", "AnalogPCBBoard", "ErtxTermologgerNb", "unknown"]
+                      },
+                      "version": {
+                        "type": "string",
+                        "pattern": "^[0-9]\\.[0-9]$"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "allOf": [
+                  { "$ref": "#/definitions/commonFrameProperties" },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "period_duration_min": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 255
+                      },
+                      "model_avg_index": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 100
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "allOf": [
+                  { "$ref": "#/definitions/commonFrameProperties" },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "position": {
+                        "type": "string",
+                        "enum": ["horizontally", "vertically", "unknown"]
+                      },
+                      "distance_upper_sensor_cm": {
+                        "oneOf": [
+                          { "type": "number" },
+                          { "type": "string", "enum": ["unknown"] }
+                        ]                        
+                      },
+                      "temperature_cel": {
+                        "type": "number",
+                        "minimum": -128,
+                        "maximum": 128
+                      },
+                      "waste_pct": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 100
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "allOf": [
+                  { "$ref": "#/definitions/commonFrameProperties" },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "slave_address": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 255                
+                      },
+                      "register_address": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 65535 
+                      },
+                      "modbus_function": {
+                        "type": "string",
+                        "enum": ["read_coil_status", "read_discrete_inputs", "read_hlding_registers", "input_registers", "unknown"]
+                      },
+                      "register_counter": {
+                        "oneOf": [
+                          { "type": "number" },
+                          { "type": "string", "enum": ["unknown"] }
+                        ] 
+                      },
+                      "signed_flag": {
+                        "type": "string",
+                        "enum": ["unsigned", "signed", "unknown"]
+                      },
+                      "register_value": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "allOf": [
+                  { "$ref": "#/definitions/commonFrameProperties" },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "ibeacons_list": {
+                        "type": "array",
+                        "items": {
+                          "type" : "object",
+                          "properties": {
+                            "major": {
+                              "type": "number",
+                              "minimum": 0,
+                              "maximum": 65535                 
+                            },
+                            "minor": {
+                              "type": "number",
+                              "minimum": 0,
+                              "maximum": 65535                 
+                            },
+                            "rssi": {
+                              "type": "number",
+                              "minimum": -128,
+                              "maximum": 0                 
+                            }
+                          }
+                        }
+                      },
+                      "in_movement": {
+                        "type": "boolean"                
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "allOf": [
+                  { "$ref": "#/definitions/commonFrameProperties" },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "number_sensor": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 255  
+                      },
+                      "mA": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 4294967295                
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "allOf": [
+                  { "$ref": "#/definitions/commonFrameProperties" },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "lbs_list": {
+                        "type": "array",
+                        "items": {
+                          "type" : "object",
+                          "properties": {
+                            "mcc": {
+                              "type": "number",
+                              "minimum": 0,
+                              "maximum": 65535                  
+                            },
+                            "mnc": {
+                              "type": "number",
+                              "minimum": 0,
+                              "maximum": 65535                  
+                            },
+                            "lac": {
+                              "type": "number",
+                              "minimum": 0,
+                              "maximum": 65535                  
+                            },
+                            "cellid": {
+                              "type": "number",
+                              "minimum": 0,
+                              "maximum": 4294967295                  
+                            },
+                            "power_dBm": {
+                              "type": "number",
+                              "minimum": -32768,
+                              "maximum": 32768
+
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "allOf": [
+                  { "$ref": "#/definitions/commonFrameProperties" },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "measurement_row_number": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 255
+                      },
+                      "command_number_row": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 255                
+                      },
+                      "size_answer": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 255                 
+                      },
+                      "answer": {
+                        "type": "string"                
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "allOf": [
+                  { "$ref": "#/definitions/commonFrameProperties" },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "roll": {
+                        "type": "number",
+                        "minimum": -180,
+                        "maximum": 180 
+                      },
+                      "pith": {
+                        "type": "number",
+                        "minimum": -180,
+                        "maximum": 180 
+                      },
+                      "yaw": {
+                        "type": "number",
+                        "minimum": -180,
+                        "maximum": 180 
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "allOf": [
+                  { "$ref": "#/definitions/commonFrameProperties" },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "channel_number": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 255 
+                      },
+                      "state": {
+                        "type": "string",
+                        "enum": ["NORMAL1", "NORMAL2", "NORMAL3", "NORMAL4", "NORMAL5", "WET", "BREAK", "WET_BREAK", "UNKNOWN", "unknown"] 
+                      },
+                      "current_resistance": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 4294967295 
+                      },
+                      "min_resistance": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 4294967295  
+                      },
+                      "max_resistance": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 4294967295  
+                      },
+                      "middle_resistance": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 4294967295  
+                      },
+                      "current_conduct_resistance": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 4294967295  
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "allOf": [
+                  { "$ref": "#/definitions/commonFrameProperties" },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "iccid": {
+                        "type": "string"
+                      },
+                      "rssi": {
+                        "type": "number"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "allOf": [
+                  { "$ref": "#/definitions/commonFrameProperties" },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "humidity_pct": {
+                        "oneOf": [
+                          { "type": "number", "minimum": 0, "maximum": 1000 },
+                          { "type": "string", "enum": ["unknown"] }
+                        ] 
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "allOf": [
+                  { "$ref": "#/definitions/commonFrameProperties" },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "illuminance_lex": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 65535
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "allOf": [
+                  { "$ref": "#/definitions/commonFrameProperties" },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "x_mG": {
+                        "type": "number",
+                        "minimum": -32768,
+                        "maximum": 32768
+                      },
+                      "y_mG": {
+                        "type": "number",
+                        "minimum": -32768,
+                        "maximum": 32768
+                      },
+                      "z_mG": {
+                        "type": "number",
+                        "minimum": -32768,
+                        "maximum": 32768
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "allOf": [
+                  { "$ref": "#/definitions/commonFrameProperties" },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "pin_number": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 255
+                      },
+                      "pin_status": {
+                        "type": "string",
+                        "enum": ["open", "close", "unknown"]
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "allOf": [
+                  { "$ref": "#/definitions/commonFrameProperties" },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "x_axis_angle_pct": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 900
+                      },
+                      "y_axis_angle_pct": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 900
+                      },
+                      "z_axis_angle_pct": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 900
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "allOf": [
+                  { "$ref": "#/definitions/commonFrameProperties" },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "number_sensor": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 255
+                      },
+                      "temperature_cel": {
+                        "type": "number",
+                        "minimum": -32768,
+                        "maximum": 32768
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "sn": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 4294967295
+        },
+        "status_decode": {
+            "type": "boolean"
+        },
+        "type_power": {
+            "type": "string",
+            "enum": ["battery", "external"]
+        },
+        "version_protocol": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 8
+        }
+      }
+    },
+    "errors": { 
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties" : {
+          "error_type" : {
+            "type": "string",
+            "enum": ["unknown_frame", "unknown_dif_in_frame_mbus", "unsupported_dif_in_frame_mbus", "unsupported_vif_in_frame_mbus", "error_parse_frame_mbus"] 
+          },
+          "error_debug_info" : {
+            "type": "string",
+            "pattern": "^type=\\w+\\|offset=\\w+$"
+          }
+        }
+      }
+    },
+    "warnings": { "type": "array" }
+  },
+  "additionalProperties": false
+}

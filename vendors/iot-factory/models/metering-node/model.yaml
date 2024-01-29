@@ -1,0 +1,48 @@
+# Commercial name of the model
+name: Metering Node
+# Functional description of the product. Maximum 500 characters.
+description: M-BUS Master Gateway and LORAWAN Converter
+# Logo of the device
+logo: personal-tracker-lorawan-by-iot-factory.png
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
+deviceProfileId:
+  - iot-fact_RFGroup1_1.0.3a_classA
+  - iot-fact_RFGroup2_1.0.3a_classA
+  - iot-fact_RFGroup4_1.0.3a_classA
+
+# You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings.
+# Maximum device TX Conducted output power in dBm.
+maxTxPower:
+# Minimum device TX Conducted output power in dBm.
+minTxPower:
+# Maximum device TX Radiated output power in dBm.
+maxTxEIRP:
+# Minimum device TX Radiated output power in dBm.
+minTxEIRP:
+# Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'
+# or 'random' (not known, changes over time).
+motionIndicator:
+
+# Is your device certified by the LoRa Alliance? Possible values: true, false.
+LoRaWANCertified:
+# Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
+# Format: `<8 characters max>:<16 characters max>:<digits only>`
+# Be careful: Once you chose a model, it cannot be changed later
+modelId: iot-fact:metering-node:1
+# <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
+# Be careful: Once you chose a protocolId, it cannot be changed later
+protocolId:
+  - iot-fact:generic:1
+# DataSheet URL (optional)
+specificationURL: https://iotfactory.eu/wp-content/uploads/leaflets/Personal-Tracker-LORAWAN-by-IOT-Factory.pdf
+# User Guide URL (optional)
+userGuideURL: https://iotfactory.eu/products/iot-sensors/lorawan-personal-tracker-for-indoor-outdoor-geolocation/
+# <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
+sensors:
+
+# Driver examples
+# A list of examples description that are compatible with this model
+examples:
+  iot-fact:generic:1:
+    - Metering node
+ 
