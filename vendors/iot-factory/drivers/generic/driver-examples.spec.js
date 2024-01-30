@@ -1,4 +1,4 @@
-const driver = require("./generic-codec.js");
+const driver = require("./index.js");
 const examples = require("./examples.json");
 
 /*..............
