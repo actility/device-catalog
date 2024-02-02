@@ -41,7 +41,7 @@ This is the ontology supported by Actility. you can define a sensor inside your 
 | Hectopascal                            | hPa       | double | hPa                 | pressure                                        |
 | Henry                                  | H         | double | H                   | inductance                                      |
 | Hertz                                  | hertz     | double | Hz                  | frequency, sound                                |
-| Hour                                   | hour      | double | h                   | time, duration, interval, age                   |
+| Hour                                   | hour      | double | h                   | time, duration, interval, age, period           |
 | Joule                                  | J         | double | J                   | energy                                          |
 | Katal                                  | kat       | double | kat                 | catalyticActivity                               |
 | Kelvin                                 | K         | double | K                   | temperature                                     |
@@ -74,10 +74,10 @@ This is the ontology supported by Actility. you can define a sensor inside your 
 | Millimeter                             | mm        | double | mm                  | distance, accuracy, range, altitude             |
 | Millimeter per second                  | mm/s      | double | mm/s                | velocity, speed                                 |
 | Millimeter per hour                    | mm/h      | double | mm/h                | velocity, speed                                 |
-| Millisecond                            | ms        | double | ms                  | time, duration, interval, age                   |
+| Millisecond                            | ms        | double | ms                  | time, duration, interval, age, period           |
 | Millisiemens per centimeter            | mS/cm     | double | mS/cm               | conductivity                                    |
 | Millivolt                              | mV        | double | mV                  | batteryVoltage                                  |
-| Minute                                 | minute    | double | min                 | time, duration, interval, age                   |
+| Minute                                 | minute    | double | min                 | time, duration, interval, age, period           |
 | Mole                                   | mol       | double | mol                 | amount, quantity                                |
 | Newton                                 | N         | double | N                   | force                                           |
 | Nephelometric turbidity                | ntu       | double | ntu                 | nephelometricTurbidity, turbidity               |
@@ -93,7 +93,7 @@ This is the ontology supported by Actility. you can define a sensor inside your 
 | Radian                                 | rad       | double | rad                 | angle                                           |
 | Rate                                   | /         | double | rate                | rate, powerFactor                               |
 | Rotations per minute                   | rpm       | double | rpm                 | angularVelocity                                 |
-| Second                                 | s         | double | s                   | time, duration, interval, age                   |
+| Second                                 | s         | double | s                   | time, duration, interval, age, period           |
 | Siemens                                | S         | double | S                   | conductance                                     |
 | Siemens per meter                      | S/m       | double | S/m                 | conductivity                                    |
 | Sievert                                | Sv        | double | Sv                  | radiationEffect                                 |
