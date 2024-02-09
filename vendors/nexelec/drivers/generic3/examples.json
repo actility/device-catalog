@@ -1,0 +1,197 @@
+[
+    {
+        "description": "Example 1: Origin+ Product Status",
+        "type": "uplink",
+        "input": {
+            "bytes": "B10005077805C8",
+            "fPort": 1,
+            "recvTime": "2020-08-02T20:00:00.000+05:00"
+        },
+        "output": {
+            "data": {
+                "antiTearDetectionStatus": "Magnetic base detected",
+                "batteryLevel": "Medium",
+                "batteryVoltage": {
+                  "units": "mV",
+                  "value": 3000
+                },
+                "hwVersion": 5,
+                "rmgLifetime": {
+                  "unit": "month",
+                  "value": 120
+                },
+                "smokeSensorActivation": "Smoke sensor desactivate",
+                "smokeSensorStatus": "Smoke sensor ok",
+                "swVersion": 0.7000000000000001,
+                "tempHumSensorStatus": "T°/humidity sensor ok",
+                "typeOfMessage": "Product Status",
+                "typeOfProduct": "Origin+ LoRa"
+            },
+            "errors": [],
+            "warnings": []
+        }
+    },
+    {
+        "description": "Example 2: Origin Product Function Configuration",
+        "type": "uplink",
+        "input": {
+            "bytes": "B2014280A1050000000000",
+            "fPort": 1,
+            "recvTime": "2020-08-02T20:00:00.000+05:00"
+        },
+        "output": {
+            "data": {
+                "d2dNetworkID": 0,
+                "dailyAirEnable": "Active",
+                "datalogEnable": "Deactivate",
+                "datalogMeasureRepetition": 4,
+                "datalogNewMeasure": 20,
+                "loraRegion": "EU868",
+                "nfcStatus": "Discoverable",
+                "pendingJoin": "Join request scheduled",
+                "reconfigurationSource": "Product Start up",
+                "reconfigurationStatus": "Total Success",
+                "smokeDetectionOnMagnetRemovalEnable": "Deactivate",
+                "transmissionIntervalDatalog": {
+                  "unit": "minutes",
+                  "value": 200
+                },
+                "typeOfMessage": "Product Configuration",
+                "typeOfProduct": "Origin LoRa"
+            },
+            "errors": [],
+            "warnings": []
+        }
+    },
+    {
+        "description": "Example 3: Guard+ Fire Detector State",
+        "type": "uplink",
+        "input": {
+            "bytes": "B302102A50FA00",
+            "fPort": 1,
+            "recvTime": "2020-08-02T20:00:00.000+05:00"
+        },
+        "output": {
+            "data": {
+                "digitalMaintenanceCertificate": "Maintenance has been done",
+                "smokeAlarm": "Smoke Alarm non-activated",
+                "smokeAlarmHush": "Smoke alarm stopped following central button press",
+                "smokeLocalProductTest": "Smoke test off",
+                "temperature": {
+                  "unit": "°C",
+                  "value": 20
+                },
+                "timeSinceLastMaintenance": {
+                  "units": "week",
+                  "value": 40
+                },
+                "timeSinceLastTest": {
+                  "units": "week",
+                  "value": 10
+                },
+                "typeOfMessage": "Smoke Alarm",
+                "typeOfProduct": "Guard+ LoRa"
+            },
+            "errors": [],
+            "warnings": []
+        }
+    },
+    {
+        "description": "Example 4: Guard Daily Air Quality",
+        "type": "uplink",
+        "input": {
+            "bytes": "B4037C9F67D141E190",
+            "fPort": 1,
+            "recvTime": "2020-08-02T20:00:00.000+05:00"
+        },
+        "output": {
+            "data": {
+                "humidityAvg": {
+                    "unit": "%RH",
+                    "value": 50
+                },
+                "humidityMax": {
+                    "unit": "%RH",
+                    "value": 60
+                },
+                "humidityMin": {
+                    "unit": "%RH",
+                    "value": 40
+                },
+                "temperatureAvg": {
+                    "unit": "°C",
+                    "value": 20
+                },
+                "temperatureMax": {
+                    "unit": "°C",
+                    "value": 20.200000000000003
+                },
+                "temperatureMin": {
+                    "unit": "°C",
+                    "value": 19.800000000000004
+                },
+                "typeOfMessage": "Air Quality",
+                "typeOfProduct": "Guard LoRa"
+            },
+            "errors": [],
+            "warnings": []
+        }
+    },
+    {
+        "description": "Example 5: Origin+ Periodical Data",
+        "type": "uplink",
+        "input": {
+            "bytes": "B1047D1900",
+            "fPort": 1,
+            "recvTime": "2020-08-02T20:00:00.000+05:00"
+        },
+        "output": {
+            "data": {
+                "humidity": {
+                  "unit": "%RH",
+                  "value": 50
+                },
+                "temperature": {
+                  "unit": "°C",
+                  "value": 20
+                },
+                "typeOfMessage": "Real Time",
+                "typeOfProduct": "Origin+ LoRa"
+            },
+            "errors": [],
+            "warnings": []
+        }
+    },
+    {
+        "description": "Example 6: Guard+ Historical Temperature Data",
+        "type": "uplink",
+        "input": {
+            "bytes": "B305103C26499C6358D0",
+            "fPort": 1,
+            "recvTime": "2020-08-02T20:00:00.000+05:00"
+        },
+        "output": {
+            "data": {
+                "datalogMeasureRepetition": 2,
+                "datalogNewMeasure": 4,
+                "temperature": {
+                  "unit": "°C",
+                  "value": [
+                    10,
+                    11,
+                    10,
+                    10
+                  ]
+                },
+                "transmissionIntervalDatalog": {
+                  "unit": "minutes",
+                  "value": 15
+                },
+                "typeOfMessage": "Temperature datalog",
+                "typeOfProduct": "Guard+ LoRa"
+            },
+            "errors": [],
+            "warnings": []
+        }
+    }
+]
