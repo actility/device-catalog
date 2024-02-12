@@ -1,19 +1,19 @@
 // Protocol v2 only
 
-if (typeof module !== 'undefined') {
-  // Only needed for nodejs
-  module.exports = {
-    Decode: Decode,
-    Decoder: Decoder,
-    decode_float: decode_float,
-    decode_uint32: decode_uint32,
-    decode_int32: decode_int32,
-    decode_uint16: decode_uint16,
-    decode_int16: decode_int16,
-    decode_uint8: decode_uint8,
-    decode_int8: decode_int8,
-  };
-}
+// if (typeof module !== 'undefined') {
+//   // Only needed for nodejs
+//   module.exports = {
+//     Decode: Decode,
+//     Decoder: Decoder,
+//     decode_float: decode_float,
+//     decode_uint32: decode_uint32,
+//     decode_int32: decode_int32,
+//     decode_uint16: decode_uint16,
+//     decode_int16: decode_int16,
+//     decode_uint8: decode_uint8,
+//     decode_int8: decode_int8,
+//   };
+// }
 
 // Decode an uplink message from a buffer
 // (array) of bytes to an object of fields.
@@ -462,28 +462,28 @@ Object.prototype.in = function() {
 
 // Protocol v2 only
 
-if (typeof module !== 'undefined') {
-  // Only needed for nodejs
-  module.exports = {
-    Encode: Encode,
-    Encoder: Encoder,
-    EncodeDeviceConfig: EncodeDeviceConfig, // used by generate_config_bin.py
-    EncodeVsMtAppConfig: EncodeVsMtAppConfig, // used by generate_config_bin.py
-    encode_header: encode_header,
-    encode_device_config: encode_device_config,
-    encode_vsmt_app_config: encode_vsmt_app_config,
-    encode_config_switch_bitmask: encode_config_switch_bitmask,
-    encode_device_config_switch: encode_device_config_switch,
-    encode_device_type: encode_device_type,
-    encode_uint32: encode_uint32,
-    encode_int32: encode_int32,
-    encode_uint16: encode_uint16,
-    encode_int16: encode_int16,
-    encode_uint8: encode_uint8,
-    encode_int8: encode_int8,
-    calc_crc: calc_crc,
-  };
-}
+// if (typeof module !== 'undefined') {
+//   // Only needed for nodejs
+//   module.exports = {
+//     Encode: Encode,
+//     Encoder: Encoder,
+//     EncodeDeviceConfig: EncodeDeviceConfig, // used by generate_config_bin.py
+//     EncodeVsMtAppConfig: EncodeVsMtAppConfig, // used by generate_config_bin.py
+//     encode_header: encode_header,
+//     encode_device_config: encode_device_config,
+//     encode_vsmt_app_config: encode_vsmt_app_config,
+//     encode_config_switch_bitmask: encode_config_switch_bitmask,
+//     encode_device_config_switch: encode_device_config_switch,
+//     encode_device_type: encode_device_type,
+//     encode_uint32: encode_uint32,
+//     encode_int32: encode_int32,
+//     encode_uint16: encode_uint16,
+//     encode_int16: encode_int16,
+//     encode_uint8: encode_uint8,
+//     encode_int8: encode_int8,
+//     calc_crc: calc_crc,
+//   };
+// }
 
 var mask_byte = 255;
 
@@ -708,3 +708,5 @@ function calc_crc(buf) {
   while (i < buf.length) C = (C >>> 8) ^ T[(C ^ buf[i++]) & 0xFF];
   return C & 0xFFFF;
 }
+
+exports.Decode = Decode;
