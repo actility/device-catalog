@@ -32,25 +32,10 @@ describe("Decode uplink", () => {
 
                 // Then
                 let expected = example.output;
-                for(let property of listProperties(result)) {
-                    let keys = property.split('.');
-                    let value = result;
-                    for(let key of keys) {
-                        value = value[key];
-                    }
+                
+                // Adaptations
+                checkDates(result, expected);
 
-                    let keysStr = keys.join("\"][\"");
-
-                    let isDate = false;
-                    try {
-                        isDate = (new Date(value)).toISOString() === value;
-                    } catch(err) {
-
-                    }
-                    if(isDate) {
-                        eval(`result["${keysStr}"] = "XXXX-XX-XXTXX:XX:XX.XXXZ"`)
-                    }
-                }
                 expect(result).toEqual(expected);
             });
         }
@@ -118,10 +103,12 @@ describe("Backward compatibility - Encode downlink", () => {
     });
 });
 
+
+// UTIL
 function listProperties(obj, parent = '', result = []) {
     for (let key in obj) {
         if (obj.hasOwnProperty(key)) {
-            if (typeof obj[key] === 'object' && obj[key] !== null) {
+            if (typeof obj[key] === 'object' && !(obj[key] instanceof Date) && obj[key] !== null) {
                 listProperties(obj[key], parent + key + '.', result);
             } else {
                 result.push(parent + key);
@@ -129,4 +116,26 @@ function listProperties(obj, parent = '', result = []) {
         }
     }
     return result;
+}
+
+function checkDates(result, expected) {
+    for(let property of listProperties(result)) {
+        let keys = property.split('.');
+        let value = result;
+        for(let key of keys) {
+            value = value[key];
+        }
+
+        let keysStr = keys.join("\"][\"");
+
+        let isDate = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z/.test(value);
+        isDate |= value instanceof Date;
+        
+        if(isDate) {
+            eval(`
+                if(value instanceof Date) result["${keysStr}"] = value.toISOString();
+                if(expected["${keysStr}"] === "XXXX-XX-XXTXX:XX:XX.XXXZ") result["${keysStr}"] = "XXXX-XX-XXTXX:XX:XX.XXXZ";
+            `)
+        }
+    }
 }
