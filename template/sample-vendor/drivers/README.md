@@ -398,6 +398,8 @@ use cases as well as error cases.
 
 **Important:** The test of your driver is needed to prove a minimum test coverage of 85% to be valid on our framework.
 
+_**PS:** If your driver outputs values as ISO string dates or instances of class Date in the format "xxxx-xx-xxTxx:xx:xx.xxxZ", **declared when compiled**, you can validate the test by replacing the date value by_ "XXXX-XX-XXTXX:XX:XX.XXXZ" _in the JSON examples file._
+
 > A pre-implemented [spec file](sample-driver/driver-examples.spec.js) for testing can be copied from the template in order to test the driver with all the provided examples.
 
 ##
