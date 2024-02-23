@@ -432,6 +432,7 @@ function determineAltitude(payload, payloadType){
     if (payload.length < 18)
         throw new Error("The payload is not valid to determine GPS altitude");
     let rawValue = (payload[16]<<8)+payload[17];
+    if(rawValue >= 32768) rawValue -= 65536;
     if (payloadType == 0){
         //the value is encoded in centimeter
         return rawValue / 100
