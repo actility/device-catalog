@@ -39,7 +39,7 @@ const MelodyId = require("./enums/melodyId");
 const ErrorCode = require("./enums/errorCode");
 const AngleDetectionControl = require("./enums/angleDetectionControl");
 const GpsFixStatus = require("./enums/gpsFixStatus");
-const pointExtractions = require("./extractPoints");
+const pointExtractions = require("../extractPoints");
 
 function convertToByteArray(payload){
     var bytes = [];
