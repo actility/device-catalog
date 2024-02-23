@@ -1,0 +1,60 @@
+[
+   {
+      "firmwareVersion":"2.2",
+      "profiles":[
+         {
+            "id":3,
+            "name":"Intensive",
+            "namespace":"TPL_B2Capp",
+            "description":"Position every minute.",
+            "translations":[
+               {
+                  "language":"FR",
+                  "name":"Intensif",
+                  "description":"Une position chaque minute."
+               }
+            ],
+            "parameters":{
+               "mode":"MOTION_TRACKING",
+               "trackingUlPeriod":60,
+               "periodicPositionInterval":1800
+            }
+         },
+         {
+            "id":2,
+            "name":"Eco",
+            "namespace":"TPL_B2Capp",
+            "description":"Position every 20 minutes.",
+            "translations":[
+               {
+                  "language":"FR",
+                  "name":"Eco",
+                  "description":"Position chaque 20 minutes."
+               }
+            ],
+            "parameters":{
+               "mode":"MOTION_TRACKING",
+               "trackingUlPeriod":1200,
+               "periodicPositionInterval":3600
+            }
+         },
+         {
+            "id":1,
+            "name":"Sleep",
+            "namespace":"TPL_B2Capp",
+            "description":"No tracking, only a periodic position sent every hour",
+            "translations":[
+               {
+                  "language":"FR",
+                  "name":"Veille",
+                  "description":"Pas de suivi, seulement des positions périodiques chaque heure."
+               }
+            ],
+            "parameters":{
+               "mode":"STAND_BY",
+               "periodicPositionInterval":3600
+            }
+         }
+      ]
+   }
+]
