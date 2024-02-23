@@ -11,6 +11,7 @@ product:
 # ID(s) of the profile that defines the LoRaWAN characteristics of this model.
 deviceProfileId: 
     - ITRON/Cyble5A.1.0.2b_ETSI
+    - itron_RFGroup4_1.0.2b_classA
  
 # You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
 # Maximum device TX Conducted output power in dBm. 
@@ -31,10 +32,10 @@ LoRaWANCertified:
 # Format: `<8 characters max>:<16 characters max>:<digits only>`
 modelId: itron:cyble-5:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
-protocolId:
+protocolId: 
 # DataSheet URL (optional) 
-specificationURL: 
+specificationURL: https://www.itron.com/-/media/feature/products/documents/brochure/cyble-5-fr-web.pdf
 # User Guide URL (optional) 
-userGuideURL: 
+userGuideURL: https://www.itron.com/-/media/feature/products/documents/user-guides-and-manuals/cyble-rf-rf-ht-ml-web_pdf_4042.pdf
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
