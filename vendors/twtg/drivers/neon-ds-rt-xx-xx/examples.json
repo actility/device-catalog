@@ -1,0 +1,976 @@
+[
+  {
+    "description": "RT v1 Config request base, default",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "config_update_req": {
+          "config_type": "base",
+          "protocol_version": 1,
+          "tag": "0x11223344",
+          "payload": {
+            "switch_mask": {
+              "enable_confirmed_event_message": false,
+              "enable_confirmed_data_message": false,
+              "allow_deactivation": true
+            },
+            "periodic_message_random_delay_seconds": 30,
+            "status_message_interval": "1 day"
+          }
+        }
+      }
+    },
+    "output": {
+      "fPort": 7,
+      "bytes": "104433221104be"
+    }
+  },
+  {
+    "description": "RT v1 Config request base, too big random delay",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "config_update_req": {
+          "config_type": "base",
+          "protocol_version": 1,
+          "tag": "0x11223344",
+          "payload": {
+            "switch_mask": {
+              "enable_confirmed_event_message": false,
+              "enable_confirmed_data_message": false,
+              "allow_deactivation": true
+            },
+            "periodic_message_random_delay_seconds": 32,
+            "status_message_interval": "1 day"
+          }
+        }
+      }
+    },
+    "output": {
+      "errors": [
+        "periodic_message_random_delay_seconds is outside of specification: 32"
+      ]
+    }
+  },
+  {
+    "description": "RT v1 Config request base, invalid interval",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "config_update_req": {
+          "config_type": "base",
+          "protocol_version": 1,
+          "tag": "0x11223344",
+          "payload": {
+            "switch_mask": {
+              "enable_confirmed_event_message": false,
+              "enable_confirmed_data_message": false,
+              "allow_deactivation": true
+            },
+            "periodic_message_random_delay_seconds": 30,
+            "status_message_interval": "8 days"
+          }
+        }
+      }
+    },
+    "output": {
+      "errors": [
+        "message interval is outside of specification: 8 days"
+      ]
+    }
+  },
+  {
+    "description": "RT v1 Config request base, pattern",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "config_update_req": {
+          "config_type": "base",
+          "protocol_version": 1,
+          "tag": "0xAABBCCDD",
+          "payload": {
+            "switch_mask": {
+              "enable_confirmed_event_message": true,
+              "enable_confirmed_data_message": true,
+              "allow_deactivation": false
+            },
+            "periodic_message_random_delay_seconds": 10,
+            "status_message_interval": "15 minutes"
+          }
+        }
+      }
+    },
+    "output": {
+      "fPort": 7,
+      "bytes": "10ddccbbaa032a"
+    }
+  },
+  {
+    "description": "RT v1 Config request sensor conditions, default",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "config_update_req": {
+          "config_type": "sensor_conditions",
+          "protocol_version": 1,
+          "tag": "0x11223344",
+          "payload": {
+            "device_type": "rt",
+            "event_conditions": [
+              {
+                "mode": "off",
+                "measurement_window": 0,
+                "measurement_threshold": 0,
+                "frequent_event": false
+              },
+              {
+                "mode": "off",
+                "measurement_window": 0,
+                "measurement_threshold": 0,
+                "frequent_event": false
+              },
+              {
+                "mode": "off",
+                "measurement_window": 0,
+                "measurement_threshold": 0,
+                "frequent_event": false
+              },
+              {
+                "mode": "off",
+                "measurement_window": 0,
+                "measurement_threshold": 0,
+                "frequent_event": false
+              }
+            ]
+          }
+        }
+      }
+    },
+    "output": {
+      "fPort": 7,
+      "bytes": "154433221108000000000000000000000000000000000000000000"
+    }
+  },
+  {
+    "description": "RT v1 Config request sensor conditions, default simplified",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "config_update_req": {
+          "config_type": "sensor_conditions",
+          "protocol_version": 1,
+          "tag": "0x11223344",
+          "payload": {
+            "device_type": "rt",
+            "event_conditions": [
+              {
+                "mode": "off"
+              },
+              {
+                "mode": "off"
+              },
+              {
+                "mode": "off"
+              },
+              {
+                "mode": "off"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "output": {
+      "fPort": 7,
+      "bytes": "154433221108000000000000000000000000000000000000000000"
+    }
+  },
+  {
+    "description": "RT v1 Config request sensor conditions, pattern",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "config_update_req": {
+          "config_type": "sensor_conditions",
+          "protocol_version": 1,
+          "tag": "0x11223344",
+          "payload": {
+            "device_type": "rt",
+            "event_conditions": [
+              {
+                "mode": "below",
+                "measurement_window": 1,
+                "measurement_threshold": 1.25,
+                "frequent_event": false
+              },
+              {
+                "mode": "above",
+                "measurement_window": 10,
+                "measurement_threshold": 12.5,
+                "frequent_event": true
+              },
+              {
+                "mode": "increasing",
+                "measurement_window": 63,
+                "measurement_threshold": 0,
+                "frequent_event": true
+              },
+              {
+                "mode": "decreasing",
+                "measurement_window": 32,
+                "measurement_threshold": 125,
+                "frequent_event": false
+              }
+            ]
+          }
+        }
+      }
+    },
+    "output": {
+      "fPort": 7,
+      "bytes": "15443322110806010000a03f00000048410200000000030000fa42"
+    }
+  },
+  {
+    "description": "RT v1 Config request sensor conditions, wrong mode",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "config_update_req": {
+          "config_type": "sensor_conditions",
+          "protocol_version": 1,
+          "tag": "0x11223344",
+          "payload": {
+            "device_type": "rt",
+            "event_conditions": [
+              {
+                "mode": "off"
+              },
+              {
+                "mode": "wrong"
+              },
+              {
+                "mode": "off"
+              },
+              {
+                "mode": "off"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "output": {
+      "errors": [
+        "mode is outside of specification: wrong"
+      ]
+    }
+  },
+  {
+    "description": "RT v1 Config request sensor, default",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "config_update_req": {
+          "config_type": "sensor",
+          "protocol_version": 1,
+          "tag": "0x11223344",
+          "payload": {
+            "device_type": "rt",
+            "switch_mask": {
+              "selection": "avg_only"
+            },
+            "measurement_interval_minutes": 5,
+            "periodic_event_message_interval": 12
+          }
+        }
+      }
+    },
+    "output": {
+      "fPort": 7,
+      "bytes": "13443322110803050c00"
+    }
+  },
+  {
+    "description": "RT v1 Config request sensor, wrong selection",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "config_update_req": {
+          "config_type": "sensor",
+          "protocol_version": 1,
+          "tag": "0x11223344",
+          "payload": {
+            "device_type": "rt",
+            "switch_mask": {
+              "selection": "wrong"
+            },
+            "measurement_interval_minutes": 5,
+            "periodic_event_message_interval": 12
+          }
+        }
+      }
+    },
+    "output": {
+      "errors": [
+        "Out of bound, selection: wrong"
+      ]
+    }
+  },
+  {
+    "description": "RT v1 Config request sensor, too high measurement interval",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "config_update_req": {
+          "config_type": "sensor",
+          "protocol_version": 1,
+          "tag": "0x11223344",
+          "payload": {
+            "device_type": "rt",
+            "switch_mask": {
+              "selection": "avg_only"
+            },
+            "measurement_interval_minutes": 241,
+            "periodic_event_message_interval": 12
+          }
+        }
+      }
+    },
+    "output": {
+      "errors": [
+        "measurement_interval_minutes outside of specification: 241"
+      ]
+    }
+  },
+  {
+    "description": "RT v1 Config request sensor, too low measurement interval",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "config_update_req": {
+          "config_type": "sensor",
+          "protocol_version": 1,
+          "tag": "0x11223344",
+          "payload": {
+            "device_type": "rt",
+            "switch_mask": {
+              "selection": "avg_only"
+            },
+            "measurement_interval_minutes": 0,
+            "periodic_event_message_interval": 12
+          }
+        }
+      }
+    },
+    "output": {
+      "errors": [
+        "measurement_interval_minutes outside of specification: 0"
+      ]
+    }
+  },
+  {
+    "description": "RT v1 Config request sensor, too hight message interval",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "config_update_req": {
+          "config_type": "sensor",
+          "protocol_version": 1,
+          "tag": "0x11223344",
+          "payload": {
+            "device_type": "rt",
+            "switch_mask": {
+              "selection": "avg_only"
+            },
+            "measurement_interval_minutes": 5,
+            "periodic_event_message_interval": 10081
+          }
+        }
+      }
+    },
+    "output": {
+      "errors": [
+        "periodic_event_message_interval outside of specification: 10081"
+      ]
+    }
+  },
+  {
+    "description": "RT v1 Config request sensor, maximized values",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "config_update_req": {
+          "config_type": "sensor",
+          "protocol_version": 1,
+          "tag": "0x11223344",
+          "payload": {
+            "device_type": "rt",
+            "switch_mask": {
+              "selection": "avg_only"
+            },
+            "measurement_interval_minutes": 240,
+            "periodic_event_message_interval": 10080
+          }
+        }
+      }
+    },
+    "output": {
+      "fPort": 7,
+      "bytes": "13443322110803f06027"
+    }
+  },
+  {
+    "description": "RT v1 Config request sensor, minimized values",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "config_update_req": {
+          "config_type": "sensor",
+          "protocol_version": 1,
+          "tag": "0x11223344",
+          "payload": {
+            "device_type": "rt",
+            "switch_mask": {
+              "selection": "extended"
+            },
+            "measurement_interval_minutes": 1,
+            "periodic_event_message_interval": 0
+          }
+        }
+      }
+    },
+    "output": {
+      "fPort": 7,
+      "bytes": "13443322110800010000"
+    }
+  },
+  {
+    "description": "RT v1 Config request user calibration, default",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "config_update_req": {
+          "config_type": "user_calibration",
+          "protocol_version": 1,
+          "tag": "0x11223344",
+          "payload": {
+            "device_type": "rt",
+            "coefficients": {
+              "a": 0,
+              "b": 0
+            }
+          }
+        }
+      }
+    },
+    "output": {
+      "fPort": 7,
+      "bytes": "164433221108000000000000000000000000000000000000000000000000"
+    }
+  },
+  {
+    "description": "RT v1 Config request user calibration, pattern",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "config_update_req": {
+          "config_type": "user_calibration",
+          "protocol_version": 1,
+          "tag": "0x11223344",
+          "payload": {
+            "device_type": "rt",
+            "coefficients": {
+              "a": 1.25,
+              "b": 1.125
+            }
+          }
+        }
+      }
+    },
+    "output": {
+      "fPort": 7,
+      "bytes": "1644332211080000a03f0000903f00000000000000000000000000000000"
+    }
+  },
+  {
+    "description": "RT v1 Config request user calibration, offset only",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "config_update_req": {
+          "config_type": "user_calibration",
+          "protocol_version": 1,
+          "tag": "0x11223344",
+          "payload": {
+            "device_type": "rt",
+            "coefficients": {
+              "a": 1.25
+            }
+          }
+        }
+      }
+    },
+    "output": {
+      "fPort": 7,
+      "bytes": "1644332211080000a03f0000000000000000000000000000000000000000"
+    }
+  },
+  {
+    "description": "RT v1 Config request user calibration, missing coefficients",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "config_update_req": {
+          "config_type": "user_calibration",
+          "protocol_version": 1,
+          "tag": "0x11223344",
+          "payload": {
+            "device_type": "rt"
+          }
+        }
+      }
+    },
+    "output": {
+      "errors": [
+        "coefficients not defined"
+      ]
+    }
+  },
+  {
+    "description": "RT v1 Config request user calibration, wrong device type",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "config_update_req": {
+          "config_type": "user_calibration",
+          "protocol_version": 1,
+          "tag": "0x11223344",
+          "payload": {
+            "device_type": "tt"
+          }
+        }
+      }
+    },
+    "output": {
+      "errors": [
+        "Invalid device type!"
+      ]
+    }
+  },
+  {
+    "description": "RT v1 Empty config request",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "config_update_req": {
+          "config_type": "sensor",
+          "protocol_version": 1
+        }
+      }
+    },
+    "output": {
+      "fPort": 7,
+      "bytes": "13"
+    }
+  },
+  {
+    "description": "RT v1 Empty config request, wrong config type",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "config_update_req": {
+          "config_type": "wrong",
+          "protocol_version": 1
+        }
+      }
+    },
+    "output": {
+      "errors": [
+        "Invalid config type!"
+      ]
+    }
+  },
+  {
+    "description": "RT v1 Empty config request, RT has no sensor data config",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "config_update_req": {
+          "config_type": "sensor_data",
+          "protocol_version": 1
+        }
+      }
+    },
+    "output": {
+      "errors": [
+        "Invalid config type!"
+      ]
+    }
+  },
+  {
+    "description": "RT v1 Activation message",
+    "type": "uplink",
+    "input": {
+      "bytes": "1008",
+      "recvTime": "2023-02-15T13:58:57.743Z",
+      "fPort": 5
+    },
+    "output": {
+      "data": {
+        "activated": {
+          "protocol_version": 1,
+          "device_type": "rt"
+        }
+      }
+    }
+  },
+  {
+    "description": "RT v1 Activation message, other device type",
+    "type": "uplink",
+    "input": {
+      "bytes": "1005",
+      "recvTime": "2023-02-15T13:58:57.743Z",
+      "fPort": 5
+    },
+    "output": {
+      "data": {
+        "activated": {
+          "protocol_version": 1,
+          "device_type": "ld"
+        }
+      }
+    }
+  },
+  {
+    "description": "RT v1 Activation message, unknown device type",
+    "type": "uplink",
+    "input": {
+      "bytes": "10FF",
+      "recvTime": "2023-02-15T13:58:57.743Z",
+      "fPort": 5
+    },
+    "output": {
+      "data": {
+        "activated": {
+          "protocol_version": 1,
+          "device_type": "unknown"
+        }
+      }
+    }
+  },
+  {
+    "description": "RT v1 Boot message pattern",
+    "type": "uplink",
+    "input": {
+      "bytes": "1001",
+      "recvTime": "2023-02-15T13:58:57.743Z",
+      "fPort": 1
+    },
+    "output": {
+      "data": {
+        "boot": {
+          "protocol_version": 1,
+          "reboot_reason": {
+            "major": "config update",
+            "minor": ""
+          }
+        }
+      }
+    }
+  },
+  {
+    "description": "RT v1 Boot message pattern with debug info",
+    "type": "uplink",
+    "input": {
+      "bytes": "1024000102030405060708090a0b0c0d0e0f",
+      "recvTime": "2023-02-15T13:58:57.743Z",
+      "fPort": 1
+    },
+    "output": {
+      "data": {
+        "boot": {
+          "protocol_version": 1,
+          "reboot_reason": {
+            "major": "power",
+            "minor": "power safe state"
+          },
+          "debug": "0x000102030405060708090A0B0C0D0E0F"
+        }
+      }
+    }
+  },
+  {
+    "description": "RT v1 Config answer message",
+    "type": "uplink",
+    "input": {
+      "bytes": "13AABBCCDD03",
+      "recvTime": "2023-02-15T13:58:57.743Z",
+      "fPort": 7
+    },
+    "output": {
+      "data": {
+        "config_update_ans": {
+          "protocol_version": 1,
+          "config_type": "sensor",
+          "tag": "0xDDCCBBAA",
+          "counter": 3
+        }
+      }
+    }
+  },
+  {
+    "description": "RT v1 Config answer message, unknown config type",
+    "type": "uplink",
+    "input": {
+      "bytes": "1FAABBCCDD03",
+      "recvTime": "2023-02-15T13:58:57.743Z",
+      "fPort": 7
+    },
+    "output": {
+      "data": {
+        "config_update_ans": {
+          "protocol_version": 1,
+          "config_type": "unknown",
+          "tag": "0xDDCCBBAA",
+          "counter": 3
+        }
+      }
+    }
+  },
+  {
+    "description": "RT v1 Deactivation message",
+    "type": "uplink",
+    "input": {
+      "bytes": "100000",
+      "recvTime": "2023-02-15T13:58:57.743Z",
+      "fPort": 6
+    },
+    "output": {
+      "data": {
+        "deactivated": {
+          "protocol_version": 1,
+          "reason": "user_triggered"
+        }
+      }
+    }
+  },
+  {
+    "description": "RT v1 Deactivation message, unknown reason",
+    "type": "uplink",
+    "input": {
+      "bytes": "100100",
+      "recvTime": "2023-02-15T13:58:57.743Z",
+      "fPort": 6
+    },
+    "output": {
+      "data": {
+        "deactivated": {
+          "protocol_version": 1,
+          "reason": "unknown"
+        }
+      }
+    }
+  },
+  {
+    "description": "RT v1 Deactivation message, invalid reserved",
+    "type": "uplink",
+    "input": {
+      "bytes": "100101",
+      "recvTime": "2023-02-15T13:58:57.743Z",
+      "fPort": 6
+    },
+    "output": {
+      "errors": [
+        "Unsupported reserved byte"
+      ]
+    }
+  },
+  {
+    "description": "RT v1 Sensor event message",
+    "type": "uplink",
+    "input": {
+      "bytes": "10028D295CA341",
+      "recvTime": "2023-02-15T13:58:57.743Z",
+      "fPort": 3
+    },
+    "output": {
+      "data": {
+        "sensor_event": {
+          "protocol_version": 1,
+          "selection": "max_only",
+          "condition_0": 1,
+          "condition_1": 0,
+          "condition_2": 1,
+          "condition_3": 1,
+          "trigger": "button press",
+          "measurement": {
+            "max": 20.420000076293945,
+            "status": "OK"
+          }
+        }
+      }
+    }
+  },
+  {
+    "description": "RT v1 Sensor event message extended",
+    "type": "uplink",
+    "input": {
+      "bytes": "10004A0000a03f0000b03f0000a83f",
+      "recvTime": "2023-02-15T13:58:57.743Z",
+      "fPort": 3
+    },
+    "output": {
+      "data": {
+        "sensor_event": {
+          "protocol_version": 1,
+          "selection": "extended",
+          "condition_0": 0,
+          "condition_1": 1,
+          "condition_2": 0,
+          "condition_3": 1,
+          "trigger": "periodic",
+          "measurement": {
+            "min": 1.25,
+            "max": 1.375,
+            "avg": 1.3125,
+            "status": "OK"
+          }
+        }
+      }
+    }
+  },
+  {
+    "description": "RT v1 Sensor event message, measurement error",
+    "type": "uplink",
+    "input": {
+      "bytes": "10014A030080FF",
+      "recvTime": "2023-02-15T13:58:57.743Z",
+      "fPort": 3
+    },
+    "output": {
+      "data": {
+        "sensor_event": {
+          "protocol_version": 1,
+          "selection": "min_only",
+          "condition_0": 0,
+          "condition_1": 1,
+          "condition_2": 0,
+          "condition_3": 1,
+          "trigger": "periodic",
+          "measurement": {
+            "min": null,
+            "status": "Lower Bound Error"
+          }
+        }
+      }
+    }
+  },
+  {
+    "description": "RT v1 Sensor event message extended, measurement error",
+    "type": "uplink",
+    "input": {
+      "bytes": "100005040080FF040080FF040080FF",
+      "recvTime": "2023-02-15T13:58:57.743Z",
+      "fPort": 3
+    },
+    "output": {
+      "data": {
+        "sensor_event": {
+          "protocol_version": 1,
+          "selection": "extended",
+          "condition_0": 1,
+          "condition_1": 0,
+          "condition_2": 1,
+          "condition_3": 0,
+          "trigger": "condition change",
+          "measurement": {
+            "min": null,
+            "max": null,
+            "avg": null,
+            "status": "Factory Calibration Error"
+          }
+        }
+      }
+    }
+  },
+  {
+    "description": "DevVersion",
+    "type": "uplink",
+    "input": {
+      "bytes": "01DDCCBBAA44332211",
+      "recvTime": "2023-02-15T13:58:57.743Z",
+      "fPort": 203
+    },
+    "output": {
+      "data": {
+        "DevVersion": {
+          "HW_version": "0x11223344",
+          "FW_version": "0xAABBCCDD"
+        }
+      }
+    }
+  },
+  {
+    "description": "RT v1 Device status message",
+    "type": "uplink",
+    "input": {
+      "bytes": "107515030002230101",
+      "recvTime": "2023-02-15T13:58:57.743Z",
+      "fPort": 2
+    },
+    "output": {
+      "data": {
+        "device_status": {
+          "protocol_version": 1,
+          "battery_voltage": 2.9176470588235293,
+          "temperature": 21,
+          "lora_tx_counter": 3,
+          "avg_rssi": "-100..-129",
+          "bist": "0x0123",
+          "event_counter": 1
+        }
+      }
+    }
+  },
+  {
+    "description": "RT v1 Sensor uncalibrated measurement message",
+    "type": "uplink",
+    "input": {
+      "bytes": "100000a03f",
+      "recvTime": "2023-02-15T13:58:57.743Z",
+      "fPort": 8
+    },
+    "output": {
+      "data": {
+        "uncalibrated_measurement": {
+          "protocol_version": 1,
+          "measurement": {
+            "uncalibrated_measurement": 1.25,
+            "status": "OK"
+          }
+        }
+      }
+    }
+  },
+  {
+    "description": "RT v1 Sensor uncalibrated measurement message, error",
+    "type": "uplink",
+    "input": {
+      "bytes": "10030080FF",
+      "recvTime": "2023-02-15T13:58:57.743Z",
+      "fPort": 8
+    },
+    "output": {
+      "data": {
+        "uncalibrated_measurement": {
+          "protocol_version": 1,
+          "measurement": {
+            "uncalibrated_measurement": null,
+            "status": "Lower Bound Error"
+          }
+        }
+      }
+    }
+  }
+]
