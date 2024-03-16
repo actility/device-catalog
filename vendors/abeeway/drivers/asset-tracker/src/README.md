@@ -4,7 +4,7 @@
 The IoT Flow Abeeway Asset Tracker driver implements the specification of javascript IoT flow drivers as described in the chapter below.
 
 ## To use in javascript
-First install the package: <code> npm install abeeway-asset-tracker </code>
+First install the package: <code>npm install abeeway-asset-tracker</code>
 
 Then:
 ``` javascript
@@ -60,13 +60,13 @@ var result = driver.encodeDownlink(input).bytes
 ```
 
 
-## To update and re-publish this package:
+## To update this package:
 1. Clone this repo: https://github.com/actility/device-catalog
 2. Go to ./vendors/abeeway/drivers/asset-tracker
 3. Copy-paste the up-to-date package.json into the src folder
 4. Change the new package.json's "name" property from "asset-tracker" to "abeeway-asset-tracker" and its "main" property from "./main.js" to "./index.js"
 5. Create a README.md file inside the src folder and copy-paste the contents from here.
-6. Run npm link inside the src folder
-7. Test that all the functions are correctly exported by creating a local tmp project, doing npm link asset-tracker in it and running your JS test file to see if all exported functions are available
+6. Run <code>npm link</code> inside the src folder
+7. Test that all the functions are correctly exported by creating a local tmp project, running <code>npm link abeeway-asset-tracker</code> in it and running your JS test file (example: <code>node ./tmp/index.js</code>) to see if all exported functions are available
 8. Publish as an unscoped package onto npmjs (refer to the official npmjs documentation: https://docs.npmjs.com/creating-and-publishing-unscoped-public-packages)
-9. Discard all changes if on the main branch
+9. Discard all changes (if on the main branch)
