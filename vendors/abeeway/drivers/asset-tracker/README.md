@@ -1,0 +1,73 @@
+# Abeeway Asset Tracker Driver Package
+
+## Description
+The IoT Flow Abeeway Asset Tracker driver implements the specification of javascript IoT flow drivers as described in the chapter below.
+
+## To use in javascript
+First install the package: <code>npm install abeeway-asset-tracker-driver</code>
+
+Then:
+``` javascript
+//import the module
+var driver = require("abeeway-asset-tracker-driver");
+
+//common functions
+//convert a hex string to a hex array
+function parseHexString(str){
+    var result = [];
+    while (str.length >= 2) { 
+        result.push(parseInt(str.substring(0, 2), 16));
+
+        str = str.substring(2, str.length);
+    }
+    return result;
+}
+```
+
+- To decode an uplink
+```javascript
+var input = {
+    bytes: parseHexString(uplinkPayloadString),
+    fPort: 18 
+}
+
+var result = driver.decodeUplink(input)
+
+```
+
+- To decode a downlink
+
+```javascript
+var input = {
+    bytes: parseHexString(downlinkPayloadString),
+}
+var result = driver.decodeDownlink(input)
+```
+
+- To encode a downlink
+
+```javascript
+/*
+input is the "data" object without "payload" as presented in the downlink example files
+for example
+{
+    "downMessageType": "DEBUG_COMMAND",
+    "ackToken": 2,
+    "debugCommandType": "RESET"
+}
+*/
+var result = driver.encodeDownlink(input).bytes
+```
+
+
+## To update this package:
+1. Clone this repo: https://github.com/actility/device-catalog
+2. Go to ./vendors/abeeway/drivers/asset-tracker. I suggest duplicating the folder somewhere safe and isolated in order to avoid any potential external file dependencies when testing
+3. Change the package.json's "name" property from "asset-tracker" to "abeeway-asset-tracker-driver" and its "main" property from "./main.js" to "./src/index.js", make sure the version property is up-to-date (NPM will not accept the same package version twice)
+5. In the .npmignore file, remove "src", so it's uploaded with the npm package
+6. Create a README.md file and copy-paste the raw contents from this README file
+7. Run <code>npm link</code> in the asset-tracker folder
+8. Test that all the functions are correctly exported by creating a local tmp project, running <code>npm link abeeway-asset-tracker-driver</code> in it and running your JS test file (example: <code>node ./tmp/index.js</code>) to see if all exported functions are available
+9. Publish as an unscoped package onto npmjs (refer to the official npmjs documentation: https://docs.npmjs.com/creating-and-publishing-unscoped-public-packages)
+10. Test that everything works as expected with the published package
+11. Discard all changes (if on the main branch)
