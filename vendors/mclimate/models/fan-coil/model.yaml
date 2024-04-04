@@ -27,10 +27,14 @@ LoRaWANCertified: false
 # Format: `<8 characters max>:<16 characters max>:<digits only>`
 modelId: mclimate:fan-coil:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
-protocolId: 
+protocolId: os1-mcli:fan-coil:1
 # DataSheet URL (optional) 
 specificationURL: https://mclimate.eu/products/mclimate-fan-coil-thermostat-lorawan?variant=47859154911564
 # User Guide URL (optional) 
 userGuideURL: 
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
+
+examples:
+    os1-mcli:fan-coil:1:
+        - "Periodic uplink"
