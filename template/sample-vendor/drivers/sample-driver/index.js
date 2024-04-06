@@ -27,7 +27,7 @@ function decodeUplink(input) {
         return result;
     }
 
-    for (i = 0; i < raw.byteLength; i++) {
+    for (let i = 0; i < raw.byteLength; i++) {
         switch (raw[i]) {
             // Temperature - 2 bytes
             case 0x00:
@@ -136,7 +136,7 @@ function decodeDownlink(input) {
         return result;
     }
 
-    for (i = 0; i < raw.byteLength; i += 2) {
+    for (let i = 0; i < raw.byteLength; i += 2) {
         switch (raw[i]) {
             // Pulse counter threshold - 1 byte
             case 0x00:
