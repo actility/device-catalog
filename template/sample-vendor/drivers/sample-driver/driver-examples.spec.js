@@ -74,7 +74,10 @@ const examples = (() =>{
                     let wrappedEncodeDownlink = {
                         type: "downlink-encode",
                         description: example.description,
-                        input: example.data,
+                        input: {
+                            data: example.data,
+                            fPort: example.fPort
+                        },
                         output: {
                             bytes: example.bytes,
                             fPort: example.fPort,
@@ -103,7 +106,7 @@ const errors = (() =>{
     // Storing all the error files in an array
     let errors = [];
     for (const errorFile of errorFiles) {
-        if (errorFile.endsWith(".error.json")) {
+        if (errorFile.endsWith(".errors.json")) {
             errors = examples.concat(fs.readJsonSync(path.join(__dirname, "errors", errorFile)));
         }
     }
@@ -157,15 +160,12 @@ async function run(input, operation){
     await context.global.set("operation", operation);
     await context.global.set("input", new ivm.ExternalCopy(input).copyInto());
     await context.global.set("exports", new ivm.ExternalCopy({}).copyInto());
-    try {
-        await script.run(context, { timeout: 1000 });
-        const getDriverEngineResult = await context.global.get("getDriverEngineResult");
-        const result = getDriverEngineResult();
-        await context.release();
-        return result;
-    } catch (error) {
-        throw new Error("error while running code in isolated-vm sandbox: " + error);
-    }
+
+    await script.run(context, { timeout: 1000 });
+    const getDriverEngineResult = await context.global.get("getDriverEngineResult");
+    const result = getDriverEngineResult();
+    await context.release();
+    return result;
 }
 
 
@@ -237,7 +237,12 @@ describe("Encode downlink", () => {
                     const expected = example.output;
 
                     // Adaptation
-                    expected.bytes = adaptBytesArray(expected.bytes);
+                    if(result.bytes){
+                        result.bytes = adaptBytesArray(result.bytes);
+                    }
+                    if(expected.bytes){
+                        expected.bytes = adaptBytesArray(expected.bytes);
+                    }
 
                     // Adaptations
                     checkDates(result, expected);
@@ -306,8 +311,8 @@ describe("Legacy Encode downlink errors", () => {
  */
 function adaptBytesArray(bytes){
     // if the bytes in example are in hexadecimal format instead of array of integers
-    if(bytes instanceof String){
-        return Buffer.from(bytes, "hex");
+    if(typeof bytes === "string"){
+        return Array.from(Buffer.from(bytes, "hex"));
     }
     return bytes;
 }
