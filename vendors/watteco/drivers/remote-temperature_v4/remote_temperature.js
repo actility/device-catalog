@@ -5,7 +5,7 @@ let batch_param = [1, [{taglbl: 0,resol: 10, sampletype: 7,lblname: "temperature
 let endpointCorresponder={}
 
 function decodeUplink(input) {
-    return result = watteco.watteco_decodeUplink(input,batch_param,endpointCorresponder);
+    return watteco.watteco_decodeUplink(input,batch_param,endpointCorresponder);
 }
 exports.decodeUplink = decodeUplink;
 

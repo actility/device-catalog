@@ -4,6 +4,6 @@ let batch_param = [3, [{taglbl: 0,resol: 10, sampletype: 7,lblname: "temperature
     { taglbl: 5, resol: 100, sampletype: 6, lblname: "battery_voltage", divide: 1000}]];
 let endpointCorresponder={}
 function decodeUplink(input) {
-    return result = watteco.watteco_decodeUplink(input,batch_param,endpointCorresponder);
+    return watteco.watteco_decodeUplink(input,batch_param,endpointCorresponder);
 }
 exports.decodeUplink = decodeUplink;

@@ -9,7 +9,7 @@ let endpointCorresponder = {
     analog:["0-100_mV","0-70_V"]
 }
 function decodeUplink(input) {
-    return result = watteco.watteco_decodeUplink(input,batch_param,endpointCorresponder);
+    return watteco.watteco_decodeUplink(input,batch_param,endpointCorresponder);
 }
 exports.decodeUplink = decodeUplink;
 

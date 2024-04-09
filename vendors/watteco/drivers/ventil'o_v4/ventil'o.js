@@ -10,6 +10,6 @@ let batch_param = [3, [{taglbl: 0,resol: 1, sampletype: 7,lblname: "mean_differe
 
 let endpointCorresponder={}
 function decodeUplink(input) {
-    return result = watteco.watteco_decodeUplink(input,batch_param,endpointCorresponder);
+    return watteco.watteco_decodeUplink(input,batch_param,endpointCorresponder);
 }
 exports.decodeUplink = decodeUplink;

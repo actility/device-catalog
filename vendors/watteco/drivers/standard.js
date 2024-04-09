@@ -530,8 +530,8 @@ function BytesToInt64(InBytes, Starti1, Type, LiEnd)
         start = Starti1 + BytesNb - 1;
     }
     else inc =  1; start = Starti1 ;
-    tmpInt64 = 0;
-    for (j=start; nb > 0;(j+=inc,nb--))
+    let tmpInt64 = 0;
+    for (let j=start; nb > 0;(j+=inc,nb--))
     {
         tmpInt64 = (tmpInt64 << 8) + InBytes[j];
     }
@@ -597,7 +597,7 @@ function TIC_Decode(clustID,AttributeID,BytesAfterSize)
     function TICParseEnum(Bytes,i,Enums) {
         var x = {};
         if ((Bytes[i] & 0x80) == 0) { // Really Enum
-            iEnum = Bytes[i] & 0x7F;
+            let iEnum = Bytes[i] & 0x7F;
 
             // Palliatif Anomalie 3.5.0.4852 à 3.5.0.5339 (Cf http://support.nke-watteco.com/tic/)
             // Ligne à commenter si le capteur PMEPMI a une version firmware différente de ci-dessus
@@ -605,7 +605,7 @@ function TIC_Decode(clustID,AttributeID,BytesAfterSize)
 
             x = Enums[iEnum]; i+=1;
         } else { // NString
-            sz = Bytes[i] & 0x7F; i += 1;
+            const sz = Bytes[i] & 0x7F; i += 1;
             if (sz > 0) {
                 x = String.fromCharCode.apply(null, Bytes.slice(i, i+sz)); i += sz;
             } else {
@@ -626,7 +626,7 @@ function TIC_Decode(clustID,AttributeID,BytesAfterSize)
         if (DescSize == 0) {
             DescSize = 8; // Historical fixed size Descriptor
         }
-        IsVarIndexes = ((DescHeader & 0x20) != 0);
+        const IsVarIndexes = ((DescHeader & 0x20) != 0);
 
         if (IsVarIndexes) {
             for (i=1; i < DescSize; i++) {
@@ -634,10 +634,10 @@ function TIC_Decode(clustID,AttributeID,BytesAfterSize)
             }
         } else {
             // is VarBitfields
-            iField = 0;
+            let iField = 0;
             // TODO if historical: 7 LSbit of first byte should be used ... TODO
             for (var i=DescSize; i > 1; i--) {
-                for (b = 0; b < 8; b++) {
+                for (let b = 0; b < 8; b++) {
                     if ((DescIn[i-1] >> b) & 0x01) {
                         Indexes.push(iField);
                     }
@@ -659,7 +659,7 @@ function TIC_Decode(clustID,AttributeID,BytesAfterSize)
     function TICParseTimeStamp(b,i,LittleEndian) {
         // EPOCH TIC: 01/01/2000 00:00:00
         // EPOCH UNIX: 01/01/1970 00:00:00
-        ts = BytesToInt64(b,i,"U32",LittleEndian); i += 4;
+        let ts = BytesToInt64(b,i,"U32",LittleEndian); i += 4;
         ts += (new Date("2000/01/01 00:00:00").getTime()/1000)
         ts += 3600; //TODO: find a way to beter manage this 1h shift due to TZ and DST of running computer
         var a = new Date( ts * 1000);
@@ -670,7 +670,7 @@ function TIC_Decode(clustID,AttributeID,BytesAfterSize)
     }
 
     function TICParseCString(b,i) {
-        eos = b.slice(i).indexOf(0);
+        let eos = b.slice(i).indexOf(0);
         x = String.fromCharCode.apply(null, b.slice(i, i + eos)); i += (eos + 1);
         return {x,  i}
     }
@@ -696,7 +696,7 @@ function TIC_Decode(clustID,AttributeID,BytesAfterSize)
     function TYPE_U24CSTRING(b,i) {
         var x = {};
         x["Value"] = BytesToInt64(b,i,"U24"); i += 3;
-        s = TICParseCString(b,i);
+        const s = TICParseCString(b,i);
         x["Label"] = s.x; i = s.i;
         return {x, i}
     };
@@ -733,32 +733,32 @@ function TIC_Decode(clustID,AttributeID,BytesAfterSize)
     }
     function TYPE_hmDM(b,i) {
         var x = {};
-        h = zeroPad(BytesToInt64(b,i,"U8"),2); i++;
-        m = zeroPad(BytesToInt64(b,i,"U8"),2); i++;
-        D = zeroPad(BytesToInt64(b,i,"U8"),2); i++;
-        M = zeroPad(BytesToInt64(b,i,"U8"),2); i++;
+        const h = zeroPad(BytesToInt64(b,i,"U8"),2); i++;
+        const m = zeroPad(BytesToInt64(b,i,"U8"),2); i++;
+        const D = zeroPad(BytesToInt64(b,i,"U8"),2); i++;
+        const M = zeroPad(BytesToInt64(b,i,"U8"),2); i++;
         x = D + "/" + M + " " + h + ":" + m;
         return {x, i}
     }
     function TYPE_DMh(b,i) {
         var x = {};
-        D = zeroPad(BytesToInt64(b,i,"U8"),2); i++;
-        M = zeroPad(BytesToInt64(b,i,"U8"),2); i++;
-        h = zeroPad(BytesToInt64(b,i,"U8"),2); i++;
+        const D = zeroPad(BytesToInt64(b,i,"U8"),2); i++;
+        const M = zeroPad(BytesToInt64(b,i,"U8"),2); i++;
+        const h = zeroPad(BytesToInt64(b,i,"U8"),2); i++;
         x = D + "/" + M + " " + h ;
         return {x, i}
     }
     function TYPE_hm(b,i) {
         var x = {};
-        h = zeroPad(BytesToInt64(b,i,"U8"),2); i++;
-        m = zeroPad(BytesToInt64(b,i,"U8"),2); i++;
+        const h = zeroPad(BytesToInt64(b,i,"U8"),2); i++;
+        const m = zeroPad(BytesToInt64(b,i,"U8"),2); i++;
         x = h + ":" + m;
         return {x, i}
     }
     function TYPE_SDMYhms(b,i) {
         var x = {};
-        s = TICParseNString(b,i, 1);
-        d = TICParseDMYhms(b,s.i);
+        const s = TICParseNString(b,i, 1);
+        const d = TICParseDMYhms(b,s.i);
         x["S"]=s.x;
         x["Date"]=d.x;
         i=d.i;
@@ -766,9 +766,9 @@ function TIC_Decode(clustID,AttributeID,BytesAfterSize)
     }
     function TYPE_SDMYhmsU8(b,i) {
         var x = {};
-        s = TICParseNString(b,i, 1);
-        d = TICParseDMYhms(b,s.i);
-        n = BytesToInt64(b,i,"U8"); i = d.i + 1;
+        const s = TICParseNString(b,i, 1);
+        const d = TICParseDMYhms(b,s.i);
+        const n = BytesToInt64(b,i,"U8"); i = d.i + 1;
         x["S"]=s.x;
         x["Date"]=d.x;
         x["Value"]=n;
@@ -776,9 +776,9 @@ function TIC_Decode(clustID,AttributeID,BytesAfterSize)
     }
     function TYPE_SDMYhmsU16(b,i) {
         var x = {};
-        s = TICParseNString(b,i, 1);
-        d = TICParseDMYhms(b,s.i);
-        n = BytesToInt64(b,i,"U16"); i = d.i + 1;
+        const s = TICParseNString(b,i, 1);
+        const d = TICParseDMYhms(b,s.i);
+        const n = BytesToInt64(b,i,"U16"); i = d.i + 1;
         x["S"]=s.x;
         x["Date"]=d.x;
         x["Value"]=n;
@@ -786,9 +786,9 @@ function TIC_Decode(clustID,AttributeID,BytesAfterSize)
     }
     function TYPE_SDMYhmsU24(b,i) {
         var x = {};
-        s = TICParseNString(b,i, 1);
-        d = TICParseDMYhms(b,s.i);
-        n = BytesToInt64(b,i,"U24"); i = d.i + 1;
+        const s = TICParseNString(b,i, 1);
+        const d = TICParseDMYhms(b,s.i);
+        const n = BytesToInt64(b,i,"U24"); i = d.i + 1;
         x["S"]=s.x;
         x["Date"]=d.x;
         x["Value"]=n;
@@ -802,15 +802,15 @@ function TIC_Decode(clustID,AttributeID,BytesAfterSize)
     function TYPE_HEXSTRING(b,i) {
         var x = BytesToHexStr(b.slice(i+1,i+1+b[i]));
         i+=b[i]+1;
-        d = {x, i}
+        const d = {x, i}
         return {x , i}
     }/* displayed as hexadecimal string Stored as <Size>+<byte string> */
     function TYPE_E_DIV(b,i) { return TICParseEnum(b,i,E_DIV); }
     function TYPE_U24_E_DIV(b,i) {
         var x = {};
-        dd = BytesToInt64(b,i,"U24"); i += 3;
+        const dd = BytesToInt64(b,i,"U24"); i += 3;
         x.Value = dd;
-        e = TICParseEnum(b,i,E_DIV);
+        const e = TICParseEnum(b,i,E_DIV);
         x.Label = e.x; i = e.i;
         return {x, i}
     }
@@ -819,8 +819,8 @@ function TIC_Decode(clustID,AttributeID,BytesAfterSize)
     function TYPE_11hhmmSSSS(b,i) {
         var x = []
         for (var j = 0 ; j < 11; j++) {
-            y = {};
-            h = zeroPad(BytesToInt64(b,i,"U8"),2); i++;
+            let y = {};
+            let h = zeroPad(BytesToInt64(b,i,"U8"),2); i++;
             if (h == 0xFF) {
                 y["Status"] = "NONUTILE"
             } else {
@@ -1363,7 +1363,8 @@ function TIC_Decode(clustID,AttributeID,BytesAfterSize)
     // ============================================
 
     // Init object container for decoded fields
-    data = []
+    let data = []
+    let profil;
 
     // Select PROFIL according to cluster/attribute
     if (clustID == 0x0053) {
@@ -1396,6 +1397,7 @@ function TIC_Decode(clustID,AttributeID,BytesAfterSize)
         data["_TICFrameType"]="Unexpected";
     }
 
+
     // Start Decoding descriptor
     let {DescSize, Indexes} = TICParseDescToIndexes(BytesAfterSize);
 
@@ -1411,8 +1413,8 @@ function TIC_Decode(clustID,AttributeID,BytesAfterSize)
     // Start effective fields decodings
     var bytesIndex = DescSize;
     for (var j=0; j<Indexes.length; j++) {
-        fieldIndex = Indexes[j];
-        d = profil[fieldIndex][1](BytesAfterSize,bytesIndex);
+        const fieldIndex = Indexes[j];
+        const d = profil[fieldIndex][1](BytesAfterSize,bytesIndex);
         data[profil[fieldIndex][0]] = profil[fieldIndex][3](d.x);
         bytesIndex=d.i;
     }
@@ -2483,7 +2485,7 @@ function Decoder(bytes, port) {
                     decoded.data.modbus_EP1 = ((b3&0x02) === 0x02);
                     decoded.data.modbus_EP0 = ((b3&0x01) === 0x01);
                     let i2 = i1 + 4;
-                    without_header = 0;
+                    let without_header = 0;
                     if (decoded.data.modbus_EP0 === true)
                     {
                         if (without_header === 0){

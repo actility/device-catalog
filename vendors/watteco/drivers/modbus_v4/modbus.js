@@ -8,7 +8,7 @@ let endpointCorresponder={
     modbus_datasize:["modbus_datasize_EP1","modbus_datasize_EP2","modbus_datasize_EP3","modbus_datasize_EP4","modbus_datasize_EP5","modbus_datasize_EP6","modbus_datasize_EP7","modbus_datasize_EP8","modbus_datasize_EP9"]
 }
 function decodeUplink(input) {
-    return result = watteco.watteco_decodeUplink(input, batch_param, endpointCorresponder);
+    return watteco.watteco_decodeUplink(input, batch_param, endpointCorresponder);
 }
 exports.decodeUplink = decodeUplink;
 
