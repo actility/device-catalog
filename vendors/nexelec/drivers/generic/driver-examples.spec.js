@@ -15,6 +15,32 @@ const driverYaml = yaml.load(fs.readFileSync(path.join(__dirname, "driver.yaml")
 const signature = driverYaml.signature;
 
 /**
+ * Validate if decodeDownlink function is defined in the driver
+ * as some drivers may have encodeDownlink but no decodeDownlink
+ * and there exist examples with legacy type "downlink" that should be wrapped only to "downlink-encode"
+ */
+const isDownlinkDecodeDefined = (() =>{
+    const packageJson = fs.readJsonSync(path.join(__dirname, "package.json"));
+    const driverFns = require("./" + packageJson.main);
+    switch (signature){
+        case "ttn":
+        case "chirpstack":
+            return false;
+        case "lora-alliance":
+        case "actility":
+        default:
+            let fn;
+            if(typeof driverFns.driver === 'undefined' || typeof driverFns.driver.decodeUplink !== 'function') {
+                fn = driverFns;
+            } else {
+                fn = driverFns.driver;
+            }
+            return typeof fn.decodeDownlink === 'function';
+
+    }
+})();
+
+/**
  * Read the examples according to the signature of driver, wrap them if needed
  */
 const examples = (() =>{
@@ -55,8 +81,8 @@ const examples = (() =>{
                     }
                     examples.push(wrappedExample);
                 } else if(example.type === "downlink"){
-                    // no decode downlink on ttn and chirpstack drivers
-                    if(signature !== "ttn" || signature !== "chirpstack"){
+                    // map to downlink-decode examples only on drivers which have this function
+                    if(isDownlinkDecodeDefined){
                         let wrappedDecodeDownlink = {
                             type: "downlink-decode",
                             description: example.description,
