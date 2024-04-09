@@ -46,7 +46,7 @@ const isDownlinkDecodeDefined = (() =>{
 const examples = (() =>{
     // for default (lora-alliance) signature,
     // all examples are stored in one file on the root `examples.json`
-    if((!signature || signature === "lora-alliance") && fs.pathExistsSync(path.join(__dirname, "examples.json"))){
+    if(fs.pathExistsSync(path.join(__dirname, "examples.json"))){
         return fs.readJsonSync(path.join(__dirname, "examples.json"));
     }
 
