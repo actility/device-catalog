@@ -204,6 +204,7 @@ function Decode(fPort, bytes) { // Used for ChirpStack (aka LoRa Network Server)
       break;
 
     case PROTOCOL_VERSION_V3:
+      let header;
       // Protocol V3 reserves each fPort for different purpose
       switch (fPort) {
         case FPORT_BOOT:
@@ -352,7 +353,7 @@ function from_hex_string(hex_string) {
   if (hex_string.length & 0x01 > 0) throw new Error("hex_string length must be a multiple of two");
 
   var byte_string = [];
-  for (i = 0; i < hex_string.length; i += 2) {
+  for (let i = 0; i < hex_string.length; i += 2) {
     var hex = hex_string.slice(i, i + 2);
     byte_string.push(parseInt(hex, 16));
   }
@@ -475,7 +476,7 @@ function decode_sensor_data_config(bytes, cursor, protocol_version) {
   var PROTOCOL_VERSION_V1 = 1;
   var PROTOCOL_VERSION_V2 = 2;
 
-  config = decode_uint32(bytes, cursor);
+  const config = decode_uint32(bytes, cursor);
   var result = {};
 
   // bits[0..7]
@@ -663,7 +664,7 @@ function decode_reboot_info(reboot_type, bytes, cursor) {
     case 3: // REBOOT_INFO_TYPE_ASSERT
       var payloadCursor = {}; // keeping track of which byte to process.
       payloadCursor.value = 4; // skip caller address
-      actualValue = decode_int32(reboot_payload, payloadCursor);
+      const actualValue = decode_int32(reboot_payload, payloadCursor);
       result = 'assert (' +
         'caller: 0x' +
         uint8_to_hex(reboot_payload[3]) +
@@ -740,7 +741,7 @@ function uint32_to_hex(d) {
 }
 
 function message_type_lookup(type_id) {
-  type_names = ["boot",
+  const type_names = ["boot",
     "activated",
     "deactivated",
     "sensor_event",
@@ -757,7 +758,7 @@ function message_type_lookup(type_id) {
 }
 
 function config_type_lookup(type_id) {
-  type_names = [
+  const type_names = [
     "base",
     "region",
     "reserved",
@@ -772,7 +773,7 @@ function config_type_lookup(type_id) {
 }
 
 function device_types_lookup(type_id) {
-  type_names = ["", // reserved
+  const type_names = ["", // reserved
     "ts",
     "vs-qt",
     "vs-mt",
@@ -825,7 +826,7 @@ function rssi_lookup(rssi) {
 }
 
 function reboot_lookup_major(reboot_reason) {
-  major_reboot_reason = reboot_reason & 0x0F;
+  const major_reboot_reason = reboot_reason & 0x0F;
   switch (major_reboot_reason) {
     case 0:
       return "none";
@@ -845,8 +846,8 @@ function reboot_lookup_major(reboot_reason) {
 }
 
 function reboot_lookup_minor(reboot_reason) {
-  major_reboot_reason = reboot_reason & 0x0F;
-  minor_reboot_reason = (reboot_reason >> 4) & 0x0F;
+  const major_reboot_reason = reboot_reason & 0x0F;
+  const minor_reboot_reason = (reboot_reason >> 4) & 0x0F;
 
   switch (major_reboot_reason) {
     case 0:
@@ -957,7 +958,7 @@ function decode_boot_msg(bytes, cursor) {
   boot.base.reboot_counter = decode_uint8(bytes, cursor);
 
   // byte[10]
-  base_reboot_type = decode_uint8(bytes, cursor);
+  const base_reboot_type = decode_uint8(bytes, cursor);
 
   // byte[11..18]
   boot.base.reboot_info = decode_reboot_info(base_reboot_type, bytes, cursor);
@@ -994,7 +995,7 @@ function decode_boot_msg(bytes, cursor) {
   boot.sensor.reboot_counter = decode_uint8(bytes, cursor);
 
   // byte[36]
-  sensor_reboot_type = decode_uint8(bytes, cursor);
+  const sensor_reboot_type = decode_uint8(bytes, cursor);
 
   // byte[37..44]
   boot.sensor.reboot_info = decode_reboot_info(sensor_reboot_type, bytes, cursor);
@@ -1018,13 +1019,13 @@ function decode_boot_msg_v3(bytes, cursor) {
   boot.base = {};
   boot.sensor = {};
   // byte[1]
-  base_reboot_reason = decode_uint8(bytes, cursor);
+  const base_reboot_reason = decode_uint8(bytes, cursor);
   boot.base.reboot_reason = {};
   boot.base.reboot_reason.major = reboot_lookup_major(base_reboot_reason);
   boot.base.reboot_reason.minor = reboot_lookup_minor(base_reboot_reason);
 
   // byte[2]
-  sensor_reboot_reason = decode_uint8(bytes, cursor);
+  const sensor_reboot_reason = decode_uint8(bytes, cursor);
   boot.sensor.reboot_reason = {};
   boot.sensor.reboot_reason.major = reboot_lookup_major(sensor_reboot_reason);
   boot.sensor.reboot_reason.minor = reboot_lookup_minor(sensor_reboot_reason);
@@ -1117,7 +1118,7 @@ function decode_sensor_event_msg(bytes, cursor) {
   }
 
   // byte[1]
-  trigger = decode_uint8(bytes, cursor);
+  const trigger = decode_uint8(bytes, cursor);
   sensor_event.trigger = trigger_lookup(trigger);
 
   sensor_event.rms_velocity = {};
@@ -1196,7 +1197,7 @@ function decode_sensor_event_msg_normal(bytes, cursor) {
   var sensor_event = {};
 
   // byte[1]
-  selection = decode_uint8(bytes, cursor);
+  const selection = decode_uint8(bytes, cursor);
 
   sensor_event.selection = lookup_selection(selection);
   if (sensor_event.selection == "extended") {
@@ -1216,16 +1217,16 @@ function decode_sensor_event_msg_normal(bytes, cursor) {
   sensor_event.rms_velocity = {};
 
   // byte[3,4]
-  x = decode_uint16(bytes, cursor) / 100;
+  const x = decode_uint16(bytes, cursor) / 100;
 
   // byte[5,6]
-  y = decode_uint16(bytes, cursor) / 100;
+  const y = decode_uint16(bytes, cursor) / 100;
 
   // byte[7,8]
-  z = decode_uint16(bytes, cursor) / 100;
+  const z = decode_uint16(bytes, cursor) / 100;
 
   // byte[9,10]
-  temperature = decode_int16(bytes, cursor) / 100;
+  const temperature = decode_int16(bytes, cursor) / 100;
 
   if (sensor_event.selection == "min_only") {
     sensor_event.rms_velocity = { x: { min: x }, y: { min: y }, z: { min: z } };
@@ -1248,7 +1249,7 @@ function decode_sensor_event_msg_extended(bytes, cursor) {
   var sensor_event = {};
 
   // byte[1]
-  selection = decode_uint8(bytes, cursor);
+  const selection = decode_uint8(bytes, cursor);
 
   sensor_event.selection = lookup_selection(selection);
   if (sensor_event.selection != "extended") {
@@ -1410,7 +1411,7 @@ function decode_device_status_msg_v3(bytes, cursor) {
   device_status.base.lora_tx_counter = decode_uint16(bytes, cursor);
 
   // byte[5]
-  rssi = decode_uint8(bytes, cursor);
+  const rssi = decode_uint8(bytes, cursor);
   device_status.base.avg_rssi = rssi_lookup(rssi);
 
   // byte[6]
@@ -1448,11 +1449,11 @@ function decode_config_update_ans_msg(bytes, cursor) {
   ans = decode_config_header(bytes, cursor);
 
   // byte[1..4]
-  tag = decode_uint32(bytes, cursor);
+  const tag = decode_uint32(bytes, cursor);
   ans.tag = '0x' + uint32_to_hex(tag);
 
   // byte[5]
-  counter = decode_uint8(bytes, cursor);
+  const counter = decode_uint8(bytes, cursor);
   ans.counter = counter & 0x0F;
 
   return ans;
@@ -1480,6 +1481,8 @@ function decode_sensor_data_msg(bytes, cursor, protocol_version) {
     throw new Error("Invalid sensor_data message length " + bytes.length + " instead of " + expected_length);
   }
 
+  let chunk_size;
+  let data_offset;
   if (protocol_version == 3) {
     // byte[1..6]
     sensor_data.config = decode_sensor_data_config_v3(bytes, cursor);
@@ -1506,7 +1509,7 @@ function decode_sensor_data_msg(bytes, cursor, protocol_version) {
   var frequency_offset = sensor_data.config.start_frequency * binToHzFactor;
   // Frequency offset for the chunk
   frequency_offset += sensor_data.config.frame_number * chunk_size * spectral_line_frequency;
-  for (i = 0; i < chunk_size; i++) {
+  for (let i = 0; i < chunk_size; i++) {
     var sample_fre
     sensor_data.frequency[i] = frequency_offset + i * spectral_line_frequency;
     sensor_data.magnitude[i] = sensor_data.raw[i] * sensor_data.config.scale / 255;
@@ -1908,7 +1911,7 @@ function encode_vb_sensor_data_config_v1(bytes, obj) {
   if (obj.threshold_window % 2) throw new Error("threshold_window must be multiple of 2")
   encode_uint8(bytes, obj.threshold_window / 2);
 
-  for (idx = 0; idx < 5; idx++) {
+  for (let idx = 0; idx < 5; idx++) {
     encode_fft_trigger_threshold(
       bytes,
       obj.trigger_thresholds[idx].unit,
@@ -1952,7 +1955,7 @@ function encode_vb_sensor_data_config_v2(bytes, obj) {
   encode_uint8(bytes, obj.threshold_window / 2);
 
   // byte[8..27]
-  for (idx = 0; idx < 5; idx++) {
+  for (let idx = 0; idx < 5; idx++) {
     encode_fft_trigger_threshold(
       bytes,
       obj.trigger_thresholds[idx].unit,
@@ -2011,7 +2014,7 @@ function encode_vb_sensor_data_config_v3(bytes, payload) {
   encode_uint8(bytes, payload.threshold_window / 2);
 
   // byte[8..27]
-  for (idx = 0; idx < 5; idx++) {
+  for (let idx = 0; idx < 5; idx++) {
     encode_fft_trigger_threshold(
       bytes,
       payload.trigger_thresholds[idx].unit,
@@ -2049,17 +2052,17 @@ function encode_region_config_v3(bytes, payload) {
   if (payload.join_trials.holdoff_steps > 7) {
     throw new Error("Hold off steps too large");
   }
-  burst_min1 = (payload.join_trials.burst_count - 1) & 0xff;
+  const burst_min1 = (payload.join_trials.burst_count - 1) & 0xff;
   if (burst_min1 > 31) {
     throw new Error("Burst range 1..32");
   }
-  join_trials = payload.join_trials.holdoff_hours_max & 0xff;
+  let join_trials = payload.join_trials.holdoff_hours_max & 0xff;
   join_trials |= payload.join_trials.holdoff_steps << 8;
   join_trials |= burst_min1 << 11;
   encode_uint16(bytes, join_trials);
 
   // disable_switch
-  disable_switch = payload.disable_switch.frequency_bands & 0x0FFF;
+  let disable_switch = payload.disable_switch.frequency_bands & 0x0FFF;
   if ((disable_switch ^ 0x0FFF) == 0) {
     throw new Error("Not disable all bands");
   }
@@ -2069,7 +2072,7 @@ function encode_region_config_v3(bytes, payload) {
   encode_uint8(bytes, payload.rx1_delay & 0x0f);
 
   // ADR
-  adr = payload.adr.mode;
+  let adr = payload.adr.mode;
   adr |= (payload.adr.ack_limit_exp & 0x07) << 2;
   adr |= (payload.adr.ack_delay_exp & 0x07) << 5;
   encode_uint8(bytes, adr);
@@ -2412,7 +2415,7 @@ function encode_sci_6(bytes, scale) {
     throw new Error("Variable undefined");
   }
   // Get power component of scientific notation
-  scale_power = Number(scale.toExponential().split('e')[1]);
+  let scale_power = Number(scale.toExponential().split('e')[1]);
 
   // Clip power value based on range
   if (scale_power < -2)
@@ -2421,7 +2424,7 @@ function encode_sci_6(bytes, scale) {
     scale_power = 1;
 
   // Calculate coefficient
-  scale_coefficient = scale / Math.pow(10, scale_power);
+  let scale_coefficient = scale / Math.pow(10, scale_power);
 
   // Check for rounding and coefficient range
   if (scale_coefficient != Math.floor(scale_coefficient) || scale_coefficient < 1 || scale_coefficient > 15) {
@@ -2435,8 +2438,8 @@ function encode_sci_6(bytes, scale) {
     }
   }
 
-  power = ((scale_power + 2) & 0x03) << 4;
-  coefficient = scale_coefficient & 0x0F;
+  const power = ((scale_power + 2) & 0x03) << 4;
+  const coefficient = scale_coefficient & 0x0F;
   bytes.push(coefficient | power);
 }
 

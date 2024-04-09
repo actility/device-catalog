@@ -21,7 +21,7 @@ function Decode(fPort, bytes) { // Used for ChirpStack (aka LoRa Network Server)
   var decoded = {};
   decoded.header = {};
   decoded.header.protocol_version = bytes[0] >> 4;
-  message_type = bytes[0] & 0x0F;
+  const message_type = bytes[0] & 0x0F;
 
   switch (decoded.header.protocol_version) {
     case 2: { // protocol_version = 2
@@ -34,7 +34,7 @@ function Decode(fPort, bytes) { // Used for ChirpStack (aka LoRa Network Server)
         case 0: { // Boot message
           decoded.boot = {};
 
-          device_type = decode_uint8(bytes, cursor);
+          const device_type = decode_uint8(bytes, cursor);
           decoded.boot.device_type = device_types_lookup_v2(device_type);
 
           var version_hash = decode_uint32(bytes, cursor);
@@ -49,8 +49,8 @@ function Decode(fPort, bytes) { // Used for ChirpStack (aka LoRa Network Server)
           decoded.boot.reset_flags = decode_uint8(bytes, cursor);
           decoded.boot.reboot_counter = decode_uint8(bytes, cursor);
 
-          reboot_type = decode_uint8(bytes, cursor);
-          reboot_payload = [0, 0, 0, 0, 0, 0, 0, 0];
+          const reboot_type = decode_uint8(bytes, cursor);
+          let reboot_payload = [0, 0, 0, 0, 0, 0, 0, 0];
           reboot_payload[0] += decode_uint8(bytes, cursor);
           reboot_payload[1] += decode_uint8(bytes, cursor);
           reboot_payload[2] += decode_uint8(bytes, cursor);
@@ -132,7 +132,7 @@ function Decode(fPort, bytes) { // Used for ChirpStack (aka LoRa Network Server)
         case 3: { // Application event message
           decoded.application_event = {};
 
-          trigger = decode_uint8(bytes, cursor);
+          const trigger = decode_uint8(bytes, cursor);
           decoded.application_event.trigger = trigger_lookup_v2(trigger);
 
           decoded.application_event.temperature = {};
@@ -140,7 +140,7 @@ function Decode(fPort, bytes) { // Used for ChirpStack (aka LoRa Network Server)
           decoded.application_event.temperature.max = decode_int16(bytes, cursor) / 100;
           decoded.application_event.temperature.avg = decode_int16(bytes, cursor) / 100;
 
-          conditions = decode_uint8(bytes, cursor);
+          const conditions = decode_uint8(bytes, cursor);
           decoded.application_event.condition_0 = (conditions & 1);
           decoded.application_event.condition_1 = ((conditions >> 1) & 1);
           decoded.application_event.condition_2 = ((conditions >> 2) & 1);
@@ -293,7 +293,7 @@ function uint32_to_hex(d) {
 }
 
 function message_types_lookup_v2(type_id) {
-  type_names = ["boot",
+  const type_names = ["boot",
                 "activated",
                 "deactivated",
                 "application_event",
@@ -308,7 +308,7 @@ function message_types_lookup_v2(type_id) {
 }
 
 function device_types_lookup_v2(type_id) {
-  type_names = ["", // reserved
+  const type_names = ["", // reserved
                 "ts",
                 "vs-qt",
                 "vs-mt"];

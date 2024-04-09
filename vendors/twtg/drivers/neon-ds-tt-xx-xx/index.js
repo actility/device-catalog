@@ -206,6 +206,7 @@ function Decode(fPort, bytes) { // Used for ChirpStack (aka LoRa Network Server)
 
     case PROTOCOL_VERSION_V4: {
       // Protocol V4 reserves each fPort for different purpose
+      let header;
       switch (fPort) {
         case FPORT_BOOT:
           header = decode_header_v4(bytes, cursor);
@@ -460,7 +461,6 @@ function decode_sensor_temperature_v4(bytes, cursor) {
       temperature.status = "Hardware Error";
     }
     else {
-      console.log(min, max, avg);
       throw new Error("Invalid min, max, avg. Hardware Error is included!");
     }
   } else {
@@ -515,9 +515,9 @@ function decode_sensor_temperature_v2_v3(bytes, cursor, version) {
   var VboundUpperErrorCode = -3003;
   var UnknownType = -3004;
 
-  min = decode_int16(bytes, cursor) / 10;
-  max = decode_int16(bytes, cursor) / 10;
-  avg = decode_int16(bytes, cursor) / 10;
+  const min = decode_int16(bytes, cursor) / 10;
+  const max = decode_int16(bytes, cursor) / 10;
+  const avg = decode_int16(bytes, cursor) / 10;
 
   if (version == 2) {
     temperature.min = min;
@@ -682,7 +682,7 @@ function uint32_to_hex(d) {
 }
 
 function message_types_lookup_v2(type_id) {
-  type_names = ["boot",
+  const type_names = ["boot",
     "activated",
     "deactivated",
     "sensor_event",
@@ -702,7 +702,7 @@ function message_types_lookup_v2(type_id) {
 }
 
 function device_types_lookup(type_id) {
-  type_names = ["", // reserved
+  const type_names = ["", // reserved
     "ts",
     "vs-qt",
     "vs-mt",
@@ -758,7 +758,7 @@ function decode_boot_msg_v4(bytes, cursor) {
   var boot = {};
 
   // byte[1]
-  reboot_reason = decode_uint8(bytes, cursor);
+  const reboot_reason = decode_uint8(bytes, cursor);
   boot.reboot_reason = {};
   boot.reboot_reason.major = reboot_lookup_major(reboot_reason);
   boot.reboot_reason.minor = reboot_lookup_minor(reboot_reason);
@@ -783,7 +783,7 @@ function decode_boot_msg(bytes, cursor) {
   }
 
   // byte[1]
-  device_type = decode_uint8(bytes, cursor);
+  const device_type = decode_uint8(bytes, cursor);
   boot.device_type = device_types_lookup(device_type);
 
   // byte[2..5]
@@ -806,7 +806,7 @@ function decode_boot_msg(bytes, cursor) {
   boot.reboot_counter = decode_uint8(bytes, cursor);
 
   // byte[12]
-  boot_type = decode_uint8(bytes, cursor);
+  const boot_type = decode_uint8(bytes, cursor);
 
   // byte[13..20]
   boot.reboot_info = decode_reboot_info(boot_type, bytes, cursor);
@@ -825,7 +825,7 @@ function decode_sensor_event_msg_normal(bytes, cursor) {
   var sensor_event = {};
 
   // byte[1]
-  selection = decode_uint8(bytes, cursor);
+  const selection = decode_uint8(bytes, cursor);
 
   sensor_event.selection = lookup_selection(selection);
   if (sensor_event.selection == "extended") {
@@ -851,7 +851,7 @@ function decode_sensor_event_msg_extended(bytes, cursor) {
   var sensor_event = {};
 
   // byte[1]
-  selection = decode_uint8(bytes, cursor);
+  const selection = decode_uint8(bytes, cursor);
 
   sensor_event.selection = lookup_selection(selection);
   if (sensor_event.selection != "extended") {
@@ -882,7 +882,7 @@ function decode_sensor_event_msg(bytes, cursor, version) {
   }
 
   // byte[1]
-  trigger = decode_uint8(bytes, cursor);
+  const trigger = decode_uint8(bytes, cursor);
   sensor_event.trigger = trigger_lookup(trigger);
 
   // byte[2..7]
@@ -891,7 +891,7 @@ function decode_sensor_event_msg(bytes, cursor, version) {
   sensor_event.temperature = decode_sensor_temperature(bytes, cursor, version);
 
   // byte[8]
-  conditions = decode_uint8(bytes, cursor);
+  const conditions = decode_uint8(bytes, cursor);
   sensor_event.condition_0 = (conditions & 1);
   sensor_event.condition_1 = ((conditions >> 1) & 1);
   sensor_event.condition_2 = ((conditions >> 2) & 1);
@@ -918,7 +918,7 @@ function decode_device_status_msg_v4(bytes, cursor) {
   device_status.lora_tx_counter = decode_uint16(bytes, cursor);
 
   // byte[5]
-  rssi = decode_uint8(bytes, cursor);
+  const rssi = decode_uint8(bytes, cursor);
   device_status.avg_rssi = rssi_lookup(rssi);
 
   // byte[6]
@@ -1027,7 +1027,7 @@ function decode_header_v4(bytes, cursor) {
 }
 
 function reboot_lookup_major(reboot_reason) {
-  major_reboot_reason = reboot_reason & 0x0F;
+  const major_reboot_reason = reboot_reason & 0x0F;
   switch (major_reboot_reason) {
     case 0:
       return "none";
@@ -1047,8 +1047,8 @@ function reboot_lookup_major(reboot_reason) {
 }
 
 function reboot_lookup_minor(reboot_reason) {
-  major_reboot_reason = reboot_reason & 0x0F;
-  minor_reboot_reason = (reboot_reason >> 4) & 0x0F;
+  const major_reboot_reason = reboot_reason & 0x0F;
+  const minor_reboot_reason = (reboot_reason >> 4) & 0x0F;
 
   switch (major_reboot_reason) {
     case 0:
@@ -1167,11 +1167,11 @@ function decode_config_update_ans_msg(bytes, cursor) {
   ans = decode_config_header(bytes, cursor);
 
   // byte[1..4]
-  tag = decode_uint32(bytes, cursor);
+  const tag = decode_uint32(bytes, cursor);
   ans.tag = '0x' + uint32_to_hex(tag);
 
   // byte[5]
-  counter = decode_uint8(bytes, cursor);
+  const counter = decode_uint8(bytes, cursor);
   ans.counter = counter & 0x0F;
 
   return ans;
@@ -1196,7 +1196,7 @@ function decode_config_header(bytes, cursor) {
 }
 
 function config_type_lookup(type_id) {
-  type_names = [
+  const type_names = [
     "base",
     "region",
     "reserved",
@@ -1250,7 +1250,7 @@ function decode_activated_msg_v4(bytes, cursor) {
   }
 
   // byte[1]
-  device_type = decode_uint8(bytes, cursor);
+  const device_type = decode_uint8(bytes, cursor);
   activated.device_type = device_types_lookup(device_type);
 
   return activated;
@@ -1584,13 +1584,10 @@ function encode_sensor_config(bytes, obj) {
     if (obj.events[i].mode == "increasing" || obj.events[i].mode == "decreasing") {
       // Mode 3 and 4 (increasing and decreasing) only support positive number, while ...
       if (obj.events[i].threshold_temperature < -2120) {
-        console.log("L319");
         throw new Error("threshold is below supported value1");
       }
     } else if (obj.events[i].threshold_temperature < -270) {
       // Mode 0, 1, and 2 (off, above, below) support threshold down to -270
-      console.log("L324");
-      console.log(obj.events[i].mode);
       throw new Error("threshold is below supported value2");
     }
   }
@@ -1703,17 +1700,17 @@ function encode_region_config_v4(bytes, payload) {
   if (payload.join_trials.holdoff_steps > 7) {
     throw new Error("Hold off steps too large");
   }
-  burst_min1 = (payload.join_trials.burst_count - 1) & 0xff;
+  const burst_min1 = (payload.join_trials.burst_count - 1) & 0xff;
   if (burst_min1 > 31) {
     throw new Error("Burst range 1..32");
   }
-  join_trials = payload.join_trials.holdoff_hours_max & 0xff;
+  let join_trials = payload.join_trials.holdoff_hours_max & 0xff;
   join_trials |= payload.join_trials.holdoff_steps << 8;
   join_trials |= burst_min1 << 11;
   encode_uint16(bytes, join_trials);
 
   // disable_switch
-  disable_switch = payload.disable_switch.frequency_bands & 0x0FFF;
+  let disable_switch = payload.disable_switch.frequency_bands & 0x0FFF;
   if ((disable_switch ^ 0x0FFF) == 0) {
     throw new Error("Not disable all bands");
   }
@@ -1723,7 +1720,7 @@ function encode_region_config_v4(bytes, payload) {
   encode_uint8(bytes, payload.rx1_delay & 0x0f);
 
   // ADR
-  adr = payload.adr.mode;
+  let adr = payload.adr.mode;
   adr |= (payload.adr.ack_limit_exp & 0x07) << 2;
   adr |= (payload.adr.ack_delay_exp & 0x07) << 5;
   encode_uint8(bytes, adr);
