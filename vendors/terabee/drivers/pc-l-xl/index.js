@@ -21,8 +21,8 @@ function bytesToBitsString(bytes) {
   return bits_string
 }
 
-X_PACK_SIZE = 7
-Y_PACK_SIZE = 6
+const X_PACK_SIZE = 7
+const Y_PACK_SIZE = 6
 
 function Coordinate(x, y) {
   this.x = x;
@@ -43,19 +43,19 @@ function Coordinate(x, y) {
  */
 function bitsStringToXYpoints(bit_string){
 
-  points = new Array();
+  let points = new Array();
 
-  padding_length = bit_string.length % (X_PACK_SIZE + Y_PACK_SIZE)
+  const padding_length = bit_string.length % (X_PACK_SIZE + Y_PACK_SIZE)
   bit_string = bit_string.slice(padding_length)
 
-  nb_of_points = Math.floor(bit_string.length / (X_PACK_SIZE + Y_PACK_SIZE))
+  const nb_of_points = Math.floor(bit_string.length / (X_PACK_SIZE + Y_PACK_SIZE))
 
   for (let i = 0; i < nb_of_points; i++) {
-    x = bit_string.slice(
+    const x = bit_string.slice(
       (X_PACK_SIZE + Y_PACK_SIZE)*i,
       (X_PACK_SIZE + Y_PACK_SIZE)*i + X_PACK_SIZE
     )
-    y = bit_string.slice(
+    const y = bit_string.slice(
       (X_PACK_SIZE + Y_PACK_SIZE)*i + X_PACK_SIZE,
       (X_PACK_SIZE + Y_PACK_SIZE)*( i + 1 )
     )
@@ -110,7 +110,7 @@ function decodeFlags(flagByte) {
 }
 
 function parseHeader(bytes) {
-  header = {}
+  let header = {}
 
   if (bytes[0] === 255){
     header.cmd_id = bytes[1]
@@ -130,7 +130,7 @@ const commands = new Map()
 function registerCommand(
   registred_commands_map,
   fport, command_name, cmd_id,
-  parsePayload = undefined
+  parsePayload
 ) {
 
   if (fport < 1 || fport > 255){
@@ -141,10 +141,10 @@ function registerCommand(
     throw "cmd_id must be between 0 and 254"
   }
 
-  fport_hex = fport.toString(16).padStart(2, '0');
-  cmd_id_hex = cmd_id.toString(16).padStart(2, '0');
+  const fport_hex = fport.toString(16).padStart(2, '0');
+  const cmd_id_hex = cmd_id.toString(16).padStart(2, '0');
 
-  key = fport_hex + cmd_id_hex
+  const key = fport_hex + cmd_id_hex
 
   registred_commands_map.set(key, {
     command_name: command_name,
@@ -155,11 +155,11 @@ function registerCommand(
 function getCommand(
   registred_commands_map, fport, cmd_id
 ) {
-  fport_hex = fport.toString(16).padStart(2, '0');
-  cmd_id_hex = cmd_id.toString(16).padStart(2, '0');
+  const fport_hex = fport.toString(16).padStart(2, '0');
+  const cmd_id_hex = cmd_id.toString(16).padStart(2, '0');
 
-  key = fport_hex + cmd_id_hex
-  command = registred_commands_map.get(key)
+  const key = fport_hex + cmd_id_hex
+  const command = registred_commands_map.get(key)
 
   if (!command){
     throw "command not registered"
@@ -169,66 +169,59 @@ function getCommand(
 }
 
 function parseCounts(payload){
-  data = {
+  return {
     count_in: uint32(payload.slice(0, 4)),
     count_out: uint32(payload.slice(4, 8))
   }
-  return data
 }
 
 function parseCountDirection(payload){
-  data = {
+  return {
     direction: (payload.slice(0) == 1 ? "reversed" : "normal")
   }
-  return data
 }
 
 function parseAccessPointState(payload){
-  data = {
+  return {
     state: (payload.slice(0) == 1 ? "enabled" : "disabled")
   }
-  return data
 }
 
 function parseMountingHeight(payload){
-  data = {
+  return {
     mounting_height: uint16(payload.slice(0, 2))
   }
-  return data
 }
 
 function parsePushPeriod(payload){
-  data = {
+  return {
     push_period_min: uint16(payload.slice(0, 2))
   }
-  return data
 }
 
 function parseSoftwareVersion(payload){
-  data = {
+  return {
     software_version: `${payload[0]}.${payload[1]}.${payload[2]}`
   }
-  return data
 }
 
 function parseCountAreaPoints(payload){
 
-  nb_of_points = payload[0]
-  points_bytes = payload.slice(1)
-  points_bit_string = bytesToBitsString(points_bytes)
+  const nb_of_points = payload[0]
+  const points_bytes = payload.slice(1)
+  const points_bit_string = bytesToBitsString(points_bytes)
 
-  point_size = X_PACK_SIZE + Y_PACK_SIZE
-  expected_bytes_count = Math.ceil((nb_of_points * point_size) / 8)
+  const point_size = X_PACK_SIZE + Y_PACK_SIZE
+  const expected_bytes_count = Math.ceil((nb_of_points * point_size) / 8)
 
   if (points_bytes.length != expected_bytes_count){
     throw "Couldn't decode area payload: Inconsistent number of points"
   }
 
-  data = {
+  return {
     nb_of_points: nb_of_points,
     points: bitsStringToXYpoints(points_bit_string)
   }
-  return data
 }
 
 /* The Things Network Payload Decoder
@@ -257,83 +250,83 @@ function parseCountAreaPoints(payload){
 */
 
 /* UPLINKS WITH CUSTOM FRAME STRUCTURE */
-COUNTING_DATA_UPLINK = 1
-F_PORT_GET_AREA = 101
+const COUNTING_DATA_UPLINK = 1
+const F_PORT_GET_AREA = 101
 /* UPLINKS WITH CUSTOM FRAME STRUCTURE END */
 
 
-F_PORT_COUNTS = 2
+const F_PORT_COUNTS = 2
 /* HANDLER GROUP COUNTS COMMANDS */
 registerCommand(commands, F_PORT_COUNTS, "CMD_CNT_RST", 1)
 registerCommand(commands, F_PORT_COUNTS, "CMD_CNT_GET", 2,
-  parsePayload = parseCounts
+  parseCounts
 )
 registerCommand(commands, F_PORT_COUNTS, "CMD_CNT_SET", 130)
 /* HANDLER GROUP COUNTS END */
 
-F_PORT_REBOOT = 3
+const F_PORT_REBOOT = 3
 /* HANDLER GROUP REBOOT COMMANDS */
 registerCommand(commands, F_PORT_REBOOT, "CMD_DEV_RBT", 1)
 registerCommand(commands, F_PORT_REBOOT, "CMD_TPC_RST", 2)
 /* HANDLER GROUP REBOOT END */
 
-F_PORT_GET_SOFTWARE_VERSION = 4
+const F_PORT_GET_SOFTWARE_VERSION = 4
 /* HANDLER GROUP GET SOFTWARE VERSION COMMANDS */
 registerCommand(commands, F_PORT_GET_SOFTWARE_VERSION,
-  "CMD_GET_VER_PEOPLE_COUNTING", 1, parsePayload = parseSoftwareVersion
+  "CMD_GET_VER_PEOPLE_COUNTING", 1, parseSoftwareVersion
 )
 registerCommand(commands, F_PORT_GET_SOFTWARE_VERSION,
-  "CMD_GET_VER_WEB_GUI", 2, parsePayload = parseSoftwareVersion
+  "CMD_GET_VER_WEB_GUI", 2, parseSoftwareVersion
 )
 registerCommand(commands, F_PORT_GET_SOFTWARE_VERSION,
-  "CMD_GET_VER_LORA_AGENT", 3, parsePayload = parseSoftwareVersion
+  "CMD_GET_VER_LORA_AGENT", 3, parseSoftwareVersion
 )
 registerCommand(commands, F_PORT_GET_SOFTWARE_VERSION,
-  "CMD_GET_VER_ACCESS_POINT", 4, parsePayload = parseSoftwareVersion
+  "CMD_GET_VER_ACCESS_POINT", 4, parseSoftwareVersion
 )
 registerCommand(commands, F_PORT_GET_SOFTWARE_VERSION,
-  "CMD_GET_VER_UPDATER_WEB_GUI", 5, parsePayload = parseSoftwareVersion
+  "CMD_GET_VER_UPDATER_WEB_GUI", 5, parseSoftwareVersion
 )
 registerCommand(commands, F_PORT_GET_SOFTWARE_VERSION,
-  "CMD_GET_VER_FAN_SERVICE", 6, parsePayload = parseSoftwareVersion
+  "CMD_GET_VER_FAN_SERVICE", 6, parseSoftwareVersion
 )
 /* HANDLER GROUP GET SOFTWARE VERSION END */
 
-F_PORT_ACCESS_POINT = 5
+const F_PORT_ACCESS_POINT = 5
 /* HANDLER GROUP ACCESS POINT COMMANDS */
 registerCommand(commands, F_PORT_ACCESS_POINT, "CMD_GET_AP_STATE", 1,
-  parsePayload = parseAccessPointState
+  parseAccessPointState
 )
 registerCommand(commands, F_PORT_ACCESS_POINT, "CMD_SET_AP_STATE", 129)
 /* HANDLER GROUP ACCESS POINT END */
 
-F_PORT_REJOIN = 6
+const F_PORT_REJOIN = 6
 /* HANDLER GROUP REJOIN COMMANDS */
 registerCommand(commands, F_PORT_REJOIN, "CMD_FORCE_REJOIN", 1)
 /* HANDLER GROUP REJOIN END */
 
-F_PORT_TIME_SYNC = 7
+const F_PORT_TIME_SYNC = 7
 /* HANDLER GROUP TIME SYNC COMMANDS */
 registerCommand(commands, F_PORT_TIME_SYNC, "CMD_FORCE_TIME_SYNC", 1)
 /* HANDLER GROUP TIME SYNC END */
 
-F_PORT_COUNTING_PARAM = 100
+const F_PORT_COUNTING_PARAM = 100
 /* HANDLER GROUP COUNTING PARAMETERS COMMANDS */
 registerCommand(commands, F_PORT_COUNTING_PARAM, "CMD_GET_HEIGHT", 1,
-  parsePayload = parseMountingHeight
+  parseMountingHeight
 )
 registerCommand(commands, F_PORT_COUNTING_PARAM, "CMD_SET_HEIGHT", 129)
 registerCommand(commands, F_PORT_COUNTING_PARAM, "CMD_GET_REVERSE", 2,
-  parsePayload = parseCountDirection
+  parseCountDirection
 )
 registerCommand(commands, F_PORT_COUNTING_PARAM, "CMD_SET_REVERSE", 130)
 registerCommand(commands, F_PORT_COUNTING_PARAM, "CMD_GET_PUSH_PERIOD", 3,
-  parsePayload = parsePushPeriod
+  parsePushPeriod
 )
 registerCommand(commands, F_PORT_COUNTING_PARAM, "CMD_SET_PUSH_PERIOD", 131)
 /* HANDLER GROUP COUNTING PARAMETERS END */
 
-F_PORT_SET_AREA = 102
+const F_PORT_SET_AREA = 102
 /* HANDLER GROUP SET AREA COMMANDS */
 registerCommand(commands, F_PORT_SET_AREA, "CMD_SET_AREA_PTS", 0)
 // /* HANDLER GROUP SET AREA END */
@@ -357,6 +350,7 @@ function decodeUplink(input) {
 
   if (fport === F_PORT_GET_AREA){
 
+    let points;
     try {
       points = parseCountAreaPoints(input.bytes)
     } catch (e) {
@@ -395,10 +389,10 @@ function decodeUplink(input) {
   }
 
   if (header.type === "response") {
-    payload = input.bytes.slice(1)
+    const payload = input.bytes.slice(1)
 
     // TODO catch if parse function has been provided
-    data.cmd.value = command.parsePayload(payload)
+    data.cmd.value = command.parsePayload != null ? command.parsePayload(payload) : undefined;
   }
 
   return {

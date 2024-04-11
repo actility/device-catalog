@@ -70,8 +70,8 @@ switch(product_type){
 		break;
 }
     
-tab_adjectif_level=["Very Good","Good","Average","Warning","Bad","Erreur"];
-tab_adjectif_SRC=["All","Dryness Indicator","Mould Indicator","Dust Mites Indicator","CO","CO2","VOC","Formaldehyde","PM1.0", "PM2.5","PM10","Erreur"];
+const tab_adjectif_level=["Very Good","Good","Average","Warning","Bad","Erreur"];
+const tab_adjectif_SRC=["All","Dryness Indicator","Mould Indicator","Dust Mites Indicator","CO","CO2","VOC","Formaldehyde","PM1.0", "PM2.5","PM10","Erreur"];
         
     if (product_type == Insafe_Origin_LoRa) /*Origin LoRa*/
     {   
@@ -97,7 +97,7 @@ tab_adjectif_SRC=["All","Dryness Indicator","Mould Indicator","Dust Mites Indica
 	    const Type_Origin_Humidity_Datalog_Message=0x07;	
 	    const Type_Origin_Temperature_Alerts_Message=0x08;	  
 	    
-	    message_type = (buffer[2] << 4) + buffer[3];
+	    const message_type = (buffer[2] << 4) + buffer[3];
          
         switch(message_type)
         {
@@ -244,7 +244,7 @@ function tab_decode (tab){
 	for ( i=0; i<tab.length;i++){  
 		tab_bin[i]="";
 		for ( j=0; j<tab[i];j++){ 
-			str1=string_bin.charAt(compteur); 
+			const str1=string_bin.charAt(compteur);
 			tab_bin[i]=tab_bin[i]+str1;       
 			compteur++;
 		}
@@ -264,7 +264,7 @@ function tab_decode (tab){
 
 
 function hw_mode(a){
-    result="";
+    let result="";
     switch(a){
         case 0:
             result="Sensor OK";
@@ -278,7 +278,7 @@ function hw_mode(a){
 
 
 function active(a){
-    result="";
+    let result="";
     switch(a){
         case 0: 
             result="Non-Active";
@@ -414,7 +414,7 @@ function get_IAQ_HCI(a){
 
     function HW_SW_Revision(a)
 	{
-        result="";
+        let result="";
         switch(a)
 		{
             case 0:
@@ -444,7 +444,7 @@ function get_IAQ_HCI(a){
 	
 	function Smoke_Alarm_Hush(a)
 	{
-		result="";
+		let result="";
 		switch(a)
 		{
 			case 0:
@@ -459,7 +459,7 @@ function get_IAQ_HCI(a){
 	
 	function Yes_No(a)
 	{
-		result="";
+		let result="";
 		switch(a)
 		{
 			case 0:
@@ -473,7 +473,7 @@ function get_IAQ_HCI(a){
 	}
 	
 	function battery_level(a){
-    result="";
+    let result="";
     switch(a){
         case 0:
             result="High";

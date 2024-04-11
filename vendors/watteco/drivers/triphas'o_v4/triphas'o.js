@@ -14,7 +14,7 @@ let endpointCorresponder ={
     angle: ["angle_a","angle_b","angle_c"],
 }
 function decodeUplink(input) {
-    return result = watteco.watteco_decodeUplink(input,batch_param,endpointCorresponder);
+    return watteco.watteco_decodeUplink(input,batch_param,endpointCorresponder);
 }
 exports.decodeUplink = decodeUplink;
 

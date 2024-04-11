@@ -6,7 +6,7 @@ function decodeUplink(input)
     var output = 0;
     var data;
     
-    stringHex = bytesString(input.bytes);
+    var stringHex = bytesString(input.bytes);
     
     var octetTypeProduit = parseInt(stringHex.substring(0,2),16);
     var octetTypeMessage = parseInt(stringHex.substring(2,4),16);
@@ -29,7 +29,7 @@ function decodeUplink(input)
         
         function dataOutput(octetTypeMessage)
         {
-            outputTypeMessage=[productStatusDataOutput(stringHex),productConfigurationDataOutput(stringHex),smokeAlarmDataOutput(stringHex),dailyAirDataOutput(stringHex),realTimeDataOutput(stringHex),temperatureDatalogDataOutput(stringHex)]
+            const outputTypeMessage=[productStatusDataOutput(stringHex),productConfigurationDataOutput(stringHex),smokeAlarmDataOutput(stringHex),dailyAirDataOutput(stringHex),realTimeDataOutput(stringHex),temperatureDatalogDataOutput(stringHex)]
             return outputTypeMessage[octetTypeMessage]
         }
 
@@ -360,7 +360,7 @@ function decodeUplink(input)
 
             for(i=0;i<data_nombre_mesures;i++){
 
-                offset_binaire = 36 + (10*i);
+                const offset_binaire = 36 + (10*i);
 
                 mesure[i]= parseInt(binary.substring(offset_binaire,offset_binaire+10),2);  
 
@@ -383,8 +383,8 @@ function decodeUplink(input)
 
         
         data=dataOutput(octetTypeMessage);
-        errors = [];
-        warnings = [];
+        const errors = [];
+        const warnings = [];
         output = {data,errors,warnings};
         //return {data}; pour tti ne gère pas error et warning
         return output

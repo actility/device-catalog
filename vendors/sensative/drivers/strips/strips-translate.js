@@ -502,7 +502,7 @@ const decodeSettingsUplink = (bytes) => {
             const status = bytes[pos++];
             if (status >= STATUS_CODES.length)
                 throw { message: 'Unknown status code: ' + status };
-            decoded = {};
+            let decoded = {};
             decoded['statusCode'] = { value: status, status: STATUS_CODES[status]};
             result.push(decoded);
         } else 

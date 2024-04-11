@@ -21,7 +21,7 @@ function Decode(fPort, bytes) { // Used for ChirpStack (aka LoRa Network Server)
   var decoded = {};
   decoded.header = {};
   decoded.header.protocol_version = bytes[0] >> 4;
-  message_type = bytes[0] & 0x0F;
+  const message_type = bytes[0] & 0x0F;
 
   switch (decoded.header.protocol_version) {
     case 2: { // protocol_version = 2
@@ -34,7 +34,7 @@ function Decode(fPort, bytes) { // Used for ChirpStack (aka LoRa Network Server)
         case 0: { // Boot message
           decoded.boot = {};
 
-          device_type = decode_uint8(bytes, cursor);
+          const device_type = decode_uint8(bytes, cursor);
           decoded.boot.device_type = device_types_lookup_v2(device_type);
 
           var version_hash = decode_uint32(bytes, cursor);
@@ -52,8 +52,8 @@ function Decode(fPort, bytes) { // Used for ChirpStack (aka LoRa Network Server)
           decoded.boot.reset_flags = decode_uint8(bytes, cursor);
           decoded.boot.reboot_counter = decode_uint8(bytes, cursor);
 
-          reboot_type = decode_uint8(bytes, cursor);
-          reboot_payload = [0, 0, 0, 0, 0, 0, 0, 0];
+          const reboot_type = decode_uint8(bytes, cursor);
+          const reboot_payload = [0, 0, 0, 0, 0, 0, 0, 0];
           reboot_payload[0] += decode_uint8(bytes, cursor);
           reboot_payload[1] += decode_uint8(bytes, cursor);
           reboot_payload[2] += decode_uint8(bytes, cursor);
@@ -149,7 +149,7 @@ function Decode(fPort, bytes) { // Used for ChirpStack (aka LoRa Network Server)
         case 2: { // Not calibration message
           decoded.not_calibrated = {};
 
-          reason_id = decode_uint8(bytes, cursor);
+          const reason_id = decode_uint8(bytes, cursor);
           decoded.not_calibrated.reason = not_calibrated_reasons_lookup_v2(reason_id);
           if (reason_id.in(2,3,4,5,6,7)) {
             decoded.not_calibrated.calibration_vector = {};
@@ -188,7 +188,7 @@ function Decode(fPort, bytes) { // Used for ChirpStack (aka LoRa Network Server)
         case 3: { // Application event message
           decoded.application_event = {};
 
-          state_method_trigger = decode_uint8(bytes, cursor);
+          const state_method_trigger = decode_uint8(bytes, cursor);
           decoded.application_event.state = state_lookup_v2(state_method_trigger & 0x01);
           decoded.application_event.detection_method = detection_method_lookup_v2((state_method_trigger & 0x02) >> 1);
           decoded.application_event.trigger = trigger_lookup_v2(state_method_trigger >> 2);
@@ -366,7 +366,7 @@ function get_valve_state(bytes, cursor) {
 }
 
 function message_types_lookup_v2(type_id) {
-  type_names = ["boot",
+  const type_names = ["boot",
                 "calibrated",
                 "not_calibrated",
                 "application_event",
@@ -381,7 +381,7 @@ function message_types_lookup_v2(type_id) {
 }
 
 function device_types_lookup_v2(type_id) {
-  type_names = ["", // reserved
+  const type_names = ["", // reserved
                 "ts",
                 "vs-qt",
                 "vs-mt"];

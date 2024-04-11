@@ -6,7 +6,7 @@ function decodeUplink(input)
     var output = 0;
     var data;
     
-    stringHex = bytesString(input.bytes);
+    var stringHex = bytesString(input.bytes);
     
     var octetTypeProduit = parseInt(stringHex.substring(0,2),16);
     var octetTypeMessage = parseInt(stringHex.substring(2,4),16);
@@ -29,7 +29,7 @@ function decodeUplink(input)
         
         function dataOutput(octetTypeMessage)
         {
-            outputTypeMessage=["Reserved",periodicDataOutput(stringHex),historicalCO2DataOutput(stringHex),historicalTemperatureDataOutput(stringHex),"Reserved",productStatusDataOutput(stringHex),
+            const outputTypeMessage=["Reserved",periodicDataOutput(stringHex),historicalCO2DataOutput(stringHex),historicalTemperatureDataOutput(stringHex),"Reserved",productStatusDataOutput(stringHex),
                                 productConfigurationDataOutput(stringHex)]
             return outputTypeMessage[octetTypeMessage]
         }
@@ -422,7 +422,7 @@ function decodeUplink(input)
     
             for(i=0;i<data_nombre_mesures;i++){
 
-                offset_binaire = 36 + (10*i);
+                const offset_binaire = 36 + (10*i);
                 mesure[i]= parseInt(binary.substring(offset_binaire,offset_binaire+10),2);
 
                 if(mesure[i] === 0x3FF){mesure[i] = 0;}
@@ -453,7 +453,7 @@ function decodeUplink(input)
 
             for(i=0;i<data_nombre_mesures;i++){
 
-                offset_binaire = 36 + (10*i);
+                const offset_binaire = 36 + (10*i);
 
                 mesure[i]= parseInt(binary.substring(offset_binaire,offset_binaire+10),2);  
 
@@ -596,8 +596,8 @@ function decodeUplink(input)
         }
         
         data=dataOutput(octetTypeMessage);
-        errors = [];
-        warnings = [];
+        const errors = [];
+        const warnings = [];
         output = {data,errors,warnings};
         //return {data}; pour tti ne gère pas error et warning
         return output

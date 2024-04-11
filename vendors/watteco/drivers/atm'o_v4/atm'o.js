@@ -12,7 +12,7 @@ let endpointCorresponder={
     pin_state:["pin_state_1","pin_state_2"]
 }
 function decodeUplink(input) {
-    return result = watteco.watteco_decodeUplink(input,batch_param,endpointCorresponder);
+    return watteco.watteco_decodeUplink(input,batch_param,endpointCorresponder);
 }
 exports.decodeUplink = decodeUplink;
 

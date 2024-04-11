@@ -40,8 +40,8 @@ function decodeUplink(input) {
             var battery_bin = hex2bin(battery_hex);
             var battery_st = battery_bin.substring(4, 8);
             var battery_volt = (21+(parseInt(battery_st,2)))/10;
-            temperature= parseInt(intput_list[2],16);
-            humi =  parseInt(intput_list[3],16);
+            var temperature= parseInt(intput_list[2],16);
+            var humi =  parseInt(intput_list[3],16);
             var motion_hex = intput_list[0].toString(16); // Sensor Status calculate
             var motion_binary = hex2bin(motion_hex);
             var motion_st = motion_binary.substring(7, 8);
