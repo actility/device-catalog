@@ -348,7 +348,7 @@ function determineGpsPrevious(payload){
 		throw new Error("The payload is not valid to determine previous gps");
 	let gpsPrevious = {}
 	gpsPrevious["age"] = decodeCondensed(payload[23], 0, 2040, 8, 0);
-    previousFix = (payload[24] << 8) + payload[25]
+    const previousFix = (payload[24] << 8) + payload[25]
     switch (previousFix >> 15){
 	    case 0:
 	    	gpsPrevious["dynamicMotionState"] =  DynamicMotionState.STATIC;
@@ -359,9 +359,9 @@ function determineGpsPrevious(payload){
 	    default:
 	        throw new Error("The dynamic motion state of the previous fix is unknown");
     }
-    previousN= (previousFix >> 12) & 0x7
-    previousLatitudeDelta = (previousFix >> 6) & 0x3F
-    previousLongitudeDelta = previousFix & 0x3F
+    const previousN= (previousFix >> 12) & 0x7
+    const previousLatitudeDelta = (previousFix >> 6) & 0x3F
+    const previousLongitudeDelta = previousFix & 0x3F
     gpsPrevious["latitude"] = (parseInt(convertBytesToString(payload.slice(8,12)),16) - (decodeCondensed(previousLatitudeDelta, -32, 31, 6, 0) * (1 << previousN)));
     if (gpsPrevious["latitude"] > 0x7FFFFFFF) {
     	gpsPrevious["latitude"] -= 0x100000000;
@@ -477,7 +477,7 @@ function determineHorizontalAccuracy(payload, payloadType, messageType){
         return Math.round(decodeCondensed(value, 0, 1000, 8, 0) * 100) / 100;
     }
     else if (payloadType == 1){
-        convertedValue = value
+        let convertedValue = value
         if (value > 250){
             switch (value){
                 case 251:
@@ -915,8 +915,8 @@ function determineConfigurations (parameters, parameterIds, parameterValues, rea
 			else
 			{
 				let result = getNameAndParametersProfileFromJsonByProfileId(jsonProfiles, paramValue)	
-				parametersProfile = result[1]
-				name = result[0]
+				const parametersProfile = result[1]
+				const name = result[0]
 				
 				if ((readOnly) && (paramValue!=0))
 				{
@@ -1126,7 +1126,7 @@ function getNameAndParametersProfileFromJsonByProfileId(jsonProfiles,profileId){
 		 {
 	         if ((jsonProfiles[p].profiles[profile].id)==profileId){
 	            parameters = jsonProfiles[p].profiles[profile].parameters
-	            name = jsonProfiles[p].profiles[profile].name
+	            const name = jsonProfiles[p].profiles[profile].name
 	            return [name,parameters];
 	         }
 	      }
@@ -2230,7 +2230,7 @@ function encodeSms(payload) {
 	encData[2] = payload.sms.senderId >> 16;
 	encData[3] = (payload.sms.senderId >> 8) & 0xFF;
 	encData[4] = payload.sms.senderId & 0xFF;
-	for (i = 0; i < payload.sms.message.length; i++)
+	for (let i = 0; i < payload.sms.message.length; i++)
 		encData[i + 5] = payload.sms.message.charCodeAt(i) & 0xFF;
 	return encData;
 }
