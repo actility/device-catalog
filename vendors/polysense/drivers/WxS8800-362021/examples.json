@@ -1,0 +1,67 @@
+[
+    {
+      "type": "uplink",
+      "description": "uplink ",
+      "input": {
+        "bytes":"D77E070DED0801A5",
+        "fPort": 1,
+        "recvTime": "2024-04-15T10:54:02.773+02:00"
+        
+      },
+      "output": {
+        "data": {
+         "uart":"is the format of the uplink of the payload",
+         "dataTypeBattery":"Integer(V)",
+         "vbat": 3.565 ,
+         "dataTypeNoise":"Decimal(dB)",
+         "sound": 42.1
+        },
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "type": "uplink",
+      "description": "Beginning of payload",
+      "input": {
+        "bytes": "d77e070DED2603E8",
+        "fPort": 1,
+        "recvTime": "2024-04-15T10:54:02.773+02:00"
+        
+      },
+      "output": {
+        "data": {
+            "uart":"is the format of the beginning of the payload",
+            "dataTypeBattery":"Integer(V)",
+            "vbat": 3.565 ,
+            "dataTypeDistance":"Mètre(mm)",
+            "distance": 1000
+        },
+        "errors": [],
+        "warnings": []
+      }
+    },
+    {
+      "type": "uplink",
+      "description": "uplink containing only humidity",
+      "input": {
+        "bytes":"d77e070db13700000000",
+        "fPort": 1,
+        "recvTime": "2024-04-15T10:54:02.773+02:00"
+        
+      },
+      "output": {
+        "data": {
+            "uart":"Payload start format",
+            "dataTypeBattery":"Integer(V)",
+            "vbat": 3.505 ,
+            "dataTypeIR":" Generic IO Duty Report (0x56)",
+            "dir": null
+        },
+        "errors": [],
+        "warnings": []
+      }
+    }
+    
+]
+    
