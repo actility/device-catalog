@@ -1,8 +1,9 @@
 const examples = require("./examples.json");
+
 /**
  * Decode uplink
  * @param {Object} input - An object provided by the IoT Flow framework
- * @param {number[]} input.bytes - Array of numbers as it will be sent to the device
+ * @param {string} input.bytes - String of hex numbers as it will be sent to the device
  * @returns {Object} The decoded object
  */
 function decodeUplink(input) {
@@ -14,43 +15,41 @@ function decodeUplink(input) {
 
     let bytes = input.bytes.toUpperCase();
     
-    // Extrait l'entête et vérifie si elle est correcte
-    const entete = bytes.substring(0, 4); // "D77E" - indices 0 à 3
-    if (entete !== "D77E") {
+    // Extracts the header and checks if it is correct
+    const header = bytes.substring(0, 4); // "D77E" - indices 0 to 3
+    if (header !== "D77E") {
         result.errors.push("Byte sequence does not start with 'D77E', byte not recognized.");
-        return result;  // Return immediatly error if entete is not correct
+        return result;  // Return immediately if header is not correct
     }
     
-    // Boucle pour traiter le reste des données par paire d'octets
+    // Loop to process the rest of the data by pairs of bytes
     for (let i = 4; i < bytes.length; i += 2) {
-        const bytepair = bytes.substring(i, i + 2);
+        const bytePair = bytes.substring(i, i + 2);
         
-        // Traitement 
-        switch (bytepair) {
+        // Processing based on the byte pair
+        switch (bytePair) {
             case "07":
-                result.data.vbat = 3.565;
-                // result.data.dataTypeBattery = "Integer(V)";
+                // Converts from Hex to Decimal and divides by 1000 if in millivolts
+                result.data.vbat = parseInt(bytes.substring(i + 2, i + 6), 16); 
                 break;
             case "26":
-                if (i + 2 < bytes.length && i === 10) {
-                    result.data.distance = 1000;
-                    // result.data.dataTypeDistance = "Millimètre(mm)";
+                if (i < bytes.length && i === 10) {
+                    // Converts from Hex to Decimal for distance
+                    result.data.distance = parseInt(bytes.substring(i + 2, i + 6), 16);
                 }
                 break;
             case "08":
                 if (i + 2 < bytes.length && i === 10) {
-                    result.data.sound = 42.1;
-                    // result.data.dataTypeNoise = "Decimal(dB)";
+                    // Multiplies by 0.1 to convert from decibels
+                    result.data.sound = parseInt(bytes.substring(i + 2, i + 6), 16) * 0.1;
                 }
                 break;
             case "37":
                 if (i + 2 < bytes.length && i === 10) {
                     result.data.dir = "Neither IR detected the number";
-                    // result.data.dataTypeIR = "Generic IO Duty Report (0x56)";
                 }
                 break;
             default:
-            
                 break;
         }
     }
@@ -59,7 +58,7 @@ function decodeUplink(input) {
 }
 
 const input = {
-    bytes: "d77E070dED0801A5"
+    bytes: "d77E070dEF2603E8"
 };
 console.log(decodeUplink(input));
 
