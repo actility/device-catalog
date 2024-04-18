@@ -867,7 +867,7 @@ Here's an example:
 
 The following section describes the examples of the payloads of the driver.
 
-Several examples of uplink and downlink payloads must be declared directly in the driver's root directory and especially in a directory `/example`. The name of each examples file must follow the pattern `*.examples.json`. You can split and organize the examples files according to your own logic.
+Several examples of uplink and downlink payloads must be declared directly in the driver's root directory and especially in a directory `/examples`. The name of each examples file must follow the pattern `*.examples.json`. You can split and organize the examples files according to your own logic.
 
 These examples will be used in order to provide for the users of the driver some examples of the payload to be decoded/encoded to test the driver. In addition, it will be used to facilitate the testing of the driver while development.
 
@@ -901,13 +901,13 @@ The uplink/downlink example used is an object represented by the following json-
         "required": true
     },
     "time": {
-        "description": "the uplin/downlink message time",
+        "description": "the uplink/downlink message time",
         "type": "string",
         "format": "date-time",
         "required": false
     },
     "data": {
-        "description": "the decoded uplink/downlink view",
+        "description": "the decoded uplink/downlink view as an output",
         "type": "object",
         "required": true
     }
@@ -963,9 +963,9 @@ The error example used to test `decodeUplink`/`decodeDownlink` function is an ob
     }
 ```
 
-##### encodeDownlink/extractPoints error example
+##### encodeDownlink error example
 
-The error example used to test `encodeDownlink`/`extractPoints` function is an object represented by the following json-schema:
+The error example used to test `encodeDownlink` function is an object represented by the following json-schema:
 
 ```json
 "description": {
@@ -976,22 +976,22 @@ The error example used to test `encodeDownlink`/`extractPoints` function is an o
     "type": {
         "description": "the type of the example",
         "type": "string",
-        "enum":  ["uplink", "downlink"],
+        "enum":  ["downlink"],
         "required": true
     },
     "fPort": {
-        "description": "the uplink/downlink message LoRaWAN fPort",
+        "description": "the downlink message LoRaWAN fPort",
         "type": "number",
         "required": true
     },
     "time": {
-        "description": "the uplink/downlink message time",
+        "description": "the downlink message time",
         "type": "string",
         "format": "date-time",
         "required": false
     },
     "data": {
-        "description": "the decoded uplink/downlink view as an input to the function",
+        "description": "the input to the encodeDownlink function",
         "type": "object",
         "required": true
     },
