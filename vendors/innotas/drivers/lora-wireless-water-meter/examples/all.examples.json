@@ -2,24 +2,20 @@
   {
     "description": "Example 1: uplink containing an actual count (ZS) of water volume",
     "type": "uplink",
-    "input": {
-      "bytes": "00000003",
-      "fPort": 1,
-      "recvTime": "2020-08-02T20:00:00.000+05:00"
-    },
-    "output": {
+    "bytes": "00000003",
+    "fPort": 1,
+    "time": "2020-08-02T20:00:00.000+05:00",
+    "data": {
       "ZS": 3
     }
   },
   {
     "description": "Example 2: uplink containing an actual count of water volume in m^3 (ZS) and a reference data metering in m^3 (STZS)",
     "type": "uplink",
-    "input": {
-      "bytes": "000000050000000300000C",
-      "fPort": 2,
-      "recvTime": "2020-08-02T20:00:00.000+05:00"
-    },
-    "output": {
+    "bytes": "000000050000000300000C",
+    "fPort": 2,
+    "time": "2020-08-02T20:00:00.000+05:00",
+    "data": {
       "STATUS": {
         "ERROR_BATT": 0,
         "ERROR_CS": 0,
@@ -39,12 +35,10 @@
   {
     "description": "Example 3: uplink containing an actual count in m^3 (ZS), a maximum flow in L/h (Max_DF_L_pro_h), a standstill percentage (Still_proz_pro_tag), a maximum start/day value (Max_Start_Tag), and a minimum volume per day in L/day (Min_DF_L_pro_h)",
     "type": "uplink",
-    "input": {
-      "bytes": "0000000500B4C7000002D0",
-      "fPort": 3,
-      "recvTime": "2020-08-02T20:00:00.000+05:00"
-    },
-    "output": {
+    "bytes": "0000000500B4C7000002D0",
+    "fPort": 3,
+    "time": "2020-08-02T20:00:00.000+05:00",
+    "data": {
       "Max_DF_L_pro_h": 180,
       "Max_Start_Tag": 0,
       "Min_DF_L_pro_h": 720,
@@ -55,12 +49,10 @@
   {
     "description": "Example 4: uplink containing an actual count in m^3 (ZS) and 4 flow rates in L/h (DF_L_h1, DF_L_h2, DF_L_h3 and DF_L_h4)",
     "type": "uplink",
-    "input": {
-      "bytes": "000000050000000000000000",
-      "fPort": 4,
-      "recvTime": "2020-08-02T20:00:00.000+05:00"
-    },
-    "output": {
+    "bytes": "000000050000000000000000",
+    "fPort": 4,
+    "time": "2020-08-02T20:00:00.000+05:00",
+    "data": {
       "DF_L_h1": 0,
       "DF_L_h2": 0,
       "DF_L_h3": 0,
@@ -71,12 +63,10 @@
   {
     "description": "Example 5: uplink containing an actual count in m^3 (ZS) and a reference data meter reading in m^3 (STZS)",
     "type": "uplink",
-    "input": {
-      "bytes": "000000020000000000050C",
-      "fPort": 2,
-      "recvTime": "2020-08-02T20:00:00.000+05:00"
-    },
-    "output": {
+    "bytes": "000000020000000000050C",
+    "fPort": 2,
+    "time": "2020-08-02T20:00:00.000+05:00",
+    "data": {
       "STATUS": {
         "ERROR_BATT": 0,
         "ERROR_CS": 0,
