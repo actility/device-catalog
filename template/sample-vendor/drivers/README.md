@@ -237,7 +237,7 @@ The returned `output` is represented by the following json-schema:
 
 ### Payload examples
 
-**WARNING:** This section concerns only drivers that follow this guide and respect "lora-alliance" signature and format. For any other format/signature (ttn, chirpstack, actility), the examples should follow the section [Legacy Payload Examples](#legacy-payload-examples-only-signatures-other-than-lora-alliance-are-concerned).
+:warning: **WARNING:** This section concerns only drivers that follow this guide and respect "lora-alliance" signature and format. For any other format/signature (ttn, chirpstack, actility), the examples should follow the section [Legacy Payload Examples](#legacy-payload-examples-only-signatures-other-than-lora-alliance-are-concerned).
 
 The following section describes the examples of the payloads of the driver.
 
