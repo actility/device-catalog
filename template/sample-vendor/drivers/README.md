@@ -913,3 +913,91 @@ The uplink/downlink example used is an object represented by the following json-
     }
 }
 ```
+
+### Legacy error examples (only signatures other than lora-alliance are concerned)
+
+These errors examples has a similar concept of the payloads examples.
+
+To benefit from the automation of the tests, you must create a directory in the driver package named `/errors`. Inside, the name of each error examples file must follow the pattern `*.errors.json`. You can split and organize the errors files according to your own logic.
+
+**Note:** These errors examples will be only used for unit tests and will not be stored in our framework.
+
+An `*.errors.json` file contains an array of several uplink/downlink errors examples.
+
+##### decodeUplink/decodeDownlink error example
+
+The error example used to test `decodeUplink`/`decodeDownlink` function is an object represented by the following json-schema:
+
+```json
+"description": {
+        "description": "the description of the error example",
+        "type": "string",
+        "required": true
+    },
+    "type": {
+        "description": "the type of the example",
+        "type": "string",
+        "enum":  ["uplink", "downlink"],
+        "required": true
+    },
+    "bytes": {
+        "description": "the uplink/downlink payload expressed in hexadecimal",
+        "type": "string",
+        "required": true
+    },
+    "fPort": {
+        "description": "the uplink/downlink message LoRaWAN fPort",
+        "type": "number",
+        "required": true
+    },
+    "time": {
+        "description": "the uplink/downlink message time",
+        "type": "string",
+        "format": "date-time",
+        "required": false
+    },
+    "error": {
+        "description": "the error that should be thrown in case of wrong input",
+        "type": "string",
+        "required": true
+    }
+```
+
+##### encodeDownlink/extractPoints error example
+
+The error example used to test `encodeDownlink`/`extractPoints` function is an object represented by the following json-schema:
+
+```json
+"description": {
+        "description": "the description of the error example",
+        "type": "string",
+        "required": true
+    },
+    "type": {
+        "description": "the type of the example",
+        "type": "string",
+        "enum":  ["uplink", "downlink"],
+        "required": true
+    },
+    "fPort": {
+        "description": "the uplink/downlink message LoRaWAN fPort",
+        "type": "number",
+        "required": true
+    },
+    "time": {
+        "description": "the uplink/downlink message time",
+        "type": "string",
+        "format": "date-time",
+        "required": false
+    },
+    "data": {
+        "description": "the decoded uplink/downlink view as an input to the function",
+        "type": "object",
+        "required": true
+    },
+    "error": {
+        "description": "the error that should be thrown in case of wrong input",
+        "type": "string",
+        "required": true
+    }
+```
