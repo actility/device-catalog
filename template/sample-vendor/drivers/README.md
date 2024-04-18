@@ -237,6 +237,8 @@ The returned `output` is represented by the following json-schema:
 
 ### Payload examples
 
+**WARNING:** This section concerns only drivers that follow this guide and respect "lora-alliance" signature and format. For any other format/signature (ttn, chirpstack, actility), the examples should follow the section [Legacy Payload Examples](#legacy-payload-examples-only-signatures-other-than-lora-alliance-are-concerned).
+
 The following section describes the examples of the payloads of the driver.
 
 An `examples.json` file of uplink and downlink payloads must be declared directly in the driver package.
@@ -778,3 +780,136 @@ files and directories of the driver.
 **Important:** You must avoid including the non-necessary files into the `.tgz` file as the `node_modules`
 and `coverage` directories for example. (This can be done by adding a `.npmignore` file).
  the driver 
+
+#### Points extraction
+
+Points can be extracted once an uplink has been decoded. In order to extract points, a driver must provide the following function:
+
+```javascript
+function extractPoints(input) {...}
+```
+
+The `input` is an object provided by the IoT Flow framework that is represented by the following json-schema:
+
+```json
+{
+    "message": {
+        "description": "the object message as returned by the decodeUplink function",
+        "type": "object",
+        "required": true
+    },
+    "time": {
+        "description": "the datetime of the uplink message, it is a real javascript Date object",
+        "type": "string",
+        "format": "date-time",
+        "required": true
+    }
+}
+```
+
+The returned object must be:
+- The wrapped object from the decoded one in case all the event are done at the same time, respecting the ontology.
+  Here's an example:
+```json
+{
+    "temperature": 31.4,
+    "location": [48.875158, 2.333822],
+    "fft": [0.32, 0.33, 0.4523, 0.4456, 0.4356]
+}
+```
+- OR, it is defined by the following json-schema in case the point has several values in different timestamp.
+
+```json
+{
+  "type": "object",
+  "additionalProperties": {
+    "type": "array",
+    "items": {
+      "type": "object",
+      "properties": {
+        "eventTime": {
+          "type": "string",
+          "format": "date-time",
+          "required": true
+        },
+        "value": {
+          "type": ["string", "number", "boolean"],
+          "required": false
+        }
+      }
+    }
+  }
+}
+```
+Here's an example:
+```json
+{
+  "temperature": [
+    {
+      "eventTime": "2019-01-01T10:00:00+01:00",
+      "value": 31.4
+    },
+    {
+      "eventTime": "2019-01-01T11:00:00+01:00",
+      "value": 31.2
+    },
+    {
+      "eventTime": "2019-01-01T12:00:00+01:00",
+      "value": 32
+    }
+  ]
+}
+```
+
+----------------------------------------------------------------
+
+### Legacy payload examples (only signatures other than lora-alliance are concerned)
+
+The following section describes the examples of the payloads of the driver.
+
+Several examples of uplink and downlink payloads must be declared directly in the driver's root directory and especially in a directory `/example`. The name of each examples file must follow the pattern `*.examples.json`. You can split and organize the examples files according to your own logic.
+
+These examples will be used in order to provide for the users of the driver some examples of the payload to be decoded/encoded to test the driver. In addition, it will be used to facilitate the testing of the driver while development.
+
+An `*.examples.json` file contains an array of several uplink/downlink examples. You can find an example of this file in the driver example.
+
+#### Example
+
+The uplink/downlink example used is an object represented by the following json-schema:
+
+```json
+{
+    "description": {
+        "description": "the description of the uplink/downlink example",
+        "type": "string",
+        "required": true
+    },
+    "type": {
+        "description": "the type of the uplink/downlink example. type 'downlink' is used for both downlink decoding/encoding in case the function exist.",
+        "type": "string",
+        "enum": ["uplink", "downlink"],
+        "required": true
+    },
+    "bytes": {
+        "description": "the uplink/downlink payload expressed in hexadecimal",
+        "type": "string",
+        "required": true
+    },
+    "fPort": {
+        "description": "the uplink/downlink message LoRaWAN fPort",
+        "type": "number",
+        "required": true
+    },
+    "time": {
+        "description": "the uplin/downlink message time",
+        "type": "string",
+        "format": "date-time",
+        "required": false
+    },
+    "data": {
+        "description": "the decoded uplink/downlink view",
+        "type": "object",
+        "required": true
+    }
+}
+```
