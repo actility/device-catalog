@@ -1,7 +1,7 @@
 [
     {
       "type": "uplink",
-      "description": "uplink ",
+      "description": "uplink of sound ",
       "input": {
         "bytes":"D77E070DED0801A5",
         "fPort": 1,
@@ -10,10 +10,7 @@
       },
       "output": {
         "data": {
-         "uart":"is the format of the uplink of the payload",
-         "dataTypeBattery":"Integer(V)",
-         "vbat": 3.565 ,
-         "dataTypeNoise":"Decimal(dB)",
+         "vbat": 3565 ,
          "sound": 42.1
         },
         "errors": [],
@@ -22,7 +19,7 @@
     },
     {
       "type": "uplink",
-      "description": "Beginning of payload",
+      "description": "uplink contains distance ",
       "input": {
         "bytes": "d77e070DED2603E8",
         "fPort": 1,
@@ -31,10 +28,8 @@
       },
       "output": {
         "data": {
-            "uart":"is the format of the beginning of the payload",
-            "dataTypeBattery":"Integer(V)",
-            "vbat": 3.565 ,
-            "dataTypeDistance":"Mètre(mm)",
+            
+            "vbat": 3565 ,
             "distance": 1000
         },
         "errors": [],
@@ -43,7 +38,7 @@
     },
     {
       "type": "uplink",
-      "description": "uplink containing only humidity",
+      "description": "uplink containing only counter",
       "input": {
         "bytes":"d77e070db13700000000",
         "fPort": 1,
@@ -52,11 +47,8 @@
       },
       "output": {
         "data": {
-            "uart":"Payload start format",
-            "dataTypeBattery":"Integer(V)",
-            "vbat": 3.505 ,
-            "dataTypeIR":" Generic IO Duty Report (0x56)",
-            "dir": "Neither IR detected the number"
+            "vbat": 3505 ,
+            "cnt": 0
         },
         "errors": [],
         "warnings": []

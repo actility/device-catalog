@@ -3,7 +3,7 @@ name: WxS8800-362021
 # Functional description of the product. Maximum 500 characters.
 description: The WxS8800-362021 is a LoRaWAN Sound/Noise Smart Sensor & RTU (Remote Terminal Unit) 2-in-1 Terminal.
 # Logo of the device
-logo: polysense.png
+logo: noise-meter.png
 # ID(s) of the profile that defines the LoRaWAN characteristics of this model.
 deviceProfileId:
   - polysen_RFGroup1_1.0.2a_classA
@@ -34,36 +34,25 @@ LoRaWANCertified:
 # Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
 # Format: `<8 characters max>:<16 characters max>:<digits only>`
 # Be careful: Once you chose a model, it cannot be changed later
-modelId: polysense:WxS8800-362021:1
+modelId: polysen:WxS8800-362021:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 # Be careful: Once you chose a protocolId, it cannot be changed later
 protocolId:
-  - polysense:WxS8800-362021:1
+  - polysen:WxS8800-362021:1
 # DataSheet URL (optional)
-specificationURL:
+specificationURL: https://pro59330473-pic11.ysjianzhan.cn/upload/WxS8800-362021SoundNoiseSmartSensorRTU2-in-1TerminalFinal.pdf
 # User Guide URL (optional)
-userGuideURL:
+userGuideURL: 
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
-  - temperature:Cel
-  - humidity:%RH
+  - batteryVoltage:mV
+  - intensity:dB
+  - distance:mm
+  - eventRate:count/s
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
-  svendor:sample-model-protocol:1:
-    - uplink containing only pulse counter
-    - uplink containing three measurements
-    - uplink containing only humidity
-    - uplink containing only temperature
-    - fail decode uplink containing only humidity with unknown id
-    - fail decode uplink containing only humidity with oob
-    - encode downlink containing only pulseCounterThreshold
-    - encode downlink containing only alarm
-    - encode downlink containing alarm and pulseCounterThreshold
-    - fail encode downlink when pulseCounterThreshold exceeds 255
-    - decode downlink containing only pulseCounterThreshold
-    - decode downlink containing only alarm
-    - decode downlink containing alarm and pulseCounterThreshold
-    - fail decode downlink when payload contains pulseCounterThreshold with oob
-    - fail decode downlink when payload contains alarm with oob
-    - fail decode downlink when unknown id
+  polysen:WxS8800-362021:1
+    - uplink containing only the first sensor's data that gives battery voltage
+    - uplink containing only second sensor's data that gives Sound,distance, and duration
+    - uplink containing all sensor's data that gives the four measurements
