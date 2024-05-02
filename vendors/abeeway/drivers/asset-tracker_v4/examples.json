@@ -1,19 +1,80 @@
 [
   {
-    "description": "Heart beat uplink",
+    "description": "Geolocation GNSS uplink",
     "type": "uplink",
     "input": {
-      "bytes": "0000000000000000",
+      "bytes": "1064870687000419ff3e9404363ca5007307f1002f1b64",
       "recvTime": "2024-04-18T20:00:00.000+02:00",
       "fPort": 1
     },
     "output": {
       "data": {
-        "messageType": "HEARTBEAT",
+        "messageType": "POSITION",
         "batteryVoltage": 4.03
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "description": "Geolocation BLE uplink",
+    "type": "uplink",
+    "input": {
+      "bytes": "10648736840004ac233f2af766aaac233f2af75fa65cea1d641228a2ac233f2870469f",
+      "recvTime": "2024-04-18T20:00:00.000+02:00",
+      "fPort": 1
+    },
+    "output": {
+      "data": {
+        "messageType": "POSITION",
+        "batteryVoltage": 4.03
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "description": "Geolocation WIFI uplink",
+    "type": "uplink",
+    "input": {
+      "bytes": "10648790830004204d410008a303a5410008a74108410008ab4100a900000000000000",
+      "recvTime": "2024-04-18T20:00:00.000+02:00",
+      "fPort": 1
+    },
+    "output": {
+      "data": {
+        "messageType": "POSITION",
+        "batteryVoltage": 4.03
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "description": "Status uplink",
+    "type": "uplink",
+    "input": {
+      "bytes": "086487ac000100000100000022010802000012ba001c150000000000000000000000202000000000",
+      "recvTime": "2024-04-18T20:00:00.000+02:00",
+      "fPort": 1
+    },
+    "output": {
+      "data": {
+        "header":{
+          "ackToken": 0,
+          "appState": 0,
+          "sos": false,
+          "timestamp": 141557760,
+          "type": "NOTIFICATION",
+          "batteryLevel": 100
+        },
+        "notification":  {},
+        "payload": "086487ac000100000100000022010802000012ba001c150000000000000000000000202000000000"
+        
       },
       "errors": [],
       "warnings": []
     }
   }
 ]
+
