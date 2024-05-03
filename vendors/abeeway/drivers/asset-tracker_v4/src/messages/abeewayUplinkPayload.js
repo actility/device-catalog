@@ -1,3 +1,11 @@
+const messageType = Object.freeze({
+    NOTIFICATION: "NOTIFICATION",
+    POSITION: "POSITION",
+    QUERY: "QUERY",
+    RESPONSE: "RESPONSE",
+    UNKNOWN: "UNKNOWN"
+});
+
 function AbeewayUplinkPayload(header,
     multiFrame,
     notification,
@@ -13,14 +21,6 @@ function AbeewayUplinkPayload(header,
     this.response = response;
     this.payload = payload
 }
-
-const messageType = Object.freeze({
-    NOTIFICATION: "NOTIFICATION",
-    POSITION: "POSITION",
-    QUERY: "QUERY",
-    RESPONSE: "RESPONSE",
-    UNKNOWN: "UNKNOWN"
-});
 
 module.exports = {
     AbeewayUplinkPayload: AbeewayUplinkPayload,

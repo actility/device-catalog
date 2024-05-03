@@ -1,11 +1,14 @@
 let abeewayUplinkPayloadClass = require("./messages/abeewayUplinkPayload");
+let abeewayDownlinkPayloadClass = require("./messages/abeewayDownlinkPayload");
 let headerClass = require("./messages/header");
 let multiFrameClass = require("./messages/multiFrame");
 let notificationClass = require("./notifications/notification");
 let positionClass = require("./positions/position");
 let util = require("./util");
-//const MessageType = require("./enums/messageType");
+let commandClass = require("./messages/command");
+let requestClass = require("./requests/request");
 
+const DOWNLINK_PORT_NUMBER = 2;
 
 const removeEmpty = (obj) => {
     Object.keys(obj).forEach(k =>
@@ -16,11 +19,6 @@ const removeEmpty = (obj) => {
   };
 
 
-
-
-const ASSET_TRACKER_2_0_PORT_NUMBER = 18;
-const PROXIMITY_CCD_ROLLOVER_VALUE = 65535;
-const DOWNLINK_PORT_NUMBER = 2;
 
 function decodeUplink(input) {
     let result = {
@@ -35,7 +33,8 @@ function decodeUplink(input) {
         //header decoding
         decodedData.header = headerClass.determineHeader(payload);
         //if multiframe is true
-        if (!!(payload[0]>>7 & 0x01)){
+        var multiFrame = !!(payload[0]>>7 & 0x01);
+        if (multiFrame){
             decodedData.multiFrame = multiFrameClass.determineMultiFrame(payload);
         } 
         decodedData.payload = util.convertBytesToString(payload);
@@ -45,7 +44,7 @@ function decodeUplink(input) {
                 decodedData.notification = notificationClass.determineNotification(payload);
                 break;
             case abeewayUplinkPayloadClass.messageType.POSITION:
-                decodedData.position = positionClass.determinePosition(payload);
+                decodedData.position = positionClass.determinePosition(payload, multiFrame);
                 break;
             case abeewayUplinkPayloadClass.messageType.QUERY:
                 decodedData.query = determineQuery(payload);
@@ -64,7 +63,81 @@ function decodeUplink(input) {
     return result;
 }
 
+function decodeDownlink(input){
+    let result = {
+        data: {},
+        errors: [],
+        warnings: []
+    }
+    try{
+        var payload = input.bytes;
+        var decodedData = new abeewayDownlinkPayloadClass.determineDownlinkHeader(payload);
+        decodedData.payload = util.convertBytesToString(payload);
+        switch (decodedData.type){
+            case abeewayDownlinkPayloadClass.MessageType.COMMAND:
+                break;
+            case abeewayDownlinkPayloadClass.MessageType.REQUEST:
+                break;
+            case abeewayDownlinkPayloadClass.MessageType.ANSWER:
+                break;
+        }
+
+    }
+    catch (e){
+        result.errors.push(e.message);
+        delete result.data;
+        return result;
+    }
+    return result;
+}
+
+function encodeDownlink(input){
+    let result = {
+        errors: [],
+        warnings: []
+    };
+
+    try{
+        if (input == null) {
+            throw new Error("No data to encode");
+        }
+
+        let data = input;
+        if(input.data != null) {
+            data = input.data;
+        }
+
+        var bytes = [];
+
+        if(data.type == null){
+            throw new Error("No downlink message type");
+        }
+        switch (data.type){
+            case abeewayDownlinkPayloadClass.MessageType.COMMAND:
+                bytes = commandClass.encodeCommand(data);
+                break;
+            case abeewayDownlinkPayloadClass.MessageType.REQUEST:
+                bytes = requestClass.encodeRequest(data);
+                break;
+            case abeewayDownlinkPayloadClass.MessageType.ANSWER:
+                
+                break;
+            
+        }
+
+        result.bytes = bytes;
+        result.fPort = DOWNLINK_PORT_NUMBER;
+    } catch (e){
+        result.errors.push(e.message);
+        delete result.bytes;
+        delete result.fPort;
+        return result;
+    }
+    return result;
+}
 
 module.exports = {
-    decodeUplink: decodeUplink
+    decodeUplink: decodeUplink,
+    decodeDownlink: decodeDownlink,
+    encodeDownlink: encodeDownlink
 }
