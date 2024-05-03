@@ -1,0 +1,20 @@
+const RequestType = Object.freeze({
+    GENERIC_CONF_SET: "GENERIC_CONF_SET",
+    PARAM_CLASS_CONF_SET: "PARAM_CLASS_CONF_SET",
+    GENERIC_CONF_GET: "GENERIC_CONF_GET",
+    PARAM_CLASS_CONF_GET: "PARAM_CLASS_CONF_GET",
+    BLE_STATUS: "BLE_STATUS",
+    GET_GPS_ALMANAC_ENTRY: "GET_GPS_ALMANAC_ENTRY",
+    GET_BEIDOU_ALMANAC_ENTRY: "GET_BEIDOU_ALMANAC_ENTRY",
+    SET_GPS_ALMANAC_ENTRY: "SET_GPS_ALMANAC_ENTRY",
+    SET_BEIDOU_ALMANAC_ENTRY: "SET_BEIDOU_ALMANAC_ENTRY",
+})
+
+function encodeRequest(data){
+
+}
+
+module.exports = {
+    RequestType: RequestType,
+    encodeRequest: encodeRequest
+}

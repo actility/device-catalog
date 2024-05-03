@@ -1,4 +1,5 @@
 let util = require("../util");
+
 function System(status,
     lowBattery){
     this.status = status;
@@ -73,38 +74,16 @@ function Status(AT3Version,
 function determineStatus(payload){
     if (payload.length < 40)
         throw new Error("The payload is not valid to determine status message");
-    //08 64 87 ac 00 
-    //01 00 00 
-    //01 00 00 00 
-    //22 01 08 
-    //02 
-    //00 00 
-    //12 ba 
-    //00 
-    //1c 
-    //15 
-    //00
-    //00 00 
-    //00 
-    //00 
-    //00 00 
-    //00 
-    //00 
-    //00 00 
-    //20 
-    //20 
-    //00 00 
-    //00 
-    //00
+
     var AT3Version = payload[5].toString()+"."+payload[6].toString()+"."+payload[7].toString();
     var configVersion = payload[8].toString()+"."+payload[9].toString()+"."+payload[10].toString()+"."+payload[11].toString();
     var LRHWVersion = payload[12].toString()+"."+payload[13].toString()+"."+payload[14].toString();
     var LRGNSSVersion = payload[15];
     var consumption = (payload[16] << 8) + payload[17];
     var batteryVoltage = (payload[18] << 8) + payload[19];
-    var currentTemperature = util.convertNegativeInt(payload[20]);
-    var maxTemperature = util.convertNegativeInt(payload[21]);
-    var minTemperature = util.convertNegativeInt(payload[22]);
+    var currentTemperature = util.convertNegativeInt(payload[20],1);
+    var maxTemperature = util.convertNegativeInt(payload[21],1);
+    var minTemperature = util.convertNegativeInt(payload[22],1);
     var resetCause = determineResetCause(payload[23]);
     var LR1110GpsAlmanacDate = (payload[24] << 8) + payload[25];
     var LR1110GpsOutdated = payload[26];
