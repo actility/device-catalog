@@ -1,4 +1,4 @@
-function GnssFix(latitude,
+function MT3333GnssFix(latitude,
     longitude,
     altitude,
     COG,
@@ -14,12 +14,12 @@ function GnssFix(latitude,
     this.quality = quality;
 }
 
-function GnssFailure(status,
+function MT3333GnssFailure(status,
     satellites){
     this.status = status;
     this.satellites = satellites;
 }
 
 module.exports = {
-    GnssFix: GnssFix
+    MT3333GnssFix: MT3333GnssFix
 }

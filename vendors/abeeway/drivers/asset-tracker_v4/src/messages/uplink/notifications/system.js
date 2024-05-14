@@ -1,4 +1,4 @@
-let util = require("../util");
+let util = require("../../../util");
 
 function System(status,
     lowBattery){
