@@ -1,4 +1,4 @@
-function MultiFrame(group,
+function ExtendedHeader(group,
     last,
     frameNumber){
     this.group = group;
@@ -6,7 +6,7 @@ function MultiFrame(group,
     this.frameNumber = frameNumber;
 }
 
-function determineMultiFrame(payload){
+function determineExtendedHeader(payload){
     if (payload.length < 5)
         throw new Error("The payload is not valid to determine multi frame header");
     let multiFrame = new MultiFrame(payload[4]>>5 & 0x07, 
@@ -17,6 +17,6 @@ function determineMultiFrame(payload){
 }
 
 module.exports = {
-    MultiFrame: MultiFrame,
-    determineMultiFrame: determineMultiFrame
+    ExtendedHeader: ExtendedHeader,
+    determineExtendedHeader: determineExtendedHeader
 }

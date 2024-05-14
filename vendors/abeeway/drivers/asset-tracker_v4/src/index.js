@@ -1,12 +1,12 @@
-let abeewayUplinkPayloadClass = require("./messages/abeewayUplinkPayload");
-let abeewayDownlinkPayloadClass = require("./messages/abeewayDownlinkPayload");
-let headerClass = require("./messages/header");
-let multiFrameClass = require("./messages/multiFrame");
-let notificationClass = require("./notifications/notification");
-let positionClass = require("./positions/position");
+let abeewayUplinkPayloadClass = require("./messages/uplink/abeewayUplinkPayload");
+let abeewayDownlinkPayloadClass = require("./messages/downlink/abeewayDownlinkPayload");
+let basicHeadeClass = require("./messages/uplink/basicHeader");
+let extendedHeaderClass = require("./messages/uplink/extendedHeader");
+let notificationClass = require("./messages/uplink/notifications/notification");
+let positionClass = require("./messages/uplink/positions/position");
 let util = require("./util");
-let commandClass = require("./messages/command");
-let requestClass = require("./requests/request");
+let commandClass = require("./messages/downlink/command");
+let requestClass = require("./messages/downlink/requests/request");
 
 const DOWNLINK_PORT_NUMBER = 2;
 
@@ -31,11 +31,11 @@ function decodeUplink(input) {
         var payload = input.bytes;
 
         //header decoding
-        decodedData.header = headerClass.determineHeader(payload);
+        decodedData.header = basicHeadeClass.determineHeader(payload);
         //if multiframe is true
         var multiFrame = !!(payload[0]>>7 & 0x01);
         if (multiFrame){
-            decodedData.multiFrame = multiFrameClass.determineMultiFrame(payload);
+            decodedData.extendedHeader = extendedHeaderClass.determineExtendedHeader(payload);
         } 
         decodedData.payload = util.convertBytesToString(payload);
 

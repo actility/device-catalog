@@ -7,14 +7,14 @@ const messageType = Object.freeze({
 });
 
 function AbeewayUplinkPayload(header,
-    multiFrame,
+    extendedHeader,
     notification,
     position,
     query,
     response,
     payload) {
     this.header = header;
-    this.multiFrame = multiFrame;
+    this.extendedHeader = extendedHeader;
     this.notification = notification;
     this.position = position;
     this.query = query;

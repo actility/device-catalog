@@ -10,12 +10,220 @@
             "groupId":0,
             "localId":0,
             "defaultValue":0,
+            "unit": "Cel",
             "description":"Highest temperature reached",
             "parameterType":{
                "type":"ParameterTypeNumber",
                "range":{
                   "minimum":-100,
                   "maximum":100
+               }
+            },
+            "compatibleTrackerModels":[
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"micro-tracker",
+                  "version":"2"
+               },
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"micro-tracker",
+                  "version":"3"
+               },
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"indus-tracker",
+                  "version":"1"
+               },
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"indus-tracker",
+                  "version":"2"
+               },
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"compact-tracker",
+                  "version":"1"
+               },
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"smart-badge",
+                  "version":"1"
+               }
+            ]
+         },
+         {
+            "driverParameterName":"sysLowestTemperature",
+            "firmwareConfigurationFileParameterName":"P0001",
+            "bleId":1,
+            "groupId":0,
+            "localId":1,
+            "defaultValue":0,
+            "unit": "Cel",
+            "description":"Lowest temperature reached",
+            "parameterType":{
+               "type":"ParameterTypeNumber",
+               "range":{
+                  "minimum":-100,
+                  "maximum":100
+               }
+            },
+            "compatibleTrackerModels":[
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"micro-tracker",
+                  "version":"2"
+               },
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"micro-tracker",
+                  "version":"3"
+               },
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"indus-tracker",
+                  "version":"1"
+               },
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"indus-tracker",
+                  "version":"2"
+               },
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"compact-tracker",
+                  "version":"1"
+               },
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"smart-badge",
+                  "version":"1"
+               }
+            ]
+         },
+         {
+            "driverParameterName":"sysPowerConsumption",
+            "firmwareConfigurationFileParameterName":"P0002",
+            "bleId":2,
+            "groupId":0,
+            "localId":2,
+            "defaultValue":0,
+            "unit": "mAh",
+            "description":"Total power consumed",
+            "parameterType":{
+               "type":"ParameterTypeNumber",
+               "range":{
+                  "minimum":0
+               }
+            },
+            "compatibleTrackerModels":[
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"micro-tracker",
+                  "version":"2"
+               },
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"micro-tracker",
+                  "version":"3"
+               },
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"indus-tracker",
+                  "version":"1"
+               },
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"indus-tracker",
+                  "version":"2"
+               },
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"compact-tracker",
+                  "version":"1"
+               },
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"smart-badge",
+                  "version":"1"
+               }
+            ]
+         },
+         {
+            "driverParameterName":"coreFeatureFlags",
+            "firmwareConfigurationFileParameterName":"P0100",
+            "bleId":256,
+            "groupId":1,
+            "localId":0,
+            "defaultValue":0,
+            "description":"Application feature enable/disable (Bit map)",
+            "parameterType":{
+               "type":"ParameterTypeBitMap",
+               "range":{
+                  "minimum":0
+               },
+               "properties":[
+                  {
+                     "name":"noOff",
+                     "type":"PropertyBoolean",
+                     "description":"When enabled, prevent the core to move to the off state"
+                  }
+               ],
+               "bitMap":[
+                  {
+                     "type":"BitMapValue",
+                     "valueFor":"noOff",
+                     "bitShift":0,
+                     "length":1
+                  }
+               ]
+            },
+            "compatibleTrackerModels":[
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"micro-tracker",
+                  "version":"2"
+               },
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"micro-tracker",
+                  "version":"3"
+               },
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"indus-tracker",
+                  "version":"1"
+               },
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"indus-tracker",
+                  "version":"2"
+               },
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"compact-tracker",
+                  "version":"1"
+               },
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"smart-badge",
+                  "version":"1"
+               }
+            ]
+         },
+         {
+            "driverParameterName":"coreMonitoringPeriod",
+            "firmwareConfigurationFileParameterName":"P0101",
+            "bleId":257,
+            "groupId":0,
+            "localId":2,
+            "defaultValue":300,
+            "unit": "s",
+            "description":"Total power consumed",
+            "parameterType":{
+               "type":"ParameterTypeNumber",
+               "range":{
+                  "minimum":0
                }
             },
             "compatibleTrackerModels":[
@@ -113,65 +321,7 @@
                }
             ]
          },
-         {
-            "driverParameterName":"coreFeatureFlags",
-            "firmwareConfigurationFileParameterName":"P0100",
-            "bleId":256,
-            "groupId":1,
-            "localId":0,
-            "defaultValue":0,
-            "description":"Application feature enable/disable (Bit map)",
-            "parameterType":{
-               "type":"ParameterTypeBitMap",
-               "properties":[
-                  {
-                     "name":"noOff",
-                     "type":"PropertyBoolean",
-                     "description":"When enabled, prevent the core to move to the off state"
-                  }
-               ],
-               "bitMap":[
-                  {
-                     "type":"BitMapValue",
-                     "valueFor":"noOff",
-                     "bitShift":0,
-                     "length":1
-                  }
-               ]
-            },
-            "compatibleTrackerModels":[
-               {
-                  "producerId":"abeeway",
-                  "moduleId":"micro-tracker",
-                  "version":"2"
-               },
-               {
-                  "producerId":"abeeway",
-                  "moduleId":"micro-tracker",
-                  "version":"3"
-               },
-               {
-                  "producerId":"abeeway",
-                  "moduleId":"indus-tracker",
-                  "version":"1"
-               },
-               {
-                  "producerId":"abeeway",
-                  "moduleId":"indus-tracker",
-                  "version":"2"
-               },
-               {
-                  "producerId":"abeeway",
-                  "moduleId":"compact-tracker",
-                  "version":"1"
-               },
-               {
-                  "producerId":"abeeway",
-                  "moduleId":"smart-badge",
-                  "version":"1"
-               }
-            ]
-         },
+         
          {
             "driverParameterName":"loraS1TxStrategy",
             "firmwareConfigurationFileParameterName":"P0803",
