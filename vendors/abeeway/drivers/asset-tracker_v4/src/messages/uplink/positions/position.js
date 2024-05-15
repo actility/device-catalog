@@ -3,6 +3,7 @@ let BssidInfoClass = require("./wifi/bssidInfo");
 let BeaconInfoClass = require("./ble/beaconInfo");
 let util = require("../../../util");
 let SatelliteInfoClass = require("./gnss/satelliteInfo");
+let mt3333GnssClass = require("./gnss/mt3333GnssFix")
 
 const PositionStatus = Object.freeze({
     SUCCESS: "SUCCESS",
@@ -187,47 +188,47 @@ function determineBleMacShortPositionMessage(payload){
     return beaconInfos;
 }
 
-function determineMT3333GnssPositionMessage(payload){
-}
 
 
 function determinePosition(payload, multiFrame){
-    
+
     const startingByte = 4;
     if (multiFrame){
         startingByte = 5;
     }
     let positionMessage = determinePositionHeader(payload, startingByte);
-    switch (positionMessage.positionType){
-        case PositionType.LR1110GNSS:
-            positionMessage.lr1110Gnss = determineLR1110GnssPositionMessage(payload.slice(startingByte+3));
-            break;
-        case PositionType.LR1110SEMTECHNAV1:
-            positionMessage.lr1110SemtechNav1 = util.convertBytesToString(payload.slice(startingByte+3));
-            break;
-        case PositionType.LR1110SEMTECHNAV2:
-            positionMessage.lr1110SemtechNav2 = util.convertBytesToString(payload.slice(startingByte+3));
-            break;
-        case PositionType.WIFI:
-            positionMessage.wifi = determineWifiPositionMessage(payload.slice(startingByte+3));
-            break;
-        case PositionType.BLEMAC:
-            positionMessage.bleMacShort = determineBleMacShortPositionMessage(payload.slice(startingByte+3));
-            break;
-        case PositionType.BLESHORT:
-            positionMessage.bleShort = determineBleShortPositionMessage(payload.slice(startingByte+3));
-            break;
-        case PositionType.BLELONG:
-            positionMessage.bleLong = determineBleLongPositionMessage(payload.slice(startingByte+3));
-            break;
-        case PositionType.MT3333GNSSFIX:
-            positionMessage.mt3333GnssFix = determineMT3333GnssPositionMessage(payload.slice(startingByte+3));
-            break;
-        case PositionType.MT3333LPGNSS:
-            positionMessage.mt3333LpGnss = determineMT3333LPGnssPositionMessage(payload.slice(startingByte+3));
-            break;    
+    if (positionMessage.status == PositionStatus.SUCCESS){
+        switch (positionMessage.positionType){
+            case PositionType.LR1110GNSS:
+                positionMessage.lr1110Gnss = determineLR1110GnssPositionMessage(payload.slice(startingByte+3));
+                break;
+            case PositionType.LR1110SEMTECHNAV1:
+                positionMessage.lr1110SemtechNav1 = util.convertBytesToString(payload.slice(startingByte+3));
+                break;
+            case PositionType.LR1110SEMTECHNAV2:
+                positionMessage.lr1110SemtechNav2 = util.convertBytesToString(payload.slice(startingByte+3));
+                break;
+            case PositionType.WIFI:
+                positionMessage.wifi = determineWifiPositionMessage(payload.slice(startingByte+3));
+                break;
+            case PositionType.BLEMAC:
+                positionMessage.bleMacShort = determineBleMacShortPositionMessage(payload.slice(startingByte+3));
+                break;
+            case PositionType.BLESHORT:
+                positionMessage.bleShort = determineBleShortPositionMessage(payload.slice(startingByte+3));
+                break;
+            case PositionType.BLELONG:
+                positionMessage.bleLong = determineBleLongPositionMessage(payload.slice(startingByte+3));
+                break;
+            case PositionType.MT3333GNSSFIX:
+                positionMessage.mt3333GnssFix = mt3333GnssClass.determineMT3333GnssFix(payload.slice(startingByte+3));
+                break;
+            case PositionType.MT3333LPGNSS:
+                positionMessage.mt3333LpGnss = determineMT3333LPGnssPositionMessage(payload.slice(startingByte+3));
+                break;    
+        }       
     }
-    //TODO
+       //TODO
     return positionMessage;
 
 }
