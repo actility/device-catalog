@@ -24,8 +24,12 @@ function camelToSnake(string) {
 	//return parseInt(hex,16)
     return hex
 }
-
-
+function twoComplement(num) {
+    if (num > 0x7FFFFFFF) {
+        num -= 0x100000000;
+    }
+    return num
+}
 function convertBytesToString(bytes){
     var payload = "";
     var hex;
@@ -61,5 +65,6 @@ module.exports = {
     convertBytesToString: convertBytesToString,
     convertByteToString: convertByteToString,
     decodeCondensed: decodeCondensed,
-    convertNegativeInt: convertNegativeInt
+    convertNegativeInt: convertNegativeInt,
+    twoComplement: twoComplement
 }
