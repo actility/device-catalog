@@ -6,7 +6,10 @@ description: Universal industrial grade LoRaWAN endpoint that converts wired ind
 logo: vobo-gp-1.png
 # ID(s) of the profile that defines the LoRaWAN characteristics of this model.
 deviceProfileId:
+    - vobo_RFGroup1_1.0.4-RP2-1.0.3_classA
     - vobo_RFGroup2_1.0.4-RP2-1.0.3_classA
+    - vobo_RFGroup3_1.0.4-RP2-1.0.3_classA
+    - vobo_RFGroup4_1.0.4-RP2-1.0.3_classA
  
 # You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
 # Maximum device TX Conducted output power in dBm. 
@@ -35,17 +38,40 @@ userGuideURL:
 examples:
     vobo:generic:2:
         - "VoBo-XX Standard Payload."
+        - "VoBo-XX Modbus Payload."
         - "VoBo Heartbeat V1 Payload."
         - "VoBo Heartbeat V2 Payload."
+        - "VoBo Modbus Generic One Register Group Payload."
+        - "VoBo Modbus Generic Two Registers Group Payload."
+        - "VoBo Modbus Generic Non Fragmented Payload."
+        - "VoBo Modbus Generic Fragmented Payload."
+        - "VoBo Modbus Generic Payload - Example 1."
+        - "VoBo Modbus Generic Payload - Example 2."
+        - "VoBo Modbus Generic Payload - Example 3."
+        - "VoBo Modbus Generic Payload - Example 4."
         - "VoBo-XX Engineering Units AIN1 & AIN2 Payload."
         - "VoBo-XX Engineering Units AIN3 & Battery Level Payload."
         - "VoBo-XX Engineering Units ADC Temperature Payload."
         - "VoBo-XX Engineering Units Digital Inputs Payload."
         - "VoBo-XX Event Log Payload."
-        - "VoBo General Configuration Payload."
+        - "VoBo General Part 1 Configuration Payload."
+        - "VoBo General Part 2 Configuration Payload."
         - "VoBo VoBoSync Part 1 Configuration Payload."
         - "VoBo VoBoSync Part 2 Configuration Payload."
         - "VoBo-XX General Configuration Payload."
+        - "VoBo-XX Modbus General Configuration Payload."
+        - "VoBo-XX Modbus Groups First Cycle Enable Configuration Payload."
+        - "VoBo-XX Modbus Groups Subsequent Cycle Enable Configuration Payload."
+        - "VoBo-XX Modbus Group 1 Configuration Payload."
+        - "VoBo-XX Modbus Payload Slots 0-4 Configuration Payload."
+        - "VoBo-XX Modbus Payload Slots 5-9 Configuration Payload."
+        - "VoBo-XX Modbus Payload Slots 10-14 Configuration Payload."
+        - "VoBo-XX Modbus Payload Slots 15-19 Configuration Payload."
+        - "VoBo-XX Modbus Payload Slots 20-24 Configuration Payload."
+        - "VoBo-XX Modbus Payload Slots 25-29 Configuration Payload."
+        - "VoBo-XX Modbus Payload Slots 30-34 Configuration Payload."
+        - "VoBo-XX Modbus Payload Slots 35-39 Configuration Payload."
+        - "VoBo-XX Modbus Payload Slot 40 Configuration Payload."
         - "VoBo-XX Engineering Units AIN1 Part 1 Configuration Payload."
         - "VoBo-XX Engineering Units AIN1 Part 2 Configuration Payload."
         - "VoBo-XX Engineering Units AIN1 Part 3 Configuration Payload."
@@ -55,7 +81,23 @@ examples:
         - "VoBo-XX Engineering Units AIN3 Part 1 Configuration Payload."
         - "VoBo-XX Engineering Units AIN3 Part 2 Configuration Payload."
         - "VoBo-XX Engineering Units AIN3 Part 3 Configuration Payload."
-        - "Payload with invalid FPort"
+        - "VoBo-XX Analog Input Variable Length Payload."
+        - "VoBo-XX Modbus Standard Variable Length Payload."
+        - "VoBo-TC Cold Joint Temperature & Battery Level Payload."
+        - "VoBo-TC TC1 & TC2 Payload."
+        - "VoBo-TC Digital Inputs Payload."
+        - "VoBo-TC General Configuration Payload - v1.00.00."
+        - "VoBo-TC General Configuration Payload - v2.00.00."
+        - "VoBo-TC TC1 & TC2 Configuration Payload."
+        - "VoBo-TC TC3 & TC4 Configuration Payload."
+        - "VoBo-TC TC5 & TC6 Configuration Payload."
+        - "VoBo-TC TC7 & TC8 Configuration Payload."
+        - "VoBo-TC TC9 & TC10 Configuration Payload."
+        - "VoBo-TC TC11 & TC12 Configuration Payload."
+        - "VoBo-TC Event Log Payload."
+        - "VoBo-TC Analog Input Variable Length Payload - Cold Joint Temperature, Battery Level and Channels 1 - 6."
+        - "VoBo-TC Analog Input Variable Length Payload - Channels 7 - 12."
+        - "Payload with invalid FPort."
         - "Analog Sensor payload with unknown Sensor Number."
         - "Analog Sensor payload with unknown Engineering Unit Code."
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
