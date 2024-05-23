@@ -215,7 +215,7 @@ describe("Decode uplink", () => {
                 const expected = example.output;
 
                 // Adaptations
-                checkDates(result, expected);
+                adaptDates(result, expected);
 
                 expect(result).toStrictEqual(expected);
             });
