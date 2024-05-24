@@ -8,14 +8,14 @@
 #    RFGroup4: as923
 # Please do not change the existing IDs (Some may follow the old format)
 # The name of the profile .yaml file should be the same as the following ID
-id: WLR_1.0.4a_classC
+id: flashnet_as923_1.0.4a_classC
 # LoRaWAN class of the Device: Possible values: [ A, B, C ] (Should not have several values)
 # 'A': Class A (Bi-directional end-devices with downlink listening only after uplink transmission)
 # 'B': Class B (Bi-directional end-devices with downlink listening on predefined synchronized pingslots)
 # 'C': Class C (Bi-directional end-devices with permanent downlink listening)
 loRaWANClass: C
 # Comma-separated list of regional profiles supported by this device. Possible values are eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470.
-ISMbands: eu868, us915, as923, au915
+ISMbands: as923
 # Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'
 # or 'random' (not known, changes over time).
 # The motion indication property will not be taken into consideration here if it is overwritten in the model.yaml
@@ -70,9 +70,9 @@ bootSettings:
     # beaconFrequency Boot value used by the Device to set the beacon broadcast frequency. This frequency is then aligned by the Network Server to the target value set in RF region.
     beaconFrequency:
     # Default downlink dwell time (valid only for AS923 and AU915 profiles). Possible values 0 (no limit) or 1 (400ms).
-    downlinkDwellTime: 0
+    downlinkDwellTime: 1
     # Default uplink dwell time (valid only for AS923 and AU915 profiles). Possible values 0 (no limit) or 1 (400ms).
-    uplinkDwellTime: 0
+    uplinkDwellTime: 1
 
 # Which MAC commands are supported by your device and which are not? Leave it as the template if your device supports all the MAC commands specified for your regional
 # profile. Put 'true' only if a command is supported.
@@ -86,7 +86,7 @@ supportedMACCommands:
     rxTimingSetupReqAns: true
     newChannelReqAns: true
     dlChannelReqAns: true
-    txParamSetupReqAns: false
+    txParamSetupReqAns: true
     pingSlotChannelReqAns: false
     pingSlotInfoReqAns: false
     deviceTimeReqAns: false

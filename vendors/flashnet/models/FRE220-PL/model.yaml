@@ -2,12 +2,14 @@
 name: FRE220-PL
 # Functional description of the product. Maximum 500 characters.
 description: "Wired connected controller, designed to retrofit existing street lamps that are not provided with a standard connector. Enables individual remote management of streetlight lamps with electronic driver up to 400W (ON/ OFF/ Dimming). Autonomous operation based on predefined schedules, light level sensor and adaptive lighting. Battery operated RTC."
-"
 # Logo of the device
-logo: FRE240-PL.png
+logo: fre220-pl.png
 # ID(s) of the profile that defines the LoRaWAN characteristics of this model.
 deviceProfileId:
-  - WLR_1.0.4a_classC
+    - flashnet_eu868_1.0.4a_classC
+    - flashnet_us915_1.0.4a_classC
+    - flashnet_au915_1.0.4a_classC
+    - flashnet_as923_1.0.4a_classC
 
 # You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings.
 # Maximum device TX Conducted output power in dBm.
@@ -27,7 +29,7 @@ LoRaWANCertified:
 # Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
 # Format: `<8 characters max>:<16 characters max>:<digits only>`
 # Be careful: Once you chose a model, it cannot be changed later
-modelId: flashnet:FRE220-PL:1
+modelId: flashnet:fre220-pl:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 # Be careful: Once you chose a protocolId, it cannot be changed later
 protocolId:
