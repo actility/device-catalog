@@ -1,16 +1,19 @@
 # Commercial name of the model 
-name: Infrared Motion Sensor - ZB11A
+name: Light Sensor - Z311G
 # Functional description of the product. Maximum 500 characters. 
-description: "Infrared Motion sensor - ZB11A."
+description: "Light sensor - Z311G."
 # Logo of the device
-logo: Foxconn_infrared_motion_ZB11A.png
+logo: Foxconn_light_sensor_Z311G.png
 # Product name & Version
 product:
-    name: FXCN/ZB11A
+    name: FXCN/Z311G
     version: 1
 # ID(s) of the profile that defines the LoRaWAN characteristics of this model.
-deviceProfileId: 
-    - FOXCONN/ZB11A.1_AS
+# id: as defined under /profiles.
+# lorawanDeviceProfileID: as defined by LoRa Alliance in https://lora-alliance.org/wp-content/uploads/2020/10/LoRa_Alliance_Vendor_ID_for_QR_Code_02142022.pdf.
+# The lorawanDeviceProfileID consists of 8 upper-case hexadecimal characters, 4 characters for VendorID + 4 characters for VendorProfileID. Please consider using single (') or double (") quotation
+deviceProfileIds: 
+    - id: FOXCONN/Z311G.1_AS
  
 # You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
 # Maximum device TX Conducted output power in dBm. 
@@ -29,9 +32,9 @@ motionIndicator:
 LoRaWANCertified: 
 # Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
 # Format: `<8 characters max>:<16 characters max>:<digits only>`
-modelId: foxconn:zb11a:1
+modelId: foxconn:z311g:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
-protocolId:
+protocolId: 
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 
