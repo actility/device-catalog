@@ -119,7 +119,7 @@ A profile contains the technical LoRaWAN characteristics used by the device, inc
 > - LoRaWAN Class (A, B or C).
 
 Once you select a generic template, you need to create a file named with the profile ID.
-This ID of your profile should be used on your `model.yaml` on the field `deviceProfileId`.
+This ID of your profile should be used on your `model.yaml` on the field `deviceProfileIds`.
 
 Example: `vendor_RFGroup1_1.0.2revB_classA.yaml`
 

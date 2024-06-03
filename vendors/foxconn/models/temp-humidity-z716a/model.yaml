@@ -1,16 +1,19 @@
 # Commercial name of the model 
-name: izi-io 4840 /heat
+name: Temp Humidity - Z716A
 # Functional description of the product. Maximum 500 characters. 
-description: "Specially designed for monitoring building heating systems, the izinto izi-io 4840 /heat is an industry-strength controller with edge computing and LoRaWAN® connection. Up to 8 temperature sensors or other inputs such as sensors and switches may be connected."
+description: "Temperature and Humidity sensor - Z716A."
 # Logo of the device
-logo: izinto-izi-io-4840-heat.png
+logo: Foxconn_temp_humidity_Z716A.png
 # Product name & Version
 product:
-    name: IZIN/IZEAT
+    name: FXCN/Z716A
     version: 1
 # ID(s) of the profile that defines the LoRaWAN characteristics of this model.
-deviceProfileId: 
-    - IZIN/IZEATA.1.0.2b_ETSI
+# id: as defined under /profiles.
+# lorawanDeviceProfileID: as defined by LoRa Alliance in https://lora-alliance.org/wp-content/uploads/2020/10/LoRa_Alliance_Vendor_ID_for_QR_Code_02142022.pdf.
+# The lorawanDeviceProfileID consists of 8 upper-case hexadecimal characters, 4 characters for VendorID + 4 characters for VendorProfileID. Please consider using single (') or double (") quotation.
+deviceProfileIds: 
+    - id: FOXCONN/Z716A.1_AS
  
 # You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
 # Maximum device TX Conducted output power in dBm. 
@@ -29,9 +32,9 @@ motionIndicator:
 LoRaWANCertified: 
 # Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
 # Format: `<8 characters max>:<16 characters max>:<digits only>`
-modelId: izinto:izi-io-4840-heat:1
+modelId: foxconn:z716a:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
-protocolId:
+protocolId: 
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 

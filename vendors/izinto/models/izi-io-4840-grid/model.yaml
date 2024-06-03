@@ -1,16 +1,19 @@
 # Commercial name of the model 
-name: Combox L - CI-B
+name: izi-io 4840 /grid
 # Functional description of the product. Maximum 500 characters. 
-description: "Combox L - CI-B."
+description: "Specially designed for monitoring local power grid transformation substations ('Ortsnetzstationen' in Germany, 10 kV → 230 V), the izinto izi-io 4840 /grid is an industry-strength controller with edge computing and LoRaWAN® connection that connects to a Jean Müller PLMulti-II measuring device via Modbus/RTU. Additionally, up to 8 temperature sensors and switches may be connected."
 # Logo of the device
-logo: solvera_lynx_combox_L.png
+logo: izinto-izi-io-4840-grid.png
 # Product name & Version
 product:
-    name: SLVRA/CMBX_CIB
+    name: IZIN/IZRID
     version: 1
 # ID(s) of the profile that defines the LoRaWAN characteristics of this model.
-deviceProfileId: 
-    - SLVRA/COMBOX-L_CI-B_A.1_EU
+# id: as defined under /profiles.
+# lorawanDeviceProfileID: as defined by LoRa Alliance in https://lora-alliance.org/wp-content/uploads/2020/10/LoRa_Alliance_Vendor_ID_for_QR_Code_02142022.pdf.
+# The lorawanDeviceProfileID consists of 8 upper-case hexadecimal characters, 4 characters for VendorID + 4 characters for VendorProfileID. Please consider using single (') or double (") quotation.
+deviceProfileIds: 
+    - id: IZIN/IZRIDA.1.0.2b_ETSI
  
 # You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
 # Maximum device TX Conducted output power in dBm. 
@@ -29,9 +32,9 @@ motionIndicator:
 LoRaWANCertified: 
 # Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
 # Format: `<8 characters max>:<16 characters max>:<digits only>`
-modelId: solvera:combox-l---ci-b:1
+modelId: izinto:izi-io-4840-grid:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
-protocolId:
+protocolId: 
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 

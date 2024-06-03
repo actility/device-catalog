@@ -9,10 +9,13 @@ product:
     name: LORA/Generic
     version: 1
 # ID(s) of the profile that defines the LoRaWAN characteristics of this model.
-deviceProfileId: 
-    - LORA/GenericA.1.0.3a_AS923_2
-    - LORA/GenericB.1.0.3a_AS923_2
-    - LORA/GenericC.1.0.3a_AS923_2
+# id: as defined under /profiles.
+# lorawanDeviceProfileID: as defined by LoRa Alliance in https://lora-alliance.org/wp-content/uploads/2020/10/LoRa_Alliance_Vendor_ID_for_QR_Code_02142022.pdf.
+# The lorawanDeviceProfileID consists of 8 upper-case hexadecimal characters, 4 characters for VendorID + 4 characters for VendorProfileID. Please consider using single (') or double (") quotation.
+deviceProfileIds: 
+    - id: LORA/GenericA.1.0.3a_AS923_2
+    - id: LORA/GenericB.1.0.3a_AS923_2
+    - id: LORA/GenericC.1.0.3a_AS923_2
  
 # You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
 # Maximum device TX Conducted output power in dBm. 

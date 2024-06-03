@@ -9,12 +9,15 @@ product:
     name: STMI/NUJC2
     version: 1
 # ID(s) of the profile that defines the LoRaWAN characteristics of this model.
-deviceProfileId: 
-    - STMI/NUJC2A.1.0.4a_ETSI
-    - STMI/NUJC2A.1.0.4a_FCC
-    - stmicroe_RFGroup1_1.0.2revA_classA
-    - stmicroe_RFGroup2_1.0.2revA_classA
-    - stmicroe_RFGroup4_1.0.2revA_classA
+# id: as defined under /profiles.
+# lorawanDeviceProfileID: as defined by LoRa Alliance in https://lora-alliance.org/wp-content/uploads/2020/10/LoRa_Alliance_Vendor_ID_for_QR_Code_02142022.pdf.
+# The lorawanDeviceProfileID consists of 8 upper-case hexadecimal characters, 4 characters for VendorID + 4 characters for VendorProfileID. Please consider using single (') or double (") quotation.
+deviceProfileIds: 
+    - id: STMI/NUJC2A.1.0.4a_ETSI
+    - id: STMI/NUJC2A.1.0.4a_FCC
+    - id: stmicroe_RFGroup1_1.0.2revA_classA
+    - id: stmicroe_RFGroup2_1.0.2revA_classA
+    - id: stmicroe_RFGroup4_1.0.2revA_classA
  
 # You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
 # Maximum device TX Conducted output power in dBm. 

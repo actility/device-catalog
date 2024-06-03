@@ -9,13 +9,16 @@ product:
     name: GLBSAT/LS111
     version: 1
 # ID(s) of the profile that defines the LoRaWAN characteristics of this model.
-deviceProfileId: 
-    - GLBSAT/LS-111_A.1_AS
-    - GLBSAT/LS-111_A.1_EU
-    - GLBSAT/LS-111_A.1_US
-    - GLBSAT/LS-111_C.1_AS
-    - GLBSAT/LS-111_C.1_EU
-    - GLBSAT/LS-111_C.1_US
+# id: as defined under /profiles.
+# lorawanDeviceProfileID: as defined by LoRa Alliance in https://lora-alliance.org/wp-content/uploads/2020/10/LoRa_Alliance_Vendor_ID_for_QR_Code_02142022.pdf.
+# The lorawanDeviceProfileID consists of 8 upper-case hexadecimal characters, 4 characters for VendorID + 4 characters for VendorProfileID. Please consider using single (') or double (") quotation.
+deviceProfileIds: 
+    - id: GLBSAT/LS-111_A.1_AS
+    - id: GLBSAT/LS-111_A.1_EU
+    - id: GLBSAT/LS-111_A.1_US
+    - id: GLBSAT/LS-111_C.1_AS
+    - id: GLBSAT/LS-111_C.1_EU
+    - id: GLBSAT/LS-111_C.1_US
  
 # You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
 # Maximum device TX Conducted output power in dBm. 
