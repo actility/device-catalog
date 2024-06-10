@@ -4,6 +4,7 @@ let basicHeadeClass = require("./messages/uplink/basicHeader");
 let extendedHeaderClass = require("./messages/uplink/extendedHeader");
 let notificationClass = require("./messages/uplink/notifications/notification");
 let positionClass = require("./messages/uplink/positions/position");
+let responseClass = require("./messages/uplink/responses/response")
 let util = require("./util");
 let commandClass = require("./messages/downlink/command");
 let requestClass = require("./messages/downlink/requests/request");
@@ -29,9 +30,11 @@ function decodeUplink(input) {
     try{
         var decodedData = new abeewayUplinkPayloadClass.AbeewayUplinkPayload();
         var payload = input.bytes;
+        var receivedTime = input.recvTime;
 
         //header decoding
-        decodedData.header = basicHeadeClass.determineHeader(payload);
+        decodedData.header = basicHeadeClass.determineHeader(payload,receivedTime);
+
         //if multiframe is true
         var multiFrame = !!(payload[0]>>7 & 0x01);
         if (multiFrame){
@@ -50,7 +53,7 @@ function decodeUplink(input) {
                 decodedData.query = determineQuery(payload);
                 break;
             case abeewayUplinkPayloadClass.messageType.RESPONSE:
-                decodedData.response = determineResponse(payload);
+                decodedData.response = responseClass.determineResponse(payload, multiFrame);
                 break;
         }
         decodedData = removeEmpty(decodedData);

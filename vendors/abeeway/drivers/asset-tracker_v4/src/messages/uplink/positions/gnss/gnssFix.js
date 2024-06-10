@@ -1,9 +1,7 @@
 
 let util = require("../../../../util");
 
-let qualityInfoClass = require("./mt3333GnssFixQuality")
-
-function MT3333GnssFix(latitude,
+function GnssFix(latitude,
     longitude,
     altitude,
     COG,
@@ -18,18 +16,32 @@ function MT3333GnssFix(latitude,
     this.EHPE = EHPE;
     this.quality = quality;
 }
+
+const fixQuality = Object.freeze({
+    INVALID: "INVALID",
+    VALID: "VALID",
+    FIX_2D: "FIX_2D",
+    FIX_3D: "FIX_3D",
+});
+
+function QualityInfo(fixQuality,
+    numberSatelliteUsed
+){
+    this.fixQuality = fixQuality;
+    this.numberSatelliteUsed = numberSatelliteUsed;
+}
+
 /****** decoded MT3333 GPS position *******/
-function determineMT3333GnssFix (payload){
-    let mt3333GnssFixInfo = new MT3333GnssFix();
+/*****************************************/
+function determineGnssFix (payload){
+    let mt3333GnssFixInfo = new GnssFix();
     mt3333GnssFixInfo.latitude = util.twoComplement(parseInt(util.convertBytesToString(payload.slice(0,4)),16)) /  Math.pow(10, 7) 
     mt3333GnssFixInfo.longitude = util.twoComplement(parseInt(util.convertBytesToString(payload.slice(4,8)),16)) /  Math.pow(10, 7)
     mt3333GnssFixInfo.altitude = determineAltitude(payload)
     mt3333GnssFixInfo.COG = determineCourseOverGround(payload)
     mt3333GnssFixInfo.SOG = determineSpeedOverGround(payload)
-    console.log(mt3333GnssFixInfo.SOG )
     mt3333GnssFixInfo.EHPE = determineEstimatedHorizontalPositionError(payload)
     mt3333GnssFixInfo.quality = determineFixQuality(payload)
-    console.log(mt3333GnssFixInfo.longitude, mt3333GnssFixInfo.altitude )
  return mt3333GnssFixInfo
 
 }
@@ -79,22 +91,21 @@ function determineEstimatedHorizontalPositionError(payload){
     }	
     
 function determineFixQuality(payload){
-    let quality = payload[15]>>5 &0x07
-   
-    let qualityInfo = new qualityInfoClass.QualityInfo()
+    let quality = payload[15]>>5 & 0x07
+    let qualityInfo = new QualityInfo()
     
     switch(quality){
         case 0:
-            qualityInfo.fixQuality = qualityInfoClass.fixQuality.INVALID
+            qualityInfo.fixQuality = fixQuality.INVALID
             break
         case 1:
-            qualityInfo.fixQuality = qualityInfoClass.fixQuality.VALID
+            qualityInfo.fixQuality = fixQuality.VALID
             break
         case 2:
-            qualityInfo.fixQuality = qualityInfoClass.fixQuality.FIX_2D
+            qualityInfo.fixQuality = fixQuality.FIX_2D
             break
         case 3:
-            qualityInfo.fixQuality = qualityInfoClass.fixQuality.FIX_3D
+            qualityInfo.fixQuality = fixQuality.FIX_3D
             break
     }
     qualityInfo.numberSatellitesUsed = payload[15] & 0x0F
@@ -104,6 +115,6 @@ function determineFixQuality(payload){
 }
 
 module.exports = {
-    MT3333GnssFix: MT3333GnssFix,
-    determineMT3333GnssFix: determineMT3333GnssFix
+    GnssFix: GnssFix,
+    determineGnssFix: determineGnssFix
 }

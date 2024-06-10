@@ -1,4 +1,8 @@
 let systemClass = require("./system");
+let temperatureClass = require ("./temperature")
+let accelerometerClass = require("./accelerometer")
+let networkClass = require("./network")
+let geozoningClass = require("./geozoning")
 
 const Class = Object.freeze({
     SYSTEM: "SYSTEM",
@@ -9,42 +13,12 @@ const Class = Object.freeze({
     GEOZONING: "GEOZONING"
 })
 
-const SystemType = Object.freeze({
-    STATUS: "STATUS",
-    LOW_BATTERY: "LOW_BATTERY",
-    BLE_CONNECTED_SEC: "BLE_CONNECTED_SEC",
-    BLE_DISCONNECTED: "BLE_DISCONNECTED"
-})
-
 const SosType = Object.freeze({
     SOS_ON: "SOS_ON",
-    SOS_OFF: "SOS_ON"
+    SOS_OFF: "SOS_OFF"
 })
 
-const TempType = Object.freeze({
-    TEMP_HIGH: "TEMP_HIGH",
-    TEMP_LOW: "TEMP_LOW",
-    TEMP_NORMAL: "TEMP_NORMAL"
-})
 
-const AcceleroType = Object.freeze({
-    MOTION_START: "MOTION_START",
-    MOTION_END: "MOTION_END",
-    SHOCK: "SHOCK"
-})
-
-const NetworkType = Object.freeze({
-    MAIN_UP: "MAIN_UP",
-    BACKUP_UP: "BACKUP_UP"
-})
-
-const GeozoningType = Object.freeze({
-    ENTRY: "ENTRY",
-    EXIT: "EXIT",
-    IN_HAZARD: "IN_HAZARD",
-    OUT_HAZARD: "OUT_HAZARD",
-    MEETING_POINT: "MEETING_POINT"
-})
 
 function Notification(notificationClass,
     notificationType,
@@ -53,7 +27,7 @@ function Notification(notificationClass,
     temperature,
     accelerometer,
     network,
-    geofencing){
+    geozoning){
     this.notificationClass = notificationClass;
     this.notificationType = notificationType;
     this.system = system;
@@ -61,7 +35,7 @@ function Notification(notificationClass,
     this.temperature = temperature;
     this.accelerometer = accelerometer;
     this.network = network;
-    this.geofencing = geofencing;
+    this.geozoning = geozoning;
 }
 
 function determineNotification(payload){
@@ -75,37 +49,110 @@ function determineNotification(payload){
             notificationMessage.notificationClass = Class.SYSTEM;
             switch (typeValue){
                 case 0:
-                    notificationMessage.notificationType = SystemType.STATUS;
+                    notificationMessage.notificationType = systemClass.SystemType.STATUS
                     notificationMessage.system = new systemClass.System(systemClass.determineStatus(payload),null);
-                    //console.log(notificationMessage.system);
                     break;
                 case 1:
-                    notificationMessage.notificationType = SystemType.LOW_BATTERY;
+                    notificationMessage.notificationType = systemClass.SystemType.LOW_BATTERY
+                    notificationMessage.system = new systemClass.System( null, systemClass.determineLowBattery(payload));
                     break;
                 case 2:
-                    notificationMessage.notificationType = SystemType.BLE_CONNECTED_SEC;
+                    notificationMessage.notificationType = systemClass.SystemType.BLE_CONNECTED;
                     break;
                 case 3:
-                    notificationMessage.notificationType = SystemType.BLE_DISCONNECTED;
+                    notificationMessage.notificationType = systemClass.SystemType.BLE_DISCONNECTED;
                     break;
                 default:
                     throw new Error("System Notification Type Unknown");
             }
             break;
         case 1:
-            //TODO
+            notificationMessage.notificationClass = Class.SOS
+            switch (typeValue){
+                case 0:
+                    notificationMessage.notificationType = SosType.SOS_ON
+                    break;
+                case 1:
+                    notificationMessage.notificationType = SosType.SOS_OFF
+                    break;
+                default:
+                    throw new Error("SOS Notification Type Unknown");
+            }
             break;
         case 2:
-            //TODO
+            notificationMessage.notificationClass = Class.TEMPERATURE
+            switch (typeValue){
+                case 0:
+                    notificationMessage.notificationType = temperatureClass.TempType.TEMP_HIGH
+                    notificationMessage.temperature = temperatureClass.determineTemperature(payload);
+                    break;
+                case 1:
+                    notificationMessage.notificationType = temperatureClass.TempType.TEMP_LOW
+                    notificationMessage.temperature = temperatureClass.determineTemperature(payload);
+                    break;
+                case 2:
+                    notificationMessage.notificationType = temperatureClass.TempType.TEMP_NORMAL
+                    notificationMessage.temperature = temperatureClass.determineTemperature(payload);
+                    break;
+                default:
+                    throw new Error("Temperature Notification Type Unknown");
+            }
             break;
         case 3:
-            //TODO
+            notificationMessage.notificationClass = Class.ACCELEROMETER
+            switch (typeValue){
+                case 0: 
+                    notificationMessage.notificationType = accelerometerClass.AcceleroType.MOTION_START
+                    break;
+                case 1:
+                    notificationMessage.notificationType = accelerometerClass.AcceleroType.MOTION_END
+                    notificationMessage.accelerometer = new accelerometerClass.Accelerometer(accelerometerClass.determineAccelerationVector(payload), accelerometerClass.determineMotion(payload), null, null)
+                    break;
+                case 2:
+                    notificationMessage.notificationType = accelerometerClass.AcceleroType.SHOCK
+                    notificationMessage.accelerometer = new accelerometerClass.Accelerometer(accelerometerClass.determineAccelerationVector(payload), null, accelerometerClass.determineGaddIndex(payload), accelerometerClass.determineNumberShocks(payload))
+                    break;
+                default:
+                    throw new Error("Accelerometer Notification Type Unknown");
+            }
             break;
         case 4:
-            //TODO
+            notificationMessage.notificationClass = Class.NETWORK
+            switch (typeValue){
+                case 0: 
+                    notificationMessage.notificationType = networkClass.NetworkType.MAIN_UP
+                    notificationMessage.network = networkClass.determineNetworkInfo(payload)
+                    break;
+                case 1:
+                    notificationMessage.notificationType = networkClass.NetworkType.BACKUP_UP
+                    notificationMessage.network = networkClass.determineNetworkInfo(payload)
+                    break;
+                default:
+                    throw new Error("Network Notification Type Unknown");
+            }
             break;
         case 5:
-            //TODO
+            notificationMessage.notificationClass = Class.GEOZONING
+            switch (typeValue){
+                case 0: 
+                    notificationMessage.notificationType = geozoningClass.GeozoningType.ENTRY;
+                    break;
+                case 1:
+                    notificationMessage.notificationType = geozoningClass.GeozoningType.EXIT;
+                    break;
+                case 2:
+                    notificationMessage.notificationType = geozoningClass.GeozoningType.IN_HAZARD;
+                    break;
+                case 3:
+                    notificationMessage.notificationType = geozoningClass.GeozoningType.OUT_HAZARD;
+                    break;
+                case 4:
+                    notificationMessage.notificationType = geozoningClass.GeozoningType.MEETING_POINT;
+                    break;
+                default:
+                    throw new Error("Network Notification Type Unknown");
+            }
+
             break;
         default:
             throw new Error("Notification Class Unknown");
