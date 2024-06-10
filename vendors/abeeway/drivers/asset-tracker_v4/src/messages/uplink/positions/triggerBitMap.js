@@ -1,5 +1,4 @@
-// TO BE COMPLETED
-function Wifi(geoTriggerPod,
+function TriggerBitMap(geoTriggerPod,
     geoTriggerSos,
     geoTriggerMotionStart,
     geoTriggerMotionStop,
@@ -8,7 +7,7 @@ function Wifi(geoTriggerPod,
     geoTriggerShock,
     geoTriggerTempHighThreshold,
     geoTriggerTempLowThreshold,
-    geoTriggerGeoZoning
+    geoTriggerGeozoning
 ){
     this.geoTriggerPod = geoTriggerPod;
     this.geoTriggerSos = geoTriggerSos;
@@ -19,9 +18,9 @@ function Wifi(geoTriggerPod,
     this.geoTriggerShock = geoTriggerShock;
     this.geoTriggerTempHighThreshold = geoTriggerTempHighThreshold;
     this.geoTriggerTempLowThreshold = geoTriggerTempLowThreshold;
-    this.geoTriggerGeoZoning = geoTriggerGeoZoning;
+    this.geoTriggerGeozoning = geoTriggerGeozoning;
 }
 
 module.exports = {
-    Wifi: Wifi, 	
+    TriggerBitMap: TriggerBitMap, 	
 }

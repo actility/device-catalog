@@ -5,7 +5,12 @@ function System(status,
     this.status = status;
     this.lowBattery = lowBattery;
 }
-
+const SystemType = Object.freeze({
+    STATUS: "STATUS",
+    LOW_BATTERY: "LOW_BATTERY",
+    BLE_CONNECTED: "BLE_CONNECTED",
+    BLE_DISCONNECTED: "BLE_DISCONNECTED"
+})
 const ResetCause = Object.freeze({
     AOS_ERROR_NONE: "AOS_ERROR_NONE",
     AOS_ERROR_HW_NMI: "AOS_ERROR_HW_NMI",
@@ -70,6 +75,17 @@ function Status(AT3Version,
     this.MT3333BeidouOutdated = MT3333BeidouOutdated;
     this.MT3333BeidouGood = MT3333BeidouGood;
 }
+function LowBattery(consumption, batteryVoltage){
+    this.consumption = consumption;
+    this.batteryVoltage = batteryVoltage;
+}
+
+function determineLowBattery(payload){
+    var consumption = (payload[5] << 8) + payload[6];
+    var batteryVoltage = (payload[7] << 8) + payload[8];
+    return new LowBattery(consumption, batteryVoltage
+
+    )}
 
 function determineStatus(payload){
     if (payload.length < 40)
@@ -163,5 +179,7 @@ function determineResetCause(value){
 
 module.exports = {
     System: System,
-    determineStatus: determineStatus
+    determineStatus: determineStatus,
+    determineLowBattery: determineLowBattery,
+    SystemType: SystemType
 }

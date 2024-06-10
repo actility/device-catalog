@@ -1,10 +1,19 @@
-function BeaconInfo(id,
+function BeaconIdInfo(id,
     rssi
 ){
     this.id = id;
     this.rssi = rssi;
 }
+function BeaconMacInfo(mac,
+    rssi
+){
+    this.mac = mac;
+    this.rssi = rssi;
+}
+
+
 
 module.exports = {
-    BeaconInfo: BeaconInfo, 	
+    BeaconIdInfo: BeaconIdInfo, 	
+    BeaconMacInfo: BeaconMacInfo
 }
