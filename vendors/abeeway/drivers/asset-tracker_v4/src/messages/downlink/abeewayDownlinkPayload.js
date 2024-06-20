@@ -6,13 +6,11 @@ const MessageType = Object.freeze({
 
 function AbeewayDownlinkPayload(type, 
         ackToken,
-        appState,
         command,
         request,
         payload) {
         this.type = type;
         this.ackToken = ackToken;
-        this.appState = appState;
         this.command = command;
         this.request = request;
         this.payload = payload;
@@ -23,9 +21,7 @@ function determineDownlinkHeader(payload){
         throw new Error("The payload is not valid to determine header");
     var ackToken = payload[0] & 0x07;
     var type = determineMessageType(payload);
-    var appState = payload[0]>>6 & 0x03;
-
-    return new AbeewayDownlinkPayload(type, ackToken, appState)
+    return new AbeewayDownlinkPayload(type, ackToken)
 }
 
 function determineMessageType(payload){

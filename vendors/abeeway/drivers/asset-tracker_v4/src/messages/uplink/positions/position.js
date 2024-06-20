@@ -19,9 +19,12 @@ const PositionType = Object.freeze({
     LR11xx_GNSS_NAV1: "LR11xx_GNSS_NAV1",
     LR11xx_GNSS_NAV2: "LR11xx_GNSS_NAV2",
     WIFI: "WIFI",
-    BLE_MAC: "BLE_MAC",
-    BLE_SHORT: "BLE_SHORT",
-    BLE_LONG: "BLE_LONG",
+    BLE_SCAN1_MAC: "BLE_SCAN1_MAC",
+    BLE_SCAN1_SHORT: "BLE_SCAN1_SHORT",
+    BLE_SCAN1_LONG: "BLE_SCAN1_LONG",
+    BLE_SCAN2_MAC: "BLE_SCAN2_MAC",
+    BLE_SCAN2_SHORT: "BLE_SCAN12_SHORT",
+    BLE_SCAN2_LONG: "BLE_SCAN2_LONG",
     GNSS: "GNSS",
     AIDED_GNSS: "AIDED_GNSS"
 })
@@ -88,18 +91,27 @@ function determinePositionHeader(payload, startingByte){
             positionMessage.positionType = PositionType.WIFI;
             break;
         case 4:
-            positionMessage.positionType = PositionType.BLE_MAC;
+            positionMessage.positionType = PositionType.BLE_SCAN1_MAC;
             break;
         case 5:
-            positionMessage.positionType = PositionType.BLE_SHORT;
+            positionMessage.positionType = PositionType.BLE_SCAN1_SHORT;
             break;
         case 6:
-            positionMessage.positionType = PositionType.BLE_LONG;
+            positionMessage.positionType = PositionType.BLE_SCAN1_LONG;
             break;
         case 7:
-            positionMessage.positionType = PositionType.GNSS;
+            positionMessage.positionType = PositionType.BLE_SCAN2_MAC;
             break;
         case 8:
+            positionMessage.positionType = PositionType.BLE_SCAN2_SHORT;
+            break;
+        case 9:
+            positionMessage.positionType = PositionType.BLE_SCAN2_LONG;
+            break;
+        case 10:
+            positionMessage.positionType = PositionType.GNSS;
+            break;
+        case 11:
             positionMessage.positionType = PositionType.AIDED_GNSS;
             break;
     }
@@ -183,13 +195,22 @@ function determinePosition(payload, multiFrame){
             case PositionType.WIFI:
                 positionMessage.wifi = wifiClass.determineWifiPositionMessage(payload.slice(startingByte+3));
                 break;
-            case PositionType.BLE_MAC:
-                positionMessage.bleMac = bleClass.determineBleMacShortPositionMessage(payload.slice(startingByte+3));
+            case PositionType.BLE_SCAN1_MAC:
+                positionMessage.bleMac = bleClass.determineBleMacPositionMessage(payload.slice(startingByte+3));
                 break;
-            case PositionType.BLE_SHORT:
+            case PositionType.BLE_SCAN1_SHORT:
                 positionMessage.bleShort = bleClass.determineBleIdShortPositionMessage(payload.slice(startingByte+3));
                 break;
-            case PositionType.BLE_LONG:
+            case PositionType.BLE_SCAN1_LONG:
+                positionMessage.bleLong = bleClass.determineBleIdLongPositionMessage(payload.slice(startingByte+3));
+                break;
+            case PositionType.BLE_SCAN2_MAC:
+                positionMessage.bleMac = bleClass.determineBleMacPositionMessage(payload.slice(startingByte+3));
+                break;
+            case PositionType.BLE_SCAN2_SHORT:
+                positionMessage.bleShort = bleClass.determineBleIdShortPositionMessage(payload.slice(startingByte+3));
+                break;
+            case PositionType.BLE_SCAN2_LONG:
                 positionMessage.bleLong = bleClass.determineBleIdLongPositionMessage(payload.slice(startingByte+3));
                 break;
             case PositionType.GNSS:

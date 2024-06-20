@@ -1,10 +1,10 @@
 [
    {
-      "description":"Geolocation GNSS uplink",
+      "description":"GNSS uplink",
       "type":"uplink",
       "input":{
-         "bytes":"1064870687000419ff3e9404363ca5007307f1002f1b64",
-         "recvTime":"2024-05-05T09:55:00.000+02:00",
+         "bytes":"105e0c248a000119ff3ff20436458000a10000000a1765",
+         "recvTime":"2024-06-20T14:51:53.243+02:00",
          "fPort":1
       },
       "output":{
@@ -12,24 +12,24 @@
             "header":{
                "ackToken":0,
                "appState":0,
-               "batteryLevel":100,
+               "batteryLevel":94,
                "sos":false,
-               "timestamp":"2024-05-05T09:36:06+02:00",
+               "timestamp":"2024-06-20T12:51:48.000Z",
                "type":"POSITION"
             },
-            "payload":"1064870687000419ff3e9404363ca5007307f1002f1b64",
+            "payload":"105e0c248a000119ff3ff20436458000a10000000a1765",
             "position":{
                "motion":1,
                "gnssFix":{
-                  "latitude":43.61581,
-                  "longitude":7.0663333,
-                  "altitude":115,
-                  "COG":2033,
-                  "EHPE":27,
-                  "SOG":47,
+                  "latitude":43.615845,
+                  "longitude":7.0665600,
+                  "altitude":161,
+                  "COG":0,
+                  "EHPE":23,
+                  "SOG":10,
                   "quality":{
                      "fixQuality":"FIX_3D",
-                     "numberSatellitesUsed":4
+                     "numberSatellitesUsed":5
                   }
                },
                "positionType":"GNSS",
@@ -38,9 +38,9 @@
                   "geoTriggerGeozoning":0,
                   "geoTriggerInMotion":0,
                   "geoTriggerInStatic":0,
-                  "geoTriggerMotionStart":1,
+                  "geoTriggerMotionStart":0,
                   "geoTriggerMotionStop":0,
-                  "geoTriggerPod":0,
+                  "geoTriggerPod":1,
                   "geoTriggerShock":0,
                   "geoTriggerSos":0,
                   "geoTriggerTempHighThreshold":0,
@@ -60,49 +60,97 @@
       "description":"GNSS Uplink TIMEOUT/FAILURE",
       "type":"uplink",
       "input":{
-         "bytes":"11000b8ea7001042081a2026",
-         "recvTime":"2024-06-06T12:49:19.740+02:00",
+         "bytes":"105e0ed42a000100",
+         "recvTime":"2024-06-06T15:03:19.740+02:00",
          "fPort":1
       },
       "output":{
          "data":{
             "header":{
-               "ackToken":1,
+               "ackToken":0,
                "appState":0,
-               "batteryLevel":"CHARGING",
+               "batteryLevel": 94,
                "sos":false,
-               "timestamp":"2024-06-06T12:49:18+02:00",
+               "timestamp":"2024-06-06T13:03:16.000Z",
                "type":"POSITION"
             },
-            "payload":"11000b8ea7001042081a2026",
+            "payload":"105e0ed42a000100",
             "position":{
                "gnssFailure":{
-                  "satellitesSeen":[{ 
-                     "constellation": "GPS",
-                     "svId": 8,
-                     "CN": 26},
-                     { 
-                        "constellation": "GPS",
-                        "svId": 32,
-                        "CN": 38}
-   
-               ]
+                  "satellitesSeen":[]
                 },
-                "motion": 1,
+                "motion": 0,
                "positionType":"GNSS",
                   "status":"TIMEOUT",
                   "triggers":{
                      "geoTriggerGeozoning":0,
-                     "geoTriggerInMotion":1,
+                     "geoTriggerInMotion":0,
                      "geoTriggerInStatic":0,
                      "geoTriggerMotionStart":0,
                      "geoTriggerMotionStop":0,
-                     "geoTriggerPod":0,
+                     "geoTriggerPod":1,
                      "geoTriggerShock":0,
                      "geoTriggerSos":0,
                      "geoTriggerTempHighThreshold":0,
                      "geoTriggerTempLowThreshold":0
                   }
+            }
+         },
+         "errors":[
+            
+         ],
+         "warnings":[
+            
+         ]
+      }
+   },
+   {
+      "description":"Response of a parameter class configuration set request",
+      "type":"uplink",
+      "input":{
+         "bytes":"a1620e79500105080500050b050005",
+         "recvTime":"2024-06-14T13:01:47.876Z",
+         "fPort":3
+      },
+      "output":{
+         "data":{
+            "extendedHeader":{
+               "frameNumber":0,
+               "group":2,
+               "last":1
+            },
+            "header":{
+               "ackToken":1,
+               "appState":0,
+               "batteryLevel":98,
+               "sos":false,
+               "timestamp":"2024-06-14T13:01:45.000Z",
+               "type":"RESPONSE"
+            },
+            "payload":"a1620e79500105080500050b050005",
+            "response":{
+               "parameterClassConfigurationSet":{
+                  "group":"BLE_SCAN1",
+                  "parameters":[
+                     {
+                        "parameterName":"bleScanFilter2Mask",
+                        "status":"TYPE_MISMATCH"
+                     },
+                     {
+                        "parameterName":"bleScanDuration",
+                        "status":"TYPE_MISMATCH"
+                     },
+                     {
+                        "parameterName":"bleScanNbBeacons",
+                        "status":"TYPE_MISMATCH"
+                     },
+                     {
+                        "parameterName":"bleScanDuration",
+                        "status":"TYPE_MISMATCH"
+                     }
+                  ]
+               },
+               "responseType":"PARAM_CLASS_CONFIGURATION_SET"
             }
          },
          "errors":[
@@ -128,7 +176,7 @@
                "appState":0,
                "batteryLevel":"CHARGING",
                "sos":false,
-               "timestamp":"2024-06-07T00:40:36+02:00",
+               "timestamp":"2024-06-07T00:40:36.000Z",
                "type":"RESPONSE"
             },
             "extendedHeader":{
@@ -183,7 +231,7 @@
                "appState":0,
                "batteryLevel":"CHARGING",
                "sos":false,
-               "timestamp":"2024-06-07T01:29:03+02:00",
+               "timestamp":"2024-06-07T01:29:03.000Z",
                "type":"RESPONSE"
             },
             "extendedHeader":{
@@ -258,7 +306,7 @@
                "appState":0,
                "batteryLevel":"CHARGING",
                "sos":false,
-               "timestamp":"2024-06-07T00:48:43+02:00",
+               "timestamp":"2024-06-07T00:48:43.000Z",
                "type":"RESPONSE"
             },
             "extendedHeader":{
@@ -318,7 +366,7 @@
                "appState":0,
                "batteryLevel":"CHARGING",
                "sos":false,
-               "timestamp":"2024-06-07T00:48:50+02:00",
+               "timestamp":"2024-06-07T00:48:50.000Z",
                "type":"RESPONSE"
             },
             "extendedHeader":{
@@ -390,7 +438,7 @@
                "appState":0,
                "batteryLevel":100,
                "sos":false,
-               "timestamp": "2024-05-06T12:43:41+02:00",
+               "timestamp": "2024-05-06T00:43:41.000Z",
                "type":"RESPONSE"
             },
             "extendedHeader":{
@@ -430,6 +478,157 @@
          ]
       }
    },
+   
+   {
+      "description":"notification system Low battery",
+      "type":"uplink",
+      "input":{
+         "bytes":"090167e501dbd90d0a",
+         "recvTime":"2024-06-17T07:23:21.803Z",
+         "fPort":3
+      },
+      "output":{
+         "data":{
+            "header":{
+               "ackToken":1,
+               "appState":0,
+               "batteryLevel":1,
+               "sos":false,
+               "timestamp":"2024-06-17T07:23:17.000Z",
+               "type":"NOTIFICATION"
+            },
+            "payload":"090167e501dbd90d0a",
+            "notification":{
+               "notificationClass":"SYSTEM",
+               "notificationType":"LOW_BATTERY",
+               "system":{
+                  "lowBattery":{
+                     "batteryVoltage":3338,
+                     "consumption":56281
+                  }
+               }
+            }
+         },
+         "errors":[
+            
+         ],
+         "warnings":[
+            
+         ]
+      }
+   },
+   {
+      "description":"notification system tamper on",
+      "type":"uplink",
+      "input":{
+         "bytes":"085e13590301",
+         "recvTime":"2024-06-06T15:22:35.740+02:00",
+         "fPort":1
+      },
+      "output":{
+         "data":{
+            "header":{
+               "ackToken":0,
+               "appState":0,
+               "batteryLevel":94,
+               "sos":false,
+               "timestamp":"2024-06-06T13:22:33.000Z",
+               "type":"NOTIFICATION"
+            },
+            "payload":"085e13590301",
+            "notification":{
+               "notificationClass":"SYSTEM",
+               "notificationType":"TAMPER_DETECTION",
+               "system":{
+                  "tamperDetection":{
+                     "state":"CASING_OPEN"
+                  }
+               }
+            }
+         },
+         "errors":[
+            
+         ],
+         "warnings":[
+            
+         ]
+      }
+   },
+   {
+      "description":"notification system tamper close",
+      "type":"uplink",
+      "input":{
+         "bytes":"085e13590300",
+         "recvTime":"2024-06-06T15:22:35.740+02:00",
+         "fPort":1
+      },
+      "output":{
+         "data":{
+            "header":{
+               "ackToken":0,
+               "appState":0,
+               "batteryLevel":94,
+               "sos":false,
+               "timestamp":"2024-06-06T13:22:33.000Z",
+               "type":"NOTIFICATION"
+            },
+            "payload":"085e13590300",
+            "notification":{
+               "notificationClass":"SYSTEM",
+               "notificationType":"TAMPER_DETECTION",
+               "system":{
+                  "tamperDetection":{
+                     "state":"CASING_CLOSED"
+                  }
+               }
+            }
+         },
+         "errors":[
+            
+         ],
+         "warnings":[
+            
+         ]
+      }
+   },
+   {
+      "description":"Network notification main up",
+      "type":"uplink",
+      "input":{
+         "bytes":"085e16b940010100",
+         "recvTime":"2024-06-06T15:36:59.740+02:00",
+         "fPort":1
+      },
+      "output":{
+         "data":{
+            "header":{
+               "ackToken":0,
+               "appState":0,
+               "batteryLevel":94,
+               "sos":false,
+               "timestamp":"2024-06-06T13:36:57.000Z",
+               "type":"NOTIFICATION"
+            },
+            "payload":"085e16b940010100",
+            "notification":{
+               "notificationClass":"NETWORK",
+               "notificationType":"MAIN_UP",
+               "network":{
+                  "activeNetwork": "LORA_NETWORK",
+                  "backupNetwork": "NO_NETWORK",
+                  "mainNetwork": "LORA_NETWORK"
+                  }
+               }
+            },
+      
+         "errors":[
+            
+         ],
+         "warnings":[
+            
+         ]
+      }
+   },
    {
       "description":"Response of a parameter class configuration set request",
       "type":"uplink",
@@ -445,7 +644,7 @@
                "appState":0,
                "batteryLevel":100,
                "sos":false,
-               "timestamp":"2024-05-05T21:03:56+02:00",
+               "timestamp":"2024-05-05T21:03:56.000Z",
                "type":"RESPONSE"
             },
             "extendedHeader":{
@@ -494,7 +693,7 @@
                "appState":0,
                "batteryLevel":1,
                "sos":false,
-               "timestamp":"2024-05-05T15:50:19+02:00",
+               "timestamp":"2024-05-05T03:50:19.000Z",
                "type":"RESPONSE"
             },
             "extendedHeader":{
@@ -540,6 +739,63 @@
       }
    },
    {
+      "description":"Response of a parameter class configuration get request",
+      "type":"uplink",
+      "input":{
+         "bytes":"a1620e79500105080500050b050005",
+         "recvTime":"2024-06-14T13:01:47.876Z",
+         "fPort":3
+      },
+      "output":{
+         "data":{
+            "extendedHeader":{
+               "frameNumber":0,
+               "group":2,
+               "last":1
+            },
+            "header":{
+               "ackToken":1,
+               "appState":0,
+               "batteryLevel":98,
+               "sos":false,
+               "timestamp":"2024-06-14T13:01:45.000Z",
+               "type":"RESPONSE"
+            },
+            "payload":"a1620e79500105080500050b050005",
+            "response":{
+               "parameterClassConfigurationSet":{
+                  "group":"BLE_SCAN1",
+                  "parameters":[
+                     {
+                        "parameterName":"bleScanFilter2Mask",
+                        "status":"TYPE_MISMATCH"
+                     },
+                     {
+                        "parameterName":"bleScanDuration",
+                        "status":"TYPE_MISMATCH"
+                     },
+                     {
+                        "parameterName":"bleScanNbBeacons",
+                        "status":"TYPE_MISMATCH"
+                     },
+                     {
+                        "parameterName":"bleScanDuration",
+                        "status":"TYPE_MISMATCH"
+                     }
+                  ]
+               },
+               "responseType":"PARAM_CLASS_CONFIGURATION_SET"
+            }
+         },
+         "errors":[
+            
+         ],
+         "warnings":[
+            
+         ]
+      }
+   },
+   {
       "description":"Response of a generic configuration get request",
       "type":"uplink",
       "input":{
@@ -554,7 +810,7 @@
                "appState":0,
                "batteryLevel":100,
                "sos":false,
-               "timestamp":"2024-05-05T19:36:56+02:00",
+               "timestamp":"2024-05-05T19:36:56.000Z",
                "type":"RESPONSE"
             },
             "extendedHeader":{
@@ -622,7 +878,7 @@
                "appState":0,
                "batteryLevel":1,
                "sos":false,
-               "timestamp":"2024-05-05T19:13:38+02:00",
+               "timestamp":"2024-05-05T07:13:38.000Z",
                "type":"RESPONSE"
             },
             "extendedHeader":{
@@ -688,7 +944,7 @@
                "appState":0,
                "batteryLevel":"CHARGING",
                "sos":false,
-               "timestamp":"2024-06-07T01:52:29+02:00",
+               "timestamp":"2024-06-07T01:52:29.000Z",
                "type":"RESPONSE"
             },
             "extendedHeader":{
@@ -756,7 +1012,7 @@
       "description":"Response of a parameter geoloc class configuration get request part2",
       "type":"uplink",
       "input":{
-         "bytes":"a1001e0d5003020821000000100921000000000a21000000000b2c02010403050c2c83048285000d2c0500000000",
+         "bytes":"a1001e0d5003020821000000100921000000000a21000000000b340201050306040c348305828600000d34060000000000",
          "recvTime":"2024-06-07T14:08:00.764+02:00",
          "fPort":1
       },
@@ -766,8 +1022,9 @@
                "ackToken":1,
                "appState":0,
                "batteryLevel":"CHARGING",
+               
                "sos":false,
-               "timestamp":"2024-06-07T02:08:13+02:00",
+               "timestamp":"2024-06-07T02:08:13.000Z",
                "type":"RESPONSE"
             },
             "extendedHeader":{
@@ -775,7 +1032,7 @@
                "group":2,
                "last":1
             },
-            "payload":"a1001e0d5003020821000000100921000000000a21000000000b2c02010403050c2c83048285000d2c0500000000",
+            "payload":"a1001e0d5003020821000000100921000000000a21000000000b340201050306040c348305828600000d34060000000000",
             "response":{
                "parameterClassConfigurationGet":[
                   {
@@ -843,11 +1100,15 @@
                               },
                               {
                                  "Action":"SKIP_ON_SUCCESS",
-                                 "Technology":"BLE_SCAN"
+                                 "Technology":"BLE_SCAN1"
                               },
                               {
                                  "Action":"SKIP_ON_SUCCESS",
                                  "Technology":"GNSS"
+                              },
+                              {
+                                 "Action":"SKIP_ON_SUCCESS",
+                                 "Technology":"BLE_SCAN2"
                               }
                            ]
                         },
@@ -856,7 +1117,7 @@
                            "parameterValue":[
                               {
                                  "Action":"ALWAYS_DONE",
-                                 "Technology":"BLE_SCAN"
+                                 "Technology":"BLE_SCAN1"
                               },
                               {
                                  "Action":"SKIP_ON_SUCCESS",
@@ -871,6 +1132,9 @@
                                  "Technology":"GNSS"
                               },
                               {
+                                 "Action":"SKIP_ON_SUCCESS",
+                                 "Technology":"NONE"
+                              },  {
                                  "Action":"SKIP_ON_SUCCESS",
                                  "Technology":"NONE"
                               }
@@ -898,6 +1162,10 @@
                               {
                                  "Action":"SKIP_ON_SUCCESS",
                                  "Technology":"NONE"
+                              },  
+                              {
+                                 "Action":"SKIP_ON_SUCCESS",
+                                 "Technology":"NONE"
                               }
                            ]
                         }
@@ -919,7 +1187,7 @@
       "description":"Response of a generic configuration get request",
       "type":"uplink",
       "input":{
-         "bytes":"a164262a1002020b2c050483000000022100000000",
+         "bytes":"a164262a1002020b3406048300000500022100000000",
          "recvTime":"2024-04-19T16:00:00.000+02:00",
          "fPort":1
       },
@@ -930,7 +1198,7 @@
                "appState":0,
                "batteryLevel":100,
                "sos":false,
-               "timestamp":"2024-04-19T14:42:50+02:00",
+               "timestamp":"2024-04-19T02:42:50.000Z",
                "type":"RESPONSE"
             },
             "extendedHeader":{
@@ -938,7 +1206,7 @@
                "group":0,
                "last":1
             },
-            "payload":"a164262a1002020b2c050483000000022100000000",
+            "payload":"a164262a1002020b3406048300000500022100000000",
             "response":{
                "genericConfigurationGet":[
                   {
@@ -953,11 +1221,11 @@
                               },
                               {
                                  "Action":"SKIP_ON_SUCCESS",
-                                 "Technology":"AIDED_GNSS"
+                                 "Technology":"BLE_SCAN2"
                               },
                               {
                                  "Action":"ALWAYS_DONE",
-                                 "Technology":"BLE_SCAN"
+                                 "Technology":"BLE_SCAN1"
                               },
                               {
                                  "Action":"SKIP_ON_SUCCESS",
@@ -966,6 +1234,10 @@
                               {
                                  "Action":"SKIP_ON_SUCCESS",
                                  "Technology":"NONE"
+                              },
+                              {
+                                 "Action":"SKIP_ON_SUCCESS",
+                                 "Technology":"AIDED_GNSS"
                               }
                            ]
                         }
@@ -1007,7 +1279,7 @@
                "appState":0,
                "batteryLevel":100,
                "sos":false,
-               "timestamp":"2024-04-19T08:08:53+02:00",
+               "timestamp":"2024-04-18T20:08:53.000Z",
                "type":"RESPONSE"
             },
             "extendedHeader":{
@@ -1070,7 +1342,7 @@
                "appState":0,
                "batteryLevel":"CHARGING",
                "sos":false,
-               "timestamp":"2024-06-07T01:42:10+02:00",
+               "timestamp":"2024-06-07T01:42:10.000Z",
                "type":"RESPONSE"
             },
             "extendedHeader":{
@@ -1138,7 +1410,7 @@
    "description":"Response of a parameter accelerometer class configuration get request",
    "type":"uplink",
    "input":{
-      "bytes":"a1648269500306002100000010012100000014022100000001032100000000042100000000",
+      "bytes":"a1648269500307002100000010012100000014022100000001032100000000042100000000",
       "recvTime":"2024-04-19T10:05:00.000+02:00",
       "fPort":1
    },
@@ -1149,7 +1421,7 @@
             "appState":0,
             "batteryLevel":100,
             "sos":false,
-            "timestamp":"2024-04-19T09:16:25+02:00",
+            "timestamp":"2024-04-18T21:16:25.000Z",
             "type":"RESPONSE"
          },
          "extendedHeader":{
@@ -1157,7 +1429,7 @@
             "group":2,
             "last":1
          },
-         "payload":"a1648269500306002100000010012100000014022100000001032100000000042100000000",
+         "payload":"a1648269500307002100000010012100000014022100000001032100000000042100000000",
          "response":{
             "parameterClassConfigurationGet":[
                {
@@ -1201,7 +1473,7 @@
    "description":"Response of a parameter network class configuration get request",
    "type":"uplink",
    "input":{
-      "bytes":"a16488fc7003070021000000000121000002580205",
+      "bytes":"a16488fc7003080021000000000121000002580205",
       "recvTime":"2024-04-19T10:05:00.000+02:00",
       "fPort":1
    },
@@ -1212,7 +1484,7 @@
             "appState":0,
             "batteryLevel":100,
             "sos":false,
-            "timestamp":"2024-04-19T09:44:28+02:00",
+            "timestamp":"2024-04-18T21:44:28.000Z",
             "type":"RESPONSE"
          },
          "extendedHeader":{
@@ -1220,7 +1492,7 @@
             "group":3,
             "last":1
          },
-         "payload":"a16488fc7003070021000000000121000002580205",
+         "payload":"a16488fc7003080021000000000121000002580205",
          "response":{
             "parameterClassConfigurationGet":[
                {
@@ -1256,8 +1528,8 @@
    "description":"Response of a parameter lorawan class configuration get request",
    "type":"uplink",
    "input":{
-      "bytes":"a164007c900308002100000000012100000e10022100000000032100000258042100000101052100000013062100000003",
-      "recvTime":"2024-04-19T10:05:00.000+02:00",
+      "bytes":"a164007c900309002100000000012100000e10022100000000032100000258042100000101052100000013062100000003",
+      "recvTime":"2024-04-19T09:05:00.000+02:00",
       "fPort":1
    },
    "output":{
@@ -1267,7 +1539,7 @@
             "appState":0,
             "batteryLevel":100,
             "sos":false,
-            "timestamp":"2024-04-19T00:02:04+02:00",
+            "timestamp":"2024-04-19T00:02:04.000Z",
             "type":"RESPONSE"
          },
          "extendedHeader":{
@@ -1275,7 +1547,7 @@
             "group":4,
             "last":1
          },
-         "payload":"a164007c900308002100000000012100000e10022100000000032100000258042100000101052100000013062100000003",
+         "payload":"a164007c900309002100000000012100000e10022100000000032100000258042100000101052100000013062100000003",
          "response":{
             "parameterClassConfigurationGet":[
                {
@@ -1363,7 +1635,7 @@
             "appState":0,
             "batteryLevel":100,
             "sos":false,
-            "timestamp":"2024-04-19T02:19:24+02:00",
+            "timestamp":"2024-04-19T02:19:24.000Z",
             "type":"RESPONSE"
          },
          "extendedHeader":{
@@ -1375,7 +1647,7 @@
          "response":{
             "parameterClassConfigurationGet":[
                {
-                  "group":"BLE_SCAN",
+                  "group":"BLE_SCAN1",
                   "parameters":[
                      {
                         "parameterName":"bleScanDuration",
@@ -1426,7 +1698,7 @@
             "appState":0,
             "batteryLevel":100,
             "sos":false,
-            "timestamp":"2024-04-19T02:25:41+02:00",
+            "timestamp":"2024-04-19T02:25:41.000Z",
             "type":"RESPONSE"
          },
          "extendedHeader":{
@@ -1438,7 +1710,7 @@
          "response":{
             "parameterClassConfigurationGet":[
                {
-                  "group":"BLE_SCAN",
+                  "group":"BLE_SCAN1",
                   "parameters":[
                      {
                         "parameterName":"bleScanFilter1Mask",
@@ -1485,7 +1757,7 @@
             "appState":0,
             "batteryLevel":100,
             "sos":false,
-            "timestamp":"2024-04-19T02:35:27+02:00",
+            "timestamp":"2024-04-19T02:35:27.000Z",
             "type":"RESPONSE"
          },
          "extendedHeader":{
@@ -1497,7 +1769,7 @@
          "response":{
             "parameterClassConfigurationGet":[
                {
-                  "group":"BLE_SCAN",
+                  "group":"BLE_SCAN1",
                   "parameters":[
                      {
                         "parameterName":"bleScanFilter2Value",
@@ -1537,7 +1809,7 @@
    "description":"Response of a parameter cellular class configuration get request part1",
    "type":"uplink",
    "input":{
-      "bytes":"a100740730030900210000000001210000000102210000012c03210000012c",
+      "bytes":"a100740730030A00210000000001210000000102210000012c03210000012c",
       "recvTime":"2024-04-19T10:05:00.000+02:00",
       "fPort":1
    },
@@ -1548,7 +1820,7 @@
             "appState":0,
             "batteryLevel":"CHARGING",
             "sos":false,
-            "timestamp":"2024-04-19T08:15:03+02:00",
+            "timestamp":"2024-04-18T20:15:03.000Z",
             "type":"RESPONSE"
          },
          "extendedHeader":{
@@ -1556,7 +1828,7 @@
             "group":1,
             "last":1
          },
-         "payload":"a100740730030900210000000001210000000102210000012c03210000012c",
+         "payload":"a100740730030a00210000000001210000000102210000012c03210000012c",
          "response":{
             "parameterClassConfigurationGet":[
                {
@@ -1596,7 +1868,7 @@
    "description":"Response of a parameter cellular class configuration get request part2",
    "type":"uplink",
    "input":{
-      "bytes":"a10082a890030904210000001e052100000003066b3137362e33312e32392e3134320703",
+      "bytes":"a10082a890030A04210000001e052100000003066b3137362e33312e32392e3134320703",
       "recvTime":"2024-04-19T10:05:00.000+02:00",
       "fPort":1
    },
@@ -1607,7 +1879,7 @@
             "appState":0,
             "batteryLevel":"CHARGING",
             "sos":false,
-            "timestamp":"2024-04-19T09:17:28+02:00",
+            "timestamp":"2024-04-18T21:17:28.000Z",
             "type":"RESPONSE"
          },
          "extendedHeader":{
@@ -1615,7 +1887,7 @@
             "group":4,
             "last":1
          },
-         "payload":"a10082a890030904210000001e052100000003066b3137362e33312e32392e3134320703",
+         "payload":"a10082a890030a04210000001e052100000003066b3137362e33312e32392e3134320703",
          "response":{
             "parameterClassConfigurationGet":[
                {
@@ -1655,7 +1927,7 @@
    "description":"Response of a parameter cellular class configuration get request part3",
    "type":"uplink",
    "input":{
-      "bytes":"a1002396b0030908030921000000010c21000000000d2100000000",
+      "bytes":"a1002396b0030A08030921000000010c21000000000d2100000000",
       "recvTime":"2024-04-19T10:05:00.000+02:00",
       "fPort":1
    },
@@ -1666,7 +1938,7 @@
             "appState":0,
             "batteryLevel":"CHARGING",
             "sos":false,
-            "timestamp":"2024-04-19T02:31:50+02:00",
+            "timestamp":"2024-04-19T02:31:50.000Z",
             "type":"RESPONSE"
          },
          "extendedHeader":{
@@ -1674,7 +1946,7 @@
             "group":5,
             "last":1
          },
-         "payload":"a1002396b0030908030921000000010c21000000000d2100000000",
+         "payload":"a1002396b0030a08030921000000010c21000000000d2100000000",
          "response":{
             "parameterClassConfigurationGet":[
                {
@@ -1714,7 +1986,7 @@
    "description":"Response of a parameter cellular class configuration get request part4",
    "type":"uplink",
    "input":{
-      "bytes":"a1002545d003090e21000000010f03102100000000",
+      "bytes":"a1002545d0030A0e21000000010f03102100000000",
       "recvTime":"2024-04-19T02:39:01+02:00",
       "fPort":1
    },
@@ -1725,7 +1997,7 @@
             "appState":0,
             "batteryLevel":"CHARGING",
             "sos":false,
-            "timestamp":"2024-04-19T02:39:01+02:00",
+            "timestamp":"2024-04-18T14:39:01.000Z",
             "type":"RESPONSE"
          },
          "extendedHeader":{
@@ -1733,7 +2005,7 @@
             "group":6,
             "last":1
          },
-         "payload":"a1002545d003090e21000000010f03102100000000",
+         "payload":"a1002545d0030a0e21000000010f03102100000000",
          "response":{
             "parameterClassConfigurationGet":[
                {
@@ -1769,7 +2041,7 @@
    "description":"Response of a parameter cellular class configuration get request part5",
    "type":"uplink",
    "input":{
-      "bytes":"a10030da100309112100000000122100000078",
+      "bytes":"a10030da10030A112100000000122100000078",
       "recvTime":"2024-04-19T16:00:00.000+02:00",
       "fPort":1
    },
@@ -1780,7 +2052,7 @@
             "appState":0,
             "batteryLevel":"CHARGING",
             "sos":false,
-            "timestamp":"2024-04-19T15:28:26+02:00",
+            "timestamp":"2024-04-19T03:28:26.000Z",
             "type":"RESPONSE"
          },
          "extendedHeader":{
@@ -1788,7 +2060,7 @@
             "group":0,
             "last":1
          },
-         "payload":"a10030da100309112100000000122100000078",
+         "payload":"a10030da10030a112100000000122100000078",
          "response":{
             "parameterClassConfigurationGet":[
                {
@@ -1831,7 +2103,7 @@
             "appState":0,
             "batteryLevel":"CHARGING",
             "sos":false,
-            "timestamp":"2024-06-07T02:53:51+02:00",
+            "timestamp":"2024-06-07T02:53:51.000Z",
             "type":"POSITION"
          },
          "payload":"110028bf8300102f4a0adba6c8b908bfb88e7ca8b4b0b353809e83a59a254ae3f7f7a3",
@@ -1894,13 +2166,13 @@
             "appState":0,
             "batteryLevel":"CHARGING",
             "sos":false,
-            "timestamp":"2024-06-07T07:56:40+02:00",
+            "timestamp":"2024-06-07T07:56:40.000Z",
             "type":"POSITION"
          },
          "payload":"11006fb8840004ac233f287046a5ac233f2af76aa5ac233f52bf27a2ac233f2af76ea1",
          "position":{
             "motion":1,
-            "positionType":"BLE_MAC",
+            "positionType":"BLE_SCAN1_MAC",
             "status":"SUCCESS",
             "triggers":{
                "geoTriggerGeozoning":0,
@@ -1957,7 +2229,7 @@
             "appState":0,
             "batteryLevel":100,
             "sos":false,
-            "timestamp":"2024-04-19T12:33:29+02:00",
+            "timestamp":"2024-04-19T12:33:29.000Z",
             "type":"POSITION"
          },
          "payload":"106407d9840004ac233f2af76ac0ac233f2af766b1ac233f287046b0ac233f2af76ead",
@@ -1981,7 +2253,7 @@
                }
             ],
             "motion":1,
-            "positionType":"BLE_MAC",
+            "positionType":"BLE_SCAN1_MAC",
             "status":"SUCCESS",
             "triggers":{
                "geoTriggerGeozoning":0,
@@ -2020,7 +2292,7 @@
             "appState":0,
             "batteryLevel":100,
             "sos":false,
-            "timestamp":"2024-06-07T09:38:24+02:00",
+            "timestamp":"2024-06-07T09:38:24.000Z",
             "type":"POSITION"
          },
          "payload":"10648790830004204d410008a303a5410008a74108410008ab4100a900000000000000",
@@ -2083,7 +2355,7 @@
             "appState":0,
             "batteryLevel":"CHARGING",
             "sos":false,
-            "timestamp":"2024-06-09T20:22:46+02:00",
+            "timestamp":"2024-06-09T20:22:46.000Z",
             "type":"POSITION"
          },
          "payload":"110075d68500044241aa4241a64241a54241a2",
@@ -2107,7 +2379,7 @@
                }
             ],
             "motion":1,
-            "positionType":"BLE_SHORT",
+            "positionType":"BLE_SCAN1_SHORT",
             "status":"SUCCESS",
             "triggers":{
                "geoTriggerGeozoning":0,
@@ -2146,7 +2418,7 @@
             "appState":0,
             "batteryLevel":"CHARGING",
             "sos":false,
-            "timestamp":"2024-06-09T20:32:26+02:00",
+            "timestamp":"2024-06-09T20:32:26.000Z",
             "type":"POSITION"
          },
          "extendedHeader":{
@@ -2167,7 +2439,7 @@
                }
             ],
             "motion":1,
-            "positionType":"BLE_LONG",
+            "positionType":"BLE_SCAN1_LONG",
             "status":"SUCCESS",
             "triggers":{
                "geoTriggerGeozoning":0,
@@ -2206,7 +2478,7 @@
             "appState":0,
             "batteryLevel":"CHARGING",
             "sos":false,
-            "timestamp":"2024-06-09T21:02:58+02:00",
+            "timestamp":"2024-06-09T21:02:58.000Z",
             "type":"NOTIFICATION"
          },
          "payload":"09007f4230",
@@ -2238,7 +2510,7 @@
             "appState":0,
             "batteryLevel":"CHARGING",
             "sos":false,
-            "timestamp":"2024-06-09T21:18:37+02:00",
+            "timestamp":"2024-06-09T21:18:37.000Z",
             "type":"NOTIFICATION"
          },
          "payload":"090082ed31ff68001d04012f",
@@ -2278,7 +2550,7 @@
             "appState":0,
             "batteryLevel":"CHARGING",
             "sos":false,
-            "timestamp":"2024-06-09T21:37:24+02:00",
+            "timestamp":"2024-06-09T21:37:24.000Z",
             "type":"NOTIFICATION"
          },
          "payload":"0900875432ff68001d04010000",
@@ -2319,7 +2591,7 @@
             "appState":0,
             "batteryLevel":"CHARGING",
             "sos":true,
-            "timestamp":"2024-06-09T21:42:26+02:00",
+            "timestamp":"2024-06-09T21:42:26.000Z",
             "type":"NOTIFICATION"
          },
          "payload":"4900888210",
@@ -2351,7 +2623,7 @@
             "appState":0,
             "batteryLevel":"CHARGING",
             "sos":false,
-            "timestamp":"2024-06-09T21:45:22+02:00",
+            "timestamp":"2024-06-09T21:45:22.000Z",
             "type":"NOTIFICATION"
          },
          "payload":"0900893211",
@@ -2383,7 +2655,7 @@
             "appState":0,
             "batteryLevel":"CHARGING",
             "sos":false,
-            "timestamp":"2024-06-09T21:53:22+02:00",
+            "timestamp":"2024-06-09T21:53:22.000Z",
             "type":"NOTIFICATION"
          },
          "payload":"09008b12221e",
@@ -2416,7 +2688,7 @@
             "appState":0,
             "batteryLevel":"CHARGING",
             "sos":false,
-            "timestamp":"2024-06-09T21:58:01+02:00",
+            "timestamp":"2024-06-09T21:58:01.000Z",
             "type":"NOTIFICATION"
          },
          "payload":"09008c29201e",
@@ -2449,7 +2721,7 @@
             "appState":0,
             "batteryLevel":"CHARGING",
             "sos":false,
-            "timestamp":"2024-06-09T21:56:16+02:00",
+            "timestamp":"2024-06-09T21:56:16.000Z",
             "type":"NOTIFICATION"
          },
          "payload":"09008bc0211e",
@@ -2468,7 +2740,7 @@
    }
 },
 {
-   "description":"Notification system LOW-BATTERY uplink ",
+   "description":"Notification system low battery uplink ",
    "type":"uplink",
    "input":{
       "bytes":"0800012d0100040d7e",
@@ -2482,7 +2754,7 @@
             "appState":0,
             "batteryLevel":"CHARGING",
             "sos":false,
-            "timestamp":"2024-06-10T00:05:01+02:00",
+            "timestamp":"2024-06-10T00:05:01.000Z",
             "type":"NOTIFICATION"
          },
          "payload":"0800012d0100040d7e",
@@ -2506,56 +2778,1147 @@
    }
 },
 {
-   "description":"Status uplink",
+   "description":"status uplink page0",
    "type":"uplink",
    "input":{
-      "bytes":"086487ac000100000100000022010802000012ba001c150000000000000000000000202000000000",
-      "recvTime":"2024-04-19T16:00:00.000+02:00",
-      "fPort":1
+      "bytes":"0900070c001d000100c20100000022010800000000241a000d840029000000000000000000000029",
+      "recvTime":"2024-06-11T14:29:49.628+02:00",
+      "fPort":3
    },
    "output":{
       "data":{
          "header":{
-            "ackToken":0,
             "appState":0,
+            "batteryLevel":"CHARGING",
             "sos":false,
-            "timestamp":"2024-04-19T09:38:52+02:00",
+            "timestamp":"2024-06-11T00:30:04.000Z",
             "type":"NOTIFICATION",
-            "batteryLevel":100
+            "ackToken":1
          },
+         "payload":"0900070c001d000100c20100000022010800000000241a000d840029000000000000000000000029",
          "notification":{
             "notificationClass":"SYSTEM",
             "notificationType":"STATUS",
             "system":{
                "status":{
-                  "AT3Version":"1.0.0",
-                  "LR1110BeidouAlmanacDate":0,
-                  "LR1110BeidouGood":0,
-                  "LR1110BeidouOutdated":0,
-                  "LR1110GpsAlmanacDate":0,
-                  "LR1110GpsGood":0,
-                  "LR1110GpsOutdated":0,
-                  "LRGNSSVersion":2,
-                  "LRHWVersion":"34.1.8",
-                  "MT3333BeidouAlmanacDate":0,
-                  "MT3333BeidouGood":0,
-                  "MT3333BeidouOutdated":0,
-                  "MT3333GpsAlmanacDate":0,
-                  "MT3333GpsGood":32,
-                  "MT3333GpsOutdated":32,
-                  "batteryVoltage":4794,
-                  "configVersion":"1.0.0.0",
-                  "consumption":0,
-                  "currentTemperature":0,
-                  "maxTemperature":28,
-                  "minTemperature":21,
-                  "resetCause":"AOS_ERROR_NONE"
+                  "AT3Version":"1.0.194",
+                  "batteryVoltage":3460,
+                  "bleConsumption":0,
+                  "cellularConsumption":0,
+                  "configurationVersion":"1.0.0.0",
+                  "currentTemperature":29,
+                  "gnssConsumption":0,
+                  "hwBatchId":0,
+                  "hwBomId":0,
+                  "lrGnssConsumption":0,
+                  "lrHwVersion":{
+                     "firmwareVersion":"8",
+                     "hardwareType":"1",
+                     "hardwareVersion":"34"
+                  },
+                  "maxTemperature":36,
+                  "mcuConsumption":41,
+                  "minTemperature":26,
+                  "motionPercent":0,
+                  "pageId":0,
+                  "resetCause":"AOS_ERROR_NONE",
+                  "totalConsumption":41,
+                  "wifiConsumption":0
+               }
+            }
+         }
+      },
+      "errors":[
+         
+      ],
+      "warnings":[
+         
+      ]
+   }
+},
+
+   {
+      "description":"notification system status page1",
+      "type":"uplink",
+      "input":{
+         "bytes":"08647405001c01000000000000000000000000000000090e00fffc011000001fffffffff00",
+         "recvTime":"2024-06-11T14:29:49.628+02:00",
+         "fPort":3
+      },
+      "output":{
+         "data":{
+            "header":{
+               "appState":0,
+               "batteryLevel":100,
+               "sos":false,
+               "timestamp":"2024-06-11T08:15:01.000Z",
+               "type":"NOTIFICATION",
+               "ackToken":0
+            },
+            "payload":"08647405001c01000000000000000000000000000000090e00fffc011000001fffffffff00",
+            "notification":{
+               "notificationClass":"SYSTEM",
+               "notificationType":"STATUS",
+               "system":{
+                  "status":{
+                     "currentTemperature":28,
+                     "gnssBeidouDate":0,
+                     "gnssBeidouGood":0,
+                     "gnssBeidouOutdated":[
+                        "Satellite 1",
+                        "Satellite 2",
+                        "Satellite 3",
+                        "Satellite 4",
+                        "Satellite 5",
+                        "Satellite 9",
+                        "Satellite 10",
+                        "Satellite 11",
+                        "Satellite 12",
+                        "Satellite 13",
+                        "Satellite 14",
+                        "Satellite 15",
+                        "Satellite 16",
+                        "Satellite 17",
+                        "Satellite 18",
+                        "Satellite 19",
+                        "Satellite 20",
+                        "Satellite 21",
+                        "Satellite 22",
+                        "Satellite 23",
+                        "Satellite 24",
+                        "Satellite 25",
+                        "Satellite 26",
+                        "Satellite 27",
+                        "Satellite 28",
+                        "Satellite 29",
+                        "Satellite 30",
+                        "Satellite 31",
+                        "Satellite 32",
+                        "Satellite 33",
+                        "Satellite 34",
+                        "Satellite 35",
+                        "Satellite 36",
+                        "Satellite 37",
+                        "Satellite 38",
+                        "Satellite 39",
+                        "Satellite 40"
+                     ],
+                     "gnssGpsDate":2318,
+                     "gnssGpsGood":16,
+                     "gnssGpsOutdated":[
+                        "Satellite 1",
+                        "Satellite 11",
+                        "Satellite 12",
+                        "Satellite 13",
+                        "Satellite 14",
+                        "Satellite 15",
+                        "Satellite 16",
+                        "Satellite 17",
+                        "Satellite 18",
+                        "Satellite 19",
+                        "Satellite 20",
+                        "Satellite 21",
+                        "Satellite 22",
+                        "Satellite 23",
+                        "Satellite 24"
+                     ],
+                     "lr11xxBeidouDate":0,
+                     "lr11xxBeidouGood":0,
+                     "lr11xxBeidouOutdated":[
+                        
+                     ],
+                     "lr11xxGpsDate":0,
+                     "lr11xxGpsGood":0,
+                     "lr11xxGpsOutdated":[
+                        
+                     ],
+                     "pageId":1,
+                     "resetCause":"AOS_ERROR_NONE"
+                  }
                }
             }
          },
-         "payload":"086487ac000100000100000022010802000012ba001c150000000000000000000000202000000000"
+         "errors":[
+            
+         ],
+         "warnings":[
+            
+         ]
+      }
+   },
+
+{
+   "description":"downlik command System status request.",
+   "type":"downlink-decode",
+   "input":{
+      "bytes":"0904",
+      "recvTime":"2024-06-10T09:42:13.733+02:00",
+      "fPort":1
+   },
+   "output":{
+      "data":{
+         "ackToken":1,
+         "type":"COMMAND",
+         "command":"SYSTEM_STATUS_REQUEST",
+         "payload":"0904"
       },
+      "errors":[
+         
+      ],
+      "warnings":[
+         
+      ]
+   }
+},
+{
+   "description":"downlik command position on demand request.",
+   "type":"downlink-decode",
+   "input":{
+      "bytes":"0A05",
+      "recvTime":"2024-06-10T09:42:13.733+02:00",
+      "fPort":1
+   },
+   "output":{
+      "data":{
+         
+            "ackToken":2,
+            "type":"COMMAND",
+            "command": "POSITION_ON_DEMAND",  
+            "payload":"0a05"
+
+      },
+      "errors":[
+         
+      ],
+      "warnings":[
+         
+      ]
+   }
+},
+{
+   "description":"downlik command start SOS.",
+   "type":"downlink-decode",
+   "input":{
+      "bytes":"0E02",
+      "recvTime":"2024-06-10T09:42:13.733+02:00",
+      "fPort":1
+   },
+   "output":{
+      "data":{
+         
+            "ackToken":6,
+            "type":"COMMAND",
+            "command": "START_SOS",  
+            "payload":"0e02"
+
+      },
+      "errors":[
+         
+      ],
+      "warnings":[
+         
+      ]
+   }
+},
+{
+   "description":"downlik command stop SOS.",
+   "type":"downlink-decode",
+   "input":{
+      "bytes":"0f03",
+      "recvTime":"2024-06-10T09:42:13.733+02:00",
+      "fPort":1
+   },
+   "output":{
+      "data":{
+            "ackToken":7,
+            "type":"COMMAND",
+            "command": "STOP_SOS",  
+            "payload":"0f03"
+
+      },
+      "errors":[
+         
+      ],
+      "warnings":[
+         
+      ]
+   }
+},
+{
+   "description":"downlik command clear and reset.",
+   "type":"downlink-decode",
+   "input":{
+      "bytes":"0b00",
+      "recvTime":"2024-06-10T09:42:13.733+02:00",
+      "fPort":1
+   },
+   "output":{
+      "data":{
+            "ackToken":3,
+            "type":"COMMAND",
+            "command": "CLEAR_AND_RESET",  
+            "payload":"0b00"
+
+      },
+      "errors":[
+         
+      ],
+      "warnings":[
+         
+      ]
+   }
+},
+{
+   "description":"downlik command reset.",
+   "type":"downlink-decode",
+   "input":{
+      "bytes":"0c01",
+      "recvTime":"2024-06-10T09:42:13.733+02:00",
+      "fPort":1
+   },
+   "output":{
+      "data":{
+            "ackToken":4,
+            "type":"COMMAND",
+            "command": "RESET",  
+            "payload":"0c01"
+
+      },
+      "errors":[
+         
+      ],
+      "warnings":[
+         
+      ]
+   }
+}, 
+{
+   "description":"downlik request generic configuration set 1",
+   "type":"downlink-decode",
+   "input":{
+      "bytes":"110003012100000078",
+      "recvTime":"2024-06-10T09:42:13.733+02:00",
+      "fPort":3
+   },
+   "output":{
+      "data":{
+         "ackToken":1,
+         "payload":"110003012100000078",
+         "request":{
+            "genericConfigurationSet":[
+               {
+                  "group":"GNSS",
+                  "parameters":[
+                     {
+                        "parameterName":"gnssMaxTime",
+                        "parameterValue":120
+                     }
+                  ]
+               }
+            ],
+            "requestType":"GENERIC_CONFIGURATION_SET"
+         },
+         "type":"REQUEST"
+      },
+      "errors":[
+         
+      ],
+      "warnings":[
+         
+      ]
+   }
+},
+{
+   "description":"downlik request generic configuration set",
+   "type":"downlink-decode",
+   "input":{
+      "bytes":"110003032100000005020b34030001020300",
+      "recvTime":"2024-06-10T09:42:13.733+02:00",
+      "fPort":3
+   },
+   "output":{
+      "data":{
+         "ackToken":1,
+         "payload":"110003032100000005020b34030001020300",
+         "request":{
+            "genericConfigurationSet":[
+               {
+                  "group":"GNSS",
+                  "parameters":[
+                     {
+                        "parameterName":"gnssEhpe",
+                        "parameterValue":5
+                     }
+                  ]
+               },
+               {
+                  "group":"GEOLOC",
+                  "parameters":[
+                     {
+                        "parameterName":"geolocGbeProfile0Techno",
+                        "parameterValue":[
+                           {
+                              "Action":"SKIP_ON_SUCCESS",
+                              "Technology":"BLE_SCAN1"
+                           },
+                           {
+                              "Action":"SKIP_ON_SUCCESS",
+                              "Technology":"NONE"
+                           },
+                           {
+                              "Action":"SKIP_ON_SUCCESS",
+                              "Technology":"LR11xx_A_GNSS"
+                           },
+                           {
+                              "Action":"SKIP_ON_SUCCESS",
+                              "Technology":"WIFI"
+                           },
+                           {
+                              "Action":"SKIP_ON_SUCCESS",
+                              "Technology":"BLE_SCAN1"
+                           },
+                           {
+                              "Action":"SKIP_ON_SUCCESS",
+                              "Technology":"NONE"
+                           }
+                        ]
+                     }
+                  ]
+               }
+            ],
+            "requestType":"GENERIC_CONFIGURATION_SET"
+         },
+         "type":"REQUEST"
+      },
+      "errors":[
+         
+      ],
+      "warnings":[
+         
+      ]
+   }
+},
+{
+   "description":"downlink with wrong type",
+   "type":"downlink-decode",
+   "input":{
+      "bytes":"11010508AA0000000000000BB000022100000078",
+      "recvTime":"2024-06-17T07:23:21.803Z",
+      "fPort":3
+   },
+   "output":{
+      "errors":[
+         "bleScanFilter2Mask has a wrong type"
+      ],
+      "warnings":[
+         
+      ]
+   }
+}, {
+   "description":"downlik request generic configuration get 1",
+   "type":"downlink-decode",
+   "input":{
+      "bytes":"11020303030402010102",
+      "recvTime":"2024-06-10T09:42:13.733+02:00",
+      "fPort":3
+   },
+   "output":{
+      "data":{
+         "ackToken":1,
+         "payload":"11020303030402010102",
+         "request":{
+            "genericConfigurationGet":[
+               {
+                  "group":"GNSS",
+                  "parameters":[
+                     "gnssEhpe",
+                     "gnssConvergence"
+                  ]
+               },
+               {
+                  "group":"GEOLOC",
+                  "parameters":[
+                     "geolocStaticPeriod"
+                  ]
+               },
+               {
+                  "group":"SYSTEM_CORE",
+                  "parameters":[
+                     "coreNotifEnable1"
+                  ]
+               }
+            ],
+            "requestType":"GENERIC_CONFIGURATION_GET"
+         },
+         "type":"REQUEST"
+      },
+      "errors":[
+         
+      ],
+      "warnings":[
+         
+      ]
+   }
+},
+{
+   "description":"downlik request generic configuration get wrong payload",
+   "type":"downlink-decode",
+   "input":{
+      "bytes":"110204",
+      "recvTime":"2024-06-10T09:42:13.733+02:00",
+      "fPort":3
+   },
+   "output":{
       
+      "errors":[
+         "Invalid payload"
+      ],
+      "warnings":[
+         
+      ]
+   }
+},
+{
+   "description":"downlik request generic configuration get wrong payload",
+   "type":"downlink-decode",
+   "input":{
+      "bytes":"110304",
+      "recvTime":"2024-06-10T09:42:13.733+02:00",
+      "fPort":3
+   },
+   "output":{
+      
+      "errors":[
+         "The payload must contain at least one local identifier"
+      ],
+      "warnings":[
+         
+      ]
+   }
+},
+{
+   "description":"downlik request parameter class configuration get",
+   "type":"downlink-decode",
+   "input":{
+      "bytes":"110304020304",
+      "recvTime":"2024-06-10T09:42:13.733+02:00",
+      "fPort":3
+   },
+   "output":{
+      "data":  {
+         "ackToken": 1,
+         "payload": "110304020304",
+         "request":  {
+           "parameterClassConfigurationGet":  {
+             "group": "LR11xx",
+             "parameters": [
+               "lrNbScans",
+               "lrInterScanTime",
+               "lrMaxWifiBssid"
+                   ]
+           },
+           "requestType": "PARAM_CLASS_CONFIGURATION_GET"
+         },
+         "type": "REQUEST"
+         },
+      
+      "errors":[
+      ],
+      "warnings":[
+         
+      ]
+   }
+},
+{
+   "description":"Encode command RESET ",
+   "type":"downlink-encode",
+   "input":{
+      "data":{
+         "downMessageType":"COMMAND",
+         "commandType":"RESET",
+         "ackToken":4
+      }
+   },
+   "output":{
+      "fPort":3,
+      "bytes":"0c01",
+      "errors":[
+         
+      ],
+      "warnings":[
+         
+      ]
+   }
+},
+{
+   "description":"Encode command CLEAR_AND_RESET ",
+   "type":"downlink-encode",
+   "input":{
+      "data":{
+         "downMessageType":"COMMAND",
+         "commandType":"CLEAR_AND_RESET",
+         "ackToken":6
+      }
+   },
+   "output":{
+      "fPort":3,
+      "bytes":"0E00",
+      "errors":[
+         
+      ],
+      "warnings":[
+         
+      ]
+   }
+},
+{
+   "description":"Encode command START SOS ",
+   "type":"downlink-encode",
+   "input":{
+      "data":{
+         "downMessageType":"COMMAND",
+         "commandType":"START_SOS",
+         "ackToken":7
+      }
+   },
+   "output":{
+      "fPort":3,
+      "bytes":"0F02",
+      "errors":[
+         
+      ],
+      "warnings":[
+         
+      ]
+   }
+},
+{
+   "description":"Encode request set generic configuration ",
+   "type":"downlink-encode",
+   "input":{
+      "data":{
+         "downMessageType":"REQUEST",
+         "requestType":"GENERIC_CONFIGURATION_SET",
+         "ackToken":7,
+         "setGenericParameters":[
+            {
+               "group":"GNSS",
+               "parameters":[
+                  {
+                     "parameterName":"gnssEhpe",
+                     "parameterValue":20
+                  },
+                  {
+                     "parameterName":"gnssConvergence",
+                     "parameterValue":18
+                  }
+               ]
+            },
+            {
+               "group":"LR11xx",
+               "parameters":[
+                  {
+                     "parameterName":"lrConstellation",
+                     "parameterValue":"BEIDOU_GPS"
+                  }
+               ]
+            }
+         ]
+      }
+   },
+   "output":{
+      "fPort":3,
+      "bytes":"1700030321000000140304210000001204002100000006",
+      "errors":[
+         
+      ],
+      "warnings":[
+         
+      ]
+   }
+},
+{
+   "description":"Encode request set generic configuration 2",
+   "type":"downlink-encode",
+   "input":{
+      "data":{
+         "downMessageType":"REQUEST",
+         "requestType":"GENERIC_CONFIGURATION_SET",
+         "ackToken":4,
+         "setGenericParameters":
+         [
+           {"group" : "SYSTEM_CORE",
+            "parameters":[
+             {
+               "parameterName": "coreButton1Map",
+               "parameterValue": {
+                  "buttonDoubleClicks": "START_STOP_SOS",
+                  "buttonLongPress": "START_STOP_SOS",
+                  "buttonLongPressDuration": 6,
+                  "buttonPress": "FORCE_AN_UPLINK_SYSTEM_STATUS_NOTIFICATION_TRANSMISSION",
+                  "buttonPressDuration": 3,
+                  "buttonSingleClick": "DISPLAY_BATTERY_LEVEL_ON_THE_LED",
+                  "buttonTripleClicksOrAbove": "STOP_DEVICE"
+               }
+             }
+           ]}
+         ]
+   }},
+   "output":{
+      "fPort":3,
+      "bytes": "140001072103662124",
+      "errors":[
+
+      ],
+      "warnings":[
+         
+      ]
+   }
+},
+{
+   "description":"Encode request set generic configuration ",
+   "type":"downlink-encode",
+   "input":{
+      "data":{
+         "downMessageType":"REQUEST",
+         "requestType":"GENERIC_CONFIGURATION_SET",
+         "ackToken":7,
+         "setGenericParameters":[
+            {
+               "group":"CELLULAR",
+               "parameters":[
+                  {
+                     "parameterName":"cellS1IpUrlAddr",
+                     "parameterValue":"176.31.29.146"
+                  }
+               ]
+            },
+            {
+               "group":"LR11xx",
+               "parameters":[
+                  {
+                     "parameterName":"lrConstellation",
+                     "parameterValue":"BEIDOU_GPS"
+                  }
+               ]
+            }
+         ]
+      }
+   },
+   "output":{
+      "fPort":3,
+      "bytes":"17000A0F6b3137362e33312e32392e31343604002100000006",
+      "errors":[
+         
+      ],
+      "warnings":[
+         
+      ]
+   }
+},
+{
+   "description":"Encode request set generic configuration ",
+   "type":"downlink-encode",
+   "input":{
+      "data":{
+         "downMessageType":"REQUEST",
+         "requestType":"GENERIC_CONFIGURATION_SET",
+         "ackToken":7,
+         "setGenericParameters":[
+            {
+               "group":"BLE_SCAN1",
+               "parameters":[
+                  {
+                     "parameterName":"bleScanFilter1Mask",
+                     "parameterValue":"{ff,ff,ff,ff,00,00,00,00,00,A0}"
+                  }
+               ]
+            },
+            {
+               "group":"LR11xx",
+               "parameters":[
+                  {
+                     "parameterName":"lrConstellation",
+                     "parameterValue":"BEIDOU_GPS"
+                  }
+               ]
+            }
+         ]
+      }
+   },
+   "output":{
+      "fPort":3,
+      "bytes":"1700050554ffffffff0000000000a004002100000006",
+      "errors":[
+         
+      ],
+      "warnings":[
+         
+      ]
+   }
+},
+{
+   "description":"Encode request set generic configuration ",
+   "type":"downlink-encode",
+   "input":{
+      "data":{
+         "downMessageType":"REQUEST",
+         "requestType":"GENERIC_CONFIGURATION_SET",
+         "ackToken":7,
+         "setGenericParameters":[
+            {
+               "group":"GEOLOC",
+               "parameters":[
+                 {
+                   "parameterName":"geolocGbeProfile0Techno",
+                   "parameterValue":[
+                      {
+                         "Action":"SKIP_ON_SUCCESS",
+                         "Technology":"NONE"
+                      },
+                      {
+                         "Action":"ALWAYS_DONE",
+                         "Technology":"LR11xx_A_GNSS"
+                      },
+                      {
+                         "Action":"SKIP_ON_SUCCESS",
+                         "Technology":"AIDED_GNSS"
+                      },
+                      {
+                         "Action":"SKIP_ON_SUCCESS",
+                         "Technology":"BLE_SCAN2"
+                      },
+                      {
+                         "Action":"SKIP_ON_SUCCESS",
+                         "Technology":"GNSS"
+                      },
+                      {
+                       "Action":"ALWAYS_DONE",
+                       "Technology":"GNSS"
+                    }
+                   ]
+                }
+               ]
+            },
+            {
+               "group":"LR11xx",
+               "parameters":[
+                  {
+                     "parameterName":"lrConstellation",
+                     "parameterValue":"BEIDOU_GPS"
+                  }
+               ]
+            },
+            {
+             "group":"LORAWAN",
+             "parameters":[
+                {
+                   "parameterName":"lorawanDlTriggerPeriod",
+                   "parameterValue":3600
+                }
+             ]
+          }
+         ]
+      }
+   },
+   "output":{
+      "fPort":3,
+      "bytes":"1700020b340081050406860400210000000609012100000E10",
+      "errors":[
+         
+      ],
+      "warnings":[
+         
+      ]
+   }
+},
+{
+   "description":"Encode request set parameter class configuration ",
+   "type":"downlink-encode",
+   "input":{
+      "data":{
+         "downMessageType":"REQUEST",
+         "requestType":"PARAM_CLASS_CONFIGURATION_SET",
+         "ackToken":6,
+         "setParameterClass":
+            {
+               "group":"GEOLOC",
+               "parameters":[
+                 {
+                   "parameterName":"geolocGbeProfile0Techno",
+                   "parameterValue":[
+                      {
+                         "Action":"SKIP_ON_SUCCESS",
+                         "Technology":"NONE"
+                      },
+                      {
+                         "Action":"ALWAYS_DONE",
+                         "Technology":"LR11xx_A_GNSS"
+                      },
+                      {
+                         "Action":"SKIP_ON_SUCCESS",
+                         "Technology":"AIDED_GNSS"
+                      },
+                      {
+                         "Action":"SKIP_ON_SUCCESS",
+                         "Technology":"BLE_SCAN2"
+                      },
+                      {
+                         "Action":"SKIP_ON_SUCCESS",
+                         "Technology":"GNSS"
+                      },
+                      {
+                       "Action":"ALWAYS_DONE",
+                       "Technology":"GNSS"
+                    }
+                   ]
+                },
+                {
+                 "parameterName":"geolocNbStart",
+                 "parameterValue" : 10
+
+                },
+                {
+                 "parameterName":"geolocGnssHoldOnMode",
+                 "parameterValue": "TECHNO"
+                },
+                {
+                 "parameterName": "geolocProfile0Triggers",
+                 "parameterValue":  {
+                    "geoTriggerGeozoning": false,
+                    "geoTriggerInMotion": true,
+                    "geoTriggerInStatic": true,
+                    "geoTriggerMotionStart": true,
+                    "geoTriggerMotionStop": false,
+                    "geoTriggerPod": false,
+                    "geoTriggerShock": false,
+                    "geoTriggerSos": false,
+                    "geoTriggerTempHighThreshold": false,
+                    "geoTriggerTempLowThreshold": false
+                  }
+                }
+               ]
+            }
+      }
+   },
+   "output":{
+      "fPort":3,
+      "bytes":"1601020b3400810504068603210000000A062100000002082100000034",
+      "errors":[
+         
+      ],
+      "warnings":[
+         
+      ]
+   }
+},
+{
+   "description":"Encode request set parameter class configuration ",
+   "type":"downlink-encode",
+   "input":{
+      "data":{
+         "downMessageType":"REQUEST",
+         "requestType":"PARAM_CLASS_CONFIGURATION_SET",
+         "ackToken":6,
+         "setParameterClass":
+            {
+               "group":"BLE_SCAN1",
+               "parameters":[
+                 {
+                   "parameterName":"bleScanDuration",
+                   "parameterValue": 60
+                },
+                {
+                 "parameterName":"bleScanType",
+                 "parameterValue": "ALTBEACON_ONLY"
+                },
+                {
+                 "parameterName":"bleScanFilter2Value",
+                 "parameterValue": "{00,08,41,21,52,00,00,00,96,00}"
+                }
+              ]
+            }
+      }
+   },
+   "output":{
+      "fPort":3,
+      "bytes":"16010500210000003c032100000005095400084121520000009600",
+      "errors":[
+         
+      ],
+      "warnings":[
+         
+      ]
+   }
+},  {
+   "description":"Encode request set parameter class configuration ",
+   "type":"downlink-encode",
+   "input":{
+      "data":{
+         "downMessageType":"REQUEST",
+         "requestType":"PARAM_CLASS_CONFIGURATION_SET",
+         "ackToken":5,
+         "setParameterClass":
+            {
+               "group":"BLE_SCAN2",
+               "parameters":[
+                 {
+                   "parameterName":"bleScanWindow",
+                   "parameterValue": 6080
+                },
+                {
+                 "parameterName":"bleScanMinRssi",
+                 "parameterValue": -30
+                },
+                {
+                 "parameterName":"bleScanReportType",
+                 "parameterValue": "SHORT_IDENTIFIER"
+                },
+                {
+                 "parameterName":"bleScanFilter1Value",
+                 "parameterValue": "{09,00,41,21,52,00,00,00,96,00}"
+                }
+              ]
+            }
+      }
+   },
+   "output":{
+      "fPort":3,
+      "bytes":"1501060121000017C00421FFFFFFE20c2100000001065409004121520000009600",
+      "errors":[
+         
+      ],
+      "warnings":[
+         
+      ]
+   }
+},
+{
+   "description":"Encode request get parameter class configuration ",
+   "type":"downlink-encode",
+   "input":{
+      "data":{
+         "downMessageType":"REQUEST",
+         "requestType":"PARAM_CLASS_CONFIGURATION_GET",
+         "ackToken":5,
+         "getParameterClass":{
+            "group":"BLE_SCAN2",
+            "parameters":[
+               "bleScanWindow",
+               "bleScanMinRssi",
+               "bleScanFilter1Value"
+            ]
+         }
+      }
+   },
+   "output":{
+      "fPort":3,
+      "bytes":"150306010406",
+      "errors":[
+         
+      ],
+      "warnings":[
+         
+      ]
+   }
+},
+{
+   "description":"Encode request get parameter class configuration ",
+   "type":"downlink-encode",
+   "input":{
+      "data":{
+         "downMessageType":"REQUEST",
+         "requestType":"PARAM_CLASS_CONFIGURATION_GET",
+         "ackToken":5,
+         "getParameterClass":{
+            "group":"LORAWAN",
+            "parameters":[
+               "lorawanProbePeriod",
+               "lorawanS1UlPort",
+               "lorawanS1DlPort",
+               "lorawanDlTriggerPeriod"
+            ]
+         }
+      }
+   },
+   "output":{
+      "fPort":3,
+      "bytes":"15030903050601",
+      "errors":[
+         
+      ],
+      "warnings":[
+         
+      ]
+   }
+},
+{
+   "description":"Encode request set generic configuration ",
+   "type":"downlink-encode",
+   "input":{
+      "data":{
+         "downMessageType":"REQUEST",
+         "requestType":"GENERIC_CONFIGURATION_GET",
+         "ackToken":6,
+         "getGenericParameters":[
+            {
+            "group":"CELLULAR", 
+            "parameters":[
+               "cellOperatorSimSlot1",
+               "cellEdrxPcl",
+               "cellNetworkType",
+               "cellS1SrcIpPort"
+            ]
+            },
+            {
+               "group":"NETWORK", 
+               "parameters":[
+                  "netSelection",
+                  "netReconnectionSpacing",
+                  "netMainProbeTimeout"
+               ]
+               }]
+      }
+   },
+   "output":{
+      "fPort":3,
+      "bytes":"16020A080A0C0A010A11080008010802",
+      "errors":[
+         
+      ],
+      "warnings":[
+         
+      ]
+   }
+},
+{
+   "description":"Encode request set generic configuration ",
+   "type":"downlink-encode",
+   "input":{
+      "data":{
+         "downMessageType":"REQUEST",
+         "requestType":"GENERIC_CONFIGURATION_SET",
+         "ackToken":7,
+         "setGenericParameters":[
+            {
+               "group":"CELLULAR",
+               "parameters":[
+                  {
+                     "parameterName":"cellAccessPointName",
+                     "parameterValue":"TEST"
+                  },
+                  {
+                     "parameterName":"cellLowPowerMode",
+                     "parameterValue":"PSM_EDRX"
+                  }
+               ]
+            }
+         ]
+      }
+   },
+   "output":{
+      "fPort":3,
+      "bytes":"17000A0623544553540A092100000003",
       "errors":[
          
       ],
@@ -2564,4 +3927,5 @@
       ]
    }
 }
+
 ]

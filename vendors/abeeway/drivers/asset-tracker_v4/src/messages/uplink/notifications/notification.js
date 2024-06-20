@@ -50,17 +50,19 @@ function determineNotification(payload){
             switch (typeValue){
                 case 0:
                     notificationMessage.notificationType = systemClass.SystemType.STATUS
-                    notificationMessage.system = new systemClass.System(systemClass.determineStatus(payload),null);
+                    notificationMessage.system = new systemClass.System(systemClass.determineStatus(payload),null, null, null);
                     break;
                 case 1:
                     notificationMessage.notificationType = systemClass.SystemType.LOW_BATTERY
-                    notificationMessage.system = new systemClass.System( null, systemClass.determineLowBattery(payload));
+                    notificationMessage.system = new systemClass.System( null, systemClass.determineLowBattery(payload), null);
                     break;
                 case 2:
-                    notificationMessage.notificationType = systemClass.SystemType.BLE_CONNECTED;
+                    notificationMessage.notificationType = systemClass.SystemType.BLE_STATUS;
+                    notificationMessage.system = new systemClass.System( null, null, systemClass.determineBleStatus(payload), null);
                     break;
                 case 3:
-                    notificationMessage.notificationType = systemClass.SystemType.BLE_DISCONNECTED;
+                    notificationMessage.notificationType = systemClass.SystemType.TAMPER_DETECTION;
+                    notificationMessage.system = new systemClass.System( null, null, null, systemClass.determineTamperDetection(payload));
                     break;
                 default:
                     throw new Error("System Notification Type Unknown");

@@ -5,12 +5,12 @@ const responseType = requestClass.RequestType; */
 let util = require("../../../util");
 let jsonParameters = require("../../../resources/parameters.json");
 
-const ResponsetType = Object.freeze({
+const ResponseType = Object.freeze({
     GENERIC_CONFIGURATION_SET: "GENERIC_CONFIGURATION_SET",
     PARAM_CLASS_CONFIGURATION_SET: "PARAM_CLASS_CONFIGURATION_SET",
     GENERIC_CONFIGURATION_GET: "GENERIC_CONFIGURATION_GET",
     PARAM_CLASS_CONFIGURATION_GET: "PARAM_CLASS_CONFIGURATION_GET",
-    BLE_STATUS_CONNECTIVITY: "BLE_STATUS",
+    BLE_STATUS_CONNECTIVITY: "BLE_STATUS_CONNECTIVITY",
     GET_GPS_ALMANAC_ENTRY: "GET_GPS_ALMANAC_ENTRY",
     GET_BEIDOU_ALMANAC_ENTRY: "GET_BEIDOU_ALMANAC_ENTRY",
     SET_GPS_ALMANAC_ENTRY: "SET_GPS_ALMANAC_ENTRY",
@@ -33,7 +33,8 @@ const GroupType = Object.freeze({
     GEOLOC: "GEOLOC",
     GNSS: "GNSS",
     LR11xx: "LR11xx",
-    BLE_SCAN: "BLE_SCAN",
+    BLE_SCAN1: "BLE_SCAN1",
+    BLE_SCAN2: "BLE_SCAN2",
     ACCELEROMETER : "ACCELEROMETER",
     NETWORK: "NETWORK",
     LORAWAN: "LORAWAN",
@@ -53,7 +54,7 @@ function Response(responseType,
     parameterClassConfigurationSet,
     genericConfigurationGet,
     parameterClassConfigurationGet,
-    bleStatus,
+    bleStatusConnectivity,
     getGpsAlmanacEntry,
     getBeidouAlmanacEntry,
     setGpsAlmanacEntry,
@@ -64,7 +65,7 @@ function Response(responseType,
         this.parameterClassConfigurationSet = parameterClassConfigurationSet;
         this.genericConfigurationGet = genericConfigurationGet;
         this.parameterClassConfigurationGet = parameterClassConfigurationGet;
-        this.bleStatus= bleStatus;
+        this.bleStatusConnectivity= bleStatusConnectivity;
         this.getGpsAlmanacEntry = getGpsAlmanacEntry;
         this.getBeidouAlmanacEntry = getBeidouAlmanacEntry;
         this.setGpsAlmanacEntry = setGpsAlmanacEntry;
@@ -76,22 +77,6 @@ function ParameterClassConfigurationSet(group, parameters){
     this.parameters = parameters
 }
 
-function determineParameterType(value){
-    switch(value){
-        case 0 :
-            return ParameterType.DEPREACTED
-        case 1:
-            return ParameterType.INTEGER
-        case 2:
-            return ParameterType.FLOATING_POINT
-        case 3:
-            return ParameterType.ASCCII_STRING
-        case 4:
-            return ParameterType.BYTE_ARRAY
-        default:
-            throw new Error("Status Type Unknown");
-    }
-}
 function determineResponse(payload, multiFrame){
     let response = new Response();
     let startingByte = 4;
@@ -101,36 +86,36 @@ function determineResponse(payload, multiFrame){
     let typeValue  = payload[startingByte] & 0x1F;
     switch (typeValue){
         case 0:
-            response.responseType = ResponsetType.GENERIC_CONFIGURATION_SET
+            response.responseType = ResponseType.GENERIC_CONFIGURATION_SET
             response.genericConfigurationSet = determineResponseGenericConfigurationSet(payload.slice(startingByte+1))
             break;
         case 1:
-            response.responseType = ResponsetType.PARAM_CLASS_CONFIGURATION_SET
+            response.responseType = ResponseType.PARAM_CLASS_CONFIGURATION_SET
             response.parameterClassConfigurationSet = determineResponseParameterClassConfigurationSet(payload.slice(startingByte+1))
             break;
         case 2:
-            response.responseType = ResponsetType.GENERIC_CONFIGURATION_GET
+            response.responseType = ResponseType.GENERIC_CONFIGURATION_GET
             response.genericConfigurationGet = determineResponseGenericConfigurationGet(payload.slice(startingByte+1))
             break;
         case 3:
-            response.responseType = ResponsetType.PARAM_CLASS_CONFIGURATION_GET
+            response.responseType = ResponseType.PARAM_CLASS_CONFIGURATION_GET
             response.parameterClassConfigurationGet = determineResponseParameterClassConfigurationGet(payload.slice(startingByte+1))
             break;
         case 4:
-            response.responseType = ResponsetType.BLE_STATUS
+            response.responseType = ResponseType.BLE_STATUS_CONNECTIVITY
             //TO BE defined
             break;
         case 5:
-            response.responseType = ResponsetType.GET_GPS_ALMANAC_ENTRY
+            response.responseType = ResponseType.GET_GPS_ALMANAC_ENTRY
             break;
         case 6:
-            response.responseType = ResponsetType.GET_BEIDOU_ALMANAC_ENTRY
+            response.responseType = ResponseType.GET_BEIDOU_ALMANAC_ENTRY
             break;
         case 7:
-            response.responseType = ResponsetType.SET_GPS_ALMANAC_ENTRY
+            response.responseType = ResponseType.SET_GPS_ALMANAC_ENTRY
             break;
         case 8:
-            response.responseType = ResponsetType.SET_BEIDOU_ALMANAC_ENTRY
+            response.responseType = ResponseType.SET_BEIDOU_ALMANAC_ENTRY
             break;
         default:
             throw new Error("Response Type Unknown");
@@ -372,6 +357,10 @@ function determineConfiguration(response, parameter, paramValue, groupId, parame
         });
         break;
     case "ParameterTypeByteArray":
+
+    if (parameter.parameterType.size != undefined && parameter.parameterType.size != parameterSize) {
+        throw new Error("The value of "+ paramName + " must have "+ parameter.parameterType.size.toString() +" bytes in the array");
+    }
     var bytesValue
     if  (parameter.parameterType.properties == undefined){
         // Convert the array values to hexadecimal and store them in a string format
@@ -572,14 +561,16 @@ function determineGroupType(value)
         case 4:
             return GroupType.LR11xx
         case 5:
-            return GroupType.BLE_SCAN
-        case 6:
-            return GroupType.ACCELEROMETER
+            return GroupType.BLE_SCAN1
+        case 6: 
+            return GroupType.BLE_SCAN2
         case 7:
-            return GroupType.NETWORK
+            return GroupType.ACCELEROMETER
         case 8:
+            return GroupType.NETWORK
+        case 9:
             return GroupType.LORAWAN
-        case 9: 
+        case 10: 
             return GroupType.CELLULAR
         default:
             throw new Error("Unknown group")
@@ -635,5 +626,11 @@ const parametersByGroupIdAndLocalId = jsonParametersByGroupIdAndLocalId();
 
 module.exports = {
     Response: Response,
-    determineResponse: determineResponse
+    determineResponse: determineResponse,
+    determineConfiguration: determineConfiguration,
+    parametersByGroupIdAndLocalId: parametersByGroupIdAndLocalId,
+    getParameterByGroupIdAndLocalId: getParameterByGroupIdAndLocalId,
+    determineGroupType:determineGroupType,
+    GroupType: GroupType
+
 }

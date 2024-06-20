@@ -18,7 +18,7 @@ function determineBleIdLongPositionMessage(payload) {
     });
 }
 
-function determineBleMacShortPositionMessage(payload) {
+function determineBleMacPositionMessage(payload) {
     return extractBeaconInfos(payload, 7, (payload, index) => {
         let key = Array.from({ length: 6 }, (_, i) => util.convertByteToString(payload[i + index * 7])).join(':');
         let value = util.convertNegativeInt(payload[6 + index * 7], 1);
@@ -36,7 +36,7 @@ function extractBeaconInfos(payload, chunkSize, createBeaconInfo) {
 }
 
 module.exports = {
-    determineBleMacShortPositionMessage,
+    determineBleMacPositionMessage,
     determineBleIdShortPositionMessage,
     determineBleIdLongPositionMessage
 };
