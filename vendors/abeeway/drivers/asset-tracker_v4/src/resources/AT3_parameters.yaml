@@ -208,7 +208,11 @@ components:
           required:
             - properties
             - byteMask
+            - size
           properties:
+            size:
+              type: integer
+              description: It defines the number of bytes in the array. 
             byteMask:
               type: array
               description: Represents the firmware value for the parameter defined as bitMask.

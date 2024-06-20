@@ -9,7 +9,7 @@ let util = require("./util");
 let commandClass = require("./messages/downlink/command");
 let requestClass = require("./messages/downlink/requests/request");
 
-const DOWNLINK_PORT_NUMBER = 2;
+const DOWNLINK_PORT_NUMBER = 3;
 
 const removeEmpty = (obj) => {
     Object.keys(obj).forEach(k =>
@@ -78,13 +78,16 @@ function decodeDownlink(input){
         decodedData.payload = util.convertBytesToString(payload);
         switch (decodedData.type){
             case abeewayDownlinkPayloadClass.MessageType.COMMAND:
+                decodedData.command = commandClass.determineCommand(payload[1])
                 break;
             case abeewayDownlinkPayloadClass.MessageType.REQUEST:
+                decodedData.request = requestClass.decodeRequest(payload)
                 break;
             case abeewayDownlinkPayloadClass.MessageType.ANSWER:
                 break;
         }
-
+        decodedData = removeEmpty(decodedData);
+        result.data= decodedData;
     }
     catch (e){
         result.errors.push(e.message);
@@ -112,10 +115,10 @@ function encodeDownlink(input){
 
         var bytes = [];
 
-        if(data.type == null){
+        if(data.downMessageType == null){
             throw new Error("No downlink message type");
         }
-        switch (data.type){
+        switch (data.downMessageType){
             case abeewayDownlinkPayloadClass.MessageType.COMMAND:
                 bytes = commandClass.encodeCommand(data);
                 break;

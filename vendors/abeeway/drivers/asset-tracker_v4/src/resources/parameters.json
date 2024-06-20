@@ -1501,6 +1501,7 @@
             "description":"Technologies to schedule using the basic engine for events in triggers 0",
             "parameterType":{
                "type":"ParameterTypeByteArray",
+               "size": 6,
                "properties":[
                   {
                      "name":"Action",
@@ -1521,7 +1522,8 @@
                         "NONE",
                         "LR11xx_A_GNSS",
                         "WIFI",
-                        "BLE_SCAN",
+                        "BLE_SCAN1",
+                        "BLE_SCAN2",
                         "AIDED_GNSS",
                         "GNSS"
                      ],
@@ -1531,7 +1533,8 @@
                         2,
                         3,
                         4,
-                        5
+                        5,
+                        6
                      ]
                   }
                ],
@@ -1571,6 +1574,7 @@
             "description":"Technologies to schedule using the basic engine for events in triggers 1",
             "parameterType":{
                "type":"ParameterTypeByteArray",
+               "size": 6,
                "properties":[
                   {
                      "name":"Action",
@@ -1591,7 +1595,8 @@
                         "NONE",
                         "LR11xx_A_GNSS",
                         "WIFI",
-                        "BLE_SCAN",
+                        "BLE_SCAN1",
+                        "BLE_SCAN2",
                         "AIDED_GNSS",
                         "GNSS"
                      ],
@@ -1601,7 +1606,8 @@
                         2,
                         3,
                         4,
-                        5
+                        5,
+                        6
                      ]
                   }
                ],
@@ -1641,6 +1647,7 @@
             "description":"Technologies to schedule using the basic engine for events in triggers 2",
             "parameterType":{
                "type":"ParameterTypeByteArray",
+               "size": 6,
                "properties":[
                   {
                      "name":"Action",
@@ -1661,7 +1668,8 @@
                         "NONE",
                         "LR11xx_A_GNSS",
                         "WIFI",
-                        "BLE_SCAN",
+                        "BLE_SCAN1",
+                        "BLE_SCAN2",
                         "AIDED_GNSS",
                         "GNSS"
                      ],
@@ -1671,7 +1679,8 @@
                         2,
                         3,
                         4,
-                        5
+                        5,
+                        6
                      ]
                   }
                ],
@@ -1941,10 +1950,12 @@
                "type":"ParameterTypeString",
                "possibleValues":[
                   "GPS_ONLY",
+                  "BEIDOU_ONLY",
                   "BEIDOU_GPS"
                ],
                "firmwareValues":[
-                  1,
+                  0,
+                  5,
                   6
                ]
             },
@@ -2227,7 +2238,8 @@
             "defaultValue":[0],
             "description":"Mask (10 bytes) to be applied to the ADV frame.",
             "parameterType":{
-               "type":"ParameterTypeByteArray"
+               "type":"ParameterTypeByteArray",
+               "size": 10
             },
             "compatibleTrackerModels":[
                {
@@ -2249,7 +2261,8 @@
             "defaultValue":[0],
             "description":"Comparison value (10 bytes) belonging to filter1",
             "parameterType":{
-               "type":"ParameterTypeByteArray"
+               "type":"ParameterTypeByteArray",
+               "size": 10
             },
             "compatibleTrackerModels":[
                {
@@ -2298,7 +2311,8 @@
             "defaultValue":[0],
             "description":"Mask (10 bytes) to be applied to the ADV frame.",
             "parameterType":{
-               "type":"ParameterTypeByteArray"
+               "type":"ParameterTypeByteArray",
+               "size": 10
             },
             "compatibleTrackerModels":[
                {
@@ -2320,7 +2334,8 @@
             "defaultValue":[0],
             "description":"Comparison value (10 bytes) belonging to filter2",
             "parameterType":{
-               "type":"ParameterTypeByteArray"
+               "type":"ParameterTypeByteArray",
+               "size": 10
             },
             "compatibleTrackerModels":[
                {
@@ -2446,8 +2461,388 @@
             ]
          },
          {
-            "driverParameterName":"acceleroMotionSensi",
+            "driverParameterName":"bleScanDuration",
             "groupId":"0x06",
+            "localId":"0x00",
+            "defaultValue":3000,
+            "unit": "ms",
+            "description":"Total time for a BLE scan",
+            "parameterType":{
+               "type":"ParameterTypeNumber",
+               "range":{
+                  "minimum":50,
+                  "maximum":61440
+               }
+            },
+            "compatibleTrackerModels":[
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"compact-tracker",
+                  "version":"2.0"
+               },
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"combo-compact-tracker",
+                  "version":"1.0"
+               }
+            ]
+         },
+         {
+            "driverParameterName":"bleScanWindow",
+            "groupId":"0x06",
+            "localId":"0x01",
+            "defaultValue":120,
+            "unit": "ms",
+            "description":"Scan window",
+            "parameterType":{
+               "type":"ParameterTypeNumber",
+               "range":{
+                  "minimum":3,
+                  "maximum":10240
+               }
+            },
+            "compatibleTrackerModels":[
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"compact-tracker",
+                  "version":"2.0"
+               },
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"combo-compact-tracker",
+                  "version":"1.0"
+               }
+            ]
+         },
+         {
+            "driverParameterName":"bleScanInterval",
+            "groupId":"0x06",
+            "localId":"0x02",
+            "defaultValue":130,
+            "unit": "ms",
+            "description":"Scan interval",
+            "parameterType":{
+               "type":"ParameterTypeNumber",
+               "range":{
+                  "minimum":1,
+                  "maximum":10240
+               }
+            },
+            "compatibleTrackerModels":[
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"compact-tracker",
+                  "version":"2.0"
+               },
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"combo-compact-tracker",
+                  "version":"1.0"
+               }
+            ]
+         },
+         {
+            "driverParameterName":"bleScanType",
+            "groupId":"0x06",
+            "localId":"0x03",
+            "defaultValue":0,
+            "description":"Type of beacons to scan",
+            "parameterType":{
+               "type":"ParameterTypeString",
+               "possibleValues":[
+                  "ALL_BEACONS",
+                  "EDDYSTONE_UUID",
+                  "EDDYSTONE_URL",
+                  "ALL_EDDYSTONE",
+                  "IBEACON_ONLY",
+                  "ALTBEACON_ONLY",
+                  "CUSTOM",
+                  "EXPOSURE_ADVERTISEMENT"
+               ],
+               "firmwareValues":[
+                  0,
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7
+               ]
+            },
+            
+            "compatibleTrackerModels":[
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"compact-tracker",
+                  "version":"2.0"
+               },
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"combo-compact-tracker",
+                  "version":"1.0"
+               }
+            ]
+         },
+         {
+            "driverParameterName":"bleScanMinRssi",
+            "groupId":"0x06",
+            "localId":"0x04",
+            "defaultValue":-100,
+            "unit": "dB",
+            "description":"Min RSSI to consider the beacon",
+            "parameterType":{
+               "type":"ParameterTypeNumber",
+               "range":{
+                  "minimum":-120,
+                  "maximum": 0
+               }
+            },
+            "compatibleTrackerModels":[
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"compact-tracker",
+                  "version":"2.0"
+               },
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"combo-compact-tracker",
+                  "version":"1.0"
+               }
+            ]
+         },
+         {
+            "driverParameterName":"bleScanFilter1Mask",
+            "groupId":"0x06",
+            "localId":"0x05",
+            "defaultValue":[0],
+            "description":"Mask (10 bytes) to be applied to the ADV frame.",
+            "parameterType":{
+               "type":"ParameterTypeByteArray",
+               "size": 10
+            },
+            "compatibleTrackerModels":[
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"compact-tracker",
+                  "version":"2.0"
+               },
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"combo-compact-tracker",
+                  "version":"1.0"
+               }
+            ]
+         },
+         {
+            "driverParameterName":"bleScanFilter1Value",
+            "groupId":"0x06",
+            "localId":"0x06",
+            "defaultValue":[0],
+            "description":"Comparison value (10 bytes) belonging to filter1",
+            "parameterType":{
+               "type":"ParameterTypeByteArray",
+               "size": 10
+            },
+            "compatibleTrackerModels":[
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"compact-tracker",
+                  "version":"2.0"
+               },
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"combo-compact-tracker",
+                  "version":"1.0"
+               }
+            ]
+         },
+
+         {
+            "driverParameterName":"bleScanFilter1Offset",
+            "groupId":"0x06",
+            "localId":"0x07",
+            "defaultValue":0,
+            "description":"Offset in the ADV from which we apply the filter1",
+            "parameterType":{
+               "type":"ParameterTypeNumber",
+               "range":{
+                  "minimum": 0,
+                  "maximum": 256
+               }
+            },
+            "compatibleTrackerModels":[
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"compact-tracker",
+                  "version":"2.0"
+               },
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"combo-compact-tracker",
+                  "version":"1.0"
+               }
+            ]
+         },
+         {
+            "driverParameterName":"bleScanFilter2Mask",
+            "groupId":"0x06",
+            "localId":"0x08",
+            "defaultValue":[0],
+            "description":"Mask (10 bytes) to be applied to the ADV frame.",
+            "parameterType":{
+               "type":"ParameterTypeByteArray",
+               "size": 10
+            },
+            "compatibleTrackerModels":[
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"compact-tracker",
+                  "version":"2.0"
+               },
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"combo-compact-tracker",
+                  "version":"1.0"
+               }
+            ]
+         },
+         {
+            "driverParameterName":"bleScanFilter2Value",
+            "groupId":"0x06",
+            "localId":"0x09",
+            "defaultValue":[0],
+            "description":"Comparison value (10 bytes) belonging to filter2",
+            "parameterType":{
+               "type":"ParameterTypeByteArray",
+               "size": 10
+            },
+            "compatibleTrackerModels":[
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"compact-tracker",
+                  "version":"2.0"
+               },
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"combo-compact-tracker",
+                  "version":"1.0"
+               }
+            ]
+         },
+         {
+            "driverParameterName":"bleScanFilter2Offset",
+            "groupId":"0x06",
+            "localId":"0x0A",
+            "defaultValue":0,
+            "description":"Offset in the ADV from which we apply the filter2",
+            "parameterType":{
+               "type":"ParameterTypeNumber",
+               "range":{
+                  "minimum": 0,
+                  "maximum": 256
+               }
+            },
+            "compatibleTrackerModels":[
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"compact-tracker",
+                  "version":"2.0"
+               },
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"combo-compact-tracker",
+                  "version":"1.0"
+               }
+            ]
+         },
+         {
+            "driverParameterName":"bleScanNbBeacons",
+            "groupId":"0x06",
+            "localId":"0x0B",
+            "defaultValue":4,
+            "description":"Number of beacons to report",
+            "parameterType":{
+               "type":"ParameterTypeNumber",
+               "range":{
+                  "minimum": 1,
+                  "maximum": 20
+               }
+            },
+            "compatibleTrackerModels":[
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"compact-tracker",
+                  "version":"2.0"
+               },
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"combo-compact-tracker",
+                  "version":"1.0"
+               }
+            ]
+         },
+         {
+            "driverParameterName":"bleScanReportType",
+            "groupId":"0x06",
+            "localId":"0x0C",
+            "defaultValue":0,
+            "description":"Scan report type",
+            "parameterType":{
+               "type":"ParameterTypeString",
+               "possibleValues":[
+                 "MAC_ADDRESS",
+                 "SHORT_IDENTIFIER",
+                 "LONG_IDENTIFIER"
+               ],
+               "firmwareValues":[
+                  0,
+                  1,
+                  2
+               ]
+            },
+            "compatibleTrackerModels":[
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"compact-tracker",
+                  "version":"2.0"
+               },
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"combo-compact-tracker",
+                  "version":"1.0"
+               }
+            ]
+         },
+         {
+            "driverParameterName":"bleScanReportIdOfs",
+            "groupId":"0x06",
+            "localId":"0x0D",
+            "defaultValue":4,
+            "description":"Offset in ADV to extract the beacon identifier",
+            "parameterType":{
+               "type":"ParameterTypeNumber",
+               "range":{
+                  "minimum": 0,
+                  "maximum": 256
+               }
+            },
+            "compatibleTrackerModels":[
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"compact-tracker",
+                  "version":"2.0"
+               },
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"combo-compact-tracker",
+                  "version":"1.0"
+               }
+            ]
+         },
+         {
+            "driverParameterName":"acceleroMotionSensi",
+            "groupId":"0x07",
             "localId":"0x00",
             "defaultValue":16,
             "unit": "mg",
@@ -2475,7 +2870,7 @@
          },
          {
             "driverParameterName":"acceleroMotionDuration",
-            "groupId":"0x06",
+            "groupId":"0x07",
             "localId":"0x01",
             "defaultValue":20,
             "unit": "s",
@@ -2502,7 +2897,7 @@
          },
          {
             "driverParameterName":"acceleroFullScale",
-            "groupId":"0x06",
+            "groupId":"0x07",
             "localId":"0x02",
             "defaultValue":1,
             "description": "Scale use (2,4,8,16 g).",
@@ -2536,7 +2931,7 @@
          },
          {
             "driverParameterName":"acceleroOutputDataRate",
-            "groupId":"0x06",
+            "groupId":"0x07",
             "localId":"0x03",
             "defaultValue":0,
             "description": "Output data rate (12.5, 25, 50, 100, 200 Hz).",
@@ -2572,7 +2967,7 @@
          },
          {
             "driverParameterName":"acceleroShockThreshold",
-            "groupId":"0x06",
+            "groupId":"0x07",
             "localId":"0x04",
             "defaultValue":0,
             "description": "Shock threshold. Step 63 mg",
@@ -2599,7 +2994,7 @@
          },
          {
             "driverParameterName":"netSelection",
-            "groupId":"0x07",
+            "groupId":"0x08",
             "localId":"0x00",
             "defaultValue":0,
             "description": "Define the networking type",
@@ -2633,7 +3028,7 @@
          },
          {
             "driverParameterName":"netReconnectionSpacing",
-            "groupId":"0x07",
+            "groupId":"0x08",
             "localId":"0x01",
             "defaultValue":600,
             "description": "Time to wait before retrying to connect the main network",
@@ -2659,7 +3054,7 @@
          },
          {
             "driverParameterName":"netReconnectionSpacing",
-            "groupId":"0x07",
+            "groupId":"0x08",
             "localId":"0x01",
             "defaultValue":600,
             "description": "Time to wait before retrying to connect the main network",
@@ -2685,7 +3080,7 @@
          },
          {
             "driverParameterName":"netMainProbeTimeout",
-            "groupId":"0x07",
+            "groupId":"0x08",
             "localId":"0x02",
             "defaultValue":600,
             "description": "Duration between each attempts reconnect the main network.",
@@ -2706,7 +3101,7 @@
          },
          {
             "driverParameterName":"lorawanCnxTimeout",
-            "groupId":"0x08",
+            "groupId":"0x09",
             "localId":"0x00",
             "defaultValue":0,
             "description": "Max time to wait for joining the network. The value 0 disables the timer.",
@@ -2732,7 +3127,7 @@
          },
          {
             "driverParameterName":"lorawanDlTriggerPeriod",
-            "groupId":"0x08",
+            "groupId":"0x09",
             "localId":"0x01",
             "defaultValue":3600,
             "unit":"s",
@@ -2759,7 +3154,7 @@
          },
          {
             "driverParameterName":"lorawanProbeMaxAttempts",
-            "groupId":"0x08",
+            "groupId":"0x09",
             "localId":"0x02",
             "defaultValue":0,
             "description": "Number of link-check sent declaring the network as lost",
@@ -2785,7 +3180,7 @@
          },
          {
             "driverParameterName":"lorawanProbePeriod",
-            "groupId":"0x08",
+            "groupId":"0x09",
             "localId":"0x03",
             "defaultValue":600,
             "description": "Time between link-check requests",
@@ -2811,7 +3206,7 @@
          },
          {
             "driverParameterName":"lorawanS1TxStrategy",
-            "groupId":"0x08",
+            "groupId":"0x09",
             "localId":"0x04",
             "defaultValue":1,
             "description":"Socket 1. Transmission strategy",
@@ -3081,7 +3476,7 @@
          },
          {
             "driverParameterName":"lorawanS1UlPort",
-            "groupId":"0x08",
+            "groupId":"0x09",
             "localId":"0x05",
             "defaultValue":19,
             "description": "Socket 1. Uplink port",
@@ -3107,7 +3502,7 @@
          },
          {
             "driverParameterName":"lorawanS1DlPort",
-            "groupId":"0x08",
+            "groupId":"0x09",
             "localId":"0x06",
             "defaultValue":3,
             "description": "Socket 1. Downlink port",
@@ -3133,7 +3528,7 @@
          },
          {
             "driverParameterName":"cellSimInterface",
-            "groupId":"0x09",
+            "groupId":"0x0A",
             "localId":"0x00",
             "description":"Sim interface.",
             "defaultValue":"",
@@ -3159,7 +3554,7 @@
          },
          {
             "driverParameterName":"cellNetworkType",
-            "groupId":"0x09",
+            "groupId":"0x0A",
             "localId":"0x01",
             "description":"Network type",
             "defaultValue":"",
@@ -3188,7 +3583,7 @@
          },
          {
             "driverParameterName":"cellCnxTimeoutStatic",
-            "groupId":"0x09",
+            "groupId":"0x0A",
             "localId":"0x02",
             "defaultValue":300,
             "unit":"s",
@@ -3210,7 +3605,7 @@
          },
          {
             "driverParameterName":"cellCnxTimeoutMotion",
-            "groupId":"0x09",
+            "groupId":"0x0A",
             "localId":"0x03",
             "defaultValue":300,
             "unit":"s",
@@ -3232,7 +3627,7 @@
          },
          {
             "driverParameterName":"cellCnxNwLostTimeout",
-            "groupId":"0x09",
+            "groupId":"0x0A",
             "localId":"0x04",
             "defaultValue":30,
             "unit":"s",
@@ -3254,7 +3649,7 @@
          },
          {
             "driverParameterName":"cellCnxMaxAttempts",
-            "groupId":"0x09",
+            "groupId":"0x0A",
             "localId":"0x05",
             "defaultValue":3,
             "description": "Number of times the network search is repeated before shutting down the modem.",
@@ -3275,7 +3670,7 @@
          },
          {
             "driverParameterName":"cellAccessPointName",
-            "groupId":"0x09",
+            "groupId":"0x0A",
             "localId":"0x06",
             "description":"String providing the service access point name. If not provided, this information is retrieve from the SIM.",
             "defaultValue":"",
@@ -3299,7 +3694,7 @@
          
          {
             "driverParameterName":"cellOperatorSimSlot0",
-            "groupId":"0x09",
+            "groupId":"0x0A",
             "localId":"0x07",
             "description":"Cellular operator name when using the SIM0",
             "defaultValue":"",
@@ -3317,7 +3712,7 @@
          },
          {
             "driverParameterName":"cellOperatorSimSlot1",
-            "groupId":"0x09",
+            "groupId":"0x0A",
             "localId":"0x08",
             "description":"Cellular operator name when using the SIM1 (E.SIM).",
             "defaultValue":"",
@@ -3335,7 +3730,7 @@
          },
          {
             "driverParameterName":"cellLowPowerMode",
-            "groupId":"0x09",
+            "groupId":"0x0A",
             "localId":"0x09",
             "description":"Low power mode",
             "defaultValue":"",
@@ -3366,7 +3761,7 @@
         
          {
             "driverParameterName":"cellPsmTauPeriod",
-            "groupId":"0x09",
+            "groupId":"0x0A",
             "localId":"0x0A",
             "description":"Bit-field giving the requested TAU period.",
             "defaultValue":254,
@@ -3431,7 +3826,7 @@
          },
          {
             "driverParameterName":"cellPsmActiveTime",
-            "groupId":"0x09",
+            "groupId":"0x0A",
             "localId":"0x0B",
             "description":"Bit-field giving the requested active time.",
             "defaultValue":33,
@@ -3488,7 +3883,7 @@
          },
          {
             "driverParameterName":"cellEdrxPcl",
-            "groupId":"0x09",
+            "groupId":"0x0A",
             "localId":"0x0C",
             "description":"Requested paging cycle length",
             "defaultValue":0,
@@ -3509,7 +3904,7 @@
          },
          {
             "driverParameterName":"cellEdrxPtw",
-            "groupId":"0x09",
+            "groupId":"0x0A",
             "localId":"0x0D",
             "description":"Requested paging time window",
             "defaultValue":0,
@@ -3530,7 +3925,7 @@
          },
          {
             "driverParameterName":"cellS1TransportProto",
-            "groupId":"0x09",
+            "groupId":"0x0A",
             "localId":"0x0E",
             "description":"Socket 1 transport protocol",
             "defaultValue":1,
@@ -3556,7 +3951,7 @@
          },
          {
             "driverParameterName":"cellS1IpUrlAddr",
-            "groupId":"0x09",
+            "groupId":"0x0A",
             "localId":"0x0F",
             "description":"Socket 1 remote IP address or URL in string format (max 32 bytes)",
             "defaultValue":"",
@@ -3574,7 +3969,7 @@
          },
          {
             "driverParameterName":"cellS1DstIpPort",
-            "groupId":"0x09",
+            "groupId":"0x0A",
             "localId":"0x10",
             "description":"Socket 1 destination UDP/TCP port",
             "defaultValue":0,
@@ -3595,7 +3990,7 @@
          },
          {
             "driverParameterName":"cellS1SrcIpPort",
-            "groupId":"0x09",
+            "groupId":"0x0A",
             "localId":"0x11",
             "description":"Socket 1 local UDP/TCP port number. Value 0 means that the modem will choose one.",
             "defaultValue":0,
@@ -3616,7 +4011,7 @@
          },
          {
             "driverParameterName":"cellS1TxAggrTime",
-            "groupId":"0x09",
+            "groupId":"0x0A",
             "localId":"0x12",
             "description":"Duration in second for which the messages are hold in the socket 1 transmit queue before being transmitted",
             "defaultValue":120,
