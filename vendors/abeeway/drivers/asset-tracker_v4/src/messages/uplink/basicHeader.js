@@ -9,13 +9,13 @@ const batteryStatus = Object.freeze({
 function Header(sos,
     type,
     ackToken,
-    appState,
+    multiFrame,
     batteryLevel,
     timestamp){
         this.sos = sos;
         this.type = type;
         this.ackToken = ackToken;
-        this.appState = appState;
+        this.multiFrame = multiFrame;
         this.batteryLevel = batteryLevel;
         this.timestamp = timestamp;
 }
@@ -26,10 +26,10 @@ function determineHeader(payload , receivedTime){
     var sos = !!(payload[0]>>6 & 0x01);
     var ackToken = payload[0] & 0x07;
     var type = determineMessageType(payload);
-    var appState = payload[1]>>7 & 0x01;
+    var multiFrame = !!(payload[0]>>7 & 0x01);
     var batteryLevel = determineBatteryLevel(payload);
     var timestamp = rebuildTime(receivedTime, ((payload[2]<<8) + payload[3]));
-    return new Header(sos, type, ackToken, appState, batteryLevel, timestamp)
+    return new Header(sos, type, ackToken, multiFrame, batteryLevel, timestamp)
 }
 
 

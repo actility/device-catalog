@@ -1,7 +1,7 @@
-function ExtendedHeader(group,
+function ExtendedHeader(groupId,
     last,
     frameNumber){
-    this.group = group;
+    this.groupId = groupId;
     this.last = last;
     this.frameNumber = frameNumber;
 }

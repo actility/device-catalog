@@ -2084,14 +2084,14 @@
             "driverParameterName":"bleScanDuration",
             "groupId":"0x05",
             "localId":"0x00",
-            "defaultValue":3,
+            "defaultValue":3000,
             "unit": "ms",
             "description":"Total time for a BLE scan",
             "parameterType":{
                "type":"ParameterTypeNumber",
                "range":{
-                  "minimum":21,
-                  "maximum":21000
+                  "minimum":50,
+                  "maximum":61440
                }
             },
             "compatibleTrackerModels":[
@@ -3012,32 +3012,6 @@
                   2,
                   3
                ]
-            },
-            "compatibleTrackerModels":[
-               {
-                  "producerId":"abeeway",
-                  "moduleId":"compact-tracker",
-                  "version":"2.0"
-               },
-               {
-                  "producerId":"abeeway",
-                  "moduleId":"combo-compact-tracker",
-                  "version":"1.0"
-               }
-            ]
-         },
-         {
-            "driverParameterName":"netReconnectionSpacing",
-            "groupId":"0x08",
-            "localId":"0x01",
-            "defaultValue":600,
-            "description": "Time to wait before retrying to connect the main network",
-            "parameterType":{
-               "type":"ParameterTypeNumber",
-               "range":{
-                  "minimum":0,
-                  "maximum":600
-               }
             },
             "compatibleTrackerModels":[
                {
