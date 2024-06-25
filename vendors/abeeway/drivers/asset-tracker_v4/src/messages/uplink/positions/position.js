@@ -36,10 +36,9 @@ function Position(motion,
     lr11xxAGnss,
     lr11xxGnssNav1, 
     lr11xxGnssNav2, 
-    wifi, 
-    bleMac,
-    bleShort,
-    bleLong,
+    wifiBssids, 
+    bleBeaconMacs,
+    bleBeaconIds,
     gnssFix,
     gnssFailure,
     aidedGnss){
@@ -50,10 +49,9 @@ function Position(motion,
         this.lr11xxAGnss = lr11xxAGnss;
         this.lr11xxGnssNav1 = lr11xxGnssNav1;
         this.lr11xxGnssNav2 = lr11xxGnssNav2;
-        this.wifi = wifi;
-        this.bleMac =bleMac;
-        this.bleShort = bleShort;
-        this.bleLong = bleLong;
+        this.wifiBssids = wifiBssids;
+        this.bleBeaconMacs =bleBeaconMacs;
+        this.bleBeaconIds = bleBeaconIds;
         this.gnssFix = gnssFix;
         this.gnssFailure = gnssFailure;
         this.aidedGnss = aidedGnss;
@@ -193,25 +191,25 @@ function determinePosition(payload, multiFrame){
                 positionMessage.lr11xxGnssNav2 = util.convertBytesToString(payload.slice(startingByte+3));
                 break;
             case PositionType.WIFI:
-                positionMessage.wifi = wifiClass.determineWifiPositionMessage(payload.slice(startingByte+3));
+                positionMessage.wifiBssids = wifiClass.determineWifiPositionMessage(payload.slice(startingByte+3));
                 break;
             case PositionType.BLE_SCAN1_MAC:
-                positionMessage.bleMac = bleClass.determineBleMacPositionMessage(payload.slice(startingByte+3));
+                positionMessage.bleBeaconMacs = bleClass.determineBleMacPositionMessage(payload.slice(startingByte+3));
                 break;
             case PositionType.BLE_SCAN1_SHORT:
-                positionMessage.bleShort = bleClass.determineBleIdShortPositionMessage(payload.slice(startingByte+3));
+                positionMessage.bleBeaconIds = bleClass.determineBleIdShortPositionMessage(payload.slice(startingByte+3));
                 break;
             case PositionType.BLE_SCAN1_LONG:
-                positionMessage.bleLong = bleClass.determineBleIdLongPositionMessage(payload.slice(startingByte+3));
+                positionMessage.bleBeaconIds = bleClass.determineBleIdLongPositionMessage(payload.slice(startingByte+3));
                 break;
             case PositionType.BLE_SCAN2_MAC:
-                positionMessage.bleMac = bleClass.determineBleMacPositionMessage(payload.slice(startingByte+3));
+                positionMessage.bleBeaconMacs = bleClass.determineBleMacPositionMessage(payload.slice(startingByte+3));
                 break;
             case PositionType.BLE_SCAN2_SHORT:
-                positionMessage.bleShort = bleClass.determineBleIdShortPositionMessage(payload.slice(startingByte+3));
+                positionMessage.bleBeaconIds = bleClass.determineBleIdShortPositionMessage(payload.slice(startingByte+3));
                 break;
             case PositionType.BLE_SCAN2_LONG:
-                positionMessage.bleLong = bleClass.determineBleIdLongPositionMessage(payload.slice(startingByte+3));
+                positionMessage.bleBeaconIds = bleClass.determineBleIdLongPositionMessage(payload.slice(startingByte+3));
                 break;
             case PositionType.GNSS:
                 positionMessage.gnssFix = gnssFixClass.determineGnssFix(payload.slice(startingByte+3));

@@ -4,12 +4,12 @@ const MessageType = Object.freeze({
     ANSWER: "ANSWER"
 });
 
-function AbeewayDownlinkPayload(type, 
+function AbeewayDownlinkPayload(downMessageType, 
         ackToken,
         command,
         request,
         payload) {
-        this.type = type;
+        this.downMessageType = downMessageType;
         this.ackToken = ackToken;
         this.command = command;
         this.request = request;
