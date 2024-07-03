@@ -1,19 +1,9 @@
-// Example script to decode ArrowWan2 LoRaWAN payload
-// 2022 - Maddalena S.p.A.
-// This script is to be used only as an example
-// Redistribution is not allowed
-//
-// v 1.0 - 15/06/2022
-// - initial version
-//
+const hex2bin = (hex) => {
+    return (parseInt(hex, 16).toString(2)).padStart(8, '0');
+}
 
-const process = require('process');
-const moment = require('moment');
-const winston = require('winston');
-const { Command } = require('commander');
-
-const vif2str = (vif) => {
-    const _vif_table = {
+function vif2str(vif) {
+    const vifTable = {
         0x10: 'ml',
         0x11: 'cl',
         0x12: 'dl',
@@ -31,20 +21,21 @@ const vif2str = (vif) => {
         0x3E: 'm3/h',
         0x3F: 'dam3/h',
     };
-    return _vif_table[vif] || 'Unknown';
-};
+    return vifTable[vif] || 'Unknown';
+}
 
-const timestamp2datetime = (ts) => {
-    const EPOCH2000 = moment('2000-01-01T00:00:00Z').unix();
-    return moment.unix(EPOCH2000 + ts).toISOString();
-};
+function timestamp2datetime(ts) {
+    const EPOCH2000 = Date.UTC(2000, 0, 1, 0, 0, 0);
+    const date = new Date(EPOCH2000 + ts * 1000);
+    return date.toISOString().split('.')[0] + 'Z';
+}
 
-const fwver2str = (ver) => {
+function fwver2str(ver) {
     return `${ver[1]}.${ver[0]}`;
-};
+}
 
-const errors2str = (err) => {
-    const _error_string = [
+function errors2str(err) {
+    const errorString = [
         'Mechanical Fraud',
         'Magnetic Fraud',
         'Leakage',
@@ -62,9 +53,9 @@ const errors2str = (err) => {
         'Metrological Wrong Checksum',
         '-',
     ];
-    const b = err.toString(2).padStart(16, '0').split('').reverse();
-    return b.map((v, idx) => (v === '1' ? _error_string[idx] : null)).filter(Boolean).join(',');
-};
+    const b = err.toString(2).padStart(16, '0').split('').reverse().join('');
+    return b.split('').map((v, idx) => (v === '1' ? errorString[idx] : null)).filter(Boolean).join(',');
+}
 
 class ReadingPoint {
     constructor(ts, reading, delta) {
@@ -78,79 +69,102 @@ class ReadingPoint {
     }
 
     toString() {
-        return `datetime=${this._ts}, reading=${this._reading} (delta=${this._delta} 0x${this._delta.toString(16)})`;
+        return `datetime=${this._ts.toISOString()}, reading=${this._reading} (delta=${this._delta} 0x${this._delta.toString(16).toUpperCase()})`;
     }
 
     toJSON() {
         return {
-            timestamp: this._ts,
+            timestamp: this._ts.toISOString(),
             reading: this._reading,
             delta: this._delta,
         };
     }
 }
 
-// Utility function to read integers from a buffer
-const readInt = (buf, offset, length, signed = false, littleEndian = true) => {
-    let value = 0;
-    for (let i = 0; i < length; i++) {
-        const byte = buf[offset + i];
-        value |= byte << (i * 8);
+class ArrowWan2Decoder {
+    constructor() {
+        this.handlers = {
+            1: this.decodeEarlyDayMeasuresFrame,
+            2: this.decodeLateDayMeasuresFrame,
+            5: this.decodeWeekMeasuresFrame,
+            8: this.decodeInfoFrame,
+            9: this.decodeAlarmFrame,
+        };
     }
-    if (signed) {
-        const limit = 1 << (length * 8 - 1);
-        if (value >= limit) {
-            value -= limit * 2;
+
+    decode(fport, frame) {
+        if (!this.handlers[fport]) {
+            throw new Error(`Missing decoder for frame on port ${fport}`);
         }
-    }
-    return value;
-};
-
-// Utility function to read unsigned integers from a buffer
-const readUInt = (buf, offset, length, littleEndian = true) => {
-    return readInt(buf, offset, length, false, littleEndian);
-};
-
-class InfoData {
-    constructor(inf) {
-        this._df = inf;
-        this._date = timestamp2datetime(inf.timestamp);
+        return this.handlers[fport].call(this, frame);
     }
 
-    toString() {
-        return `Information data: timestamp=${this._date}, meter serial=${this._df.metrological_serial_number}, firmware version=${fwver2str(this._df.firmware_version)}, battery charge=${this._df.battery_charge}, pod=${this._df.pod}`;
+    decodeEarlyDayMeasuresFrame(frame) {
+        const dm = this.parseDayMeasureFrame(frame);
+        return new DayData(dm, 11);
     }
 
-    toDict() {
-        return {
-            type: 'info',
-            timestamp: this._date,
-            meter_serial: this._df.metrological_serial_number,
-            firmware_version: fwver2str(this._df.firmware_version),
-            battery_charge: this._df.battery_charge,
-            pod: this._df.pod
-        };
-    }
-}
-
-class AlarmData {
-    constructor(inf) {
-        this._df = inf;
-        this._date = timestamp2datetime(inf.timestamp);
+    decodeLateDayMeasuresFrame(frame) {
+        const dm = this.parseDayMeasureFrame(frame);
+        return new DayData(dm, 23);
     }
 
-    toString() {
-        return `Alarm data: timestamp=${this._date}, errors=${errors2str(this._df.error_flags)}, measure vif=${this._df.measure_vif.toString(16)}, current readout=${this._df.current_readout} ${vif2str(this._df.measure_vif)}`;
+    decodeWeekMeasuresFrame(frame) {
+        const dm = this.parseWeekMeasureFrame(frame);
+        return new WeekData(dm);
     }
 
-    toDict() {
-        return {
-            type: 'alarm',
-            timestamp: this._date,
-            errors: errors2str(this._df.error_flags),
-            measure_vif: this._df.measure_vif,
-            current_readout: this._df.current_readout
-        };
+    decodeInfoFrame(frame) {
+        const info = this.parseInfoFrame(frame);
+        return new InfoData(info);
+    }
+
+    decodeAlarmFrame(frame) {
+        const alarm = this.parseAlarmFrame(frame);
+        return new AlarmData(alarm);
+    }
+
+    parseDayMeasureFrame(buf) {
+        const timestamp = buf.readUInt32LE(0);
+        const error_flags = buf.readUInt16LE(4);
+        const measure_vif = buf.readUInt8(6);
+        const previous_readout_end_of_day = buf.readInt32LE(7);
+        const previous_readout_base = buf.readInt32LE(11);
+        const delta_values = [];
+        for (let i = 0; i < 11; i++) {
+            delta_values.push(buf.readInt16LE(15 + i * 2));
+        }
+        return { timestamp, error_flags, measure_vif, previous_readout_end_of_day, previous_readout_base, delta_values };
+    }
+
+    parseWeekMeasureFrame(buf) {
+        const timestamp = buf.readUInt32LE(0);
+        const error_flags = buf.readUInt16LE(4);
+        const measure_vif = buf.readUInt8(6);
+        const previous_readout_base = buf.readInt32LE(7);
+        const delta_values = [];
+        for (let i = 0; i < 6; i++) {
+            const delta = buf.readIntLE(11 + i * 3, 3);
+            delta_values.push(delta);
+        }
+        return { timestamp, error_flags, measure_vif, previous_readout_base, delta_values };
+    }
+
+    parseInfoFrame(buf) {
+        const timestamp = buf.readUInt32LE(0);
+        const metrological_serial_number = buf.slice(4, 24).toString('ascii').trim();
+        const firmware_version = [buf.readUInt8(24), buf.readUInt8(25)];
+        const battery_charge = buf.readUInt8(26);
+        const pod = buf.slice(27, 47).toString('ascii').trim();
+        return { timestamp, metrological_serial_number, firmware_version, battery_charge, pod };
+    }
+
+    parseAlarmFrame(buf) {
+        const timestamp = buf.readUInt32LE(0);
+        const error_flags = buf.readUInt16LE(4);
+        const measure_vif = buf.readUInt8(6);
+        const current_readout = buf.readInt32LE(7);
+        return { timestamp, error_flags, measure_vif, current_readout };
     }
 }
 
@@ -164,30 +178,32 @@ class ReadingData {
 class DayData extends ReadingData {
     constructor(inf, base_hour) {
         super(inf);
-        this._prev_date = moment(this._date).subtract(1, 'day').hours(base_hour).minutes(0).seconds(0).toISOString();
+        this._prev_date = new Date(this._date.getFullYear(), this._date.getMonth(), this._date.getDate(), base_hour, 0, 0);
+        this._prev_date.setDate(this._prev_date.getDate() - 1);
         this._readings = [new ReadingPoint(this._prev_date, this._df.previous_readout_base, 0)];
         for (let i = 0; i < 11; i++) {
             const [prev_ts, prev_rp] = this._readings[this._readings.length - 1].getReading();
-            const delta = this._df.delta_values[i];
-            this._readings.push(new ReadingPoint(moment(prev_ts).subtract(1, 'hour').toISOString(), prev_rp - delta, delta));
+            const new_ts = new Date(prev_ts);
+            new_ts.setHours(new_ts.getHours() - 1);
+            this._readings.push(new ReadingPoint(new_ts, prev_rp - this._df.delta_values[i], this._df.delta_values[i]));
         }
     }
 
     toString() {
         const unit = vif2str(this._df.measure_vif);
-        return `Daily data: timestamp=${this._date}, errors=${errors2str(this._df.error_flags)}, measure vif=${this._df.measure_vif.toString(16)}
-Previous day end of the day reading=${this._df.previous_readout_end_of_day} ${vif2str(this._df.measure_vif)}
-Previous day base reading=${this._df.previous_readout_base} ${vif2str(this._df.measure_vif)}
-Readings:\n${this._readings.map(i => `${i.toString()} ${unit}`).join('\n')}`;
+        return `Daily data: timestamp=${this._date.toISOString()}, errors=${errors2str(this._df.error_flags)}, measure vif=${this._df.measure_vif}
+Previous day end of the day reading=${this._df.previous_readout_end_of_day} ${unit}
+Previous day base reading=${this._df.previous_readout_base} ${unit}
+Readings:\n${this._readings.map(r => `${r.toString()} ${unit}`).join('\n')}`;
     }
 
-    toDict() {
+    toJSON() {
         return {
             type: 'measure',
-            timestamp: this._date,
+            timestamp: this._date.toISOString(),
             errors: errors2str(this._df.error_flags),
-            measure_vif: this._df.measure_vif,
-            readings: this._readings
+            measure_vif: vif2str(this._df.measure_vif),  // Convert to string
+            readings: this._readings.map(r => r.toJSON()),
         };
     }
 }
@@ -195,171 +211,93 @@ Readings:\n${this._readings.map(i => `${i.toString()} ${unit}`).join('\n')}`;
 class WeekData extends ReadingData {
     constructor(inf) {
         super(inf);
-        this._prev_date = moment(this._date).subtract(1, 'day').startOf('day').toISOString();
+        this._prev_date = new Date(this._date.getFullYear(), this._date.getMonth(), this._date.getDate());
+        this._prev_date.setDate(this._prev_date.getDate() - 1);
         this._readings = [new ReadingPoint(this._prev_date, this._df.previous_readout_base, 0)];
         for (let i = 0; i < 6; i++) {
-            const delta = readInt(this._df.delta_values, i * 3, 3, true);
+            const delta = this._df.delta_values[i];
             const [prev_ts, prev_rp] = this._readings[this._readings.length - 1].getReading();
-            this._readings.push(new ReadingPoint(moment(prev_ts).subtract(1, 'day').toISOString(), prev_rp - delta, delta));
+            const new_ts = new Date(prev_ts);
+            new_ts.setDate(new_ts.getDate() - 1);
+            this._readings.push(new ReadingPoint(new_ts, prev_rp - delta, delta));
         }
     }
 
     toString() {
         const unit = vif2str(this._df.measure_vif);
-        return `Alarm data: timestamp=${this._date}, errors=${errors2str(this._df.error_flags)}, measure vif=${this._df.measure_vif.toString(16)}
-Previous day base reading=${this._df.previous_readout_base} ${vif2str(this._df.measure_vif)}
-Readings:\n${this._readings.map(i => `${i.toString()} ${unit}`).join('\n')}`;
+        return `Weekly data: timestamp=${this._date.toISOString()}, errors=${errors2str(this._df.error_flags)}, measure vif=${this._df.measure_vif}
+Previous day base reading=${this._df.previous_readout_base} ${unit}
+Readings:\n${this._readings.map(r => `${r.toString()} ${unit}`).join('\n')}`;
     }
 
-    toDict() {
+    toJSON() {
         return {
             type: 'measure',
-            timestamp: this._date,
+            timestamp: this._date.toISOString(),
             errors: errors2str(this._df.error_flags),
-            measure_vif: this._df.measure_vif,
-            readings: this._readings
+            measure_vif: vif2str(this._df.measure_vif),  // Convert to string
+            readings: this._readings.map(r => r.toJSON()),
         };
     }
 }
 
-class ArrowWan2Decoder {
-    constructor(logger) {
-        this._logger = logger || winston.createLogger({
-            level: 'info',
-            format: winston.format.simple(),
-            transports: [new winston.transports.Console()]
-        });
+class InfoData {
+    constructor(inf) {
+        this._date = timestamp2datetime(inf.timestamp);
+        this._serial_number = inf.metrological_serial_number;
+        this._fw_version = fwver2str(inf.firmware_version);
+        this._battery = inf.battery_charge;
+        this._pod = inf.pod;
+    }
 
-        this._handlers_dict = {
-            1: this.decodeEarlyDayMeasuresFrame,
-            2: this.decodeLateDayMeasuresFrame,
-            5: this.decodeWeekMeasuresFrame,
-            8: this.decodeInfoFrame,
-            9: this.decodeAlarmFrame
+    toString() {
+        return `Info data: timestamp=${this._date.toISOString()}, serial_number=${this._serial_number}, firmware_version=${this._fw_version}, battery_charge=${this._battery}, pod=${this._pod}`;
+    }
+
+    toJSON() {
+        return {
+            type: 'info',
+            timestamp: this._date.toISOString(),
+            serial_number: this._serial_number,
+            firmware_version: this._fw_version,
+            battery_charge: this._battery,
+            pod: this._pod,
         };
     }
+}
 
-    decode(fport, frame) {
-        if (!this._handlers_dict[fport]) {
-            throw new Error(`Missing decoder for frame on port ${fport}`);
-        }
-        const handler = this._handlers_dict[fport].bind(this);
-        return handler(frame);
+class AlarmData {
+    constructor(inf) {
+        this._date = timestamp2datetime(inf.timestamp);
+        this._errors = errors2str(inf.error_flags);
+        this._vif = vif2str(inf.measure_vif);
+        this._reading = inf.current_readout;
     }
 
-    decodeEarlyDayMeasuresFrame(frame) {
-        const dm = DayMeasureFrame(frame);
-        return new DayData(dm, 11);
+    toString() {
+        return `Alarm data: timestamp=${this._date.toISOString()}, errors=${this._errors}, measure_vif=${this._vif}, reading=${this._reading} ${this._vif}`;
     }
 
-    decodeLateDayMeasuresFrame(frame) {
-        const dm = DayMeasureFrame(frame);
-        return new DayData(dm, 23);
-    }
-
-    decodeWeekMeasuresFrame(frame) {
-        const dm = WeekMeasureFrame(frame);
-        return new WeekData(dm);
-    }
-
-    decodeInfoFrame(frame) {
-        const info = InfoFrame(frame);
-        return new InfoData(info);
-    }
-
-    decodeAlarmFrame(frame) {
-        const alarm = AlarmFrame(frame);
-        return new AlarmData(alarm);
+    toJSON() {
+        return {
+            type: 'alarm',
+            timestamp: this._date.toISOString(),
+            errors: this._errors,
+            measure_vif: this._vif,
+            reading: this._reading,
+        };
     }
 }
+
 function decodeUplink(input) {
-    const program = new Command();
-
-    program
-        .option('-f, --frame <string>', 'HEX encoded LoRa payload')
-        .option('-p, --fport <number>', 'Payload FPort (in dec)')
-        .option('-o, --output-file <string>', 'Data output file (if not provided defaults to stdout')
-        .option('-j, --json', 'Output format is JSON')
-        .option('-v, --verbose', 'Be verbose');
-
-    program.parse(process.argv);
-    const options = program.opts();
-
-    const logger = winston.createLogger({
-        level: options.verbose ? 'debug' : 'info',
-        format: winston.format.simple(),
-        transports: [new winston.transports.Console()]
-    });
-
-    if (!input.bytes) {
-        logger.error('Missing frame');
-        process.exit(1);
-    }
-    if (!input.fport) {
-        logger.error('Missing fport');
-        process.exit(1);
-    }
-
-    const fport = input.fport;
-    const frame = input.bytes.replace(/[^0-9a-f]/gi, '').toLowerCase();
-
-    const payload = Buffer.from(frame, 'hex');
     try {
-        const decoder = new ArrowWan2Decoder(logger);
-        let result = decoder.decode(fport, payload);
-        if (options.json) {
-            result = JSON.stringify(result.toDict(), null, 4);
-        } else {
-            result = result.toString();
-        }
-        if (options.outputFile) {
-            require('fs').writeFileSync(options.outputFile, result);
-        } else {
-            console.log(result);
-        }
-    } catch (e) {
-        logger.error(`Frame ${frame} on port ${fport} could not be decoded (${e.message}): ${e.stack}`);
-        process.exit(1);
+        const decoder = new ArrowWan2Decoder();
+        const buf = Buffer.from(input.bytes);
+        const data = decoder.decode(input.fPort, buf);
+        return { data: data.toJSON() };
+    } catch (err) {
+        return { errors: [err.message] };
     }
 }
 
-
-function DayMeasureFrame(buf) {
-    return {
-        timestamp: readUInt(buf, 0, 4),
-        error_flags: readUInt(buf, 4, 2),
-        measure_vif: readUInt(buf, 6, 1),
-        previous_readout_end_of_day: readInt(buf, 7, 4, true),
-        previous_readout_base: readInt(buf, 11, 4, true),
-        delta_values: Array.from({ length: 11 }, (_, i) => readInt(buf, 15 + i * 2, 2, true))
-    };
-}
-
-function WeekMeasureFrame(buf) {
-    return {
-        timestamp: readUInt(buf, 0, 4),
-        error_flags: readUInt(buf, 4, 2),
-        measure_vif: readUInt(buf, 6, 1),
-        previous_readout_base: readInt(buf, 7, 4, true),
-        delta_values: Array.from({ length: 18 }, (_, i) => buf[11 + i])
-    };
-}
-
-function InfoFrame(buf) {
-    return {
-        timestamp: readUInt(buf, 0, 4),
-        metrological_serial_number: buf.slice(4, 24).toString('ascii').replace(/\0/g, ''),
-        firmware_version: Array.from(buf.slice(24, 28)),
-        battery_charge: buf[28],
-        pod: buf.slice(29, 49).toString('ascii').replace(/\0/g, '')
-    };
-}
-
-function AlarmFrame(buf) {
-    return {
-        timestamp: readUInt(buf, 0, 4),
-        error_flags: readUInt(buf, 4, 2),
-        measure_vif: readUInt(buf, 6, 1),
-        current_readout: readInt(buf, 7, 4, true)
-    };
-}
+exports.decodeUplink = decodeUplink;
