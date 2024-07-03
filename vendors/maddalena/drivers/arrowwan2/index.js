@@ -1,7 +1,3 @@
-const hex2bin = (hex) => {
-    return (parseInt(hex, 16).toString(2)).padStart(8, '0');
-}
-
 function vif2str(vif) {
     const vifTable = {
         0x10: 'ml',
@@ -25,9 +21,10 @@ function vif2str(vif) {
 }
 
 function timestamp2datetime(ts) {
-    const EPOCH2000 = Date.UTC(2000, 0, 1, 0, 0, 0);
-    const date = new Date(EPOCH2000 + ts * 1000);
-    return date.toISOString().split('.')[0] + 'Z';
+    const EPOCH2000 = new Date(Date.UTC(2000, 0, 1, 0, 0, 0));
+    const date = new Date(EPOCH2000.getTime() + ts * 1000);
+    date.setMinutes(date.getMinutes() - date.getTimezoneOffset());
+    return date.toISOString().split('.')[0];
 }
 
 function fwver2str(ver) {
@@ -171,13 +168,14 @@ class ArrowWan2Decoder {
 class ReadingData {
     constructor(inf) {
         this._df = inf;
-        this._date = timestamp2datetime(inf.timestamp);
+        this._date = new Date(timestamp2datetime(inf.timestamp));
     }
 }
 
 class DayData extends ReadingData {
     constructor(inf, base_hour) {
         super(inf);
+        this._date = new Date(this._date);
         this._prev_date = new Date(this._date.getFullYear(), this._date.getMonth(), this._date.getDate(), base_hour, 0, 0);
         this._prev_date.setDate(this._prev_date.getDate() - 1);
         this._readings = [new ReadingPoint(this._prev_date, this._df.previous_readout_base, 0)];
@@ -200,9 +198,9 @@ Readings:\n${this._readings.map(r => `${r.toString()} ${unit}`).join('\n')}`;
     toJSON() {
         return {
             type: 'measure',
-            timestamp: this._date.toISOString(),
+            timestamp: timestamp2datetime(this._df.timestamp),
             errors: errors2str(this._df.error_flags),
-            measure_vif: vif2str(this._df.measure_vif),  // Convert to string
+            measure_vif: this._df.measure_vif,
             readings: this._readings.map(r => r.toJSON()),
         };
     }
@@ -211,6 +209,7 @@ Readings:\n${this._readings.map(r => `${r.toString()} ${unit}`).join('\n')}`;
 class WeekData extends ReadingData {
     constructor(inf) {
         super(inf);
+        this._date = new Date(this._date);
         this._prev_date = new Date(this._date.getFullYear(), this._date.getMonth(), this._date.getDate());
         this._prev_date.setDate(this._prev_date.getDate() - 1);
         this._readings = [new ReadingPoint(this._prev_date, this._df.previous_readout_base, 0)];
@@ -226,65 +225,51 @@ class WeekData extends ReadingData {
     toString() {
         const unit = vif2str(this._df.measure_vif);
         return `Weekly data: timestamp=${this._date.toISOString()}, errors=${errors2str(this._df.error_flags)}, measure vif=${this._df.measure_vif}
-Previous day base reading=${this._df.previous_readout_base} ${unit}
+Previous week base reading=${this._df.previous_readout_base} ${unit}
 Readings:\n${this._readings.map(r => `${r.toString()} ${unit}`).join('\n')}`;
     }
 
     toJSON() {
         return {
             type: 'measure',
-            timestamp: this._date.toISOString(),
+            timestamp: timestamp2datetime(this._df.timestamp),
             errors: errors2str(this._df.error_flags),
-            measure_vif: vif2str(this._df.measure_vif),  // Convert to string
+            measure_vif: this._df.measure_vif,
             readings: this._readings.map(r => r.toJSON()),
         };
     }
 }
 
-class InfoData {
-    constructor(inf) {
-        this._date = timestamp2datetime(inf.timestamp);
-        this._serial_number = inf.metrological_serial_number;
-        this._fw_version = fwver2str(inf.firmware_version);
-        this._battery = inf.battery_charge;
-        this._pod = inf.pod;
-    }
-
+class InfoData extends ReadingData {
     toString() {
-        return `Info data: timestamp=${this._date.toISOString()}, serial_number=${this._serial_number}, firmware_version=${this._fw_version}, battery_charge=${this._battery}, pod=${this._pod}`;
+        return `Info frame: timestamp=${timestamp2datetime(this._df.timestamp)}, meter_serial=${this._df.metrological_serial_number}, firmware_version=${fwver2str(this._df.firmware_version)}, battery_charge=${this._df.battery_charge}, pod=${this._df.pod}`;
     }
 
     toJSON() {
         return {
             type: 'info',
-            timestamp: this._date.toISOString(),
-            serial_number: this._serial_number,
-            firmware_version: this._fw_version,
-            battery_charge: this._battery,
-            pod: this._pod,
+            timestamp: timestamp2datetime(this._df.timestamp), // Use the adjusted timestamp function
+            meter_serial: this._df.metrological_serial_number,
+            firmware_version: fwver2str(this._df.firmware_version),
+            battery_charge: this._df.battery_charge,
+            pod: this._df.pod,
         };
     }
 }
 
-class AlarmData {
-    constructor(inf) {
-        this._date = timestamp2datetime(inf.timestamp);
-        this._errors = errors2str(inf.error_flags);
-        this._vif = vif2str(inf.measure_vif);
-        this._reading = inf.current_readout;
-    }
 
+class AlarmData extends ReadingData {
     toString() {
-        return `Alarm data: timestamp=${this._date.toISOString()}, errors=${this._errors}, measure_vif=${this._vif}, reading=${this._reading} ${this._vif}`;
+        return `Alarm frame: timestamp=${this._date.toISOString()}, errors=${errors2str(this._df.error_flags)}, measure vif=${this._df.measure_vif}, current_readout=${this._df.current_readout}`;
     }
 
     toJSON() {
         return {
             type: 'alarm',
-            timestamp: this._date.toISOString(),
-            errors: this._errors,
-            measure_vif: this._vif,
-            reading: this._reading,
+            timestamp: timestamp2datetime(this._df.timestamp),
+            errors: errors2str(this._df.error_flags),
+            measure_vif: this._df.measure_vif,
+            current_readout: this._df.current_readout,
         };
     }
 }
@@ -292,9 +277,9 @@ class AlarmData {
 function decodeUplink(input) {
     try {
         const decoder = new ArrowWan2Decoder();
-        const buf = Buffer.from(input.bytes);
+        const buf = Buffer.from(input.bytes, 'hex');
         const data = decoder.decode(input.fPort, buf);
-        return { data: data.toJSON() };
+        return { data: data.toJSON(), errors: [], warnings: [] };
     } catch (err) {
         return { errors: [err.message] };
     }

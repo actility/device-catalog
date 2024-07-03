@@ -1,27 +1,6 @@
 [
   {
     "type": "uplink",
-    "description": "Meter serial number, firmware version, battery charge, POD",
-    "input": {
-      "bytes": "81B83D2A303132323132333435363738390000000000000000010000634954203030312045203132333435363738000000",
-      "fPort": 8,
-      "recvTime": "2020-08-02T20:00:00.000+05:00"
-    },
-    "output": {
-      "data": {
-        "type": "info",
-        "timestamp": "2022-06-16T10:46:41",
-        "meter_serial": "0122123456789",
-        "firmware_version": "1.0",
-        "battery_charge": 99,
-        "pod": "IT 001 E 12345678"
-      },
-      "errors": [],
-      "warnings": []
-    }
-  },
-  {
-    "type": "uplink",
     "description": "Alarms and current readout",
     "input": {
       "bytes": "F693302A010013CD020000",
@@ -33,7 +12,7 @@
         "type": "alarm",
         "timestamp": "2022-06-06T11:31:18",
         "errors": "Mechanical Fraud",
-        "measure_vif": "l",
+        "measure_vif": 19,
         "current_readout": 717
       },
       "errors": [],
@@ -42,10 +21,31 @@
   },
   {
     "type": "uplink",
-    "description": "Daily readings (7 days) and alarms",
+    "description": "Meter serial number, firmware version, battery charge, POD",
+    "input": {
+      "bytes": "81B83D2A303132323132333435363738390000000000000000010000004954203030312045203132333435363738000000",
+      "fPort": 8,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "type": "info",
+        "timestamp": "2022-06-16T10:46:41",
+        "meter_serial": "0122123456789",
+        "firmware_version": "1.0",
+        "battery_charge": 0,
+        "pod": "IT 001 E 12345678"
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Hourly readings and alarms (two frames for 24 hour values)",
     "input": {
       "bytes": "D22E112A040013583E030059A20200860C630C2A0C1E0C2E0C2D0C3B0C3B0C310C280C2B0C",
-      "fPort": 5,
+      "fPort": 1,
       "recvTime": "2020-08-02T20:00:00.000+05:00"
     },
     "output": {
@@ -53,7 +53,7 @@
         "type": "measure",
         "timestamp": "2022-05-13T15:59:30",
         "errors": "Leakage",
-        "measure_vif": "l",
+        "measure_vif": 19,
         "readings": [
           {
             "timestamp": "2022-05-12T11:00:00",
@@ -125,7 +125,7 @@
     "type": "uplink",
     "description": "Daily readings (7 days) and alarms",
     "input": {
-      "bytes": "74A14b2A010013A40600007F01006B0000D7FFFF000000330000B00400",
+      "bytes": "74A14B2A010013A40600007F01006B0000D7FFFF000000330000B00400",
       "fPort": 5,
       "recvTime": "2020-08-02T20:00:00.000+05:00"
     },
@@ -172,25 +172,6 @@
             "delta": 1200
           }
         ]
-      },
-      "errors": [],
-      "warnings": []
-    }
-  },
-  {
-    "type": "uplink",
-    "description": "Hourly readings and alarms (two frames for 24 hour values)",
-    "input": {
-      "bytes": "0175640367F1000467F7008467F70001",
-      "fPort": 1,
-      "recvTime": "2020-08-02T20:00:00.000+05:00"
-    },
-    "output": {
-      "data": {
-        "battery": 100,
-        "temperature_chn1": 24.1,
-        "temperature_chn2": 24.7,
-        "temperature_chn2_alarm": "threshold"
       },
       "errors": [],
       "warnings": []
