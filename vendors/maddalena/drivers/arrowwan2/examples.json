@@ -1,29 +1,9 @@
 [
   {
     "type": "uplink",
-    "description": "Alarms and current readout",
-    "input": {
-      "bytes": "F693302A010013CD020000",
-      "fPort": 9,
-      "recvTime": "2020-08-02T20:00:00.000+05:00"
-    },
-    "output": {
-      "data": {
-        "type": "alarm",
-        "timestamp": "2022-06-06T11:31:18",
-        "errors": "Mechanical Fraud",
-        "measure_vif": 19,
-        "current_readout": 717
-      },
-      "errors": [],
-      "warnings": []
-    }
-  },
-  {
-    "type": "uplink",
     "description": "Meter serial number, firmware version, battery charge, POD",
     "input": {
-      "bytes": "81B83D2A303132323132333435363738390000000000000000010000004954203030312045203132333435363738000000",
+      "bytes": "81B83D2A303132323132333435363738390000000000000000010000634954203030312045203132333435363738000000",
       "fPort": 8,
       "recvTime": "2020-08-02T20:00:00.000+05:00"
     },
@@ -33,7 +13,7 @@
         "timestamp": "2022-06-16T10:46:41",
         "meter_serial": "0122123456789",
         "firmware_version": "1.0",
-        "battery_charge": 0,
+        "battery_charge": 99,
         "pod": "IT 001 E 12345678"
       },
       "errors": [],
@@ -172,6 +152,26 @@
             "delta": 1200
           }
         ]
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Alarms and current readout",
+    "input": {
+      "bytes": "F693302A010013CD020000",
+      "fPort": 9,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "type": "alarm",
+        "timestamp": "2022-06-06T11:31:18",
+        "errors": "Mechanical Fraud",
+        "measure_vif": 19,
+        "current_readout": 717
       },
       "errors": [],
       "warnings": []

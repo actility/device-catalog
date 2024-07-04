@@ -23,7 +23,6 @@ function vif2str(vif) {
 function timestamp2datetime(ts) {
     const EPOCH2000 = new Date(Date.UTC(2000, 0, 1, 0, 0, 0));
     const date = new Date(EPOCH2000.getTime() + ts * 1000);
-    date.setMinutes(date.getMinutes() - date.getTimezoneOffset());
     return date.toISOString().split('.')[0];
 }
 
@@ -66,12 +65,12 @@ class ReadingPoint {
     }
 
     toString() {
-        return `datetime=${this._ts.toISOString()}, reading=${this._reading} (delta=${this._delta} 0x${this._delta.toString(16).toUpperCase()})`;
+        return `datetime=${timestamp2datetime(this._ts)}, reading=${this._reading} (delta=${this._delta} 0x${this._delta.toString(16).toUpperCase()})`;
     }
 
     toJSON() {
         return {
-            timestamp: this._ts.toISOString(),
+            timestamp: this._ts.split('.')[0],
             reading: this._reading,
             delta: this._delta,
         };
@@ -81,11 +80,11 @@ class ReadingPoint {
 class ArrowWan2Decoder {
     constructor() {
         this.handlers = {
-            1: this.decodeEarlyDayMeasuresFrame,
-            2: this.decodeLateDayMeasuresFrame,
-            5: this.decodeWeekMeasuresFrame,
-            8: this.decodeInfoFrame,
-            9: this.decodeAlarmFrame,
+            1: this.decodeEarlyDayMeasuresFrame.bind(this),
+            2: this.decodeLateDayMeasuresFrame.bind(this),
+            5: this.decodeWeekMeasuresFrame.bind(this),
+            8: this.decodeInfoFrame.bind(this),
+            9: this.decodeAlarmFrame.bind(this),
         };
     }
 
@@ -93,7 +92,7 @@ class ArrowWan2Decoder {
         if (!this.handlers[fport]) {
             throw new Error(`Missing decoder for frame on port ${fport}`);
         }
-        return this.handlers[fport].call(this, frame);
+        return this.handlers[fport](frame);
     }
 
     decodeEarlyDayMeasuresFrame(frame) {
@@ -131,7 +130,7 @@ class ArrowWan2Decoder {
         for (let i = 0; i < 11; i++) {
             delta_values.push(buf.readInt16LE(15 + i * 2));
         }
-        return { timestamp, error_flags, measure_vif, previous_readout_end_of_day, previous_readout_base, delta_values };
+        return {timestamp, error_flags, measure_vif, previous_readout_end_of_day, previous_readout_base, delta_values};
     }
 
     parseWeekMeasureFrame(buf) {
@@ -144,24 +143,35 @@ class ArrowWan2Decoder {
             const delta = buf.readIntLE(11 + i * 3, 3);
             delta_values.push(delta);
         }
-        return { timestamp, error_flags, measure_vif, previous_readout_base, delta_values };
+        return {timestamp, error_flags, measure_vif, previous_readout_base, delta_values};
     }
 
     parseInfoFrame(buf) {
         const timestamp = buf.readUInt32LE(0);
+
         const metrological_serial_number = buf.slice(4, 24).toString('ascii').trim();
-        const firmware_version = [buf.readUInt8(24), buf.readUInt8(25)];
-        const battery_charge = buf.readUInt8(26);
-        const pod = buf.slice(27, 47).toString('ascii').trim();
+
+        const firmware_version = [
+            buf.readUInt8(24),
+            buf.readUInt8(25),
+            buf.readUInt8(26),
+            buf.readUInt8(27)
+        ];
+
+        const battery_charge = buf.readUInt8(28);
+
+        const pod = buf.slice(29, 49).toString('ascii').trim();
+
         return { timestamp, metrological_serial_number, firmware_version, battery_charge, pod };
     }
+
 
     parseAlarmFrame(buf) {
         const timestamp = buf.readUInt32LE(0);
         const error_flags = buf.readUInt16LE(4);
         const measure_vif = buf.readUInt8(6);
         const current_readout = buf.readInt32LE(7);
-        return { timestamp, error_flags, measure_vif, current_readout };
+        return {timestamp, error_flags, measure_vif, current_readout};
     }
 }
 
@@ -175,15 +185,14 @@ class ReadingData {
 class DayData extends ReadingData {
     constructor(inf, base_hour) {
         super(inf);
-        this._date = new Date(this._date);
         this._prev_date = new Date(this._date.getFullYear(), this._date.getMonth(), this._date.getDate(), base_hour, 0, 0);
         this._prev_date.setDate(this._prev_date.getDate() - 1);
-        this._readings = [new ReadingPoint(this._prev_date, this._df.previous_readout_base, 0)];
+        this._readings = [new ReadingPoint(this._prev_date.toISOString(), this._df.previous_readout_base, 0)];
         for (let i = 0; i < 11; i++) {
             const [prev_ts, prev_rp] = this._readings[this._readings.length - 1].getReading();
             const new_ts = new Date(prev_ts);
             new_ts.setHours(new_ts.getHours() - 1);
-            this._readings.push(new ReadingPoint(new_ts, prev_rp - this._df.delta_values[i], this._df.delta_values[i]));
+            this._readings.push(new ReadingPoint(new_ts.toISOString(), prev_rp - this._df.delta_values[i], this._df.delta_values[i]));
         }
     }
 
@@ -209,16 +218,14 @@ Readings:\n${this._readings.map(r => `${r.toString()} ${unit}`).join('\n')}`;
 class WeekData extends ReadingData {
     constructor(inf) {
         super(inf);
-        this._date = new Date(this._date);
         this._prev_date = new Date(this._date.getFullYear(), this._date.getMonth(), this._date.getDate());
         this._prev_date.setDate(this._prev_date.getDate() - 1);
-        this._readings = [new ReadingPoint(this._prev_date, this._df.previous_readout_base, 0)];
+        this._readings = [new ReadingPoint(this._prev_date.toISOString(), this._df.previous_readout_base, 0)];
         for (let i = 0; i < 6; i++) {
-            const delta = this._df.delta_values[i];
             const [prev_ts, prev_rp] = this._readings[this._readings.length - 1].getReading();
             const new_ts = new Date(prev_ts);
             new_ts.setDate(new_ts.getDate() - 1);
-            this._readings.push(new ReadingPoint(new_ts, prev_rp - delta, delta));
+            this._readings.push(new ReadingPoint(new_ts.toISOString(), prev_rp - this._df.delta_values[i], this._df.delta_values[i]));
         }
     }
 
@@ -241,35 +248,51 @@ Readings:\n${this._readings.map(r => `${r.toString()} ${unit}`).join('\n')}`;
 }
 
 class InfoData extends ReadingData {
+    constructor(inf) {
+        super(inf);
+        this._serial_number = inf.metrological_serial_number;
+        this._firmware_version = fwver2str(inf.firmware_version);
+        this._battery_charge = inf.battery_charge;
+        this._pod = inf.pod;
+    }
+
     toString() {
-        return `Info frame: timestamp=${timestamp2datetime(this._df.timestamp)}, meter_serial=${this._df.metrological_serial_number}, firmware_version=${fwver2str(this._df.firmware_version)}, battery_charge=${this._df.battery_charge}, pod=${this._df.pod}`;
+        return `Info data: timestamp=${this._date.toISOString()}, 
+meter_serial=${this._serial_number}, 
+Firmware version=${this._firmware_version}, 
+Battery charge=${this._battery_charge}, 
+pod=${this._pod}`;
     }
 
     toJSON() {
         return {
             type: 'info',
-            timestamp: timestamp2datetime(this._df.timestamp), // Use the adjusted timestamp function
-            meter_serial: this._df.metrological_serial_number,
-            firmware_version: fwver2str(this._df.firmware_version),
-            battery_charge: this._df.battery_charge,
-            pod: this._df.pod,
+            timestamp: timestamp2datetime(this._df.timestamp),
+            meter_serial: this._serial_number,
+            firmware_version: this._firmware_version,
+            battery_charge: this._battery_charge,
+            pod: this._pod,
         };
     }
 }
 
-
 class AlarmData extends ReadingData {
+    constructor(inf) {
+        super(inf);
+        this._errors = errors2str(inf.error_flags);
+        this._current_readout = inf.current_readout;
+    }
+
     toString() {
-        return `Alarm frame: timestamp=${this._date.toISOString()}, errors=${errors2str(this._df.error_flags)}, measure vif=${this._df.measure_vif}, current_readout=${this._df.current_readout}`;
+        return `Alarm data: timestamp=${this._date.toISOString()}, errors=${this._errors}, current_readout=${this._current_readout}`;
     }
 
     toJSON() {
         return {
             type: 'alarm',
             timestamp: timestamp2datetime(this._df.timestamp),
-            errors: errors2str(this._df.error_flags),
-            measure_vif: this._df.measure_vif,
-            current_readout: this._df.current_readout,
+            errors: this._errors,
+            current_readout: this._current_readout,
         };
     }
 }
@@ -279,9 +302,9 @@ function decodeUplink(input) {
         const decoder = new ArrowWan2Decoder();
         const buf = Buffer.from(input.bytes, 'hex');
         const data = decoder.decode(input.fPort, buf);
-        return { data: data.toJSON(), errors: [], warnings: [] };
+        return {data: data.toJSON(), errors: [], warnings: []};
     } catch (err) {
-        return { errors: [err.message] };
+        return {errors: [err.message]};
     }
 }
 
