@@ -149,7 +149,9 @@ class ArrowWan2Decoder {
     parseInfoFrame(buf) {
         const timestamp = buf.readUInt32LE(0);
 
-        const metrological_serial_number = buf.slice(4, 24).toString('ascii').trim();
+        const metrological_serial_number = buf.slice(4, 24)
+            .filter(byte => byte !== 0)
+            .toString('ascii');
 
         const firmware_version = [
             buf.readUInt8(24),
@@ -160,7 +162,9 @@ class ArrowWan2Decoder {
 
         const battery_charge = buf.readUInt8(28);
 
-        const pod = buf.slice(29, 49).toString('ascii').trim();
+        const pod = buf.slice(29, 49)
+            .filter(byte => byte !== 0)
+            .toString('ascii');
 
         return { timestamp, metrological_serial_number, firmware_version, battery_charge, pod };
     }
@@ -280,11 +284,12 @@ class AlarmData extends ReadingData {
     constructor(inf) {
         super(inf);
         this._errors = errors2str(inf.error_flags);
+        this._measure_vif = inf.measure_vif;
         this._current_readout = inf.current_readout;
     }
 
     toString() {
-        return `Alarm data: timestamp=${this._date.toISOString()}, errors=${this._errors}, current_readout=${this._current_readout}`;
+        return `Alarm data: timestamp=${this._date.toISOString()}, errors=${this._errors}, mesure_vif=${this._measure_vif} current_readout=${this._current_readout}`;
     }
 
     toJSON() {
@@ -292,6 +297,7 @@ class AlarmData extends ReadingData {
             type: 'alarm',
             timestamp: timestamp2datetime(this._df.timestamp),
             errors: this._errors,
+            measure_vif: this._measure_vif,
             current_readout: this._current_readout,
         };
     }
@@ -309,3 +315,11 @@ function decodeUplink(input) {
 }
 
 exports.decodeUplink = decodeUplink;
+/*
+let input =  {
+    bytes: Buffer.from("F693302A010013CD020000", "hex"),
+        fPort: 9,
+        recvTime: "2020-08-02T20:00:00.000+05:00"
+}
+
+console.log(decodeUplink(input))*/
