@@ -23,6 +23,7 @@ function vif2str(vif) {
 function timestamp2datetime(ts) {
     const EPOCH2000 = new Date(Date.UTC(2000, 0, 1, 0, 0, 0));
     const date = new Date(EPOCH2000.getTime() + ts * 1000);
+    date.setUTCHours(date.getUTCHours() + 1)
     return date.toISOString().split('.')[0];
 }
 
@@ -315,11 +316,14 @@ function decodeUplink(input) {
 }
 
 exports.decodeUplink = decodeUplink;
-/*
-let input =  {
-    bytes: Buffer.from("F693302A010013CD020000", "hex"),
-        fPort: 9,
-        recvTime: "2020-08-02T20:00:00.000+05:00"
-}
+/*let input =  {
+    bytes: Buffer.from("74A14B2A010013A40600007F01006B0000D7FFFF000000330000B00400", "hex"),
+        fPort: 5
+}*/
 
-console.log(decodeUplink(input))*/
+/*let input =  {
+    bytes: Buffer.from("81B83D2A303132323132333435363738390000000000000000010000634954203030312045203132333435363738000000", "hex"),
+    fPort: 8
+}*/
+
+//console.log(decodeUplink(input))
