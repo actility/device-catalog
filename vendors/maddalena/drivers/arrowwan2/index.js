@@ -27,6 +27,13 @@ function timestamp2datetime(ts) {
     return date.toISOString().split('.')[0];
 }
 
+function timestamp2datetimeForReadingPoint(ts) {
+    const EPOCH2000 = new Date(Date.UTC(2000, 0, 1, 0, 0, 0));
+    const date = new Date(EPOCH2000.getTime() + ts * 1000);
+    date.setUTCHours(date.getUTCHours() - 2)
+    return date.toISOString().split('.')[0];
+}
+
 function fwver2str(ver) {
     return `${ver[1]}.${ver[0]}`;
 }
@@ -66,7 +73,7 @@ class ReadingPoint {
     }
 
     toString() {
-        return `datetime=${timestamp2datetime(this._ts)}, reading=${this._reading} (delta=${this._delta} 0x${this._delta.toString(16).toUpperCase()})`;
+        return `datetime=${timestamp2datetimeForReadingPoint(this._ts)}, reading=${this._reading} (delta=${this._delta} 0x${this._delta.toString(16).toUpperCase()})`;
     }
 
     toJSON() {
@@ -192,6 +199,7 @@ class DayData extends ReadingData {
         super(inf);
         this._prev_date = new Date(this._date.getFullYear(), this._date.getMonth(), this._date.getDate(), base_hour, 0, 0);
         this._prev_date.setDate(this._prev_date.getDate() - 1);
+        this._prev_date.setHours(this._prev_date.getHours() + 2);
         this._readings = [new ReadingPoint(this._prev_date.toISOString(), this._df.previous_readout_base, 0)];
         for (let i = 0; i < 11; i++) {
             const [prev_ts, prev_rp] = this._readings[this._readings.length - 1].getReading();
@@ -225,6 +233,7 @@ class WeekData extends ReadingData {
         super(inf);
         this._prev_date = new Date(this._date.getFullYear(), this._date.getMonth(), this._date.getDate());
         this._prev_date.setDate(this._prev_date.getDate() - 1);
+        this._prev_date.setHours(this._prev_date.getHours() + 2);
         this._readings = [new ReadingPoint(this._prev_date.toISOString(), this._df.previous_readout_base, 0)];
         for (let i = 0; i < 6; i++) {
             const [prev_ts, prev_rp] = this._readings[this._readings.length - 1].getReading();
@@ -320,7 +329,6 @@ exports.decodeUplink = decodeUplink;
     bytes: Buffer.from("74A14B2A010013A40600007F01006B0000D7FFFF000000330000B00400", "hex"),
         fPort: 5
 }*/
-
 /*let input =  {
     bytes: Buffer.from("81B83D2A303132323132333435363738390000000000000000010000634954203030312045203132333435363738000000", "hex"),
     fPort: 8
