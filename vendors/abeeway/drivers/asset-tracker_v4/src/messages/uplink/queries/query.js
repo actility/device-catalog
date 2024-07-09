@@ -34,15 +34,17 @@ function determineQuery(payload){
         default:
             throw new Error("Query Type Unknown");
     }
+    return query;
 }
 
 function determineSvId(payload, min, max , constellation){
-    let Svid = [];
+    let svid = [];
     for (let i = 0; i < payload.length; i++) {
-        if (!util.isValueInRange(min, max))
+        if (!util.isValueInRange(payload[i], min, max))
             throw new Error("Invalid "+constellation+" SVID Number");
-        gpsSvid.push(payload[i]);
+        svid.push(payload[i]);
     }
+    return svid
 } 
 module.exports = {
     Query: Query,

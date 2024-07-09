@@ -4,7 +4,8 @@ let basicHeadeClass = require("./messages/uplink/basicHeader");
 let extendedHeaderClass = require("./messages/uplink/extendedHeader");
 let notificationClass = require("./messages/uplink/notifications/notification");
 let positionClass = require("./messages/uplink/positions/position");
-let responseClass = require("./messages/uplink/responses/response")
+let responseClass = require("./messages/uplink/responses/response");
+let queryClass = require("./messages/uplink/queries/query");
 let util = require("./util");
 let commandClass = require("./messages/downlink/command");
 let requestClass = require("./messages/downlink/requests/request");
@@ -50,7 +51,7 @@ function decodeUplink(input) {
                 decodedData.position = positionClass.determinePosition(payload, multiFrame);
                 break;
             case abeewayUplinkPayloadClass.messageType.QUERY:
-                decodedData.query = determineQuery(payload);
+                decodedData.query = queryClass.determineQuery(payload);
                 break;
             case abeewayUplinkPayloadClass.messageType.RESPONSE:
                 decodedData.response = responseClass.determineResponse(payload, multiFrame);
