@@ -2089,6 +2089,38 @@
    }
 },
 {
+   "description":"Query update GPS almanac",
+   "type":"uplink",
+   "input":{
+      "bytes":"18007f2302010203",
+      "recvTime":"2024-06-20T14:51:53.243+02:00",
+      "fPort":1
+   },
+   "output":{
+      "data":{
+         "header":{
+            "ackToken":0,
+            "multiFrame":  false,
+            "batteryLevel":"CHARGING",
+            "sos":false,
+            "timestamp":"2024-06-20T09:02:27.000Z",
+            "type":"QUERY"
+         },
+         "payload":"18007f2302010203",
+         "query":{
+            "gpsSvid":[1,2,3],
+            "queryType": "UPDATE_GPS_ALMANAC"
+         }
+      },
+      "errors":[
+         
+      ],
+      "warnings":[
+         
+      ]
+   }
+},
+{
    "description":"Wifi position",
    "type":"uplink",
    "input":{
