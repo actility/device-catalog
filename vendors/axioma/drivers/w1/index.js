@@ -87,7 +87,7 @@ function decodeUplink(input) {
             time: firstLogTime, 
             volume: firstLogVolume
         });
-        for (let i=17; i < length; i+=2) {
+        for (let i=17; length - i > 1; i+=2) {
             deltaVolume = bytes.readUIntLE(i, 2);
             deltaVolumes.push(deltaVolume);
             v += deltaVolume;
