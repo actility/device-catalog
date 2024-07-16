@@ -214,6 +214,9 @@ describe("Decode uplink", () => {
                 // Then
                 const expected = example.output;
 
+                // Adaptations
+                adaptDates(result, expected);
+
                 expect(result).toStrictEqual(expected);
             });
         }
@@ -334,24 +337,41 @@ function adaptBytesArray(bytes){
     return bytes;
 }
 
+
+// UTIL
 function adaptDates(result, expected) {
     for(let property of listProperties(result)) {
         let keys = property.split('.');
         let value = result;
+        let expectedValue = expected;
+        let skipProperty = false;
         for(let key of keys) {
             value = value[key];
+            expectedValue = expectedValue[key];
+            if(expectedValue == null) {
+                skipProperty = true;
+                break;
+            }
         }
-
-        let keysStr = keys.join("\"][\"");
+        if(skipProperty) continue;
 
         let isDate = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z/.test(value);
         isDate |= value instanceof Date;
-
+        
+        
         if(isDate) {
-            eval(`
-                if(value instanceof Date) result["${keysStr}"] = value.toISOString();
-                if(expected["${keysStr}"] === "XXXX-XX-XXTXX:XX:XX.XXXZ") result["${keysStr}"] = "XXXX-XX-XXTXX:XX:XX.XXXZ";
-            `)
+            let displayedResult = value;
+            if(displayedResult instanceof Date) displayedResult = displayedResult.toISOString();
+            if(expectedValue === "XXXX-XX-XXTXX:XX:XX.XXXZ") displayedResult = "XXXX-XX-XXTXX:XX:XX.XXXZ";
+
+            value = result;
+            for (let i = 0; i < keys.length - 1; i++) {
+                if (!value[keys[i]] || typeof value[keys[i]] !== 'object') {
+                    value[keys[i]] = {};
+                }
+                value = value[keys[i]];
+            }
+            value[keys[keys.length - 1]] = displayedResult;
         }
     }
 }
