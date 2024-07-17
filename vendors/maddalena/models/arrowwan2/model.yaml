@@ -4,16 +4,12 @@ name: ArrowWan 2
 description: "Compact wMBus and LoRaWAN™ radio module, ensuring a high level of interoperability with a range of mobile and fixed network reading systems, including third-party ones. Arrow WAN 2 is also suitable for difficult Utility installations (IP68). Activation and configuration of the multiprotocol radio are carried out locally using the NFC interface and a dedicated Android app."
 # Logo of the device
 logo: arrowwan2.png
-# Product name & Version
-product:
-    name: MADDALENA/ARROWWAN2
-    version: 1
 # ID(s) of the profile that defines the LoRaWAN characteristics of this model.
 # id: as defined under /profiles.
 # lorawanDeviceProfileID: as defined by LoRa Alliance in https://lora-alliance.org/wp-content/uploads/2020/10/LoRa_Alliance_Vendor_ID_for_QR_Code_02142022.pdf.
 # The lorawanDeviceProfileID consists of 8 upper-case hexadecimal characters, 4 characters for VendorID + 4 characters for VendorProfileID. Please consider using single (') or double (") quotation.
 deviceProfileIds:
- 
+    - id : mdlna_RFGroup1_1.0.3a_classA
 # You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
 # Maximum device TX Conducted output power in dBm. 
 maxTxPower:
@@ -31,10 +27,9 @@ motionIndicator:
 LoRaWANCertified: true
 # Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
 # Format: `<8 characters max>:<16 characters max>:<digits only>`
-modelId: mddlena:arrowwan2:1
+modelId: mdlna:arrowwan2:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
-protocolId:
-    - mddlena:arrowwan2:1
+protocolId: mdlna:arrowwan2:1
 # DataSheet URL (optional)
 specificationURL: https://www.maddalena.it/wp-content/uploads/catalog-pdf/schedatecnicaarrowwan2-en-rev0.pdf
 # User Guide URL (optional) 
@@ -44,3 +39,8 @@ sensors:
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
+    mdlna:arrowwan2:1:
+        - "Meter serial number, firmware version, battery charge, POD"
+        - "Hourly readings and alarms (two frames for 24 hour values)"
+        - "Daily readings (7 days) and alarms"
+        - "Alarms and current readout"
