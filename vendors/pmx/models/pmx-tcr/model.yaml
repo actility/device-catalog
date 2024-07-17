@@ -37,7 +37,7 @@ LoRaWANCertified: false
 modelId: pmx:pmx-tcr:5
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 # Be careful: Once you chose a protocolId, it cannot be changed later
-protocolId:
+protocolId: pmx:pmx-tcr-protocol:1
 # DataSheet URL (optional)
 specificationURL:
 # User Guide URL (optional)
@@ -49,9 +49,9 @@ sensors:
 # A list of examples description that are compatible with this model
 examples:
   pmx:pmx-tcr-protocol:1:
-    - uplink containing device identification and versions
-    - uplink containing totals counter
-    - uplink containing cat 1 counters
-    - uplink containing cat 2 counters
-    - uplink containing cat 3 counters
-    - uplink containing cat 4 counters
+    - device id uplink
+    - totals counter uplink
+    - cat 1 counter uplink
+    - cat 2 counter uplink
+    - cat 3 counter uplink
+    - cat 4 counter uplink
