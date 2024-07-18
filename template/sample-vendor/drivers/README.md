@@ -667,12 +667,24 @@ exports.decodeDownlink = decodeDownlink;
 exports.encodeDownlink = encodeDownlink;
 ```
 
-### Add jest dependency
+### Add dependencies
 
-To add the jest dependency, please run the following command:
+To add the dependencies, add the following to the `package.json` file: 
+
+```json
+"devDependencies": {
+    "fs-extra": "^11.2.0",
+    "isolated-vm": "^4.7.2",
+    "jest": "^29.7.0",
+    "js-yaml": "^4.1.0",
+    "path": "^0.12.7"
+  }
+```
+
+Then run the following command:
 
 ```shell
-npm install --save-dev jest
+npm install
 ```
 
 ### Update package.json to add a script
@@ -684,8 +696,6 @@ First, you need to add the `test` script in the `package.json`:
     "test": "jest --collectCoverage"
   }
 ```
-
-Then, you will be able to launch tests using command `npm test`.
 
 **Note:** If your driver does not support a function `encodeDownlink`, all you have to do is to comment/remove the part related to `encodeDownlink` testing inside the pre-implemented test file.
 

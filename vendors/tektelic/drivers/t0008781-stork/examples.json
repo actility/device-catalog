@@ -1,0 +1,242 @@
+[
+  {
+    "type": "uplink",
+    "description": "Example 1: Seconds per core tick, Ticks per battery",
+    "input": {
+      "bytes": "200000003C210001",
+      "fPort": 100,
+      "recvTime": "2024-04-25T12:58:00.000+01:00"
+    },
+    "output": {
+      "data": {
+        "fPort": 100,
+        "raw": "20 00 00 00 3C 21 00 01",
+        "seconds_per_core_tick": 60,
+        "ticks_per_battery": 1
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Example 2: Response 15 DL successful",
+    "input": {
+      "bytes": "0F00",
+      "fPort": 101,
+      "recvTime": "2024-04-25T12:58:00.000+01:00"
+    },
+    "output": {
+      "data": {
+        "fPort": 101,
+        "raw": "0F 00",
+        "response": [
+          "All write commands from DL:15were successfull"
+        ]
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Example 3: 4 write commands invalid",
+    "input": {
+      "bytes": "030415161718",
+      "fPort": 101,
+      "recvTime": "2024-04-25T12:58:00.000+01:00"
+    },
+    "output": {
+      "data": {
+        "fPort": 101,
+        "raw": "03 04 15 16 17 18",
+        "response": [
+          "4 Invalid write command(s) from DL:3 for register(s): 0x15,0x16,0x17,0x18"
+        ]
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Example 4: Remaining battery days, Remaining battery capacity",
+    "input": {
+      "bytes": "00D33200BD01E6",
+      "fPort": 10,
+      "recvTime": "2024-04-25T12:58:00.000+01:00"
+    },
+    "output": {
+      "data": {
+        "fPort": 10,
+        "raw": "00 D3 32 00 BD 01 E6",
+        "rem_batt_days": 486,
+        "rem_battery_capacity": 50
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Example 5: Geolocation cycle failed",
+    "input": {
+      "bytes": "009510",
+      "fPort": 10,
+      "recvTime": "2024-04-25T12:58:00.000+01:00"
+    },
+    "output": {
+      "data": {
+        "fPort": 10,
+        "geolocation_cycle_failed": {
+          "ble": 0,
+          "duty_cycle_drop": 1,
+          "gnss": 0,
+          "wi_fi": 0
+        },
+        "raw": "00 95 10"
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Example 6: Geolocation cycle failed",
+    "input": {
+      "bytes": "00950F",
+      "fPort": 10,
+      "recvTime": "2024-04-25T12:58:00.000+01:00"
+    },
+    "output": {
+      "data": {
+        "fPort": 10,
+        "geolocation_cycle_failed": {
+          "ble": 1,
+          "duty_cycle_drop": 0,
+          "gnss": 3,
+          "wi_fi": 1
+        },
+        "raw": "00 95 0F"
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Example 7: Acceleration vector 1",
+    "input": {
+      "bytes": "00710000000003E8",
+      "fPort": 10,
+      "recvTime": "2024-04-25T12:58:00.000+01:00"
+    },
+    "output": {
+      "data": {
+        "acceleration_vector": {
+          "xaxis": "0.000",
+          "yaxis": "0.000",
+          "zaxis": "1.000"
+        },
+        "fPort": 10,
+        "raw": "00 71 00 00 00 00 03 E8"
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Example 8: Acceleration vector 2",
+    "input": {
+      "bytes": "00710000FB500000",
+      "fPort": 10,
+      "recvTime": "2024-04-25T12:58:00.000+01:00"
+    },
+    "output": {
+      "data": {
+        "acceleration_vector": {
+          "xaxis": "0.000",
+          "yaxis": "-1.200",
+          "zaxis": "0.000"
+        },
+        "fPort": 10,
+        "raw": "00 71 00 00 FB 50 00 00"
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Example 9: Acceleration alarm 255",
+    "input": {
+      "bytes": "0000FF",
+      "fPort": 10,
+      "recvTime": "2024-04-25T12:58:00.000+01:00"
+    },
+    "output": {
+      "data": {
+        "acceleration_alarm": 255,
+        "fPort": 10,
+        "raw": "00 00 FF"
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Example 10: Acceleration alarm 0",
+    "input": {
+      "bytes": "000000",
+      "fPort": 10,
+      "recvTime": "2024-04-25T12:58:00.000+01:00"
+    },
+    "output": {
+      "data": {
+        "acceleration_alarm": 0,
+        "fPort": 10,
+        "raw": "00 00 00"
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Example 11: Temperature",
+    "input": {
+      "bytes": "03670096",
+      "fPort": 10,
+      "recvTime": "2024-04-25T12:58:00.000+01:00"
+    },
+    "output": {
+      "data": {
+        "fPort": 10,
+        "raw": "03 67 00 96",
+        "temperature": "15.00"
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Example 12: Relative humidity",
+    "input": {
+      "bytes": "046854",
+      "fPort": 10,
+      "recvTime": "2024-04-25T12:58:00.000+01:00"
+    },
+    "output": {
+      "data": {
+        "fPort": 10,
+        "raw": "04 68 54",
+        "relative_humidity": "42.00"
+      },
+      "errors": [],
+      "warnings": []
+    }
+  }
+]
