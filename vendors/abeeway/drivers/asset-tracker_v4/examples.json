@@ -2810,6 +2810,51 @@
    }
 },
 {
+   "description":"Notification telemetry type 0",
+   "type":"uplink",
+   "input":{
+      "bytes":"09007f4260810000000C02FFFE810000001C",
+      "recvTime":"2024-06-10T09:42:13.733+02:00",
+      "fPort":1
+   },
+   "output":{
+      "data":{
+         "header": {
+            "sos": false,
+            "type": "NOTIFICATION",
+            "ackToken": 1,
+            "multiFrame": false,
+            "batteryLevel": "CHARGING",
+            "timestamp": "2024-06-09T21:02:58.000Z"
+         },
+         "notification": {
+          "notificationClass": "TELEMETRY",
+          "notificationType": "TELEMETRY",
+          "telemetry": {
+            "telemetryMeasurements": [
+              {
+                "ontology": "RESISTANCE",
+                "value": 12
+              },
+              {
+                "ontology": "TEMPERATURE",
+                "value": -2
+              },
+              {
+                "ontology": "RESISTANCE",
+                "value": 28
+              }
+            ]
+          }
+        },
+        "payload": "09007f4260810000000c02fffe810000001c"
+      },
+      "errors": [],
+      "warnings": []
+    }
+},
+
+{
    "description":"status uplink page0",
    "type":"uplink",
    "input":{

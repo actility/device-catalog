@@ -3,6 +3,7 @@ let temperatureClass = require ("./temperature")
 let accelerometerClass = require("./accelerometer")
 let networkClass = require("./network")
 let geozoningClass = require("./geozoning")
+let telemetryClass = require("./telemetry")
 
 const Class = Object.freeze({
     SYSTEM: "SYSTEM",
@@ -10,7 +11,8 @@ const Class = Object.freeze({
     TEMPERATURE: "TEMPERATURE",
     ACCELEROMETER: "ACCELEROMETER",
     NETWORK: "NETWORK",
-    GEOZONING: "GEOZONING"
+    GEOZONING: "GEOZONING",
+    TELEMETRY: "TELEMETRY"
 })
 
 const SosType = Object.freeze({
@@ -27,7 +29,8 @@ function Notification(notificationClass,
     temperature,
     accelerometer,
     network,
-    geozoning){
+    geozoning,
+    telemetry){
     this.notificationClass = notificationClass;
     this.notificationType = notificationType;
     this.system = system;
@@ -36,6 +39,7 @@ function Notification(notificationClass,
     this.accelerometer = accelerometer;
     this.network = network;
     this.geozoning = geozoning;
+    this.telemetry = telemetry;
 }
 
 function determineNotification(payload){
@@ -152,7 +156,22 @@ function determineNotification(payload){
                     notificationMessage.notificationType = geozoningClass.GeozoningType.MEETING_POINT;
                     break;
                 default:
-                    throw new Error("Network Notification Type Unknown");
+                    throw new Error("Geozoning Notification Type Unknown");
+            }
+
+            break;
+        case 6:
+            notificationMessage.notificationClass = Class.TELEMETRY
+            switch (typeValue){
+                case 0: 
+                    notificationMessage.notificationType = telemetryClass.TelemetryType.TELEMETRY;
+                    notificationMessage.telemetry =  new telemetryClass.Telemetry(telemetryClass.determineTelemetryMeasurements(payload.slice(5)));
+                    break;
+                case 1:
+                    notificationMessage.notificationType = telemetryClass.TelemetryType.TELEMETRY_MODE_BATCH;
+                    break;
+                default:
+                    throw new Error("Telemetry Notification Type Unknown");
             }
 
             break;
