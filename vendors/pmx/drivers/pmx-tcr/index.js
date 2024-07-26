@@ -192,14 +192,6 @@ function hexToBytes(hex) {
     return bytes;
 }
 
-
-/**
- * @typedef {Object} DecodedUplink
- * @property {Object} data - The open JavaScript object representing the decoded uplink payload when no errors occurred
- * @property {string[]} errors - A list of error messages while decoding the uplink payload
- * @property {string[]} warnings - A list of warning messages that do not prevent the driver from decoding the uplink payload
- */
-
 /**
  * Decode uplink
  * @param {Object} input - An object provided by the IoT Flow framework
