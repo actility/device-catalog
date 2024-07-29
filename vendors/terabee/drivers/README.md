@@ -1,7 +1,6 @@
-# pcl_lora_payload_decoders
+# Terabee  lora Products payload decoders
 
-Contains javascript payload decoders required by LoRa People Counting devices.
-
+Contains javascript payload decoders required by TERABEE LoRa People Counting devices.
 
 # To setup tests
 
@@ -11,14 +10,14 @@ sudo apt install nodejs
 sudo apt install npm
 ```
 
-Navigate to javascript folder and install project dependencies.
+Navigate to javascript project folder and install project dependencies.
 ```
 npm install
 ```
 
 # To run tests
 
-Navigate to javascript folder and
+Navigate to javascript project folder and
 ```
 npm run test
 ```
