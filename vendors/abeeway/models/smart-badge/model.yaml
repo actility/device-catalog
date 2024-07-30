@@ -9,13 +9,22 @@ product:
     name: ABEE/APY
     version: 1
 # ID(s) of the profile that defines the LoRaWAN characteristics of this model.
-deviceProfileId: 
-    - ABEE/Badge-1.0.2b-AS
-    - ABEE/Badge-1.0.2b-AU
-    - ABEE/Badge-1.0.2b-ETSI
-    - ABEE/Badge-1.0.2b-FCC
-    - ABEE/Badge-1.0.2b-IN
-    - ABEE/Badge-1.0.2b-RU
+# id: as defined under /profiles.
+# lorawanDeviceProfileID: as defined by LoRa Alliance in https://lora-alliance.org/wp-content/uploads/2020/10/LoRa_Alliance_Vendor_ID_for_QR_Code_02142022.pdf.
+# The lorawanDeviceProfileID consists of 8 upper-case hexadecimal characters, 4 characters for VendorID + 4 characters for VendorProfileID. Please consider using single (') or double (") quotation.
+deviceProfileIds: 
+    - id: ABEE/Badge-1.0.2b-AS
+      lorawanDeviceProfileID: '000E0017'
+    - id: ABEE/Badge-1.0.2b-AU
+      lorawanDeviceProfileID: '000E0016'
+    - id: ABEE/Badge-1.0.2b-ETSI
+      lorawanDeviceProfileID: '000E0012'
+    - id: ABEE/Badge-1.0.2b-FCC
+      lorawanDeviceProfileID: '000E0015'
+    - id: ABEE/Badge-1.0.2b-IN
+      lorawanDeviceProfileID: '000E0013'
+    - id: ABEE/Badge-1.0.2b-RU
+      lorawanDeviceProfileID: '000E0014'
  
 # You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
 # Maximum device TX Conducted output power in dBm. 

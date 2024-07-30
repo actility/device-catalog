@@ -41,7 +41,7 @@ function Position(motion,
     bleBeaconIds,
     gnssFix,
     gnssFailure,
-    aidedGnss, coordinates){
+    aidedGnss){
         this.motion = motion;
         this.status = status;
         this.positionType = positionType;
@@ -54,8 +54,7 @@ function Position(motion,
         this.bleBeaconIds = bleBeaconIds;
         this.gnssFix = gnssFix;
         this.gnssFailure = gnssFailure;
-        this.aidedGnss = aidedGnss
-        this.coordinates = coordinates;
+        this.aidedGnss = aidedGnss;
 }
 
 /************************ Header position decodage *************************/
@@ -214,7 +213,6 @@ function determinePosition(payload, multiFrame){
                 break;
             case PositionType.GNSS:
                 positionMessage.gnssFix = gnssFixClass.determineGnssFix(payload.slice(startingByte+3));
-                positionMessage.coordinates = [positionMessage.gnssFix.longitude, positionMessage.gnssFix.latitude, positionMessage.gnssFix.altitude]
                 break;
             case PositionType.AIDED_GNSS:
                 positionMessage.aidedGnss = determineMT3333LPGnssPositionMessage(payload.slice(startingByte+3));
@@ -222,7 +220,7 @@ function determinePosition(payload, multiFrame){
         }       
     }else if ((positionMessage.status == PositionStatus.TIMEOUT)||(positionMessage.status == PositionStatus.FAILURE)){
         //only for GNSS
-        if (positionMessage.positionType == PositionType.GNSS){
+        if (PositionType.GNSS ){
             positionMessage.gnssFailure = gnssFailureClass.determineGnssFailure(payload.slice(startingByte+3))
         }
     }

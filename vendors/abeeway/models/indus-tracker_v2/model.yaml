@@ -9,13 +9,22 @@ product:
     name: ABEE/APY
     version: 1
 # ID(s) of the profile that defines the LoRaWAN characteristics of this model.
-deviceProfileId: 
-    - ABEE/DEABE202-152EU.1.0.2b_ETSI_Rx2-SF12
-    - ABEE/DEABE202.1.0.2b_AU
-    - ABEE/DEABE202.1.0.2b_IN
-    - ABEE/DEABE202.1.0.2b_RU
-    - ABEE/DEABE203-162US.1.0.2b_FCC_Rx2-SF12
-    - ABEE/DEBAE203-163AS.1.0.2b_AS_Rx2-SF10
+# id: as defined under /profiles.
+# lorawanDeviceProfileID: as defined by LoRa Alliance in https://lora-alliance.org/wp-content/uploads/2020/10/LoRa_Alliance_Vendor_ID_for_QR_Code_02142022.pdf.
+# The lorawanDeviceProfileID consists of 8 upper-case hexadecimal characters, 4 characters for VendorID + 4 characters for VendorProfileID. Please consider using single (') or double (") quotation.
+deviceProfileIds: 
+    - id: ABEE/DEABE202-152EU.1.0.2b_ETSI_Rx2-SF12
+      lorawanDeviceProfileID: '000E0006'
+    - id: ABEE/DEABE202.1.0.2b_AU
+      lorawanDeviceProfileID: '000E000A'
+    - id: ABEE/DEABE202.1.0.2b_IN
+      lorawanDeviceProfileID: '000E0007'
+    - id: ABEE/DEABE202.1.0.2b_RU
+      lorawanDeviceProfileID: '000E0008'
+    - id: ABEE/DEABE203-162US.1.0.2b_FCC_Rx2-SF12
+      lorawanDeviceProfileID: '000E0009'
+    - id: ABEE/DEBAE203-163AS.1.0.2b_AS_Rx2-SF10
+      lorawanDeviceProfileID: '000E000B'
  
 # You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
 # Maximum device TX Conducted output power in dBm. 

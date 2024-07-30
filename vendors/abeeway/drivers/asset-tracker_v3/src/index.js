@@ -955,7 +955,7 @@ function determineConfigurations (parameters, parameterIds, parameterValues, rea
 			   				 
 			   			}
 			   			else {
-			   				throw new Error(paramName+ " parameter value is out of range");
+			   				throw new Error(paramName+ " parameter value "+paramValue+" is out of range");
 			   			}
 			   			
 			   			if (parameter.id == 19)

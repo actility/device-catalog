@@ -42,6 +42,7 @@ function decodeUplink(input) {
             decodedData.extendedHeader = extendedHeaderClass.determineExtendedHeader(payload);
         } 
         decodedData.payload = util.convertBytesToString(payload);
+
         switch (decodedData.header.type){
             case abeewayUplinkPayloadClass.messageType.NOTIFICATION:
                 decodedData.notification = notificationClass.determineNotification(payload);
