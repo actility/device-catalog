@@ -64,6 +64,13 @@ function decodeUplink(input) {
         const lastLogTimeStamp = 1000 * bytes.readUIntLE(0, 4);
         const lastLogTime = new Date(lastLogTimeStamp).toISOString();
 
+        // fPort 100 payloads might sometimes be corrupted. Need to check by comparing the network timestamp and the timestamp provided by the payload
+        let checkDates = Math.abs(lastLogTimeStamp - new Date(input.recvTime).getTime());
+        if(checkDates > 5*12*30*24*60*60*1000) {
+            result.errors.push("This payload has been corrupted. Please contact Axioma support.");
+            return result;
+        }
+        
         const status = parseStatus(bytes[4]);
         
         const lastVolume = bytes.readUIntLE(5, 4);
