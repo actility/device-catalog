@@ -8,14 +8,14 @@
 #    RFGroup4: as923
 # Please do not change the existing IDs (Some may follow the old format)
 # The name of the profile .yaml file should be the same as the following ID
-id: heltec_RFGroup1_1.0.2b_classA_v2
+id: heltec_RFGroup2_1.0.2b_classC
 # LoRaWAN class of the Device: Possible values: [ A, B, C ] (Should not have several values)
 # 'A': Class A (Bi-directional end-devices with downlink listening only after uplink transmission)
 # 'B': Class B (Bi-directional end-devices with downlink listening on predefined synchronized pingslots)
 # 'C': Class C (Bi-directional end-devices with permanent downlink listening)
-loRaWANClass: A
+loRaWANClass: C
 # Comma-separated list of regional profiles supported by this device. Possible values are eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470.
-ISMbands: eu868,in865,eu433,kr920
+ISMbands: us915,au915,cn470
 # Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'
 # or 'random' (not known, changes over time).
 # The motion indication property will not be taken into consideration here if it is overwritten in the model.yaml
@@ -38,11 +38,11 @@ mac:
         # Minimum device TX Conducted output power in dBm.
         minTxPower:
         # Maximum device TX Conducted output power in dBm.
-        maxTxPower: 14
+        maxTxPower: 20
         # Minimum device TX Radiated output power in dBm.
         minTxEIRP:
         # Maximum device TX Radiated output power in dBm.
-        maxTxEIRP: 16
+        maxTxEIRP: 20
 
     uplinkFrameRepetition: 
         # Maximum number of transmissions per uplink frame, supported by the device. 
@@ -55,7 +55,7 @@ mac:
 bootSettings: 
     # Delay between the end of uplink transmission and the start of downlink RX1 slot, in milliseconds. Refer to 'receiveDelay1' in LoRaWAN 
     # Specification.
-    rx1Delay: 1000
+    rx1Delay: 5000
     # RX1 data rate offset, defining the offset between uplink data rate and the corresponding downlink data rate used for RX1 slot.
     rx1DROffset:
     # Rx2 DataRate, used to send DL packets over RX2 slot. Note: Data Rate encoding is region-specific, see the applicable LoRaWAN Regional 
@@ -76,7 +76,7 @@ bootSettings:
 
 # Which MAC commands are supported by your device and which are not? Leave it as the template if your device supports all the MAC commands specified for your regional
 # profile. Put 'true' only if a command is supported.
-supportedMACCommands: 
+supportedMACCommands:
     linkADRReqAns: true
     devStatusReqAns: true
     joinRequestAccept: true
@@ -84,8 +84,8 @@ supportedMACCommands:
     linkCheckReqAns: true
     rxParamSetupReqAns: true
     rxTimingSetupReqAns: true
-    newChannelReqAns: true
-    dlChannelReqAns: true
+    newChannelReqAns: false
+    dlChannelReqAns: false
     txParamSetupReqAns: false
     pingSlotChannelReqAns: false
     pingSlotInfoReqAns: true
@@ -96,8 +96,3 @@ supportedMACCommands:
 # OTAA devices? See https://lora-alliance.org/resource_hub/technical-recommendations-for-preventing-state-synchronization-issues-around-lorawan-1-0-x-join-procedure/
 # Possible values: true, false. This field is automatically forced to true for LoRaWAN MAC versions 1.0.4 and 1.1.
 devNonceCounterBased: false
-
-# ProfileID as specified by LoRa Alliance in https://lora-alliance.org/wp-content/uploads/2020/10/LoRa_Alliance_Vendor_ID_for_QR_Code_02142022.pdf. 
-# This ID consists of 8 upper-case hexadecimal characters, 4 characters for VendorID + 4 characters for VendorProfileID.
-# Please consider using single (') or double (") quotation
-lorawanDeviceProfileID:
