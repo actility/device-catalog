@@ -1,0 +1,379 @@
+openapi: 3.0.0
+info:
+  description: The API for AT3 firmware parameters
+  version: 2.3.0
+  title: AT3 parameters management 
+tags:
+  - name: Parameter
+    description: Parameter operations are used to retrieve firmware specific parameters
+paths:
+  /parameters:
+    get:
+      parameters:
+        - name: tpxProtocolIdentifier
+          in: query
+          description: The TPX protocol identifier
+          required: true
+          schema:
+            $ref: '#/components/schemas/ModuleSpec'
+      responses:
+        '200':
+          description: Parameters retrieved successfully.
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ParameterList'
+                type: array
+        '400':
+          description: Any error when processing the request
+        '401':
+          description: Unauthorized - invalid api key or user not authorized for access
+      description: Retrieves the parameters corresponding to the provided TPX protocol identifier
+      summary: Parameters retrieval
+      tags:
+        - Parameter
+
+components:
+  schemas:
+    ParameterList:
+      type: object
+      required:
+        - firmwareVersion
+        - uplinkPort
+        - firmwareParameters
+      description: Defines the list of parameters available by firmware version.
+      properties:
+        firmwareVersion:
+          type: string
+          description: Defines the firmware version.
+        uplinkPort:
+          type: integer
+          description: Defines the uplink port.
+        firmwareParameters:
+          type: array
+          items:
+            $ref: '#/components/schemas/FirmwareParameter'
+    FirmwareParameter:
+      type: object
+      required:
+        - driverParameterName
+        - groupId
+        - localId
+        - description
+        - defaultValue
+        - compatibleTrackerModels
+        - parameterType
+      description: Defines the firmware parameter.
+      properties:
+        driverParameterName:
+          type: string
+          description: Parameter name in the asset tracker 3 driver.
+        groupId:
+          type: string
+          description: A string that represents the hexadecimal identifier for the group.
+        localId:
+          type: string
+          description: A string representing the hexadecimal value of the local identifier for the parameter, which is unique within its group
+        description:
+          type: string
+          description: Parameter description
+        defaultValue:
+          type: integer
+          description: Represents the default value of the parameter. When there is no input parameter, the default value is used as the input.
+        unit:
+          type: string
+          description: Represents the parameter unit
+        readOnly:
+          type: boolean
+          description: If set to true, the parameter value can not be changed.
+        parameterType:
+          $ref: '#/components/schemas/ParameterType'
+        compatibleTrackerModels:
+          type: array
+          description: Represents the tracker model compatible with the parameter.
+          items:
+            $ref: '#/components/schemas/ModuleSpec'
+    ModuleSpec:
+      type: object
+      description: Defines the module specification. It is used to represent the TPDX protocol identifier and the tracker model.
+      required:
+        - producerId
+        - moduleId
+        - version
+      properties:
+        producerId:
+          type: string
+          description: Defines the producer identifier.
+        moduleId:
+          type: string
+          description: Defines the module identifier.
+        version:
+          type: string
+          description: Defines the version.
+    ParameterType:
+      type: object
+      required:
+        - type
+      properties:
+        type:
+          type: string
+          description: Defines the parameter type. Depending on the type, other attributes are required.
+          enum:
+            - ParameterTypeNumber
+            - ParameterTypeString
+            - ParameterTypeBitMask
+            - ParameterTypeAsciiString
+            - ParameterTypeByteArray
+            - Deprecated
+      discriminator:
+        propertyName: type
+    ParameterTypeNumber:
+      allOf:
+        - $ref: '#/components/schemas/ParameterType'
+        - description: Defines the parameter which is a number type.
+        - type: object
+          required:
+            - range
+          properties:
+            range:
+              $ref: '#/components/schemas/Range'
+            additionalRanges:
+              type: array
+              description: used when the parameters has several ranges
+              items:
+                $ref: '#/components/schemas/Range'
+            additionalValues:
+              type: array
+              description: Represents the values that are out of range.
+              items:
+                type: number
+            multiply:
+              type: number
+              description: Represents the number by which the parameter must be multiplied so that it is converted to the required unit.
+    ParameterTypeString:
+      allOf:
+        - $ref: '#/components/schemas/ParameterType'
+        - description: Defines the parameter which is a string type.
+        - type: object
+          required:
+            - possibleValues
+            - firmwareValues
+          properties:
+            possibleValues:
+              type: array
+              description: It is used to enumerate the possible parameter values.
+              items:
+                type: string
+            firmwareValues:
+              type: array
+              description: It represents the firmware values. It enables the mapping of the content of possibeValues array. In the following example, the firmware value 1 represents the  "BLE_BEACONS" collection scan type. "possibleValues":[ "NO_COLLECTION_SCAN", "BLE_BEACONS", "WIFI_BSSID" ], "firmwareValues":[ 0, 1, 2 ]
+              items:
+                type: integer
+    ParameterTypeAsciiString:
+      allOf:
+        - $ref: '#/components/schemas/ParameterType'
+        - description: Defines the parameter which is a ascii string type.
+        - type: object
+          required:
+            - maxSize
+          properties:
+            maxSize:
+              type: integer
+              description: I
+    ParameterTypeBitMask:
+      allOf:
+        - $ref: '#/components/schemas/ParameterType'
+        - description: Defines the parameter which is bitmask type.
+        - type: object
+          required:
+            - properties
+            - bitMask
+          properties:
+            bitMask:
+              type: array
+              description: Represents the firmware value for the parameter defined as bitmask.
+              items:
+                $ref: '#/components/schemas/BitMask'
+            properties:
+              type: array
+              description: Represents the properties of the parameter.
+              items:
+                $ref: '#/components/schemas/Property'
+    ParameterTypeByteArray:
+      allOf:
+        - $ref: '#/components/schemas/ParameterType'
+        - description: Defines the parameter which is byte array type.
+        - type: object
+          required:
+            - properties
+            - byteMask
+            - size
+          properties:
+            size:
+              type: integer
+              description: It defines the number of bytes in the array. 
+            byteMask:
+              type: array
+              description: Represents the firmware value for the parameter defined as bitMask.
+              items: 
+                $ref: '#/components/schemas/BitMask'
+            properties:
+              type: array
+              description: Represents the properties of the parameter.
+              items:
+                $ref: '#/components/schemas/Property'
+                
+    BitMask:
+      required:
+        - type
+        - valueFor
+      type: object
+      discriminator:
+        propertyName: type
+      description: The representation of a firmware parameter defined as a bitMask.
+      properties:
+        type:
+          type: string
+          description: Defines the bitmask type. Depending on the type, other attributes are required.
+          enum:
+            - BitMaskValue
+            - BitMaskObject
+        valueFor:
+          type: string
+          description: Defines the property name of the parameter.
+    BitMaskValue:
+      allOf:
+        - $ref: '#/components/schemas/BitMask'
+        - type: object
+          required:
+            - bitShift
+          description: The representation of a firmware parameter defined as a bitMask.
+          properties:
+            bitShift:
+              type: integer
+              description: The bit number to shift to the left to insert the value for the property defined in valueFor. The shift is applied starting from bit 0.
+            inverted:
+              type: boolean
+              description: It is used to indicate that the value is bit inverted (e.g. value 2 of length 4 would be set as 13  - 0010 => 1101).
+            length:
+              type: number
+              description: Length of the value in bits (default 1).
+    BitMaskObject:
+      allOf:
+        - $ref: '#/components/schemas/BitMask'
+        - type: object
+          required:
+            - values
+          description: The representation of a firmware parameter defined as a bitmask.
+          properties:
+            values:
+              type: array
+              description: The nested bitMask for this object.
+              items:
+                $ref: '#/components/schemas/BitMask'
+    Property:
+      type: object
+      description: Represents the property of the parameter defined as bitmask.
+      discriminator:
+        propertyName: type
+      required:
+        - name
+        - type
+      properties:
+        name:
+          type: string
+          description: The property name
+        description:
+          type: string
+          description: The property description
+        type:
+          type: string
+          description: Defines the property type. Depending on the type, other attributes are required.
+          enum:
+            - PropertyString
+            - PropertyObject
+            - PropertyBoolean
+            - PropertyNumber
+    PropertyNumber:
+      allOf:
+        - $ref: '#/components/schemas/Property'
+        - description: Defines a number property.
+        - type: object
+          required:
+            - range
+          properties:
+            range:
+              $ref: '#/components/schemas/Range'
+            additionalRanges:
+              type: array
+              description: used when the parameters has several ranges
+              items:
+                $ref: '#/components/schemas/Range'
+            additionalValues:
+              type: array
+              description: Represents the values that are out of range.
+              items:
+                type: number
+            multiply:
+              type: number
+              description: Represents the number by which the parameter must be multiplied so that it is converted to the required unit.
+    Range:
+      type: object
+      description: Defines the range of the parameter number.
+      required:
+        - minimum
+        - maximum
+      properties:
+        minimum:
+          type: number
+          description: Represents an inclusive lower limit for a parameter value.
+        maximum:
+          type: number
+          description: Represents an inclusive upper limit for a parameter value.
+        exclusiveMinimum:
+          type: boolean
+          description: Indicates whether minimum is exclusive or not.
+        exclusiveMaximum:
+          type: boolean
+          description: Indicates whether maximum is exclusive or not.
+    PropertyBoolean:
+      allOf:
+        - $ref: '#/components/schemas/Property'
+        - type: object
+        - description: Defines a boolean property.
+    PropertyString:
+      allOf:
+        - $ref: '#/components/schemas/Property'
+        - type: object
+          required:
+            - possibleValues
+            - firmwareValues
+        - description: Defines a string property.
+          properties:
+            possibleValues:
+              type: array
+              description: It is used to enumerate the possible parameter values.
+              items:
+                type: string
+            firmwareValues:
+              type: array
+              description: It represents the firmware values. It enables the mapping of the content of possibeValues array.
+              items:
+                type: integer
+    PropertyObject:
+      allOf:
+        - $ref: '#/components/schemas/Property'
+        - type: object
+          required:
+            - properties
+        - description: Defines an object property.
+          properties:
+            properties:
+              type: array
+              description: It is used if the parameter is composed of nested objects.
+              items:
+                $ref: '#/components/schemas/Property'
+
+    
+    
