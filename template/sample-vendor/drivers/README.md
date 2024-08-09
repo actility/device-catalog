@@ -13,6 +13,7 @@ You can either follow the LoRa Alliance standard codec API described [here](http
           - [Uplink decode](#uplink-decode)
           - [Downlink encode](#downlink-encode)
           - [Downlink decode](#downlink-decode)
+      - [Context](#store-and-reload-context)
       - [Payload examples](#payload-examples)
       - [Json schemas](#json-schemas)
     - [Packaging](#packaging)
@@ -232,6 +233,53 @@ The returned `output` is represented by the following json-schema:
         },
         "required": false
     }
+}
+```
+
+### Store and reload context
+
+On some devices, some information from a previous payload are useful for the current one. Thus, a context array is accessible to the driver's developer where some info can be injected/retrieved while decoding/encoding payloads.
+
+This context is based on DevEUI, so each device has its own context, even if several devices use the same driver.
+
+The context in the driver's environment is an array of flexible JSON objects.
+
+#### Store a context
+
+Inside a driver, data can be injected to the context: `context.push()`.
+
+##### Example:
+
+```javascript
+function decodeUplink(input){
+    const raw = Buffer.from(input.bytes);
+    const temperature = raw.readInt16BE(1)/100;
+    context.push({
+        time: input.recvTime,
+        currentValue: temperature
+    });
+    ...
+}
+```
+
+#### Reload a context
+
+Inside a driver, data can be retrieved from the context:
+- Using `context.shift()` to load the latest context saved.
+- Using `context[index]` to load a specific context by using the index.
+
+##### Example:
+
+```javascript
+function decodeUplink(input){
+    const latestContext = context.shift();
+    const latestTemperature = latestContext["currentValue"];
+
+    const raw = Buffer.from(input.bytes);
+    const temperature = raw.readInt16BE(1)/100;
+    
+    const averageTwoMeasures = (temperature + latestTemperature) / 2;
+    ...
 }
 ```
 
