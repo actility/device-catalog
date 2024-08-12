@@ -283,6 +283,52 @@ function decodeUplink(input){
 }
 ```
 
+#### Update and Reload a context
+
+Inside a driver, context can be reloaded and updated for next decode/encode processes.
+
+##### Example:
+
+```javascript
+function decodeUplink(input){
+    const raw = Buffer.from(input.bytes);
+    const temperature = raw.readInt16BE(1)/100;
+
+    context.push({
+        temperature: temperature,
+        time: input.recvTime
+    });
+    result.temperatureHistory = context;
+    ...
+}
+```
+
+The result of decoding will be something as below: 
+
+```json
+{
+    "temperature": 23.3,
+    "temperatureHistory": [
+        {
+          "temperature": 23.3,
+          "time": "2024-08-12T15:24:24.249Z"
+        },
+        {
+          "temperature": 23.2,
+          "time": "2024-08-12T15:26:24.249Z"
+        },
+        {
+          "temperature": 22.9,
+          "time": "2024-08-12T15:28:24.249Z"
+        },
+        {
+          "temperature": 23.1,
+          "time": "2024-08-12T15:30:24.249Z"
+        }
+    ]
+}
+```
+
 ### Payload examples
 
 :warning: **WARNING:** This section concerns only drivers that follow this guide and respect "lora-alliance" signature and format. For any other format/signature (ttn, chirpstack, actility), the examples should follow the section [Legacy Payload Examples](#legacy-payload-examples-only-signatures-other-than-lora-alliance-are-concerned).
