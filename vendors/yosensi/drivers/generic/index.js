@@ -8,7 +8,7 @@
  * Compatibility with ECMAScript 5 and later versions of the standard
  *
  * @author      Pawel Poplawski <pawel.poplawski@yosensi.io>
- * @version     1.0.0
+ * @version     1.0.1
  * @copyright   YOSENSI SP. Z O.O. | http://yosensi.io
  * @license     Modified-BSD-License, see LICENSE file include in the project
  *
@@ -32,6 +32,18 @@
  *    YO_RefrigerantMonitor: "02:00:00:00:08:00:01:11:a6:0d:00:01:01:07:10:00:00:33:16:00:11:6d:00:13:0d:00:11:6d:01:10",
  *    YO_Temp: "02:00:00:00:08:00:01:11:88:0d:00:01:00:f7:10:00:00:38:41:00:05:ff:ed:ff:e0:00:84:0d:00:11:00:00:ea:0d:00:11:01:00:db:0d:00:11:02:00:d6",
  *    YO_Modbus: "02:19:00:3C:90:01:33:02:c5:58:00:00:5f:f1:90:02:33:02:c5:5e:00:00:13:7e:90:03:33:02:c5:60:00:00:00:4f:90:04:33:02:c5:82:ff:ff:fd:df"
+ *    YO_Power: "02:f8:00:75:2e:00:11:01:01:85:2e:00:11:02:00:de:2e:00:11:03:01:0c:2e:00:11:04:01:e9:2e:00:11:05:01:00:2e:00:11:06:01:12",
+ *    YO_Power_kwh: "02:c6:04:73:9a:00:13:04:00:00:2e:a6:9a:00:13:05:00:00:34:cf:9a:00:13:06:00:00:1f:49",
+ *    YO_Ambience: "02:25:00:00:08:00:01:10:b8:0d:00:01:01:0d:10:00:00:25:6c:00:01:02:79:1a:00:01:00:00:60:00:01:00:00",
+ *    YO_Thermostat_1: "02:06:00:1e:08:00:01:14:d0:0d:00:01:01:28:10:00:00:28:1a:00:01:00:02:60:00:01:00:02",
+ *    YO_Thermostat_2: "02:05:00:00:fd:00:11:07:00:d2:fd:00:11:08:ff:ec:fd:00:11:09:ff:d8:fd:00:11:0a:00:46:fc:00:10:0b:01:fd:00:11:0c:00:d2:fc:00:10:0d:00",
+ *    YO_RelaySwitch: "02:05:00:00:08:00:01:5d:c5:04:00:11:ff:00:00:64:00:11:ff:00:00",
+ *    YO_MeterReader_OI: "02:8a:00:3d:9f:00:33:01:08:00:00:b7:22:5a:9f:00:33:01:08:00:00:9d:32:33:9f:00:33:01:08:00:00:83:5f:26:9f:00:33:01:08:00:00:6c:55:2b",
+ *    YO_MeterReader_LD: "02:c3:00:00:08:00:01:14:e0:0d:00:01:01:19:10:00:00:2a:5c:00:07:00:00:04:33:00:69:c6:09:99:00:03:00:01:0e:c8",
+ *    YO_VibrationMonitor_1: "02:9f:00:3d:08:00:01:10:44:0d:00:01:00:bb:10:00:00:3f:0d:00:11:4a:00:bf:43:00:15:00:01:08:01:15:02:16:43:00:15:01:01:74:01:86:02:f0",
+ *    YO_VibrationMonitor_2: "02:9d:0e:11:42:00:15:02:01:61:01:0f:01:2e:42:00:15:03:00:1a:00:1e:00:32:42:00:15:04:ff:f9:00:13:00:02:42:00:15:05:00:04:ff:d4:ff:da",
+ *    YO_VibrationMonitor_3: "02:9e:0e:2f:42:00:15:06:00:9b:00:b6:00:ee:40:00:15:07:00:0c:00:0e:00:12",
+ *    YO_PeopleCounter: "02:7d:00:3c:60:00:11:00:00:00:60:00:11:01:00:00:60:00:13:02:00:00:00:5c:60:00:13:03:00:00:00:52:60:00:13:04:00:00:00:0a"
  * });
  *
  * // Function call for testing V2 payloads for use outside TTN and ChirpStack formatters
@@ -301,7 +313,10 @@ function payloadV2Parse(bytes, date, utils) {
         34: ["PM4", "pug/m3]"],
         35: ["PM10", "pug/m3]"],
         36: ["generic modbus", ""],
-        37: ["O2", "[%]"]
+        37: ["O2", "[%]"],
+        38: ["Energy consumption", "[kWh]"],
+        39: ["OBIS", ""],
+        63: ["Command", ""]
     });
     /**
      * Two-value custom types
@@ -556,10 +571,5 @@ function utilityFunctions() {
         checkIfArrInclude: checkIfArrInclude
     };
 }
-
-
-/************************************
-**********ADDED BY ACTILITY**********
-************************************/
 
 exports.decodeUplink = decodeUplink;
