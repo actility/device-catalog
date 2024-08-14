@@ -823,7 +823,7 @@
     "description": "Example Relay Switch",
     "type": "uplink",
     "input": {
-      "bytes": "020500000800015dc5040011ff0002640011ff0001",
+      "bytes": "020500000800015dc5040011ff0000640011ff0000",
       "fPort": 1,
       "recvTime": "2020-08-02T20:00:00.000+05:00"
     },
@@ -844,7 +844,7 @@
             "type": 1,
             "typeName": "state",
             "typeUnits": "",
-            "value": 2
+            "value": 0
           },
           {
             "address": "ff",
@@ -852,7 +852,7 @@
             "type": 25,
             "typeName": "custom",
             "typeUnits": "",
-            "value": 1
+            "value": 0
           }
         ],
         "payloadCounter": 5,
@@ -951,7 +951,7 @@
     "description": "Example Ambience",
     "type": "uplink",
     "input": {
-      "bytes": "027D000008000110800D000101061000003B6C000102F31A000101396000010012",
+      "bytes": "0225000008000110b80d0001010d100000256c000102791a000100006000010000",
       "fPort": 1,
       "recvTime": "2020-08-02T20:00:00.000+05:00"
     },
@@ -964,7 +964,7 @@
             "type": 2,
             "typeName": "battery voltage",
             "typeUnits": "[mV]",
-            "value": 4224
+            "value": 4280
           },
           {
             "address": "",
@@ -972,7 +972,7 @@
             "type": 3,
             "typeName": "temperature",
             "typeUnits": "[°C]",
-            "value": 26.2
+            "value": 26.9
           },
           {
             "address": "",
@@ -980,7 +980,7 @@
             "type": 4,
             "typeName": "relative humidity",
             "typeUnits": "[%]",
-            "value": 59
+            "value": 37
           },
           {
             "address": "",
@@ -988,7 +988,7 @@
             "type": 27,
             "typeName": "CO2",
             "typeUnits": "[ppm]",
-            "value": 755
+            "value": 633
           },
           {
             "address": "",
@@ -996,7 +996,7 @@
             "type": 6,
             "typeName": "illuminance",
             "typeUnits": "[lux]",
-            "value": 3.13
+            "value": 0
           },
           {
             "address": "",
@@ -1004,10 +1004,10 @@
             "type": 24,
             "typeName": "counter",
             "typeUnits": "",
-            "value": 18
+            "value": 0
           }
         ],
-        "payloadCounter": 125,
+        "payloadCounter": 37,
         "payloadCreationDateTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
         "payloadVersion": 2
       },
@@ -1016,10 +1016,10 @@
     }
   },
   {
-    "description": "Example Vibration Monitor",
+    "description": "Example Vibration Monitor 1",
     "type": "uplink",
     "input": {
-      "bytes": "023d000108000112b00d000100fc100000290d00114a00f64300150000460088005743001501006300bf007a",
+      "bytes": "029f003d08000110440d000100bb1000003f0d00114a00bf43001500010801150216430015010174018602f0",
       "fPort": 1,
       "recvTime": "2020-08-02T20:00:00.000+05:00"
     },
@@ -1032,7 +1032,7 @@
             "type": 2,
             "typeName": "battery voltage",
             "typeUnits": "[mV]",
-            "value": 4784
+            "value": 4164
           },
           {
             "address": "",
@@ -1040,7 +1040,7 @@
             "type": 3,
             "typeName": "temperature",
             "typeUnits": "[°C]",
-            "value": 25.2
+            "value": 18.7
           },
           {
             "address": "",
@@ -1048,7 +1048,7 @@
             "type": 4,
             "typeName": "relative humidity",
             "typeUnits": "[%]",
-            "value": 41
+            "value": 63
           },
           {
             "address": "4a",
@@ -1056,7 +1056,7 @@
             "type": 3,
             "typeName": "temperature",
             "typeUnits": "[°C]",
-            "value": 24.6
+            "value": 19.1
           },
           {
             "address": "0000",
@@ -1064,7 +1064,7 @@
             "type": 16,
             "typeName": "three-value custom",
             "typeUnits": "",
-            "value": 0.07
+            "value": 0.264
           },
           {
             "address": "0001",
@@ -1072,7 +1072,7 @@
             "type": 16,
             "typeName": "three-value custom",
             "typeUnits": "",
-            "value": 0.136
+            "value": 0.277
           },
           {
             "address": "0002",
@@ -1080,7 +1080,7 @@
             "type": 16,
             "typeName": "three-value custom",
             "typeUnits": "",
-            "value": 0.087
+            "value": 0.534
           },
           {
             "address": "0100",
@@ -1088,7 +1088,7 @@
             "type": 16,
             "typeName": "three-value custom",
             "typeUnits": "",
-            "value": 0.099
+            "value": 0.372
           },
           {
             "address": "0101",
@@ -1096,7 +1096,7 @@
             "type": 16,
             "typeName": "three-value custom",
             "typeUnits": "",
-            "value": 0.191
+            "value": 0.39
           },
           {
             "address": "0102",
@@ -1104,10 +1104,10 @@
             "type": 16,
             "typeName": "three-value custom",
             "typeUnits": "",
-            "value": 0.122
+            "value": 0.752
           }
         ],
-        "payloadCounter": 61,
+        "payloadCounter": 159,
         "payloadCreationDateTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
         "payloadVersion": 2
       },
@@ -1116,66 +1116,302 @@
     }
   },
   {
-    "description": "Example Meter Reader 2.0",
+    "description": "Example Vibration Monitor 2",
     "type": "uplink",
     "input": {
-      "bytes": "023e000108000111980d000100f3100000205c00070000024100009e6d99000300000029",
+      "bytes": "029d0e11420015020161010f012e42001503001a001e003242001504fff900130002420015050004ffd4ffda",
       "fPort": 1,
       "recvTime": "2020-08-02T20:00:00.000+05:00"
     },
     "output": {
       "data": {
         "measurements": [
-           {
+          {
+            "address": "0200",
+            "dateTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+            "type": 16,
+            "typeName": "three-value custom",
+            "typeUnits": "",
+            "value": 3.53
+          },
+          {
+            "address": "0201",
+            "dateTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+            "type": 16,
+            "typeName": "three-value custom",
+            "typeUnits": "",
+            "value": 2.71
+          },
+          {
+            "address": "0202",
+            "dateTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+            "type": 16,
+            "typeName": "three-value custom",
+            "typeUnits": "",
+            "value": 3.02
+          },
+          {
+            "address": "0300",
+            "dateTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+            "type": 16,
+            "typeName": "three-value custom",
+            "typeUnits": "",
+            "value": 0.26
+          },
+          {
+            "address": "0301",
+            "dateTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+            "type": 16,
+            "typeName": "three-value custom",
+            "typeUnits": "",
+            "value": 0.3
+          },
+          {
+            "address": "0302",
+            "dateTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+            "type": 16,
+            "typeName": "three-value custom",
+            "typeUnits": "",
+            "value": 0.5
+          },
+          {
+            "address": "0400",
+            "dateTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+            "type": 16,
+            "typeName": "three-value custom",
+            "typeUnits": "",
+            "value": -0.07
+          },
+          {
+            "address": "0401",
+            "dateTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+            "type": 16,
+            "typeName": "three-value custom",
+            "typeUnits": "",
+            "value": 0.19
+          },
+          {
+            "address": "0402",
+            "dateTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+            "type": 16,
+            "typeName": "three-value custom",
+            "typeUnits": "",
+            "value": 0.02
+          },
+          {
+            "address": "0500",
+            "dateTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+            "type": 16,
+            "typeName": "three-value custom",
+            "typeUnits": "",
+            "value": 0.04
+          },
+          {
+            "address": "0501",
+            "dateTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+            "type": 16,
+            "typeName": "three-value custom",
+            "typeUnits": "",
+            "value": -0.44
+          },
+          {
+            "address": "0502",
+            "dateTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+            "type": 16,
+            "typeName": "three-value custom",
+            "typeUnits": "",
+            "value": -0.38
+          }
+        ],
+        "payloadCounter": 157,
+        "payloadCreationDateTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+        "payloadVersion": 2
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "description": "Example Vibration Monitor 3",
+    "type": "uplink",
+    "input": {
+      "bytes": "029e0e2f42001506009b00b600ee40001507000c000e0012",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "measurements": [
+          {
+            "address": "0600",
+            "dateTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+            "type": 16,
+            "typeName": "three-value custom",
+            "typeUnits": "",
+            "value": 1.55
+          },
+          {
+            "address": "0601",
+            "dateTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+            "type": 16,
+            "typeName": "three-value custom",
+            "typeUnits": "",
+            "value": 1.82
+          },
+          {
+            "address": "0602",
+            "dateTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+            "type": 16,
+            "typeName": "three-value custom",
+            "typeUnits": "",
+            "value": 2.38
+          },
+          {
+            "address": "0700",
+            "dateTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+            "type": 16,
+            "typeName": "three-value custom",
+            "typeUnits": "",
+            "value": 12
+          },
+          {
+            "address": "0701",
+            "dateTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+            "type": 16,
+            "typeName": "three-value custom",
+            "typeUnits": "",
+            "value": 14
+          },
+          {
+            "address": "0702",
+            "dateTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+            "type": 16,
+            "typeName": "three-value custom",
+            "typeUnits": "",
+            "value": 18
+          }
+        ],
+        "payloadCounter": 158,
+        "payloadCreationDateTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+        "payloadVersion": 2
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "description": "Example Meter Reader 2.0 OI",
+    "type": "uplink",
+    "input": {
+      "bytes": "028a003d9f003301080000b7225a9f0033010800009d32339f003301080000835f269f0033010800006c552b",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "measurements": [
+          {
+            "address": "010800",
+            "dateTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+            "type": 39,
+            "typeName": "OBIS",
+            "typeUnits": "",
+            "value": 12001.882
+          },
+          {
+            "address": "010800",
+            "dateTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+            "type": 39,
+            "typeName": "OBIS",
+            "typeUnits": "",
+            "value": 10302.003
+          },
+          {
+            "address": "010800",
+            "dateTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+            "type": 39,
+            "typeName": "OBIS",
+            "typeUnits": "",
+            "value": 8609.574
+          },
+          {
+            "address": "010800",
+            "dateTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+            "type": 39,
+            "typeName": "OBIS",
+            "typeUnits": "",
+            "value": 7099.691
+          }
+        ],
+        "payloadCounter": 138,
+        "payloadCreationDateTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+        "payloadVersion": 2
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "description": "Example Meter Reader 2.0 LD",
+    "type": "uplink",
+    "input": {
+      "bytes": "02c3000008000114e00d000101191000002a5c0007000004330069c60999000300010ec8",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "measurements": [
+          {
             "address": "",
             "dateTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
             "type": 2,
             "typeName": "battery voltage",
             "typeUnits": "[mV]",
-            "value": 4504
+            "value": 5344
           },
-           {
+          {
             "address": "",
             "dateTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
             "type": 3,
             "typeName": "temperature",
             "typeUnits": "[°C]",
-            "value": 24.3
+            "value": 28.1
           },
-           {
+          {
             "address": "",
             "dateTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
             "type": 4,
             "typeName": "relative humidity",
             "typeUnits": "[%]",
-            "value": 32
+            "value": 42
           },
-           {
+          {
             "address": "00",
             "dateTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
             "type": 23,
             "typeName": "two-value custom",
             "typeUnits": "",
-            "value": 577
+            "value": 1075
           },
-           {
+          {
             "address": "01",
             "dateTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
             "type": 23,
             "typeName": "two-value custom",
             "typeUnits": "",
-            "value": 40557
+            "value": 6931977
           },
-           {
+          {
             "address": "",
             "dateTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
             "type": 38,
-            "typeName": "undefined",
-            "typeUnits": "undefined",
-            "value": 4.1
+            "typeName": "Energy consumption",
+            "typeUnits": "[kWh]",
+            "value": 6932
           }
         ],
-        "payloadCounter": 62,
+        "payloadCounter": 195,
         "payloadCreationDateTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
         "payloadVersion": 2
       },
@@ -1184,10 +1420,10 @@
     }
   },
   {
-    "description": "Example Thermostat",
+    "description": "Example Thermostat 1",
     "type": "uplink",
     "input": {
-      "bytes": "027d000008000110800d000101061000003b6c000102f31a00010139",
+      "bytes": "0206001e08000114d00d00010128100000281a000100026000010002",
       "fPort": 1,
       "recvTime": "2020-08-02T20:00:00.000+05:00"
     },
@@ -1200,7 +1436,7 @@
             "type": 2,
             "typeName": "battery voltage",
             "typeUnits": "[mV]",
-            "value": 4224
+            "value": 5328
           },
           {
             "address": "",
@@ -1208,7 +1444,7 @@
             "type": 3,
             "typeName": "temperature",
             "typeUnits": "[°C]",
-            "value": 26.2
+            "value": 29.6
           },
           {
             "address": "",
@@ -1216,15 +1452,7 @@
             "type": 4,
             "typeName": "relative humidity",
             "typeUnits": "[%]",
-            "value": 59
-          },
-          {
-            "address": "",
-            "dateTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
-            "type": 27,
-            "typeName": "CO2",
-            "typeUnits": "[ppm]",
-            "value": 755
+            "value": 40
           },
           {
             "address": "",
@@ -1232,10 +1460,94 @@
             "type": 6,
             "typeName": "illuminance",
             "typeUnits": "[lux]",
-            "value": 3.13
+            "value": 0.02
+          },
+          {
+            "address": "",
+            "dateTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+            "type": 24,
+            "typeName": "counter",
+            "typeUnits": "",
+            "value": 2
           }
         ],
-        "payloadCounter": 125,
+        "payloadCounter": 6,
+        "payloadCreationDateTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+        "payloadVersion": 2
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "description": "Example Thermostat 2",
+    "type": "uplink",
+    "input": {
+      "bytes": "02050000fd00110700d2fd001108ffecfd001109ffd8fd00110a0046fc00100b01fd00110c00d2fc00100d00",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "measurements": [
+          {
+            "address": "07",
+            "dateTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+            "type": 63,
+            "typeName": "Command",
+            "typeUnits": "",
+            "value": 21
+          },
+          {
+            "address": "08",
+            "dateTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+            "type": 63,
+            "typeName": "Command",
+            "typeUnits": "",
+            "value": -2
+          },
+          {
+            "address": "09",
+            "dateTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+            "type": 63,
+            "typeName": "Command",
+            "typeUnits": "",
+            "value": -4
+          },
+          {
+            "address": "0a",
+            "dateTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+            "type": 63,
+            "typeName": "Command",
+            "typeUnits": "",
+            "value": 7
+          },
+          {
+            "address": "0b",
+            "dateTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+            "type": 63,
+            "typeName": "Command",
+            "typeUnits": "",
+            "value": 1
+          },
+          {
+            "address": "0c",
+            "dateTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+            "type": 63,
+            "typeName": "Command",
+            "typeUnits": "",
+            "value": 21
+          },
+          {
+            "address": "0d",
+            "dateTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+            "type": 63,
+            "typeName": "Command",
+            "typeUnits": "",
+            "value": 0
+          }
+        ],
+        "payloadCounter": 5,
         "payloadCreationDateTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
         "payloadVersion": 2
       },
