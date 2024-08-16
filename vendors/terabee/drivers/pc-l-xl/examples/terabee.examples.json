@@ -1,6 +1,6 @@
 [
   {
-      "description": "uplink containing consumption data",
+      "description": "uplink containing people count data",
       "type": "uplink",
       "bytes": "0000001000000011",
       "fPort": 1,
@@ -11,5 +11,174 @@
           "flags": {}
         }
       }
+  },
+  {
+    "description": "uplink containing unknown command",
+    "type": "uplink",
+    "bytes": "0102030405",
+    "fPort": 255,
+    "data": {
+      "errors": ["unknown command"]
+    }
+  },
+  {
+    "description": "uplink containing device status flags",
+    "type": "uplink",
+    "bytes": "000000000000000001",
+    "fPort": 1,
+    "data": {
+      "data": {
+        "count_in": 0,
+        "count_out": 0,
+        "flags": {
+          "TPC_STOPPED": 1
+        }
+      }
+    }
+  },
+  {
+    "description": "uplink containing response to get count",
+    "type": "uplink",
+    "bytes": "02000000C8000001C8",
+    "fPort": 2,
+    "data": {
+      "data": {
+        "cmd": {
+          "name": "CMD_CNT_GET",
+          "id": 2,
+          "success": true,
+          "value": {
+            "count_in": 200,
+            "count_out": 456
+          }
+        }
+      }
+    }
+  },
+  {
+    "description": "uplink containing response to get wifi access point state",
+    "type": "uplink",
+    "bytes": "0100",
+    "fPort": 5,
+    "data": {
+      "data": {
+        "cmd": {
+          "name": "CMD_GET_AP_STATE",
+          "id": 1,
+          "success": true,
+          "value": {
+            "state": "disabled"
+          }
+        }
+      }
+    }
+  },
+  {
+    "description": "uplink containing response to get counting diraction",
+    "type": "uplink",
+    "bytes": "0201",
+    "fPort": 100,
+    "data": {
+      "data": {
+        "cmd": {
+          "name": "CMD_GET_REVERSE",
+          "id": 2,
+          "success": true,
+          "value": {
+            "direction": "reversed"
+          }
+        }
+      }
+    }
+  },
+  {
+    "description": "uplink containing response to get installation height",
+    "type": "uplink",
+    "bytes": "0105DC",
+    "fPort": 100,
+    "data": {
+      "data": {
+        "cmd": {
+          "name": "CMD_GET_HEIGHT",
+          "id": 1,
+          "success": true,
+          "value": {
+            "mounting_height": 1500
+          }
+        }
+      }
+    }
+  },
+  {
+    "description": "uplink containing response to get push period (minutes)",
+    "type": "uplink",
+    "bytes": "03003C",
+    "fPort": 100,
+    "data": {
+      "data": {
+        "cmd": {
+          "name": "CMD_GET_PUSH_PERIOD",
+          "id": 3,
+          "success": true,
+          "value": {
+            "push_period_min": 60
+          }
+        }
+      }
+    }
+  },
+  {
+    "description": "uplink containing response to get software component PEOPLE COUNTING version",
+    "type": "uplink",
+    "bytes": "01030001",
+    "fPort": 4,
+    "data": {
+      "data": {
+        "cmd": {
+          "name": "CMD_GET_VER_PEOPLE_COUNTING",
+          "id": 1,
+          "success": true,
+          "value": {
+            "software_version": "3.0.1"
+          }
+        }
+      }
+    }
+  },
+  {
+    "description": "uplink containing response to get software component WEB GUI version",
+    "type": "uplink",
+    "bytes": "02010001",
+    "fPort": 4,
+    "data": {
+      "data": {
+        "cmd": {
+          "name": "CMD_GET_VER_WEB_GUI",
+          "id": 2,
+          "success": true,
+          "value": {
+            "software_version": "1.0.1"
+          }
+        }
+      }
+    }
+  },
+  {
+    "description": "uplink containing response to get software component LORA AGENT version",
+    "type": "uplink",
+    "bytes": "03020001",
+    "fPort": 4,
+    "data": {
+      "data": {
+        "cmd": {
+          "name": "CMD_GET_VER_LORA_AGENT",
+          "id": 3,
+          "success": true,
+          "value": {
+            "software_version": "2.0.1"
+          }
+        }
+      }
+    }
   }
 ]
