@@ -23,5 +23,371 @@
           "zone_7": "not set"
         }
       }
+  },
+  {
+    "description": "Counting data uplink with no zones created",
+    "type": "uplink",
+    "bytes": "0000FFFFFFFFFFFFFFFF",
+    "fPort": 83,
+    "data": {
+      "data": {
+        "flags": {},
+        "zone_global": 0,
+        "zone_0": "not set",
+        "zone_1": "not set",
+        "zone_2": "not set",
+        "zone_3": "not set",
+        "zone_4": "not set",
+        "zone_5": "not set",
+        "zone_6": "not set",
+        "zone_7": "not set"
+      }
+    }
+  },
+  {
+    "description": "Counting data uplink with WARMUP flag set",
+    "type": "uplink",
+    "bytes": "08000000000000000000",
+    "fPort": 83,
+    "data": {
+      "data": {
+        "flags": {
+          "WARMUP": 1
+        },
+        "zone_global": 0,
+        "zone_0": 0,
+        "zone_1": 0,
+        "zone_2": 0,
+        "zone_3": 0,
+        "zone_4": 0,
+        "zone_5": 0,
+        "zone_6": 0,
+        "zone_7": 0
+      }
+    }
+  },
+  {
+    "description": "Counting data uplink with all flags (WARMUP, STOPPED, STUCK, WIFI_ACCESS_POINT_ON) set",
+    "type": "uplink",
+    "bytes": "0F000000000000000000",
+    "fPort": 83,
+    "data": {
+      "data": {
+        "flags": {
+          "WARMUP": 1,
+          "STUCK": 1,
+          "STOPPED": 1,
+          "WIFI_ACCESS_POINT_ON": 1
+        },
+        "zone_global": 0,
+        "zone_0": 0,
+        "zone_1": 0,
+        "zone_2": 0,
+        "zone_3": 0,
+        "zone_4": 0,
+        "zone_5": 0,
+        "zone_6": 0,
+        "zone_7": 0
+      }
+    }
+  },
+  {
+    "description": "uplink containing response to get installation height",
+    "type": "uplink",
+    "bytes": "0105DC",
+    "fPort": 100,
+    "data": {
+      "data": {
+        "cmd": {
+          "name": "CMD_GET_HEIGHT",
+          "id": 1,
+          "success": true,
+          "value": {
+            "mounting_height": 1500
+          }
+        }
+      }
+    }
+  },
+  {
+    "description": "uplink containing response to get push period (seconds)",
+    "type": "uplink",
+    "bytes": "030000003C",
+    "fPort": 100,
+    "data": {
+      "data": {
+        "cmd": {
+          "name": "CMD_GET_PUSH_PERIOD",
+          "id": 3,
+          "success": true,
+          "value": {
+            "push_period_s": 60
+          }
+        }
+      }
+    }
+  },
+  {
+    "description": "uplink containing response to get device use case (open space)",
+    "type": "uplink",
+    "bytes": "0500",
+    "fPort": 100,
+    "data": {
+      "data": {
+        "cmd": {
+          "name": "CMD_GET_DEVICE_USE_CASE",
+          "id": 5,
+          "success": true,
+          "value": {
+            "device_use_case": "open space"
+          }
+        }
+      }
+    }
+  },
+  {
+    "description": "uplink containing response to get device use case (meeting room)",
+    "type": "uplink",
+    "bytes": "0502",
+    "fPort": 100,
+    "data": {
+      "data": {
+        "cmd": {
+          "name": "CMD_GET_DEVICE_USE_CASE",
+          "id": 5,
+          "success": true,
+          "value": {
+            "device_use_case": "meeting room"
+          }
+        }
+      }
+    }
+  },
+  {
+    "description": "uplink containing response to get software version",
+    "type": "uplink",
+    "bytes": "8A0076302E392E322D455500",
+    "fPort": 4,
+    "data": {
+      "data": {
+        "cmd": {
+          "name": "CMD_GET_SW_VER",
+          "id": 138,
+          "success": true,
+          "value": {
+            "software_version": "v0.9.2-EU"
+          }
+        }
+      }
+    }
+  },
+  {
+    "description": "uplink containing response to get device type",
+    "type": "uplink",
+    "bytes": "80504F43",
+    "fPort": 4,
+    "data": {
+      "data": {
+        "cmd": {
+          "name": "CMD_GET_DEVICE_TYPE",
+          "id": 128,
+          "success": true,
+          "value": {
+            "device_type": "POC"
+          }
+        }
+      }
+    }
+  },
+  {
+    "description": "uplink containing response to get lora module version",
+    "type": "uplink",
+    "bytes": "8B5255495F342E302E32",
+    "fPort": 4,
+    "data": {
+      "data": {
+        "cmd": {
+          "name": "CMD_GET_LORA_MODULE_VERSION",
+          "id": 139,
+          "success": true,
+          "value": {
+            "lora_module_version": "RUI_4.0.2"
+          }
+        }
+      }
+    }
+  },
+  {
+    "description": "uplink containing response to get wifi access point state",
+    "type": "uplink",
+    "bytes": "0100",
+    "fPort": 5,
+    "data": {
+      "data": {
+        "cmd": {
+          "name": "CMD_GET_ACCESS_POINT_STATE",
+          "id": 1,
+          "success": true,
+          "value": {
+            "state": "DISABLED"
+          }
+        }
+      }
+    }
+  },
+  {
+    "description": "uplink containing response to get (zero) active zones",
+    "type": "uplink",
+    "bytes": "01",
+    "fPort": 101,
+    "data": {
+      "data": {
+        "cmd": {
+          "name": "CMD_GET_ACTIVE_ZONES",
+          "id": 1,
+          "success": true,
+          "value": {
+            "zone_0": false,
+            "zone_1": false,
+            "zone_2": false,
+            "zone_3": false,
+            "zone_4": false,
+            "zone_5": false,
+            "zone_6": false,
+            "zone_7": false
+          }
+        }
+      }
+    }
+  },
+  {
+    "description": "uplink containing response to get (one) active zones",
+    "type": "uplink",
+    "bytes": "0100",
+    "fPort": 101,
+    "data": {
+      "data": {
+        "cmd": {
+          "name": "CMD_GET_ACTIVE_ZONES",
+          "id": 1,
+          "success": true,
+          "value": {
+            "zone_0": true,
+            "zone_1": false,
+            "zone_2": false,
+            "zone_3": false,
+            "zone_4": false,
+            "zone_5": false,
+            "zone_6": false,
+            "zone_7": false
+          }
+        }
+      }
+    }
+  },
+  {
+    "description": "uplink containing response to get (all) active zones",
+    "type": "uplink",
+    "bytes": "010001020304050607",
+    "fPort": 101,
+    "data": {
+      "data": {
+        "cmd": {
+          "name": "CMD_GET_ACTIVE_ZONES",
+          "id": 1,
+          "success": true,
+          "value": {
+            "zone_0": true,
+            "zone_1": true,
+            "zone_2": true,
+            "zone_3": true,
+            "zone_4": true,
+            "zone_5": true,
+            "zone_6": true,
+            "zone_7": true
+          }
+        }
+      }
+    }
+  },
+  {
+    "description": "uplink containing response to get occupancy zone coordinates",
+    "type": "uplink",
+    "bytes": "02200000001806",
+    "fPort": 101,
+    "data": {
+      "data": {
+        "cmd": {
+          "name": "CMD_GET_OCCUPANCY_ZONE_COORDINATES",
+          "id": 2,
+          "success": true,
+          "value": {
+            "type": "rectangle",
+            "zone_id": 0,
+            "point_1": [0, 0],
+            "point_2": [3, 3]
+          }
+        }
+      }
+    }
+  },
+  {
+    "description": "uplink containing response to get excluding zone coordinates",
+    "type": "uplink",
+    "bytes": "03200000001806",
+    "fPort": 101,
+    "data": {
+      "data": {
+        "cmd": {
+          "name": "CMD_GET_EXCLUDING_ZONE_COORDINATES",
+          "id": 3,
+          "success": true,
+          "value": {
+            "type": "rectangle",
+            "zone_id": 0,
+            "point_1": [0, 0],
+            "point_2": [3, 3]
+          }
+        }
+      }
+    }
+  },
+  {
+    "description": "uplink containing response to get analog output state disabled",
+    "type": "uplink",
+    "bytes": "010000FF",
+    "fPort": 8,
+    "data": {
+      "data": {
+        "cmd": {
+          "name": "CMD_GET_ANALOG_OUTPUT",
+          "id": 1,
+          "success": true,
+          "value": {
+            "max_occupancy": 255,
+            "state": "DISABLED"
+          }
+        }
+      }
+    }
+  },
+  {
+    "description": "uplink containing response to get analog output state disabled and max occupancy set",
+    "type": "uplink",
+    "bytes": "0100FFFF",
+    "fPort": 8,
+    "data": {
+      "data": {
+        "cmd": {
+          "name": "CMD_GET_ANALOG_OUTPUT",
+          "id": 1,
+          "success": true,
+          "value": {
+            "max_occupancy": 65535,
+            "state": "DISABLED"
+          }
+        }
+      }
+    }
   }
 ]
