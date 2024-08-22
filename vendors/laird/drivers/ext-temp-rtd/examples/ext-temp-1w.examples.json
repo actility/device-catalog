@@ -1,25 +1,5 @@
 [
   {
-    "description": "Send Temp RH Data Notification",
-    "type": "uplink",
-    "bytes": "0100213443620501000001",
-    "fPort": 1,
-    "time": "2020-08-02T20:00:00.000+05:00",
-    "data": {
-      "data": {
-        "msgType": "Laird_Internal_TH",
-        "options": [
-          "None"
-        ],
-        "batteryCapacity": "80-100%",
-        "temperature": 98.67,
-        "humidity": 52.33,
-        "alarmMsgCount": 256,
-        "backlogMsgCount": 1
-      }
-    }
-  },
-  {
     "description": "Send Temp and RH Aggregated Data Notification",
     "type": "uplink",
     "bytes": "02000000000502000000002134436222354463",
@@ -144,32 +124,6 @@
     }
   },
   {
-    "description": "Send Sensor Config Advanced Notification",
-    "type": "uplink",
-    "bytes": "0600010100010101ff500010000a000a",
-    "fPort": 1,
-    "time": "2020-08-02T20:00:00.000+05:00",
-    "data": {
-      "data": {
-        "msgType": "Laird_Advanced_Config",
-        "options": [
-          "None"
-        ],
-        "batteryType": "Alkaline",
-        "sensorReadPeriod": 256,
-        "sensorAggregate": 1,
-        "tempAlarmsEnabled": "True",
-        "humidityAlarmsEnabled": "True",
-        "tempAlarmLimitLow": -1,
-        "tempAlarmLimitHigh": 80,
-        "humidityAlarmLimitLow": 0,
-        "humidityAlarmLimitHigh": 16,
-        "ledBle": 10,
-        "ledLora": 10
-      }
-    }
-  },
-  {
     "description": "Send FW Version Notification",
     "type": "uplink",
     "bytes": "0700140b05060101020304",
@@ -232,30 +186,6 @@
         "hours": 1,
         "minutes": 2,
         "seconds": 3
-      }
-    }
-  },
-  {
-    "description": "Sensor Config Notification",
-    "type": "downlink",
-    "bytes": "0302010064050100fb450a6300170100",
-    "fPort": 1,
-    "time": "2020-08-02T20:00:00.000+05:00",
-    "data": {
-      "data": {
-        "msgType": "config",
-        "options": "Send Advanced Config",
-        "batteryType": "Alkaline",
-        "sensorReadPeriod": 100,
-        "sensorAggregate": 5,
-        "tempAlarmsEnabled": "True",
-        "humidityAlarmsEnabled": "False",
-        "tempAlarmLimitLow": -5,
-        "tempAlarmLimitHigh": 69,
-        "humidityAlarmLimitLow": 10,
-        "humidityAlarmLimitHigh": 99,
-        "ledBle": 23,
-        "ledLora": 256
       }
     }
   },
