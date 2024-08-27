@@ -41,7 +41,7 @@ This is the ontology supported by Actility. you can define a sensor inside your 
 | Hectopascal                            | hPa       | double                           | hPa                 | pressure                                                        |
 | Henry                                  | H         | double                           | H                   | inductance                                                      |
 | Hertz                                  | hertz     | double                           | Hz                  | frequency, sound                                                |
-| Hour                                   | hour      | double                           | h                   | time, duration, interval, age, period                           |
+| Hour                                   | h         | double                           | h                   | time, duration, interval, age, period                           |
 | Joule                                  | J         | double                           | J                   | energy                                                          |
 | Katal                                  | kat       | double                           | kat                 | catalyticActivity                                               |
 | Kelvin                                 | K         | double                           | K                   | temperature                                                     |
