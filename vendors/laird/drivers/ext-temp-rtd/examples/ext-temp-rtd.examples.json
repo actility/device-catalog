@@ -2,7 +2,7 @@
   {
     "description": "Send Temp and RH Aggregated Data Notification",
     "type": "uplink",
-    "bytes": "02000000000502000000002134436222354463",
+    "bytes": "0200000000050200000000FFF6FFECFFE4FE77",
     "fPort": 1,
     "time": "2020-08-02T20:00:00.000+05:00",
     "data": {
@@ -25,12 +25,10 @@
         },
         "readings": [
           {
-            "temperature": 98.67,
-            "humidity": 52.33
+            "temperature": -20.10            
           },
           {
-            "temperature": 99.68,
-            "humidity": 53.34
+            "temperature": -393.28
           }
         ]
       }
@@ -39,7 +37,7 @@
   {
     "description": "Send Backlog Message Notification with configuration error",
     "type": "uplink",
-    "bytes": "0302000000022a3d4c6b",
+    "bytes": "0302000000022A3D4C6B",
     "fPort": 1,
     "time": "2020-08-02T20:00:00.000+05:00",
     "data": {
@@ -56,15 +54,14 @@
           "minutes": 0,
           "seconds": 2
         },
-        "temperature": 107.76,
-        "humidity": 61.42
+        "temperature": 19671.13
       }
     }
   },
   {
     "description": "Send Backlog Message Notification with server response error",
     "type": "uplink",
-    "bytes": "040102000000002a3d4c6b000000002a3d4c6b",
+    "bytes": "0401010000000000100100",
     "fPort": 1,
     "time": "2020-08-02T20:00:00.000+05:00",
     "data": {
@@ -73,7 +70,7 @@
         "options": [
           "Sensor request for server time"
         ],
-        "numberOfReadings": 2,
+        "numberOfReadings": 1,
         "readings": [
           {
             "timestamp": {
@@ -84,20 +81,7 @@
               "minutes": 0,
               "seconds": 0
             },
-            "temperature": 107.76,
-            "humidity": 61.42
-          },
-          {
-            "timestamp": {
-              "year": 2000,
-              "month": "January",
-              "day": 1,
-              "hours": 0,
-              "minutes": 0,
-              "seconds": 0
-            },
-            "temperature": 107.76,
-            "humidity": 61.42
+            "temperature": 256.16
           }
         ]
       }
