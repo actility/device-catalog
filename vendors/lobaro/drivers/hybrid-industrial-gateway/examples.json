@@ -1,0 +1,308 @@
+[
+  {
+    "type": "uplink",
+    "description": "Example A1: Read Holding Registers 0, 1, and 2 of device with address 1 (Example resulting Uplink after successful readout)",
+    "input": {
+      "bytes": "005d1698fd0c0103061234567890ab000003",
+      "fPort": 3,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "port": 3,
+      "responses": [
+        {
+          "cnt": 3,
+          "error": false,
+          "function": 3,
+          "raw": [
+            1,
+            3,
+            6,
+            18,
+            52,
+            86,
+            120,
+            144,
+            171
+          ],
+          "slave": 1,
+          "start": 0,
+          "values": [
+            [
+              18,
+              52
+            ],
+            [
+              86,
+              120
+            ],
+            [
+              144,
+              171
+            ]
+          ]
+        }
+      ],
+      "timestamp": 1561762045
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Example A1: Read Holding Registers 0, 1, and 2 of device with address 1 (Example resulting Uplink after failing readout)",
+    "input": {
+      "bytes": "005d1698fd0601830b000003",
+      "fPort": 3,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "port": 3,
+      "responses": [
+        {
+          "cnt": 3,
+          "error": true,
+          "errorCode": 11,
+          "errorText": "Gateway Target Device Failed to Respond",
+          "function": 3,
+          "raw": [
+            1,
+            131,
+            11
+          ],
+          "slave": 1,
+          "start": 0
+        }
+      ],
+      "timestamp": 1561762045
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Example A2: Read coils 1000-1019 of device 32",
+    "input": {
+      "bytes": "005d1698fd09200103f1041a03e814",
+      "fPort": 3,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "port": 3,
+      "responses": [
+        {
+          "cnt": 20,
+          "error": false,
+          "function": 1,
+          "raw": [
+            32,
+            1,
+            3,
+            241,
+            4,
+            26
+          ],
+          "slave": 32,
+          "start": 1000,
+          "values": [
+            [
+              241,
+              4
+            ],
+            [
+              26,
+              NaN
+            ]
+          ]
+        }
+      ],
+      "timestamp": 1561762045
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Example A3: Read registers from two devices",
+    "input": {
+      "bytes": "005d1698fd100a030a111122223333444455550001050a30010412345678ea6020",
+      "fPort": 3,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "port": 3,
+      "responses": [
+        {
+          "cnt": 5,
+          "error": false,
+          "function": 3,
+          "raw": [
+            10,
+            3,
+            10,
+            17,
+            17,
+            34,
+            34,
+            51,
+            51,
+            68,
+            68,
+            85,
+            85
+          ],
+          "slave": 10,
+          "start": 1,
+          "values": [
+            [
+              17,
+              17
+            ],
+            [
+              34,
+              34
+            ],
+            [
+              51,
+              51
+            ],
+            [
+              68,
+              68
+            ],
+            [
+              85,
+              85
+            ]
+          ]
+        },
+        {
+          "cnt": 32,
+          "error": false,
+          "function": 1,
+          "raw": [
+            48,
+            1,
+            4,
+            18,
+            52,
+            86,
+            120
+          ],
+          "slave": 48,
+          "start": 60000,
+          "values": [
+            [
+              18,
+              52
+            ],
+            [
+              86,
+              120
+            ]
+          ]
+        }
+      ],
+      "timestamp": 1561762045
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Example A4: Split uplink message (Up 1)",
+    "input": {
+      "bytes": "005d1698fd46010340000100020003000400050006000700080009000a000b000c000d000e000f001000110012001300140015",
+      "fPort": 3,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "port": 3,
+      "responses": [],
+      "timestamp": 1561762045
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Example A4: Split uplink message (Up 2)",
+    "input": {
+      "bytes": "0016001700180019001a001b001c001d001e001f00200120",
+      "fPort": 3,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "port": 3,
+      "responses": [],
+      "timestamp": 369104640
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Example B1: Read single Input Register by Downlink",
+    "input": {
+      "bytes": "004b3dd67508180402abcd010001",
+      "fPort": 4,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "port": 4,
+      "responses": [
+        {
+          "cnt": 1,
+          "error": false,
+          "function": 4,
+          "raw": [
+            24,
+            4,
+            2,
+            171,
+            205
+          ],
+          "slave": 24,
+          "start": 256,
+          "values": [
+            [
+              171,
+              205
+            ]
+          ]
+        }
+      ],
+      "timestamp": 1262343797
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Example B2: Writing holding registers on multiple devices",
+    "input": {
+      "bytes": "004b3dd67506a1860200000006a210a0010004",
+      "fPort": 4,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "port": 4,
+      "responses": [
+        {
+          "cnt": 0,
+          "error": true,
+          "errorCode": 2,
+          "errorText": "Illegal Data Address",
+          "function": 6,
+          "raw": [
+            161,
+            134,
+            2
+          ],
+          "slave": 161,
+          "start": 0
+        },
+        {
+          "cnt": 4,
+          "error": false,
+          "function": 0,
+          "raw": [
+            162,
+            16,
+            160
+          ],
+          "slave": 162,
+          "start": 256,
+          "values": null
+        }
+      ],
+      "timestamp": 1262343797
+    }
+  }
+]
