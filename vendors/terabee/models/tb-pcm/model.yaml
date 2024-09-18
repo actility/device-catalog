@@ -1,13 +1,9 @@
 # Commercial name of the model
-name: Terabee People Counting L-XL
+name: Terabee People Flow Counting M 2.0
 # Functional description of the product. Maximum 500 characters.
-description: "Using advanced Time-of-Flight technology, Terabee People Counting L-XL is GDPR compliant and provides accurate people counting data (98% accuracy or more) by monitoring the number of people entering and exiting doorways or corridors."
+description: "Using advanced Time-of-Flight technology, Terabee People Flow Counting M 2.0 is GDPR compliant and provides accurate people counting data (98% accuracy or more) by monitoring the number of people entering and exiting doorways or corridors."
 # Logo of the device
-logo: people-counting-l-xl.png
-# Product name & Version
-product:
-    name: TERA/PCLXL
-    version: 1
+logo: people-flow-counting-m.png
 # ID(s) of the profile that defines the LoRaWAN characteristics of this model.
 # id: as defined under /profiles.
 # lorawanDeviceProfileID: as defined by LoRa Alliance in https://lora-alliance.org/wp-content/uploads/2020/10/LoRa_Alliance_Vendor_ID_for_QR_Code_02142022.pdf.
@@ -34,18 +30,18 @@ LoRaWANCertified:
 # Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
 # Format: `<8 characters max>:<16 characters max>:<digits only>`
 # Be careful: Once you chose a model, it cannot be changed later
-modelId: terabee:pc-l-xl:1
+modelId: terabee:tb-pcm:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 # Be careful: Once you chose a protocolId, it cannot be changed later
-protocolId: terabee:pc-l-xl:1
+protocolId: terabee:tb-pcm:1
 # DataSheet URL (optional)
-specificationURL: https://terabee.b-cdn.net/wp-content/uploads/2022/06/Terabee-People-Counting-L-XL-Specification-sheet.pdf
+specificationURL: https://www.terabee.com/wp-content/uploads/2021/09/Terabee-People-Counting-M-Specification-Sheet.pdf
 # User Guide URL (optional)
-userGuideURL: https://www.youtube.com/watch?v=4qqXGiU6yUc
+userGuideURL: https://www.youtube.com/watch?v=5qGelSDHoZA
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
-  terabee:pc-l-xl:1:
-      - uplink containing counting data
+  terabee:tb-pcm:1:
+    - uplink containing counting data
