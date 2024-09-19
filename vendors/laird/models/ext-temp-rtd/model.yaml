@@ -37,7 +37,7 @@ LoRaWANCertified:
 modelId: laird:ext-temp-rtd:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId: 
-    - laird:ext-temp-rtd:1
+    - os1-lair:rs1xx-ext-temp-r:1
 # DataSheet URL (optional) 
 specificationURL: https://www.lairdconnect.com/wireless-modules/lorawan-solutions/sentrius-rs1xx-lora-enabled-sensors#specifications
 # User Guide URL (optional) 
@@ -50,13 +50,15 @@ sensors:
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
-    laird:ext-temp-rtd:1:
+    os1-lair:rs1xx-ext-temp-r:1:
         - "Send Temp and RH Aggregated Data Notification"
-        - "Send Backlog Message Notification with configuration error"
-        - "Send Backlog Message Notification with server response error"
+        - "Send Backlog Message Notification"
+        - "Send Backlog Messages Notification"
         - "Send Sensor Config Simple Notification"
         - "Send FW Version Notification"
         - "Send Battery Voltage"
+        - "Send RTD Data Notification"
+        - "Send RTD Config Advanced Notification"
         - "Generic Data Retrieval Notification"
         - "Set UTC Notification"
         - "Backoff Notification"
@@ -64,5 +66,6 @@ examples:
         - "Format Flash Log Notification"
         - "LIFO Backlog Retrieval Notification"
         - "Cancel Backlog Retrieval"
+        - "RTD Sensor Config Notification"
         - "FIFO Targeted Backlog Retrieval Notification"
         - "LIFO Targeted Backlog Retrieval Notification"
