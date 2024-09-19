@@ -19,6 +19,7 @@
             },
             "payload":"105e0c248a000119ff3ff20436458000a10000000a1765",
             "position":{
+               "coordinates": [7.06656, 43.615845, 161],
                "motion":1,
                "gnssFix":{
                   "latitude":43.615845,
@@ -959,7 +960,7 @@
                      "group":"GEOLOC",
                      "parameters":[
                         {
-                           "parameterName":"geolocMotionPeriod",
+                           "parameterName":"geolocMotionPeriod", 
                            "parameterValue":600
                         },
                         {
@@ -2810,51 +2811,6 @@
    }
 },
 {
-   "description":"Notification telemetry type 0",
-   "type":"uplink",
-   "input":{
-      "bytes":"09007f4260810000000C02FFFE810000001C",
-      "recvTime":"2024-06-10T09:42:13.733+02:00",
-      "fPort":1
-   },
-   "output":{
-      "data":{
-         "header": {
-            "sos": false,
-            "type": "NOTIFICATION",
-            "ackToken": 1,
-            "multiFrame": false,
-            "batteryLevel": "CHARGING",
-            "timestamp": "2024-06-09T21:02:58.000Z"
-         },
-         "notification": {
-          "notificationClass": "TELEMETRY",
-          "notificationType": "TELEMETRY",
-          "telemetry": {
-            "telemetryMeasurements": [
-              {
-                "ontology": "RESISTANCE",
-                "value": 12
-              },
-              {
-                "ontology": "TEMPERATURE",
-                "value": -2
-              },
-              {
-                "ontology": "RESISTANCE",
-                "value": 28
-              }
-            ]
-          }
-        },
-        "payload": "09007f4260810000000c02fffe810000001c"
-      },
-      "errors": [],
-      "warnings": []
-    }
-},
-
-{
    "description":"status uplink page0",
    "type":"uplink",
    "input":{
@@ -2941,64 +2897,11 @@
                      "currentTemperature":28,
                      "gnssBeidouDate":0,
                      "gnssBeidouGood":0,
-                     "gnssBeidouOutdated":[
-                        "Satellite 1",
-                        "Satellite 2",
-                        "Satellite 3",
-                        "Satellite 4",
-                        "Satellite 5",
-                        "Satellite 9",
-                        "Satellite 10",
-                        "Satellite 11",
-                        "Satellite 12",
-                        "Satellite 13",
-                        "Satellite 14",
-                        "Satellite 15",
-                        "Satellite 16",
-                        "Satellite 17",
-                        "Satellite 18",
-                        "Satellite 19",
-                        "Satellite 20",
-                        "Satellite 21",
-                        "Satellite 22",
-                        "Satellite 23",
-                        "Satellite 24",
-                        "Satellite 25",
-                        "Satellite 26",
-                        "Satellite 27",
-                        "Satellite 28",
-                        "Satellite 29",
-                        "Satellite 30",
-                        "Satellite 31",
-                        "Satellite 32",
-                        "Satellite 33",
-                        "Satellite 34",
-                        "Satellite 35",
-                        "Satellite 36",
-                        "Satellite 37",
-                        "Satellite 38",
-                        "Satellite 39",
-                        "Satellite 40"
-                     ],
+                     "gnssBeidouOutdated":[1, 2, 3, 4, 5, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40],
+
                      "gnssGpsDate":2318,
                      "gnssGpsGood":16,
-                     "gnssGpsOutdated":[
-                        "Satellite 1",
-                        "Satellite 11",
-                        "Satellite 12",
-                        "Satellite 13",
-                        "Satellite 14",
-                        "Satellite 15",
-                        "Satellite 16",
-                        "Satellite 17",
-                        "Satellite 18",
-                        "Satellite 19",
-                        "Satellite 20",
-                        "Satellite 21",
-                        "Satellite 22",
-                        "Satellite 23",
-                        "Satellite 24"
-                     ],
+                     "gnssGpsOutdated":[ 1, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24],
                      "lr11xxBeidouDate":0,
                      "lr11xxBeidouGood":0,
                      "lr11xxBeidouOutdated":[
@@ -3025,7 +2928,7 @@
    },
 
 {
-   "description":"downlik command System status request.",
+   "description":"downlink command System status request.",
    "type":"downlink-decode",
    "input":{
       "bytes":"0904",
