@@ -190,25 +190,25 @@ function determinePage1(payload, decodedStatus){
     let value = (payload[9] << 24) + (payload[10] << 16) + (payload[11] << 8) + payload[12];
     decodedStatus.lr11xxGpsOutdated = gpsSatelliteField
         .filter(bit => getBit(value, bit.position))
-        .map(bit => bit.name);
+        .map(bit => bit.position+1);
     decodedStatus.lr11xxGpsGood = payload[13]
     decodedStatus.lr11xxBeidouDate = (payload[14] << 8) + payload[15];
     let valueB = payload.slice(16,21)
     decodedStatus.lr11xxBeidouOutdated = beidouSatelliteField
         .filter(bit => getBitFromPayload(valueB, bit.position))
-        .map(bit => bit.name);
+        .map(bit => bit.position+1);
     decodedStatus.lr11xxBeidouGood = payload[21]
     decodedStatus.gnssGpsDate = (payload[22] << 8) + payload[23];
     let valueG = (payload[24] << 24) + (payload[25] << 16) + (payload[26] << 8) + payload[27];
     decodedStatus.gnssGpsOutdated = gpsSatelliteField
         .filter(bit => getBit(valueG, bit.position))
-        .map(bit => bit.name);
+        .map(bit => bit.position+1);
     decodedStatus.gnssGpsGood = payload[28]
     decodedStatus.gnssBeidouDate = (payload[29] << 8) + payload[30];
     let valueGB = payload.slice(31,36);
     decodedStatus.gnssBeidouOutdated = beidouSatelliteField
         .filter(bit => getBitFromPayload(valueGB, bit.position))
-        .map(bit => bit.name);
+        .map(bit => bit.position+1);
     decodedStatus.gnssBeidouGood = payload[36];  
 }
 function determinePage2(payload, decodedStatus){
@@ -292,84 +292,14 @@ function getBitFromPayload(payload, position) {
     return getBitFromByte(payload[byteIndex], bitIndex);
 }
 
-// Define a bit field structure with names and positions
-let gpsSatelliteField = [
-    { name: 'Satellite 1', position: 0 },
-    { name: 'Satellite 2', position: 1 },
-    { name: 'Satellite 3', position: 2 },
-    { name: 'Satellite 4', position: 3 },
-    { name: 'Satellite 5', position: 4 },
-    { name: 'Satellite 6', position: 5 },
-    { name: 'Satellite 7', position: 6 },
-    { name: 'Satellite 8', position: 7 },
-    { name: 'Satellite 9', position: 8 },
-    { name: 'Satellite 10', position: 9 },
-    { name: 'Satellite 11', position: 10 },
-    { name: 'Satellite 12', position: 11 },
-    { name: 'Satellite 13', position: 12 },
-    { name: 'Satellite 14', position: 13 },
-    { name: 'Satellite 15', position: 14 },
-    { name: 'Satellite 16', position: 15 },
-    { name: 'Satellite 17', position: 16 },
-    { name: 'Satellite 18', position: 17 },
-    { name: 'Satellite 19', position: 18 },
-    { name: 'Satellite 20', position: 19 },
-    { name: 'Satellite 21', position: 20 },
-    { name: 'Satellite 22', position: 21 },
-    { name: 'Satellite 23', position: 22 },
-    { name: 'Satellite 24', position: 23 },
-    { name: 'Satellite 25', position: 24 },
-    { name: 'Satellite 26', position: 25 },
-    { name: 'Satellite 27', position: 26 },
-    { name: 'Satellite 28', position: 27 },
-    { name: 'Satellite 29', position: 28 },
-    { name: 'Satellite 30', position: 29 },
-    { name: 'Satellite 31', position: 30 },
-    { name: 'Satellite 32', position: 31 }
-];
-let beidouSatelliteField = [
-    { name: 'Satellite 1', position: 0 },
-    { name: 'Satellite 2', position: 1 },
-    { name: 'Satellite 3', position: 2 },
-    { name: 'Satellite 4', position: 3 },
-    { name: 'Satellite 5', position: 4 },
-    { name: 'Satellite 6', position: 5 },
-    { name: 'Satellite 7', position: 6 },
-    { name: 'Satellite 8', position: 7 },
-    { name: 'Satellite 9', position: 8 },
-    { name: 'Satellite 10', position: 9 },
-    { name: 'Satellite 11', position: 10 },
-    { name: 'Satellite 12', position: 11 },
-    { name: 'Satellite 13', position: 12 },
-    { name: 'Satellite 14', position: 13 },
-    { name: 'Satellite 15', position: 14 },
-    { name: 'Satellite 16', position: 15 },
-    { name: 'Satellite 17', position: 16 },
-    { name: 'Satellite 18', position: 17 },
-    { name: 'Satellite 19', position: 18 },
-    { name: 'Satellite 20', position: 19 },
-    { name: 'Satellite 21', position: 20 },
-    { name: 'Satellite 22', position: 21 },
-    { name: 'Satellite 23', position: 22 },
-    { name: 'Satellite 24', position: 23 },
-    { name: 'Satellite 25', position: 24 },
-    { name: 'Satellite 26', position: 25 },
-    { name: 'Satellite 27', position: 26 },
-    { name: 'Satellite 28', position: 27 },
-    { name: 'Satellite 29', position: 28 },
-    { name: 'Satellite 30', position: 29 },
-    { name: 'Satellite 31', position: 30 },
-    { name: 'Satellite 32', position: 31 },
-    { name: 'Satellite 33', position: 32 },
-    { name: 'Satellite 34', position: 33 },
-    { name: 'Satellite 35', position: 34 },
-    { name: 'Satellite 36', position: 35 },
-    { name: 'Satellite 37', position: 36 },
-    { name: 'Satellite 38', position: 37 },
-    { name: 'Satellite 39', position: 38 },
-    { name: 'Satellite 40', position: 39 }
-
-];
+// Define a bit gps field structure with positions only
+let gpsSatelliteField = Array.from({ length: 32 }, (_, i) => ({
+    position: i
+}));
+// Define a bit beidou field structure with positions only
+let beidouSatelliteField = Array.from({ length: 40 }, (_, i) => ({
+    position: i
+}));
 
 module.exports = {
     System: System,

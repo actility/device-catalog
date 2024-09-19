@@ -34,8 +34,13 @@ function determineHeader(payload , receivedTime){
 
 
 function rebuildTime(receivedTime, seconds) {
+
     // Parse the timestamp : 
     const timestamp = parseISO(receivedTime);
+    //In the case where the tracker hasn't had time yet...
+    if (seconds == 65535){
+        return timestamp.toISOString(); 
+    }
     const dd = timestamp.getFullYear()
     const hh = timestamp.getMonth();
     const sh = timestamp.getDate();

@@ -30,7 +30,7 @@ function Notification(notificationClass,
     accelerometer,
     network,
     geozoning,
-    telemetry){
+    telemetryMeasurements){
     this.notificationClass = notificationClass;
     this.notificationType = notificationType;
     this.system = system;
@@ -39,7 +39,7 @@ function Notification(notificationClass,
     this.accelerometer = accelerometer;
     this.network = network;
     this.geozoning = geozoning;
-    this.telemetry = telemetry;
+    this.telemetryMeasurements = telemetryMeasurements;
 }
 
 function determineNotification(payload){
@@ -165,7 +165,7 @@ function determineNotification(payload){
             switch (typeValue){
                 case 0: 
                     notificationMessage.notificationType = telemetryClass.TelemetryType.TELEMETRY;
-                    notificationMessage.telemetry =  new telemetryClass.Telemetry(telemetryClass.determineTelemetryMeasurements(payload.slice(5)));
+                    notificationMessage.telemetryMeasurements = telemetryClass.determineTelemetryMeasurements(payload.slice(5));
                     break;
                 case 1:
                     notificationMessage.notificationType = telemetryClass.TelemetryType.TELEMETRY_MODE_BATCH;
