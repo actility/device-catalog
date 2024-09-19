@@ -37,7 +37,7 @@ LoRaWANCertified:
 modelId: laird:ext-multi:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId: 
-    - laird:ext-multi:1
+    - os1-lair:rs1xx-ext-multi:1
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 
@@ -47,14 +47,16 @@ sensors:
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
-    laird:ext-multi:1:
+    os1-lair:rs1xx-ext-multi:1:
         - "Send Temp RH Data Notification"
         - "Send Temp and RH Aggregated Data Notification"
-        - "Send Backlog Message Notification with configuration error"
-        - "Send Backlog Message Notification with server response error"
+        - "Send Backlog Message Notification"
+        - "Send Backlog Messages Notification"
         - "Send Sensor Config Simple Notification"
         - "Send Sensor Config Advanced Notification"
         - "Send FW Version Notification"
+        - "Send Open Closed Config Notification"
+        - "Send Open Closed Status Notification"
         - "Send Battery Voltage"
         - "Generic Data Retrieval Notification"
         - "Set UTC Notification"
@@ -65,5 +67,6 @@ examples:
         - "Format Flash Log Notification"
         - "LIFO Backlog Retrieval Notification"
         - "Cancel Backlog Retrieval"
+        - "Open/Closed Config Notification"
         - "FIFO Targeted Backlog Retrieval Notification"
         - "LIFO Targeted Backlog Retrieval Notification"
