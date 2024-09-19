@@ -214,6 +214,9 @@ describe("Decode uplink", () => {
                 // Then
                 const expected = example.output;
 
+                // Adaptations
+                adaptDates(result, expected);
+
                 expect(result).toStrictEqual(expected);
             });
         }
@@ -332,4 +335,56 @@ function adaptBytesArray(bytes){
         return Array.from(Buffer.from(bytes, "hex"));
     }
     return bytes;
+}
+
+
+// UTIL
+function adaptDates(result, expected) {
+    for(let property of listProperties(result)) {
+        let keys = property.split('.');
+        let value = result;
+        let expectedValue = expected;
+        let skipProperty = false;
+        for(let key of keys) {
+            value = value[key];
+            expectedValue = expectedValue[key];
+            if(expectedValue == null) {
+                skipProperty = true;
+                break;
+            }
+        }
+        if(skipProperty) continue;
+
+        let isDate = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z/.test(value);
+        isDate |= value instanceof Date;
+        
+        
+        if(isDate) {
+            let displayedResult = value;
+            if(displayedResult instanceof Date) displayedResult = displayedResult.toISOString();
+            if(expectedValue === "XXXX-XX-XXTXX:XX:XX.XXXZ") displayedResult = "XXXX-XX-XXTXX:XX:XX.XXXZ";
+
+            value = result;
+            for (let i = 0; i < keys.length - 1; i++) {
+                if (!value[keys[i]] || typeof value[keys[i]] !== 'object') {
+                    value[keys[i]] = {};
+                }
+                value = value[keys[i]];
+            }
+            value[keys[keys.length - 1]] = displayedResult;
+        }
+    }
+}
+
+function listProperties(obj, parent = '', result = []) {
+    for (let key in obj) {
+        if (obj.hasOwnProperty(key)) {
+            if (typeof obj[key] === 'object' && !(obj[key] instanceof Date) && obj[key] !== null) {
+                listProperties(obj[key], parent + key + '.', result);
+            } else {
+                result.push(parent + key);
+            }
+        }
+    }
+    return result;
 }
