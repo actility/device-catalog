@@ -1,26 +1,32 @@
+// Version 0.0.2
+// Changelog
+//
+// 0.0.2 - 2024-09-24
+// - Added support for Coils and do not return NaN in some cases.
+ 
 function readVersion(bytes) {
     if (bytes.length<3) {
         return null;
     }
     return "v" + bytes[0] + "." + bytes[1] + "." + bytes[2];
 }
-  
+   
 function int40_BE(bytes, idx) {
     bytes = bytes.slice(idx || 0);
     return bytes[0] << 32 |
         bytes[1] << 24 | bytes[2] << 16 | bytes[3] << 8 | bytes[4] << 0;
 }
-  
+   
 function int16_BE(bytes, idx) {
     bytes = bytes.slice(idx || 0);
     return bytes[0] << 8 | bytes[1] << 0;
 }
-  
+   
 function uint16_BE(bytes, idx) {
     bytes = bytes.slice(idx || 0);
     return bytes[0] << 8 | bytes[1] << 0;
 }
-  
+   
 function port1(bytes) {
     return {
         "port":1,
@@ -33,7 +39,7 @@ function port1(bytes) {
         "noData": !!(bytes[3] & 0x01)
     };
 }
-  
+   
 function port2(bytes) {
     var regs = [];
     if (bytes.length > 5) {
@@ -61,7 +67,7 @@ function port2(bytes) {
         "registers": regs
     };
 }
-  
+   
 function modbusErrorString(code) {
     // Modbus exception codes
     // see https://en.wikipedia.org/wiki/Modbus#Exception_responses
@@ -90,7 +96,7 @@ function modbusErrorString(code) {
             return "Unknown error code";
     }
 }
-  
+   
 function parseModbusPayloadRegisters(payload) {
     if (payload.length < 1) {
         return null;
@@ -99,12 +105,23 @@ function parseModbusPayloadRegisters(payload) {
     if (payload.length !== byteCnt + 1) {
         return null;
     }
+    var fun = payload[1] & 0xf;
     var vals = [];
-    for (var i=0; i<byteCnt; i+=2) {
+     
+    if (fun == 0x01) {
+      // Coils
+      for (var i=0; i<byteCnt; i++) {
+        vals.push(+payload[i+1])
+      }
+    } else {
+      // 2 Byte Registers
+      for (var i=0; i<byteCnt; i+=2) {
         vals.push([+payload[i+1], +payload[i+2]])
+      }
     }
+ 
     return vals;
-  
+   
 }
 function parseModbusResponse(raw) {
     var resp = {};
@@ -122,13 +139,12 @@ function parseModbusResponse(raw) {
             resp["errorCode"] = raw[2];
             resp["errorText"] = modbusErrorString(raw[2]);
         } else {
-            resp["values"] = parseModbusPayloadRegisters(rawResp.slice(2))
-            // TODO: coils
+           resp["values"] = parseModbusPayloadRegisters(rawResp.slice(2))
         }
     }
     return resp;
 }
-  
+   
 function FullResponses(bytes, port) {
     var timestamp = int40_BE(bytes);
     var pos = 5;
@@ -149,7 +165,7 @@ function FullResponses(bytes, port) {
         "responses": resps
     };
 }
-  
+   
 function bin2String(array) {
     var result = "";
     for (var i = 0; i < array.length; i++) {
@@ -157,7 +173,7 @@ function bin2String(array) {
     }
     return result;
 }
-  
+   
 function ConfigResponse(data) {
     var t = bin2String(data);
     return {
@@ -165,7 +181,7 @@ function ConfigResponse(data) {
         "error" : (t.length === 0) || (t[0] === '!')
     }
 }
-  
+   
 /**
  * TTN decoder function.
  */
