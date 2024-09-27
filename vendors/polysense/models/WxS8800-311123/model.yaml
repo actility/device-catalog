@@ -41,8 +41,15 @@ specificationURL: https://pro59330473-pic11.ysjianzhan.cn/upload/WxS8800-311123P
 userGuideURL:
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
+  - intensity:dB
+  - batteryVoltage:mV
+  - distance:mm
+  - eventRate:count/s
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
   polysen:wxs8800-311123:1:
+    - "uplink containing battery voltage and sound"
+    - "uplink containing battery voltage and distance"
+    - "uplink containing battery voltage and count"
 
