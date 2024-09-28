@@ -1,2 +1,17 @@
-# A reference to the corresponding driver on our private drivers repository
-protocolId: os1-lair:rs1xx-ext-temp-r:1
+# Formal driver name
+name: Laird RS1xx RTD sensor driver
+# Simple description of the driver functionalities
+description: The Laird Sentrius™ RS1xx Ext Temp RTD has an external temperature sensor probe making it a perfect fit for monitoring low and slow cooking temps mounted inside a smoker. It transmits data over LoRaWAN® and Bluetooth Low Energy (BLE). The robust IP65 sensor enclosure allows it to be used in harsh environments and suitable for food safety management, agricultural environment monitoring, and industrial heating and cooling.
+# Mandatory - id of the company that developed the driver
+# This id will be used to construct the id of the driver (Should be in lowercase, no special characters, maximum 8 characters)
+producerId: laird
+# Email of the developer
+developerEmail:
+# In case of a driver per model: `<vendorId>:<modelName>:<modelVersion>`
+# In case of a driver for multiples model: `<vendorId>:generic:<genericVersion>`
+# Needed for linking the model with a specific driver -> must be the same one used in model.yaml in the corresponding model
+# You should have only one protocolId per driver
+protocolId: laird:ext-temp-rtd:1
+# This is to specify the type of functions signature used in this driver. Possible values: actility, lora-alliance, ttn, chirpstack.
+# Keep it empty if you followed the lora-alliance payload codec api
+signature: actility
