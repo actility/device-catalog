@@ -6,7 +6,7 @@ function decodeUplink(input)
     var output = 0;
     var data;
     
-    var stringHex = bytesString(input.bytes);
+    let stringHex = bytesString(input.bytes);
     
     var octetTypeProduit = parseInt(stringHex.substring(0,2),16);
     var octetTypeMessage = parseInt(stringHex.substring(2,4),16);
@@ -29,9 +29,16 @@ function decodeUplink(input)
         
         function dataOutput(octetTypeMessage)
         {
-            const outputTypeMessage=["Reserved",periodicDataOutput(stringHex),historicalCO2DataOutput(stringHex),historicalTemperatureDataOutput(stringHex),"Reserved",productStatusDataOutput(stringHex),
-                                productConfigurationDataOutput(stringHex)]
-            return outputTypeMessage[octetTypeMessage]
+            if(octetTypeMessage==0x01){return periodicDataOutput(stringHex)}
+            if(octetTypeMessage==0x02){return historicalCO2DataOutput(stringHex)}
+            if(octetTypeMessage==0x03){return historicalTemperatureDataOutput(stringHex)}
+            if(octetTypeMessage==0x04){return historicalHumidityDataOutput(stringHex)}
+            if(octetTypeMessage==0x05){return productStatusDataOutput(stringHex)}
+            if(octetTypeMessage==0x06){return productConfigurationDataOutput(stringHex)}
+            if(octetTypeMessage==0x11){return sigfoxPeriodicDataOutput(stringHex)}
+            if(octetTypeMessage==0x15){return sigfoxProductStatusDataOutput(stringHex)}
+            if(octetTypeMessage==0x16){return sigfoxProductConfigurationN1DataOutput(stringHex)}
+            if(octetTypeMessage==0x17){return sigfoxProductConfigurationN2DataOutput(stringHex)}
         }
 
         function typeOfProduct(octetTypeProduit)
@@ -39,13 +46,22 @@ function decodeUplink(input)
             if(octetTypeProduit==0xA9){return "Feel LoRa"}
             if(octetTypeProduit==0xAA){return "Rise LoRa"}
             if(octetTypeProduit==0xAB){return "Move LoRa"}
+            if(octetTypeProduit==0xFF){return "Wave LoRa"}
             if(octetTypeProduit==0xAD){return "Sign LoRa"}
         }    
         
         function typeOfMessage(octetTypeMessage)
         {
-            const message_name =["Reserved","Periodic data","CO2 Historical Data","Temperature Historical Data" ,"Reserved","Product Status","Product Configuration"]
-            return message_name[octetTypeMessage]
+            if(octetTypeMessage==0x01){return "Periodic Data"}
+            if(octetTypeMessage==0x02){return "CO2 Historical Data"}
+            if(octetTypeMessage==0x03){return "Temperature Historical Data"}
+            if(octetTypeMessage==0x04){return "Humidity Historical Data"}
+            if(octetTypeMessage==0x05){return "Product Status"}
+            if(octetTypeMessage==0x06){return "Product Configuration"}
+            if(octetTypeMessage==0x11){return "Sigfox Periodic Data"}
+            if(octetTypeMessage==0x15){return "Sigfox Product Status"}
+            if(octetTypeMessage==0x16){return "Sigfox Product Configuration N1"}
+            if(octetTypeMessage==0x17){return "Sigfox Product Configuration N2"}
         }
 
         ///////////////////////////////////////////////
@@ -66,8 +82,16 @@ function decodeUplink(input)
             if(octetHumidityValue>=1022){return "Deconnected sensor"}
             if(octetHumidityValue>=1021){return "Desactivated sensor"}
             else{return {"value":(octetHumidityValue/10), "unit" :"%RH"}}
-
         }
+
+        function humiditySF(octetHumidityValue)
+        {
+            if(octetHumidityValue>=255){return "Error"}
+            if(octetHumidityValue>=254){return "Deconnected sensor"}
+            if(octetHumidityValue>=253){return "Desactivated sensor"}
+            else{return {"value":(octetHumidityValue*0.5), "unit" :"%RH"}}
+        }
+
 
         function co2(octetCO2Value)
         {
@@ -85,12 +109,28 @@ function decodeUplink(input)
             else{return {"value":octetCOVTValue,"unit":"ug/m3"}};
         }
 
+        function covtSF(octetCOVTValue)
+        {
+            if(octetCOVTValue>=1023){return "Error"}
+            if(octetCOVTValue>=1022){return "Deconnected sensor"}
+            if(octetCOVTValue>=1021){return "Desactivated sensor"}
+            else{return {"value":(octetCOVTValue/15),"unit":"ug/m3"}};
+        }
+
         function luminosity(octetLuminosityValue)
         {
             if(octetLuminosityValue>=1023){return "Error"}
             if(octetLuminosityValue>=1022){return "Deconnected sensor"}
             if(octetLuminosityValue>=1021){return "Desactivated sensor"}
             else{return {"value":(octetLuminosityValue*5),"unit":"lux"}};
+        }
+
+        function luminositySF(octetLuminosityValue)
+        {
+            if(octetLuminosityValue>=255){return "Error"}
+            if(octetLuminosityValue>=254){return "Deconnected sensor"}
+            if(octetLuminosityValue>=253){return "Desactivated sensor"}
+            else{return {"value":(octetLuminosityValue*20),"unit":"lux"}};
         }
 
         function buttonPress(octetButtonValue)
@@ -208,6 +248,12 @@ function decodeUplink(input)
             else{return {"value":octetTimeCounter,"unit":"month"}};
         }
 
+        function productActivationTimeCounterSF(octetTimeCounter)
+        {
+            if(octetTimeCounter===1023 ){return "Error"}
+            else{return {"value":octetTimeCounter,"unit":"month"}};
+        }
+
         function lowBatterieThreshold(octetLowBatterie)
         {
            {return {"value":(octetLowBatterie*5)+2000,"unit":"mV"}};
@@ -258,11 +304,6 @@ function decodeUplink(input)
             else if(octetCalibrationActivate===1){return "Automatic calibration activated"};
         }
 
-        function co2Threshold(octetCO2Threshold)
-        {
-            return {"value":octetCO2Threshold, "unit":"ppm"};
-        }
-
         function active(octetActive)
         {
             if(octetActive===0){return "Non-active"}
@@ -277,7 +318,7 @@ function decodeUplink(input)
 
         function loraRegion(octetLoRaRegion)
         {
-            const message_name =["EU868","US915","AS923","AU915","KR920","IN865","RU864"]
+            const message_name =["Reserved","EU868","US915","Reserved","Reserved","Reserved","Reserved","Reserved","SF-RC1"]
             return message_name[octetLoRaRegion]
         }
 
@@ -403,7 +444,7 @@ function decodeUplink(input)
             "iziairCo2": iaqGlobalArgument(data_izi_air_co2),
             "iziairCov": iaqGlobalArgument(data_izi_air_cov),
             };
-            
+        
             
             return data;
         }
@@ -416,23 +457,23 @@ function decodeUplink(input)
             var offset_octet = 0;
 
             var data_nombre_mesures = (parseInt(stringHex.substring(4,6),16)>>2)&0x3F;
-            var data_time_between_measurement_sec = ((parseInt(stringHex.substring(4,8),16)>>2)&0xFF);
+            var data_time_between_measurement_min = ((parseInt(stringHex.substring(4,8),16)>>2)&0xFF);
             var data_repetition = (parseInt(stringHex.substring(7,9),16))&0x3F;
             var binary=hexToBinary(stringHex)
     
             for(i=0;i<data_nombre_mesures;i++){
 
-                const offset_binaire = 36 + (10*i);
+                var offset_binaire = 36 + (10*i);
                 mesure[i]= parseInt(binary.substring(offset_binaire,offset_binaire+10),2);
 
                 if(mesure[i] === 0x3FF){mesure[i] = 0;}
-                else{mesure[i] = Math.round(mesure[i] * 5)}
+                else{mesure[i] = parseFloat((mesure[i] * 5).toFixed(2))}
             }
 
             data={ "typeOfProduct": typeOfProduct(octetTypeProduit),
             "typeOfMessage": typeOfMessage(octetTypeMessage),
             "numberOfRecord": data_nombre_mesures,
-            "periodBetweenRecord":{"value":data_time_between_measurement_sec,"unit":"minutes"},
+            "periodBetweenRecord":{"value":data_time_between_measurement_min*10,"unit":"minutes"},
             "redundancyOfRecord":data_repetition,
             "co2":{"value":mesure,"unit":"ppm"},
             }
@@ -444,33 +485,63 @@ function decodeUplink(input)
         {
             var mesure = [];
             var i = 0;
-            var offset_octet = 0;
 
             var data_nombre_mesures = (parseInt(stringHex.substring(4,6),16)>>2)&0x3F;
-            var data_time_between_measurement_sec = ((parseInt(stringHex.substring(4,8),16)>>2)&0xFF);
+            var data_time_between_measurement_min = ((parseInt(stringHex.substring(4,8),16)>>2)&0xFF);
             var data_repetition = (parseInt(stringHex.substring(7,9),16))&0x3F;
             var binary=hexToBinary(stringHex)
-
+        
             for(i=0;i<data_nombre_mesures;i++){
 
-                const offset_binaire = 36 + (10*i);
+                var offset_binaire = 36 + (10*i);
 
                 mesure[i]= parseInt(binary.substring(offset_binaire,offset_binaire+10),2);  
 
                 if(mesure[i] === 0x3FF){mesure[i] = 0;}
-                else{mesure[i] = Math.round((mesure[i]/10)-30)}
+                else{mesure[i] = parseFloat(((mesure[i] / 10) - 30).toFixed(2))}
 
             }
 
             data={ "typeOfProduct": typeOfProduct(octetTypeProduit),
             "typeOfMessage": typeOfMessage(octetTypeMessage),
             "numberOfRecord": data_nombre_mesures,
-            "periodBetweenRecord":{"value":data_time_between_measurement_sec,"unit":"minutes"},
+            "periodBetweenRecord":{"value":data_time_between_measurement_min*10,"unit":"minutes"},
             "redundancyOfRecord":data_repetition,
             "temperature":{"value":mesure,"unit":"°C"},
             }
-            
-            return data
+            return data;
+        }
+
+        function historicalHumidityDataOutput(stringHex)
+        {
+            var mesure = [];
+            var i = 0;
+
+            var data_nombre_mesures = (parseInt(stringHex.substring(4,6),16)>>2)&0x3F;
+            var data_time_between_measurement_min = ((parseInt(stringHex.substring(4,8),16)>>2)&0xFF);
+            var data_repetition = (parseInt(stringHex.substring(7,9),16))&0x3F;
+            var binary=hexToBinary(stringHex)
+        
+            for(i=0;i<data_nombre_mesures;i++){
+
+                var offset_binaire = 36 + (10*i);
+
+                mesure[i]= parseInt(binary.substring(offset_binaire,offset_binaire+10),2);  
+
+                if(mesure[i] === 0x3FF){mesure[i] = 0;}
+                else{mesure[i] = parseFloat((mesure[i]*0.1).toFixed(2))}
+
+            }
+
+            data={ "typeOfProduct": typeOfProduct(octetTypeProduit),
+            "typeOfMessage": typeOfMessage(octetTypeMessage),
+            "numberOfRecord": data_nombre_mesures,
+            "periodBetweenRecord":{"value":data_time_between_measurement_min*10,"unit":"minutes"},
+            "redundancyOfRecord":data_repetition,
+            "humidity":{"value":mesure,"unit":"%RH"},
+            }
+            console.log(mesure)
+            return data;
         }
 
         function productStatusDataOutput(stringHex)
@@ -552,6 +623,7 @@ function decodeUplink(input)
             var data_date_produit_jour = (parseInt(stringHex.substring(29,31),16)) & 0x1F;
             var data_date_produit_heure = (parseInt(stringHex.substring(31,33),16)>>3) & 0x1F;
             var data_date_produit_minute = (parseInt(stringHex.substring(32,34),16)>>1) & 0x3F;
+            var data_datalog_humidity_on_off = (parseInt(stringHex.substring(33,34),16)) & 0x01;
 
 
             data = {"typeOfProduct": typeOfProduct(octetTypeProduit),
@@ -580,6 +652,7 @@ function decodeUplink(input)
             "deltaTemperature": deltaTemp(data_periodic_delta_temp),
             "historicalCO2DataActivation":active(data_datalog_co2_on_off),
             "historicalTemperatureDataActivation":active(data_datalog_temperature_on_off),
+            "historicalHumidityDataActivation":active(data_datalog_humidity_on_off),
             "numberOfRecordsInADatalogMessage":data_datalog_new_measure,
             "numberOfMessagesFor1Record":data_datalog_repetition,
             "transmissionPeriodOfHistoricalMessage":transmissionPeriodHistorical(data_datalog_tx_period),
@@ -594,12 +667,168 @@ function decodeUplink(input)
 
             return data;
         }
+
+
+        function sigfoxPeriodicDataOutput(stringHex)
+        {
+            var data_temperature = (parseInt(stringHex.substring(4,8),16) >> 6) & 0x3FF;
+            var data_humidity = (parseInt(stringHex.substring(6,9),16) >> 2) & 0xFF;
+            var data_co2 = (parseInt(stringHex.substring(8,12),16)) & 0x3FFF;
+            var data_cov = (parseInt(stringHex.substring(12,15),16)>>2) & 0x3FF;
+            var data_luminosity = (parseInt(stringHex.substring(14,17),16)>>2) & 0xFF;
+            var data_button_press = (parseInt(stringHex.substring(16,17),16)>>1) & 0x1;
+            var data_avg_noise = (parseInt(stringHex.substring(16,19),16)>>2) & 0x7F;
+            var data_peak_noise = (parseInt(stringHex.substring(18,21),16)>>3) & 0x7F;
+            var data_occupancy_rate = (parseInt(stringHex.substring(20,22),16)) & 0x7F;
+            
+            data={"typeOfProduct": typeOfProduct(octetTypeProduit),
+            "typeOfMessage": typeOfMessage(octetTypeMessage),
+            "temperature": temperature(data_temperature),
+            "humidity": humiditySF(data_humidity) ,
+            "co2": co2(data_co2),
+            "covt": covtSF(data_covt),
+            "luminosity": luminositySF(data_luminosity),
+            "buttonPress": buttonPress(data_button_press) ,
+            "averageNoise": averageNoise(data_avg_noise) ,
+            "peakNoise": peakNoise(data_peak_noise),
+            "occupancyRate": occupancyRate(data_occupancy_rate),
+            }
+            return data;
+
+        }
+
+        function sigfoxProductStatusDataOutput(stringHex)
+        {
+            var data_hw_version = (parseInt(stringHex.substring(4,6),16)) & 0xFF;
+            var data_sw_version = (parseInt(stringHex.substring(6,8),16)) & 0xFF;
+            var data_power_source = (parseInt(stringHex.substring(8,10),16)>>6) & 0x07;
+            var data_battery_voltage = (parseInt(stringHex.substring(8,11),16)) & 0x3FF;
+            var data_battery_level = (parseInt(stringHex.substring(10,12),16) >> 1 ) & 0x07;
+            var data_hw_status = (parseInt(stringHex.substring(10,12),16)) & 0x01;
+            var data_hw_status_temperature = (parseInt(stringHex.substring(11,13),16)>>1) & 0x07;
+            var data_hw_status_co2 = (parseInt(stringHex.substring(12,14),16)>>2) & 0x07;
+            var data_hw_status_covt = (parseInt(stringHex.substring(13,15),16)>>3) & 0x07;
+            var data_hw_status_pir = (parseInt(stringHex.substring(13,15),16)) & 0x07;
+            var data_hw_status_microphone = (parseInt(stringHex.substring(15,16),16)>>1) & 0x07;
+            var data_hw_status_luminosity = (parseInt(stringHex.substring(15,17),16)>>2) & 0x07;
+            var data_hw_status_SD= (parseInt(stringHex.substring(16,18),16)>>3) & 0x07;
+            var data_activation_time= (parseInt(stringHex.substring(17,20),16)>>3) & 0xFF;
+            var data_co2_last_manual_calibration_time= (parseInt(stringHex.substring(19,21),16)>>1) & 0x3F;
+            var data_hw_status_anti_tear = (parseInt(stringHex.substring(20,22),16)>>2) & 0x3;
+
+
+            data = { "typeOfProduct": typeOfProduct(octetTypeProduit),
+            "typeOfMessage": typeOfMessage(octetTypeMessage),
+            "hardwareVersion":data_hw_version,
+            "softwareVersion":data_sw_version,
+            "powerSource":powerSource(data_power_source),
+            "batteryVoltage":batteryVoltage(data_battery_voltage),
+            "batteryLevel":batterieLevelArgument(data_battery_level),
+            "hardwareStatus":productHwStatusArgument(data_hw_status),
+            "temperatureSensorStatus":sensorStatusArgument(data_hw_status_temperature),
+            "co2SensorStatus":sensorStatusArgument(data_hw_status_co2),
+            "covtSensorStatus":sensorStatusArgument(data_hw_status_covt),
+            "pirSensorStatus":sensorStatusArgument(data_hw_status_pir),
+            "microphoneStatus":sensorStatusArgument(data_hw_status_microphone),
+            "luminositySensorStatus":sensorStatusArgument(data_hw_status_luminosity),
+            "sdStatus":sdStatusArgument(data_hw_status_SD),
+            "cumulativeProductActivationTime":productActivationTimeCounterSF(data_activation_time),
+            "timeSinceLastManualCalibration":{"value":data_co2_last_manual_calibration_time,"unit":"weeks"},
+            "antiTearSensorStatus": antiTearArgument(data_hw_status_anti_tear)
+            }
+            return data
+
+        }
+
+        function sigfoxProductConfigurationN1DataOutput(stringHex)
+        {
+            var data_config_source = (parseInt(stringHex.substring(4,5),16)>>1) & 0x07;
+            var data_config_status = (parseInt(stringHex.substring(4,6),16)>>3) & 0x03;
+            var data_periode_mesure = (parseInt(stringHex.substring(5,7),16)>>2) & 0x1F;
+            var data_sensor_on_off_co2 = (parseInt(stringHex.substring(6,7),16)>>1) & 0x01;
+            var data_sensor_on_off_cov = (parseInt(stringHex.substring(6,7),16))& 0x01;
+            var data_sensor_on_off_pir = (parseInt(stringHex.substring(7,8),16)>>3)& 0x01;
+            var data_sensor_on_off_microphone = (parseInt(stringHex.substring(7,8),16)>>2) & 0x01;
+            var data_sd_storage_on_off = (parseInt(stringHex.substring(7,8),16)>>1) & 0x01;
+            var data_co2_auto_calibration = (parseInt(stringHex.substring(7,8),16)) & 0x01;
+            var data_co2_medium_level = (parseInt(stringHex.substring(8,11),16)>>2) & 0x3FF;
+            var data_co2_high_level = (parseInt(stringHex.substring(10,13),16)) & 0x3FF;
+            var data_led_on_off = (parseInt(stringHex.substring(13,14),16) >> 3) & 0x01;
+            var data_led_orange_on_off = (parseInt(stringHex.substring(13,14),16)>>2) & 0x01;
+            var data_buzzer_on_off = (parseInt(stringHex.substring(13,14),16)>>1) & 0x01;
+            var data_buzzer_confirm_on_off = (parseInt(stringHex.substring(13,14),16)) & 0x01;
+            var data_led_source = (parseInt(stringHex.substring(14,15),16)>>2) & 0x03;
+            var data_button_on_off = (parseInt(stringHex.substring(14,15),16) >> 1) & 0x01;
+            var data_lora_region = (parseInt(stringHex.substring(14,16), 16)>>1) & 0x0F;
+            var data_nfc_status = (parseInt(stringHex.substring(15,17), 16)>>3) & 0x03;
+
+            data={
+                "typeOfProduct": typeOfProduct(octetTypeProduit),
+                "typeOfMessage": typeOfMessage(octetTypeMessage),
+                "configurationSource": reconfigurationSource(data_config_source),
+                "configurationStatus": reconfigurationState(data_config_status),
+                "periodBetween2measures": period(data_periode_mesure),
+                "co2SensorActivation":sensorActivation(data_sensor_on_off_co2),
+                "covSensorActivation":sensorActivation(data_sensor_on_off_cov),
+                "pirSensorActivation":sensorActivation(data_sensor_on_off_pir),
+                "microphoneSensorActivation":sensorActivation(data_sensor_on_off_microphone),
+                "localStorageActivation":sdActivation(data_sd_storage_on_off),
+                "automaticCalibrationActivation": calibrationActivation(data_co2_auto_calibration),
+                "mediumCO2Threshold":co2Threshold(data_co2_medium_level),
+                "highCO2Threshold":co2Threshold(data_co2_high_level),
+                "ledActivation":active(data_led_on_off),
+                "orangeLEDActivation":active(data_led_orange_on_off),
+                "buzzerActivation":active(data_buzzer_on_off),
+                "buzzerConfirmationActivation":active(data_buzzer_confirm_on_off),
+                "ledSourceActivation":notificationByLEDandBuzzer(data_led_source),
+                "buttonNotification":active(data_button_on_off),
+                "loraRegion":loraRegion(data_lora_region),
+                "nfcStatus": nfcStatus(data_nfc_status),
+            }
+            return data
+        }
+
+        function sigfoxProductConfigurationN2DataOutput(stringHex)
+        {
+            var data_periodic_tx_on_off = (parseInt(stringHex.substring(4,5),16)>>3) & 0x01;
+            var data_periodic_tx_period = (parseInt(stringHex.substring(4,6),16)>>1) & 0x3F;
+            var data_periodic_delta_co2 = (parseInt(stringHex.substring(5,8),16)>>1) & 0xFF;
+            var data_periodic_delta_temp = (parseInt(stringHex.substring(7,10),16)>>2) & 0x7F;
+            var data_datalog_co2_on_off= (parseInt(stringHex.substring(9,10),16)>>1)& 0x01;
+            var data_datalog_temperature_on_off = (parseInt(stringHex.substring(9,10),16))& 0x01;
+            var data_datalog_tx_period = (parseInt(stringHex.substring(10,12),16)) & 0xFF;
+            var data_pending_join = (parseInt(stringHex.substring(12,13),16)>>3) & 0x01;
+            var data_date_produit_annee = (parseInt(stringHex.substring(12,14),16)>>1) & 0x3F;
+            var data_date_produit_mois = (parseInt(stringHex.substring(13,15),16)>>1) & 0x0F;
+            var data_date_produit_jour = (parseInt(stringHex.substring(14,16),16)) & 0x1F;
+            var data_date_produit_heure = (parseInt(stringHex.substring(16,18),16) >> 3) & 0x1F;
+            var data_date_produit_minute = (parseInt(stringHex.substring(17,19),16)>>1) & 0x7F;
+
+            data={
+                "typeOfProduct": typeOfProduct(octetTypeProduit),
+                "typeOfMessage": typeOfMessage(octetTypeMessage),
+                "periodicalDataActivation": Active(data_periodic_tx_on_off),
+                "periodicalTransmissionPeriod": period(data_periodic_tx_period),
+                "deltaCO2": deltaCO2(data_periodic_delta_co2),
+                "deltaTemperature":deltaTemp(data_periodic_delta_temp),
+                "historicalCO2DataActivation":active(data_datalog_co2_on_off),
+                "historicalTemperatureDataActivation":active(data_datalog_temperature_on_off),
+                "transmissionPeriodOfHistoricalMessage":transmissionPeriodHistorical(data_datalog_tx_period),
+                "networkJoinStatus":pendingJoin(data_pending_join),
+                "productDateYear": calibrationActivation(data_date_produit_annee),
+                "productDateMonth":co2Threshold(data_date_produit_mois),
+                "productDateDay":co2Threshold(data_date_produit_jour),
+                "productDateHour":active(data_date_produit_heure),
+                "productDateMinute":active(data_date_produit_minute),
+            }
+            return data
+         
+        }
         
         data=dataOutput(octetTypeMessage);
         const errors = [];
         const warnings = [];
         output = {data,errors,warnings};
-        //return {data}; pour tti ne gère pas error et warning
         return output
 } // end of decoder
 
