@@ -1,6 +1,6 @@
 [
   {
-      "description": "Counting data uplink with specific flags and zone occupancies",
+      "description": "uplink containing zone occupancy data and device status flags",
       "type": "uplink",
       "bytes": "0F050304020100FFFFFF",
       "fPort": 83,
@@ -25,7 +25,7 @@
       }
   },
   {
-    "description": "Counting data uplink with no zones created",
+    "description": "uplink containing zone occupancy data with no zones created",
     "type": "uplink",
     "bytes": "0000FFFFFFFFFFFFFFFF",
     "fPort": 83,
@@ -45,7 +45,7 @@
     }
   },
   {
-    "description": "Counting data uplink with WARMUP flag set",
+    "description": "uplink containing WARMUP flag set",
     "type": "uplink",
     "bytes": "08000000000000000000",
     "fPort": 83,
@@ -67,7 +67,7 @@
     }
   },
   {
-    "description": "Counting data uplink with all flags (WARMUP, STOPPED, STUCK, WIFI_ACCESS_POINT_ON) set",
+    "description": "uplink containing WARMUP, STOPPED, STUCK, WIFI_ACCESS_POINT_ON flags set",
     "type": "uplink",
     "bytes": "0F000000000000000000",
     "fPort": 83,
@@ -261,7 +261,7 @@
     }
   },
   {
-    "description": "uplink containing response to get (one) active zones",
+    "description": "uplink containing response to get (one) active zone",
     "type": "uplink",
     "bytes": "0100",
     "fPort": 101,
