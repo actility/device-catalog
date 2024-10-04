@@ -45,4 +45,22 @@ sensors:
 # A list of examples description that are compatible with this model
 examples:
   terabee:tb-poc:1:
-    - uplink containing Occupancy data
+    - uplink containing zone occupancy data and device status flags
+    - uplink containing zone occupancy data with no zones created
+    - uplink containing WARMUP flag set
+    - uplink containing WARMUP, STOPPED, STUCK, WIFI_ACCESS_POINT_ON flags set
+    - uplink containing response to get installation height
+    - uplink containing response to get push period (seconds)
+    - uplink containing response to get device use case (open space)
+    - uplink containing response to get device use case (meeting room)
+    - uplink containing response to get software version
+    - uplink containing response to get device type
+    - uplink containing response to get lora module version
+    - uplink containing response to get wifi access point state
+    - uplink containing response to get (zero) active zones
+    - uplink containing response to get (one) active zone
+    - uplink containing response to get (all) active zones
+    - uplink containing response to get occupancy zone coordinates
+    - uplink containing response to get excluding zone coordinates
+    - uplink containing response to get analog output state disabled
+    - uplink containing response to get analog output state disabled and max occupancy set
