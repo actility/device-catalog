@@ -1,78 +1,64 @@
 let abeewayUplinkPayloadClass = require("./abeewayUplinkPayload");
-const { parseISO, addSeconds, isAfter, subSeconds } = require('date-fns');
 const batteryStatus = Object.freeze({
     CHARGING: "CHARGING",
     OPERATING: "OPERATING",
     UNKNOWN: "UNKNOWN"
 });
 
-function Header(sos,
-    type,
-    ackToken,
-    multiFrame,
-    batteryLevel,
-    timestamp){
-        this.sos = sos;
-        this.type = type;
-        this.ackToken = ackToken;
-        this.multiFrame = multiFrame;
-        this.batteryLevel = batteryLevel;
-        this.timestamp = timestamp;
+function Header(sos, type, ackToken, multiFrame, batteryLevel, timestamp) {
+    this.sos = sos;
+    this.type = type;
+    this.ackToken = ackToken;
+    this.multiFrame = multiFrame;
+    this.batteryLevel = batteryLevel;
+    this.timestamp = timestamp;
 }
 
-function determineHeader(payload , receivedTime){
+function determineHeader(payload, receivedTime) {
     if (payload.length < 3)
         throw new Error("The payload is not valid to determine header");
-    var sos = !!(payload[0]>>6 & 0x01);
+    var sos = !!(payload[0] >> 6 & 0x01);
     var ackToken = payload[0] & 0x07;
     var type = determineMessageType(payload);
-    var multiFrame = !!(payload[0]>>7 & 0x01);
+    var multiFrame = !!(payload[0] >> 7 & 0x01);
     var batteryLevel = determineBatteryLevel(payload);
-    var timestamp = rebuildTime(receivedTime, ((payload[2]<<8) + payload[3]));
-    return new Header(sos, type, ackToken, multiFrame, batteryLevel, timestamp)
+    var timestamp = rebuildTime(receivedTime, ((payload[2] << 8) + payload[3]));
+    return new Header(sos, type, ackToken, multiFrame, batteryLevel, timestamp);
 }
 
-
 function rebuildTime(receivedTime, seconds) {
+    // Parse the timestamp using native Date object
+    const timestamp = new Date(receivedTime);
 
-    // Parse the timestamp : 
-    const timestamp = parseISO(receivedTime);
-    //In the case where the tracker hasn't had time yet...
-    if (seconds == 65535){
-        return timestamp.toISOString(); 
+    // In the case where the tracker hasn't had time yet...
+    if (seconds === 65535) {
+        return timestamp.toISOString();
     }
-    const dd = timestamp.getFullYear()
-    const hh = timestamp.getMonth();
-    const sh = timestamp.getDate();
-    const utcDate = new Date(Date.UTC(timestamp.getFullYear(), timestamp.getMonth(), timestamp.getDate(), 0, 0, 0))
 
+    // Create a Date object set to the start of the UTC day
+    const utcDate = new Date(Date.UTC(timestamp.getFullYear(), timestamp.getMonth(), timestamp.getDate(), 0, 0, 0));
 
-    // Get the reference time's hours, minutes, and seconds
-    const referenceHours = timestamp.getHours();
-    const referenceMinutes = timestamp.getMinutes();
-    const referenceSeconds = timestamp.getSeconds();
+    // Calculate the total seconds since the start of the day for the received time
+    const referenceTotalSeconds = (timestamp.getUTCHours() * 3600) + (timestamp.getUTCMinutes() * 60) + timestamp.getUTCSeconds();
 
-    // Convert reference time to total seconds since the start of the day
-    const referenceTotalSeconds = (referenceHours * 3600) + (referenceMinutes * 60) + referenceSeconds;	
-    // Determine if reference time is midnight or noon
+    // Determine if the reference time is closer to midnight or noon
     let referenceTime;
+    if (referenceTotalSeconds < 43200) { // 43200 seconds is 12 hours
+        referenceTime = utcDate; // Midnight
+    } else {
+        referenceTime = new Date(utcDate.getTime() + 43200 * 1000); // Noon
+    }
 
-     if (referenceTotalSeconds < 43200) { // 43200 seconds is 12 hours
-         referenceTime = utcDate // Midnight
-     } else {
-         referenceTime = addSeconds(utcDate, 43200); // Noon
-     }
     // Add the given number of seconds to the reference time
-    let exactTime = addSeconds(referenceTime, seconds);
-    
-     // Check if the rebuilt time is after the reference time (rollover)
+    let exactTime = new Date(referenceTime.getTime() + seconds * 1000);
 
-     
-     if (isAfter(exactTime, timestamp)) {
-     //Rebuilt time is after the received time. Performing subtraction of 43200 seconds.
-     exactTime = subSeconds(exactTime, 43200); // Subtract 43200 seconds
-  }
- return   exactTime.toISOString(); // Return the exact time in ISO 8601 format
+    // Check if the rebuilt time is after the original timestamp (rollover)
+    if (exactTime > timestamp) {
+        // Rebuilt time is after the received time, so subtract 43200 seconds (12 hours)
+        exactTime = new Date(exactTime.getTime() - 43200 * 1000);
+    }
+
+    return exactTime.toISOString(); // Return the exact time in ISO 8601 format
 }
 function determineMessageType(payload){
     if (payload.length < 4)

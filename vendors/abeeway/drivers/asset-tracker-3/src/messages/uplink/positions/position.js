@@ -218,7 +218,6 @@ function determinePosition(payload, multiFrame){
                 positionMessage.coordinates = [positionMessage.gnssFix.longitude, positionMessage.gnssFix.latitude, positionMessage.gnssFix.altitude]
                 break;
             case PositionType.AIDED_GNSS:
-                positionMessage.aidedGnss = determineMT3333LPGnssPositionMessage(payload.slice(startingByte+3));
                 break;    
         }       
     }else if ((positionMessage.status == PositionStatus.TIMEOUT)||(positionMessage.status == PositionStatus.FAILURE)){

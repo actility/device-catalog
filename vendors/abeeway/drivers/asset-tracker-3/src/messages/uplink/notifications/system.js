@@ -224,17 +224,23 @@ function determinePage3(payload, decodedStatus){
 function buildAscciString(value){
     // Find the position of the last non-zero element
     let endIndex = value.length;
+    let allZero = true;  // Variable to check if all elements are zero
     for (let i = value.length - 1; i >= 0; i--) {
         if (value[i] !== 0) {
             endIndex = i + 1;
+            allZero = false;   // Mark as not all zeros
             break;
         }
     }
+    // If all elements are zero, return an empty string
+    if (allZero) {
+         return "";
+    }
     // Create the ASCII string up to the last non-zero element
-    var ascciiString = ""
-    for (var i = 0; i < value.length; i ++)
-        ascciiString += String.fromCharCode(value[i]);
-    return ascciiString
+    var asciiString = ""
+    for (var i = 0; i < endIndex; i ++)
+        asciiString += String.fromCharCode(value[i]);
+    return asciiString
 }
 function determineResetCause(value){
     switch(value){
