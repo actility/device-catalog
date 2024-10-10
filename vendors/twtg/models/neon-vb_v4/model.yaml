@@ -1,0 +1,81 @@
+# Commercial name of the model
+name: TWTG NEON Vibration Sensor v4
+# Functional description of the product. Maximum 500 characters.
+description: "The NEON Vibration Sensor provides insight on vibrations (acceleration and velocity) of industrial equipment. Triggers can be set, based on which the sensors can send alerts."
+# Logo of the device
+logo: twtg-vb.png
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
+# id: as defined under /profiles.
+# lorawanDeviceProfileID: as defined by LoRa Alliance in https://lora-alliance.org/wp-content/uploads/2020/10/LoRa_Alliance_Vendor_ID_for_QR_Code_02142022.pdf.
+# The lorawanDeviceProfileID consists of 8 upper-case hexadecimal characters, 4 characters for VendorID + 4 characters for VendorProfileID. Please consider using single (') or double (") quotation.
+deviceProfileIds:
+    - id: twtg_RFGroup1_1.0.4a_RP2-1.0.3_classA
+    - id: twtg_RFGroup2_1.0.4a_RP2-1.0.3_classA
+    - id: twtg_RFGroup3_1.0.4a_RP2-1.0.3_classA
+    - id: twtg_RFGroup4_1.0.4a_RP2-1.0.3_classA
+
+# You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings.
+# Maximum device TX Conducted output power in dBm.
+maxTxPower:
+# Minimum device TX Conducted output power in dBm.
+minTxPower:
+# Maximum device TX Radiated output power in dBm.
+maxTxEIRP:
+# Minimum device TX Radiated output power in dBm.
+minTxEIRP:
+# Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'
+# or 'random' (not known, changes over time).
+motionIndicator: NEAR_STATIC
+
+# Is your device certified by the LoRa Alliance? Possible values: true, false.
+LoRaWANCertified: false
+# Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
+# Format: `<8 characters max>:<16 characters max>:<digits only>`
+# Be careful: Once you chose a model, it cannot be changed later
+modelId: twtg:neon-vb:4
+# <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
+# Be careful: Once you chose a protocolId, it cannot be changed later
+protocolId:
+  - twtg:neon-vb:4
+# DataSheet URL (optional)
+specificationURL: https://github.com/TWTG-R-D-B-V/neon-product-documentation/blob/main/VB/6016_P20-002_Data-Sheet-NEON-Vibration-Sensor_C.pdf
+# User Guide URL (optional)
+userGuideURL: https://github.com/TWTG-R-D-B-V/neon-product-documentation/tree/main/VB/Installation%20%26%20Use
+# <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
+sensors:
+  - temperature:Cel
+  - velocity:mm/s
+  - acceleration:m/s2
+  - frequency:hertz
+# Driver examples
+# A list of examples description that are compatible with this model
+examples:
+  twtg:neon-vb:4:
+    - "Configuration Update Request - VB Alert"
+    - "Configuration Update Request - VB Asset"
+    - "Configuration Update Request - Schedule - VB Measurement for all axes"
+    - "Configuration Update Request - Schedule - VB Machine Fault Indicator for all axes"
+    - "Configuration Update Request - Schedule - VB acceleration spectrum for Z axis"
+    - "Configuration Update Request - Schedule - VB Statistics for X RMS Velocity"
+    - "Configuration Update Request - Schedule - VB Statistics for Y RMS Acceleration"
+    - "Configuration Update Request - Schedule - VB Statistics for Z Peak Acceleration"
+    - "Configuration Update Request - Schedule - VB Statistics for Temperature"
+    - "Configuration Update Request - Schedule - Transmitter Status"
+    - "Configuration Update Request - Schedule - Transmitter Battery"
+    - "Configuration Update Request - VB Spectrum Alert"
+    - "Configuration Update Request - Transmitter"
+    - "Past Measurement Request"
+    - "Alert"
+    - "Configuration Update Answer - Transmitter"
+    - "DevVersionAns"
+    - "Fragmented Uplink Start"
+    - "Fragmented Uplink Data"
+    - "Machine Fault Indicator"
+    - "Sensor Boot"
+    - "Transmitter Battery"
+    - "Transmitter Boot"
+    - "Transmitter Deactivated"
+    - "Transmitter Status"
+    - "Measurement - X"
+    - "Spectrum - X Acceleration"
+    - "Statistics"
