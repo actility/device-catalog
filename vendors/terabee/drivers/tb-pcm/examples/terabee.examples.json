@@ -1,14 +1,16 @@
 [
   {
-      "description": "uplink containing people count data",
+      "description": "uplink containing people count data and device status flags",
       "type": "uplink",
-      "bytes": "0000001000000011",
-      "fPort": 1,
+      "bytes": "0000000A0000000504",
+      "fPort": 82,
       "data": {
         "data": {
-          "count_in": 16,
-          "count_out": 17,
-          "flags": {}
+          "count_in": 10,
+          "count_out": 5,
+          "flags": {
+            "NETWORK_ON": 1
+          }
         }
       }
   },
@@ -25,7 +27,7 @@
     "description": "uplink containing device status flags",
     "type": "uplink",
     "bytes": "000000000000000001",
-    "fPort": 1,
+    "fPort": 82,
     "data": {
       "data": {
         "count_in": 0,
@@ -63,29 +65,29 @@
     "data": {
       "data": {
         "cmd": {
-          "name": "CMD_GET_AP_STATE",
+          "name": "CMD_GET_ACCESS_POINT_STATE",
           "id": 1,
           "success": true,
           "value": {
-            "state": "disabled"
+            "state": "DISABLED"
           }
         }
       }
     }
   },
   {
-    "description": "uplink containing response to get counting diraction",
+    "description": "uplink containing response to get counting direction",
     "type": "uplink",
     "bytes": "0201",
     "fPort": 100,
     "data": {
       "data": {
         "cmd": {
-          "name": "CMD_GET_REVERSE",
+          "name": "CMD_GET_COUNTING_DIRECTION",
           "id": 2,
           "success": true,
           "value": {
-            "direction": "reversed"
+            "direction": "IN"
           }
         }
       }
@@ -110,9 +112,9 @@
     }
   },
   {
-    "description": "uplink containing response to get push period (minutes)",
+    "description": "uplink containing response to get push period (seconds)",
     "type": "uplink",
-    "bytes": "03003C",
+    "bytes": "030000003C",
     "fPort": 100,
     "data": {
       "data": {
@@ -121,61 +123,63 @@
           "id": 3,
           "success": true,
           "value": {
-            "push_period_min": 60
+            "push_period_s": 60
           }
         }
       }
     }
   },
   {
-    "description": "uplink containing response to get software component PEOPLE COUNTING version",
+    "description": "uplink containing response to get cable connection position",
     "type": "uplink",
-    "bytes": "01030001",
-    "fPort": 4,
+    "bytes": "0401",
+    "fPort": 100,
     "data": {
       "data": {
         "cmd": {
-          "name": "CMD_GET_VER_PEOPLE_COUNTING",
+          "name": "CMD_GET_CABLE_CONNECTION",
+          "id": 4,
+          "success": true,
+          "value": {
+            "cable_position": "LEFT"
+          }
+        }
+      }
+    }
+  },
+  {
+    "description": "uplink containing response to get analog output state disabled",
+    "type": "uplink",
+    "bytes": "010000FF",
+    "fPort": 8,
+    "data": {
+      "data": {
+        "cmd": {
+          "name": "CMD_GET_ANALOG_OUTPUT",
           "id": 1,
           "success": true,
           "value": {
-            "software_version": "3.0.1"
+            "max_occupancy": 255,
+            "state": "DISABLED"
           }
         }
       }
     }
   },
   {
-    "description": "uplink containing response to get software component WEB GUI version",
+    "description": "uplink containing response to get analog output state disabled and max occupancy set",
     "type": "uplink",
-    "bytes": "02010001",
-    "fPort": 4,
+    "bytes": "0100FFFF",
+    "fPort": 8,
     "data": {
       "data": {
         "cmd": {
-          "name": "CMD_GET_VER_WEB_GUI",
-          "id": 2,
+          "name": "CMD_GET_ANALOG_OUTPUT",
+          "id": 1,
           "success": true,
           "value": {
-            "software_version": "1.0.1"
-          }
-        }
-      }
-    }
-  },
-  {
-    "description": "uplink containing response to get software component LORA AGENT version",
-    "type": "uplink",
-    "bytes": "03020001",
-    "fPort": 4,
-    "data": {
-      "data": {
-        "cmd": {
-          "name": "CMD_GET_VER_LORA_AGENT",
-          "id": 3,
-          "success": true,
-          "value": {
-            "software_version": "2.0.1"
+            "max_occupancy": 65535,
+            "state": "DISABLED"
           }
         }
       }

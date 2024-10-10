@@ -8,7 +8,7 @@
 #    RFGroup4: as923
 # Please do not change the existing IDs (Some may follow the old format)
 # The name of the profile .yaml file should be the same as the following ID
-id: terabee_us915_1.0.3revA_classA
+id: terabee_RFGroup2_1.0.3a_classA
 # LoRaWAN class of the Device: Possible values: [ A, B, C ] (Should not have several values)
 # 'A': Class A (Bi-directional end-devices with downlink listening only after uplink transmission)
 # 'B': Class B (Bi-directional end-devices with downlink listening on predefined synchronized pingslots)
@@ -24,7 +24,7 @@ motionIndicator: NEAR_STATIC
 mac:
     # Activation modes supported by the device (put true where applicable).
     # (ABP)
-    activationByPersonalization: false
+    activationByPersonalization: true
     #(OTAA)
     overTheAirActivation: true
     # Supported version of the LoRaWAN MAC (Layer-2) specification. Possible values are '1.0.0/1.0.1', '1.0.2', '1.0.3', '1.0.4', '1.1'
@@ -38,17 +38,17 @@ mac:
         # Minimum device TX Conducted output power in dBm.
         minTxPower: 10
         # Maximum device TX Conducted output power in dBm.
-        maxTxPower: 30
+        maxTxPower: 22
         # Minimum device TX Radiated output power in dBm.
-        minTxEIRP: 2
+        minTxEIRP: 10
         # Maximum device TX Radiated output power in dBm.
-        maxTxEIRP: 16
+        maxTxEIRP: 22
 
     uplinkFrameRepetition: 
         # Maximum number of transmissions per uplink frame, supported by the device. 
-        maxNbTrans:
+        maxNbTrans: 
         # How many uplink transmissions does the device use in Confirmed mode if it doesn't receive any DL ACK?
-        maxRedundancyForConfirmedUL:
+        maxRedundancyForConfirmedUL: 
 
 # The following section defines the default settings used by the device during iniial boot stage. Leave empty if your device respects the 
 # default values indicated by LoRaWAN Regional Parameters (PHY) specification. Personalize fields only when different from default PHY values.
@@ -57,18 +57,18 @@ bootSettings:
     # Specification.
     rx1Delay: 1000
     # RX1 data rate offset, defining the offset between uplink data rate and the corresponding downlink data rate used for RX1 slot.
-    rx1DROffset:
+    rx1DROffset: 
     # Rx2 DataRate, used to send DL packets over RX2 slot. Note: Data Rate encoding is region-specific, see the applicable LoRaWAN Regional 
     # Profile.
-    rx2DataRate:
+    rx2DataRate: 
     # Rx2 Frequency expressed in MHz, used to send DL packets over RX2 slot.
-    rx2Frequency:
+    rx2Frequency: 
     # Default data rate used for Class B ping slots. Note: Data Rate encoding is region-specific, see the applicable LoRaWAN Regional Profile.
-    pingSlotChannelDataRate:
+    pingSlotChannelDataRate: 
     # Default frequency (in MHz) used for Class B ping slots.
-    pingSlotChannelFrequency:
+    pingSlotChannelFrequency: 
     # beaconFrequency Boot value used by the Device to set the beacon broadcast frequency. This frequency is then aligned by the Network Server to the target value set in RF region.
-    beaconFrequency:
+    beaconFrequency: 
     # Default downlink dwell time (valid only for AS923 and AU915 profiles). Possible values 0 (no limit) or 1 (400ms).
     downlinkDwellTime: 0
     # Default uplink dwell time (valid only for AS923 and AU915 profiles). Possible values 0 (no limit) or 1 (400ms).
@@ -77,23 +77,23 @@ bootSettings:
 # Which MAC commands are supported by your device and which are not? Leave it as the template if your device supports all the MAC commands specified for your regional
 # profile. Put 'true' only if a command is supported.
 supportedMACCommands:
-    linkADRReqAns: false
-    devStatusReqAns: false
+    linkADRReqAns: true
+    devStatusReqAns: true
     joinRequestAccept: true
-    dutyCycleReqAns: false
+    dutyCycleReqAns: true
     linkCheckReqAns: true
-    rxParamSetupReqAns: false
-    rxTimingSetupReqAns: false
+    rxParamSetupReqAns: true
+    rxTimingSetupReqAns: true
     newChannelReqAns: false
     dlChannelReqAns: false
     txParamSetupReqAns: false
     pingSlotChannelReqAns: false
-    pingSlotInfoReqAns: true
+    pingSlotInfoReqAns: false
     deviceTimeReqAns: true
-    beaconFreqReqAns: true
+    beaconFreqReqAns: false
 
 # Does your device support [Technical Recommendation for LoRaWAN L2 1.0.x Join Security] recommending implemeting the DevNonce as a counter for 
 # OTAA devices? See https://lora-alliance.org/resource_hub/technical-recommendations-for-preventing-state-synchronization-issues-around-lorawan-1-0-x-join-procedure/
 # Possible values: true, false. This field is automatically forced to true for LoRaWAN MAC versions 1.0.4 and 1.1.
 devNonceCounterBased: false
-
+ 

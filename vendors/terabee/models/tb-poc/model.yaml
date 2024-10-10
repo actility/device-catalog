@@ -1,13 +1,9 @@
 # Commercial name of the model
-name: Terabee People Counting L-XL
+name: Terabee People Occupancy Counting
 # Functional description of the product. Maximum 500 characters.
-description: "Using advanced Time-of-Flight technology, Terabee People Counting L-XL is GDPR compliant and provides accurate people counting data (98% accuracy or more) by monitoring the number of people entering and exiting doorways or corridors."
+description: The Terabee People Occupancy Counting device provides valuable, accurate occupancy insights to enable improvements in energy management, space utilization and trigger greater operations and services efficiency
 # Logo of the device
-logo: people-counting-l-xl.png
-# Product name & Version
-product:
-    name: TERA/PCLXL
-    version: 1
+logo: people-occupancy-counting.png
 # ID(s) of the profile that defines the LoRaWAN characteristics of this model.
 # id: as defined under /profiles.
 # lorawanDeviceProfileID: as defined by LoRa Alliance in https://lora-alliance.org/wp-content/uploads/2020/10/LoRa_Alliance_Vendor_ID_for_QR_Code_02142022.pdf.
@@ -34,28 +30,37 @@ LoRaWANCertified:
 # Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
 # Format: `<8 characters max>:<16 characters max>:<digits only>`
 # Be careful: Once you chose a model, it cannot be changed later
-modelId: terabee:pc-l-xl:1
+modelId: terabee:tb-poc:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 # Be careful: Once you chose a protocolId, it cannot be changed later
-protocolId: terabee:pc-l-xl:1
+protocolId:
+  - terabee:tb-poc:1
 # DataSheet URL (optional)
-specificationURL: https://terabee.b-cdn.net/wp-content/uploads/2022/06/Terabee-People-Counting-L-XL-Specification-sheet.pdf
+specificationURL: https://www.terabee.com/wp-content/uploads/2023/09/Terabee-People-Occupancy-Counting-Specification-sheet.pdf
 # User Guide URL (optional)
-userGuideURL: https://www.youtube.com/watch?v=4qqXGiU6yUc
+userGuideURL:
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
-  terabee:pc-l-xl:1:
-      - uplink containing people count data
-      - uplink containing unknown command error
-      - uplink containing device status flags
-      - uplink containing response to get people count
-      - uplink containing response to get wifi access point state
-      - uplink containing response to get counting diraction
-      - uplink containing response to get installation height
-      - uplink containing response to get push period (minutes)
-      - uplink containing response to get software component PEOPLE COUNTING version
-      - uplink containing response to get software component WEB GUI version
-      - uplink containing response to get software component LORA AGENT version
+  terabee:tb-poc:1:
+    - uplink containing zone occupancy data and device status flags
+    - uplink containing zone occupancy data with no zones created
+    - uplink containing WARMUP flag set
+    - uplink containing WARMUP, STOPPED, STUCK, WIFI_ACCESS_POINT_ON flags set
+    - uplink containing response to get installation height
+    - uplink containing response to get push period (seconds)
+    - uplink containing response to get device use case (open space)
+    - uplink containing response to get device use case (meeting room)
+    - uplink containing response to get software version
+    - uplink containing response to get device type
+    - uplink containing response to get lora module version
+    - uplink containing response to get wifi access point state
+    - uplink containing response to get (zero) active zones
+    - uplink containing response to get (one) active zone
+    - uplink containing response to get (all) active zones
+    - uplink containing response to get occupancy zone coordinates
+    - uplink containing response to get excluding zone coordinates
+    - uplink containing response to get analog output state disabled
+    - uplink containing response to get analog output state disabled and max occupancy set

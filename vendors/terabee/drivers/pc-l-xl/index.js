@@ -162,7 +162,7 @@ function getCommand(
   const command = registred_commands_map.get(key)
 
   if (!command){
-    throw "command not registered"
+    throw new Error("command not registered");
   }
 
   return command
@@ -378,7 +378,7 @@ function decodeUplink(input) {
     command = getCommand(commands, fport, header.cmd_id)
   } catch (e) {
     return {
-      errors: ["unknown command"]
+      errors: [e.message]
     }
   }
 
