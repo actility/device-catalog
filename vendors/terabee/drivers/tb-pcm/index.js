@@ -334,3 +334,5 @@ function isKthBitSet(byte, k) {
     };
   
   }
+
+  exports.decodeUplink = decodeUplink;
