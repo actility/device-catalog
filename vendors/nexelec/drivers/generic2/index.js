@@ -686,7 +686,7 @@ function decodeUplink(input)
             "temperature": temperature(data_temperature),
             "humidity": humiditySF(data_humidity) ,
             "co2": co2(data_co2),
-            "covt": covtSF(data_covt),
+            "covt": covtSF(data_cov),
             "luminosity": luminositySF(data_luminosity),
             "buttonPress": buttonPress(data_button_press) ,
             "averageNoise": averageNoise(data_avg_noise) ,
@@ -807,7 +807,7 @@ function decodeUplink(input)
             data={
                 "typeOfProduct": typeOfProduct(octetTypeProduit),
                 "typeOfMessage": typeOfMessage(octetTypeMessage),
-                "periodicalDataActivation": Active(data_periodic_tx_on_off),
+                "periodicalDataActivation": active(data_periodic_tx_on_off),
                 "periodicalTransmissionPeriod": period(data_periodic_tx_period),
                 "deltaCO2": deltaCO2(data_periodic_delta_co2),
                 "deltaTemperature":deltaTemp(data_periodic_delta_temp),

@@ -299,7 +299,7 @@ function from_hex_string(hex_string) {
   if (hex_string.length & 0x01 > 0) throw new Error("hex_string length must be a multiple of two");
 
   var byte_string = [];
-  for (i = 0; i < hex_string.length; i += 2) {
+  for (let i = 0; i < hex_string.length; i += 2) {
     var hex = hex_string.slice(i, i + 2);
     byte_string.push(parseInt(hex, 16));
   }
@@ -622,7 +622,7 @@ function decode_reboot_info(reboot_type, bytes, cursor) {
     case 3: // REBOOT_INFO_TYPE_ASSERT
       var payloadCursor = {}; // keeping track of which byte to process.
       payloadCursor.value = 4; // skip caller address
-      actualValue = decode_int32(reboot_payload, payloadCursor);
+      const actualValue = decode_int32(reboot_payload, payloadCursor);
       result = 'assert (' +
         'caller: 0x' +
         uint8_to_hex(reboot_payload[3]) +
@@ -2045,7 +2045,7 @@ function encode_channel_plan_v4(bytes, channel_plan) {
       break;
     }
     default:
-      throw new Error("channel_plan outside of specification: " + obj.channel_plan);
+      throw new Error("channel_plan outside of specification: " + channel_plan);
   }
 }
 

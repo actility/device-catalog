@@ -121,7 +121,7 @@ function uint32_to_hex(d) {
 function get_valve_state(bytes, cursor) {
   var valve = {};
 
-  decode_uint8(bytes, cursor);
+  const d = decode_uint8(bytes, cursor);
   valve.state = d & 0x03;
   valve.reason_id = (d >> 2) & 0x03;
 

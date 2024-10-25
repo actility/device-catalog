@@ -2525,7 +2525,7 @@ function encode_status_msg_delay_interval_v3(bytes, periodic_message_random_dela
       interval_val = 7;
       break;
     default:
-      throw new Error("status_message_interval is outside of specification: " + obj.status_message_interval);
+      throw new Error("status_message_interval is outside of specification: " + status_message_interval);
   }
   var byte = periodic_message_random_delay | (interval_val << 5);
   bytes.push(byte);
@@ -2586,7 +2586,7 @@ function encode_channel_plan_v3(bytes, channel_plan) {
       break;
     }
     default:
-      throw new Error("channel_plan outside of specification: " + obj.channel_plan);
+      throw new Error("channel_plan outside of specification: " + channel_plan);
   }
 }
 
