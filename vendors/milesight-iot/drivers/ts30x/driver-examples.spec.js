@@ -171,10 +171,24 @@ const code = (() => {
 })();
 
 /**
+ * Checking whether the driver is trusted or not
+ */
+function isTrusted() {
+    const packageJson = fs.readJsonSync(path.join(__dirname, "package.json"));
+    return packageJson.trusted ?? false;
+}
+
+const trusted = isTrusted();
+/**
  * Create an isolated-vm sandbox to run the code inside
  */
-const isolate = new ivm.Isolate();
-const script = isolate.compileScriptSync(isoBuffer.concat("\n" + code).concat("\n" + fnCall));
+let isolate;
+let script;
+
+if(!trusted) {
+    isolate = new ivm.Isolate();
+    script = isolate.compileScriptSync(isoBuffer.concat("\n" + code).concat("\n" + fnCall));
+}
 
 /**
  * @param input : input from example to run the driver with
@@ -182,6 +196,15 @@ const script = isolate.compileScriptSync(isoBuffer.concat("\n" + code).concat("\
  * @return result: output of the driver with the given input and operation
  */
 async function run(input, operation){
+    if(trusted) {
+        let result;
+        eval(
+            code
+            + ";\n"
+            + `result = decodeUplink(input)`
+        );
+        return result;
+    }
     const context = await isolate.createContext();
     await context.global.set("operation", operation);
     await context.global.set("input", new ivm.ExternalCopy(input).copyInto());
