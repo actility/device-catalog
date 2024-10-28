@@ -1,0 +1,936 @@
+[
+  {
+    "description": "Configuration Update Request - VB Alert",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "configuration_update_request": {
+          "version": 0,
+          "tag": "0x0b7c60d3",
+          "payload": {
+            "version": 0,
+            "type": "vb_alert",
+            "enable_confirmed_alert": false,
+            "enable_spectrum_on_alert": false,
+            "spectrum_type": "acceleration",
+            "time_to_transmit_min": 0,
+            "hold_off_hours": 0,
+            "alert_0": {
+              "selection": "off",
+              "threshold": 0,
+              "hysteresis": 0
+            },
+            "alert_1": {
+              "selection": "off",
+              "threshold": 0,
+              "hysteresis": 0
+            },
+            "alert_2": {
+              "selection": "off",
+              "threshold": 0,
+              "hysteresis": 0
+            },
+            "alert_3": {
+              "selection": "off",
+              "threshold": 0,
+              "hysteresis": 0
+            },
+            "alert_4": {
+              "selection": "off",
+              "threshold": 0,
+              "hysteresis": 0
+            },
+            "alert_5": {
+              "selection": "off",
+              "threshold": 0,
+              "hysteresis": 0
+            },
+            "alert_6": {
+              "selection": "off",
+              "threshold": 0,
+              "hysteresis": 0
+            },
+            "alert_7": {
+              "selection": "off",
+              "threshold": 0,
+              "hysteresis": 0
+            }
+          }
+        }
+      }
+    },
+    "output": {
+      "fPort": 11,
+      "bytes": "000b7c60d3003000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+    }
+  },
+  {
+    "description": "Configuration Update Request - VB Asset",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "configuration_update_request": {
+          "version": 0,
+          "tag": "0x6ddbffb9",
+          "payload": {
+            "version": 0,
+            "type": "vb_asset",
+            "rpm_min": 1000,
+            "rpm_max": 4000
+          }
+        }
+      }
+    },
+    "output": {
+      "fPort": 11,
+      "bytes": "006ddbffb9005003e80fa0"
+    }
+  },
+  {
+    "description": "Configuration Update Request - Schedule - VB Measurement for all axes",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "configuration_update_request": {
+          "version": 0,
+          "tag": "0x37414e5a",
+          "payload": {
+            "type": "schedule",
+            "version": 0,
+            "command": "replace",
+            "timing": 60,
+            "triggered_on_button_press": false,
+            "send": true,
+            "settings": {
+              "type": "vb_measurement",
+              "version": 0,
+              "axis": "all",
+              "range": "gscale_16",
+              "sample_speed_divider": 1,
+              "f_min": 5,
+              "f_max": 6300,
+              "enable_confirmed_message": false,
+              "send_condition": {
+                "value_type": "always",
+                "threshold": 0
+              }
+            }
+          }
+        }
+      }
+    },
+    "output": {
+      "fPort": 11,
+      "bytes": "0037414e5a00201003c0000000000000000000400010f018a01b89c00000"
+    }
+  },
+  {
+    "description": "Configuration Update Request - Schedule - VB Machine Fault Indicator for all axes",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "configuration_update_request": {
+          "version": 0,
+          "tag": "0x19708e88",
+          "payload": {
+            "type": "schedule",
+            "version": 0,
+            "command": "replace",
+            "timing": 60,
+            "triggered_on_button_press": false,
+            "send": true,
+            "settings": {
+              "type": "vb_machine_fault_indicator",
+              "version": 0,
+              "axis": "all",
+              "range": "gscale_16",
+              "sample_speed_divider": 1,
+              "f_min": 5,
+              "f_max": 6300,
+              "fault_type": "common_fault",
+              "send_condition": {
+                "value_type": "always",
+                "threshold": 0
+              }
+            }
+          }
+        }
+      }
+    },
+    "output": {
+      "fPort": 11,
+      "bytes": "0019708e8800201003c0000000000000000000400020f018a01b89c00000"
+    }
+  },
+  {
+    "description": "Configuration Update Request - Schedule - VB acceleration spectrum for Z axis",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "configuration_update_request": {
+          "version": 0,
+          "tag": "0x42f2067f",
+          "payload": {
+            "type": "schedule",
+            "version": 0,
+            "command": "replace",
+            "timing": 20160,
+            "triggered_on_button_press": false,
+            "send": true,
+            "settings": {
+              "type": "vb_spectrum",
+              "version": 0,
+              "axis": "z",
+              "range": "gscale_16",
+              "sample_speed_divider": 1,
+              "f_min": 5,
+              "f_max": 6300,
+              "spectrum_type": "acceleration",
+              "averaging": 0,
+              "time_to_transmit_min": 1440,
+              "send_condition": {
+                "value_type": "always",
+                "threshold": 0
+              }
+            }
+          }
+        }
+      }
+    },
+    "output": {
+      "fPort": 11,
+      "bytes": "0042f2067f002014ec00000000000000000000400030b018a01b89c19680000000"
+    }
+  },
+  {
+    "description": "Configuration Update Request - Schedule - VB Statistics for X RMS Velocity",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "configuration_update_request": {
+          "version": 0,
+          "tag": "0x1e1006c0",
+          "payload": {
+            "type": "schedule",
+            "version": 0,
+            "command": "replace",
+            "timing": 1440,
+            "triggered_on_button_press": false,
+            "send": true,
+            "settings": {
+              "type": "vb_statistics_x_rms_velocity",
+              "version": 0,
+              "range": "gscale_16",
+              "sample_speed_divider": 1,
+              "f_min": 5,
+              "f_max": 6300
+            }
+          }
+        }
+      }
+    },
+    "output": {
+      "fPort": 11,
+      "bytes": "001e1006c00020105a00000000000000000000400050c062806e27"
+    }
+  },
+  {
+    "description": "Configuration Update Request - Schedule - VB Statistics for Y RMS Acceleration",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "configuration_update_request": {
+          "version": 0,
+          "tag": "0x0ff81874",
+          "payload": {
+            "type": "schedule",
+            "version": 0,
+            "command": "replace",
+            "timing": 1440,
+            "triggered_on_button_press": false,
+            "send": true,
+            "settings": {
+              "type": "vb_statistics_y_rms_acceleration",
+              "version": 0,
+              "range": "gscale_16",
+              "sample_speed_divider": 1,
+              "f_min": 5,
+              "f_max": 6300
+            }
+          }
+        }
+      }
+    },
+    "output": {
+      "fPort": 11,
+      "bytes": "000ff818740020105a00000000000000000000400090c062806e27"
+    }
+  },
+  {
+    "description": "Configuration Update Request - Schedule - VB Statistics for Z Peak Acceleration",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "configuration_update_request": {
+          "version": 0,
+          "tag": "0x00a01218",
+          "payload": {
+            "type": "schedule",
+            "version": 0,
+            "command": "replace",
+            "timing": 1440,
+            "triggered_on_button_press": false,
+            "send": true,
+            "settings": {
+              "type": "vb_statistics_z_peak_acceleration",
+              "version": 0,
+              "range": "gscale_16",
+              "sample_speed_divider": 1,
+              "f_min": 5,
+              "f_max": 6300
+            }
+          }
+        }
+      }
+    },
+    "output": {
+      "fPort": 11,
+      "bytes": "0000a012180020105a000000000000000000004000d0c062806e27"
+    }
+  },
+  {
+    "description": "Configuration Update Request - Schedule - VB Statistics for Temperature",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "configuration_update_request": {
+          "version": 0,
+          "tag": "0x04da15b5",
+          "payload": {
+            "type": "schedule",
+            "version": 0,
+            "command": "replace",
+            "timing": 1440,
+            "triggered_on_button_press": false,
+            "send": true,
+            "settings": {
+              "type": "vb_statistics_temperature",
+              "version": 0,
+              "range": "gscale_16",
+              "sample_speed_divider": 1,
+              "f_min": 5,
+              "f_max": 6300
+            }
+          }
+        }
+      }
+    },
+    "output": {
+      "fPort": 11,
+      "bytes": "0004da15b50020105a000000000000000000004000e0c062806e27"
+    }
+  },
+  {
+    "description": "Configuration Update Request - Schedule - Transmitter Status",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "configuration_update_request": {
+          "version": 0,
+          "tag": "0xfe2192c9",
+          "payload": {
+            "type": "schedule",
+            "version": 0,
+            "command": "replace",
+            "timing": 1440,
+            "triggered_on_button_press": true,
+            "send": true,
+            "settings": {
+              "type": "transmitter_status",
+              "version": 0
+            }
+          }
+        }
+      }
+    },
+    "output": {
+      "fPort": 11,
+      "bytes": "00fe2192c90020105a00000000000000000000c00000"
+    }
+  },
+  {
+    "description": "Configuration Update Request - Schedule - Transmitter Battery",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "configuration_update_request": {
+          "version": 0,
+          "tag": "0x439c60d5",
+          "payload": {
+            "type": "schedule",
+            "version": 0,
+            "command": "replace",
+            "timing": 1440,
+            "triggered_on_button_press": true,
+            "send": true,
+            "settings": {
+              "type": "transmitter_battery",
+              "version": 0
+            }
+          }
+        }
+      }
+    },
+    "output": {
+      "fPort": 11,
+      "bytes": "00439c60d50020105a00000000000000000000c000f0"
+    }
+  },
+  {
+    "description": "Configuration Update Request - VB Spectrum Alert",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "configuration_update_request": {
+          "version": 0,
+          "tag": "0xe44d85d3",
+          "payload": {
+            "version": 0,
+            "type": "vb_spectrum_alert",
+            "enable_confirmed_alert": false,
+            "enable_spectrum_on_alert": false,
+            "time_to_transmit_min": 0,
+            "hold_off_hours": 0,
+            "alert_0": {
+              "selection": "off",
+              "threshold": 0,
+              "hysteresis": 0,
+              "f_min": 0,
+              "f_max": 0
+            },
+            "alert_1": {
+              "selection": "off",
+              "threshold": 0,
+              "hysteresis": 0,
+              "f_min": 0,
+              "f_max": 0
+            },
+            "alert_2": {
+              "selection": "off",
+              "threshold": 0,
+              "hysteresis": 0,
+              "f_min": 0,
+              "f_max": 0
+            },
+            "alert_3": {
+              "selection": "off",
+              "threshold": 0,
+              "hysteresis": 0,
+              "f_min": 0,
+              "f_max": 0
+            },
+            "alert_4": {
+              "selection": "off",
+              "threshold": 0,
+              "hysteresis": 0,
+              "f_min": 0,
+              "f_max": 0
+            }
+          }
+        }
+      }
+    },
+    "output": {
+      "fPort": 11,
+      "bytes": "00e44d85d300400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+    }
+  },
+  {
+    "description": "Configuration Update Request - Transmitter",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "configuration_update_request": {
+          "version": 0,
+          "tag": "0x573889d9",
+          "payload": {
+            "type": "transmitter",
+            "version": 0,
+            "allow_deactivation": true,
+            "require_sensor_pairing": false,
+            "enable_class_b": false,
+            "time_synchronization_interval_days": 1,
+            "fragmented_uplink_redundancy_percent": 10
+          }
+        }
+      }
+    },
+    "output": {
+      "fPort": 11,
+      "bytes": "00573889d900108428"
+    }
+  },
+  {
+    "description": "Past Measurement Request",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "past_measurement_request": {
+          "version": 0,
+          "timestamp": "2023-07-31T18:40:00.000Z"
+        }
+      }
+    },
+    "output": {
+      "fPort": 14,
+      "bytes": "0064c80000"
+    }
+  },
+  {
+    "description": "Alert",
+    "type": "uplink",
+    "input": {
+      "bytes": "2000000000",
+      "recvTime": "2023-07-31T11:30:00.000Z",
+      "fPort": 17
+    },
+    "output": {
+      "data": {
+        "alert": {
+          "version": 0,
+          "timestamp": "2023-07-31T11:30:00.000Z",
+          "sensor_alert_0": false,
+          "sensor_alert_1": false,
+          "sensor_alert_2": false,
+          "sensor_alert_3": false,
+          "sensor_alert_4": false,
+          "sensor_alert_5": false,
+          "sensor_alert_6": false,
+          "sensor_alert_7": false,
+          "spectrum_alert_0": false,
+          "spectrum_alert_1": false,
+          "spectrum_alert_2": false,
+          "spectrum_alert_3": false,
+          "spectrum_alert_4": false
+        }
+      }
+    }
+  },
+  {
+    "description": "Configuration Update Answer - Transmitter",
+    "type": "uplink",
+    "input": {
+      "bytes": "00aabbccdd0010",
+      "recvTime": "2023-07-31T18:40:00.000Z",
+      "fPort": 11
+    },
+    "output": {
+      "data": {
+        "configuration_update_answer": {
+          "version": 0,
+          "tag": "0xaabbccdd",
+          "type": "transmitter",
+          "status": "success"
+        }
+      }
+    }
+  },
+  {
+    "description": "DevVersionAns",
+    "type": "uplink",
+    "input": {
+      "bytes": "01ddccbbaa44332211",
+      "recvTime": "2023-02-15T13:58:57.743Z",
+      "fPort": 203
+    },
+    "output": {
+      "data": {
+        "DevVersionAns": {
+          "HW_version": "0x11223344",
+          "FW_version": "0xaabbccdd"
+        }
+      }
+    }
+  },
+  {
+    "description": "Fragmented Uplink Start",
+    "type": "uplink",
+    "input": {
+      "bytes": "0011200020075BCD15",
+      "recvTime": "2023-02-15T13:58:57.743Z",
+      "fPort": 12
+    },
+    "output": {
+      "data": {
+        "fragmented_uplink_start": {
+          "version": 0,
+          "fport": 17,
+          "uplink_size": 8192,
+          "fragment_size": 32,
+          "crc": 123456789
+        }
+      }
+    }
+  },
+  {
+    "description": "Fragmented Uplink Data",
+    "type": "uplink",
+    "input": {
+      "bytes": "100001000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f",
+      "recvTime": "2023-02-15T13:58:57.743Z",
+      "fPort": 12
+    },
+    "output": {
+      "data": {
+        "fragmented_uplink_data": {
+          "version": 0,
+          "index": 1,
+          "data": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31
+          ]
+        }
+      }
+    }
+  },
+  {
+    "description": "Machine Fault Indicator",
+    "type": "uplink",
+    "input": {
+      "bytes": "30ead7002914b676100207010100000001",
+      "recvTime": "2023-07-31T18:40:00.000Z",
+      "fPort": 17
+    },
+    "output": {
+      "data": {
+        "machine_fault_indicator": {
+          "version": 0,
+          "timestamp": "2023-07-27T17:14:00.000Z",
+          "axis": "x",
+          "fault_type": "common_fault",
+          "fault_category": "none",
+          "harmonic_frequencies": [
+            49.28125,
+            98.5625,
+            147.84375,
+            197.125,
+            246.40625,
+            295.6875,
+            344.96875,
+            394.25,
+            443.53125,
+            492.8125
+          ],
+          "harmonic_amplitudes": [
+            0.40380859375,
+            0.06334252450980392,
+            0.00791781556372549,
+            0.027712354473039217,
+            0.003958907781862745,
+            0.003958907781862745,
+            0,
+            0,
+            0,
+            0.003958907781862745
+          ]
+        }
+      }
+    }
+  },
+  {
+    "description": "Sensor Boot",
+    "type": "uplink",
+    "input": {
+      "bytes": "000008",
+      "recvTime": "2023-07-31T18:40:00.000Z",
+      "fPort": 17
+    },
+    "output": {
+      "data": {
+        "sensor_boot": {
+          "version": 0,
+          "reboot_reason": "power_brown_out"
+        }
+      }
+    }
+  },
+  {
+    "description": "Transmitter Battery",
+    "type": "uplink",
+    "input": {
+      "bytes": "10c81dab653387bc",
+      "recvTime": "2023-07-31T18:40:00.000Z",
+      "fPort": 14
+    },
+    "output": {
+      "data": {
+        "transmitter_battery": {
+          "version": 0,
+          "transmitter_charge_used": 1038,
+          "sensor_charge_used": 3506,
+          "average_temperature": 19.515625,
+          "battery_level": 239
+        }
+      }
+    }
+  },
+  {
+    "description": "Transmitter Boot",
+    "type": "uplink",
+    "input": {
+      "bytes": "000001",
+      "recvTime": "2023-07-31T18:40:00.000Z",
+      "fPort": 16
+    },
+    "output": {
+      "data": {
+        "transmitter_boot": {
+          "version": 0,
+          "reboot_reason": "configuration_update"
+        }
+      }
+    }
+  },
+  {
+    "description": "Transmitter Deactivated",
+    "type": "uplink",
+    "input": {
+      "bytes": "3000",
+      "recvTime": "2023-07-31T18:40:00.000Z",
+      "fPort": 16
+    },
+    "output": {
+      "data": {
+        "transmitter_deactivated": {
+          "version": 0,
+          "reason": "user_triggered"
+        }
+      }
+    }
+  },
+  {
+    "description": "Transmitter Status",
+    "type": "uplink",
+    "input": {
+      "bytes": "1000a80007fe",
+      "recvTime": "2023-02-15T13:58:57.743Z",
+      "fPort": 16
+    },
+    "output": {
+      "data": {
+        "transmitter_status": {
+          "version": 0,
+          "temperature": 0,
+          "rssi": -88,
+          "lora_tx_counter": 7,
+          "bist": {
+            "power_supply": true,
+            "configuration": true,
+            "sensor_connection": true,
+            "sensor_paired": true,
+            "flash_memory": true,
+            "internal_temperature_sensor": true,
+            "time_synchronized": true
+          }
+        }
+      }
+    }
+  },
+  {
+    "description": "Measurement - X",
+    "type": "uplink",
+    "input": {
+      "bytes": "10eb343d0a2448b14d5680",
+      "recvTime": "2023-07-31T11:30:00.000Z",
+      "fPort": 17
+    },
+    "output": {
+      "data": {
+        "measurement": {
+          "version": 0,
+          "timestamp": "2023-07-27T18:47:00.000Z",
+          "axis": "x",
+          "temperature": -12,
+          "peak_acceleration": 0.035675048828125,
+          "rms_acceleration": 0.01322174072265625,
+          "rms_velocity": 0.33447265625
+        }
+      }
+    }
+  },
+  {
+    "description": "Spectrum - X Acceleration",
+    "type": "uplink",
+    "input": {
+      "bytes": "5064C800000193C00000000000000000000000000aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "recvTime": "2023-07-31T18:40:00.000Z",
+      "fPort": 17
+    },
+    "output": {
+      "data": {
+        "spectrum": {
+          "version": 0,
+          "timestamp": "2023-07-31T18:40:00.000Z",
+          "axis": "x",
+          "spectrum_type": "acceleration",
+          "temperature": 25,
+          "rms_velocity": 0,
+          "rms_acceleration": 0,
+          "peak_acceleration": 0,
+          "rpm": 0,
+          "frequencies": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31
+          ],
+          "magnitudes": [
+            58183.125,
+            58183.125,
+            58183.125,
+            58183.125,
+            58183.125,
+            58183.125,
+            58183.125,
+            58183.125,
+            58183.125,
+            58183.125,
+            58183.125,
+            58183.125,
+            58183.125,
+            58183.125,
+            58183.125,
+            58183.125,
+            58183.125,
+            58183.125,
+            58183.125,
+            58183.125,
+            58183.125,
+            58183.125,
+            58183.125,
+            58183.125,
+            58183.125,
+            58183.125,
+            58183.125,
+            58183.125,
+            58183.125,
+            58183.125,
+            58183.125,
+            58183.125
+          ]
+        }
+      }
+    }
+  },
+  {
+    "description": "Statistics",
+    "type": "uplink",
+    "input": {
+      "bytes": "40000000000000000000",
+      "recvTime": "2023-07-31T11:30:00.000Z",
+      "fPort": 17
+    },
+    "output": {
+      "data": {
+        "statistics": {
+          "version": 0,
+          "selection": "x_rms_velocity",
+          "min": 0,
+          "max": 0,
+          "avg": 0,
+          "max_timestamp": "2023-07-31T11:30:00.000Z"
+        }
+      }
+    }
+  }
+]
