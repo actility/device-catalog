@@ -11,7 +11,8 @@ const gnssFailure = require("./gnss/gnssFailure");
 const PositionStatus = Object.freeze({
     SUCCESS: "SUCCESS",
     TIMEOUT: "TIMEOUT",
-    FAILURE: "FAILURE"
+    FAILURE: "FAILURE",
+    NOT_SOLVABLE : "NOT_SOLVABLE"
 })
 
 const PositionType = Object.freeze({
@@ -29,7 +30,7 @@ const PositionType = Object.freeze({
     AIDED_GNSS: "AIDED_GNSS"
 })
 
-function Position(motion,
+function Position(motion, motionCounter,
     status,
     positionType,
     triggers,
@@ -44,6 +45,7 @@ function Position(motion,
     aidedGnss,
     coordinates){
         this.motion = motion;
+        this.motionCounter = motionCounter;
         this.status = status;
         this.positionType = positionType;
         this.triggers = triggers;
@@ -75,7 +77,11 @@ function determinePositionHeader(payload, startingByte){
         case 2:
             positionMessage.status = PositionStatus.FAILURE;
             break;
+        case 3:
+            positionMessage.status = PositionStatus.NOT_SOLVABLE;
+            break;
     }
+
     var typeValue = payload[startingByte] & 0x0F;
     switch (typeValue){
         case 0:
@@ -115,17 +121,19 @@ function determinePositionHeader(payload, startingByte){
             positionMessage.positionType = PositionType.AIDED_GNSS;
             break;
     }
-    positionMessage.triggers = new TriggerBitMapClass.TriggerBitMap(payload[startingByte+2] & 0x01,
-        payload[startingByte+2]>>1 & 0x01,
-        payload[startingByte+2]>>2 & 0x01,
-        payload[startingByte+2]>>3 & 0x01,
-        payload[startingByte+2]>>4 & 0x01,
-        payload[startingByte+2]>>5 & 0x01,
-        payload[startingByte+2]>>6 & 0x01,
-        payload[startingByte+2]>>7 & 0x01,
-        payload[startingByte+1] & 0x01,
-        payload[startingByte+1]>>1 & 0x01
+    positionMessage.motionCounter =  payload[startingByte+1]&0x0F;
+    positionMessage.triggers = new TriggerBitMapClass.TriggerBitMap(payload[startingByte+3] & 0x01,
+        payload[startingByte+3]>>1 & 0x01,
+        payload[startingByte+3]>>2 & 0x01,
+        payload[startingByte+3]>>3 & 0x01,
+        payload[startingByte+3]>>4 & 0x01,
+        payload[startingByte+3]>>5 & 0x01,
+        payload[startingByte+3]>>6 & 0x01,
+        payload[startingByte+3]>>7 & 0x01,
+        payload[startingByte+2] & 0x01,
+        payload[startingByte+2]>>1 & 0x01
     )
+   
     return positionMessage;
 }
 
@@ -181,40 +189,40 @@ function determinePosition(payload, multiFrame){
     }
     let positionMessage = determinePositionHeader(payload, startingByte);
     // position status success
-    if (positionMessage.status == PositionStatus.SUCCESS){
+    if (positionMessage.status == PositionStatus.SUCCESS || positionMessage.status == PositionStatus.NOT_SOLVABLE){
         switch (positionMessage.positionType){
             case PositionType.LR11xx_A_GNSS:
-                positionMessage.lr11xxAGnss = determineLR1110GnssPositionMessage(payload.slice(startingByte+3));
+                positionMessage.lr11xxAGnss = determineLR1110GnssPositionMessage(payload.slice(startingByte+4));
                 break;
             case PositionType.LR11xx_GNSS_NAV1:
-                positionMessage.lr11xxGnssNav1 = util.convertBytesToString(payload.slice(startingByte+3));
+                positionMessage.lr11xxGnssNav1 = util.convertBytesToString(payload.slice(startingByte+4));
                 break;
             case PositionType.LR11xx_GNSS_NAV2:
-                positionMessage.lr11xxGnssNav2 = util.convertBytesToString(payload.slice(startingByte+3));
+                positionMessage.lr11xxGnssNav2 = util.convertBytesToString(payload.slice(startingByte+4));
                 break;
             case PositionType.WIFI:
-                positionMessage.wifiBssids = wifiClass.determineWifiPositionMessage(payload.slice(startingByte+3));
+                positionMessage.wifiBssids = wifiClass.determineWifiPositionMessage(payload.slice(startingByte+4));
                 break;
             case PositionType.BLE_SCAN1_MAC:
-                positionMessage.bleBeaconMacs = bleClass.determineBleMacPositionMessage(payload.slice(startingByte+3));
+                positionMessage.bleBeaconMacs = bleClass.determineBleMacPositionMessage(payload.slice(startingByte+4));
                 break;
             case PositionType.BLE_SCAN1_SHORT:
-                positionMessage.bleBeaconIds = bleClass.determineBleIdShortPositionMessage(payload.slice(startingByte+3));
+                positionMessage.bleBeaconIds = bleClass.determineBleIdShortPositionMessage(payload.slice(startingByte+4));
                 break;
             case PositionType.BLE_SCAN1_LONG:
-                positionMessage.bleBeaconIds = bleClass.determineBleIdLongPositionMessage(payload.slice(startingByte+3));
+                positionMessage.bleBeaconIds = bleClass.determineBleIdLongPositionMessage(payload.slice(startingByte+4));
                 break;
             case PositionType.BLE_SCAN2_MAC:
-                positionMessage.bleBeaconMacs = bleClass.determineBleMacPositionMessage(payload.slice(startingByte+3));
+                positionMessage.bleBeaconMacs = bleClass.determineBleMacPositionMessage(payload.slice(startingByte+4));
                 break;
             case PositionType.BLE_SCAN2_SHORT:
-                positionMessage.bleBeaconIds = bleClass.determineBleIdShortPositionMessage(payload.slice(startingByte+3));
+                positionMessage.bleBeaconIds = bleClass.determineBleIdShortPositionMessage(payload.slice(startingByte+4));
                 break;
             case PositionType.BLE_SCAN2_LONG:
-                positionMessage.bleBeaconIds = bleClass.determineBleIdLongPositionMessage(payload.slice(startingByte+3));
+                positionMessage.bleBeaconIds = bleClass.determineBleIdLongPositionMessage(payload.slice(startingByte+4));
                 break;
             case PositionType.GNSS:
-                positionMessage.gnssFix = gnssFixClass.determineGnssFix(payload.slice(startingByte+3));
+                positionMessage.gnssFix = gnssFixClass.determineGnssFix(payload.slice(startingByte+4));
                 positionMessage.coordinates = [positionMessage.gnssFix.longitude, positionMessage.gnssFix.latitude, positionMessage.gnssFix.altitude]
                 break;
             case PositionType.AIDED_GNSS:
@@ -223,7 +231,7 @@ function determinePosition(payload, multiFrame){
     }else if ((positionMessage.status == PositionStatus.TIMEOUT)||(positionMessage.status == PositionStatus.FAILURE)){
         //only for GNSS
         if (positionMessage.positionType == PositionType.GNSS){
-            positionMessage.gnssFailure = gnssFailureClass.determineGnssFailure(payload.slice(startingByte+3))
+            positionMessage.gnssFailure = gnssFailureClass.determineGnssFailure(payload.slice(startingByte+4))
         }
     }
     return positionMessage;
