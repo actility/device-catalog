@@ -1,0 +1,311 @@
+[
+    {
+        "type": "uplink",
+        "description": "uplink example for timesync request",
+        "input": {
+            "bytes": [
+                30,
+                31,
+                30,
+                30,
+                31,
+                31,
+                32,
+                32,
+                33,
+                33,
+                30,
+                32,
+                30,
+                30,
+                30,
+                30,
+                30,
+                32,
+                30,
+                31,
+                30,
+                30
+            ],
+            "fPort": 0,
+            "recvTime": "2024-08-10T20:00:00.000+05:00"
+        },
+        "output": {
+            "data": {
+                "syncID": "00112233",
+                "syncVersion": "02.00.00",
+                "applicationType": "0201",
+                "rfu": "00"
+            },
+            "errors": null
+        }
+    },
+    {
+        "type": "uplink",
+        "description": "uplink example for IO data",
+        "input": {
+            "bytes": [
+                30,
+                41,
+                46,
+                36,
+                35,
+                32,
+                46,
+                33,
+                33,
+                30,
+                30,
+                31,
+                30,
+                30,
+                30,
+                30,
+                30,
+                30,
+                30,
+                31,
+                30,
+                30,
+                30,
+                30,
+                30,
+                30,
+                30,
+                30,
+                30,
+                30,
+                30,
+                30,
+                30,
+                30
+            ],
+            "fPort": 0,
+            "recvTime": "2024-08-10T20:00:00.000+05:00"
+        },
+        "output": {
+            "data": {
+                "date": "7/19/2024, 10:23:44 AM",
+                "inputStatus": 1,
+                "outputStatus": 1,
+                "inputTrigger": 0
+            },
+            "errors": null
+        }
+    },
+    {
+        "type": "uplink",
+        "description": "uplink example for IO data (example 2)",
+        "input": {
+            "bytes": [
+                30,
+                41,
+                32,
+                36,
+                34,
+                45,
+                30,
+                45,
+                33,
+                31,
+                30,
+                31,
+                30,
+                30,
+                30,
+                30,
+                30,
+                30,
+                30,
+                30,
+                30,
+                30,
+                30,
+                30,
+                30,
+                30,
+                30,
+                30,
+                30,
+                30,
+                30,
+                30,
+                30,
+                30
+            ],
+            "fPort": 0,
+            "recvTime": "2024-08-10T20:00:00.000+05:00"
+        },
+        "output": {
+            "data": {
+                "date": "8/14/2024, 9:49:12 AM",
+                "inputStatus": 1,
+                "outputStatus": 0,
+                "inputTrigger": 0
+            },
+            "errors": null
+        }
+    },
+    {
+        "type": "uplink",
+        "description": "uplink example for level data (type 1)",
+        "input": {
+            "bytes": [
+                31,
+                34,
+                30,
+                31,
+                30,
+                64,
+                35,
+                31,
+                30,
+                65,
+                33,
+                31,
+                30,
+                64,
+                30,
+                63,
+                33,
+                30,
+                30,
+                30,
+                33,
+                33,
+                30,
+                34,
+                30,
+                35,
+                63,
+                31,
+                31,
+                30,
+                34,
+                62
+            ],
+            "fPort": 0,
+            "recvTime": "2024-08-10T20:00:00.000+05:00"
+        },
+        "output": {
+            "data": {
+                "type": 1,
+                "date": "8/14/2024, 10:08:26 AM",
+                "ADC": {
+                    "value": 3085,
+                    "unit": "mV"
+                },
+                "height": {
+                    "value": 48,
+                    "unit": "mm"
+                },
+                "distance1": {
+                    "value": 1075,
+                    "unit": "mm"
+                },
+                "fillLevel": {
+                    "value": 5,
+                    "unit": "%"
+                },
+                "temperature": {
+                    "value": 42.89,
+                    "unit": "°C"
+                },
+                "battery": {
+                    "value": 75,
+                    "unit": "%"
+                }
+            },
+            "errors": null
+        }
+    },
+    {
+        "type": "uplink",
+        "description": "uplink example for level data (type 3)",
+        "input": {
+            "bytes": [
+                31,
+                34,
+                30,
+                33,
+                33,
+                34,
+                33,
+                63,
+                66,
+                66,
+                33,
+                30,
+                32,
+                39,
+                30,
+                62,
+                39,
+                30,
+                30,
+                30,
+                63,
+                32,
+                30,
+                30,
+                36,
+                31,
+                64,
+                66,
+                66,
+                38,
+                61,
+                63,
+                66,
+                36,
+                38,
+                34,
+                30,
+                31,
+                35,
+                30
+            ],
+            "fPort": 0,
+            "recvTime": "2024-08-10T20:00:00.000+05:00"
+        },
+        "output": {
+            "data": {
+                "type": 3,
+                "date": "7/31/2024, 7:33:40 AM",
+                "ADC": {
+                    "value": 2857,
+                    "unit": "mV"
+                },
+                "height": {
+                    "value": 144,
+                    "unit": "mm"
+                },
+                "distance1": {
+                    "value": 194,
+                    "unit": "mm"
+                },
+                "fillLevel": {
+                    "value": 97,
+                    "unit": "%"
+                },
+                "temperature": {
+                    "value": -18.25,
+                    "unit": "°C"
+                },
+                "humidity": {
+                    "value": 86,
+                    "unit": "%"
+                },
+                "pressure": {
+                    "value": 995.74,
+                    "unit": "hPa"
+                },
+                "battery": {
+                    "value": 80,
+                    "unit": "%"
+                }
+            },
+            "errors": null
+        }
+    }
+]
