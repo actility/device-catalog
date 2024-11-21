@@ -5,11 +5,14 @@ description: Sonata Ultrasonic Residential Water Meter.
 # Logo of the device
 logo: sonata.png
 # ID(s) of the profile that defines the LoRaWAN characteristics of this model.
-deviceProfileId:
-  - arad_RFGroup1_1.0.3a_classA
-  - arad_RFGroup2_1.0.3a_classA
-  - arad_RFGroup3_1.0.3a_classA
-  - arad_RFGroup4_1.0.3a_classA
+# id: as defined under /profiles.
+# lorawanDeviceProfileID: as defined by LoRa Alliance in https://lora-alliance.org/wp-content/uploads/2020/10/LoRa_Alliance_Vendor_ID_for_QR_Code_02142022.pdf.
+# The lorawanDeviceProfileID consists of 8 upper-case hexadecimal characters, 4 characters for VendorID + 4 characters for VendorProfileID. Please consider using single (') or double (") quotation.
+deviceProfileIds:
+  - id: arad_RFGroup1_1.0.3a_classA
+  - id: arad_RFGroup2_1.0.3a_classA
+  - id: arad_RFGroup3_1.0.3a_classA
+  - id: arad_RFGroup4_1.0.3a_classA
 
 # You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings.
 # Maximum device TX Conducted output power in dBm.
@@ -40,6 +43,8 @@ specificationURL:
 userGuideURL:
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
+  - temperature:Cel
+  - humidity:%RH
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
