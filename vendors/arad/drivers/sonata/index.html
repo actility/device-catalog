@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arad Sonata Driver Test</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+  </head>
+  <body>
+
+    <h1>Arad Sonata Decoder</h1>
+
+    <p><b>Time of reception:</b></p>
+    <input type="text" id="datetime">
+
+    <p><b>FPort:</b></p>
+    <input type="number" min="1", max="255" id="f-port">
+
+
+
+
+    <p><b>Select a sample payload (optional):</b></p>
+    <div>
+        <input type="radio" id="standard-example" name="example" value="" onclick="payloadHexElement.value = standardExample"/>
+        <label for="standard-example">Standard</label>
+    </div>
+    <div>
+        <input type="radio" id="alarm-burst-example" name="example" value="" onclick="payloadHexElement.value = alarmBurstExample"/>
+        <label for="alarm-burst-example">Alarm Burst</label>
+    </div>
+
+    <div>
+        <input type="radio" id="data-log-example" name="example" value="" onclick="payloadHexElement.value = dataLogExample"/>
+        <label for="data-log-example">Data Log</label>
+    </div>
+    <div>
+        <input type="radio" id="data-log-example" name="example" value="" onclick="payloadHexElement.value = dataLogShortExample"/>
+        <label for="data-log-example">Data Log Short</label>
+    </div>
+    <div>
+        <input type="radio" id="data-log-example" name="example" value="" onclick="payloadHexElement.value = dataLogLongExample"/>
+        <label for="data-log-example">Data Log Long</label>
+    </div>
+
+
+
+    <div>
+        <input type="radio" id="wt-log-beacon-example" name="example" value="" onclick="payloadHexElement.value = wtLogBeaconExample"/>
+        <label for="wt-log-beacon-example">WT Log Beacon</label>
+    </div>
+
+
+
+
+    <p><b>Payload Hex:</b></p>
+    <textarea id="payload-hex" rows="4" cols="50" onchange="resetRadio()"></textarea><br/>
+    <br/>
+
+    <button onclick="decode()">Decode</button><br/>
+
+    <p><b>Decoded Payload:</b></p>
+    <div id="decoded-string"></div>
+
+    <p><b>Errors:</b></p>
+    <div id="errors"></div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/gh/ethereumjs/browser-builds/dist/ethereumjs-tx/ethereumjs-tx-1.3.3.min.js"></script>
+    <script> 
+        const Buffer = ethereumjs.Buffer.Buffer;
+    </script>
+    <script src="index.js"></script>
+	<script>
+        
+        
+        
+        const standardExample = "9D590C880004001AA94607";
+        const alarmBurstExample = "9B590C880004001AA94607";
+        const dataLogExample = "0600005910daadf1060000000104080cde06034103420341034103420341034103420341034180000341";
+        const dataLogShortExample = "0600005a00037f71070000000100080e43070000";
+        const dataLogLongExample = "0600005a00037f71070000000100080e4307000000000000000000640000000000000000006400000000000000000064000000000000000000640000000000000000006400000000000000000064000000000000000000640000000000000000006400000000000000000064000000000000000000640000000000000000006400000000000000000064000000000000000000640000000000000000006400000000000000000064000000000000000000640000000000000000006400000000000000000064000000000000000000640000";
+        const wtLogBeaconExample = "80590302B26166FCAF00008FD70714140DCA003C006B00A0001A006C008400008B350000874B00006C73000027DB0000257D";
+        // const wtLogBeaconExample1 = "80594b58a9636af5d9000004200714400cd400df008700000000008d0035000003cc80000000800000008000000080000000";
+        // const wtLogBeaconExample2 = "80592b4ed165797ab90006fcff0700080ce303e803e803e803e803e803e80006d79300044737800000008000000080000000";
+
+
+
+
+        let datetimeElement;
+
+        let fPortElement;
+
+        let exampleDataHex = "";
+        let payloadHexElement;
+        let decodedStringElement;
+        let errorsElement;
+
+        window.onload = (event) => {
+
+            const now = new Date();
+            datetimeElement = document.getElementById("datetime");
+            datetimeElement.value = now.toISOString().slice(0, 23);;
+
+            fPortElement = document.getElementById("f-port");
+            fPortElement.value = 1;
+
+            resetRadio();
+
+            payloadHexElement = document.getElementById("payload-hex");
+            payloadHexElement.value = exampleDataHex;
+
+            decodedStringElement = document.getElementById("decoded-string");
+            errorsElement = document.getElementById("errors");
+
+        };
+
+
+        function resetRadio() {
+            document.getElementById("standard-example").checked = false;
+            document.getElementById("data-log-example").checked = false;
+            document.getElementById("wt-log-beacon-example").checked = false;
+        }
+
+        function hex2bytes(hex) {
+            return hex
+                .split('')
+                .map((element, index, array) => index % 2 ? null : element + array[index + 1])
+                .filter(element => element !== null)
+                .map(x => parseInt(x, 16));
+        }
+
+        function decode() {
+            try {
+                // alert(payloadHexElement.value);
+                const decoded = decodeUplink({
+                    bytes: hex2bytes(payloadHexElement.value),
+                    fPort: parseInt(fPortElement.value, 10),
+                    recvTime: datetimeElement.value
+                });
+                const decodedString = JSON.stringify(decoded.data, null, 4);
+                const errors = JSON.stringify(decoded.errors, null, 4);
+                console.log(decodedString);
+                decodedStringElement.innerHTML = `<pre>${decodedString}</pre>`;
+                errorsElement.innerHTML = `<pre>${errors}</pre>`;
+            } catch (e) {
+                decodedStringElement.innerHTML = e.message;
+                // decodedStringElement.innerHTML = "INVALID PAYLOAD!";
+            }
+        }
+
+    </script>
+
+
+  </body>
+</html>
