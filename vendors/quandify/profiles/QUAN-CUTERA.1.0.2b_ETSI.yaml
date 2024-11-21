@@ -24,12 +24,12 @@ motionIndicator: RANDOM
 mac:
     # Activation modes supported by the device (put true where applicable).
     # (ABP)
-    activationByPersonalization: true
+    activationByPersonalization: false
     #(OTAA)
-    overTheAirActivation: false
+    overTheAirActivation: true
     # Supported version of the LoRaWAN MAC (Layer-2) specification. Possible values are '1.0.0/1.0.1', '1.0.2', '1.0.3', '1.0.4', '1.1'
     loRaWANMacVersion: 1.0.2
-    # Supported version of the LoRaWAN regional parameters (PHY) specification. Possible values are '1.0.2revA', '1.0.2revB', '1.0.2revC', 
+    # Supported version of the LoRaWAN regional parameters (PHY) specification. Possible values are '1.0.2revA', '1.0.2revB', '1.0.2revC',
     # '1.0.3revA', 'RP2-1.0.0', 'RP2-1.0.1', 'RP2-1.0.2', 'RP2-1.0.3', 'RP2-1.0.4', 'RP2-1.0.5'.
     regionalParameterVersion: 1.0.2revB
 
@@ -44,21 +44,21 @@ mac:
         # Maximum device TX Radiated output power in dBm.
         maxTxEIRP: 16
 
-    uplinkFrameRepetition: 
-        # Maximum number of transmissions per uplink frame, supported by the device. 
+    uplinkFrameRepetition:
+        # Maximum number of transmissions per uplink frame, supported by the device.
         maxNbTrans:
         # How many uplink transmissions does the device use in Confirmed mode if it doesn't receive any DL ACK?
         maxRedundancyForConfirmedUL:
 
-# The following section defines the default settings used by the device during iniial boot stage. Leave empty if your device respects the 
+# The following section defines the default settings used by the device during iniial boot stage. Leave empty if your device respects the
 # default values indicated by LoRaWAN Regional Parameters (PHY) specification. Personalize fields only when different from default PHY values.
-bootSettings: 
-    # Delay between the end of uplink transmission and the start of downlink RX1 slot, in milliseconds. Refer to 'receiveDelay1' in LoRaWAN 
+bootSettings:
+    # Delay between the end of uplink transmission and the start of downlink RX1 slot, in milliseconds. Refer to 'receiveDelay1' in LoRaWAN
     # Specification.
     rx1Delay: 1000
     # RX1 data rate offset, defining the offset between uplink data rate and the corresponding downlink data rate used for RX1 slot.
     rx1DROffset:
-    # Rx2 DataRate, used to send DL packets over RX2 slot. Note: Data Rate encoding is region-specific, see the applicable LoRaWAN Regional 
+    # Rx2 DataRate, used to send DL packets over RX2 slot. Note: Data Rate encoding is region-specific, see the applicable LoRaWAN Regional
     # Profile.
     rx2DataRate:
     # Rx2 Frequency expressed in MHz, used to send DL packets over RX2 slot.
@@ -92,8 +92,7 @@ supportedMACCommands:
     deviceTimeReqAns: true
     beaconFreqReqAns: false
 
-# Does your device support [Technical Recommendation for LoRaWAN L2 1.0.x Join Security] recommending implemeting the DevNonce as a counter for 
+# Does your device support [Technical Recommendation for LoRaWAN L2 1.0.x Join Security] recommending implemeting the DevNonce as a counter for
 # OTAA devices? See https://lora-alliance.org/resource_hub/technical-recommendations-for-preventing-state-synchronization-issues-around-lorawan-1-0-x-join-procedure/
 # Possible values: true, false. This field is automatically forced to true for LoRaWAN MAC versions 1.0.4 and 1.1.
 devNonceCounterBased: false
-
