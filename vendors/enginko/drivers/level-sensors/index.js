@@ -81,16 +81,16 @@ function decodeUplink(input) {
 
     var payload = byteArraytoHexString(input.bytes);
     console.log(payload);
-    const uplinkId = payload.substring(0, 2).toLocaleUpperCase();
-    switch (uplinkId) {
-        case "01":
+    switch (input.bytes[0]) {
+        case 0x01:
             output.data.syncID = payload.substring(2, 10).toLocaleUpperCase();
             output.data.syncVersion = payload.substring(10, 12).toLocaleUpperCase() + "." + payload.substring(12, 14).toLocaleUpperCase() + "." + payload.substring(14, 16).toLocaleUpperCase();
             output.data.applicationType = payload.substring(16, 20).toLocaleUpperCase();
             output.data.rfu = payload.substring(20).toLocaleUpperCase();
 
             return output;
-        case "0A":
+        case 0x0a:
+        case 0x0A:
             output.data.date = parseDate(payload.substring(2, 10));
 
             var firstByte = [];
@@ -109,7 +109,7 @@ function decodeUplink(input) {
             output.data.inputTrigger = firstByte[2];
 
             return output;
-        case "14":
+        case 0x14:
             var typeNumber = parseInt(payload.substring(2, 4));
             output.data.type = typeNumber;
 
