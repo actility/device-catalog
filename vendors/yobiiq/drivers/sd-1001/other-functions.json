@@ -1,0 +1,76 @@
+[
+  {
+    "type": "uplink",
+    "description": "Device basic information",
+    "input": {
+      "function": "decodeBasicInformation",
+      "bytes": [255, 9, 1, 0, 255, 10, 1, 0, 255, 22, 36, 1, 100, 0, 0, 255, 15, 0, 255, 11, 0],
+      "fPort": 8,
+      "recvTime": "2024-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {    
+        "hardwareVersion": "V1.0",
+        "firmwareVersion": "V1.0",
+        "deviceSerialNumber": 2401640000,
+        "deviceClass": "Class A",
+        "powerEvent": "AC Power Off",
+        "codecVersion": "1.1.0",
+        "deviceModel": "SD-1001",
+        "productCode": "1002015",
+        "manufacturer": "YOBIIQ B.V."
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Device periodic uplink",
+    "input": {    
+      "bytes": [
+        1, 117, 16, 2, 11, 1, 3,     
+        0,   1,  4, 0,  1, 5, 0,     
+        0,   6,  0, 0,  7, 0, 0      
+      ],
+      "fPort": 8,
+      "recvTime": "2024-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "batteryLevelInPercentage": 16,
+        "powerEvent": "AC Power On",
+        "lowBatteryAlarm": "Alarm",
+        "faultAlarm": "Alarm",
+        "smokeAlarm": "Normal",
+        "interconnectAlarm": "Normal",
+        "testButtonPressed": "Normal",
+        "codecVersion": "1.1.0",
+        "deviceModel": "SD-1001",
+        "productCode": "1002015",
+        "manufacturer": "YOBIIQ B.V."
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "confi",
+    "input": {
+      "data": {
+        "Type": "Config",
+        "Config": {
+          "Param": "reportingInterval",
+          "Value": 720
+        }
+      }
+    },
+    "output": {
+      "bytes" : [ 255, 3, 13, 2 ],
+      "fPort": 50,
+      "errors": [],
+      "warnings": []
+    }
+  }
+]
