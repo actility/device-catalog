@@ -34,18 +34,17 @@ modelId: yobiiq:sd-1001:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 # Be careful: Once you chose a protocolId, it cannot be changed later
 protocolId:
-  - yobiiq:sd-1001-protocol:1
+  - yobiiq:sd-1001:1
 # DataSheet URL (optional)
 specificationURL:
 # User Guide URL (optional)
 userGuideURL:
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
-  - batteryLevel:%
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
-  yobiiq:sd-1001-protocol:1:
+  yobiiq:sd-1001:1:
     - uplink containing device basic information
     - uplink containing periodic data
     - uplink containing downlink status

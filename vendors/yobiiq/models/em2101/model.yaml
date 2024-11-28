@@ -34,22 +34,16 @@ modelId: yobiiq:em2101:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 # Be careful: Once you chose a protocolId, it cannot be changed later
 protocolId:
-  - yobiiq:em2101-protocol:1
+  - yobiiq:em2101:1
 # DataSheet URL (optional)
 specificationURL:
 # User Guide URL (optional)
 userGuideURL:
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
-  - energy:kWh
-  - voltage:V
-  - power:W
-  - activePower:W
-  - apparentPower:VA
-  - reactivePower:var
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
-  yobiiq:em2101-protocol:1:
+  yobiiq:em2101:1:
     - Device basic information
     - Device default periodic uplink
