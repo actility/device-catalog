@@ -47,6 +47,21 @@ sensors:
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
+    adeunis:modbus:1:
+        - "0x10 Modbus configuration"
+        - "0x20 Configuration"
+        - "0x2f Downlink ack"
+        - "0x30 Keep alive"
+        - "0x33 Set register status"
+        - "0x37 Software version"
+        - "0x44 Modbus data (int32)"
+        - "0x45 Modbus alarm"
+        - "0x5e Modbus read registers"
+        - "0x5f Modbus data (int32)"
+        - "0x60 Modbus data (float)"
+        - "0x61 Modbus data (float)"
+        - "0x62 Modbus data (uint32)"
+        - "0x63 Modbus data (uint32)"
     adeunis:modbus:2:
         - "uplink containing the information frame on product configuration"
         - "uplink containing the information frame on network configuration"
