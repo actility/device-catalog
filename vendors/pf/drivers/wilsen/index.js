@@ -109,6 +109,9 @@ function payloadParser(hexStr) {
         else if (sID == '3103') { // 'US Measurement Counter'
             obj.us_sensor_count = parseInt(hexStr.substr(i + 6, 8), 16); // uint32
         }
+        else if (sID == '3104') { // 'Sensor Queries Counter'
+            obj.sensor_count = parseInt(hexStr.substr(i + 6, 8), 16); // uint32
+        }
         else if (sID == '5001') { // 'GPS Latitude'
             obj.latitude = parseFloat((number2Int32(parseInt(hexStr.substr(i + 6, 8), 16)) / 1000000).toFixed(6));
         }
