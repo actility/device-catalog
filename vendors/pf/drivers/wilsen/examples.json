@@ -41,7 +41,6 @@
             "warnings": []
         }
     },
-
     {
         "description": "WILSEN.sonic.level (mm) Payload - 1",
         "type": "uplink",
@@ -84,7 +83,6 @@
             "warnings": []
         }
     },
-
     {
         "description": "WILSEN.sonic.distance Payload - 1",
         "type": "uplink",
@@ -100,6 +98,26 @@
                 "payload": "040B020150030B07FF06020141B0CCCD03510123",
                 "proxx_mm": 336,
                 "temp": 22.1
+            },
+            "errors": [],
+            "warnings": []
+        }
+    },
+    {
+        "description": "WILSEN.sonic.distance (water body level) Payload - 1",
+        "type": "uplink",
+        "input": {
+            "bytes": "040B080150030B07FF06020141B0CCCD03510123",
+            "fPort": 1,
+            "recvTime": "2020-08-02T20:00:00.000+05:00"
+        },
+        "output": {
+            "data": {
+                "amplitude": 255,
+                "battery_vol": 3.5,
+                "payload": "040B080150030B07FF06020141B0CCCD03510123",
+                "temp": 22.1,
+                "water_body_level_mm": 336
             },
             "errors": [],
             "warnings": []
@@ -122,6 +140,28 @@
                 "payload": "040B020150030B07FF06020141B0CCCD0351012306500102F4006F0650020081336D",
                 "proxx_mm": 336,
                 "temp": 22.1
+            },
+            "errors": [],
+            "warnings": []
+        }
+    },
+    {
+        "description": "WILSEN.sonic.distance (water body level) Payload - 2",
+        "type": "uplink",
+        "input": {
+            "bytes": "040B080150030B07FF06020141B0CCCD0351012306500102F4006F0650020081336D",
+            "fPort": 1,
+            "recvTime": "2020-08-02T20:00:00.000+05:00"
+        },
+        "output": {
+            "data": {
+                "amplitude": 255,
+                "battery_vol": 3.5,
+                "latitude": 49.545327,
+                "longitude": 8.467309,
+                "payload": "040B080150030B07FF06020141B0CCCD0351012306500102F4006F0650020081336D",
+                "temp": 22.1,
+                "water_body_level_mm": 336
             },
             "errors": [],
             "warnings": []
@@ -160,8 +200,14 @@
             "data": {
                 "battery_vol": 3.6,
                 "payload": "030C0231040C03990106020141BC000003510124",
+                "sensor_1_details": "High",
+                "sensor_2_details": "Low",
+                "sensor_3_details": "Not connected",
+                "sensor_4_details": "Not connected",
                 "sensor_details": 39169,
                 "temp": 23.5,
+                "valve_1_status": "Open",
+                "valve_2_status": "Not connected",
                 "valve_status": 49
             },
             "errors": [],
@@ -182,8 +228,14 @@
                 "latitude": 49.398844,
                 "longitude": 8.201041,
                 "payload": "030C0231040C03990106020141BC00000351012406500102F1C43C065002007D2351",
+                "sensor_1_details": "High",
+                "sensor_2_details": "Low",
+                "sensor_3_details": "Not connected",
+                "sensor_4_details": "Not connected",
                 "sensor_details": 39169,
                 "temp": 23.5,
+                "valve_1_status": "Open",
+                "valve_2_status": "Not connected",
                 "valve_status": 49
             },
             "errors": [],
@@ -204,7 +256,7 @@
                 "gps_count": 2,
                 "lora_count": 158,
                 "payload": "102A253438303030303030363339393939043101009E043102000206310400000D2F03510124",
-                "sensor_count": 3375,
+                "sensing_count": 3375,
                 "serial_nr": "48000000639999"
             },
             "errors": [],
@@ -223,6 +275,8 @@
             "data": {
                 "battery_vol": 3.6,
                 "payload": "030C040006020141AE666603510124",
+                "sensor_1_status": "No target detected",
+                "sensor_2_status": "No target detected",
                 "sensor_status": 0,
                 "temp": 21.8
             },
@@ -244,6 +298,8 @@
                 "latitude": 49.399304,
                 "longitude": 8.200627,
                 "payload": "030C040006020141AE66660351012406500102F1C608065002007D21B3",
+                "sensor_1_status": "No target detected",
+                "sensor_2_status": "No target detected",
                 "sensor_status": 0,
                 "temp": 21.8
             },
@@ -265,132 +321,134 @@
                 "gps_count": 2,
                 "lora_count": 158,
                 "payload": "102A253438303030303030363339393939043101009E043102000206310400000D2F03510124",
-                "sensor_count": 3375,
+                "sensing_count": 3375,
                 "serial_nr": "48000000639999"
-            },
-            "errors": [],
-            "warnings": []
-        }
-    },
-    {
-        "description": "WILSEN.sonic.level Downlink Acknowledgement - 1",
-        "type": "uplink",
-        "input": {
-            "bytes": "04F405009604F40607D003F40B0103F40C0103F40D0A",
-            "fPort": 1,
-            "recvTime": "2020-08-02T20:00:00.000+05:00"
+            }
         },
-        "output": {
-            "data": {
-                "payload": "04F405009604F40607D003F40B0103F40C0103F40D0A",
-                "us_additional_measurement": 10,
-                "us_application_filter_active": true,
-                "us_empty_distance": 2000,
-                "us_full_distance": 150,
-                "us_post_processing_filter": "Container filling"
-            },
-            "errors": [],
-            "warnings": []
-        }
-    },
-    {
-        "description": "WILSEN.sonic Downlink Acknowledgement - 1",
-        "type": "uplink",
-        "input": {
-            "bytes": "03F4013703F4020503F4032803F4043303F4070103F4080103F4090904F40A03E8",
-            "fPort": 1,
-            "recvTime": "2020-08-02T20:00:00.000+05:00"
-        },
-        "output": {
-            "data": {
-                "payload": "03F4013703F4020503F4032803F4043303F4070103F4080103F4090904F40A03E8",
-                "us_at_intervals_of": 1000,
-                "us_beam_width": "User-defined",
-                "us_evaluation_method": "Average value",
-                "us_measurement_sequence_active": true,
-                "us_measurements_per_sequence": 9,
-                "us_user_defined_burst_length": "Normal",
-                "us_user_defined_sensitivity": "Very high",
-                "us_user_defined_transmitting_power": "Medium"
-            },
-            "errors": [],
-            "warnings": []
-        }
-    },
-    {
-        "description": "WILSEN.sonic Downlink Acknowledgement - 2",
-        "type": "uplink",
-        "input": {
-            "bytes": "03F2010106F2020000070806F2030000003C",
-            "fPort": 1,
-            "recvTime": "2020-08-02T20:00:00.000+05:00"
-        },
-        "output": {
-            "data": {
-                "gps_acquisition_active": true,
-                "gps_acquisition_interval": 1800,
-                "gps_next_acquisition": 60,
-                "payload": "03F2010106F2020000070806F2030000003C"
-            },
-            "errors": [],
-            "warnings": []
-        }
-    },
-    {
-        "description": "WILSEN.sonic Downlink Acknowledgement - 3",
-        "type": "uplink",
-        "input": {
-            "bytes": "03F3010003F3020304F3030AFF03F3040106F3050000A8C006F3060000012C",
-            "fPort": 1,
-            "recvTime": "2020-08-02T20:00:00.000+05:00"
-        },
-        "output": {
-            "data": {
-                "lora_data_transmission_active": true,
-                "lora_message_type": "Unconfirmed",
-                "lora_next_transmission": 300,
-                "lora_number_of_transmission": 3,
-                "lora_spreading_factor": 10,
-                "lora_transmission_interval": 43200,
-                "payload": "03F3010003F3020304F3030AFF03F3040106F3050000A8C006F3060000012C"
-            },
-            "errors": [],
-            "warnings": []
-        }
-    },
-    {
-        "description": "WILSEN.sonic Downlink Acknowledgement - 4",
-        "type": "uplink",
-        "input": {
-            "bytes": "03F1010012F1025445535400000000000000000000000002F10302F10402F105",
-            "fPort": 1,
-            "recvTime": "2020-08-02T20:00:00.000+05:00"
-        },
-        "output": {
-            "data": {
-                "ble_enable": false,
-                "change_password": "done",
-                "device_name": "TEST",
-                "factory_reset": "done",
-                "payload": "03F1010012F1025445535400000000000000000000000002F10302F10402F105",
-                "reset_counter": "done"
-            },
-            "errors": [],
-            "warnings": []
-        }
-    },
-
-    {
-        "description": "fail decode uplink payload containing too short data",
-        "type": "uplink",
-        "input": {
-            "bytes": "05aa",
-            "fPort": 1,
-            "recvTime": "2020-08-02T20:00:00.000+05:00"
-        },
-        "output": {
-            "errors": ["Invalid uplink payload: length is shorter than 4"],
-            "warnings": []
-        }
+        "errors": [],
+        "warnings": []
     }
+},
+{
+    "description": "WILSEN.sonic.level Downlink Acknowledgement - 1",
+    "type": "uplink",
+    "input": {
+        "bytes": "04F405009604F40607D003F40B0103F40C0103F40D0A",
+        "fPort": 1,
+        "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+        "data": {
+            "payload": "04F405009604F40607D003F40B0103F40C0103F40D0A",
+            "us_additional_measurement": 10,
+            "us_application_filter_active": true,
+            "us_empty_distance": 2000,
+            "us_full_distance": 150,
+            "us_post_processing_filter": "Container filling"
+        },
+        "errors": [],
+        "warnings": []
+    }
+},
+{
+    "description": "WILSEN.sonic Downlink Acknowledgement - 1",
+    "type": "uplink",
+    "input": {
+        "bytes": "03F4013703F4020503F4032803F4043303F4070103F4080103F4090904F40A03E8",
+        "fPort": 1,
+        "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+        "data": {
+            "payload": "03F4013703F4020503F4032803F4043303F4070103F4080103F4090904F40A03E8",
+            "us_at_intervals_of": 1000,
+            "us_beam_width": "User-defined",
+            "us_evaluation_method": "Average value",
+            "us_measurement_sequence_active": true,
+            "us_measurements_per_sequence": 9,
+            "us_user_defined_burst_length": "Normal",
+            "us_user_defined_sensitivity": "Very high",
+            "us_user_defined_transmitting_power": "Medium"
+        },
+        "errors": [],
+        "warnings": []
+    }
+},
+{
+    "description": "WILSEN.sonic Downlink Acknowledgement - 2",
+    "type": "uplink",
+    "input": {
+        "bytes": "03F2010106F2020000070806F2030000003C",
+        "fPort": 1,
+        "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+        "data": {
+            "gps_acquisition_active": true,
+            "gps_acquisition_interval": 1800,
+            "gps_next_acquisition": 60,
+            "payload": "03F2010106F2020000070806F2030000003C"
+        },
+        "errors": [],
+        "warnings": []
+    }
+},
+{
+    "description": "WILSEN.sonic Downlink Acknowledgement - 3",
+    "type": "uplink",
+    "input": {
+        "bytes": "03F3010003F3020304F3030AFF03F3040106F3050000A8C006F3060000012C",
+        "fPort": 1,
+        "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+        "data": {
+            "lora_data_transmission_active": true,
+            "lora_message_type": "Unconfirmed",
+            "lora_next_transmission": 300,
+            "lora_number_of_transmission": 3,
+            "lora_spreading_factor": 10,
+            "lora_transmission_interval": 43200,
+            "payload": "03F3010003F3020304F3030AFF03F3040106F3050000A8C006F3060000012C"
+        },
+        "errors": [],
+        "warnings": []
+    }
+},
+{
+    "description": "WILSEN.sonic Downlink Acknowledgement - 4",
+    "type": "uplink",
+    "input": {
+        "bytes": "03F1010012F1025445535400000000000000000000000002F10302F10402F105",
+        "fPort": 1,
+        "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+        "data": {
+            "ble_enable": false,
+            "change_password": "done",
+            "device_name": "TEST",
+            "factory_reset": "done",
+            "payload": "03F1010012F1025445535400000000000000000000000002F10302F10402F105",
+            "reset_counter": "done"
+        },
+        "errors": [],
+        "warnings": []
+    }
+},
+{
+    "description": "fail decode uplink payload containing too short data",
+    "type": "uplink",
+    "input": {
+        "bytes": "05aa",
+        "fPort": 1,
+        "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+        "errors": [
+            "Invalid uplink payload: length is shorter than 4"
+        ],
+        "warnings": []
+    }
+}
 ]
