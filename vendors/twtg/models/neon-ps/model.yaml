@@ -9,9 +9,10 @@ logo: twtg-ps.jpg
 # lorawanDeviceProfileID: as defined by LoRa Alliance in https://lora-alliance.org/wp-content/uploads/2020/10/LoRa_Alliance_Vendor_ID_for_QR_Code_02142022.pdf.
 # The lorawanDeviceProfileID consists of 8 upper-case hexadecimal characters, 4 characters for VendorID + 4 characters for VendorProfileID. Please consider using single (') or double (") quotation.
 deviceProfileIds:
-    - id: twtg_RFGroup1_1.0.2revB_classA
-    - id: twtg_RFGroup2_1.0.2revB_classA
-    - id: twtg_RFGroup4_1.0.2revB_classA
+    - id: twtg_RFGroup1_RP2-1.0.4_classA
+    - id: twtg_RFGroup2_RP2-1.0.4_classA
+    - id: twtg_RFGroup3_1.0.4_RP2-1.0.1_classA
+    - id: twtg_RFGroup4_1.0.4_RP2-1.0.1_classA
 
 # You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings.
 # Maximum device TX Conducted output power in dBm.
@@ -32,7 +33,7 @@ LoRaWANCertified: false
 # Format: `<8 characters max>:<16 characters max>:<digits only>`
 modelId: twtg:neon-ps:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
-protocolId:
+protocolId: twtg:vs-qt:1
 # DataSheet URL (optional)
 specificationURL: https://github.com/TWTG-R-D-B-V/neon-product-documentation/blob/main/PS/Installation%20%26%20Use/6038_N02-09_Datasheet_Pressure-Sensor_A8.pdf
 # User Guide URL (optional)
@@ -40,3 +41,8 @@ userGuideURL: https://docs.twtg.io/docs/installation-and-provisioning/installati
 # Available sensors following Actility ontology: https://github.com/actility/thingpark-iot-flow-js-driver/blob/master/UNITS.md
 sensors:
 examples:
+    twtg:vs-qt:1:
+        - "Payload for Neon Valve Sensor QT 1"
+        - "Payload for Neon Valve Sensor QT 2"
+        - "Payload for Neon Valve Sensor QT 3"
+        - "Payload for Neon Valve Sensor QT 4"

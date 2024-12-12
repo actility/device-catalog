@@ -1,17 +1,18 @@
 # Commercial name of the model
-name: NEON Contact Sensor
+name: NEON Pressure Sensor
 # Functional description of the product. Maximum 500 characters.
-description: "Alerts on any deviations from existing Safety Protocols"
+description: "The NEON Pressure Gauge measures pressure and can alert on pressure differences occurring. Measures pressure continuously - best design for digital and analogue workflows."
 # Logo of the device
-logo: twtg-vs-cs.jpg
+logo: twtg-pg.jpg
 # ID(s) of the profile that defines the LoRaWAN characteristics of this model.
 # id: as defined under /profiles.
 # lorawanDeviceProfileID: as defined by LoRa Alliance in https://lora-alliance.org/wp-content/uploads/2020/10/LoRa_Alliance_Vendor_ID_for_QR_Code_02142022.pdf.
 # The lorawanDeviceProfileID consists of 8 upper-case hexadecimal characters, 4 characters for VendorID + 4 characters for VendorProfileID. Please consider using single (') or double (") quotation.
 deviceProfileIds:
-    - id: twtg_RFGroup1_1.0.2revB_classA
-    - id: twtg_RFGroup2_1.0.2revB_classA
-    - id: twtg_RFGroup4_1.0.2revB_classA
+    - id: twtg_RFGroup1_RP2-1.0.4_classA
+    - id: twtg_RFGroup2_RP2-1.0.4_classA
+    - id: twtg_RFGroup3_1.0.4_RP2-1.0.1_classA
+    - id: twtg_RFGroup4_1.0.4_RP2-1.0.1_classA
 
 # You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings.
 # Maximum device TX Conducted output power in dBm.
@@ -30,32 +31,18 @@ motionIndicator: NEAR_STATIC
 LoRaWANCertified: false
 # Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
 # Format: `<8 characters max>:<16 characters max>:<digits only>`
-modelId: twtg:neon-vs-cs:1
+modelId: twtg:neon-pg:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
-protocolId: twtg:neon-vb:4
+protocolId: twtg:vs-qt:1
 # DataSheet URL (optional)
-specificationURL: https://github.com/TWTG-R-D-B-V/neon-product-documentation/blob/main/VS-CS/Installation%20%26%20Use/601_P20-017_NEON-Data-Sheet-CS_A7.pdf
+specificationURL: https://github.com/TWTG-R-D-B-V/neon-product-documentation/blob/main/PG/Installation%20%26%20Use/NEON-RT-Transmitter_User_Manual_DS-RT-02-xx_4001_B3.pdf
 # User Guide URL (optional)
-userGuideURL: https://github.com/TWTG-R-D-B-V/neon-product-documentation/blob/main/VS-CS/Installation%20%26%20Use/NEON-CS_User-Manual_VS-XXX-01-CSXX_4001_A5.pdf
+userGuideURL: https://docs.twtg.io/docs/installation-and-provisioning/installation/pressure-gauge-pg
 # Available sensors following Actility ontology: https://github.com/actility/thingpark-iot-flow-js-driver/blob/master/UNITS.md
 sensors:
 examples:
-  twtg:neon-vb:4:
-    - "Configuration Update Request - Schedule - Transmitter Status"
-    - "Configuration Update Request - Schedule - Transmitter Battery"
-    - "Configuration Update Request - Transmitter"
-    - "Past Measurement Request"
-    - "Alert"
-    - "Configuration Update Answer - Transmitter"
-    - "DevVersionAns"
-    - "Fragmented Uplink Start"
-    - "Fragmented Uplink Data"
-    - "Machine Fault Indicator"
-    - "Sensor Boot"
-    - "Transmitter Battery"
-    - "Transmitter Boot"
-    - "Transmitter Deactivated"
-    - "Transmitter Status"
-    - "Measurement - X"
-    - "Spectrum - X Acceleration"
-    - "Statistics"
+    twtg:vs-qt:1:
+        - "Payload for Neon Valve Sensor QT 1"
+        - "Payload for Neon Valve Sensor QT 2"
+        - "Payload for Neon Valve Sensor QT 3"
+        - "Payload for Neon Valve Sensor QT 4"
