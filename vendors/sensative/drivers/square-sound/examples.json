@@ -1,0 +1,158 @@
+[
+  {
+    "type": "uplink",
+    "description": "Uplink fPort 15",
+    "input": {
+      "bytes": "cce88edb6747317d32346365383432",
+      "fPort": 15,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "decoded": {
+          "result": {
+            "vsm": {
+              "appName": "Square-sound",
+              "appVersions": "R23 R24 R25",
+              "buildDate": "2024-11-27T14:49:32.000Z",
+              "buildGitVersion": "24ce842",
+              "buildType": 1,
+              "rulesCrc32": 3437792987,
+              "schema": "M input averageHumidityIntervalMinutes 165 0xa5  1 + M input averageTempIntervalMinutes 162 0xa2  1 + M input humidityTreshold 180 0xb4  0.01 + M input roamNetworkCount 160 0xa0  1 + M input soundAlarmTimeoutMinutes 169 0xa9  1 + M input soundAvgMinutes 168 0xa8  1 + M input soundMinLevel 167 0xa7  1 + M input soundThreshold 166 0xa6  1 + M input tempAlarmHighLevel 164 0xa4  1 + M input tempAlarmLowLevel 163 0xa3  1 + M input tempHysteresis 178 0xb2  0.01 + M output averageHumidity 144 0x90  0.01 + M output averageTemp 177 0xb1  0.01 + M output batteryPercent 161 0xa1  1 + M output humidity 179 0xb3  0.01 + M output soundAlarm 129 0x81  1 + M output soundAvgMax 184 0xb8  0.1 + M output soundLevel 181 0xb5  0.1 + M output temp 176 0xb0  0.01 + M output tempAlarm 128 0x80  1",
+              "translatorVersion": "0.2.89"
+            }
+          }
+        }
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Uplink fPort 22",
+    "input": {
+      "bytes": "00000000000000000000000067503ee1",
+      "fPort": 22,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "decoded": {
+          "result": {
+            "gnss": {
+              "almanacTimestamp": "1970-01-01T00:00:00.000Z",
+              "assistanceLatitude": 0,
+              "assistanceLongitude": 0,
+              "assistancePositionTimestamp": "1970-01-01T00:00:00.000Z",     
+              "deviceTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+              "deviceTimeTimestamp": "XXXX-XX-XXTXX:XX:XX.XXXZ"
+            }
+          }
+        }
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Uplink fPort 1",
+    "input": {
+      "bytes": "3501e638000001fe100fef",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "decoded": {
+          "result": {
+            "output": {
+              "averageHumidity": 40.79,
+              "soundAvgMax": 51,
+              "soundLevel": 48.6
+            },
+            "timestamps": {
+              "averageHumidity": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+              "soundAvgMax": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+              "soundLevel": "XXXX-XX-XXTXX:XX:XX.XXXZ"
+            }
+          },
+          "timeseries": [
+            {
+              "timestamp": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+              "value": {
+                "output": {
+                  "soundLevel": 48.6
+                }
+              }
+            },
+            {
+              "timestamp": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+              "value": {
+                "output": {
+                  "soundAvgMax": 51
+                }
+              }
+            },
+            {
+              "timestamp": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+              "value": {
+                "output": {
+                  "averageHumidity": 40.79
+                }
+              }
+            }
+          ]
+        }
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Uplink fPort 1 - 2",
+    "input": {
+      "bytes": "3501ff38000002b2",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "decoded": {
+          "result": {
+            "output": {
+              "soundAvgMax": 69,
+              "soundLevel": 51.1
+            },
+            "timestamps": {
+              "soundAvgMax": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+              "soundLevel": "XXXX-XX-XXTXX:XX:XX.XXXZ"
+            }
+          },
+          "timeseries": [
+            {
+              "timestamp": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+              "value": {
+                "output": {
+                  "soundLevel": 51.1
+                }
+              }
+            },
+            {
+              "timestamp": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+              "value": {
+                "output": {
+                  "soundAvgMax": 69
+                }
+              }
+            }
+          ]
+        }
+      },
+      "errors": [],
+      "warnings": []
+    }
+  }
+]
