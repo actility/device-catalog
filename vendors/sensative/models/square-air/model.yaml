@@ -9,10 +9,10 @@ logo: square-air.png
 # lorawanDeviceProfileID: as defined by LoRa Alliance in https://lora-alliance.org/wp-content/uploads/2020/10/LoRa_Alliance_Vendor_ID_for_QR_Code_02142022.pdf.
 # The lorawanDeviceProfileID consists of 8 upper-case hexadecimal characters, 4 characters for VendorID + 4 characters for VendorProfileID. Please consider using single (') or double (") quotation.
 deviceProfileIds:
-  - id: sensative_RFGroup1_1.0.4a_classA
-  - id: sensative_RFGroup2_1.0.4a_classA
-  - id: sensative_RFGroup3_1.0.4a_classA
-  - id: sensative_RFGroup4_1.0.4a_classA
+  - id: sensativ_RFGroup1_1.0.4a_classA
+  - id: sensativ_RFGroup2_1.0.4a_classA
+  - id: sensativ_RFGroup3_1.0.4a_classA
+  - id: sensativ_RFGroup4_1.0.4a_classA
 
 # You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings.
 # Maximum device TX Conducted output power in dBm.
@@ -32,11 +32,11 @@ LoRaWANCertified:
 # Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
 # Format: `<8 characters max>:<16 characters max>:<digits only>`
 # Be careful: Once you chose a model, it cannot be changed later
-modelId: sensative:square-air:1
+modelId: sensativ:square-air:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 # Be careful: Once you chose a protocolId, it cannot be changed later
 protocolId:
-  - sensative:square-air:1
+  - sensativ:square-air:1
 # DataSheet URL (optional)
 specificationURL: https://sensative.com/sensors/square/square-air-for-lorawan/
 # User Guide URL (optional)
@@ -46,7 +46,7 @@ sensors:
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
-  sensative:square-air:1:
+  sensativ:square-air:1:
     - "Uplink fPort 15"
     - "Uplink fPort 22"
     - "Uplink fPort 1"
