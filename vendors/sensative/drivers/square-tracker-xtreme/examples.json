@@ -1,0 +1,319 @@
+[
+  {
+    "type": "uplink",
+    "description": "uplink containing only pulse counter",
+    "input": {
+      "bytes": [
+        2,
+        12
+      ],
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "pulseCounter": 12
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink containing three measurements",
+    "input": {
+      "bytes": [
+        0,
+        12,
+        68,
+        1,
+        12,
+        68,
+        2,
+        12
+      ],
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "temperature": 31.4,
+        "humidity": 31.4,
+        "pulseCounter": 12
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink containing only humidity",
+    "input": {
+      "bytes": [
+        1,
+        12,
+        68
+      ],
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "humidity": 31.4
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink containing only temperature",
+    "input": {
+      "bytes": [
+        0,
+        12,
+        68
+      ],
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "temperature": 31.4
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "fail decode uplink containing only humidity with unknown id",
+    "input": {
+      "bytes": [
+        3,
+        170
+      ],
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "errors": [
+        "Invalid uplink payload: unknown id '3'"
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "fail decode uplink containing only humidity with oob",
+    "input": {
+      "bytes": [
+        0,
+        12,
+        68,
+        1,
+        12,
+        68,
+        1,
+        12
+      ],
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "errors": [
+        "Invalid uplink payload: index out of bounds when reading humidity"
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "encode downlink containing only pulseCounterThreshold",
+    "input": {
+      "data": {
+        "pulseCounterThreshold": 10
+      }
+    },
+    "output": {
+      "bytes": [
+        0,
+        10
+      ],
+      "fPort": 16,
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "encode downlink containing only alarm",
+    "input": {
+      "data": {
+        "alarm": true
+      }
+    },
+    "output": {
+      "bytes": [
+        1,
+        1
+      ],
+      "fPort": 16,
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "encode downlink containing alarm and pulseCounterThreshold",
+    "input": {
+      "data": {
+        "pulseCounterThreshold": 10,
+        "alarm": true
+      }
+    },
+    "output": {
+      "bytes": [
+        0,
+        10,
+        1,
+        1
+      ],
+      "fPort": 16,
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "fail encode downlink when pulseCounterThreshold exceeds 255",
+    "input": {
+      "data": {
+        "pulseCounterThreshold": 256
+      }
+    },
+    "output": {
+      "errors": [
+        "Invalid downlink: pulseCounterThreshold cannot exceed 255"
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "decode downlink containing only pulseCounterThreshold",
+    "input": {
+      "bytes": [
+        0,
+        10
+      ],
+      "fPort": 16,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "pulseCounterThreshold": 10
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "decode downlink containing only alarm",
+    "input": {
+      "bytes": [
+        1,
+        1
+      ],
+      "fPort": 16,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "alarm": true
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "decode downlink containing alarm and pulseCounterThreshold",
+    "input": {
+      "bytes": [
+        0,
+        10,
+        1,
+        1
+      ],
+      "fPort": 16,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "pulseCounterThreshold": 10,
+        "alarm": true
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "fail decode downlink when payload contains pulseCounterThreshold with oob",
+    "input": {
+      "bytes": [
+        0,
+        10,
+        0
+      ],
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "errors": [
+        "Invalid downlink payload: index out of bounds when reading pulseCounterThreshold"
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "fail decode downlink when payload contains alarm with oob",
+    "input": {
+      "bytes": [
+        0,
+        10,
+        1
+      ],
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "errors": [
+        "Invalid downlink payload: index out of bounds when reading alarm"
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "fail decode downlink when unknown id",
+    "input": {
+      "bytes": [
+        0,
+        10,
+        2
+      ],
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "errors": [
+        "Invalid downlink payload: unknown id '2'"
+      ],
+      "warnings": []
+    }
+  }
+]
