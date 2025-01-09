@@ -33,10 +33,6 @@ function Decode(fPort, bytes) {
     }
 }
 
-function decodeUplink(input) {
-	return { data: Decode(input.fPort, input.bytes), errors: [], warnings: [] };
-}
-
 // Décodage des rapports périodiques ou alarmes
 function decodePeriodicOrAlarmReport(packetType, bytes) {
     if (bytes.length < 28) {
@@ -235,3 +231,8 @@ var errorMessages = {
 // - Tuyau PEX ou PE-RT 25 mm: Payload=10
 // - Tuyau Distance Pipe 110 mm: Payload=11
 // - Réinitialisation au tuyau par défaut: Payload=FA
+
+
+function decodeUplink(input) {
+    return Decode(input.fPort, input.bytes);
+}

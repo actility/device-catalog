@@ -1,15 +1,52 @@
 [
   {
     "type": "uplink",
-    "description": "",
+    "description": "ex1",
     "input": {
-      "bytes": "",
       "fPort": 1,
-      "recvTime": "2020-08-02T20:00:00.000+05:00"
+      "bytes": "5003"
     },
     "output": {
       "data": {
-        
+        "REED0_CNT": 1,
+        "REED0_STATE": 1
+      },
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "ex2",
+    "input": {
+      "fPort": 1,
+      "bytes": "c000400141005000950000"
+    },
+    "output": {
+      "data": {
+        "DEV_KEY": 16385,
+        "OCCU0_CNT": 0,
+        "OCCU0_STATE": 0,
+        "REED0_CNT": 0,
+        "REED0_STATE": 0,
+        "REED1_CNT": 0,
+        "REED1_STATE": 0
+      },
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "ex3",
+    "input": {
+      "fPort": 1,
+      "bytes": "544e1000ee112e40002b"
+    },
+    "output": {
+      "data": {
+        "RHUM": 46,
+        "TEMP": 23.8,
+        "VBAT": 1560,
+        "VISIBLE_LIGHT": 43
       },
       "warnings": []
     }
