@@ -238,7 +238,7 @@ describe("Decode uplink", () => {
                 const expected = example.output;
 
                 // Adaptations
-                adaptDates(result, expected);
+                skipTypes(result, expected);
 
                 expect(result).toStrictEqual(expected);
             });
@@ -362,7 +362,7 @@ function adaptBytesArray(bytes){
 
 
 // UTIL
-function adaptDates(result, expected) {
+function skipTypes(result, expected) {
     for(let property of listProperties(result)) {
         let keys = property.split('.');
         let value = result;
@@ -379,13 +379,29 @@ function adaptDates(result, expected) {
         if(skipProperty) continue;
 
         let isDate = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z/.test(value);
+        let isNumber = /[0-9]+( |.[0-9]+)/.test(value);
         isDate |= value instanceof Date;
-        
+        isNumber |= value instanceof Number;
         
         if(isDate) {
             let displayedResult = value;
             if(displayedResult instanceof Date) displayedResult = displayedResult.toISOString();
             if(expectedValue === "XXXX-XX-XXTXX:XX:XX.XXXZ") displayedResult = "XXXX-XX-XXTXX:XX:XX.XXXZ";
+
+            value = result;
+            for (let i = 0; i < keys.length - 1; i++) {
+                if (!value[keys[i]] || typeof value[keys[i]] !== 'object') {
+                    value[keys[i]] = {};
+                }
+                value = value[keys[i]];
+            }
+            value[keys[keys.length - 1]] = displayedResult;
+        }
+
+        else if(isNumber) {
+            let displayedResult = value;
+            if(displayedResult instanceof Number) displayedResult = displayedResult.toISOString();
+            if(expectedValue === "SKIP_NUMBER") displayedResult = "SKIP_NUMBER";
 
             value = result;
             for (let i = 0; i < keys.length - 1; i++) {
