@@ -32,13 +32,18 @@ LoRaWANCertified:
 modelId: thrmkn:cubicmeter-p:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 # Be careful: Once you chose a protocolId, it cannot be changed later
-protocolId:
+protocolId: thrmkn:cubicmeter:1
 # DataSheet URL (optional)
 specificationURL:
 # User Guide URL (optional)
 userGuideURL:
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
+  - temperature:Cel
+  - batteryVoltage:V
+  - volume:m3
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
+  thrmkn:cubicmeter:1:
+    - "Normal status report"
