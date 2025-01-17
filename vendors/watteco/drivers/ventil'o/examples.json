@@ -3,26 +3,18 @@
     "type": "uplink",
     "description": "uplink standard report containing temperature value | payload:110A04020000290B89",
     "input": {
-      "bytes": [
-        17,
-        10,
-        4,
-        2,
-        0,
-        0,
-        41,
-        11,
-        137
-      ],
+      "bytes": "110a04020000290b89",
       "fPort": 125,
       "recvTime": "2023-07-19T07:51:31.598957793Z"
     },
     "output": {
-      "data": [{
-        "variable": "temperature",
-        "value": 29.53,
-        "date": "2023-07-19T07:51:31.598957793Z"
-      }],
+      "data": [
+        {
+          "variable": "temperature",
+          "value": 29.53,
+          "date": "2023-07-19T07:51:31.598957793Z"
+        }
+      ],
       "warnings": []
     }
   },
@@ -30,25 +22,18 @@
     "type": "uplink",
     "description": "uplink standard report containing state of pin 1 | payload:110A000F00551001",
     "input": {
-      "bytes": [
-        17,
-        10,
-        0,
-        15,
-        0,
-        85,
-        16,
-        1
-      ],
+      "bytes": "110a000f00551001",
       "fPort": 125,
       "recvTime": "2023-07-19T07:51:25.508306410Z"
     },
     "output": {
-      "data": [{
-        "variable": "pin_state",
-        "value": true,
-        "date": "2023-07-19T07:51:25.508306410Z"
-      }],
+      "data": [
+        {
+          "variable": "pin_state",
+          "value": true,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        }
+      ],
       "warnings": []
     }
   },
@@ -56,19 +41,7 @@
     "type": "uplink",
     "description": "uplink standard report containing number of pulse detection on input 1 | payload:110A000F04022300000000",
     "input": {
-      "bytes": [
-        17,
-        10,
-        0,
-        15,
-        4,
-        2,
-        35,
-        0,
-        0,
-        0,
-        0
-      ],
+      "bytes": "110a000f04022300000000",
       "fPort": 125,
       "recvTime": "2023-07-19T07:51:25.508306410Z"
     },
@@ -87,10 +60,7 @@
     "type": "uplink",
     "description": "uplink standard report containing defferential pressure value | payload:110A80080000290018",
     "input": {
-      "bytes": [
-        17, 10, 128,  8, 0,
-        0, 41,   0, 24
-      ],
+      "bytes": "110a80080000290018",
       "fPort": 125,
       "recvTime": "2023-07-19T07:51:25.508306410Z"
     },
@@ -109,22 +79,7 @@
     "type": "uplink",
     "description": "uplink standard report containing firmware version | payload:110100000002000D0305020015E2",
     "input": {
-      "bytes": [
-        17,
-        1,
-        0,
-        0,
-        0,
-        2,
-        0,
-        13,
-        3,
-        5,
-        2,
-        0,
-        21,
-        226
-      ],
+      "bytes": "110100000002000d0305020015e2",
       "fPort": 125,
       "recvTime": "2023-07-19T07:51:25.508306410Z"
     },
@@ -143,30 +98,18 @@
     "type": "uplink",
     "description": "uplink standard report  containing battery charge | payload:110A00500006410503040E6804",
     "input": {
-      "bytes": [
-        17,
-        10,
-        0,
-        80,
-        0,
-        6,
-        65,
-        5,
-        3,
-        4,
-        14,
-        104,
-        4
-      ],
+      "bytes": "110a00500006410503040e6804",
       "fPort": 125,
       "recvTime": "2023-07-19T07:51:25.508306410Z"
     },
     "output": {
-      "data": [{
-        "variable": "disposable_battery_voltage",
-        "value": 3.688,
-        "date": "2023-07-19T07:51:25.508306410Z"
-      }],
+      "data": [
+        {
+          "variable": "disposable_battery_voltage",
+          "value": 3.688,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        }
+      ],
       "warnings": []
     }
   },
@@ -174,10 +117,7 @@
     "type": "uplink",
     "description": "uplink standard report containing dataup info | payload:110180040000000800",
     "input": {
-      "bytes": [
-        17, 1, 128, 4, 0,
-        0, 0,   8, 0
-      ],
+      "bytes": "110180040000000800",
       "fPort": 125,
       "recvTime": "2023-07-19T07:51:25.508306410Z"
     },
@@ -196,11 +136,7 @@
     "type": "uplink",
     "description": "uplink batch report | payload:36600000800600000000D61B2CBA0730D803",
     "input": {
-      "bytes": [
-        54, 96,   0,   0, 128,  6,   0,
-        0,  0,   0, 214,  27, 44, 186,
-        7, 48, 216,   3
-      ],
+      "bytes": "36600000800600000000d61b2cba0730d803",
       "fPort": 125,
       "recvTime": "2023-07-19T07:51:25.508306410Z"
     },
@@ -216,7 +152,11 @@
           "value": 6,
           "date": "2023-07-19T07:51:25.508Z"
         },
-        { "variable": "index", "value": 0, "date": "2023-07-19T07:50:25.508Z" }
+        {
+          "variable": "index",
+          "value": 0,
+          "date": "2023-07-19T07:50:25.508Z"
+        }
       ],
       "warnings": []
     }

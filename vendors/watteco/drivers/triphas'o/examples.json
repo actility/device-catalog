@@ -3,25 +3,18 @@
     "type": "uplink",
     "description": "uplink standard report containing state of pin 1 | payload:110A000F00551001",
     "input": {
-      "bytes": [
-        17,
-        10,
-        0,
-        15,
-        0,
-        85,
-        16,
-        1
-      ],
+      "bytes": "110a000f00551001",
       "fPort": 125,
       "recvTime": "2023-07-19T07:51:25.508306410Z"
     },
     "output": {
-      "data": [{
-        "variable": "pin_state",
-        "value": true,
-        "date": "2023-07-19T07:51:25.508306410Z"
-      }],
+      "data": [
+        {
+          "variable": "pin_state",
+          "value": true,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        }
+      ],
       "warnings": []
     }
   },
@@ -29,19 +22,7 @@
     "type": "uplink",
     "description": "uplink standard report containing number of pulse detection on input 1 | payload:110A000F04022300000000",
     "input": {
-      "bytes": [
-        17,
-        10,
-        0,
-        15,
-        4,
-        2,
-        35,
-        0,
-        0,
-        0,
-        0
-      ],
+      "bytes": "110a000f04022300000000",
       "fPort": 125,
       "recvTime": "2023-07-19T07:51:25.508306410Z"
     },
@@ -60,10 +41,7 @@
     "type": "uplink",
     "description": "uplink standard report containing state value | payload:110A000600001001",
     "input": {
-      "bytes": [
-        17, 10,  0, 6,
-        0,  0, 16, 1
-      ],
+      "bytes": "110a000600001001",
       "fPort": 125,
       "recvTime": "2023-07-19T07:51:25.508306410Z"
     },
@@ -82,10 +60,7 @@
     "type": "uplink",
     "description": "uplink standard report containing state value | payload:110A000600001000",
     "input": {
-      "bytes": [
-        17, 10,  0, 6,
-        0,  0, 16, 0
-      ],
+      "bytes": "110a000600001000",
       "fPort": 125,
       "recvTime": "2023-07-19T07:51:25.508306410Z"
     },
@@ -104,16 +79,10 @@
     "type": "uplink",
     "description": "uplink standard report containing energy/power value | payload:710A800A000041200003A96A00000000000092990000705000007C7F00000000000000C000000F6F",
     "input": {
-      "bytes": [
-        113,  10, 128, 10, 0,   0,  65,  32,   0,   3,
-        169, 106,   0,  0, 0,   0,   0,   0, 146, 153,
-        0,   0, 112, 80, 0,   0, 124, 127,   0,   0,
-        0,   0,   0,  0, 0, 192,   0,   0,  15, 111
-      ],
+      "bytes": "710a800a000041200003a96a00000000000092990000705000007c7f00000000000000c000000f6f",
       "fPort": 125,
       "recvTime": "2023-07-19T07:51:25.508306410Z"
-    }
-  ,
+    },
     "output": {
       "data": [
         {
@@ -164,13 +133,7 @@
     "type": "uplink",
     "description": "uplink standard report containing energy/power long threshold alarm | payload:118A800A000041200010760A0000020400005A6E000A210D000018A20000000000000000000003A6A0B1060000000F0000000002",
     "input": {
-      "bytes": [
-        17, 138, 128, 10,  0,   0,  65,  32,   0, 16, 118,
-        10,   0,   0,  2,  4,   0,   0,  90, 110,  0,  10,
-        33,  13,   0,  0, 24, 162,   0,   0,   0,  0,   0,
-        0,   0,   0,  0,  0,   3, 166, 160, 177,  6,   0,
-        0,   0,  15,  0,  0,   0,   0,   2
-      ],
+      "bytes": "118a800a000041200010760a0000020400005a6e000a210d000018a20000000000000000000003a6a0b1060000000f0000000002",
       "fPort": 125,
       "recvTime": "2023-07-19T07:51:25.508306410Z"
     },
@@ -218,7 +181,8 @@
         }
       ],
       "warnings": [
-        "alarm, criterion_index: 1, mode: threshold, crossing: fall, value: 15, gap: 0, occurences: 2, field: positive_reactive_power"
+        "alarm triggered",
+        "cause:{alarm:true, criterion_index: 1, mode: threshold, crossing: fall, value: 15, gap: 0, occurences: 2, field: positive_reactive_power}"
       ]
     }
   },
@@ -226,11 +190,7 @@
     "type": "uplink",
     "description": "uplink standard report containing volt, amp, and phase value | payload:110A800B00004106094C030E0163",
     "input": {
-      "bytes": [
-        17, 10, 128, 11, 0,  0,
-        65,  6,   9, 76, 3, 14,
-        1, 99
-      ],
+      "bytes": "110a800b00004106094c030e0163",
       "fPort": 125,
       "recvTime": "2023-07-19T07:51:25.508306410Z"
     },
@@ -259,11 +219,7 @@
     "type": "uplink",
     "description": "uplink standard report containing short threshold alarm | payload:310a800b000041060973010d01629050",
     "input": {
-      "bytes": [
-        49, 10, 128,  11, 0,  0,
-        65,  6,   9, 115, 1, 13,
-        1, 98, 144,  80
-      ],
+      "bytes": "310a800b000041060973010d01629050",
       "fPort": 125,
       "recvTime": "2023-07-19T07:51:25.508306410Z"
     },
@@ -285,20 +241,16 @@
           "date": "2023-07-19T07:51:25.508306410Z"
         }
       ],
-      "warnings": [ "alarm, criterion_index: 0, mode: threshold, crossing: exceed" ]
+      "warnings": [
+        "cause:{alarm:false, criterion_index: 0, mode: threshold, crossing: exceed}"
+      ]
     }
-
   },
   {
     "type": "uplink",
     "description": "uplink standard report containing long threshold alarm | payload:118A800B00004106097801150162A0500003E8000001D1010032000001",
     "input": {
-      "bytes": [
-        17, 138, 128, 11,   0,   0, 65,  6, 9,
-        120,   1,  21,  1,  98, 160, 80,  0, 3,
-        232,   0,   0,  1, 209,   1,  0, 50, 0,
-        0,   1
-      ],
+      "bytes": "118a800b00004106097801150162a0500003e8000001d1010032000001",
       "fPort": 125,
       "recvTime": "2023-07-19T07:51:25.508306410Z"
     },
@@ -321,8 +273,9 @@
         }
       ],
       "warnings": [
-        "alarm, criterion_index: 0, mode: threshold, crossing: exceed, value: 100, gap: 0, occurences: 1, field: Vrms",
-        "alarm, criterion_index: 1, mode: threshold, crossing: exceed, value: 5, gap: 0, occurences: 1, field: Irms"
+        "alarm triggered",
+        "cause:{alarm:false, criterion_index: 0, mode: threshold, crossing: exceed, value: 100, gap: 0, occurences: 1, field: Vrms}",
+        "cause:{alarm:true, criterion_index: 1, mode: threshold, crossing: exceed, value: 5, gap: 0, occurences: 1, field: Irms}"
       ]
     }
   },
@@ -330,12 +283,7 @@
     "type": "uplink",
     "description": "uplink standard report containing report of the 3 phases | payload:110a8010000041200000010000000200000003000000040000000500000006000000070000000800",
     "input": {
-      "bytes": [
-        17, 10, 128, 16, 0, 0, 65, 32, 0, 0,
-        1,  0,   0,  0, 2, 0,  0,  0, 3, 0,
-        0,  0,   4,  0, 0, 0,  5,  0, 0, 0,
-        6,  0,   0,  0, 7, 0,  0,  0, 8, 0
-      ],
+      "bytes": "110a8010000041200000010000000200000003000000040000000500000006000000070000000800",
       "fPort": 125,
       "recvTime": "2023-07-19T07:51:25.508306410Z"
     },
@@ -389,14 +337,7 @@
     "type": "uplink",
     "description": "uplink standard report containing report of the 3 phases | payload:110A80100001412000001843FFFFFC20000024CAFFFFF50F00001F35FFFFF42A00005C42FFFFE559A050000000003200000001015100000000140000000001",
     "input": {
-      "bytes": [
-        17,  10, 128, 16,   0,   1,  65,  32,   0,   0,  24, 67,
-        255, 255, 252, 32,   0,   0,  36, 202, 255, 255, 245, 15,
-        0,   0,  31, 53, 255, 255, 244,  42,   0,   0,  92, 66,
-        255, 255, 229, 89, 160,  80,   0,   0,   0,   0,  50,  0,
-        0,   0,   1,  1,  81,   0,   0,   0,   0,  20,   0,  0,
-        0,   0,   1
-      ],
+      "bytes": "110a80100001412000001843fffffc20000024cafffff50f00001f35fffff42a00005c42ffffe559a050000000003200000001015100000000140000000001",
       "fPort": 125,
       "recvTime": "2023-07-19T07:51:25.508306410Z"
     },
@@ -444,8 +385,8 @@
         }
       ],
       "warnings": [
-        "alarm, criterion_index: 0, mode: threshold, crossing: exceed, value: 50, gap: 1, occurences: 1, field: active_power_a",
-        "alarm, criterion_index: 1, mode: threshold, crossing: exceed, value: 20, gap: 0, occurences: 1, field: active_power_a"
+        "cause:{alarm:false, criterion_index: 0, mode: threshold, crossing: exceed, value: 50, gap: 1, occurences: 1, field: active_power_a}",
+        "cause:{alarm:false, criterion_index: 1, mode: threshold, crossing: exceed, value: 20, gap: 0, occurences: 1, field: active_power_a}"
       ]
     }
   },
@@ -453,12 +394,7 @@
     "type": "uplink",
     "description": "uplink standard report containing report of the 3 phases | payload:110A800D0000411208A10052000308A20042004008A300320030",
     "input": {
-      "bytes": [
-        17,  10, 128, 13, 0,   0, 65,  18,
-        8, 161,   0, 82, 0,   3,  8, 162,
-        0,  66,   0, 64, 8, 163,  0,  50,
-        0,  48
-      ],
+      "bytes": "110a800d0000411208a10052000308a20042004008a300320030",
       "fPort": 125,
       "recvTime": "2023-07-19T07:51:25.508306410Z"
     },
@@ -512,19 +448,12 @@
       ],
       "warnings": []
     }
-
   },
   {
     "type": "uplink",
     "description": "uplink standard report containing long threshold alarm | payload:118A800D000041120975010C01610974015E0153098301610150A0D0000032000001D1010005000001B208015E000001",
     "input": {
-      "bytes": [
-        17, 138, 128, 13,   0,   0, 65, 18,   9, 117,   1,
-        12,   1,  97,  9, 116,   1, 94,  1,  83,   9, 131,
-        1,  97,   1, 80, 160, 208,  0,  0,  50,   0,   0,
-        1, 209,   1,  0,   5,   0,  0,  1, 178,   8,   1,
-        94,   0,   0,  1
-      ],
+      "bytes": "118a800d000041120975010c01610974015e0153098301610150a0d0000032000001d1010005000001b208015e000001",
       "fPort": 125,
       "recvTime": "2023-07-19T07:51:25.508306410Z"
     },
@@ -577,9 +506,10 @@
         }
       ],
       "warnings": [
-        "alarm, criterion_index: 0, mode: threshold, crossing: exceed, value: 5, gap: 0, occurences: 1, field: Vrms_a",
-        "alarm, criterion_index: 1, mode: threshold, crossing: exceed, value: 0.5, gap: 0, occurences: 1, field: Irms_a",
-        "alarm, criterion_index: 2, mode: threshold, crossing: fall, value: 350, gap: 0, occurences: 1, field: angle_c"
+        "alarm triggered",
+        "cause:{alarm:true, criterion_index: 0, mode: threshold, crossing: exceed, value: 5, gap: 0, occurences: 1, field: Vrms_a}",
+        "cause:{alarm:true, criterion_index: 1, mode: threshold, crossing: exceed, value: 0.5, gap: 0, occurences: 1, field: Irms_a}",
+        "cause:{alarm:true, criterion_index: 2, mode: threshold, crossing: fall, value: 350, gap: 0, occurences: 1, field: angle_c}"
       ]
     }
   },
@@ -587,22 +517,7 @@
     "type": "uplink",
     "description": "uplink standard report containing firmware version | payload:110100000002000D0305020015E2",
     "input": {
-      "bytes": [
-        17,
-        1,
-        0,
-        0,
-        0,
-        2,
-        0,
-        13,
-        3,
-        5,
-        2,
-        0,
-        21,
-        226
-      ],
+      "bytes": "110100000002000d0305020015e2",
       "fPort": 125,
       "recvTime": "2023-07-19T07:51:25.508306410Z"
     },
@@ -621,30 +536,18 @@
     "type": "uplink",
     "description": "uplink standard report  containing battery charge | payload:110A00500006410503040E6804",
     "input": {
-      "bytes": [
-        17,
-        10,
-        0,
-        80,
-        0,
-        6,
-        65,
-        5,
-        3,
-        4,
-        14,
-        104,
-        4
-      ],
+      "bytes": "110a00500006410503040e6804",
       "fPort": 125,
       "recvTime": "2023-07-19T07:51:25.508306410Z"
     },
     "output": {
-      "data": [{
-        "variable": "disposable_battery_voltage",
-        "value": 3.688,
-        "date": "2023-07-19T07:51:25.508306410Z"
-      }],
+      "data": [
+        {
+          "variable": "disposable_battery_voltage",
+          "value": 3.688,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        }
+      ],
       "warnings": []
     }
   },
@@ -652,10 +555,7 @@
     "type": "uplink",
     "description": "uplink standard report containing dataup info | payload:110180040000000800",
     "input": {
-      "bytes": [
-        17, 1, 128, 4, 0,
-        0, 0,   8, 0
-      ],
+      "bytes": "110180040000000800",
       "fPort": 125,
       "recvTime": "2023-07-19T07:51:25.508306410Z"
     },

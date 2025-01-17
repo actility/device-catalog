@@ -3,11 +3,7 @@
     "type": "uplink",
     "description": "uplink standard report containing angle value | payload:110A000C00553941500000",
     "input": {
-      "bytes": [
-        17, 10,  0, 12, 0,
-        85, 57, 65, 80, 0,
-        0
-      ],
+      "bytes": "110a000c00553941500000",
       "fPort": 125,
       "recvTime": "2023-07-19T07:51:25.508306410Z"
     },
@@ -26,10 +22,7 @@
     "type": "uplink",
     "description": "uplink standard report containing occupancy value | payload:110A040600001801",
     "input": {
-      "bytes": [
-        17, 10,  4, 6,
-        0,  0, 24, 1
-      ],
+      "bytes": "110a040600001801",
       "fPort": 125,
       "recvTime": "2023-07-19T07:51:25.508306410Z"
     },
@@ -43,28 +36,12 @@
       ],
       "warnings": []
     }
-
   },
   {
     "type": "uplink",
     "description": "uplink standard report containing firmware version | payload:110100000002000D0305020015E2",
     "input": {
-      "bytes": [
-        17,
-        1,
-        0,
-        0,
-        0,
-        2,
-        0,
-        13,
-        3,
-        5,
-        2,
-        0,
-        21,
-        226
-      ],
+      "bytes": "110100000002000d0305020015e2",
       "fPort": 125,
       "recvTime": "2023-07-19T07:51:25.508306410Z"
     },
@@ -83,30 +60,18 @@
     "type": "uplink",
     "description": "uplink standard report  containing battery charge | payload:110A00500006410503040E6804",
     "input": {
-      "bytes": [
-        17,
-        10,
-        0,
-        80,
-        0,
-        6,
-        65,
-        5,
-        3,
-        4,
-        14,
-        104,
-        4
-      ],
+      "bytes": "110a00500006410503040e6804",
       "fPort": 125,
       "recvTime": "2023-07-19T07:51:25.508306410Z"
     },
     "output": {
-      "data": [{
-        "variable": "disposable_battery_voltage",
-        "value": 3.688,
-        "date": "2023-07-19T07:51:25.508306410Z"
-      }],
+      "data": [
+        {
+          "variable": "disposable_battery_voltage",
+          "value": 3.688,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        }
+      ],
       "warnings": []
     }
   },
@@ -114,10 +79,7 @@
     "type": "uplink",
     "description": "uplink standard report containing dataup info | payload:110180040000000800",
     "input": {
-      "bytes": [
-        17, 1, 128, 4, 0,
-        0, 0,   8, 0
-      ],
+      "bytes": "110180040000000800",
       "fPort": 125,
       "recvTime": "2023-07-19T07:51:25.508306410Z"
     },
@@ -136,13 +98,7 @@
     "type": "uplink",
     "description": "uplink batch report | payload:1002000080ad837582816e33c01db3ea91ed581ae21d31398b1d29f0f10eb11d10",
     "input": {
-      "bytes": [
-        16,   2,   0,   0, 128, 173, 131, 117,
-        130, 129, 110,  51, 192,  29, 179, 234,
-        145, 237,  88,  26, 226,  29,  49,  57,
-        139,  29,  41, 240, 241,  14, 177,  29,
-        16
-      ],
+      "bytes": "1002000080ad837582816e33c01db3ea91ed581ae21d31398b1d29f0f10eb11d10",
       "fPort": 125,
       "recvTime": "2023-07-19T07:51:25.508306410Z"
     },
