@@ -56,12 +56,12 @@ function decodePeriodicOrAlarmReport(packetType, bytes) {
         water_temp_max: waterTempMax,
         water_temp_min: waterTempMin,
         battery_level: batteryLevel,
-        error_code: errorCode !== 0 ? errorCode : undefined,
+        error_code: errorCode !== 0 ? errorCode : null,
         details: {
             leak_status_numeric: leakState.numeric,
             leak_status_text: leakState.text,
-            error_description: errorMessages[errorCode] ? errorMessages[errorCode].description : undefined,
-            error_tips: errorMessages[errorCode] ? errorMessages[errorCode].tips : undefined
+            error_description: errorMessages[errorCode] ? errorMessages[errorCode].description : null,
+            error_tips: errorMessages[errorCode] ? errorMessages[errorCode].tips : null
         }
     };
 }
@@ -234,5 +234,5 @@ var errorMessages = {
 
 
 function decodeUplink(input) {
-    return Decode(input.fPort, input.bytes);
+    return { data: Decode(input.fPort, input.bytes), errors: [], warnings: [] };
 }

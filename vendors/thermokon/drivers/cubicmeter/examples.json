@@ -1,14 +1,29 @@
 [
   {
     "type": "uplink",
-    "description": "",
+    "description": "Normal status report",
     "input": {
       "fPort": 1,
-      "bytes": ""
+      "bytes": [
+        73, 251, 223, 1, 0, 0, 222, 20, 0, 0, 0, 0, 0, 0, 70, 237, 223, 1, 6,
+        252, 139, 7, 2, 226, 230, 83, 84, 85
+      ]
     },
     "output": {
       "data": {
-
+        "ambient_temp": 22.5,
+        "battery_level": 3.6,
+        "details": {
+          "error_description": "Aucune erreur",
+          "error_tips": "-",
+          "leak_status_numeric": 0,
+          "leak_status_text": "NoLeak"
+        },
+        "error_code": null,
+        "total_volume": 5342,
+        "type": "periodicReport",
+        "water_temp_max": 22,
+        "water_temp_min": 21.5
       },
       "errors": [],
       "warnings": []
