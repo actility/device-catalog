@@ -402,3 +402,5 @@ function decodeUplink(input) {
 		data: Decode(input.fPort, input.bytes)
 	};
 }
+
+exports.decodeUplink = decodeUplink;

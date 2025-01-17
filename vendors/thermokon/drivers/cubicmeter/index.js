@@ -236,3 +236,5 @@ var errorMessages = {
 function decodeUplink(input) {
     return { data: Decode(input.fPort, input.bytes), errors: [], warnings: [] };
 }
+
+exports.decodeUplink = decodeUplink;
