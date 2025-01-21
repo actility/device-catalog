@@ -364,7 +364,7 @@ function Encode(fPort, obj, variables) {
         }
     }catch(error)
     {
-
+        throw new Error(error.message);
     }
     return [];
 }

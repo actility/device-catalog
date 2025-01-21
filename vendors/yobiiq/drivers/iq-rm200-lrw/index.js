@@ -70,7 +70,7 @@ var CHANNEL_STATES = {
         "0xFE" : {SIZE: 4, TYPE: "U32", NAME : "timestamp"},
         "0xFD" : {SIZE: 4, TYPE: "U32", NAME : "dataloggerTimestamp"},
         "0x12" : {SIZE: 1, NAME: "adr", VALUES: {"0x00" : "disabled", "0x01" : "enabled",}},
-        "0x13" : {SIZE: 1, NAME: "sf", SIZE: 1, VALUES: {
+        "0x13" : {SIZE: 1, NAME: "sf", VALUES: {
                 "0x00" : "SF12BW125",
                 "0x01" : "SF11BW125",
                 "0x02" : "SF10BW125",
@@ -141,7 +141,7 @@ var CONFIG_PARAMETER = {
     CHANNEL : parseInt("0xFF", 16),
     TYPES : {
         "0x12" : {SIZE: 1, NAME: "adr", VALUES: {"0x00" : "disabled", "0x01" : "enabled",}},
-        "0x13" : {SIZE: 1, NAME: "sf", SIZE: 1, VALUES: {
+        "0x13" : {SIZE: 1, NAME: "sf", VALUES: {
                 "0x00" : "SF12BW125",
                 "0x01" : "SF11BW125",
                 "0x02" : "SF10BW125",
@@ -639,7 +639,7 @@ function Encode(fPort, obj, variables) {
         }
     }catch(error)
     {
-
+        throw new Error(error.message);
     }
     return [];
 }
