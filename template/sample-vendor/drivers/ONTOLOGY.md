@@ -92,7 +92,7 @@ This is the ontology supported by Actility. you can define a sensor inside your 
 | Parts per billion                      | ppb       | double                           | ppb                 | amount, quantity, concentration, co2Level                                        |
 | Parts per million                      | ppm       | double                           | ppm                 | amount, quantity, concentration, co2Level                                        |
 | Pascal                                 | Pa        | double                           | Pa                  | pressure                                                                         |
-| Percentage                             | %         | double                           | %                   | batteryLevel, percentage, per, currentUnbalance, luminosityLevel, occupancyLevel |
+| Percentage                             | %         | double                           | %                   | batteryLevel, percentage, per, currentUnbalance, luminosityLevel, occupancyLevel, leakLevel, fillLevel |
 | Percentage relative humidity           | %RH       | double                           | %RH                 | humidity                                                                         |
 | pH                                     | pH        | double                           | pH                  | acidity                                                                          |
 | Pulse per hour                         | pulse/h   | double                           | pulse/h             | frequency, sound                                                                 |

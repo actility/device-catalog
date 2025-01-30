@@ -1,0 +1,60 @@
+# Commercial name of the model 
+name: Comfort Serenity
+# Functional description of the product. Maximum 500 characters. 
+description: "The COMFORT SERENITY is a connected device for measuring temperature, ambient humidity, CO2 and VOC level in a building."
+# Logo of the device
+logo: comfort-serenity.jpg
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
+# id: as defined under /profiles.
+# lorawanDeviceProfileID: as defined by LoRa Alliance in https://lora-alliance.org/wp-content/uploads/2020/10/LoRa_Alliance_Vendor_ID_for_QR_Code_02142022.pdf.
+# The lorawanDeviceProfileID consists of 8 upper-case hexadecimal characters, 4 characters for VendorID + 4 characters for VendorProfileID. Please consider using single (') or double (") quotation.
+deviceProfileIds:
+    - id: adeunis_AS923_1.0.2revB_classA
+    - id: adeunis_RFGroup1_1.0.4a_classA
+    - id: adeunis_RFGroup2_1.0.4a_classA
+    - id: adeunis_RFGroup3_1.0.4a_classA
+    - id: adeunis_RFGroup4_1.0.4a_classA
+ 
+# You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
+# Maximum device TX Conducted output power in dBm. 
+maxTxPower:
+# Minimum device TX Conducted output power in dBm. 
+minTxPower:
+# Maximum device TX Radiated output power in dBm.  
+maxTxEIRP:
+# Minimum device TX Radiated output power in dBm.  
+minTxEIRP: 
+# Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'  
+# or 'random' (not known, changes over time). 
+motionIndicator:
+ 
+# Is your device certified by the LoRa Alliance? Possible values: true, false. 
+LoRaWANCertified: 
+# Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
+# Format: `<8 characters max>:<16 characters max>:<digits only>`
+modelId: adeunis:comfort-serenity:1
+# <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
+protocolId: adeunis:comfort-serenity:1
+# DataSheet URL (optional) 
+specificationURL: https://www.adeunis.com/en/produit/comfort-serenity-temperature-humidity-co2-voc/
+# User Guide URL (optional) 
+userGuideURL: 
+# <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
+sensors: 
+# Driver examples
+# A list of examples description that are compatible with this model
+examples:
+    adeunis:comfort-serenity:1:
+        - "0x10 Comfort Serenity configuration"
+        - "0x1f digital input configuration"
+        - "0x20 Configuration"
+        - "0x30 Comfort Serenity Daily frame"
+        - "0x33 Set register status"
+        - "0x37 Software version"
+        - "0x38 Comfort Serenity Daily frame"
+        - "0x51 digital input 1 alarm"
+        - "0x52 digital input 2 alarm"
+        - "0x6a Comfort Serenity data"
+        - "0x6b Comfort Serenity alarm"
+        - "0x6f Comfort Serenity data"
+        - "0x70 Comfort Serenity alarm"
