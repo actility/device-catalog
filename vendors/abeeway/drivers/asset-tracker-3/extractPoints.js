@@ -45,31 +45,3 @@ function extractPoints(input) {
 }
 
 exports.extractPoints = extractPoints;
-
-let message = {
-    "message": {
-        "header":{
-            "ackToken":1,
-            "multiFrame": false,
-            "batteryLevel":"CHARGING",
-            "sos":false,
-            "timestamp":"2024-06-09T21:18:37.000Z",
-            "type":"NOTIFICATION"
-        },
-        "payload":"090082ed31ff68001d04012f",
-        "notification":{
-            "notificationClass":"ACCELEROMETER",
-            "accelerometer":{
-                "accelerationVector":[
-                    -152,
-                    29,
-                    1025
-                ],
-                "motionPercent":47
-            },
-            "notificationType":"MOTION_END"
-    }
-    }
-}
-
-console.log(extractPoints(message));
