@@ -21,6 +21,11 @@ function extractPoints(input) {
     if (data.header?.notification?.system?.status?.maxTemperature != null) {
         result["temperature:1"] = { unitID: "Cel", record: data.header.notification.system.status.maxTemperature, nature: "max" };
     }
+    if (data.notification?.accelerometer?.accelerationVector != null) {
+        result["acceleration:0"] = { unitID: "mG", record: data.notification.accelerometer.accelerationVector[0], nature: "Acceleration X" };
+        result["acceleration:1"] = { unitID: "mG", record: data.notification.accelerometer.accelerationVector[1], nature: "Acceleration Y" };
+        result["acceleration:2"] = { unitID: "mG", record: data.notification.accelerometer.accelerationVector[2], nature: "Acceleration Z" };
+    }
 
     if (data.header?.notification?.system?.status?.minTemperature != null) {
         result["temperature:2"] = { unitID: "Cel", record: data.header.notification.system.status.minTemperature, nature: "min" };
@@ -40,3 +45,31 @@ function extractPoints(input) {
 }
 
 exports.extractPoints = extractPoints;
+
+let message = {
+    "message": {
+        "header":{
+            "ackToken":1,
+            "multiFrame": false,
+            "batteryLevel":"CHARGING",
+            "sos":false,
+            "timestamp":"2024-06-09T21:18:37.000Z",
+            "type":"NOTIFICATION"
+        },
+        "payload":"090082ed31ff68001d04012f",
+        "notification":{
+            "notificationClass":"ACCELEROMETER",
+            "accelerometer":{
+                "accelerationVector":[
+                    -152,
+                    29,
+                    1025
+                ],
+                "motionPercent":47
+            },
+            "notificationType":"MOTION_END"
+    }
+    }
+}
+
+console.log(extractPoints(message));
