@@ -1,4 +1,4 @@
-let watteco = require("../decode.js")
+let watteco = require("../../codec/decode_uplink")
 
 
 let batch_param = [3, [{taglbl: 0,resol: 0.004, sampletype: 12,lblname: "4-20_mA", divide: 1},

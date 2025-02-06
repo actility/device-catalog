@@ -1,4 +1,4 @@
-let watteco = require("../decode.js")
+let watteco = require("../../codec/decode_uplink")
 let batch_param=[]
 let endpointCorresponder ={
     positive_active_energy: ["positive_active_energy_a","positive_active_energy_b","positive_active_energy_c","positive_active_energy_abc"],

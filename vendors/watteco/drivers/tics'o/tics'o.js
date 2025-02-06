@@ -1,4 +1,6 @@
-let watteco = require("../decode.js")
+let watteco = require("../../codec/decode_uplink")
+
+globalThis.TIC_Decode = require("../../codec/tic.js").TIC_Decode;
 
 let batch_param=[]
 let endpointCorresponder={}

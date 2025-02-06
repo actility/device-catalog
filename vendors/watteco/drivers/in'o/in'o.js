@@ -1,4 +1,4 @@
-let watteco = require("../decode.js");
+let watteco = require("../../codec/decode_uplink.js");
 
 let endpointCorresponder={
     pin_state:["pin_state_1","pin_state_2", "pin_state_3", "pin_state_4", "pin_state_5", "pin_state_6", "pin_state_7", "pin_state_8", "pin_state_9", "pin_state_10"],
