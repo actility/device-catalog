@@ -1,15 +1,30 @@
 {
+  "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "properties": {
-    "variable": {
-      "type": "string"
+    "data": {
+      "type": "object",
+      "properties": {
+        "samples": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "variable": { "type": "string" },
+              "value": { "type": ["boolean", "number", "string", "object"] },
+              "date": { "type": "string", "format": "date-time" }
+            },
+            "required": ["variable", "value", "date"],  
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": true
     },
-    "value": {
-      "type": "number"
-    },
-    "date": {
-      "type": "string",
-      "format": "date-time"
+    "warning": {
+      "type": "array",
+      "items": { "type": "string" }
     }
-  }
+  },
+  "required": ["data", "warning"] 
 }
