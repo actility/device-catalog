@@ -112,18 +112,26 @@ function TIC_Decode(clustID,AttributeID,BytesAfterSize)
         return {x, i}
     }
 
-    function TICParseTimeStamp(b,i,LittleEndian) {
+    function TICParseTimeStamp(b, i, LittleEndian) {
         // EPOCH TIC: 01/01/2000 00:00:00
         // EPOCH UNIX: 01/01/1970 00:00:00
-        let ts = BytesToInt64(b,i,"U32",LittleEndian); i += 4;
-        ts += (new Date("2000/01/01 00:00:00").getTime()/1000)
-        ts += 3600; //TODO: find a way to beter manage this 1h shift due to TZ and DST of running computer
+    
+        let ts = BytesToInt64(b, i, "U32", LittleEndian);
+        i += 4;
+    
+        // Use UTC date to avoid region-dependent parsing issues
+        let ticEpoch = Date.UTC(2000, 0, 1, 0, 0, 0) / 1000;
+        ts += ticEpoch;
+    
         const a = new Date(ts * 1000);
+    
         const x =
-            zeroPad(a.getDate(),2) + "/" + zeroPad(a.getMonth(), 2) + "/" + a.getFullYear() + " " +
-            zeroPad(a.getHours(),2) + ":" + zeroPad(a.getMinutes(),2) + ":" + zeroPad(a.getSeconds(),2) ;
-        return {x, i};
+            zeroPad(a.getDate(), 2) + "/" + zeroPad(a.getMonth(), 2) + "/" + a.getFullYear() + " " +
+            zeroPad(a.getHours(), 2) + ":" + zeroPad(a.getMinutes(), 2) + ":" + zeroPad(a.getSeconds(), 2);
+    
+        return { x, i };
     }
+    
 
     function TICParseCString(b,i) {
         const eos = b.slice(i).indexOf(0);
