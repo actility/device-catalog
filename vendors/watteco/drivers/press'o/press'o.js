@@ -1,4 +1,4 @@
-let watteco = require("../decode.js")
+let watteco = require("../../codec/decode_uplink")
 
 
 let batch_param = [3, [{taglbl: 0,resol: 0.004, sampletype: 12,lblname: "4-20_mA", divide: 1},
@@ -15,6 +15,10 @@ function decodeUplink(input) {
 
 }
 exports.decodeUplink = decodeUplink;
+
+// Make it also globally available as it is TS013 compliant, 
+// but keep former diver.decodeUplink format for retrocompatibility
+(globalThis || this).decodeUplink = decodeUplink;
 
 
 
