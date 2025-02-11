@@ -666,4 +666,3 @@ function decodeUplink(input) {
 }
 
 exports.decodeUplink = decodeUplink;
-exports.encodeDownlink = encodeDownlink;

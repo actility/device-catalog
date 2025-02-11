@@ -1,18 +1,75 @@
 [
   {
     "type": "uplink",
-    "description": "uplink containing only pulse counter",
+    "description": "",
     "input": {
-      "bytes": [
-        2,
-        12
-      ],
-      "fPort": 1,
-      "recvTime": "2020-08-02T20:00:00.000+05:00"
+      "bytes": "06010d0d0d1d00000000896900000000dc6900000000dc6900000000dc69000000005b4b2c29ba24fa26",
+      "fPort": 10,
+      "recvTime": "2020-08-02T20:00:00.00005:00"
     },
     "output": {
       "data": {
-        "pulseCounter": 12
+        "flags":  {
+         "ch_temp_en": true,
+         "ch_vsys_en": true,
+         "ct_plus_mode": true,
+         "in1_ac_en": true,
+         "in1_dc_en": false,
+         "in1_freq_en": true,
+         "in1_scaled_mode": true,
+         "in1_voltage_mode": false,
+         "in2_ac_en": true,
+         "in2_dc_en": false,
+         "in2_freq_en": true,
+         "in2_scaled_mode": true,
+         "in2_voltage_mode": false,
+         "in3_ac_en": true,
+         "in3_dc_en": false,
+         "in3_freq_en": true,
+         "in3_scaled_mode": true,
+         "in3_voltage_mode": false,
+         "in4_ac_en": true,
+         "in4_dc_en": false,
+         "in4_freq_en": true,
+         "in4_scaled_mode": true,
+         "in4_voltage_mode": true,
+         "rogowski_mode": false,
+         "usb_powered": false
+      },
+        "in1_ac_A": 0,
+             "in1_ac_raw_A": 0,
+             "in1_coeff": 3000,
+             "in1_freq": 0,
+             "in1_pow_act_W": 0,
+             "in1_pow_app_VA": 0,
+             "in1_pow_factor": 0.0404,
+             "in1_pow_react_VAR": 0,
+             "in2_ac_A": 0,
+             "in2_ac_raw_A": 0,
+             "in2_coeff": 3000,
+             "in2_freq": 0,
+             "in2_pow_act_W": 0,
+             "in2_pow_app_VA": 0,
+             "in2_pow_factor": 0.0185,
+             "in2_pow_react_VAR": 0,
+             "in3_ac_A": 0,
+             "in3_ac_raw_A": 0,
+             "in3_coeff": 3000,
+             "in3_freq": 0,
+             "in3_pow_act_W": 0,
+             "in3_pow_app_VA": 0,
+             "in3_pow_factor": 0.0273,
+             "in3_pow_react_VAR": 0,
+             "in4_ac_raw_A": 0,
+             "in4_coeff": 14.711,
+             "in4_freq": 0,
+             "in4_voltage_VAC": 0,
+             "sum_in1234_ac_A": 0,
+             "sum_in123_pow_act_W": 0,
+             "sum_in123_pow_app_VA": 0,
+             "sum_in123_pow_react_VAR": 0,
+             "temp_C": 20,
+             "vsys_V": 2.827
       },
       "errors": [],
       "warnings": []
@@ -22,297 +79,75 @@
     "type": "uplink",
     "description": "uplink containing three measurements",
     "input": {
-      "bytes": [
-        0,
-        12,
-        68,
-        1,
-        12,
-        68,
-        2,
-        12
-      ],
-      "fPort": 1,
+      "bytes": "06010d0d0d1d00000000f36608158913dc69fb148913dc6955158913dc69dd238913984bf139e539223a",
+      "fPort": 10,
       "recvTime": "2020-08-02T20:00:00.000+05:00"
     },
     "output": {
       "data": {
-        "temperature": 31.4,
-        "humidity": 31.4,
-        "pulseCounter": 12
-      },
+        "flags": {
+         "ch_temp_en": true,
+         "ch_vsys_en": true,
+         "ct_plus_mode": true,
+         "in1_ac_en": true,
+         "in1_dc_en": false,
+         "in1_freq_en": true,
+         "in1_scaled_mode": true,
+         "in1_voltage_mode": false,
+         "in2_ac_en": true,
+         "in2_dc_en": false,
+         "in2_freq_en": true,
+         "in2_scaled_mode": true,
+         "in2_voltage_mode": false,
+         "in3_ac_en": true,
+         "in3_dc_en": false,
+         "in3_freq_en": true,
+         "in3_scaled_mode": true,
+         "in3_voltage_mode": false,
+         "in4_ac_en": true,
+         "in4_dc_en": false,
+         "in4_freq_en": true,
+         "in4_scaled_mode": true,
+         "in4_voltage_mode": true,
+         "rogowski_mode": false,
+         "usb_powered": false
+       },
+       "in1_ac_A": 3.685,
+       "in1_ac_raw_A": 0.001228,
+       "in1_coeff": 3000,
+       "in1_freq": 50.01,
+       "in1_pow_act_W": 638.35,
+       "in1_pow_app_VA": 859.52,
+       "in1_pow_factor": 0.7427,
+       "in1_pow_react_VAR": 575.58,
+       "in2_ac_A": 3.648,
+       "in2_ac_raw_A": 0.001216,
+       "in2_coeff": 3000,
+       "in2_freq": 50.01,
+       "in2_pow_act_W": 626.92,
+       "in2_pow_app_VA": 850.85,
+       "in2_pow_factor": 0.7368,
+       "in2_pow_react_VAR": 575.25,
+       "in3_ac_A": 3.905,
+       "in3_ac_raw_A": 0.001302,
+       "in3_coeff": 3000,
+       "in3_freq": 50.01,
+       "in3_pow_act_W": 698.3,
+       "in3_pow_app_VA": 910.91,
+       "in3_pow_factor": 0.7666,
+       "in3_pow_react_VAR": 584.91,
+       "in4_ac_raw_A": 0.015358,
+       "in4_coeff": 15.188,
+       "in4_freq": 50.01,
+       "in4_voltage_VAC": 233.25,
+       "sum_in1234_ac_A": 11.238,
+       "sum_in123_pow_act_W": 1963.57,
+       "sum_in123_pow_app_VA": 2621.28,
+       "sum_in123_pow_react_VAR": 1735.75,
+       "temp_C": 18.8,
+       "vsys_V": 3.623
+  },
       "errors": [],
-      "warnings": []
-    }
-  },
-  {
-    "type": "uplink",
-    "description": "uplink containing only humidity",
-    "input": {
-      "bytes": [
-        1,
-        12,
-        68
-      ],
-      "fPort": 1,
-      "recvTime": "2020-08-02T20:00:00.000+05:00"
-    },
-    "output": {
-      "data": {
-        "humidity": 31.4
-      },
-      "errors": [],
-      "warnings": []
-    }
-  },
-  {
-    "type": "uplink",
-    "description": "uplink containing only temperature",
-    "input": {
-      "bytes": [
-        0,
-        12,
-        68
-      ],
-      "fPort": 1,
-      "recvTime": "2020-08-02T20:00:00.000+05:00"
-    },
-    "output": {
-      "data": {
-        "temperature": 31.4
-      },
-      "errors": [],
-      "warnings": []
-    }
-  },
-  {
-    "type": "uplink",
-    "description": "fail decode uplink containing only humidity with unknown id",
-    "input": {
-      "bytes": [
-        3,
-        170
-      ],
-      "fPort": 1,
-      "recvTime": "2020-08-02T20:00:00.000+05:00"
-    },
-    "output": {
-      "errors": [
-        "Invalid uplink payload: unknown id '3'"
-      ],
-      "warnings": []
-    }
-  },
-  {
-    "type": "uplink",
-    "description": "fail decode uplink containing only humidity with oob",
-    "input": {
-      "bytes": [
-        0,
-        12,
-        68,
-        1,
-        12,
-        68,
-        1,
-        12
-      ],
-      "fPort": 1,
-      "recvTime": "2020-08-02T20:00:00.000+05:00"
-    },
-    "output": {
-      "errors": [
-        "Invalid uplink payload: index out of bounds when reading humidity"
-      ],
-      "warnings": []
-    }
-  },
-  {
-    "type": "downlink-encode",
-    "description": "encode downlink containing only pulseCounterThreshold",
-    "input": {
-      "data": {
-        "pulseCounterThreshold": 10
-      }
-    },
-    "output": {
-      "bytes": [
-        0,
-        10
-      ],
-      "fPort": 16,
-      "errors": [],
-      "warnings": []
-    }
-  },
-  {
-    "type": "downlink-encode",
-    "description": "encode downlink containing only alarm",
-    "input": {
-      "data": {
-        "alarm": true
-      }
-    },
-    "output": {
-      "bytes": [
-        1,
-        1
-      ],
-      "fPort": 16,
-      "errors": [],
-      "warnings": []
-    }
-  },
-  {
-    "type": "downlink-encode",
-    "description": "encode downlink containing alarm and pulseCounterThreshold",
-    "input": {
-      "data": {
-        "pulseCounterThreshold": 10,
-        "alarm": true
-      }
-    },
-    "output": {
-      "bytes": [
-        0,
-        10,
-        1,
-        1
-      ],
-      "fPort": 16,
-      "errors": [],
-      "warnings": []
-    }
-  },
-  {
-    "type": "downlink-encode",
-    "description": "fail encode downlink when pulseCounterThreshold exceeds 255",
-    "input": {
-      "data": {
-        "pulseCounterThreshold": 256
-      }
-    },
-    "output": {
-      "errors": [
-        "Invalid downlink: pulseCounterThreshold cannot exceed 255"
-      ],
-      "warnings": []
-    }
-  },
-  {
-    "type": "downlink-decode",
-    "description": "decode downlink containing only pulseCounterThreshold",
-    "input": {
-      "bytes": [
-        0,
-        10
-      ],
-      "fPort": 16,
-      "recvTime": "2020-08-02T20:00:00.000+05:00"
-    },
-    "output": {
-      "data": {
-        "pulseCounterThreshold": 10
-      },
-      "errors": [],
-      "warnings": []
-    }
-  },
-  {
-    "type": "downlink-decode",
-    "description": "decode downlink containing only alarm",
-    "input": {
-      "bytes": [
-        1,
-        1
-      ],
-      "fPort": 16,
-      "recvTime": "2020-08-02T20:00:00.000+05:00"
-    },
-    "output": {
-      "data": {
-        "alarm": true
-      },
-      "errors": [],
-      "warnings": []
-    }
-  },
-  {
-    "type": "downlink-decode",
-    "description": "decode downlink containing alarm and pulseCounterThreshold",
-    "input": {
-      "bytes": [
-        0,
-        10,
-        1,
-        1
-      ],
-      "fPort": 16,
-      "recvTime": "2020-08-02T20:00:00.000+05:00"
-    },
-    "output": {
-      "data": {
-        "pulseCounterThreshold": 10,
-        "alarm": true
-      },
-      "errors": [],
-      "warnings": []
-    }
-  },
-  {
-    "type": "downlink-decode",
-    "description": "fail decode downlink when payload contains pulseCounterThreshold with oob",
-    "input": {
-      "bytes": [
-        0,
-        10,
-        0
-      ],
-      "fPort": 1,
-      "recvTime": "2020-08-02T20:00:00.000+05:00"
-    },
-    "output": {
-      "errors": [
-        "Invalid downlink payload: index out of bounds when reading pulseCounterThreshold"
-      ],
-      "warnings": []
-    }
-  },
-  {
-    "type": "downlink-decode",
-    "description": "fail decode downlink when payload contains alarm with oob",
-    "input": {
-      "bytes": [
-        0,
-        10,
-        1
-      ],
-      "fPort": 1,
-      "recvTime": "2020-08-02T20:00:00.000+05:00"
-    },
-    "output": {
-      "errors": [
-        "Invalid downlink payload: index out of bounds when reading alarm"
-      ],
-      "warnings": []
-    }
-  },
-  {
-    "type": "downlink-decode",
-    "description": "fail decode downlink when unknown id",
-    "input": {
-      "bytes": [
-        0,
-        10,
-        2
-      ],
-      "fPort": 1,
-      "recvTime": "2020-08-02T20:00:00.000+05:00"
-    },
-    "output": {
-      "errors": [
-        "Invalid downlink payload: unknown id '2'"
-      ],
       "warnings": []
     }
   }
