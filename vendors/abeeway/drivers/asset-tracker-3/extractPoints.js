@@ -32,11 +32,9 @@ function extractPoints(input) {
     }
 
     if (data.position?.gnssFix?.longitude != null) {
-        result["location:0"] = { unitId: "GPS", record: data.position.gnssFix.longitude, nature: "latitude" };
+        result.location = { unitId: "GPS", record: [data.position.gnssFix.longitude, data.position.gnssFix.latitude]};
     }
-    if (data.position?.gnssFix?.latitude != null) {
-        result["location:1"] = { unitId: "GPS", record: data.position.gnssFix.latitude, nature: "longitude" };
-    }
+
     if (data.position?.gnssFix?.altitude != null) {
         result.altitude = { unitId: "m", record: data.position.gnssFix.altitude };
     }
