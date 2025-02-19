@@ -572,8 +572,6 @@ function decodeUplink(input) {
                 if (currentRecord.dib.storagenumber in timestamps) {
                     if (timestamps[currentRecord.dib.storagenumber] instanceof Date) {
                         timestamp = timestamps[currentRecord.dib.storagenumber].toISOString();
-                    } else {
-                        timestamp = timestamps[currentRecord.dib.storagenumber];
                     }
                 }
                 result.data.values.push({ Type: type, Value: value, Unit: unit, Timestamp: timestamp });
@@ -596,8 +594,6 @@ function decodeUplink(input) {
             if (currentRecord.dib.storagenumber in timestamps) {
                 if (timestamps[currentRecord.dib.storagenumber] instanceof Date) {
                     timestamp = timestamps[currentRecord.dib.storagenumber].toISOString();
-                } else {
-                    timestamp = timestamps[currentRecord.dib.storagenumber];
                 }
             }
             result.data.values.push({ Type: type, Value: value, Unit: unit, Timestamp: timestamp });

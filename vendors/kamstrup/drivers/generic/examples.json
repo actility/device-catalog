@@ -428,5 +428,162 @@
       "errors": [],
       "warnings": []
     }
+  },
+  {
+    "type": "uplink",
+    "description": "Invalid VIF",
+    "input": {
+      "bytes": "78446D0020F32A4401EC000000",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {},
+      "errors": ["Invalid uplink payload: Unsupported VIB"],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Invalid VIFe",
+    "input": {
+      "bytes": "78446D0020F32A44FF73EC000000",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {},
+      "errors": ["Invalid uplink payload: Unsupported VIB"],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Invalid Type G",
+    "input": {
+      "bytes": "78426CFFFF4413EC000000",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "values": [
+          { "Type": "Volume", "Value": 0.236, "Unit": "m3", "Timestamp": null }
+        ],
+        "latestVolume": 0.236
+      },
+      "errors": [],
+      "warnings": [
+        "Invalid value among timestamps"
+      ]
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Invalid Type I",
+    "input": {
+      "bytes": "78466D0586070183554413EC000000",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "values": [
+          { "Type": "Volume", "Value": 0.236, "Unit": "m3", "Timestamp": null }
+        ],
+        "latestVolume": 0.236
+      },
+      "errors": [],
+      "warnings": [
+        "Invalid value among timestamps"
+      ]
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Invalid DIF",
+    "input": {
+      "bytes": "787F6D0020F32A44FF73EC000000",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {},
+      "errors": ["Invalid uplink payload: Unsupported special DIF function"],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "DIF indicates 0 bytes",
+    "input": {
+      "bytes": "78403A",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "values": [
+          { "Type": "Volume flow", "Value": 0, "Unit": "m3/h", "Timestamp": null }
+        ]
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "DIF indicates 8 bytes which is not supported",
+    "input": {
+      "bytes": "78473A0000000000000000",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {},
+      "errors": ["Invalid uplink payload: Not enough bytes for datafield or datafield is larger than 6 bytes"],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "1, 2, 3 and 6 byte BCD",
+    "input": {
+      "bytes": "784E3A1234567899034B3A1234564A3A1234493A12",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "values": [
+          { "Type": "Volume flow", "Value": 3997856.3412, "Unit": "m3/h", "Timestamp": null },
+          { "Type": "Volume flow", "Value": 56.3412, "Unit": "m3/h", "Timestamp": null },
+          { "Type": "Volume flow", "Value": 0.3412, "Unit": "m3/h", "Timestamp": null },
+          { "Type": "Volume flow", "Value": 0.0012, "Unit": "m3/h", "Timestamp": null }
+        ]
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Invalid ALD",
+    "input": {
+      "bytes": "7842FF1CFF0F",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "values": [
+          { "Type": "ALD last day", "Value": null, "Unit": "Invalid", "Timestamp": null }
+        ]
+      },
+      "errors": [],
+      "warnings": [
+        "Invalid value among data"
+      ]
+    }
   }
 ]
