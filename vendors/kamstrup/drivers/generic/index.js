@@ -571,7 +571,7 @@ function decodeUplink(input) {
                 unit = currentRecord.vib.unit;
                 if (currentRecord.dib.storagenumber in timestamps) {
                     if (timestamps[currentRecord.dib.storagenumber] instanceof Date) {
-                        timestamp = timestamps[currentRecord.dib.storagenumber].toISOString();
+                        timestamp = timestamps[currentRecord.dib.storagenumber].toISOString().replace("Z","");
                     }
                 }
                 result.data.values.push({ Type: type, Value: value, Unit: unit, Timestamp: timestamp });
@@ -593,7 +593,7 @@ function decodeUplink(input) {
             // Add timestamp
             if (currentRecord.dib.storagenumber in timestamps) {
                 if (timestamps[currentRecord.dib.storagenumber] instanceof Date) {
-                    timestamp = timestamps[currentRecord.dib.storagenumber].toISOString();
+                    timestamp = timestamps[currentRecord.dib.storagenumber].toISOString().replace("Z","");
                 }
             }
             result.data.values.push({ Type: type, Value: value, Unit: unit, Timestamp: timestamp });
@@ -635,7 +635,7 @@ function decodeUplink(input) {
                 }
                 value = normalize(tempVal, currentRecord.vib.resolution);
                 // Timestamp
-                timestamp = ts.toISOString();
+                timestamp = ts.toISOString().replace("Z","");
                 result.data.values.push({ Type: type, Value: value, Unit: unit, Timestamp: timestamp });
             }
         }
