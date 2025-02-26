@@ -1,9 +1,9 @@
 # Commercial name of the model
-name: OutdoorTemperature 
+name: Ino
 # Functional description of the product. Maximum 500 characters.
-description: "The WATTECO outdoor temperature sensor measures outdoor ambient temperature. It transmits data over a public or private LoRaWAN® network."
+description: "The WATTECO ino includes optocoupled 10 inputs and 4 outputs. It turns any type of I/O sensor/actuator into a Class A or Class C sensor/actuator and connects to a public or private LoRaWAN® network."
 # Logo of the device
-logo: watteco-outdoortemperature-sensor.png
+logo: watteco-ino-sensor.png
 # ID(s) of the profile that defines the LoRaWAN characteristics of this model.
 # id: as defined under /profiles.
 # lorawanDeviceProfileID: as defined by LoRa Alliance in https://lora-alliance.org/wp-content/uploads/2020/10/LoRa_Alliance_Vendor_ID_for_QR_Code_02142022.pdf.
@@ -11,6 +11,8 @@ logo: watteco-outdoortemperature-sensor.png
 deviceProfileIds:
   - id: watteco_RFGroup1_1.0.2b_classA
     lorawanDeviceProfileID: '01280001'
+  - id: watteco_RFGroup1_1.0.2b_classC
+    lorawanDeviceProfileID: '01280002'
 
 # You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings.
 # Maximum device TX Conducted output power in dBm.
@@ -29,10 +31,10 @@ motionIndicator:
 LoRaWANCertified: true
 # Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
 # Format: `<8 characters max>:<16 characters max>:<digits only>`
-modelId: watteco:outdoor-temp:4
+modelId: watteco:ino:4
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId:
-  - watteco:outdoor-temp:4
+  - watteco:ino:4
 # DataSheet URL (optional)
 specificationURL:
 # User Guide URL (optional)
