@@ -1,5 +1,5 @@
 # Commercial name of the model
-name: OutdoorTemperature 
+name: Outdoor Temperature
 # Functional description of the product. Maximum 500 characters.
 description: "The WATTECO outdoor temperature sensor measures outdoor ambient temperature. It transmits data over a public or private LoRaWAN® network."
 # Logo of the device
@@ -32,10 +32,11 @@ LoRaWANCertified: true
 modelId: watteco:outdoor-temp:4
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId:
+  - watteco:tempo-outdoor:5
   - watteco:outdoor-temp:4
 # DataSheet URL (optional)
-specificationURL:
+specificationURL: https://www.watteco.com/product/outdoor-temperature-sensor-lorawan/
 # User Guide URL (optional)
-userGuideURL:
+userGuideURL: https://support.watteco.com/outdoor-temperature/
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:

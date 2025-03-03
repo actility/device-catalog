@@ -1,7 +1,7 @@
 # Commercial name of the model
 name: Moveo
 # Functional description of the product. Maximum 500 characters.
-description: ""
+description: "MOVE’O has 4 sensors: passive infrared (PIR), temperature T°C, humidity Hr% and luminosity. The data is transmitted via a public or private LoRaWAN® radio frequency network."
 # Logo of the device
 logo: watteco-moveo-sensor.png
 # ID(s) of the profile that defines the LoRaWAN characteristics of this model.
@@ -32,10 +32,11 @@ LoRaWANCertified: true
 modelId: watteco:moveo:4
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId:
+  - watteco:moveo-lite:5
   - watteco:moveo:4
 # DataSheet URL (optional)
-specificationURL:
+specificationURL: https://www.watteco.com/product/moveo-lorawan/
 # User Guide URL (optional)
-userGuideURL:
+userGuideURL: https://support.watteco.com/moveo-old/
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:

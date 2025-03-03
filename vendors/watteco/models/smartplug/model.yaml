@@ -1,5 +1,5 @@
 # Commercial name of the model
-name: SmartPlug 
+name: Smart Plug
 # Functional description of the product. Maximum 500 characters.
 description: "The WATTECO Smart Plug sensor supports remotely manage the operation and consumption of common household electrical appliances such as lamps, televisions, and heating equipment."
 # Logo of the device
@@ -29,15 +29,16 @@ motionIndicator:
 LoRaWANCertified: true
 # Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
 # Format: `<8 characters max>:<16 characters max>:<digits only>`
-modelId: watteco:smart-plug:4
+modelId: watteco:smartplug:4
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId:
+  - watteco:smartplug:5
   - watteco:smart-plug:4
   - nke:zcl:1
   - os1-nke:smart-plug:3
 # DataSheet URL (optional)
-specificationURL:
+specificationURL: https://www.watteco.com/product/smart-plug-sensor-lorawan/
 # User Guide URL (optional)
-userGuideURL:
+userGuideURL: https://support.watteco.com/smartplug/
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:

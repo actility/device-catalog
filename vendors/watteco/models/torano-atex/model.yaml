@@ -1,5 +1,5 @@
 # Commercial name of the model
-name: ToranoAtex 
+name: Torano Atex
 # Functional description of the product. Maximum 500 characters.
 description: "The WATTECO Toran’O AtEx Zone 1 sensor is used to report status changes, pulse count values, and analog measurements of equipment in the AtEx 1 sensitive zone such as water, gas, electricity, or thermal energy meters, mechanical pressure switches, pressure transducers. It makes existing equipment communicate on a public or private LoRaWAN® network"
 # Logo of the device
@@ -32,12 +32,13 @@ LoRaWANCertified: true
 modelId: watteco:torano-atex:4
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId:
+  - watteco:torano-atex:5
   - watteco:torano-atex:4
   - nke:zcl:1
   - os1-nke:torano-atex-zone:3
 # DataSheet URL (optional)
-specificationURL:
+specificationURL: https://www.watteco.com/product/torano-sensor-lorawan/
 # User Guide URL (optional)
-userGuideURL:
+userGuideURL: https://support.watteco.com/toranoatexzone1/
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:

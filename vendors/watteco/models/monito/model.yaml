@@ -1,7 +1,7 @@
 # Commercial name of the model
 name: Monito
 # Functional description of the product. Maximum 500 characters.
-description: ""
+description: "Monit’O offers 2 analog inputs isolated from each other allowing the measurement of voltage, 0-100mVolts and 0-70Volts. The measurements are transmitted periodically on the LoRaWAN® network."
 # Logo of the device
 logo: watteco-monito-sensor.png
 # ID(s) of the profile that defines the LoRaWAN characteristics of this model.
@@ -32,10 +32,11 @@ LoRaWANCertified: true
 modelId: watteco:monito:4
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId:
+  - watteco:monito:5
   - watteco:monito:4
 # DataSheet URL (optional)
-specificationURL:
+specificationURL: https://www.watteco.com/product/monito-lorawan/
 # User Guide URL (optional)
-userGuideURL:
+userGuideURL: https://support.watteco.com/monito/
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
