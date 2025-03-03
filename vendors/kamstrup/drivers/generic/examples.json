@@ -1,0 +1,589 @@
+[
+  {
+    "type": "uplink",
+    "description": "Multiple profile values for volume",
+    "input": {
+      "bytes": "78446D003318374413030000004D93132261010000000300000000000000000000000000000000000000000000000000000000",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "values": [
+          { "Type": "Volume", "Value": 0.003, "Unit": "m3", "Timestamp": "2024-07-24T19:00:00.000" },
+          { "Type": "Volume", "Value": 0.003, "Unit": "m3", "Timestamp": "2024-07-24T18:00:00.000" },
+          { "Type": "Volume", "Value": 0.003, "Unit": "m3", "Timestamp": "2024-07-24T17:00:00.000" },
+          { "Type": "Volume", "Value": 0.003, "Unit": "m3", "Timestamp": "2024-07-24T16:00:00.000" },
+          { "Type": "Volume", "Value": 0, "Unit": "m3", "Timestamp": "2024-07-24T15:00:00.000" },
+          { "Type": "Volume", "Value": 0, "Unit": "m3", "Timestamp": "2024-07-24T14:00:00.000" },
+          { "Type": "Volume", "Value": 0, "Unit": "m3", "Timestamp": "2024-07-24T13:00:00.000" },
+          { "Type": "Volume", "Value": 0, "Unit": "m3", "Timestamp": "2024-07-24T12:00:00.000" },
+          { "Type": "Volume", "Value": 0, "Unit": "m3", "Timestamp": "2024-07-24T11:00:00.000" },
+          { "Type": "Volume", "Value": 0, "Unit": "m3", "Timestamp": "2024-07-24T10:00:00.000" },
+          { "Type": "Volume", "Value": 0, "Unit": "m3", "Timestamp": "2024-07-24T09:00:00.000" },
+          { "Type": "Volume", "Value": 0, "Unit": "m3", "Timestamp": "2024-07-24T08:00:00.000" },
+          { "Type": "Volume", "Value": 0, "Unit": "m3", "Timestamp": "2024-07-24T07:00:00.000" },
+          { "Type": "Volume", "Value": 0, "Unit": "m3", "Timestamp": "2024-07-24T06:00:00.000" },
+          { "Type": "Volume", "Value": 0, "Unit": "m3", "Timestamp": "2024-07-24T05:00:00.000" },
+          { "Type": "Volume", "Value": 0, "Unit": "m3", "Timestamp": "2024-07-24T04:00:00.000" },
+          { "Type": "Volume", "Value": 0, "Unit": "m3", "Timestamp": "2024-07-24T03:00:00.000" },
+          { "Type": "Volume", "Value": 0, "Unit": "m3", "Timestamp": "2024-07-24T02:00:00.000" },
+          { "Type": "Volume", "Value": 0, "Unit": "m3", "Timestamp": "2024-07-24T01:00:00.000" },
+          { "Type": "Volume", "Value": 0, "Unit": "m3", "Timestamp": "2024-07-24T00:00:00.000" },
+          { "Type": "Volume", "Value": 0, "Unit": "m3", "Timestamp": "2024-07-23T23:00:00.000" },
+          { "Type": "Volume", "Value": 0, "Unit": "m3", "Timestamp": "2024-07-23T22:00:00.000" },
+          { "Type": "Volume", "Value": 0, "Unit": "m3", "Timestamp": "2024-07-23T21:00:00.000" },
+          { "Type": "Volume", "Value": 0, "Unit": "m3", "Timestamp": "2024-07-23T20:00:00.000" },
+          { "Type": "Volume", "Value": 0, "Unit": "m3", "Timestamp": "2024-07-23T19:00:00.000" },
+          { "Type": "Volume", "Value": 0, "Unit": "m3", "Timestamp": "2024-07-23T18:00:00.000" },
+          { "Type": "Volume", "Value": 0, "Unit": "m3", "Timestamp": "2024-07-23T17:00:00.000" },
+          { "Type": "Volume", "Value": 0, "Unit": "m3", "Timestamp": "2024-07-23T16:00:00.000" },
+          { "Type": "Volume", "Value": 0, "Unit": "m3", "Timestamp": "2024-07-23T15:00:00.000" },
+          { "Type": "Volume", "Value": 0, "Unit": "m3", "Timestamp": "2024-07-23T14:00:00.000" },
+          { "Type": "Volume", "Value": 0, "Unit": "m3", "Timestamp": "2024-07-23T13:00:00.000" },
+          { "Type": "Volume", "Value": 0, "Unit": "m3", "Timestamp": "2024-07-23T12:00:00.000" },
+          { "Type": "Volume", "Value": 0, "Unit": "m3", "Timestamp": "2024-07-23T11:00:00.000" }
+        ],
+        "latestVolume": 0.003
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Missing Base value",
+    "input": {
+      "bytes": "78446D003318374D93132261010000000300000000000000000000000000000000000000000000000000000000",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "values": []
+      },
+      "errors": ["Invalid uplink payload: Could not find base value for profile data"],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Data from midnight log of water meter with invalid temperatures",
+    "input": {
+      "bytes": "78446D0020F32A4413EC00000052FF25100042FF1C0500623B0000523B0000615B80515B80",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "values": [
+          { "Type": "Volume", "Value": 0.236, "Unit": "m3", "Timestamp": "2023-10-19T00:00:00.000" },
+          { "Type": "Dry", "Value": false, "Unit": "NA", "Timestamp": "2023-10-19T00:00:00.000" },
+          { "Type": "Reverse", "Value": false, "Unit": "NA", "Timestamp": "2023-10-19T00:00:00.000" },
+          { "Type": "Leak", "Value": false, "Unit": "NA", "Timestamp": "2023-10-19T00:00:00.000" },
+          { "Type": "Burst", "Value": false, "Unit": "NA", "Timestamp": "2023-10-19T00:00:00.000" },
+          { "Type": "Tamper", "Value": true, "Unit": "NA", "Timestamp": "2023-10-19T00:00:00.000" },
+          { "Type": "Low Battery", "Value": false, "Unit": "NA", "Timestamp": "2023-10-19T00:00:00.000" },
+          { "Type": "Low Ambient Temperature", "Value": false, "Unit": "NA", "Timestamp": "2023-10-19T00:00:00.000" },
+          { "Type": "High Ambient Temperature", "Value": false, "Unit": "NA", "Timestamp": "2023-10-19T00:00:00.000" },
+          { "Type": "ALD last day", "Value": 5, "Unit": "NA", "Timestamp": "2023-10-19T00:00:00.000" },
+          { "Type": "Min Volume flow", "Value": 0, "Unit": "m3/h", "Timestamp": "2023-10-19T00:00:00.000" },
+          { "Type": "Max Volume flow", "Value": 0, "Unit": "m3/h", "Timestamp": "2023-10-19T00:00:00.000" },
+          { "Type": "Min Flow temperature", "Value": null, "Unit": "Invalid", "Timestamp": "2023-10-19T00:00:00.000" },
+          { "Type": "Max Flow temperature", "Value": null, "Unit": "Invalid", "Timestamp": "2023-10-19T00:00:00.000" }
+        ],
+        "latestVolume": 0.236
+      },
+      "errors": [],
+      "warnings": [
+        "Invalid value among data",
+        "Invalid value among data"
+      ]
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Installation frame with config number",
+    "input": {
+      "bytes": "7258578853372C3C16D610080004FF16BF587000",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "values": [
+          { "Type": "Module type/config number", "Value": 7362751, "Unit": "NA", "Timestamp": null }
+        ]
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Multiple profile values for volume (Example from Integration Guide)",
+    "input": {
+      "bytes": "7A08000000446D002CFD284413C1AA77004D9313186201270122012201260122012201210127012201220127012F",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "values": [
+          { "Type": "Volume", "Value": 7842.497, "Unit": "m3", "Timestamp": "2023-08-29T12:00:00.000" },
+          { "Type": "Volume", "Value": 7842.202, "Unit": "m3", "Timestamp": "2023-08-29T11:00:00.000" },
+          { "Type": "Volume", "Value": 7841.912, "Unit": "m3", "Timestamp": "2023-08-29T10:00:00.000" },
+          { "Type": "Volume", "Value": 7841.622, "Unit": "m3", "Timestamp": "2023-08-29T09:00:00.000" },
+          { "Type": "Volume", "Value": 7841.328, "Unit": "m3", "Timestamp": "2023-08-29T08:00:00.000" },
+          { "Type": "Volume", "Value": 7841.038, "Unit": "m3", "Timestamp": "2023-08-29T07:00:00.000" },
+          { "Type": "Volume", "Value": 7840.748, "Unit": "m3", "Timestamp": "2023-08-29T06:00:00.000" },
+          { "Type": "Volume", "Value": 7840.459, "Unit": "m3", "Timestamp": "2023-08-29T05:00:00.000" },
+          { "Type": "Volume", "Value": 7840.164, "Unit": "m3", "Timestamp": "2023-08-29T04:00:00.000" },
+          { "Type": "Volume", "Value": 7839.874, "Unit": "m3", "Timestamp": "2023-08-29T03:00:00.000" },
+          { "Type": "Volume", "Value": 7839.584, "Unit": "m3", "Timestamp": "2023-08-29T02:00:00.000" },
+          { "Type": "Volume", "Value": 7839.289, "Unit": "m3", "Timestamp": "2023-08-29T01:00:00.000" }
+        ],
+        "latestVolume": 7842.497
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Volume with Mbus type A (invalid and positive) and date Type G on storage number 1. Temperature with type B (negative), and datetime Type I on storage number 2",
+    "input": {
+      "bytes": "784C16443322E14C164433221191015BEF426C058286016D050607018355",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "values": [
+          { "Type": "Volume", "Value": null, "Unit": "Invalid", "Timestamp": "2064-02-05T00:00:00.000" },
+          { "Type": "Volume", "Value": 11223344, "Unit": "m3", "Timestamp": "2064-02-05T00:00:00.000" },
+          { "Type": "Max Flow temperature", "Value": -17, "Unit": "C", "Timestamp": "2064-03-01T07:06:05.000" }
+        ],
+      "latestVolume": 11223344
+      },
+      "errors": [],
+      "warnings": ["Invalid value among data"]
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Decrementing profile values with 1 day interval",
+    "input": {
+      "bytes": "7A08000000446D0020FD284413C1AA77004D931318B201270122012201260122012201210127012201220127012F",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "values": [
+          { "Type": "Volume", "Value": 7842.497, "Unit": "m3", "Timestamp": "2023-08-29T00:00:00.000" },
+          { "Type": "Volume", "Value": 7842.792, "Unit": "m3", "Timestamp": "2023-08-28T00:00:00.000" },
+          { "Type": "Volume", "Value": 7843.082, "Unit": "m3", "Timestamp": "2023-08-27T00:00:00.000" },
+          { "Type": "Volume", "Value": 7843.372, "Unit": "m3", "Timestamp": "2023-08-26T00:00:00.000" },
+          { "Type": "Volume", "Value": 7843.666, "Unit": "m3", "Timestamp": "2023-08-25T00:00:00.000" },
+          { "Type": "Volume", "Value": 7843.956, "Unit": "m3", "Timestamp": "2023-08-24T00:00:00.000" },
+          { "Type": "Volume", "Value": 7844.246, "Unit": "m3", "Timestamp": "2023-08-23T00:00:00.000" },
+          { "Type": "Volume", "Value": 7844.535, "Unit": "m3", "Timestamp": "2023-08-22T00:00:00.000" },
+          { "Type": "Volume", "Value": 7844.830, "Unit": "m3", "Timestamp": "2023-08-21T00:00:00.000" },
+          { "Type": "Volume", "Value": 7845.120, "Unit": "m3", "Timestamp": "2023-08-20T00:00:00.000" },
+          { "Type": "Volume", "Value": 7845.410, "Unit": "m3", "Timestamp": "2023-08-19T00:00:00.000" },
+          { "Type": "Volume", "Value": 7845.705, "Unit": "m3", "Timestamp": "2023-08-18T00:00:00.000" }
+        ],
+        "latestVolume": 7842.497
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Signed profile values with 6 months interval",
+    "input": {
+      "bytes": "7A08000000446D0020FA284413C1AA77004D931318D2FE270122012293260122012201210127012201220127012F",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "values": [
+          { "Type": "Volume", "Value": 7842.497, "Unit": "m3", "Timestamp": "2023-08-26T00:00:00.000" },
+          { "Type": "Volume", "Value": 7842.202, "Unit": "m3", "Timestamp": "2023-02-26T00:00:00.000" },
+          { "Type": "Volume", "Value": 7841.912, "Unit": "m3", "Timestamp": "2022-08-26T00:00:00.000" },
+          { "Type": "Volume", "Value": 7869.782, "Unit": "m3", "Timestamp": "2022-02-26T00:00:00.000" },
+          { "Type": "Volume", "Value": 7869.488, "Unit": "m3", "Timestamp": "2021-08-26T00:00:00.000" },
+          { "Type": "Volume", "Value": 7869.198, "Unit": "m3", "Timestamp": "2021-02-26T00:00:00.000" },
+          { "Type": "Volume", "Value": 7868.908, "Unit": "m3", "Timestamp": "2020-08-26T00:00:00.000" },
+          { "Type": "Volume", "Value": 7868.619, "Unit": "m3", "Timestamp": "2020-02-26T00:00:00.000" },
+          { "Type": "Volume", "Value": 7868.324, "Unit": "m3", "Timestamp": "2019-08-26T00:00:00.000" },
+          { "Type": "Volume", "Value": 7868.034, "Unit": "m3", "Timestamp": "2019-02-26T00:00:00.000" },
+          { "Type": "Volume", "Value": 7867.744, "Unit": "m3", "Timestamp": "2018-08-26T00:00:00.000" },
+          { "Type": "Volume", "Value": 7867.449, "Unit": "m3", "Timestamp": "2018-02-26T00:00:00.000" }
+        ],
+        "latestVolume": 7842.497
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Invalid profile values for volume",
+    "input": {
+      "bytes": "78446D003318374413030000004D93132261010000FF0300000000000000000000000000000000000000000000000000000000",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "values": [
+          { "Type": "Volume", "Value": 0.003, "Unit": "m3", "Timestamp": "2024-07-24T19:00:00.000" },
+          { "Type": "Volume", "Value": 0.003, "Unit": "m3", "Timestamp": "2024-07-24T18:00:00.000" },
+          { "Type": "Volume", "Value": 0.003, "Unit": "m3", "Timestamp": "2024-07-24T17:00:00.000" }
+        ],
+        "latestVolume": 0.003
+      },
+      "errors": [],
+      "warnings": ["Invalid value among profile values or timestamps for profile values"]
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Error: Not enough bytes for profile values",
+    "input": {
+      "bytes": "78446D003318374413030000004D93132261010000FF030000000000000000000000000000000000000000000000000000",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {},
+      "errors": ["Invalid uplink payload: Not enough bytes for LVAR"],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Error: Not enough bytes for regular value",
+    "input": {
+      "bytes": "78446D003318",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {},
+      "errors": ["Invalid uplink payload: Not enough bytes for datafield or datafield is larger than 6 bytes"],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Error: Unsupported VIB",
+    "input": {
+      "bytes": "78446D003318374413030000004D93122261010000000300000000000000000000000000000000000000000000000000000000",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {},
+      "errors": ["Invalid uplink payload: Unsupported VIB"],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Error: LVAR field received but record is not inverse compact profile",
+    "input": {
+      "bytes": "78446D003318374413030000004D132261010000000300000000000000000000000000000000000000000000000000000000",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {},
+      "errors": ["Invalid uplink payload: LVAR that is not Inverse Compact Profile is not supported"],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Error: Inverse compact profile with absolute values",
+    "input": {
+      "bytes": "78446D003318374413030000004D93132221010000000300000000000000000000000000000000000000000000000000000000",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {},
+      "errors": ["Invalid uplink payload: Could not parse Inverse Compact Profile"],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Error: Invalid base time",
+    "input": {
+      "bytes": "78446DFFFFFFFF4413030000004D93132261010000000300000000000000000000000000000000000000000000000000000000",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "values": [
+          { "Type": "Volume", "Value": 0.003, "Unit": "m3", "Timestamp": null }
+        ],
+        "latestVolume": 0.003
+      },
+      "errors": ["Invalid uplink payload: Could not find base time for profile data"],
+      "warnings": ["Invalid value among timestamps"]
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Error: Payload to short",
+    "input": {
+      "bytes": "",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {},
+      "errors": ["Invalid uplink payload: Could not retrieve CI field"],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Error: Unsupported header",
+    "input": {
+      "bytes": "79",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {},
+      "errors": ["Invalid uplink payload: Invalid CI in TPL layer"],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Error: Short header but header too short",
+    "input": {
+      "bytes": "7A000000",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {},
+      "errors": ["Invalid uplink payload: Could not retrieve TPL layer"],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Error: Long header but header too short",
+    "input": {
+      "bytes": "72000000000000000000",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {},
+      "errors": ["Invalid uplink payload: Could not retrieve TPL layer"],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Error: Short header but TPL encryption enabled",
+    "input": {
+      "bytes": "7A00000A0A",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {},
+      "errors": ["Invalid uplink payload: MBus TPL encryption is not supported"],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Reverse volume and volume during error state",
+    "input": {
+      "bytes": "78446D0020F32A7413EC00000044933CEC000000",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "values": [
+          { "Type": "Error state Volume", "Value": 0.236, "Unit": "m3", "Timestamp": "2023-10-19T00:00:00.000" },
+          { "Type": "Reverse Volume", "Value": 0.236, "Unit": "m3", "Timestamp": "2023-10-19T00:00:00.000" }
+        ]
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Invalid VIF",
+    "input": {
+      "bytes": "78446D0020F32A4401EC000000",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {},
+      "errors": ["Invalid uplink payload: Unsupported VIB"],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Invalid VIFe",
+    "input": {
+      "bytes": "78446D0020F32A44FF73EC000000",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {},
+      "errors": ["Invalid uplink payload: Unsupported VIB"],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Invalid Type G",
+    "input": {
+      "bytes": "78426CFFFF4413EC000000",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "values": [
+          { "Type": "Volume", "Value": 0.236, "Unit": "m3", "Timestamp": null }
+        ],
+        "latestVolume": 0.236
+      },
+      "errors": [],
+      "warnings": [
+        "Invalid value among timestamps"
+      ]
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Invalid Type I",
+    "input": {
+      "bytes": "78466D0586070183554413EC000000",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "values": [
+          { "Type": "Volume", "Value": 0.236, "Unit": "m3", "Timestamp": null }
+        ],
+        "latestVolume": 0.236
+      },
+      "errors": [],
+      "warnings": [
+        "Invalid value among timestamps"
+      ]
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Invalid DIF",
+    "input": {
+      "bytes": "787F6D0020F32A44FF73EC000000",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {},
+      "errors": ["Invalid uplink payload: Unsupported special DIF function"],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "DIF indicates 0 bytes",
+    "input": {
+      "bytes": "78403A",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "values": [
+          { "Type": "Volume flow", "Value": 0, "Unit": "m3/h", "Timestamp": null }
+        ]
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "DIF indicates 8 bytes which is not supported",
+    "input": {
+      "bytes": "78473A0000000000000000",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {},
+      "errors": ["Invalid uplink payload: Not enough bytes for datafield or datafield is larger than 6 bytes"],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "1, 2, 3 and 6 byte BCD",
+    "input": {
+      "bytes": "784E3A1234567899034B3A1234564A3A1234493A12",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "values": [
+          { "Type": "Volume flow", "Value": 3997856.3412, "Unit": "m3/h", "Timestamp": null },
+          { "Type": "Volume flow", "Value": 56.3412, "Unit": "m3/h", "Timestamp": null },
+          { "Type": "Volume flow", "Value": 0.3412, "Unit": "m3/h", "Timestamp": null },
+          { "Type": "Volume flow", "Value": 0.0012, "Unit": "m3/h", "Timestamp": null }
+        ]
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Invalid ALD",
+    "input": {
+      "bytes": "7842FF1CFF0F",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "values": [
+          { "Type": "ALD last day", "Value": null, "Unit": "Invalid", "Timestamp": null }
+        ]
+      },
+      "errors": [],
+      "warnings": [
+        "Invalid value among data"
+      ]
+    }
+  }
+]
