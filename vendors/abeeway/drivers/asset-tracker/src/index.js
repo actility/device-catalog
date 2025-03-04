@@ -2314,10 +2314,11 @@ function encodeDebugCommand(payload){
                         default:
                             throw new Error("Invalid Melody Id Value");
                     }
-                    if (payload.buzzerDuration != null && payload.buzzerDuration >= 0 && payload.buzzerDuration <= 255){
-                        encData[4] = payload.buzzerDuration;
-                    }else{
-                        throw new Error("buzzerDuration parameter value "+ payload.buzzerDuration +" is out of range");
+                    if (payload.buzzerDuration != null){
+                        if(payload.buzzerDuration >= 0 && payload.buzzerDuration <= 255)
+                            encData[4] = payload.buzzerDuration;
+                        else
+                            throw new Error("buzzerDuration parameter value "+ payload.buzzerDuration +" is out of range");
                     }
                 }
                 return encData;
