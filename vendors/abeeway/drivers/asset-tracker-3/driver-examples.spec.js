@@ -1,6 +1,7 @@
 const path = require("path");
 const fs = require("fs-extra");
 const yaml = require("js-yaml");
+const ivm = require("isolated-vm");
 
 /**
  * Read predefined Isolated Buffer that acts exactly as the NodeJs Buffer library to prevent access to external from the isolated sandbox
@@ -170,9 +171,24 @@ const code = (() => {
 })();
 
 /**
- * The script to be run
+ * Checking whether the driver is trusted or not
  */
-const script = isoBuffer.concat("\n" + code).concat("\n" + fnCall);
+function isTrusted() {
+    const packageJson = fs.readJsonSync(path.join(__dirname, "package.json"));
+    return packageJson.trusted ?? false;
+}
+
+const trusted = isTrusted();
+/**
+ * Create an isolated-vm sandbox to run the code inside
+ */
+let isolate;
+let script;
+
+if(!trusted) {
+    isolate = new ivm.Isolate();
+    script = isolate.compileScriptSync(isoBuffer.concat("\n" + code).concat("\n" + fnCall));
+}
 
 /**
  * @param input : input from example to run the driver with
@@ -180,15 +196,31 @@ const script = isoBuffer.concat("\n" + code).concat("\n" + fnCall);
  * @return result: output of the driver with the given input and operation
  */
 async function run(input, operation){
-    const codeToRun = `${script}; \nconst operation = '${operation}'; \nconst input = ${JSON.stringify(input)}; \ngetDriverEngineResult();`;
-    return eval(codeToRun);
+    if(trusted) {
+        let result;
+        eval(
+            code
+            + ";\n"
+            + `result = decodeUplink(input)`
+        );
+        return result;
+    }
+    const context = await isolate.createContext();
+    await context.global.set("operation", operation);
+    await context.global.set("input", new ivm.ExternalCopy(input).copyInto());
+    await context.global.set("exports", new ivm.ExternalCopy({}).copyInto());
+
+    await script.run(context, { timeout: 1000 });
+    const getDriverEngineResult = await context.global.get("getDriverEngineResult");
+    const result = getDriverEngineResult();
+    await context.release();
+    return result;
 }
 
 
 /**
 Test suites compatible with all driver types
 */
-
 describe("Decode uplink", () => {
     examples.forEach((example) => {
         if (example.type === "uplink") {
@@ -205,7 +237,10 @@ describe("Decode uplink", () => {
                 // Then
                 const expected = example.output;
 
-                expect(result).toEqual(expected);
+                // Adaptations
+                skipTypes(result, expected);
+
+                expect(result).toStrictEqual(expected);
             });
         }
     });
@@ -228,7 +263,7 @@ describe("Decode downlink", () => {
                 const expected = example.output;
 
                 // Then
-                expect(result).toEqual(expected);
+                expect(result).toStrictEqual(expected);
             });
         }
     });
@@ -255,7 +290,7 @@ describe("Encode downlink", () => {
                         expected.bytes = adaptBytesArray(expected.bytes);
                     }
 
-                    expect(result).toEqual(expected);
+                    expect(result).toStrictEqual(expected);
                 });
             }
         });
@@ -323,4 +358,72 @@ function adaptBytesArray(bytes){
         return Array.from(Buffer.from(bytes, "hex"));
     }
     return bytes;
+}
+
+
+// UTIL
+function skipTypes(result, expected) {
+    for(let property of listProperties(result)) {
+        let keys = property.split('.');
+        let value = result;
+        let expectedValue = expected;
+        let skipProperty = false;
+        for(let key of keys) {
+            value = value[key];
+            expectedValue = expectedValue[key];
+            if(expectedValue == null) {
+                skipProperty = true;
+                break;
+            }
+        }
+        if(skipProperty) continue;
+
+        let isDate = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z/.test(value);
+        let isNumber = /[0-9]+( |.[0-9]+)/.test(value);
+        isDate |= value instanceof Date;
+        isNumber |= value instanceof Number;
+        
+        if(isDate) {
+            let displayedResult = value;
+            if(displayedResult instanceof Date) displayedResult = displayedResult.toISOString();
+            if(expectedValue === "XXXX-XX-XXTXX:XX:XX.XXXZ") displayedResult = "XXXX-XX-XXTXX:XX:XX.XXXZ";
+
+            value = result;
+            for (let i = 0; i < keys.length - 1; i++) {
+                if (!value[keys[i]] || typeof value[keys[i]] !== 'object') {
+                    value[keys[i]] = {};
+                }
+                value = value[keys[i]];
+            }
+            value[keys[keys.length - 1]] = displayedResult;
+        }
+
+        else if(isNumber) {
+            let displayedResult = value;
+            if(displayedResult instanceof Number) displayedResult = displayedResult.toISOString();
+            if(expectedValue === "SKIP_NUMBER") displayedResult = "SKIP_NUMBER";
+
+            value = result;
+            for (let i = 0; i < keys.length - 1; i++) {
+                if (!value[keys[i]] || typeof value[keys[i]] !== 'object') {
+                    value[keys[i]] = {};
+                }
+                value = value[keys[i]];
+            }
+            value[keys[keys.length - 1]] = displayedResult;
+        }
+    }
+}
+
+function listProperties(obj, parent = '', result = []) {
+    for (let key in obj) {
+        if (obj.hasOwnProperty(key)) {
+            if (typeof obj[key] === 'object' && !(obj[key] instanceof Date) && obj[key] !== null) {
+                listProperties(obj[key], parent + key + '.', result);
+            } else {
+                result.push(parent + key);
+            }
+        }
+    }
+    return result;
 }
