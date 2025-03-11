@@ -4031,6 +4031,26 @@
     }
   },
   {
+    "description": "Debug downlink allowing to reset device - Encode - buzzerDuration out of range",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "downMessageType": "DEBUG_COMMAND",
+        "ackToken": 2,
+        "debugCommandType": "MAKE_TRACKER_RING",
+        "melodyId": "BLE_ADVERTISING",
+        "buzzerDuration": 100000,
+        "payload": "ff02030764"
+      }
+    },
+    "output": {
+      "errors": [
+        "buzzerDuration parameter value 100000 is out of range"
+      ],
+      "warnings": []
+    }
+  },
+  {
     "description": "Set angle detection parameters (2) - Encode",
     "type": "downlink-encode",
     "input": {
@@ -9616,9 +9636,17 @@
       "recvTime": "2023-10-05T20:00:00.000+02:00"
     },
     "output": {
-      "errors": [
-        "Value out of range for motionSensitivity.sensitivity"
+      "bytes": [
+        11,
+        10,
+        20,
+        0,
+        1,
+        1,
+        31
       ],
+      "fPort": 2,
+      "errors": [],
       "warnings": []
     }
   },

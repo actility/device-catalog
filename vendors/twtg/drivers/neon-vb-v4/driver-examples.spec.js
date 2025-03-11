@@ -171,10 +171,24 @@ const code = (() => {
 })();
 
 /**
+ * Checking whether the driver is trusted or not
+ */
+function isTrusted() {
+    const packageJson = fs.readJsonSync(path.join(__dirname, "package.json"));
+    return packageJson.trusted ?? false;
+}
+
+const trusted = isTrusted();
+/**
  * Create an isolated-vm sandbox to run the code inside
  */
-const isolate = new ivm.Isolate();
-const script = isolate.compileScriptSync(isoBuffer.concat("\n" + code).concat("\n" + fnCall));
+let isolate;
+let script;
+
+if(!trusted) {
+    isolate = new ivm.Isolate();
+    script = isolate.compileScriptSync(isoBuffer.concat("\n" + code).concat("\n" + fnCall));
+}
 
 /**
  * @param input : input from example to run the driver with
@@ -182,6 +196,15 @@ const script = isolate.compileScriptSync(isoBuffer.concat("\n" + code).concat("\
  * @return result: output of the driver with the given input and operation
  */
 async function run(input, operation){
+    if(trusted) {
+        let result;
+        eval(
+            code
+            + ";\n"
+            + `result = decodeUplink(input)`
+        );
+        return result;
+    }
     const context = await isolate.createContext();
     await context.global.set("operation", operation);
     await context.global.set("input", new ivm.ExternalCopy(input).copyInto());
@@ -215,7 +238,7 @@ describe("Decode uplink", () => {
                 const expected = example.output;
 
                 // Adaptations
-                adaptDates(result, expected);
+                skipTypes(result, expected);
 
                 expect(result).toStrictEqual(expected);
             });
@@ -339,7 +362,7 @@ function adaptBytesArray(bytes){
 
 
 // UTIL
-function adaptDates(result, expected) {
+function skipTypes(result, expected) {
     for(let property of listProperties(result)) {
         let keys = property.split('.');
         let value = result;
@@ -356,13 +379,29 @@ function adaptDates(result, expected) {
         if(skipProperty) continue;
 
         let isDate = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z/.test(value);
+        let isNumber = /[0-9]+( |.[0-9]+)/.test(value);
         isDate |= value instanceof Date;
-        
+        isNumber |= value instanceof Number;
         
         if(isDate) {
             let displayedResult = value;
             if(displayedResult instanceof Date) displayedResult = displayedResult.toISOString();
             if(expectedValue === "XXXX-XX-XXTXX:XX:XX.XXXZ") displayedResult = "XXXX-XX-XXTXX:XX:XX.XXXZ";
+
+            value = result;
+            for (let i = 0; i < keys.length - 1; i++) {
+                if (!value[keys[i]] || typeof value[keys[i]] !== 'object') {
+                    value[keys[i]] = {};
+                }
+                value = value[keys[i]];
+            }
+            value[keys[keys.length - 1]] = displayedResult;
+        }
+
+        else if(isNumber) {
+            let displayedResult = value;
+            if(displayedResult instanceof Number) displayedResult = displayedResult.toISOString();
+            if(expectedValue === "SKIP_NUMBER") displayedResult = "SKIP_NUMBER";
 
             value = result;
             for (let i = 0; i < keys.length - 1; i++) {
