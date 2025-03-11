@@ -1,3 +1,4 @@
+
 function UintToInt(Uint, Size) {
     if (Size < 1 || Size > 4) {
         throw new Error("Unsupported Size");
@@ -44,7 +45,7 @@ function BytesToInt64(InBytes, Starti1, Type, LiEnd) {
         inc = -1;
         start = Starti1 + BytesNb - 1;
     } else {
-        inc =  1;
+        inc =  1; 
         start = Starti1 ;
     }
     let tmpInt64 = 0;
@@ -78,10 +79,10 @@ function parseHexString(str) {
 */
 
 /**
- *
- * @param {*} num
- * @param {number} places
- * @returns
+ * 
+ * @param {*} num 
+ * @param {number} places 
+ * @returns 
  */
 function zeroPad(num, places) {
     let str = String(num);

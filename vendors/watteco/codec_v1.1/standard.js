@@ -520,7 +520,7 @@ function int(value){
 
 
 function decodeAlarms(
-    cmdId, clustID, attID,
+	cmdId, clustID, attID, 
     byteArray, startIndex,
     defaultTypeKind, defaultTypeSize, defaultDivider, withFieldIndex
 ) {
@@ -530,28 +530,28 @@ function decodeAlarms(
         causesMessages: []
     };
 
-    if (cmdId===0x8a){
-        decodedData.causesMessages.push("alarm triggered")
-    }
+	if (cmdId===0x8a){
+		decodedData.causesMessages.push("alarm triggered")
+	}
 
     let index = startIndex;
     if (index >= byteArray.length) {
         return decodedData;
     }
-
-    let isLongCause = false;
-    let causeType = (byteArray[startIndex] >>= 4) & 0x03;
-    if (causeType == 0x02) isLongCause = true;
-    else if (causeType != 0x01) {
+	
+	let isLongCause = false;
+	let causeType = (byteArray[startIndex] >>= 4) & 0x03;
+	if (causeType == 0x02) isLongCause = true;
+	else if (causeType != 0x01) {
         throw new Error(`Alarm decoding: Unexpected cause type. (ReportParams byte = ${byteArray[startIndex]})`);
-    }
-
-    index++;
+	}
+    
+	index++;
     if (index >= byteArray.length) {
         throw new Error(`Alarm decoding: Unexpected end of causes.)`);
     }
 
-    let defaultAlarmField = "FieldUndef !";
+	let defaultAlarmField = "FieldUndef !";
 
     function readValue(kind, size, divider) {
         if (index + size - 1 >= byteArray.length) {
@@ -591,8 +591,8 @@ function decodeAlarms(
         criterion.isAlarm = (csd & 0x80) !== 0;
 
         let qual = criterion.hasExceeded && criterion.hasFallen ? "exceed&fall" :
-            criterion.hasExceeded ? "exceed" :
-                criterion.hasFallen ? "fall": "";
+            criterion.hasExceeded ? "exceed" : 
+			criterion.hasFallen ? "fall": "";
 
         let value, gap, count, countUp, countDown, alarmField = undefined;
         let fi = null;
@@ -679,7 +679,7 @@ function processAlarm(cmdId, clustID, attID, bytes, decoded, startIndex, attribu
     let function_type = ftype
     let size = type.size
     let name = type.name
-
+    
     if (function_type===undefined){
         if (name==="single"){
             function_type = "float"
@@ -693,7 +693,7 @@ function processAlarm(cmdId, clustID, attID, bytes, decoded, startIndex, attribu
     }
 
     let alarms = decodeAlarms(
-        cmdId, clustID, attID,
+        cmdId, clustID, attID, 
         bytes, startIndex,
         function_type, size, divider,
         withFieldIndex);
@@ -702,7 +702,7 @@ function processAlarm(cmdId, clustID, attID, bytes, decoded, startIndex, attribu
 
 }
 
-function Decoder(bytes, port) {
+function Decoder(bytes, port, TIC_Decode = null) {
     let decoded = {};
     let knowncmdID=0
     decoded.lora = {};
@@ -720,7 +720,7 @@ function Decoder(bytes, port) {
     }
     if (port === 125)
     {
-        let batch = !(bytes[0] & 0x01);
+       let batch = !(bytes[0] & 0x01);
         if (batch === false){
             decoded.zclheader = {};
             decoded.zclheader.report =  "standard";
@@ -729,7 +729,7 @@ function Decoder(bytes, port) {
             let clustID = -1;
             decoded.zclheader.endpoint = ((bytes[0]&0xE0)>>5) | ((bytes[0]&0x06)<<2);
             cmdID =  bytes[1]; decoded.zclheader.cmdID = decimalToHex(cmdID,2);
-            clustID = bytes[2]*256 + bytes[3];
+            clustID = bytes[2]*256 + bytes[3]; 
             decoded.zclheader.clustID = decimalToHex(clustID,4);
             if((cmdID === 0x0a)||(cmdID === 0x8a)||(cmdID === 0x01)){
                 knowncmdID=1
@@ -742,8 +742,8 @@ function Decoder(bytes, port) {
                 if (cmdID === 0x01)	{i1 = 8; decoded.zclheader.status = bytes[6];}
 
                 if (( clustID === 0x0053 ) || ( clustID === 0x0054 ) || ( clustID === 0x0055 ) || ( clustID === 0x0056 )  || ( clustID === 0x0057 )) {
-                    if (typeof globalThis.TIC_Decode === "function") {
-                        decoded.data = globalThis.TIC_Decode(clustID,attID,bytes.slice(i1 + 1));
+                    if (typeof TIC_Decode === "function") {
+                        decoded.data = TIC_Decode(clustID,attID,bytes.slice(i1 + 1)); 
                     } else {
                         throw new ValidationError("TIC_Decode function not found")
                     }
@@ -1330,10 +1330,10 @@ function Decoder(bytes, port) {
     }
     return decoded;
 }
-function normalisation_standard(input, endpoint_parameters) {
+function normalisation_standard(input, endpoint_parameters,TIC_Decode=null) {
     let warning = [];
     let bytes = input.bytes;
-    let decoded = Decoder(bytes, input.fPort);
+    let decoded = Decoder(bytes, input.fPort, TIC_Decode);
     if (decoded.zclheader !== undefined){
         if (decoded.zclheader.alarmmsg !== undefined){
             warning = decoded.zclheader.alarmmsg

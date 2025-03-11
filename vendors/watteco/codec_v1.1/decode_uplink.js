@@ -5,17 +5,42 @@ const standard = require("./standard.js");
 const batch = require("./batch.js");
 
 /**
+ * Recursively sorts the keys of an object alphabetically.
+ * This function addedto avoid "order" issues in the output data when examples are tested accross different js platforms
+ *
+ * @param {Object|Array} obj - The object or array to sort.
+ * @returns {Object|Array} - The sorted object or array.
+ */
+function sortObject(obj) {
+    // If the input is null or not an object, return it as is.
+    if (obj === null || typeof obj !== 'object') {
+        return obj;
+    }
+
+    // If the input is an array, recursively sort each element.
+    if (Array.isArray(obj)) {
+        return obj.map(sortObject);
+    }
+
+    // For objects, sort the keys alphabetically and recursively sort nested objects.
+    return Object.keys(obj).sort().reduce((acc, key) => {
+        acc[key] = sortObject(obj[key]); // Recursively sort the value.
+        return acc;
+    }, {});
+}
+
+/**
  * Ensures the given parameter conforms to the TS013 "data" field specification.
  *
  * @param {*} param - The input data of any type.
  * @returns {Object} - A standardized object conforming to TS013 specifications.
  */
 function anyToObj(param) {
-    if (param === null || param === undefined) return {};
+    if (param === null || param === undefined) return {}; 
     if (Array.isArray(param)) return { samples: param };
     if (typeof param === 'object') return param;
     if (typeof param === 'string' || typeof param === 'number') return { value: param };
-    return {};
+    return {}; 
 }
 
 /**
@@ -35,25 +60,25 @@ function postProcessDataContent(dataContentIn) {
     if (!dataContent.samples || !Array.isArray(dataContent.samples)) {
         return dataContent;
     }
-
+    
     // Extract samples
     const samples = dataContent.samples;
-
+    
     // Create an object to store the latest values
     const latestValues = {};
-
+    
     // Iterate through the samples to find the most recent value for each variable
     samples.forEach(sample => {
         if (typeof sample === 'object' && sample.variable && sample.value !== undefined && sample.date) {
             const { variable, value, date } = sample;
-
+            
             // If the variable is not recorded yet or the new date is more recent, update it
             if (!latestValues[variable] || new Date(date) > new Date(latestValues[variable].date)) {
                 latestValues[variable] = { value, date };
             }
         }
     });
-
+    
     // Add the latest values to the data object without overwriting existing keys
     const processedData = {};
     for (let key in dataContent) {
@@ -67,7 +92,9 @@ function postProcessDataContent(dataContentIn) {
         }
     }
 
+    
     return processedData;
+    // return sortObject(processedData); /* TODO: Evaluate if this could solve the problem of order in the output data in TTN Automatised Tests */
 }
 
 /**
@@ -78,15 +105,20 @@ function postProcessDataContent(dataContentIn) {
  * @param {Object} endpoint_parameters - Parameters for endpoint normalization.
  * @returns {Object} - The decoded data with potential warnings or errors.
  */
-function watteco_decodeUplink(input, batch_parameters, endpoint_parameters) {
+function watteco_decodeUplink(input, batch_parameters, endpoint_parameters, TIC_Decode=null) {
     let bytes = input.bytes;
     let port = input.fPort;
+
+    // Avoid non valid recvTime. Saw on multitech mPowerEdge Conduit AP, firmware 7.0.0
+    if (! input.recvTime) {
+        input.recvTime = (new Date()).toISOString();
+    }
     let date = input.recvTime;
-
+    
     try {
-        let decoded = standard.normalisation_standard(input, endpoint_parameters)
+        let decoded = standard.normalisation_standard(input, endpoint_parameters, TIC_Decode)
         let payload = decoded.payload;
-
+        
         if (decoded.type === "batch") {
             let batchInput = {
                 batch1: batch_parameters[0],
@@ -94,7 +126,7 @@ function watteco_decodeUplink(input, batch_parameters, endpoint_parameters) {
                 payload: payload,
                 date: date,
             }
-
+            
             try {
                 let decoded = batch.normalisation_batch(batchInput);
                 return {

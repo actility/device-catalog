@@ -1,11 +1,11 @@
 const { UintToInt, Bytes2Float32, BytesToInt64, decimalToHex, zeroPad, BytesToHexStr } = require("./convert_tools.js");
 
 /**
- *
- * @param {number} clustID
- * @param {number} AttributeID
- * @param {*} BytesAfterSize
- * @returns
+ * 
+ * @param {number} clustID 
+ * @param {number} AttributeID 
+ * @param {*} BytesAfterSize 
+ * @returns 
  */
 function TIC_Decode(clustID,AttributeID,BytesAfterSize)
 {
@@ -43,13 +43,13 @@ function TIC_Decode(clustID,AttributeID,BytesAfterSize)
             /* Todo: Add necessary Enums when known */
         ];
 
-    /**
-     *
-     * @param {*} Bytes
-     * @param {number} i
-     * @param {string[]} Enums
-     * @returns
-     */
+        /**
+         * 
+         * @param {*} Bytes 
+         * @param {number} i 
+         * @param {string[]} Enums 
+         * @returns 
+         */
     function TICParseEnum(Bytes,i,Enums) {
         let x = "";
         if ((Bytes[i] & 0x80) == 0) { // Really Enum
@@ -115,23 +115,23 @@ function TIC_Decode(clustID,AttributeID,BytesAfterSize)
     function TICParseTimeStamp(b, i, LittleEndian) {
         // EPOCH TIC: 01/01/2000 00:00:00
         // EPOCH UNIX: 01/01/1970 00:00:00
-
+    
         let ts = BytesToInt64(b, i, "U32", LittleEndian);
         i += 4;
-
+    
         // Use UTC date to avoid region-dependent parsing issues
         let ticEpoch = Date.UTC(2000, 0, 1, 0, 0, 0) / 1000;
         ts += ticEpoch;
-
+    
         const a = new Date(ts * 1000);
-
+    
         const x =
             zeroPad(a.getDate(), 2) + "/" + zeroPad(a.getMonth(), 2) + "/" + a.getFullYear() + " " +
             zeroPad(a.getHours(), 2) + ":" + zeroPad(a.getMinutes(), 2) + ":" + zeroPad(a.getSeconds(), 2);
-
+    
         return { x, i };
     }
-
+    
 
     function TICParseCString(b,i) {
         const eos = b.slice(i).indexOf(0);
@@ -328,7 +328,7 @@ function TIC_Decode(clustID,AttributeID,BytesAfterSize)
     function FMT_d(x)     { return(x); }; // %d
     function FMT_ld(x)    { return(x); }; // %ld
     */
-
+    
     function FMT_02d(x)   { return(x); }; // %02d
     function FMT_03d(x)   { return(x); }; // %03d
     function FMT_05d(x)   { return(x); }; // %05d

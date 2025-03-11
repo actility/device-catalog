@@ -1,4 +1,4 @@
-let watteco = require("../../codec/decode_uplink")
+let watteco = require("../../codec_v1.1/decode_uplink.js")
 
 let batch_param=[]
 let endpointCorresponder={
@@ -7,12 +7,15 @@ let endpointCorresponder={
     modbus_fnctID:["modbus_fnctID_EP1","modbus_fnctID_EP2","modbus_fnctID_EP3","modbus_fnctID_EP4","modbus_fnctID_EP5","modbus_fnctID_EP6","modbus_fnctID_EP7","modbus_fnctID_EP8","modbus_fnctID_EP9"],
     modbus_datasize:["modbus_datasize_EP1","modbus_datasize_EP2","modbus_datasize_EP3","modbus_datasize_EP4","modbus_datasize_EP5","modbus_datasize_EP6","modbus_datasize_EP7","modbus_datasize_EP8","modbus_datasize_EP9"]
 }
-function decodeUplink(input) {
-    return watteco.watteco_decodeUplink(input, batch_param, endpointCorresponder);
+function decodeUplink(input,optBatchParams = null, optEndpointCorresponder = null) {
+    if (optBatchParams) { batch_param = optBatchParams;}
+    if (optEndpointCorresponder) { endpointCorresponder = optEndpointCorresponder;}
+    return watteco.watteco_decodeUplink(input,batch_param,endpointCorresponder);
 }
 exports.decodeUplink = decodeUplink;
 
 // Make it also globally available as it is TS013 compliant, 
 // but keep former diver.decodeUplink format for retrocompatibility
-(globalThis || this).decodeUplink = decodeUplink;
+const globalObject = typeof globalThis !== 'undefined' ? globalThis : this;
+globalObject.decodeUplink = decodeUplink;
 
