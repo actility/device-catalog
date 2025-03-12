@@ -1,5 +1,5 @@
 # Commercial name of the model
-name: VaqaoPlus 
+name: Vaqao Plus
 # Functional description of the product. Maximum 500 characters.
 description: "The WATTECO Vaqa’O+ has sensors for measuring temperature, relative humidity, atmospheric pressure, the concentration of volatile organic compounds (VOC), and carbon dioxide (CO2) in the ambient air of a room in a building, an apartment, or a house. It allows Indoor Air Quality (IAQ) monitoring based on the presence of individuals using luminosity (lighting) and motion (PIR) detection in the room. The data is transmitted via a public or private LoRaWAN® network."
 # Logo of the device
@@ -32,12 +32,13 @@ LoRaWANCertified: true
 modelId: watteco:vaqao-plus:4
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId:
+  - watteco:vaqao-lite:5
   - watteco:vaqao-plus:4
   - nke:zcl:1
   - os1-nke:vaqao-plus-senso:3
 # DataSheet URL (optional)
-specificationURL:
+specificationURL: https://www.watteco.com/product/vaqao-plus-sensor-lorawan/
 # User Guide URL (optional)
-userGuideURL:
+userGuideURL: https://support.watteco.com/vaqao/
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:

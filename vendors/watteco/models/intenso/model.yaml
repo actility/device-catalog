@@ -1,7 +1,7 @@
 # Commercial name of the model
 name: Intenso
 # Functional description of the product. Maximum 500 characters.
-description: ""
+description: "The INTENS’O sensor measures the electrical current that flows through the AC power supply of any equipment. The sensor is used to determine the equipment status according to one or more configurable current thresholds. Data is transmitted over a public or private LoRaWAN® radio network."
 # Logo of the device
 logo: watteco-intenso-sensor.png
 # ID(s) of the profile that defines the LoRaWAN characteristics of this model.
@@ -32,13 +32,13 @@ LoRaWANCertified: true
 modelId: watteco:intenso:4
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId:
+  - watteco:intenso:5
   - watteco:intenso:4
   - nke:zcl:1
   - os1-nke:intenso-sensor:3
-
 # DataSheet URL (optional)
-specificationURL:
+specificationURL: https://www.watteco.fr/produit/capteur-intenso-lorawan/
 # User Guide URL (optional)
-userGuideURL:
+userGuideURL: https://support.watteco.com/intenso/
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
