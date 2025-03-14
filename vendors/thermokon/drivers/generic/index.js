@@ -18,23 +18,6 @@ function u8_to_s8(u8) {
 }
 
 function Decode(fPort, bytes) {
- function u16_to_s16(u16) {
-    var s16 = u16 & 0xFFFF;
-    if (s16 & 0x8000) {
-        s16 = -(0x10000 - s16);
-    }
-    return s16;
-}
-
-function u8_to_s8(u8) {
-    var s8 = u8 & 0xFF;
-    if (s8 & 0x80) {
-        s8 = -(0x100 - s8);
-    }
-    return s8;
-}
-
-function Decode(fPort, bytes) {
     
     var LPP_PARSER                   = 0x0000;
     var LPP_DUMMY                    = 0x0001;
