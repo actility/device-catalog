@@ -1,17 +1,19 @@
 let util = require("../../../util");
 
 function System(status,
-    lowBattery, bleStatus, tamperDetection){
+    lowBattery, bleStatus, tamperDetection, heartbeat){
     this.status = status;
     this.lowBattery = lowBattery;
     this.bleStatus = bleStatus;
     this.tamperDetection = tamperDetection;
+    this.heartbeat = heartbeat;
 }
 const SystemType = Object.freeze({
     STATUS: "STATUS",
     LOW_BATTERY: "LOW_BATTERY",
     BLE_STATUS: "BLE_STATUS",
-    TAMPER_DETECTION: "TAMPER_DETECTION"
+    TAMPER_DETECTION: "TAMPER_DETECTION",
+    HEARTBEAT : "HEARTBEAT"
 })
 const ResetCause = Object.freeze({
     AOS_ERROR_NONE: "AOS_ERROR_NONE",
@@ -49,6 +51,7 @@ function Status(currentTemperature, resetCause, pageId, AT3Version,
     lrGnssConsumption,
     bleConsumption,
     mcuConsumption,
+    globalCrc,
     lr11xxGpsDate, 
     lr11xxGpsOutdated,
     lr11xxGpsGood,
@@ -86,6 +89,7 @@ function Status(currentTemperature, resetCause, pageId, AT3Version,
     this.lrGnssConsumption = lrGnssConsumption;
     this.bleConsumption = bleConsumption;
     this.mcuConsumption =mcuConsumption;
+    this.globalCrc = globalCrc;
     this.lr11xxGpsDate = lr11xxGpsDate;
     this.lr11xxGpsOutdated = lr11xxGpsOutdated;
     this.lr11xxGpsGood = lr11xxGpsGood;
@@ -117,6 +121,21 @@ function BleStatus(state){
 }
 function TamperDetection(state){
     this.state = state
+}
+function Heartbeat(currentTemperature, resetCause, globalCrc){
+    this.currentTemperature = currentTemperature;
+    this.resetCause = resetCause;
+    this.globalCrc = globalCrc;
+}
+
+function determineHeartbeat(payload) {
+    var currentTemperature = util.convertNegativeInt(payload[5],1);
+    var resetCause = determineResetCause(((payload[6]>>3)& 0x1F));
+    // Extract the n bytes of the CRC (big-endian)
+    const crcBytes = payload.slice(7, 11);
+    // Convert each byte to a 2-digit hexadecimal string and concatenate
+    const crc = crcBytes.map(b => b.toString(16).padStart(2, "0")).join("");
+    return new Heartbeat(currentTemperature, resetCause, crc)
 }
 function determineLowBattery(payload){
     var consumption = (payload[5] << 8) + payload[6];
@@ -183,6 +202,9 @@ function determinePage0(payload, decodedStatus){
     decodedStatus.lrGnssConsumption = (payload[34] << 8) + payload[35];
     decodedStatus.bleConsumption = (payload[36] << 8) + payload[37];
     decodedStatus.mcuConsumption = (payload[38] << 8) + payload[39];
+    const crcBytes = payload.slice(40, 44);
+    // Convert each byte to a 2-digit hexadecimal string and concatenate
+    decodedStatus.globalCrc = crcBytes.map(b => b.toString(16).padStart(2, "0")).join("");
 }
 
 function determinePage1(payload, decodedStatus){
@@ -313,5 +335,6 @@ module.exports = {
     determineLowBattery: determineLowBattery,
     determineBleStatus: determineBleStatus,
     determineTamperDetection: determineTamperDetection,
+    determineHeartbeat : determineHeartbeat,
     SystemType: SystemType
 }
