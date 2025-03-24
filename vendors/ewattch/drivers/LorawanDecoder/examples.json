@@ -1,0 +1,1029 @@
+[
+  {
+    "description": "ambiance payload with luminosity and presence",
+    "type": "uplink",
+    "input": {
+      "bytes": "0006106908141481",
+      "fPort": 1,
+      "recvTime": "2025-01-01T12:00:00"
+    },
+    "output": {
+      "data": {
+        "datapoints": [
+          {
+            "uuid": "luminosity_s0_c0",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 0
+            },
+            "type": "luminosity",
+            "value": 2153,
+            "unit": "lx"
+          },
+          {
+            "uuid": "motion_s0_c0",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 0
+            },
+            "type": "motion",
+            "value": 330440,
+            "unit": "s"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "description": "ambiance payload with payload size error",
+    "type": "uplink",
+    "input": {
+      "bytes": "0008106908141481",
+      "fPort": 1,
+      "recvTime": "2025-01-01T12:00:00"
+    },
+    "output": {
+      "errors": [
+        "Payload size indicated does not match payload size given"
+      ]
+    }
+  },
+  {
+    "description": "ambiance payload with wrong header error",
+    "type": "uplink",
+    "input": {
+      "bytes": "00081069081414817A80",
+      "fPort": 1,
+      "recvTime": "2025-01-01T12:00:00"
+    },
+    "output": {
+      "data": {
+        "datapoints": [
+          {
+            "uuid": "luminosity_s0_c0",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 0
+            },
+            "type": "luminosity",
+            "value": 2153,
+            "unit": "lx"
+          },
+          {
+            "uuid": "motion_s0_c0",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 0
+            },
+            "type": "motion",
+            "value": 330440,
+            "unit": "s"
+          }
+        ]
+      },
+      "errors": [ "Unknown object type : 7A" ]
+    }
+  },
+  {
+    "description": "squid payload",
+    "type": "uplink",
+    "input": {
+      "bytes": "002548509F06A03E0D407D1AF56900EAD300D4A701509F06A03E0D407D1AF56900EAD300D4A701",
+      "fPort": 1,
+      "recvTime": "2025-01-01T12:00:00"
+    },
+    "output": {
+      "data": {
+        "datapoints": [
+          {
+            "type": "currentIndex",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 0
+            },
+            "uuid": "clamp_s0_c0",
+            "value": 4340000,
+            "unit": "mAh"
+          },
+          {
+            "type": "currentIndex",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 1
+            },
+            "uuid": "clamp_s0_c1",
+            "value": 8680000,
+            "unit": "mAh"
+          },
+          {
+            "type": "currentIndex",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 2
+            },
+            "uuid": "clamp_s0_c2",
+            "value": 17360000,
+            "unit": "mAh"
+          },
+          {
+            "type": "currentIndex",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 3
+            },
+            "uuid": "clamp_s0_c3",
+            "value": 271250,
+            "unit": "mAh"
+          },
+          {
+            "type": "currentIndex",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 4
+            },
+            "uuid": "clamp_s0_c4",
+            "value": 542500,
+            "unit": "mAh"
+          },
+          {
+            "type": "currentIndex",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 5
+            },
+            "uuid": "clamp_s0_c5",
+            "value": 1085000,
+            "unit": "mAh"
+          },
+          {
+            "type": "currentIndex",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 6
+            },
+            "uuid": "clamp_s0_c6",
+            "value": 4340000,
+            "unit": "mAh"
+          },
+          {
+            "type": "currentIndex",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 7
+            },
+            "uuid": "clamp_s0_c7",
+            "value": 8680000,
+            "unit": "mAh"
+          },
+          {
+            "type": "currentIndex",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 8
+            },
+            "uuid": "clamp_s0_c8",
+            "value": 17360000,
+            "unit": "mAh"
+          },
+          {
+            "type": "currentIndex",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 9
+            },
+            "uuid": "clamp_s0_c9",
+            "value": 271250,
+            "unit": "mAh"
+          },
+          {
+            "type": "currentIndex",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 10
+            },
+            "uuid": "clamp_s0_c10",
+            "value": 542500,
+            "unit": "mAh"
+          },
+          {
+            "type": "currentIndex",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 11
+            },
+            "uuid": "clamp_s0_c11",
+            "value": 1085000,
+            "unit": "mAh"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "description": "squid pro payload",
+    "type": "uplink",
+    "input": {
+      "bytes": "00f040c3860d01e4af01da8901e8cf0329e103dd29010b7801b46503745001ae3715f9b400a6310040c53800000100000000006100005500003900000000000d000000000019000011000013000040c666b300201a000200000d0100c105004e0b00e54b01329e014833014600002e00006a2c0040c72507009b4301511d00a97a0259be02f46401000000000000000000b57e0929040018000040c45100005d01003b0100b20000d900000a0100eb0200ee0300a702009712000100000f000040c8edffffaeffffe8ffff8affff66ffff6fffff1d03008b0300b9020021feffffffff0b0000403a220920093f09401c8813",
+      "fPort": 1,
+      "recvTime": "2025-01-01T12:00:00"
+    },
+    "output": {
+      "data": {
+        "datapoints": [
+          {
+            "type": "consumedActiveEnergyIndex",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 0
+            },
+            "uuid": "clamp_s0_c0",
+            "value": 689980,
+            "unit": "Wh"
+          },
+          {
+            "type": "consumedActiveEnergyIndex",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 1
+            },
+            "uuid": "clamp_s0_c1",
+            "value": 1105640,
+            "unit": "Wh"
+          },
+          {
+            "type": "consumedActiveEnergyIndex",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 2
+            },
+            "uuid": "clamp_s0_c2",
+            "value": 1008260,
+            "unit": "Wh"
+          },
+          {
+            "type": "consumedActiveEnergyIndex",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 3
+            },
+            "uuid": "clamp_s0_c3",
+            "value": 2498320,
+            "unit": "Wh"
+          },
+          {
+            "type": "consumedActiveEnergyIndex",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 4
+            },
+            "uuid": "clamp_s0_c4",
+            "value": 2542490,
+            "unit": "Wh"
+          },
+          {
+            "type": "consumedActiveEnergyIndex",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 5
+            },
+            "uuid": "clamp_s0_c5",
+            "value": 762530,
+            "unit": "Wh"
+          },
+          {
+            "type": "consumedActiveEnergyIndex",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 6
+            },
+            "uuid": "clamp_s0_c6",
+            "value": 962670,
+            "unit": "Wh"
+          },
+          {
+            "type": "consumedActiveEnergyIndex",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 7
+            },
+            "uuid": "clamp_s0_c7",
+            "value": 2226440,
+            "unit": "Wh"
+          },
+          {
+            "type": "consumedActiveEnergyIndex",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 8
+            },
+            "uuid": "clamp_s0_c8",
+            "value": 861320,
+            "unit": "Wh"
+          },
+          {
+            "type": "consumedActiveEnergyIndex",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 9
+            },
+            "uuid": "clamp_s0_c9",
+            "value": 13905100,
+            "unit": "Wh"
+          },
+          {
+            "type": "consumedActiveEnergyIndex",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 10
+            },
+            "uuid": "clamp_s0_c10",
+            "value": 463290,
+            "unit": "Wh"
+          },
+          {
+            "type": "consumedActiveEnergyIndex",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 11
+            },
+            "uuid": "clamp_s0_c11",
+            "value": 127100,
+            "unit": "Wh"
+          },
+          {
+            "type": "producedActiveEnergyIndex",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 0
+            },
+            "uuid": "clamp_s0_c0",
+            "value": 560,
+            "unit": "Wh"
+          },
+          {
+            "type": "producedActiveEnergyIndex",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 1
+            },
+            "uuid": "clamp_s0_c1",
+            "value": 10,
+            "unit": "Wh"
+          },
+          {
+            "type": "producedActiveEnergyIndex",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 2
+            },
+            "uuid": "clamp_s0_c2",
+            "value": 0,
+            "unit": "Wh"
+          },
+          {
+            "type": "producedActiveEnergyIndex",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 3
+            },
+            "uuid": "clamp_s0_c3",
+            "value": 970,
+            "unit": "Wh"
+          },
+          {
+            "type": "producedActiveEnergyIndex",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 4
+            },
+            "uuid": "clamp_s0_c4",
+            "value": 850,
+            "unit": "Wh"
+          },
+          {
+            "type": "producedActiveEnergyIndex",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 5
+            },
+            "uuid": "clamp_s0_c5",
+            "value": 570,
+            "unit": "Wh"
+          },
+          {
+            "type": "producedActiveEnergyIndex",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 6
+            },
+            "uuid": "clamp_s0_c6",
+            "value": 0,
+            "unit": "Wh"
+          },
+          {
+            "type": "producedActiveEnergyIndex",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 7
+            },
+            "uuid": "clamp_s0_c7",
+            "value": 130,
+            "unit": "Wh"
+          },
+          {
+            "type": "producedActiveEnergyIndex",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 8
+            },
+            "uuid": "clamp_s0_c8",
+            "value": 0,
+            "unit": "Wh"
+          },
+          {
+            "type": "producedActiveEnergyIndex",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 9
+            },
+            "uuid": "clamp_s0_c9",
+            "value": 250,
+            "unit": "Wh"
+          },
+          {
+            "type": "producedActiveEnergyIndex",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 10
+            },
+            "uuid": "clamp_s0_c10",
+            "value": 170,
+            "unit": "Wh"
+          },
+          {
+            "type": "producedActiveEnergyIndex",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 11
+            },
+            "uuid": "clamp_s0_c11",
+            "value": 190,
+            "unit": "Wh"
+          },
+          {
+            "type": "positiveReactiveEnergyIndex",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 0
+            },
+            "uuid": "clamp_s0_c0",
+            "value": 459260,
+            "unit": "varh"
+          },
+          {
+            "type": "positiveReactiveEnergyIndex",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 1
+            },
+            "uuid": "clamp_s0_c1",
+            "value": 66880,
+            "unit": "varh"
+          },
+          {
+            "type": "positiveReactiveEnergyIndex",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 2
+            },
+            "uuid": "clamp_s0_c2",
+            "value": 20,
+            "unit": "varh"
+          },
+          {
+            "type": "positiveReactiveEnergyIndex",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 3
+            },
+            "uuid": "clamp_s0_c3",
+            "value": 2690,
+            "unit": "varh"
+          },
+          {
+            "type": "positiveReactiveEnergyIndex",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 4
+            },
+            "uuid": "clamp_s0_c4",
+            "value": 14730,
+            "unit": "varh"
+          },
+          {
+            "type": "positiveReactiveEnergyIndex",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 5
+            },
+            "uuid": "clamp_s0_c5",
+            "value": 28940,
+            "unit": "varh"
+          },
+          {
+            "type": "positiveReactiveEnergyIndex",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 6
+            },
+            "uuid": "clamp_s0_c6",
+            "value": 849650,
+            "unit": "varh"
+          },
+          {
+            "type": "positiveReactiveEnergyIndex",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 7
+            },
+            "uuid": "clamp_s0_c7",
+            "value": 1060340,
+            "unit": "varh"
+          },
+          {
+            "type": "positiveReactiveEnergyIndex",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 8
+            },
+            "uuid": "clamp_s0_c8",
+            "value": 786640,
+            "unit": "varh"
+          },
+          {
+            "type": "positiveReactiveEnergyIndex",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 9
+            },
+            "uuid": "clamp_s0_c9",
+            "value": 700,
+            "unit": "varh"
+          },
+          {
+            "type": "positiveReactiveEnergyIndex",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 10
+            },
+            "uuid": "clamp_s0_c10",
+            "value": 460,
+            "unit": "varh"
+          },
+          {
+            "type": "positiveReactiveEnergyIndex",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 11
+            },
+            "uuid": "clamp_s0_c11",
+            "value": 113700,
+            "unit": "varh"
+          },
+          {
+            "type": "negativeReactiveEnergyIndex",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 0
+            },
+            "uuid": "clamp_s0_c0",
+            "value": 18290,
+            "unit": "varh"
+          },
+          {
+            "type": "negativeReactiveEnergyIndex",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 1
+            },
+            "uuid": "clamp_s0_c1",
+            "value": 828430,
+            "unit": "varh"
+          },
+          {
+            "type": "negativeReactiveEnergyIndex",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 2
+            },
+            "uuid": "clamp_s0_c2",
+            "value": 75050,
+            "unit": "varh"
+          },
+          {
+            "type": "negativeReactiveEnergyIndex",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 3
+            },
+            "uuid": "clamp_s0_c3",
+            "value": 1624730,
+            "unit": "varh"
+          },
+          {
+            "type": "negativeReactiveEnergyIndex",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 4
+            },
+            "uuid": "clamp_s0_c4",
+            "value": 1798010,
+            "unit": "varh"
+          },
+          {
+            "type": "negativeReactiveEnergyIndex",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 5
+            },
+            "uuid": "clamp_s0_c5",
+            "value": 913800,
+            "unit": "varh"
+          },
+          {
+            "type": "negativeReactiveEnergyIndex",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 6
+            },
+            "uuid": "clamp_s0_c6",
+            "value": 0,
+            "unit": "varh"
+          },
+          {
+            "type": "negativeReactiveEnergyIndex",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 7
+            },
+            "uuid": "clamp_s0_c7",
+            "value": 0,
+            "unit": "varh"
+          },
+          {
+            "type": "negativeReactiveEnergyIndex",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 8
+            },
+            "uuid": "clamp_s0_c8",
+            "value": 0,
+            "unit": "varh"
+          },
+          {
+            "type": "negativeReactiveEnergyIndex",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 9
+            },
+            "uuid": "clamp_s0_c9",
+            "value": 6222610,
+            "unit": "varh"
+          },
+          {
+            "type": "negativeReactiveEnergyIndex",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 10
+            },
+            "uuid": "clamp_s0_c10",
+            "value": 10650,
+            "unit": "varh"
+          },
+          {
+            "type": "negativeReactiveEnergyIndex",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 11
+            },
+            "uuid": "clamp_s0_c11",
+            "value": 240,
+            "unit": "varh"
+          },
+          {
+            "type": "power",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 0
+            },
+            "uuid": "clamp_s0_c0",
+            "value": 81,
+            "unit": "W"
+          },
+          {
+            "type": "power",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 1
+            },
+            "uuid": "clamp_s0_c1",
+            "value": 349,
+            "unit": "W"
+          },
+          {
+            "type": "power",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 2
+            },
+            "uuid": "clamp_s0_c2",
+            "value": 315,
+            "unit": "W"
+          },
+          {
+            "type": "power",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 3
+            },
+            "uuid": "clamp_s0_c3",
+            "value": 178,
+            "unit": "W"
+          },
+          {
+            "type": "power",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 4
+            },
+            "uuid": "clamp_s0_c4",
+            "value": 217,
+            "unit": "W"
+          },
+          {
+            "type": "power",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 5
+            },
+            "uuid": "clamp_s0_c5",
+            "value": 266,
+            "unit": "W"
+          },
+          {
+            "type": "power",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 6
+            },
+            "uuid": "clamp_s0_c6",
+            "value": 747,
+            "unit": "W"
+          },
+          {
+            "type": "power",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 7
+            },
+            "uuid": "clamp_s0_c7",
+            "value": 1006,
+            "unit": "W"
+          },
+          {
+            "type": "power",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 8
+            },
+            "uuid": "clamp_s0_c8",
+            "value": 679,
+            "unit": "W"
+          },
+          {
+            "type": "power",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 9
+            },
+            "uuid": "clamp_s0_c9",
+            "value": 4759,
+            "unit": "W"
+          },
+          {
+            "type": "power",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 10
+            },
+            "uuid": "clamp_s0_c10",
+            "value": 1,
+            "unit": "W"
+          },
+          {
+            "type": "power",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 11
+            },
+            "uuid": "clamp_s0_c11",
+            "value": 15,
+            "unit": "W"
+          },
+          {
+            "type": "reactivePower",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 0
+            },
+            "uuid": "clamp_s0_c0",
+            "value": 16777197,
+            "unit": "var"
+          },
+          {
+            "type": "reactivePower",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 1
+            },
+            "uuid": "clamp_s0_c1",
+            "value": 16777134,
+            "unit": "var"
+          },
+          {
+            "type": "reactivePower",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 2
+            },
+            "uuid": "clamp_s0_c2",
+            "value": 16777192,
+            "unit": "var"
+          },
+          {
+            "type": "reactivePower",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 3
+            },
+            "uuid": "clamp_s0_c3",
+            "value": 16777098,
+            "unit": "var"
+          },
+          {
+            "type": "reactivePower",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 4
+            },
+            "uuid": "clamp_s0_c4",
+            "value": 16777062,
+            "unit": "var"
+          },
+          {
+            "type": "reactivePower",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 5
+            },
+            "uuid": "clamp_s0_c5",
+            "value": 16777071,
+            "unit": "var"
+          },
+          {
+            "type": "reactivePower",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 6
+            },
+            "uuid": "clamp_s0_c6",
+            "value": 797,
+            "unit": "var"
+          },
+          {
+            "type": "reactivePower",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 7
+            },
+            "uuid": "clamp_s0_c7",
+            "value": 907,
+            "unit": "var"
+          },
+          {
+            "type": "reactivePower",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 8
+            },
+            "uuid": "clamp_s0_c8",
+            "value": 697,
+            "unit": "var"
+          },
+          {
+            "type": "reactivePower",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 9
+            },
+            "uuid": "clamp_s0_c9",
+            "value": 16776737,
+            "unit": "var"
+          },
+          {
+            "type": "reactivePower",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 10
+            },
+            "uuid": "clamp_s0_c10",
+            "value": 16777215,
+            "unit": "var"
+          },
+          {
+            "type": "reactivePower",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 11
+            },
+            "uuid": "clamp_s0_c11",
+            "value": 11,
+            "unit": "var"
+          },
+          {
+            "type": "voltage",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 0
+            },
+            "uuid": "clamp_s0_c0",
+            "value": 233.8,
+            "unit": "V"
+          },
+          {
+            "type": "voltage",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 1
+            },
+            "uuid": "clamp_s0_c1",
+            "value": 233.60000000000002,
+            "unit": "V"
+          },
+          {
+            "type": "voltage",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 2
+            },
+            "uuid": "clamp_s0_c2",
+            "value": 236.70000000000002,
+            "unit": "V"
+          },
+          {
+            "type": "frequency",
+            "hardwareData": {
+              "socket": 0,
+              "channel": 0
+            },
+            "uuid": "clamp_s0_c0",
+            "value": 50,
+            "unit": "hZ"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "description": "squid pro payload with payload size error",
+    "type": "uplink",
+    "input": {
+      "bytes": "00C040c3860d01e4af01da8901e8cf0329e103dd29010b7801b46503745001ae3715f9b400a6310040c53800000100000000006100005500003900000000000d000000000019000011000013000040c666b300201a000200000d0100c105004e0b00e54b01329e014833014600002e00006a2c0040c72507009b4301511d00a97a0259be02f46401000000000000000000b57e0929040018000040c45100005d01003b0100b20000d900000a0100eb0200ee0300a702009712000100000f000040c8edffffaeffffe8ffff8affff66ffff6fffff1d03008b0300b9020021feffffffff0b0000403a220920093f09401c8813",
+      "fPort": 1,
+      "recvTime": "2025-01-01T12:00:00"
+    },
+    "output": {
+      "errors": [ "Payload size indicated does not match payload size given" ]
+    }
+  },
+  {
+    "description": "squid pro payload with wrong header error",
+    "type": "uplink",
+    "input": {
+      "bytes": "0002A250",
+      "fPort": 1,
+      "recvTime": "2025-01-01T12:00:00"
+    },
+    "output": {
+      "data": {
+        "datapoints": [
+          {
+            "uuid": "digital_input_s0_c0",
+            "hardwareData": { "socket": 0, "channel": 0 },
+            "type": "error"
+          }
+        ]
+      }
+    }
+  }
+]

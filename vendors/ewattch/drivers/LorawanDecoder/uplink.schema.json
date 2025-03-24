@@ -1,0 +1,55 @@
+{
+  "type": "object",
+  "properties": {
+    "data": {
+      "description": "The open JavaScript object representing the decoded payload when no error is encountered while decoding. required if success.",
+      "type": "object",
+      "properties": {
+        "datapoints": {
+          "type": "array",
+          "items": {
+            "description": "A JSON Object containing decoded info found in payload",
+            "type": "object",
+            "properties": {
+              "type": {
+                "description": "Datatype found, e.g. temperature, luminosity, motion, co2, ...",
+                "type": "string"
+              },
+              "uuid": {
+                "description": "Unique identifier of the data source",
+                "type": "string"
+              },
+              "hardwareData": {
+                "description": "A JSON Object containing physical information from the sensor (socket and channel used to collect the data)",
+                "type": "object",
+                "properties": {
+                  "socket": {
+                    "type": "integer"
+                  },
+                  "channel": {
+                    "type": "integer"
+                  }
+                }
+              },
+              "value": {
+                "description": "Value of the measure. Optional",
+                "type": ["number", "string"]
+              },
+              "unit": {
+                "description": "Unit used for the value, e.g. lux, °C, s, PPM, mAh, ...",
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "errors": {
+      "description": "The list of errors encountered while decoding payload",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}
