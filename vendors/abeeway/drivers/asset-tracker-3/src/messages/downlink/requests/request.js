@@ -1,39 +1,28 @@
 let responseClass = require("../../uplink/responses/response");
 let util = require("../../../util");
 
-const RequestType = Object.freeze({
-    GENERIC_CONFIGURATION_SET: "GENERIC_CONFIGURATION_SET",
-    PARAM_CLASS_CONFIGURATION_SET: "PARAM_CLASS_CONFIGURATION_SET",
-    GENERIC_CONFIGURATION_GET: "GENERIC_CONFIGURATION_GET",
-    PARAM_CLASS_CONFIGURATION_GET: "PARAM_CLASS_CONFIGURATION_GET",
-    BLE_STATUS_CONNECTIVITY: "BLE_STATUS",
-    GET_GPS_ALMANAC_ENTRY: "GET_GPS_ALMANAC_ENTRY",
-    GET_BEIDOU_ALMANAC_ENTRY: "GET_BEIDOU_ALMANAC_ENTRY",
-    SET_GPS_ALMANAC_ENTRY: "SET_GPS_ALMANAC_ENTRY",
-    SET_BEIDOU_ALMANAC_ENTRY: "SET_BEIDOU_ALMANAC_ENTRY",
-})
+let RequestType = responseClass.ResponseType
+const SENSOR_TYPES = {
+   "DO_NOT_USE" :0,
+    "ACCELEROMETER": 1
+};
 function Request(requestType,
     genericConfigurationSet,
     parameterClassConfigurationSet,
     genericConfigurationGet,
     parameterClassConfigurationGet,
     bleStatusConnectivity,
-    getGpsAlmanacEntry,
-    getBeidouAlmanacEntry,
-    setGpsAlmanacEntry,
-    setBeidouAlmanacEntry
+    crc,
+    sensorIds
     ){
         this.requestType = requestType;
         this.genericConfigurationSet = genericConfigurationSet;
         this.parameterClassConfigurationSet = parameterClassConfigurationSet;
         this.genericConfigurationGet = genericConfigurationGet;
         this.parameterClassConfigurationGet = parameterClassConfigurationGet;
-        this.bleStatusConnectivity= bleStatusConnectivity;
-        this.getGpsAlmanacEntry = getGpsAlmanacEntry;
-        this.getBeidouAlmanacEntry = getBeidouAlmanacEntry;
-        this.setGpsAlmanacEntry = setGpsAlmanacEntry;
-        this.setBeidouAlmanacEntry = setBeidouAlmanacEntry; 
-        
+        this.bleStatusConnectivity = bleStatusConnectivity;
+        this.crc = crc;
+        this.sensorIds = sensorIds;
 }
 function ParameterClassConfigurationGet(group, parameters){
     this.group = group
@@ -58,6 +47,12 @@ function encodeRequest(data){
         case 3:
             encData = encodeRequestParameterClassConfigurationGet(data.getParameterClass, encData)
             break;
+        case 5:
+            encData = encodeCrc(data.crc, encData)
+            break;
+        case 6:
+            encData = encodeSensorRequest(data.sensorIds, encData)
+            break;
         default:
             throw new Error("Unknown request type")
 
@@ -76,14 +71,10 @@ function encodeRequestType(value){
             return 3;
         case "BLE_STATUS_CONNECTIVITY":
             return 4;
-        case "GET_GPS_ALMANAC_ENTRY":
+        case "CRC_CONFIGURATION_REQUEST":
             return 5;
-        case "GET_BEIDOU_ALMANAC_ENTRY":
+        case "SENSOR_REQUEST":
             return 6;
-        case "SET_GPS_ALMANAC_ENTRY":
-            return 7;
-        case "SET_BEIDOU_ALMANAC_ENTRY":
-            return 8;
         default:
             throw new Error("Unknown request type")
 
@@ -115,17 +106,13 @@ function decodeRequest(payload){
             //TO BE defined
             break;
         case 5:
-            request.requestType = RequestType.GET_GPS_ALMANAC_ENTRY
+            request.requestType = RequestType.CRC_CONFIGURATION_REQUEST
+            request.crc = decodeCrc(payload.slice(2))
             break;
         case 6:
-            request.requestType = RequestType.GET_BEIDOU_ALMANAC_ENTRY
-            break;
-        case 7:
-            request.requestType = RequestType.SET_GPS_ALMANAC_ENTRY
-            break;
-        case 8:
-            request.requestType = RequestType.SET_BEIDOU_ALMANAC_ENTRY
-            break;
+            request.requestType = RequestType.SENSOR_REQUEST
+            request.sensorIds = decodeSensorRequest(payload.slice(2))
+           break;
         default:
             throw new Error("Request Type Unknown");
     }
@@ -166,6 +153,85 @@ function determineRequestGenericConfigurationSet(payload){
     }
     return request
 }
+function encodeCrc(groupNames, encData) {
+    // Ensure groupNames is an array and not empty
+    if (!Array.isArray(groupNames) || groupNames.length === 0) {
+        throw new Error("Group names array is required and cannot be empty");
+    }
+
+    let bitmap = 0;
+
+    // Loop through all group names and set the corresponding bit if the group is selected
+    groupNames.forEach(group => {
+        // Find the index of the group name in the GroupType object
+        let index = Object.values(responseClass.GroupType).indexOf(group);
+        
+        // If the group is valid, set the corresponding bit in the bitmap
+        if (index !== -1) {
+            bitmap |= (1 << index);
+        } else {
+            console.warn(`Group name "${group}" not found in GroupType. Skipping.`);
+        }
+    });
+
+    // Convert the bitmap into a 2-byte array (high byte and low byte)
+    // Add the result to encData
+    encData.push(bitmap >> 8, bitmap & 0xFF);
+
+    return encData;
+}
+
+// Convert bitmap back to group names
+function decodeCrc(bitmapArray) {
+    // Check if the bitmapArray is [0, 0], meaning all groups are requested
+    if (bitmapArray[0] === 0 && bitmapArray[1] === 0) {
+        return Object.values(responseClass.GroupType);  // Return all groups if crc is empty
+    }
+    if (bitmapArray.length < 2) return []; // Avoid out-of-bounds errors
+
+    // Convert 2-byte array into an integer
+    let bitmap = (bitmapArray[0] << 8) | bitmapArray[1];
+
+    let result = [];
+    Object.keys(responseClass.GroupType).forEach((key, index) => {
+        if ((bitmap & (1 << index)) !== 0) {  // Corrected bitwise check
+            result.push(responseClass.GroupType[key]);
+        }
+    });
+    return result;
+}
+function decodeSensorRequest(buffer) {
+    return Array.from(buffer).map(id => {
+        // Find the type corresponding to the numeric id
+        let type = Object.keys(SENSOR_TYPES).find(key => SENSOR_TYPES[key] === id);
+        return {
+            id,
+            type: type || "Unknown"  // If no match, set it to "Unknown"
+        };
+    });
+}
+
+// Encode: Convert sensor objects to binary format and fill encData
+function encodeSensorRequest(sensorIds, encData) {
+
+    if (!Array.isArray(sensorIds)) {
+        throw new Error("sensorIds must be an array.");
+    }
+    if (!Array.isArray(encData)) {
+        throw new Error("encData must be an array.");
+    }
+
+    sensorIds.forEach((sensor, index) => {
+        if (!(sensor.type in SENSOR_TYPES)) {
+            throw new Error(`Unknown sensor type: ${sensor.type}`);
+        }
+        let encodedValue = SENSOR_TYPES[sensor.type];
+        encData.push(encodedValue);
+    });
+    return encData;
+}
+
+
 function determineRequestParameterClassConfigurationSet(payload){
     let groupId = payload[0]
     let i = 1;
@@ -314,7 +380,7 @@ function encodeRequestParameterClassConfigurationGet (getParameterClass, encData
     return encData;
 }
 
-function encodeSetParameter( parameter, paramValue, encData , i){
+/* function encodeSetParameter( parameter, paramValue, encData , i){
     let size
     let paramType = parameter.parameterType.type
     switch (paramType){ 
@@ -512,14 +578,283 @@ function encodeSetParameter( parameter, paramValue, encData , i){
         }
         return i + size + 1 ;
     }
+    case "ParameterTypeByteArray":
+        size = parameter.parameterType.size;
+        encData[i] = encodeSizeAndType(size, 4);
+    
+        if (!parameter.parameterType.properties) {
+            // Handle raw byte array (no properties)
+            encodeRawByteArray(paramValue, size, encData, i);
+            return i + size + 1;
+        } else {
+            // Handle byte array with properties
+            encodeByteArrayWithProperties(parameter, paramValue, size, encData, i);
+            return i + size + 1;
+        }
             
-
     default:
         throw new Error("Parameter type is unknown");
         
     }
-}
+} */
 // Function encode size and type for a parameter
+
+function encodeSetParameter(parameter, paramValue, encData, i) {
+    const paramType = parameter.parameterType.type;
+
+    switch (paramType) {
+        case "ParameterTypeNumber":
+            return encodeNumberParameter(parameter, paramValue, encData, i);
+        case "ParameterTypeString":
+            return encodeStringParameter(parameter, paramValue, encData, i);
+        case "ParameterTypeBitMask":
+            return encodeBitMaskParameter(parameter, paramValue, encData, i);
+        case "ParameterTypeAsciiString":
+            return encodeAsciiStringParameter(parameter, paramValue, encData, i);
+        case "ParameterTypeByteArray":
+            return encodeByteArrayParameter(parameter, paramValue, encData, i);
+        default:
+            throw new Error("Parameter type is unknown");
+    }
+}
+
+// Helper Functions
+
+/**
+ * Encodes a number parameter.
+ */
+function encodeNumberParameter(parameter, paramValue, encData, startIndex) {
+    const size = 4;
+    encData[startIndex] = encodeSizeAndType(size, 1);
+
+    const range = parameter.parameterType.range;
+    const multiply = parameter.parameterType.multiply;
+    const additionalValues = parameter.parameterType.additionalValues;
+    const additionalRanges = parameter.parameterType.additionalRanges;
+
+    if (!util.checkParamValueRange(paramValue, range.minimum, range.maximum, range.exclusiveMinimum, range.exclusiveMaximum, additionalValues, additionalRanges)) {
+        throw new Error(`${parameter.driverParameterName} parameter value is out of range`);
+    }
+
+    let value = paramValue;
+    if (multiply !== undefined) {
+        value /= multiply;
+    }
+    if (value < 0) {
+        value += 0x100000000;
+    }
+
+    encData[startIndex + 1] = (value >> 24) & 0xFF;
+    encData[startIndex + 2] = (value >> 16) & 0xFF;
+    encData[startIndex + 3] = (value >> 8) & 0xFF;
+    encData[startIndex + 4] = value & 0xFF;
+
+    return startIndex + size + 1;
+}
+
+/**
+ * Encodes a string parameter.
+ */
+function encodeStringParameter(parameter, paramValue, encData, startIndex) {
+    const size = 4;
+    encData[startIndex] = encodeSizeAndType(size, 1);
+
+    const possibleValues = parameter.parameterType.possibleValues;
+    const firmwareValues = parameter.parameterType.firmwareValues;
+
+    const index = possibleValues.indexOf(paramValue);
+    if (index === -1) {
+        throw new Error(`${parameter.driverParameterName} parameter value is unknown`);
+    }
+
+    encData[startIndex + 1] = 0;
+    encData[startIndex + 2] = 0;
+    encData[startIndex + 3] = 0;
+    encData[startIndex + 4] = firmwareValues[index];
+
+    return startIndex + size + 1;
+}
+
+/**
+ * Encodes a bitmask parameter.
+ */
+function encodeBitMaskParameter(parameter, paramValue, encData, startIndex) {
+    const size = 4;
+    encData[startIndex] = encodeSizeAndType(size, 1);
+
+    const properties = parameter.parameterType.properties;
+    const bitMap = parameter.parameterType.bitMask;
+
+    let flags = 0;
+    for (let bit of bitMap) {
+        const flagName = bit.valueFor;
+        const flagValue = paramValue[flagName];
+
+        if (flagValue === undefined) {
+            throw new Error(`Bit ${flagName} is missing`);
+        }
+
+        const property = properties.find(el => el.name === flagName);
+        if (!property) {
+            throw new Error(`Property ${flagName} not found`);
+        }
+
+        flags = encodeProperty(property, bit, flagValue, flags);
+    }
+
+    encData[startIndex + 1] = (flags >> 24) & 0xFF;
+    encData[startIndex + 2] = (flags >> 16) & 0xFF;
+    encData[startIndex + 3] = (flags >> 8) & 0xFF;
+    encData[startIndex + 4] = flags & 0xFF;
+
+    return startIndex + size + 1;
+}
+
+/**
+ * Encodes an ASCII string parameter.
+ */
+function encodeAsciiStringParameter(parameter, paramValue, encData, startIndex) {
+    const size = paramValue.length;
+    encData[startIndex] = encodeSizeAndType(size, 3);
+
+    for (let j = 0; j < paramValue.length; j++) {
+        encData[startIndex + j + 1] = paramValue.charCodeAt(j) & 0xFF;
+    }
+
+    return startIndex + size + 1;
+}
+
+/**
+ * Encodes a byte array parameter.
+ */
+function encodeByteArrayParameter(parameter, paramValue, encData, startIndex) {
+    const size = parameter.parameterType.size;
+    encData[startIndex] = encodeSizeAndType(size, 4);
+
+    if (!parameter.parameterType.properties) {
+        encodeRawByteArray(paramValue, size, encData, startIndex);
+    } else {
+        encodeByteArrayWithProperties(parameter, paramValue, size, encData, startIndex);
+    }
+
+    return startIndex + size + 1;
+}
+
+/**
+ * Encodes a raw byte array (no properties).
+ */
+function encodeRawByteArray(paramValue, size, encData, startIndex) {
+    const paramValueHex = paramValue.toString().replace(/[{}]/g, '').replace(/,/g, ''); // Remove braces and commas
+    for (let j = 0; j < size; j++) {
+        encData[startIndex + j + 1] = parseInt(paramValueHex.slice(j * 2, j * 2 + 2), 16);
+    }
+}
+
+/**
+ * Encodes a byte array with properties.
+ */
+function encodeByteArrayWithProperties(parameter, paramValue, size, encData, startIndex) {
+    const arrayProperties = parameter.parameterType.properties;
+    const byteMask = parameter.parameterType.byteMask;
+
+    for (let j = 0; j < size; j++) {
+        let flags = 0;
+        flags = encodeProperties(arrayProperties, byteMask, paramValue[j], flags);
+        encData[startIndex + j + 1] = flags & 0xFF;
+    }
+}
+
+/**
+ * Encodes properties for a single byte in the byte array.
+ */
+function encodeProperties(arrayProperties, byteMask, paramValue, flags) {
+    for (let bit of byteMask) {
+        const flagName = bit.valueFor;
+        const flagValue = paramValue[flagName];
+
+        if (flagValue === undefined) {
+            throw new Error(`Byte ${flagName} is missing`);
+        }
+
+        const property = arrayProperties.find(el => el.name === flagName);
+        if (!property) {
+            throw new Error(`Property ${flagName} not found`);
+        }
+
+        flags = encodeProperty(property, bit, flagValue, flags);
+    }
+    return flags;
+}
+
+/**
+ * Encodes a single property based on its type.
+ */
+function encodeProperty(property, bit, flagValue, flags) {
+    switch (property.type) {
+        case "PropertyBoolean":
+            return encodeBooleanProperty(bit, flagValue, flags);
+        case "PropertyString":
+            return encodeStringProperty(property, bit, flagValue, flags);
+        case "PropertyNumber":
+            return encodeNumberProperty(property, bit, flagValue, flags);
+        case "PropertyObject":
+            return encodeObjectProperty(bit, flagValue, flags);
+        default:
+            throw new Error(`Unknown property type: ${property.type}`);
+    }
+}
+
+/**
+ * Encodes a boolean property.
+ */
+function encodeBooleanProperty(bit, flagValue, flags) {
+    let value = flagValue;
+    if (bit.inverted) {
+        value = !value;
+    }
+    return flags | (Number(value) << bit.bitShift);
+}
+
+/**
+ * Encodes a string property.
+ */
+function encodeStringProperty(property, bit, flagValue, flags) {
+    const index = property.possibleValues.indexOf(flagValue);
+    if (index === -1) {
+        throw new Error(`${property.name} value is not among possible values`);
+    }
+    return flags | (property.firmwareValues[index] << bit.bitShift);
+}
+
+/**
+ * Encodes a number property.
+ */
+function encodeNumberProperty(property, bit, flagValue, flags) {
+    if (property.range) {
+        if (!util.checkParamValueRange(flagValue, property.range.minimum, property.range.maximum, property.range.exclusiveMinimum, property.range.exclusiveMaximum, property.additionalValues, property.additionalRanges)) {
+            throw new Error(`Value out of range for ${property.name}`);
+        }
+    }
+    return flags | (flagValue << bit.bitShift);
+}
+
+/**
+ * Encodes an object property.
+ */
+function encodeObjectProperty(bit, flagValue, flags) {
+    for (let b of bit.values) {
+        const fValue = flagValue[b.valueFor];
+        if (fValue === undefined) {
+            throw new Error(`Bit ${bit.valueFor}.${b.valueFor} is missing`);
+        }
+        let value = fValue;
+        if (b.inverted) {
+            value = !value;
+        }
+        flags |= Number(value) << b.bitShift;
+    }
+    return flags;
+}
 function encodeSizeAndType(size, type){
     return ((size << 0x03)| type)
 
@@ -565,10 +900,13 @@ function determineValueFromGroupType(groupType) {
             return 9;
         case responseClass.GroupType.CELLULAR:
             return 10;
+        case responseClass.GroupType.BLE:
+            return 11;
         default:
             throw new Error("Unknown group type");
     }
 }
+
 module.exports = {
     RequestType: RequestType,
     encodeRequest: encodeRequest,

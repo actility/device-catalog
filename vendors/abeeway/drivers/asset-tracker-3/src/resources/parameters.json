@@ -3,7 +3,7 @@
       "firmwareVersion":"3.0",
       "uplinkPort":"19",
       "firmwareParameters":[
-         {
+         { 
             "driverParameterName":"sysHighestTemperature",
             "groupId":"0x00",
             "localId":"0x00",
@@ -113,7 +113,7 @@
             "driverParameterName":"coreStatusPeriod",
             "groupId":"0x01",
             "localId":"0x01",
-            "defaultValue":0,
+            "defaultValue":3600,
             "unit":"s",
             "description":"Status monitoring period",
             "parameterType":{
@@ -136,242 +136,288 @@
             ]
          },
          {
-            "driverParameterName":"coreNotifEnable1",
-            "groupId":"0x01",
-            "localId":"0x02",
-            "defaultValue":1,
-            "description":"",
-            "parameterType":{
-               "type":"ParameterTypeBitMask",
-               "properties":[
+            "driverParameterName": "coreNotifEnable",
+            "groupId": "0x01",
+            "localId": "0x02",
+            "defaultValue": "{0B,00,00,00,00,00}",
+            "description": "Enables core notifications for various events.",
+            "parameterType": {
+               "type": "ParameterTypeByteArray",
+               "size": 6,
+               "distinctValues":true,
+               "properties": [
                   {
-                     "name":"sosClass",
-                     "type":"PropertyObject",
-                     "properties":[
+                     "name": "systemClass",
+                     "type": "PropertyObject",
+                     "properties": [
                         {
-                           "name":"sosOn",
-                           "type":"PropertyBoolean",
-                           "description":"SOS activated."
+                           "name": "status",
+                           "type": "PropertyBoolean",
+                           "description": "System status Versions, temperature, reset cause."
                         },
                         {
-                           "name":"sosOff",
-                           "type":"PropertyBoolean",
-                           "description":"SOS deactivated."
+                           "name": "lowBattery",
+                           "type": "PropertyBoolean",
+                           "description": "Low battery alert."
+                        },
+                        {
+                           "name": "bleStatus",
+                           "type": "PropertyBoolean",
+                           "description": "Bluetooth Low Energy status"
+                        },
+                        {
+                           "name": "tamperDetection",
+                           "type": "PropertyBoolean",
+                           "description": "Tamper detection alert."
+                        },
+                        {
+                           "name": "heartbeat",
+                           "type": "PropertyBoolean",
+                           "description": "Heartbeat message."
                         }
-                     ]},
-                     {
-                        "name":"temperatureClass",
-                        "type":"PropertyObject",
-                        "properties":[
-                           {
-                              "name":"tempHigh",
-                              "type":"PropertyBoolean",
-                              "description":"Critical high temperature reached"
-                           },
-                           {
-                              "name":"tempLow",
-                              "type":"PropertyBoolean",
-                              "description":"Critical low temperature reached"
-                           },
-                           {
-                              "name":"tempNormal",
-                              "type":"PropertyBoolean",
-                              "description":"Temperature back to normal"
-                           }
-                        ]},
-                        {
-                           "name":"accelerometerClass",
-                           "type":"PropertyObject",
-                           "properties":[
-                              {
-                                 "name":"motionStart",
-                                 "type":"PropertyBoolean",
-                                 "description":"Motion start detected."
-                              },
-                              {
-                                 "name":"motionEnd",
-                                 "type":"PropertyBoolean",
-                                 "description":"Motion end detected."
-                              },
-                              {
-                                 "name":"shock",
-                                 "type":"PropertyBoolean",
-                                 "description":"Shock detected."
-                              }
-                           ]},
-                           {
-                              "name":"networkingClass",
-                              "type":"PropertyObject",
-                              "properties":[
-                                 {
-                                    "name":"mainUp",
-                                    "type":"PropertyBoolean",
-                                    "description":"Main network is up."
-                                 },
-                                 {
-                                    "name":"backupUp",
-                                    "type":"PropertyBoolean",
-                                    "description":"Main network down. Backup is up."
-                                 }
-                              ]}],
-                     "bitMask":[
 
-                        {"valueFor":"sosClass",
-                        "type":"BitMaskObject",
-                             
-                     "values":[
+                     ]
+                  },
+                  {
+                     "name": "sosClass",
+                     "type": "PropertyObject",
+                     "properties": [
                         {
-                           "type":"BitMaskValue",
-                           "valueFor":"sosOn",
-                           "bitShift":0,
-                           "length":1
+                           "name": "sosOn",
+                           "type": "PropertyBoolean",
+                           "description": "SOS activated."
                         },
                         {
-                           "type":"BitMaskValue",
-                           "valueFor":"sosOff",
-                           "bitShift":1,
-                           "length":1
-                        }]
-                     },
-                     {"valueFor":"temperatureClass",
-                     "type":"BitMaskObject",
-                     "values":[
-                        {
-                           "type":"BitMaskValue",
-                           "valueFor":"tempHigh",
-                           "bitShift":8,
-                           "length":1
-                        },
-                        {
-                           "type":"BitMaskValue",
-                           "valueFor":"tempLow",
-                           "bitShift":9,
-                           "length":1
-                        },
-                        {
-                           "type":"BitMaskValue",
-                           "valueFor":"tempNormal",
-                           "bitShift":10,
-                           "length":1
+                           "name": "sosOff",
+                           "type": "PropertyBoolean",
+                           "description": "SOS deactivated."
                         }
                      ]
-                     },
-                     {"valueFor":"accelerometerClass",
-                     "type":"BitMaskObject",
-                     "values":[
+                  },
+                  {
+                     "name": "temperatureClass",
+                     "type": "PropertyObject",
+                     "properties": [
                         {
-                           "type":"BitMaskValue",
-                           "valueFor":"motionStart",
-                           "bitShift":16,
-                           "length":1
+                           "name": "tempHigh",
+                           "type": "PropertyBoolean",
+                           "description": "Critical high temperature reached"
                         },
                         {
-                           "type":"BitMaskValue",
-                           "valueFor":"motionEnd",
-                           "bitShift":17,
-                           "length":1
+                           "name": "tempLow",
+                           "type": "PropertyBoolean",
+                           "description": "Critical low temperature reached"
                         },
                         {
-                           "type":"BitMaskValue",
-                           "valueFor":"shock",
-                           "bitShift":18,
-                           "length":1
+                           "name": "tempNormal",
+                           "type": "PropertyBoolean",
+                           "description": "Temperature back to normal"
                         }
                      ]
-                     },
-                     {"valueFor":"networkingClass",
-                     "type":"BitMaskObject",
-                     "values":[
-                        {
-                           "type":"BitMaskValue",
-                           "valueFor":"mainUp",
-                           "bitShift":24,
-                           "length":1
-                        },
-                        {
-                           "type":"BitMaskValue",
-                           "valueFor":"backupUp",
-                           "bitShift":25,
-                           "length":1
-                        }]
-                     }]
                   },
-       
-         "compatibleTrackerModels":[
-            {
-               "producerId":"abeeway",
-               "moduleId":"compact-tracker",
-               "version":"2.0"
-            },
-            {
-               "producerId":"abeeway",
-               "moduleId":"combo-compact-tracker",
-               "version":"1.0"
-            }
-         ]},
-         {
-            "driverParameterName":"coreNotifEnable2",
-            "groupId":"0x01",
-            "localId":"0x03",
-            "defaultValue":1,
-            "description":"",
-            "parameterType":{
-               "type":"ParameterTypeBitMask",
-               "properties":[
                   {
-                     "name":"geozoningClass",
-                     "type":"PropertyObject",
-                     "properties":[
+                     "name": "accelerometerClass",
+                     "type": "PropertyObject",
+                     "properties": [
                         {
-                           "name":"geozoningOn",
-                           "type":"PropertyBoolean",
-                           "description":"geozoning activated."
+                           "name": "motionStart",
+                           "type": "PropertyBoolean",
+                           "description": "Motion start detected."
                         },
                         {
-                           "name":"geozoningOff",
-                           "type":"PropertyBoolean",
-                           "description":"geozoning deactivated."
+                           "name": "motionEnd",
+                           "type": "PropertyBoolean",
+                           "description": "Motion end detected."
+                        },
+                        {
+                           "name": "shock",
+                           "type": "PropertyBoolean",
+                           "description": "Shock detected."
                         }
-                     ]}],
-                     "bitMask":[
-
-                        {"valueFor":"geozoningClass",
-                        "type":"BitMaskObject",
-                             
-                     "values":[
+                     ]
+                  },
+                  {
+                     "name": "networkingClass",
+                     "type": "PropertyObject",
+                     "properties": [
                         {
-                           "type":"BitMaskValue",
-                           "valueFor":"geozoningOn",
-                           "bitShift":0,
-                           "length":1
+                           "name": "mainUp",
+                           "type": "PropertyBoolean",
+                           "description": "Main network is up."
                         },
                         {
-                           "type":"BitMaskValue",
-                           "valueFor":"geozoningOff",
-                           "bitShift":1,
-                           "length":1
-                        }]
-                     }]
-                   
+                           "name": "backupUp",
+                           "type": "PropertyBoolean",
+                           "description": "Main network down. Backup is up."
+                        }
+                     ]
                   },
-       
-         "compatibleTrackerModels":[
-            {
-               "producerId":"abeeway",
-               "moduleId":"compact-tracker",
-               "version":"2.0"
+                  {
+                     "name": "geozoningClass",
+                     "type": "PropertyObject",
+                     "properties": [
+                        {
+                           "name": "geozoningOn",
+                           "type": "PropertyBoolean",
+                           "description": "Geozoning is on."
+                        }
+                     ]
+                  }
+               ],
+               "byteMask": [
+                  {
+                     "valueFor": "systemClass",
+                     "type": "BitMaskObject",
+                     "values": [
+                        {
+                           "type": "BitMaskValue",
+                           "valueFor": "status",
+                           "bitShift": 0,
+                           "length": 1
+                        },
+                        {
+                           "type": "BitMaskValue",
+                           "valueFor": "lowBattery",
+                           "bitShift": 1,
+                           "length": 1
+                        },
+                        {
+                           "type": "BitMaskValue",
+                           "valueFor": "bleStatus",
+                           "bitShift": 2,
+                           "length": 1
+                        },
+                        {
+                           "type": "BitMaskValue",
+                           "valueFor": "tamperDetection",
+                           "bitShift": 3,
+                           "length": 1
+                        },
+                        {
+                           "type": "BitMaskValue",
+                           "valueFor": "heartbeat",
+                           "bitShift": 4,
+                           "length": 1
+                        }
+                     ]
+                  },
+                  {
+                     "valueFor": "sosClass",
+                     "type": "BitMaskObject",
+                     "values": [
+                        {
+                           "type": "BitMaskValue",
+                           "valueFor": "sosOn",
+                           "bitShift": 0,
+                           "length": 1
+                        },
+                        {
+                           "type": "BitMaskValue",
+                           "valueFor": "sosOff",
+                           "bitShift": 1,
+                           "length": 1
+                        }
+                     ]
+                  },
+                  {
+                     "valueFor": "temperatureClass",
+                     "type": "BitMaskObject",
+                     "values": [
+                        {
+                           "type": "BitMaskValue",
+                           "valueFor": "tempHigh",
+                           "bitShift": 0,
+                           "length": 1
+                        },
+                        {
+                           "type": "BitMaskValue",
+                           "valueFor": "tempLow",
+                           "bitShift": 1,
+                           "length": 1
+                        },
+                        {
+                           "type": "BitMaskValue",
+                           "valueFor": "tempNormal",
+                           "bitShift": 2,
+                           "length": 1
+                        }
+                     ]
+                  },
+                  {
+                     "valueFor": "accelerometerClass",
+                     "type": "BitMaskObject",
+                     "values": [
+                        {
+                           "type": "BitMaskValue",
+                           "valueFor": "motionStart",
+                           "bitShift": 0,
+                           "length": 1
+                        },
+                        {
+                           "type": "BitMaskValue",
+                           "valueFor": "motionEnd",
+                           "bitShift": 1,
+                           "length": 1
+                        },
+                        {
+                           "type": "BitMaskValue",
+                           "valueFor": "shock",
+                           "bitShift": 2,
+                           "length": 1
+                        }
+                     ]
+                  },
+                  {
+                     "valueFor": "networkingClass",
+                     "type": "BitMaskObject",
+                     "values": [
+                        {
+                           "type": "BitMaskValue",
+                           "valueFor": "mainUp",
+                           "bitShift": 0,
+                           "length": 1
+                        },
+                        {
+                           "type": "BitMaskValue",
+                           "valueFor": "backupUp",
+                           "bitShift": 1,
+                           "length": 1
+                        }
+                     ]
+                  },
+                  {
+                     "valueFor": "geozoningClass",
+                     "type": "BitMaskObject",
+                     "values": [
+                        {
+                           "type": "BitMaskValue",
+                           "valueFor": "geozoningOn",
+                           "bitShift": 0,
+                           "length": 1
+                        }
+                     ]
+                  }
+               ]
             },
-            {
-               "producerId":"abeeway",
-               "moduleId":"combo-compact-tracker",
-               "version":"1.0"
-            }
-         ]},
+            "compatibleTrackerModels": [
+               {
+                  "producerId": "abeeway",
+                  "moduleId": "compact-tracker",
+                  "version": "2.0"
+               },
+               {
+                  "producerId": "abeeway",
+                  "moduleId": "combo-compact-tracker",
+                  "version": "1.0"
+               }
+            ]
+         },
+         
          {
             "driverParameterName":"coreTempHighThreshold",
             "groupId":"0x01",
-            "localId":"0x04",
-            "defaultValue":100,
+            "localId":"0x03",
+            "defaultValue":60,
             "unit":"Cel",
             "description":"Highest temperature detection threshold",
             "parameterType":{
@@ -397,8 +443,8 @@
          {
             "driverParameterName":"coreTempLowThreshold",
             "groupId":"0x01",
-            "localId":"0x05",
-            "defaultValue":-100,
+            "localId":"0x04",
+            "defaultValue":0,
             "unit":"Cel",
             "description":"Lowest temperature detection threshold",
             "parameterType":{
@@ -424,7 +470,7 @@
          {
             "driverParameterName":"coreTempHysteresis",
             "groupId":"0x01",
-            "localId":"0x06",
+            "localId":"0x05",
             "defaultValue":5,
             "unit":"Cel",
             "description":"Temperature hysteresis",
@@ -451,9 +497,7 @@
          {
             "driverParameterName":"coreButton1Map",
             "groupId":"0x01",
-            "localId":"0x07",
-            "defaultValue":5,
-            "unit":"Cel",
+            "localId":"0x06",
             "description":"Button 1 mapping",
             "parameterType":{
                "type":"ParameterTypeBitMask",
@@ -470,7 +514,8 @@
                         "FORCE_AN_UPLINK_SYSTEM_STATUS_NOTIFICATION_TRANSMISSION",
                         "START_DEVICE",
                         "STOP_DEVICE",
-                        "SPECIAL_SEQUENCE_ACTIVATION"
+                        "START_ONLY_SOS",
+                        "START_BLE_ADVERTISING_FOR_CONNECTIVITY"
                      ],
                      "firmwareValues":[
                         0,
@@ -480,7 +525,8 @@
                         4,
                         5,
                         6,
-                        7
+                        7,
+                        8
                      ]},
                   {
                      "name":"buttonLongPress",
@@ -494,7 +540,8 @@
                         "FORCE_AN_UPLINK_SYSTEM_STATUS_NOTIFICATION_TRANSMISSION",
                         "START_DEVICE",
                         "STOP_DEVICE",
-                        "SPECIAL_SEQUENCE_ACTIVATION"
+                        "START_ONLY_SOS",
+                        "START_BLE_ADVERTISING_FOR_CONNECTIVITY"
                      ],
                      "firmwareValues":[
                         0,
@@ -504,7 +551,8 @@
                         4,
                         5,
                         6,
-                        7
+                        7,
+                        8
                      ]},
                   {
                      "name":"buttonSingleClick",
@@ -518,7 +566,8 @@
                         "FORCE_AN_UPLINK_SYSTEM_STATUS_NOTIFICATION_TRANSMISSION",
                         "START_DEVICE",
                         "STOP_DEVICE",
-                        "SPECIAL_SEQUENCE_ACTIVATION"
+                        "START_ONLY_SOS",
+                        "START_BLE_ADVERTISING_FOR_CONNECTIVITY"
                      ],
                      "firmwareValues":[
                         0,
@@ -528,7 +577,8 @@
                         4,
                         5,
                         6,
-                        7
+                        7,
+                        8
                      ]},
                   {
                      "name":"buttonDoubleClicks",
@@ -542,7 +592,8 @@
                         "FORCE_AN_UPLINK_SYSTEM_STATUS_NOTIFICATION_TRANSMISSION",
                         "START_DEVICE",
                         "STOP_DEVICE",
-                        "SPECIAL_SEQUENCE_ACTIVATION"
+                        "START_ONLY_SOS",
+                        "START_BLE_ADVERTISING_FOR_CONNECTIVITY"
                      ],
                      "firmwareValues":[
                         0,
@@ -552,7 +603,8 @@
                         4,
                         5,
                         6,
-                        7
+                        7,
+                        8
                      ]},
                   {
                      "name":"buttonTripleClicksOrAbove",
@@ -566,7 +618,8 @@
                         "FORCE_AN_UPLINK_SYSTEM_STATUS_NOTIFICATION_TRANSMISSION",
                         "START_DEVICE",
                         "STOP_DEVICE",
-                        "SPECIAL_SEQUENCE_ACTIVATION"
+                        "START_ONLY_SOS",
+                        "START_BLE_ADVERTISING_FOR_CONNECTIVITY"
                      ],
                      "firmwareValues":[
                         0,
@@ -576,18 +629,35 @@
                         4,
                         5,
                         6,
-                        7
+                        7,
+                        8
                      ]},
-                  {
-                     "name":"buttonPressDuration",
-                     "type":"PropertyNumber"
-
-                  },
-                  {
-                     "name":"buttonLongPressDuration",
-                     "type":"PropertyNumber"
-
-                  }
+                     {
+                        "name":"buttonSimpleSequence",
+                        "type":"PropertyString",
+                        "description": "Event generated on a button simple sequence.",
+                        "possibleValues":[
+                           "NO_ACTION",
+                           "DISPLAY_BATTERY_LEVEL_ON_THE_LED",
+                           "START_STOP_SOS",
+                           "REQUEST_A_POSITION_ON_DEMAND",
+                           "FORCE_AN_UPLINK_SYSTEM_STATUS_NOTIFICATION_TRANSMISSION",
+                           "START_DEVICE",
+                           "STOP_DEVICE",
+                           "START_ONLY_SOS",
+                           "START_BLE_ADVERTISING_FOR_CONNECTIVITY"
+                        ],
+                        "firmwareValues":[
+                           0,
+                           1,
+                           2,
+                           3,
+                           4,
+                           5,
+                           6,
+                           7,
+                           8
+                        ]}
                   ],
                   "bitMask":[
 
@@ -629,15 +699,8 @@
                   
                   {
                      "type":"BitMaskValue",
-                     "valueFor":"buttonLongPressDuration",
+                     "valueFor":"buttonSimpleSequence",
                      "bitShift":20,
-                     "length":4
-
-                  },
-                  {
-                     "type":"BitMaskValue",
-                     "valueFor":"buttonPressDuration",
-                     "bitShift":24,
                      "length":4
 
                   }
@@ -659,10 +722,8 @@
          {
             "driverParameterName":"coreButton2Map",
             "groupId":"0x01",
-            "localId":"0x08",
-            "defaultValue":5,
-            "unit":"Cel",
-            "description":"Button 1 mapping",
+            "localId":"0x07",
+            "description":"Button 2 mapping",
             "parameterType":{
                "type":"ParameterTypeBitMask",
                "properties":[
@@ -678,7 +739,8 @@
                         "FORCE_AN_UPLINK_SYSTEM_STATUS_NOTIFICATION_TRANSMISSION",
                         "START_DEVICE",
                         "STOP_DEVICE",
-                        "SPECIAL_SEQUENCE_ACTIVATION"
+                        "START_ONLY_SOS",
+                        "START_BLE_ADVERTISING_FOR_CONNECTIVITY"
                      ],
                      "firmwareValues":[
                         0,
@@ -688,12 +750,117 @@
                         4,
                         5,
                         6,
-                        7
+                        7,
+                        8
+                     ]},
+                  {
+                     "name":"buttonLongPress",
+                     "type":"PropertyString",
+                     "description":"Event generated on a button long press.",
+                     "possibleValues":[
+                        "NO_ACTION",
+                        "DISPLAY_BATTERY_LEVEL_ON_THE_LED",
+                        "START_STOP_SOS",
+                        "REQUEST_A_POSITION_ON_DEMAND",
+                        "FORCE_AN_UPLINK_SYSTEM_STATUS_NOTIFICATION_TRANSMISSION",
+                        "START_DEVICE",
+                        "STOP_DEVICE",
+                        "START_ONLY_SOS",
+                        "START_BLE_ADVERTISING_FOR_CONNECTIVITY"
+                     ],
+                     "firmwareValues":[
+                        0,
+                        1,
+                        2,
+                        3,
+                        4,
+                        5,
+                        6,
+                        7,
+                        8
+                     ]},
+                  {
+                     "name":"buttonSingleClick",
+                     "type":"PropertyString",
+                     "description":"Event generated on a button single click.",
+                     "possibleValues":[
+                        "NO_ACTION",
+                        "DISPLAY_BATTERY_LEVEL_ON_THE_LED",
+                        "START_STOP_SOS",
+                        "REQUEST_A_POSITION_ON_DEMAND",
+                        "FORCE_AN_UPLINK_SYSTEM_STATUS_NOTIFICATION_TRANSMISSION",
+                        "START_DEVICE",
+                        "STOP_DEVICE",
+                        "START_ONLY_SOS",
+                        "START_BLE_ADVERTISING_FOR_CONNECTIVITY"
+                     ],
+                     "firmwareValues":[
+                        0,
+                        1,
+                        2,
+                        3,
+                        4,
+                        5,
+                        6,
+                        7,
+                        8
+                     ]},
+                  {
+                     "name":"buttonDoubleClicks",
+                     "type":"PropertyString",
+                     "description":"Event generated on a button double clicks.",
+                     "possibleValues":[
+                        "NO_ACTION",
+                        "DISPLAY_BATTERY_LEVEL_ON_THE_LED",
+                        "START_STOP_SOS",
+                        "REQUEST_A_POSITION_ON_DEMAND",
+                        "FORCE_AN_UPLINK_SYSTEM_STATUS_NOTIFICATION_TRANSMISSION",
+                        "START_DEVICE",
+                        "STOP_DEVICE",
+                        "START_ONLY_SOS",
+                        "START_BLE_ADVERTISING_FOR_CONNECTIVITY"
+                     ],
+                     "firmwareValues":[
+                        0,
+                        1,
+                        2,
+                        3,
+                        4,
+                        5,
+                        6,
+                        7,
+                        8
+                     ]},
+                  {
+                     "name":"buttonTripleClicksOrAbove",
+                     "type":"PropertyString",
+                     "description": "Event generated on a button triple clicks or above.",
+                     "possibleValues":[
+                        "NO_ACTION",
+                        "DISPLAY_BATTERY_LEVEL_ON_THE_LED",
+                        "START_STOP_SOS",
+                        "REQUEST_A_POSITION_ON_DEMAND",
+                        "FORCE_AN_UPLINK_SYSTEM_STATUS_NOTIFICATION_TRANSMISSION",
+                        "START_DEVICE",
+                        "STOP_DEVICE",
+                        "START_ONLY_SOS",
+                        "START_BLE_ADVERTISING_FOR_CONNECTIVITY"
+                     ],
+                     "firmwareValues":[
+                        0,
+                        1,
+                        2,
+                        3,
+                        4,
+                        5,
+                        6,
+                        7,
+                        8
                      ]},
                      {
-                        "name":"buttonLongPress",
+                        "name":"buttonSimpleSequence",
                         "type":"PropertyString",
-                        "description":"Event generated on a button long press.",
+                        "description": "Event generated on a button simple sequence.",
                         "possibleValues":[
                            "NO_ACTION",
                            "DISPLAY_BATTERY_LEVEL_ON_THE_LED",
@@ -702,7 +869,8 @@
                            "FORCE_AN_UPLINK_SYSTEM_STATUS_NOTIFICATION_TRANSMISSION",
                            "START_DEVICE",
                            "STOP_DEVICE",
-                           "SPECIAL_SEQUENCE_ACTIVATION"
+                           "START_ONLY_SOS",
+                           "START_BLE_ADVERTISING_FOR_CONNECTIVITY"
                         ],
                         "firmwareValues":[
                            0,
@@ -712,94 +880,13 @@
                            4,
                            5,
                            6,
-                           7
-                        ]},
-                        {
-                           "name":"buttonSingleClick",
-                           "type":"PropertyString",
-                           "description":"Event generated on a button single click.",
-                           "possibleValues":[
-                              "NO_ACTION",
-                              "DISPLAY_BATTERY_LEVEL_ON_THE_LED",
-                              "START_STOP_SOS",
-                              "REQUEST_A_POSITION_ON_DEMAND",
-                              "FORCE_AN_UPLINK_SYSTEM_STATUS_NOTIFICATION_TRANSMISSION",
-                              "START_DEVICE",
-                              "STOP_DEVICE",
-                              "SPECIAL_SEQUENCE_ACTIVATION"
-                           ],
-                           "firmwareValues":[
-                              0,
-                              1,
-                              2,
-                              3,
-                              4,
-                              5,
-                              6,
-                              7
-                           ]},
-                           {
-                              "name":"buttonDoubleClicks",
-                              "type":"PropertyString",
-                              "description":"Event generated on a button double clicks.",
-                              "possibleValues":[
-                                 "NO_ACTION",
-                                 "DISPLAY_BATTERY_LEVEL_ON_THE_LED",
-                                 "START_STOP_SOS",
-                                 "REQUEST_A_POSITION_ON_DEMAND",
-                                 "FORCE_AN_UPLINK_SYSTEM_STATUS_NOTIFICATION_TRANSMISSION",
-                                 "START_DEVICE",
-                                 "STOP_DEVICE",
-                                 "SPECIAL_SEQUENCE_ACTIVATION"
-                              ],
-                              "firmwareValues":[
-                                 0,
-                                 1,
-                                 2,
-                                 3,
-                                 4,
-                                 5,
-                                 6,
-                                 7
-                              ]},
-                              {
-                                 "name":"buttonTripleClicksOrAbove",
-                                 "type":"PropertyString",
-                                 "description": "Event generated on a button triple clicks or above.",
-                                 "possibleValues":[
-                                    "NO_ACTION",
-                                    "DISPLAY_BATTERY_LEVEL_ON_THE_LED",
-                                    "START_STOP_SOS",
-                                    "REQUEST_A_POSITION_ON_DEMAND",
-                                    "FORCE_AN_UPLINK_SYSTEM_STATUS_NOTIFICATION_TRANSMISSION",
-                                    "START_DEVICE",
-                                    "STOP_DEVICE",
-                                    "SPECIAL_SEQUENCE_ACTIVATION"
-                                 ],
-                                 "firmwareValues":[
-                                    0,
-                                    1,
-                                    2,
-                                    3,
-                                    4,
-                                    5,
-                                    6,
-                                    7
-                                 ]},
-                                 {
-                                    "name":"buttonPressDuration",
-                                    "type":"PropertyNumber"
-
-                                 },
-                                 {
-                                    "name":"buttonLongPressDuration",
-                                    "type":"PropertyNumber"
-
-                                 }
+                           7,
+                           8
+                        ]}
                   ],
                   "bitMask":[
 
-                     {
+                  {
                      "type":"BitMaskValue",
                      "valueFor":"buttonPress",
                      "bitShift":0,
@@ -834,21 +921,14 @@
                      "length":4
 
                   },
+                  
                   {
                      "type":"BitMaskValue",
-                     "valueFor":"buttonLongPressDuration",
-                     "bitShift":24,
-                     "length":4
-
-                  },
-                  {
-                     "type":"BitMaskValue",
-                     "valueFor":"buttonPressDuration",
+                     "valueFor":"buttonSimpleSequence",
                      "bitShift":20,
                      "length":4
 
                   }
-                 
                ]
             },
             "compatibleTrackerModels":[
@@ -865,870 +945,1465 @@
             ]
          },
          {
-            "driverParameterName":"geolocMotionPeriod",
-            "groupId":"0x02",
-            "localId":"0x00",
-            "defaultValue":600,
-            "unit":"s",
-            "description":"Position acquisition period while in motion",
-            "parameterType":{
-               "type":"ParameterTypeNumber",
-               "range":{
-                  "minimum":10,
-                  "maximum":86400
-               }
+            "driverParameterName": "coreButtonsTiming",
+            "groupId": "0x01",
+            "localId": "0x08",
+            "description": "Define the buttons timing parameters.",
+            "parameterType": {
+              "type": "ParameterTypeBitMask",
+              "properties": [
+                {
+                  "name": "durationButtonPress",
+                  "type": "PropertyNumber",
+                  "description": "Duration of the button press in seconds."
+                },
+                {
+                  "name": "durationButtonLongPress",
+                  "type": "PropertyNumber",
+                  "description": "Duration of the button long press in seconds."
+                },
+                {
+                  "name": "debounceDurationOnButton1",
+                  "type": "PropertyNumber",
+                  "description": "Debounce duration on button 1 in milliseconds."
+                },
+                {
+                  "name": "debounceDurationOnButton2",
+                  "type": "PropertyNumber",
+                  "description": "Debounce duration on button 2 in milliseconds."
+                }
+              ],
+              "bitMask": [
+                {
+                  "type": "BitMaskValue",
+                  "valueFor": "durationButtonPress",
+                  "bitShift": 0,
+                  "length": 4
+                },
+                {
+                  "type": "BitMaskValue",
+                  "valueFor": "durationButtonLongPress",
+                  "bitShift": 4,
+                  "length": 4
+                },
+                {
+                  "type": "BitMaskValue",
+                  "valueFor": "debounceDurationOnButton1",
+                  "bitShift": 8,
+                  "length": 8
+                },
+                {
+                  "type": "BitMaskValue",
+                  "valueFor": "debounceDurationOnButton2",
+                  "bitShift": 16,
+                  "length": 8
+                }
+              ]
             },
-            "compatibleTrackerModels":[
-               {
-                  "producerId":"abeeway",
-                  "moduleId":"compact-tracker",
-                  "version":"2.0"
-               },
-               {
-                  "producerId":"abeeway",
-                  "moduleId":"combo-compact-tracker",
-                  "version":"1.0"
-               }
+            "compatibleTrackerModels": [
+              {
+                "producerId": "abeeway",
+                "moduleId": "compact-tracker",
+                "version": "2.0"
+              },
+              {
+                "producerId": "abeeway",
+                "moduleId": "combo-compact-tracker",
+                "version": "1.0"
+              }
             ]
+          },
+          {
+            "driverParameterName": "coreLed0Map",
+            "groupId": "0x01",
+            "localId": "0x09",
+            "defaultValue": "{00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00}",
+            "description": "Defines LED patterns for system events. Configurable as 10 slices of 3 bytes each.",
+            "parameterType": {
+                "type": "ParameterTypeByteArray",
+                "size": 30,
+                "distinctValues": false,
+                "properties": [
+                    {
+                        "name": "slice",
+                        "type": "PropertByteArray",
+                        "size": 3,
+                        "distinctValues": true,
+                        "properties": [
+                            {
+                                "name": "systemEventClass",
+                                "type": "PropertyString",
+                                "description": "System event class.",
+                                "possibleValues": [
+                                    "BUTTON1",
+                                    "BUTTON2",
+                                    "BUZZER",
+                                    "ACCELEROMETER",
+                                    "POWER",
+                                    "TEMPERATURE",
+                                    "GEOLOCATION",
+                                    "CONFIGURATION",
+                                    "NETWORK",
+                                    "CORE",
+                                    "BLE_CONNECTIVITY",
+                                    "USER"
+                                ],
+                                "firmwareValues": [
+                                    0,
+                                    1,
+                                    2,
+                                    3,
+                                    4,
+                                    5,
+                                    6,
+                                    7,
+                                    8,
+                                    9,
+                                    10,
+                                    11
+                                ]
+                            },
+                            {
+                                "name": "patternLoopExtension",
+                                "type": "PropertyNumber",
+                                "description": "Pattern loop extension."
+                            },
+                            {
+                                "name": "patternInversion",
+                                "type": "PropertyBoolean",
+                                "description": "Indicates whether the pattern is inverted."
+                            },
+                            {
+                                "name": "type",
+                                "type": "PropertyNumber",
+                                "description": "System event type."
+                            },
+                            {
+                                "name": "patternIdentifier",
+                                "type": "PropertyString",
+                                "description": "Defines the LED behavior.",
+                                "possibleValues": [
+                                    "NOT_CONFIGURED",
+                                    "LED_OFF",
+                                    "LED_ON",
+                                    "FADE_IN",
+                                    "FADE_OUT",
+                                    "BLINK_SLOW",
+                                    "BLINK_MEDIUM",
+                                    "BLINK_FAST",
+                                    "FLASH_SLOW",
+                                    "FLASH_FAST",
+                                    "HEART_ON"
+                                ],
+                                "firmwareValues": [
+                                    0,
+                                    1,
+                                    2,
+                                    3,
+                                    4,
+                                    5,
+                                    6,
+                                    7,
+                                    8,
+                                    9,
+                                    10
+                                ]
+                            },
+                            {
+                                "name": "patternLoop",
+                                "type": "PropertyNumber",
+                                "description": "Number of times the pattern is displayed."
+                            }
+                        ],
+                        "bitMask": [
+                            {
+                                "type": "BitMaskValue",
+                                "valueFor": "systemEventClass",
+                                "bitShift": 0,
+                                "length": 5
+                            },
+                            {
+                                "type": "BitMaskValue",
+                                "valueFor": "patternLoopExtension",
+                                "bitShift": 5,
+                                "length": 2
+                            },
+                            {
+                                "type": "BitMaskValue",
+                                "valueFor": "patternInversion",
+                                "bitShift": 7,
+                                "length": 1
+                            },
+                            {
+                                "type": "BitMaskValue",
+                                "valueFor": "type",
+                                "bitShift": 8,
+                                "length": 8
+                            },
+                            {
+                                "type": "BitMaskValue",
+                                "valueFor": "patternIdentifier",
+                                "bitShift": 16,
+                                "length": 4
+                            },
+                            {
+                                "type": "BitMaskValue",
+                                "valueFor": "patternLoop",
+                                "bitShift": 20,
+                                "length": 4
+                            }
+                        ]
+                    }
+                ],
+                "byteMask": [
+                    {
+                        "type": "BitMaskValue",
+                        "valueFor": "slice",
+                        "bitShift": 0,
+                        "length": 24
+                    }
+                ]
+            },
+            "compatibleTrackerModels": [
+                {
+                    "producerId": "abeeway",
+                    "moduleId": "compact-tracker",
+                    "version": "2.0"
+                },
+                {
+                    "producerId": "abeeway",
+                    "moduleId": "combo-compact-tracker",
+                    "version": "1.0"
+                }
+            ]
+        },
+        {
+         "driverParameterName": "coreLed1Map",
+         "groupId": "0x01",
+         "localId": "0x0A",
+         "defaultValue": "{00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00}",
+         "description": "Defines LED patterns for system events. Configurable as 10 slices of 3 bytes each.",
+         "parameterType": {
+             "type": "ParameterTypeByteArray",
+             "size": 30,
+             "distinctValues": false,
+             "properties": [
+                 {
+                     "name": "slice",
+                     "type": "PropertByteArray",
+                     "size": 3,
+                     "distinctValues": true,
+                     "properties": [
+                         {
+                             "name": "systemEventClass",
+                             "type": "PropertyString",
+                             "description": "System event class.",
+                             "possibleValues": [
+                                 "BUTTON1",
+                                 "BUTTON2",
+                                 "BUZZER",
+                                 "ACCELEROMETER",
+                                 "POWER",
+                                 "TEMPERATURE",
+                                 "GEOLOCATION",
+                                 "CONFIGURATION",
+                                 "NETWORK",
+                                 "CORE",
+                                 "BLE_CONNECTIVITY",
+                                 "USER"
+                             ],
+                             "firmwareValues": [
+                                 0,
+                                 1,
+                                 2,
+                                 3,
+                                 4,
+                                 5,
+                                 6,
+                                 7,
+                                 8,
+                                 9,
+                                 10,
+                                 11
+                             ]
+                         },
+                         {
+                             "name": "patternLoopExtension",
+                             "type": "PropertyNumber",
+                             "description": "Pattern loop extension."
+                         },
+                         {
+                             "name": "patternInversion",
+                             "type": "PropertyBoolean",
+                             "description": "Indicates whether the pattern is inverted."
+                         },
+                         {
+                             "name": "type",
+                             "type": "PropertyNumber",
+                             "description": "System event type."
+                         },
+                         {
+                             "name": "patternIdentifier",
+                             "type": "PropertyString",
+                             "description": "Defines the LED behavior.",
+                             "possibleValues": [
+                                 "NOT_CONFIGURED",
+                                 "LED_OFF",
+                                 "LED_ON",
+                                 "FADE_IN",
+                                 "FADE_OUT",
+                                 "BLINK_SLOW",
+                                 "BLINK_MEDIUM",
+                                 "BLINK_FAST",
+                                 "FLASH_SLOW",
+                                 "FLASH_FAST",
+                                 "HEART_ON"
+                             ],
+                             "firmwareValues": [
+                                 0,
+                                 1,
+                                 2,
+                                 3,
+                                 4,
+                                 5,
+                                 6,
+                                 7,
+                                 8,
+                                 9,
+                                 10
+                             ]
+                         },
+                         {
+                             "name": "patternLoop",
+                             "type": "PropertyNumber",
+                             "description": "Number of times the pattern is displayed."
+                         }
+                     ],
+                     "bitMask": [
+                         {
+                             "type": "BitMaskValue",
+                             "valueFor": "systemEventClass",
+                             "bitShift": 0,
+                             "length": 5
+                         },
+                         {
+                             "type": "BitMaskValue",
+                             "valueFor": "patternLoopExtension",
+                             "bitShift": 5,
+                             "length": 2
+                         },
+                         {
+                             "type": "BitMaskValue",
+                             "valueFor": "patternInversion",
+                             "bitShift": 7,
+                             "length": 1
+                         },
+                         {
+                             "type": "BitMaskValue",
+                             "valueFor": "type",
+                             "bitShift": 8,
+                             "length": 8
+                         },
+                         {
+                             "type": "BitMaskValue",
+                             "valueFor": "patternIdentifier",
+                             "bitShift": 16,
+                             "length": 4
+                         },
+                         {
+                             "type": "BitMaskValue",
+                             "valueFor": "patternLoop",
+                             "bitShift": 20,
+                             "length": 4
+                         }
+                     ]
+                 }
+             ],
+             "byteMask": [
+                 {
+                     "type": "BitMaskValue",
+                     "valueFor": "slice",
+                     "bitShift": 0,
+                     "length": 24
+                 }
+             ]
+         },
+         "compatibleTrackerModels": [
+             {
+                 "producerId": "abeeway",
+                 "moduleId": "compact-tracker",
+                 "version": "2.0"
+             },
+             {
+                 "producerId": "abeeway",
+                 "moduleId": "combo-compact-tracker",
+                 "version": "1.0"
+             }
+         ]
+     },
+     {
+      "driverParameterName": "coreBuzzerMap",
+      "groupId": "0x01",
+      "localId": "0x0B",
+      "defaultValue": "{00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00}",
+      "description": "Defines LED patterns for system events. Configurable as 10 slices of 3 bytes each.",
+      "parameterType": {
+          "type": "ParameterTypeByteArray",
+          "size": 30,
+          "distinctValues": false,
+          "properties": [
+              {
+                  "name": "slice",
+                  "type": "PropertByteArray",
+                  "size": 3,
+                  "distinctValues": true,
+                  "properties": [
+                      {
+                          "name": "systemEventClass",
+                          "type": "PropertyString",
+                          "description": "System event class.",
+                          "possibleValues": [
+                              "BUTTON1",
+                              "BUTTON2",
+                              "BUZZER",
+                              "ACCELEROMETER",
+                              "POWER",
+                              "TEMPERATURE",
+                              "GEOLOCATION",
+                              "CONFIGURATION",
+                              "NETWORK",
+                              "CORE",
+                              "BLE_CONNECTIVITY",
+                              "USER"
+                          ],
+                          "firmwareValues": [
+                              0,
+                              1,
+                              2,
+                              3,
+                              4,
+                              5,
+                              6,
+                              7,
+                              8,
+                              9,
+                              10,
+                              11
+                          ]
+                      },
+                      {
+                          "name": "melodyCountExtension",
+                          "type": "PropertyNumber",
+                          "description": "Melody count extension"
+                      },
+                      {
+                          "name": "type",
+                          "type": "PropertyNumber",
+                          "description": "System event type."
+                      },
+                      {
+                          "name": "melodyIdentifier",
+                          "type": "PropertyString",
+                          "description": "Defines the LED behavior.",
+                          "possibleValues": [
+                              "NOT_CONFIGURED",
+                              "OFF",
+                              "MELODY_1",
+                              "MELODY_2",
+                              "MELODY_3"
+                          ],
+                          "firmwareValues": [
+                              0,
+                              1,
+                              2,
+                              3,
+                              4
+                          ]
+                      },
+                      {
+                          "name": "melodyCount",
+                          "type": "PropertyNumber",
+                          "description": "Number of times the melody is displayed."
+                      }
+                  ],
+                  "bitMask": [
+                      {
+                          "type": "BitMaskValue",
+                          "valueFor": "systemEventClass",
+                          "bitShift": 0,
+                          "length": 5
+                      },
+                      {
+                          "type": "BitMaskValue",
+                          "valueFor": "melodyCountExtension",
+                          "bitShift": 5,
+                          "length": 3
+                      },
+                      {
+                          "type": "BitMaskValue",
+                          "valueFor": "type",
+                          "bitShift": 8,
+                          "length": 8
+                      },
+                      {
+                          "type": "BitMaskValue",
+                          "valueFor": "melodyIdentifier",
+                          "bitShift": 16,
+                          "length": 5
+                      },
+                      {
+                          "type": "BitMaskValue",
+                          "valueFor": "patternLoop",
+                          "bitShift": 21,
+                          "length": 3
+                      }
+                  ]
+              }
+          ],
+          "byteMask": [
+              {
+                  "type": "BitMaskValue",
+                  "valueFor": "slice",
+                  "bitShift": 0,
+                  "length": 24
+              }
+          ]
+      },
+      "compatibleTrackerModels": [
+          {
+              "producerId": "abeeway",
+              "moduleId": "compact-tracker",
+              "version": "2.0"
+          },
+          {
+              "producerId": "abeeway",
+              "moduleId": "combo-compact-tracker",
+              "version": "1.0"
+          }
+      ]
+   },
+   {
+      "driverParameterName": "coreBuzzerMap",
+      "groupId": "0x01",
+      "localId": "0x0B",
+      "defaultValue": "{00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00}",
+      "description": "Defines LED patterns for system events. Configurable as 10 slices of 3 bytes each.",
+      "parameterType": {
+          "type": "ParameterTypeByteArray",
+          "size": 30,
+          "distinctValues": false,
+          "properties": [
+              {
+                  "name": "slice",
+                  "type": "PropertByteArray",
+                  "size": 3,
+                  "distinctValues": true,
+                  "properties": [
+                      {
+                          "name": "systemEventClass",
+                          "type": "PropertyString",
+                          "description": "System event class.",
+                          "possibleValues": [
+                              "BUTTON1",
+                              "BUTTON2",
+                              "BUZZER",
+                              "ACCELEROMETER",
+                              "POWER",
+                              "TEMPERATURE",
+                              "GEOLOCATION",
+                              "CONFIGURATION",
+                              "NETWORK",
+                              "CORE",
+                              "BLE_CONNECTIVITY",
+                              "USER"
+                          ],
+                          "firmwareValues": [
+                              0,
+                              1,
+                              2,
+                              3,
+                              4,
+                              5,
+                              6,
+                              7,
+                              8,
+                              9,
+                              10,
+                              11
+                          ]
+                      },
+                      {
+                          "name": "melodyCountExtension",
+                          "type": "PropertyNumber",
+                          "description": "Melody count extension"
+                      },
+                      {
+                          "name": "type",
+                          "type": "PropertyNumber",
+                          "description": "System event type."
+                      },
+                      {
+                          "name": "melodyIdentifier",
+                          "type": "PropertyString",
+                          "description": "Defines the LED behavior.",
+                          "possibleValues": [
+                              "NOT_CONFIGURED",
+                              "OFF",
+                              "MELODY_2",
+                              "MELODY_3",
+                              "MELODY_4",
+                              "MELODY_5",
+                              "MELODY_6",
+                              "MELODY_7",
+                              "MELODY_8",
+                              "MELODY_9",
+                              "MELODY_10",
+                              "MELODY_11",
+                              "MELODY_12",
+                              "MELODY_13",
+                              "MELODY_14",
+                              "MELODY_15",
+                              "MELODY_16",
+                              "MELODY_17",
+                              "MELODY_18",
+                              "MELODY_19",
+                              "MELODY_20",
+                              "MELODY_21"
+   
+                          ],
+                          "firmwareValues": [
+                           0,
+                           1,
+                           2,
+                           3,
+                           4,
+                           5,
+                           6,
+                           7,
+                           8,
+                           9,
+                           10,
+                           11,
+                           12,
+                           13,
+                           14,
+                           15,
+                           16,
+                           17,
+                           18,
+                           19,
+                           20,
+                           21,
+                           22,
+                           23
+                          ]
+                      },
+                      {
+                          "name": "melodyCount",
+                          "type": "PropertyNumber",
+                          "description": "Number of times the melody is displayed."
+                      }
+                  ],
+                  "bitMask": [
+                      {
+                          "type": "BitMaskValue",
+                          "valueFor": "systemEventClass",
+                          "bitShift": 0,
+                          "length": 5
+                      },
+                      {
+                          "type": "BitMaskValue",
+                          "valueFor": "melodyCountExtension",
+                          "bitShift": 5,
+                          "length": 3
+                      },
+                      {
+                          "type": "BitMaskValue",
+                          "valueFor": "type",
+                          "bitShift": 8,
+                          "length": 8
+                      },
+                      {
+                          "type": "BitMaskValue",
+                          "valueFor": "melodyIdentifier",
+                          "bitShift": 16,
+                          "length": 5
+                      },
+                      {
+                          "type": "BitMaskValue",
+                          "valueFor": "patternLoop",
+                          "bitShift": 21,
+                          "length": 3
+                      }
+                  ]
+              }
+          ],
+          "byteMask": [
+              {
+                  "type": "BitMaskValue",
+                  "valueFor": "slice",
+                  "bitShift": 0,
+                  "length": 24
+              }
+          ]
+      },
+      "compatibleTrackerModels": [
+          {
+              "producerId": "abeeway",
+              "moduleId": "compact-tracker",
+              "version": "2.0"
+          },
+          {
+              "producerId": "abeeway",
+              "moduleId": "combo-compact-tracker",
+              "version": "1.0"
+          }
+      ]
+   },
+   {
+      "driverParameterName":"coreAlmanacValidity",
+      "groupId":"0x01",
+      "localId":"0x0C",
+      "defaultValue":120,
+      "unit":"days",
+      "description":"Number of days for which the GNSS almanac is considered as valid.",
+      "parameterType":{
+         "type":"ParameterTypeNumber",
+         "range":{
+            "minimum":7,
+            "maximum":365
+         }
+      },
+      "compatibleTrackerModels":[
+         {
+            "producerId":"abeeway",
+            "moduleId":"compact-tracker",
+            "version":"2.0"
          },
          {
-            "driverParameterName":"geolocStaticPeriod",
-            "groupId":"0x02",
-            "localId":"0x01",
-            "defaultValue":600,
-            "unit":"s",
-            "description":"Position acquisition period while static",
-            "parameterType":{
-               "type":"ParameterTypeNumber",
-               "range":{
-                  "minimum":10,
-                  "maximum":86400
-               }
-            },
-            "compatibleTrackerModels":[
-               {
-                  "producerId":"abeeway",
-                  "moduleId":"compact-tracker",
-                  "version":"2.0"
-               },
-               {
-                  "producerId":"abeeway",
-                  "moduleId":"combo-compact-tracker",
-                  "version":"1.0"
-               }
-            ]
+            "producerId":"abeeway",
+            "moduleId":"combo-compact-tracker",
+            "version":"1.0"
+         }
+      ]
+   },
+   {
+      "driverParameterName":"coreAlmanacOutdatedRatio",
+      "groupId":"0x01",
+      "localId":"0x0D",
+      "defaultValue":100,
+      "unit":"%",
+      "description":"Percentage of outdated GNSS almanac entries which will trigger network update requests. A value of 100% disable the network requests. Applicable for both GNSS devices",
+      "parameterType":{
+         "type":"ParameterTypeNumber",
+         "range":{
+            "minimum":0,
+            "maximum":100
+         }
+      },
+      "compatibleTrackerModels":[
+         {
+            "producerId":"abeeway",
+            "moduleId":"compact-tracker",
+            "version":"2.0"
          },
          {
-            "driverParameterName":"geolocSosPeriod",
-            "groupId":"0x02",
-            "localId":"0x02",
-            "defaultValue":600,
-            "unit":"s",
-            "description":"Position acquisition period while in sos",
-            "parameterType":{
-               "type":"ParameterTypeNumber",
-               "range":{
-                  "minimum":10,
-                  "maximum":86400
-               }
-            },
-            "compatibleTrackerModels":[
-               {
-                  "producerId":"abeeway",
-                  "moduleId":"compact-tracker",
-                  "version":"2.0"
-               },
-               {
-                  "producerId":"abeeway",
-                  "moduleId":"combo-compact-tracker",
-                  "version":"1.0"
-               }
-            ]
+            "producerId":"abeeway",
+            "moduleId":"combo-compact-tracker",
+            "version":"1.0"
+         }
+      ]
+   },
+   {
+      "driverParameterName":"coreCliPassword",
+      "groupId":"0x01",
+      "localId":"0x0E",
+      "defaultValue":123,
+      "description":"User cli password",
+      "parameterType":{
+         "type":"ParameterTypeNumber",
+         "range":{
+            "minimum":0
+         }
+      },
+      "compatibleTrackerModels":[
+         {
+            "producerId":"abeeway",
+            "moduleId":"compact-tracker",
+            "version":"2.0"
          },
          {
-            "driverParameterName":"geolocNbStart",
-            "groupId":"0x02",
-            "localId":"0x03",
-            "defaultValue":1,
-            "description":"Number of acquisitions on motion start event",
-            "parameterType":{
-               "type":"ParameterTypeNumber",
-               "range":{
-                  "minimum":0,
-                  "maximum":10
-               }
-            },
-            "compatibleTrackerModels":[
-               {
-                  "producerId":"abeeway",
-                  "moduleId":"compact-tracker",
-                  "version":"2.0"
-               },
-               {
-                  "producerId":"abeeway",
-                  "moduleId":"combo-compact-tracker",
-                  "version":"1.0"
-               }
-            ]
+            "producerId":"abeeway",
+            "moduleId":"combo-compact-tracker",
+            "version":"1.0"
+         }
+      ]
+   },
+
+   {
+      "driverParameterName":"geolocMotionPeriod",
+      "groupId":"0x02",
+      "localId":"0x00",
+      "defaultValue":300,
+      "unit":"s",
+      "description":"Position acquisition period while in motion",
+      "parameterType":{
+         "type":"ParameterTypeNumber",
+         "range":{
+            "minimum":10,
+            "maximum":86400
+         }
+      },
+      "compatibleTrackerModels":[
+         {
+            "producerId":"abeeway",
+            "moduleId":"compact-tracker",
+            "version":"2.0"
          },
          {
-            "driverParameterName":"geolocNbStop",
-            "groupId":"0x02",
-            "localId":"0x04",
-            "defaultValue":1,
-            "description":"Number of acquisitions on motion stop event",
-            "parameterType":{
-               "type":"ParameterTypeNumber",
-               "range":{
-                  "minimum":0,
-                  "maximum":10
-               }
-            },
-            "compatibleTrackerModels":[
-               {
-                  "producerId":"abeeway",
-                  "moduleId":"compact-tracker",
-                  "version":"2.0"
-               },
-               {
-                  "producerId":"abeeway",
-                  "moduleId":"combo-compact-tracker",
-                  "version":"1.0"
-               }
-            ]
+            "producerId":"abeeway",
+            "moduleId":"combo-compact-tracker",
+            "version":"1.0"
+         }
+      ]
+   },
+   {
+      "driverParameterName":"geolocStaticPeriod",
+      "groupId":"0x02",
+      "localId":"0x01",
+      "defaultValue":3600,
+      "unit":"s",
+      "description":"Position acquisition period while static",
+      "parameterType":{
+         "type":"ParameterTypeNumber",
+         "range":{
+            "minimum":10,
+            "maximum":86400
+         }
+      },
+      "compatibleTrackerModels":[
+         {
+            "producerId":"abeeway",
+            "moduleId":"compact-tracker",
+            "version":"2.0"
          },
          {
-            "driverParameterName":"geolocStartStopPeriod",
-            "groupId":"0x02",
-            "localId":"0x05",
-            "defaultValue":600,
-            "unit":"s",
-            "description":"Position acquisition period while acquiring consecutive positions on motion start or stop",
-            "parameterType":{
-               "type":"ParameterTypeNumber",
-               "range":{
-                  "minimum":10,
-                  "maximum":86400
-               }
-            },
-            "compatibleTrackerModels":[
-               {
-                  "producerId":"abeeway",
-                  "moduleId":"compact-tracker",
-                  "version":"2.0"
-               },
-               {
-                  "producerId":"abeeway",
-                  "moduleId":"combo-compact-tracker",
-                  "version":"1.0"
-               }
-            ]
+            "producerId":"abeeway",
+            "moduleId":"combo-compact-tracker",
+            "version":"1.0"
+         }
+      ]
+   },
+   {
+      "driverParameterName":"geolocSosPeriod",
+      "groupId":"0x02",
+      "localId":"0x02",
+      "defaultValue":60,
+      "unit":"s",
+      "description":"Position acquisition period while in sos",
+      "parameterType":{
+         "type":"ParameterTypeNumber",
+         "range":{
+            "minimum":10,
+            "maximum":86400
+         }
+      },
+      "compatibleTrackerModels":[
+         {
+            "producerId":"abeeway",
+            "moduleId":"compact-tracker",
+            "version":"2.0"
          },
          {
-            "driverParameterName":"geolocGnssHoldOnMode",
-            "groupId":"0x02",
-            "localId":"0x06",
-            "description": "Select the GNSS hold on mode. Possible Values are:\n0: Disabled\n1: Always. Hold-on mode always set. Only controlled by the timer.\n2: techno: If the gnss is actually used (meaning GNSS techno not skipped).\n3: moving: Hold-mode set while moving.\n4: techno and moving: if the gnss is actually used (meaning GNSS techno not skipped) and tracker is moving.",
-            "parameterType":{
-               "type":"ParameterTypeString",
+            "producerId":"abeeway",
+            "moduleId":"combo-compact-tracker",
+            "version":"1.0"
+         }
+      ]
+   },
+   {
+      "driverParameterName":"geolocMotionNbStart",
+      "groupId":"0x02",
+      "localId":"0x03",
+      "defaultValue":1,
+      "description":"Number of acquisitions on motion start event",
+      "parameterType":{
+         "type":"ParameterTypeNumber",
+         "range":{
+            "minimum":0,
+            "maximum":10
+         }
+      },
+      "compatibleTrackerModels":[
+         {
+            "producerId":"abeeway",
+            "moduleId":"compact-tracker",
+            "version":"2.0"
+         },
+         {
+            "producerId":"abeeway",
+            "moduleId":"combo-compact-tracker",
+            "version":"1.0"
+         }
+      ]
+   },
+   {
+      "driverParameterName":"geolocMotionNbStop",
+      "groupId":"0x02",
+      "localId":"0x04",
+      "defaultValue":1,
+      "description":"Number of acquisitions on motion stop event",
+      "parameterType":{
+         "type":"ParameterTypeNumber",
+         "range":{
+            "minimum":0,
+            "maximum":10
+         }
+      },
+      "compatibleTrackerModels":[
+         {
+            "producerId":"abeeway",
+            "moduleId":"compact-tracker",
+            "version":"2.0"
+         },
+         {
+            "producerId":"abeeway",
+            "moduleId":"combo-compact-tracker",
+            "version":"1.0"
+         }
+      ]
+   },
+   {
+      "driverParameterName":"geolocStartStopPeriod",
+      "groupId":"0x02",
+      "localId":"0x05",
+      "defaultValue":120,
+      "unit":"s",
+      "description":"Position acquisition period while acquiring consecutive positions on motion start or stop",
+      "parameterType":{
+         "type":"ParameterTypeNumber",
+         "range":{
+            "minimum":10,
+            "maximum":86400
+         }
+      },
+      "compatibleTrackerModels":[
+         {
+            "producerId":"abeeway",
+            "moduleId":"compact-tracker",
+            "version":"2.0"
+         },
+         {
+            "producerId":"abeeway",
+            "moduleId":"combo-compact-tracker",
+            "version":"1.0"
+         }
+      ]
+   },
+   {
+      "driverParameterName":"geolocGnssHoldOnMode",
+      "groupId":"0x02",
+      "localId":"0x06",
+      "description": "Select the GNSS hold on mode. Possible Values are:\n0: Disabled\n1: Always. Hold-on mode always set. Only controlled by the timer.\n2: techno: If the gnss is actually used (meaning GNSS techno not skipped).\n3: moving: Hold-mode set while moving.\n4: techno and moving: if the gnss is actually used (meaning GNSS techno not skipped) and tracker is moving.",
+      "parameterType":{
+         "type":"ParameterTypeString",
+         "possibleValues":[
+            "DISABLED",
+            "ALWAYS",
+            "TECHNO",
+            "MOVING",
+            "STATIC",
+            "TECHNO_AND_MOVING"
+         ],
+         "firmwareValues":[
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+         ]
+      },
+      "compatibleTrackerModels":[
+         {
+            "producerId":"abeeway",
+            "moduleId":"compact-tracker",
+            "version":"2.0"
+         },
+         {
+            "producerId":"abeeway",
+            "moduleId":"combo-compact-tracker",
+            "version":"1.0"
+         }
+      ]
+   },
+   {
+      "driverParameterName":"geolocGnssHoldOnTimeout",
+      "groupId":"0x02",
+      "localId":"0x07",
+      "defaultValue":0,
+      "unit":"s",
+      "description":"GNSS hold on mode timeout.",
+      "parameterType":{
+         "type":"ParameterTypeNumber",
+         "range":{
+            "minimum":0,
+            "maximum":86400
+         }
+      },
+      "compatibleTrackerModels":[
+         {
+            "producerId":"abeeway",
+            "moduleId":"compact-tracker",
+            "version":"2.0"
+         },
+         {
+            "producerId":"abeeway",
+            "moduleId":"combo-compact-tracker",
+            "version":"1.0"
+         }
+      ]
+   },
+   {
+      "driverParameterName":"geolocProfile0Triggers",
+      "groupId":"0x02",
+      "localId":"0x08",
+      "description":"Geolocation event triggers 0",
+      "parameterType":{
+            "type":"ParameterTypeBitMask",
+            "properties":[
+               {
+                  "name":"geoTriggerPod",
+                  "type":"PropertyBoolean",
+                  "description":"Geoloc triggered on Position-on-demand via downlink or via button."
+               },
+               {
+                  "name":"geoTriggerSos",
+                  "type":"PropertyBoolean",
+                  "description":"SOS started"
+               },
+               {
+                  "name":"geoTriggerMotionStart",
+                  "type":"PropertyBoolean",
+                  "description":"Geoloc triggered on motion start event"
+               },
+               {
+                  "name":"geoTriggerMotionStop",
+                  "type":"PropertyBoolean",
+                  "description":"Geoloc triggered on motion stop event"
+               },
+               {
+                  "name":"geoTriggerInMotion",
+                  "type":"PropertyBoolean",
+                  "description":"Periodic geoloc while the tracker is in motion"
+               },
+               {
+                  "name":"geoTriggerInStatic",
+                  "type":"PropertyBoolean",
+                  "description":"Periodic geoloc running while the tracker is static"
+               },
+               {
+                  "name":"geoTriggerShock",
+                  "type":"PropertyBoolean",
+                  "description":"Geoloc triggered on shock action"
+               },
+               {
+                  "name":"geoTriggerTempHighThreshold",
+                  "type":"PropertyBoolean",
+                  "description":"Geoloc triggered on temperature high."
+               },
+               {
+                  "name":"geoTriggerTempLowThreshold",
+                  "type":"PropertyBoolean",
+                  "description":"Geoloc triggered on temperature high."
+               },
+               {
+                  "name":"geoTriggerGeozoning",
+                  "type":"PropertyBoolean",
+                  "description":"Geoloc triggered on geoTriggerGeozoning"
+               }
+
+            ],
+            "bitMask":[
+               {
+                  "type":"BitMaskValue",
+                  "valueFor":"geoTriggerPod",
+                  "bitShift":0,
+                  "length":1
+               },
+               {
+                  "type":"BitMaskValue",
+                  "valueFor":"geoTriggerSos",
+                  "bitShift":1,
+                  "length":1
+               },
+               {
+                  "type":"BitMaskValue",
+                  "valueFor":"geoTriggerMotionStart",
+                  "bitShift":2,
+                  "length":1
+               },
+               {
+                  "type":"BitMaskValue",
+                  "valueFor":"geoTriggerMotionStop",
+                  "bitShift":3,
+                  "length":1
+               },
+               {
+                  "type":"BitMaskValue",
+                  "valueFor":"geoTriggerInMotion",
+                  "bitShift":4,
+                  "length":1
+               },
+               {
+                  "type":"BitMaskValue",
+                  "valueFor":"geoTriggerInStatic",
+                  "bitShift":5,
+                  "length":1
+               },
+               {
+                  "type":"BitMaskValue",
+                  "valueFor":"geoTriggerShock",
+                  "bitShift":6,
+                  "length":1
+               },
+               {
+                  "type":"BitMaskValue",
+                  "valueFor":"geoTriggerTempHighThreshold",
+                  "bitShift":7,
+                  "length":1
+               },
+               {
+                  "type":"BitMaskValue",
+                  "valueFor":"geoTriggerTempLowThreshold",
+                  "bitShift":8,
+                  "length":1
+               },
+               {
+                  "type":"BitMaskValue",
+                  "valueFor":"geoTriggerGeozoning",
+                  "bitShift":9,
+                  "length":1
+               }]
+               },
+
+      "compatibleTrackerModels":[
+         {
+            "producerId":"abeeway",
+            "moduleId":"compact-tracker",
+            "version":"2.0"
+         },
+         {
+            "producerId":"abeeway",
+            "moduleId":"combo-compact-tracker",
+            "version":"1.0"
+         }
+      ]
+   },
+   {
+      "driverParameterName":"geolocProfile1Triggers",
+      "groupId":"0x02",
+      "localId":"0x09",
+      "description":"Geolocation event triggers 1",
+      "parameterType":{
+            "type":"ParameterTypeBitMask",
+            "properties":[
+               {
+                  "name":"geoTriggerPod",
+                  "type":"PropertyBoolean",
+                  "description":"Geoloc triggered on Position-on-demand via downlink or via button."
+               },
+               {
+                  "name":"geoTriggerSos",
+                  "type":"PropertyBoolean",
+                  "description":"SOS started"
+               },
+               {
+                  "name":"geoTriggerMotionStart",
+                  "type":"PropertyBoolean",
+                  "description":"Geoloc triggered on motion start event"
+               },
+               {
+                  "name":"geoTriggerMotionStop",
+                  "type":"PropertyBoolean",
+                  "description":"Geoloc triggered on motion stop event"
+               },
+               {
+                  "name":"geoTriggerInMotion",
+                  "type":"PropertyBoolean",
+                  "description":"Periodic geoloc while the tracker is in motion"
+               },
+               {
+                  "name":"geoTriggerInStatic",
+                  "type":"PropertyBoolean",
+                  "description":"Periodic geoloc running while the tracker is static"
+               },
+               {
+                  "name":"geoTriggerShock",
+                  "type":"PropertyBoolean",
+                  "description":"Geoloc triggered on shock action"
+               },
+               {
+                  "name":"geoTriggerTempHighThreshold",
+                  "type":"PropertyBoolean",
+                  "description":"Geoloc triggered on temperature high."
+               },
+               {
+                  "name":"geoTriggerTempLowThreshold",
+                  "type":"PropertyBoolean",
+                  "description":"Geoloc triggered on temperature high."
+               },
+               {
+                  "name":"geoTriggerGeozoning",
+                  "type":"PropertyBoolean",
+                  "description":"Geoloc triggered on temperature low."
+               }
+
+            ],
+            "bitMask":[
+               {
+                  "type":"BitMaskValue",
+                  "valueFor":"geoTriggerPod",
+                  "bitShift":0,
+                  "length":1
+               },
+               {
+                  "type":"BitMaskValue",
+                  "valueFor":"geoTriggerSos",
+                  "bitShift":1,
+                  "length":1
+               },
+               {
+                  "type":"BitMaskValue",
+                  "valueFor":"geoTriggerMotionStart",
+                  "bitShift":2,
+                  "length":1
+               },
+               {
+                  "type":"BitMaskValue",
+                  "valueFor":"geoTriggerMotionStop",
+                  "bitShift":3,
+                  "length":1
+               },
+               {
+                  "type":"BitMaskValue",
+                  "valueFor":"geoTriggerInMotion",
+                  "bitShift":4,
+                  "length":1
+               },
+               {
+                  "type":"BitMaskValue",
+                  "valueFor":"geoTriggerInStatic",
+                  "bitShift":5,
+                  "length":1
+               },
+               {
+                  "type":"BitMaskValue",
+                  "valueFor":"geoTriggerShock",
+                  "bitShift":6,
+                  "length":1
+               },
+               {
+                  "type":"BitMaskValue",
+                  "valueFor":"geoTriggerTempHighThreshold",
+                  "bitShift":7,
+                  "length":1
+               },
+               {
+                  "type":"BitMaskValue",
+                  "valueFor":"geoTriggerTempLowThreshold",
+                  "bitShift":8,
+                  "length":1
+               },
+               {
+                  "type":"BitMaskValue",
+                  "valueFor":"geoTriggerGeozoning",
+                  "bitShift":9,
+                  "length":1
+               }]
+               },
+
+      "compatibleTrackerModels":[
+         {
+            "producerId":"abeeway",
+            "moduleId":"compact-tracker",
+            "version":"2.0"
+         },
+         {
+            "producerId":"abeeway",
+            "moduleId":"combo-compact-tracker",
+            "version":"1.0"
+         }
+      ]
+   },
+   {
+      "driverParameterName":"geolocProfile2Triggers",
+      "groupId":"0x02",
+      "localId":"0x0A",
+      "description":"Geolocation event triggers 2",
+      "parameterType":{
+            "type":"ParameterTypeBitMask",
+            "properties":[
+               {
+                  "name":"geoTriggerPod",
+                  "type":"PropertyBoolean",
+                  "description":"Geoloc triggered on Position-on-demand via downlink or via button."
+               },
+               {
+                  "name":"geoTriggerSos",
+                  "type":"PropertyBoolean",
+                  "description":"SOS started"
+               },
+               {
+                  "name":"geoTriggerMotionStart",
+                  "type":"PropertyBoolean",
+                  "description":"Geoloc triggered on motion start event"
+               },
+               {
+                  "name":"geoTriggerMotionStop",
+                  "type":"PropertyBoolean",
+                  "description":"Geoloc triggered on motion stop event"
+               },
+               {
+                  "name":"geoTriggerInMotion",
+                  "type":"PropertyBoolean",
+                  "description":"Periodic geoloc while the tracker is in motion"
+               },
+               {
+                  "name":"geoTriggerInStatic",
+                  "type":"PropertyBoolean",
+                  "description":"Periodic geoloc running while the tracker is static"
+               },
+               {
+                  "name":"geoTriggerShock",
+                  "type":"PropertyBoolean",
+                  "description":"Geoloc triggered on shock action"
+               },
+               {
+                  "name":"geoTriggerTempHighThreshold",
+                  "type":"PropertyBoolean",
+                  "description":"Geoloc triggered on temperature high."
+               },
+               {
+                  "name":"geoTriggerTempLowThreshold",
+                  "type":"PropertyBoolean",
+                  "description":"Geoloc triggered on temperature high."
+               },
+               {
+                  "name":"geoTriggerGeozoning",
+                  "type":"PropertyBoolean",
+                  "description":"Geoloc triggered on temperature low."
+               }
+
+            ],
+            "bitMask":[
+               {
+                  "type":"BitMaskValue",
+                  "valueFor":"geoTriggerPod",
+                  "bitShift":0,
+                  "length":1
+               },
+               {
+                  "type":"BitMaskValue",
+                  "valueFor":"geoTriggerSos",
+                  "bitShift":1,
+                  "length":1
+               },
+               {
+                  "type":"BitMaskValue",
+                  "valueFor":"geoTriggerMotionStart",
+                  "bitShift":2,
+                  "length":1
+               },
+               {
+                  "type":"BitMaskValue",
+                  "valueFor":"geoTriggerMotionStop",
+                  "bitShift":3,
+                  "length":1
+               },
+               {
+                  "type":"BitMaskValue",
+                  "valueFor":"geoTriggerInMotion",
+                  "bitShift":4,
+                  "length":1
+               },
+               {
+                  "type":"BitMaskValue",
+                  "valueFor":"geoTriggerInStatic",
+                  "bitShift":5,
+                  "length":1
+               },
+               {
+                  "type":"BitMaskValue",
+                  "valueFor":"geoTriggerShock",
+                  "bitShift":6,
+                  "length":1
+               },
+               {
+                  "type":"BitMaskValue",
+                  "valueFor":"geoTriggerTempHighThreshold",
+                  "bitShift":7,
+                  "length":1
+               },
+               {
+                  "type":"BitMaskValue",
+                  "valueFor":"geoTriggerTempLowThreshold",
+                  "bitShift":8,
+                  "length":1
+               },
+               {
+                  "type":"BitMaskValue",
+                  "valueFor":"geoTriggerGeozoning",
+                  "bitShift":9,
+                  "length":1
+               }]
+               },
+
+      "compatibleTrackerModels":[
+         {
+            "producerId":"abeeway",
+            "moduleId":"compact-tracker",
+            "version":"2.0"
+         },
+         {
+            "producerId":"abeeway",
+            "moduleId":"combo-compact-tracker",
+            "version":"1.0"
+         }
+      ]
+   },
+   {
+      "driverParameterName":"geolocGbeProfile0Techno",
+      "groupId":"0x02",
+      "localId":"0x0B",
+      "description":"Technologies to schedule using the basic engine for events in triggers 0",
+      "parameterType":{
+         "type":"ParameterTypeByteArray",
+         "size": 6,
+         "properties":[
+            {
+               "name":"Action",
+               "type":"PropertyString",
                "possibleValues":[
-                  "DISABLED",
-                  "ALWAYS",
-                  "TECHNO",
-                  "MOVING",
-                  "TECHNO_AND_MOVING"
+                  "SKIP_ON_SUCCESS",
+                  "ALWAYS_DONE"
                ],
                "firmwareValues":[
                   0,
-                  1,
-                  2,
-                  3,
-                  4
+                  1
                ]
             },
-            "compatibleTrackerModels":[
-               {
-                  "producerId":"abeeway",
-                  "moduleId":"compact-tracker",
-                  "version":"2.0"
-               },
-               {
-                  "producerId":"abeeway",
-                  "moduleId":"combo-compact-tracker",
-                  "version":"1.0"
-               }
-            ]
-         },
-         {
-            "driverParameterName":"geolocGnssHoldOnTimeout",
-            "groupId":"0x02",
-            "localId":"0x07",
-            "defaultValue":0,
-            "unit":"s",
-            "description":"GNSS hold on mode timeout.",
-            "parameterType":{
-               "type":"ParameterTypeNumber",
-               "range":{
-                  "minimum":0,
-                  "maximum":86400
-               }
-            },
-            "compatibleTrackerModels":[
-               {
-                  "producerId":"abeeway",
-                  "moduleId":"compact-tracker",
-                  "version":"2.0"
-               },
-               {
-                  "producerId":"abeeway",
-                  "moduleId":"combo-compact-tracker",
-                  "version":"1.0"
-               }
-            ]
-         },
-         {
-            "driverParameterName":"geolocProfile0Triggers",
-            "groupId":"0x02",
-            "localId":"0x08",
-            "description":"Geolocation event triggers 0",
-            "parameterType":{
-                  "type":"ParameterTypeBitMask",
-                  "properties":[
-                     {
-                        "name":"geoTriggerPod",
-                        "type":"PropertyBoolean",
-                        "description":"Geoloc triggered on Position-on-demand via downlink or via button."
-                     },
-                     {
-                        "name":"geoTriggerSos",
-                        "type":"PropertyBoolean",
-                        "description":"SOS started"
-                     },
-                     {
-                        "name":"geoTriggerMotionStart",
-                        "type":"PropertyBoolean",
-                        "description":"Geoloc triggered on motion start event"
-                     },
-                     {
-                        "name":"geoTriggerMotionStop",
-                        "type":"PropertyBoolean",
-                        "description":"Geoloc triggered on motion stop event"
-                     },
-                     {
-                        "name":"geoTriggerInMotion",
-                        "type":"PropertyBoolean",
-                        "description":"Periodic geoloc while the tracker is in motion"
-                     },
-                     {
-                        "name":"geoTriggerInStatic",
-                        "type":"PropertyBoolean",
-                        "description":"Periodic geoloc running while the tracker is static"
-                     },
-                     {
-                        "name":"geoTriggerShock",
-                        "type":"PropertyBoolean",
-                        "description":"Geoloc triggered on shock action"
-                     },
-                     {
-                        "name":"geoTriggerTempHighThreshold",
-                        "type":"PropertyBoolean",
-                        "description":"Geoloc triggered on temperature high."
-                     },
-                     {
-                        "name":"geoTriggerTempLowThreshold",
-                        "type":"PropertyBoolean",
-                        "description":"Geoloc triggered on temperature high."
-                     },
-                     {
-                        "name":"geoTriggerGeozoning",
-                        "type":"PropertyBoolean",
-                        "description":"Geoloc triggered on temperature low."
-                     }
-
-                  ],
-                  "bitMask":[
-                     {
-                        "type":"BitMaskValue",
-                        "valueFor":"geoTriggerPod",
-                        "bitShift":0,
-                        "length":1
-                     },
-                     {
-                        "type":"BitMaskValue",
-                        "valueFor":"geoTriggerSos",
-                        "bitShift":1,
-                        "length":1
-                     },
-                     {
-                        "type":"BitMaskValue",
-                        "valueFor":"geoTriggerMotionStart",
-                        "bitShift":2,
-                        "length":1
-                     },
-                     {
-                        "type":"BitMaskValue",
-                        "valueFor":"geoTriggerMotionStop",
-                        "bitShift":3,
-                        "length":1
-                     },
-                     {
-                        "type":"BitMaskValue",
-                        "valueFor":"geoTriggerInMotion",
-                        "bitShift":4,
-                        "length":1
-                     },
-                     {
-                        "type":"BitMaskValue",
-                        "valueFor":"geoTriggerInStatic",
-                        "bitShift":5,
-                        "length":1
-                     },
-                     {
-                        "type":"BitMaskValue",
-                        "valueFor":"geoTriggerShock",
-                        "bitShift":6,
-                        "length":1
-                     },
-                     {
-                        "type":"BitMaskValue",
-                        "valueFor":"geoTriggerTempHighThreshold",
-                        "bitShift":7,
-                        "length":1
-                     },
-                     {
-                        "type":"BitMaskValue",
-                        "valueFor":"geoTriggerTempLowThreshold",
-                        "bitShift":8,
-                        "length":1
-                     },
-                     {
-                        "type":"BitMaskValue",
-                        "valueFor":"geoTriggerGeozoning",
-                        "bitShift":9,
-                        "length":1
-                     }]
-                     },
-  
-            "compatibleTrackerModels":[
-               {
-                  "producerId":"abeeway",
-                  "moduleId":"compact-tracker",
-                  "version":"2.0"
-               },
-               {
-                  "producerId":"abeeway",
-                  "moduleId":"combo-compact-tracker",
-                  "version":"1.0"
-               }
-            ]
-         },
-         {
-            "driverParameterName":"geolocProfile1Triggers",
-            "groupId":"0x02",
-            "localId":"0x09",
-            "description":"Geolocation event triggers 1",
-            "parameterType":{
-                  "type":"ParameterTypeBitMask",
-                  "properties":[
-                     {
-                        "name":"geoTriggerPod",
-                        "type":"PropertyBoolean",
-                        "description":"Geoloc triggered on Position-on-demand via downlink or via button."
-                     },
-                     {
-                        "name":"geoTriggerSos",
-                        "type":"PropertyBoolean",
-                        "description":"SOS started"
-                     },
-                     {
-                        "name":"geoTriggerMotionStart",
-                        "type":"PropertyBoolean",
-                        "description":"Geoloc triggered on motion start event"
-                     },
-                     {
-                        "name":"geoTriggerMotionStop",
-                        "type":"PropertyBoolean",
-                        "description":"Geoloc triggered on motion stop event"
-                     },
-                     {
-                        "name":"geoTriggerInMotion",
-                        "type":"PropertyBoolean",
-                        "description":"Periodic geoloc while the tracker is in motion"
-                     },
-                     {
-                        "name":"geoTriggerInStatic",
-                        "type":"PropertyBoolean",
-                        "description":"Periodic geoloc running while the tracker is static"
-                     },
-                     {
-                        "name":"geoTriggerShock",
-                        "type":"PropertyBoolean",
-                        "description":"Geoloc triggered on shock action"
-                     },
-                     {
-                        "name":"geoTriggerTempHighThreshold",
-                        "type":"PropertyBoolean",
-                        "description":"Geoloc triggered on temperature high."
-                     },
-                     {
-                        "name":"geoTriggerTempLowThreshold",
-                        "type":"PropertyBoolean",
-                        "description":"Geoloc triggered on temperature high."
-                     },
-                     {
-                        "name":"geoTriggerGeozoning",
-                        "type":"PropertyBoolean",
-                        "description":"Geoloc triggered on temperature low."
-                     }
-
-                  ],
-                  "bitMask":[
-                     {
-                        "type":"BitMaskValue",
-                        "valueFor":"geoTriggerPod",
-                        "bitShift":0,
-                        "length":1
-                     },
-                     {
-                        "type":"BitMaskValue",
-                        "valueFor":"geoTriggerSos",
-                        "bitShift":1,
-                        "length":1
-                     },
-                     {
-                        "type":"BitMaskValue",
-                        "valueFor":"geoTriggerMotionStart",
-                        "bitShift":2,
-                        "length":1
-                     },
-                     {
-                        "type":"BitMaskValue",
-                        "valueFor":"geoTriggerMotionStop",
-                        "bitShift":3,
-                        "length":1
-                     },
-                     {
-                        "type":"BitMaskValue",
-                        "valueFor":"geoTriggerInMotion",
-                        "bitShift":4,
-                        "length":1
-                     },
-                     {
-                        "type":"BitMaskValue",
-                        "valueFor":"geoTriggerInStatic",
-                        "bitShift":5,
-                        "length":1
-                     },
-                     {
-                        "type":"BitMaskValue",
-                        "valueFor":"geoTriggerShock",
-                        "bitShift":6,
-                        "length":1
-                     },
-                     {
-                        "type":"BitMaskValue",
-                        "valueFor":"geoTriggerTempHighThreshold",
-                        "bitShift":7,
-                        "length":1
-                     },
-                     {
-                        "type":"BitMaskValue",
-                        "valueFor":"geoTriggerTempLowThreshold",
-                        "bitShift":8,
-                        "length":1
-                     },
-                     {
-                        "type":"BitMaskValue",
-                        "valueFor":"geoTriggerGeozoning",
-                        "bitShift":9,
-                        "length":1
-                     }]
-                     },
-  
-            "compatibleTrackerModels":[
-               {
-                  "producerId":"abeeway",
-                  "moduleId":"compact-tracker",
-                  "version":"2.0"
-               },
-               {
-                  "producerId":"abeeway",
-                  "moduleId":"combo-compact-tracker",
-                  "version":"1.0"
-               }
-            ]
-         },
-         {
-            "driverParameterName":"geolocProfile2Triggers",
-            "groupId":"0x02",
-            "localId":"0x0A",
-            "description":"Geolocation event triggers 2",
-            "parameterType":{
-                  "type":"ParameterTypeBitMask",
-                  "properties":[
-                     {
-                        "name":"geoTriggerPod",
-                        "type":"PropertyBoolean",
-                        "description":"Geoloc triggered on Position-on-demand via downlink or via button."
-                     },
-                     {
-                        "name":"geoTriggerSos",
-                        "type":"PropertyBoolean",
-                        "description":"SOS started"
-                     },
-                     {
-                        "name":"geoTriggerMotionStart",
-                        "type":"PropertyBoolean",
-                        "description":"Geoloc triggered on motion start event"
-                     },
-                     {
-                        "name":"geoTriggerMotionStop",
-                        "type":"PropertyBoolean",
-                        "description":"Geoloc triggered on motion stop event"
-                     },
-                     {
-                        "name":"geoTriggerInMotion",
-                        "type":"PropertyBoolean",
-                        "description":"Periodic geoloc while the tracker is in motion"
-                     },
-                     {
-                        "name":"geoTriggerInStatic",
-                        "type":"PropertyBoolean",
-                        "description":"Periodic geoloc running while the tracker is static"
-                     },
-                     {
-                        "name":"geoTriggerShock",
-                        "type":"PropertyBoolean",
-                        "description":"Geoloc triggered on shock action"
-                     },
-                     {
-                        "name":"geoTriggerTempHighThreshold",
-                        "type":"PropertyBoolean",
-                        "description":"Geoloc triggered on temperature high."
-                     },
-                     {
-                        "name":"geoTriggerTempLowThreshold",
-                        "type":"PropertyBoolean",
-                        "description":"Geoloc triggered on temperature high."
-                     },
-                     {
-                        "name":"geoTriggerGeozoning",
-                        "type":"PropertyBoolean",
-                        "description":"Geoloc triggered on temperature low."
-                     }
-
-                  ],
-                  "bitMask":[
-                     {
-                        "type":"BitMaskValue",
-                        "valueFor":"geoTriggerPod",
-                        "bitShift":0,
-                        "length":1
-                     },
-                     {
-                        "type":"BitMaskValue",
-                        "valueFor":"geoTriggerSos",
-                        "bitShift":1,
-                        "length":1
-                     },
-                     {
-                        "type":"BitMaskValue",
-                        "valueFor":"geoTriggerMotionStart",
-                        "bitShift":2,
-                        "length":1
-                     },
-                     {
-                        "type":"BitMaskValue",
-                        "valueFor":"geoTriggerMotionStop",
-                        "bitShift":3,
-                        "length":1
-                     },
-                     {
-                        "type":"BitMaskValue",
-                        "valueFor":"geoTriggerInMotion",
-                        "bitShift":4,
-                        "length":1
-                     },
-                     {
-                        "type":"BitMaskValue",
-                        "valueFor":"geoTriggerInStatic",
-                        "bitShift":5,
-                        "length":1
-                     },
-                     {
-                        "type":"BitMaskValue",
-                        "valueFor":"geoTriggerShock",
-                        "bitShift":6,
-                        "length":1
-                     },
-                     {
-                        "type":"BitMaskValue",
-                        "valueFor":"geoTriggerTempHighThreshold",
-                        "bitShift":7,
-                        "length":1
-                     },
-                     {
-                        "type":"BitMaskValue",
-                        "valueFor":"geoTriggerTempLowThreshold",
-                        "bitShift":8,
-                        "length":1
-                     },
-                     {
-                        "type":"BitMaskValue",
-                        "valueFor":"geoTriggerGeozoning",
-                        "bitShift":9,
-                        "length":1
-                     }]
-                     },
-  
-            "compatibleTrackerModels":[
-               {
-                  "producerId":"abeeway",
-                  "moduleId":"compact-tracker",
-                  "version":"2.0"
-               },
-               {
-                  "producerId":"abeeway",
-                  "moduleId":"combo-compact-tracker",
-                  "version":"1.0"
-               }
-            ]
-         },
-         {
-            "driverParameterName":"geolocGbeProfile0Techno",
-            "groupId":"0x02",
-            "localId":"0x0B",
-            "description":"Technologies to schedule using the basic engine for events in triggers 0",
-            "parameterType":{
-               "type":"ParameterTypeByteArray",
-               "size": 6,
-               "properties":[
-                  {
-                     "name":"Action",
-                     "type":"PropertyString",
-                     "possibleValues":[
-                        "SKIP_ON_SUCCESS",
-                        "ALWAYS_DONE"
-                     ],
-                     "firmwareValues":[
-                        0,
-                        1
-                     ]
-                  },
-                  {
-                     "name":"Technology",
-                     "type":"PropertyString",
-                     "possibleValues":[
-                        "NONE",
-                        "LR11xx_A_GNSS",
-                        "WIFI",
-                        "BLE_SCAN1",
-                        "BLE_SCAN2",
-                        "AIDED_GNSS",
-                        "GNSS"
-                     ],
-                     "firmwareValues":[
-                        0,
-                        1,
-                        2,
-                        3,
-                        4,
-                        5,
-                        6
-                     ]
-                  }
-               ],
-               "byteMask":[
-                  {
-                     "type":"BitMaskValue",
-                     "valueFor":"Technology",
-                     "bitShift":0,
-                     "length":7
-                  },
-                  {
-                     "type":"BitMaskValue",
-                     "valueFor":"Action",
-                     "bitShift":7,
-                     "length":1
-                  }
-                 
-               ]
-            },
-            "compatibleTrackerModels":[
-               {
-                  "producerId":"abeeway",
-                  "moduleId":"compact-tracker",
-                  "version":"2.0"
-               },
-               {
-                  "producerId":"abeeway",
-                  "moduleId":"combo-compact-tracker",
-                  "version":"1.0"
-               }
-            ]
-         },
-         {
-            "driverParameterName":"geolocGbeProfile1Techno",
-            "groupId":"0x02",
-            "localId":"0x0C",
-            "description":"Technologies to schedule using the basic engine for events in triggers 1",
-            "parameterType":{
-               "type":"ParameterTypeByteArray",
-               "size": 6,
-               "properties":[
-                  {
-                     "name":"Action",
-                     "type":"PropertyString",
-                     "possibleValues":[
-                        "SKIP_ON_SUCCESS",
-                        "ALWAYS_DONE"
-                     ],
-                     "firmwareValues":[
-                        0,
-                        1
-                     ]
-                  },
-                  {
-                     "name":"Technology",
-                     "type":"PropertyString",
-                     "possibleValues":[
-                        "NONE",
-                        "LR11xx_A_GNSS",
-                        "WIFI",
-                        "BLE_SCAN1",
-                        "BLE_SCAN2",
-                        "AIDED_GNSS",
-                        "GNSS"
-                     ],
-                     "firmwareValues":[
-                        0,
-                        1,
-                        2,
-                        3,
-                        4,
-                        5,
-                        6
-                     ]
-                  }
-               ],
-               "byteMask":[
-                  {
-                     "type":"BitMaskValue",
-                     "valueFor":"Technology",
-                     "bitShift":0,
-                     "length":7
-                  },
-                  {
-                     "type":"BitMaskValue",
-                     "valueFor":"Action",
-                     "bitShift":7,
-                     "length":1
-                  }
-                 
-               ]
-            },
-            "compatibleTrackerModels":[
-               {
-                  "producerId":"abeeway",
-                  "moduleId":"compact-tracker",
-                  "version":"2.0"
-               },
-               {
-                  "producerId":"abeeway",
-                  "moduleId":"combo-compact-tracker",
-                  "version":"1.0"
-               }
-            ]
-         },
-         {
-            "driverParameterName":"geolocGbeProfile2Techno",
-            "groupId":"0x02",
-            "localId":"0x0D",
-            "description":"Technologies to schedule using the basic engine for events in triggers 2",
-            "parameterType":{
-               "type":"ParameterTypeByteArray",
-               "size": 6,
-               "properties":[
-                  {
-                     "name":"Action",
-                     "type":"PropertyString",
-                     "possibleValues":[
-                        "SKIP_ON_SUCCESS",
-                        "ALWAYS_DONE"
-                     ],
-                     "firmwareValues":[
-                        0,
-                        1
-                     ]
-                  },
-                  {
-                     "name":"Technology",
-                     "type":"PropertyString",
-                     "possibleValues":[
-                        "NONE",
-                        "LR11xx_A_GNSS",
-                        "WIFI",
-                        "BLE_SCAN1",
-                        "BLE_SCAN2",
-                        "AIDED_GNSS",
-                        "GNSS"
-                     ],
-                     "firmwareValues":[
-                        0,
-                        1,
-                        2,
-                        3,
-                        4,
-                        5,
-                        6
-                     ]
-                  }
-               ],
-               "byteMask":[
-                  {
-                     "type":"BitMaskValue",
-                     "valueFor":"Technology",
-                     "bitShift":0,
-                     "length":7
-                  },
-                  {
-                     "type":"BitMaskValue",
-                     "valueFor":"Action",
-                     "bitShift":7,
-                     "length":1
-                  }
-                 
-               ]
-            },
-            "compatibleTrackerModels":[
-               {
-                  "producerId":"abeeway",
-                  "moduleId":"compact-tracker",
-                  "version":"2.0"
-               },
-               {
-                  "producerId":"abeeway",
-                  "moduleId":"combo-compact-tracker",
-                  "version":"1.0"
-               }
-            ]
-         },
-         {
-            "driverParameterName":"gnssConstellation",
-            "groupId":"0x03",
-            "localId":"0x00",
-            "defaultValue":4,
-            "description":"GNSS constellations to be used",
-            "parameterType":{
-               "type":"ParameterTypeString",
+            {
+               "name":"Technology",
+               "type":"PropertyString",
                "possibleValues":[
-                  "GPS_ONLY",
-                  "GLONASS_ONLY",
-                  "GPS_GLONASS",
-                  "GPS_GALILEO",
-                  "GPS_GLONASS_GALILEO",
-                  "BEIDOU_ONLY",
-                  "BEIDOU_GPS"
+                  "NONE",
+                  "LR11xx_A_GNSS",
+                  "WIFI",
+                  "BLE_SCAN1",
+                  "BLE_SCAN2",
+                  "AIDED_GNSS",
+                  "GNSS"
                ],
                "firmwareValues":[
                   0,
@@ -1739,347 +2414,709 @@
                   5,
                   6
                ]
+            }
+         ],
+         "byteMask":[
+            {
+               "type":"BitMaskValue",
+               "valueFor":"Technology",
+               "bitShift":0,
+               "length":7
             },
-            "compatibleTrackerModels":[
-               {
-                  "producerId":"abeeway",
-                  "moduleId":"compact-tracker",
-                  "version":"2.0"
-               },
-               {
-                  "producerId":"abeeway",
-                  "moduleId":"combo-compact-tracker",
-                  "version":"1.0"
-               }
-            ]
+            {
+               "type":"BitMaskValue",
+               "valueFor":"Action",
+               "bitShift":7,
+               "length":1
+            }
+            
+         ]
+      },
+      "compatibleTrackerModels":[
+         {
+            "producerId":"abeeway",
+            "moduleId":"compact-tracker",
+            "version":"2.0"
          },
          {
-            "driverParameterName":"gnssMaxTime",
-            "groupId":"0x03",
-            "localId":"0x01",
-            "defaultValue":300,
-            "unit":"s",
-            "description":"GNSS max acquisition time.",
-            "parameterType":{
-               "type":"ParameterTypeNumber",
-               "range":{
-                  "minimum":30,
-                  "maximum":300
-               }
-            },
-            "compatibleTrackerModels":[
-               {
-                  "producerId":"abeeway",
-                  "moduleId":"compact-tracker",
-                  "version":"2.0"
-               },
-               {
-                  "producerId":"abeeway",
-                  "moduleId":"combo-compact-tracker",
-                  "version":"1.0"
-               }
-            ]
-         },
-         {
-            "driverParameterName":"gnssT0Timeout",
-            "groupId":"0x03",
-            "localId":"0x02",
-            "defaultValue":30,
-            "unit":"s",
-            "description":"Max time to acquire at least one satellite.",
-            "parameterType":{
-               "type":"ParameterTypeNumber",
-               "range":{
-                  "minimum":0,
-                  "maximum":300
-               }
-            },
-            "compatibleTrackerModels":[
-               {
-                  "producerId":"abeeway",
-                  "moduleId":"compact-tracker",
-                  "version":"2.0"
-               },
-               {
-                  "producerId":"abeeway",
-                  "moduleId":"combo-compact-tracker",
-                  "version":"1.0"
-               }
-            ]
-         },
-         {
-            "driverParameterName":"gnssEhpe",
-            "groupId":"0x03",
-            "localId":"0x03",
-            "defaultValue":30,
-            "unit":"m",
-            "description":"Expected estimated horizontal position error",
-            "parameterType":{
-               "type":"ParameterTypeNumber",
-               "range":{
-                  "minimum":0,
-                  "maximum":100
-               }
-            },
-            "compatibleTrackerModels":[
-               {
-                  "producerId":"abeeway",
-                  "moduleId":"compact-tracker",
-                  "version":"2.0"
-               },
-               {
-                  "producerId":"abeeway",
-                  "moduleId":"combo-compact-tracker",
-                  "version":"1.0"
-               }
-            ]
-         },
-         {
-            "driverParameterName":"gnssConvergence",
-            "groupId":"0x03",
-            "localId":"0x04",
-            "defaultValue":20,
-            "unit":"s",
-            "description":"Extra-time after a first fix to refine the fix",
-            "parameterType":{
-               "type":"ParameterTypeNumber",
-               "range":{
-                  "minimum":0,
-                  "maximum":300
-               }
-            },
-            "compatibleTrackerModels":[
-               {
-                  "producerId":"abeeway",
-                  "moduleId":"compact-tracker",
-                  "version":"2.0"
-               },
-               {
-                  "producerId":"abeeway",
-                  "moduleId":"combo-compact-tracker",
-                  "version":"1.0"
-               }
-            ]
-         },
-         {
-            "driverParameterName":"gnssStandby",
-            "groupId":"0x03",
-            "localId":"0x05",
-            "defaultValue":14400,
-            "unit":"s",
-            "description":"Max time to let the device in standby mode.",
-            "parameterType":{
-               "type":"ParameterTypeNumber",
-               "range":{
-                  "minimum":0
-               }
-            },
-            "compatibleTrackerModels":[
-               {
-                  "producerId":"abeeway",
-                  "moduleId":"compact-tracker",
-                  "version":"2.0"
-               },
-               {
-                  "producerId":"abeeway",
-                  "moduleId":"combo-compact-tracker",
-                  "version":"1.0"
-               }
-            ]
-         },
-         {
-            "driverParameterName":"gnssAgnssMaxTime",
-            "groupId":"0x03",
-            "localId":"0x06",
-            "defaultValue":45,
-            "unit":"s",
-            "description":"Aided GNSS max acquisition time.",
-            "parameterType":{
-               "type":"ParameterTypeNumber",
-               "range":{
-                  "minimum":15,
-                  "maximum":240
-               }
-            },
-            "compatibleTrackerModels":[
-               {
-                  "producerId":"abeeway",
-                  "moduleId":"compact-tracker",
-                  "version":"2.0"
-               },
-               {
-                  "producerId":"abeeway",
-                  "moduleId":"combo-compact-tracker",
-                  "version":"1.0"
-               }
-            ]
-         },
-         {
-            "driverParameterName":"gnssT1Timeout",
-            "groupId":"0x03",
-            "localId":"0x07",
-            "defaultValue":0,
-            "unit":"s",
-            "description":"Extra time let in Aided GNSS mode to try doing a fix.",
-            "parameterType":{
-               "type":"ParameterTypeNumber",
-               "range":{
-                  "minimum":0,
-                  "maximum":300
-               }
-            },
-            "compatibleTrackerModels":[
-               {
-                  "producerId":"abeeway",
-                  "moduleId":"compact-tracker",
-                  "version":"2.0"
-               },
-               {
-                  "producerId":"abeeway",
-                  "moduleId":"combo-compact-tracker",
-                  "version":"1.0"
-               }
-            ]
-         },
-         {
-            "driverParameterName":"lrConstellation",
-            "groupId":"0x04",
-            "localId":"0x00",
-            "description": "GNSS constellations to be used",
-            "parameterType":{
-               "type":"ParameterTypeString",
+            "producerId":"abeeway",
+            "moduleId":"combo-compact-tracker",
+            "version":"1.0"
+         }
+      ]
+   },
+   {
+      "driverParameterName":"geolocGbeProfile1Techno",
+      "groupId":"0x02",
+      "localId":"0x0C",
+      "description":"Technologies to schedule using the basic engine for events in triggers 1",
+      "parameterType":{
+         "type":"ParameterTypeByteArray",
+         "size": 6,
+         "properties":[
+            {
+               "name":"Action",
+               "type":"PropertyString",
                "possibleValues":[
-                  "GPS_ONLY",
-                  "BEIDOU_ONLY",
-                  "BEIDOU_GPS"
+                  "SKIP_ON_SUCCESS",
+                  "ALWAYS_DONE"
                ],
                "firmwareValues":[
                   0,
+                  1
+               ]
+            },
+            {
+               "name":"Technology",
+               "type":"PropertyString",
+               "possibleValues":[
+                  "NONE",
+                  "LR11xx_A_GNSS",
+                  "WIFI",
+                  "BLE_SCAN1",
+                  "BLE_SCAN2",
+                  "AIDED_GNSS",
+                  "GNSS"
+               ],
+               "firmwareValues":[
+                  0,
+                  1,
+                  2,
+                  3,
+                  4,
                   5,
                   6
                ]
+            }
+         ],
+         "byteMask":[
+            {
+               "type":"BitMaskValue",
+               "valueFor":"Technology",
+               "bitShift":0,
+               "length":7
             },
-            "compatibleTrackerModels":[
-               {
-                  "producerId":"abeeway",
-                  "moduleId":"compact-tracker",
-                  "version":"2.0"
-               },
-               {
-                  "producerId":"abeeway",
-                  "moduleId":"combo-compact-tracker",
-                  "version":"1.0"
-               }
-            ]
+            {
+               "type":"BitMaskValue",
+               "valueFor":"Action",
+               "bitShift":7,
+               "length":1
+            }
+            
+         ]
+      },
+      "compatibleTrackerModels":[
+         {
+            "producerId":"abeeway",
+            "moduleId":"compact-tracker",
+            "version":"2.0"
          },
          {
-            "driverParameterName":"lrScanMode",
-            "groupId":"0x04",
-            "localId":"0x01",
-            "description": "Scan mode (NAV1 / NAV2)",
-            "parameterType":{
-               "type":"ParameterTypeString",
+            "producerId":"abeeway",
+            "moduleId":"combo-compact-tracker",
+            "version":"1.0"
+         }
+      ]
+   },
+   {
+      "driverParameterName":"geolocGbeProfile2Techno",
+      "groupId":"0x02",
+      "localId":"0x0D",
+      "description":"Technologies to schedule using the basic engine for events in triggers 2",
+      "parameterType":{
+         "type":"ParameterTypeByteArray",
+         "size": 6,
+         "properties":[
+            {
+               "name":"Action",
+               "type":"PropertyString",
                "possibleValues":[
-                  "NAV1_SCAN",
-                  "NAV2_SCAN"
+                  "SKIP_ON_SUCCESS",
+                  "ALWAYS_DONE"
                ],
                "firmwareValues":[
-                  1,
-                  2
+                  0,
+                  1
                ]
             },
-            "compatibleTrackerModels":[
-               {
-                  "producerId":"abeeway",
-                  "moduleId":"compact-tracker",
-                  "version":"2.0"
-               },
-               {
-                  "producerId":"abeeway",
-                  "moduleId":"combo-compact-tracker",
-                  "version":"1.0"
-               }
-            ]
+            {
+               "name":"Technology",
+               "type":"PropertyString",
+               "possibleValues":[
+                  "NONE",
+                  "LR11xx_A_GNSS",
+                  "WIFI",
+                  "BLE_SCAN1",
+                  "BLE_SCAN2",
+                  "AIDED_GNSS",
+                  "GNSS"
+               ],
+               "firmwareValues":[
+                  0,
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6
+               ]
+            }
+         ],
+         "byteMask":[
+            {
+               "type":"BitMaskValue",
+               "valueFor":"Technology",
+               "bitShift":0,
+               "length":7
+            },
+            {
+               "type":"BitMaskValue",
+               "valueFor":"Action",
+               "bitShift":7,
+               "length":1
+            }
+            
+         ]
+      },
+      "compatibleTrackerModels":[
+         {
+            "producerId":"abeeway",
+            "moduleId":"compact-tracker",
+            "version":"2.0"
          },
          {
-            "driverParameterName":"lrNbScans",
-            "groupId":"0x04",
-            "localId":"0x02",
-            "defaultValue":2,
-            "description":"Number of scans for one position acquisition",
-            "parameterType":{
-               "type":"ParameterTypeNumber",
-               "range":{
-                  "minimum":1,
-                  "maximum":4
-               }
-            },
-            "compatibleTrackerModels":[
-               {
-                  "producerId":"abeeway",
-                  "moduleId":"compact-tracker",
-                  "version":"2.0"
-               },
-               {
-                  "producerId":"abeeway",
-                  "moduleId":"combo-compact-tracker",
-                  "version":"1.0"
-               }
-            ]
+            "producerId":"abeeway",
+            "moduleId":"combo-compact-tracker",
+            "version":"1.0"
+         }
+      ]
+   },
+   {
+      "driverParameterName":"gnssConstellation",
+      "groupId":"0x03",
+      "localId":"0x00",
+      "defaultValue":2,
+      "description":"GNSS constellations to be used",
+      "parameterType":{
+         "type":"ParameterTypeString",
+         "possibleValues":[
+            "GPS_ONLY",
+            "GLONASS_ONLY",
+            "GPS_GLONASS",
+            "GPS_GALILEO",
+            "GPS_GLONASS_GALILEO",
+            "BEIDOU_ONLY",
+            "BEIDOU_GPS"
+         ],
+         "firmwareValues":[
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+         ]
+      },
+      "compatibleTrackerModels":[
+         {
+            "producerId":"abeeway",
+            "moduleId":"compact-tracker",
+            "version":"2.0"
          },
          {
-            "driverParameterName":"lrInterScanTime",
-            "groupId":"0x04",
-            "localId":"0x03",
-            "defaultValue":5,
-            "unit":"s",
-            "description":"Time to wait between the scans for a position",
-            "parameterType":{
-               "type":"ParameterTypeNumber",
-               "range":{
-                  "minimum":0,
-                  "maximum":15
-               }
-            },
-            "compatibleTrackerModels":[
-               {
-                  "producerId":"abeeway",
-                  "moduleId":"compact-tracker",
-                  "version":"2.0"
-               },
-               {
-                  "producerId":"abeeway",
-                  "moduleId":"combo-compact-tracker",
-                  "version":"1.0"
-               }
-            ]
+            "producerId":"abeeway",
+            "moduleId":"combo-compact-tracker",
+            "version":"1.0"
+         }
+      ]
+   },
+   {
+      "driverParameterName":"gnssMaxTime",
+      "groupId":"0x03",
+      "localId":"0x01",
+      "defaultValue":300,
+      "unit":"s",
+      "description":"GNSS max acquisition time.",
+      "parameterType":{
+         "type":"ParameterTypeNumber",
+         "range":{
+            "minimum":30,
+            "maximum":300
+         }
+      },
+      "compatibleTrackerModels":[
+         {
+            "producerId":"abeeway",
+            "moduleId":"compact-tracker",
+            "version":"2.0"
          },
          {
-            "driverParameterName":"lrMaxWifiBssid",
-            "groupId":"0x04",
-            "localId":"0x04",
-            "defaultValue":4,
-            "description":"Max number of WIFI BSSID per scan",
-            "parameterType":{
-               "type":"ParameterTypeNumber",
-               "range":{
-                  "minimum":1,
-                  "maximum":32
-               }
-            },
-            "compatibleTrackerModels":[
-               {
-                  "producerId":"abeeway",
-                  "moduleId":"compact-tracker",
-                  "version":"2.0"
-               },
-               {
-                  "producerId":"abeeway",
-                  "moduleId":"combo-compact-tracker",
-                  "version":"1.0"
-               }
-            ]
+            "producerId":"abeeway",
+            "moduleId":"combo-compact-tracker",
+            "version":"1.0"
+         }
+      ]
+   },
+   {
+      "driverParameterName":"gnssT0TimeoutStatic",
+      "groupId":"0x03",
+      "localId":"0x02",
+      "defaultValue":30,
+      "unit":"s",
+      "description":"Max time to acquire at least one satellite when tracker is static",
+      "parameterType":{
+         "type":"ParameterTypeNumber",
+         "range":{
+            "minimum":0,
+            "maximum":300
+         }
+      },
+      "compatibleTrackerModels":[
+         {
+            "producerId":"abeeway",
+            "moduleId":"compact-tracker",
+            "version":"2.0"
          },
+         {
+            "producerId":"abeeway",
+            "moduleId":"combo-compact-tracker",
+            "version":"1.0"
+         }
+      ]
+   },
+   {
+      "driverParameterName":"gnssEhpeStatic",
+      "groupId":"0x03",
+      "localId":"0x03",
+      "defaultValue":30,
+      "unit":"m",
+      "description":"Expected estimated horizontal position error when the tracker is static",
+      "parameterType":{
+         "type":"ParameterTypeNumber",
+         "range":{
+            "minimum":0,
+            "maximum":100
+         }
+      },
+      "compatibleTrackerModels":[
+         {
+            "producerId":"abeeway",
+            "moduleId":"compact-tracker",
+            "version":"2.0"
+         },
+         {
+            "producerId":"abeeway",
+            "moduleId":"combo-compact-tracker",
+            "version":"1.0"
+         }
+      ]
+   },
+   {
+      "driverParameterName":"gnssConvergenceStatic",
+      "groupId":"0x03",
+      "localId":"0x04",
+      "defaultValue":20,
+      "unit":"s",
+      "description":"Extra-time after a first fix to refine the fix",
+      "parameterType":{
+         "type":"ParameterTypeNumber",
+         "range":{
+            "minimum":0,
+            "maximum":300
+         }
+      },
+      "compatibleTrackerModels":[
+         {
+            "producerId":"abeeway",
+            "moduleId":"compact-tracker",
+            "version":"2.0"
+         },
+         {
+            "producerId":"abeeway",
+            "moduleId":"combo-compact-tracker",
+            "version":"1.0"
+         }
+      ]
+   },
+   {
+      "driverParameterName":"gnssT0TimeoutMotion",
+      "groupId":"0x03",
+      "localId":"0x05",
+      "defaultValue":30,
+      "unit":"s",
+      "description":"Max time to acquire at least one satellite when tracker is moving",
+      "parameterType":{
+         "type":"ParameterTypeNumber",
+         "range":{
+            "minimum":0,
+            "maximum":300
+         }
+      },
+      "compatibleTrackerModels":[
+         {
+            "producerId":"abeeway",
+            "moduleId":"compact-tracker",
+            "version":"2.0"
+         },
+         {
+            "producerId":"abeeway",
+            "moduleId":"combo-compact-tracker",
+            "version":"1.0"
+         }
+      ]
+   },
+   {
+      "driverParameterName":"gnssEhpeMotion",
+      "groupId":"0x03",
+      "localId":"0x06",
+      "defaultValue":30,
+      "unit":"m",
+      "description":"Expected estimated horizontal position error when the tracker is moving",
+      "parameterType":{
+         "type":"ParameterTypeNumber",
+         "range":{
+            "minimum":0,
+            "maximum":100
+         }
+      },
+      "compatibleTrackerModels":[
+         {
+            "producerId":"abeeway",
+            "moduleId":"compact-tracker",
+            "version":"2.0"
+         },
+         {
+            "producerId":"abeeway",
+            "moduleId":"combo-compact-tracker",
+            "version":"1.0"
+         }
+      ]
+   },
+   {
+      "driverParameterName":"gnssConvergenceMotion",
+      "groupId":"0x03",
+      "localId":"0x07",
+      "defaultValue":20,
+      "unit":"s",
+      "description":"Extra-time after a first fix to refine the fix when the tracker is moving",
+      "parameterType":{
+         "type":"ParameterTypeNumber",
+         "range":{
+            "minimum":0,
+            "maximum":300
+         }
+      },
+      "compatibleTrackerModels":[
+         {
+            "producerId":"abeeway",
+            "moduleId":"compact-tracker",
+            "version":"2.0"
+         },
+         {
+            "producerId":"abeeway",
+            "moduleId":"combo-compact-tracker",
+            "version":"1.0"
+         }
+      ]
+   },
+   {
+      "driverParameterName":"gnssStandby",
+      "groupId":"0x03",
+      "localId":"0x08",
+      "defaultValue":604800,
+      "unit":"s",
+      "description":"Max time to let the device in standby mode.",
+      "parameterType":{
+         "type":"ParameterTypeNumber",
+         "range":{
+            "minimum":0
+         }
+      },
+      "compatibleTrackerModels":[
+         {
+            "producerId":"abeeway",
+            "moduleId":"compact-tracker",
+            "version":"2.0"
+         },
+         {
+            "producerId":"abeeway",
+            "moduleId":"combo-compact-tracker",
+            "version":"1.0"
+         }
+      ]
+   },
+   {
+      "driverParameterName":"gnssAgnssMaxTime",
+      "groupId":"0x03",
+      "localId":"0x09",
+      "defaultValue":45,
+      "unit":"s",
+      "description":"Aided GNSS max acquisition time.",
+      "parameterType":{
+         "type":"ParameterTypeNumber",
+         "range":{
+            "minimum":15,
+            "maximum":240
+         }
+      },
+      "compatibleTrackerModels":[
+         {
+            "producerId":"abeeway",
+            "moduleId":"compact-tracker",
+            "version":"2.0"
+         },
+         {
+            "producerId":"abeeway",
+            "moduleId":"combo-compact-tracker",
+            "version":"1.0"
+         }
+      ]
+   },
+   {
+      "driverParameterName":"gnssT1Timeout",
+      "groupId":"0x03",
+      "localId":"0x0A",
+      "defaultValue":0,
+      "unit":"s",
+      "description":"Extra time let in Aided GNSS mode to try doing a fix.",
+      "parameterType":{
+         "type":"ParameterTypeNumber",
+         "range":{
+            "minimum":0,
+            "maximum":300
+         }
+      },
+      "compatibleTrackerModels":[
+         {
+            "producerId":"abeeway",
+            "moduleId":"compact-tracker",
+            "version":"2.0"
+         },
+         {
+            "producerId":"abeeway",
+            "moduleId":"combo-compact-tracker",
+            "version":"1.0"
+         }
+      ]
+   },
+   {
+      "driverParameterName":"lrConstellation",
+      "groupId":"0x04",
+      "localId":"0x00",
+      "description": "GNSS constellations to be used",
+      "parameterType":{
+         "type":"ParameterTypeString",
+         "possibleValues":[
+            "GPS_ONLY",
+            "BEIDOU_ONLY",
+            "BEIDOU_GPS"
+         ],
+         "firmwareValues":[
+            0,
+            5,
+            6
+         ]
+      },
+      "compatibleTrackerModels":[
+         {
+            "producerId":"abeeway",
+            "moduleId":"compact-tracker",
+            "version":"2.0"
+         },
+         {
+            "producerId":"abeeway",
+            "moduleId":"combo-compact-tracker",
+            "version":"1.0"
+         }
+      ]
+   },
+   {
+      "driverParameterName":"lrScanMode",
+      "groupId":"0x04",
+      "localId":"0x01",
+      "description": "Scan mode (NAV1 / NAV2)",
+      "parameterType":{
+         "type":"ParameterTypeString",
+         "possibleValues":[
+            "NAV1_SCAN",
+            "NAV2_SCAN"
+         ],
+         "firmwareValues":[
+            1,
+            2
+         ]
+      },
+      "compatibleTrackerModels":[
+         {
+            "producerId":"abeeway",
+            "moduleId":"compact-tracker",
+            "version":"2.0"
+         },
+         {
+            "producerId":"abeeway",
+            "moduleId":"combo-compact-tracker",
+            "version":"1.0"
+         }
+      ]
+   },
+   {
+      "driverParameterName":"lrNbScans",
+      "groupId":"0x04",
+      "localId":"0x02",
+      "defaultValue":2,
+      "description":"Number of scans for one position acquisition",
+      "parameterType":{
+         "type":"ParameterTypeNumber",
+         "range":{
+            "minimum":1,
+            "maximum":4
+         }
+      },
+      "compatibleTrackerModels":[
+         {
+            "producerId":"abeeway",
+            "moduleId":"compact-tracker",
+            "version":"2.0"
+         },
+         {
+            "producerId":"abeeway",
+            "moduleId":"combo-compact-tracker",
+            "version":"1.0"
+         }
+      ]
+   },
+   {
+      "driverParameterName":"lrInterScanTime",
+      "groupId":"0x04",
+      "localId":"0x03",
+      "defaultValue":5,
+      "unit":"s",
+      "description":"Time to wait between the scans for a position",
+      "parameterType":{
+         "type":"ParameterTypeNumber",
+         "range":{
+            "minimum":0,
+            "maximum":15
+         }
+      },
+      "compatibleTrackerModels":[
+         {
+            "producerId":"abeeway",
+            "moduleId":"compact-tracker",
+            "version":"2.0"
+         },
+         {
+            "producerId":"abeeway",
+            "moduleId":"combo-compact-tracker",
+            "version":"1.0"
+         }
+      ]
+   },
+   {
+      "driverParameterName":"lrWifiReportNbBssid",
+      "groupId":"0x04",
+      "localId":"0x04",
+      "defaultValue":4,
+      "description":"Max number of WIFI BSSID per scan",
+      "parameterType":{
+         "type":"ParameterTypeNumber",
+         "range":{
+            "minimum":1,
+            "maximum":32
+         }
+      },
+      "compatibleTrackerModels":[
+         {
+            "producerId":"abeeway",
+            "moduleId":"compact-tracker",
+            "version":"2.0"
+         },
+         {
+            "producerId":"abeeway",
+            "moduleId":"combo-compact-tracker",
+            "version":"1.0"
+         }
+      ]
+   },
+   {
+      "driverParameterName":"lrWifiMinNbBssid",
+      "groupId":"0x04",
+      "localId":"0x05",
+      "defaultValue":3,
+      "description":"Minimum number of BSSID to consider the scan as success (solvable)",
+      "parameterType":{
+         "type":"ParameterTypeNumber",
+         "range":{
+            "minimum":1,
+            "maximum":10
+         }
+      },
+      "compatibleTrackerModels":[
+         {
+            "producerId":"abeeway",
+            "moduleId":"compact-tracker",
+            "version":"2.0"
+         },
+         {
+            "producerId":"abeeway",
+            "moduleId":"combo-compact-tracker",
+            "version":"1.0"
+         }
+      ]
+   },   
+   {
+      "driverParameterName":"lrWifiMinRssi",
+      "groupId":"0x04",
+      "localId":"0x06",
+      "defaultValue":3,
+      "description":"Minimum number of BSSID to consider the scan as success (solvable)",
+      "parameterType":{
+         "type":"ParameterTypeNumber",
+         "range":{
+            "minimum":-100,
+            "maximum":0
+         }
+      },
+      "compatibleTrackerModels":[
+         {
+            "producerId":"abeeway",
+            "moduleId":"compact-tracker",
+            "version":"2.0"
+         },
+         {
+            "producerId":"abeeway",
+            "moduleId":"combo-compact-tracker",
+            "version":"1.0"
+         }
+      ]
+   },
+   {
+      "driverParameterName":"lrWifiBssidMacType",
+      "groupId":"0x04",
+      "localId":"0x07",
+      "defaultValue":1,
+      "description":"MAC administration type of the BSSID to report.",
+      "parameterType":{
+         "type":"ParameterTypeNumber",
+         "range":{
+            "minimum":0,
+            "maximum":2
+         }
+      },
+      "compatibleTrackerModels":[
+         {
+            "producerId":"abeeway",
+            "moduleId":"compact-tracker",
+            "version":"2.0"
+         },
+         {
+            "producerId":"abeeway",
+            "moduleId":"combo-compact-tracker",
+            "version":"1.0"
+         }
+      ]
+   },
          {
             "driverParameterName":"bleScanDuration",
             "groupId":"0x05",
@@ -2208,7 +3245,7 @@
             "driverParameterName":"bleScanMinRssi",
             "groupId":"0x05",
             "localId":"0x04",
-            "defaultValue":-100,
+            "defaultValue":-80,
             "unit": "dB",
             "description":"Min RSSI to consider the beacon",
             "parameterType":{
@@ -2232,9 +3269,35 @@
             ]
          },
          {
-            "driverParameterName":"bleScanFilter1Mask",
+            "driverParameterName":"bleScanMinNbBeacons",
             "groupId":"0x05",
             "localId":"0x05",
+            "defaultValue":1,
+            "description":"Min number of beacons to consider the scan as success (solvable).",
+            "parameterType":{
+               "type":"ParameterTypeNumber",
+               "range":{
+                  "minimum":1,
+                  "maximum": 20
+               }
+            },
+            "compatibleTrackerModels":[
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"compact-tracker",
+                  "version":"2.0"
+               },
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"combo-compact-tracker",
+                  "version":"1.0"
+               }
+            ]
+         },
+         {
+            "driverParameterName":"bleScanFilter1Mask",
+            "groupId":"0x05",
+            "localId":"0x06",
             "defaultValue":[0],
             "description":"Mask (10 bytes) to be applied to the ADV frame.",
             "parameterType":{
@@ -2257,7 +3320,7 @@
          {
             "driverParameterName":"bleScanFilter1Value",
             "groupId":"0x05",
-            "localId":"0x06",
+            "localId":"0x07",
             "defaultValue":[0],
             "description":"Comparison value (10 bytes) belonging to filter1",
             "parameterType":{
@@ -2281,7 +3344,7 @@
          {
             "driverParameterName":"bleScanFilter1Offset",
             "groupId":"0x05",
-            "localId":"0x07",
+            "localId":"0x08",
             "defaultValue":0,
             "description":"Offset in the ADV from which we apply the filter1",
             "parameterType":{
@@ -2307,7 +3370,7 @@
          {
             "driverParameterName":"bleScanFilter2Mask",
             "groupId":"0x05",
-            "localId":"0x08",
+            "localId":"0x09",
             "defaultValue":[0],
             "description":"Mask (10 bytes) to be applied to the ADV frame.",
             "parameterType":{
@@ -2330,7 +3393,7 @@
          {
             "driverParameterName":"bleScanFilter2Value",
             "groupId":"0x05",
-            "localId":"0x09",
+            "localId":"0x0A",
             "defaultValue":[0],
             "description":"Comparison value (10 bytes) belonging to filter2",
             "parameterType":{
@@ -2353,7 +3416,7 @@
          {
             "driverParameterName":"bleScanFilter2Offset",
             "groupId":"0x05",
-            "localId":"0x0A",
+            "localId":"0x0B",
             "defaultValue":0,
             "description":"Offset in the ADV from which we apply the filter2",
             "parameterType":{
@@ -2379,7 +3442,7 @@
          {
             "driverParameterName":"bleScanNbBeacons",
             "groupId":"0x05",
-            "localId":"0x0B",
+            "localId":"0x0C",
             "defaultValue":4,
             "description":"Number of beacons to report",
             "parameterType":{
@@ -2405,7 +3468,7 @@
          {
             "driverParameterName":"bleScanReportType",
             "groupId":"0x05",
-            "localId":"0x0C",
+            "localId":"0x0D",
             "defaultValue":0,
             "description":"Scan report type",
             "parameterType":{
@@ -2437,7 +3500,7 @@
          {
             "driverParameterName":"bleScanReportIdOfs",
             "groupId":"0x05",
-            "localId":"0x0D",
+            "localId":"0x0E",
             "defaultValue":4,
             "description":"Offset in ADV to extract the beacon identifier",
             "parameterType":{
@@ -2612,9 +3675,35 @@
             ]
          },
          {
-            "driverParameterName":"bleScanFilter1Mask",
+            "driverParameterName":"bleScanMinNbBeacons",
             "groupId":"0x06",
             "localId":"0x05",
+            "defaultValue":1,
+            "description":"Min number of beacons to consider the scan as success (solvable).",
+            "parameterType":{
+               "type":"ParameterTypeNumber",
+               "range":{
+                  "minimum":1,
+                  "maximum": 20
+               }
+            },
+            "compatibleTrackerModels":[
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"compact-tracker",
+                  "version":"2.0"
+               },
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"combo-compact-tracker",
+                  "version":"1.0"
+               }
+            ]
+         },
+         {
+            "driverParameterName":"bleScanFilter1Mask",
+            "groupId":"0x06",
+            "localId":"0x06",
             "defaultValue":[0],
             "description":"Mask (10 bytes) to be applied to the ADV frame.",
             "parameterType":{
@@ -2637,7 +3726,7 @@
          {
             "driverParameterName":"bleScanFilter1Value",
             "groupId":"0x06",
-            "localId":"0x06",
+            "localId":"0x07",
             "defaultValue":[0],
             "description":"Comparison value (10 bytes) belonging to filter1",
             "parameterType":{
@@ -2661,7 +3750,7 @@
          {
             "driverParameterName":"bleScanFilter1Offset",
             "groupId":"0x06",
-            "localId":"0x07",
+            "localId":"0x08",
             "defaultValue":0,
             "description":"Offset in the ADV from which we apply the filter1",
             "parameterType":{
@@ -2687,7 +3776,7 @@
          {
             "driverParameterName":"bleScanFilter2Mask",
             "groupId":"0x06",
-            "localId":"0x08",
+            "localId":"0x09",
             "defaultValue":[0],
             "description":"Mask (10 bytes) to be applied to the ADV frame.",
             "parameterType":{
@@ -2710,7 +3799,7 @@
          {
             "driverParameterName":"bleScanFilter2Value",
             "groupId":"0x06",
-            "localId":"0x09",
+            "localId":"0x0A",
             "defaultValue":[0],
             "description":"Comparison value (10 bytes) belonging to filter2",
             "parameterType":{
@@ -2733,7 +3822,7 @@
          {
             "driverParameterName":"bleScanFilter2Offset",
             "groupId":"0x06",
-            "localId":"0x0A",
+            "localId":"0x0B",
             "defaultValue":0,
             "description":"Offset in the ADV from which we apply the filter2",
             "parameterType":{
@@ -2759,7 +3848,7 @@
          {
             "driverParameterName":"bleScanNbBeacons",
             "groupId":"0x06",
-            "localId":"0x0B",
+            "localId":"0x0C",
             "defaultValue":4,
             "description":"Number of beacons to report",
             "parameterType":{
@@ -2785,7 +3874,7 @@
          {
             "driverParameterName":"bleScanReportType",
             "groupId":"0x06",
-            "localId":"0x0C",
+            "localId":"0x0D",
             "defaultValue":0,
             "description":"Scan report type",
             "parameterType":{
@@ -2817,7 +3906,7 @@
          {
             "driverParameterName":"bleScanReportIdOfs",
             "groupId":"0x06",
-            "localId":"0x0D",
+            "localId":"0x0E",
             "defaultValue":4,
             "description":"Offset in ADV to extract the beacon identifier",
             "parameterType":{
@@ -2844,16 +3933,16 @@
             "driverParameterName":"acceleroMotionSensi",
             "groupId":"0x07",
             "localId":"0x00",
-            "defaultValue":16,
+            "defaultValue":1,
             "unit": "mg",
-            "description":"Motion sensitivity. Step 63 mg.",
+            "description":"Motion sensitivity. Step 31 mg.",
             "parameterType":{
                "type":"ParameterTypeNumber",
                "range":{
                   "minimum":1,
-                  "maximum":48
+                  "maximum":96
                },
-               "multiply": 63
+               "multiply": 31
             },
             "compatibleTrackerModels":[
                {
@@ -2872,7 +3961,7 @@
             "driverParameterName":"acceleroMotionDuration",
             "groupId":"0x07",
             "localId":"0x01",
-            "defaultValue":20,
+            "defaultValue":120,
             "unit": "s",
             "description":"Motion duration",
             "parameterType":{
@@ -2899,7 +3988,7 @@
             "driverParameterName":"acceleroFullScale",
             "groupId":"0x07",
             "localId":"0x02",
-            "defaultValue":1,
+            "defaultValue":3,
             "description": "Scale use (2,4,8,16 g).",
             "parameterType":{
                "type":"ParameterTypeString",
@@ -3130,7 +4219,7 @@
             "driverParameterName":"lorawanProbeMaxAttempts",
             "groupId":"0x09",
             "localId":"0x02",
-            "defaultValue":0,
+            "defaultValue":4,
             "description": "Number of link-check sent declaring the network as lost",
             "parameterType":{
                "type":"ParameterTypeNumber",
@@ -3156,7 +4245,7 @@
             "driverParameterName":"lorawanProbePeriod",
             "groupId":"0x09",
             "localId":"0x03",
-            "defaultValue":600,
+            "defaultValue":43200,
             "description": "Time between link-check requests",
             "parameterType":{
                "type":"ParameterTypeNumber",
@@ -3179,10 +4268,301 @@
             ]
          },
          {
-            "driverParameterName":"lorawanS1TxStrategy",
+            "driverParameterName":"lorawanConfirmNotifMap",
             "groupId":"0x09",
             "localId":"0x04",
-            "defaultValue":1,
+            "defaultValue":"{00}",
+            "description": "Map enabling the LoRaWAN confirmed message for notifications.",
+            "parameterType": {
+               "type": "ParameterTypeByteArray",
+               "size": 6,
+               "distinctValues":true,
+               "properties": [
+                  {
+                     "name": "systemClass",
+                     "type": "PropertyObject",
+                     "properties": [
+                        {
+                           "name": "status",
+                           "type": "PropertyBoolean",
+                           "description": "System status Versions, temperature, reset cause."
+                        },
+                        {
+                           "name": "lowBattery",
+                           "type": "PropertyBoolean",
+                           "description": "Low battery alert."
+                        },
+                        {
+                           "name": "bleStatus",
+                           "type": "PropertyBoolean",
+                           "description": "Bluetooth Low Energy status"
+                        },
+                        {
+                           "name": "tamperDetection",
+                           "type": "PropertyBoolean",
+                           "description": "Tamper detection alert."
+                        }
+                     ]
+                  },
+                  {
+                     "name": "sosClass",
+                     "type": "PropertyObject",
+                     "properties": [
+                        {
+                           "name": "sosOn",
+                           "type": "PropertyBoolean",
+                           "description": "SOS activated."
+                        },
+                        {
+                           "name": "sosOff",
+                           "type": "PropertyBoolean",
+                           "description": "SOS deactivated."
+                        }
+                     ]
+                  },
+                  {
+                     "name": "temperatureClass",
+                     "type": "PropertyObject",
+                     "properties": [
+                        {
+                           "name": "tempHigh",
+                           "type": "PropertyBoolean",
+                           "description": "Critical high temperature reached"
+                        },
+                        {
+                           "name": "tempLow",
+                           "type": "PropertyBoolean",
+                           "description": "Critical low temperature reached"
+                        },
+                        {
+                           "name": "tempNormal",
+                           "type": "PropertyBoolean",
+                           "description": "Temperature back to normal"
+                        }
+                     ]
+                  },
+                  {
+                     "name": "accelerometerClass",
+                     "type": "PropertyObject",
+                     "properties": [
+                        {
+                           "name": "motionStart",
+                           "type": "PropertyBoolean",
+                           "description": "Motion start detected."
+                        },
+                        {
+                           "name": "motionEnd",
+                           "type": "PropertyBoolean",
+                           "description": "Motion end detected."
+                        },
+                        {
+                           "name": "shock",
+                           "type": "PropertyBoolean",
+                           "description": "Shock detected."
+                        }
+                     ]
+                  },
+                  {
+                     "name": "networkingClass",
+                     "type": "PropertyObject",
+                     "properties": [
+                        {
+                           "name": "mainUp",
+                           "type": "PropertyBoolean",
+                           "description": "Main network is up."
+                        },
+                        {
+                           "name": "backupUp",
+                           "type": "PropertyBoolean",
+                           "description": "Main network down. Backup is up."
+                        }
+                     ]
+                  },
+                  {
+                     "name": "geozoningClass",
+                     "type": "PropertyObject",
+                     "properties": [
+                        {
+                           "name": "geozoningOn",
+                           "type": "PropertyBoolean",
+                           "description": "Geozoning is on."
+                        }
+                     ]
+                  }
+               ],
+               "byteMask": [
+                  {
+                     "valueFor": "systemClass",
+                     "type": "BitMaskObject",
+                     "values": [
+                        {
+                           "type": "BitMaskValue",
+                           "valueFor": "status",
+                           "bitShift": 0,
+                           "length": 1
+                        },
+                        {
+                           "type": "BitMaskValue",
+                           "valueFor": "lowBattery",
+                           "bitShift": 1,
+                           "length": 1
+                        },
+                        {
+                           "type": "BitMaskValue",
+                           "valueFor": "bleStatus",
+                           "bitShift": 2,
+                           "length": 1
+                        },
+                        {
+                           "type": "BitMaskValue",
+                           "valueFor": "tamperDetection",
+                           "bitShift": 3,
+                           "length": 1
+                        }
+                     ]
+                  },
+                  {
+                     "valueFor": "sosClass",
+                     "type": "BitMaskObject",
+                     "values": [
+                        {
+                           "type": "BitMaskValue",
+                           "valueFor": "sosOn",
+                           "bitShift": 0,
+                           "length": 1
+                        },
+                        {
+                           "type": "BitMaskValue",
+                           "valueFor": "sosOff",
+                           "bitShift": 1,
+                           "length": 1
+                        }
+                     ]
+                  },
+                  {
+                     "valueFor": "temperatureClass",
+                     "type": "BitMaskObject",
+                     "values": [
+                        {
+                           "type": "BitMaskValue",
+                           "valueFor": "tempHigh",
+                           "bitShift": 0,
+                           "length": 1
+                        },
+                        {
+                           "type": "BitMaskValue",
+                           "valueFor": "tempLow",
+                           "bitShift": 1,
+                           "length": 1
+                        },
+                        {
+                           "type": "BitMaskValue",
+                           "valueFor": "tempNormal",
+                           "bitShift": 2,
+                           "length": 1
+                        }
+                     ]
+                  },
+                  {
+                     "valueFor": "accelerometerClass",
+                     "type": "BitMaskObject",
+                     "values": [
+                        {
+                           "type": "BitMaskValue",
+                           "valueFor": "motionStart",
+                           "bitShift": 0,
+                           "length": 1
+                        },
+                        {
+                           "type": "BitMaskValue",
+                           "valueFor": "motionEnd",
+                           "bitShift": 1,
+                           "length": 1
+                        },
+                        {
+                           "type": "BitMaskValue",
+                           "valueFor": "shock",
+                           "bitShift": 2,
+                           "length": 1
+                        }
+                     ]
+                  },
+                  {
+                     "valueFor": "networkingClass",
+                     "type": "BitMaskObject",
+                     "values": [
+                        {
+                           "type": "BitMaskValue",
+                           "valueFor": "mainUp",
+                           "bitShift": 0,
+                           "length": 1
+                        },
+                        {
+                           "type": "BitMaskValue",
+                           "valueFor": "backupUp",
+                           "bitShift": 1,
+                           "length": 1
+                        }
+                     ]
+                  },
+                  {
+                     "valueFor": "geozoningClass",
+                     "type": "BitMaskObject",
+                     "values": [
+                        {
+                           "type": "BitMaskValue",
+                           "valueFor": "geozoningOn",
+                           "bitShift": 0,
+                           "length": 1
+                        }
+                     ]
+                  }
+               ]
+            },
+            "compatibleTrackerModels":[
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"compact-tracker",
+                  "version":"2.0"
+               },
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"combo-compact-tracker",
+                  "version":"1.0"
+               }
+            ]
+         },
+         {
+            "driverParameterName":"lorawanConfirmNotifRetry",
+            "groupId":"0x09",
+            "localId":"0x05",
+            "defaultValue":0,
+            "description": "Time between link-check requests",
+            "parameterType":{
+               "type":"ParameterTypeNumber",
+               "range":{
+                  "minimum":0,
+                  "maximum":15
+               }
+            },
+            "compatibleTrackerModels":[
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"compact-tracker",
+                  "version":"2.0"
+               },
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"combo-compact-tracker",
+                  "version":"1.0"
+               }
+            ]
+         },
+         {
+            "driverParameterName":"lorawanS1TxStrategy",
+            "groupId":"0x09",
+            "localId":"0x06",
+            "defaultValue":473102,
             "description":"Socket 1. Transmission strategy",
             "parameterType":{
                "type":"ParameterTypeBitMask",
@@ -3451,7 +4831,7 @@
          {
             "driverParameterName":"lorawanS1UlPort",
             "groupId":"0x09",
-            "localId":"0x05",
+            "localId":"0x07",
             "defaultValue":19,
             "description": "Socket 1. Uplink port",
             "parameterType":{
@@ -3477,7 +4857,7 @@
          {
             "driverParameterName":"lorawanS1DlPort",
             "groupId":"0x09",
-            "localId":"0x06",
+            "localId":"0x08",
             "defaultValue":3,
             "description": "Socket 1. Downlink port",
             "parameterType":{
@@ -3556,16 +4936,34 @@
             ]
          },
          {
-            "driverParameterName":"cellCnxTimeoutStatic",
+            "driverParameterName":"cellSearchBands",
             "groupId":"0x0A",
             "localId":"0x02",
-            "defaultValue":300,
+            "defaultValue":"{00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00}",
+            "description": "Radio frequency bands scanned to search a cell.",
+            "parameterType":{
+               "type":"ParameterTypeByteArray",
+               "size": 19
+            },
+            "compatibleTrackerModels":[
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"combo-compact-tracker",
+                  "version":"1.0"
+               }
+            ]
+         },
+         {
+            "driverParameterName":"cellCnxTimeoutStatic",
+            "groupId":"0x0A",
+            "localId":"0x03",
+            "defaultValue":180,
             "unit":"s",
             "description": "Duration during which the modem searches for a cellular network. Applicable when the tracker is static.",
             "parameterType":{
                "type":"ParameterTypeNumber",
                "range":{
-                  "minimum":186,
+                  "minimum":180,
                   "maximum":900
                }
             },
@@ -3580,14 +4978,14 @@
          {
             "driverParameterName":"cellCnxTimeoutMotion",
             "groupId":"0x0A",
-            "localId":"0x03",
+            "localId":"0x04",
             "defaultValue":300,
             "unit":"s",
             "description": "Duration during which the modem searches for a cellular network. Applicable when the tracker is motion.",
             "parameterType":{
                "type":"ParameterTypeNumber",
                "range":{
-                  "minimum":186,
+                  "minimum":180,
                   "maximum":900
                }
             },
@@ -3602,8 +5000,8 @@
          {
             "driverParameterName":"cellCnxNwLostTimeout",
             "groupId":"0x0A",
-            "localId":"0x04",
-            "defaultValue":30,
+            "localId":"0x05",
+            "defaultValue":60,
             "unit":"s",
             "description": "Duration let to the modem to automatically recover the network after a network lost.",
             "parameterType":{
@@ -3624,7 +5022,7 @@
          {
             "driverParameterName":"cellCnxMaxAttempts",
             "groupId":"0x0A",
-            "localId":"0x05",
+            "localId":"0x06",
             "defaultValue":3,
             "description": "Number of times the network search is repeated before shutting down the modem.",
             "parameterType":{
@@ -3645,7 +5043,7 @@
          {
             "driverParameterName":"cellAccessPointName",
             "groupId":"0x0A",
-            "localId":"0x06",
+            "localId":"0x07",
             "description":"String providing the service access point name. If not provided, this information is retrieve from the SIM.",
             "defaultValue":"",
             "parameterType":{
@@ -3669,7 +5067,7 @@
          {
             "driverParameterName":"cellOperatorSimSlot0",
             "groupId":"0x0A",
-            "localId":"0x07",
+            "localId":"0x08",
             "description":"Cellular operator name when using the SIM0",
             "defaultValue":"",
             "parameterType":{
@@ -3687,7 +5085,7 @@
          {
             "driverParameterName":"cellOperatorSimSlot1",
             "groupId":"0x0A",
-            "localId":"0x08",
+            "localId":"0x09",
             "description":"Cellular operator name when using the SIM1 (E.SIM).",
             "defaultValue":"",
             "parameterType":{
@@ -3705,7 +5103,7 @@
          {
             "driverParameterName":"cellLowPowerMode",
             "groupId":"0x0A",
-            "localId":"0x09",
+            "localId":"0x0A",
             "description":"Low power mode",
             "defaultValue":"",
             "parameterType":{
@@ -3736,7 +5134,7 @@
          {
             "driverParameterName":"cellPsmTauPeriod",
             "groupId":"0x0A",
-            "localId":"0x0A",
+            "localId":"0x0B",
             "description":"Bit-field giving the requested TAU period.",
             "defaultValue":254,
             "parameterType":{
@@ -3801,9 +5199,9 @@
          {
             "driverParameterName":"cellPsmActiveTime",
             "groupId":"0x0A",
-            "localId":"0x0B",
+            "localId":"0x0C",
             "description":"Bit-field giving the requested active time.",
-            "defaultValue":33,
+            "defaultValue":2,
             "parameterType":{
                "type":"ParameterTypeBitMask",
                "properties":[
@@ -3858,9 +5256,9 @@
          {
             "driverParameterName":"cellEdrxPcl",
             "groupId":"0x0A",
-            "localId":"0x0C",
+            "localId":"0x0D",
             "description":"Requested paging cycle length",
-            "defaultValue":0,
+            "defaultValue":15,
             "parameterType":{
                "type":"ParameterTypeNumber",
                "range":{
@@ -3879,9 +5277,9 @@
          {
             "driverParameterName":"cellEdrxPtw",
             "groupId":"0x0A",
-            "localId":"0x0D",
+            "localId":"0x0E",
             "description":"Requested paging time window",
-            "defaultValue":0,
+            "defaultValue":3,
             "parameterType":{
                "type":"ParameterTypeNumber",
                "range":{
@@ -3898,9 +5296,72 @@
             ]
          },
          {
+            "driverParameterName":"cellRaiTimeout",
+            "groupId":"0x0A",
+            "localId":"0x0F",
+            "description":"RAI (Release Assistance Indication) timeout. A null value disables the feature. Use only with UDP protocol.",
+            "defaultValue":500,
+            "unit":"ms",
+            "parameterType":{
+               "type":"ParameterTypeNumber",
+               "range":{
+                  "minimum":0,
+                  "maximum":10000
+               }
+            },
+            "compatibleTrackerModels":[
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"combo-compact-tracker",
+                  "version":"1.0"
+               }
+            ]
+         },
+         {
+            "driverParameterName":"cellProbeMaxAttempts",
+            "groupId":"0x0A",
+            "localId":"0x10",
+            "description":"Number of echo-request sent before declaring the network as lost. Set 0 to disable the feature.",
+            "defaultValue":0,
+            "parameterType":{
+               "type":"ParameterTypeNumber",
+               "range":{
+                  "minimum":0,
+                  "maximum":10
+               }
+            },
+            "compatibleTrackerModels":[
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"combo-compact-tracker",
+                  "version":"1.0"
+               }
+            ]
+         },
+         {
+            "driverParameterName":"cellProbePeriod",
+            "groupId":"0x0A",
+            "localId":"0x11",
+            "description":"Time between echo-request, or since the last downlink activity.",
+            "defaultValue":120,
+            "parameterType":{
+               "type":"ParameterTypeNumber",
+               "range":{
+                  "minimum":120
+               }
+            },
+            "compatibleTrackerModels":[
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"combo-compact-tracker",
+                  "version":"1.0"
+               }
+            ]
+         },
+         {
             "driverParameterName":"cellS1TransportProto",
             "groupId":"0x0A",
-            "localId":"0x0E",
+            "localId":"0x12",
             "description":"Socket 1 transport protocol",
             "defaultValue":1,
             "parameterType":{
@@ -3926,7 +5387,7 @@
          {
             "driverParameterName":"cellS1IpUrlAddr",
             "groupId":"0x0A",
-            "localId":"0x0F",
+            "localId":"0x13",
             "description":"Socket 1 remote IP address or URL in string format (max 32 bytes)",
             "defaultValue":"",
             "parameterType":{
@@ -3944,7 +5405,7 @@
          {
             "driverParameterName":"cellS1DstIpPort",
             "groupId":"0x0A",
-            "localId":"0x10",
+            "localId":"0x14",
             "description":"Socket 1 destination UDP/TCP port",
             "defaultValue":0,
             "parameterType":{
@@ -3965,7 +5426,7 @@
          {
             "driverParameterName":"cellS1SrcIpPort",
             "groupId":"0x0A",
-            "localId":"0x11",
+            "localId":"0x15",
             "description":"Socket 1 local UDP/TCP port number. Value 0 means that the modem will choose one.",
             "defaultValue":0,
             "parameterType":{
@@ -3986,7 +5447,7 @@
          {
             "driverParameterName":"cellS1TxAggrTime",
             "groupId":"0x0A",
-            "localId":"0x12",
+            "localId":"0x16",
             "description":"Duration in second for which the messages are hold in the socket 1 transmit queue before being transmitted",
             "defaultValue":120,
             "unit":"s",
@@ -4004,8 +5465,233 @@
                   "version":"1.0"
                }
             ]
+         },
+         {
+            "driverParameterName":"bleCnxTxPower",
+            "groupId":"0x0B",
+            "localId":"0x00",
+            "defaultValue":19,
+            "description":"BLE Tx power level.",
+            "parameterType":{
+               "type":"ParameterTypeNumber",
+               "range":{
+                  "minimum": 0,
+                  "maximum": 31
+               }
+            },
+            "compatibleTrackerModels":[
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"compact-tracker",
+                  "version":"2.0"
+               },
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"combo-compact-tracker",
+                  "version":"1.0"
+               }
+            ]
+         },
+         {
+            "driverParameterName":"bleCnxAdvDuration",
+            "groupId":"0x0B",
+            "localId":"0x01",
+            "defaultValue":60,
+            "description":"Time to wait before stopping advertising or switching to slow advertising",
+            "parameterType":{
+               "type":"ParameterTypeNumber",
+               "range":{
+                  "minimum": 30
+               }
+            },
+            "compatibleTrackerModels":[
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"compact-tracker",
+                  "version":"2.0"
+               },
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"combo-compact-tracker",
+                  "version":"1.0"
+               }
+            ]
+         },
+         {
+            "driverParameterName":"bleCnxBehavior",
+            "groupId":"0x0B",
+            "localId":"0x02",
+            "defaultValue":1,
+            "description":"The connectivity configuration.",
+            "parameterType":{
+               "type":"ParameterTypeString",
+               "possibleValues":[
+                  "DISABLE",
+                  "ENABLE_NO_PASSKEY",
+                  "ENABLE_PASSKEY",
+                  "ENABLE_NO_PASSKEY_NO_SLOW_ADV",
+                  "ENABLE_PASSKEY_NO_SLOW_ADV"
+               ],
+               "firmwareValues":[
+                  0,
+                  1,
+                  2,
+                  3,
+                  4
+               ]
+            },
+            "compatibleTrackerModels":[
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"compact-tracker",
+                  "version":"2.0"
+               },
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"combo-compact-tracker",
+                  "version":"1.0"
+               }
+            ]
+         },
+         {
+            "driverParameterName":"bleBeaconTxPower",
+            "groupId":"0x0B",
+            "localId":"0x03",
+            "defaultValue":19,
+            "description":"Time to wait before stopping advertising or switching to slow advertising",
+            "parameterType":{
+               "type":"ParameterTypeNumber",
+               "range":{
+                  "minimum": 0,
+                  "maximum": 31
+               }
+            },
+            "compatibleTrackerModels":[
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"compact-tracker",
+                  "version":"2.0"
+               },
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"combo-compact-tracker",
+                  "version":"1.0"
+               }
+            ]
+         },
+         {
+            "driverParameterName":"bleBeaconType",
+            "groupId":"0x0B",
+            "localId":"0x04",
+            "defaultValue":1,
+            "description":"The connectivity configuration.",
+            "parameterType":{
+               "type":"ParameterTypeString",
+               "possibleValues":[
+                  "DISABLE",
+                  "EDDYSTONE_UID",
+                  "IBEACON",
+                  "ALTBEACON",
+                  "QUUPPA",
+                  "EXPOSURE_ADVERTISEMENT"
+               ],
+               "firmwareValues":[
+                  0,
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7
+               ]
+            },
+            "compatibleTrackerModels":[
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"compact-tracker",
+                  "version":"2.0"
+               },
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"combo-compact-tracker",
+                  "version":"1.0"
+               }
+            ]
+         },
+         {
+            "driverParameterName":"bleBeaconIdentifier",
+            "groupId":"0x0B",
+            "localId":"0x05",
+            "description":"BLE beaconing ID parameter",
+            "parameterType":{
+               "type": "ParameterTypeByteArray"
+            },
+            "compatibleTrackerModels":[
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"compact-tracker",
+                  "version":"2.0"
+               },
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"combo-compact-tracker",
+                  "version":"1.0"
+               }
+            ]
+         },
+         {
+            "driverParameterName":"bleBeaconFastAdvInterval",
+            "groupId":"0x0B",
+            "localId":"0x06",
+            "defaultValue":333,
+            "description":"BLE beacon fast advertising interval.",
+            "parameterType":{
+               "type":"ParameterTypeNumber",
+               "range":{
+                  "minimum": 20,
+                  "maximum": 10240
+               }
+            },
+            "compatibleTrackerModels":[
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"compact-tracker",
+                  "version":"2.0"
+               },
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"combo-compact-tracker",
+                  "version":"1.0"
+               }
+            ]
+         },
+         {
+            "driverParameterName":"bleBeaconFastSlowInterval",
+            "groupId":"0x0B",
+            "localId":"0x07",
+            "defaultValue":1000,
+            "description":"BLE beacon slow advertising interval.",
+            "parameterType":{
+               "type":"ParameterTypeNumber",
+               "range":{
+                  "minimum": 20,
+                  "maximum": 10240
+               }
+            },
+            "compatibleTrackerModels":[
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"compact-tracker",
+                  "version":"2.0"
+               },
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"combo-compact-tracker",
+                  "version":"1.0"
+               }
+            ]
          }
-
 
       ]
    }

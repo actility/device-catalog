@@ -77,9 +77,11 @@ function decodeDownlink(input){
         var payload = input.bytes;
         var decodedData = new abeewayDownlinkPayloadClass.determineDownlinkHeader(payload);
         decodedData.payload = util.convertBytesToString(payload);
+        
         switch (decodedData.downMessageType){
+            
             case abeewayDownlinkPayloadClass.MessageType.COMMAND:
-                decodedData.command = commandClass.determineCommand(payload[1])
+                decodedData.command = commandClass.decodeCommand(payload.slice(1))
                 break;
             case abeewayDownlinkPayloadClass.MessageType.REQUEST:
                 decodedData.request = requestClass.decodeRequest(payload)

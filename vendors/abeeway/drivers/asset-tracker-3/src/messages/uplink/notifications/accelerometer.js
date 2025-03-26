@@ -17,10 +17,10 @@ function determineAxis(payload, byteNumber){
     return value
 }
 
-function determineAccelerationVector(payload){
-    let x = determineAxis(payload, 5);
-    let y = determineAxis(payload, 7);
-    let z = determineAxis(payload, 9);
+function determineAccelerationVector(payload, xOffset, yOffset, zOffset){
+    let x = determineAxis(payload, xOffset);
+    let y = determineAxis(payload, yOffset);
+    let z = determineAxis(payload, zOffset);
     return [x,y,z];
 }
 function determineGaddIndex(payload){
