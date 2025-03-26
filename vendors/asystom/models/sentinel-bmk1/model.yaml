@@ -1,18 +1,20 @@
 # Commercial name of the model
-name: Sample Model
+name: Sentinel BMK1
 # Functional description of the product. Maximum 500 characters.
-description: This a description of the functionalities of the sample model.
+description: Powerful, autonomous and connected multi-sensor device that collects and analyzes operating data of monitored machines
 # Logo of the device
-logo: sample-model.png
+logo: sentinel-bmk1.png
 # ID(s) of the profile that defines the LoRaWAN characteristics of this model.
 # id: as defined under /profiles.
 # lorawanDeviceProfileID: as defined by LoRa Alliance in https://lora-alliance.org/wp-content/uploads/2020/10/LoRa_Alliance_Vendor_ID_for_QR_Code_02142022.pdf.
 # The lorawanDeviceProfileID consists of 8 upper-case hexadecimal characters, 4 characters for VendorID + 4 characters for VendorProfileID. Please consider using single (') or double (") quotation.
 deviceProfileIds:
-  - id: svendor_RFGroup1_1.0.2revB_classA
-    lorawanDeviceProfileID: '00010001'
+  - id: asystom_RFGroup1_1.0.2revB_classA
+    lorawanDeviceProfileID: '07970001'
   - id: svendor_RFGroup2_1.0.2revB_classA
-    lorawanDeviceProfileID: '00010002'
+    lorawanDeviceProfileID: '07970002'
+  - id: svendor_RFGroup4_1.0.2revB_classA
+    lorawanDeviceProfileID: '07970004'
 
 # You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings.
 # Maximum device TX Conducted output power in dBm.
@@ -26,17 +28,17 @@ minTxEIRP:
 # Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'
 # or 'random' (not known, changes over time).
 motionIndicator:
-
 # Is your device certified by the LoRa Alliance? Possible values: true, false.
-LoRaWANCertified:
+LoRaWANCertified: false
 # Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
 # Format: `<8 characters max>:<16 characters max>:<digits only>`
 # Be careful: Once you chose a model, it cannot be changed later
-modelId: svendor:sample-model:1
+modelId: asystom:sentinel-bmk1:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 # Be careful: Once you chose a protocolId, it cannot be changed later
 protocolId:
-  - svendor:sample-model-protocol:1
+  - asystom:minimal-sentinel-bmk1:1
+  - asystom:sentinel-bmk1:1
 # DataSheet URL (optional)
 specificationURL:
 # User Guide URL (optional)
@@ -44,24 +46,18 @@ userGuideURL:
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
   - temperature:Cel
-  - humidity:%RH
+  - sound:dB
+  - vibration:dB
+  - acceleration:g
+  - batteryVoltage:V
+  - velocity:mm/s
+  - angularVelocity:rpm
+
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
-  svendor:sample-model-protocol:1:
-    - uplink containing only pulse counter
-    - uplink containing three measurements
-    - uplink containing only humidity
-    - uplink containing only temperature
-    - fail decode uplink containing only humidity with unknown id
-    - fail decode uplink containing only humidity with oob
-    - encode downlink containing only pulseCounterThreshold
-    - encode downlink containing only alarm
-    - encode downlink containing alarm and pulseCounterThreshold
-    - fail encode downlink when pulseCounterThreshold exceeds 255
-    - decode downlink containing only pulseCounterThreshold
-    - decode downlink containing only alarm
-    - decode downlink containing alarm and pulseCounterThreshold
-    - fail decode downlink when payload contains pulseCounterThreshold with oob
-    - fail decode downlink when payload contains alarm with oob
-    - fail decode downlink when unknown id
+  asystom:minimal-sentinel-bmk1:1:
+    - uplink containing a standard signature
+    - uplink containing three scalar values
+    - another uplink containing three scalar values
+    - uplink frame containing 3 scalar values among which one has an unknown id
