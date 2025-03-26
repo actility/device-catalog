@@ -22,6 +22,8 @@ ISMbands: us915,cn470
 motionIndicator: RANDOM
 
 mac:
+    # This value defines the minimal required RX1 delay that allows the application server managing the device to quickly respond to an uplink packet with a downlink applicative packet.
+    minRx1Delay:
     # Activation modes supported by the device (put true where applicable).
     # (ABP)
     activationByPersonalization: true
@@ -56,8 +58,6 @@ bootSettings:
     # Delay between the end of uplink transmission and the start of downlink RX1 slot, in milliseconds. Refer to 'receiveDelay1' in LoRaWAN 
     # Specification.
     rx1Delay: 1000
-    # This value defines the minimal required RX1 delay that allows the application server managing the device to quickly respond to an uplink packet with a downlink applicative packet.
-    minRx1Delay:
     # RX1 data rate offset, defining the offset between uplink data rate and the corresponding downlink data rate used for RX1 slot.
     rx1DROffset:
     # Rx2 DataRate, used to send DL packets over RX2 slot. Note: Data Rate encoding is region-specific, see the applicable LoRaWAN Regional 
