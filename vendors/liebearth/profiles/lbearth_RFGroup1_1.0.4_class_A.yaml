@@ -22,8 +22,11 @@ ISMbands: eu868
 motionIndicator: RANDOM
 
 mac:
-  # Activation modes supported by the device (put true where applicable).
-  # (ABP)
+    # This value defines the minimal required RX1 delay that allows the application server managing the device to quickly respond to an uplink packet with a downlink applicative packet.
+    minRx1Delay:  
+
+    # Activation modes supported by the device (put true where applicable).
+    # (ABP)
   activationByPersonalization: false
   #(OTAA)
   overTheAirActivation: true
