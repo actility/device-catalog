@@ -938,6 +938,7 @@ function Decoder(bytes, port, TIC_Decode = null) {
                     for( let j = 0; j < size; j++ )
                     {
                         temp_hex_str   = bytes[i1+j+1].toString( 16 ).toUpperCase();
+                        if (temp_hex_str.length === 1) temp_hex_str = "0" + temp_hex_str;
                         if (j === 0) decoded.data.modbus_slaveID = bytes[i1+j+1];
                         else if (j === 1) decoded.data.modbus_fnctID = bytes[i1+j+1];
                         else if (j === 2) decoded.data.modbus_datasize = bytes[i1+j+1];
@@ -957,7 +958,7 @@ function Decoder(bytes, port, TIC_Decode = null) {
                     for (let epIndex = 0; epIndex <= 9; epIndex++) {
                         decoded.data[`modbus_EP${epIndex}`] = ((b2b3 & (1 << epIndex)) !== 0);
                     }
-
+                    
                     function processModbusEP(ep, i2, without_header, bytes, decoded, epIndex) {
                         if (ep === true) {
                             if (without_header === 0) {
