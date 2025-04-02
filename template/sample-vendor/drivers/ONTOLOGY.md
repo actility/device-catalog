@@ -31,7 +31,7 @@ This is the ontology supported by Actility. you can define a sensor inside your 
 | Decibel relative to 1W                 | dBW       | double                           | dBW                 | powerLevel                                                                       |
 | Degree                                 | deg       | double                           | &#176;              | angle                                                                            |
 | Degrees per second                     | dps       | double                           | dps                 | angularVelocity                                                                  |
-| Dillution of precision                 | dop       | double                           | dop                 | navigation                                                                       |
+| Dilution of precision                  | dop       | double                           | dop                 | navigation                                                                       |
 | Euro                                   | euro      | double                           | &#8364;             | price                                                                            |
 | Euro per watthour                      | euro/Wh   | double                           | &#8364;/Wh          | energyPrice                                                                      |
 | Fahrenheit                             | Far       | double                           | &#176;F             | temperature                                                                      |
@@ -58,6 +58,7 @@ This is the ontology supported by Actility. you can define a sensor inside your 
 | Lumen                                  | lm        | double                           | lm                  | flux, illuminance, light                                                         |
 | Lux                                    | lx        | double                           | lx                  | flux, illuminance                                                                |
 | MAC                                    | IEEE-802  | string                           | mac                 | mac                                                                              |
+| Index                                  | index     | int64                            | index               | uv                                                                               |
 | Megawatt                               | MW        | double                           | MW                  | power                                                                            |
 | Megawatthour                           | MWh       | double                           | MWh                 | energy                                                                           |
 | Megawatt per minute                    | MW/m      | double                           | MW/m                | powerRate                                                                        |
@@ -111,7 +112,7 @@ This is the ontology supported by Actility. you can define a sensor inside your 
 | Volt-Ampere hour                       | VAh       | double                           | VAh                 | apparentEnergy                                                                   |
 | Volt-Ampere reactive                   | var       | double                           | var                 | reactivePower                                                                    |
 | Volt-Ampere reactive hour              | varh      | double                           | varh                | reactiveEnergy                                                                   |
-| Volt                                   | V         | double                           | V                   | batteryVoltage, rmsVoltage, volatge                                              |
+| Volt                                   | V         | double                           | V                   | batteryVoltage, rmsVoltage, voltage                                              |
 | Watt                                   | W         | double                           | W                   | power, activePower                                                               |
 | Watt per hour                          | W/h       | double                           | W/h                 | powerRate                                                                        |
 | Watt per second                        | W/s       | double                           | W/s                 | powerRate                                                                        |
@@ -119,4 +120,3 @@ This is the ontology supported by Actility. you can define a sensor inside your 
 | Watthour                               | Wh        | double                           | Wh                  | energy                                                                           |
 | Weber                                  | Wb        | double                           | Wb                  | magneticFlux                                                                     |
 | Year                                   | year      | double                           | year                | time, duration, interval, age, period                                            |
-
