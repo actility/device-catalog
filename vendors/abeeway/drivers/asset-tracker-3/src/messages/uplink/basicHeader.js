@@ -64,7 +64,6 @@ function determineMessageType(payload){
     if (payload.length < 4)
         throw new Error("The payload is not valid to determine Message Type");
     var messageType = payload[0]>>3 & 0x07;
-    
     switch (messageType){
         case 1:
             return abeewayUplinkPayloadClass.messageType.NOTIFICATION;
@@ -74,6 +73,8 @@ function determineMessageType(payload){
             return abeewayUplinkPayloadClass.messageType.QUERY;
         case 4:
             return abeewayUplinkPayloadClass.messageType.RESPONSE;
+        case 5:
+            return abeewayUplinkPayloadClass.messageType.TELEMETRY;
         default:
             return abeewayUplinkPayloadClass.messageType.UNKNOWN;
     }
