@@ -9,6 +9,7 @@ let queryClass = require("./messages/uplink/queries/query");
 let util = require("./util");
 let commandClass = require("./messages/downlink/command");
 let requestClass = require("./messages/downlink/requests/request");
+const {Telemetry} = require("./messages/uplink/telemetry/telemetry");
 
 const DOWNLINK_PORT_NUMBER = 3;
 
@@ -40,9 +41,8 @@ function decodeUplink(input) {
         var multiFrame = !!(payload[0]>>7 & 0x01);
         if (multiFrame){
             decodedData.extendedHeader = extendedHeaderClass.determineExtendedHeader(payload);
-        } 
+        }
         decodedData.payload = util.convertBytesToString(payload);
-
         switch (decodedData.header.type){
             case abeewayUplinkPayloadClass.messageType.NOTIFICATION:
                 decodedData.notification = notificationClass.determineNotification(payload);
@@ -55,6 +55,9 @@ function decodeUplink(input) {
                 break;
             case abeewayUplinkPayloadClass.messageType.RESPONSE:
                 decodedData.response = responseClass.determineResponse(payload, multiFrame);
+                break;
+            case abeewayUplinkPayloadClass.messageType.TELEMETRY:
+                decodedData.telemetry = Telemetry.determineTelemetry(payload);
                 break;
         }
         decodedData = removeEmpty(decodedData);
@@ -150,3 +153,5 @@ module.exports = {
     decodeDownlink: decodeDownlink,
     encodeDownlink: encodeDownlink
 }
+
+console.log(decodeUplink({bytes: "2864871d80010000003c050091010384003c050ea2010000003c050e", recvTime: "2023-04-04T09:36:31Z" }))

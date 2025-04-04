@@ -3,6 +3,7 @@ const messageType = Object.freeze({
     POSITION: "POSITION",
     QUERY: "QUERY",
     RESPONSE: "RESPONSE",
+    TELEMETRY: "TELEMETRY",
     UNKNOWN: "UNKNOWN"
 });
 
@@ -12,13 +13,17 @@ function AbeewayUplinkPayload(header,
     position,
     query,
     response,
-    payload) {
+    telemetry,
+    payload
+    ) {
     this.header = header;
     this.extendedHeader = extendedHeader;
     this.notification = notification;
     this.position = position;
     this.query = query;
     this.response = response;
+    this.telemetry = telemetry;
+    this.telemetry = telemetry;
     this.payload = payload
 }
 
