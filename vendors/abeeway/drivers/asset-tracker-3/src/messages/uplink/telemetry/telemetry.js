@@ -1,189 +1,259 @@
-let util = require("../../../util");
 
-const TelemetryTypeEnum = Object.freeze({
-    TELEMETRY: "TELEMETRY",
-    METADATA: "METADATA",
+// -----------------------------------------------------------------------------
+// Internal store for telemetry metadata (keyed by telemetryId).
+// -----------------------------------------------------------------------------
+let telemetryMetadataStore = {};
+
+const CodingPolicy = Object.freeze({
+    NO_COMPRESSION: "NO_COMPRESSION",
+    DELTA_COMPRESSION: "DELTA_COMPRESSION",
+    HUFFMAN_COMPRESSION: "HUFFMAN_COMPRESSION",
+})
+
+const DataTypes = Object.freeze({
+    _8_BIT_UNSIGNED: "8_BIT_UNSIGNED",
+    _16_BIT_SIGNED: "16_BIT_SIGNED"
+})
+
+const RecordingPolicy = Object.freeze({
+    INSTANT: "INSTANT",
+    MIN: "MIN",
+    MAX: "MAX",
+    CHANGE_OF_VALUE: "CHANGE_OF_VALUE"
 });
 
-class Telemetry {
-    static metadataStore = {};
+function convert3BitToSigned(val) {
+    return (val & 0x04) ? val - 8 : val;
+}
 
-    /**
-     * Décodage d'un payload metadata.
-     * Le payload est composé d'un header de 4 octets suivi de N enregistrements de 8 octets.
-     * Chaque enregistrement comporte :
-     *  - Byte 0 : Bit 7 = type metadata, bits 6-4 = telemetryId, bits 2-0 = cyclic version.
-     *  - Byte 1 : Bits 4-3 = fixed time interval, bits 2-0 = nombre de mesures.
-     *  - Bytes 2-3 : TelemetryIDMaxInterval (2 octets en big-endian, unité : x10 secondes).
-     *  - Bytes 4-5 : MeasurementNMaxInterval (en secondes).
-     *  - Bytes 6-7 : Détails de la mesure.
-     */
-    static decodeMetadataPayload(payload) {
-        const headerLength = 4;
-        const recordLength = 8;
-        const numberOfRecords = (payload.length - headerLength) / recordLength;
-        const metadataList = [];
+function decodeMetadataPayload(telemetryPayload) {
+    const errors = [];
+    let offset = 0;
+    while (offset + 8 <= telemetryPayload.length) {
+        const block = telemetryPayload.slice(offset, offset + 8);
+        // Byte 0: bit 7 must be 1 (metadata indicator).
+        const payloadType = (block[0] & 0x80) >> 7;
+        if (payloadType !== 1) break;
+        // Bits 6-4: Telemetry ID; Bits 2-0: cyclic version.
+        const telemetryId = (block[0] >> 4) & 0x07;
+        const cyclicVersion = block[0] & 0x07;
 
-        for (let i = 0; i < numberOfRecords; i++) {
-            const offset = headerLength + i * recordLength;
-            const b0 = payload[offset];
-            // Vérifier que l'octet indique bien un payload metadata (bit 7 doit être à 1)
-            const isMetadata = ((b0 >> 7) & 0x01) === 1;
-            if (!isMetadata) {
-                throw new Error("Enregistrement inattendu : le bit de type n'indique pas un payload metadata");
-            }
-            // Bits 6-4 : telemetryId, Bits 2-0 : cyclic version
-            const telemetryId = (b0 >> 4) & 0x07;
-            const cyclicVersion = b0 & 0x07;
+        // Byte 1: Bits 4-3: fixed time interval; Bits 2-0: number of measurements.
+        const fixedTimeInterval = (block[1] >> 3) & 0x03;
+        const numMeasurements = block[1] & 0x07;
 
-            const b1 = payload[offset + 1];
-            // Bits 4-3 : fixed time interval, Bits 2-0 : nombre de mesures
-            const fixedTimeInterval = (b1 >> 3) & 0x03;
-            const numberOfMeasurements = b1 & 0x07;
+        // Bytes 2-3: TelemetryIDMaxInterval (units in 10-second increments).
+        const telemetryIDMaxInterval = telemetryPayload.readUInt16BE(offset + 2);
+        // Bytes 4-5: MeasurementNMaxInterval (seconds between recordings).
+        const measurementNMaxInterval = telemetryPayload.readUInt16BE(offset + 4);
 
-            // Bytes 2-3 : TelemetryIDMaxInterval (2 octets, en big-endian, unité x10 secondes)
-            const telemetryIDMaxInterval = (((payload[offset + 2] << 8) | payload[offset + 3]) * 10);
-            // Bytes 4-5 : MeasurementNMaxInterval (2 octets)
-            const measurementNMaxInterval = (payload[offset + 4] << 8) | payload[offset + 5];
+        const measurementConfigByte1 = block[6];
+        const measurementConfigByte2 = block[7];
+        const measurementId = (measurementConfigByte1 >> 6) & 0x03;
+        let codingPolicy = (measurementConfigByte1 >> 2) & 0x03;
+        let dataType = measurementConfigByte1 & 0x03;
+        let recordingPolicy = (measurementConfigByte2 >> 5) & 0x07;
+        let scalingFactor = (measurementConfigByte2 >> 1) & 0x07;
+        scalingFactor = convert3BitToSigned(scalingFactor);
+        let sampleCompression = measurementConfigByte2 & 0x01;      // 0: linear, 1: logarithmic.
 
-            // Bytes 6-7 : Détails de la mesure
-            const b6 = payload[offset + 6];
-            // Bits 7-6 : measurementN ID
-            const measurementNId = (b6 >> 6) & 0x03;
-            // Bits 3-2 : coding policy
-            const codingPolicy = (b6 >> 2) & 0x03;
-            // Bits 1-0 : data type
-            const dataType = b6 & 0x03;
-
-            const b7 = payload[offset + 7];
-            // Bits 7-5 : recording policy
-            const recordingPolicy = (b7 >> 5) & 0x07;
-            // Bits 3-1 : scaling factor (stocké en complément à deux sur 3 bits)
-            let scalingFactorBits = (b7 >> 1) & 0x07;
-            let scalingFactor = (scalingFactorBits & 0x04) ? scalingFactorBits - 8 : scalingFactorBits;
-            // Bit 0 : sample compression
-            const sampleCompression = b7 & 0x01;
-
-            const metadata = {
-                telemetryId,
-                cyclicVersion,
-                fixedTimeInterval,
-                numberOfMeasurements,
-                telemetryIDMaxInterval,
-                measurementNMaxInterval,
-                measurementDetails: {
-                    measurementNId,
-                    codingPolicy,
-                    dataType,
-                    recordingPolicy,
-                    scalingFactor,
-                    sampleCompression,
-                },
-            };
-
-            metadataList.push(metadata);
-            // Enregistrement dans la mémoire globale
-            Telemetry.metadataStore[telemetryId] = metadata;
+        switch (dataType) {
+            case 0:
+                dataType = DataTypes._8_BIT_UNSIGNED
+                break
+            case 1:
+                dataType = DataTypes._16_BIT_SIGNED
+                break
+            default:
+                throw new Error(`Unsupported data type "${dataType}"`);
         }
-        return {
-            telemetryType: TelemetryTypeEnum.METADATA,
-            metadata: metadataList,
+
+        switch(codingPolicy){
+            case 0:
+                codingPolicy = CodingPolicy.NO_COMPRESSION
+                break;
+            case 1:
+                codingPolicy = CodingPolicy.DELTA_COMPRESSION
+                break;
+            case 2:
+                codingPolicy = CodingPolicy.HUFFMAN_COMPRESSION
+                break;
+            default:
+                throw new Error(`Unsupported data codingPolicy "${codingPolicy}"`);
+        }
+
+        switch (recordingPolicy) {
+            case 0:
+                recordingPolicy = RecordingPolicy.INSTANT
+                break;
+            case 1:
+                recordingPolicy = RecordingPolicy.MIN
+                break;
+            case 2:
+                recordingPolicy = RecordingPolicy.MAX
+                break;
+            default:
+                recordingPolicy = RecordingPolicy.CHANGE_OF_VALUE
+        }
+        if(sampleCompression === 0)
+            sampleCompression = "LINEAR"
+        else
+            sampleCompression = "LOGARITHMIC"
+        // Record the metadata for later timeseries decoding.
+        telemetryMetadataStore[telemetryId] = {
+            telemetryId,
+            cyclicVersion,
+            fixedTimeInterval,
+            numMeasurements,
+            telemetryIDMaxInterval,
+            measurementNMaxInterval,
+            measurementConfig: {
+                measurementId,
+                codingPolicy,
+                dataType,
+                recordingPolicy,
+                scalingFactor,
+                sampleCompression,
+            },
         };
+        offset += 8;
     }
+    return { data: telemetryMetadataStore, errors: errors, warnings: [] };
+}
 
-    /**
-     * Décodage d'un payload timeseries.
-     * Ce décodage utilise les métadonnées précédemment enregistrées pour appliquer
-     * le bon scaling, la compression et le décodage des vecteurs de mesures.
-     *
-     * On suppose ici que :
-     *  - L'octet 4 contient (bits 6-4) l'identifiant de la télémétrie et (bit 0) le flag d'alarme.
-     *  - L'octet 5 contient (bits 7-5) la version cyclique et (bits 4-0) le compteur de trames.
-     *  - Les octets 6+ correspondent à un vecteur de mesures delta compressées.
-     *
-     * Le décodage est fait de façon simplifiée :
-     *  - Le premier octet représente la valeur absolue.
-     *  - Les suivants représentent des deltas (1 octet signé) à ajouter successivement.
-     *  - Le scaling (10^scalingFactor) est appliqué à chaque valeur.
-     */
-    static decodeTimeseriesPayload(payload) {
-        // Vérifier le header (4 octets) et extraire l'octet 4
-        const b4 = payload[4];
-        const isTimeseries = ((b4 >> 7) & 0x01) === 0;
-        if (!isTimeseries) {
-            throw new Error("Le payload n'est pas de type timeseries");
-        }
-        // Bits 6-4 : telemetryId, Bit 0 : alarm trigger
-        const telemetryId = (b4 >> 4) & 0x07;
-        const alarmTrigger = b4 & 0x01;
+/**
+ * Decodes a timeseries payload.
+ * Expects a telemetry payload (uplink header already removed) where:
+ *   - Byte 0: Bits 7: payload type (should be 0), Bits 6-4: telemetry ID, Bit 0: alarm trigger.
+ *   - Byte 1: Bits 7-5: cyclic version, Bits 4-0: cyclic counter.
+ *   - Bytes 2+: Measurement data.
+ */
+function decodeTimeseriesPayload(telemetryPayload) {
+    const errors = [];
+    if (telemetryPayload.length < 2) {
+        errors.push("Telemetry payload too short for timeseries decoding");
+        return { errors };
+    }
+    // Byte 0.
+    const byte0 = telemetryPayload[0];
+    const telemetryId = (byte0 >> 4) & 0x07;
+    const alarmTrigger = (byte0 & 0x01) === 1;
+    // Byte 1.
+    const byte1 = telemetryPayload[1];
+    const cyclicVersion = (byte1 >> 5) & 0x07;
+    const cyclicCounter = byte1 & 0x1F;
+    const measurementData = telemetryPayload.slice(2);
 
-        // Octet 5 : version cyclique et compteur
-        const b5 = payload[5];
-        const cyclicVersion = (b5 >> 5) & 0x07;
-        const cyclicCounter = b5 & 0x1F;
-
-        // Vérifier que des métadonnées existent pour ce telemetryId
-        if (!Telemetry.metadataStore.hasOwnProperty(telemetryId)) {
-            throw new Error(
-                `Les métadonnées pour telemetry ID ${telemetryId} n'ont pas été enregistrées. Décodage impossible.`
-            );
-        }
-        const metadata = Telemetry.metadataStore[telemetryId];
-        if (metadata.cyclicVersion !== cyclicVersion) {
-            throw new Error(
-                `Incohérence de version cyclique pour telemetry ID ${telemetryId} : metadata version ${metadata.cyclicVersion} vs payload version ${cyclicVersion}`
-            );
-        }
-
-        // Extraction du vecteur de mesures (les octets restants)
-        const measurementVectors = payload.slice(6);
-
-        // Décodage simplifié des mesures
-        const scalingFactor = metadata.measurementDetails.scalingFactor;
-        const multiplier = Math.pow(10, scalingFactor);
-        let decodedMeasurements = [];
-
-        if (measurementVectors.length > 0) {
-            // Première mesure absolue
-            let previous = measurementVectors[0];
-            decodedMeasurements.push(previous * multiplier);
-            for (let i = 1; i < measurementVectors.length; i++) {
-                let delta = measurementVectors[i];
-                // Conversion en entier signé (8 bits)
-                if (delta > 127) {
-                    delta = delta - 256;
-                }
-                let value = previous + delta;
-                decodedMeasurements.push(value * multiplier);
-                previous = value;
-            }
-        }
-
+    // Retrieve metadata for this telemetry ID.
+    const metadata = telemetryMetadataStore[telemetryId];
+    if (!metadata) {
+        errors.push(`Missing metadata for telemetry ID ${telemetryId}`);
         return {
-            telemetryType: TelemetryTypeEnum.TELEMETRY,
             telemetryId,
             alarmTrigger,
             cyclicVersion,
             cyclicCounter,
-            rawMeasurementVectors: measurementVectors,
-            decodedMeasurements,
-            metadataUsed: metadata,
+            rawMeasurements: Array.from(measurementData).toString(),
+            measurements: [],
+            errors
         };
     }
+    if (cyclicVersion !== metadata.cyclicVersion) {
+        errors.push(`Cyclic version mismatch for telemetry ID ${telemetryId}: payload version ${cyclicVersion} vs metadata version ${metadata.cyclicVersion}`);
+    }
 
-    /**
-     * Fonction principale qui détermine le type de payload (metadata ou timeseries)
-     * et déclenche le décodage approprié.
-     */
-    static determineTelemetry(payload) {
-        // Vérifier le type de payload selon l'octet 4 (bit 7)
-        const payloadTypeBit = (payload[4] >> 7) & 0x01;
-        if (payloadTypeBit === 1) {
-            return Telemetry.decodeMetadataPayload(payload);
-        } else {
-            return Telemetry.decodeTimeseriesPayload(payload);
+    let measurements = [];
+    const { codingPolicy, dataType, scalingFactor } = metadata.measurementConfig;
+    if (codingPolicy === 0) {
+        // NO_COMPRESSION.
+        if (dataType === 0) {
+            // 8_BIT_UNSIGNED.
+            for (let i = 0; i < measurementData.length; i++) {
+                measurements.push(measurementData[i]);
+            }
+        } else if (dataType === 1) {
+            // 16_BIT_SIGNED.
+            for (let i = 0; i < measurementData.length; i += 2) {
+                if (i + 1 < measurementData.length) {
+                    measurements.push(measurementData.readInt16BE(i));
+                }
+            }
         }
+    } else if (codingPolicy === 1) {
+        // DELTA_COMPRESSION.
+        if (dataType === 1) {
+            if (measurementData.length < 2) {
+                errors.push("Insufficient data for delta compression absolute value");
+            } else {
+                let absolute = measurementData.readInt16BE(0);
+                measurements.push(absolute);
+                for (let i = 2; i < measurementData.length; i++) {
+                    const delta = measurementData.readInt8(i);
+                    absolute += delta;
+                    measurements.push(absolute);
+                }
+            }
+        } else {
+            for (let i = 0; i < measurementData.length; i++) {
+                measurements.push(measurementData[i]);
+            }
+        }
+    } else {
+        measurements = Array.from(measurementData);
+    }
+
+    // Apply scaling: measurement = raw_value * 10^(scalingFactor)
+    const factor = Math.pow(10, scalingFactor);
+    const scaledMeasurements = measurements.map(m => m * factor);
+
+    return {
+        telemetryId,
+        alarmTrigger,
+        cyclicVersion,
+        cyclicCounter,
+        rawMeasurements: Array.from(measurementData).toString(),
+        measurements: scaledMeasurements,
+        errors
+    };
+}
+// -----------------------------------------------------------------------------
+// Main exported function
+// -----------------------------------------------------------------------------
+
+function decodeTelemetry(payload) {
+    if (!(payload instanceof Buffer)) {
+        try {
+            payload = Buffer.from(payload, typeof payload === "string" ? "hex" : undefined);
+        } catch (e) {
+            return { errors: ["Invalid payload format"], warnings: [] };
+        }
+    }
+    if (payload.length < 5) {
+        return { errors: ["Payload too short"], warnings: [] };
+    }
+
+    const headerLength = 4;
+    const telemetryPayload = payload.slice(headerLength);
+    if (telemetryPayload.length < 1) {
+        return { errors: ["No telemetry payload"], warnings: [] };
+    }
+
+    const payloadTypeByte = telemetryPayload[0];
+    const isMetadata = (payloadTypeByte & 0x80) !== 0;
+    if (isMetadata) {
+        const result = decodeMetadataPayload(telemetryPayload);
+        return { TelemetryIDs: [result.data], errors: result.errors, warnings: [] };
+    } else {
+        const telemetryResult = decodeTimeseriesPayload(telemetryPayload);
+        return {
+            payload: payload.toString("hex"),
+            telemetry: telemetryResult,
+            errors: [],
+            warnings: []
+        };
     }
 }
 
-module.exports = {Telemetry, determineTelemetry: determineTelemetry};
+module.exports = {
+    decodeTelemetry,
+};

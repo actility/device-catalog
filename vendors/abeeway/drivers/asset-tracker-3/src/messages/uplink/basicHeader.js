@@ -63,7 +63,7 @@ function rebuildTime(receivedTime, seconds) {
 function determineMessageType(payload){
     if (payload.length < 4)
         throw new Error("The payload is not valid to determine Message Type");
-    var messageType = payload[0]>>3 & 0x07;
+    var messageType = payload[0]>>3 & 0x07
     switch (messageType){
         case 1:
             return abeewayUplinkPayloadClass.messageType.NOTIFICATION;
