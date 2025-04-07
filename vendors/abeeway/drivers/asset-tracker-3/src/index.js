@@ -9,7 +9,7 @@ let queryClass = require("./messages/uplink/queries/query");
 let util = require("./util");
 let commandClass = require("./messages/downlink/command");
 let requestClass = require("./messages/downlink/requests/request");
-const {Telemetry} = require("./messages/uplink/telemetry/telemetry");
+let telemetryClass = require("./messages/uplink/telemetry/telemetry");
 
 const DOWNLINK_PORT_NUMBER = 3;
 
@@ -57,7 +57,11 @@ function decodeUplink(input) {
                 decodedData.response = responseClass.determineResponse(payload, multiFrame);
                 break;
             case abeewayUplinkPayloadClass.messageType.TELEMETRY:
-                decodedData.telemetry = Telemetry.determineTelemetry(payload);
+                decodedData.telemetry = telemetryClass.decodeTelemetry(payload);
+                result.errors = decodedData.telemetry.errors;
+                result.warnings = decodedData.telemetry.warnings;
+                delete decodedData.telemetry.errors;
+                delete decodedData.telemetry.warnings;
                 break;
         }
         decodedData = removeEmpty(decodedData);
@@ -80,9 +84,7 @@ function decodeDownlink(input){
         var payload = input.bytes;
         var decodedData = new abeewayDownlinkPayloadClass.determineDownlinkHeader(payload);
         decodedData.payload = util.convertBytesToString(payload);
-        
         switch (decodedData.downMessageType){
-            
             case abeewayDownlinkPayloadClass.MessageType.COMMAND:
                 decodedData.command = commandClass.decodeCommand(payload.slice(1))
                 break;
@@ -154,4 +156,4 @@ module.exports = {
     encodeDownlink: encodeDownlink
 }
 
-console.log(decodeUplink({bytes: "2864871d80010000003c050091010384003c050ea2010000003c050e", recvTime: "2023-04-04T09:36:31Z" }))
+//console.log(decodeUplink({recvTime: "2025-03-01T13:04:27.000+02:00", bytes: "2864871d80010000003c050091010384003c050ea2010000003c050e", "fPort":3}));
