@@ -2875,6 +2875,7 @@ function decodeDownlink(input) {
             default:
                 throw new Error("The Downlink Message Type is unknown");
         }
+        decodedData = removeEmpty(decodedData);
         result.data = decodedData;
     } catch (e){
         result.errors.push(e.message);

@@ -196,15 +196,22 @@ if(!trusted) {
  * @return result: output of the driver with the given input and operation
  */
 async function run(input, operation){
-    if(trusted) {
-        let result;
-        eval(
-            code
-            + ";\n"
-            + `result = decodeUplink(input)`
-        );
-        return result;
+    if (trusted) {
+        const packageJson = fs.readJsonSync(path.join(__dirname, "package.json"));
+        const driverPath = path.join(__dirname, packageJson.main);
+        const driverModule = require(driverPath);
+
+        let fn = driverModule;
+        if (typeof driverModule.driver?.decodeUplink === 'function') {
+            fn = driverModule.driver;
+        }
+
+        return fn[operation](input);
     }
+
+    const isolate = new ivm.Isolate();
+    const script = isolate.compileScriptSync(isoBuffer.concat("\n" + code).concat("\n" + fnCall));
+
     const context = await isolate.createContext();
     await context.global.set("operation", operation);
     await context.global.set("input", new ivm.ExternalCopy(input).copyInto());
