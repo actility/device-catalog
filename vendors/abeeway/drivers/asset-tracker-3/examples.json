@@ -20,11 +20,27 @@
         "payload": "28640f19111688ffff83fffffcfbff80838687fd80f600",
         "telemetry": {
           "alarmTrigger": true,
-          "cyclicCounter": 22,
-          "cyclicVersion": 0,
-          "measurements":  [],
-          "rawMeasurements": "136,255,255,131,255,255,252,251,255,128,131,134,135,253,128,246,0",
-          "telemetryId": 1
+          "cyclicCounter": 6,
+          "cyclicVersion": 1,
+          "measurements":  [
+             25.5,
+             13.1,
+             25.5,
+             25.5,
+             25.2,
+             25.1,
+             25.5,
+             12.8,
+             13.1,
+             13.4,
+             13.5,
+             25.3,
+             12.8,
+             24.6,
+             0
+           ],
+          "telemetryId": 1,
+          "type": "timeseries"
         }
       },
       "errors": [],
@@ -51,62 +67,63 @@
         },
         "payload": "2864871d80010000003c050091010384003c050ea2010000003c050e",
         "telemetry": {
+          "type": "metadata",
           "TelemetryIDs": [
-            {
-              "0": {
-                "cyclicVersion": 0,
-                "fixedTimeInterval": 0,
-                "measurementConfig": {
-                  "codingPolicy": "DELTA_COMPRESSION",
-                  "dataType": "16_BIT_SIGNED",
-                  "measurementId": 0,
-                  "recordingPolicy": "INSTANT",
-                  "sampleCompression": "LINEAR",
-                  "scalingFactor": 0
+              {
+                "0": {
+                  "cyclicVersion": 0,
+                  "fixedTimeInterval": 0,
+                  "measurementConfig": {
+                    "codingPolicy": "DELTA_COMPRESSION",
+                    "dataType": "16_BIT_SIGNED",
+                    "measurementId": 0,
+                    "recordingPolicy": "INSTANT",
+                    "sampleCompression": "LINEAR",
+                    "scalingFactor": 1
+                  },
+                  "measurementNMaxInterval": 60,
+                  "numMeasurements": 1,
+                  "telemetryIDMaxInterval": 0,
+                  "telemetryId": 0
                 },
-                "measurementNMaxInterval": 60,
-                "numMeasurements": 1,
-                "telemetryIDMaxInterval": 0,
-                "telemetryId": 0
-              },
-              "1": {
-                "cyclicVersion": 1,
-                "fixedTimeInterval": 0,
-                "measurementConfig":  {
-                  "codingPolicy": "DELTA_COMPRESSION",
-                  "dataType": "16_BIT_SIGNED",
-                  "measurementId": 0,
-                  "recordingPolicy": "INSTANT",
-                  "sampleCompression": "LINEAR",
-                  "scalingFactor": -1
+                "1": {
+                  "cyclicVersion": 1,
+                  "fixedTimeInterval": 0,
+                  "measurementConfig":  {
+                    "codingPolicy": "DELTA_COMPRESSION",
+                    "dataType": "16_BIT_SIGNED",
+                    "measurementId": 0,
+                    "recordingPolicy": "INSTANT",
+                    "sampleCompression": "LINEAR",
+                    "scalingFactor": 0.1
+                  },
+                  "measurementNMaxInterval": 60,
+                  "numMeasurements": 1,
+                  "telemetryIDMaxInterval": 900,
+                  "telemetryId": 1
                 },
-                "measurementNMaxInterval": 60,
-                "numMeasurements": 1,
-                "telemetryIDMaxInterval": 900,
-                "telemetryId": 1
-              },
-              "2":  {
-                "cyclicVersion": 2,
-                "fixedTimeInterval": 0,
-                "measurementConfig":  {
-                  "codingPolicy": "DELTA_COMPRESSION",
-                  "dataType": "16_BIT_SIGNED",
-                  "measurementId": 0,
-                  "recordingPolicy": "INSTANT",
-                  "sampleCompression": "LINEAR",
-                  "scalingFactor": -1
-                },
-                "measurementNMaxInterval": 60,
-                "numMeasurements": 1,
-                "telemetryIDMaxInterval": 0,
-                "telemetryId": 2
+                "2":  {
+                  "cyclicVersion": 2,
+                  "fixedTimeInterval": 0,
+                  "measurementConfig":  {
+                    "codingPolicy": "DELTA_COMPRESSION",
+                    "dataType": "16_BIT_SIGNED",
+                    "measurementId": 0,
+                    "recordingPolicy": "INSTANT",
+                    "sampleCompression": "LINEAR",
+                    "scalingFactor": 0.1
+                  },
+                  "measurementNMaxInterval": 60,
+                  "numMeasurements": 1,
+                  "telemetryIDMaxInterval": 0,
+                  "telemetryId": 2
+                }
               }
-            }
-          ]
-        }
-      },
-      "errors":  [],
-      "warnings":  []
+            ]
+          }
+        },
+        "errors":  [],
+        "warnings":  []
+      }
     }
-  }
-]
+  ]
