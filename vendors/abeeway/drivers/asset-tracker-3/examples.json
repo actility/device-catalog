@@ -2238,10 +2238,7 @@
     "output": {
       "data": {
         "header": {
-          "sos": false,
-          "type": "RESPONSE",
-          "ackToken": 5,
-          "multiFrame": true,
+          "ackToken": 0,
           "batteryLevel": 100,
           "timestamp": "2025-02-21T03:11:23.000Z"
         },
@@ -2928,21 +2925,18 @@
       "data": {
         "header": {
           "sos": false,
-          "type": "RESPONSE",
-          "ackToken": 3,
-          "multiFrame": false,
-          "batteryLevel": 96,
-          "timestamp": "2025-02-28T03:46:58.000Z"
+          "timestamp": "2025-03-01T01:04:25.000Z",
+          "type": "TELEMETRY"
         },
-        "response": {
-          "responseType": "CRC_CONFIGURATION_REQUEST",
-          "crc": [
-            "SYSTEM_CORE: 0x9CA891",
-            "GNSS: 0x859A44",
-            "ACCELEROMETER: 0xDCB2B0"
-          ]
-        },
-        "payload": "2360353205008a9ca891859a44dcb2b0"
+        "payload": "28640f19111688ffff83fffffcfbff80838687fd80f600",
+        "telemetry": {
+          "alarmTrigger": true,
+          "cyclicCounter": 22,
+          "cyclicVersion": 0,
+          "measurements":  [],
+          "rawMeasurements": "136,255,255,131,255,255,252,251,255,128,131,134,135,253,128,246,0",
+          "telemetryId": 1
+        }
       },
       "errors": [],
       "warnings": []
@@ -2959,10 +2953,9 @@
     },
     "output":        {
       "data": {
-        "header": {
-          "sos": false,
-          "type": "RESPONSE",
+        "header":  {
           "ackToken": 0,
+          "batteryLevel": 100,
           "multiFrame": false,
           "batteryLevel": 96,
           "timestamp": "2025-02-28T09:24:38.000Z"
@@ -3032,11 +3025,8 @@
       "data": {
         "header": {
           "sos": false,
-          "type": "QUERY",
-          "ackToken": 0,
-          "multiFrame": false,
-          "batteryLevel": 96,
-          "timestamp": "2025-02-28T22:10:12.000Z"
+          "timestamp": "2025-03-01T09:36:29.000Z",
+          "type": "TELEMETRY"
         },
         "query": {
           "queryType": "ECHO_REQUEST",

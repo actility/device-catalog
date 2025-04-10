@@ -152,3 +152,5 @@ module.exports = {
     decodeDownlink: decodeDownlink,
     encodeDownlink: encodeDownlink
 }
+
+//console.log(decodeUplink({recvTime: "2025-03-01T13:04:27.000+02:00", bytes: "2864871d80010000003c050091010384003c050ea2010000003c050e", "fPort":3}));
