@@ -1,129 +1,5240 @@
 [
   {
-    "description":"Telemetry payload",
+    "description":"GNSS uplink",
     "type":"uplink",
     "input":{
-      "bytes":"28640f19111688ffff83fffffcfbff80838687fd80f600",
-      "recvTime":"2025-03-01T13:04:27.000+02:00",
-      "fPort":3
+      "bytes":"105e0c248a00000119ff3ff20436458000a10000000a1765",
+      "recvTime":"2024-06-20T14:51:53.243+02:00",
+      "fPort":199
     },
-    "output": {
+    "output":{
+      "data":{
+        "header":{
+          "ackToken":0,
+          "multiFrame":  false,
+          "batteryLevel":94,
+          "sos":false,
+          "timestamp":"2024-06-20T12:51:48.000Z",
+          "type":"POSITION"
+        },
+        "payload":"105e0c248a00000119ff3ff20436458000a10000000a1765",
+        "position":{
+          "coordinates": [7.06656, 43.615845, 161],
+          "motion":1,
+          "motionCounter":0,
+          "gnssFix":{
+            "latitude":43.615845,
+            "longitude":7.0665600,
+            "altitude":161,
+            "COG":0,
+            "EHPE":23,
+            "SOG":10,
+            "quality":{
+              "fixQuality":"FIX_3D",
+              "numberSatellitesUsed":5
+            }
+          },
+          "positionType":"GNSS",
+          "status":"SUCCESS",
+          "triggers":{
+            "geoTriggerGeozoning":0,
+            "geoTriggerInMotion":0,
+            "geoTriggerInStatic":0,
+            "geoTriggerMotionStart":0,
+            "geoTriggerMotionStop":0,
+            "geoTriggerPod":1,
+            "geoTriggerShock":0,
+            "geoTriggerSos":0,
+            "geoTriggerTempHighThreshold":0,
+            "geoTriggerTempLowThreshold":0
+          }
+        }
+      },
+      "errors":[
+
+      ],
+      "warnings":[
+
+      ]
+    }
+  },
+
+  {
+    "description":"BLE MAC position",
+    "type":"uplink",
+    "input":{
+      "bytes":"105e0c248a00000119ff3ff20436458000a10000000a1765",
+      "recvTime":"2024-06-20T14:51:53.243+02:00",
+      "fPort":199
+    },
+    "output":{
+      "data":{
+        "header":{
+          "ackToken":0,
+          "multiFrame":  false,
+          "batteryLevel":94,
+          "sos":false,
+          "timestamp":"2024-06-20T12:51:48.000Z",
+          "type":"POSITION"
+        },
+        "payload":"105e0c248a00000119ff3ff20436458000a10000000a1765",
+        "position":{
+          "coordinates": [7.06656, 43.615845, 161],
+          "motion":1,
+          "motionCounter":0,
+          "gnssFix":{
+            "latitude":43.615845,
+            "longitude":7.0665600,
+            "altitude":161,
+            "COG":0,
+            "EHPE":23,
+            "SOG":10,
+            "quality":{
+              "fixQuality":"FIX_3D",
+              "numberSatellitesUsed":5
+            }
+          },
+          "positionType":"GNSS",
+          "status":"SUCCESS",
+          "triggers":{
+            "geoTriggerGeozoning":0,
+            "geoTriggerInMotion":0,
+            "geoTriggerInStatic":0,
+            "geoTriggerMotionStart":0,
+            "geoTriggerMotionStop":0,
+            "geoTriggerPod":1,
+            "geoTriggerShock":0,
+            "geoTriggerSos":0,
+            "geoTriggerTempHighThreshold":0,
+            "geoTriggerTempLowThreshold":0
+          }
+        }
+      },
+      "errors":[
+
+      ],
+      "warnings":[
+
+      ]
+    }
+  },
+  {
+    "description":"GNSS Uplink TIMEOUT/FAILURE",
+    "type":"uplink",
+    "input":{
+      "bytes":"105e0ed42a00000100",
+      "recvTime":"2024-06-06T15:03:19.740+02:00",
+      "fPort":19
+    },
+    "output":{
+      "data":{
+        "header":{
+          "ackToken":0,
+          "multiFrame":  false,
+          "batteryLevel": 94,
+          "sos":false,
+          "timestamp":"2024-06-06T13:03:16.000Z",
+          "type":"POSITION"
+        },
+        "payload":"105e0ed42a00000100",
+        "position":{
+          "gnssFailure":{
+            "satellitesSeen":[]
+          },
+          "motion": 0,
+          "motionCounter":0,
+          "positionType":"GNSS",
+          "status":"TIMEOUT",
+          "triggers":{
+            "geoTriggerGeozoning":0,
+            "geoTriggerInMotion":0,
+            "geoTriggerInStatic":0,
+            "geoTriggerMotionStart":0,
+            "geoTriggerMotionStop":0,
+            "geoTriggerPod":1,
+            "geoTriggerShock":0,
+            "geoTriggerSos":0,
+            "geoTriggerTempHighThreshold":0,
+            "geoTriggerTempLowThreshold":0
+          }
+        }
+      },
+      "errors":[
+
+      ],
+      "warnings":[
+
+      ]
+    }
+  },
+  {
+    "description":"Response of a parameter class configuration set request",
+    "type":"uplink",
+    "input":{
+      "bytes":"a5609ff1700106bd4726010004000d000700",
+      "recvTime":"2025-02-28T14:05:00.000+02:00",
+      "fPort":19
+    },
+    "output":{
       "data": {
         "header": {
-          "ackToken": 0,
-          "batteryLevel": 100,
-          "multiFrame": false,
           "sos": false,
-          "timestamp": "2025-03-01T01:04:25.000Z",
-          "type": "TELEMETRY"
+          "type": "RESPONSE",
+          "ackToken": 5,
+          "multiFrame": true,
+          "batteryLevel": 96,
+          "timestamp": "2025-02-28T11:22:25.000Z"
         },
-        "payload": "28640f19111688ffff83fffffcfbff80838687fd80f600",
-        "telemetry": {
-          "alarmTrigger": true,
-          "cyclicCounter": 6,
-          "cyclicVersion": 1,
-          "measurements":  [
-             25.5,
-             13.1,
-             25.5,
-             25.5,
-             25.2,
-             25.1,
-             25.5,
-             12.8,
-             13.1,
-             13.4,
-             13.5,
-             25.3,
-             12.8,
-             24.6,
-             0
-           ],
-          "telemetryId": 1,
-          "type": "timeseries"
-        }
+        "extendedHeader": {
+          "groupId": 3,
+          "last": 1,
+          "frameNumber": 0
+        },
+        "response": {
+          "responseType": "PARAM_CLASS_CONFIGURATION_SET",
+          "parameterClassConfigurationSet": {
+            "group": "BLE_SCAN2",
+            "parameters": [
+              {
+                "parameterName": "bleScanWindow",
+                "status": "SUCCESS"
+              },
+              {
+                "parameterName": "bleScanMinRssi",
+                "status": "SUCCESS"
+              },
+              {
+                "parameterName": "bleScanReportType",
+                "status": "SUCCESS"
+              },
+              {
+                "parameterName": "bleScanFilter1Value",
+                "status": "SUCCESS"
+              }
+            ]
+          },
+          "localCrc": "bd4726"
+        },
+        "payload": "a5609ff1700106bd4726010004000d000700"
       },
       "errors": [],
       "warnings": []
     }
   },
   {
-    "description":"Metadata payload",
+    "description":"Response of a parameter ble class configuration get request part1",
     "type":"uplink",
     "input":{
-      "bytes":"2864871d80010000003c050091010384003c050ea2010000003c050e",
-      "recvTime":"2025-03-01T13:04:27.000+02:00",
+      "bytes":"a5630365b0030b05c400000000000000000000000000000000000000000000000006210000014d0721000003e8",
+      "recvTime":"2025-03-06T11:05:00.000+02:00",
+      "fPort":19
+    },
+    "output": {
+      "data": {
+        "header": {
+          "sos": false,
+          "type": "RESPONSE",
+          "ackToken": 5,
+          "multiFrame": true,
+          "batteryLevel": 99,
+          "timestamp": "2025-03-06T00:14:29.000Z"
+        },
+        "extendedHeader": {
+          "groupId": 5,
+          "last": 1,
+          "frameNumber": 0
+        },
+        "response": {
+          "responseType": "PARAM_CLASS_CONFIGURATION_GET",
+          "parameterClassConfigurationGet": [
+            {
+              "group": "BLE",
+              "parameters": [
+                {
+                  "parameterName": "bleBeaconIdentifier",
+                  "parameterValue": "{00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00}"
+                },
+                {
+                  "parameterName": "bleBeaconFastAdvInterval",
+                  "parameterValue": 333
+                },
+                {
+                  "parameterName": "bleBeaconFastSlowInterval",
+                  "parameterValue": 1000
+                }
+              ]
+            }
+          ]
+        },
+        "payload": "a5630365b0030b05c400000000000000000000000000000000000000000000000006210000014d0721000003e8"
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "description":"Response of a parameter ble class configuration get request part2",
+    "type":"uplink",
+    "input":{
+      "bytes":"a563020690030b022100000001032100000019042100000000",
+      "recvTime":"2025-03-06T11:05:00.000+02:00",
+      "fPort":19
+    },
+    "output": {
+      "data": {
+        "header": {
+          "sos": false,
+          "type": "RESPONSE",
+          "ackToken": 5,
+          "multiFrame": true,
+          "batteryLevel": 99,
+          "timestamp": "2025-03-06T00:08:38.000Z"
+        },
+        "extendedHeader": {
+          "groupId": 4,
+          "last": 1,
+          "frameNumber": 0
+        },
+        "response": {
+          "responseType": "PARAM_CLASS_CONFIGURATION_GET",
+          "parameterClassConfigurationGet": [
+            {
+              "group": "BLE",
+              "parameters": [
+                {
+                  "parameterName": "bleCnxBehavior",
+                  "parameterValue": "ENABLE_NO_PASSKEY"
+                },
+                {
+                  "parameterName": "bleBeaconTxPower",
+                  "parameterValue": 25
+                },
+                {
+                  "parameterName": "bleBeaconType",
+                  "parameterValue": "DISABLE"
+                }
+              ]
+            }
+          ]
+        },
+        "payload": "a563020690030b022100000001032100000019042100000000"
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "description":"Response of a parameter ble class configuration get request part3",
+    "type":"uplink",
+    "input":{
+      "bytes":"a563a77370030b00210000001901210000003c022100000001",
+      "recvTime":"2025-03-06T11:05:00.000+02:00",
+      "fPort":19
+    },
+    "output":  {
+      "data": {
+        "header": {
+          "sos": false,
+          "type": "RESPONSE",
+          "ackToken": 5,
+          "multiFrame": true,
+          "batteryLevel": 99,
+          "timestamp": "2025-03-05T23:54:27.000Z"
+        },
+        "extendedHeader": {
+          "groupId": 3,
+          "last": 1,
+          "frameNumber": 0
+        },
+        "response": {
+          "responseType": "PARAM_CLASS_CONFIGURATION_GET",
+          "parameterClassConfigurationGet": [
+            {
+              "group": "BLE",
+              "parameters": [
+                {
+                  "parameterName": "bleCnxTxPower",
+                  "parameterValue": 25
+                },
+                {
+                  "parameterName": "bleCnxAdvDuration",
+                  "parameterValue": 60
+                },
+                {
+                  "parameterName": "bleCnxBehavior",
+                  "parameterValue": "ENABLE_NO_PASSKEY"
+                }
+              ]
+            }
+          ]
+        },
+        "payload": "a563a77370030b00210000001901210000003c022100000001"
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "description":"Response of a parameter ble class configuration get request part2",
+    "type":"uplink",
+    "input":{
+      "bytes":"a563020690030b022100000001032100000019042100000000",
+      "recvTime":"2025-03-06T11:05:00.000+02:00",
+      "fPort":19
+    },
+    "output": {
+      "data": {
+        "header": {
+          "sos": false,
+          "type": "RESPONSE",
+          "ackToken": 5,
+          "multiFrame": true,
+          "batteryLevel": 99,
+          "timestamp": "2025-03-06T00:08:38.000Z"
+        },
+        "extendedHeader": {
+          "groupId": 4,
+          "last": 1,
+          "frameNumber": 0
+        },
+        "response": {
+          "responseType": "PARAM_CLASS_CONFIGURATION_GET",
+          "parameterClassConfigurationGet": [
+            {
+              "group": "BLE",
+              "parameters": [
+                {
+                  "parameterName": "bleCnxBehavior",
+                  "parameterValue": "ENABLE_NO_PASSKEY"
+                },
+                {
+                  "parameterName": "bleBeaconTxPower",
+                  "parameterValue": 25
+                },
+                {
+                  "parameterName": "bleBeaconType",
+                  "parameterValue": "DISABLE"
+                }
+              ]
+            }
+          ]
+        },
+        "payload": "a563020690030b022100000001032100000019042100000000"
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "description":"Configuration repsonse of core led 0 map",
+    "type":"uplink",
+    "input":{
+      "bytes":"a1001a2050030109f4060265000000000000000000000000000000000000000000000000210026",
+      "recvTime":"2024-06-20T14:51:53.243+02:00",
+      "fPort":19
+    },
+    "output": {
+      "data": {
+        "header": {
+          "sos": false,
+          "type": "RESPONSE",
+          "ackToken": 1,
+          "multiFrame": true,
+          "batteryLevel": "CHARGING",
+          "timestamp": "2024-06-20T01:51:28.000Z"
+        },
+        "extendedHeader": {
+          "groupId": 2,
+          "last": 1,
+          "frameNumber": 0
+        },
+        "response": {
+          "responseType": "PARAM_CLASS_CONFIGURATION_GET",
+          "parameterClassConfigurationGet": [
+            {
+              "group": "SYSTEM_CORE",
+              "parameters": [
+                {
+                  "parameterName": "coreLed0Map",
+                  "parameterValue": [
+                    {
+                      "slice": {
+                        "systemEventClass": "GEOLOCATION",
+                        "patternLoopExtension": 0,
+                        "patternInversion": false,
+                        "type": 2,
+                        "patternIdentifier": "BLINK_SLOW",
+                        "patternLoop": 6
+                      }
+                    },
+                    {
+                      "slice": {
+                        "systemEventClass": "BUTTON1",
+                        "patternLoopExtension": 0,
+                        "patternInversion": false,
+                        "type": 0,
+                        "patternIdentifier": "NOT_CONFIGURED",
+                        "patternLoop": 0
+                      }
+                    },
+                    {
+                      "slice": {
+                        "systemEventClass": "BUTTON1",
+                        "patternLoopExtension": 0,
+                        "patternInversion": false,
+                        "type": 0,
+                        "patternIdentifier": "NOT_CONFIGURED",
+                        "patternLoop": 0
+                      }
+                    },
+                    {
+                      "slice": {
+                        "systemEventClass": "BUTTON1",
+                        "patternLoopExtension": 0,
+                        "patternInversion": false,
+                        "type": 0,
+                        "patternIdentifier": "NOT_CONFIGURED",
+                        "patternLoop": 0
+                      }
+                    },
+                    {
+                      "slice": {
+                        "systemEventClass": "BUTTON1",
+                        "patternLoopExtension": 0,
+                        "patternInversion": false,
+                        "type": 0,
+                        "patternIdentifier": "NOT_CONFIGURED",
+                        "patternLoop": 0
+                      }
+                    },
+                    {
+                      "slice": {
+                        "systemEventClass": "BUTTON1",
+                        "patternLoopExtension": 0,
+                        "patternInversion": false,
+                        "type": 0,
+                        "patternIdentifier": "NOT_CONFIGURED",
+                        "patternLoop": 0
+                      }
+                    },
+                    {
+                      "slice": {
+                        "systemEventClass": "BUTTON1",
+                        "patternLoopExtension": 0,
+                        "patternInversion": false,
+                        "type": 0,
+                        "patternIdentifier": "NOT_CONFIGURED",
+                        "patternLoop": 0
+                      }
+                    },
+                    {
+                      "slice": {
+                        "systemEventClass": "BUTTON1",
+                        "patternLoopExtension": 0,
+                        "patternInversion": false,
+                        "type": 0,
+                        "patternIdentifier": "NOT_CONFIGURED",
+                        "patternLoop": 0
+                      }
+                    },
+                    {
+                      "slice": {
+                        "systemEventClass": "BUTTON1",
+                        "patternLoopExtension": 0,
+                        "patternInversion": false,
+                        "type": 0,
+                        "patternIdentifier": "NOT_CONFIGURED",
+                        "patternLoop": 0
+                      }
+                    },
+                    {
+                      "slice": {
+                        "systemEventClass": "BUTTON2",
+                        "patternLoopExtension": 1,
+                        "patternInversion": false,
+                        "type": 0,
+                        "patternIdentifier": "BLINK_MEDIUM",
+                        "patternLoop": 2
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "payload": "a1001a2050030109f4060265000000000000000000000000000000000000000000000000210026"
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "description":"Configuration repsonse of core buzzer map",
+    "type":"uplink",
+    "input":{
+      "bytes":"a1001a205003010Bf4090324090125000000000000000000000000000000000000000000210026",
+      "recvTime":"2024-06-20T14:51:53.243+02:00",
+      "fPort":19
+    },
+    "output":     {
+      "data": {
+        "header": {
+          "sos": false,
+          "type": "RESPONSE",
+          "ackToken": 1,
+          "multiFrame": true,
+          "batteryLevel": "CHARGING",
+          "timestamp": "2024-06-20T01:51:28.000Z"
+        },
+        "extendedHeader": {
+          "groupId": 2,
+          "last": 1,
+          "frameNumber": 0
+        },
+        "response": {
+          "responseType": "PARAM_CLASS_CONFIGURATION_GET",
+          "parameterClassConfigurationGet": [
+            {
+              "group": "SYSTEM_CORE",
+              "parameters": [
+                {
+                  "parameterName": "coreBuzzerMap",
+                  "parameterValue": [
+                    {
+                      "slice": {
+                        "systemEventClass": "CORE",
+                        "melodyCountExtension": 0,
+                        "type": 3,
+                        "melodyIdentifier": "MELODY_4"
+                      }
+                    },
+                    {
+                      "slice": {
+                        "systemEventClass": "CORE",
+                        "melodyCountExtension": 0,
+                        "type": 1,
+                        "melodyIdentifier": "MELODY_5"
+                      }
+                    },
+                    {
+                      "slice": {
+                        "systemEventClass": "BUTTON1",
+                        "melodyCountExtension": 0,
+                        "type": 0,
+                        "melodyIdentifier": "NOT_CONFIGURED"
+                      }
+                    },
+                    {
+                      "slice": {
+                        "systemEventClass": "BUTTON1",
+                        "melodyCountExtension": 0,
+                        "type": 0,
+                        "melodyIdentifier": "NOT_CONFIGURED"
+                      }
+                    },
+                    {
+                      "slice": {
+                        "systemEventClass": "BUTTON1",
+                        "melodyCountExtension": 0,
+                        "type": 0,
+                        "melodyIdentifier": "NOT_CONFIGURED"
+                      }
+                    },
+                    {
+                      "slice": {
+                        "systemEventClass": "BUTTON1",
+                        "melodyCountExtension": 0,
+                        "type": 0,
+                        "melodyIdentifier": "NOT_CONFIGURED"
+                      }
+                    },
+                    {
+                      "slice": {
+                        "systemEventClass": "BUTTON1",
+                        "melodyCountExtension": 0,
+                        "type": 0,
+                        "melodyIdentifier": "NOT_CONFIGURED"
+                      }
+                    },
+                    {
+                      "slice": {
+                        "systemEventClass": "BUTTON1",
+                        "melodyCountExtension": 0,
+                        "type": 0,
+                        "melodyIdentifier": "NOT_CONFIGURED"
+                      }
+                    },
+                    {
+                      "slice": {
+                        "systemEventClass": "BUTTON1",
+                        "melodyCountExtension": 0,
+                        "type": 0,
+                        "melodyIdentifier": "NOT_CONFIGURED"
+                      }
+                    },
+                    {
+                      "slice": {
+                        "systemEventClass": "BUTTON2",
+                        "melodyCountExtension": 1,
+                        "type": 0,
+                        "melodyIdentifier": "MELODY_6"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "payload": "a1001a205003010bf4090324090125000000000000000000000000000000000000000000210026"
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "description":"Response of a parameter Internal class configuration get request",
+    "type":"uplink",
+    "input":{
+      "bytes":"a100098450030000210000002101210000001a022100000000",
+      "recvTime":"2024-06-07T12:40:27.175+02:00",
+      "fPort":19
+    },
+    "output":{
+      "data":{
+        "header":{
+          "ackToken":1,
+          "multiFrame":  true,
+          "batteryLevel":"CHARGING",
+          "sos":false,
+          "timestamp":"2024-06-07T00:40:36.000Z",
+          "type":"RESPONSE"
+        },
+        "extendedHeader":{
+          "frameNumber":0,
+          "groupId":  2,
+          "last":1
+        },
+        "payload":"a100098450030000210000002101210000001a022100000000",
+        "response":{
+          "parameterClassConfigurationGet":[
+            {
+              "group":"INTERNAL",
+              "parameters":[
+                {
+                  "parameterName": "sysHighestTemperature",
+                  "parameterValue": 33
+                },
+                {
+                  "parameterName":"sysLowestTemperature",
+                  "parameterValue":26
+                },
+                {
+                  "parameterName": "sysPowerConsumption",
+                  "parameterValue": 0
+                }
+              ]
+            }
+          ],
+          "responseType":"PARAM_CLASS_CONFIGURATION_GET"
+        }
+      },
+      "errors":[
+
+      ],
+      "warnings":[
+
+      ]
+    }
+  },
+  {
+    "description":"Response of a parameter system core class configuration get request part1",
+    "type":"uplink",
+    "input":{
+      "bytes":"a10014dfd0030100210000012c012100000000",
+      "recvTime":"2024-06-07T12:40:27.175+02:00",
+      "fPort":19
+    },
+    "output":{
+      "data":{
+        "header":{
+          "ackToken":1,
+          "multiFrame":  true,
+          "batteryLevel":"CHARGING",
+          "sos":false,
+          "timestamp":"2024-06-07T01:29:03.000Z",
+          "type":"RESPONSE"
+        },
+        "extendedHeader":{
+          "frameNumber":0,
+          "groupId":6,
+          "last":1
+        },
+        "payload":"a10014dfd0030100210000012c012100000000",
+        "response":{
+          "parameterClassConfigurationGet":[
+            {
+              "group":"SYSTEM_CORE",
+              "parameters":[
+                {
+                  "parameterName":"coreMonitoringPeriod",
+                  "parameterValue":300
+                },
+                {
+                  "parameterName":"coreStatusPeriod",
+                  "parameterValue":0
+                }
+              ]
+            }
+          ],
+          "responseType":"PARAM_CLASS_CONFIGURATION_GET"
+        }
+      },
+      "errors":[
+
+      ],
+      "warnings":[
+
+      ]
+    }
+  },
+  {
+    "description":"Response of a parameter system core class configuration get request part2",
+    "type":"uplink",
+    "input":{
+      "bytes":"a262952210020102340b0300000001",
+      "recvTime":"2024-06-07T12:40:27.175+02:00",
+      "fPort":19
+    },
+    "output":{
+      "data": {
+        "header": {
+          "sos": false,
+          "type": "RESPONSE",
+          "ackToken": 2,
+          "multiFrame": true,
+          "batteryLevel": 98,
+          "timestamp": "2024-06-07T10:36:18.000Z"
+        },
+        "extendedHeader": {
+          "groupId": 0,
+          "last": 1,
+          "frameNumber": 0
+        },
+        "response": {
+          "responseType": "GENERIC_CONFIGURATION_GET",
+          "genericConfigurationGet": [
+            {
+              "group": "SYSTEM_CORE",
+              "parameters": [
+                {
+                  "parameterName": "coreNotifEnable",
+                  "parameterValue": [
+                    {
+                      "systemClass": {
+                        "status": true,
+                        "lowBattery": true,
+                        "bleStatus": false,
+                        "tamperDetection": true,
+                        "heartbeat": false
+                      }
+                    },
+                    {
+                      "sosClass": {
+                        "sosOn": true,
+                        "sosOff": true
+                      }
+                    },
+                    {
+                      "temperatureClass": {
+                        "tempHigh": false,
+                        "tempLow": false,
+                        "tempNormal": false
+                      }
+                    },
+                    {
+                      "accelerometerClass": {
+                        "motionStart": false,
+                        "motionEnd": false,
+                        "shock": false
+                      }
+                    },
+                    {
+                      "networkingClass": {
+                        "mainUp": false,
+                        "backupUp": false
+                      }
+                    },
+                    {
+                      "geozoningClass": {
+                        "geozoningOn": true
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "payload": "a262952210020102340b0300000001"
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "description":"Response of a parameter system core class configuration get request",
+    "type":"uplink",
+    "input":{
+      "bytes":"a100348f1003010821001e1e63",
+      "recvTime":"2024-06-20T14:51:53.243+02:00",
+      "fPort":19
+    },
+    "output": {
+      "data": {
+        "header": {
+          "sos": false,
+          "type": "RESPONSE",
+          "ackToken": 1,
+          "multiFrame": true,
+          "batteryLevel": "CHARGING",
+          "timestamp": "2024-06-20T03:44:15.000Z"
+        },
+        "extendedHeader": {
+          "groupId": 0,
+          "last": 1,
+          "frameNumber": 0
+        },
+        "response": {
+          "responseType": "PARAM_CLASS_CONFIGURATION_GET",
+          "parameterClassConfigurationGet": [
+            {
+              "group": "SYSTEM_CORE",
+              "parameters": [
+                {
+                  "parameterName": "coreButtonsTiming",
+                  "parameterValue": {
+                    "durationButtonPress": 3,
+                    "durationButtonLongPress": 6,
+                    "debounceDurationOnButton1": 30,
+                    "debounceDurationOnButton2": 30
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "payload": "a100348f1003010821001e1e63"
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "description":"Response of a parameter system core class configuration get request part3",
+    "type":"uplink",
+    "input":{
+      "bytes":"a1001b3b700301062100406002072100040070",
+      "recvTime":"2024-06-07T12:40:27.175+02:00",
+      "fPort":19
+    },
+    "output": {
+      "data": {
+        "header": {
+          "sos": false,
+          "type": "RESPONSE",
+          "ackToken": 1,
+          "multiFrame": true,
+          "batteryLevel": "CHARGING",
+          "timestamp": "2024-06-07T01:56:11.000Z"
+        },
+        "extendedHeader": {
+          "groupId": 3,
+          "last": 1,
+          "frameNumber": 0
+        },
+        "response": {
+          "responseType": "PARAM_CLASS_CONFIGURATION_GET",
+          "parameterClassConfigurationGet": [
+            {
+              "group": "SYSTEM_CORE",
+              "parameters": [
+                {
+                  "parameterName": "coreButton1Map",
+                  "parameterValue": {
+                    "buttonPress": "START_STOP_SOS",
+                    "buttonLongPress": "NO_ACTION",
+                    "buttonSingleClick": "NO_ACTION",
+                    "buttonDoubleClicks": "STOP_DEVICE",
+                    "buttonTripleClicksOrAbove": "NO_ACTION",
+                    "buttonSimpleSequence": "FORCE_AN_UPLINK_SYSTEM_STATUS_NOTIFICATION_TRANSMISSION"
+                  }
+                },
+                {
+                  "parameterName": "coreButton2Map",
+                  "parameterValue": {
+                    "buttonPress": "NO_ACTION",
+                    "buttonLongPress": "START_ONLY_SOS",
+                    "buttonSingleClick": "NO_ACTION",
+                    "buttonDoubleClicks": "NO_ACTION",
+                    "buttonTripleClicksOrAbove": "FORCE_AN_UPLINK_SYSTEM_STATUS_NOTIFICATION_TRANSMISSION",
+                    "buttonSimpleSequence": "NO_ACTION"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "payload": "a1001b3b700301062100406002072100040070"
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "description":"Response of a parameter system core class configuration get request part4",
+    "type":"uplink",
+    "input":{
+      "bytes":"a56419c87003010c21000000780d21000000640e210000007b",
+      "recvTime":"2024-06-07T12:40:27.175+02:00",
+      "fPort":19
+    },
+    "output": {
+      "data": {
+        "header": {
+          "sos": false,
+          "type": "RESPONSE",
+          "ackToken": 5,
+          "multiFrame": true,
+          "batteryLevel": 100,
+          "timestamp": "2024-06-07T01:50:00.000Z"
+        },
+        "extendedHeader": {
+          "groupId": 3,
+          "last": 1,
+          "frameNumber": 0
+        },
+        "response": {
+          "responseType": "PARAM_CLASS_CONFIGURATION_GET",
+          "parameterClassConfigurationGet": [
+            {
+              "group": "SYSTEM_CORE",
+              "parameters": [
+                {
+                  "parameterName": "coreAlmanacValidity",
+                  "parameterValue": 120
+                },
+                {
+                  "parameterName": "coreAlmanacOutdatedRatio",
+                  "parameterValue": 100
+                },
+                {
+                  "parameterName": "coreCliPassword",
+                  "parameterValue": 123
+                }
+              ]
+            }
+          ]
+        },
+        "payload": "a56419c87003010c21000000780d21000000640e210000007b"
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "description":"Response of a generic configuration get request",
+    "type":"uplink",
+    "input":{
+      "bytes":"a10036973003010321000000640421ffffff9c052100000005",
+      "recvTime":"2024-06-20T14:51:53.243+02:00",
+      "fPort":19
+    },
+    "output": {
+      "data": {
+        "header": {
+          "sos": false,
+          "type": "RESPONSE",
+          "ackToken": 1,
+          "multiFrame": true,
+          "batteryLevel": "CHARGING",
+          "timestamp": "2024-06-20T03:52:55.000Z"
+        },
+        "extendedHeader": {
+          "groupId": 1,
+          "last": 1,
+          "frameNumber": 0
+        },
+        "response": {
+          "responseType": "PARAM_CLASS_CONFIGURATION_GET",
+          "parameterClassConfigurationGet": [
+            {
+              "group": "SYSTEM_CORE",
+              "parameters": [
+                {
+                  "parameterName": "coreTempHighThreshold",
+                  "parameterValue": 100
+                },
+                {
+                  "parameterName": "coreTempLowThreshold",
+                  "parameterValue": -100
+                },
+                {
+                  "parameterName": "coreTempHysteresis",
+                  "parameterValue": 5
+                }
+              ]
+            }
+          ]
+        },
+        "payload": "a10036973003010321000000640421ffffff9c052100000005"
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+
+  {
+    "description":"notification system Low battery",
+    "type":"uplink",
+    "input":{
+      "bytes":"090167e501dbd90d0a",
+      "recvTime":"2024-06-17T07:23:21.803Z",
+      "fPort":3
+    },
+    "output":{
+      "data":{
+        "header":{
+          "ackToken":1,
+          "multiFrame":  false,
+          "batteryLevel":1,
+          "sos":false,
+          "timestamp":"2024-06-17T07:23:17.000Z",
+          "type":"NOTIFICATION"
+        },
+        "payload":"090167e501dbd90d0a",
+        "notification":{
+          "notificationClass":"SYSTEM",
+          "notificationType":"LOW_BATTERY",
+          "system":{
+            "lowBattery":{
+              "batteryVoltage":3338,
+              "consumption":56281
+            }
+          }
+        }
+      },
+      "errors":[
+
+      ],
+      "warnings":[
+
+      ]
+    }
+  },
+  {
+    "description":"notification system tamper on",
+    "type":"uplink",
+    "input":{
+      "bytes":"085e13590301",
+      "recvTime":"2024-06-06T15:22:35.740+02:00",
+      "fPort":19
+    },
+    "output":{
+      "data":{
+        "header":{
+          "ackToken":0,
+          "multiFrame":  false,
+          "batteryLevel":94,
+          "sos":false,
+          "timestamp":"2024-06-06T13:22:33.000Z",
+          "type":"NOTIFICATION"
+        },
+        "payload":"085e13590301",
+        "notification":{
+          "notificationClass":"SYSTEM",
+          "notificationType":"TAMPER_DETECTION",
+          "system":{
+            "tamperDetection":{
+              "state":"CASING_OPEN"
+            }
+          }
+        }
+      },
+      "errors":[
+
+      ],
+      "warnings":[
+
+      ]
+    }
+  },
+  {
+    "description":"notification system tamper close",
+    "type":"uplink",
+    "input":{
+      "bytes":"085e13590300",
+      "recvTime":"2024-06-06T15:22:35.740+02:00",
+      "fPort":19
+    },
+    "output":{
+      "data":{
+        "header":{
+          "ackToken":0,
+          "multiFrame":  false,
+          "batteryLevel":94,
+          "sos":false,
+          "timestamp":"2024-06-06T13:22:33.000Z",
+          "type":"NOTIFICATION"
+        },
+        "payload":"085e13590300",
+        "notification":{
+          "notificationClass":"SYSTEM",
+          "notificationType":"TAMPER_DETECTION",
+          "system":{
+            "tamperDetection":{
+              "state":"CASING_CLOSED"
+            }
+          }
+        }
+      },
+      "errors":[
+
+      ],
+      "warnings":[
+
+      ]
+    }
+  },
+  {
+    "description":"Network notification main up",
+    "type":"uplink",
+    "input":{
+      "bytes":"085e16b940010100",
+      "recvTime":"2024-06-06T15:36:59.740+02:00",
+      "fPort":19
+    },
+    "output":{
+      "data":{
+        "header":{
+          "ackToken":0,
+          "multiFrame":  false,
+          "batteryLevel":94,
+          "sos":false,
+          "timestamp":"2024-06-06T13:36:57.000Z",
+          "type":"NOTIFICATION"
+        },
+        "payload":"085e16b940010100",
+        "notification":{
+          "notificationClass":"NETWORK",
+          "notificationType":"MAIN_UP",
+          "network":{
+            "activeNetwork": "LORA_NETWORK",
+            "backupNetwork": "NO_NETWORK",
+            "mainNetwork": "LORA_NETWORK"
+          }
+        }
+      },
+
+      "errors":[
+
+      ],
+      "warnings":[
+
+      ]
+    }
+  },
+  {
+    "description":"Response of a parameter class configuration set request",
+    "type":"uplink",
+    "input":{
+      "bytes":"a660292cd00102f784480b00030006000800",
+      "recvTime":"2025-02-28T14:05:00.000+02:00",
+      "fPort":19
+    },
+    "output": {
+      "data": {
+        "header": {
+          "sos": false,
+          "type": "RESPONSE",
+          "ackToken": 6,
+          "multiFrame": true,
+          "batteryLevel": 96,
+          "timestamp": "2025-02-28T02:55:40.000Z"
+        },
+        "extendedHeader": {
+          "groupId": 6,
+          "last": 1,
+          "frameNumber": 0
+        },
+        "response": {
+          "responseType": "PARAM_CLASS_CONFIGURATION_SET",
+          "parameterClassConfigurationSet": {
+            "group": "GEOLOC",
+            "parameters": [
+              {
+                "parameterName": "geolocGbeProfile0Techno",
+                "status": "SUCCESS"
+              },
+              {
+                "parameterName": "geolocMotionNbStart",
+                "status": "SUCCESS"
+              },
+              {
+                "parameterName": "geolocGnssHoldOnMode",
+                "status": "SUCCESS"
+              },
+              {
+                "parameterName": "geolocProfile0Triggers",
+                "status": "SUCCESS"
+              }
+            ]
+          },
+          "localCrc": "f78448"
+        },
+        "payload": "a660292cd00102f784480b00030006000800"
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "description":"Response of a generic configuration set request.",
+    "type":"uplink",
+    "input":{
+      "bytes":"a760842b10007056ed570a1300040000",
+      "recvTime":"2025-02-21T14:05:00.000+02:00",
+      "fPort":19
+    },
+    "output":{
+      "data": {
+        "header": {
+          "sos": false,
+          "type": "RESPONSE",
+          "ackToken": 7,
+          "multiFrame": true,
+          "batteryLevel": 96,
+          "timestamp": "2025-02-21T09:23:55.000Z"
+        },
+        "extendedHeader": {
+          "groupId": 0,
+          "last": 1,
+          "frameNumber": 0
+        },
+        "response": {
+          "responseType": "GENERIC_CONFIGURATION_SET",
+          "genericConfigurationSet": [
+            {
+              "group": "CELLULAR",
+              "parameters": [
+                {
+                  "parameterName": "cellS1IpUrlAddr",
+                  "status": "SUCCESS"
+                }
+              ]
+            },
+            {
+              "group": "LR11xx",
+              "parameters": [
+                {
+                  "parameterName": "lrConstellation",
+                  "status": "SUCCESS"
+                }
+              ]
+            }
+          ],
+          "globalCrc": "7056ed57"
+        },
+        "payload": "a760842b10007056ed570a1300040000"
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "description":"Response of a parameter class configuration set request",
+    "type":"uplink",
+    "input":{
+      "bytes":"a1620e795001058d10e9080500050b05",
+      "recvTime":"2024-06-14T13:01:47.876Z",
+      "fPort":3
+    },
+    "output":{
+      "data":{
+        "extendedHeader":{
+          "frameNumber":0,
+          "groupId":  2,
+          "last":1
+        },
+        "header":{
+          "ackToken":1,
+          "multiFrame":  true,
+          "batteryLevel":98,
+          "sos":false,
+          "timestamp":"2024-06-14T13:01:45.000Z",
+          "type":"RESPONSE"
+        },
+        "payload":"a1620e795001058d10e9080500050b05",
+        "response":{
+          "parameterClassConfigurationSet":{
+            "group":"BLE_SCAN1",
+            "parameters":[
+              {
+                "parameterName":"bleScanFilter1Offset",
+                "status":"TYPE_MISMATCH"
+              },
+              {
+                "parameterName":"bleScanDuration",
+                "status":"TYPE_MISMATCH"
+              },
+              {
+                "parameterName":"bleScanFilter2Offset",
+                "status":"TYPE_MISMATCH"
+              }
+            ]
+          },
+          "responseType":"PARAM_CLASS_CONFIGURATION_SET",
+          "localCrc": "8d10e9"
+        }
+      },
+      "errors":[
+
+      ],
+      "warnings":[
+
+      ]
+    }
+  },
+  {
+    "description":"Response of a generic configuration get request",
+    "type":"uplink",
+    "input":{
+      "bytes":"a20165a250020001210000001c02082100000034",
+      "recvTime":"2024-05-05T19:15:00.000+02:00",
+      "fPort":19
+    },
+    "output":{
+      "data":{
+        "header":{
+          "ackToken":2,
+          "multiFrame":  true,
+          "batteryLevel":1,
+          "sos":false,
+          "timestamp":"2024-05-05T07:13:38.000Z",
+          "type":"RESPONSE"
+        },
+        "extendedHeader":{
+          "frameNumber":0,
+          "groupId":  2,
+          "last":1
+        },
+        "payload":"a20165a250020001210000001c02082100000034",
+        "response":{
+          "genericConfigurationGet":[
+            {
+              "group":"INTERNAL",
+              "parameters":[
+                {
+                  "parameterName":"sysLowestTemperature",
+                  "parameterValue": 28
+                }
+              ]
+            },
+            {
+              "group":"GEOLOC",
+              "parameters":[{
+                "parameterName": "geolocProfile0Triggers",
+                "parameterValue":  {
+                  "geoTriggerGeozoning": false,
+                  "geoTriggerInMotion": true,
+                  "geoTriggerInStatic": true,
+                  "geoTriggerMotionStart": true,
+                  "geoTriggerMotionStop": false,
+                  "geoTriggerPod": false,
+                  "geoTriggerShock": false,
+                  "geoTriggerSos": false,
+                  "geoTriggerTempHighThreshold": false,
+                  "geoTriggerTempLowThreshold": false
+                }}
+              ]
+            }
+
+          ],
+          "responseType":"GENERIC_CONFIGURATION_GET"
+        }
+      },
+      "errors":[
+
+      ],
+      "warnings":[
+
+      ]
+    }
+  },
+  {
+    "description":"Response of a parameter geoloc class configuration get request part1",
+    "type":"uplink",
+    "input":{
+      "bytes":"a1001a5d100302002100000258012100000258022100000258032100000001042100000001052100000258062100000000072100000000",
+      "recvTime":"2024-06-07T12:40:27.175+02:00",
+      "fPort":19
+    },
+    "output":{
+      "data":{
+        "header":{
+          "ackToken":1,
+          "multiFrame":  true,
+          "batteryLevel":"CHARGING",
+          "sos":false,
+          "timestamp":"2024-06-07T01:52:29.000Z",
+          "type":"RESPONSE"
+        },
+        "extendedHeader":{
+          "frameNumber":0,
+          "groupId":0,
+          "last":1
+        },
+        "payload":"a1001a5d100302002100000258012100000258022100000258032100000001042100000001052100000258062100000000072100000000",
+        "response":{
+          "parameterClassConfigurationGet":[
+            {
+              "group":"GEOLOC",
+              "parameters":[
+                {
+                  "parameterName":"geolocMotionPeriod",
+                  "parameterValue":600
+                },
+                {
+                  "parameterName":"geolocStaticPeriod",
+                  "parameterValue":600
+                },
+                {
+                  "parameterName":"geolocSosPeriod",
+                  "parameterValue":600
+                },
+
+                {
+                  "parameterName":"geolocMotionNbStart",
+                  "parameterValue":1
+                },
+
+                {
+                  "parameterName":"geolocMotionNbStop",
+                  "parameterValue":1
+                },
+                {
+                  "parameterName":"geolocStartStopPeriod",
+                  "parameterValue":600
+                },
+                {
+                  "parameterName":"geolocGnssHoldOnMode",
+                  "parameterValue":"DISABLED"
+                },
+                {
+                  "parameterName":"geolocGnssHoldOnTimeout",
+                  "parameterValue":0
+                }
+
+
+              ]
+            }
+          ],
+          "responseType":"PARAM_CLASS_CONFIGURATION_GET"
+        }
+      },
+      "errors":[
+
+      ],
+      "warnings":[
+
+      ]
+    }
+  },
+  {
+    "description":"Response of a parameter geoloc class configuration get request part2",
+    "type":"uplink",
+    "input":{
+      "bytes":"a1001e0d5003020821000000100921000000000a21000000000b340201050306040c348305828600000d34060000000000",
+      "recvTime":"2024-06-07T14:08:00.764+02:00",
+      "fPort":19
+    },
+    "output":{
+      "data":{
+        "header":{
+          "ackToken":1,
+          "multiFrame":  true,
+          "batteryLevel":"CHARGING",
+
+          "sos":false,
+          "timestamp":"2024-06-07T02:08:13.000Z",
+          "type":"RESPONSE"
+        },
+        "extendedHeader":{
+          "frameNumber":0,
+          "groupId":  2,
+          "last":1
+        },
+        "payload":"a1001e0d5003020821000000100921000000000a21000000000b340201050306040c348305828600000d34060000000000",
+        "response":{
+          "parameterClassConfigurationGet":[
+            {
+              "group":"GEOLOC",
+              "parameters":[
+                {
+                  "parameterName":"geolocProfile0Triggers",
+                  "parameterValue":{
+                    "geoTriggerGeozoning":false,
+                    "geoTriggerInMotion":true,
+                    "geoTriggerInStatic":false,
+                    "geoTriggerMotionStart":false,
+                    "geoTriggerMotionStop":false,
+                    "geoTriggerPod":false,
+                    "geoTriggerShock":false,
+                    "geoTriggerSos":false,
+                    "geoTriggerTempHighThreshold":false,
+                    "geoTriggerTempLowThreshold":false
+                  }
+                },
+                {
+                  "parameterName":"geolocProfile1Triggers",
+                  "parameterValue":{
+                    "geoTriggerGeozoning":false,
+                    "geoTriggerInMotion":false,
+                    "geoTriggerInStatic":false,
+                    "geoTriggerMotionStart":false,
+                    "geoTriggerMotionStop":false,
+                    "geoTriggerPod":false,
+                    "geoTriggerShock":false,
+                    "geoTriggerSos":false,
+                    "geoTriggerTempHighThreshold":false,
+                    "geoTriggerTempLowThreshold":false
+                  }
+                },
+                {
+                  "parameterName":"geolocProfile2Triggers",
+                  "parameterValue":{
+                    "geoTriggerGeozoning":false,
+                    "geoTriggerInMotion":false,
+                    "geoTriggerInStatic":false,
+                    "geoTriggerMotionStart":false,
+                    "geoTriggerMotionStop":false,
+                    "geoTriggerPod":false,
+                    "geoTriggerShock":false,
+                    "geoTriggerSos":false,
+                    "geoTriggerTempHighThreshold":false,
+                    "geoTriggerTempLowThreshold":false
+                  }
+                },
+                {
+                  "parameterName":"geolocGbeProfile0Techno",
+                  "parameterValue":[
+                    {
+                      "Action":"SKIP_ON_SUCCESS",
+                      "Technology":"WIFI"
+                    },
+                    {
+                      "Action":"SKIP_ON_SUCCESS",
+                      "Technology":"LR11xx_A_GNSS"
+                    },
+                    {
+                      "Action":"SKIP_ON_SUCCESS",
+                      "Technology":"AIDED_GNSS"
+                    },
+                    {
+                      "Action":"SKIP_ON_SUCCESS",
+                      "Technology":"BLE_SCAN1"
+                    },
+                    {
+                      "Action":"SKIP_ON_SUCCESS",
+                      "Technology":"GNSS"
+                    },
+                    {
+                      "Action":"SKIP_ON_SUCCESS",
+                      "Technology":"BLE_SCAN2"
+                    }
+                  ]
+                },
+                {
+                  "parameterName":"geolocGbeProfile1Techno",
+                  "parameterValue":[
+                    {
+                      "Action":"ALWAYS_DONE",
+                      "Technology":"BLE_SCAN1"
+                    },
+                    {
+                      "Action":"SKIP_ON_SUCCESS",
+                      "Technology":"AIDED_GNSS"
+                    },
+                    {
+                      "Action":"ALWAYS_DONE",
+                      "Technology":"WIFI"
+                    },
+                    {
+                      "Action":"ALWAYS_DONE",
+                      "Technology":"GNSS"
+                    },
+                    {
+                      "Action":"SKIP_ON_SUCCESS",
+                      "Technology":"NONE"
+                    },  {
+                      "Action":"SKIP_ON_SUCCESS",
+                      "Technology":"NONE"
+                    }
+                  ]
+                },
+                {
+                  "parameterName":"geolocGbeProfile2Techno",
+                  "parameterValue":[
+                    {
+                      "Action":"SKIP_ON_SUCCESS",
+                      "Technology":"GNSS"
+                    },
+                    {
+                      "Action":"SKIP_ON_SUCCESS",
+                      "Technology":"NONE"
+                    },
+                    {
+                      "Action":"SKIP_ON_SUCCESS",
+                      "Technology":"NONE"
+                    },
+                    {
+                      "Action":"SKIP_ON_SUCCESS",
+                      "Technology":"NONE"
+                    },
+                    {
+                      "Action":"SKIP_ON_SUCCESS",
+                      "Technology":"NONE"
+                    },
+                    {
+                      "Action":"SKIP_ON_SUCCESS",
+                      "Technology":"NONE"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "responseType":"PARAM_CLASS_CONFIGURATION_GET"
+        }
+      },
+      "errors":[
+
+      ],
+      "warnings":[
+
+      ]
+    }
+  },
+  {
+    "description":"Response of a generic configuration get request",
+    "type":"uplink",
+    "input":{
+      "bytes":"a164262a1002020b3406048300000500022100000000",
+      "recvTime":"2024-04-19T16:00:00.000+02:00",
+      "fPort":19
+    },
+    "output":{
+      "data":{
+        "header":{
+          "ackToken":1,
+          "multiFrame":  true,
+          "batteryLevel":100,
+          "sos":false,
+          "timestamp":"2024-04-19T02:42:50.000Z",
+          "type":"RESPONSE"
+        },
+        "extendedHeader":{
+          "frameNumber":0,
+          "groupId":0,
+          "last":1
+        },
+        "payload":"a164262a1002020b3406048300000500022100000000",
+        "response":{
+          "genericConfigurationGet":[
+            {
+              "group":"GEOLOC",
+              "parameters":[
+                {
+                  "parameterName":"geolocGbeProfile0Techno",
+                  "parameterValue":[
+                    {
+                      "Action":"SKIP_ON_SUCCESS",
+                      "Technology":"GNSS"
+                    },
+                    {
+                      "Action":"SKIP_ON_SUCCESS",
+                      "Technology":"BLE_SCAN2"
+                    },
+                    {
+                      "Action":"ALWAYS_DONE",
+                      "Technology":"BLE_SCAN1"
+                    },
+                    {
+                      "Action":"SKIP_ON_SUCCESS",
+                      "Technology":"NONE"
+                    },
+                    {
+                      "Action":"SKIP_ON_SUCCESS",
+                      "Technology":"NONE"
+                    },
+                    {
+                      "Action":"SKIP_ON_SUCCESS",
+                      "Technology":"AIDED_GNSS"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "group":"INTERNAL",
+              "parameters":[
+                {
+                  "parameterName":"sysPowerConsumption",
+                  "parameterValue":0
+                }
+              ]
+            }
+          ],
+          "responseType":"GENERIC_CONFIGURATION_GET"
+        }
+      },
+      "errors":[
+
+      ],
+      "warnings":[
+
+      ]
+    }
+  },
+  {
+    "description":"Response of a parameter LR11xx class configuration get request",
+    "type":"uplink",
+    "input":{
+      "bytes":"a1647295300304002100000006012100000001022100000002032100000005042100000004",
+      "recvTime":"2024-04-19T09:05:00.000+02:00",
+      "fPort":19
+    },
+    "output":{
+      "data":{
+        "header":{
+          "ackToken":1,
+          "multiFrame":  true,
+          "batteryLevel":100,
+          "sos":false,
+          "timestamp":"2024-04-18T20:08:53.000Z",
+          "type":"RESPONSE"
+        },
+        "extendedHeader":{
+          "frameNumber":0,
+          "groupId":1,
+          "last":1
+        },
+        "payload":"a1647295300304002100000006012100000001022100000002032100000005042100000004",
+        "response":{
+          "parameterClassConfigurationGet":[
+            {
+              "group":"LR11xx",
+              "parameters":[
+                {
+                  "parameterName":"lrConstellation",
+                  "parameterValue":"BEIDOU_GPS"
+                },
+                {
+                  "parameterName":"lrScanMode",
+                  "parameterValue":"NAV1_SCAN"
+                },
+                {
+                  "parameterName":"lrNbScans",
+                  "parameterValue":2
+                },
+                {
+                  "parameterName":"lrInterScanTime",
+                  "parameterValue":5
+                },
+                {
+                  "parameterName":"lrWifiReportNbBssid",
+                  "parameterValue":4
+                }
+              ]
+            }
+          ],
+          "responseType":"PARAM_CLASS_CONFIGURATION_GET"
+        }
+      },
+      "errors":[
+
+      ],
+      "warnings":[
+
+      ]
+    }
+  },
+  {
+    "description":"Response of a parameter LR11xx class configuration get request",
+    "type":"uplink",
+    "input":{
+      "bytes":"a5641ef4900304052100000003062100000000072100000001",
+      "recvTime":"2024-06-20T14:51:53.243+02:00",
+      "fPort":19
+    },
+    "output":  {
+      "data": {
+        "header": {
+          "sos": false,
+          "type": "RESPONSE",
+          "ackToken": 5,
+          "multiFrame": true,
+          "batteryLevel": 100,
+          "timestamp": "2024-06-20T02:12:04.000Z"
+        },
+        "extendedHeader": {
+          "groupId": 4,
+          "last": 1,
+          "frameNumber": 0
+        },
+        "response": {
+          "responseType": "PARAM_CLASS_CONFIGURATION_GET",
+          "parameterClassConfigurationGet": [
+            {
+              "group": "LR11xx",
+              "parameters": [
+                {
+                  "parameterName": "lrWifiMinNbBssid",
+                  "parameterValue": 3
+                },
+                {
+                  "parameterName": "lrWifiMinRssi",
+                  "parameterValue": 0
+                },
+                {
+                  "parameterName": "lrWifiBssidMacType",
+                  "parameterValue": 1
+                }
+              ]
+            }
+          ]
+        },
+        "payload": "a5641ef4900304052100000003062100000000072100000001"
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "description":"Response of a parameter GNSS core class configuration get request",
+    "type":"uplink",
+    "input":{
+      "bytes":"a10017f2f0030300210000000401210000012c02210000001e03210000001e042100000014",
+      "recvTime":"2024-06-07T12:40:27.175+02:00",
+      "fPort":19
+    },
+    "output":{
+      "data":{
+        "header":{
+          "ackToken":1,
+          "multiFrame":  true,
+          "batteryLevel":"CHARGING",
+          "sos":false,
+          "timestamp":"2024-06-07T01:42:10.000Z",
+          "type":"RESPONSE"
+        },
+        "extendedHeader":{
+          "frameNumber":0,
+          "groupId":7,
+          "last":1
+        },
+        "payload":"a10017f2f0030300210000000401210000012c02210000001e03210000001e042100000014",
+        "response":{
+          "parameterClassConfigurationGet":[
+            {
+              "group":"GNSS",
+              "parameters":[
+                {
+                  "parameterName":"gnssConstellation",
+                  "parameterValue":"GPS_GLONASS_GALILEO"
+                },
+                {
+                  "parameterName":"gnssMaxTime",
+                  "parameterValue":300
+                },
+                {
+                  "parameterName":"gnssT0TimeoutStatic",
+                  "parameterValue":30
+                },
+
+                {
+                  "parameterName":"gnssEhpeStatic",
+                  "parameterValue":30
+                },
+
+                {
+                  "parameterName":"gnssConvergenceStatic",
+                  "parameterValue":20
+                }
+
+              ]
+            }
+          ],
+          "responseType":"PARAM_CLASS_CONFIGURATION_GET"
+        }
+      },
+      "errors":[
+
+      ],
+      "warnings":[
+
+      ]
+    }
+  },
+  {
+    "description":"Response of a parameter GNSS core class configuration get request ",
+    "type":"uplink",
+    "input":{
+      "bytes":"a5642858b0030305210000001e06210000001e072100000014082100093a8009210000002d0a2100000000",
+      "recvTime":"2024-06-07T12:40:27.175+02:00",
+      "fPort":19
+    },
+    "output":  {
+      "data": {
+        "header": {
+          "sos": false,
+          "type": "RESPONSE",
+          "ackToken": 5,
+          "multiFrame": true,
+          "batteryLevel": 100,
+          "timestamp": "2024-06-07T02:52:08.000Z"
+        },
+        "extendedHeader": {
+          "groupId": 5,
+          "last": 1,
+          "frameNumber": 0
+        },
+        "response": {
+          "responseType": "PARAM_CLASS_CONFIGURATION_GET",
+          "parameterClassConfigurationGet": [
+            {
+              "group": "GNSS",
+              "parameters": [
+                {
+                  "parameterName": "gnssT0TimeoutMotion",
+                  "parameterValue": 30
+                },
+                {
+                  "parameterName": "gnssEhpeMotion",
+                  "parameterValue": 30
+                },
+                {
+                  "parameterName": "gnssConvergenceMotion",
+                  "parameterValue": 20
+                },
+                {
+                  "parameterName": "gnssStandby",
+                  "parameterValue": 604800
+                },
+                {
+                  "parameterName": "gnssAgnssMaxTime",
+                  "parameterValue": 45
+                },
+                {
+                  "parameterName": "gnssT1Timeout",
+                  "parameterValue": 0
+                }
+              ]
+            }
+          ]
+        },
+        "payload": "a5642858b0030305210000001e06210000001e072100000014082100093a8009210000002d0a2100000000"
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "description":"Response of a parameter accelerometer class configuration get request",
+    "type":"uplink",
+    "input":{
+      "bytes":"a1648269500307002100000010012100000014022100000001032100000000042100000000",
+      "recvTime":"2024-04-19T10:05:00.000+02:00",
+      "fPort":19
+    },
+    "output":{
+      "data":{
+        "header":{
+          "ackToken":1,
+          "multiFrame":  true,
+          "batteryLevel":100,
+          "sos":false,
+          "timestamp":"2024-04-18T21:16:25.000Z",
+          "type":"RESPONSE"
+        },
+        "extendedHeader":{
+          "frameNumber":0,
+          "groupId":  2,
+          "last":1
+        },
+        "payload":"a1648269500307002100000010012100000014022100000001032100000000042100000000",
+        "response":{
+          "parameterClassConfigurationGet":[
+            {
+              "group":"ACCELEROMETER",
+              "parameters":[
+                {
+                  "parameterName":"acceleroMotionSensi",
+                  "parameterValue":496
+                },
+                {
+                  "parameterName":"acceleroMotionDuration",
+                  "parameterValue":20
+                },
+                {
+                  "parameterName":"acceleroFullScale",
+                  "parameterValue":"4_G"
+                },
+                {
+                  "parameterName":"acceleroOutputDataRate",
+                  "parameterValue":"12_5_HZ"
+                },
+                {
+                  "parameterName":"acceleroShockThreshold",
+                  "parameterValue":0
+                }
+              ]
+            }
+          ],
+          "responseType":"PARAM_CLASS_CONFIGURATION_GET"
+        }
+      },
+      "errors":[
+
+      ],
+      "warnings":[
+
+      ]
+    }
+  },
+  {
+    "description":"Response of a parameter network class configuration get request",
+    "type":"uplink",
+    "input":{
+      "bytes":"a16488fc7003080021000000000121000002580205",
+      "recvTime":"2024-04-19T10:05:00.000+02:00",
+      "fPort":19
+    },
+    "output":{
+      "data":{
+        "header":{
+          "ackToken":1,
+          "multiFrame":  true,
+          "batteryLevel":100,
+          "sos":false,
+          "timestamp":"2024-04-18T21:44:28.000Z",
+          "type":"RESPONSE"
+        },
+        "extendedHeader":{
+          "frameNumber":0,
+          "groupId":3,
+          "last":1
+        },
+        "payload":"a16488fc7003080021000000000121000002580205",
+        "response":{
+          "parameterClassConfigurationGet":[
+            {
+              "group":"NETWORK",
+              "parameters":[
+                {
+                  "parameterName": "netSelection",
+                  "parameterValue": "LORA_ONLY"
+                },
+                {
+                  "parameterName":"netReconnectionSpacing",
+                  "parameterValue":600
+                },
+                {
+                  "parameterName": "netMainProbeTimeout",
+                  "parameterValue": "ERROR"
+                }
+              ]
+            }
+          ],
+          "responseType":"PARAM_CLASS_CONFIGURATION_GET"
+        }
+      },
+      "errors":[
+
+      ],
+      "warnings":[
+
+      ]
+    }
+  },
+  {
+    "description":"Response of a parameter lorawan class configuration get request",
+    "type":"uplink",
+    "input":{
+      "bytes":"a164007c900309002100000000012100000e10022100000000032100000258",
+      "recvTime":"2024-04-19T09:05:00.000+02:00",
+      "fPort":19
+    },
+    "output":{
+      "data":{
+        "header":{
+          "ackToken":1,
+          "multiFrame":  true,
+          "batteryLevel":100,
+          "sos":false,
+          "timestamp":"2024-04-19T00:02:04.000Z",
+          "type":"RESPONSE"
+        },
+        "extendedHeader":{
+          "frameNumber":0,
+          "groupId":4,
+          "last":1
+        },
+        "payload":"a164007c900309002100000000012100000e10022100000000032100000258",
+        "response":{
+          "parameterClassConfigurationGet":[
+            {
+              "group":"LORAWAN",
+              "parameters":[
+                {
+                  "parameterName":"lorawanCnxTimeout",
+                  "parameterValue":0
+                },
+                {
+                  "parameterName":"lorawanDlTriggerPeriod",
+                  "parameterValue":3600
+                },
+                {
+                  "parameterName":"lorawanProbeMaxAttempts",
+                  "parameterValue":0
+                },
+                {
+                  "parameterName":"lorawanProbePeriod",
+                  "parameterValue":600
+                }
+              ]
+            }
+          ],
+          "responseType":"PARAM_CLASS_CONFIGURATION_GET"
+        }
+      },
+      "errors":[
+
+      ],
+      "warnings":[
+
+      ]
+    }
+  },
+  {
+    "description":"Response of a parameter lorawan class configuration get request",
+    "type":"uplink",
+    "input":{
+      "bytes":"a5642cdbd003090434010000000000052100000000062100001009072100000013082100000003",
+      "recvTime":"2025-02-21T09:05:00.000+02:00",
+      "fPort":19
+    },
+    "output": {
+      "data": {
+        "header": {
+          "sos": false,
+          "type": "RESPONSE",
+          "ackToken": 5,
+          "multiFrame": true,
+          "batteryLevel": 100,
+          "timestamp": "2025-02-21T03:11:23.000Z"
+        },
+        "extendedHeader": {
+          "groupId": 6,
+          "last": 1,
+          "frameNumber": 0
+        },
+        "response": {
+          "responseType": "PARAM_CLASS_CONFIGURATION_GET",
+          "parameterClassConfigurationGet": [
+            {
+              "group": "LORAWAN",
+              "parameters": [
+                {
+                  "parameterName": "lorawanConfirmNotifMap",
+                  "parameterValue": [
+                    {
+                      "systemClass": {
+                        "status": true,
+                        "lowBattery": false,
+                        "bleStatus": false,
+                        "tamperDetection": false
+                      }
+                    },
+                    {
+                      "sosClass": {
+                        "sosOn": false,
+                        "sosOff": false
+                      }
+                    },
+                    {
+                      "temperatureClass": {
+                        "tempHigh": false,
+                        "tempLow": false,
+                        "tempNormal": false
+                      }
+                    },
+                    {
+                      "accelerometerClass": {
+                        "motionStart": false,
+                        "motionEnd": false,
+                        "shock": false
+                      }
+                    },
+                    {
+                      "networkingClass": {
+                        "mainUp": false,
+                        "backupUp": false
+                      }
+                    },
+                    {
+                      "geozoningClass": {
+                        "geozoningOn": false
+                      }
+                    }
+                  ]
+                },
+                {
+                  "parameterName": "lorawanConfirmNotifRetry",
+                  "parameterValue": 0
+                },
+                {
+                  "parameterName": "lorawanS1TxStrategy",
+                  "parameterValue": {
+                    "ADREnabled": true,
+                    "dualTransmissionInStaticEnabled": false,
+                    "dualTransmissionInMotionEnabled": false,
+                    "dataRateModification": true,
+                    "firstTransmissionDatarate": {
+                      "dr0": false,
+                      "dr1": false,
+                      "dr2": false,
+                      "dr3": false,
+                      "dr4": true,
+                      "dr5": false,
+                      "dr6": false,
+                      "dr7": false
+                    },
+                    "secondTransmissionDatarate": {
+                      "dr0": false,
+                      "dr1": false,
+                      "dr2": false,
+                      "dr3": false,
+                      "dr4": false,
+                      "dr5": false,
+                      "dr6": false,
+                      "dr7": false
+                    }
+                  }
+                },
+                {
+                  "parameterName": "lorawanS1UlPort",
+                  "parameterValue": 19
+                },
+                {
+                  "parameterName": "lorawanS1DlPort",
+                  "parameterValue": 3
+                }
+              ]
+            }
+          ]
+        },
+        "payload": "a5642cdbd003090434010000000000052100000000062100001009072100000013082100000003"
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "description":"Response of a parameter bleScan class configuration get request part1",
+    "type":"uplink",
+    "input":{
+      "bytes":"a16420acf00305002100000bb80121000000780221000000820321000000000421ffffff9c",
+      "recvTime":"2024-04-19T10:05:00.000+02:00",
+      "fPort":19
+    },
+    "output":{
+      "data":{
+        "header":{
+          "ackToken":1,
+          "multiFrame":  true,
+          "batteryLevel":100,
+          "sos":false,
+          "timestamp":"2024-04-19T02:19:24.000Z",
+          "type":"RESPONSE"
+        },
+        "extendedHeader":{
+          "frameNumber":0,
+          "groupId":7,
+          "last":1
+        },
+        "payload":"a16420acf00305002100000bb80121000000780221000000820321000000000421ffffff9c",
+        "response":{
+          "parameterClassConfigurationGet":[
+            {
+              "group":"BLE_SCAN1",
+              "parameters":[
+                {
+                  "parameterName":"bleScanDuration",
+                  "parameterValue":3000
+                },
+                {
+                  "parameterName":"bleScanWindow",
+                  "parameterValue":120
+                },
+                {
+                  "parameterName":"bleScanInterval",
+                  "parameterValue":130
+                },
+                {
+                  "parameterName":"bleScanType",
+                  "parameterValue":"ALL_BEACONS"
+                },
+                {
+                  "parameterName":"bleScanMinRssi",
+                  "parameterValue":-100
+                }
+              ]
+            }
+          ],
+          "responseType":"PARAM_CLASS_CONFIGURATION_GET"
+        }
+      },
+      "errors":[
+
+      ],
+      "warnings":[
+
+      ]
+    }
+  },
+  {
+    "description":"Response of a parameter bleScan class configuration get request part2",
+    "type":"uplink",
+    "input":{
+      "bytes":"a16422251003050654000000000000000000000754000000000000000000000821000000000954ffffffff000000000000",
+      "recvTime":"2024-04-19T10:05:00.000+02:00",
+      "fPort":19
+    },
+    "output":{
+      "data":{
+        "header":{
+          "ackToken":1,
+          "multiFrame":  true,
+          "batteryLevel":100,
+          "sos":false,
+          "timestamp":"2024-04-19T02:25:41.000Z",
+          "type":"RESPONSE"
+        },
+        "extendedHeader":{
+          "frameNumber":0,
+          "groupId":0,
+          "last":1
+        },
+        "payload":"a16422251003050654000000000000000000000754000000000000000000000821000000000954ffffffff000000000000",
+        "response":{
+          "parameterClassConfigurationGet":[
+            {
+              "group":"BLE_SCAN1",
+              "parameters":[
+                {
+                  "parameterName":"bleScanFilter1Mask",
+                  "parameterValue":"{00,00,00,00,00,00,00,00,00,00}"
+                },
+                {
+                  "parameterName":"bleScanFilter1Value",
+                  "parameterValue":"{00,00,00,00,00,00,00,00,00,00}"
+                },
+                {
+                  "parameterName":"bleScanFilter1Offset",
+                  "parameterValue":0
+                },
+                {
+                  "parameterName":"bleScanFilter2Mask",
+                  "parameterValue":"{ff,ff,ff,ff,00,00,00,00,00,00}"
+                }
+              ]
+            }
+          ],
+          "responseType":"PARAM_CLASS_CONFIGURATION_GET"
+        }
+      },
+      "errors":[
+
+      ],
+      "warnings":[
+
+      ]
+    }
+  },
+  {
+    "description":"Response of a parameter bleScan class configuration get request part3",
+    "type":"uplink",
+    "input":{
+      "bytes":"a164246f3003050a54000000000000000000000b21000000000c21000000040d21000000000e2100000000",
+      "recvTime":"2024-04-19T10:05:00.000+02:00",
+      "fPort":19
+    },
+    "output":{
+      "data":{
+        "header":{
+          "ackToken":1,
+          "multiFrame":  true,
+          "batteryLevel":100,
+          "sos":false,
+          "timestamp":"2024-04-19T02:35:27.000Z",
+          "type":"RESPONSE"
+        },
+        "extendedHeader":{
+          "frameNumber":0,
+          "groupId":1,
+          "last":1
+        },
+        "payload":"a164246f3003050a54000000000000000000000b21000000000c21000000040d21000000000e2100000000",
+        "response":{
+          "parameterClassConfigurationGet":[
+            {
+              "group":"BLE_SCAN1",
+              "parameters":[
+                {
+                  "parameterName":"bleScanFilter2Value",
+                  "parameterValue":"{00,00,00,00,00,00,00,00,00,00}"
+                },
+                {
+                  "parameterName":"bleScanFilter2Offset",
+                  "parameterValue":0
+                },
+                {
+                  "parameterName":"bleScanNbBeacons",
+                  "parameterValue":4
+                },
+                {
+                  "parameterName":"bleScanReportType",
+                  "parameterValue":"MAC_ADDRESS"
+                },
+                {
+                  "parameterName":"bleScanReportIdOfs",
+                  "parameterValue":0
+                }
+              ]
+            }
+          ],
+          "responseType":"PARAM_CLASS_CONFIGURATION_GET"
+        }
+      },
+      "errors":[
+
+      ],
+      "warnings":[
+
+      ]
+    }
+  },
+  {
+    "description":"Response of a parameter bleScan2 class configuration get request",
+    "type":"uplink",
+    "input":{
+      "bytes":"a5642f90f003060521000000010421ffffffb00e2100000000095400000000000000000000082100000000",
+      "recvTime":"2025-02-21T09:05:00.000+02:00",
+      "fPort":19
+    },
+    "output":  {
+      "data": {
+        "header": {
+          "sos": false,
+          "type": "RESPONSE",
+          "ackToken": 5,
+          "multiFrame": true,
+          "batteryLevel": 100,
+          "timestamp": "2025-02-21T03:22:56.000Z"
+        },
+        "extendedHeader": {
+          "groupId": 7,
+          "last": 1,
+          "frameNumber": 0
+        },
+        "response": {
+          "responseType": "PARAM_CLASS_CONFIGURATION_GET",
+          "parameterClassConfigurationGet": [
+            {
+              "group": "BLE_SCAN2",
+              "parameters": [
+                {
+                  "parameterName": "bleScanMinNbBeacons",
+                  "parameterValue": 1
+                },
+                {
+                  "parameterName": "bleScanMinRssi",
+                  "parameterValue": -80
+                },
+                {
+                  "parameterName": "bleScanReportIdOfs",
+                  "parameterValue": 0
+                },
+                {
+                  "parameterName": "bleScanFilter2Mask",
+                  "parameterValue": "{00,00,00,00,00,00,00,00,00,00}"
+                },
+                {
+                  "parameterName": "bleScanFilter1Offset",
+                  "parameterValue": 0
+                }
+              ]
+            }
+          ]
+        },
+        "payload": "a5642f90f003060521000000010421ffffffb00e2100000000095400000000000000000000082100000000"
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "description":"Response for a parameter in the cellular class configuration get request, part 1",
+    "type":"uplink",
+    "input":{
+      "bytes":"a5453a0550030a002100000000012100000001029c01030813141c00000000000000000000000000",
+      "recvTime":"2025-02-21T14:05:00.000+02:00",
+      "fPort":19
+    },
+    "output": {
+      "data": {
+        "header": {
+          "sos": false,
+          "type": "RESPONSE",
+          "ackToken": 5,
+          "multiFrame": true,
+          "batteryLevel": 69,
+          "timestamp": "2025-02-21T04:07:33.000Z"
+        },
+        "extendedHeader": {
+          "groupId": 2,
+          "last": 1,
+          "frameNumber": 0
+        },
+        "response": {
+          "responseType": "PARAM_CLASS_CONFIGURATION_GET",
+          "parameterClassConfigurationGet": [
+            {
+              "group": "CELLULAR",
+              "parameters": [
+                {
+                  "parameterName": "cellSimInterface",
+                  "parameterValue": "SIM0"
+                },
+                {
+                  "parameterName": "cellNetworkType",
+                  "parameterValue": "LTE_M"
+                },
+                {
+                  "parameterName": "cellSearchBands",
+                  "parameterValue": "{01,03,08,13,14,1c,00,00,00,00,00,00,00,00,00,00,00,00,00}"
+                }
+              ]
+            }
+          ]
+        },
+        "payload": "a5453a0550030a002100000000012100000001029c01030813141c00000000000000000000000000"
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "description":"Response for a parameter in the cellular class configuration get request, part2",
+    "type":"uplink",
+    "input":{
+      "bytes":"a5453a3970030a0321000000b404210000012c05210000003c062100000003",
+      "recvTime":"2025-02-21T14:05:00.000+02:00",
+      "fPort":19
+    },
+    "output": {
+      "data": {
+        "header": {
+          "sos": false,
+          "type": "RESPONSE",
+          "ackToken": 5,
+          "multiFrame": true,
+          "batteryLevel": 69,
+          "timestamp": "2025-02-21T04:08:25.000Z"
+        },
+        "extendedHeader": {
+          "groupId": 3,
+          "last": 1,
+          "frameNumber": 0
+        },
+        "response": {
+          "responseType": "PARAM_CLASS_CONFIGURATION_GET",
+          "parameterClassConfigurationGet": [
+            {
+              "group": "CELLULAR",
+              "parameters": [
+                {
+                  "parameterName": "cellCnxTimeoutStatic",
+                  "parameterValue": 180
+                },
+                {
+                  "parameterName": "cellCnxTimeoutMotion",
+                  "parameterValue": 300
+                },
+                {
+                  "parameterName": "cellCnxNwLostTimeout",
+                  "parameterValue": 60
+                },
+                {
+                  "parameterName": "cellCnxMaxAttempts",
+                  "parameterValue": 3
+                }
+              ]
+            }
+          ]
+        },
+        "payload": "a5453a3970030a0321000000b404210000012c05210000003c062100000003"
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "description":"Response for a parameter in the cellular class configuration get request, part3",
+    "type":"uplink",
+    "input":{
+      "bytes":"a5453a5f90030a0703080309030a2100000001",
+      "recvTime":"2025-02-21T12:05:00.000+02:00",
+      "fPort":19
+    },
+    "output":    {
+      "data": {
+        "header": {
+          "sos": false,
+          "type": "RESPONSE",
+          "ackToken": 5,
+          "multiFrame": true,
+          "batteryLevel": 69,
+          "timestamp": "2025-02-21T04:09:03.000Z"
+        },
+        "extendedHeader": {
+          "groupId": 4,
+          "last": 1,
+          "frameNumber": 0
+        },
+        "response": {
+          "responseType": "PARAM_CLASS_CONFIGURATION_GET",
+          "parameterClassConfigurationGet": [
+            {
+              "group": "CELLULAR",
+              "parameters": [
+                {
+                  "parameterName": "cellAccessPointName",
+                  "parameterValue": ""
+                },
+                {
+                  "parameterName": "cellOperatorSimSlot0",
+                  "parameterValue": ""
+                },
+                {
+                  "parameterName": "cellOperatorSimSlot1",
+                  "parameterValue": ""
+                },
+                {
+                  "parameterName": "cellLowPowerMode",
+                  "parameterValue": "PSM"
+                }
+              ]
+            }
+          ]
+        },
+        "payload": "a5453a5f90030a0703080309030a2100000001"
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "description":"Response for a parameter in the cellular class configuration get request, part4",
+    "type":"uplink",
+    "input":{
+      "bytes":"a5453b08d0030a102100000000112100000078122100000001136b3137362e33312e32392e31353514210000138f152100000000162100000078",
+      "recvTime":"2025-02-21T09:05:00.000+02:00",
+      "fPort":19
+    },
+    "output":  {
+      "data": {
+        "header": {
+          "sos": false,
+          "type": "RESPONSE",
+          "ackToken": 5,
+          "multiFrame": true,
+          "batteryLevel": 69,
+          "timestamp": "2025-02-21T04:11:52.000Z"
+        },
+        "extendedHeader": {
+          "groupId": 6,
+          "last": 1,
+          "frameNumber": 0
+        },
+        "response": {
+          "responseType": "PARAM_CLASS_CONFIGURATION_GET",
+          "parameterClassConfigurationGet": [
+            {
+              "group": "CELLULAR",
+              "parameters": [
+                {
+                  "parameterName": "cellProbeMaxAttempts",
+                  "parameterValue": 0
+                },
+                {
+                  "parameterName": "cellProbePeriod",
+                  "parameterValue": 120
+                },
+                {
+                  "parameterName": "cellS1TransportProto",
+                  "parameterValue": "UDP"
+                },
+                {
+                  "parameterName": "cellS1IpUrlAddr",
+                  "parameterValue": "176.31.29.155"
+                },
+                {
+                  "parameterName": "cellS1DstIpPort",
+                  "parameterValue": 5007
+                },
+                {
+                  "parameterName": "cellS1SrcIpPort",
+                  "parameterValue": 0
+                },
+                {
+                  "parameterName": "cellS1TxAggrTime",
+                  "parameterValue": 120
+                }
+              ]
+            }
+          ]
+        },
+        "payload": "a5453b08d0030a102100000000112100000078122100000001136b3137362e33312e32392e31353514210000138f152100000000162100000078"
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "description":"Response for a parameter in the cellular class configuration get request, part 5",
+    "type":"uplink",
+    "input":{
+      "bytes":"a5453aaab0030a0b21000000fe0c21000000020e21000000030f21000001f4",
+      "recvTime":"2025-02-21T12:05:00.000+02:00",
+      "fPort":19
+    },
+    "output":   {
+      "data": {
+        "header": {
+          "sos": false,
+          "type": "RESPONSE",
+          "ackToken": 5,
+          "multiFrame": true,
+          "batteryLevel": 69,
+          "timestamp": "2025-02-21T04:10:18.000Z"
+        },
+        "extendedHeader": {
+          "groupId": 5,
+          "last": 1,
+          "frameNumber": 0
+        },
+        "response": {
+          "responseType": "PARAM_CLASS_CONFIGURATION_GET",
+          "parameterClassConfigurationGet": [
+            {
+              "group": "CELLULAR",
+              "parameters": [
+                {
+                  "parameterName": "cellPsmTauPeriod",
+                  "parameterValue": {
+                    "timerValue": 30,
+                    "timerValueUnit": "THE_TIMER_IS_DEACTIVATED"
+                  }
+                },
+                {
+                  "parameterName": "cellPsmActiveTime",
+                  "parameterValue": {
+                    "timerValue": 2,
+                    "timerValueUnit": "VALUE_IS_INCREMENTED_IN_MULTIPLES_OF_2_SECONDS"
+                  }
+                },
+                {
+                  "parameterName": "cellEdrxPtw",
+                  "parameterValue": 3
+                },
+                {
+                  "parameterName": "cellRaiTimeout",
+                  "parameterValue": 500
+                }
+              ]
+            }
+          ]
+        },
+        "payload": "a5453aaab0030a0b21000000fe0c21000000020e21000000030f21000001f4"
+      },
+      "errors": [],
+      "warnings": []
+    }
+
+  },
+  {
+    "description":"Response for gloabl CRC",
+    "type":"uplink",
+    "input":{
+      "bytes":"2360355e050000d404a0f7",
+      "recvTime":"2025-02-28T14:05:00.000+02:00",
+      "fPort":19
+    },
+    "output":  {
+      "data": {
+        "header": {
+          "sos": false,
+          "type": "RESPONSE",
+          "ackToken": 3,
+          "multiFrame": false,
+          "batteryLevel": 96,
+          "timestamp": "2025-02-28T03:47:42.000Z"
+        },
+        "response": {
+          "responseType": "CRC_CONFIGURATION_REQUEST",
+          "crc": [
+            "Global CRC: 0xD404A0F7"
+          ]
+        },
+        "payload": "2360355e050000d404a0f7"
+      },
+      "errors": [],
+      "warnings": []
+    }
+
+  },
+  {
+    "description":"Response for specific group CRC",
+    "type":"uplink",
+    "input":{
+      "bytes":"2360353205008a9ca891859a44dcb2b0",
+      "recvTime":"2025-02-28T14:05:00.000+02:00",
+      "fPort":19
+    },
+    "output":      {
+      "data": {
+        "header": {
+          "sos": false,
+          "type": "RESPONSE",
+          "ackToken": 3,
+          "multiFrame": false,
+          "batteryLevel": 96,
+          "timestamp": "2025-02-28T03:46:58.000Z"
+        },
+        "response": {
+          "responseType": "CRC_CONFIGURATION_REQUEST",
+          "crc": [
+            "SYSTEM_CORE: 0x9CA891",
+            "GNSS: 0x859A44",
+            "ACCELEROMETER: 0xDCB2B0"
+          ]
+        },
+        "payload": "2360353205008a9ca891859a44dcb2b0"
+      },
+      "errors": [],
+      "warnings": []
+    }
+
+  },
+  {
+    "description":"Response for sensor request",
+    "type":"uplink",
+    "input":{
+      "bytes":"206084560601ffd9004e03ff",
+      "recvTime":"2025-02-28T14:05:00.000+02:00",
+      "fPort":19
+    },
+    "output":        {
+      "data": {
+        "header": {
+          "sos": false,
+          "type": "RESPONSE",
+          "ackToken": 0,
+          "multiFrame": false,
+          "batteryLevel": 96,
+          "timestamp": "2025-02-28T09:24:38.000Z"
+        },
+        "response": {
+          "responseType": "SENSOR_REQUEST",
+          "sensors": [
+            {
+              "sensorId": 1,
+              "type": "ACCELEROMETER",
+              "accelerationVector": [
+                -39,
+                78,
+                1023
+              ]
+            }
+          ]
+        },
+        "payload": "206084560601ffd9004e03ff"
+      },
+      "errors": [],
+      "warnings": []
+    }
+
+  },
+  {
+    "description":"Query update GPS almanac",
+    "type":"uplink",
+    "input":{
+      "bytes":"18007f2302010203",
+      "recvTime":"2024-06-20T14:51:53.243+02:00",
+      "fPort":19
+    },
+    "output":{
+      "data":{
+        "header":{
+          "ackToken":0,
+          "multiFrame":  false,
+          "batteryLevel":"CHARGING",
+          "sos":false,
+          "timestamp":"2024-06-20T09:02:27.000Z",
+          "type":"QUERY"
+        },
+        "payload":"18007f2302010203",
+        "query":{
+          "gpsSvid":[1,2,3],
+          "queryType": "UPDATE_GPS_ALMANAC"
+        }
+      },
+      "errors":[
+
+      ],
+      "warnings":[
+
+      ]
+    }
+  },
+  {
+    "description":"Query echo request (cellular only)",
+    "type":"uplink",
+    "input":{
+      "bytes":"18608f04013f",
+      "recvTime":"2025-03-01T11:05:00.000+02:00",
+      "fPort":19
+    },
+    "output":   {
+      "data": {
+        "header": {
+          "sos": false,
+          "type": "QUERY",
+          "ackToken": 0,
+          "multiFrame": false,
+          "batteryLevel": 96,
+          "timestamp": "2025-02-28T22:10:12.000Z"
+        },
+        "query": {
+          "queryType": "ECHO_REQUEST",
+          "sequenceNumber": [
+            63
+          ]
+        },
+        "payload": "18608f04013f"
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "description":"Wifi position",
+    "type":"uplink",
+    "input":{
+      "bytes":"110028bf830100102f4a0adba6c8b908bfb88e7ca8b4b0b353809e83a59a254ae3f7f7a3",
+      "recvTime":"2024-06-07T14:53:38.747+02:00",
+      "fPort":19
+    },
+    "output":{
+      "data":{
+        "header":{
+          "ackToken":1,
+          "multiFrame":  false,
+          "batteryLevel":"CHARGING",
+          "sos":false,
+          "timestamp":"2024-06-07T02:53:51.000Z",
+          "type":"POSITION"
+        },
+        "payload":"110028bf830100102f4a0adba6c8b908bfb88e7ca8b4b0b353809e83a59a254ae3f7f7a3",
+        "position":{
+          "motion":1,
+          "positionType":"WIFI",
+          "status":"SUCCESS",
+          "motionCounter": 1,
+          "triggers":{
+            "geoTriggerGeozoning":0,
+            "geoTriggerInMotion":1,
+            "geoTriggerInStatic":0,
+            "geoTriggerMotionStart":0,
+            "geoTriggerMotionStop":0,
+            "geoTriggerPod":0,
+            "geoTriggerShock":0,
+            "geoTriggerSos":0,
+            "geoTriggerTempHighThreshold":0,
+            "geoTriggerTempLowThreshold":0
+          },
+          "wifiBssids":[
+            {
+              "mac":"2f:4a:0a:db:a6:c8",
+              "rssi":-71
+            },
+            {
+              "mac":"08:bf:b8:8e:7c:a8",
+              "rssi":-76
+            },
+            {
+              "mac":"b0:b3:53:80:9e:83",
+              "rssi":-91
+            },
+            {
+              "mac":"9a:25:4a:e3:f7:f7",
+              "rssi":-93
+            }
+          ]
+        }
+      },
+      "errors":[
+
+      ],
+      "warnings":[
+
+      ]
+    }
+  },
+  {
+    "description":"BLE MAC position",
+    "type":"uplink",
+    "input":{
+      "bytes":"11006fb884020004ac233f287046a5ac233f2af76aa5ac233f52bf27a2ac233f2af76ea1",
+      "recvTime":"2024-06-07T14:53:38.747+02:00",
+      "fPort":19
+    },
+    "output":{
+      "data":{
+        "header":{
+          "ackToken":1,
+          "multiFrame":  false,
+          "batteryLevel":"CHARGING",
+          "sos":false,
+          "timestamp":"2024-06-07T07:56:40.000Z",
+          "type":"POSITION"
+        },
+        "payload":"11006fb884020004ac233f287046a5ac233f2af76aa5ac233f52bf27a2ac233f2af76ea1",
+        "position":{
+          "motion":1,
+          "motionCounter": 2,
+          "positionType":"BLE_SCAN1_MAC",
+          "status":"SUCCESS",
+          "triggers":{
+            "geoTriggerGeozoning":0,
+            "geoTriggerInMotion":0,
+            "geoTriggerInStatic":0,
+            "geoTriggerMotionStart":1,
+            "geoTriggerMotionStop":0,
+            "geoTriggerPod":0,
+            "geoTriggerShock":0,
+            "geoTriggerSos":0,
+            "geoTriggerTempHighThreshold":0,
+            "geoTriggerTempLowThreshold":0
+          },
+          "bleBeaconMacs":[
+            {
+              "mac":"ac:23:3f:28:70:46",
+              "rssi":-91
+            },
+            {
+              "mac":"ac:23:3f:2a:f7:6a",
+              "rssi":-91
+            },
+            {
+              "mac":"ac:23:3f:52:bf:27",
+              "rssi":-94
+            },
+            {
+              "mac":"ac:23:3f:2a:f7:6e",
+              "rssi":-95
+            }
+          ]
+        }
+      },
+      "errors":[
+
+      ],
+      "warnings":[
+
+      ]
+    }
+  },
+  {
+    "description":"Geolocation BLE uplink",
+    "type":"uplink",
+    "input":{
+      "bytes":"106407d984090004ac233f2af76ac0ac233f2af766b1ac233f287046b0ac233f2af76ead",
+      "recvTime":"2024-04-19T16:00:00.000+02:00",
+      "fPort":19
+    },
+    "output":{
+      "data":{
+        "header":{
+          "ackToken":0,
+          "multiFrame":  false,
+          "batteryLevel":100,
+          "sos":false,
+          "timestamp":"2024-04-19T12:33:29.000Z",
+          "type":"POSITION"
+        },
+        "payload":"106407d984090004ac233f2af76ac0ac233f2af766b1ac233f287046b0ac233f2af76ead",
+        "position":{
+          "bleBeaconMacs":[
+            {
+              "mac":"ac:23:3f:2a:f7:6a",
+              "rssi":-64
+            },
+            {
+              "mac":"ac:23:3f:2a:f7:66",
+              "rssi":-79
+            },
+            {
+              "mac":"ac:23:3f:28:70:46",
+              "rssi":-80
+            },
+            {
+              "mac":"ac:23:3f:2a:f7:6e",
+              "rssi":-83
+            }
+          ],
+          "motion":1,
+          "motionCounter":9,
+          "positionType":"BLE_SCAN1_MAC",
+          "status":"SUCCESS",
+          "triggers":{
+            "geoTriggerGeozoning":0,
+            "geoTriggerInMotion":0,
+            "geoTriggerInStatic":0,
+            "geoTriggerMotionStart":1,
+            "geoTriggerMotionStop":0,
+            "geoTriggerPod":0,
+            "geoTriggerShock":0,
+            "geoTriggerSos":0,
+            "geoTriggerTempHighThreshold":0,
+            "geoTriggerTempLowThreshold":0
+          }
+        }
+      },
+      "errors":[
+
+      ],
+      "warnings":[
+
+      ]
+    }
+  },
+  {
+    "description":"Wifi position",
+    "type":"uplink",
+    "input":{
+      "bytes":"10648790830a0004204d410008a303a5410008a74108410008ab4100a900000000000000",
+      "recvTime":"2024-06-07T14:53:38.747+02:00",
+      "fPort":19
+    },
+    "output":{
+      "data":{
+        "header":{
+          "ackToken":0,
+          "multiFrame":  false,
+          "batteryLevel":100,
+          "sos":false,
+          "timestamp":"2024-06-07T09:38:24.000Z",
+          "type":"POSITION"
+        },
+        "payload":"10648790830a0004204d410008a303a5410008a74108410008ab4100a900000000000000",
+        "position":{
+          "motion":1,
+          "positionType":"WIFI",
+          "status":"SUCCESS",
+          "motionCounter":10,
+          "triggers":{
+            "geoTriggerGeozoning":0,
+            "geoTriggerInMotion":0,
+            "geoTriggerInStatic":0,
+            "geoTriggerMotionStart":1,
+            "geoTriggerMotionStop":0,
+            "geoTriggerPod":0,
+            "geoTriggerShock":0,
+            "geoTriggerSos":0,
+            "geoTriggerTempHighThreshold":0,
+            "geoTriggerTempLowThreshold":0
+          },
+          "wifiBssids":[
+            {
+              "mac":"20:4d:41:00:08:a3",
+              "rssi":3
+            },
+            {
+              "mac":"a5:41:00:08:a7:41",
+              "rssi":8
+            },
+            {
+              "mac":"41:00:08:ab:41:00",
+              "rssi":-87
+            },
+            {
+              "mac":"00:00:00:00:00:00",
+              "rssi":0
+            }
+          ]
+        }
+      },
+      "errors":[
+
+      ],
+      "warnings":[
+
+      ]
+    }
+  },
+  {
+    "description":"Geolocation BLE -SHORT uplink",
+    "type":"uplink",
+    "input":{
+      "bytes":"110075d6850500044241aa4241a64241a54241a2",
+      "recvTime":"2024-06-10T08:22:44.2260+02:00",
+      "fPort":19
+    },
+    "output":{
+      "data":{
+        "header":{
+          "ackToken":1,
+          "multiFrame":  false,
+          "batteryLevel":"CHARGING",
+          "sos":false,
+          "timestamp":"2024-06-09T20:22:46.000Z",
+          "type":"POSITION"
+        },
+        "payload":"110075d6850500044241aa4241a64241a54241a2",
+        "position":{
+          "bleBeaconIds":[
+            {
+              "id":"42-41",
+              "rssi":-86
+            },
+            {
+              "id":"42-41",
+              "rssi":-90
+            },
+            {
+              "id":"42-41",
+              "rssi":-91
+            },
+            {
+              "id":"42-41",
+              "rssi":-94
+            }
+          ],
+          "motion":1,
+          "motionCounter":5,
+          "positionType":"BLE_SCAN1_SHORT",
+          "status":"SUCCESS",
+          "triggers":{
+            "geoTriggerGeozoning":0,
+            "geoTriggerInMotion":0,
+            "geoTriggerInStatic":0,
+            "geoTriggerMotionStart":1,
+            "geoTriggerMotionStop":0,
+            "geoTriggerPod":0,
+            "geoTriggerShock":0,
+            "geoTriggerSos":0,
+            "geoTriggerTempHighThreshold":0,
+            "geoTriggerTempLowThreshold":0
+          }
+        }
+      },
+      "errors":[
+
+      ],
+      "warnings":[
+
+      ]
+    }
+  },
+  {
+    "description":"Geolocation BLE-LONG uplink ",
+    "type":"uplink",
+    "input":{
+      "bytes":"9100781a608606000441424545574159313030000004000004aa41424545574159313030000004000007a6",
+      "recvTime":"2024-06-10T08:22:44.2260+02:00",
+      "fPort":19
+    },
+    "output":{
+      "data":{
+        "header":{
+          "ackToken":1,
+          "multiFrame":  true,
+          "batteryLevel":"CHARGING",
+          "sos":false,
+          "timestamp":"2024-06-09T20:32:26.000Z",
+          "type":"POSITION"
+        },
+        "extendedHeader":{
+          "frameNumber":0,
+          "groupId":3,
+          "last":0
+        },
+        "payload":"9100781a608606000441424545574159313030000004000004aa41424545574159313030000004000007a6",
+        "position":{
+          "bleBeaconIds":[
+            {
+              "id":"41-42-45-45-57-41-59-31-30-30-00-00-04-00-00-04",
+              "rssi":-86
+            },
+            {
+              "id":"41-42-45-45-57-41-59-31-30-30-00-00-04-00-00-07",
+              "rssi":-90
+            }
+          ],
+          "motion":1,
+          "positionType":"BLE_SCAN1_LONG",
+          "motionCounter":6,
+          "status":"SUCCESS",
+          "triggers":{
+            "geoTriggerGeozoning":0,
+            "geoTriggerInMotion":0,
+            "geoTriggerInStatic":0,
+            "geoTriggerMotionStart":1,
+            "geoTriggerMotionStop":0,
+            "geoTriggerPod":0,
+            "geoTriggerShock":0,
+            "geoTriggerSos":0,
+            "geoTriggerTempHighThreshold":0,
+            "geoTriggerTempLowThreshold":0
+          }
+        }
+      },
+      "errors":[
+
+      ],
+      "warnings":[
+
+      ]
+    }
+  },
+  {
+    "description":"Notification start motion  uplink ",
+    "type":"uplink",
+    "input":{
+      "bytes":"09007f4230",
+      "recvTime":"2024-06-10T08:22:44.2260+02:00",
+      "fPort":19
+    },
+    "output":{
+      "data":{
+        "header":{
+          "ackToken":1,
+          "multiFrame": false,
+          "batteryLevel":"CHARGING",
+          "sos":false,
+          "timestamp":"2024-06-09T21:02:58.000Z",
+          "type":"NOTIFICATION"
+        },
+        "payload":"09007f4230",
+        "notification":{
+          "notificationClass":"ACCELEROMETER",
+          "notificationType":"MOTION_START"
+        }
+      },
+      "errors":[
+
+      ],
+      "warnings":[
+
+      ]
+    }
+  },
+  {
+    "description":"Notification motion end  uplink ",
+    "type":"uplink",
+    "input":{
+      "bytes":"090082ed31ff68001d04012f",
+      "recvTime":"2024-06-10T08:22:44.2260+02:00",
+      "fPort":19
+    },
+    "output":{
+      "data":{
+        "header":{
+          "ackToken":1,
+          "multiFrame": false,
+          "batteryLevel":"CHARGING",
+          "sos":false,
+          "timestamp":"2024-06-09T21:18:37.000Z",
+          "type":"NOTIFICATION"
+        },
+        "payload":"090082ed31ff68001d04012f",
+        "notification":{
+          "notificationClass":"ACCELEROMETER",
+          "accelerometer":{
+            "accelerationVector":[
+              -152,
+              29,
+              1025
+            ],
+            "motionPercent":47
+          },
+          "notificationType":"MOTION_END"
+        }
+      },
+      "errors":[
+
+      ],
+      "warnings":[
+
+      ]
+    }
+  },
+  {
+    "description":"Notification end motion  uplink ",
+    "type":"uplink",
+    "input":{
+      "bytes":"0900875432ff68001d04010000",
+      "recvTime":"2024-06-10T08:22:44.2260+02:00",
+      "fPort":19
+    },
+    "output":{
+      "data":{
+        "header":{
+          "ackToken":1,
+          "multiFrame":  false,
+          "batteryLevel":"CHARGING",
+          "sos":false,
+          "timestamp":"2024-06-09T21:37:24.000Z",
+          "type":"NOTIFICATION"
+        },
+        "payload":"0900875432ff68001d04010000",
+        "notification":{
+          "notificationClass":"ACCELEROMETER",
+          "accelerometer":{
+            "accelerationVector":[
+              -152,
+              29,
+              1025
+            ],
+            "gaddIndex": 0,
+            "numberShocks": 0
+          },
+          "notificationType":"SHOCK"
+        }
+      },
+      "errors":[
+
+      ],
+      "warnings":[
+
+      ]
+    }
+  },
+  {
+    "description":"Notification SOS-ON uplink ",
+    "type":"uplink",
+    "input":{
+      "bytes":"4900888210",
+      "recvTime":"2024-06-10T09:42:13.733+02:00",
+      "fPort":19
+    },
+    "output":{
+      "data":{
+        "header":{
+          "ackToken":1,
+          "multiFrame": false,
+          "batteryLevel":"CHARGING",
+          "sos":true,
+          "timestamp":"2024-06-09T21:42:26.000Z",
+          "type":"NOTIFICATION"
+        },
+        "payload":"4900888210",
+        "notification":{
+          "notificationClass":"SOS",
+          "notificationType":"SOS_ON"
+        }
+      },
+      "errors":[
+
+      ],
+      "warnings":[
+
+      ]
+    }
+  },
+  {
+    "description":"Notification SOS-OFF uplink ",
+    "type":"uplink",
+    "input":{
+      "bytes":"0900893211",
+      "recvTime":"2024-06-10T09:42:13.733+02:00",
+      "fPort":19
+    },
+    "output":{
+      "data":{
+        "header":{
+          "ackToken":1,
+          "multiFrame":  false,
+          "batteryLevel":"CHARGING",
+          "sos":false,
+          "timestamp":"2024-06-09T21:45:22.000Z",
+          "type":"NOTIFICATION"
+        },
+        "payload":"0900893211",
+        "notification":{
+          "notificationClass":"SOS",
+          "notificationType":"SOS_OFF"
+        }
+      },
+      "errors":[
+
+      ],
+      "warnings":[
+
+      ]
+    }
+  },
+  {
+    "description":"Notification TEMP-NORMAL uplink ",
+    "type":"uplink",
+    "input":{
+      "bytes":"09008b12221e",
+      "recvTime":"2024-06-10T09:42:13.733+02:00",
+      "fPort":19
+    },
+    "output":{
+      "data":{
+        "header":{
+          "ackToken":1,
+          "multiFrame":  false,
+          "batteryLevel":"CHARGING",
+          "sos":false,
+          "timestamp":"2024-06-09T21:53:22.000Z",
+          "type":"NOTIFICATION"
+        },
+        "payload":"09008b12221e",
+        "notification":{
+          "notificationClass":"TEMPERATURE",
+          "notificationType":"TEMP_NORMAL",
+          "temperature": 30
+        }
+      },
+      "errors":[
+
+      ],
+      "warnings":[
+
+      ]
+    }
+  },
+  {
+    "description":"Notification TEMP-HIGH uplink ",
+    "type":"uplink",
+    "input":{
+      "bytes":"09008c29201e",
+      "recvTime":"2024-06-10T09:42:13.733+02:00",
+      "fPort":19
+    },
+    "output":{
+      "data":{
+        "header":{
+          "ackToken":1,
+          "multiFrame":  false,
+          "batteryLevel":"CHARGING",
+          "sos":false,
+          "timestamp":"2024-06-09T21:58:01.000Z",
+          "type":"NOTIFICATION"
+        },
+        "payload":"09008c29201e",
+        "notification":{
+          "notificationClass":"TEMPERATURE",
+          "notificationType":"TEMP_HIGH",
+          "temperature": 30
+        }
+      },
+      "errors":[
+
+      ],
+      "warnings":[
+
+      ]
+    }
+  },
+  {
+    "description":"Notification TEMP-LOW uplink ",
+    "type":"uplink",
+    "input":{
+      "bytes":"09008bc0211e",
+      "recvTime":"2024-06-10T09:42:13.733+02:00",
+      "fPort":19
+    },
+    "output":{
+      "data":{
+        "header":{
+          "ackToken":1,
+          "multiFrame":  false,
+          "batteryLevel":"CHARGING",
+          "sos":false,
+          "timestamp":"2024-06-09T21:56:16.000Z",
+          "type":"NOTIFICATION"
+        },
+        "payload":"09008bc0211e",
+        "notification":{
+          "notificationClass":"TEMPERATURE",
+          "notificationType":"TEMP_LOW",
+          "temperature": 30
+        }
+      },
+      "errors":[
+
+      ],
+      "warnings":[
+
+      ]
+    }
+  },
+  {
+    "description":"Notification system low battery uplink ",
+    "type":"uplink",
+    "input":{
+      "bytes":"0800012d0100040d7e",
+      "recvTime":"2024-06-10T09:42:13.733+02:00",
+      "fPort":19
+    },
+    "output":{
+      "data":{
+        "header":{
+          "ackToken":0,
+          "multiFrame":  false,
+          "batteryLevel":"CHARGING",
+          "sos":false,
+          "timestamp":"2024-06-10T00:05:01.000Z",
+          "type":"NOTIFICATION"
+        },
+        "payload":"0800012d0100040d7e",
+        "notification":{
+          "notificationClass":"SYSTEM",
+          "notificationType":"LOW_BATTERY",
+          "system":{
+            "lowBattery":{
+              "batteryVoltage":3454,
+              "consumption":4
+            }
+          }
+        }
+      },
+      "errors":[
+
+      ],
+      "warnings":[
+
+      ]
+    }
+  },
+  {
+    "description":"status uplink page0",
+    "type":"uplink",
+    "input":{
+      "bytes":"0900070c001d000100c20100000022010800000000241a000d840029000000000000000000000029e1173ed69",
+      "recvTime":"2024-06-11T14:29:49.628+02:00",
+      "fPort":3
+    },
+    "output":{
+      "data":{
+        "header":{
+          "multiFrame":  false,
+          "batteryLevel":"CHARGING",
+          "sos":false,
+          "timestamp":"2024-06-11T00:30:04.000Z",
+          "type":"NOTIFICATION",
+          "ackToken":1
+        },
+        "payload":"0900070c001d000100c20100000022010800000000241a000d840029000000000000000000000029e1173ed6",
+        "notification":{
+          "notificationClass":"SYSTEM",
+          "notificationType":"STATUS",
+          "system":{
+            "status":{
+              "AT3Version":"1.0.194",
+              "batteryVoltage":3460,
+              "bleConsumption":0,
+              "cellularConsumption":0,
+              "configurationVersion":"1.0.0.0",
+              "currentTemperature":29,
+              "gnssConsumption":0,
+              "hwBatchId":0,
+              "hwBomId":0,
+              "lrGnssConsumption":0,
+              "lrHwVersion":{
+                "firmwareVersion":"8",
+                "hardwareType":"1",
+                "hardwareVersion":"34"
+              },
+              "maxTemperature":36,
+              "mcuConsumption":41,
+              "minTemperature":26,
+              "motionPercent":0,
+              "pageId":0,
+              "resetCause":"AOS_ERROR_NONE",
+              "totalConsumption":41,
+              "wifiConsumption":0,
+              "globalCrc": "e1173ed6"
+            }
+          }
+        }
+      },
+      "errors":[
+
+      ],
+      "warnings":[
+
+      ]
+    }
+  },
+
+  {
+    "description":"notification system status page1",
+    "type":"uplink",
+    "input":{
+      "bytes":"08647405001c01000000000000000000000000000000090e00fffc011000001fffffffff00",
+      "recvTime":"2024-06-11T14:29:49.628+02:00",
+      "fPort":3
+    },
+    "output":{
+      "data":{
+        "header":{
+          "multiFrame":  false,
+          "batteryLevel":100,
+          "sos":false,
+          "timestamp":"2024-06-11T08:15:01.000Z",
+          "type":"NOTIFICATION",
+          "ackToken":0
+        },
+        "payload":"08647405001c01000000000000000000000000000000090e00fffc011000001fffffffff00",
+        "notification":{
+          "notificationClass":"SYSTEM",
+          "notificationType":"STATUS",
+          "system":{
+            "status":{
+              "currentTemperature":28,
+              "gnssBeidouDate":0,
+              "gnssBeidouGood":0,
+              "gnssBeidouOutdated":[1, 2, 3, 4, 5, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40],
+
+              "gnssGpsDate":2318,
+              "gnssGpsGood":16,
+              "gnssGpsOutdated":[ 1, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24],
+              "lr11xxBeidouDate":0,
+              "lr11xxBeidouGood":0,
+              "lr11xxBeidouOutdated":[
+
+              ],
+              "lr11xxGpsDate":0,
+              "lr11xxGpsGood":0,
+              "lr11xxGpsOutdated":[
+
+              ],
+              "pageId":1,
+              "resetCause":"AOS_ERROR_NONE"
+            }
+          }
+        }
+      },
+      "errors":[
+
+      ],
+      "warnings":[
+
+      ]
+    }
+  },
+  {
+    "description":"notification system heartbeat",
+    "type":"uplink",
+    "input":{
+      "bytes":"0864838104170061df4b57",
+      "recvTime":"2025-03-01T11:05:00.000+02:00",
       "fPort":3
     },
     "output": {
       "data": {
-        "header":  {
-          "ackToken": 0,
-          "batteryLevel": 100,
-          "multiFrame": false,
+        "header": {
           "sos": false,
-          "timestamp": "2025-03-01T09:36:29.000Z",
-          "type": "TELEMETRY"
+          "type": "NOTIFICATION",
+          "ackToken": 0,
+          "multiFrame": false,
+          "batteryLevel": 100,
+          "timestamp": "2025-02-28T21:21:05.000Z"
         },
-        "payload": "2864871d80010000003c050091010384003c050ea2010000003c050e",
-        "telemetry": {
-          "type": "metadata",
-          "TelemetryIDs": [
-              {
-                "0": {
-                  "cyclicVersion": 0,
-                  "fixedTimeInterval": 0,
-                  "measurementConfig": {
-                    "codingPolicy": "DELTA_COMPRESSION",
-                    "dataType": "16_BIT_SIGNED",
-                    "measurementId": 0,
-                    "recordingPolicy": "INSTANT",
-                    "sampleCompression": "LINEAR",
-                    "scalingFactor": 1
-                  },
-                  "measurementNMaxInterval": 60,
-                  "numMeasurements": 1,
-                  "telemetryIDMaxInterval": 0,
-                  "telemetryId": 0
-                },
-                "1": {
-                  "cyclicVersion": 1,
-                  "fixedTimeInterval": 0,
-                  "measurementConfig":  {
-                    "codingPolicy": "DELTA_COMPRESSION",
-                    "dataType": "16_BIT_SIGNED",
-                    "measurementId": 0,
-                    "recordingPolicy": "INSTANT",
-                    "sampleCompression": "LINEAR",
-                    "scalingFactor": 0.1
-                  },
-                  "measurementNMaxInterval": 60,
-                  "numMeasurements": 1,
-                  "telemetryIDMaxInterval": 900,
-                  "telemetryId": 1
-                },
-                "2":  {
-                  "cyclicVersion": 2,
-                  "fixedTimeInterval": 0,
-                  "measurementConfig":  {
-                    "codingPolicy": "DELTA_COMPRESSION",
-                    "dataType": "16_BIT_SIGNED",
-                    "measurementId": 0,
-                    "recordingPolicy": "INSTANT",
-                    "sampleCompression": "LINEAR",
-                    "scalingFactor": 0.1
-                  },
-                  "measurementNMaxInterval": 60,
-                  "numMeasurements": 1,
-                  "telemetryIDMaxInterval": 0,
-                  "telemetryId": 2
+        "notification": {
+          "notificationClass": "SYSTEM",
+          "notificationType": "HEARTBEAT",
+          "system": {
+            "heartbeat": {
+              "currentTemperature": 23,
+              "resetCause": "AOS_ERROR_NONE",
+              "globalCrc": "61df4b57"
+            }
+          }
+        },
+        "payload": "0864838104170061df4b57"
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "description":"downlink command System status request.",
+    "type":"downlink-decode",
+    "input":{
+      "bytes":"0904",
+      "recvTime":"2024-06-10T09:42:13.733+02:00",
+      "fPort":19
+    },
+    "output":{
+      "data":{
+        "ackToken":1,
+        "downMessageType":"COMMAND",
+        "command":{
+          "commandType":"SYSTEM_STATUS_REQUEST"
+        },
+
+        "payload":"0904"
+      },
+      "errors":[
+
+      ],
+      "warnings":[
+
+      ]
+    }
+  },
+  {
+    "description":"downlik command position on demand request.",
+    "type":"downlink-decode",
+    "input":{
+      "bytes":"0A05",
+      "recvTime":"2024-06-10T09:42:13.733+02:00",
+      "fPort":19
+    },
+    "output":{
+      "data":{
+
+        "ackToken":2,
+        "downMessageType":"COMMAND",
+        "command":{
+          "commandType":"POSITION_ON_DEMAND"
+        },
+        "payload":"0a05"
+
+      },
+      "errors":[
+
+      ],
+      "warnings":[
+
+      ]
+    }
+  },
+  {
+    "description":"downlik command start SOS.",
+    "type":"downlink-decode",
+    "input":{
+      "bytes":"0E02",
+      "recvTime":"2024-06-10T09:42:13.733+02:00",
+      "fPort":19
+    },
+    "output":{
+      "data":{
+
+        "ackToken":6,
+        "downMessageType":"COMMAND",
+        "command":{
+          "commandType":"START_SOS"
+        },
+        "payload":"0e02"
+
+      },
+      "errors":[
+
+      ],
+      "warnings":[
+
+      ]
+    }
+  },
+  {
+    "description":"downlik command stop SOS.",
+    "type":"downlink-decode",
+    "input":{
+      "bytes":"0f03",
+      "recvTime":"2024-06-10T09:42:13.733+02:00",
+      "fPort":19
+    },
+    "output":{
+      "data":{
+        "ackToken":7,
+        "downMessageType":"COMMAND",
+        "command":{
+          "commandType":"STOP_SOS"
+        },
+
+        "payload":"0f03"
+
+      },
+      "errors":[
+
+      ],
+      "warnings":[
+
+      ]
+    }
+  },
+  {
+    "description":"downlik command clear and reset.",
+    "type":"downlink-decode",
+    "input":{
+      "bytes":"0b00",
+      "recvTime":"2024-06-10T09:42:13.733+02:00",
+      "fPort":19
+    },
+    "output":{
+      "data":{
+        "ackToken":3,
+        "downMessageType":"COMMAND",
+        "command":{
+          "commandType": "CLEAR_AND_RESET"
+        },
+
+        "payload":"0b00"
+
+      },
+      "errors":[
+
+      ],
+      "warnings":[
+
+      ]
+    }
+  },
+  {
+    "description":"downlik command reset.",
+    "type":"downlink-decode",
+    "input":{
+      "bytes":"0c01",
+      "recvTime":"2024-06-10T09:42:13.733+02:00",
+      "fPort":19
+    },
+    "output":{
+      "data":{
+        "ackToken":4,
+        "downMessageType":"COMMAND",
+        "command":{
+          "commandType": "RESET"
+        } ,
+        "payload":"0c01"
+
+      },
+      "errors":[
+
+      ],
+      "warnings":[
+
+      ]
+    }
+  },
+  {
+    "description":"decode downlink request CRC all groups",
+    "type":"downlink-decode",
+    "input":{
+      "bytes":"13050000",
+      "recvTime":"2025-02-17T07:23:21.803Z",
+      "fPort":19
+    },
+    "output":{
+      "data": {
+        "downMessageType": "REQUEST",
+        "ackToken": 3,
+        "request": {
+          "requestType": "CRC_CONFIGURATION_REQUEST",
+          "crc": [
+            "INTERNAL",
+            "SYSTEM_CORE",
+            "GEOLOC",
+            "GNSS",
+            "LR11xx",
+            "BLE_SCAN1",
+            "BLE_SCAN2",
+            "ACCELEROMETER",
+            "NETWORK",
+            "LORAWAN",
+            "CELLULAR",
+            "BLE"
+          ]
+        },
+        "payload": "13050000"
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "description":"decode downlink request sensor",
+    "type":"downlink-decode",
+    "input":{
+      "bytes":"13060001",
+      "recvTime":"2025-02-17T07:23:21.803Z",
+      "fPort":19
+    },
+    "output":{
+      "data": {
+        "downMessageType": "REQUEST",
+        "ackToken": 3,
+        "request": {
+          "requestType": "SENSOR_REQUEST",
+          "sensorIds": [
+            {
+              "id": 0,
+              "type": "DO_NOT_USE"
+            },
+            {
+              "id": 1,
+              "type": "ACCELEROMETER"
+            }
+          ]
+        },
+        "payload": "13060001"
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "description":"decode downlink request CRC for specific groups",
+    "type":"downlink-decode",
+    "input":{
+      "bytes":"1305008A",
+      "recvTime":"2025-02-17T07:23:21.803Z",
+      "fPort":19
+    },
+    "output":{
+      "data": {
+        "downMessageType": "REQUEST",
+        "ackToken": 3,
+        "request": {
+          "requestType": "CRC_CONFIGURATION_REQUEST",
+          "crc": [
+            "SYSTEM_CORE",
+            "GNSS",
+            "ACCELEROMETER"
+          ]
+        },
+        "payload": "1305008a"
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "description":"downlik request generic configuration set 1",
+    "type":"downlink-decode",
+    "input":{
+      "bytes":"110003012100000078",
+      "recvTime":"2024-06-10T09:42:13.733+02:00",
+      "fPort":3
+    },
+    "output":{
+      "data":{
+        "ackToken":1,
+        "payload":"110003012100000078",
+        "request":{
+          "genericConfigurationSet":[
+            {
+              "group":"GNSS",
+              "parameters":[
+                {
+                  "parameterName":"gnssMaxTime",
+                  "parameterValue":120
                 }
+              ]
+            }
+          ],
+          "requestType":"GENERIC_CONFIGURATION_SET"
+        },
+        "downMessageType":"REQUEST"
+      },
+      "errors":[
+
+      ],
+      "warnings":[
+
+      ]
+    }
+  },
+  {
+    "description":"downlik request generic configuration set",
+    "type":"downlink-decode",
+    "input":{
+      "bytes":"110003032100000005020b34030001020300",
+      "recvTime":"2024-06-10T09:42:13.733+02:00",
+      "fPort":3
+    },
+    "output":{
+      "data":{
+        "ackToken":1,
+        "payload":"110003032100000005020b34030001020300",
+        "request":{
+          "genericConfigurationSet":[
+            {
+              "group":"GNSS",
+              "parameters":[
+                {
+                  "parameterName":"gnssEhpeStatic",
+                  "parameterValue":5
+                }
+              ]
+            },
+            {
+              "group":"GEOLOC",
+              "parameters":[
+                {
+                  "parameterName":"geolocGbeProfile0Techno",
+                  "parameterValue":[
+                    {
+                      "Action":"SKIP_ON_SUCCESS",
+                      "Technology":"BLE_SCAN1"
+                    },
+                    {
+                      "Action":"SKIP_ON_SUCCESS",
+                      "Technology":"NONE"
+                    },
+                    {
+                      "Action":"SKIP_ON_SUCCESS",
+                      "Technology":"LR11xx_A_GNSS"
+                    },
+                    {
+                      "Action":"SKIP_ON_SUCCESS",
+                      "Technology":"WIFI"
+                    },
+                    {
+                      "Action":"SKIP_ON_SUCCESS",
+                      "Technology":"BLE_SCAN1"
+                    },
+                    {
+                      "Action":"SKIP_ON_SUCCESS",
+                      "Technology":"NONE"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "requestType":"GENERIC_CONFIGURATION_SET"
+        },
+        "downMessageType":"REQUEST"
+      },
+      "errors":[
+
+      ],
+      "warnings":[
+
+      ]
+    }
+  },
+  {
+    "description":"downlink with wrong type",
+    "type":"downlink-decode",
+    "input":{
+      "bytes":"11010508AA0000000000000BB000022100000078",
+      "recvTime":"2024-06-17T07:23:21.803Z",
+      "fPort":3
+    },
+    "output":{
+      "errors":[
+        "bleScanFilter1Offset has a wrong type"
+      ],
+      "warnings":[
+
+      ]
+    }
+  }, {
+  "description":"downlik request generic configuration get 1",
+  "type":"downlink-decode",
+  "input":{
+    "bytes":"11020303030402010102",
+    "recvTime":"2024-06-10T09:42:13.733+02:00",
+    "fPort":3
+  },
+  "output":{
+    "data":{
+      "ackToken":1,
+      "payload":"11020303030402010102",
+      "request":{
+        "genericConfigurationGet":[
+          {
+            "group":"GNSS",
+            "parameters":[
+              "gnssEhpeStatic",
+              "gnssConvergenceStatic"
+            ]
+          },
+          {
+            "group":"GEOLOC",
+            "parameters":[
+              "geolocStaticPeriod"
+            ]
+          },
+          {
+            "group":"SYSTEM_CORE",
+            "parameters":[
+              "coreNotifEnable"
+            ]
+          }
+        ],
+        "requestType":"GENERIC_CONFIGURATION_GET"
+      },
+      "downMessageType":"REQUEST"
+    },
+    "errors":[
+
+    ],
+    "warnings":[
+
+    ]
+  }
+},
+  {
+    "description":"downlik request generic configuration get wrong payload",
+    "type":"downlink-decode",
+    "input":{
+      "bytes":"110204",
+      "recvTime":"2024-06-10T09:42:13.733+02:00",
+      "fPort":3
+    },
+    "output":{
+
+      "errors":[
+        "Invalid payload"
+      ],
+      "warnings":[
+
+      ]
+    }
+  },
+  {
+    "description":"downlik request generic configuration get wrong payload",
+    "type":"downlink-decode",
+    "input":{
+      "bytes":"110304",
+      "recvTime":"2024-06-10T09:42:13.733+02:00",
+      "fPort":3
+    },
+    "output":{
+
+      "errors":[
+        "The payload must contain at least one local identifier"
+      ],
+      "warnings":[
+
+      ]
+    }
+  },
+  {
+    "description":"downlik request parameter class configuration get",
+    "type":"downlink-decode",
+    "input":{
+      "bytes":"110304020304",
+      "recvTime":"2024-06-10T09:42:13.733+02:00",
+      "fPort":3
+    },
+    "output":{
+      "data":  {
+        "ackToken": 1,
+        "payload": "110304020304",
+        "request":  {
+          "parameterClassConfigurationGet":  {
+            "group": "LR11xx",
+            "parameters": [
+              "lrNbScans",
+              "lrInterScanTime",
+              "lrWifiReportNbBssid"
+            ]
+          },
+          "requestType": "PARAM_CLASS_CONFIGURATION_GET"
+        },
+        "downMessageType": "REQUEST"
+      },
+
+      "errors":[
+      ],
+      "warnings":[
+
+      ]
+    }
+  },
+  {
+    "description":"Encode command RESET ",
+    "type":"downlink-encode",
+    "input":{
+      "data":{
+        "downMessageType":"COMMAND",
+        "commandType":"RESET",
+        "ackToken":4
+      }
+    },
+    "output":{
+      "fPort":3,
+      "bytes":"0c01",
+      "errors":[
+
+      ],
+      "warnings":[
+
+      ]
+    }
+  },
+  {
+    "description":"Encode command CLEAR_AND_RESET ",
+    "type":"downlink-encode",
+    "input":{
+      "data":{
+        "downMessageType":"COMMAND",
+        "commandType":"CLEAR_AND_RESET",
+        "ackToken":6
+      }
+    },
+    "output":{
+      "fPort":3,
+      "bytes":"0E00",
+      "errors":[
+
+      ],
+      "warnings":[
+
+      ]
+    }
+  },
+  {
+    "description":"Encode command RESET",
+    "type":"downlink-encode",
+    "input":{
+      "data":{
+        "downMessageType":"COMMAND",
+        "commandType":"RESET",
+        "ackToken":6
+      }
+    },
+    "output":{
+      "fPort":3,
+      "bytes":"0E01",
+      "errors":[
+
+      ],
+      "warnings":[
+
+      ]
+    }
+  },
+  {
+    "description":"Encode command START SOS",
+    "type":"downlink-encode",
+    "input":{
+      "data":{
+        "downMessageType":"COMMAND",
+        "commandType":"START_SOS",
+        "ackToken":7
+      }
+    },
+    "output":{
+      "fPort":3,
+      "bytes":"0F02",
+      "errors":[
+
+      ],
+      "warnings":[
+
+      ]
+    }
+  },
+  {
+    "description":"Encode command STOP SOS",
+    "type":"downlink-encode",
+    "input":{
+      "data":{
+        "downMessageType":"COMMAND",
+        "commandType":"STOP_SOS",
+        "ackToken":4
+      }
+    },
+    "output":{
+      "fPort":3,
+      "bytes":"0C03",
+      "errors":[
+
+      ],
+      "warnings":[
+
+      ]
+    }
+  },
+  {
+    "description":"Encode command SYSTEM_STATUS_REQUEST",
+    "type":"downlink-encode",
+    "input":{
+      "data":{
+        "downMessageType":"COMMAND",
+        "commandType":"SYSTEM_STATUS_REQUEST",
+        "ackToken":4
+      }
+    },
+    "output":{
+      "fPort":3,
+      "bytes":"0C04",
+      "errors":[
+
+      ],
+      "warnings":[
+
+      ]
+    }
+  },
+  {
+    "description":"Encode command POSITION_ON_DEMAND",
+    "type":"downlink-encode",
+    "input":{
+      "data":{
+        "downMessageType":"COMMAND",
+        "commandType":"POSITION_ON_DEMAND",
+        "ackToken":4
+      }
+    },
+    "output":{
+      "fPort":3,
+      "bytes":"0C05",
+      "errors":[
+
+      ],
+      "warnings":[
+
+      ]
+    }
+  },
+  {
+    "description":"Encode command START_BLE_CONNECTIVITY",
+    "type":"downlink-encode",
+    "input":{
+      "data":{
+        "downMessageType":"COMMAND",
+        "commandType":"START_BLE_CONNECTIVITY",
+        "ackToken":4
+      }
+    },
+    "output":{
+      "fPort":3,
+      "bytes":"0C08",
+      "errors":[
+
+      ],
+      "warnings":[
+
+      ]
+    }
+  },
+  {
+    "description":"Encode command STOP_BLE_CONNECTIVITY",
+    "type":"downlink-encode",
+    "input":{
+      "data":{
+        "downMessageType":"COMMAND",
+        "commandType":"STOP_BLE_CONNECTIVITY",
+        "ackToken":4
+      }
+    },
+    "output":{
+      "fPort":3,
+      "bytes":"0C09",
+      "errors":[
+
+      ],
+      "warnings":[
+
+      ]
+    }
+  },
+  {
+    "description":"Encode command SYSTEM_EVENT",
+    "type":"downlink-encode",
+    "input":{
+      "data":{
+        "downMessageType":"COMMAND",
+        "commandType":"SYSTEM_EVENT",
+        "classId": "ACCELEROMETER",
+        "eventType": 1,
+        "ackToken":4
+      }
+    },
+    "output":{
+      "fPort":3,
+      "bytes":"0c0a0301",
+      "errors":[
+
+      ],
+      "warnings":[
+
+      ]
+    }
+  },
+  {
+    "description":"Encode command CLEAR_MOTION_PERCENTAGE",
+    "type":"downlink-encode",
+    "input":{
+      "data":{
+        "downMessageType":"COMMAND",
+        "commandType":"CLEAR_MOTION_PERCENTAGE",
+        "ackToken":4
+      }
+    },
+    "output":{
+      "fPort":3,
+      "bytes":"0C0b",
+      "errors":[
+
+      ],
+      "warnings":[
+
+      ]
+    }
+  },
+  {
+    "description":"Encode request set generic configuration",
+    "type":"downlink-encode",
+    "input":{
+      "data":{
+        "downMessageType":"REQUEST",
+        "requestType":"GENERIC_CONFIGURATION_SET",
+        "ackToken":7,
+        "setGenericParameters":[
+          {
+            "group":"GNSS",
+            "parameters":[
+              {
+                "parameterName":"gnssEhpeStatic",
+                "parameterValue":20
+              },
+              {
+                "parameterName":"gnssConvergenceStatic",
+                "parameterValue":18
+              }
+            ]
+          },
+          {
+            "group":"LR11xx",
+            "parameters":[
+              {
+                "parameterName":"lrConstellation",
+                "parameterValue":"BEIDOU_GPS"
               }
             ]
           }
-        },
-        "errors":  [],
-        "warnings":  []
+        ]
+      }
+    },
+    "output":{
+      "fPort":3,
+      "bytes":"1700030321000000140304210000001204002100000006",
+      "errors":[
+
+      ],
+      "warnings":[
+
+      ]
+    }
+  },
+  {
+    "description":"Encode request CRC for all groups",
+    "type":"downlink-encode",
+    "input":{
+      "data":{
+        "downMessageType":"REQUEST",
+        "requestType":"CRC_CONFIGURATION_REQUEST",
+        "ackToken":3,
+        "crc":[""]
+      }
+    },
+    "output":{
+      "fPort":3,
+      "bytes":"13050000",
+      "errors":[
+
+      ],
+      "warnings":[
+
+      ]
+    }
+  },
+  {
+    "description":"Encode request CRC for specific groups",
+    "type":"downlink-encode",
+    "input":{
+      "data":{
+        "downMessageType":"REQUEST",
+        "requestType":"CRC_CONFIGURATION_REQUEST",
+        "ackToken":7,
+        "crc":[
+          "INTERNAL",
+          "SYSTEM_CORE",
+          "GEOLOC",
+          "GNSS",
+          "BLE_SCAN1",
+          "BLE_SCAN2",
+          "ACCELEROMETER",
+          "LORAWAN",
+          "CELLULAR",
+          "BLE"
+        ]
+      }
+    },
+    "output":{
+      "fPort":3,
+      "bytes":"17050eef",
+      "errors":[
+
+      ],
+      "warnings":[
+
+      ]
+    }
+  },
+  {
+    "description":"Encode request sensor",
+    "type":"downlink-encode",
+    "input":{
+      "data":{
+        "downMessageType":"REQUEST",
+        "requestType":"SENSOR_REQUEST",
+        "ackToken":7,
+        "sensorIds" : [
+          { "id": 0, "type": "DO_NOT_USE" },
+          { "id": 1, "type": "ACCELEROMETER" },
+          { "id": 2, "type": "ACCELEROMETER" }
+        ]
+      }
+    },
+    "output":{
+      "fPort":3,
+      "bytes":"1706000101",
+      "errors":[
+
+      ],
+      "warnings":[
+
+      ]
+    }
+  },
+  {
+    "description":"Encode request set generic configuration 2",
+    "type":"downlink-encode",
+    "input":{
+      "data":{
+        "downMessageType":"REQUEST",
+        "requestType":"GENERIC_CONFIGURATION_SET",
+        "ackToken":4,
+        "setGenericParameters":
+        [
+          {"group" : "SYSTEM_CORE",
+            "parameters":[
+              {
+                "parameterName": "coreButton1Map",
+                "parameterValue": {
+                  "buttonDoubleClicks": "START_STOP_SOS",
+                  "buttonLongPress": "START_STOP_SOS",
+                  "buttonLongPressDuration": 6,
+                  "buttonPress": "FORCE_AN_UPLINK_SYSTEM_STATUS_NOTIFICATION_TRANSMISSION",
+                  "buttonPressDuration": 3,
+                  "buttonSingleClick": "DISPLAY_BATTERY_LEVEL_ON_THE_LED",
+                  "buttonTripleClicksOrAbove": "STOP_DEVICE",
+                  "buttonSimpleSequence":"NO_ACTION"
+                }
+              }
+            ]}
+        ]
+      }},
+    "output":{
+      "fPort":3,
+      "bytes": "140001062100062124",
+      "errors":[
+
+      ],
+      "warnings":[
+
+      ]
+    }
+  },
+  {
+    "description":"Encode request set generic configuration ",
+    "type":"downlink-encode",
+    "input":{
+      "data":{
+        "downMessageType":"REQUEST",
+        "requestType":"GENERIC_CONFIGURATION_SET",
+        "ackToken":7,
+        "setGenericParameters":[
+          {
+            "group":"CELLULAR",
+            "parameters":[
+              {
+                "parameterName":"cellS1IpUrlAddr",
+                "parameterValue":"176.31.29.146"
+              }
+            ]
+          },
+          {
+            "group":"LR11xx",
+            "parameters":[
+              {
+                "parameterName":"lrConstellation",
+                "parameterValue":"BEIDOU_GPS"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "output":{
+      "fPort":3,
+      "bytes":"17000A136b3137362e33312e32392e31343604002100000006",
+      "errors":[
+
+      ],
+      "warnings":[
+
+      ]
+    }
+  },
+  {
+    "description":"Encode request set generic configuration ",
+    "type":"downlink-encode",
+    "input":{
+      "data":{
+        "downMessageType":"REQUEST",
+        "requestType":"GENERIC_CONFIGURATION_SET",
+        "ackToken":7,
+        "setGenericParameters":[
+          {
+            "group":"BLE_SCAN1",
+            "parameters":[
+              {
+                "parameterName":"bleScanFilter1Mask",
+                "parameterValue":"{ff,ff,ff,ff,00,00,00,00,00,A0}"
+              }
+            ]
+          },
+          {
+            "group":"LR11xx",
+            "parameters":[
+              {
+                "parameterName":"lrConstellation",
+                "parameterValue":"BEIDOU_GPS"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "output":{
+      "fPort":3,
+      "bytes":"1700050654ffffffff0000000000a004002100000006",
+      "errors":[
+
+      ],
+      "warnings":[
+
+      ]
+    }
+  },
+  {
+    "description":"Encode request set generic configuration ",
+    "type":"downlink-encode",
+    "input":{
+      "data":{
+        "downMessageType":"REQUEST",
+        "requestType":"GENERIC_CONFIGURATION_SET",
+        "ackToken":7,
+        "setGenericParameters":[
+          {
+            "group":"GEOLOC",
+            "parameters":[
+              {
+                "parameterName":"geolocGbeProfile0Techno",
+                "parameterValue":[
+                  {
+                    "Action":"SKIP_ON_SUCCESS",
+                    "Technology":"NONE"
+                  },
+                  {
+                    "Action":"ALWAYS_DONE",
+                    "Technology":"LR11xx_A_GNSS"
+                  },
+                  {
+                    "Action":"SKIP_ON_SUCCESS",
+                    "Technology":"AIDED_GNSS"
+                  },
+                  {
+                    "Action":"SKIP_ON_SUCCESS",
+                    "Technology":"BLE_SCAN2"
+                  },
+                  {
+                    "Action":"SKIP_ON_SUCCESS",
+                    "Technology":"GNSS"
+                  },
+                  {
+                    "Action":"ALWAYS_DONE",
+                    "Technology":"GNSS"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "group":"LR11xx",
+            "parameters":[
+              {
+                "parameterName":"lrConstellation",
+                "parameterValue":"BEIDOU_GPS"
+              }
+            ]
+          },
+          {
+            "group":"LORAWAN",
+            "parameters":[
+              {
+                "parameterName":"lorawanDlTriggerPeriod",
+                "parameterValue":3600
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "output":{
+      "fPort":3,
+      "bytes":"1700020b340081050406860400210000000609012100000E10",
+      "errors":[
+
+      ],
+      "warnings":[
+
+      ]
+    }
+  },
+  {
+    "description":"Encode request set parameter class configuration ",
+    "type":"downlink-encode",
+    "input":{
+      "data":{
+        "downMessageType":"REQUEST",
+        "requestType":"PARAM_CLASS_CONFIGURATION_SET",
+        "ackToken":6,
+        "setParameterClass":
+        {
+          "group":"GEOLOC",
+          "parameters":[
+            {
+              "parameterName":"geolocGbeProfile0Techno",
+              "parameterValue":[
+                {
+                  "Action":"SKIP_ON_SUCCESS",
+                  "Technology":"NONE"
+                },
+                {
+                  "Action":"ALWAYS_DONE",
+                  "Technology":"LR11xx_A_GNSS"
+                },
+                {
+                  "Action":"SKIP_ON_SUCCESS",
+                  "Technology":"AIDED_GNSS"
+                },
+                {
+                  "Action":"SKIP_ON_SUCCESS",
+                  "Technology":"BLE_SCAN2"
+                },
+                {
+                  "Action":"SKIP_ON_SUCCESS",
+                  "Technology":"GNSS"
+                },
+                {
+                  "Action":"ALWAYS_DONE",
+                  "Technology":"GNSS"
+                }
+              ]
+            },
+            {
+              "parameterName":"geolocMotionNbStart",
+              "parameterValue" : 10
+
+            },
+            {
+              "parameterName":"geolocGnssHoldOnMode",
+              "parameterValue": "TECHNO"
+            },
+            {
+              "parameterName": "geolocProfile0Triggers",
+              "parameterValue":  {
+                "geoTriggerGeozoning": false,
+                "geoTriggerInMotion": true,
+                "geoTriggerInStatic": true,
+                "geoTriggerMotionStart": true,
+                "geoTriggerMotionStop": false,
+                "geoTriggerPod": false,
+                "geoTriggerShock": false,
+                "geoTriggerSos": false,
+                "geoTriggerTempHighThreshold": false,
+                "geoTriggerTempLowThreshold": false
+              }
+            }
+          ]
+        }
+      }
+    },
+    "output":{
+      "fPort":3,
+      "bytes":"1601020b3400810504068603210000000A062100000002082100000034",
+      "errors":[
+
+      ],
+      "warnings":[
+
+      ]
+    }
+  },
+  {
+    "description":"Encode request set parameter class configuration ",
+    "type":"downlink-encode",
+    "input":{
+      "data":{
+        "downMessageType":"REQUEST",
+        "requestType":"PARAM_CLASS_CONFIGURATION_SET",
+        "ackToken":6,
+        "setParameterClass":
+        {
+          "group":"BLE_SCAN1",
+          "parameters":[
+            {
+              "parameterName":"bleScanDuration",
+              "parameterValue": 60
+            },
+            {
+              "parameterName":"bleScanType",
+              "parameterValue": "ALTBEACON_ONLY"
+            },
+            {
+              "parameterName":"bleScanFilter2Value",
+              "parameterValue": "{00,08,41,21,52,00,00,00,96,00}"
+            }
+          ]
+        }
+      }
+    },
+    "output":{
+      "fPort":3,
+      "bytes":"16010500210000003c0321000000050a5400084121520000009600",
+      "errors":[
+
+      ],
+      "warnings":[
+
+      ]
+    }
+  },  {
+  "description":"Encode request set parameter class configuration ",
+  "type":"downlink-encode",
+  "input":{
+    "data":{
+      "downMessageType":"REQUEST",
+      "requestType":"PARAM_CLASS_CONFIGURATION_SET",
+      "ackToken":5,
+      "setParameterClass":
+      {
+        "group":"BLE_SCAN2",
+        "parameters":[
+          {
+            "parameterName":"bleScanWindow",
+            "parameterValue": 6080
+          },
+          {
+            "parameterName":"bleScanMinRssi",
+            "parameterValue": -30
+          },
+          {
+            "parameterName":"bleScanReportType",
+            "parameterValue": "SHORT_IDENTIFIER"
+          },
+          {
+            "parameterName":"bleScanFilter1Value",
+            "parameterValue": "{09,00,41,21,52,00,00,00,96,00}"
+          }
+        ]
       }
     }
-  ]
+  },
+  "output":{
+    "fPort":3,
+    "bytes":"1501060121000017C00421FFFFFFE20d2100000001075409004121520000009600",
+    "errors":[
+
+    ],
+    "warnings":[
+
+    ]
+  }
+},
+  {
+    "description":"Encode request get parameter class configuration ",
+    "type":"downlink-encode",
+    "input":{
+      "data":{
+        "downMessageType":"REQUEST",
+        "requestType":"PARAM_CLASS_CONFIGURATION_GET",
+        "ackToken":5,
+        "getParameterClass":{
+          "group":"BLE_SCAN2",
+          "parameters":[
+            "bleScanWindow",
+            "bleScanMinRssi",
+            "bleScanFilter1Value"
+          ]
+        }
+      }
+    },
+    "output":{
+      "fPort":3,
+      "bytes":"150306010407",
+      "errors":[
+
+      ],
+      "warnings":[
+
+      ]
+    }
+  },
+  {
+    "description":"Encode request get parameter class configuration ",
+    "type":"downlink-encode",
+    "input":{
+      "data":{
+        "downMessageType":"REQUEST",
+        "requestType":"PARAM_CLASS_CONFIGURATION_GET",
+        "ackToken":5,
+        "getParameterClass":{
+          "group":"LORAWAN",
+          "parameters":[
+            "lorawanProbePeriod",
+            "lorawanS1UlPort",
+            "lorawanS1DlPort",
+            "lorawanDlTriggerPeriod"
+          ]
+        }
+      }
+    },
+    "output":{
+      "fPort":3,
+      "bytes":"15030903070801",
+      "errors":[
+
+      ],
+      "warnings":[
+
+      ]
+    }
+  },
+  {
+    "description":"Encode request set generic configuration ",
+    "type":"downlink-encode",
+    "input":{
+      "data":{
+        "downMessageType":"REQUEST",
+        "requestType":"GENERIC_CONFIGURATION_GET",
+        "ackToken":6,
+        "getGenericParameters":[
+          {
+            "group":"CELLULAR",
+            "parameters":[
+              "cellOperatorSimSlot1",
+              "cellEdrxPcl",
+              "cellNetworkType",
+              "cellS1SrcIpPort"
+            ]
+          },
+          {
+            "group":"NETWORK",
+            "parameters":[
+              "netSelection",
+              "netReconnectionSpacing",
+              "netMainProbeTimeout"
+            ]
+          }]
+      }
+    },
+    "output":{
+      "fPort":3,
+      "bytes":"16020A090A0D0A010A15080008010802",
+      "errors":[
+
+      ],
+      "warnings":[
+
+      ]
+    }
+  },
+  {
+    "description":"Encode request set generic configuration ",
+    "type":"downlink-encode",
+    "input":{
+      "data":{
+        "downMessageType":"REQUEST",
+        "requestType":"GENERIC_CONFIGURATION_SET",
+        "ackToken":7,
+        "setGenericParameters":[
+          {
+            "group":"CELLULAR",
+            "parameters":[
+              {
+                "parameterName":"cellAccessPointName",
+                "parameterValue":"TEST"
+              },
+              {
+                "parameterName":"cellLowPowerMode",
+                "parameterValue":"PSM_EDRX"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "output":{
+      "fPort":3,
+      "bytes":"17000A0723544553540A0A2100000003",
+      "errors":[
+
+      ],
+      "warnings":[
+
+      ]
+    }
+  }
+
+]

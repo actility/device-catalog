@@ -57,10 +57,7 @@ function decodeUplink(input) {
                 decodedData.response = responseClass.determineResponse(payload, multiFrame);
                 break;
             case abeewayUplinkPayloadClass.messageType.TELEMETRY:
-                let context = []
-                decodedData.telemetry = telemetryClass.decodeTelemetry("2864871d80010000003c050091010384003c050ea2010000003c050e", context);
-                context = decodedData.telemetry.context
-                decodedData.telemetry = telemetryClass.decodeTelemetry(payload, context);
+                decodedData.telemetry = telemetryClass.decodeTelemetry(payload);
                 break;
         }
         decodedData = removeEmpty(decodedData);
@@ -91,6 +88,7 @@ function decodeDownlink(input){
                 decodedData.request = requestClass.decodeRequest(payload)
                 break;
             case abeewayDownlinkPayloadClass.MessageType.ANSWER:
+                decodedData.response = responseClass.determineResponse(payload, multiFrame);
                 break;
         }
         decodedData = removeEmpty(decodedData);
@@ -133,7 +131,7 @@ function encodeDownlink(input){
                 bytes = requestClass.encodeRequest(data);
                 break;
             case abeewayDownlinkPayloadClass.MessageType.ANSWER:
-                
+
                 break;
             
         }
@@ -154,5 +152,3 @@ module.exports = {
     decodeDownlink: decodeDownlink,
     encodeDownlink: encodeDownlink
 }
-
-decodeUplink({recvTime: "2025-03-01T09:36:31.000+02:00", bytes: "28640f19111688ffff83fffffcfbff80838687fd80f600", "fPort":18})

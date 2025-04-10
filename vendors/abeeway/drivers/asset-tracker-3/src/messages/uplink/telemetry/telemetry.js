@@ -22,7 +22,7 @@ function convert3BitToSigned(val) {
     return (val & 0x04) ? val - 8 : val;
 }
 
-function decodeMetadataPayload(telemetryPayload, context) {
+function decodeMetadataPayload(telemetryPayload) {
     const errors = [];
     let offset = 0;
     while (offset + 8 <= telemetryPayload.length) {
@@ -119,7 +119,7 @@ function decodeMeasurementConfigBytes(byte1, byte2) {
     };
 }
 
-function decodeTimeseriesPayload(telemetryPayload, context) {
+function decodeTimeseriesPayload(telemetryPayload) {
     const errors = [];
 
     if (telemetryPayload.length < 4) {
@@ -143,11 +143,11 @@ function decodeTimeseriesPayload(telemetryPayload, context) {
         return { errors };
     }
 
-    const { dataType, scalingFactor } = metadata.measurementConfig;
+    const { codingPolicy, dataType, scalingFactor } = metadata.measurementConfig;
     const measurementData = telemetryPayload.slice(2);
     let measurements = [];
 
-        if (dataType === DataTypes._16_BIT_SIGNED) {
+        if (codingPolicy === CodingPolicy.DELTA_COMPRESSION && dataType === DataTypes._16_BIT_SIGNED) {
             const buffer = Buffer.from(measurementData);
             let i = buffer.length - 1;
             let result = [];
@@ -177,10 +177,13 @@ function decodeTimeseriesPayload(telemetryPayload, context) {
         }
 
     const scaledMeasurements = measurements.map(m => parseFloat((m * scalingFactor).toFixed(2)));
+
     if (errors.length > 0) {
         return { errors: errors, warnings: [] };
     }
+
     return {
+        type: "timeseries",
         telemetryId,
         alarmTrigger,
         cyclicVersion,
@@ -190,7 +193,7 @@ function decodeTimeseriesPayload(telemetryPayload, context) {
     };
 }
 
-function decodeTelemetry(payload, context) {
+function decodeTelemetry(payload) {
     if (!(payload instanceof Buffer)) {
         try {
             payload = Buffer.from(payload, typeof payload === "string" ? "hex" : undefined);
@@ -212,7 +215,7 @@ function decodeTelemetry(payload, context) {
     const payloadTypeByte = telemetryPayload[0];
     const isMetadata = (payloadTypeByte & 0x80) !== 0;
     if (isMetadata) {
-        const result = decodeMetadataPayload(telemetryPayload, context);
+        const result = decodeMetadataPayload(telemetryPayload);
         if (result.data === undefined) {
             return {
                 errors: result.errors,
@@ -225,18 +228,14 @@ function decodeTelemetry(payload, context) {
             context: result.context
         };
     } else {
-        const telemetryResult = decodeTimeseriesPayload(telemetryPayload, context);
+        const telemetryResult = decodeTimeseriesPayload(telemetryPayload);
         if (telemetryResult.measurementConfig === undefined) {
             return {
                 errors: telemetryResult.errors,
                 warnings: telemetryResult.warnings || []
             };
         }
-
-        return {
-            type: "timeseries",
-            timeseries: telemetryResult
-        };
+        return telemetryResult
     }
 }
 
