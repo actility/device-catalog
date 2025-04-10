@@ -9,6 +9,7 @@ let queryClass = require("./messages/uplink/queries/query");
 let util = require("./util");
 let commandClass = require("./messages/downlink/command");
 let requestClass = require("./messages/downlink/requests/request");
+let telemetryClass = require("./messages/uplink/telemetry/telemetry");
 
 const DOWNLINK_PORT_NUMBER = 3;
 
@@ -40,9 +41,8 @@ function decodeUplink(input) {
         var multiFrame = !!(payload[0]>>7 & 0x01);
         if (multiFrame){
             decodedData.extendedHeader = extendedHeaderClass.determineExtendedHeader(payload);
-        } 
+        }
         decodedData.payload = util.convertBytesToString(payload);
-
         switch (decodedData.header.type){
             case abeewayUplinkPayloadClass.messageType.NOTIFICATION:
                 decodedData.notification = notificationClass.determineNotification(payload);
@@ -55,6 +55,9 @@ function decodeUplink(input) {
                 break;
             case abeewayUplinkPayloadClass.messageType.RESPONSE:
                 decodedData.response = responseClass.determineResponse(payload, multiFrame);
+                break;
+            case abeewayUplinkPayloadClass.messageType.TELEMETRY:
+                decodedData.telemetry = telemetryClass.decodeTelemetry(payload);
                 break;
         }
         decodedData = removeEmpty(decodedData);
@@ -77,9 +80,7 @@ function decodeDownlink(input){
         var payload = input.bytes;
         var decodedData = new abeewayDownlinkPayloadClass.determineDownlinkHeader(payload);
         decodedData.payload = util.convertBytesToString(payload);
-        
         switch (decodedData.downMessageType){
-            
             case abeewayDownlinkPayloadClass.MessageType.COMMAND:
                 decodedData.command = commandClass.decodeCommand(payload.slice(1))
                 break;
@@ -87,6 +88,7 @@ function decodeDownlink(input){
                 decodedData.request = requestClass.decodeRequest(payload)
                 break;
             case abeewayDownlinkPayloadClass.MessageType.ANSWER:
+                decodedData.response = responseClass.determineResponse(payload, multiFrame);
                 break;
         }
         decodedData = removeEmpty(decodedData);
@@ -129,7 +131,7 @@ function encodeDownlink(input){
                 bytes = requestClass.encodeRequest(data);
                 break;
             case abeewayDownlinkPayloadClass.MessageType.ANSWER:
-                
+
                 break;
             
         }
@@ -150,3 +152,5 @@ module.exports = {
     decodeDownlink: decodeDownlink,
     encodeDownlink: encodeDownlink
 }
+
+//console.log(decodeUplink({recvTime: "2025-03-01T13:04:27.000+02:00", bytes: "2864871d80010000003c050091010384003c050ea2010000003c050e", "fPort":3}));
