@@ -76,7 +76,7 @@ function determineMessageType(payload){
         case 5:
             return abeewayUplinkPayloadClass.messageType.TELEMETRY;
         default:
-            return abeewayUplinkPayloadClass.messageType.UNKNOWN;
+            return abeewayUplinkPayloadClass.messageType.TELEMETRY;
     }
 }
 

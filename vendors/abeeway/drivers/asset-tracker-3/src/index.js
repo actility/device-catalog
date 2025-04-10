@@ -155,4 +155,4 @@ module.exports = {
     encodeDownlink: encodeDownlink
 }
 
-//decodeUplink({recvTime: "2025-03-01T09:36:31.000+02:00", bytes: "28640F19111600F600FD07060300FFFBFCFFFF03FFFF08", "fPort":18})
+decodeUplink({recvTime: "2025-03-01T09:36:31.000+02:00", bytes: "28640f19111688ffff83fffffcfbff80838687fd80f600", "fPort":18})

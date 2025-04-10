@@ -143,44 +143,40 @@ function decodeTimeseriesPayload(telemetryPayload, context) {
         return { errors };
     }
 
-    const { codingPolicy, dataType, scalingFactor } = metadata.measurementConfig;
+    const { dataType, scalingFactor } = metadata.measurementConfig;
     const measurementData = telemetryPayload.slice(2);
     let measurements = [];
 
-    try {
-        if (codingPolicy === CodingPolicy.NO_COMPRESSION) {
-            if (dataType === DataTypes._8_BIT_UNSIGNED) {
-                measurements = Array.from(measurementData);
-            } else if (dataType === DataTypes._16_BIT_SIGNED) {
-                for (let i = 0; i + 1 < measurementData.length; i += 2) {
-                    measurements.push(measurementData.readInt16BE(i));
-                }
-            }
-        } else if (codingPolicy === CodingPolicy.DELTA_COMPRESSION) {
-            if (dataType === DataTypes._16_BIT_SIGNED) {
-                if (measurementData.length < 2) {
-                    errors.push("Insufficient data for delta compression absolute value");
+        if (dataType === DataTypes._16_BIT_SIGNED) {
+            const buffer = Buffer.from(measurementData);
+            let i = buffer.length - 1;
+            let result = [];
+            let currentValue = 0;
+
+            while (i >= 0) {
+                const byte = buffer[i];
+                const isDelta = (byte >> 7 & 0x01) !== 0;
+
+                if (!isDelta) {
+                    currentValue = buffer[i - 1];
+                    result.push(currentValue);
+                    i -= 2;
                 } else {
-                    let absolute = measurementData.readInt16BE(0);
-                    measurements.push(absolute);
-                    for (let i = 2; i < measurementData.length; i++) {
-                        const delta = measurementData.readInt8(i);
-                        absolute += delta;
-                        measurements.push(absolute);
-                    }
+                    const signBit = byte >> 6 & 0x11;
+                    const num = byte & 0x3F;
+
+                    let delta = (signBit) ? (64 - num) * -1 : num ;
+                    currentValue += delta;
+                    result.push(currentValue);
                 }
-            } else {
-                measurements = Array.from(measurementData);
+                i--
             }
+            measurements = result;
         } else {
-            measurements = Array.from(measurementData);
+            errors.push("Unsupported coding policy or data type for delta decoding");
         }
-    } catch (e) {
-        errors.push(`Failed decoding measurements: ${e.message}`);
-    }
 
     const scaledMeasurements = measurements.map(m => parseFloat((m * scalingFactor).toFixed(2)));
-
     if (errors.length > 0) {
         return { errors: errors, warnings: [] };
     }
