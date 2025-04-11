@@ -355,7 +355,7 @@ function determineConfiguration(response, parameter, paramValue, groupId, parame
     switch (paramType)
     {
     // it can be integer or float
-    case "ParameterTypeNumber":
+    case "ParameterTypeNumber":{
         let range = parameter.parameterType.range
         let multiply = parameter.parameterType.multiply
         let additionalValues = parameter.parameterType.additionalValues
@@ -387,7 +387,7 @@ function determineConfiguration(response, parameter, paramValue, groupId, parame
         groupObject.parameters.push({
             parameterName: paramName,
             parameterValue: paramValue
-        });
+        });}
         break;
     // A mapping between the firmware values and the possible string values
     case "ParameterTypeString":
@@ -410,7 +410,7 @@ function determineConfiguration(response, parameter, paramValue, groupId, parame
         }
         
         break;
-    case "ParameterTypeBitMask":
+    case "ParameterTypeBitMask":{
         let properties = parameter.parameterType.properties
         let bitMask = parameter.parameterType.bitMask
         let length = parseInt(1,16)
@@ -431,7 +431,7 @@ function determineConfiguration(response, parameter, paramValue, groupId, parame
                     }
                     parameterValue[property.name] = b
                     break;
-                case "PropertyString":
+                case "PropertyString":{
                     if ((bit.length)!= undefined ) {
                         length = util.lengthToHex(bit.length)
                     }
@@ -442,8 +442,8 @@ function determineConfiguration(response, parameter, paramValue, groupId, parame
                     }
                     else {
                         throw new Error(property.name+ " parameter value is not among possible values");
-                    }
-                        break;
+                    }       
+                }break;
                 case "PropertyNumber":
                     if ((bit.length)!= undefined ) {
                         length = util.lengthToHex(bit.length)
@@ -451,7 +451,7 @@ function determineConfiguration(response, parameter, paramValue, groupId, parame
                     parameterValue[property.name] = paramValue >>bit.bitShift & length ;	
 
                     break;
-                case "PropertyObject":
+                case "PropertyObject":{
                     let bitValue ={}
                     for (let value of bit.values)
                         {
@@ -467,7 +467,7 @@ function determineConfiguration(response, parameter, paramValue, groupId, parame
                             }
                         }
                     parameterValue[property.name] = bitValue
-                    break;
+                }break;
                 default:
                     throw new Error("Property type is unknown");
                     
@@ -485,10 +485,9 @@ function determineConfiguration(response, parameter, paramValue, groupId, parame
         groupObject.parameters.push({
             parameterName: paramName,
             parameterValue: parameterValue
-        });
+        });}
         break;
-    case "ParameterTypeByteArray":
-
+    case "ParameterTypeByteArray":{
         if (parameter.parameterType.size != undefined && parameter.parameterType.size != parameterSize) {
             throw new Error("The value of "+ paramName + " must have "+ parameter.parameterType.size.toString() +" bytes in the array");
         }
@@ -525,21 +524,19 @@ function determineConfiguration(response, parameter, paramValue, groupId, parame
                         let lengthMask = (1 << bitValueMapping.length) - 1;
                         let extractedValue = (currentParamValue >> bitShift) & lengthMask;
                         switch (subPropertyType) {
-                            case "PropertyBoolean":
+                            case "PropertyBoolean":{
                                 let booleanValue = Boolean(extractedValue);
                                 if (bitValueMapping.inverted) booleanValue = !booleanValue;
                                 propertyValues[subPropertyName] = booleanValue;
-                                break;
-            
-                            case "PropertyString":
+                            }break;
+                            case "PropertyString":{
                                 let strIndex = subProperty.firmwareValues.indexOf(extractedValue);
                                 if (strIndex !== -1) {
                                     propertyValues[subPropertyName] = subProperty.possibleValues[strIndex];
                                 } else {
                                     throw new Error(`${subPropertyName} value not among possible values`);
                                 }
-                                break;
-            
+                            }break;
                             case "PropertyNumber":
                                 propertyValues[subPropertyName] = extractedValue;
                                 break;
@@ -566,7 +563,7 @@ function determineConfiguration(response, parameter, paramValue, groupId, parame
                                 if (bit.inverted) booleanValue = !booleanValue;
                                 arrayParameterValue[propertyName] = booleanValue;
                                 break;
-                            case "PropertyString":
+                            case "PropertyString":{
                                 let stringValue = (currentParamValue >> bit.bitShift) & arrayLength;
                                 let possibleValues = py.possibleValues;
                                 if (py.firmwareValues.indexOf(stringValue) !== -1) {
@@ -574,11 +571,11 @@ function determineConfiguration(response, parameter, paramValue, groupId, parame
                                 } else {
                                     throw new Error(`${propertyName} value not among possible values`);
                                 }
-                                break;
+                            }break;
                             case "PropertyNumber":
                                 arrayParameterValue[propertyName] = (currentParamValue >> bit.bitShift) & arrayLength;
                                 break;
-                            case "PropertyObject":
+                            case "PropertyObject":{
                                 let bitValue = {};
                                 for (let value of bit.values) {
                                     if (value.type === "BitMapValue") {
@@ -592,8 +589,8 @@ function determineConfiguration(response, parameter, paramValue, groupId, parame
                                     }
                                 }
                                 arrayParameterValue[propertyName] = bitValue;
-                                break;
-                            case "PropertByteArray":
+                            }break;
+                            case "PropertByteArray":{
                                 let byteMask = py.bitMask;
                                 if (py.size && py.size > 0) {
                                     let  currentParamArrayValue = [];
@@ -611,7 +608,7 @@ function determineConfiguration(response, parameter, paramValue, groupId, parame
                                 } else {
                                     throw new Error(`Invalid size for PropertyByteArray in property ${propertyName}`);
                                 }
-                                break;
+                            }break;
                             default:
                                 throw new Error("Unknown property type");
                         }
@@ -631,8 +628,7 @@ function determineConfiguration(response, parameter, paramValue, groupId, parame
     groupObject.parameters.push({
         parameterName: paramName,
         parameterValue: bytesValue
-    });
-    break;
+    });}break;
     case "ParameterTypeAsciiString":
         var paramAsciiString = "";
     
@@ -679,7 +675,7 @@ function handleArrayProperties(properties, bitMask, paramValueArray) {
           parameterValue[propertyName] = booleanValue;
           break;
   
-        case "PropertyString":
+        case "PropertyString":{
           const possibleValues = property.possibleValues || [];
           const firmwareValues = property.firmwareValues || [];
           const index = firmwareValues.indexOf(value);
@@ -690,7 +686,7 @@ function handleArrayProperties(properties, bitMask, paramValueArray) {
               `${propertyName} value (${value}) is not among possible values`,
             );
           }
-          break;
+        }break;
   
         case "PropertyNumber":
           parameterValue[propertyName] = value; // Directly assign the extracted value
@@ -715,10 +711,7 @@ function handleArrayProperties(properties, bitMask, paramValueArray) {
   
     // Extraire l'octet spécifique
     return paramValueArray[byteIndex];
-  }
-function convertArrayToInt(array) {
-    return array.reduce((acc, byte, index) => acc | (byte << ((array.length - 1 - index) * 8)), 0);
-}  
+  } 
 function determineResponseParameterClassConfigurationGet(payload){
     let groupId = payload[0]
     let i = 1;

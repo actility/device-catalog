@@ -17,15 +17,6 @@ function camelToSnake(string) {
        }).toUpperCase();
    }
 
-   function lengthToHex(length){  
-    let hex =0;
-	for (let i  =0; i<length; i++)
-	{
-		hex = hex + Math.pow(2,i)
-	}
-	//return parseInt(hex,16)
-    return hex
-}
 function twoComplement(num) {
     if (num > 0x7FFFFFFF) {
         num -= 0x100000000;

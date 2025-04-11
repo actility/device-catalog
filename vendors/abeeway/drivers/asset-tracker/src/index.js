@@ -1035,7 +1035,7 @@ function determineConfigurations (parameters, parameterIds, parameterValues, rea
                                 }
                                 parameterValue[property.name] = paramValue >>bit.bitShift & length ;	
                                 break;
-							case "PropertyObject":
+							case "PropertyObject":{
 								let bitValue ={}
 								for (let value of bit.values)
 									{
@@ -1051,7 +1051,7 @@ function determineConfigurations (parameters, parameterIds, parameterValues, rea
 									    }
 									}
 								parameterValue[property.name] = bitValue
-								break;
+                            }break;
 							default:
 					            throw new Error("Property type is unknown");
 								
@@ -2096,7 +2096,7 @@ function encodeSetParameter(payload){
 	   		let paramType = parameter.parameterType.type
 	   		encData[2+i*5] = id & 0xFF
 	   		switch (paramType)
-	   		{ case "ParameterTypeNumber":
+	   		{ case "ParameterTypeNumber":{
 	   			let range = parameter.parameterType.range
 	   			let multiply = parameter.parameterType.multiply
 	   			let additionalValues = parameter.parameterType.additionalValues
@@ -2120,7 +2120,7 @@ function encodeSetParameter(payload){
 	   	
 		   				throw new Error(setParameter[0]+" parameter value is out of range");
 	   			}
-	   			break;
+            }break;
 	   		case "ParameterTypeString":
 	   			if (((parameter.parameterType.possibleValues).indexOf(paramValue)) != -1)
 	   				{
@@ -2136,7 +2136,7 @@ function encodeSetParameter(payload){
 	   			}
 		   	        
 	   	        break;
-	   		case "ParameterTypeBitMap":
+	   		case "ParameterTypeBitMap":{
 	   			let flags =0 
 	   			let properties = parameter.parameterType.properties
 	   			let bitMap = parameter.parameterType.bitMap
@@ -2172,7 +2172,7 @@ function encodeSetParameter(payload){
                             else 
                                 throw new Error("Value out of range for "+ setParameter[0]+"."+flagName);
                             break;
-                        case "PropertyObject":
+                        case "PropertyObject":{
                             let bitValues = Object.entries(flagValue)
                             for (let b of bit.values){
                                 let fValue = flagValue[b.valueFor]
@@ -2185,7 +2185,7 @@ function encodeSetParameter(payload){
                                 flags |= Number(fValue) <<  b.bitShift 
 
                             }
-                            break;
+                        }break;
                         default:
                             throw new Error("Property type is unknown");
 					}
@@ -2197,7 +2197,7 @@ function encodeSetParameter(payload){
 	   	        encData[6+i*5] = flags & 0xFF;
 	   	        i++;
 		
-	   			break;
+            }break;
 	   		default:
 	   			throw new Error("Parameter type is unknown");
 	   			
@@ -2347,7 +2347,7 @@ function encodeDebugCommand(payload){
             case DebugCommandType.SPECIFIC_FIRMWARE_PARAMETERS_REQUEST:
                 encData[2] = 0x09;
                 return encData;
-            case DebugCommandType.CONFIGURE_STARTUP_MODES:
+            case DebugCommandType.CONFIGURE_STARTUP_MODES:{
                 encData[2] = 0x0a;
                 encData[3] = 0;
                 let startupModes = Object.assign(new startupModesClass.StartupModes(), payload.startupModes);
@@ -2356,7 +2356,7 @@ function encodeDebugCommand(payload){
                 }
                 if (startupModes.shipping){
                     encData[3] += 0X02;
-                }
+                }}
                 return encData;
             case DebugCommandType.START_AND_STOP_BLE_ADVERTISEMENT:
                 encData[2] = 0x0b;
