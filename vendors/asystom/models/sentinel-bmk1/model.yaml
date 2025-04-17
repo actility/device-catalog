@@ -11,9 +11,9 @@ logo: sentinel-bmk1.png
 deviceProfileIds:
   - id: asystom_RFGroup1_1.0.2revB_classA
     lorawanDeviceProfileID: '07970001'
-  - id: svendor_RFGroup2_1.0.2revB_classA
+  - id: asystom_RFGroup2_1.0.2revB_classA
     lorawanDeviceProfileID: '07970002'
-  - id: svendor_RFGroup4_1.0.2revB_classA
+  - id: asystom_RFGroup4_1.0.2revB_classA
     lorawanDeviceProfileID: '07970004'
 
 # You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings.
@@ -37,7 +37,6 @@ modelId: asystom:sentinel-bmk1:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 # Be careful: Once you chose a protocolId, it cannot be changed later
 protocolId:
-  - asystom:minimal-sentinel-bmk1:1
   - asystom:sentinel-bmk1:1
 # DataSheet URL (optional)
 specificationURL:
@@ -56,7 +55,7 @@ sensors:
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
-  asystom:minimal-sentinel-bmk1:1:
+  asystom:sentinel-bmk1:1:
     - uplink containing a standard signature
     - uplink containing three scalar values
     - another uplink containing three scalar values
