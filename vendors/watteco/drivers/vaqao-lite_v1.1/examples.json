@@ -19,6 +19,12 @@
         "temperature_1": 29.53
       },
       "warnings": []
+    },
+    "points": {
+      "temperature:1": {
+        "unitId": "Cel",
+        "value": 29.53
+      }
     }
   },
   {
@@ -41,6 +47,12 @@
         "humidity_1": 37.21
       },
       "warnings": []
+    },
+    "points": {
+      "humidity:1": {
+        "unitId": "%RH",
+        "value": 37.21
+      }
     }
   },
   {
@@ -63,6 +75,13 @@
         "IAQ": 25
       },
       "warnings": []
+    },
+    "points": {
+      "counter": {
+        "unitId": "count",
+        "value": 25,
+        "nature": "air quality index"
+      }
     }
   },
   {
@@ -85,6 +104,13 @@
         "violation_detection": true
       },
       "warnings": []
+    },
+    "points": {
+      "status": {
+        "unitId": "state",
+        "value": true,
+        "nature": "violation detection"
+      }
     }
   },
   {
@@ -107,7 +133,8 @@
         "firmware": "3.5.2.5602"
       },
       "warnings": []
-    }
+    },
+    "points": {}
   },
   {
     "type": "uplink",
@@ -129,6 +156,12 @@
         "disposable_battery_voltage": 3.688
       },
       "warnings": []
+    },
+    "points": {
+      "batteryVoltage": {
+        "unitId": "V",
+        "value": 3.688
+      }
     }
   },
   {
@@ -151,7 +184,8 @@
         "message_type": "unconfirmed"
       },
       "warnings": []
-    }
+    },
+    "points": {}
   },
   {
     "type": "uplink",
@@ -215,6 +249,54 @@
         "CO2": 420
       },
       "warnings": []
+    },
+    "points": {
+      "temperature:1": {
+        "unitId": "Cel",
+        "records": [
+          {
+            "value": 22.9,
+            "eventTime": "2023-07-19T07:01:25.508Z"
+          },
+          {
+            "value": 22.8,
+            "eventTime": "2023-07-19T07:11:25.508Z"
+          }
+        ]
+      },
+      "humidity:1": {
+        "unitId": "%RH",
+        "value": 53
+      },
+      "co2Level": {
+        "unitId": "ppm",
+        "records": [
+          {
+            "value": 410,
+            "eventTime": "2023-07-19T07:01:15.508Z"
+          },
+          {
+            "value": 420,
+            "eventTime": "2023-07-19T07:11:15.508Z"
+          },
+          {
+            "value": 440,
+            "eventTime": "2023-07-19T07:21:15.508Z"
+          },
+          {
+            "value": 420,
+            "eventTime": "2023-07-19T07:31:15.508Z"
+          },
+          {
+            "value": 430,
+            "eventTime": "2023-07-19T07:41:15.508Z"
+          },
+          {
+            "value": 420,
+            "eventTime": "2023-07-19T07:51:15.508Z"
+          }
+        ]
+      }
     }
   },
   {
@@ -293,6 +375,73 @@
         "pressure": 1011
       },
       "warnings": []
+    },
+    "points": {
+      "presence": {
+        "unitId": "state",
+        "value": 0
+      },
+      "temperature:1": {
+        "unitId": "Cel",
+        "records": [
+          {
+            "value": 18.7,
+            "eventTime": "2024-12-27T18:15:53.000Z"
+          },
+          {
+            "value": 18.5,
+            "eventTime": "2024-12-27T18:25:54.000Z"
+          }
+        ]
+      },
+      "humidity:1": {
+        "unitId": "%RH",
+        "value": 31
+      },
+      "co2Level": {
+        "unitId": "ppm",
+        "records": [
+          {
+            "value": 450,
+            "eventTime": "2024-12-27T18:15:53.000Z"
+          },
+          {
+            "value": 470,
+            "eventTime": "2024-12-27T18:25:53.000Z"
+          }
+        ]
+      },
+      "counter": {
+        "unitId": "count",
+        "records": [
+          {
+            "value": 240,
+            "eventTime": "2024-12-27T18:19:20.000Z"
+          },
+          {
+            "value": 250,
+            "eventTime": "2024-12-27T18:29:20.000Z"
+          }
+        ],
+        "nature": "air quality index"
+      },
+      "illuminance": {
+        "unitId": "lx",
+        "records": [
+          {
+            "value": 50,
+            "eventTime": "2024-12-27T18:17:21.000Z"
+          },
+          {
+            "value": 160,
+            "eventTime": "2024-12-27T18:27:23.000Z"
+          }
+        ]
+      },
+      "pressure": {
+        "unitId": "hPa",
+        "value": 1011
+      }
     }
   }
 ]
