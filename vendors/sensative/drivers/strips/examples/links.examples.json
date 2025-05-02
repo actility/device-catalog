@@ -5,7 +5,21 @@
         "bytes": "FFFF13355E1201",
         "fPort": 1,
         "time": "2020-08-02T20:00:00.000+05:00",
-        "data": {"IRProximityReport": {"unit": "", "value": 13662}, "PresenceReport": {"unit": "", "value": true}, "historyStart": 65535}
+        "data": {
+            "IRProximityReport": { "unit": "", "value": 13662 },
+            "PresenceReport": { "unit": "", "value": true },
+            "historyStart": 65535
+        },
+        "points": {
+            "counter": {
+                "unitId": "count",
+                "value": 13662
+            },
+            "presence": {
+                "unitId": "state",
+                "value": true
+            }
+        }
     },
     {
         "description": "strips presence object detect uplink",
@@ -17,6 +31,12 @@
             "CloseProximityAlarm": { "unit": "", "value": true },
             "IRCloseProximityReport": { "unit": "", "value": 255 },
             "historyStart": 65535
+        },
+        "points": {
+            "counter": {
+                "unitId": "count",
+                "value": 255
+            }
         }
     },
     {
@@ -39,6 +59,12 @@
         "data": {
             "BatteryReport": { "unit": "%", "value": 100 },
             "historyStart": 65535
+        },
+        "points": {
+            "batteryLevel": {
+                "unitId": "%",
+                "value": 100
+            }
         }
     },
     {
