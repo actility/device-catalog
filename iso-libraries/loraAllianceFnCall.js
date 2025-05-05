@@ -4,7 +4,6 @@ function getDriverEngineResult() {
             (typeof exports !== 'undefined' && typeof exports.driver !== 'undefined') ? exports.driver :
                 (typeof exports !== 'undefined' && typeof exports.decodeUplink === 'function') ? exports :
                     null;
-
     if (!drv) {
         throw new Error("Driver not found in global or exports");
     }
