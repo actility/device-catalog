@@ -18,7 +18,7 @@ const isoBuffer = fs.readFileSync(path.join(__dirname, "../", "iso-libraries", "
 /**
  * Read the driver's signature from `driver.yaml`
  */
-const driverYaml = yaml.load(fs.readFileSync(resolveDriverPath("driver.yaml"), "utf8"));
+const driverYaml = yaml.load(fs.readFileSync(resolveDriverPath("driver.yaml")));
 const signature = driverYaml.signature;
 
 /**
@@ -66,7 +66,7 @@ const examples = (() =>{
     if(!fs.pathExistsSync(resolveDriverPath("examples"))){
         return [];
     }
-    let examplesFiles = fs.readdirSync("examples");
+    let examplesFiles = fs.readdirSync(resolveDriverPath("examples"));
 
     // Wrap and store all the examples in an array
     let examples = [];
@@ -134,7 +134,7 @@ const errors = (() =>{
     if(!fs.pathExistsSync(resolveDriverPath("errors"))){
         return [];
     }
-    let errorFiles = fs.readdirSync("errors");
+    let errorFiles = fs.readdirSync(resolveDriverPath("errors"));
 
     // Storing all the error files in an array
     let errors = [];
