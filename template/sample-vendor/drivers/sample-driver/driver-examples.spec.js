@@ -209,6 +209,7 @@ async function run(input, operation){
     await context.global.set("operation", operation);
     await context.global.set("input", new ivm.ExternalCopy(input).copyInto());
     await context.global.set("exports", new ivm.ExternalCopy({}).copyInto());
+    await context.global.set("context", new ivm.ExternalCopy(input.context ? input.context : []).copyInto());
 
     await script.run(context, { timeout: 1000 });
     const getDriverEngineResult = await context.global.get("getDriverEngineResult");
