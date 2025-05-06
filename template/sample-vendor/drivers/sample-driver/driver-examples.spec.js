@@ -1,36 +1,210 @@
-// External dependencies
 const path = require("path");
 const fs = require("fs-extra");
 const yaml = require("js-yaml");
 const ivm = require("isolated-vm");
 
-const DRIVER_PATH = path.resolve(process.env.DRIVER_PATH || __dirname);
-const resolveDriverPath = (...paths) => path.join(DRIVER_PATH, ...paths);
+/**
+ * Read predefined Isolated Buffer that acts exactly as the NodeJs Buffer library to prevent access to external from the isolated sandbox
+ */
+const isoBuffer = fs.readFileSync(path.join(__dirname, "../../../..", "iso-libraries", "iso-buffer.js"), "utf8");
 
-const isoBuffer = loadIsoBufferLibrary();
-const driverYaml = loadDriverMetadata();
+/**
+ * Read the driver's signature from `driver.yaml`
+ */
+const driverYaml = yaml.load(fs.readFileSync(path.join(__dirname, "driver.yaml"), "utf8"));
 const signature = driverYaml.signature;
-const isDownlinkDecodeDefined = getIsDownlinkDecodeDefined();
-const examples = loadExamples();
-const errors = loadErrors();
-const fnCall = whichSignatureCall();
-const code = loadCode();
-const trusted = isTrusted();
 
-async function run(input, operation) {
-    if (trusted) {
-        const packageJson = fs.readJsonSync(resolveDriverPath("package.json"));
-        const driverPath = resolveDriverPath(packageJson.main);
-        const driverModule = require(driverPath);
-        const fn = driverModule.driver?.decodeUplink ? driverModule.driver : driverModule;
-        return fn[operation](input);
+/**
+ * Validate if decodeDownlink function is defined in the driver
+ * as some drivers may have encodeDownlink but no decodeDownlink
+ * and there exist examples with legacy type "downlink" that should be wrapped only to "downlink-encode"
+ */
+const isDownlinkDecodeDefined = (() =>{
+    const packageJson = fs.readJsonSync(path.join(__dirname, "package.json"));
+    const driverFns = require("./" + packageJson.main);
+    switch (signature){
+        case "ttn":
+        case "chirpstack":
+            return false;
+        case "lora-alliance":
+        case "actility":
+        default:
+            let fn;
+            if(typeof driverFns.driver === 'undefined' || typeof driverFns.driver.decodeUplink !== 'function') {
+                fn = driverFns;
+            } else {
+                fn = driverFns.driver;
+            }
+            return typeof fn.decodeDownlink === 'function';
+
+    }
+})();
+
+/**
+ * Read the examples according to the signature of driver, wrap them if needed
+ */
+const examples = (() =>{
+    // for default (lora-alliance) signature,
+    // all examples are stored in one file on the root `examples.json`
+    if(fs.pathExistsSync(path.join(__dirname, "examples.json"))){
+        return fs.readJsonSync(path.join(__dirname, "examples.json"));
     }
 
-    const isolate = new ivm.Isolate();
-    const script = isolate.compileScriptSync(
-        isoBuffer.concat("\n" + code).concat("\n" + fnCall)
-    );
+    // for the rest of signature,
+    // examples are stored in a separate folder, in one or several json files that ends with `.examples.json`
+    // Get the list of files in the directory `examples`
+    // The examples are stored in a legacy format
+    // They should be wrapped
 
+    if(!fs.pathExistsSync(path.join(__dirname, "examples"))){
+        return [];
+    }
+    let examplesFiles = fs.readdirSync("examples");
+
+    // Wrap and store all the examples in an array
+    let examples = [];
+    for (const exampleFile of examplesFiles) {
+        if (exampleFile.endsWith(".examples.json")) {
+            let neWExamples = fs.readJsonSync(path.join(__dirname, "examples", exampleFile));
+            for(const example of neWExamples){
+                if(example.type === "uplink"){
+                    let wrappedExample = {
+                        type: example.type,
+                        description: example.description,
+                        input: {
+                            bytes: example.bytes,
+                            fPort: example.fPort,
+                            time: example.time,
+                            thing: example.thing
+                        },
+                        output: example.data
+                    }
+                    examples.push(wrappedExample);
+                } else if(example.type === "downlink"){
+                    // map to downlink-decode examples only on drivers which have this function
+                    if(isDownlinkDecodeDefined){
+                        let wrappedDecodeDownlink = {
+                            type: "downlink-decode",
+                            description: example.description,
+                            input: {
+                                bytes: example.bytes,
+                                fPort: example.fPort,
+                                time: example.time,
+                                thing: example.thing
+                            },
+                            output: example.data
+                        }
+                        examples.push(wrappedDecodeDownlink);
+                    }
+
+                    let wrappedEncodeDownlink = {
+                        type: "downlink-encode",
+                        description: example.description,
+                        input: {
+                            data: example.data,
+                            fPort: example.fPort
+                        },
+                        output: {
+                            bytes: example.bytes,
+                            fPort: example.fPort,
+                        }
+                    }
+                    examples.push(wrappedEncodeDownlink);
+                }
+            }
+        }
+    }
+    return examples;
+})();
+
+/**
+ * Read the legacy error examples if there is any
+ */
+const errors = (() =>{
+    // error examples are stored in a separate folder, in one or several json files
+    // Get the list of files in the directory `examples`
+
+    if(!fs.pathExistsSync(path.join(__dirname, "errors"))){
+        return [];
+    }
+    let errorFiles = fs.readdirSync("errors");
+
+    // Storing all the error files in an array
+    let errors = [];
+    for (const errorFile of errorFiles) {
+        if (errorFile.endsWith(".errors.json")) {
+            errors = examples.concat(fs.readJsonSync(path.join(__dirname, "errors", errorFile)));
+        }
+    }
+    return errors;
+})();
+
+/**
+ * Read the functions call script according to the signature of driver
+ */
+const fnCall = (() => {
+    let fnCallRef;
+    switch (signature){
+        case "actility":
+            fnCallRef = "tpxFnCall.js";
+            break;
+        case "ttn":
+            fnCallRef = "ttnFnCall.js";
+            break;
+        case "chirpstack":
+            fnCallRef =  "chirpstackFnCall.js";
+            break;
+        case "lora-alliance":
+        default:
+            fnCallRef = "loraAllianceFnCall.js";
+            break;
+    }
+    return fs.readFileSync(path.join(__dirname, "../../../..", "iso-libraries", fnCallRef), "utf8");
+})();
+
+/**
+ * Read the driver code according to the main file specified in the npm package
+ */
+const code = (() => {
+    const packageJson = fs.readJsonSync(path.join(__dirname, "package.json"));
+    return fs.readFileSync(path.join(__dirname, packageJson.main), "utf8");
+})();
+
+/**
+ * Checking whether the driver is trusted or not
+ */
+function isTrusted() {
+    const packageJson = fs.readJsonSync(path.join(__dirname, "package.json"));
+    return packageJson.trusted ?? false;
+}
+
+const trusted = isTrusted();
+/**
+ * Create an isolated-vm sandbox to run the code inside
+ */
+let isolate;
+let script;
+
+if(!trusted) {
+    isolate = new ivm.Isolate();
+    script = isolate.compileScriptSync(isoBuffer.concat("\n" + code).concat("\n" + fnCall));
+}
+
+/**
+ * @param input : input from example to run the driver with
+ * @param operation : operation to be operated on the input
+ * @return result: output of the driver with the given input and operation
+ */
+async function run(input, operation){
+    if(trusted) {
+        let result;
+        eval(
+            code
+            + ";\n"
+            + `result = decodeUplink(input)`
+        );
+        return result;
+    }
     const context = await isolate.createContext();
     await context.global.set("operation", operation);
     await context.global.set("input", new ivm.ExternalCopy(input).copyInto());
@@ -43,201 +217,213 @@ async function run(input, operation) {
     return result;
 }
 
-// ---- TESTS ---- //
-const uplinkExamples = examples.filter(e => e.type === "uplink");
-if (uplinkExamples.length > 0) {
-    describe("Test - Decode uplink", () => {
-        test.each(uplinkExamples.map(e => [e.description, e.input, e.output]))(
-            "%s",
-            async (_, input, expected) => {
-                const result = await run({ ...input, bytes: adaptBytesArray(input.bytes) }, "decodeUplink");
+
+/**
+ Test suites compatible with all driver types
+ */
+describe("Decode uplink", () => {
+    examples.forEach((example) => {
+        if (example.type === "uplink") {
+            it(example.description, async () => {
+                // Given
+                const input = example.input;
+
+                // Adaptation
+                input.bytes = adaptBytesArray(input.bytes);
+
+                // When
+                const result = await run(input, "decodeUplink");
+
+                // Then
+                const expected = example.output;
+
+                // Adaptations
                 skipTypes(result, expected);
-                expect(result).toStrictEqual(expected);
-            }
-        );
-    });
-}
 
-const downlinkDecodeExamples = examples.filter(e => e.type === "downlink-decode");
-if (downlinkDecodeExamples.length > 0) {
-    describe("Test - Decode downlink", () => {
-        test.each(downlinkDecodeExamples.map(e => [e.description, e.input, e.output]))(
-            "%s",
-            async (_, input, expected) => {
-                const result = await run({ ...input, bytes: adaptBytesArray(input.bytes) }, "decodeDownlink");
                 expect(result).toStrictEqual(expected);
-            }
-        );
+            });
+        }
     });
-}
+});
 
-const downlinkEncodeExamples = examples.filter(e => e.type === "downlink-encode");
-if (downlinkEncodeExamples.length > 0) {
-    describe("Test - Encode downlink", () => {
-        test.each(downlinkEncodeExamples.map(e => [e.description, e.input, e.output]))(
-            "%s",
-            async (_, input, expected) => {
+describe("Decode downlink", () => {
+    examples.forEach((example) => {
+        if (example.type === "downlink-decode") {
+            it(example.description, async () => {
+                // Given
+                const input = example.input;
+
+                // Adaptation
+                input.bytes = adaptBytesArray(input.bytes);
+
+                // When
+                const result = await run(input, "decodeDownlink");
+
+                // Then
+                const expected = example.output;
+
+                // Then
+                expect(result).toStrictEqual(expected);
+            });
+        }
+    });
+});
+
+describe("Encode downlink", () => {
+    examples.forEach((example) => {
+        if (example.type === "downlink-encode") {
+            it(example.description, async () => {
+                // Given
+                const input = example.input;
+
+                // When
                 const result = await run(input, "encodeDownlink");
-                if (result.bytes) result.bytes = adaptBytesArray(result.bytes);
-                if (expected.bytes) expected.bytes = adaptBytesArray(expected.bytes);
-                expect(result).toStrictEqual(expected);
-            }
-        );
-    });
-}
 
-// ---- Fonctions auxiliaires ---- //
-function loadDriverMetadata() {
-    return yaml.load(fs.readFileSync(resolveDriverPath("driver.yaml"), "utf8"));
-}
+                // Then
+                const expected = example.output;
 
-function loadIsoBufferLibrary() {
-    return fs.readFileSync(path.join(__dirname, "../", "iso-libraries", "iso-buffer.js"), "utf8");
-}
-
-function getIsDownlinkDecodeDefined() {
-    const packageJson = fs.readJsonSync(resolveDriverPath("package.json"));
-    const driverFns = require(resolveDriverPath(packageJson.main));
-    const fn = driverFns.driver?.decodeUplink ? driverFns.driver : driverFns;
-    return typeof fn.decodeDownlink === 'function';
-}
-
-function loadExamples(){
-    const exPath = resolveDriverPath("examples.json");
-    if (fs.pathExistsSync(exPath)) return fs.readJsonSync(exPath);
-
-    const folder = resolveDriverPath("examples");
-    if (!fs.pathExistsSync(folder)) return [];
-
-    const examplesFiles = fs.readdirSync(folder);
-    let examples = [];
-    for (const file of examplesFiles) {
-        if (file.endsWith(".examples.json")) {
-            const data = fs.readJsonSync(path.join(folder, file));
-            for (const ex of data) {
-                if (ex.type === "uplink") {
-                    examples.push({
-                        type: ex.type,
-                        description: ex.description,
-                        input: {
-                            bytes: ex.bytes,
-                            fPort: ex.fPort,
-                            time: ex.time,
-                            thing: ex.thing
-                        },
-                        output: ex.data
-                    });
-                } else if (ex.type === "downlink") {
-                    if (isDownlinkDecodeDefined) {
-                        examples.push({
-                            type: "downlink-decode",
-                            description: ex.description,
-                            input: {
-                                bytes: ex.bytes,
-                                fPort: ex.fPort,
-                                time: ex.time,
-                                thing: ex.thing
-                            },
-                            output: ex.data
-                        });
-                    }
-                    examples.push({
-                        type: "downlink-encode",
-                        description: ex.description,
-                        input: {
-                            data: ex.data,
-                            fPort: ex.fPort
-                        },
-                        output: {
-                            bytes: ex.bytes,
-                            fPort: ex.fPort
-                        }
-                    });
+                // Adaptation
+                if(result.bytes){
+                    result.bytes = adaptBytesArray(result.bytes);
                 }
-            }
+                if(expected.bytes){
+                    expected.bytes = adaptBytesArray(expected.bytes);
+                }
+
+                expect(result).toStrictEqual(expected);
+            });
         }
-    }
-    return examples;
-}
-
-// Load error examples
-function loadErrors() {
-    const folder = resolveDriverPath("errors");
-    if (!fs.pathExistsSync(folder)) return [];
-    const files = fs.readdirSync(folder);
-    let errors = [];
-    for (const file of files) {
-        if (file.endsWith(".errors.json")) {
-            errors = examples.concat(fs.readJsonSync(path.join(folder, file)));
-        }
-    }
-    return errors;
-}
-
-function loadCode() {
-    const packageJson = fs.readJsonSync(resolveDriverPath("package.json"));
-    return fs.readFileSync(resolveDriverPath(packageJson.main), "utf8");
-}
-
-function whichSignatureCall() {
-    let fnCallRef;
-    switch (signature){
-        case "actility": fnCallRef = "tpxFnCall.js"; break;
-        case "ttn": fnCallRef = "ttnFnCall.js"; break;
-        case "chirpstack": fnCallRef =  "chirpstackFnCall.js"; break;
-        case "lora-alliance":
-        default: fnCallRef = "loraAllianceFnCall.js"; break;
-    }
-    return fs.readFileSync(path.join(__dirname, "../", "iso-libraries", fnCallRef), "utf8");
-}
-
-// Determine trust status of the driver
-function isTrusted() {
-    const packageJson = fs.readJsonSync(path.join(__dirname, "package.json"));
-    return packageJson.trusted ?? false;
-}
-
-// Convert hex string to byte array if needed
-const adaptBytesArray = bytes =>
-    typeof bytes === "string" ? Array.from(Buffer.from(bytes, "hex")) : bytes;
-
-// Adjust result types for consistent comparison (dates, numbers)
-const skipTypes = (result, expected) => {
-    listProperties(result).forEach(prop => {
-        const keys = prop.split('.');
-        let resVal = result, expVal = expected;
-        for (const key of keys) {
-            resVal = resVal?.[key];
-            expVal = expVal?.[key];
-            if (expVal === undefined || expVal === null) return;
-        }
-
-        const updateValue = v => {
-            let target = result;
-            for (let i = 0; i < keys.length - 1; i++) {
-                target = target[keys[i]] ||= {};
-            }
-            target[keys.at(-1)] = v;
-        };
-
-        const isDate = typeof resVal === 'string' && /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z/.test(resVal);
-        const isNumber = typeof resVal === 'number';
-
-        if (isDate && expVal === "XXXX-XX-XXTXX:XX:XX.XXXZ") updateValue("XXXX-XX-XXTXX:XX:XX.XXXZ");
-        if (isNumber && expVal === "SKIP_NUMBER") updateValue("SKIP_NUMBER");
     });
-};
+});
 
-// List all leaf property paths (dot notation)
-const listProperties = (obj, parent = '', result = []) => {
-    for (const key in obj) {
-        if (!obj.hasOwnProperty(key)) continue;
-        const path = parent + key;
-        if (typeof obj[key] === 'object' && obj[key] !== null && !(obj[key] instanceof Date)) {
-            listProperties(obj[key], path + '.', result);
-        } else {
-            result.push(path);
+describe("Legacy Decode uplink errors", () => {
+    errors.forEach((error) => {
+        if (error.type === "uplink" && !error.data) {
+            it(error.description, () => {
+                // Given
+                const input = {
+                    bytes: adaptBytesArray(error.bytes),
+                    fPort: error.fPort,
+                    time: error.time
+                };
+
+                // When / Then
+                const expected = error.error;
+                expect(async () => await run(input, "decodeUplink").toThrow(expected));
+            });
+        }
+    });
+});
+
+describe("Legacy Decode downlink errors", () => {
+    errors.forEach((error) => {
+        if (error.type === "uplink" && !error.data) {
+            it(error.description, () => {
+                // Given
+                const input = {
+                    bytes: adaptBytesArray(error.bytes),
+                    fPort: error.fPort,
+                    time: error.time
+                };
+
+                // When / Then
+                const expected = error.error;
+                expect(async () => await run(input, "decodeDownlink").toThrow(expected));
+            });
+        }
+    });
+});
+
+describe("Legacy Encode downlink errors", () => {
+    errors.forEach((error) => {
+        if (error.type === "uplink" && error.data) {
+            it(error.description, () => {
+                // Given
+                const input = error.data;
+
+                // When / Then
+                const expected = error.error;
+                expect(async () => await run(input, "encodeDownlink").toThrow(expected));
+            });
+        }
+    });
+});
+
+/**
+ Utils used for unusual inputs
+ */
+function adaptBytesArray(bytes){
+    // if the bytes in example are in hexadecimal format instead of array of integers
+    if(typeof bytes === "string"){
+        return Array.from(Buffer.from(bytes, "hex"));
+    }
+    return bytes;
+}
+
+
+// UTIL
+function skipTypes(result, expected) {
+    for(let property of listProperties(result)) {
+        let keys = property.split('.');
+        let value = result;
+        let expectedValue = expected;
+        let skipProperty = false;
+        for(let key of keys) {
+            value = value[key];
+            expectedValue = expectedValue[key];
+            if(expectedValue == null) {
+                skipProperty = true;
+                break;
+            }
+        }
+        if(skipProperty) continue;
+
+        let isDate = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z/.test(value);
+        let isNumber = /[0-9]+( |.[0-9]+)/.test(value);
+        isDate |= value instanceof Date;
+        isNumber |= value instanceof Number;
+
+        if(isDate) {
+            let displayedResult = value;
+            if(displayedResult instanceof Date) displayedResult = displayedResult.toISOString();
+            if(expectedValue === "XXXX-XX-XXTXX:XX:XX.XXXZ") displayedResult = "XXXX-XX-XXTXX:XX:XX.XXXZ";
+
+            value = result;
+            for (let i = 0; i < keys.length - 1; i++) {
+                if (!value[keys[i]] || typeof value[keys[i]] !== 'object') {
+                    value[keys[i]] = {};
+                }
+                value = value[keys[i]];
+            }
+            value[keys[keys.length - 1]] = displayedResult;
+        }
+
+        else if(isNumber) {
+            let displayedResult = value;
+            if(displayedResult instanceof Number) displayedResult = displayedResult.toISOString();
+            if(expectedValue === "SKIP_NUMBER") displayedResult = "SKIP_NUMBER";
+
+            value = result;
+            for (let i = 0; i < keys.length - 1; i++) {
+                if (!value[keys[i]] || typeof value[keys[i]] !== 'object') {
+                    value[keys[i]] = {};
+                }
+                value = value[keys[i]];
+            }
+            value[keys[keys.length - 1]] = displayedResult;
+        }
+    }
+}
+
+function listProperties(obj, parent = '', result = []) {
+    for (let key in obj) {
+        if (obj.hasOwnProperty(key)) {
+            if (typeof obj[key] === 'object' && !(obj[key] instanceof Date) && obj[key] !== null) {
+                listProperties(obj[key], parent + key + '.', result);
+            } else {
+                result.push(parent + key);
+            }
         }
     }
     return result;
-};
+}
