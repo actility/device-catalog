@@ -6,8 +6,8 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, './'),
     filename: 'main.js',
-    libraryTarget: 'umd',
-    globalObject: 'this',
+    library: "driver",
+    libraryTarget: 'commonjs'
   }
 };
 

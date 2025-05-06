@@ -56,7 +56,7 @@ function decodeMetadataPayload(telemetryPayload) {
 
     if(errors.length > 0) return { errors: errors, warnings: [] };
     context.push(telemetryMetadataStore);
-    return { context: context, data: telemetryMetadataStore, errors: errors, warnings: [] };
+    return { data: telemetryMetadataStore, errors: errors, warnings: [] };
 }
 
 function decodeMeasurementConfigBytes(byte1, byte2) {
@@ -160,7 +160,7 @@ function decodeTimeseriesPayload(telemetryPayload) {
                 if (!isDelta) {
                     currentValue = buffer[i - 1];
                     result.push(currentValue);
-                    i -= 2;
+                    i -= 1;
                 } else {
                     const signBit = byte >> 6 & 0x11;
                     const num = byte & 0x3F;
@@ -224,8 +224,7 @@ function decodeTelemetry(payload) {
         }
         return {
             type: "metadata",
-            TelemetryIDs: [result.data],
-            context: result.context
+            TelemetryIDs: [result.data]
         };
     } else {
         const telemetryResult = decodeTimeseriesPayload(telemetryPayload);
