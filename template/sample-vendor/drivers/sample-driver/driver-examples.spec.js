@@ -196,22 +196,15 @@ if(!trusted) {
  * @return result: output of the driver with the given input and operation
  */
 async function run(input, operation){
-    if (trusted) {
-        const packageJson = fs.readJsonSync(path.join(__dirname, "package.json"));
-        const driverPath = path.join(__dirname, packageJson.main);
-        const driverModule = require(driverPath);
-
-        let fn = driverModule;
-        if (typeof driverModule.driver?.decodeUplink === 'function') {
-            fn = driverModule.driver;
-        }
-
-        return fn[operation](input);
+    if(trusted) {
+        let result;
+        eval(
+            code
+            + ";\n"
+            + `result = decodeUplink(input)`
+        );
+        return result;
     }
-
-    const isolate = new ivm.Isolate();
-    const script = isolate.compileScriptSync(isoBuffer.concat("\n" + code).concat("\n" + fnCall));
-
     const context = await isolate.createContext();
     await context.global.set("operation", operation);
     await context.global.set("input", new ivm.ExternalCopy(input).copyInto());
@@ -226,8 +219,8 @@ async function run(input, operation){
 
 
 /**
-Test suites compatible with all driver types
-*/
+ Test suites compatible with all driver types
+ */
 describe("Decode uplink", () => {
     examples.forEach((example) => {
         if (example.type === "uplink") {
@@ -277,31 +270,31 @@ describe("Decode downlink", () => {
 });
 
 describe("Encode downlink", () => {
-        examples.forEach((example) => {
-            if (example.type === "downlink-encode") {
-                it(example.description, async () => {
-                    // Given
-                    const input = example.input;
+    examples.forEach((example) => {
+        if (example.type === "downlink-encode") {
+            it(example.description, async () => {
+                // Given
+                const input = example.input;
 
-                    // When
-                    const result = await run(input, "encodeDownlink");
+                // When
+                const result = await run(input, "encodeDownlink");
 
-                    // Then
-                    const expected = example.output;
+                // Then
+                const expected = example.output;
 
-                    // Adaptation
-                    if(result.bytes){
-                        result.bytes = adaptBytesArray(result.bytes);
-                    }
-                    if(expected.bytes){
-                        expected.bytes = adaptBytesArray(expected.bytes);
-                    }
+                // Adaptation
+                if(result.bytes){
+                    result.bytes = adaptBytesArray(result.bytes);
+                }
+                if(expected.bytes){
+                    expected.bytes = adaptBytesArray(expected.bytes);
+                }
 
-                    expect(result).toStrictEqual(expected);
-                });
-            }
-        });
+                expect(result).toStrictEqual(expected);
+            });
+        }
     });
+});
 
 describe("Legacy Decode uplink errors", () => {
     errors.forEach((error) => {

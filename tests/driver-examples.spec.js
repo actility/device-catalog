@@ -1,17 +1,24 @@
+// External dependencies
 const path = require("path");
 const fs = require("fs-extra");
 const yaml = require("js-yaml");
 const ivm = require("isolated-vm");
 
+
+const DRIVER_PATH = path.resolve(process.env.DRIVER_PATH || __dirname);
+const resolveDriverPath = (...paths) => path.join(DRIVER_PATH, ...paths);
+const baseDir = path.join(DRIVER_PATH.replace("device-catalog", "device-catalog-private"));
+const { extractPoints } = require(baseDir + "/extractPoints.js");
+
 /**
  * Read predefined Isolated Buffer that acts exactly as the NodeJs Buffer library to prevent access to external from the isolated sandbox
  */
-const isoBuffer = fs.readFileSync(path.join(__dirname, "../../../..", "iso-libraries", "iso-buffer.js"), "utf8");
+const isoBuffer = fs.readFileSync(path.join(__dirname, "../", "iso-libraries", "iso-buffer.js"), "utf8");
 
 /**
  * Read the driver's signature from `driver.yaml`
  */
-const driverYaml = yaml.load(fs.readFileSync(path.join(__dirname, "driver.yaml"), "utf8"));
+const driverYaml = yaml.load(fs.readFileSync(resolveDriverPath("driver.yaml"), "utf8"));
 const signature = driverYaml.signature;
 
 /**
@@ -20,8 +27,8 @@ const signature = driverYaml.signature;
  * and there exist examples with legacy type "downlink" that should be wrapped only to "downlink-encode"
  */
 const isDownlinkDecodeDefined = (() =>{
-    const packageJson = fs.readJsonSync(path.join(__dirname, "package.json"));
-    const driverFns = require("./" + packageJson.main);
+    const packageJson = fs.readJsonSync(resolveDriverPath("package.json"));
+    const driverFns = require(resolveDriverPath(packageJson.main));
     switch (signature){
         case "ttn":
         case "chirpstack":
@@ -46,8 +53,8 @@ const isDownlinkDecodeDefined = (() =>{
 const examples = (() =>{
     // for default (lora-alliance) signature,
     // all examples are stored in one file on the root `examples.json`
-    if(fs.pathExistsSync(path.join(__dirname, "examples.json"))){
-        return fs.readJsonSync(path.join(__dirname, "examples.json"));
+    if(fs.pathExistsSync(resolveDriverPath("examples.json"))){
+        return fs.readJsonSync(resolveDriverPath("examples.json"));
     }
 
     // for the rest of signature,
@@ -56,7 +63,7 @@ const examples = (() =>{
     // The examples are stored in a legacy format
     // They should be wrapped
 
-    if(!fs.pathExistsSync(path.join(__dirname, "examples"))){
+    if(!fs.pathExistsSync(resolveDriverPath("examples"))){
         return [];
     }
     let examplesFiles = fs.readdirSync("examples");
@@ -65,7 +72,7 @@ const examples = (() =>{
     let examples = [];
     for (const exampleFile of examplesFiles) {
         if (exampleFile.endsWith(".examples.json")) {
-            let neWExamples = fs.readJsonSync(path.join(__dirname, "examples", exampleFile));
+            let neWExamples = fs.readJsonSync(resolveDriverPath("examples/" + exampleFile));
             for(const example of neWExamples){
                 if(example.type === "uplink"){
                     let wrappedExample = {
@@ -124,7 +131,7 @@ const errors = (() =>{
     // error examples are stored in a separate folder, in one or several json files
     // Get the list of files in the directory `examples`
 
-    if(!fs.pathExistsSync(path.join(__dirname, "errors"))){
+    if(!fs.pathExistsSync(resolveDriverPath("errors"))){
         return [];
     }
     let errorFiles = fs.readdirSync("errors");
@@ -133,7 +140,7 @@ const errors = (() =>{
     let errors = [];
     for (const errorFile of errorFiles) {
         if (errorFile.endsWith(".errors.json")) {
-            errors = examples.concat(fs.readJsonSync(path.join(__dirname, "errors", errorFile)));
+            errors = examples.concat(fs.readJsonSync(resolveDriverPath("errors/" + errorFile)));
         }
     }
     return errors;
@@ -159,22 +166,22 @@ const fnCall = (() => {
             fnCallRef = "loraAllianceFnCall.js";
             break;
     }
-    return fs.readFileSync(path.join(__dirname, "../../../..", "iso-libraries", fnCallRef), "utf8");
+    return fs.readFileSync(path.join(__dirname, "../", "iso-libraries", fnCallRef), "utf8");
 })();
 
 /**
  * Read the driver code according to the main file specified in the npm package
  */
 const code = (() => {
-    const packageJson = fs.readJsonSync(path.join(__dirname, "package.json"));
-    return fs.readFileSync(path.join(__dirname, packageJson.main), "utf8");
+    const packageJson = fs.readJsonSync(resolveDriverPath("package.json"));
+    return fs.readFileSync(resolveDriverPath(packageJson.main), "utf8");
 })();
 
 /**
  * Checking whether the driver is trusted or not
  */
 function isTrusted() {
-    const packageJson = fs.readJsonSync(path.join(__dirname, "package.json"));
+    const packageJson = fs.readJsonSync(resolveDriverPath("package.json"));
     return packageJson.trusted ?? false;
 }
 
@@ -196,19 +203,27 @@ if(!trusted) {
  * @return result: output of the driver with the given input and operation
  */
 async function run(input, operation){
-    if(trusted) {
-        let result;
-        eval(
-            code
-            + ";\n"
-            + `result = decodeUplink(input)`
-        );
-        return result;
+    if (trusted) {
+        const packageJson = fs.readJsonSync(resolveDriverPath("package.json"));
+        const driverPath = resolveDriverPath(packageJson.main);
+        const driverModule = require(driverPath);
+
+        let fn = driverModule;
+        if (typeof driverModule.driver?.decodeUplink === 'function') {
+            fn = driverModule.driver;
+        }
+
+        return fn[operation](input);
     }
+
+    const isolate = new ivm.Isolate();
+    const script = isolate.compileScriptSync(isoBuffer.concat("\n" + code).concat("\n" + fnCall));
+
     const context = await isolate.createContext();
     await context.global.set("operation", operation);
     await context.global.set("input", new ivm.ExternalCopy(input).copyInto());
     await context.global.set("exports", new ivm.ExternalCopy({}).copyInto());
+    await context.global.set("context", new ivm.ExternalCopy(input.context ? input.context : []).copyInto());
 
     await script.run(context, { timeout: 1000 });
     const getDriverEngineResult = await context.global.get("getDriverEngineResult");
@@ -219,8 +234,8 @@ async function run(input, operation){
 
 
 /**
-Test suites compatible with all driver types
-*/
+ Test suites compatible with all driver types
+ */
 describe("Decode uplink", () => {
     examples.forEach((example) => {
         if (example.type === "uplink") {
@@ -270,31 +285,31 @@ describe("Decode downlink", () => {
 });
 
 describe("Encode downlink", () => {
-        examples.forEach((example) => {
-            if (example.type === "downlink-encode") {
-                it(example.description, async () => {
-                    // Given
-                    const input = example.input;
+    examples.forEach((example) => {
+        if (example.type === "downlink-encode") {
+            it(example.description, async () => {
+                // Given
+                const input = example.input;
 
-                    // When
-                    const result = await run(input, "encodeDownlink");
+                // When
+                const result = await run(input, "encodeDownlink");
 
-                    // Then
-                    const expected = example.output;
+                // Then
+                const expected = example.output;
 
-                    // Adaptation
-                    if(result.bytes){
-                        result.bytes = adaptBytesArray(result.bytes);
-                    }
-                    if(expected.bytes){
-                        expected.bytes = adaptBytesArray(expected.bytes);
-                    }
+                // Adaptation
+                if(result.bytes){
+                    result.bytes = adaptBytesArray(result.bytes);
+                }
+                if(expected.bytes){
+                    expected.bytes = adaptBytesArray(expected.bytes);
+                }
 
-                    expect(result).toStrictEqual(expected);
-                });
-            }
-        });
+                expect(result).toStrictEqual(expected);
+            });
+        }
     });
+});
 
 describe("Legacy Decode uplink errors", () => {
     errors.forEach((error) => {
@@ -329,6 +344,35 @@ describe("Legacy Decode downlink errors", () => {
                 // When / Then
                 const expected = error.error;
                 expect(async () => await run(input, "decodeDownlink").toThrow(expected));
+            });
+        }
+    });
+});
+
+describe("extractPoints - should extract expected points from decoded uplink", () => {
+    examples.forEach((example, index) => {
+        if (example.type === "uplink" && example.output?.data && example.points) {
+            test(`${index + 1} - ${example.description}`, () => {
+                const decoded = example.output.data;
+                const result = extractPoints({ message: decoded });
+                const expectedPoints = example.points;
+
+                for (const key in expectedPoints) {
+                    expect(result).toHaveProperty(key);
+
+                    const expected = expectedPoints[key];
+                    const actual = result[key];
+
+                    if ('record' in expected) {
+                        expect(actual).toHaveProperty('record');
+                        expect(actual.record).toEqual(expected.record);
+                    } else if ('records' in expected) {
+                        expect(actual).toHaveProperty('records');
+                        expect(actual.records).toEqual(expected.records);
+                    }
+
+                    expect(actual.unitId).toEqual(expected.unitId);
+                }
             });
         }
     });
@@ -382,7 +426,7 @@ function skipTypes(result, expected) {
         let isNumber = /[0-9]+( |.[0-9]+)/.test(value);
         isDate |= value instanceof Date;
         isNumber |= value instanceof Number;
-        
+
         if(isDate) {
             let displayedResult = value;
             if(displayedResult instanceof Date) displayedResult = displayedResult.toISOString();
