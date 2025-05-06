@@ -3,7 +3,9 @@ const path = require("path");
 const fs = require("fs-extra");
 const yaml = require("js-yaml");
 const ivm = require("isolated-vm");
-const { get } = require("http");
+
+const DRIVER_PATH = path.resolve(process.env.DRIVER_PATH || __dirname);
+const resolveDriverPath = (...paths) => path.join(DRIVER_PATH, ...paths);
 
 const isoBuffer = loadIsoBufferLibrary();
 const driverYaml = loadDriverMetadata();
@@ -15,20 +17,15 @@ const fnCall = whichSignatureCall();
 const code = loadCode();
 const trusted = isTrusted();
 
-// Main runner used to execute driver operations
 async function run(input, operation) {
     if (trusted) {
-        const packageJson = fs.readJsonSync(path.join(__dirname, "package.json"));
-        const driverPath = path.join(__dirname, packageJson.main);
+        const packageJson = fs.readJsonSync(resolveDriverPath("package.json"));
+        const driverPath = resolveDriverPath(packageJson.main);
         const driverModule = require(driverPath);
-        let fn = driverModule;
-        if (typeof driverModule.driver?.decodeUplink === 'function') {
-            fn = driverModule.driver;
-        }
+        const fn = driverModule.driver?.decodeUplink ? driverModule.driver : driverModule;
         return fn[operation](input);
     }
 
-    // Variables isolate + script déplacées ici
     const isolate = new ivm.Isolate();
     const script = isolate.compileScriptSync(
         isoBuffer.concat("\n" + code).concat("\n" + fnCall)
@@ -46,125 +43,116 @@ async function run(input, operation) {
     return result;
 }
 
-describe("Test - Decode uplink", () => {
-    test.each(examples.filter(e => e.type === "uplink").map(e => [e.description, e.input, e.output]))(
-        "%s",
-        async (_, input, expected) => {
-            const result = await run({ ...input, bytes: adaptBytesArray(input.bytes) }, "decodeUplink");
-            skipTypes(result, expected);
-            expect(result).toStrictEqual(expected);
-        }
-    );
-});
-
-describe("Test - Decode downlink", () => {
-    test.each(examples.filter(e => e.type === "downlink-decode").map(e => [e.description, e.input, e.output]))(
-        "%s",
-        async (_, input, expected) => {
-            const result = await run({ ...input, bytes: adaptBytesArray(input.bytes) }, "decodeDownlink");
-            expect(result).toStrictEqual(expected);
-        }
-    );
-});
-
-describe("Test - Encode downlink", () => {
-    test.each(examples.filter(e => e.type === "downlink-encode").map(e => [e.description, e.input, e.output]))(
-        "%s",
-        async (_, input, expected) => {
-            const result = await run(input, "encodeDownlink");
-            if (result.bytes) result.bytes = adaptBytesArray(result.bytes);
-            if (expected.bytes) expected.bytes = adaptBytesArray(expected.bytes);
-            expect(result).toStrictEqual(expected);
-        }
-    );
-});
-
-// Load driver metadata
-function loadDriverMetadata() {
-    return yaml.load(fs.readFileSync(path.join(__dirname, "driver.yaml"), "utf8"));
-}
-
-// Load predefined isolated Buffer to prevent access to external from the sandbox
-function loadIsoBufferLibrary() {
-    return fs.readFileSync(path.join(__dirname, "../../../..", "iso-libraries", "iso-buffer.js"), "utf8");
-}
-
-// Determine if decodeDownlink is defined in the driver
-function getIsDownlinkDecodeDefined() {
-    const packageJson = fs.readJsonSync(path.join(__dirname, "package.json"));
-    const driverFns = require("./" + packageJson.main);
-    switch (signature) {
-        case "ttn":
-        case "chirpstack":
-            return false;
-        case "lora-alliance":
-        case "actility":
-        default:
-            let fn;
-            if(typeof driverFns.driver === 'undefined' || typeof driverFns.driver.decodeUplink !== 'function') {
-                fn = driverFns;
-            } else {
-                fn = driverFns.driver;
+// ---- TESTS ---- //
+const uplinkExamples = examples.filter(e => e.type === "uplink");
+if (uplinkExamples.length > 0) {
+    describe("Test - Decode uplink", () => {
+        test.each(uplinkExamples.map(e => [e.description, e.input, e.output]))(
+            "%s",
+            async (_, input, expected) => {
+                const result = await run({ ...input, bytes: adaptBytesArray(input.bytes) }, "decodeUplink");
+                skipTypes(result, expected);
+                expect(result).toStrictEqual(expected);
             }
-            return typeof fn.decodeDownlink === 'function';
-    }
+        );
+    });
 }
 
-// Load and wrap all examples depending on the driver signature
+const downlinkDecodeExamples = examples.filter(e => e.type === "downlink-decode");
+if (downlinkDecodeExamples.length > 0) {
+    describe("Test - Decode downlink", () => {
+        test.each(downlinkDecodeExamples.map(e => [e.description, e.input, e.output]))(
+            "%s",
+            async (_, input, expected) => {
+                const result = await run({ ...input, bytes: adaptBytesArray(input.bytes) }, "decodeDownlink");
+                expect(result).toStrictEqual(expected);
+            }
+        );
+    });
+}
+
+const downlinkEncodeExamples = examples.filter(e => e.type === "downlink-encode");
+if (downlinkEncodeExamples.length > 0) {
+    describe("Test - Encode downlink", () => {
+        test.each(downlinkEncodeExamples.map(e => [e.description, e.input, e.output]))(
+            "%s",
+            async (_, input, expected) => {
+                const result = await run(input, "encodeDownlink");
+                if (result.bytes) result.bytes = adaptBytesArray(result.bytes);
+                if (expected.bytes) expected.bytes = adaptBytesArray(expected.bytes);
+                expect(result).toStrictEqual(expected);
+            }
+        );
+    });
+}
+
+// ---- Fonctions auxiliaires ---- //
+function loadDriverMetadata() {
+    return yaml.load(fs.readFileSync(resolveDriverPath("driver.yaml"), "utf8"));
+}
+
+function loadIsoBufferLibrary() {
+    return fs.readFileSync(path.join(__dirname, "../", "iso-libraries", "iso-buffer.js"), "utf8");
+}
+
+function getIsDownlinkDecodeDefined() {
+    const packageJson = fs.readJsonSync(resolveDriverPath("package.json"));
+    const driverFns = require(resolveDriverPath(packageJson.main));
+    const fn = driverFns.driver?.decodeUplink ? driverFns.driver : driverFns;
+    return typeof fn.decodeDownlink === 'function';
+}
+
 function loadExamples(){
-    if(fs.pathExistsSync(path.join(__dirname, "examples.json"))){
-        return fs.readJsonSync(path.join(__dirname, "examples.json"));
-    }
-    if(!fs.pathExistsSync(path.join(__dirname, "examples"))){
-        return [];
-    }
-    let examplesFiles = fs.readdirSync("examples");
+    const exPath = resolveDriverPath("examples.json");
+    if (fs.pathExistsSync(exPath)) return fs.readJsonSync(exPath);
+
+    const folder = resolveDriverPath("examples");
+    if (!fs.pathExistsSync(folder)) return [];
+
+    const examplesFiles = fs.readdirSync(folder);
     let examples = [];
-    for (const exampleFile of examplesFiles) {
-        if (exampleFile.endsWith(".examples.json")) {
-            let neWExamples = fs.readJsonSync(path.join(__dirname, "examples", exampleFile));
-            for(const example of neWExamples){
-                if(example.type === "uplink"){
-                    let wrappedExample = {
-                        type: example.type,
-                        description: example.description,
+    for (const file of examplesFiles) {
+        if (file.endsWith(".examples.json")) {
+            const data = fs.readJsonSync(path.join(folder, file));
+            for (const ex of data) {
+                if (ex.type === "uplink") {
+                    examples.push({
+                        type: ex.type,
+                        description: ex.description,
                         input: {
-                            bytes: example.bytes,
-                            fPort: example.fPort,
-                            time: example.time,
-                            thing: example.thing
+                            bytes: ex.bytes,
+                            fPort: ex.fPort,
+                            time: ex.time,
+                            thing: ex.thing
                         },
-                        output: example.data
-                    }
-                    examples.push(wrappedExample);
-                } else if(example.type === "downlink"){
-                    if(isDownlinkDecodeDefined){
-                        let wrappedDecodeDownlink = {
+                        output: ex.data
+                    });
+                } else if (ex.type === "downlink") {
+                    if (isDownlinkDecodeDefined) {
+                        examples.push({
                             type: "downlink-decode",
-                            description: example.description,
+                            description: ex.description,
                             input: {
-                                bytes: example.bytes,
-                                fPort: example.fPort,
-                                time: example.time,
-                                thing: example.thing
+                                bytes: ex.bytes,
+                                fPort: ex.fPort,
+                                time: ex.time,
+                                thing: ex.thing
                             },
-                            output: example.data
-                        }
-                        examples.push(wrappedDecodeDownlink);
+                            output: ex.data
+                        });
                     }
-                    let wrappedEncodeDownlink = {
+                    examples.push({
                         type: "downlink-encode",
-                        description: example.description,
+                        description: ex.description,
                         input: {
-                            data: example.data,
-                            fPort: example.fPort
+                            data: ex.data,
+                            fPort: ex.fPort
                         },
                         output: {
-                            bytes: example.bytes,
-                            fPort: example.fPort,
+                            bytes: ex.bytes,
+                            fPort: ex.fPort
                         }
-                    }
-                    examples.push(wrappedEncodeDownlink);
+                    });
                 }
             }
         }
@@ -174,26 +162,23 @@ function loadExamples(){
 
 // Load error examples
 function loadErrors() {
-    if(!fs.pathExistsSync(path.join(__dirname, "errors"))){
-        return [];
-    }
-    let errorFiles = fs.readdirSync("errors");
+    const folder = resolveDriverPath("errors");
+    if (!fs.pathExistsSync(folder)) return [];
+    const files = fs.readdirSync(folder);
     let errors = [];
-    for (const errorFile of errorFiles) {
-        if (errorFile.endsWith(".errors.json")) {
-            errors = examples.concat(fs.readJsonSync(path.join(__dirname, "errors", errorFile)));
+    for (const file of files) {
+        if (file.endsWith(".errors.json")) {
+            errors = examples.concat(fs.readJsonSync(path.join(folder, file)));
         }
     }
     return errors;
 }
 
-// Load driver code based on main file
 function loadCode() {
-    const packageJson = fs.readJsonSync(path.join(__dirname, "package.json"));
-    return fs.readFileSync(path.join(__dirname, packageJson.main), "utf8");
+    const packageJson = fs.readJsonSync(resolveDriverPath("package.json"));
+    return fs.readFileSync(resolveDriverPath(packageJson.main), "utf8");
 }
 
-// Load appropriate function call wrapper based on signature
 function whichSignatureCall() {
     let fnCallRef;
     switch (signature){
@@ -203,8 +188,8 @@ function whichSignatureCall() {
         case "lora-alliance":
         default: fnCallRef = "loraAllianceFnCall.js"; break;
     }
-    return fs.readFileSync(path.join(__dirname, "../../../..", "iso-libraries", fnCallRef), "utf8");
-};
+    return fs.readFileSync(path.join(__dirname, "../", "iso-libraries", fnCallRef), "utf8");
+}
 
 // Determine trust status of the driver
 function isTrusted() {
@@ -256,4 +241,3 @@ const listProperties = (obj, parent = '', result = []) => {
     }
     return result;
 };
-
