@@ -9,6 +9,6 @@ module.exports = {
     libraryTarget: 'umd',
     globalObject: 'this',
   }
-  };
+};
 
 
