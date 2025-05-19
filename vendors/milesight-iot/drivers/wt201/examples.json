@@ -1,0 +1,133 @@
+[
+  {
+    "type": "uplink",
+    "description": "Uplink containing",
+    "input": {
+      "bytes": "036702010467A60005E70006E80007BC00",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "fan_mode": "auto",
+        "fan_status": "standby",
+        "plan_event": "not executed",
+        "temperature": 25.8,
+        "temperature_ctl_mode": "heat",
+        "temperature_ctl_status": "standby",
+        "temperature_target": 16.6
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Uplink containing",
+    "input": {
+      "bytes": "8367FB0009",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "temperature": 25.1,
+        "temperature_alarm": "threshold alarm"
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Uplink containing",
+    "input": {
+      "bytes": "20CE5C470A65D09EC091",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "history": [
+          {
+            "fan_mode": "auto",
+            "fan_status": "standby",
+            "system_status": "on",
+            "temperature": 27,
+            "temperature_ctl_mode": "heat",
+            "temperature_ctl_status": "standby",
+            "temperature_target": 16.6,
+            "timestamp": 1695172444
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Uplink containing",
+    "input": {
+      "bytes": "FFCB0D1101FFCA158004",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "ob_mode": "heat",
+        "temperature_ctl_mode_enable": ["heat", "cool", "auto"],
+        "temperature_ctl_status_enable": ["stage-1 heat", "aux heat", "stage-1 cool"],
+        "wires": ["y1", "gh", "ob", "aux"]
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Uplink containing",
+    "input": {
+      "bytes": "FFC900000000B302FFC9020101280000",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "plan_schedule": [
+          {
+            "index": 1,
+            "plan_enable": "disable",
+            "time": "11:31",
+            "type": "wake",
+            "week_recycle": []
+          },
+          {
+            "index": 2,
+            "plan_enable": "enable",
+            "time": "0:00",
+            "type": "home",
+            "week_recycle": [
+              "Wed.",
+              "Fri."
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Uplink containing",
+    "input": {
+      "bytes": "FFC80303014E36",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "plan_settings": [
+          {
+            "fan_mode": "on",
+            "temperature_ctl_mode": "auto",
+            "temperature_error": 5.4,
+            "temperature_target": 78,
+            "type": "sleep"
+          }
+        ]
+      }
+    }
+  }
+]
