@@ -4,16 +4,12 @@ name: MLRTPS
 description: "MLR003 is a Wallmount thermostat with Temperature, presence sensor and Set Point Adjustment."
 # Logo of the device
 logo: micropelt-mlrtps.png
-# Product name & Version
-product:
-    name: MICR/MLRTPS
-    version: 1
 # ID(s) of the profile that defines the LoRaWAN characteristics of this model.
 # id: as defined under /profiles.
 # lorawanDeviceProfileID: as defined by LoRa Alliance in https://lora-alliance.org/wp-content/uploads/2020/10/LoRa_Alliance_Vendor_ID_for_QR_Code_02142022.pdf.
 # The lorawanDeviceProfileID consists of 8 upper-case hexadecimal characters, 4 characters for VendorID + 4 characters for VendorProfileID. Please consider using single (') or double (") quotation.
 deviceProfileIds:
-    - id: MICR/MLRTPS
+    - id: micropelt_RFGroup1_1.0.3a_classA
  
 # You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
 # Maximum device TX Conducted output power in dBm. 
@@ -32,10 +28,10 @@ motionIndicator: near_static
 LoRaWANCertified: true
 # Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
 # Format: `<8 characters max>:<16 characters max>:<digits only>`
-modelId: microplt:mlrtps:1
+modelId: micropelt:mlrtps:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId: 
-    - os1-micr:mlrtps:1
+    - micropelt:mlrtps:1
 # DataSheet URL (optional) 
 specificationURL: https://micropelt.atlassian.net/wiki/spaces/MH/pages/143065107/MLRTPS1iEU-07+Title+Page
 # User Guide URL (optional) 
@@ -45,7 +41,7 @@ sensors:
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
-    os1-micr:mlrtps:1:
+    micropelt:mlrtps:1:
     - "FPort 1 Basic Device Data #1"
     - "FPort 1 Basic Device Data #2"
     - "FPort 1 Basic Device Data #3"
