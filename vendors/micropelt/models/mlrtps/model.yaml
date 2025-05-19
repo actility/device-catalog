@@ -1,19 +1,19 @@
 # Commercial name of the model 
-name: MLR003
+name: MLRTPS
 # Functional description of the product. Maximum 500 characters. 
-description: "MLR003 is a maintenance free, intelligent thermostatic radiator valve actuator."
+description: "MLR003 is a Wallmount thermostat with Temperature, presence sensor and Set Point Adjustment."
 # Logo of the device
-logo: micropelt-mlr003.png
+logo: micropelt-mlrtps.png
 # Product name & Version
 product:
-    name: MICR/ML003
+    name: MICR/MLRTPS
     version: 1
 # ID(s) of the profile that defines the LoRaWAN characteristics of this model.
 # id: as defined under /profiles.
 # lorawanDeviceProfileID: as defined by LoRa Alliance in https://lora-alliance.org/wp-content/uploads/2020/10/LoRa_Alliance_Vendor_ID_for_QR_Code_02142022.pdf.
 # The lorawanDeviceProfileID consists of 8 upper-case hexadecimal characters, 4 characters for VendorID + 4 characters for VendorProfileID. Please consider using single (') or double (") quotation.
 deviceProfileIds:
-    - id: MICR/ML003A.1.0.3a_ETSI
+    - id: MICR/MLRTPS
  
 # You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
 # Maximum device TX Conducted output power in dBm. 
@@ -32,12 +32,12 @@ motionIndicator: near_static
 LoRaWANCertified: true
 # Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
 # Format: `<8 characters max>:<16 characters max>:<digits only>`
-modelId: microplt:mlr003:1
+modelId: microplt:mlrtps:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId: 
-    - os1-micr:mlr003:1
+    - os1-micr:mlrtps:1
 # DataSheet URL (optional) 
-specificationURL: https://micropelt.atlassian.net/wiki/spaces/MH/pages/19300575/MLR003RiEU61-07+Title+Page
+specificationURL: https://micropelt.atlassian.net/wiki/spaces/MH/pages/143065107/MLRTPS1iEU-07+Title+Page
 # User Guide URL (optional) 
 userGuideURL: 
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
@@ -45,26 +45,10 @@ sensors:
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
-    os1-micr:mlr003:1:
-        - "FPort 1 Basic Device Data #1"
-        - "FPort 2 Device Version"
-        - "FPort 3 Motor Travel Distance"
-        - "FPort 4 LoRa Spread Factor #1"
-        - "FPort 4 LoRa Spread Factor #2"
-        - "FPort 4 Wrong LoRa Spread Factor"
-        - "FPort 5 Opening Point Detction and Slow Harvesting #1"
-        - "FPort 5 Opening Point Detction and Slow Harvesting #2"
-        - "FPort 6 Temperature Drop Detection"
-        - "FPort 7 PID Parameters"
-        - "FPort 15 On/Off"
-        - "FPort 1 Downlink"
-        - "FPort 3 Downlink"
-        - "FPort 4 Downlink #1"
-        - "FPort 4 Downlink #2"
-        - "FPort 5 Downlink"
-        - "FPort 6 Downlink"
-        - "FPort 7  Downlink"
-        - "FPort 9 Downlink"
-        - "FPort 10  Downlink"
-        - "FPort 11 Downlink"
-        - "FPort 15 Downlink"
+    os1-micr:mlrtps:1:
+    - "FPort 1 Basic Device Data #1"
+    - "FPort 1 Basic Device Data #2"
+    - "FPort 1 Basic Device Data #3"
+    - "FPort 1 Basic Device Data #4"
+    - "FPort 1 Basic Device Data #5"
+
