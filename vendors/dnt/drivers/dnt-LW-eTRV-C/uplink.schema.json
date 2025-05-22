@@ -1,0 +1,56 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+      "type": "object",
+      "properties": {
+        "battery_cover_locked": {
+          "type": "boolean"
+        },
+        "battery_voltage": {
+          "type": "number"
+        },
+        "heating_control": {
+          "type": "object",
+          "properties": {
+            "mode": {
+              "type": "object",
+              "properties": {
+                "active_mode": {
+                  "type": "string"
+                },
+                "holiday": {
+                  "type": "object",
+                  "properties": {
+                    "is_pending": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "window_open_detection": {
+                  "type": "object",
+                  "properties": {
+                    "is_open": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "room_temperature": {
+            "type": "number"
+          },
+          "set_point_temperature": {
+            "type": "number"
+          },
+          "valve_position": {
+            "type": "number"
+          }
+        }
+      },
+      "additionalProperties": false
+  },
+  "additionalProperties": false
+}
