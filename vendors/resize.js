@@ -5,6 +5,7 @@ const sharp = require('sharp');
 
 async function resizeImages() {
     const vendors = fs.readdirSync(path.join(__dirname, '../vendors')).filter(folder => !folder.includes(".js"));
+    console.log("Number of vendors: " + vendors.length);
     for(let vendor of vendors) {
         const vendorPath = path.join(__dirname, '../vendors', vendor);
         const vendorYamlPath = path.join(vendorPath, "vendor.yaml");
@@ -19,31 +20,36 @@ async function resizeImages() {
             }
         }
 
-        if(fs.readdirSync(vendorPath).includes("mdoels")){
+        if(fs.readdirSync(vendorPath).includes("models")){
             const models = fs.readdirSync(path.join(vendorPath, "models"));
             for(let model of models) {
                 const modelPath = path.join(vendorPath, "models", model);
                 const modelImages = fs.readdirSync(modelPath).filter(file => file.includes(".png") || file.includes(".jpeg") || file.includes(".jpg"));
                 for(let modelImage of modelImages) {
                     const logoPath = path.join(modelPath, modelImage);
-                    const outputPath = path.join(modelOPath, "resized_" + modelImage);
-                    await resizeLogo(logoPath, outputPath);
+                    const outputPath = path.join(modelPath, "resized_" + modelImage);
+                    try {
+                        await resizeLogo(logoPath, outputPath);
+                    }
+                    catch(err) {
+                        console.log("Fail resize: " + logoPath);
+                    }
                 }
             }
         }
     }
+    console.log("Number of failed renames: " + failedRenames);
+    const filePath = path.join(__dirname, "./missingResize.txt");
+    fs.writeFileSync(filePath, missingImages);
 }
-
-let index = 0;
 
 async function resizeLogo(inputPath, outputPath) {
     try {
         const metadata = await sharp(inputPath).metadata();
         const { width, height } = metadata;
 
-        if(Math.abs(width - 300) < 100 && Math.abs(height - 300) < 100) {
-            index += 1;
-            console.log(index);
+        if(Math.abs(width - 300) > 100 || Math.abs(height - 300) > 100) {
+            
         }
 
         await sharp(inputPath)
@@ -55,27 +61,28 @@ async function resizeLogo(inputPath, outputPath) {
 
         changeName(outputPath, inputPath);
     } catch (err) {
-        console.error(inputPath, '\nError resizing image:', err);
+        console.error("Fail resize: " + inputPath);
         addImagePath(inputPath);
     }
 }
 
+let missingImages = "";
+
 function addImagePath(pathImage) {
-    const filePath = path.join(__dirname, "./missingResize.txt");
-    let missingImages = "";
-    if(fs.existsSync(filePath)) {
-        missingImages = fs.readFileSync(filePath, 'utf-8');
-    }
     missingImages += "\n" + pathImage;
-    fs.writeFileSync(filePath, missingImages);
 }
+
+let failedRenames = 0;
 
 function changeName(outputFile, originalName) {
     try {
         fs.unlinkSync(originalName);
         fs.renameSync(outputFile, originalName);
     }
-    catch {}
+    catch {
+        failedRenames++;
+        console.log("Fail rename: " + outputFile);
+    }
 }
 
 resizeImages();
