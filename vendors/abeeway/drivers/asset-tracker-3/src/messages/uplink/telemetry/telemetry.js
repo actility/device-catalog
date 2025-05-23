@@ -119,22 +119,20 @@ function decodeMeasurementConfigBytes(byte1, byte2) {
     };
 }
 
-function decodeTimeseriesPayload(telemetryPayload) {
+function decodeTimeseriesPayload(telemetryPayload, timestamp) {
     const errors = [];
 
     if (telemetryPayload.length < 4) {
         errors.push("Telemetry payload too short for timeseries decoding");
         return { errors };
     }
-
     const byte0 = telemetryPayload[0];
     const telemetryId = (byte0 >> 4) & 0x07;
     const alarmTrigger = (byte0 & 0x01) === 1;
 
     const byte1 = telemetryPayload[1];
-    const cyclicVersion = (byte1 >> 4) & 0x0F;
-    const cyclicCounter = byte1 & 0x0F;
-
+    const cyclicVersion = (byte1 >> 5) & 0x07;
+    const cyclicCounter = byte1 & 0x1F;
     const metadataHistory = context.shift();
     let metadata = Object.values(metadataHistory).find(t => t.telemetryId === telemetryId);
 
@@ -142,7 +140,7 @@ function decodeTimeseriesPayload(telemetryPayload) {
         errors.push(`Missing or mismatched metadata for TelemetryID=${telemetryId}, CyclicVersion=${cyclicVersion}`);
         return { errors };
     }
-
+    const measurementNMaxInterval = metadata.measurementNMaxInterval
     const { codingPolicy, dataType, scalingFactor } = metadata.measurementConfig;
     const measurementData = telemetryPayload.slice(2);
     let measurements = [];
@@ -155,28 +153,53 @@ function decodeTimeseriesPayload(telemetryPayload) {
 
             while (i >= 0) {
                 const byte = buffer[i];
-                const isDelta = (byte >> 7 & 0x01) !== 0;
+                const isDelta = ((byte >> 7) & 0x01) !== 0;
 
                 if (!isDelta) {
-                    currentValue = buffer[i - 1];
+                    // Read a raw 16-bit signed value from two bytes (little endian)
+                    if (i < 1) {
+                        errors.push("Invalid buffer: not enough bytes for 16-bit value");
+                        break;
+                    }
+                    const lsb = buffer[i - 1]; // least significant byte
+                    const msb = buffer[i]; /// most significant byte
+                    const raw = (msb << 8) | lsb; 
+                    
+                     // Convert raw 16-bit to signed integer
+                    currentValue = raw >= 0x8000 ? raw - 0x10000 : raw;
                     result.push(currentValue);
-                    i -= 1;
+
+                    i -= 2;  // consumed 2 bytes for the raw value
                 } else {
-                    const signBit = byte >> 6 & 0x11;
+                    // Decode a compressed delta value in a single byte
+                    const signBit = (byte >> 6) & 0x01;
                     const num = byte & 0x3F;
 
-                    let delta = (signBit) ? (64 - num) * -1 : num ;
+                    // Compute signed delta: negative if signBit=1
+                    const delta = signBit ? (num - 64) : num;
+
                     currentValue += delta;
                     result.push(currentValue);
+
+                    i -= 1; // On a consommé 1 octet delta
                 }
-                i--
             }
-            measurements = result;
+
+            // Le résultat est construit à l’envers, on inverse pour ordre chronologique
+            measurements = result.reverse();
         } else {
             errors.push("Unsupported coding policy or data type for delta decoding");
         }
-
-    const scaledMeasurements = measurements.map(m => parseFloat((m * scalingFactor).toFixed(2)));
+    //Associate timestamp with each measurement 
+    const baseTime = new Date(timestamp);
+    const scaledMeasurements = measurements.map((m, index) => {
+        // Each measurement is spaced by measurementNMaxInterval seconds
+        const secondsAgo =  index * measurementNMaxInterval;
+        return {
+            timestamp: new Date(baseTime.getTime() - secondsAgo * 1000).toISOString(),
+            value: parseFloat((m * scalingFactor).toFixed(2))
+        };
+    });
 
     if (errors.length > 0) {
         return { errors: errors, warnings: [] };
@@ -193,7 +216,7 @@ function decodeTimeseriesPayload(telemetryPayload) {
     };
 }
 
-function decodeTelemetry(payload) {
+function decodeTelemetry(payload, timestamp) {
     if (!(payload instanceof Buffer)) {
         try {
             payload = Buffer.from(payload, typeof payload === "string" ? "hex" : undefined);
@@ -227,7 +250,7 @@ function decodeTelemetry(payload) {
             TelemetryIDs: [result.data]
         };
     } else {
-        const telemetryResult = decodeTimeseriesPayload(telemetryPayload);
+        const telemetryResult = decodeTimeseriesPayload(telemetryPayload, timestamp);
         if (telemetryResult.measurementConfig === undefined) {
             return {
                 errors: telemetryResult.errors,

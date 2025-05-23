@@ -57,7 +57,7 @@ function decodeUplink(input) {
                 decodedData.response = responseClass.determineResponse(payload, multiFrame);
                 break;
             case abeewayUplinkPayloadClass.messageType.TELEMETRY:
-                decodedData.telemetry = telemetryClass.decodeTelemetry(payload);
+                decodedData.telemetry = telemetryClass.decodeTelemetry(payload,decodedData.header.timestamp);
                 break;
         }
         decodedData = removeEmpty(decodedData);
@@ -152,5 +152,3 @@ module.exports = {
     decodeDownlink: decodeDownlink,
     encodeDownlink: encodeDownlink
 }
-
-//console.log(decodeUplink({recvTime: "2025-03-01T13:04:27.000+02:00", bytes: "2864871d80010000003c050091010384003c050ea2010000003c050e", "fPort":3}));
