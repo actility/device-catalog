@@ -8,7 +8,13 @@ const ivm = require("isolated-vm");
 const DRIVER_PATH = path.resolve(process.env.DRIVER_PATH || __dirname);
 const resolveDriverPath = (...paths) => path.join(DRIVER_PATH, ...paths);
 const baseDir = path.join(DRIVER_PATH.replace("device-catalog", "device-catalog-private"));
-const { extractPoints } = require(baseDir + "/extractPoints.js");
+
+let extractPoints; 
+const extractPointsPath = path.join(baseDir, "extractPoints.js");
+if(fs.existsSync(extractPointsPath)) {
+    extractPoints = require(extractPointsPath).extractPoints;
+}
+
 
 /**
  * Read predefined Isolated Buffer that acts exactly as the NodeJs Buffer library to prevent access to external from the isolated sandbox
@@ -349,34 +355,36 @@ describe("Legacy Decode downlink errors", () => {
     });
 });
 
-describe("extractPoints - should extract expected points from decoded uplink", () => {
-    examples.forEach((example, index) => {
-        if (example.type === "uplink" && example.output?.data && example.points) {
-            test(`${index + 1} - ${example.description}`, () => {
-                const decoded = example.output.data;
-                const result = extractPoints({ message: decoded });
-                const expectedPoints = example.points;
+if(extractPoints) {
+    describe("extractPoints - should extract expected points from decoded uplink", () => {
+        examples.forEach((example, index) => {
+            if (example.type === "uplink" && example.output?.data && example.points) {
+                test(`${index + 1} - ${example.description}`, () => {
+                    const decoded = example.output.data;
+                    const result = extractPoints({ message: decoded });
+                    const expectedPoints = example.points;
 
-                for (const key in expectedPoints) {
-                    expect(result).toHaveProperty(key);
+                    for (const key in expectedPoints) {
+                        expect(result).toHaveProperty(key);
 
-                    const expected = expectedPoints[key];
-                    const actual = result[key];
+                        const expected = expectedPoints[key];
+                        const actual = result[key];
 
-                    if ('record' in expected) {
-                        expect(actual).toHaveProperty('record');
-                        expect(actual.record).toEqual(expected.record);
-                    } else if ('records' in expected) {
-                        expect(actual).toHaveProperty('records');
-                        expect(actual.records).toEqual(expected.records);
+                        if ('record' in expected) {
+                            expect(actual).toHaveProperty('record');
+                            expect(actual.record).toEqual(expected.record);
+                        } else if ('records' in expected) {
+                            expect(actual).toHaveProperty('records');
+                            expect(actual.records).toEqual(expected.records);
+                        }
+
+                        expect(actual.unitId).toEqual(expected.unitId);
                     }
-
-                    expect(actual.unitId).toEqual(expected.unitId);
-                }
-            });
-        }
+                });
+            }
+        });
     });
-});
+}
 
 describe("Legacy Encode downlink errors", () => {
     errors.forEach((error) => {
