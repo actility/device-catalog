@@ -1090,3 +1090,5 @@ function translate(iotnode) {
         return null;
     }
 }
+
+exports.decodeUplink = decodeUplink;
