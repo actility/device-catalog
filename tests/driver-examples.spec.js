@@ -7,7 +7,10 @@ const ivm = require("isolated-vm");
 
 const DRIVER_PATH = path.resolve(process.env.DRIVER_PATH || __dirname);
 const resolveDriverPath = (...paths) => path.join(DRIVER_PATH, ...paths);
-const baseDir = path.join(DRIVER_PATH.replace("device-catalog", "device-catalog-private"));
+let baseDir = DRIVER_PATH;
+if(!baseDir.includes("device-catalog-private")) {
+    baseDir = path.join(baseDir.replace("device-catalog", "device-catalog-private"));
+}
 
 let extractPoints; 
 const extractPointsPath = path.join(baseDir, "extractPoints.js");
