@@ -169,26 +169,36 @@ function decodeTimeseriesPayload(telemetryPayload, timestamp) {
             const isDelta = ((byte >> 7) & 0x01) !== 0;
 
             if (!isDelta) {
+                // Read a raw 16-bit signed value from two bytes (little endian)
                 if (i < 1) {
                     throw new Error("Invalid buffer: not enough bytes for 16-bit value");
                     break;
                 }
-                const lsb = buffer[i - 1];
-                const msb = buffer[i];
+                const lsb = buffer[i - 1]; // least significant byte
+                const msb = buffer[i]; /// most significant byte
                 const raw = (msb << 8) | lsb;
+
+                // Convert raw 16-bit to signed integer
                 currentValue = raw >= 0x8000 ? raw - 0x10000 : raw;
                 result.push(currentValue);
-                i -= 2;
+
+                i -= 2;  // consumed 2 bytes for the raw value
             } else {
+                // Decode a compressed delta value in a single byte
                 const signBit = (byte >> 6) & 0x01;
                 const num = byte & 0x3F;
+
+                // Compute signed delta: negative if signBit=1
                 const delta = signBit ? (num - 64) : num;
+
                 currentValue += delta;
                 result.push(currentValue);
-                i -= 1;
+
+                i -= 1; // On a consommé 1 octet delta
             }
         }
 
+        // Le résultat est construit à l’envers, on inverse pour ordre chronologique
         measurements = result.reverse();
     } else {
         throw new Error("Unsupported coding policy or data type for delta decoding");
