@@ -1,5 +1,3 @@
-let telemetryMetadataStore = {};
-
 const CodingPolicy = Object.freeze({
     NO_COMPRESSION: "NO_COMPRESSION",
     DELTA_COMPRESSION: "DELTA_COMPRESSION",
@@ -23,7 +21,7 @@ function convert3BitToSigned(val) {
 }
 
 function decodeMetadataPayload(telemetryPayload) {
-
+    let telemetryMetadataStore = [{}];
     let offset = 0;
     while (offset + 8 <= telemetryPayload.length) {
         const block = telemetryPayload.slice(offset, offset + 8);
@@ -42,7 +40,7 @@ function decodeMetadataPayload(telemetryPayload) {
         const measurementConfigByte2 = block[7];
 
         const measurementConfig = decodeMeasurementConfigBytes(measurementConfigByte1, measurementConfigByte2);
-        telemetryMetadataStore[telemetryId] = {
+        telemetryMetadataStore[0][telemetryId] = {
             telemetryId,
             cyclicVersion,
             fixedTimeInterval,
@@ -258,7 +256,7 @@ function decodeTelemetry(payload, timestamp) {
         }
         return {
             type: "metadata",
-            TelemetryIDs: [result.data]
+            TelemetryIDs: result.data
         };
     } else {
         const telemetryResult = decodeTimeseriesPayload(telemetryPayload, timestamp);
