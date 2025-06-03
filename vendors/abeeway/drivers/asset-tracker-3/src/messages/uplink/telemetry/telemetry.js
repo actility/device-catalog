@@ -55,7 +55,7 @@ function decodeMetadataPayload(telemetryPayload) {
     if (!context) {
         throw new Error("Context doesn't exist");
     }
-
+    context = []
     context.push(telemetryMetadataStore);
 
     return { data: telemetryMetadataStore, errors: [], warnings: [] };
