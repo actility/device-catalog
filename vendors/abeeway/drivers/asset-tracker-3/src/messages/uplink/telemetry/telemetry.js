@@ -138,8 +138,7 @@ function decodeTimeseriesPayload(telemetryPayload, timestamp) {
         throw new Error("Context is empty, cannot retrieve metadata history");
     }
 
-    const metadataHistory = context.pop();
-    context = []
+    const metadataHistory = context[context.length - 1];
 
     if (!metadataHistory || Object.keys(metadataHistory).length === 0) {
         throw new Error("Metadata history is empty, cannot retrieve telemetry metadata");
