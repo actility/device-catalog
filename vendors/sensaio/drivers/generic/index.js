@@ -45,16 +45,6 @@ function binaryToFloat32(binary) {
     }
 }
 
-// Standard for ChirpStack
-function Decode(e,r) {
-    if (e==0) {
-        return;
-    }
-    var data_in = {};
-    data_in.bytes = r;
-    var data_out = decodeUplink(data_in);
-    return data_out.data; // discard errors & warnings
-}
 
 // Default Standard
 function decodeUplink(input) {
@@ -70,9 +60,9 @@ function decodeUplink(input) {
     // Check Sensor Type
     var sensorType = parseInt(dataIn.slice(-8), 2);
     if(sensorType < sensorTypes.length) {
-        return decodeTrameData(dataIn, sensorTypes[sensorType]);
+        return decodeTrameData(dataIn, sensorTypes[sensorType]).data;
     } else if (sensorType == 255) {
-        return decodeTrameConfig(dataIn, input.bytes.length);
+        return decodeTrameConfig(dataIn, input.bytes.length).data;
     } else {
         var warnings = ['Unknown sensor type'];
         var dataOut = {};
