@@ -257,7 +257,7 @@ function decodeTelemetry(payload, timestamp) {
         }
         return {
             type: "metadata",
-            TelemetryIDs: [result.data]
+            TelemetryIDs: result.data
         };
     } else {
         const telemetryResult = decodeTimeseriesPayload(telemetryPayload, timestamp);
