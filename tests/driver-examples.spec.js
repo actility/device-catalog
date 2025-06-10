@@ -433,7 +433,7 @@ function skipTypes(result, expected) {
         }
         if(skipProperty) continue;
 
-        let isDate = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z/.test(value);
+        let isDate = isValueDate(value);
         let isNumber = /[0-9]+( |.[0-9]+)/.test(value);
         isDate |= value instanceof Date;
         isNumber |= value instanceof Number;
@@ -468,6 +468,22 @@ function skipTypes(result, expected) {
             value[keys[keys.length - 1]] = displayedResult;
         }
     }
+}
+
+function isValueDate(value) {
+    if (value instanceof Date) {
+        return true;
+    }
+
+    if (typeof value === 'string') {
+        const parsedDate = new Date(value);
+
+        if (!isNaN(parsedDate.getTime())) {
+            return true;
+        }
+    }
+
+    return false;
 }
 
 function listProperties(obj, parent = '', result = []) {
