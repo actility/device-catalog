@@ -30,5 +30,128 @@
         "errors": [],
         "warnings": []
     }
+  },
+  {
+    "type": "uplink",
+    "description": "Keep-Alive 2",
+    "input": {
+      "fPort": 1,
+      "bytes": "810C9D8EA0A011F030"
+    },
+    "output": {
+        "data": {
+          "batteryVoltage": 3.5,
+          "extraFlags": {
+            "deviceAttachedToBackplate": false,
+            "deviceOnline": false,
+            "manualTempDisabled": false,
+            "motorCalibrationFailed": false
+          },
+          "motorPosition": 416,
+          "motorRange": 416,
+          "relativeHumidity": 55.47,
+          "sensorTemperature": 22.71,
+          "statusFlags": {
+            "brokenSensor": false,
+            "highMotorConsumption": false,
+            "lowMotorConsumption": false,
+            "openWindow": false
+          },
+          "targetTemperature": 12
+        },
+        "errors": [],
+        "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Command Response: Keep-Alive Period",
+    "input": {
+      "fPort": 1,
+      "bytes": "1209"
+    },
+    "output": {
+        "data": {
+          "keepAlivePeriod": 9
+        },
+        "errors": [],
+        "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Command Response: Algorithm - Integral Gain",
+    "input": {
+      "fPort": 1,
+      "bytes": "3D112233"
+    },
+    "output": {
+        "data": {
+          "integralGain": 2193.1
+        },
+        "errors": [],
+        "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Command Response: Algorithm - Value of the Integral",
+    "input": {
+      "fPort": 1,
+      "bytes": "3F0019"
+    },
+    "output": {
+        "data": {
+          "integralValue": 2.5
+        },
+        "errors": [],
+        "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Command Response: Algorithm - PI Run Period",
+    "input": {
+      "fPort": 1,
+      "bytes": "400B"
+    },
+    "output": {
+        "data": {
+          "piRunPeriod": 11
+        },
+        "errors": [],
+        "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Command Response: Algorithm - Temperature Hytheresis (THYS)",
+    "input": {
+      "fPort": 1,
+      "bytes": "42FF"
+    },
+    "output": {
+        "data": {
+          "temperatureHysteresis": 25.5
+        },
+        "errors": [],
+        "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Command Response: Device Hardware and Software Versions",
+    "input": {
+      "fPort": 1,
+      "bytes": "041242"
+    },
+    "output": {
+        "data": {
+          "hardwareVersion": "1.2",
+          "softwareVersion": "4.2"
+        },
+        "errors": [],
+        "warnings": []
+    }
   }
 ]
