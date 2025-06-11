@@ -252,6 +252,9 @@ describe("Decode uplink", () => {
                 // Given
                 const input = example.input;
 
+                // Context skip
+                if(skipContext(input)) return;
+
                 // Adaptation
                 input.bytes = adaptBytesArray(input.bytes);
 
@@ -367,6 +370,10 @@ if(extractPoints) {
     describe("extractPoints - should extract expected points from decoded uplink", () => {
         examples.forEach((example, index) => {
             if (example.type === "uplink" && example.output?.data && example.points) {
+
+                // Context skip
+                if(skipContext(example.input)) return;
+
                 test(`${index + 1} - ${example.description}`, () => {
                     const decoded = example.output.data;
                     const result = extractPoints({ message: decoded });
@@ -496,6 +503,15 @@ function isValueDate(value) {
         }
     }
 
+    return false;
+}
+
+function skipContext(input) {
+    if(driverYaml.useContext) {
+        if(input.context !== null && input.context != {}) {
+            return true;
+        }
+    }
     return false;
 }
 

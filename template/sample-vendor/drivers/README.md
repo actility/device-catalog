@@ -244,6 +244,15 @@ This context is based on DevEUI, so each device has its own context, even if sev
 
 The context in the driver's environment is an array of flexible JSON objects.
 
+#### Enable the context
+
+To enable the context, you must set <code>useContext</code> to <code>true</code> in the driver's driver.yaml as such:
+```
+# When a driver uses a context, this field must be set to true
+# https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/README.md#store-and-reload-context
+useContext: true
+```
+
 #### Store a context
 
 Inside a driver, data can be injected to the context: `context.push()`.
