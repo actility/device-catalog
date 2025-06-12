@@ -21,7 +21,7 @@ function convert3BitToSigned(val) {
 }
 
 function decodeMetadataPayload(telemetryPayload) {
-    let telemetryMetadataStore = [{}];
+    let telemetryMetadataStore = {};
     let offset = 0;
     while (offset + 8 <= telemetryPayload.length) {
         const block = telemetryPayload.slice(offset, offset + 8);
@@ -40,7 +40,7 @@ function decodeMetadataPayload(telemetryPayload) {
         const measurementConfigByte2 = block[7];
 
         const measurementConfig = decodeMeasurementConfigBytes(measurementConfigByte1, measurementConfigByte2);
-        telemetryMetadataStore[0][telemetryId] = {
+        telemetryMetadataStore[telemetryId] = {
             telemetryId,
             cyclicVersion,
             fixedTimeInterval,
@@ -51,11 +51,12 @@ function decodeMetadataPayload(telemetryPayload) {
         };
         offset += 8;
     }
-
     if (!context) {
         throw new Error("Context doesn't exist");
     }
-    context = []
+
+    // Clear context
+    context.length = 0
     context.push(telemetryMetadataStore);
 
     return { data: telemetryMetadataStore, errors: [], warnings: [] };

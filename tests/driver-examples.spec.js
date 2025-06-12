@@ -59,7 +59,7 @@ const isDownlinkDecodeDefined = (() =>{
 /**
  * Read the examples according to the signature of driver, wrap them if needed
  */
-const examples = (() =>{
+const examples = (() => {
     // for default (lora-alliance) signature,
     // all examples are stored in one file on the root `examples.json`
     if(fs.pathExistsSync(resolveDriverPath("examples.json"))){
@@ -81,8 +81,8 @@ const examples = (() =>{
     let examples = [];
     for (const exampleFile of examplesFiles) {
         if (exampleFile.endsWith(".examples.json")) {
-            let neWExamples = fs.readJsonSync(resolveDriverPath("examples/" + exampleFile));
-            for(const example of neWExamples){
+            let newExamples = fs.readJsonSync(resolveDriverPath("examples/" + exampleFile));
+            for(const example of newExamples){
                 if(example.type === "uplink"){
                     let wrappedExample = {
                         type: example.type,
@@ -252,6 +252,9 @@ describe("Decode uplink", () => {
                 // Given
                 const input = example.input;
 
+                // Context skip
+                if(skipContext(input)) return;
+
                 // Adaptation
                 input.bytes = adaptBytesArray(input.bytes);
 
@@ -263,6 +266,7 @@ describe("Decode uplink", () => {
 
                 // Adaptations
                 skipTypes(result, expected);
+                dateIsLocal(example.description, input.time ?? input.recvTime);
 
                 expect(result).toStrictEqual(expected);
             });
@@ -285,6 +289,9 @@ describe("Decode downlink", () => {
 
                 // Then
                 const expected = example.output;
+
+                // Adaptations
+                dateIsLocal(example.description, input.time ?? input.recvTime);
 
                 // Then
                 expect(result).toStrictEqual(expected);
@@ -313,6 +320,7 @@ describe("Encode downlink", () => {
                 if(expected.bytes){
                     expected.bytes = adaptBytesArray(expected.bytes);
                 }
+                dateIsLocal(example.description, input.time ?? input.recvTime);
 
                 expect(result).toStrictEqual(expected);
             });
@@ -362,6 +370,10 @@ if(extractPoints) {
     describe("extractPoints - should extract expected points from decoded uplink", () => {
         examples.forEach((example, index) => {
             if (example.type === "uplink" && example.output?.data && example.points) {
+
+                // Context skip
+                if(skipContext(example.input)) return;
+
                 test(`${index + 1} - ${example.description}`, () => {
                     const decoded = example.output.data;
                     const result = extractPoints({ message: decoded });
@@ -415,6 +427,14 @@ function adaptBytesArray(bytes){
     return bytes;
 }
 
+function dateIsLocal(description, time) {
+    if(typeof description === 'string' && typeof time === 'string') {
+        const isLocal = !/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?(Z|[+-]\d{2}:\d{2})$/.test(time);
+        if(isLocal) {
+            console.warn(description + "\nTimestamp should be UTC-relative");
+        }
+    }
+}
 
 // UTIL
 function skipTypes(result, expected) {
@@ -433,7 +453,7 @@ function skipTypes(result, expected) {
         }
         if(skipProperty) continue;
 
-        let isDate = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z/.test(value);
+        let isDate = isValueDate(value);
         let isNumber = /[0-9]+( |.[0-9]+)/.test(value);
         isDate |= value instanceof Date;
         isNumber |= value instanceof Number;
@@ -468,6 +488,31 @@ function skipTypes(result, expected) {
             value[keys[keys.length - 1]] = displayedResult;
         }
     }
+}
+
+function isValueDate(value) {
+    if (value instanceof Date) {
+        return true;
+    }
+
+    if (typeof value === 'string') {
+        const parsedDate = new Date(value);
+
+        if (!isNaN(parsedDate.getTime())) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+function skipContext(input) {
+    if(driverYaml.useContext) {
+        if(input.context !== null && input.context != {}) {
+            return true;
+        }
+    }
+    return false;
 }
 
 function listProperties(obj, parent = '', result = []) {
