@@ -1,0 +1,28 @@
+[
+  {
+    "type": "uplink",
+    "description": "uplink containing only pulse counter",
+    "input": {
+      "bytes": ["0x04", "0xF4", "0xB6", "0x64", "0x64", "0x00", "0x04"],
+      "fPort": 10,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "battery_cover_locked": true,
+          "battery_voltage":3320,
+          "heating_control": {
+            "mode": {
+              "active_mode": "Manu Temp",
+              "holiday":false,
+              "window_open_detection":false
+          },
+            "room_temperature":20.0,
+            "set_point_temperature":20.0,
+            "valve_position":0.0
+      }},
+      "errors": [],
+      "warnings": []
+    }
+  }
+]
