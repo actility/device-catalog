@@ -7,17 +7,20 @@ const ivm = require("isolated-vm");
 
 const DRIVER_PATH = path.resolve(process.env.DRIVER_PATH || __dirname);
 const resolveDriverPath = (...paths) => path.join(DRIVER_PATH, ...paths);
-let baseDir = DRIVER_PATH;
-if(!baseDir.includes("device-catalog-private")) {
-    baseDir = path.join(baseDir.replace("device-catalog", "device-catalog-private"));
+let privateDir = DRIVER_PATH;
+if(!privateDir.includes("device-catalog-private")) {
+    privateDir = path.join(privateDir.replace("device-catalog", "device-catalog-private"));
 }
 
-let extractPoints; 
-const extractPointsPath = path.join(baseDir, "extractPoints.js");
-if(fs.existsSync(extractPointsPath)) {
+let extractPoints;
+if(fs.existsSync(path.join(privateDir, "extractPoints.js"))) {
+    const extractPointsPath = path.join(privateDir, "extractPoints.js");
     extractPoints = require(extractPointsPath).extractPoints;
 }
-
+else if(fs.existsSync(resolveDriverPath("extractPoints.js"))) {
+    const extractPointsPath = resolveDriverPath("extractPoints.js");
+    extractPoints = require(extractPointsPath).extractPoints;
+}
 
 /**
  * Read predefined Isolated Buffer that acts exactly as the NodeJs Buffer library to prevent access to external from the isolated sandbox
@@ -508,7 +511,7 @@ function isValueDate(value) {
 
 function skipContext(input) {
     if(driverYaml.useContext) {
-        if(input.context !== null && input.context != {}) {
+        if(input.context !== undefined && input.context !== null && input.context != []) {
             return true;
         }
     }
