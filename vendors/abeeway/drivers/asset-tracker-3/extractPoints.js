@@ -6,29 +6,29 @@ function extractPoints(input) {
 
     let data = input.message;
 
-    if (data.header?.batteryLevel != null) {
-        result.batteryLevel = { unitID: "%", record: data.header.batteryLevel };
+    if (data.header?.batteryLevel != null && typeof data.header.batteryLevel != "string") {
+        result.batteryLevel = { unitId: "%", record: data.header.batteryLevel };
     }
 
     if (data.header?.notification?.system?.status?.batteryVoltage != null) {
-        result.batteryVoltage = { unitID: "V", record: data.header.notification.system.status.batteryVoltage };
+        result.batteryVoltage = { unitId: "V", record: data.header.notification.system.status.batteryVoltage };
     }
 
     if (data.header?.notification?.system?.status?.currentTemperature != null) {
-        result["temperature:0"] = { unitID: "Cel", record: data.header.notification.system.status.currentTemperature, nature: "current" };
+        result["temperature:0"] = { unitId: "Cel", record: data.header.notification.system.status.currentTemperature, nature: "current" };
     }
 
     if (data.header?.notification?.system?.status?.maxTemperature != null) {
-        result["temperature:1"] = { unitID: "Cel", record: data.header.notification.system.status.maxTemperature, nature: "max" };
+        result["temperature:1"] = { unitId: "Cel", record: data.header.notification.system.status.maxTemperature, nature: "max" };
     }
     if (data.notification?.accelerometer?.accelerationVector != null) {
-        result["acceleration:0"] = { unitID: "mG", record: data.notification.accelerometer.accelerationVector[0], nature: "Acceleration X" };
-        result["acceleration:1"] = { unitID: "mG", record: data.notification.accelerometer.accelerationVector[1], nature: "Acceleration Y" };
-        result["acceleration:2"] = { unitID: "mG", record: data.notification.accelerometer.accelerationVector[2], nature: "Acceleration Z" };
+        result["acceleration:0"] = { unitId: "mG", record: data.notification.accelerometer.accelerationVector[0], nature: "Acceleration X" };
+        result["acceleration:1"] = { unitId: "mG", record: data.notification.accelerometer.accelerationVector[1], nature: "Acceleration Y" };
+        result["acceleration:2"] = { unitId: "mG", record: data.notification.accelerometer.accelerationVector[2], nature: "Acceleration Z" };
     }
 
     if (data.header?.notification?.system?.status?.minTemperature != null) {
-        result["temperature:2"] = { unitID: "Cel", record: data.header.notification.system.status.minTemperature, nature: "min" };
+        result["temperature:2"] = { unitId: "Cel", record: data.header.notification.system.status.minTemperature, nature: "min" };
     }
 
     if (data.position?.gnssFix?.longitude != null) {
