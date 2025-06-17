@@ -43,8 +43,10 @@ userGuideURL: https://dnt.de/wp-content/uploads/2024/11/dnt-LW-eTRV-UM.pdf
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
   - temperature:Cel
+  - batteryVoltage:mV
+  - angle:deg
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
   dnt:lw-etrv:1:
-    - uplink containing only temperature
+    - uplink containing only pulse counter
