@@ -9,7 +9,7 @@ logo: dnt-LW-eTRV-C.png
 # lorawanDeviceProfileID: as defined by LoRa Alliance in https://lora-alliance.org/wp-content/uploads/2020/10/LoRa_Alliance_Vendor_ID_for_QR_Code_02142022.pdf.
 # The lorawanDeviceProfileID consists of 8 upper-case hexadecimal characters, 4 characters for VendorID + 4 characters for VendorProfileID. Please consider using single (') or double (") quotation.
 deviceProfileIds:
-  - id: dnt-LW_1.0.3e_classA
+  - id: dnt_RFGroup1_1.0.3e_classA
     lorawanDeviceProfileID: '08650001'
 
 
@@ -31,11 +31,11 @@ LoRaWANCertified: true
 # Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
 # Format: `<8 characters max>:<16 characters max>:<digits only>`
 # Be careful: Once you chose a model, it cannot be changed later
-modelId: dnt:dnt-lw-etrv-c:1
+modelId: dnt:lw-etrv-c:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 # Be careful: Once you chose a protocolId, it cannot be changed later
 protocolId:
-  - dnt:dnt-lw-etrv-c-protocol:1
+  - dnt:lw-etrv-c:1
 # DataSheet URL (optional)
 specificationURL: https://dnt.de/wp-content/uploads/2024/11/dnt-LW-eTRV_Produktdatenblatt_V1_2.pdf
 # User Guide URL (optional)
@@ -46,6 +46,5 @@ sensors:
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
-  dnt:dnt-lw-etrv-c-protocol:1:
+  dnt:lw-etrv-c:1:
     - uplink containing only temperature
-    - encode downlink containing temperature

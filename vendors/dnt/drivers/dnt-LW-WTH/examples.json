@@ -1,16 +1,9 @@
 [
   {
-    "type": "Status Uplink",
-    "description": "uplink containing status data",
+    "type": "uplink",
+    "description": "Uplink containing status data",
     "input": {
-      "bytes": [
-        "0x04",
-        "0x07",
-        "0x8A",
-        "0x00",
-        "0xDB",
-        "0x37"
-      ],
+      "bytes": "04078A00DB37",
       "fPort": 10,
       "recvTime": "2020-08-02T20:00:00.000+05:00"
     },
@@ -25,16 +18,16 @@
     }
   },
   {
-    "type": "set temperature",
+    "type": "uplink",
     "description": "Set-Point-Temperture Change",
     "input": {
-      "bytes": ["0x21", "0x2B"],
+      "bytes": "212B",
       "fPort": 10,
       "recvTime": "2020-08-02T20:00:00.000+05:00"
     },
     "output": {
       "data": {
-        "set_point_temperature": 21.5
+        "set_point_temperature": "21.5"
       },
       "errors": [],
       "warnings": []

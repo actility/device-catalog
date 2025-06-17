@@ -3,24 +3,53 @@
     "type": "uplink",
     "description": "uplink containing only pulse counter",
     "input": {
-      "bytes": ["0x04", "0xF4", "0xB6", "0x64", "0x64", "0x00", "0x04"],
+      "bytes": "04F4B664640004",
       "fPort": 10,
       "recvTime": "2020-08-02T20:00:00.000+05:00"
     },
     "output": {
       "data": {
-        "battery_cover_locked": true,
-          "battery_voltage":3320,
-          "heating_control": {
-            "mode": {
-              "active_mode": "Manu Temp",
-              "holiday":false,
-              "window_open_detection":false
+        "battery_cover_locked": {
+          "unit": "bool",
+          "value": true
+        },
+        "battery_voltage": {
+          "unit": "mV",
+          "value": "3320"
+        },
+        "heating_control": {
+          "mode": {
+            "active_mode": {
+              "unit": "string",
+              "value": "Manu Temp"
+            },
+            "holiday": {
+              "is_pending": {
+                "unit": "bool",
+                "value": false
+              }
+            },
+            "window_open_detection": {
+              "is_open": {
+                "unit": "bool",
+                "value": false
+              }
+            }
           },
-            "room_temperature":20.0,
-            "set_point_temperature":20.0,
-            "valve_position":0.0
-      }},
+          "room_temperature": {
+            "unit": "°C",
+            "value": "20.0"
+          },
+          "set_point_temperature": {
+            "unit": "°C",
+            "value": "20.0"
+          },
+          "valve_position": {
+            "unit": "%",
+            "value": "0.0"
+          }
+        }
+      },
       "errors": [],
       "warnings": []
     }

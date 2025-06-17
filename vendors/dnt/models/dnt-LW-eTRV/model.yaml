@@ -1,15 +1,15 @@
 # Commercial name of the model
-name: LoRaWAN® Wall Thermostat
+name: LoRaWAN® Radiator thermostat
 # Functional description of the product. Maximum 500 characters.
-description: The dnt LoRaWAN® Wall Thermostat (dnt-lw-wth) controls the heating or air conditioning of the room. It measures the room temperature and humidity and shows it on the integrated Display. For automatic adjustment of the room temperature, the user can configure three profiles with each up to ten temperature changes a day. Other features are the window-open detection, a holiday mode, an energy-saving mode and various configuration options through LoRaWAN downlinks. Through our low power design, the device consumes only 45 uA in default mode, which results in a battery lifetime of up to 5 years.
+description: The dnt LoRaWAN® Radiator thermostat (dnt-lw-eTRV) enables remote control of the room temperature. It features three customizable heating profiles with up to ten switching times per day. Because of very low energy consumption of only 3.8 uA, a battery life up to 5 years can be archived.
 # Logo of the device
-logo: dnt-LW-WTH.png
+logo: dnt-LW-eTRV.png
 # ID(s) of the profile that defines the LoRaWAN characteristics of this model.
 # id: as defined under /profiles.
 # lorawanDeviceProfileID: as defined by LoRa Alliance in https://lora-alliance.org/wp-content/uploads/2020/10/LoRa_Alliance_Vendor_ID_for_QR_Code_02142022.pdf.
 # The lorawanDeviceProfileID consists of 8 upper-case hexadecimal characters, 4 characters for VendorID + 4 characters for VendorProfileID. Please consider using single (') or double (") quotation.
 deviceProfileIds:
-  - id: dnt-LW_1.0.3e_classA
+  - id: dnt_RFGroup1_1.0.3e_classA
     lorawanDeviceProfileID: '08650001'
 
 
@@ -31,11 +31,11 @@ LoRaWANCertified: true
 # Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
 # Format: `<8 characters max>:<16 characters max>:<digits only>`
 # Be careful: Once you chose a model, it cannot be changed later
-modelId: dnt:dnt-lw-wth:1
+modelId: dnt:lw-etrv:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 # Be careful: Once you chose a protocolId, it cannot be changed later
 protocolId:
-  - dnt:dnt-lw-wth-protocol:1
+  - dnt:lw-etrv:1
 # DataSheet URL (optional)
 specificationURL: https://dnt.de/wp-content/uploads/2024/11/dnt-LW-eTRV_Produktdatenblatt_V1_2.pdf
 # User Guide URL (optional)
@@ -43,10 +43,8 @@ userGuideURL: https://dnt.de/wp-content/uploads/2024/11/dnt-LW-eTRV-UM.pdf
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
   - temperature:Cel
-  - humidity:%RH
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
-  dnt:dnt-lw-wth-protocol:1:
-    - uplink containing only humidity
+  dnt:lw-etrv:1:
     - uplink containing only temperature
