@@ -1,3 +1,6 @@
+const crypto = require('crypto');
+const aesCmac = require('node-aes-cmac').aesCmac;
+
 // Primary VIF table according to Table 10 in 13757-3:2018
 var PriVifTable = {
     0x10: { type: "Volume", unit: "m3", resolution: 1E-6, ConversionType: "B" },
@@ -325,6 +328,23 @@ function normalize(number, resolution) {
     return Math.round(number * resolution * 1e10) / 1e10;
 }
 
+function kdf(MK, MC, MID) {
+    // Ensure MK is a Buffer of 16 bytes
+    if (!Buffer.isBuffer(MK)) MK = Buffer.from(MK, 'hex');
+    if (!Buffer.isBuffer(MC)) MC = Buffer.from(MC);
+    if (!Buffer.isBuffer(MID)) MID = Buffer.from(MID);
+
+    const msg = Buffer.concat([
+        Buffer.from([0x00]),
+        Buffer.from(MC).reverse(),
+        Buffer.from(MID).reverse(),
+        Buffer.from([0x07, 0x07, 0x07, 0x07, 0x07, 0x07, 0x07])
+    ]);
+
+    const macHex = aesCmac(MK, msg);
+    return Buffer.from(macHex, 'hex');
+}
+
 /**
  * Decode uplink
  * @param {Object} input - An object provided by the IoT Flow framework
@@ -342,6 +362,8 @@ function decodeUplink(input) {
     var i = 0;
     var configfield = 0;
     var raw = input.bytes;
+
+    var decryptedData = null;
 
     ////////////////// TPL according to EN 13757-7 //////////////////
     if (raw.length < 1) {
@@ -373,8 +395,87 @@ function decodeUplink(input) {
         return result;
     }
     if ((configfield & 0x1F00) != 0x0) { // Security mode different from 0
-        result.errors.push("Invalid uplink payload: MBus TPL encryption is not supported");
-        return result;
+
+        if((configfield & 0xFF) !== 0xFF) {
+            result.errors.push("Invalid uplink payload: Partial encryption not supported");
+            return result;
+        }
+
+        const rawBuffer = Buffer.from(raw);
+
+        if (configfield === 0xAAFF) {
+            const DEK = input.thing?.setup.DEK ?? null;
+
+            const encryptedFrame = rawBuffer.subarray(19);
+            
+            const messageCounter = Buffer.from(rawBuffer.subarray(15, 19)).reverse();
+            const serialNumber = Buffer.from(rawBuffer.subarray(1, 5)).reverse();
+
+            const nonce = Buffer.from([
+                ...rawBuffer.subarray(5, 7),
+                ...rawBuffer.subarray(1, 5),
+                ...rawBuffer.subarray(7, 8),
+                ...rawBuffer.subarray(8, 9),
+                0x00,
+                ...messageCounter
+            ]);
+
+            const adata = Buffer.concat([
+                rawBuffer.subarray(0, 1),
+                rawBuffer.subarray(9, 15)
+            ]);
+
+            const encryptionKeyK = kdf(DEK, messageCounter, serialNumber); // ← hex string
+            const key = Buffer.from(encryptionKeyK, 'hex');
+
+            const encryptedData = encryptedFrame.subarray(0, -8);
+            const authTag = encryptedFrame.subarray(-8);
+
+            const cipher = crypto.createDecipheriv('aes-128-ccm', key, nonce, {
+                authTagLength: 8,
+                plaintextLength: encryptedData.length
+            });
+
+            cipher.setAAD(adata);
+            cipher.setAuthTag(authTag);
+
+            const decrypted = Buffer.concat([
+                cipher.update(encryptedData),
+                cipher.final()
+            ]);
+
+            decryptedData = decrypted;
+        }
+        else if(configfield == 0x2AFF) {
+
+            result.errors.push("Invalid uplink payload: Long Header - Security Profile D not supported");
+            return result;
+
+            // const encryptedFrame = rawBuffer.subarray(11);
+            // const messageCounter = rawBuffer.subarray(7, 11).reverse();
+
+            // To convert to JS and adapt: inst_frame is the payload from Long Header - Security Profile D 
+            // nonce = inst_frame[5:7] + inst_frame[1:5] + inst_frame[7:8] + inst_frame[8:9] + bytes.fromhex('00') + messageCounter
+            // print("Nonce: ", nonce.hex())
+
+            // adata = raw[0:1] + raw[1:7]
+            // print("Adata: ", adata.hex())
+
+            // EncryptionKey_K = kdf( MK = DEK, MC=messageCounter, MID=serialNumber)
+            // print("EncryptionKey K: ", EncryptionKey_K.hex())
+
+            // cipher = AES.new(EncryptionKey_K, AES.MODE_CCM, nonce=nonce, mac_len=8 )
+            // cipher.update( adata )
+            // try:
+            //     decrypted_data = cipher.decrypt_and_verify(encryptedFrame[:-8], encryptedFrame[-8:])
+            //     print("Decryption was successful. Plaintext: ", decrypted_data.hex())
+            // except ValueError as e:
+            //     print("Decryption and authentication failed: ", e)
+        }
+        else {
+            result.errors.push("Invalid uplink payload: Only security mode 10 supported");
+            return result;
+        }
     }
 
     ////////////////// APL according to EN 13757-3 //////////////////
@@ -387,6 +488,17 @@ function decodeUplink(input) {
             data: {},
             profileData: {},
         };
+
+        if(decryptedData !== null) {
+            for(let j = i ; j < decryptedData.length() + i ; j++) {
+                if(j < raw.length) {
+                    raw[j] = decryptedData[j + i];
+                }
+                else {
+                    raw.push(decryptedData[j + i]);
+                }
+            }
+        }
 
         temp = raw[i];
         i++;
