@@ -90,13 +90,17 @@ const examples = (() => {
                     let wrappedExample = {
                         type: example.type,
                         description: example.description,
+                        hasOntology: example.hasOntology,
+                        useContext: example.useContext,
                         input: {
                             bytes: example.bytes,
                             fPort: example.fPort,
                             time: example.time,
-                            thing: example.thing
+                            thing: example.thing,
+                            context: example.context
                         },
-                        output: example.data
+                        output: example.data,
+                        points: example.points
                     }
                     examples.push(wrappedExample);
                 } else if(example.type === "downlink"){
@@ -235,7 +239,11 @@ async function run(input, operation){
     await context.global.set("operation", operation);
     await context.global.set("input", new ivm.ExternalCopy(input).copyInto());
     await context.global.set("exports", new ivm.ExternalCopy({}).copyInto());
-    await context.global.set("context", new ivm.ExternalCopy(input.context ? input.context : []).copyInto());
+    if(driverYaml.useContext) {
+        if(input.useContext) {
+            await context.global.set("context", new ivm.ExternalCopy(input.context ? input.context : []).copyInto());
+        }
+    }
 
     await script.run(context, { timeout: 1000 });
     const getDriverEngineResult = await context.global.get("getDriverEngineResult");
@@ -255,11 +263,12 @@ describe("Decode uplink", () => {
                 // Given
                 const input = example.input;
 
-                // Context skip
-                if(skipContext(input)) return;
-
                 // Adaptation
                 input.bytes = adaptBytesArray(input.bytes);
+
+                // Modifying input
+                input.hasOntology = example.hasOntology;
+                input.useContext = example.useContext;
 
                 // When
                 const result = await run(input, "decodeUplink");
@@ -372,14 +381,16 @@ describe("Legacy Decode downlink errors", () => {
 if(extractPoints) {
     describe("extractPoints - should extract expected points from decoded uplink", () => {
         examples.forEach((example, index) => {
-            if (example.type === "uplink" && example.output?.data && example.points) {
+            if (example.type === "uplink" && example.output?.data && example.hasOntology) {
 
-                // Context skip
-                if(skipContext(example.input)) return;
-
+                if(example.hasOntology && example.points == null) {
+                    throw new Error("Points are not defined.");
+                }
+                
                 test(`${index + 1} - ${example.description}`, () => {
                     const decoded = example.output.data;
                     const result = extractPoints({ message: decoded });
+
                     const expectedPoints = example.points;
 
                     for (const key in expectedPoints) {
@@ -506,15 +517,6 @@ function isValueDate(value) {
         }
     }
 
-    return false;
-}
-
-function skipContext(input) {
-    if(driverYaml.useContext) {
-        if(input.context !== undefined && input.context !== null && input.context != []) {
-            return true;
-        }
-    }
     return false;
 }
 
