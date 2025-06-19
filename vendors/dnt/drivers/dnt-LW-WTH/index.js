@@ -358,13 +358,13 @@ function decodeUplink(input){
     {
       decoded.copro_version = copro_version;
       
-      copro_version.fw_version = bytes[index++] + ".";
-      copro_version.fw_version += bytes[index++] + ".";
-      copro_version.fw_version += bytes[index++];
+      copro_version.fw_version = payload[index++] + ".";
+      copro_version.fw_version += payload[index++] + ".";
+      copro_version.fw_version += payload[index++];
       
-      copro_version.bl_version = bytes[index++] + ".";
-      copro_version.bl_version += bytes[index++] + ".";
-      copro_version.bl_version += bytes[index++];
+      copro_version.bl_version = payload[index++] + ".";
+      copro_version.bl_version += payload[index++] + ".";
+      copro_version.bl_version += payload[index++];
     }
     else if( next_field == GET_HW_LOCK ){
       decoded.device_hw_lock = payload[index++];
