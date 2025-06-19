@@ -238,7 +238,7 @@ function decodeSensorPayload(sensorType, binary) {
     } else if (sensorType === 'DIFF_PRES') {
         output.data.subType = parseInt(binary.slice(-4),2);
         binary = binary.slice(0, -4);
-        hasStatic = parseInt(binary.slice(-4),2);
+        var hasStatic = parseInt(binary.slice(-4),2);
         binary = binary.slice(0, -4);
         output.data.diffPressure = binaryToFloat32(binary.slice(-32));
         binary = binary.slice(0, -32);
