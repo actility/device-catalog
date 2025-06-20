@@ -404,11 +404,13 @@ function decodeUplink(input) {
         const rawBuffer = Buffer.from(raw);
 
         if (configfield === 0xAAFF) {
+            i += 2;
+
             const DEK = input.thing?.setup.DEK ?? null;
 
-            const encryptedFrame = rawBuffer.subarray(19);
-            
-            const messageCounter = Buffer.from(rawBuffer.subarray(15, 19)).reverse();
+            const messageCounter = Buffer.from(rawBuffer.subarray(i, i+4)).reverse();
+            i += 4;
+
             const serialNumber = Buffer.from(rawBuffer.subarray(1, 5)).reverse();
 
             const nonce = Buffer.from([
@@ -428,6 +430,8 @@ function decodeUplink(input) {
             const encryptionKeyK = kdf(DEK, messageCounter, serialNumber); // ← hex string
             const key = Buffer.from(encryptionKeyK, 'hex');
 
+            const encryptedFrame = rawBuffer.subarray(19);
+
             const encryptedData = encryptedFrame.subarray(0, -8);
             const authTag = encryptedFrame.subarray(-8);
 
@@ -436,7 +440,7 @@ function decodeUplink(input) {
                 plaintextLength: encryptedData.length
             });
 
-            cipher.setAAD(adata);
+            cipher.setAAD(adata, { plaintextLength: encryptedData.length });
             cipher.setAuthTag(authTag);
 
             const decrypted = Buffer.concat([
@@ -444,7 +448,7 @@ function decodeUplink(input) {
                 cipher.final()
             ]);
 
-            decryptedData = decrypted;
+            decryptedData = Array.from(Buffer.from(decrypted, 'hex'));
         }
         else if(configfield == 0x2AFF) {
 
@@ -490,7 +494,7 @@ function decodeUplink(input) {
         };
 
         if(decryptedData !== null) {
-            for(let j = i ; j < decryptedData.length() + i ; j++) {
+            for(let j = i ; j < decryptedData.length + i ; j++) {
                 if(j < raw.length) {
                     raw[j] = decryptedData[j + i];
                 }
