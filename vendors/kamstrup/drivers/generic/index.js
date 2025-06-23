@@ -496,13 +496,14 @@ function decodeUplink(input) {
         if(decryptedData !== null) {
             for(let j = i ; j < decryptedData.length + i ; j++) {
                 if(j < raw.length) {
-                    raw[j] = decryptedData[j + i];
+                    raw[j] = decryptedData[j - i];
                 }
                 else {
-                    raw.push(decryptedData[j + i]);
+                    raw.push(decryptedData[j - i]);
                 }
             }
         }
+
 
         temp = raw[i];
         i++;
