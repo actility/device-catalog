@@ -1,5 +1,4 @@
 const crypto = require('crypto');
-const { version } = require('os');
 const aesCmac = require('node-aes-cmac').aesCmac;
 
 // Primary VIF table according to Table 10 in 13757-3:2018
@@ -541,27 +540,28 @@ function decodeUplink(input) {
         }
     }
 
+    if(decryptedData !== null) {
+        for(let j = i ; j < decryptedData.length + i ; j++) {
+            if(j < raw.length) {
+                raw[j] = decryptedData[j - i];
+            }
+            else {
+                raw.push(decryptedData[j - i]);
+            }
+        }
+    }
+
     ////////////////// APL according to EN 13757-3 //////////////////
     var temp;
     var mbusRecords = [];
-    while (i < raw.length) { // Check for more records
+    let maxLength = raw.length - (decryptedData ? 10 : 0);
+    while (i < maxLength) { // Check for more records
         var record = {
             dib: {},
             vib: {},
             data: {},
             profileData: {},
         };
-
-        if(decryptedData !== null) {
-            for(let j = i ; j < decryptedData.length + i ; j++) {
-                if(j < raw.length) {
-                    raw[j] = decryptedData[j - i];
-                }
-                else {
-                    raw.push(decryptedData[j - i]);
-                }
-            }
-        }
 
 
         temp = raw[i];
@@ -578,7 +578,7 @@ function decodeUplink(input) {
             record.dib.functionfield = (temp & 0x30) >> 4;
             record.dib.storagenumber = (temp & 0x40) >> 6;
             var snBitShift = 1;
-            while ((temp & 0x80) != 0 && i < raw.length) { // Extension
+            while (((temp & 0x80) != 0 || temp == 0x13) && i < raw.length) { // Extension
                 temp = raw[i];
                 i++;
                 record.dib.storagenumber += ((temp & 0xF) << snBitShift);
@@ -588,7 +588,7 @@ function decodeUplink(input) {
             temp = raw[i];
             i++;
             var vibBytes = [temp];
-            while ((temp & 0x80) != 0 && i < raw.length) { // Extension
+            while (((temp & 0x80) != 0) && i < maxLength) { // Extension
                 temp = raw[i];
                 i++;
                 vibBytes.push(temp);

@@ -232,7 +232,7 @@ async function run(input, operation){
         return fn[operation](input);
     }
 
-    const isolate = new ivm.Isolate();
+    const isolate = new ivm.Isolate({ memoryLimit: 4096 });
     const script = isolate.compileScriptSync(isoBuffer.concat("\n" + code).concat("\n" + fnCall));
 
     const context = await isolate.createContext();
