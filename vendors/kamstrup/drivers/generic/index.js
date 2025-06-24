@@ -1,4 +1,5 @@
 const crypto = require('crypto');
+const { version } = require('os');
 const aesCmac = require('node-aes-cmac').aesCmac;
 
 // Primary VIF table according to Table 10 in 13757-3:2018
@@ -449,32 +450,90 @@ function decodeUplink(input) {
             ]);
 
             decryptedData = Array.from(Buffer.from(decrypted, 'hex'));
+
+            // Add the rest to context for future "Security Profile D - Short Header" payloads
+            // if (!context) {
+            //     throw new Error("Context doesn't exist");
+            // }
+
+            // // Clear context
+            // context.length = 0
+            // context.push({
+            //     serialNumber: rawBuffer.subarray(1, 5),
+            //     manufacturerId: rawBuffer.subarray(5, 7),
+            //     version: rawBuffer.subarray(7, 8),
+            //     deviceType: rawBuffer.subarray(8, 9)
+            // });
         }
         else if(configfield == 0x2AFF) {
+            if(!input.context) {
+                throw new Error("Context doesn't exist");
+            }
 
-            result.errors.push("Invalid uplink payload: Long Header - Security Profile D not supported");
-            return result;
+            if(input.context.length === 0) {
+                throw new Error("Context is empty. Cannot retrieve serialNumber");
+            }
 
-            // const encryptedFrame = rawBuffer.subarray(11);
-            // const messageCounter = rawBuffer.subarray(7, 11).reverse();
+            if(input.context[0]?.serialNumber == null) {
+                throw new Error("Cannot retrieve serialNumber");
+            }
 
-            // To convert to JS and adapt: inst_frame is the payload from Long Header - Security Profile D 
-            // nonce = inst_frame[5:7] + inst_frame[1:5] + inst_frame[7:8] + inst_frame[8:9] + bytes.fromhex('00') + messageCounter
-            // print("Nonce: ", nonce.hex())
+            if(input.context[0]?.manufacturerId == null) {
+                throw new Error("Cannot retrieve manufacturerId");
+            }
 
-            // adata = raw[0:1] + raw[1:7]
-            // print("Adata: ", adata.hex())
+            if(input.context[0]?.version == null) {
+                throw new Error("Cannot retrieve version");
+            }
 
-            // EncryptionKey_K = kdf( MK = DEK, MC=messageCounter, MID=serialNumber)
-            // print("EncryptionKey K: ", EncryptionKey_K.hex())
+            if(input.context[0]?.deviceType == null) {
+                throw new Error("Cannot retrieve deviceType");
+            }
 
-            // cipher = AES.new(EncryptionKey_K, AES.MODE_CCM, nonce=nonce, mac_len=8 )
-            // cipher.update( adata )
-            // try:
-            //     decrypted_data = cipher.decrypt_and_verify(encryptedFrame[:-8], encryptedFrame[-8:])
-            //     print("Decryption was successful. Plaintext: ", decrypted_data.hex())
-            // except ValueError as e:
-            //     print("Decryption and authentication failed: ", e)
+            i += 2;
+            
+            const manufacturerId = Buffer.from(input.context[0]?.manufacturerId);
+            const serialNumber = Buffer.from(input.context[0].serialNumber);
+            const version = Buffer.from(input.context[0].version);
+            const deviceType = Buffer.from(input.context[0].deviceType);
+
+            const DEK = input.thing?.setup.DEK ?? null;
+            const messageCounter = Buffer.from(rawBuffer.subarray(i, i+4)).reverse();
+            i += 4;
+
+            const nonce = Buffer.from([
+                ...manufacturerId,
+                ...serialNumber,
+                ...version,
+                ...deviceType,
+                0x00,
+                ...messageCounter
+            ]);
+
+            const adata = Buffer.from(rawBuffer.subarray(0, 7));
+
+            const encryptionKeyK = kdf(DEK, messageCounter, serialNumber.reverse());
+            const key = Buffer.from(encryptionKeyK, 'hex');
+
+            const encryptedFrame = rawBuffer.subarray(i);
+
+            const encryptedData = encryptedFrame.subarray(0, -8);
+            const authTag = encryptedFrame.subarray(-8);
+
+            const cipher = crypto.createDecipheriv('aes-128-ccm', key, nonce, {
+                authTagLength: 8,
+                plaintextLength: encryptedData.length
+            });
+
+            cipher.setAAD(adata, { plaintextLength: encryptedData.length });
+            cipher.setAuthTag(authTag);
+
+            const decrypted = Buffer.concat([
+                cipher.update(encryptedData),
+                cipher.final()
+            ]);
+
+            decryptedData = Array.from(Buffer.from(decrypted, 'hex'));
         }
         else {
             result.errors.push("Invalid uplink payload: Only security mode 10 supported");

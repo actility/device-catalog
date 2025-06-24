@@ -1003,10 +1003,54 @@
   {
     "description": "Security Profile D - Long Header",
     "type": "uplink",
-    "bytes": "72376129802D2C3516A100FFAA1001818D5B00F3485700C0D538BA81A348269C9E8C",
-    "fPort": 1,
+    "bytes": "7249437853372c3c16b110ffaa100135ea02009555f2dc06d4600cbb66c12f2fd409",
+    "fPort": 6,
     "time": "2020-08-02T20:00:00.000+05:00",
-    "thing": { "setup": { "DEK": "A9DC0F9D1905CE8238A3A3257E1392BD" } },
+    "thing": {
+      "setup": {
+        "DEK": "37AD13D9C3C0EAB3EE24625616CA7D88"
+      }
+    },
+    "useContext": true,
+    "data": {
+      "data": {
+        "values": [
+            {
+              "Timestamp": null,
+              "Type": "Module type/config number",
+              "Unit": "NA",
+              "Value": 7360750
+            },
+            {
+              "Timestamp": null,
+              "Type": "Module type/config number",
+              "Unit": "NA",
+              "Value": 7360750
+            },
+            {
+              "Timestamp": null,
+              "Type": "Module type/config number",
+              "Unit": "NA",
+              "Value": 7360750
+            }
+          ]
+      }, 
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "description": "Security Profile D - Long Header 2",
+    "type": "uplink",
+    "bytes": "72376129802D2C3516A100FFAA1001818D5B00F3485700C0D538BA81A348269C9E8C",
+    "fPort": 6,
+    "time": "2020-08-02T20:00:00.000+05:00",
+    "thing": {
+      "setup": {
+        "DEK": "A9DC0F9D1905CE8238A3A3257E1392BD"
+      }
+    },
+    "useContext": true,
     "data": { 
       "data": {
         "values": [
@@ -1035,35 +1079,29 @@
     }
   },
   {
-    "description": "Security Profile D - Long Header",
+    "description": "Security Profile D - Short Header 2",
     "type": "uplink",
-    "bytes": "7249437853372c3c16b110ffaa100135ea02009555f2dc06d4600cbb66c12f2fd409",
-    "fPort": 1,
+    "bytes": "7AC400FF2A1001D2505C007CAB536F3626FCDED7F1ABA0BA014738C3E885288C2C12C5B52F26E1535F62A1D3CD26E240B12A353ABE2AD8B98379C516",
+    "fPort": 4,
     "time": "2020-08-02T20:00:00.000+05:00",
-    "thing": { "setup": { "DEK": "37AD13D9C3C0EAB3EE24625616CA7D88" } },
-    "data": { 
+    "useContext": true,
+    "context": [
+      {
+        "serialNumber": [55, 97, 41, 128],
+        "manufacturerId": [45, 44],
+        "version": [53],
+        "deviceType": [22]
+      }
+    ],
+    "thing": {
+      "setup": {
+        "DEK": "A9DC0F9D1905CE8238A3A3257E1392BD"
+      }
+    },
+    "data": {
       "data": {
-        "values": [
-            {
-              "Timestamp": null,
-              "Type": "Module type/config number",
-              "Unit": "NA",
-              "Value": 7360750
-            },
-            {
-              "Timestamp": null,
-              "Type": "Module type/config number",
-              "Unit": "NA",
-              "Value": 7360750
-            },
-            {
-              "Timestamp": null,
-              "Type": "Module type/config number",
-              "Unit": "NA",
-              "Value": 7360750
-            }
-          ]
-      }, 
+        
+      },
       "errors": [],
       "warnings": []
     }
