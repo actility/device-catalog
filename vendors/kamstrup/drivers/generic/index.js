@@ -451,50 +451,50 @@ function decodeUplink(input) {
             decryptedData = Array.from(Buffer.from(decrypted, 'hex'));
 
             // Add the rest to context for future "Security Profile D - Short Header" payloads
-            // if (!context) {
-            //     throw new Error("Context doesn't exist");
-            // }
-
-            // // Clear context
-            // context.length = 0
-            // context.push({
-            //     serialNumber: rawBuffer.subarray(1, 5),
-            //     manufacturerId: rawBuffer.subarray(5, 7),
-            //     version: rawBuffer.subarray(7, 8),
-            //     deviceType: rawBuffer.subarray(8, 9)
-            // });
-        }
-        else if(configfield == 0x2AFF) {
-            if(!input.context) {
+            if (!context) {
                 throw new Error("Context doesn't exist");
             }
 
-            if(input.context.length === 0) {
+            // Clear context
+            context.length = 0
+            context.push({
+                serialNumber: rawBuffer.subarray(1, 5),
+                manufacturerId: rawBuffer.subarray(5, 7),
+                version: rawBuffer.subarray(7, 8),
+                deviceType: rawBuffer.subarray(8, 9)
+            });
+        }
+        else if(configfield == 0x2AFF) {
+            if(!context) {
+                throw new Error("Context doesn't exist");
+            }
+
+            if(context.length === 0) {
                 throw new Error("Context is empty. Cannot retrieve serialNumber");
             }
 
-            if(input.context[0]?.serialNumber == null) {
+            if(context[0]?.serialNumber == null) {
                 throw new Error("Cannot retrieve serialNumber");
             }
 
-            if(input.context[0]?.manufacturerId == null) {
+            if(context[0]?.manufacturerId == null) {
                 throw new Error("Cannot retrieve manufacturerId");
             }
 
-            if(input.context[0]?.version == null) {
+            if(context[0]?.version == null) {
                 throw new Error("Cannot retrieve version");
             }
 
-            if(input.context[0]?.deviceType == null) {
+            if(context[0]?.deviceType == null) {
                 throw new Error("Cannot retrieve deviceType");
             }
 
             i += 2;
             
-            const manufacturerId = Buffer.from(input.context[0]?.manufacturerId);
-            const serialNumber = Buffer.from(input.context[0].serialNumber);
-            const version = Buffer.from(input.context[0].version);
-            const deviceType = Buffer.from(input.context[0].deviceType);
+            const manufacturerId = Buffer.from(context[0]?.manufacturerId);
+            const serialNumber = Buffer.from(context[0].serialNumber);
+            const version = Buffer.from(context[0].version);
+            const deviceType = Buffer.from(context[0].deviceType);
 
             const DEK = input.thing?.setup.DEK ?? null;
             const messageCounter = Buffer.from(rawBuffer.subarray(i, i+4)).reverse();
