@@ -392,30 +392,15 @@ if(extractPoints) {
                 if(example.hasOntology && example.points == null) {
                     throw new Error("Points are not defined.");
                 }
-                
+
                 test(`${index + 1} - ${example.description}`, () => {
                     const decoded = example.output.data;
                     const result = extractPoints({ message: decoded });
 
-                    const expectedPoints = example.points;
-
-                    for (const key in expectedPoints) {
-                        expect(result).toHaveProperty(key);
-
-                        const expected = expectedPoints[key];
-                        const actual = result[key];
-
-                        if ('record' in expected) {
-                            expect(actual).toHaveProperty('record');
-                            expect(actual.record).toEqual(expected.record);
-                        } else if ('records' in expected) {
-                            expect(actual).toHaveProperty('records');
-                            expect(actual.records).toEqual(expected.records);
-                        }
-
-                        expect(actual.unitId).toEqual(expected.unitId);
-                    }
+                    const currentPoints = example.points;
+                    expect(result).toEqual(currentPoints);
                 });
+
             }
         });
     });
