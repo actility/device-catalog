@@ -229,6 +229,12 @@ async function run(input, operation){
             fn = driverModule.driver;
         }
 
+        if(driverYaml.useContext) {
+            if(input.useContext) {
+                global.context = input.context ?? [];
+            }
+        }
+
         return fn[operation](input);
     }
 
@@ -241,14 +247,14 @@ async function run(input, operation){
     await context.global.set("exports", new ivm.ExternalCopy({}).copyInto());
     if(driverYaml.useContext) {
         if(input.useContext) {
-            await context.global.set("context", new ivm.ExternalCopy(input.context ? input.context : []).copyInto());
+            await context.global.set("context", new ivm.ExternalCopy(input.context ?? []).copyInto());
         }
     }
 
     await script.run(context, { timeout: 1000 });
     const getDriverEngineResult = await context.global.get("getDriverEngineResult");
     const result = getDriverEngineResult();
-    await context.release();
+    context.release();
     return result;
 }
 
