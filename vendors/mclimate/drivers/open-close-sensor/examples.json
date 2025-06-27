@@ -1,0 +1,41 @@
+[
+  {
+    "type": "uplink",
+    "description": "Keep Alive",
+    "hasOntology": true,
+    "input": {
+      "bytes": "01AB00D91B5CAE01",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "batteryVoltage": 3,
+        "counter": 1793198,
+        "event": "keepalive",
+        "status": 1,
+        "temperature": 21.7,
+        "thermistorProperlyConnected": true
+      }
+    },
+    "points": {
+      "batteryVoltage": {
+        "unitId": "V",
+        "record": 3
+      },
+      "counter": {
+        "unitId": "count",
+        "record": 1793198
+      },
+      "temperature": {
+        "unitId": "Cel",
+        "record": 21.7
+      },
+      "status": {
+        "unitId": "state",
+        "record": true,
+        "nature": "thermistor connected"
+      }
+    }
+  }
+]
