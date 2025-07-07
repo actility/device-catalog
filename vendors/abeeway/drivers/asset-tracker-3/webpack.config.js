@@ -5,7 +5,7 @@ module.exports = {
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, './'),
-     library: 'driver',
+    library: 'driver',
     filename: 'main.js',
     libraryTarget: 'umd',
     globalObject: 'this'
