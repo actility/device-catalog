@@ -1,51 +1,41 @@
 function getDriverEngineResult() {
-    const drv =
-        (typeof driver !== 'undefined') ? driver :
-            (typeof exports !== 'undefined' && typeof exports.driver !== 'undefined') ? exports.driver :
-                (typeof exports !== 'undefined' && typeof exports.decodeUplink === 'function') ? exports :
-                    null;
+    let drv = null;
 
-    let fn = null;
+    if (typeof driver !== 'undefined') {
+        drv = driver;
+    } else if (typeof exports !== 'undefined' && typeof exports.driver !== 'undefined') {
+        drv = exports.driver;
+    } else if (typeof exports !== 'undefined' && (typeof exports.decodeUplink === 'function' || typeof exports.encodeDownlink === 'function' || typeof exports.decodeDownlink === 'function')) {
+        drv = exports;
+    }
 
-    if (drv) {
-        if (operation === 'decodeUplink' && typeof drv.decodeUplink === 'function') {
-            fn = drv.decodeUplink(input);
+    let result;
+
+    if (drv && typeof drv.decodeUplink === 'function') {
+        if (operation === 'decodeUplink') {
+            result = drv.decodeUplink(input);
         } else if (operation === 'decodeDownlink' && typeof drv.decodeDownlink === 'function') {
-            fn = drv.decodeDownlink(input);
+            result = drv.decodeDownlink(input);
         } else if (operation === 'encodeDownlink' && typeof drv.encodeDownlink === 'function') {
-            fn = drv.encodeDownlink(input);
+            result = drv.encodeDownlink(input);
         } else {
             throw new Error(`Unsupported operation ${operation}`);
         }
     } else {
-        if (operation === 'decodeUplink') {
-            if (typeof exports !== 'undefined' && typeof exports.decodeUplink === 'function') {
-                fn = exports.decodeUplink(input);
-            } else if (typeof decodeUplink === 'function') {
-                fn = decodeUplink(input);
-            }
-        } else if (operation === 'decodeDownlink') {
-            if (typeof exports !== 'undefined' && typeof exports.decodeDownlink === 'function') {
-                fn = exports.decodeDownlink(input);
-            } else if (typeof decodeDownlink === 'function') {
-                fn = decodeDownlink(input);
-            }
-        } else if (operation === 'encodeDownlink') {
-            if (typeof exports !== 'undefined' && typeof exports.encodeDownlink === 'function') {
-                fn = exports.encodeDownlink(input);
-            } else if (typeof encodeDownlink === 'function') {
-                fn = encodeDownlink(input);
-            }
-        }
-
-        if (fn === null) {
+        if (operation === 'decodeUplink' && typeof decodeUplink === 'function') {
+            result = decodeUplink(input);
+        } else if (operation === 'decodeDownlink' && typeof decodeDownlink === 'function') {
+            result = decodeDownlink(input);
+        } else if (operation === 'encodeDownlink' && typeof encodeDownlink === 'function') {
+            result = encodeDownlink(input);
+        } else {
             throw new Error(`Unsupported operation ${operation} on fallback context`);
         }
     }
 
-    if (typeof fn !== 'object') {
+    if (typeof result !== 'object') {
         throw new Error(`Unexpected result type for operation ${operation}`);
     }
 
-    return fn;
+    return result;
 }
