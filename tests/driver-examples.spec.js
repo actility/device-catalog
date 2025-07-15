@@ -90,7 +90,6 @@ const examples = (() => {
                     let wrappedExample = {
                         type: example.type,
                         description: example.description,
-                        hasOntology: example.hasOntology,
                         useContext: example.useContext,
                         input: {
                             bytes: example.bytes,
@@ -273,7 +272,6 @@ describe("Decode uplink", () => {
                 input.bytes = adaptBytesArray(input.bytes);
 
                 // Modifying input
-                input.hasOntology = example.hasOntology;
                 input.useContext = example.useContext;
 
                 // When
@@ -387,11 +385,7 @@ describe("Legacy Decode downlink errors", () => {
 if(extractPoints) {
     describe("extractPoints - should extract expected points from decoded uplink", () => {
         examples.forEach((example, index) => {
-            if (example.type === "uplink" && example.output?.data && example.hasOntology) {
-
-                if(example.hasOntology && example.points == null) {
-                    throw new Error("Points are not defined.");
-                }
+            if (example.type === "uplink" && example.output?.data && example.points) {
 
                 test(`${index + 1} - ${example.description}`, () => {
                     const decoded = example.output.data;
