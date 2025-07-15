@@ -36,7 +36,7 @@ function rebuildTime(receivedTime, seconds) {
     }
 
     // Create a Date object set to the start of the UTC day
-    const utcDate = new Date(Date.UTC(timestamp.getFullYear(), timestamp.getMonth(), timestamp.getDate(), 0, 0, 0));
+    const utcDate = new Date(Date.UTC(timestamp.getUTCFullYear(), timestamp.getUTCMonth(), timestamp.getUTCDate(), 0, 0, 0));
 
     // Calculate the total seconds since the start of the day for the received time
     const referenceTotalSeconds = (timestamp.getUTCHours() * 3600) + (timestamp.getUTCMinutes() * 60) + timestamp.getUTCSeconds();
