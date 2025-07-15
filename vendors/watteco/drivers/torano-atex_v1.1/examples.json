@@ -19,12 +19,6 @@
         "pin_state_1": true
       },
       "warnings": []
-    },
-    "hasOntology": true, "points": {
-      "status:1": {
-        "unitId": "state",
-        "record": true
-      }
     }
   },
   {
@@ -47,12 +41,6 @@
         "index_1": 0
       },
       "warnings": []
-    },
-    "hasOntology": true, "points": {
-      "counter:1": {
-        "unitId": "count",
-        "record": 0
-      }
     }
   },
   {
@@ -69,18 +57,14 @@
           {
             "variable": "0-5_V_1",
             "value": 13,
-            "date": "2023-07-19T07:51:25.508306410Z"
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "V"
           }
         ],
-        "0-5_V_1": 13
+        "0-5_V_1": 13,
+        "0-5_V_1_unit": "V"
       },
       "warnings": []
-    },
-    "hasOntology": true, "points": {
-      "voltage:1": {
-        "unitId": "V",
-        "record": 13
-      }
     }
   },
   {
@@ -97,18 +81,14 @@
           {
             "variable": "4-20_mA",
             "value": 13,
-            "date": "2023-07-19T07:51:25.508306410Z"
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "mA"
           }
         ],
-        "4-20_mA": 13
+        "4-20_mA": 13,
+        "4-20_mA_unit": "mA"
       },
       "warnings": []
-    },
-    "hasOntology": true, "points": {
-      "current": {
-        "unitId": "mA",
-        "record": 13
-      }
     }
   },
   {
@@ -179,20 +159,6 @@
         "NA": "NA"
       },
       "warnings": []
-    },
-    "hasOntology": true, "points": {
-      "status:1": {
-        "unitId": "state",
-        "record": true
-      },
-      "status:2": {
-        "unitId": "state",
-        "record": false
-      },
-      "status:3": {
-        "unitId": "state",
-        "record": false
-      }
     }
   },
   {
@@ -215,8 +181,7 @@
         "firmware": "3.5.2.5602"
       },
       "warnings": []
-    },
-    "hasOntology": true, "points": {}
+    }
   },
   {
     "type": "uplink",
@@ -232,18 +197,14 @@
           {
             "variable": "disposable_battery_voltage",
             "value": 3.688,
-            "date": "2023-07-19T07:51:25.508306410Z"
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "V"
           }
         ],
-        "disposable_battery_voltage": 3.688
+        "disposable_battery_voltage": 3.688,
+        "disposable_battery_voltage_unit": "V"
       },
       "warnings": []
-    },
-    "hasOntology": true, "points": {
-      "batteryVoltage": {
-        "unitId": "V",
-        "record": 3.688
-      }
     }
   },
   {
@@ -266,7 +227,104 @@
         "message_type": "unconfirmed"
       },
       "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Send a custom hex frame (here: read firmware version)",
+    "input": {
+      "data": {
+        "sendHexFrame": "110000000002"
+      }
     },
-    "hasOntology": true, "points": {}
+    "output": {
+      "bytes": [17, 0, 0, 0, 0, 2],
+      "fPort": 125,
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Send a custom hex frame with specific port",
+    "input": {
+      "data": {
+        "sendHexFrame": "110000000002:100"
+      }
+    },
+    "output": {
+      "bytes": [17, 0, 0, 0, 0, 2],
+      "fPort": 100,
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Set confirmed transmission mode (1=confirmed, 0=unconfirmed)",
+    "input": {
+      "data": {
+        "sendConfirmedMode": 1
+      }
+    },
+    "output": {
+      "bytes": [17, 5, 128, 4, 0, 0, 8, 1],
+      "fPort": 125,
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Reboot device",
+    "input": {
+      "data": {
+        "sendReboot": true
+      }
+    },
+    "output": {
+      "bytes": [17, 80, 0, 80, 0],
+      "fPort": 125,
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Factory reset device",
+    "input": {
+      "data": {
+        "sendFactoryReset": true
+      }
+    },
+    "output": {
+      "bytes": [17, 80, 0, 80, 7],
+      "fPort": 125,
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Set LoRa retries to 3",
+    "input": {
+      "data": {
+        "sendLoraRetries": 3
+      }
+    },
+    "output": {
+      "bytes": [17, 5, 128, 4, 0, 1, 32, 3],
+      "fPort": 125,
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "LoRa Rejoin with 60 minutes interval",
+    "input": {
+      "data": {
+        "sendLoraRejoin": 60
+      }
+    },
+    "output": {
+      "bytes": [17, 80, 128, 4, 0, 0, 60],
+      "fPort": 125,
+      "warnings": []
+    }
   }
 ]

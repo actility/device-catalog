@@ -21,10 +21,13 @@
       },
       "additionalProperties": true
     },
-    "warning": {
+    "warnings": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "errors": {
       "type": "array",
       "items": { "type": "string" }
     }
-  },
-  "required": ["data", "warning"] 
+  }
 }

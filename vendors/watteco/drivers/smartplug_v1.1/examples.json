@@ -3,16 +3,7 @@
     "type": "uplink",
     "description": "uplink standard report containing state value | payload:110A000600001001",
     "input": {
-      "_bytes": [
-        17,
-        10,
-        0,
-        6,
-        0,
-        0,
-        16,
-        1
-      ],
+      "_bytes": [17, 10, 0, 6, 0, 0, 16, 1],
       "bytes": "110A000600001601",
       "fPort": 125,
       "recvTime": "2023-07-19T07:51:25.508306410Z"
@@ -29,12 +20,6 @@
         "output": "ON"
       },
       "warnings": []
-    },
-    "hasOntology": true, "points": {
-      "status": {
-        "unitId": "state",
-        "record": true
-      }
     }
   },
   {
@@ -57,12 +42,6 @@
         "output": "OFF"
       },
       "warnings": []
-    },
-    "hasOntology": true, "points": {
-      "status": {
-        "unitId": "state",
-        "record": false
-      }
     }
   },
   {
@@ -79,12 +58,14 @@
           {
             "variable": "active_energy",
             "value": 71,
-            "date": "2023-07-19T07:51:25.508306410Z"
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "Wh"
           },
           {
             "variable": "reactive_energy",
             "value": -66,
-            "date": "2023-07-19T07:51:25.508306410Z"
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "VArh"
           },
           {
             "variable": "nb_samples",
@@ -94,43 +75,27 @@
           {
             "variable": "active_power",
             "value": 47,
-            "date": "2023-07-19T07:51:25.508306410Z"
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "W"
           },
           {
             "variable": "reactive_power",
             "value": -42,
-            "date": "2023-07-19T07:51:25.508306410Z"
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "VAr"
           }
         ],
         "active_energy": 71,
         "reactive_energy": -66,
         "nb_samples": 99,
         "active_power": 47,
-        "reactive_power": -42
+        "reactive_power": -42,
+        "active_energy_unit": "Wh",
+        "reactive_energy_unit": "VArh",
+        "active_power_unit": "W",
+        "reactive_power_unit": "VAr"
       },
       "warnings": []
-    },
-    "hasOntology": true, "points": {
-      "powerRate": {
-        "unitId": "W/h",
-        "record": 71
-      },
-      "reactiveEnergy": {
-        "unitId": "var/h",
-        "record": -66
-      },
-      "duration": {
-        "unitId": "minute",
-        "record": 99
-      },
-      "activePower": {
-        "unitId": "W",
-        "record": 47
-      },
-      "reactivePower": {
-        "unitId": "var",
-        "record": -42
-      }
     }
   },
   {
@@ -147,47 +112,56 @@
           {
             "variable": "frequency",
             "value": 30.97,
-            "date": "2023-07-19T07:51:25.508306410Z"
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "Hz"
           },
           {
             "variable": "frequency_min",
             "value": 26.601,
-            "date": "2023-07-19T07:51:25.508306410Z"
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "Hz"
           },
           {
             "variable": "frequency_max",
             "value": 22.231,
-            "date": "2023-07-19T07:51:25.508306410Z"
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "Hz"
           },
           {
             "variable": "Vrms",
             "value": 0.1,
-            "date": "2023-07-19T07:51:25.508306410Z"
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "V"
           },
           {
             "variable": "Vrms_min",
             "value": 0,
-            "date": "2023-07-19T07:51:25.508306410Z"
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "V"
           },
           {
             "variable": "Vrms_max",
             "value": 0.3,
-            "date": "2023-07-19T07:51:25.508306410Z"
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "V"
           },
           {
             "variable": "Vpeak",
             "value": 1.7,
-            "date": "2023-07-19T07:51:25.508306410Z"
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "V"
           },
           {
             "variable": "Vpeak_min",
             "value": 0,
-            "date": "2023-07-19T07:51:25.508306410Z"
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "V"
           },
           {
             "variable": "Vpeak_max",
             "value": 873.8,
-            "date": "2023-07-19T07:51:25.508306410Z"
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "V"
           },
           {
             "variable": "over_voltage",
@@ -197,6 +171,11 @@
           {
             "variable": "sag_voltage",
             "value": 2,
+            "date": "2023-07-19T07:51:25.508306410Z"
+          },
+          {
+            "variable": "brownout_number",
+            "value": 3,
             "date": "2023-07-19T07:51:25.508306410Z"
           }
         ],
@@ -210,67 +189,19 @@
         "Vpeak_min": 0,
         "Vpeak_max": 873.8,
         "over_voltage": 1,
-        "sag_voltage": 2
+        "sag_voltage": 2,
+        "brownout_number": 3,
+        "frequency_unit": "Hz",
+        "frequency_min_unit": "Hz",
+        "frequency_max_unit": "Hz",
+        "Vrms_unit": "V",
+        "Vrms_min_unit": "V",
+        "Vrms_max_unit": "V",
+        "Vpeak_unit": "V",
+        "Vpeak_min_unit": "V",
+        "Vpeak_max_unit": "V"
       },
       "warnings": []
-    },
-    "hasOntology": true, "points": {
-      "frequency:0": {
-        "nature": "current frequency",
-
-        "unitId": "Hz",
-        "record": 30.97
-      },
-      "frequency:1": {
-        "nature": "frequency min",
-        "unitId": "Hz",
-        "record": 26.601
-      },
-      "frequency:2": {
-        "nature": "frequency max",
-        "unitId": "Hz",
-        "record": 22.231
-      },
-      "rmsVoltage:0": {
-        "nature": "current Vrms",
-        "unitId": "V",
-        "record": 0.1
-      },
-      "rmsVoltage:1": {
-        "nature": "Vrms min",
-        "unitId": "V",
-        "record": 0
-      },
-      "rmsVoltage:2": {
-        "nature": "Vrms max",
-        "unitId": "V",
-        "record": 0.3
-      },
-      "voltage:0": {
-        "nature": "current volt peak",
-        "unitId": "V",
-        "record": 1.7
-      },
-      "voltage:1": {
-        "nature": "volt min",
-        "unitId": "V",
-        "record": 0
-      },
-      "voltage:2": {
-        "nature": "volt max",
-        "unitId": "V",
-        "record": 873.8
-      },
-      "counter:0": {
-        "nature": "over voltage threshold count",
-        "unitId": "count",
-        "record": 1
-      },
-      "counter:1": {
-        "nature": "sag voltage threshold count",
-        "unitId": "count",
-        "record": 2
-      }
     }
   },
   {
@@ -331,68 +262,170 @@
           {
             "variable": "ActiveEnergy",
             "value": 49,
-            "date": "2024-12-27T17:45:50.000Z"
+            "date": "2024-12-27T17:45:50.000Z",
+            "unit": "Wh"
           },
           {
             "variable": "ActiveEnergy",
             "value": 49,
-            "date": "2024-12-27T17:55:50.000Z"
+            "date": "2024-12-27T17:55:50.000Z",
+            "unit": "Wh"
           },
           {
             "variable": "ActiveEnergy",
             "value": 49,
-            "date": "2024-12-27T18:05:50.000Z"
+            "date": "2024-12-27T18:05:50.000Z",
+            "unit": "Wh"
           },
           {
             "variable": "ActiveEnergy",
             "value": 49,
-            "date": "2024-12-27T18:15:50.000Z"
+            "date": "2024-12-27T18:15:50.000Z",
+            "unit": "Wh"
           },
           {
             "variable": "ActiveEnergy",
             "value": 49,
-            "date": "2024-12-27T18:25:50.000Z"
+            "date": "2024-12-27T18:25:50.000Z",
+            "unit": "Wh"
           },
           {
             "variable": "ActiveEnergy",
             "value": 49,
-            "date": "2024-12-27T18:35:50.000Z"
+            "date": "2024-12-27T18:35:50.000Z",
+            "unit": "Wh"
           }
         ],
-        "ActiveEnergy": 49
+        "ActiveEnergy": 49,
+        "ActiveEnergy_unit": "Wh"
       },
       "warnings": []
-    },
-    "hasOntology": true, "points": {
-      "powerRate": {
-        "unitId": "W/h",
-        "records": [
-          {
-            "value": 49,
-            "eventTime": "2024-12-27T17:45:50.000Z"
-          },
-          {
-            "value": 49,
-            "eventTime": "2024-12-27T17:55:50.000Z"
-          },
-          {
-            "value": 49,
-            "eventTime": "2024-12-27T18:05:50.000Z"
-          },
-          {
-            "value": 49,
-            "eventTime": "2024-12-27T18:15:50.000Z"
-          },
-          {
-            "value": 49,
-            "eventTime": "2024-12-27T18:25:50.000Z"
-          },
-          {
-            "value": 49,
-            "eventTime": "2024-12-27T18:35:50.000Z"
-          }
-        ]
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Set onOff state to 0 (on)",
+    "input": {
+      "data": {
+        "sendOnOffState": 0
       }
+    },
+    "output": {
+      "bytes": [17, 80, 0, 6, 0, 0],
+      "fPort": 125,
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Set onOff state to 2 (toggle)",
+    "input": {
+      "data": {
+        "sendOnOffState": 2
+      }
+    },
+    "output": {
+      "bytes": [17, 80, 0, 6, 0, 2],
+      "fPort": 125,
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Send a custom hex frame (here: read firmware version)",
+    "input": {
+      "data": {
+        "sendHexFrame": "110000000002"
+      }
+    },
+    "output": {
+      "bytes": [17, 0, 0, 0, 0, 2],
+      "fPort": 125,
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Send a custom hex frame with specific port",
+    "input": {
+      "data": {
+        "sendHexFrame": "110000000002:100"
+      }
+    },
+    "output": {
+      "bytes": [17, 0, 0, 0, 0, 2],
+      "fPort": 100,
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Set confirmed transmission mode (1=confirmed, 0=unconfirmed)",
+    "input": {
+      "data": {
+        "sendConfirmedMode": 1
+      }
+    },
+    "output": {
+      "bytes": [17, 5, 128, 4, 0, 0, 8, 1],
+      "fPort": 125,
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Reboot device",
+    "input": {
+      "data": {
+        "sendReboot": true
+      }
+    },
+    "output": {
+      "bytes": [17, 80, 0, 80, 0],
+      "fPort": 125,
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Factory reset device",
+    "input": {
+      "data": {
+        "sendFactoryReset": true
+      }
+    },
+    "output": {
+      "bytes": [17, 80, 0, 80, 7],
+      "fPort": 125,
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Set LoRa retries to 3",
+    "input": {
+      "data": {
+        "sendLoraRetries": 3
+      }
+    },
+    "output": {
+      "bytes": [17, 5, 128, 4, 0, 1, 32, 3],
+      "fPort": 125,
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "LoRa Rejoin with 60 minutes interval",
+    "input": {
+      "data": {
+        "sendLoraRejoin": 60
+      }
+    },
+    "output": {
+      "bytes": [17, 80, 128, 4, 0, 0, 60],
+      "fPort": 125,
+      "warnings": []
     }
   }
 ]
