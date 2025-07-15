@@ -22,6 +22,9 @@ ISMbands: as923
 motionIndicator: RANDOM
 
 mac:
+    # This value defines the minimal required RX1 delay that allows the application server managing the device to quickly respond to an uplink packet with a downlink applicative packet.
+    minRx1Delay:    
+
     # Activation modes supported by the device (put true where applicable).
     # (ABP)
     activationByPersonalization: false
@@ -31,7 +34,7 @@ mac:
     loRaWANMacVersion: 1.0.3
     # Supported version of the LoRaWAN regional parameters (PHY) specification. Possible values are '1.0.2revA', '1.0.2revB', '1.0.2revC', 
     # '1.0.3revA', 'RP2-1.0.0', 'RP2-1.0.1', 'RP2-1.0.2', 'RP2-1.0.3', 'RP2-1.0.4', 'RP2-1.0.5'.
-    regionalParameterVersion: 1.0.3revA
+    regionalParameterVersion: RP2-1.0.3
 
     # The device Tx Power Capabilities here will not be taken into consideration if it is overwritten in the model.yaml
     devicesTxPowerCapabilities:
@@ -82,8 +85,8 @@ supportedMACCommands:
     joinRequestAccept: true
     dutyCycleReqAns: false
     linkCheckReqAns: true
-    rxParamSetupReqAns: false
-    rxTimingSetupReqAns: false
+    rxParamSetupReqAns: true
+    rxTimingSetupReqAns: true
     newChannelReqAns: true
     dlChannelReqAns: true
     txParamSetupReqAns: true
@@ -96,7 +99,3 @@ supportedMACCommands:
 # Possible values: true, false. This field is automatically forced to true for LoRaWAN MAC versions 1.0.4 and 1.1.
 devNonceCounterBased: false
 
-# ProfileID as specified by LoRa Alliance in https://lora-alliance.org/wp-content/uploads/2020/10/LoRa_Alliance_Vendor_ID_for_QR_Code_02142022.pdf. 
-# This ID consists of 8 upper-case hexadecimal characters, 4 characters for VendorID + 4 characters for VendorProfileID.
-# Please consider using single (') or double (") quotation
-lorawanDeviceProfileID:

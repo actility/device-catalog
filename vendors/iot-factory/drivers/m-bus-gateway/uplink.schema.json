@@ -1,0 +1,174 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "data" : {
+      "type": "object",
+      "properties": {
+        "battery_pct": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "frames": {
+          "type": "array",
+          "items" : {
+            "type": "object",
+            "properties" : {
+              "dif": {
+                "type": "object",
+                "properties" : {
+                  "countByte": {
+                    "type" : "number",
+                    "minimum": 0,
+                    "maximum": 12
+                  },
+                  "extension_bit": {
+                    "type" : "integer",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  "function_field": {
+                    "type" : "integer",
+                    "minimum": 0,
+                    "maximum": 3
+                  },
+                  "function_field_desc": {
+                    "type" : "string",
+                    "enum" : ["instantaneous_value", "minimum_value", "maximum_value", "selection_readout", "value_during_error_state"]
+                  },
+                  "lsb_storage_number": {
+                    "type" : "integer",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  "raw": {
+                    "type" : "integer",
+                    "minimum": 0,
+                    "maximum": 255
+                  },
+                  "type": {
+                    "type" : "string",
+                    "enum" : ["int", "bcd", "real", "selection_readout", "veriable_length", "special_function", "no_data"]
+                  }
+                }
+              },
+              "frame_isotime": {
+                "type": "string"
+              },
+              "frame_unixtime":{
+                "type": "integer"
+              },
+              "measurement":{
+                "type": "object",
+                "properties" : {
+                  "dataType": {
+                    "type" : "string",
+                    "enum" : ["instantaneous_value", "minimum_value", "maximum_value", "selection_readout", "value_during_error_state"]
+                  },
+                  "desc": {
+                    "type": "string",
+                    "enum": ["energy", "volume", "mass", "on_time", "operating_time", "power", "volume_flow", "mass_flow", "flow_temperature", "return_temperature", "temperature_difference", "external_temperature", "Pressure", "time_point_date", "time_point_date_time", "H_C_A", "reserved", "averaging_duration", "fabrication_no", "enhanced_identification", "bus_address", "any_vif", "manufacturer_specific", "Any VIF", "credit", "debit", "access_number_transmission_count", "device_type", "manufacturer", "parameter_set_identification", "hardware_version", "firmware_version", "software_version", "customer_location", "customer", "access_code_user", "access_code_operator", "access_code_system_operator", "access_code_developer", "password", "error_flags", "error_mask", "кeserved", "digital_output", "digital_input", "baudrate", "response_delay_time", "retry", "first_storage_for cyclic storage", "last_storage_for_cyclic_storage", "size_of_storage_block", "storage_interval", "duration_since_last_readout", "period_of_tariff", "dimensionless", "voltage", "current", "reset_counter", "cumulation_counter", "control_signal", "day_of_week", "week_number", "time_point_of_day_change", "state_of_parameter_activation", "special_supplier_information", "duration_since_last_cumulation", "operating_time battery", "date_and_time_of_battery_change", "cold_or_warm_temperature_limit", "cumul_count_max_power", "unknown", "" ]
+                  },
+                  "raw": {
+                    "type": "array"
+                  },
+                  "unit": {
+                    "type": "string",
+                    "enum" : ["Wh", "J", "m^3", "kg", "s", "W", "J/h", "m^3/h", "m^3/min", "m^3/s", "kg/h", "°C", "K", "bar", "-", "Units for H.C.A.", "Reserved", "", "Currency units", "Baud", "Bittimes", "V", "A", "feet^3", "American gallon", "American gallon/min", "American gallon/h", "В°F" ]
+                  },
+                  "value": {
+                    "type": "number"
+                  },
+                  "value_raw": {
+                    "oneOf": [
+                      { "type": "number" },
+                      { "type": "string", "enum": ["no_data"] }
+                    ]
+                  }
+                }
+              },
+              "medium": {
+                "type": "string",
+                "enum": ["Other", "Oil", "Electricity", "Gas", "'Heat (volume measured at return temperature: outlet)", "Steam", "Hot Water", "Water", "Heat Cost Allocator.", "Compressed Air", "Cooling load meter (volume measured at return temperature: outlet)", "Cooling load meter (volume measured at flow temperature: inlet)", "Heat (volume measured at flow temperature: inlet)", "Heat / Cooling load meter", "Bus / System", "Unknown Medium", "Reserved", "Cold Water", "Dual Water", "Pressure", "A/D Converter", "unknown" ]
+              },
+              "meter_serial_number": {
+                "type": "string"
+              },
+              "reason": {
+                "type": "string",
+                "enum": ["regular", "alarm", "unknown", "boot", "result_request"]
+              },
+              "status": {
+                  "type": "string",
+                  "enum": ["unknownw", "no_error", "application_buse", "any_application_error"]
+              },
+              "type": {
+                  "type": "string",
+                  "enum": ["MBUS"]
+              },
+              "units": {
+                  "type": "array"
+              },
+              "vif" : { 
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "array"
+                  },
+                  "extension_bit": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1
+                  },
+                  "raw": {
+                      "type": "number"
+                  },
+                  "value": {
+                      "type": "number"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "sn": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 4294967295
+        },
+        "status_decode": {
+            "type": "boolean"
+        },
+        "type_power": {
+            "type": "string",
+            "enum": ["battery", "external"]
+        },
+        "version_protocol": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 8
+        }
+      }
+    },
+    "errors": { 
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties" : {
+          "error_type" : {
+            "type": "string",
+            "enum": ["unknown_frame", "unknown_dif_in_frame_mbus", "unsupported_dif_in_frame_mbus", "unsupported_vif_in_frame_mbus", "error_parse_frame_mbus"] 
+          },
+          "error_debug_info" : {
+            "type": "string",
+            "pattern": "^type=\\w+\\|offset=\\w+$"
+          }
+        }
+      }
+    },
+
+    "warnings": { "type": "array" }
+  },
+  "additionalProperties": false
+}

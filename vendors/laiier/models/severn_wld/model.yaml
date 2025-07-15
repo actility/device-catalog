@@ -5,9 +5,12 @@ description: Severn WLD™ is a wireless smart LoRaWAN water leak detection syst
 # Logo of the device
 logo: severn-wld.jpg
 # ID(s) of the profile that defines the LoRaWAN characteristics of this model.
-deviceProfileId:
-  - laiier_RFGroup1_1.0.3a_classA
-  - laiier_RFGroup2_1.0.3a_classA
+# id: as defined under /profiles.
+# lorawanDeviceProfileID: as defined by LoRa Alliance in https://lora-alliance.org/wp-content/uploads/2020/10/LoRa_Alliance_Vendor_ID_for_QR_Code_02142022.pdf.
+# The lorawanDeviceProfileID consists of 8 upper-case hexadecimal characters, 4 characters for VendorID + 4 characters for VendorProfileID. Please consider using single (') or double (") quotation.
+deviceProfileIds:
+  - id: laiier_RFGroup1_1.0.3a_classA
+  - id: laiier_RFGroup2_1.0.3a_classA
 
 # You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings.
 # Maximum device TX Conducted output power in dBm.
@@ -40,10 +43,32 @@ userGuideURL: https://www.laiier.io/resources/severn-wld-user-manual
 sensors:
   - temperature:Cel
   - acceleration:gravity
+  - interval:minute
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
   laiier:severn-wld:1:
-    - uplink containing sensor wetness data and temperature
-    - decode downlink containing message interval and wetness threshold
-
+    - "Startup Message 1"
+    - "Startup Message 2 - Different FW version"
+    - "Startup Message 3 - too short"
+    - "Startup Message 4 - too long"
+    - "Regular Message 1"
+    - "Emergency Message 1"
+    - "Emergency Message 2 - Too long"
+    - "Emergency Message 3 - Too short"
+    - "Self Test Message 1"
+    - "Unexpected Port"
+    - "Startup Message 5 - invalid serial"
+    - "Regular Message P1 1"
+    - "Emergency Message P1 1"
+    - "Emergency Message P1 2 - Too short"
+    - "Self Test Message P1 1"
+    - "Regular Message P1 1"
+    - "Downlink 1 Profile 0"
+    - "Downlink 2 Profile 0"
+    - "Downlink 3 Profile 0"
+    - "Downlink 1 Profile 1"
+    - "Downlink 2 Profile 1"
+    - "Downlink 3 Profile 1"
+    - "Downlink 4 Profile 1"
+    - "Downlink 5 Profile 1, change to Profile 0"

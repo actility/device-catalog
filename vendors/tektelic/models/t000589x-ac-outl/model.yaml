@@ -9,8 +9,11 @@ product:
     name: TEKT/T0EN1
     version: 1
 # ID(s) of the profile that defines the LoRaWAN characteristics of this model.
-deviceProfileId: 
-    - TEKT/T0EN1A.1.0.3a_FCC
+# id: as defined under /profiles.
+# lorawanDeviceProfileID: as defined by LoRa Alliance in https://lora-alliance.org/wp-content/uploads/2020/10/LoRa_Alliance_Vendor_ID_for_QR_Code_02142022.pdf.
+# The lorawanDeviceProfileID consists of 8 upper-case hexadecimal characters, 4 characters for VendorID + 4 characters for VendorProfileID. Please consider using single (') or double (") quotation.
+deviceProfileIds: 
+    - id: TEKT/T0EN1A.1.0.3a_FCC
  
 # You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
 # Maximum device TX Conducted output power in dBm. 
@@ -29,10 +32,10 @@ motionIndicator:
 LoRaWANCertified: 
 # Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
 # Format: `<8 characters max>:<16 characters max>:<digits only>`
-modelId: tektelic:t000589x-ac-outl:0
+modelId: tektelic:t000589x-ac-outl:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId: 
-    - os1-tekt:t000589x-ac-outl:0
+    - os1-tekt:t000589x-ac-outl:1
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 
@@ -42,5 +45,5 @@ sensors:
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
-    os1-tekt:t000589x-ac-outl:0:
+    os1-tekt:t000589x-ac-outl:1:
         - "Voltmeter and Apparent Power Uplink"

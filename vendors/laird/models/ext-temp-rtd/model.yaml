@@ -9,10 +9,13 @@ product:
     name: LAIR/RSSEN
     version: 1
 # ID(s) of the profile that defines the LoRaWAN characteristics of this model.
-deviceProfileId: 
-    - LAIR/RSSENA.1.0.2b_AS923
-    - LAIR/RSSENA.1.0.2b_ETSI
-    - LAIR/RSSENA.1.0.2b_FCC
+# id: as defined under /profiles.
+# lorawanDeviceProfileID: as defined by LoRa Alliance in https://lora-alliance.org/wp-content/uploads/2020/10/LoRa_Alliance_Vendor_ID_for_QR_Code_02142022.pdf.
+# The lorawanDeviceProfileID consists of 8 upper-case hexadecimal characters, 4 characters for VendorID + 4 characters for VendorProfileID. Please consider using single (') or double (") quotation.
+deviceProfileIds: 
+    - id: LAIR/RSSENA.1.0.2b_AS923
+    - id: LAIR/RSSENA.1.0.2b_ETSI
+    - id: LAIR/RSSENA.1.0.2b_FCC
  
 # You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
 # Maximum device TX Conducted output power in dBm. 
@@ -34,7 +37,7 @@ LoRaWANCertified:
 modelId: laird:ext-temp-rtd:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId: 
-    - os1-lair:rs1xx-ext-temp-r:1
+    - laird:ext-temp-rtd:1
 # DataSheet URL (optional) 
 specificationURL: https://www.lairdconnect.com/wireless-modules/lorawan-solutions/sentrius-rs1xx-lora-enabled-sensors#specifications
 # User Guide URL (optional) 
@@ -47,15 +50,13 @@ sensors:
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
-    os1-lair:rs1xx-ext-temp-r:1:
+    laird:ext-temp-rtd:1:
         - "Send Temp and RH Aggregated Data Notification"
-        - "Send Backlog Message Notification"
-        - "Send Backlog Messages Notification"
+        - "Send Backlog Message Notification with configuration error"
+        - "Send Backlog Message Notification with server response error"
         - "Send Sensor Config Simple Notification"
         - "Send FW Version Notification"
         - "Send Battery Voltage"
-        - "Send RTD Data Notification"
-        - "Send RTD Config Advanced Notification"
         - "Generic Data Retrieval Notification"
         - "Set UTC Notification"
         - "Backoff Notification"
@@ -63,6 +64,5 @@ examples:
         - "Format Flash Log Notification"
         - "LIFO Backlog Retrieval Notification"
         - "Cancel Backlog Retrieval"
-        - "RTD Sensor Config Notification"
         - "FIFO Targeted Backlog Retrieval Notification"
         - "LIFO Targeted Backlog Retrieval Notification"

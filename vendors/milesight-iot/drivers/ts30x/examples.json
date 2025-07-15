@@ -1,0 +1,134 @@
+[
+  {
+    "type": "uplink",
+    "description": "Battery, Temperature CHN1 and Magnet CHN2",
+    "input": {
+      "bytes": "0175640367F100040001",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "battery": 100,
+        "magnet_chn2": "opened",
+        "temperature_chn1": 24.1
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Battery, Temperature CHN1 and Temperature CHN2",
+    "input": {
+      "bytes": "0175640367FB0004670101",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "battery": 100,
+        "temperature_chn1": 25.1,
+        "temperature_chn2": 25.7
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Battery, Magnet CHN1 and Magnet CHN2",
+    "input": {
+      "bytes": "017514030001040001",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "battery": 20,
+        "magnet_chn1": "opened",
+        "magnet_chn2": "opened"
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Battery, Temperature CHN1, Temperature CHN1 alarm and Temperature CHN2",
+    "input": {
+      "bytes": "01756403672701836727010004670801",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "battery": 100,
+        "temperature_chn1": 29.5,
+        "temperature_chn1_alarm": "threshold release",
+        "temperature_chn2": 26.4
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Battery, Temperature CHN1, Temperature CHN2 and Temperature CHN2 alarm",
+    "input": {
+      "bytes": "0175640367F1000467F7008467F70001",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "battery": 100,
+        "temperature_chn1": 24.1,
+        "temperature_chn2": 24.7,
+        "temperature_chn2_alarm": "threshold"
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Temperature CHN2, Temperature CHN2 change and Temperature CHN2 alarm",
+    "input": {
+      "bytes": "94D70401820002",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "temperature_chn2": 26,
+        "temperature_chn2_alarm": "mutation",
+        "temperature_chn2_change": 1.3
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "History",
+    "input": {
+      "bytes": "20CEC79AFA6444BDFFF600",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "history": [
+          {
+            "temperature_chn1": -6.7,
+            "temperature_chn2": 24.6,
+            "timestamp": 1694145223
+          }
+        ]
+      },
+      "errors": [],
+      "warnings": []
+    }
+  }
+]

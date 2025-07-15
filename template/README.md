@@ -32,10 +32,10 @@ Device catalog
     │      ├── vendor.yaml                       # Vendor information
     │      ├── logo.png                          # Logo of the vendor
     │      ├── models
-    │      │      ├── <ModelId #1>
+    │      │      ├── <Model #1>
     │      │      │      ├── model.yaml          # Information about the device
     │      │      │      └── image.png           # Image of the device
-    │      │      ├── <ModelId #2>
+    │      │      ├── <Model #2>
     │      │      │      ├── model.yaml
     │      │      │      └── image.png
     │      │      └── ... 
@@ -44,10 +44,10 @@ Device catalog
     │      │      ├── <profileId #2>.yaml 
     │      │      └── ... 
     │      └── drivers
-    │             ├── <ModelId #1>
+    │             ├── <Driver #1>
     │             │      ├── driver.yaml         # Information about your driver
     │             │      └── (driver package)    # Including code, test, examples
-    │             ├── <ModelId #2>
+    │             ├── <Driver #2>
     │             │      ├── driver.yaml
     │             │      └── (driver package) 
     │             └── ... 
@@ -71,10 +71,10 @@ Device catalog
     │      ├── vendor.yaml                       # Vendor information
     │      ├── logo.png                          # Logo of the vendor
     │      ├── models
-    │      │      ├── <ModelId #1>
+    │      │      ├── <Model #1>
     │      │      │      ├── model.yaml          # Information about the device
     │      │      │      └── image.png           # Image of the device
-    │      │      ├── <ModelId #2>_v<version>
+    │      │      ├── <Model #2>_v<version>
     │      │      │      ├── model.yaml
     │      │      │      └── image.png
     │      │      └── ... 
@@ -83,10 +83,10 @@ Device catalog
     │      │      ├── <profileId #2>.yaml 
     │      │      └── ... 
     │      └── drivers
-    │             ├── <ModelId #1>
+    │             ├── <Driver #1>
     │             │      ├── driver.yaml         # Information about your driver
     │             │      └── (driver package)    # Include code, test, examples, errors
-    │             ├── <ModelId #2>
+    │             ├── <Driver #2>
     │             │      ├── driver.yaml
     │             │      └── (driver package) 
     │             └── ... 
@@ -119,7 +119,7 @@ A profile contains the technical LoRaWAN characteristics used by the device, inc
 > - LoRaWAN Class (A, B or C).
 
 Once you select a generic template, you need to create a file named with the profile ID.
-This ID of your profile should be used on your `model.yaml` on the field `deviceProfileId`.
+This ID of your profile should be used on your `model.yaml` on the field `deviceProfileIds`.
 
 Example: `vendor_RFGroup1_1.0.2revB_classA.yaml`
 
@@ -130,7 +130,7 @@ You can find several generic templates under [here](Generic Profiles Templates).
 A driver decodes binary payload to Json object and encodes Json object to binary, following the recommendations provided by LoRa-Alliance.
 This directory contains, for each device model, all the needed files for a driver.
 It could be generic for a part of all your devices or device-specific.
-A driver could either be public (Open-source) or private and not exposed (contact us in this case at **tpx-iot-flow@actility.com**).
+A driver could either be public (open-source) or private and not exposed (contact us in this case at **tpx-iot-flow@actility.com**).
 
 The file `driver.yaml` contains the information related to driver.
 

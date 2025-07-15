@@ -9,15 +9,18 @@ product:
     name: DRAG/LT222
     version: 1
 # ID(s) of the profile that defines the LoRaWAN characteristics of this model.
-deviceProfileId: 
-    - DRAG/LT222A.1.0.3a_AS923
-    - DRAG/LT222A.1.0.3a_AU
-    - DRAG/LT222A.1.0.3a_ETSI
-    - DRAG/LT222A.1.0.3a_FCC
-    - DRAG/LT222C.1.0.3a_AS923
-    - DRAG/LT222C.1.0.3a_AU
-    - DRAG/LT222C.1.0.3a_ETSI
-    - DRAG/LT222C.1.0.3a_FCC
+# id: as defined under /profiles.
+# lorawanDeviceProfileID: as defined by LoRa Alliance in https://lora-alliance.org/wp-content/uploads/2020/10/LoRa_Alliance_Vendor_ID_for_QR_Code_02142022.pdf.
+# The lorawanDeviceProfileID consists of 8 upper-case hexadecimal characters, 4 characters for VendorID + 4 characters for VendorProfileID. Please consider using single (') or double (") quotation.
+deviceProfileIds: 
+    - id: DRAG/LT222A.1.0.3a_AS923
+    - id: DRAG/LT222A.1.0.3a_AU
+    - id: DRAG/LT222A.1.0.3a_ETSI
+    - id: DRAG/LT222A.1.0.3a_FCC
+    - id: DRAG/LT222C.1.0.3a_AS923
+    - id: DRAG/LT222C.1.0.3a_AU
+    - id: DRAG/LT222C.1.0.3a_ETSI
+    - id: DRAG/LT222C.1.0.3a_FCC
  
 # You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
 # Maximum device TX Conducted output power in dBm. 

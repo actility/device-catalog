@@ -71,11 +71,8 @@ function readFrequecyWeightType(bytes) {
 function readTimeWeightType(bytes) {
     var type = "";
 
-    var bits = (bytes[0] >> 2) & 0x03;function hexToBytes(hex) {
-        let bytes = [];
-        for (c = 0; c < hex.length; c += 2) bytes.push(parseInt(hex.substr(c, 2), 16));
-        return bytes;
-    }
+    var bits = (bytes[0] >> 2) & 0x03;
+    
     switch (bits) {
         case 0:
             type = "impulse";

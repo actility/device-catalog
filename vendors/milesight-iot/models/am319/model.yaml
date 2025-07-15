@@ -9,12 +9,23 @@ product:
     name: MILE/AM319
     version: 1
 # ID(s) of the profile that defines the LoRaWAN characteristics of this model.
-deviceProfileId: 
-    - msight_RFGroup1_1.0.3a_classA
-    - msight_RFGroup4_1.0.3a_classA
-    - msight_us915-22dBm_1.0.3a_classA
-    - msight_au915-22dBm_1.0.3a_classA
-    - msight_cn470-19dBm_1.0.3a_classA
+# id: as defined under /profiles.
+# lorawanDeviceProfileID: as defined by LoRa Alliance in https://lora-alliance.org/wp-content/uploads/2020/10/LoRa_Alliance_Vendor_ID_for_QR_Code_02142022.pdf.
+# The lorawanDeviceProfileID consists of 8 upper-case hexadecimal characters, 4 characters for VendorID + 4 characters for VendorProfileID. Please consider using single (') or double (") quotation.
+deviceProfileIds: 
+    - id: msight_RFGroup1_1.0.3a_classA
+    - id: msight_RFGroup4_1.0.3a_classA
+    - id: msight_us915-22dBm_1.0.3a_classA
+    - id: msight_au915-22dBm_1.0.3a_classA
+    - id: msight_cn470-19dBm_1.0.3a_classA
+    - id: msight_RFGroup1_1.0.3a_classC
+    - id: msight_RFGroup4_1.0.3a_classC
+      distinction: "1.0.3revA"
+    - id: msight_us915-22dBm_1.0.3a_classC
+    - id: msight_au915-22dBm_1.0.3a_classC
+    - id: msight_cn470-19dBm_1.0.3a_classC
+    - id: msight_RFGroup4_1.0.2b_classC
+      distinction: "1.0.2revB"
 
 # You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
 # Maximum device TX Conducted output power in dBm. 
@@ -27,7 +38,7 @@ maxTxEIRP:
 minTxEIRP:
 # Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'  
 # or 'random' (not known, changes over time). 
-motionIndicator:
+motionIndicator: near_static
 
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
 LoRaWANCertified: true

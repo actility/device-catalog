@@ -1,19 +1,19 @@
 // Protocol v2 only
 
-if (typeof module !== 'undefined') {
-  // Only needed for nodejs
-  module.exports = {
-    Decode: Decode,
-    Decoder: Decoder,
-    decode_float: decode_float,
-    decode_uint32: decode_uint32,
-    decode_int32: decode_int32,
-    decode_uint16: decode_uint16,
-    decode_int16: decode_int16,
-    decode_uint8: decode_uint8,
-    decode_int8: decode_int8,
-  };
-}
+// if (typeof module !== 'undefined') {
+//   // Only needed for nodejs
+//   module.exports = {
+//     Decode: Decode,
+//     Decoder: Decoder,
+//     decode_float: decode_float,
+//     decode_uint32: decode_uint32,
+//     decode_int32: decode_int32,
+//     decode_uint16: decode_uint16,
+//     decode_int16: decode_int16,
+//     decode_uint8: decode_uint8,
+//     decode_int8: decode_int8,
+//   };
+// }
 
 // helper function to parse an 32 bit float
 function decode_float(bytes, cursor) {
@@ -121,7 +121,7 @@ function uint32_to_hex(d) {
 function get_valve_state(bytes, cursor) {
   var valve = {};
 
-  decode_uint8(bytes, cursor);
+  const d = decode_uint8(bytes, cursor);
   valve.state = d & 0x03;
   valve.reason_id = (d >> 2) & 0x03;
 
@@ -129,7 +129,7 @@ function get_valve_state(bytes, cursor) {
 }
 
 function message_types_lookup_v2(type_id) {
-  type_names = ["boot",
+  const type_names = ["boot",
                 "calibrated",
                 "not_calibrated",
                 "application_event",
@@ -144,7 +144,7 @@ function message_types_lookup_v2(type_id) {
 }
 
 function device_types_lookup_v2(type_id) {
-  type_names = ["", // reserved
+  const type_names = ["", // reserved
                 "ts",
                 "vs-qt",
                 "vs-mt"];
@@ -211,28 +211,28 @@ Object.prototype.in = function() {
 
 // Protocol v2 only
 
-if (typeof module !== 'undefined') {
-  // Only needed for nodejs
-  module.exports = {
-    Encode: Encode,
-    Encoder: Encoder,
-    EncodeDeviceConfig: EncodeDeviceConfig, // used by generate_config_bin.py
-    EncodeVsQtAppConfig: EncodeVsQtAppConfig, // used by generate_config_bin.py
-    encode_header: encode_header,
-    encode_device_config: encode_device_config,
-    encode_vsqt_app_config: encode_vsqt_app_config,
-    encode_config_switch_bitmask: encode_config_switch_bitmask,
-    encode_device_config_switch: encode_device_config_switch,
-    encode_device_type: encode_device_type,
-    encode_uint32: encode_uint32,
-    encode_int32: encode_int32,
-    encode_uint16: encode_uint16,
-    encode_int16: encode_int16,
-    encode_uint8: encode_uint8,
-    encode_int8: encode_int8,
-    calc_crc: calc_crc,
-  };
-}
+// if (typeof module !== 'undefined') {
+//   // Only needed for nodejs
+//   module.exports = {
+//     Encode: Encode,
+//     Encoder: Encoder,
+//     EncodeDeviceConfig: EncodeDeviceConfig, // used by generate_config_bin.py
+//     EncodeVsQtAppConfig: EncodeVsQtAppConfig, // used by generate_config_bin.py
+//     encode_header: encode_header,
+//     encode_device_config: encode_device_config,
+//     encode_vsqt_app_config: encode_vsqt_app_config,
+//     encode_config_switch_bitmask: encode_config_switch_bitmask,
+//     encode_device_config_switch: encode_device_config_switch,
+//     encode_device_type: encode_device_type,
+//     encode_uint32: encode_uint32,
+//     encode_int32: encode_int32,
+//     encode_uint16: encode_uint16,
+//     encode_int16: encode_int16,
+//     encode_uint8: encode_uint8,
+//     encode_int8: encode_int8,
+//     calc_crc: calc_crc,
+//   };
+// }
 
 /**
  * Device configuration encoder
@@ -412,7 +412,7 @@ function Decode(fPort, bytes) { // Used for ChirpStack (aka LoRa Network Server)
   var decoded = {};
   decoded.header = {};
   decoded.header.protocol_version = bytes[0] >> 4;
-  message_type = bytes[0] & 0x0F;
+  const message_type = bytes[0] & 0x0F;
 
   switch (decoded.header.protocol_version) {
     case 2: { // protocol_version = 2
@@ -425,7 +425,7 @@ function Decode(fPort, bytes) { // Used for ChirpStack (aka LoRa Network Server)
         case 0: { // Boot message
           decoded.boot = {};
 
-          device_type = decode_uint8(bytes, cursor);
+          const device_type = decode_uint8(bytes, cursor);
           decoded.boot.device_type = device_types_lookup_v2(device_type);
 
           var version_hash = decode_uint32(bytes, cursor);
@@ -443,8 +443,8 @@ function Decode(fPort, bytes) { // Used for ChirpStack (aka LoRa Network Server)
           decoded.boot.reset_flags = decode_uint8(bytes, cursor);
           decoded.boot.reboot_counter = decode_uint8(bytes, cursor);
 
-          reboot_type = decode_uint8(bytes, cursor);
-          reboot_payload = [0, 0, 0, 0, 0, 0, 0, 0];
+          const reboot_type = decode_uint8(bytes, cursor);
+          let reboot_payload = [0, 0, 0, 0, 0, 0, 0, 0];
           reboot_payload[0] += decode_uint8(bytes, cursor);
           reboot_payload[1] += decode_uint8(bytes, cursor);
           reboot_payload[2] += decode_uint8(bytes, cursor);
@@ -540,7 +540,7 @@ function Decode(fPort, bytes) { // Used for ChirpStack (aka LoRa Network Server)
         case 2: { // Not calibration message
           decoded.not_calibrated = {};
 
-          reason_id = decode_uint8(bytes, cursor);
+          const reason_id = decode_uint8(bytes, cursor);
           decoded.not_calibrated.reason = not_calibrated_reasons_lookup_v2(reason_id);
           if (reason_id.in(2,3,4,5,6,7)) {
             decoded.not_calibrated.calibration_vector = {};
@@ -579,7 +579,7 @@ function Decode(fPort, bytes) { // Used for ChirpStack (aka LoRa Network Server)
         case 3: { // Application event message
           decoded.application_event = {};
 
-          state_trigger = decode_uint8(bytes, cursor);
+          const state_trigger = decode_uint8(bytes, cursor);
           decoded.application_event.state = state_lookup_v2(state_trigger & 0x03);
           decoded.application_event.trigger = trigger_lookup_v2(state_trigger >> 2);
           decoded.application_event.state_transition_sequence = decode_uint8(bytes, cursor);
@@ -700,3 +700,5 @@ function encodeDownlink(input) {
   var fport;
   return Encoder(input, fport);
 }
+
+exports.Decode = Decode;

@@ -16,7 +16,7 @@ function decodeUplink(input) {
         var offset_in_byte = start_bit % 8;
         var end_bit_chunk = total_bits % 8;
         var arr = new Array(total_bytes);
-        for (byte = 0; byte < total_bytes; ++byte) {
+        for (let byte = 0; byte < total_bytes; ++byte) {
             var chunk_idx = to_uint(start_bit / 8) + byte;
             var lo = chunk[chunk_idx] >> offset_in_byte;
             var hi = 0;

@@ -1,0 +1,96 @@
+[
+  {
+    "type": "uplink",
+    "description": "uplink containing only temperature",
+    "input": {
+      "bytes": "03673401",
+      "fPort": 85,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "temperature": 30.8
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink containing temperature, event of temperature and temperature alarm",
+    "input": {
+      "bytes": "8367340101",
+      "fPort": 85,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "event": [
+          {
+            "temperature": 30.8,
+            "temperature_alarm": "Threshold Alarm"
+          }
+        ],
+        "temperature": 30.8
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink containing temperature, event of temperature, temperature alarm and temperature mutation",
+    "input": {
+      "bytes": "93673401640002",
+      "fPort": 85,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "event": [
+          {
+            "temperature": 30.8,
+            "temperature_alarm": "Mutation Alarm",
+            "temperature_mutation": 10
+          }
+        ],
+        "temperature": 30.8
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink containing only event of temperature error",
+    "input": {
+      "bytes": "B36700",
+      "fPort": 85,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "event": [
+          {
+            "temperature_error": "Read Error"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink containing history of event type, read status, temperature and timestamp",
+    "input": {
+      "bytes": "20CEC79AFA6402BDFF",
+      "fPort": 85,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "history": [
+          {
+            "event_type": "Alarm(Threshold or Mutation)",
+            "read_status": "Success",
+            "temperature": -6.7,
+            "timestamp": 1694145223
+          }
+        ]
+      }
+    }
+  }
+]

@@ -1,7 +1,7 @@
 # Commercial name of the model
-name: Milesight WS302 is a LoRa sound level sensor
+name: WS302
 # Functional description of the product. Maximum 500 characters.
-description: "Milesight WS302 is a LoRa sound level sensor with integrated microphone. WS302 can not only measure a wide range of noise levels and send various kinds of noise level values via LoRaWAN® network, but also supports multiple weighting measurements for different application scenarios. Compliant with Milesight LoRaWAN® gateway and Milesight IoT Cloud solution, users can manage all sensor data and trigger other sensors or appliances easily via webpage or mobile App remotely."
+description: Milesight WS302 is a LoRa sound level sensor with integrated microphone. WS302 can not only measure a wide range of noise levels and send various kinds of noise level values via LoRaWAN® network, but also supports multiple weighting measurements for different application scenarios. Compliant with Milesight LoRaWAN® gateway and Milesight IoT Cloud solution, users can manage all sensor data and trigger other sensors or appliances easily via webpage or mobile App remotely.
 # Logo of the device
 logo: ws302-logo.png
 # Product name & Version
@@ -9,12 +9,15 @@ product:
     name: MILE/WS302
     version: 1
 # ID(s) of the profile that defines the LoRaWAN characteristics of this model.
-deviceProfileId: 
-    - msight_RFGroup1_1.0.3a_classA
-    - msight_RFGroup4_1.0.3a_classA
-    - msight_us915-22dBm_1.0.3a_classA
-    - msight_au915-22dBm_1.0.3a_classA
-    - msight_cn470-19dBm_1.0.3a_classA
+# id: as defined under /profiles.
+# lorawanDeviceProfileID: as defined by LoRa Alliance in https://lora-alliance.org/wp-content/uploads/2020/10/LoRa_Alliance_Vendor_ID_for_QR_Code_02142022.pdf.
+# The lorawanDeviceProfileID consists of 8 upper-case hexadecimal characters, 4 characters for VendorID + 4 characters for VendorProfileID. Please consider using single (') or double (") quotation.
+deviceProfileIds: 
+    - id: msight_RFGroup1_1.0.3a_classA
+    - id: msight_RFGroup4_1.0.3a_classA
+    - id: msight_us915-22dBm_1.0.3a_classA
+    - id: msight_au915-22dBm_1.0.3a_classA
+    - id: msight_cn470-19dBm_1.0.3a_classA
 
 # You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
 # Maximum device TX Conducted output power in dBm. 

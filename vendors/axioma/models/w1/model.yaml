@@ -9,10 +9,13 @@ product:
     name: AXIOMA/QALW1
     version: 1
 # ID(s) of the profile that defines the LoRaWAN characteristics of this model.
-deviceProfileId: 
-    - AXIO/QALW1A.1.0.2b_AS923
-    - AXIO/QALW1A.1.0.2b_ETSI
-    - AXIO/QALW1A.1.0.2b_FCC
+# id: as defined under /profiles.
+# lorawanDeviceProfileID: as defined by LoRa Alliance in https://lora-alliance.org/wp-content/uploads/2020/10/LoRa_Alliance_Vendor_ID_for_QR_Code_02142022.pdf.
+# The lorawanDeviceProfileID consists of 8 upper-case hexadecimal characters, 4 characters for VendorID + 4 characters for VendorProfileID. Please consider using single (') or double (") quotation.
+deviceProfileIds:
+    - id: AXIO/QALW1A.1.0.2b_AS923
+    - id: AXIO/QALW1A.1.0.2b_ETSI
+    - id: AXIO/QALW1A.1.0.2b_FCC
  
 # You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
 # Maximum device TX Conducted output power in dBm. 
@@ -42,9 +45,14 @@ userGuideURL:
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
     - volume:m3
+    - interval:minute
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
     axioma:w1:1:
-        - "Example1: uplink containing consumption data"
-        - "Example2: uplink containing consumption data"
+        - "Example 1: uplink containing consumption data"
+        - "Example 2: uplink containing consumption data"
+        - "Example 3: uplink containing configuration parameters"
+        - "Example 4: uplink containing configuration parameters"
+        - "Example 5: uplink containing an alarm telegram"
+        - "Example 6: Corrupted uplink"

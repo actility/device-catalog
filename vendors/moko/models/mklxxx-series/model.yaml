@@ -9,15 +9,18 @@ product:
     name: MOKO/MKL
     version: 1
 # ID(s) of the profile that defines the LoRaWAN characteristics of this model.
-deviceProfileId: 
-    - MOKO/MKLA.1.0.3a_AS923
-    - MOKO/MKLA.1.0.3a_AU
-    - MOKO/MKLA.1.0.3a_ETSI
-    - MOKO/MKLA.1.0.3a_FCC
-    - MOKO/MKLC.1.0.3a_AS923
-    - MOKO/MKLC.1.0.3a_AU
-    - MOKO/MKLC.1.0.3a_ETSI
-    - MOKO/MKLC.1.0.3a_FCC
+# id: as defined under /profiles.
+# lorawanDeviceProfileID: as defined by LoRa Alliance in https://lora-alliance.org/wp-content/uploads/2020/10/LoRa_Alliance_Vendor_ID_for_QR_Code_02142022.pdf.
+# The lorawanDeviceProfileID consists of 8 upper-case hexadecimal characters, 4 characters for VendorID + 4 characters for VendorProfileID. Please consider using single (') or double (") quotation.
+deviceProfileIds: 
+    - id: MOKO/MKLA.1.0.3a_AS923
+    - id: MOKO/MKLA.1.0.3a_AU
+    - id: MOKO/MKLA.1.0.3a_ETSI
+    - id: MOKO/MKLA.1.0.3a_FCC
+    - id: MOKO/MKLC.1.0.3a_AS923
+    - id: MOKO/MKLC.1.0.3a_AU
+    - id: MOKO/MKLC.1.0.3a_ETSI
+    - id: MOKO/MKLC.1.0.3a_FCC
  
 # You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
 # Maximum device TX Conducted output power in dBm. 

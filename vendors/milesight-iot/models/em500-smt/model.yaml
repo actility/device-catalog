@@ -1,7 +1,7 @@
 # Commercial name of the model
-name: EM500-SWL Submersible Water Level
+name: EM500-SMT Soil Moisture Sensor
 # Functional description of the product. Maximum 500 characters.
-description: Milesight EM500-SWL is designed for measuring liquid levels in harsh environments. M500-SWL features a long-lasting battery life of up to 10 years, an IP67 UV-resistant and waterproof enclosure, and can be easily configured via NFC. It offers a stainless probe with corrosion resistance and a customizable measuring range up to 200m. EM500-SWL is widely used for applications like tank level monitoring, river level monitoring, etc.
+description: Milesight EM500-SMTC provides an external probe for receiving accurate and instantaneous information on soil moisture content, it is an important tool for anyone involved with soil
 # Logo of the device
 logo: em500-smt.png
 # Product name & Version
@@ -9,12 +9,15 @@ product:
     name: MILE/EM500-SMT
     version: 1
 # ID(s) of the profile that defines the LoRaWAN characteristics of this model.
-deviceProfileId: 
-    - msight_RFGroup1_1.0.3a_classA
-    - msight_RFGroup4_1.0.3a_classA
-    - msight_us915-20dBm_1.0.3a_classA
-    - msight_au915-20dBm_1.0.3a_classA
-    - msight_cn470-19dBm_1.0.3a_classA
+# id: as defined under /profiles.
+# lorawanDeviceProfileID: as defined by LoRa Alliance in https://lora-alliance.org/wp-content/uploads/2020/10/LoRa_Alliance_Vendor_ID_for_QR_Code_02142022.pdf.
+# The lorawanDeviceProfileID consists of 8 upper-case hexadecimal characters, 4 characters for VendorID + 4 characters for VendorProfileID. Please consider using single (') or double (") quotation.
+deviceProfileIds: 
+    - id: msight_RFGroup1_1.0.3a_classA
+    - id: msight_RFGroup4_1.0.3a_classA
+    - id: msight_us915-20dBm_1.0.3a_classA
+    - id: msight_au915-20dBm_1.0.3a_classA
+    - id: msight_cn470-19dBm_1.0.3a_classA
 
 # You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
 # Maximum device TX Conducted output power in dBm. 
@@ -35,7 +38,7 @@ LoRaWANCertified: true
 # Format: `<8 characters max>:<16 characters max>:<digits only>`
 modelId: msight:em500-smt:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
-protocolId: 
+protocolId: msight:em500-smt:1
 # DataSheet URL (optional) 
 specificationURL: https://resource.milesight-iot.com/milesight/document/em500-smtc-datasheet-en.pdf
 # User Guide URL (optional) 
@@ -45,4 +48,4 @@ sensors:
     - batteryLevel:%
     - temperature:Cel
     - humidity:%RH
-    - conductivity:μs/cm
+    - conductivity:uS/cm

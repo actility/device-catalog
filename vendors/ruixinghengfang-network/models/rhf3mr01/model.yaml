@@ -8,16 +8,19 @@ logo: ruixinghengfang-network-rhf3mr01.png
 product:
     name: RUIX/RHR01
     version: 1
-# ID(s) of the profile that defines the LoRaWAN characteristics of this model. 
-deviceProfileId: 
-    - RUIX/RHR01A.1.0.3a_AS923
-    - RUIX/RHR01A.1.0.3a_AU
-    - RUIX/RHR01A.1.0.3a_ETSI
-    - RUIX/RHR01A.1.0.3a_FCC
-    - RUIX/RHR01B.1.0.3a_AS923
-    - RUIX/RHR01B.1.0.3a_AU
-    - RUIX/RHR01B.1.0.3a_ETSI
-    - RUIX/RHR01B.1.0.3a_FCC
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
+# id: as defined under /profiles.
+# lorawanDeviceProfileID: as defined by LoRa Alliance in https://lora-alliance.org/wp-content/uploads/2020/10/LoRa_Alliance_Vendor_ID_for_QR_Code_02142022.pdf.
+# The lorawanDeviceProfileID consists of 8 upper-case hexadecimal characters, 4 characters for VendorID + 4 characters for VendorProfileID. Please consider using single (') or double (") quotation.
+deviceProfileIds: 
+    - id: RUIX/RHR01A.1.0.3a_AS923
+    - id: RUIX/RHR01A.1.0.3a_AU
+    - id: RUIX/RHR01A.1.0.3a_ETSI
+    - id: RUIX/RHR01A.1.0.3a_FCC
+    - id: RUIX/RHR01B.1.0.3a_AS923
+    - id: RUIX/RHR01B.1.0.3a_AU
+    - id: RUIX/RHR01B.1.0.3a_ETSI
+    - id: RUIX/RHR01B.1.0.3a_FCC
  
 # You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
 # Maximum device TX Conducted output power in dBm. 

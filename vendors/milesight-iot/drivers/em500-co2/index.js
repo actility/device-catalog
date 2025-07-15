@@ -61,10 +61,4 @@ function readInt16LE(bytes) {
     return ref > 0x7fff ? ref - 0x10000 : ref;
 }
 
-function hexToBytes(hex) {
-    let bytes = [];
-    for (c = 0; c < hex.length; c += 2) bytes.push(parseInt(hex.substr(c, 2), 16));
-    return bytes;
-}
-
 exports.Decoder = Decoder;

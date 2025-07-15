@@ -3,14 +3,17 @@ name: LoRaWAN 1.0.2 revB (no UL/DL dwell time)
 # Functional description of the product. Maximum 500 characters. 
 description: "Specific profile for LoRaWAN 1.0.2 revB for AS923 class A (Asia/Oceania 923MHz deployments) with both uplink and downlink dwell times set to 'no limit'. This profile is reserved for AS923 devices that are not fully compliant with the LoRaWAN default dwell time settings. It also disables the support of the TxParamSetupReq MAC command."
 # Logo of the device
-logo: loraWAN.jpeg
+logo: loraWAN.png
 # Product name & Version
 product:
     name: LORA/Generic
     version: 1
 # ID(s) of the profile that defines the LoRaWAN characteristics of this model.
-deviceProfileId: 
-    - LORA/GenericA.1.0.2b_AS923_noDT
+# id: as defined under /profiles.
+# lorawanDeviceProfileID: as defined by LoRa Alliance in https://lora-alliance.org/wp-content/uploads/2020/10/LoRa_Alliance_Vendor_ID_for_QR_Code_02142022.pdf.
+# The lorawanDeviceProfileID consists of 8 upper-case hexadecimal characters, 4 characters for VendorID + 4 characters for VendorProfileID. Please consider using single (') or double (") quotation.
+deviceProfileIds: 
+    - id: LORA/GenericA.1.0.2b_AS923_noDT
  
 # You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
 # Maximum device TX Conducted output power in dBm. 

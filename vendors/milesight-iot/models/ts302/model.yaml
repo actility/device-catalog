@@ -1,0 +1,57 @@
+# Commercial name of the model
+name: TS302 Temperature Sensor
+# Functional description of the product. Maximum 500 characters.
+description: "TS301/TS302, the LoRaWAN® temperature sensor with an LCD display. This device seamlessly connects to high-accuracy PT100 temperature probes and door magnetic sensors. Ideal for the food processing, pharmaceutical storage, and cold chain industries."
+# Logo of the device
+logo: ts302.png
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
+# id: as defined under /profiles.
+# lorawanDeviceProfileID: as defined by LoRa Alliance in https://lora-alliance.org/wp-content/uploads/2020/10/LoRa_Alliance_Vendor_ID_for_QR_Code_02142022.pdf.
+# The lorawanDeviceProfileID consists of 8 upper-case hexadecimal characters, 4 characters for VendorID + 4 characters for VendorProfileID. Please consider using single (') or double (") quotation.
+deviceProfileIds:
+  - id: msight_RFGroup1_1.0.3a_classA
+  - id: msight_us915-22dBm_1.0.3a_classA
+  - id: msight_cn470-19dBm_1.0.3a_classA
+  - id: msight_au915-22dBm_1.0.3a_classA
+  - id: msight_RFGroup4_1.0.3a_classA
+
+# You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings.
+# Maximum device TX Conducted output power in dBm.
+maxTxPower:
+# Minimum device TX Conducted output power in dBm.
+minTxPower:
+# Maximum device TX Radiated output power in dBm.
+maxTxEIRP:
+# Minimum device TX Radiated output power in dBm.
+minTxEIRP:
+# Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'
+# or 'random' (not known, changes over time).
+motionIndicator:
+
+# Is your device certified by the LoRa Alliance? Possible values: true, false.
+LoRaWANCertified: false
+# Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
+# Format: `<8 characters max>:<16 characters max>:<digits only>`
+# Be careful: Once you chose a model, it cannot be changed later
+modelId: msight:ts302:1
+# <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
+# Be careful: Once you chose a protocolId, it cannot be changed later
+protocolId:
+  - msight:ts30x:1
+# DataSheet URL (optional)
+specificationURL: https://resource.milesight.com/milesight/iot/document/ts30x-datasheet-en.pdf
+# User Guide URL (optional)
+userGuideURL: https://resource.milesight.com/milesight/iot/document/ts30x-user-guide-en.pdf
+# <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
+sensors:
+# Driver examples
+# A list of examples description that are compatible with this model
+examples:
+  msight:ts30x:1:
+    - Battery, Temperature CHN1 and Magnet CHN2
+    - Battery, Temperature CHN1 and Temperature CHN2
+    - Battery, Magnet CHN1 and Magnet CHN2
+    - Battery, Temperature CHN1, Temperature CHN1 alarm and Temperature CHN2
+    - Battery, Temperature CHN1, Temperature CHN2 and Temperature CHN2 alarm
+    - Temperature CHN2, Temperature CHN2 change and Temperature CHN2 alarm
+    - History

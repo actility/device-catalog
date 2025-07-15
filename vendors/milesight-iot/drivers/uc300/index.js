@@ -15,7 +15,7 @@ var av_chns = [0x0d, 0x0e];
 function Decoder(bytes, fport) {
     var decoded = {};
 
-    for (i = 0; i < bytes.length; ) {
+    for (var i = 0; i < bytes.length; ) {
         var channel_id = bytes[i++];
         var channel_type = bytes[i++];
 

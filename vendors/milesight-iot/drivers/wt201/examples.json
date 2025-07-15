@@ -1,0 +1,136 @@
+[
+  {
+    "type": "uplink",
+    "description": "Temperature Control",
+    "input": {
+      "bytes": "036702010467A60005E70006E80007BC00",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "fan_mode": "auto",
+        "fan_status": "standby",
+        "plan_type": "not executed",
+        "target_temperature": 16.6,
+        "temperature": 25.8,
+        "temperature_control_mode": "heat",
+        "temperature_control_status": "standby"
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Temperature Alarm",
+    "input": {
+      "bytes": "8367FB0009",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "temperature": 25.1,
+        "temperature_alarm": "threshold alarm"
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "History of Temperature Control",
+    "input": {
+      "bytes": "20CE5C470A65D09EC091",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "history": [
+          {
+            "fan_mode": "auto",
+            "fan_status": "low speed",
+            "humidity": 0,
+            "system_status": "off",
+            "target_temperature": -2822.4,
+            "target_temperature_2": 0,
+            "temperature": 0,
+            "temperature_control_mode": "cool",
+            "temperature_control_status": "unknown",
+            "timestamp": 1695172444
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Wiring and Temperature Status",
+    "input": {
+      "bytes": "FFCB0D1101FFCA158004",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "ob_mode": "on heat",
+        "temperature_control_support_mode": {
+          "auto": "enable",
+          "cool": "enable",
+          "em_heat": "disable",
+          "heat": "enable"
+        },
+        "temperature_control_support_status": {
+          "stage_1_cool": "enable",
+          "stage_1_heat": "enable",
+          "stage_2_cool": "disable",
+          "stage_2_heat": "disable",
+          "stage_3_heat": "disable",
+          "stage_4_heat": "disable",
+          "stage_5_heat": "enable"
+        },
+        "wires": {
+          "aux": "on",
+          "di": "off",
+          "e": "off",
+          "gh": "on",
+          "gl": "off",
+          "ob": "on",
+          "pek": "off",
+          "w1": "off",
+          "w2": "off",
+          "y1": "on",
+          "y2": "off"
+        }
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Plan Schedule",
+    "input": {
+      "bytes": "FFC900000000B302FFC9020101280000",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "plan_schedule": [
+          {
+            "enable": "enable",
+            "id": 2,
+            "time": 0,
+            "plan_type": "home",
+            "week_recycle": {
+              "friday": "enable",
+              "monday": "disable",
+              "saturday": "disable",
+              "sunday": "disable",
+              "thursday": "disable",
+              "tuesday": "disable",
+              "wednesday": "enable"
+            }
+          }
+        ]
+      }
+    }
+  }
+]
