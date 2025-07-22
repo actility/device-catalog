@@ -385,10 +385,19 @@ describe("Legacy Decode downlink errors", () => {
 if(extractPoints) {
     describe("extractPoints - should extract expected points from decoded uplink", () => {
         examples.forEach((example, index) => {
-            if (example.type === "uplink" && example.output?.data && example.points) {
-
+            if(example.type === "uplink" && example.output?.data && example.points) {
                 test(`${index + 1} - ${example.description}`, () => {
                     const decoded = example.output.data;
+                    const result = extractPoints({ message: decoded });
+
+                    const currentPoints = example.points;
+                    expect(result).toEqual(currentPoints);
+                });
+
+            }
+            else if(example.type === "uplink" && example.output && example.points) {
+                test(`${index + 1} - ${example.description}`, () => {
+                    const decoded = example.output;
                     const result = extractPoints({ message: decoded });
 
                     const currentPoints = example.points;
