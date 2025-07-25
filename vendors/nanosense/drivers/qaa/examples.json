@@ -1,0 +1,162 @@
+[
+    {
+        "type": "uplink",
+        "description": "uplink QAA with temperature, PM and noise sensors",
+        "input": {
+            "bytes": [
+                7,
+                29,
+                30,
+                0,
+                10,
+                100,
+                102,
+                2,
+                105,
+                1,
+                128,
+                192,
+                96,
+                93,
+                101,
+                16,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                145,
+                156,
+                1,
+                0,
+                0,
+                100,
+                0,
+                87,
+                96,
+                97,
+                14,
+                10,
+                0,
+                0,
+                40
+            ],
+            "fPort": 1,
+            "recvTime": "2025-07-25T13:14:55.000Z"
+        },
+        "output": {
+            "data": {
+                "device_info": {
+                    "autonomy_percent": 100,
+                    "capteurs_actifs": [
+                        "temperature_rh",
+                        "pm",
+                        "noise"
+                    ],
+                    "firmware_version": 2.3,
+                    "frm_lora": 2.4,
+                    "transmission_interval": 10
+                },
+                "measurements": [
+                    {
+                        "humidity": 40,
+                        "log_timestamp": 1753448995,
+                        "noise_average": 55,
+                        "noise_peak": 77,
+                        "pm1": 3,
+                        "pm10": 3,
+                        "pm25": 3,
+                        "temperature": 28.25
+                    },
+                    {
+                        "humidity": 37.65,
+                        "log_timestamp": 1753449295,
+                        "noise_average": 52,
+                        "noise_peak": 86,
+                        "pm1": 3,
+                        "pm10": 3,
+                        "pm25": 3,
+                        "temperature": 28.95
+                    }
+                ]
+            },
+            "errors": [],
+            "warnings": []
+        }
+    },
+    {
+        "type": "downlink-encode",
+        "description": "encode downlink to set transmission interval to 30 minutes",
+        "input": {
+            "data": {
+                "transmissionInterval": 30
+            }
+        },
+        "output": {
+            "bytes": [
+                1,
+                0,
+                30
+            ],
+            "fPort": 2,
+            "errors": [],
+            "warnings": []
+        }
+    },
+    {
+        "type": "downlink-encode",
+        "description": "encode downlink to set transmission interval to 120 minutes",
+        "input": {
+            "data": {
+                "transmissionInterval": 120
+            }
+        },
+        "output": {
+            "bytes": [
+                1,
+                0,
+                120
+            ],
+            "fPort": 2,
+            "errors": [],
+            "warnings": []
+        }
+    },
+    {
+        "type": "downlink-encode",
+        "description": "fail encode downlink when transmission interval exceeds 720",
+        "input": {
+            "data": {
+                "transmissionInterval": 800
+            }
+        },
+        "output": {
+            "errors": [
+                "Transmission interval be a number between 1 and 720 (minutes)"
+            ],
+            "warnings": []
+        }
+    },
+    {
+        "type": "downlink-encode",
+        "description": "fail encode downlink when transmission interval is below 1",
+        "input": {
+            "data": {
+                "transmissionInterval": 0
+            }
+        },
+        "output": {
+            "errors": [
+                "Transmission interval be a number between 1 and 720 (minutes)"
+            ],
+            "warnings": []
+        }
+    }
+]

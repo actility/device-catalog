@@ -1,0 +1,24 @@
+# Formal driver name
+name: EP5000 Air Quality Sensor Driver
+# Simple description of the driver functionalities
+description: >
+  Driver for the EP5000 Atmospheric Air Quality Sensor.
+  The EP5000 is an advanced environmental sensing device offering 13 key measurements in a single compact probe.
+  It monitors major pollutants and ambient conditions, including:
+  CO₂, VOCs (Volatile Organic Compounds), sulfur-based odors, Fine Particulates (PM1, PM2.5, PM10),
+  Noise (peak and average), Light (intensity and color temperature), Humidity, Temperature, and Atmospheric Pressure.
+  Optional gas detection available for NOx and Ozone.
+# Mandatory - id of the company that developed the driver
+# This id will be used to construct the id of the driver (Should be in lowercase, no special characters, maximum 8 characters)
+producerId: nanosens
+# Email of the developer
+developerEmail: aoukara@zaack.io
+# In case of a driver per model: `<vendorId>:<modelName>:<modelVersion>`
+# In case of a driver for multiples model: `<vendorId>:generic:<genericVersion>`
+# Format: `<8 characters max>:<16 characters max>:<digits only>`
+# Needed for linking the model with a specific driver -> must be the same one used in model.yaml in the corresponding model
+# You should have only one protocolId per driver
+protocolId: nanosens:ep5000:1
+# This is to specify the type of functions signature used in this driver. Possible values: actility, lora-alliance, ttn, chirpstack.
+# Keep it empty if you followed the lora-alliance payload codec api
+signature:

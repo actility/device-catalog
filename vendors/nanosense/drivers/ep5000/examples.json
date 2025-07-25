@@ -1,0 +1,177 @@
+[
+    {
+        "type": "uplink",
+        "description": "uplink EP5000 with full sensor data",
+        "input": {
+            "bytes": [
+                159,
+                85,
+                51,
+                0,
+                0,
+                100,
+                0,
+                10,
+                78,
+                126,
+                128,
+                64,
+                0,
+                6,
+                110,
+                129,
+                172,
+                0,
+                15,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                145,
+                156,
+                1,
+                0,
+                0,
+                100,
+                0,
+                87,
+                96,
+                97,
+                14,
+                10,
+                0,
+                0,
+                40
+            ],
+            "fPort": 1,
+            "recvTime": "2025-07-25T13:53:11.000Z"
+        },
+        "output": {
+            "data": {
+                "device_info": {
+                    "active_sensors": [
+                        "Lux, T°K light",
+                        "voc_sulfuric_odors",
+                        "co2",
+                        "noise",
+                        "pm",
+                        "temperature_rh"
+                    ],
+                    "autonomy_percent": 100,
+                    "firmware_version": 8.5,
+                    "frm_lora": 5.1,
+                    "transmission_rate": 10
+                },
+                "measurements": [
+                    {
+                        "benzene": 0,
+                        "building_health_index": 14,
+                        "co2": 428,
+                        "cognitivity_index": 0,
+                        "cooling_control": 0,
+                        "cov": 15,
+                        "formaldehyde": 0,
+                        "health_index": 100,
+                        "heating_control": 0,
+                        "humidity": 39,
+                        "light_flickering": 0,
+                        "light_temperature": 0,
+                        "lux": 4,
+                        "log_timestamp": 1753451591,
+                        "noise_average": 68,
+                        "noise_peak": 75,
+                        "nox": 0,
+                        "o3": 0,
+                        "occupancy": 0,
+                        "pm1": 0,
+                        "pm10": 1,
+                        "pm25": 0,
+                        "pressure": 931.9,
+                        "respiratory_index": 96,
+                        "sleep_index": 87,
+                        "sulfuric_odors": 0,
+                        "temperature": 25.3,
+                        "ventilation_control": 10,
+                        "virus_risk_index": 97
+                    }
+                ]
+            },
+            "errors": [],
+            "warnings": []
+        }
+    },
+    {
+        "type": "downlink-encode",
+        "description": "encode downlink to set transmission interval to 30 minutes",
+        "input": {
+            "data": {
+                "transmissionInterval": 30
+            }
+        },
+        "output": {
+            "bytes": [
+                1,
+                0,
+                30
+            ],
+            "fPort": 2,
+            "errors": [],
+            "warnings": []
+        }
+    },
+    {
+        "type": "downlink-encode",
+        "description": "encode downlink to set transmission interval to 120 minutes",
+        "input": {
+            "data": {
+                "transmissionInterval": 120
+            }
+        },
+        "output": {
+            "bytes": [
+                1,
+                0,
+                120
+            ],
+            "fPort": 2,
+            "errors": [],
+            "warnings": []
+        }
+    },
+    {
+        "type": "downlink-encode",
+        "description": "fail encode downlink when transmission interval exceeds 720",
+        "input": {
+            "data": {
+                "transmissionInterval": 800
+            }
+        },
+        "output": {
+            "errors": [
+                "Transmission interval be a number between 1 and 720 (minutes)"
+            ],
+            "warnings": []
+        }
+    },
+    {
+        "type": "downlink-encode",
+        "description": "fail encode downlink when transmission interval is below 1",
+        "input": {
+            "data": {
+                "transmissionInterval": 0
+            }
+        },
+        "output": {
+            "errors": [
+                "Transmission interval be a number between 1 and 720 (minutes)"
+            ],
+            "warnings": []
+        }
+    }
+]
