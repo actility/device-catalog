@@ -87,6 +87,12 @@ const examples = (() => {
             let newExamples = fs.readJsonSync(resolveDriverPath("examples/" + exampleFile));
             for(const example of newExamples){
                 if(example.type === "uplink"){
+
+                    let thing = example.thing;
+                    if(thing != undefined && example.model != undefined) {
+                        thing.model = example.model;
+                    }
+
                     let wrappedExample = {
                         type: example.type,
                         description: example.description,
@@ -388,22 +394,32 @@ if(extractPoints) {
             if(example.type === "uplink" && example.output?.data && example.points) {
                 test(`${index + 1} - ${example.description}`, () => {
                     const decoded = example.output.data;
-                    const result = extractPoints({ message: decoded });
+                    const result = extractPoints(
+                        { 
+                            message: decoded,
+                            time: example.input?.time,
+                            thing: example.input?.thing
+                        }
+                    );
 
                     const currentPoints = example.points;
                     expect(result).toEqual(currentPoints);
                 });
-
             }
             else if(example.type === "uplink" && example.output && example.points) {
                 test(`${index + 1} - ${example.description}`, () => {
                     const decoded = example.output;
-                    const result = extractPoints({ message: decoded });
+                    const result = extractPoints(
+                        { 
+                            message: decoded,
+                            time: example.input?.time,
+                            thing: example.input?.thing
+                        }
+                    );
 
                     const currentPoints = example.points;
                     expect(result).toEqual(currentPoints);
                 });
-
             }
         });
     });
