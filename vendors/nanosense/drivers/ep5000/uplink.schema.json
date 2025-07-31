@@ -1,0 +1,83 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/uplink.schema.json",
+  "type": "object",
+  "properties": {
+    "device_info": {
+      "type": "object",
+      "properties": {
+        "active_sensors": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "autonomy_percent": { "type": "integer" },
+        "firmware_version": { "type": "number" },
+        "frm_lora": { "type": "number" },
+        "transmission_rate": { "type": "integer" }
+      },
+      "required": [
+        "active_sensors",
+        "autonomy_percent",
+        "firmware_version",
+        "frm_lora",
+        "transmission_rate"
+      ],
+      "additionalProperties": false
+    },
+    "measurements": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "benzene": { "type": "number" },
+          "building_health_index": { "type": "number" },
+          "co2": { "type": "number" },
+          "cognitivity_index": { "type": "number" },
+          "cooling_control": { "type": "number" },
+          "cov": { "type": "number" },
+          "formaldehyde": { "type": "number" },
+          "health_index": { "type": "number" },
+          "heating_control": { "type": "number" },
+          "humidity": { "type": "number" },
+          "light_flickering": { "type": "number" },
+          "light_temperature": { "type": "number" },
+          "lux": { "type": "number" },
+          "log_timestamp": { "type": "integer" },
+          "noise_average": { "type": "number" },
+          "noise_peak": { "type": "number" },
+          "nox": { "type": "number" },
+          "o3": { "type": "number" },
+          "occupancy": { "type": "number" },
+          "pm1": { "type": "number" },
+          "pm10": { "type": "number" },
+          "pm25": { "type": "number" },
+          "pressure": { "type": "number" },
+          "respiratory_index": { "type": "number" },
+          "sleep_index": { "type": "number" },
+          "sulfuric_odors": { "type": "number" },
+          "temperature": { "type": "number" },
+          "ventilation_control": { "type": "number" },
+          "virus_risk_index": { "type": "number" }
+        },
+        "required": [
+          "temperature",
+          "humidity",
+          "co2",
+          "pm1",
+          "pm25",
+          "pm10",
+          "cov",
+          "pressure",
+          "building_health_index",
+          "cognitivity_index",
+          "health_index",
+          "virus_risk_index",
+          "respiratory_index"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": ["device_info", "measurements"],
+  "additionalProperties": false
+}

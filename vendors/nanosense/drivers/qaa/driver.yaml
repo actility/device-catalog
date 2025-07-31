@@ -1,0 +1,24 @@
+# Formal driver name
+name: QAA Air Quality Sensor Driver
+# Simple description of the driver functionalities
+description: >
+  Driver for the QAA air quality sensor.
+  1 probe, 6 measurements to monitor key pollutants and environmental conditions.
+  The QAA comes equipped by default with 3 sensors: Temperature, Humidity (absolute and relative),
+  and Fine Particles (PM1, PM2.5, PM10).
+  Additionally, up to 3 optional sensors can be added: Noise (average and peak), NO2, and O3.
+
+# Mandatory - id of the company that developed the driver
+# This id will be used to construct the id of the driver (Should be in lowercase, no special characters, maximum 8 characters)
+producerId: nanosens
+# Email of the developer
+developerEmail: aoukara@zaack.io
+# In case of a driver per model: `<vendorId>:<modelName>:<modelVersion>`
+# In case of a driver for multiples model: `<vendorId>:generic:<genericVersion>`
+# Format: `<8 characters max>:<16 characters max>:<digits only>`
+# Needed for linking the model with a specific driver -> must be the same one used in model.yaml in the corresponding model
+# You should have only one protocolId per driver
+protocolId: nanosens:qaa:1
+# This is to specify the type of functions signature used in this driver. Possible values: actility, lora-alliance, ttn, chirpstack.
+# Keep it empty if you followed the lora-alliance payload codec api
+signature:

@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/downlink.schema.json",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "object",
+      "properties": {
+        "transmissionInterval": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 720,
+          "description": "Transmission interval in minutes (between 1 and 720)"
+        }
+      },
+      "required": ["transmissionInterval"],
+      "additionalProperties": false
+    }
+  },
+  "required": ["data"],
+  "additionalProperties": false
+}
