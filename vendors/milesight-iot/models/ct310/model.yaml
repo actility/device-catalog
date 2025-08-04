@@ -1,9 +1,9 @@
 # Commercial name of the model
-name: AM102 - 2-in-1 IAQ Sensor
+name: CT310 - Smart Current Transformer
 # Functional description of the product. Maximum 500 characters.
-description: "With province-wide LoRaWAN® IAQ solution deployment, students and staff in Quebec's public schools are now in a healthier learning environment with more helpful insights. Check how Milesight has made it happen"
+description: "CT3xx is a LoRaWAN® Smart Current Transformer for monitoring energy consumption andanalyzingusage remotely. CT3xx provides multiple current options to suit energy monitoring andsupportssending threshold alarms. Its compact size enables quick and safe installation in any indoor spacewithout de-energizing facilities, thereby simplifying the installation and saving costs"
 # Logo of the device
-logo: am102.png
+logo: ct310.png
 # ID(s) of the profile that defines the LoRaWAN characteristics of this model.
 # id: as defined under /profiles.
 # lorawanDeviceProfileID: as defined by LoRa Alliance in https://lora-alliance.org/wp-content/uploads/2020/10/LoRa_Alliance_Vendor_ID_for_QR_Code_02142022.pdf.
@@ -57,24 +57,40 @@ LoRaWANCertified:
 # Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
 # Format: `<8 characters max>:<16 characters max>:<digits only>`
 # Be careful: Once you chose a model, it cannot be changed later
-modelId: msight:am102:1
+modelId: msight:ct310:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 # Format: `<8 characters max>:<16 characters max>:<digits only>`
 # Be careful: Once you chose a protocolId, it cannot be changed later
-protocolId: msight:am102:1
+protocolId: msight:ct310:1
 # DataSheet URL (optional)
-specificationURL: https://resource.milesight.com/milesight/iot/document/am102-and-am102l-datasheet-en.pdf
+specificationURL: https://resource.milesight.com/milesight/iot/document/ct3xx-datasheet-en.pdf
 # User Guide URL (optional)
-userGuideURL: https://resource.milesight.com/milesight/iot/document/am102(l)-and-am103(l)-user-guide-en.pdf
+userGuideURL: https://resource.milesight.com/milesight/iot/document/ct3xx-user-guide-en.pdf
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors: 
+  - device_status: state
+  - sensor: current_chn1_total:Ah
+  - sensor: current_chn1:A
+  - sensor: current_chn1_alarm:state
+  - sensor: current_chn1_max:A
+  - sensor: current_chn1_min:A
+  - sensor: current_chn2_total:Ah
+  - sensor: current_chn2:A
+  - sensor: current_chn2_alarm:state
+  - sensor: current_chn2_max:A
+  - sensor: current_chn2_min:A
+  - sensor: current_chn3_total:Ah
+  - sensor: current_chn3:A
+  - sensor: current_chn3_alarm:state
+  - sensor: current_chn3_max:A
+  - sensor: current_chn3_min:A
   - sensor: temperature:Cel
-  - sensor: humidity:%
-  - sensor: battery:%
+  - sensor: temperature_alarm:state
+
 
 # Driver examples
 # A list of examples description that are compatible with this model
 examples: 
-  msight:am102:1:
+  msight:ct310:1:
     - name: "Example 1"
 
