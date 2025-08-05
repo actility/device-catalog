@@ -14,28 +14,7 @@ deviceProfileIds:
   - id: msight_us915-20dBm_1.0.3a_classA
   - id: msight_cn470-19dBm_1.0.3a_classA
   - id: msight_au915-22dBm_1.0.3a_classA
-# msight_RFGroup1_1.0.3a_classA  // ISMbands: eu868,kr920,in865,ru864
-# msight_au915-22dBm_1.0.3a_classA // ISMbands: au915
-# msight_us915-22dBm_1.0.3a_classA // ISMbands: us915
-# msight_RFGroup4_1.0.3a_classA // ISMbands: as923
-# msight_cn470-19dBm_1.0.3a_classA // ISMbands: cn470
 
-# msight_RFGroup1_1.0.3a_classC // ISMbands: eu868,kr920,in865,ru864
-# msight_au915-22dBm_1.0.3a_classC // ISMbands: au915
-# msight_us915-22dBm_1.0.3a_classC // ISMbands: us915
-# msight_RFGroup4_1.0.3a_classC // ISMbands: as923
-# msight_cn470-19dBm_1.0.3a_classC // ISMbands: cn470
-
-# --------------old profile-----------------------
-# msight_RFGroup4_1.0.2b_classC // ISMbands: as923
-# msight_us915-20dBm_1.0.3a_classA // ISMbands: us915
-# msight_au915-20dBm_1.0.3a_classA // ISMbands: au915
-# msight_cn470-17dBm_1.0.3a_classA // ISMbands: cn470
-
-# msight_us915-20dBm_1.0.3a_classC // ISMbands: us915
-# msight_au915-20dBm_1.0.3a_classC // ISMbands: au915
-# msight_cn470-17dBm_1.0.3a_classC // ISMbands: cn470
-#---------------------------------------------------
 # You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings.
 # Maximum device TX Conducted output power in dBm.
 maxTxPower:
@@ -65,15 +44,8 @@ specificationURL: https://resource.milesight.com/milesight/iot/document/em400-mu
 userGuideURL: https://resource.milesight.com/milesight/iot/document/em400-mud-user-guide-en.pdf
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors: 
-  - sensor: battery:%
-  - sensor: temperature:Cel
-  - sensor: temperature_abnormal:state
-  - sensor: distance:mm
-  - sensor: distance_alarming:state
-  - sensor: position:state
 
 # Driver examples
 # A list of examples description that are compatible with this model
 examples: 
   msight:em400-mud:1:
-    - name: "Example 1"
