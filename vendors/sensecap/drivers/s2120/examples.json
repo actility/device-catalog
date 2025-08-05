@@ -10,41 +10,183 @@
     "output": {
       "data": {
         "err": 0,
-        "payload": "010610DC500000010710687400009091",
-        "valid": true,
         "messages": [
-          {
-            "measurementValue": 155.2,
-            "measurementId": 4097,
-            "type": "Air Temperature",
-            "unit": "Cel"
-          },
-          {
-            "measurementValue": "-36",
-            "measurementId": 4098,
-            "type": "Air Humidity",
-            "unit": "%RH"
-          },
-          {
-            "measurementValue": 1342177281,
-            "measurementId": 4099,
-            "type": "Light Intensity",
-            "unit": "lx"
-          },
-          {
-            "measurementValue": 0.7,
-            "measurementId": 4190,
-            "type": "UV Index"
-          },
-          {
-            "measurementValue": 420,
-            "measurementId": 4105,
-            "type": "Wind Speed",
-            "measurement": "Wind speed",
-            "unit": "m/s"
-          }
-        ]
+          [
+            {
+              "measurementId": "4097",
+              "measurementValue": 155.2,
+              "type": "Air Temperature"
+            },
+            {
+              "measurementId": "4098",
+              "measurementValue": -36,
+              "type": "Air Humidity"
+            },
+            {
+              "measurementId": "4099",
+              "measurementValue": 1342177281,
+              "type": "Light Intensity"
+            },
+            {
+              "measurementId": "4190",
+              "measurementValue": 0.7,
+              "type": "UV Index"
+            },
+            {
+              "measurementId": "4105",
+              "measurementValue": 420,
+              "type": "Wind Speed"
+            }
+          ]
+        ],
+        "payload": "010610DC500000010710687400009091",
+        "valid": true
+      }
+    },
+    "points": {
+      "temperature": {
+        "record": 155.2,
+        "unitId": "Cel",
+        "nature": "air"
+      },
+      "humidity": {
+        "record": -36,
+        "unitId": "%RH",
+        "nature": "air"
+      },
+      "illuminance": {
+        "record": 1342177281,
+        "unitId": "lux"
+      },
+      "uv": {
+        "record": 0.7,
+        "unitId": "index"
+      },
+      "speed": {
+        "record": 420,
+        "unitId": "m/s",
+        "nature": "wind"
       }
     }
+  },
+  {
+    "type": "uplink",
+    "description": "example uplink",
+    "input": {
+      "bytes": "4A00BF420000002B0000004B00720000000027374C0000000000FE",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "err": 0,
+        "messages": [
+          [
+            {
+              "measurementId": "4097",
+              "measurementValue": 19.1,
+              "type": "Air Temperature"
+            },
+            {
+              "measurementId": "4098",
+              "measurementValue": 66,
+              "type": "Air Humidity"
+            },
+            {
+              "measurementId": "4099",
+              "measurementValue": 43,
+              "type": "Light Intensity"
+            },
+            {
+              "measurementId": "4190",
+              "measurementValue": 0,
+              "type": "UV Index"
+            },
+            {
+              "measurementId": "4105",
+              "measurementValue": 0,
+              "type": "Wind Speed"
+            }
+          ],
+          [
+            {
+              "measurementId": "4104",
+              "measurementValue": 114,
+              "type": "Wind Direction Sensor"
+            },
+            {
+              "measurementId": "4113",
+              "measurementValue": 0,
+              "type": "Rain Gauge"
+            },
+            {
+              "measurementId": "4101",
+              "measurementValue": 100390,
+              "type": "Barometric Pressure"
+            }
+          ],
+          [
+            {
+              "measurementId": "4191",
+              "measurementValue": 0,
+              "type": " Peak Wind Gust"
+            },
+            {
+              "measurementId": "4213",
+              "measurementValue": 0.254,
+              "type": "Rain Accumulation"
+            }
+          ]
+        ],
+        "payload": "4A00BF420000002B0000004B00720000000027374C0000000000FE",
+        "valid": true
+      }
+    },
+    "points": {
+      "humidity": {
+        "nature": "air",
+        "record": 66,
+        "unitId": "%RH"
+      },
+      "illuminance": {
+        "record": 43,
+        "unitId": "lux"
+      },
+      "pressure": {
+      "nature": "barometric",
+      "record": 100390,
+      "unitId": "Pa"
+    },
+
+  "speed": {
+        "nature": "wind",
+        "record": 0,
+        "unitId": "m/s"
+      },
+      "temperature": {
+        "nature": "air",
+        "record": 19.1,
+        "unitId": "Cel"
+      },
+      "uv": {
+        "record": 0,
+        "unitId": "index"
+      },
+      "angle": {
+        "nature": "wind direction",
+        "record": 114,
+        "unitId": "deg"
+      },
+      "height": {
+        "nature": "rain accumulation",
+        "record": 0.254,
+        "unitId": "mm"
+      },
+      "velocity": {
+       "nature": "rain gauge",
+       "record": 0,
+       "unitId": "mm/h"
   }
+}
+}
 ]
