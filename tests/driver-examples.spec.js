@@ -21,7 +21,6 @@ else if(fs.existsSync(resolveDriverPath("extractPoints.js"))) {
     const extractPointsPath = resolveDriverPath("extractPoints.js");
     extractPoints = require(extractPointsPath).extractPoints;
 }
-
 /**
  * Read predefined Isolated Buffer that acts exactly as the NodeJs Buffer library to prevent access to external from the isolated sandbox
  */
