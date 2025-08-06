@@ -300,7 +300,9 @@ function decodeUplink(input) {
         series2 = updateGasAndPmInfo(series2);
 
         // Add timestamps
-        const utcTimestamp = Math.floor(Date.now() / 1000);
+        const utcTimestamp = input.recvTime ?
+            Math.floor(new Date(input.recvTime).getTime() / 1000) :
+            Math.floor(Date.now() / 1000);
         const transmissionInterval = deviceInfo.transmission_interval;
 
         let logTimestampSeries1 = utcTimestamp;
@@ -355,7 +357,12 @@ function encodeDownlink(input) {
         transmissionInterval < 1 ||
         transmissionInterval > 720
     ) {
-        throw new Error("Transmission interval must be a number between 1 and 720 (minutes)");
+        return {
+            fPort: 2,
+            bytes: [],
+            errors: ["Transmission interval be a number between 1 and 720 (minutes)"],
+            warnings: []
+        };
     }
 
     const highByte = (transmissionInterval >> 8) & 0xff;
@@ -363,7 +370,9 @@ function encodeDownlink(input) {
 
     return {
         fPort: 2,
-        bytes: [0x01, highByte, lowByte], // 0x01 = commande de transmissionInterval
+        bytes: [0x01, highByte, lowByte],
+        errors: [],
+        warnings: []
     };
 }
 

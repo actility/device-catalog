@@ -22,7 +22,7 @@ const DECRYPTION_KEYS = {
     'pm1': [99, 108],
     'noise_average': [108, 115],
     'noise_peak': [115, 122],
-    //'occupancy': [122, 123],
+    'occupancy': [122, 123],
     'co2': [123, 136],
     'cov': [136, 152],
     'formaldehyde': [152, 168, 0.01],
@@ -128,7 +128,9 @@ function decodeUplink(input) {
         measurements_raw.noise_peak = binaryToUint(binary_noise_peak) + 17;
 
         // Add current timestamp
-        const utc_timestamp = Math.floor(Date.now() / 1000);
+        const utc_timestamp = input.recvTime ?
+            Math.floor(new Date(input.recvTime).getTime() / 1000) :
+            Math.floor(Date.now() / 1000);
         measurements_raw.log_timestamp = utc_timestamp;
 
         // Format device metadata for output
@@ -162,7 +164,7 @@ function decodeUplink(input) {
                 lux: measurements_raw.lux,
                 light_temperature: measurements_raw.light_temperature,
                 light_flickering: measurements_raw.light_flickering,
-                //occupancy: measurements_raw.occupancy,
+                occupancy: measurements_raw.occupancy,
                 health_index: measurements_raw.health_index,
                 cognitivity_index: measurements_raw.cognitivity_index,
                 sleep_index: measurements_raw.sleep_index,
@@ -220,7 +222,12 @@ function encodeDownlink(input) {
         transmissionInterval < 1 ||
         transmissionInterval > 720
     ) {
-        throw new Error("Transmission interval must be a number between 1 and 720 (minutes)");
+        return {
+            fPort: 2,
+            bytes: [],
+            errors: ["Transmission interval be a number between 1 and 720 (minutes)"],
+            warnings: []
+        };
     }
 
     const highByte = (transmissionInterval >> 8) & 0xff;
@@ -228,6 +235,8 @@ function encodeDownlink(input) {
 
     return {
         fPort: 2,
-        bytes: [0x01, highByte, lowByte], // 0x01 = commande de transmissionInterval
+        bytes: [0x01, highByte, lowByte],
+        errors: [],
+        warnings: []
     };
 }
