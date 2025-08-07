@@ -1,0 +1,54 @@
+[
+    {
+        "description": "Example 1",
+        "type": "uplink",
+        "bytes": "ff0bffff0101ff166746d48016300014ff090110ff0a0101",
+        "fPort": 1,
+        "time": "2024-11-03T17:00:00.000+02:00",
+        "data": {
+            "device_status": 1,
+            "firmware_version": "v1.1",
+            "hardware_version": "v1.1",
+            "ipso_version": "v0.1",
+            "sn": "6746d48016300014"
+        }
+    },
+    {
+        "description": "Example 2",
+        "type": "uplink",
+        "bytes": "03a1a801090779bf770104a279fc5d0005a30906a4b004",
+        "fPort": 1,
+        "time": "2024-11-03T17:00:00.000+02:00",
+        "data": {
+            "latitude": 24.625017,
+            "longitude": 118.03076,
+            "rssi": -90.3,
+            "sf": 9,
+            "snr": 9.3,
+            "tx_power": 12
+        },
+        "points": {
+            "location": {
+                "record": [24.625017, 118.03076],
+                "unitId": "GPS"
+            },
+            "rssi": {
+                "record": -90.3,
+                "unitId": "dBm"
+            },
+            "powerFactor": {
+                "record": 9,
+                "unitId": "/",
+                "nature": "sf"
+            },
+            "snr": {
+                "record": 9.3,
+                "unitId": "dB"
+            },
+            "powerLevel": {
+                "record": -18,
+                "unitId": "dB"
+            }
+        }
+    }
+]
