@@ -22,6 +22,40 @@
             "position": "tilt",
             "reset_event": "reset",
             "temperature": 30
-        }      
+        } ,
+        "points": {
+            "batteryLevel": {
+                "record": 90,
+                "unitId": "%"
+            },
+            "distance:2": {
+                "record": 500,
+                "unitId": "mm"
+            },
+            "temperature:1": {
+                "record": 30,
+                "unitId": "Cel"
+            },
+            "distance:0": {
+                "records": [ 500, 500 ],
+                "unitId": "mm",
+                "nature": "events"
+            },
+            "status:0": {
+                "record": true,
+                "unitId": "state",
+                "nature": "distance_alarm events"
+            },
+            "status:1": {
+                "record": true,
+                "unitId": "state",
+                "nature": "tilt"
+            },
+            "status:2": {
+                "record": true,
+                "unitId": "state",
+                "nature": "reset"
+            }
+        }
     }
 ]
