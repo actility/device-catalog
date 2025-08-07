@@ -44,10 +44,11 @@ specificationURL: https://resource.milesight.com/milesight/iot/document/am102-an
 userGuideURL: https://resource.milesight.com/milesight/iot/document/am102(l)-and-am103(l)-user-guide-en.pdf
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors: 
-
+  - batteryLevel:%
+  - temperature:Cel
+  - humidity:%RH
 # Driver examples
 # A list of examples description that are compatible with this model
-examples: 
+examples:
   msight:am102:1:
-
-
+    - "Example 1"

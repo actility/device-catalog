@@ -1,7 +1,7 @@
 # Commercial name of the model
 name: CT303 - Smart Current Transformer
 # Functional description of the product. Maximum 500 characters.
-description: "CT3xx is a LoRaWAN® Smart Current Transformer for monitoring energy consumption andanalyzingusage remotely. CT3xx provides multiple current options to suit energy monitoring andsupportssending threshold alarms. Its compact size enables quick and safe installation in any indoor spacewithout de-energizing facilities, thereby simplifying the installation and saving costs"
+description: "CT3xx is a LoRaWAN® Smart Current Transformer for monitoring energy consumption andanalyzingusage remotely. CT3xx provides multiple current options to suit energy monitoring and supports sending threshold alarms. Its compact size enables quick and safe installation in any indoor spacewithout de-energizing facilities, thereby simplifying the installation and saving costs"
 # Logo of the device
 logo: ct303.png
 # ID(s) of the profile that defines the LoRaWAN characteristics of this model.
@@ -44,9 +44,11 @@ specificationURL: https://resource.milesight.com/milesight/iot/document/ct3xx-da
 userGuideURL: https://resource.milesight.com/milesight/iot/document/ct3xx-user-guide-en.pdf
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors: 
-
+  - current:A
+  - status:state
 # Driver examples
 # A list of examples description that are compatible with this model
-examples: 
+examples:
   msight:ct303:1:
+    - "Example 1"
  
