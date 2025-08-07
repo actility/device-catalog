@@ -41,33 +41,26 @@ specificationURL: https://nano-sense.com/wp-content/uploads/2023/06/EP5000L-spec
 userGuideURL: https://nano-sense.com/wp-content/uploads/2023/06/EP5000L-Manuel-dinstallation.pdf
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
-  - humidity:%
+  - batteryLevel:%
+  - period:min
+  - quantity:ug/m3
+  - percentage:%
+  - co2Level:ppm
+  - humidity:%RH
+  - temperature:K
   - temperature:Cel
-  - pm10:ug/m3
-  - pm25:ug/m3
-  - pm1:ug/m3
-  - noise_average:dB
-  - noise_peak:dB
-  - co2:ppm
-  - cov:ug/m3
-  - formaldehyde:ug/m3
-  - benzene:ug/m3
-  - nox:ppb
-  - o3:ppb
+  - illuminance:lx
+  - sound:dB
+  - amount:ppb
+  - counter:count
+  - concentration:ug/m3
   - pressure:hPa
-  - lux:lx
-  - light_temperature:K
-  - light_flickering:%
-  - health_index:%
-  - cognitivity_index:%
-  - sleep_index:%
-  - respiratory_index:%
-  - virus_risk_index:%
-  - building_health_index:%
-  - ventilation_control:%
-  - heating_control:%
-  - cooling_control:%
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
-
+  nanosens:ep5000:1:
+    - "uplink EP5000 with full sensor data"
+    - "encode downlink to set transmission interval to 30 minutes"
+    - "encode downlink to set transmission interval to 120 minutes"
+    - "fail encode downlink when transmission interval exceeds 720"
+    - "fail encode downlink when transmission interval is below 1"

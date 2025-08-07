@@ -41,16 +41,18 @@ specificationURL: https://nano-sense.com/wp-content/uploads/2023/12/QAA-NG-Param
 userGuideURL: https://nano-sense.com/wp-content/uploads/2023/12/QAA-Manuel-dinstallation-V4.pdf
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
-  - humidity:%
+  - batteryLevel:%
+  - humidity:%RH
+  - sound:dB
+  - concentration:ug/m3
   - temperature:Cel
-  - pm10:ug/m3
-  - pm25:ug/m3
-  - pm1:ug/m3
-  - noise_average:dB
-  - noise_peak:dB
-  - nox:ppb
-  - o3:ppb
+  - amount:ppb
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
-
+  nanosens:qaa:1:
+    - "uplink QAA with temperature, PM and noise sensors"
+    - "encode downlink to set transmission interval to 30 minutes"
+    - "encode downlink to set transmission interval to 120 minutes"
+    - "fail encode downlink when transmission interval exceeds 720"
+    - "fail encode downlink when transmission interval is below 1"
