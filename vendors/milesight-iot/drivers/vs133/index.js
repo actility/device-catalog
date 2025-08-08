@@ -213,12 +213,12 @@ function readAlarmType(type) {
 
 function readEnableStatus(status) {
     var enable_map = { 0: "disable", 1: "enable" };
-    return getVal(enable_map, status);
+    return getValue(enable_map, status);
 }
 
 function readYesNoStatus(status) {
     var yes_no_map = { 0: "no", 1: "yes" };
-    return getVal(yes_no_map, status);
+    return getValue(yes_no_map, status);
 }
 
 function readUInt8(bytes) {
