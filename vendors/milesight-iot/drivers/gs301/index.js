@@ -307,7 +307,7 @@ function readConditionType(value) {
 }
 
 function readTriggerSource(value) {
-    var trigger_source_map = { 1: "nh3", 1: "h2s", 2: "nh3_d2d", 3: "h2s_d2d", 4: "nh3_d2d", 5: "nh3_d2d_release", 6: "h2s_d2d_release", 7: "h2s_v2", 8: "h2s_d2d_v2", 9: "h2s_release_v2" };
+    var trigger_source_map = { 0: "nh3", 1: "h2s", 2: "nh3_d2d", 3: "h2s_d2d", 4: "nh3_d2d", 5: "nh3_d2d_release", 6: "h2s_d2d_release", 7: "h2s_v2", 8: "h2s_d2d_v2", 9: "h2s_release_v2" };
     return getValue(trigger_source_map, value);
 }
 
