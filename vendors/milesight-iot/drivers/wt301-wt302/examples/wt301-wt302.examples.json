@@ -1,0 +1,42 @@
+[
+    {
+        "description": "Example 1",
+        "type": "uplink",
+        "bytes": "0001000A0F010001022E0000000000",
+        "fPort": 100,
+        "time": "2022-11-03T17:00:00.000+02:00",
+        "data": {
+            "btn_lock_enabled": "disable",
+            "card": "remove",
+            "control_mode": "auto",
+            "fan_speed": "medium",
+            "mode": "heat",
+            "server_temperature": 0,
+            "temperature": 23,
+            "temperature_target": 0,
+            "thermostat_status": "on"
+        },
+        "points": {
+            "temperature:0": {
+                "record": 23,
+                "unitId": "Cel",
+                "nature": "room"
+            },
+            "temperature:1": {
+                "record": 0,
+                "unitId": "Cel",
+                "nature": "server"
+            },
+            "temperature:2": {
+                "record": 0,
+                "unitId": "Cel",
+                "nature": "target"
+            },
+            "status": {
+                "record": true,
+                "unitId": "state",
+                "nature": "thermostat on"
+            }
+        }
+    }
+]
