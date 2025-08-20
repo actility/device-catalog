@@ -9,7 +9,8 @@ logo: hydrodigit-s1.png
 # lorawanDeviceProfileID: as defined by LoRa Alliance in https://lora-alliance.org/wp-content/uploads/2020/10/LoRa_Alliance_Vendor_ID_for_QR_Code_02142022.pdf.
 # The lorawanDeviceProfileID consists of 8 upper-case hexadecimal characters, 4 characters for VendorID + 4 characters for VendorProfileID. Please consider using single (') or double (") quotation.
 deviceProfileIds:
-  - id: 
+  - id: b-meters_RFGroup1_1.0.3a_classA
+  - id: b-meters_RFGroup4_1.0.3a_classA
 
 # You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings.
 # Maximum device TX Conducted output power in dBm.
@@ -29,17 +30,40 @@ LoRaWANCertified:
 # Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
 # Format: `<8 characters max>:<16 characters max>:<digits only>`
 # Be careful: Once you chose a model, it cannot be changed later
-modelId: bmeters:hydrodigit-s1:1
+modelId: b-meters:hydrodigit-s1:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 # Format: `<8 characters max>:<16 characters max>:<digits only>`
 # Be careful: Once you chose a protocolId, it cannot be changed later
-protocolId:
+protocolId: b-meters:hydrodigit:1
 # DataSheet URL (optional)
-specificationURL:
+specificationURL: https://www.bmeters.com/wp-content/uploads/2023/07/v25.1_HYDRODIGIT-S1_DS.pdf
 # User Guide URL (optional)
-userGuideURL:
+userGuideURL: https://www.bmeters.com/wp-content/uploads/2023/07/MAN026_Manuale-Hydrodigit-S1-12-lingue.pdf
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
+  - temperature:Cel
+  - volume:L
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
+  b-meters:hydrodigit:1:
+    - "Data uplink"
+    - "Data uplink (48 bytes long)"
+    - "GET_ALARM_DATA uplink answer"
+    - "GET_ALARM_PAR uplink answer"
+    - "GET_FW_VERSION uplink answer"
+    - "GET_METER_SN uplink answer"
+    - "Get Alarm data downlink"
+    - "Get Alarm parameter downlink"
+    - "Get FW version downlink"
+    - "Get Meter SN downlink"
+    - "RESET uplink answer"
+    - "Reset downlink"
+    - "SET_ALARM_DATA uplink answer"
+    - "SET_ALARM_PAR uplink answer"
+    - "SET_LORA_DATALOG uplink answer"
+    - "SET_TX_PAR uplink answer"
+    - "Set Alarm data downlink"
+    - "Set Alarm parameter downlink"
+    - "Set LoRa datalog downlink"
+    - "Set TX parameter downlink"
