@@ -202,7 +202,15 @@ const code = (() => {
  */
 function isTrusted() {
     const packageJson = fs.readJsonSync(resolveDriverPath("package.json"));
-    return packageJson.trusted ?? false;
+    let packageTrusted = packageJson.trusted ?? false;
+
+    const driverYamlPath = path.join(privateDir, "driver.yaml");
+    let driverYamlTrusted = false;
+    if(fs.existsSync(driverYamlPath)) {
+        driverYamlTrusted = yaml.load(fs.readFileSync(driverYamlPath)) ?? false;
+    }
+
+    return packageTrusted || driverYamlTrusted;
 }
 
 const trusted = isTrusted();

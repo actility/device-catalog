@@ -369,18 +369,54 @@
       "warnings": ["Invalid value among data", "Invalid value among data"]
     },
     "points": {
-      "volume:0": { "unitId": "m3", "record": 0.236, "nature": "standard" },
-      "flowRate:1": { "unitId": "m3/h", "record": 0, "nature": "max" },
-      "flowRate:2": { "unitId": "m3/h", "record": 0, "nature": "min" },
-      "temperature:2": {
-        "unitId": "Cel",
-        "record": false,
-        "nature": "high ambient"
+      "volume:0": { 
+        "unitId": "m3", 
+        "records": [
+          {
+            "eventTime": "2023-10-19T00:00:00.000",
+            "value": 0.236
+          }
+        ],
+        "nature": "standard"
       },
-      "temperature:3": {
-        "unitId": "Cel",
-        "record": false,
-        "nature": "low ambient"
+      "flowRate:1": {
+        "unitId": "m3/h",
+        "records": [
+          { 
+            "eventTime": "2023-10-19T00:00:00.000",
+            "value": 0
+          }
+        ],
+        "nature": "max" 
+      },
+      "flowRate:2": {
+        "unitId": "m3/h",
+        "records": [
+          {
+            "eventTime": "2023-10-19T00:00:00.000", "value": 0 
+          }
+        ],
+        "nature": "min"
+      },
+      "status:0": {
+        "nature": "high ambient",
+        "records": [
+          {
+            "eventTime": "2023-10-19T00:00:00.000",
+            "value": false
+          }
+        ],
+        "unitId": "state"
+      },
+      "status:1": {
+        "nature": "low ambient",
+        "records": [
+          {
+            "eventTime": "2023-10-19T00:00:00.000",
+            "value": false
+          }
+        ],
+        "unitId": "state"
       }
     }
   },
@@ -548,8 +584,26 @@
       "warnings": ["Invalid value among data"]
     },
     "points": {
-      "volume:0": { "unitId": "m3", "record": 11223344, "nature": "standard" },
-      "temperature:0": { "unitId": "Cel", "record": -17, "nature": "max flow" }
+      "volume:0": {
+        "unitId": "m3",
+        "records": [
+          {
+            "eventTime": "2064-02-05T00:00:00.000",
+            "value": 11223344
+          }
+        ],
+        "nature": "standard"
+      },
+      "temperature:0": {
+        "unitId": "Cel",
+        "records": [
+          {
+            "eventTime": "2064-03-01T07:06:05.000",
+            "value": -17
+          }
+        ],
+        "nature": "max flow"
+      }
     }
   },
   {
@@ -1000,7 +1054,16 @@
       "warnings": []
     },
     "points": {
-      "volume:1": { "unitId": "m3", "record": 0.236, "nature": "reverse" }
+      "volume:1": {
+        "unitId": "m3",
+        "records": [
+          {
+            "eventTime": "2023-10-19T00:00:00.000",
+            "value": 0.236
+          }
+        ],
+        "nature": "reverse"
+      }
     }
   },
   {
