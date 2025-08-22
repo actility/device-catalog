@@ -207,10 +207,10 @@ function isTrusted() {
     const driverYamlPath = path.join(privateDir, "driver.yaml");
     let driverYamlTrusted = false;
     if(fs.existsSync(driverYamlPath)) {
-        driverYamlTrusted = yaml.load(fs.readFileSync(driverYamlPath)) ?? false;
+        driverYamlTrusted = yaml.load(fs.readFileSync(driverYamlPath)).trusted ?? false;
     }
 
-    return packageTrusted || driverYamlTrusted;
+    return (packageTrusted && DRIVER_PATH.includes("device-catalog-private")) || driverYamlTrusted;
 }
 
 const trusted = isTrusted();
