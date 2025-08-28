@@ -410,6 +410,8 @@ if(extractPoints) {
                     );
 
                     const currentPoints = example.points;
+                    checkEventTimes(example.description, currentPoints);
+                    
                     expect(result).toEqual(currentPoints);
                 });
             }
@@ -425,6 +427,10 @@ if(extractPoints) {
                     );
 
                     const currentPoints = example.points;
+                    
+                    // Checking if all eventTimes are of the right format
+                    checkEventTimes(example.description, currentPoints);
+
                     expect(result).toEqual(currentPoints);
                 });
             }
@@ -548,4 +554,17 @@ function listProperties(obj, parent = '', result = []) {
         }
     }
     return result;
+}
+
+function checkEventTimes(description, points) {
+    for(let value of Object.values(points)) {
+        if(value.records === undefined) {
+            continue;
+        }
+        for(let record of value.records) {
+            if(record.eventTime !== undefined) {
+                dateIsLocal(description, record.eventTime);
+            }
+        }
+    }
 }
