@@ -464,11 +464,16 @@ function adaptBytesArray(bytes){
     return bytes;
 }
 
-function dateIsLocal(description, time) {
+function dateIsLocal(description, time, throwError = false) {
     if(typeof description === 'string' && typeof time === 'string') {
         const isLocal = !/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?(Z|[+-]\d{2}:\d{2})$/.test(time);
         if(isLocal) {
-            console.warn(description + "\nTimestamp should be UTC-relative");
+            if(throwError) {
+                throw new Error(description + "\nTimestamp should be UTC-relative");
+            }
+            else {
+                console.warn(description + "\nTimestamp should be UTC-relative");
+            }
         }
     }
 }
@@ -563,7 +568,7 @@ function checkEventTimes(description, points) {
         }
         for(let record of value.records) {
             if(record.eventTime !== undefined) {
-                dateIsLocal(description, record.eventTime);
+                dateIsLocal(description, record.eventTime, true);
             }
         }
     }
