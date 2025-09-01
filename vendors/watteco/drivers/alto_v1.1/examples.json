@@ -1,0 +1,257 @@
+[
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing angle value | payload:110A000C00553941500000",
+    "input": {
+      "bytes": "110a000c00553941500000",
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": {
+        "samples": [
+          {
+            "variable": "Deg",
+            "value": 13,
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "deg"
+          }
+        ],
+        "Deg": 13,
+        "Deg_unit": "deg"
+      },
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing firmware version | payload:110100000002000D0305020015E2",
+    "input": {
+      "bytes": "110100000002000d0305020015e2",
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": {
+        "samples": [
+          {
+            "variable": "firmware",
+            "value": "3.5.2.5602",
+            "date": "2023-07-19T07:51:25.508306410Z"
+          }
+        ],
+        "firmware": "3.5.2.5602"
+      },
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report  containing battery charge | payload:110A00500006410503040E6804",
+    "input": {
+      "bytes": "110a00500006410503040e6804",
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": {
+        "samples": [
+          {
+            "variable": "disposable_battery_voltage",
+            "value": 3.688,
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "V"
+          }
+        ],
+        "disposable_battery_voltage": 3.688,
+        "disposable_battery_voltage_unit": "V"
+      },
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing dataup info | payload:110180040000000800",
+    "input": {
+      "bytes": "110180040000000800",
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": {
+        "samples": [
+          {
+            "variable": "message_type",
+            "value": "unconfirmed",
+            "date": "2023-07-19T07:51:25.508306410Z"
+          }
+        ],
+        "message_type": "unconfirmed"
+      },
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink batch report containing sensor data | payload:40130009505400000000e8de0102b56100591064c0f61d8410800e54b779456e05308009",
+    "input": {
+      "bytes": "40130009505400000000e8de0102b56100591064c0f61d8410800e54b779456e05308009",
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": {
+        "batch_counter": 3,
+        "samples": [
+          {
+            "variable": "Deg",
+            "value": 0,
+            "date": "2023-07-19T07:46:42.508Z",
+            "unit": "deg"
+          },
+          {
+            "variable": "distance",
+            "value": 2.3440001010894775,
+            "date": "2023-07-19T07:51:21.508Z",
+            "unit": "m"
+          },
+          {
+            "variable": "magnitude",
+            "value": 7556,
+            "date": "2023-07-19T07:51:21.508Z"
+          },
+          {
+            "variable": "acc_temperature",
+            "value": 36,
+            "date": "2023-07-19T07:46:42.508Z",
+            "unit": "Cel"
+          },
+          {
+            "variable": "acc_temperature",
+            "value": 36.005,
+            "date": "2023-07-19T07:47:42.508Z",
+            "unit": "Cel"
+          },
+          {
+            "variable": "acc_temperature",
+            "value": 36,
+            "date": "2023-07-19T07:48:43.508Z",
+            "unit": "Cel"
+          },
+          {
+            "variable": "acc_temperature",
+            "value": 36.005,
+            "date": "2023-07-19T07:50:43.508Z",
+            "unit": "Cel"
+          }
+        ],
+        "Deg": 0,
+        "distance": 2.3440001010894775,
+        "magnitude": 7556,
+        "acc_temperature": 36.005,
+        "Deg_unit": "deg",
+        "distance_unit": "m",
+        "acc_temperature_unit": "Cel"
+      },
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Send a custom hex frame (here: read firmware version)",
+    "input": {
+      "data": {
+        "sendHexFrame": "110000000002"
+      }
+    },
+    "output": {
+      "bytes": [17, 0, 0, 0, 0, 2],
+      "fPort": 125,
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Send a custom hex frame with specific port",
+    "input": {
+      "data": {
+        "sendHexFrame": "110000000002:100"
+      }
+    },
+    "output": {
+      "bytes": [17, 0, 0, 0, 0, 2],
+      "fPort": 100,
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Set confirmed transmission mode (1=confirmed, 0=unconfirmed)",
+    "input": {
+      "data": {
+        "sendConfirmedMode": 1
+      }
+    },
+    "output": {
+      "bytes": [17, 5, 128, 4, 0, 0, 8, 1],
+      "fPort": 125,
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Reboot device",
+    "input": {
+      "data": {
+        "sendReboot": true
+      }
+    },
+    "output": {
+      "bytes": [17, 80, 0, 80, 0],
+      "fPort": 125,
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Factory reset device",
+    "input": {
+      "data": {
+        "sendFactoryReset": true
+      }
+    },
+    "output": {
+      "bytes": [17, 80, 0, 80, 7],
+      "fPort": 125,
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Set LoRa retries to 3",
+    "input": {
+      "data": {
+        "sendLoraRetries": 3
+      }
+    },
+    "output": {
+      "bytes": [17, 5, 128, 4, 0, 1, 32, 3],
+      "fPort": 125,
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "LoRa Rejoin with 60 minutes interval",
+    "input": {
+      "data": {
+        "sendLoraRejoin": 60
+      }
+    },
+    "output": {
+      "bytes": [17, 80, 128, 4, 0, 0, 60],
+      "fPort": 125,
+      "warnings": []
+    }
+  }
+]
