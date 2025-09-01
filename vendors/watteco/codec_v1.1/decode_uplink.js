@@ -50,15 +50,16 @@ function anyToObj(param) {
  * If no samples exist, the input data is returned unchanged.
  *
  * @param {Object} dataContentIn - The input data directly (without a "data" wrapper).
+ * @param {Object} units - An object mapping variable names to their units.
  * @returns {Object} - The processed data with latest sample values added.
  */
-function postProcessDataContent(dataContentIn) {
+function postProcessDataContent(dataContentIn, units = {}) {
     // Add necessary samples layer in a data object if needed
     const dataContent = anyToObj(dataContentIn);
 
     // If "samples" does not exist, return dataContent unchanged
     if (!dataContent.samples || !Array.isArray(dataContent.samples)) {
-        return dataContent;
+        return addUnitsToData(dataContent, units);
     }
     
     // Extract samples
@@ -76,6 +77,11 @@ function postProcessDataContent(dataContentIn) {
             if (!latestValues[variable] || new Date(date) > new Date(latestValues[variable].date)) {
                 latestValues[variable] = { value, date };
             }
+            
+            // Add unit to the sample if available
+            if (units && units[variable]) {
+                sample.unit = units[variable];
+            }
         }
     });
     
@@ -92,22 +98,64 @@ function postProcessDataContent(dataContentIn) {
         }
     }
 
-    
-    return processedData;
+    return addUnitsToData(processedData, units);
     // return sortObject(processedData); /* TODO: Evaluate if this could solve the problem of order in the output data in TTN Automatised Tests */
+}
+
+/**
+ * Adds unit information to data fields based on the provided units object.
+ * 
+ * @param {Object} data - The data object to add units to.
+ * @param {Object} units - An object mapping variable names to their units.
+ * @returns {Object} - The data object with added unit information.
+ */
+function addUnitsToData(data, units = {}) {
+    if (!units || Object.keys(units).length === 0) {
+        return data;
+    }
+    
+    const result = { ...data };
+    
+    // Add units to top-level variables
+    for (const key in units) {
+        // If the key exists in the data and the unit is not an empty string, add a corresponding unit property
+        if (result[key] !== undefined && units[key] !== "") {
+            result[`${key}_unit`] = units[key];
+        }
+    }
+    
+    // Add units to samples if they exist
+    if (result.samples && Array.isArray(result.samples)) {
+        result.samples = result.samples.map(sample => {
+            // Only add unit if it exists and is not an empty string
+            if (sample.variable && units[sample.variable] && units[sample.variable] !== "") {
+                return { ...sample, unit: units[sample.variable] };
+            }
+            return sample;
+        });
+    }
+    
+    return result;
 }
 
 /**
  * Decodes uplink messages from Watteco devices and processes the payload data.
  *
- * @param {Object} input - The uplink message containing bytes, fPort, and recvTime.
+ * @param {Object} input - The uplink message containing bytes (array or hex string), fPort, and recvTime.
  * @param {Array} batch_parameters - Parameters for batch decoding.
  * @param {Object} endpoint_parameters - Parameters for endpoint normalization.
+ * @param {Function} TIC_Decode - Optional TIC decode function.
  * @returns {Object} - The decoded data with potential warnings or errors.
  */
-function watteco_decodeUplink(input, batch_parameters, endpoint_parameters, TIC_Decode=null) {
-    let bytes = input.bytes;
-    let port = input.fPort;
+function watteco_decodeUplink(input, batch_parameters, endpoint_parameters, units, TIC_Decode=null) {
+    if (typeof input.bytes === 'string') {
+        const hexString = input.bytes.replace(/[^0-9A-Fa-f]/g, '');
+        const bytes = [];
+        for (let i = 0; i < hexString.length; i += 2) {
+            bytes.push(parseInt(hexString.substr(i, 2), 16));
+        }
+        input.bytes = bytes;
+    }
 
     // Avoid non valid recvTime. Saw on multitech mPowerEdge Conduit AP, firmware 7.0.0
     if (! input.recvTime) {
@@ -130,7 +178,7 @@ function watteco_decodeUplink(input, batch_parameters, endpoint_parameters, TIC_
             try {
                 let decoded = batch.normalisation_batch(batchInput);
                 return {
-                    data: postProcessDataContent(decoded),
+                    data: postProcessDataContent(decoded, units),
                     warnings: [],
                 };
             } catch (error) {
@@ -141,7 +189,7 @@ function watteco_decodeUplink(input, batch_parameters, endpoint_parameters, TIC_
             }
         } else {
             return {
-                data: postProcessDataContent(decoded.data),
+                data: postProcessDataContent(decoded.data, units),
                 warnings: decoded.warning,
             };
         }

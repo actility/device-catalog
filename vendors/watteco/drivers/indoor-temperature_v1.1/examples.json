@@ -13,20 +13,14 @@
           {
             "variable": "temperature",
             "value": 29.53,
-            "date": "2023-07-19T07:51:31.598957793Z"
+            "date": "2023-07-19T07:51:31.598957793Z",
+            "unit": "Cel"
           }
         ],
-        "temperature": 29.53
+        "temperature": 29.53,
+        "temperature_unit": "Cel"
       },
       "warnings": []
-    },
-    "points": {
-      "temperature": {
-        "unitId": "Cel",
-        "records": [
-          { "value": 29.53, "eventTime": "2023-07-19T07:51:31.598957793Z" }
-        ]
-      }
     }
   },
   {
@@ -49,8 +43,7 @@
         "firmware": "3.5.2.5602"
       },
       "warnings": []
-    },
-    "points": {}
+    }
   },
   {
     "type": "uplink",
@@ -66,20 +59,14 @@
           {
             "variable": "disposable_battery_voltage",
             "value": 3.688,
-            "date": "2023-07-19T07:51:25.508306410Z"
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "V"
           }
         ],
-        "disposable_battery_voltage": 3.688
+        "disposable_battery_voltage": 3.688,
+        "disposable_battery_voltage_unit": "V"
       },
       "warnings": []
-    },
-    "points": {
-      "batteryVoltage": {
-        "unitId": "V",
-        "records": [
-          { "value": 3.688, "eventTime": "2023-07-19T07:51:25.508306410Z" }
-        ]
-      }
     }
   },
   {
@@ -102,7 +89,104 @@
         "message_type": "unconfirmed"
       },
       "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Send a custom hex frame (here: read firmware version)",
+    "input": {
+      "data": {
+        "sendHexFrame": "110000000002"
+      }
     },
-    "points": {}
+    "output": {
+      "bytes": [17, 0, 0, 0, 0, 2],
+      "fPort": 125,
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Send a custom hex frame with specific port",
+    "input": {
+      "data": {
+        "sendHexFrame": "110000000002:100"
+      }
+    },
+    "output": {
+      "bytes": [17, 0, 0, 0, 0, 2],
+      "fPort": 100,
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Set confirmed transmission mode (1=confirmed, 0=unconfirmed)",
+    "input": {
+      "data": {
+        "sendConfirmedMode": 1
+      }
+    },
+    "output": {
+      "bytes": [17, 5, 128, 4, 0, 0, 8, 1],
+      "fPort": 125,
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Reboot device",
+    "input": {
+      "data": {
+        "sendReboot": true
+      }
+    },
+    "output": {
+      "bytes": [17, 80, 0, 80, 0],
+      "fPort": 125,
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Factory reset device",
+    "input": {
+      "data": {
+        "sendFactoryReset": true
+      }
+    },
+    "output": {
+      "bytes": [17, 80, 0, 80, 7],
+      "fPort": 125,
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Set LoRa retries to 3",
+    "input": {
+      "data": {
+        "sendLoraRetries": 3
+      }
+    },
+    "output": {
+      "bytes": [17, 5, 128, 4, 0, 1, 32, 3],
+      "fPort": 125,
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "LoRa Rejoin with 60 minutes interval",
+    "input": {
+      "data": {
+        "sendLoraRejoin": 60
+      }
+    },
+    "output": {
+      "bytes": [17, 80, 128, 4, 0, 0, 60],
+      "fPort": 125,
+      "warnings": []
+    }
   }
 ]

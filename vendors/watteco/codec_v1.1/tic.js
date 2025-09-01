@@ -124,15 +124,23 @@ function TIC_Decode(clustID,AttributeID,BytesAfterSize)
         ts += ticEpoch;
     
         const a = new Date(ts * 1000);
-    
-        const x =
-            zeroPad(a.getDate(), 2) + "/" + zeroPad(a.getMonth(), 2) + "/" + a.getFullYear() + " " +
-            zeroPad(a.getHours(), 2) + ":" + zeroPad(a.getMinutes(), 2) + ":" + zeroPad(a.getSeconds(), 2);
+        
+        const x = a.toLocaleString('fr-FR', {
+          timeZone: 'Europe/Paris',
+          year: '2-digit',
+          month: '2-digit',
+          day: '2-digit',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          hour12: false
+        }).replace(',', '');
+
     
         return { x, i };
     }
-    
 
+    
     function TICParseCString(b,i) {
         const eos = b.slice(i).indexOf(0);
         const x = String.fromCharCode.apply(null, b.slice(i, i + eos)); i += (eos + 1);
@@ -837,10 +845,10 @@ function TIC_Decode(clustID,AttributeID,BytesAfterSize)
         if (AttributeID & 0x00FF == 0)	{
             profil = ICE_General;
             data["_TICFrameType"]="ICE Generale";
-        } else if (AttributeID & 0x00FF == 1)	{
+        } else if ((AttributeID & 0x00FF) == 1)	{
             profil = ICE_p;
             data["_TICFrameType"]="ICE Periode P";
-        } else if (AttributeID & 0x0001 == 2)	{
+        } else if ((AttributeID & 0x0001) == 2)	{
             profil = ICE_p1;
             data["_TICFrameType"]="ICE Periode P moins 1";
         } else {

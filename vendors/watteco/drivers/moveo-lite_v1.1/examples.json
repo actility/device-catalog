@@ -1,1 +1,284 @@
-[{"type":"uplink","description":"uplink standard report containing temperature value | payload:110A04020000290B89","input":{"bytes":"110a04020000290b89","fPort":125,"recvTime":"2023-07-19T07:51:31.598957793Z"},"output":{"data":{"samples":[{"variable":"temperature","value":29.53,"date":"2023-07-19T07:51:31.598957793Z"}],"temperature":29.53},"warnings":[]},"points":{"temperature":{"unitId":"Cel","records":[{"value":29.53,"eventTime":"2023-07-19T07:51:31.598957793Z"}]}}},{"type":"uplink","description":"uplink standard report containing humidity value | payload:110A04050000210E89","input":{"bytes":"110a04050000210e89","fPort":125,"recvTime":"2023-07-19T07:51:25.508306410Z"},"output":{"data":{"samples":[{"variable":"humidity","value":37.21,"date":"2023-07-19T07:51:25.508306410Z"}],"humidity":37.21},"warnings":[]},"points":{"humidity":{"unitId":"%RH","records":[{"value":37.21,"eventTime":"2023-07-19T07:51:25.508306410Z"}]}}},{"type":"uplink","description":"uplink standard report containing violation detection | payload:110A000F00551001","input":{"bytes":"110a000f00551001","fPort":125,"recvTime":"2023-07-19T07:51:25.508306410Z"},"output":{"data":{"samples":[{"variable":"violation_detection","value":true,"date":"2023-07-19T07:51:25.508306410Z"}],"violation_detection":true},"warnings":[]},"points":{"status":{"unitId":"state","records":[{"value":true,"eventTime":"2023-07-19T07:51:25.508306410Z"}],"nature":"violation detection"}}},{"type":"uplink","description":"uplink standard report containing illuminance value | payload:110A04000000210745","input":{"bytes":"110a04000000210745","fPort":125,"recvTime":"2023-07-19T07:51:25.508306410Z"},"output":{"data":{"samples":[{"variable":"illuminance","value":1861,"date":"2023-07-19T07:51:25.508306410Z"}],"illuminance":1861},"warnings":[]},"points":{"illuminance":{"unitId":"lx","records":[{"value":1861,"eventTime":"2023-07-19T07:51:25.508306410Z"}]}}},{"type":"uplink","description":"uplink standard report containing occupancy value | payload:110A040600001801","input":{"bytes":"110a040600001801","fPort":125,"recvTime":"2023-07-19T07:51:25.508306410Z"},"output":{"data":{"samples":[{"variable":"occupancy","value":true,"date":"2023-07-19T07:51:25.508306410Z"}],"occupancy":true},"warnings":[]},"points":{"presence":{"unitId":"state","records":[{"value":true,"eventTime":"2023-07-19T07:51:25.508306410Z"}]}}},{"type":"uplink","description":"uplink standard report containing firmware version | payload:110100000002000D0305020015E2","input":{"bytes":"110100000002000d0305020015e2","fPort":125,"recvTime":"2023-07-19T07:51:25.508306410Z"},"output":{"data":{"samples":[{"variable":"firmware","value":"3.5.2.5602","date":"2023-07-19T07:51:25.508306410Z"}],"firmware":"3.5.2.5602"},"warnings":[]},"points":{}},{"type":"uplink","description":"uplink standard report  containing battery charge | payload:110A00500006410503040E6804","input":{"bytes":"110a00500006410503040e6804","fPort":125,"recvTime":"2023-07-19T07:51:25.508306410Z"},"output":{"data":{"samples":[{"variable":"disposable_battery_voltage","value":3.688,"date":"2023-07-19T07:51:25.508306410Z"}],"disposable_battery_voltage":3.688},"warnings":[]},"points":{"batteryVoltage":{"unitId":"V","records":[{"value":3.688,"eventTime":"2023-07-19T07:51:25.508306410Z"}]}}},{"type":"uplink","description":"uplink standard report containing dataup info | payload:110180040000000800","input":{"bytes":"110180040000000800","fPort":125,"recvTime":"2023-07-19T07:51:25.508306410Z"},"output":{"data":{"samples":[{"variable":"message_type","value":"unconfirmed","date":"2023-07-19T07:51:25.508306410Z"}],"message_type":"unconfirmed"},"warnings":[]},"points":{}}]
+[
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing temperature value | payload:110A04020000290B89",
+    "input": {
+      "bytes": "110a04020000290b89",
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:31.598957793Z"
+    },
+    "output": {
+      "data": {
+        "samples": [
+          {
+            "variable": "temperature",
+            "value": 29.53,
+            "date": "2023-07-19T07:51:31.598957793Z",
+            "unit": "Cel"
+          }
+        ],
+        "temperature": 29.53,
+        "temperature_unit": "Cel"
+      },
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing humidity value | payload:110A04050000210E89",
+    "input": {
+      "bytes": "110a04050000210e89",
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": {
+        "samples": [
+          {
+            "variable": "humidity",
+            "value": 37.21,
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "%RH"
+          }
+        ],
+        "humidity": 37.21,
+        "humidity_unit": "%RH"
+      },
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing violation detection | payload:110A000F00551001",
+    "input": {
+      "bytes": "110a000f00551001",
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": {
+        "samples": [
+          {
+            "variable": "violation_detection",
+            "value": true,
+            "date": "2023-07-19T07:51:25.508306410Z"
+          }
+        ],
+        "violation_detection": true
+      },
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing illuminance value | payload:110A04000000210745",
+    "input": {
+      "bytes": "110a04000000210745",
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": {
+        "samples": [
+          {
+            "variable": "illuminance",
+            "value": 1861,
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "lx"
+          }
+        ],
+        "illuminance": 1861,
+        "illuminance_unit": "lx"
+      },
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing occupancy value | payload:110A040600001801",
+    "input": {
+      "bytes": "110a040600001801",
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": {
+        "samples": [
+          {
+            "variable": "occupancy",
+            "value": true,
+            "date": "2023-07-19T07:51:25.508306410Z"
+          }
+        ],
+        "occupancy": true
+      },
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing firmware version | payload:110100000002000D0305020015E2",
+    "input": {
+      "bytes": "110100000002000d0305020015e2",
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": {
+        "samples": [
+          {
+            "variable": "firmware",
+            "value": "3.5.2.5602",
+            "date": "2023-07-19T07:51:25.508306410Z"
+          }
+        ],
+        "firmware": "3.5.2.5602"
+      },
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report  containing battery charge | payload:110A00500006410503040E6804",
+    "input": {
+      "bytes": "110a00500006410503040e6804",
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": {
+        "samples": [
+          {
+            "variable": "disposable_battery_voltage",
+            "value": 3.688,
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "V"
+          }
+        ],
+        "disposable_battery_voltage": 3.688,
+        "disposable_battery_voltage_unit": "V"
+      },
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing dataup info | payload:110180040000000800",
+    "input": {
+      "bytes": "110180040000000800",
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": {
+        "samples": [
+          {
+            "variable": "message_type",
+            "value": "unconfirmed",
+            "date": "2023-07-19T07:51:25.508306410Z"
+          }
+        ],
+        "message_type": "unconfirmed"
+      },
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Send a custom hex frame (here: read firmware version)",
+    "input": {
+      "data": {
+        "sendHexFrame": "110000000002"
+      }
+    },
+    "output": {
+      "bytes": [17, 0, 0, 0, 0, 2],
+      "fPort": 125,
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Send a custom hex frame with specific port",
+    "input": {
+      "data": {
+        "sendHexFrame": "110000000002:100"
+      }
+    },
+    "output": {
+      "bytes": [17, 0, 0, 0, 0, 2],
+      "fPort": 100,
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Set confirmed transmission mode (1=confirmed, 0=unconfirmed)",
+    "input": {
+      "data": {
+        "sendConfirmedMode": 1
+      }
+    },
+    "output": {
+      "bytes": [17, 5, 128, 4, 0, 0, 8, 1],
+      "fPort": 125,
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Reboot device",
+    "input": {
+      "data": {
+        "sendReboot": true
+      }
+    },
+    "output": {
+      "bytes": [17, 80, 0, 80, 0],
+      "fPort": 125,
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Factory reset device",
+    "input": {
+      "data": {
+        "sendFactoryReset": true
+      }
+    },
+    "output": {
+      "bytes": [17, 80, 0, 80, 7],
+      "fPort": 125,
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Set LoRa retries to 3",
+    "input": {
+      "data": {
+        "sendLoraRetries": 3
+      }
+    },
+    "output": {
+      "bytes": [17, 5, 128, 4, 0, 1, 32, 3],
+      "fPort": 125,
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "LoRa Rejoin with 60 minutes interval",
+    "input": {
+      "data": {
+        "sendLoraRejoin": 60
+      }
+    },
+    "output": {
+      "bytes": [17, 80, 128, 4, 0, 0, 60],
+      "fPort": 125,
+      "warnings": []
+    }
+  }
+]
