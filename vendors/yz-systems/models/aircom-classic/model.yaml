@@ -9,12 +9,10 @@ logo: aircom-classic.png
 # lorawanDeviceProfileID: as defined by LoRa Alliance in https://lora-alliance.org/wp-content/uploads/2020/10/LoRa_Alliance_Vendor_ID_for_QR_Code_02142022.pdf.
 # The lorawanDeviceProfileID consists of 8 upper-case hexadecimal characters, 4 characters for VendorID + 4 characters for VendorProfileID. Please consider using single (') or double (") quotation.
 deviceProfileIds:
-  - id: yzsyst_EU_1.0.3a
-  - id: yzsyst_IN_1.0.3a
-  - id: yzsyst_US_1.0.3a
-  - id: yzsyst_AU_1.0.3a
-  - id: yzsyst_AS1_1.0.3a
-  - id: yzsyst_AS2_1.0.3a
+  - id: yzsyst_RFGroup1_1.0.3a_classA
+  - id: yzsyst_RFGroup2_1.0.3a_classA
+  - id: yzsyst_RFGroup3_1.0.3a_classA
+  - id: yzsyst_RFGroup4_1.0.3a_classA
 
 # You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings.
 # Maximum device TX Conducted output power in dBm.
@@ -39,13 +37,33 @@ modelId: yzsyst:aircom-classic:1
 # Format: `<8 characters max>:<16 characters max>:<digits only>`
 # Be careful: Once you chose a protocolId, it cannot be changed later
 protocolId:
-  - yzsyst:aircom-classic-protocol:1
+  - yzsyst:aircom:1
 # DataSheet URL (optional)
 specificationURL: https://www.yzsystems.com/en/iot/products-industrial-iot/end-nodes/classic/
 # User Guide URL (optional)
 userGuideURL: https://www.yzsystems.com/en/iot/products-industrial-iot/end-nodes/classic/
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
+  - voltage:V
+  - temperature:Far
+  - time:s
+  - counter:count
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
+  yzsyst:aircom:1:
+    - "uplink with empty payload"
+    - "digital-only uplink (all off)"
+    - "digital-only uplink (all on)"
+    - "digital-only uplink (more than 1 byte)"
+    - "Standard digital uplink"
+    - "Standard digital uplink - payload too short"
+    - "Analogue A1 uplink"
+    - "Analogue A1 uplink - payload too short"
+    - "Analogue A2 uplink"
+    - "Analogue A2 uplink - payload too short"
+    - "All values apart from MODBUS"
+    - "Random values apart from MODBUS"
+    - "MODBUS only"
+    - "Random values apart from MODBUS"
+    - "Random values apart from MODBUS. 1 byte too short."
