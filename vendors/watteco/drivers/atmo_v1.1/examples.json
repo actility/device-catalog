@@ -13,10 +13,12 @@
           {
             "variable": "temperature",
             "value": 29.53,
-            "date": "2023-07-19T07:51:31.598957793Z"
+            "date": "2023-07-19T07:51:31.598957793Z",
+            "unit": "Cel"
           }
         ],
-        "temperature": 29.53
+        "temperature": 29.53,
+        "temperature_unit": "Cel"
       },
       "warnings": []
     },
@@ -24,7 +26,10 @@
       "temperature": {
         "unitId": "Cel",
         "records": [
-          { "value": 29.53, "eventTime": "2023-07-19T07:51:31.598957793Z" }
+          {
+            "value": 29.53,
+            "eventTime": "2023-07-19T07:51:31.598957793Z"
+          }
         ]
       }
     }
@@ -43,10 +48,12 @@
           {
             "variable": "humidity",
             "value": 37.21,
-            "date": "2023-07-19T07:51:25.508306410Z"
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "%RH"
           }
         ],
-        "humidity": 37.21
+        "humidity": 37.21,
+        "humidity_unit": "%RH"
       },
       "warnings": []
     },
@@ -54,7 +61,10 @@
       "humidity": {
         "unitId": "%RH",
         "records": [
-          { "value": 37.21, "eventTime": "2023-07-19T07:51:25.508306410Z" }
+          {
+            "value": 37.21,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
         ]
       }
     }
@@ -73,10 +83,12 @@
           {
             "variable": "pressure",
             "value": 69,
-            "date": "2023-07-19T07:51:25.508306410Z"
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "hPa"
           }
         ],
-        "pressure": 69
+        "pressure": 69,
+        "pressure_unit": "hPa"
       },
       "warnings": []
     },
@@ -84,7 +96,10 @@
       "pressure": {
         "unitId": "hPa",
         "records": [
-          { "value": 69, "eventTime": "2023-07-19T07:51:25.508306410Z" }
+          {
+            "value": 69,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
         ]
       }
     }
@@ -114,7 +129,10 @@
       "status:1": {
         "unitId": "state",
         "records": [
-          { "value": true, "eventTime": "2023-07-19T07:51:25.508306410Z" }
+          {
+            "value": true,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
         ]
       }
     }
@@ -144,7 +162,10 @@
       "counter:1": {
         "unitId": "count",
         "records": [
-          { "value": 0, "eventTime": "2023-07-19T07:51:25.508306410Z" }
+          {
+            "value": 0,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
         ]
       }
     }
@@ -186,10 +207,12 @@
           {
             "variable": "disposable_battery_voltage",
             "value": 3.688,
-            "date": "2023-07-19T07:51:25.508306410Z"
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "V"
           }
         ],
-        "disposable_battery_voltage": 3.688
+        "disposable_battery_voltage": 3.688,
+        "disposable_battery_voltage_unit": "V"
       },
       "warnings": []
     },
@@ -197,7 +220,10 @@
       "batteryVoltage": {
         "unitId": "V",
         "records": [
-          { "value": 3.688, "eventTime": "2023-07-19T07:51:25.508306410Z" }
+          {
+            "value": 3.688,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
         ]
       }
     }
@@ -235,45 +261,55 @@
     },
     "output": {
       "data": {
+        "batch_counter": 2,
         "samples": [
           {
             "variable": "pressure",
             "value": 997,
-            "date": "2023-07-19T07:50:34.508Z"
+            "date": "2023-07-19T07:50:34.508Z",
+            "unit": "hPa"
           },
           {
             "variable": "pressure",
             "value": 997,
-            "date": "2023-07-19T07:50:44.508Z"
+            "date": "2023-07-19T07:50:44.508Z",
+            "unit": "hPa"
           },
           {
             "variable": "pressure",
             "value": 997,
-            "date": "2023-07-19T07:50:54.508Z"
+            "date": "2023-07-19T07:50:54.508Z",
+            "unit": "hPa"
           },
           {
             "variable": "pressure",
             "value": 997,
-            "date": "2023-07-19T07:51:04.508Z"
+            "date": "2023-07-19T07:51:04.508Z",
+            "unit": "hPa"
           },
           {
             "variable": "pressure",
             "value": 997,
-            "date": "2023-07-19T07:51:14.508Z"
+            "date": "2023-07-19T07:51:14.508Z",
+            "unit": "hPa"
           },
           {
             "variable": "pressure",
             "value": 997,
-            "date": "2023-07-19T07:51:24.508Z"
+            "date": "2023-07-19T07:51:24.508Z",
+            "unit": "hPa"
           },
           {
             "variable": "battery_voltage",
             "value": 3.689,
-            "date": "2023-07-19T07:51:24.508Z"
+            "date": "2023-07-19T07:51:24.508Z",
+            "unit": "V"
           }
         ],
+        "pressure": 997,
         "battery_voltage": 3.689,
-        "pressure": 997
+        "pressure_unit": "hPa",
+        "battery_voltage_unit": "V"
       },
       "warnings": []
     },
@@ -281,17 +317,40 @@
       "pressure": {
         "unitId": "hPa",
         "records": [
-          { "value": 997, "eventTime": "2023-07-19T07:50:34.508Z" },
-          { "value": 997, "eventTime": "2023-07-19T07:50:44.508Z" },
-          { "value": 997, "eventTime": "2023-07-19T07:50:54.508Z" },
-          { "value": 997, "eventTime": "2023-07-19T07:51:04.508Z" },
-          { "value": 997, "eventTime": "2023-07-19T07:51:14.508Z" },
-          { "value": 997, "eventTime": "2023-07-19T07:51:24.508Z" }
+          {
+            "value": 997,
+            "eventTime": "2023-07-19T07:50:34.508Z"
+          },
+          {
+            "value": 997,
+            "eventTime": "2023-07-19T07:50:44.508Z"
+          },
+          {
+            "value": 997,
+            "eventTime": "2023-07-19T07:50:54.508Z"
+          },
+          {
+            "value": 997,
+            "eventTime": "2023-07-19T07:51:04.508Z"
+          },
+          {
+            "value": 997,
+            "eventTime": "2023-07-19T07:51:14.508Z"
+          },
+          {
+            "value": 997,
+            "eventTime": "2023-07-19T07:51:24.508Z"
+          }
         ]
       },
       "batteryVoltage": {
         "unitId": "V",
-        "records": [{ "value": 3.689, "eventTime": "2023-07-19T07:51:24.508Z" }]
+        "records": [
+          {
+            "value": 3.689,
+            "eventTime": "2023-07-19T07:51:24.508Z"
+          }
+        ]
       }
     }
   }

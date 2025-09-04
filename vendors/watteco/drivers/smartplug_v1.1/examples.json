@@ -1,1 +1,529 @@
-[{"type":"uplink","description":"uplink standard report containing state value | payload:110A000600001001","input":{"_bytes":[17,10,0,6,0,0,16,1],"bytes":"110A000600001601","fPort":125,"recvTime":"2023-07-19T07:51:25.508306410Z"},"output":{"data":{"samples":[{"variable":"output","value":"ON","date":"2023-07-19T07:51:25.508306410Z"}],"output":"ON"},"warnings":[]},"points":{"status":{"unitId":"state","records":[{"value":true,"eventTime":"2023-07-19T07:51:25.508306410Z"}]}}},{"type":"uplink","description":"uplink standard report containing state value | payload:110A000600001000","input":{"bytes":"110a000600001000","fPort":125,"recvTime":"2023-07-19T07:51:25.508306410Z"},"output":{"data":{"samples":[{"variable":"output","value":"OFF","date":"2023-07-19T07:51:25.508306410Z"}],"output":"OFF"},"warnings":[]},"points":{"status":{"unitId":"state","records":[{"value":false,"eventTime":"2023-07-19T07:51:25.508306410Z"}]}}},{"type":"uplink","description":"uplink standard report containing simple metering | payload:310a00520000410c000047ffffbe0063002fffd6","input":{"bytes":"310a00520000410c000047ffffbe0063002fffd6","fPort":125,"recvTime":"2023-07-19T07:51:25.508306410Z"},"output":{"data":{"samples":[{"variable":"active_energy","value":71,"date":"2023-07-19T07:51:25.508306410Z"},{"variable":"reactive_energy","value":-66,"date":"2023-07-19T07:51:25.508306410Z"},{"variable":"nb_samples","value":99,"date":"2023-07-19T07:51:25.508306410Z"},{"variable":"active_power","value":47,"date":"2023-07-19T07:51:25.508306410Z"},{"variable":"reactive_power","value":-42,"date":"2023-07-19T07:51:25.508306410Z"}],"active_energy":71,"reactive_energy":-66,"nb_samples":99,"active_power":47,"reactive_power":-42},"warnings":[]},"points":{"powerRate":{"unitId":"W/h","records":[{"value":71,"eventTime":"2023-07-19T07:51:25.508306410Z"}]},"reactiveEnergy":{"unitId":"var/h","records":[{"value":-66,"eventTime":"2023-07-19T07:51:25.508306410Z"}]},"duration":{"unitId":"minute","records":[{"value":99,"eventTime":"2023-07-19T07:51:25.508306410Z"}]},"activePower":{"unitId":"W","records":[{"value":47,"eventTime":"2023-07-19T07:51:25.508306410Z"}]},"reactivePower":{"unitId":"var","records":[{"value":-42,"eventTime":"2023-07-19T07:51:25.508306410Z"}]}}},{"type":"uplink","description":"uplink standard report containing power quality | payload:310a80520000411822221111FFFF000100000003001100002222000100020003","input":{"bytes":"310a80520000411822221111ffff000100000003001100002222000100020003","fPort":125,"recvTime":"2023-07-19T07:51:25.508306410Z"},"output":{"data":{"samples":[{"variable":"frequency","value":30.97,"date":"2023-07-19T07:51:25.508306410Z"},{"variable":"frequency_min","value":26.601,"date":"2023-07-19T07:51:25.508306410Z"},{"variable":"frequency_max","value":22.231,"date":"2023-07-19T07:51:25.508306410Z"},{"variable":"Vrms","value":0.1,"date":"2023-07-19T07:51:25.508306410Z"},{"variable":"Vrms_min","value":0,"date":"2023-07-19T07:51:25.508306410Z"},{"variable":"Vrms_max","value":0.3,"date":"2023-07-19T07:51:25.508306410Z"},{"variable":"Vpeak","value":1.7,"date":"2023-07-19T07:51:25.508306410Z"},{"variable":"Vpeak_min","value":0,"date":"2023-07-19T07:51:25.508306410Z"},{"variable":"Vpeak_max","value":873.8,"date":"2023-07-19T07:51:25.508306410Z"},{"variable":"over_voltage","value":1,"date":"2023-07-19T07:51:25.508306410Z"},{"variable":"sag_voltage","value":2,"date":"2023-07-19T07:51:25.508306410Z"}],"frequency":30.97,"frequency_min":26.601,"frequency_max":22.231,"Vrms":0.1,"Vrms_min":0,"Vrms_max":0.3,"Vpeak":1.7,"Vpeak_min":0,"Vpeak_max":873.8,"over_voltage":1,"sag_voltage":2},"warnings":[]},"points":{"frequency:0":{"unitId":"Hz","records":[{"value":30.97,"eventTime":"2023-07-19T07:51:25.508306410Z"}],"nature":"current frequency"},"frequency:1":{"unitId":"Hz","records":[{"value":26.601,"eventTime":"2023-07-19T07:51:25.508306410Z"}],"nature":"frequency min"},"frequency:2":{"unitId":"Hz","records":[{"value":22.231,"eventTime":"2023-07-19T07:51:25.508306410Z"}],"nature":"frequency max"},"rmsVoltage:0":{"unitId":"V","records":[{"value":0.1,"eventTime":"2023-07-19T07:51:25.508306410Z"}],"nature":"current Vrms"},"rmsVoltage:1":{"unitId":"V","records":[{"value":0,"eventTime":"2023-07-19T07:51:25.508306410Z"}],"nature":"Vrms min"},"rmsVoltage:2":{"unitId":"V","records":[{"value":0.3,"eventTime":"2023-07-19T07:51:25.508306410Z"}],"nature":"Vrms max"},"voltage:0":{"unitId":"V","records":[{"value":1.7,"eventTime":"2023-07-19T07:51:25.508306410Z"}],"nature":"current volt peak"},"voltage:1":{"unitId":"V","records":[{"value":0,"eventTime":"2023-07-19T07:51:25.508306410Z"}],"nature":"volt min"},"voltage:2":{"unitId":"V","records":[{"value":873.8,"eventTime":"2023-07-19T07:51:25.508306410Z"}],"nature":"volt max"},"counter:0":{"unitId":"count","records":[{"value":1,"eventTime":"2023-07-19T07:51:25.508306410Z"}],"nature":"over voltage threshold count"},"counter:1":{"unitId":"count","records":[{"value":2,"eventTime":"2023-07-19T07:51:25.508306410Z"}],"nature":"sag voltage threshold count"}}},{"type":"uplink","description":"uplink standard report containing firmware version | payload:110100000002000D0305020015E2","input":{"bytes":"110100000002000d0305020015e2","fPort":125,"recvTime":"2023-07-19T07:51:25.508306410Z"},"output":{"data":{"samples":[{"variable":"firmware","value":"3.5.2.5602","date":"2023-07-19T07:51:25.508306410Z"}],"firmware":"3.5.2.5602"},"warnings":[]},"points":{}},{"type":"uplink","description":"uplink standard report containing dataup info | payload:110180040000000800","input":{"bytes":"110180040000000800","fPort":125,"recvTime":"2023-07-19T07:51:25.508306410Z"},"output":{"data":{"samples":[{"variable":"message_type","value":"unconfirmed","date":"2023-07-19T07:51:25.508306410Z"}],"message_type":"unconfirmed"},"warnings":[]},"points":{}},{"type":"uplink","description":"uplink batch report | payload:100180e3c61800202614b45b16bb65b15b16bb65b15b1613","input":{"bytes":"100180e3c61800202614b45b16bb65b15b16bb65b15b1613","fPort":125,"recvTime":"2024-12-27T18:35:54.000Z"},"output":{"data":{"samples":[{"variable":"ActiveEnergy","value":49,"date":"2024-12-27T17:45:50.000Z"},{"variable":"ActiveEnergy","value":49,"date":"2024-12-27T17:55:50.000Z"},{"variable":"ActiveEnergy","value":49,"date":"2024-12-27T18:05:50.000Z"},{"variable":"ActiveEnergy","value":49,"date":"2024-12-27T18:15:50.000Z"},{"variable":"ActiveEnergy","value":49,"date":"2024-12-27T18:25:50.000Z"},{"variable":"ActiveEnergy","value":49,"date":"2024-12-27T18:35:50.000Z"}],"ActiveEnergy":49},"warnings":[]},"points":{"powerRate":{"unitId":"W/h","records":[{"value":49,"eventTime":"2024-12-27T17:45:50.000Z"},{"value":49,"eventTime":"2024-12-27T17:55:50.000Z"},{"value":49,"eventTime":"2024-12-27T18:05:50.000Z"},{"value":49,"eventTime":"2024-12-27T18:15:50.000Z"},{"value":49,"eventTime":"2024-12-27T18:25:50.000Z"},{"value":49,"eventTime":"2024-12-27T18:35:50.000Z"}]}}}]
+[
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing state value | payload:110A000600001001",
+    "input": {
+      "_bytes": [
+        17,
+        10,
+        0,
+        6,
+        0,
+        0,
+        16,
+        1
+      ],
+      "bytes": "110A000600001601",
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": {
+        "samples": [
+          {
+            "variable": "output",
+            "value": "ON",
+            "date": "2023-07-19T07:51:25.508306410Z"
+          }
+        ],
+        "output": "ON"
+      },
+      "warnings": []
+    },
+    "points": {
+      "status": {
+        "unitId": "state",
+        "records": [
+          {
+            "value": true,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing state value | payload:110A000600001000",
+    "input": {
+      "bytes": "110a000600001000",
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": {
+        "samples": [
+          {
+            "variable": "output",
+            "value": "OFF",
+            "date": "2023-07-19T07:51:25.508306410Z"
+          }
+        ],
+        "output": "OFF"
+      },
+      "warnings": []
+    },
+    "points": {
+      "status": {
+        "unitId": "state",
+        "records": [
+          {
+            "value": false,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing simple metering | payload:310a00520000410c000047ffffbe0063002fffd6",
+    "input": {
+      "bytes": "310a00520000410c000047ffffbe0063002fffd6",
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": {
+        "samples": [
+          {
+            "variable": "active_energy",
+            "value": 71,
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "Wh"
+          },
+          {
+            "variable": "reactive_energy",
+            "value": -66,
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "VArh"
+          },
+          {
+            "variable": "nb_samples",
+            "value": 99,
+            "date": "2023-07-19T07:51:25.508306410Z"
+          },
+          {
+            "variable": "active_power",
+            "value": 47,
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "W"
+          },
+          {
+            "variable": "reactive_power",
+            "value": -42,
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "VAr"
+          }
+        ],
+        "active_energy": 71,
+        "reactive_energy": -66,
+        "nb_samples": 99,
+        "active_power": 47,
+        "reactive_power": -42,
+        "active_energy_unit": "Wh",
+        "reactive_energy_unit": "VArh",
+        "active_power_unit": "W",
+        "reactive_power_unit": "VAr"
+      },
+      "warnings": []
+    },
+    "points": {
+      "powerRate": {
+        "unitId": "W/h",
+        "records": [
+          {
+            "value": 71,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ]
+      },
+      "reactiveEnergy": {
+        "unitId": "var/h",
+        "records": [
+          {
+            "value": -66,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ]
+      },
+      "duration": {
+        "unitId": "minute",
+        "records": [
+          {
+            "value": 99,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ]
+      },
+      "activePower": {
+        "unitId": "W",
+        "records": [
+          {
+            "value": 47,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ]
+      },
+      "reactivePower": {
+        "unitId": "var",
+        "records": [
+          {
+            "value": -42,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing power quality | payload:310a80520000411822221111FFFF000100000003001100002222000100020003",
+    "input": {
+      "bytes": "310a80520000411822221111ffff000100000003001100002222000100020003",
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": {
+        "samples": [
+          {
+            "variable": "frequency",
+            "value": 30.97,
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "Hz"
+          },
+          {
+            "variable": "frequency_min",
+            "value": 26.601,
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "Hz"
+          },
+          {
+            "variable": "frequency_max",
+            "value": 22.231,
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "Hz"
+          },
+          {
+            "variable": "Vrms",
+            "value": 0.1,
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "V"
+          },
+          {
+            "variable": "Vrms_min",
+            "value": 0,
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "V"
+          },
+          {
+            "variable": "Vrms_max",
+            "value": 0.3,
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "V"
+          },
+          {
+            "variable": "Vpeak",
+            "value": 1.7,
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "V"
+          },
+          {
+            "variable": "Vpeak_min",
+            "value": 0,
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "V"
+          },
+          {
+            "variable": "Vpeak_max",
+            "value": 873.8,
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "V"
+          },
+          {
+            "variable": "over_voltage",
+            "value": 1,
+            "date": "2023-07-19T07:51:25.508306410Z"
+          },
+          {
+            "variable": "sag_voltage",
+            "value": 2,
+            "date": "2023-07-19T07:51:25.508306410Z"
+          },
+          {
+            "variable": "brownout_number",
+            "value": 3,
+            "date": "2023-07-19T07:51:25.508306410Z"
+          }
+        ],
+        "frequency": 30.97,
+        "frequency_min": 26.601,
+        "frequency_max": 22.231,
+        "Vrms": 0.1,
+        "Vrms_min": 0,
+        "Vrms_max": 0.3,
+        "Vpeak": 1.7,
+        "Vpeak_min": 0,
+        "Vpeak_max": 873.8,
+        "over_voltage": 1,
+        "sag_voltage": 2,
+        "brownout_number": 3,
+        "frequency_unit": "Hz",
+        "frequency_min_unit": "Hz",
+        "frequency_max_unit": "Hz",
+        "Vrms_unit": "V",
+        "Vrms_min_unit": "V",
+        "Vrms_max_unit": "V",
+        "Vpeak_unit": "V",
+        "Vpeak_min_unit": "V",
+        "Vpeak_max_unit": "V"
+      },
+      "warnings": []
+    },
+    "points": {
+      "frequency:0": {
+        "unitId": "Hz",
+        "records": [
+          {
+            "value": 30.97,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ],
+        "nature": "current frequency"
+      },
+      "frequency:1": {
+        "unitId": "Hz",
+        "records": [
+          {
+            "value": 26.601,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ],
+        "nature": "frequency min"
+      },
+      "frequency:2": {
+        "unitId": "Hz",
+        "records": [
+          {
+            "value": 22.231,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ],
+        "nature": "frequency max"
+      },
+      "rmsVoltage:0": {
+        "unitId": "V",
+        "records": [
+          {
+            "value": 0.1,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ],
+        "nature": "current Vrms"
+      },
+      "rmsVoltage:1": {
+        "unitId": "V",
+        "records": [
+          {
+            "value": 0,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ],
+        "nature": "Vrms min"
+      },
+      "rmsVoltage:2": {
+        "unitId": "V",
+        "records": [
+          {
+            "value": 0.3,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ],
+        "nature": "Vrms max"
+      },
+      "voltage:0": {
+        "unitId": "V",
+        "records": [
+          {
+            "value": 1.7,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ],
+        "nature": "current volt peak"
+      },
+      "voltage:1": {
+        "unitId": "V",
+        "records": [
+          {
+            "value": 0,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ],
+        "nature": "volt min"
+      },
+      "voltage:2": {
+        "unitId": "V",
+        "records": [
+          {
+            "value": 873.8,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ],
+        "nature": "volt max"
+      },
+      "counter:0": {
+        "unitId": "count",
+        "records": [
+          {
+            "value": 1,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ],
+        "nature": "over voltage threshold count"
+      },
+      "counter:1": {
+        "unitId": "count",
+        "records": [
+          {
+            "value": 2,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ],
+        "nature": "sag voltage threshold count"
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing firmware version | payload:110100000002000D0305020015E2",
+    "input": {
+      "bytes": "110100000002000d0305020015e2",
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": {
+        "samples": [
+          {
+            "variable": "firmware",
+            "value": "3.5.2.5602",
+            "date": "2023-07-19T07:51:25.508306410Z"
+          }
+        ],
+        "firmware": "3.5.2.5602"
+      },
+      "warnings": []
+    },
+    "points": {}
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing dataup info | payload:110180040000000800",
+    "input": {
+      "bytes": "110180040000000800",
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": {
+        "samples": [
+          {
+            "variable": "message_type",
+            "value": "unconfirmed",
+            "date": "2023-07-19T07:51:25.508306410Z"
+          }
+        ],
+        "message_type": "unconfirmed"
+      },
+      "warnings": []
+    },
+    "points": {}
+  },
+  {
+    "type": "uplink",
+    "description": "uplink batch report | payload:100180e3c61800202614b45b16bb65b15b16bb65b15b1613",
+    "input": {
+      "bytes": "100180e3c61800202614b45b16bb65b15b16bb65b15b1613",
+      "fPort": 125,
+      "recvTime": "2024-12-27T18:35:54.000Z"
+    },
+    "output": {
+      "data": {
+        "batch_counter": 1,
+        "samples": [
+          {
+            "variable": "ActiveEnergy",
+            "value": 49,
+            "date": "2024-12-27T17:45:50.000Z",
+            "unit": "Wh"
+          },
+          {
+            "variable": "ActiveEnergy",
+            "value": 49,
+            "date": "2024-12-27T17:55:50.000Z",
+            "unit": "Wh"
+          },
+          {
+            "variable": "ActiveEnergy",
+            "value": 49,
+            "date": "2024-12-27T18:05:50.000Z",
+            "unit": "Wh"
+          },
+          {
+            "variable": "ActiveEnergy",
+            "value": 49,
+            "date": "2024-12-27T18:15:50.000Z",
+            "unit": "Wh"
+          },
+          {
+            "variable": "ActiveEnergy",
+            "value": 49,
+            "date": "2024-12-27T18:25:50.000Z",
+            "unit": "Wh"
+          },
+          {
+            "variable": "ActiveEnergy",
+            "value": 49,
+            "date": "2024-12-27T18:35:50.000Z",
+            "unit": "Wh"
+          }
+        ],
+        "ActiveEnergy": 49,
+        "ActiveEnergy_unit": "Wh"
+      },
+      "warnings": []
+    },
+    "points": {
+      "powerRate": {
+        "unitId": "W/h",
+        "records": [
+          {
+            "value": 49,
+            "eventTime": "2024-12-27T17:45:50.000Z"
+          },
+          {
+            "value": 49,
+            "eventTime": "2024-12-27T17:55:50.000Z"
+          },
+          {
+            "value": 49,
+            "eventTime": "2024-12-27T18:05:50.000Z"
+          },
+          {
+            "value": 49,
+            "eventTime": "2024-12-27T18:15:50.000Z"
+          },
+          {
+            "value": 49,
+            "eventTime": "2024-12-27T18:25:50.000Z"
+          },
+          {
+            "value": 49,
+            "eventTime": "2024-12-27T18:35:50.000Z"
+          }
+        ]
+      }
+    }
+  }
+]

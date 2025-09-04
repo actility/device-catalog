@@ -60,6 +60,10 @@ const attribute_types={
         name:"int16",
         size:2
     },
+    0x2A:{
+        name:"int24",
+        size:3
+    },
     0x2B:{
         name:"int32",
         size:4
@@ -394,6 +398,12 @@ const field={
                 name:"sag_voltage",
                 size:2
             },
+            11:{
+                divider:1,
+                function_type:"int",
+                name:"brownout_number",
+                size:2
+            }
         }
     },
     0x8005:{
@@ -514,6 +524,44 @@ function decimalToBitString(dec){
     bitString += zeroPad(bin, 8);
     return bitString;
 }
+
+function decodeNumber(bytes, startIndex, type) {
+    let value = 0;
+    let size = 0;
+
+    // Determine size based on type
+    switch(type) {
+        case 0x08: case 0x18: case 0x20: case 0x28: case 0x30: 
+            size = 1; break;
+        case 0x09: case 0x19: case 0x21: case 0x29: 
+            size = 2; break;
+        case 0x0a: case 0x1a: case 0x22: case 0x2a: 
+            size = 3; break;
+        case 0x0b: case 0x1b: case 0x23: case 0x2b: 
+            size = 4; break;
+        case 0x0c: 
+            size = 5; break;
+        case 0x0d: case 0x25: 
+            size = 6; break;
+        case 0x39:
+            return Bytes2Float32(bytes[startIndex]*256*256*256 + bytes[startIndex+1]*256*256 + bytes[startIndex+2]*256 + bytes[startIndex+3]);
+        default:
+            throw new Error("Unsupported number type: " + type);
+    }
+
+    // Read bytes
+    for(let i = 0; i < size; i++) {
+        value = (value << 8) | bytes[startIndex + i];
+    }
+
+    // Handle signed integers
+    if(type >= 0x28 && type <= 0x2b) {
+        return UintToInt(value, size);
+    }
+
+    return value;
+}
+
 function int(value){
     return parseInt(value, 2)
 }
@@ -548,7 +596,8 @@ function decodeAlarms(
     
 	index++;
     if (index >= byteArray.length) {
-        throw new Error(`Alarm decoding: Unexpected end of causes.)`);
+        decodedData.causesMessages.push("cause:{}");
+        return decodedData;
     }
 
 	let defaultAlarmField = "FieldUndef !";
@@ -931,6 +980,12 @@ function Decoder(bytes, port, TIC_Decode = null) {
                     const multiplicator = part2[0]*128+part2[1]*64+part2[2]*32+part2[3]*16+part2[4]*8+part2[5]*4+part2[6]*2+part2[7]
                     chockparammetters.threshold = multiplicator*chockparammetters.range.value
                 }
+                if ((clustID === 0x800e ) && (attID === 0x0000)){
+                    let attribute_type = bytes[i1-1];
+                    decoded.data.number = decodeNumber(bytes, i1, attribute_type);
+                    const RPIndex = i1 + Math.ceil(attribute_types[attribute_type].size);
+                    processAlarm(cmdID, clustID, attID, bytes, decoded, RPIndex, attribute_type, 1, "none", );
+                }
                 if ((clustID === 0x8007 ) && (attID === 0x0001))
                 {
                     decoded.data.modbus_payload = "";
@@ -1190,6 +1245,8 @@ function Decoder(bytes, port, TIC_Decode = null) {
                     decoded.data.over_voltage = UintToInt(bytes[i2 + 1] * 256 + bytes[i2 + 2], 2);
                     i2 = i2 + 2;
                     decoded.data.sag_voltage = UintToInt(bytes[i2 + 1] * 256 + bytes[i2 + 2], 2);
+                    i2 = i2 + 2;
+                    decoded.data.brownout_number = UintToInt(bytes[i2 + 1] * 256 + bytes[i2 + 2], 2);
                 }
 
 

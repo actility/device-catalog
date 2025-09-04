@@ -9,14 +9,14 @@
     },
     "output": {
       "data": {
+        "pin_state": true,
         "samples": [
           {
-            "variable": "violation_detection",
+            "variable": "pin_state",
             "value": true,
             "date": "2023-07-19T07:51:25.508306410Z"
           }
-        ],
-        "violation_detection": true
+        ]
       },
       "warnings": []
     },
@@ -24,9 +24,12 @@
       "status": {
         "unitId": "state",
         "records": [
-          { "value": true, "eventTime": "2023-07-19T07:51:25.508306410Z" }
+          {
+            "value": true,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
         ],
-        "nature": "violation detection"
+        "nature": "pin state"
       }
     }
   },
@@ -42,12 +45,12 @@
       "data": {
         "samples": [
           {
-            "variable": "open",
+            "variable": "pin_state",
             "value": true,
             "date": "2023-07-19T07:51:25.508306410Z"
           }
         ],
-        "open": true
+        "pin_state": true
       },
       "warnings": []
     },
@@ -55,9 +58,12 @@
       "status": {
         "unitId": "state",
         "records": [
-          { "value": true, "eventTime": "2023-07-19T07:51:25.508306410Z" }
+          {
+            "value": true,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
         ],
-        "nature": "open"
+        "nature": "pin state"
       }
     }
   },
@@ -86,7 +92,10 @@
       "counter": {
         "unitId": "count",
         "records": [
-          { "value": 0, "eventTime": "2023-07-19T07:51:25.508306410Z" }
+          {
+            "value": 0,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
         ]
       }
     }
@@ -128,10 +137,12 @@
           {
             "variable": "disposable_battery_voltage",
             "value": 3.688,
-            "date": "2023-07-19T07:51:25.508306410Z"
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "V"
           }
         ],
-        "disposable_battery_voltage": 3.688
+        "disposable_battery_voltage": 3.688,
+        "disposable_battery_voltage_unit": "V"
       },
       "warnings": []
     },
@@ -139,7 +150,10 @@
       "batteryVoltage": {
         "unitId": "V",
         "records": [
-          { "value": 3.688, "eventTime": "2023-07-19T07:51:25.508306410Z" }
+          {
+            "value": 3.688,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
         ]
       }
     }

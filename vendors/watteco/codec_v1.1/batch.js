@@ -456,20 +456,23 @@ function adaptToExpectedFormat(out, argList, batchAbsoluteTimestamp) {
 function computeDataAbsoluteTimestamp(bat, brt, drt) {
     return new Date(new Date(bat).getTime() - (brt - drt) * 1000).toISOString()
 }
-function normalisation_batch(input){
+function normalisation_batch(input) {
     let date = input.date;
-    let decoded = brUncompress(input.batch1, input.batch2, input.payload, date)
-    let dataListe = []
+    let decoded = brUncompress(input.batch1, input.batch2, input.payload, date);
+    let dataListe = [];
     for (let i = 0; i < decoded.dataset.length; i++) {
-        let data = decoded.dataset[i]
+        let data = decoded.dataset[i];
         let dataObject = {
             "variable": data.data.label_name,
             "value": data.data.value,
             "date": data.data_absolute_timestamp
-        }
-        dataListe.push(dataObject)
+        };
+        dataListe.push(dataObject);
     }
-    return dataListe
+    return {
+        batch_counter: decoded.batch_counter,
+        samples: dataListe
+    };
 }
 module.exports = {
     normalisation_batch
