@@ -9,7 +9,7 @@ logo: egk-lw20w00.png
 # lorawanDeviceProfileID: as defined by LoRa Alliance in https://lora-alliance.org/wp-content/uploads/2020/10/LoRa_Alliance_Vendor_ID_for_QR_Code_02142022.pdf.
 # The lorawanDeviceProfileID consists of 8 upper-case hexadecimal characters, 4 characters for VendorID + 4 characters for VendorProfileID. Please consider using single (') or double (") quotation.
 deviceProfileIds:
-  - id: eu868-profile-a
+  - id: enginko_RFGroup1_1.0.2b_classA
     lorawanDeviceProfileID: '01030A01'
 
 # You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings.
@@ -30,22 +30,29 @@ LoRaWANCertified:
 # Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
 # Format: `<8 characters max>:<16 characters max>:<digits only>`
 # Be careful: Once you chose a model, it cannot be changed later
-modelId: enginko:egk-lw20w00:1
+modelId: enginko:lw20w00:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 # Be careful: Once you chose a protocolId, it cannot be changed later
 protocolId:
-  - enginko:level-sensors-protocol:1
+  - enginko:level-sensors:1
 # DataSheet URL (optional)
 specificationURL:
 # User Guide URL (optional)
 userGuideURL:
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
-  - altitude:mm
+  - height:mm
   - batteryLevel:%
-  - batteryVoltage:mV
+  - voltage:mV
   - distance:mm
   - fillLevel:%
   - pressure:hPa
   - temperature:Cel
   - humidity:%RH
+examples:
+  enginko:level-sensors:1:
+    - "uplink example for timesync request"
+    - "uplink example for IO data"
+    - "uplink example for IO data (example 2)"
+    - "uplink example for level data (type 1)"
+    - "uplink example for level data (type 3)"

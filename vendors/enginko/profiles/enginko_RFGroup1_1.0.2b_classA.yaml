@@ -8,12 +8,12 @@
 #    RFGroup4: as923
 # Please do not change the existing IDs (Some may follow the old format)
 # The name of the profile .yaml file should be the same as the following ID
-id: enginko_RFGroup1_1.0.2_classC
+id: enginko_RFGroup1_1.0.2b_classA
 # LoRaWAN class of the Device: Possible values: [ A, B, C ] (Should not have several values)
 # 'A': Class A (Bi-directional end-devices with downlink listening only after uplink transmission)
 # 'B': Class B (Bi-directional end-devices with downlink listening on predefined synchronized pingslots)
 # 'C': Class C (Bi-directional end-devices with permanent downlink listening)
-loRaWANClass: C
+loRaWANClass: A
 # Comma-separated list of regional profiles supported by this device. Possible values are eu868, us915, as923, au915, eu433, in865, kr920, ru864, cn470.
 ISMbands: eu868
 # Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'
@@ -96,4 +96,3 @@ supportedMACCommands:
 # OTAA devices? See https://lora-alliance.org/resource_hub/technical-recommendations-for-preventing-state-synchronization-issues-around-lorawan-1-0-x-join-procedure/
 # Possible values: true, false. This field is automatically forced to true for LoRaWAN MAC versions 1.0.4 and 1.1.
 devNonceCounterBased: false
-
