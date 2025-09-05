@@ -842,7 +842,7 @@ function TIC_Decode(clustID,AttributeID,BytesAfterSize)
     let profil = {}
     // Select PROFIL according to cluster/attribute
     if (clustID == 0x0053) {
-        if ((AttributeID & 0x00FF) == 0)	{
+        if (AttributeID & 0x00FF == 0)	{
             profil = ICE_General;
             data["_TICFrameType"]="ICE Generale";
         } else if ((AttributeID & 0x00FF) == 1)	{

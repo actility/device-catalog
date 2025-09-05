@@ -1,4 +1,4 @@
-let watteco = require("../../codec/decode_uplink")
+let watteco = require("../../codec_v1.1/decode_uplink.js")
 let units = require("./units.auto.js")
 
 let batch_param=[]

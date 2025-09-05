@@ -1,4 +1,4 @@
-let watteco = require("../../codec/decode_uplink")
+let watteco = require("../../codec_v1.1/decode_uplink.js")
 let units = require("./units.auto.js")
 
 let batch_param = [3, [{taglbl: 0,resol: 0.02, sampletype: 12,lblname: "0-100_mV", divide: 1},
@@ -46,4 +46,5 @@ exports.encodePayload = encodePayload;
 
 globalObject.encodeDownlink = encodeDownlink;
 globalObject.encodePayload = encodePayload;
+
 
