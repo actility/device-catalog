@@ -507,6 +507,12 @@ _**PS:** If your driver outputs values as ISO string dates or instances of class
 
 > A pre-implemented [spec file](sample-driver/driver-examples.spec.js) for testing can be copied from the template in order to test the driver with all the provided examples.
 
+## BACnet Integration
+
+As you may wish your devices and drivers to include a BACnet integration, our catalogs allow you to do so.
+Along with all the driver and device profiles, you can deploy a BACnet mapping inside [this folder](../../../mappings/).
+Please refer to [this markdown file for further instructions](../../../mappings/template/how-to.md).
+
 ##
 # Sample driver developer guide
 
