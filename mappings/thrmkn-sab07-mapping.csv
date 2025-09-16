@@ -1,0 +1,47 @@
+##general,,,,,,,,,,,,
+version,max_downlink_commands,,,,,,,,,,,
+1.0,5,,,,,,,,,,,
+##models,,,,,,,,,,,,
+name,selectors,,,,,,,,,,,
+all,{ mId: sab07 },,,,,,,,,,,
+others,,,,,,,,,,,,
+##objects,,,,,,,,,,,,
+id,name,value,type,access_mode,value_type,precision,units,cov_increment,min_value,max_value,models,description
+targetTemperature,Target temperature,0,number,R,FLOAT,2,Cel,0.1,,,all,Target temperature in °C
+sensorTemperature,Temperature,0,number,R,FLOAT,2,Cel,0.1,,,all,Temperature in °C
+relativeHumidity,Relative humidity,0,number,R,FLOAT,2,%RH,0.1,,,all,Relative humidity in RH
+motorPosition,Motor position,0,number,R,FLOAT,2,deg,0.1,0,15,all,Motor position in °
+motorRange,Motor range,0,number,R,FLOAT,2,deg,0.1,0,15,all,Motor range in °
+batteryVoltage,Battery voltage,0,number,R,FLOAT,2,V,0.1,,,all,Battery voltage in volts
+statusFlags:openWindow,Open window flag,0,binary,R,UINT8,,state,,,,all,Open window flag (0: closed 1: open)
+statusFlags:highMotorConsumption,High motor consumption flag,0,binary,R,UINT8,,state,,,,all,"High motor consumption flag (0: no alarm, 1: alarm)"
+statusFlags:lowMotorConsumption,Low motor consumption flag,0,binary,R,UINT8,,state,,,,all,Low motor consumption flag
+statusFlags:brokenSensor,Broken sensor flag,0,binary,R,UINT8,,state,,,,all,"Broken sensor flag (0: no alarm, 1: alarm)"
+extraFlags:manualTempDisabled,Manual temperature disabled flag,0,binary,R,UINT8,,state,,,,all,Manual temperature disabled flag
+extraFlags:motorCalibrationFailed,Motor calibration failed flag,0,binary,R,UINT8,,state,,,,all,"Motor calibration failed flag (0: no alarm, 1: alarm)"
+extraFlags:deviceAttachedToBackplate,Device attached to backplate flag,0,binary,R,UINT8,,state,,,,all,Device attached to backplate flag
+extraFlags:deviceOnline,Device online flag,0,binary,R,UINT8,,state,,,,all,"Device online flag (0: no alarm, 1: alarm)"
+proportionalAlgorithmParameters,Proportional algorithm parameters,0,number,R,FLOAT,2,,0.1,0,255,all,Proportional algorithm parameters
+integralGain,Integral gain,0,number,R,FLOAT,2,,0.1,,,all,Integral gain
+integralValue,Integral value,0,number,R,FLOAT,2,,0.1,,,all,Integral value
+piRunPeriod,PI run period,0,number,R,FLOAT,2,,0.1,0,255,all,Keep alive period in minutes
+keepAlivePeriod,Keep alive period,0,number,R,FLOAT,2,,0.1,0,255,all,PI run period
+temperatureHysteresis,Hysteresis temperature,0,number,R,FLOAT,2,,0.1,,,all,Hysteresis temperature
+hardwareVersion,Hardware version,"""""",string,R,STRING,,,,,,all,Hardware version
+softwareVersion,Software version,"""""",string,R,STRING,,,,,,all,Software version
+watchdogParameters:confirmedValue,Watchdog confirmed value,0,number,R,UINT8,,,1,0,255,all,Watchdog confirmed value
+watchdogParameters:unconfirmedValue,Watchdog unconfirmed value,0,number,R,UINT8,,,1,0,255,all,Watchdog unconfirmed value
+targetWithRange,Target temperature with range,0,number,RW,FLOAT,1,Cel,0.1,,,all,
+externalTemperature,External temperature,0,number,RW,FLOAT,1,,0.1,,,all,
+operationalMode,Operational mode,0,number,RW,UINT8,,,1,0,2,all,"Operational mode (0: manual, 1: auto, 2: forced)"
+recalibrateMotor,Motor recalibration,false,boolean,RW,BOOL,,,1,,,all,Motor recalibration
+motorPosition,Motor position,0,number,RW,FLOAT,1,,1,0,65535,all,"Motor position, take care to also update targetTemperature, they must be part of the same downlink"
+targetTemperature,Target temperature,0,number,RW,FLOAT,1,Cel,0.1,,,all,"Target temperature, take care to also update motorPosition, they must be part of the same downlink"
+openWindowDetection:enable,Open window detection enable,0,binary,RW,UINT8,,,,,,all,
+openWindowDetection:duration,Open window detection duration,0,number,RW,FLOAT,1,minute,0.1,0,255,all,Open window detection in minutes
+openWindowDetection:tempDelta,Open window detection delta temperature,0,number,RW,FLOAT,1,,0.1,0,255,all,Open window detection delta temperature in tenths of degrees Celsius 
+keepAlivePeriod,Keep alive period,0,number,RW,FLOAT,1,minute,0.1,0,255,all,Keep alive period in minutes
+childLock,Child lock,0,binary,RW,UINT8,,,,,,all,Child lock activation
+resetDevice,Device reset,false,boolean,RW,BOOL,,,,,,all,Reset the device
+piAlgorithm:proportionalGain,PI algorithm proportional gain,0,number,RW,FLOAT,1,,0.1,,,all,PI algorithm proportional gain
+piAlgorithm:integralGain,PI algorithm integral gain,0,number,RW,FLOAT,1,,0.1,,,all,PI algorithm integral gain

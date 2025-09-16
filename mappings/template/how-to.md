@@ -5,21 +5,21 @@
 
 ## Creating the Mapping
 
-Start by copying the [template-mapping.xlsx file](./template-mapping.xlsx) into [the mappings folder](../../mappings).
+Start by copying the [template-mapping.csv file](./template-mapping.csv) into [the mappings folder](../../mappings).
 All mappings must be found in the mappings folder.
 
 Their naming format must follow one of these 2 patterns:
-* {vendorId}-mapping.xlsx
-* {vendorId}-{moduleId}-mapping.xlsx
+* {vendorId}-mapping.csv
+* {vendorId}-{moduleId}-mapping.csv
 
 Make sure to replace {vendorId} with the ID of your vendor and {moduleId} with the module ID found in your modelId (vendorId:moduleId:1 - it is the middle field).
 
 
 ## Structure
 
-This document presents the XLSX format that must be used to define a mapping file for BACnet/Modbus drivers.
+This document presents the CSV format that must be used to define a mapping file for BACnet/Modbus drivers.
 
-The XLSX file has three sections:
+The CSV file has three sections:
 * General section: defines global parameters
 * Models section: defines model filters that must be used to precisely select which model a point belongs to
 * Objects section: defines the list of points that should be exposed when creating the device

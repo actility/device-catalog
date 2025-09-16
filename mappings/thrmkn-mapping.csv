@@ -1,0 +1,96 @@
+##general,,,,,,,,,,,,
+version,max_downlink_commands,,,,,,,,,,,
+1.0,5,,,,,,,,,,,
+##models,,,,,,,,,,,,
+name,selectors,,,,,,,,,,,
+all,"{ mId: novos-3}, {mId: mcs}, {mId: ags55-p}, {mId: akf10-p}, {mId: dpa250-p}, {mId: dpa2500-p}, {mId: dpa7000-p}, {mId: fta54-p}, {mId: ftk-p}, {mId: la-p}, {mId: li65-p}, {mId: lk-p}, {mId: ls02-p}, {mId: mwf-p}, {mId: wk02-p}, {mId: wsa}, {mId: vfg54-p}",,,,,,,,,,,
+novos,{ mId: novos-3},,,,,,,,,,,
+mcs,{mId: mcs},,,,,,,,,,,
+others,,,,,,,,,,,,
+##objects,,,,,,,,,,,,
+id,name,value,type,access_mode,value_type,precision,units,min_value,max_value,cov_increment,models,description
+PARSER,Parser,0,number,R,UINT8,,,,,,others,
+DUMMY,Dummy,0,number,R,UINT8,,,,,,others,
+DEV_KEY,Device key,0,number,R,UINT8,0,,,,,all,"Device key: 16385='MCS LRW', 16386='NOVOS 3 LRW', 16387='USE BAT LRW'"
+OCCU0ENABLE,Occupancy 0 enabled,0,binary,R,UINT8,,,,,,others,
+OCCU0_STATE,Occupancy 0 state,0,binary,R,UINT8,,,,,,all,"Occupancy state: 1='occupied', 0='unoccupied'"
+OCCU0_CNT,Occupancy 0 counter,0,number,R,UINT8,0,,,,1,all,Amount of detected movements since last transmission
+OCCU1_STATE,Occupancy 1 state,0,binary,R,UINT8,,,,,,others,"Occupancy state: 1='occupied', 0='unoccupied'"
+OCCU1_CNT,Occupancy 1 counter,0,number,R,UINT8,0,,,,1,others,Amount of detected movements since last transmission
+BUTTON_PRESSED,Button pressed,0,binary,R,UINT8,,,,,,others,"Actual state of button: 0='unpressed', 1='pressed'"
+BUTTON_CNT,Button counter,0,number,R,UINT8,,,,,1,others,Amount of detected switching operation since last transmission
+BUTTON_LAST_TYPE,Button last action type,,string,R,STRING,,,,,,others,"Button last action type: 'Long Press', 'Short Press'"
+BUTTON_2_PRESSED,Button 2 pressed,0,binary,R,UINT8,,,,,,novos,"Actual state of button 2: 0='unpressed', 1='pressed'"
+BUTTON_2_CNT,Button 2 counter,0,number,R,UINT8,,,,,1,novos,Amount of detected switching operation since last transmission
+BUTTON_2_LAST_TYPE,Button 2 last action type,,string,R,STRING,,,,,,novos,"Button 2 last action type: 'Long Press', 'Short Press'"
+SETPOINT,Setpoint,0,number,R,UINT8,0,%,,,1,all,"Setpoint 1 (0%='potentiometer left stop', 100%='potentiometer right stop')"
+SETPOINT_2,Setpoint 2,0,number,R,FLOAT,2,%,,,0.1,novos,"Setpoint 2 (0%='potentiometer left stop', 100%='potentiometer right stop')"
+TEMP,Temperature,0,number,R,FLOAT,2,Cel,,,0.1,all,Temperature in °C
+TEMP_2,Temperature 2,0,number,R,FLOAT,2,Cel,,,0.1,others,Temperature 2 in °C
+TEMP_3,Temperature 3,0,number,R,FLOAT,2,Cel,,,0.1,others,Temperature 3 in °C
+RHUM,Relative humidity,0,number,R,FLOAT,2,%RH,,,0.1,all,Relative humidity in % rH
+CO2,CO2,0,number,R,FLOAT,2,ppm,,,0.1,all,CO2 in ppm
+VOC,Volatile Organic Compounds,0,number,R,FLOAT,2,%,,,0.1,all,VOC in %
+ATM_P,Absolute pressure,0,number,R,FLOAT,2,,,,0.1,all,Absolute pressure in mBar/hPa
+DP,Differential pressure,0,number,R,FLOAT,2,Pa,,,0.1,all,Differential pressure in Pa
+FLOW,Volume flow,0,number,R,FLOAT,2,m3/h,,,0.1,all,Volume flow in m3/h
+VBAT,Energy level,0,number,R,FLOAT,2,mV,,,0.1,all,Energy level in mV
+VBAT_HI_RES,Energy level high resolution,0,number,R,FLOAT,,,,,,others,
+VISIBLE_LIGHT,Brightness,0,number,R,FLOAT,2,lx,,,0.1,all,Brightness in lux
+REED0_STATE,Reed 0 contact state,0,binary,R,UINT8,,,,,,all,"Actual state of reed contact: 0='off', 1='on'"
+REED0_CNT,Reed 0 state counter,0,number,R,UINT8,,,,,1,all,Amount of detected switching operation since last transmission
+REED1_STATE,Reed 1 contact state,0,binary,R,UINT8,,,,,,all,"Actual state of reed contact: 0='off', 1='on'"
+REED1_CNT,Reed 1 state counter,0,number,R,UINT8,,,,,1,all,Ammount of commutation since last transmission
+CONDENSATION_STATE,Leckage/Condensation actual value,0,binary,R,UINT8,,,,,,all,Leckage/Condensation actual relay state
+CONDENSATION_RAW,Leckage/Condensation raw value,0,number,R,UINT16,0,,,,1,all,Leckage/Condensation raw value
+CMD,Control commands,0,number,R,UINT8,,,1,3,1,all,"Control command: 1='Reset Configuration (Default values)', 2='Save configuration', 3='Reboot'"
+HEARTBEAT,Heartbeat interval,0,number,R,UINT8,,,,,,others,
+MEAS_INTERVAL,Measurement interval,0,number,R,UINT8,,,,,1,all,Measurement interval in seconds (or minutes depending on the sensor)
+CNT_MEAS,Count measurements,0,number,R,UINT8,,,,,1,all,Amount of measurements taken before a LoRa transmission
+FORCED_UPLINK,Forced uplink,0,binary,R,UINT8,,,,,,all,Forced immediate uplink (boolean encoded in 0 or 1)
+TLF_MODE,LoRa spreading factor,12,number,R,UINT8,,,,,1,all,LoRa spreading factor (ex. 0 to 12)
+TLF_ONTIME,TLF ontime,0,number,R,UINT16,,s,,,,others,TLF on duration in seconds
+TLF_INTERVAL_0,TLF interval 0,0,number,R,UINT16,,s,,,,others,TLF interval 0 in seconds
+TLF_INTERVAL_1,TLF interval 1,0,number,R,UINT16,,s,,,,others,TLF interval 1 in seconds
+TLF_INTERVAL_2,TLF interval 2,0,number,R,UINT16,,s,,,,others,TLF interval 2 in seconds
+TLF_INTERVAL_3,TLF interval 3,0,number,R,UINT16,,s,,,,others,TLF interval 3 in seconds
+TLF_INTERVAL_4,TLF interval 4,0,number,R,UINT16,,s,,,,others,TLF interval 4 in seconds
+TLF_INTERVAL_5,TLF interval 5,0,number,R,UINT16,,s,,,,others,TLF interval 5 in seconds
+LED_MODE,LED mode,0,binary,R,UINT8,,,,,,all,"LED mode: 0='off', 1='on action'"
+LED_ONTIME,LED on duration,0,number,R,UINT16,,s,,,,others,LED on duration in seconds
+LED_INTERVAL_0,LED 0 blink intervals,0,number,R,UINT16,,s,,,,others,LED 0 blink intervals in seconds
+LED_INTERVAL_1,LED 1 blink intervals,0,number,R,UINT16,,s,,,,others,LED 1 blink intervals in seconds
+LED_INTERVAL_2,LED 2 blink intervals,0,number,R,UINT16,,s,,,,others,LED 2 blink intervals in seconds
+LED_INTERVAL_3,LED 3 blink intervals,0,number,R,UINT16,,s,,,,others,LED 3 blink intervals in seconds
+LEARN,LEARN,0,number,R,UINT16,,,,,,others,LEARN
+BAT_TYPE,Battery type,0,number,R,UINT16,,,,,,others,Battery type
+BIN_LATENCY,Binary lantency,0,number,R,UINT16,,,,,,others,Binary lantency
+MOISTURE_2,Moisture 2,0,number,R,UINT16,,,,,,others,Moisture 2
+EPD_VALUE_EXT_OVERLOAD_0,EPD value ext overload 0,0,number,R,FLOAT,,,,,,others,EPD value ext overload 0
+EPD_VALUE_EXT_OVERLOAD_1,EPD value ext overload 1,0,number,R,FLOAT,,,,,,others,EPD value ext overload 1
+EPD_VALUE_EXT_OVERLOAD_2,EPD value ext overload 2,0,number,R,FLOAT,,,,,,others,EPD value ext overload 2
+EPD_VALUE_EXT_OVERLOAD_3,EPD value ext overload 3,0,number,R,FLOAT,,,,,,others,EPD value ext overload 3
+CMD,Control commands,0,number,RW,UINT8,,,1,3,,all,"Control command: 1='Reset Configuration (Default values)', 2='Save configuration', 3='Reboot'"
+HEARTBEAT_INTERVAL,Heartbeat interval,0,number,RW,UINT16,,minute,,,,all,Heartbeat interval in minutes (default 1440)
+HYSTERESIS_BEHAVIOR,Hysteresis transmission behaviour,0,number,RW,UINT8,,,0,3,,all,"Hysteresis mode: 0='no hysteresis',1='big hysteresis',2='medium hystersis',3='small hystersis'"
+MEAS_INTERVAL,Measurement/Uplink interval,0,number,RW,UINT16,,,,,,all,Measurement/Uplink interval in seconds (or minutes depending on the sensor)
+CNT_MEAS,Number of samples before a LoRa uplink,0,number,RW,UINT16,,,,,,others,Number of samples before a LoRa uplink
+LATENCY_TIME_DIGITAL_INPUTS,Latency time digital inputs,0,number,RW,UINT16,,s,,,,all,Latency time digital inputs in seconds
+DISABLE_OCCUPANCY_SENSOR,Disabeling time occupancy sensor,0,number,RW,UINT16,,s,,,,all,Disabeling time occupancy sensor in seconds
+FOLLOW_UP_TIME_OCCUPANCY_SENSOR,Follow-up time occupancy sensor,0,number,RW,UINT16,,s,,,,all,Follow-up time occupancy sensor in seconds
+TLF_MODE,LoRa spreading factor,12,number,RW,UINT8,,,,,1,all,LoRa spreading factor (ex. 0 to 12)
+TLF_ONTIME,TLF ontime,0,number,RW,UINT16,,,,,,others,TLF ontime
+TLF_INTERVAL_0,TLF interval 0,0,number,RW,UINT16,,,,,,others,TLF interval 0
+TLF_INTERVAL_1,TLF interval 1,0,number,RW,UINT16,,,,,,others,TLF interval 1
+TLF_INTERVAL_2,TLF interval 2,0,number,RW,UINT16,,,,,,others,TLF interval 2
+TLF_INTERVAL_3,TLF interval 3,0,number,RW,UINT16,,,,,,others,TLF interval 3
+TLF_INTERVAL_4,TLF interval 4,0,number,RW,UINT16,,,,,,others,TLF interval 4
+TLF_INTERVAL_5,TLF interval 5,0,number,RW,UINT16,,,,,,others,TLF interval 5
+LED_MODE,LED mode,0,binary,RW,UINT8,,,,,,all,"LED mode: 0='off', 1='on action'"
+LED_ONTIME,LED on duration,0,number,RW,UINT16,,s,,,,others,LED on duration in seconds
+LED_INTERVAL_0,LED 0 blink intervals,0,number,RW,UINT16,,s,,,,others,LED 0 blink intervals in seconds
+LED_INTERVAL_1,LED 1 blink intervals,0,number,RW,UINT16,,s,,,,others,LED 1 blink intervals in seconds
+LED_INTERVAL_2,LED 2 blink intervals,0,number,RW,UINT16,,s,,,,others,LED 2 blink intervals in seconds
+LED_INTERVAL_3,LED 3 blink intervals,0,number,RW,UINT16,,s,,,,others,LED 3 blink intervals in seconds
+FORCED_UPLINK,Forced uplink,0,binary,RW,UINT8,,,,,,all,Forced immediate uplink (boolean encoded in 0 or 1)
+SCREEN_TEMP_DISPLAY,Temperature display,0,number,RW,FLOAT,2,Cel,,,0.1,all,Displaying a temperature on the screen in °C
