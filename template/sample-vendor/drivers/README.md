@@ -242,7 +242,7 @@ Drivers that get __tested locally__ before submission and __deployed__ on our pl
 
 This implies that only a __select few libraries__ are made available during the execution of the drivers. 
 
-Currently, only the ``Buffer`` library is available on top of all the standard JS classes, functions and methods (e.g.: ``Array``, ``Object``, ``JSON``, ``Math``, etc.). This list can extend depending on how popular a certain module is becoming in recent drivers.
+Currently, only the ``Buffer`` library is available on top of all the standard NodeJS classes, functions and methods (e.g.: ``Array``, ``Object``, ``JSON``, ``Math``, etc.). This list can extend depending on how popular a certain module is becoming in recent drivers.
 
 ### Store and reload context
 
