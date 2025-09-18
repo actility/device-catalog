@@ -236,6 +236,14 @@ The returned `output` is represented by the following json-schema:
 }
 ```
 
+### Driver Execution Environment and Available Libraries
+
+Drivers that get __tested locally__ before submission and __deployed__ on our platforms are executed through an isolated virtual machine provided by __isolated-vm__ (a node module that executes the drivers in a __secure environment__).
+
+This implies that only a __select few libraries__ are made available during the execution of the drivers. 
+
+Currently, only the ``Buffer`` library is available on top of all the standard JS classes, functions and methods (e.g.: ``Array``, ``Object``, ``JSON``, ``Math``, etc.). This list can extend depending on how popular a certain module is becoming in recent drivers.
+
 ### Store and reload context
 
 On some devices, some information from a previous payload are useful for the current one. Thus, a context array is accessible to the driver's developer where some info can be injected/retrieved while decoding/encoding payloads.
