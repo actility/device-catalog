@@ -13,9 +13,11 @@ if(!privateDir.includes("device-catalog-private") && !privateDir.includes("tmp")
 }
 else if(privateDir.includes("tmp")) {
     let privateDirSplit = privateDir.split(path.sep);
-    let catalogNameIndex = privateDirSplit.findLastIndex(f => f === "device-catalog");
-    if(catalogNameIndex !== -1) {
-        privateDirSplit[catalogNameIndex] = "device-catalog-private";
+    for(let i = privateDirSplit.length-1 ; i >= 0 ; i--) {
+        if(privateDirSplit[i] === "device-catalog-private") {
+            privateDirSplit[i] = "device-catalog";
+            break;
+        }
     }
     privateDir = privateDirSplit.join(path.sep);
 }
