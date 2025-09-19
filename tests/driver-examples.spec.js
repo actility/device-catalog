@@ -3,13 +3,21 @@ const path = require("path");
 const fs = require("fs-extra");
 const yaml = require("js-yaml");
 const ivm = require("isolated-vm");
-
+const esl = require("eslint");
 
 const DRIVER_PATH = path.resolve(process.env.DRIVER_PATH || __dirname);
 const resolveDriverPath = (...paths) => path.join(DRIVER_PATH, ...paths);
 let privateDir = DRIVER_PATH;
-if(!privateDir.includes("device-catalog-private")) {
+if(!privateDir.includes("device-catalog-private") && !privateDir.includes("tmp")) {
     privateDir = path.join(privateDir.replace("device-catalog", "device-catalog-private"));
+}
+else if(privateDir.includes("tmp")) {
+    let privateDirSplit = privateDir.split(path.sep);
+    let catalogNameIndex = privateDirSplit.findLastIndex(f => f === "device-catalog");
+    if(catalogNameIndex !== undefined) {
+        privateDirSplit[catalogNameIndex] = "device-catalog-private";
+    }
+    privateDir = privateDirSplit.join(path.sep);
 }
 
 let extractPoints;
@@ -21,10 +29,13 @@ else if(fs.existsSync(resolveDriverPath("extractPoints.js"))) {
     const extractPointsPath = resolveDriverPath("extractPoints.js");
     extractPoints = require(extractPointsPath).extractPoints;
 }
+
 /**
- * Read predefined Isolated Buffer that acts exactly as the NodeJs Buffer library to prevent access to external from the isolated sandbox
+ * Read the driver's package information
  */
-const isoBuffer = fs.readFileSync(path.join(__dirname, "../", "iso-libraries", "iso-buffer.js"), "utf8");
+const packageJson = fs.readJsonSync(resolveDriverPath("package.json"));
+const mainPath = packageJson.main;
+const packageTrusted = packageJson.trusted;
 
 /**
  * Read the driver's signature from `driver.yaml`
@@ -33,13 +44,70 @@ const driverYaml = yaml.load(fs.readFileSync(resolveDriverPath("driver.yaml")));
 const signature = driverYaml.signature;
 
 /**
+ * Checking main code conformity with ESLint
+ */
+async function checkCode() {
+    const eslint = new esl.ESLint({});
+    const skipCodeCheck = ["mcf88", "senlab", "semtech"];
+    const driverPathSplit = DRIVER_PATH.split(path.sep);
+    if(!skipCodeCheck.includes(driverPathSplit[driverPathSplit.length - 3])) {
+        let errors = {};
+        let report;
+        if(fs.pathExistsSync(resolveDriverPath("index.js"))){
+            const codec = fs.readFileSync(resolveDriverPath("index.js"), 'utf-8');
+
+            report = await eslint.lintText(codec);
+            if (report && report.length > 0 && report[0] && report[0].messages && report[0].messages.length > 0) {
+                for (const errorObject of report[0].messages) {
+                    if (errorObject.severity === 2) {
+                        if (!errorObject.message.includes("'context' is not defined.")) {
+                            errors[`${errorObject.line}:${errorObject.column}`] = errorObject.message;
+                        }
+                    }
+                }
+            }
+        }
+
+        if(fs.pathExistsSync(resolveDriverPath("extractPoints.js"))){
+            const extractPointsCode = fs.readFileSync(resolveDriverPath("extractPoints.js"), 'utf-8');
+            report = await eslint.lintText(extractPointsCode);
+            
+            if (report && report.length > 0 && report[0] && report[0].messages && report[0].messages.length > 0) {
+                for (const errorObject of report[0].messages) {
+                    if (errorObject.severity === 2) {
+                        if (!errorObject.message.includes("'context' is not defined.")) {
+                            errors[`${errorObject.line}:${errorObject.column}`] = errorObject.message;
+                        }
+                    }
+                }
+            }
+        }
+
+        if(Object.keys(errors).length) {
+            throw new Error("Driver code is not compliant:\n" + JSON.stringify(errors, null, 2));
+        }
+    }
+}
+
+describe("Driver Code Compliance", () => {
+    it("should pass ESLint checks", async () => {
+        await checkCode(); 
+    });
+});
+
+
+/**
+ * Read predefined Isolated Buffer that acts exactly as the NodeJs Buffer library to prevent access to external from the isolated sandbox
+ */
+const isoBuffer = fs.readFileSync(path.join(__dirname, "../", "iso-libraries", "iso-buffer.js"), "utf8");
+
+/**
  * Validate if decodeDownlink function is defined in the driver
  * as some drivers may have encodeDownlink but no decodeDownlink
  * and there exist examples with legacy type "downlink" that should be wrapped only to "downlink-encode"
  */
 const isDownlinkDecodeDefined = (() =>{
-    const packageJson = fs.readJsonSync(resolveDriverPath("package.json"));
-    const driverFns = require(resolveDriverPath(packageJson.main));
+    const driverFns = require(resolveDriverPath(mainPath));
     switch (signature){
         case "ttn":
         case "chirpstack":
@@ -193,8 +261,7 @@ const fnCall = (() => {
  * Read the driver code according to the main file specified in the npm package
  */
 const code = (() => {
-    const packageJson = fs.readJsonSync(resolveDriverPath("package.json"));
-    return fs.readFileSync(resolveDriverPath(packageJson.main), "utf8");
+    return fs.readFileSync(resolveDriverPath(mainPath), "utf8");
 })();
 
 /**
@@ -202,7 +269,6 @@ const code = (() => {
  */
 function isTrusted() {
     const packageJson = fs.readJsonSync(resolveDriverPath("package.json"));
-    let packageTrusted = packageJson.trusted ?? false;
 
     const driverYamlPath = path.join(privateDir, "driver.yaml");
     let driverYamlTrusted = false;
@@ -210,7 +276,7 @@ function isTrusted() {
         driverYamlTrusted = yaml.load(fs.readFileSync(driverYamlPath)).trusted ?? false;
     }
 
-    return (packageTrusted && DRIVER_PATH.includes("device-catalog-private")) || driverYamlTrusted;
+    return ((packageJson.trusted ?? false) && DRIVER_PATH.includes("device-catalog-private")) || driverYamlTrusted;
 }
 
 const trusted = isTrusted();
@@ -232,8 +298,7 @@ if(!trusted) {
  */
 async function run(input, operation){
     if (trusted) {
-        const packageJson = fs.readJsonSync(resolveDriverPath("package.json"));
-        const driverPath = resolveDriverPath(packageJson.main);
+        const driverPath = resolveDriverPath(mainPath);
         const driverModule = require(driverPath);
 
         let fn = driverModule;
