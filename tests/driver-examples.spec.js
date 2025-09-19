@@ -14,7 +14,7 @@ if(!privateDir.includes("device-catalog-private") && !privateDir.includes("tmp")
 else if(privateDir.includes("tmp")) {
     let privateDirSplit = privateDir.split(path.sep);
     let catalogNameIndex = privateDirSplit.findLastIndex(f => f === "device-catalog");
-    if(catalogNameIndex !== undefined) {
+    if(catalogNameIndex !== -1) {
         privateDirSplit[catalogNameIndex] = "device-catalog-private";
     }
     privateDir = privateDirSplit.join(path.sep);
