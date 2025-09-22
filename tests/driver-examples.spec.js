@@ -8,14 +8,14 @@ const esl = require("eslint");
 const DRIVER_PATH = path.resolve(process.env.DRIVER_PATH || __dirname);
 const resolveDriverPath = (...paths) => path.join(DRIVER_PATH, ...paths);
 let privateDir = DRIVER_PATH;
-if(!privateDir.includes("device-catalog-private") && !privateDir.includes("tmp")) {
+if(!privateDir.includes("device-catalog-private")) {
     privateDir = path.join(privateDir.replace("device-catalog", "device-catalog-private"));
 }
 else if(privateDir.includes("tmp")) {
     let privateDirSplit = privateDir.split(path.sep);
     for(let i = privateDirSplit.length-1 ; i >= 0 ; i--) {
-        if(privateDirSplit[i] === "device-catalog-private") {
-            privateDirSplit[i] = "device-catalog";
+        if(privateDirSplit[i] === "device-catalog") {
+            privateDirSplit[i] = "device-catalog-private";
             break;
         }
     }
@@ -37,7 +37,7 @@ else if(fs.existsSync(resolveDriverPath("extractPoints.js"))) {
  */
 const packageJson = fs.readJsonSync(resolveDriverPath("package.json"));
 const mainPath = packageJson.main;
-const packageTrusted = packageJson.trusted;
+const packageTrusted = packageJson.trusted ?? false;
 
 /**
  * Read the driver's signature from `driver.yaml`
@@ -270,28 +270,16 @@ const code = (() => {
  * Checking whether the driver is trusted or not
  */
 function isTrusted() {
-    const packageJson = fs.readJsonSync(resolveDriverPath("package.json"));
-
     const driverYamlPath = path.join(privateDir, "driver.yaml");
     let driverYamlTrusted = false;
     if(fs.existsSync(driverYamlPath)) {
         driverYamlTrusted = yaml.load(fs.readFileSync(driverYamlPath)).trusted ?? false;
     }
 
-    return ((packageJson.trusted ?? false) && DRIVER_PATH.includes("device-catalog-private")) || driverYamlTrusted;
+    return (packageTrusted && DRIVER_PATH.includes("device-catalog-private")) || driverYamlTrusted;
 }
 
 const trusted = isTrusted();
-/**
- * Create an isolated-vm sandbox to run the code inside
- */
-let isolate;
-let script;
-
-if(!trusted) {
-    isolate = new ivm.Isolate();
-    script = isolate.compileScriptSync(isoBuffer.concat("\n" + code).concat("\n" + fnCall));
-}
 
 /**
  * @param input : input from example to run the driver with
