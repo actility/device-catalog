@@ -4,6 +4,7 @@ const fs = require("fs-extra");
 const yaml = require("js-yaml");
 const ivm = require("isolated-vm");
 const esl = require("eslint");
+const esbuild = require('esbuild');
 
 const DRIVER_PATH = path.resolve(process.env.DRIVER_PATH || __dirname);
 const resolveDriverPath = (...paths) => path.join(DRIVER_PATH, ...paths);
@@ -55,34 +56,27 @@ async function checkCode() {
     if(!skipCodeCheck.includes(driverPathSplit[driverPathSplit.length - 3])) {
         let errors = {};
         let report;
+        
+        let code = "";
         if(fs.pathExistsSync(resolveDriverPath("index.js"))){
-            const codec = fs.readFileSync(resolveDriverPath("index.js"), 'utf-8');
+            code = fs.readFileSync(resolveDriverPath("index.js"), 'utf-8');
+
+            if(fs.pathExistsSync(resolveDriverPath("extractPoints.js"))){
+                
+                const result = await esbuild.build({
+                    target: "node8",
+                    entryPoints: [resolveDriverPath("extractPoints.js")],
+                    bundle: true,
+                    format: 'cjs',
+                    write: false,
+                });
+
+                const extractPointsCode = result.outputFiles[0].text;
+
+                code += "\n\n" + extractPointsCode;
+            }
 
             report = await eslint.lintText(codec);
-            if (report && report.length > 0 && report[0] && report[0].messages && report[0].messages.length > 0) {
-                for (const errorObject of report[0].messages) {
-                    if (errorObject.severity === 2) {
-                        if (!errorObject.message.includes("'context' is not defined.")) {
-                            errors[`${errorObject.line}:${errorObject.column}`] = errorObject.message;
-                        }
-                    }
-                }
-            }
-        }
-
-        if(fs.pathExistsSync(resolveDriverPath("extractPoints.js"))){
-            const extractPointsCode = fs.readFileSync(resolveDriverPath("extractPoints.js"), 'utf-8');
-            report = await eslint.lintText(extractPointsCode);
-            
-            if (report && report.length > 0 && report[0] && report[0].messages && report[0].messages.length > 0) {
-                for (const errorObject of report[0].messages) {
-                    if (errorObject.severity === 2) {
-                        if (!errorObject.message.includes("'context' is not defined.")) {
-                            errors[`${errorObject.line}:${errorObject.column}`] = errorObject.message;
-                        }
-                    }
-                }
-            }
         }
 
         if(Object.keys(errors).length) {
