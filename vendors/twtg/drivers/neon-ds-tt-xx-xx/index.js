@@ -737,12 +737,12 @@ function trigger_lookup(trigger_id) {
   }
 }
 
-Object.prototype.in =
-  function () {
-    for (var i = 0; i < arguments.length; i++)
-      if (arguments[i] == this) return true;
-    return false;
-  }
+// Object.prototype.in =
+//   function () {
+//     for (var i = 0; i < arguments.length; i++)
+//       if (arguments[i] == this) return true;
+//     return false;
+//   }
 
 /***************************
  * Message decoder functions
