@@ -76,7 +76,7 @@ async function checkCode() {
                 code += "\n\n" + extractPointsCode;
             }
 
-            report = await eslint.lintText(codec);
+            report = await eslint.lintText(code);
         }
 
         if(Object.keys(errors).length) {
