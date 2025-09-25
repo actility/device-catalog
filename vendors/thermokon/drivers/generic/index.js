@@ -443,5 +443,158 @@ function decodeUplink(input) {
     };
 }
 
+function encodeUINT16(value) {
+    return [(value >> 8) & 0xFF, value & 0xFF];
+}
+
+function encodeDownlink(input) {
+    let result = {
+        errors: [],
+        warnings: []
+    };
+    let encoded = [];
+
+    try {
+        if (input == null) {
+            result.errors.push("No data to encode");
+            return result;
+        }
+
+        let data = input
+        if (input.data != null) {
+            data = input.data;
+        }
+
+        for (let key in data) {
+            switch (key) {
+                case 'CMD':
+                    // Commande de contrôle :
+                    // 1 = Reset configuration, 2 = Sauvegarder, 3 = Redémarrer l'appareil
+                    encoded.push(0xC1, 0x00);
+                    encoded.push(...encodeUINT16(data.CMD));
+                    break;
+
+                case 'HEARTBEAT_INTERVAL':
+                    // Intervalle de heartbeat (en minutes)
+                    encoded.push(0xC1, 0x06);
+                    encoded.push(...encodeUINT16(data.HEARTBEAT_INTERVAL));
+                    break;
+
+                case 'HYSTERESIS_BEHAVIOR':
+                    // Mode d’hystérésis pour les mesures :
+                    // 0 = aucun, 1 = fort, 2 = moyen, 3 = faible
+                    encoded.push(0xC1, 0x07);
+                    encoded.push(...encodeUINT16(data.HYSTERESIS_BEHAVIOR));
+                    break;
+
+                case 'MEAS_INTERVAL':
+                    // Intervalle de mesure en secondes (ou minutes selon le capteur)
+                    encoded.push(0xC1, 0x08);
+                    encoded.push(...encodeUINT16(data.MEAS_INTERVAL));
+                    break;
+
+                case 'CNT_MEAS':
+                    // Nombre de mesures prises avant un envoi LoRa
+                    encoded.push(0xC1, 0x0A);
+                    encoded.push(...encodeUINT16(data.CNT_MEAS));
+                    break;
+
+                case 'LATENCY_TIME_DIGITAL_INPUTS':
+                    // Latence d’entrée numérique (en secondes)
+                    encoded.push(0xC1, 0x0B);
+                    encoded.push(...encodeUINT16(data.LATENCY_TIME_DIGITAL_INPUTS));
+                    break;
+
+                case 'DISABLE_OCCUPANCY_SENSOR':
+                    // Temps de désactivation après détection de présence (en secondes)
+                    encoded.push(0x84, 0x13);
+                    encoded.push(...encodeUINT16(data.DISABLE_OCCUPANCY_SENSOR));
+                    break;
+
+                case 'FOLLOW_UP_TIME_OCCUPANCY_SENSOR':
+                    // Durée de suivi après détection de présence (en secondes)
+                    encoded.push(0x84, 0x14);
+                    encoded.push(...encodeUINT16(data.FOLLOW_UP_TIME_OCCUPANCY_SENSOR));
+                    break;
+
+                case 'TLF_MODE':
+                    // Mode TLF (LoRa spreading factor)
+                    encoded.push(0xC1, 0x20);
+                    encoded.push(...encodeUINT16(data.TLF_MODE));
+                    break;
+
+                case 'TLF_ONTIME':
+                    // Durée d’émission TLF en secondes
+                    encoded.push(0xC1, 0x21);
+                    encoded.push(...encodeUINT16(data.TLF_ONTIME));
+                    break;
+
+                case 'TLF_INTERVAL_0':
+                case 'TLF_INTERVAL_1':
+                case 'TLF_INTERVAL_2':
+                case 'TLF_INTERVAL_3':
+                case 'TLF_INTERVAL_4':
+                case 'TLF_INTERVAL_5':
+                    // Intervalles de slots de transmission TLF (en secondes)
+                    let tlfIndex = parseInt(key.split('_')[2]);
+                    let base = 0xC123 + (tlfIndex * 2);
+                    encoded.push((base >> 8) & 0xFF, base & 0xFF);
+                    encoded.push(...encodeUINT16(data[key]));
+                    break;
+
+                case 'LED_MODE':
+                    // Mode LED (ex : 0 = off, 1 = on on action)
+                    encoded.push(0xC1, 0x34);
+                    encoded.push(...encodeUINT16(data.LED_MODE));
+                    break;
+
+                case 'LED_ONTIME':
+                    // Durée d’allumage de la LED (en secondes)
+                    encoded.push(0xC1, 0x35);
+                    encoded.push(...encodeUINT16(data.LED_ONTIME));
+                    break;
+
+                case 'LED_INTERVAL_0':
+                case 'LED_INTERVAL_1':
+                case 'LED_INTERVAL_2':
+                case 'LED_INTERVAL_3':
+                    // Intervalles de clignotement LED (ex : LED en impulsion)
+                    let ledIndex = parseInt(key.split('_')[2]);
+                    encoded.push(0xC1, 0x36 + ledIndex);
+                    encoded.push(...encodeUINT16(data[key]));
+                    break;
+
+                case 'FORCED_UPLINK':
+                    // Forcer un envoi immédiat (1 = oui, 0 = non)
+                    encoded.push(0xC2, 0x30);
+                    encoded.push(...encodeUINT16(data.FORCED_UPLINK ? 1 : 0));
+                    break;
+
+                case 'SCREEN_TEMP_DISPLAY':
+                    // Affichage d'une température sur l'écran (0x9630) – encodée en dixièmes de °C
+                    // Exemple : 22.3°C => 0x00DF ; 22°C => 0x00DC
+                    encoded.push(0x96, 0x30);
+                    let tempVal = Math.round(data.SCREEN_TEMP_DISPLAY * 10);
+                    encoded.push((tempVal >> 8) & 0xFF, tempVal & 0xFF);
+                    break;
+
+                default:
+                    result.warnings.push(`encoding for ${key} not supported`);
+                    break;
+            }
+        }
+        result.bytes = Array.from(Buffer.from(encoded));
+        result.fPort = 2;
+        return result;
+    } catch (e){
+        result.errors.push(e.message);
+        delete result.bytes;
+        delete result.fPort;
+        return result;
+    }
+}
+
+
 exports.decodeUplink = decodeUplink;
+exports.encodeDownlink = encodeDownlink;
 

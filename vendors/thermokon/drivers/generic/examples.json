@@ -103,5 +103,67 @@
         "TEMP": 22.2
       }
     }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Downlink: Set open window detection",
+    "input": {
+        "data": {
+          "HEARTBEAT_INTERVAL": 5,
+          "HYSTERESIS_BEHAVIOR": 3,
+          "MEAS_INTERVAL": 15,
+          "CNT_MEAS": 100,
+          "LED_MODE": 0,
+          "LED_ONTIME": 3
+        }
+    },
+    "output": {
+      "fPort": 2,
+      "bytes": [
+        193,
+        6,
+        0,
+        5,
+        193,
+        7,
+        0,
+        3,
+        193,
+        8,
+        0,
+        15,
+        193,
+        10,
+        0,
+        100,
+        193,
+        52,
+        0,
+        0,
+        193,
+        53,
+        0,
+        3
+      ],
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Downlink: Set open window detection",
+    "input": {
+        "data": {
+          "CMD": 1,
+          "LED_MODE" : 10,
+          "HEARTBEAT_INTERVAL" : 20
+        }
+    },
+    "output": {
+      "fPort": 2,
+      "bytes": "c1000001c134000ac1060014",
+      "errors": [],
+      "warnings": []
+    }
   }
 ]

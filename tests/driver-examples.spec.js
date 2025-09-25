@@ -198,6 +198,8 @@ const examples = (() => {
                         output: {
                             bytes: example.bytes,
                             fPort: example.fPort,
+                            errors: example.errors,
+                            warnings: example.warnings
                         }
                     }
                     examples.push(wrappedEncodeDownlink);

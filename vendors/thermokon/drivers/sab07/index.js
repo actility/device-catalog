@@ -174,8 +174,194 @@ function Decode(fPort, bytes) {
     return data;
 }
 
+function DecodeAll(fPort, bytes) {
+    let allDecoded = {};
+    let offset = 0;
+
+    while (offset < bytes.length) {
+        if (offset >= bytes.length) break;
+        const b = bytes.slice(offset);
+        const cmd = b[0];
+        let msgLen = 0;
+
+        switch(cmd) {
+            case 0x81:
+                msgLen = (b.length >= 9) ? Math.min(b.length, 10) : 0; // KeepAlive, usually 9 or 10(if period)
+                break;
+            case 0x29:
+                msgLen = 2; break;
+            case 0x3D:
+                msgLen = 4; break;
+            case 0x3F:
+                msgLen = 3; break;
+            case 0x40:
+                msgLen = 2; break;
+            case 0x42:
+                msgLen = 2; break;
+            case 0x04:
+                msgLen = 3; break;
+            case 0x1D:
+                msgLen = 3; break;
+            case 0x12:
+                msgLen = (b.length >= 11) ? 11 : 2; // keep-alive period + optional keepalive block
+                break;
+            default:
+                // Unknown or incomplete message, skip 1 byte
+                msgLen = 1;
+        }
+
+        if ((b.length) < msgLen || msgLen === 0) break; // Not enough bytes to decode
+
+        const msgBytes = b.slice(0, msgLen);
+
+        let decoded = Decode(fPort, msgBytes);
+        allDecoded = { ...allDecoded, ...decoded }
+
+        offset += msgLen;
+    }
+    return allDecoded;
+}
+
 function decodeUplink(input) {
-	return { data: Decode(input.fPort, input.bytes), errors: [], warnings: [] };
+    return { data: DecodeAll(input.fPort, input.bytes) };
+}
+
+function encodeDownlink(input) {
+    let result = {
+        errors: [],
+        warnings: []
+    };
+    let encoded = [];
+
+    try {
+        if (input == null) {
+            result.errors.push("No data to encode");
+            return result;
+        }
+
+        let data = input
+        if (input.data != null) {
+            data = input.data;
+        }
+
+        // 1. Consigne + plage ±2°C (ex : { targetWithRange: 21 })
+        if ("targetWithRange" in data) {
+            var t = Math.round(data.targetWithRange);
+            if (t < 7 || t > 28)
+                throw new Error("Consigne hors plage avec ±2°C");
+
+            // 0x0E = consigne de température (°C entier)
+            encoded.push(0x0E, t);
+
+            // 0x08 = plage autorisée autour de la consigne (ex : 21 ? 19 à 23)
+            encoded.push(0x08, t - 2, t + 2);
+
+            // On envoie uniquement cette commande si elle est définie
+            return encoded;
+        }
+
+
+
+        // 2. Température externe (°C * 10)
+        if ("externalTemperature" in data) {
+            var extTemp = Math.round(data.externalTemperature * 10);
+            if (extTemp < 0 || extTemp > 65535)
+                throw new Error("Température externe hors plage");
+
+            // 0x3C = température externe, encodée sur 2 octets (UINT16)
+            encoded.push(0x3C, (extTemp >> 8) & 0xFF, extTemp & 0xFF);
+        }
+
+        // 3. Mode de fonctionnement (manuel, auto, forcé)
+        if ("operationalMode" in data) {
+            var mode = data.operationalMode;
+            if (![0x00, 0x01, 0x02].includes(mode))
+                throw new Error("Mode opérationnel invalide");
+
+            // 0x0D = mode opérationnel
+            encoded.push(0x0D, mode);
+        }
+
+        // 4. Recalibrage du moteur (pas de valeur, juste une commande)
+        if (data.recalibrateMotor === true) {
+            encoded.push(0x03); // 0x03 = recalibrage moteur
+        }
+
+        // 5. Forcer position moteur uniquement (0–65535)
+        if ("motorPositionOnly" in data) {
+            var pos = Math.round(data.motorPositionOnly);
+            if (pos < 0 || pos > 65535)
+                throw new Error("Position moteur invalide");
+
+            // 0x2D = position moteur seule, sur 2 octets
+            encoded.push(0x2D, (pos >> 8) & 0xFF, pos & 0xFF);
+        }
+
+        // 6. Forcer position moteur + température cible
+        if ("motorPosition" in data && "targetTemperature" in data) {
+            var pos = Math.round(data.motorPosition);
+            var temp = Math.round(data.targetTemperature);
+            if (pos < 0 || pos > 65535 || temp < 5 || temp > 30)
+                throw new Error("Données moteur/température invalides");
+
+            // 0x31 = position moteur + température, 2 octets + 1
+            encoded.push(0x31, (pos >> 8) & 0xFF, pos & 0xFF, temp);
+        }
+
+        // 7. Détection de fenêtre ouverte (activer/désactiver, durée, seuil)
+        if ("openWindowDetection" in data) {
+            var e = data.openWindowDetection;
+            var enable = e.enable ? 0x01 : 0x00;
+            var duration = Math.round(e.duration); // en minutes
+            var delta = Math.round(e.tempDelta * 10); // en dixièmes de °C
+            if (duration < 0 || duration > 255 || delta < 0 || delta > 255)
+                throw new Error("Paramètres fenêtre invalide");
+
+            // 0x45 = détection fenêtre, 3 octets
+            encoded.push(0x45, enable, duration, delta);
+        }
+
+        // 8. Période de keep-alive (0x02, en minutes, max 255)
+        if ("keepAlivePeriod" in data) {
+            var period = Math.round(data.keepAlivePeriod);
+            if (period < 0 || period > 255)
+                throw new Error("Période keep-alive invalide");
+
+            encoded.push(0x02, period);
+        }
+
+        // 9. Verrouillage enfants (activé/désactivé)
+        if ("childLock" in data) {
+            encoded.push(0x07, data.childLock ? 0x01 : 0x00);
+        }
+
+        // 10. Reset de l’appareil (pas de paramètre)
+        if (data.resetDevice === true) {
+            encoded.push(0x30); // 0x30 = commande reset
+        }
+
+        // 11. Algorithme PI (Kp + Ki, codés en 3 octets chacun)
+        if ("piAlgorithm" in data) {
+            if ("proportionalGain" in data.piAlgorithm) {
+                var Kp = Math.round(data.piAlgorithm.proportionalGain * 131072);
+                encoded.push(0x37, (Kp >> 16) & 0xFF, (Kp >> 8) & 0xFF, Kp & 0xFF);
+            }
+            if ("integralGain" in data.piAlgorithm) {
+                var Ki = Math.round(data.piAlgorithm.integralGain * 131072);
+                encoded.push(0x3E, (Ki >> 16) & 0xFF, (Ki >> 8) & 0xFF, Ki & 0xFF);
+            }
+        }
+
+        result.bytes = Array.from(Buffer.from(encoded));
+        result.fPort = 2;
+        return result;
+    } catch (e){
+        result.errors.push(e.message);
+        delete result.bytes;
+        delete result.fPort;
+        return result;
+    }
 }
 
 exports.decodeUplink = decodeUplink;
+exports.encodeDownlink = encodeDownlink;
