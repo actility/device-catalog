@@ -197,11 +197,12 @@ const examples = (() => {
                         },
                         output: {
                             bytes: example.bytes,
-                            fPort: example.fPort,
-                            errors: example.errors,
-                            warnings: example.warnings
+                            fPort: example.fPort
                         }
-                    }
+                    };
+                    if(typeof example.errors !== "undefined") wrappedEncodeDownlink.output.errors = example.errors;
+                    if(typeof example.warnings !== "undefined") wrappedEncodeDownlink.output.warnings = example.warnings;
+
                     examples.push(wrappedEncodeDownlink);
                 }
             }
