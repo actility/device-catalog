@@ -65,18 +65,60 @@
                             "properties": {
                                 "dr0": {
                                     "type": "boolean"
+                                },
+                                "dr1": {
+                                    "type": "boolean"
+                                },
+                                "dr2": {
+                                    "type": "boolean"
+                                },
+                                "dr3": {
+                                    "type": "boolean"
+                                },
+                                "dr4": {
+                                    "type": "boolean"
+                                },
+                                "dr5": {
+                                    "type": "boolean"
+                                },
+                                "dr6": {
+                                    "type": "boolean"
+                                },
+                                "dr7": {
+                                    "type": "boolean"
                                 }
                             },
-                            "additionalProperties": true
+                            "additionalProperties": false
                         },
                         "secondTransmissionDatarate": {
                             "type": "object",
                             "properties": {
                                 "dr0": {
                                     "type": "boolean"
+                                },
+                                "dr1": {
+                                    "type": "boolean"
+                                },
+                                "dr2": {
+                                    "type": "boolean"
+                                },
+                                "dr3": {
+                                    "type": "boolean"
+                                },
+                                "dr4": {
+                                    "type": "boolean"
+                                },
+                                "dr5": {
+                                    "type": "boolean"
+                                },
+                                "dr6": {
+                                    "type": "boolean"
+                                },
+                                "dr7": {
+                                    "type": "boolean"
                                 }
                             },
-                            "additionalProperties": true
+                            "additionalProperties": false
                         },
                         "transmissionType": {
                             "type": "string"
@@ -84,7 +126,8 @@
                         "ADREnabled": {
                             "type": "boolean"
                         }
-                    }
+                    },
+                    "additionalProperties": false
                 },
                 "confirmedUplink": {
                     "type": "object",
@@ -140,7 +183,8 @@
                         "sms": {
                             "type": "boolean"
                         }
-                    }
+                    },
+                    "additionalProperties": false
                 },
                 "motionSensitivity": {
                     "type": "object",
@@ -154,7 +198,8 @@
                         "sensitivity": {
                             "type": "number"
                         }
-                    }
+                    },
+                    "additionalProperties": false
                 },
                 "passwordCommandLineInterface": {
                     "type": "number"
@@ -231,7 +276,8 @@
                         "criticalToLearning": {
                             "type": "boolean"
                         }
-                    }
+                    },
+                    "additionalProperties": false
                 },
                 "angleDeviationMaxInterval": {
                     "type": "number"
@@ -319,7 +365,57 @@
         "dataScanCollection": {
             "type": "object",
             "description": "Details of the data scan collection.",
-            "additionalProperties": true
+            "properties": {
+                "collectionIdentifier": {
+                    "type": "number"
+                },
+                "hash": {
+                    "type": "number"
+                },
+                "dataFormat": {
+                    "type": "string"
+                },
+                "scanType": {
+                    "type": "string"
+                },
+                "again": {
+                    "type": "boolean"
+                },
+                "fragmentIdentification": {
+                    "type": "number"
+                },
+                "macAddressData": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "bssid": {
+                                "type": "string"
+                            },
+                            "rssi": {
+                                "type": "number"
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                },
+                "beaconIdData": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "beaconId": {
+                                "type": "string"
+                            },
+                            "rssi": {
+                                "type": "number"
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                }
+            },
+            "additionalProperties": false
         },
         "batteryVoltage": {
             "type": "number",
@@ -390,6 +486,7 @@
                     "type": "number"
                 }
             },
+            "additionalProperties": false,
             "description": "The measured temperature in Celsius."
         },
         "angleDetection": {
@@ -407,7 +504,8 @@
                         "triggerType": {
                             "type": "string"
                         }
-                    }
+                    },
+                    "additionalProperties": false
                 },
                 "age": {
                     "type": "number"
@@ -428,6 +526,7 @@
                     "type": "number"
                 }
             },
+            "additionalProperties": false,
             "description": "Indicates if angle detection is active."
         },
         "geofencingNotification": {
@@ -443,6 +542,7 @@
                     "type": "string"
                 }
             },
+            "additionalProperties": false,
             "description": "Indicates if geofencing notifications are enabled."
         },
         "gpsLatitude": {
@@ -497,6 +597,7 @@
                     "description": "Longitude of the previous GPS data."
                 }
             },
+            "additionalProperties": false,
             "description": "GPS previous values."
         },
         "age": {
@@ -529,7 +630,8 @@
                     "rssi": {
                         "type": "number"
                     }
-                }
+                },
+                "additionalProperties": false
             },
             "description": "List of WiFi BSSIDs detected."
         },
@@ -555,7 +657,8 @@
                     "rssi": {
                         "type": "number"
                     }
-                }
+                },
+                "additionalProperties": false
             },
             "description": "List of BLE BSSIDs detected."
         },
@@ -574,7 +677,8 @@
                     "rssi": {
                         "type": "number"
                     }
-                }
+                },
+                "additionalProperties": false
             },
             "description": "List of BLE beacon IDs detected."
         },
@@ -656,6 +760,7 @@
                     "type": "number"
                 }
             },
+            "additionalProperties": false,
             "description": "Health status of the device."
         },
         "resetCause": {
@@ -689,6 +794,7 @@
                     "type": "boolean"
                 }
             },
+            "additionalProperties": false,
             "description": "Indicates if proximity white listing is enabled."
         },
         "shutdownCause": {

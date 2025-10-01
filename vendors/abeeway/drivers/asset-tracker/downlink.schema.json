@@ -80,7 +80,8 @@
             "criticalToLearning": {
               "type": "boolean"
             }
-          }
+          },
+          "additionalProperties": false
         },
         "bleBeaconCount": {
           "type": "number"
@@ -208,7 +209,8 @@
             "confirmedUlRetry": {
               "type": "number"
             }
-          }
+          },
+          "additionalProperties": false
         },
         "transmitStrat": {
           "type": "string"
@@ -297,7 +299,8 @@
             "gnssHoldOnEnable": {
               "type": "boolean"
             }
-          }
+          },
+          "additionalProperties": false
         },
         "buzzerVolume": {
           "type": "number"
@@ -385,9 +388,11 @@
                 "dr7": {
                   "type": "boolean"
                 }
-              }
+              },
+              "additionalProperties": false
             }
-          }
+          },
+          "additionalProperties": false
         },
         "motionSensitivity": {
           "type": "object",
@@ -401,7 +406,8 @@
             "sensitivity": {
               "type": "number"
             }
-          }
+          },
+          "additionalProperties": false
         },
         "shockDetection": {
           "type": "number"
@@ -457,7 +463,8 @@
             "buttonPressDuration": {
               "type": "number"
             }
-          }
+          },
+          "additionalProperties": false
         },
         "collectionNbEntry": {
           "type": "number"
@@ -474,7 +481,6 @@
         "collectionBleFilterSecMask": {
           "type": "number"
         },
-
         "angleDeviationMaxInterval": {
           "type": "number"
         },
@@ -530,9 +536,7 @@
           "type": "string"
         }
       },
-      "additionalProperties": {
-        "type": "boolean"
-      }
+      "additionalProperties": false
     },
     "debugCommandType": {
       "type": "string",
@@ -571,9 +575,7 @@
           "description": "Indicates if shipping mode is enabled."
         }
       },
-      "additionalProperties": {
-        "type": "boolean"
-      }
+      "additionalProperties": false
     },
     "bleAdvertisementDuration": {
       "type": "number",
@@ -607,6 +609,7 @@
     },
     "sms": {
       "type": "object",
+      "description": "SMS",
       "properties": {
         "senderId": {
           "type": "number"
@@ -615,10 +618,8 @@
           "type": "string"
         }
       },
-      "description": "SMS"
+      "additionalProperties": false
     }
   },
-  "additionalProperties": {
-    "type": "boolean"
-  }
+  "additionalProperties": false
 }
