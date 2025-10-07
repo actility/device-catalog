@@ -33,7 +33,7 @@ modelId: citylone:sl-zhaga-lr:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 # Format: `<8 characters max>:<16 characters max>:<digits only>`
 # Be careful: Once you chose a protocolId, it cannot be changed later
-protocolId:
+protocolId: citylone:generic:1
 # DataSheet URL (optional)
 specificationURL: https://www.citylone.com/wp-content/uploads/2023/12/FT-SL-ZHAGA-LR-1223.pdf
 # User Guide URL (optional)
@@ -43,3 +43,49 @@ sensors:
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
+  citylone:generic:1:
+    - "Real Uplink - 0x01 TIC meter frame 1"
+    - "Real Uplink - 0x02 TIC meter frame 2"
+    - "Real Uplink - 0x04 Power failure"
+    - "Real Uplink - 0x07 Dry contact input 1"
+    - "Real Uplink - 0x09 outputs feedback (states=0x00, status=0x08)"
+    - "Real Uplink - 0x0b Dry contact input 2"
+    - "Real Uplink - 0x0c Feedback versions soft"
+    - "Real Uplink - 0x0e RSSI LoRa Feedback"
+    - "Real Uplink - 0x10 calendar payload (15 bytes remainder)"
+    - "Real Uplink - 0x11 Current time feedback"
+    - "Generated Uplink - 0x09 outputs feedback (MSB→LSB, ids 1..8) states=0xAA, status=0xF0"
+    - "Generated Uplink - 0x11 time settings (+02:30, enable=1, ts=100s)"
+    - "Generated Uplink - 0x12 position (lon=-1.0, lat=+1.5) sign-magnitude/1e6"
+    - "Generated Uplink - 0x0C versions (SW 2.1, FW 3.4)"
+    - "Generated Uplink - 0x0D other sensor (type=luminosity, 300 lux)"
+    - "Generated Uplink - 0x15 node consumption run hours"
+    - "Generated Uplink - 0x16 node commands feedback (mixed forced/auto)"
+    - "Generated Uplink - 0x17 electrical measures"
+    - "Generated Uplink - 0x19 node failures (various flags set)"
+    - "Generated Uplink - 0x1B node parameters feedback"
+    - "ERROR — set_time without timestamp_unix"
+    - "ERROR — set_position without lon/lat"
+    - "ERROR — send_calendar without blocks_hex or data_hex"
+    - "0x01 force_outputs — dimming 70% → Lamp11 for 300s"
+    - "0x01 force_outputs — ON 100% → all, immediate"
+    - "0x04 set_time — ts=100, +02:30, enable=1"
+    - "0x04 set_time — ts=3600, −01:45, enable=0"
+    - "0x05 send_calendar — two 17-byte blocks"
+    - "0x06 set_position — lon=-1.0, lat=+1.5"
+    - "0x07 calendar_request"
+    - "0x09 lora_rssi_request"
+    - "0x0F time_change_request"
+    - "0x25 calendar_apply — locked"
+    - "0x25 calendar_apply — request"
+    - "0x25 calendar_apply — unlocked"
+    - "Uplink 0e"
+    - "Uplink 22"
+    - "Uplink 09"
+    - "Uplink 09 2"
+    - "Uplink 0e 2"
+    - "Uplink 22 2"
+    - "Uplink 10"
+    - "Uplink 09 3"
+    - "Uplink 09 4"
+    - "Uplink 10 1"
