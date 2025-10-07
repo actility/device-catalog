@@ -3,7 +3,7 @@ name: SL-ZHAGA-LR
 # Functional description of the product. Maximum 500 characters.
 description: The SL-ZHAGA-LR is a lighting controller with a standardized ZHAGA connexion. It can manage a DALI driver and can integrated a presence sensor. It works in a connected LoRaWAN architecture. 
 # Logo of the device
-logo: sl-box.png
+logo: sl-zhaga.png
 # ID(s) of the profile that defines the LoRaWAN characteristics of this model.
 # id: as defined under /profiles.
 # lorawanDeviceProfileID: as defined by LoRa Alliance in https://lora-alliance.org/wp-content/uploads/2020/10/LoRa_Alliance_Vendor_ID_for_QR_Code_02142022.pdf.
@@ -75,7 +75,8 @@ examples:
     - "0x05 send_calendar — two 17-byte blocks"
     - "0x06 set_position — lon=-1.0, lat=+1.5"
     - "0x07 calendar_request"
-    - "0x09 lora_rssi_request"
+    - "0x09 current_time_request"
+    - "0x0A lora_rssi_request"
     - "0x0F time_change_request"
     - "0x25 calendar_apply — locked"
     - "0x25 calendar_apply — request"
