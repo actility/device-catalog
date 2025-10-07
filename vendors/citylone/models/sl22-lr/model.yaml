@@ -1,0 +1,92 @@
+# Commercial name of the model
+name: SL22-LR
+# Functional description of the product. Maximum 500 characters.
+description: The SL22-LR is a ligthing controller that can drives DALI drivers. It can manage a DALI driver and can be configured from a smartphone or a supervision. It works in a connected LoRaWAN architecture.
+# Logo of the device
+logo: sl22-lr.jpg
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
+# id: as defined under /profiles.
+# lorawanDeviceProfileID: as defined by LoRa Alliance in https://lora-alliance.org/wp-content/uploads/2020/10/LoRa_Alliance_Vendor_ID_for_QR_Code_02142022.pdf.
+# The lorawanDeviceProfileID consists of 8 upper-case hexadecimal characters, 4 characters for VendorID + 4 characters for VendorProfileID. Please consider using single (') or double (") quotation.
+deviceProfileIds:
+  - id: citylone_RFGroup1_1.0.3a_classC
+
+# You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings.
+# Maximum device TX Conducted output power in dBm.
+maxTxPower:
+# Minimum device TX Conducted output power in dBm.
+minTxPower:
+# Maximum device TX Radiated output power in dBm.
+maxTxEIRP:
+# Minimum device TX Radiated output power in dBm.
+minTxEIRP:
+# Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'
+# or 'random' (not known, changes over time).
+motionIndicator:
+
+# Is your device certified by the LoRa Alliance? Possible values: true, false.
+LoRaWANCertified:
+# Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
+# Format: `<8 characters max>:<16 characters max>:<digits only>`
+# Be careful: Once you chose a model, it cannot be changed later
+modelId: citylone:sl22-lr:1
+# <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
+# Format: `<8 characters max>:<16 characters max>:<digits only>`
+# Be careful: Once you chose a protocolId, it cannot be changed later
+protocolId: citylone:generic:1
+# DataSheet URL (optional)
+specificationURL: https://www.citylone.com/wp-content/uploads/2020/04/Fiche-technique-SL-22-LR-0420.pdf
+# User Guide URL (optional)
+userGuideURL:
+# <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
+sensors:
+  - energy:Wh
+# Driver examples
+# A list of examples description that are compatible with this model
+examples:
+  citylone:generic:1:
+    - "Real Uplink - 0x01 TIC meter frame 1"
+    - "Real Uplink - 0x02 TIC meter frame 2"
+    - "Real Uplink - 0x04 Power failure"
+    - "Real Uplink - 0x07 Dry contact input 1"
+    - "Real Uplink - 0x09 outputs feedback (states=0x00, status=0x08)"
+    - "Real Uplink - 0x0b Dry contact input 2"
+    - "Real Uplink - 0x0c Feedback versions soft"
+    - "Real Uplink - 0x0e RSSI LoRa Feedback"
+    - "Real Uplink - 0x10 calendar payload (15 bytes remainder)"
+    - "Real Uplink - 0x11 Current time feedback"
+    - "Generated Uplink - 0x09 outputs feedback (MSB→LSB, ids 1..8) states=0xAA, status=0xF0"
+    - "Generated Uplink - 0x11 time settings (+02:30, enable=1, ts=100s)"
+    - "Generated Uplink - 0x12 position (lon=-1.0, lat=+1.5) sign-magnitude/1e6"
+    - "Generated Uplink - 0x0C versions (SW 2.1, FW 3.4)"
+    - "Generated Uplink - 0x0D other sensor (type=luminosity, 300 lux)"
+    - "Generated Uplink - 0x15 node consumption run hours"
+    - "Generated Uplink - 0x16 node commands feedback (mixed forced/auto)"
+    - "Generated Uplink - 0x17 electrical measures"
+    - "Generated Uplink - 0x19 node failures (various flags set)"
+    - "Generated Uplink - 0x1B node parameters feedback"
+    - "ERROR — set_time without timestamp_unix"
+    - "ERROR — set_position without lon/lat"
+    - "ERROR — send_calendar without blocks_hex or data_hex"
+    - "0x01 force_outputs — dimming 70% → Lamp11 for 300s"
+    - "0x01 force_outputs — ON 100% → all, immediate"
+    - "0x04 set_time — ts=100, +02:30, enable=1"
+    - "0x04 set_time — ts=3600, −01:45, enable=0"
+    - "0x05 send_calendar — two 17-byte blocks"
+    - "0x06 set_position — lon=-1.0, lat=+1.5"
+    - "0x07 calendar_request"
+    - "0x09 lora_rssi_request"
+    - "0x0F time_change_request"
+    - "0x25 calendar_apply — locked"
+    - "0x25 calendar_apply — request"
+    - "0x25 calendar_apply — unlocked"
+    - "Uplink 0e"
+    - "Uplink 22"
+    - "Uplink 09"
+    - "Uplink 09 2"
+    - "Uplink 0e 2"
+    - "Uplink 22 2"
+    - "Uplink 10"
+    - "Uplink 09 3"
+    - "Uplink 09 4"
+    - "Uplink 10 1"
