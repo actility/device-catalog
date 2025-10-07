@@ -939,9 +939,39 @@ The returned object must be:
   Here's an example:
 ```json
 {
-    "temperature": 31.4,
-    "location": [48.875158, 2.333822],
-    "fft": [0.32, 0.33, 0.4523, 0.4456, 0.4356]
+  "temperature": {
+      "record": 31.4,
+      "unitId": "Cel"
+    },
+    "location": {
+      "unitId": "GPS",
+      "records": [
+        {
+          "value": [48.875158, 2.333822],
+          "eventTime": "2019-01-01T10:00:00+01:00"
+        }
+      ]
+    },
+    "power:0": {
+        "record": 0.32,
+        "unitId": "GW"
+    },
+    "power:1": {
+        "record": 0.33,
+        "unitId": "GW"
+    },
+    "power:2": {
+        "record": 0.4523,
+        "unitId": "GW"
+    }, 
+    "power:3": {
+      "record": 0.4456,
+      "unitId": "GW"
+    },
+    "power:4": {
+      "record": 0.4356,
+      "unitId": "GW"
+    }
 }
 ```
 - OR, it is defined by the following json-schema in case the point has several values in different timestamp.
@@ -960,31 +990,70 @@ The returned object must be:
           "required": true
         },
         "value": {
-          "type": ["string", "number", "boolean"],
-          "required": false
+          "type": [
+            "string",
+            "number",
+            "boolean"
+          ],
+          "required": true
         }
       }
     }
   }
 }
 ```
-Here's an example:
+Here are a few examples:
+
+Simple :
 ```json
 {
-  "temperature": [
+  "temperature": 
     {
-      "eventTime": "2019-01-01T10:00:00+01:00",
-      "value": 31.4
-    },
-    {
-      "eventTime": "2019-01-01T11:00:00+01:00",
-      "value": 31.2
-    },
-    {
-      "eventTime": "2019-01-01T12:00:00+01:00",
-      "value": 32
+      "record": 31.4,
+      "unitId": "Cel"
     }
-  ]
+}
+```
+
+Multiple measurements with different measurement time :
+```json
+{
+  "temperature": {
+    "unitId": "Cel",
+    "records": [
+      {
+        "eventTime": "2019-01-01T10:00:00+01:00",
+        "value": 31.4
+      },
+      {
+        "eventTime": "2019-01-01T11:00:00+01:00",
+        "value": 31.2
+      },
+      {
+        "eventTime": "2019-01-01T12:00:00+01:00",
+        "value": 32
+      }
+    ]
+  }
+}
+```
+
+Multiple of the same captor type : \
+(In case of mutiple sensors of the same type, the ID should start at 0)
+```json
+{
+  "temperature:0": {
+    "record": 31.4,
+    "unitId": "Cel"
+  },
+  "temperature:1": {
+    "record": 31.2,
+    "unitId": "Cel"
+  },
+  "temperature:2": {
+    "record": 32,
+    "unitId": "Cel"
+  }
 }
 ```
 
