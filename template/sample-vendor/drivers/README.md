@@ -1039,7 +1039,7 @@ Multiple measurements with different measurement time :
 }
 ```
 
-Multiple of the same captor type : \
+Multiple of the same sensor type : \
 (In case of mutiple sensors of the same type, the ID should start at 0)
 ```json
 {
