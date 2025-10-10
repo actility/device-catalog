@@ -2875,6 +2875,40 @@
     }
   },
   {
+    "description": "Notification HeartBeat with 30 seconds tolerance ",
+    "type": "uplink",
+    "input": {
+      "bytes": "08618ba9041700c509902a",
+      "recvTime": "2025-10-04T09:55:46.988Z",
+      "fPort": 19
+    },
+    "output": {
+      "data": {
+        "header": {
+          "ackToken": 0,
+          "multiFrame": false,
+          "batteryLevel": 97,
+          "sos": false,
+          "timestamp": "2025-10-04T09:55:53.000Z",
+          "type": "NOTIFICATION"
+        },
+        "payload": "08618ba9041700c509902a",
+        "notification": {
+          "notificationClass": "SYSTEM",
+          "notificationType": "HEARTBEAT",
+          "system":  {
+           "heartbeat":  {
+               "currentTemperature": 23,
+               "globalCrc": "c509902a",
+               "resetCause": "AOS_ERROR_NONE"
+            }
+        }
+      }},
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
     "description": "Notification motion end  uplink ",
     "type": "uplink",
     "input": {
@@ -3137,7 +3171,7 @@
           "multiFrame": false,
           "batteryLevel": "CHARGING",
           "sos": false,
-          "timestamp": "2024-06-11T00:30:04.000Z",
+          "timestamp": "2024-06-11T12:30:04.000Z",
           "type": "NOTIFICATION",
           "ackToken": 1
         },
