@@ -60,29 +60,39 @@ function determineNotification(payload){
     let notificationMessage = new Notification();
     let classValue = payload[4]>>4 & 0x0F;
     let typeValue = payload[4] & 0x0F;
+    console.log("Hello, world!", typeValue);
     switch(classValue){
         case 0:
             notificationMessage.notificationClass = Class.SYSTEM;
             switch (typeValue){
+                
                 case 0:
                     notificationMessage.notificationType = systemClass.SystemType.STATUS
-                    notificationMessage.system = new systemClass.System(systemClass.determineStatus(payload),null, null, null, null);
+                    notificationMessage.system = new systemClass.System(systemClass.determineStatus(payload),null, null, null, null, null, null);
                     break;
                 case 1:
                     notificationMessage.notificationType = systemClass.SystemType.LOW_BATTERY
-                    notificationMessage.system = new systemClass.System( null, systemClass.determineLowBattery(payload), null, null);
+                    notificationMessage.system = new systemClass.System( null, systemClass.determineLowBattery(payload), null, null, null, null);
                     break;
                 case 2:
                     notificationMessage.notificationType = systemClass.SystemType.BLE_STATUS;
-                    notificationMessage.system = new systemClass.System( null, null, systemClass.determineBleStatus(payload), null, null);
+                    notificationMessage.system = new systemClass.System( null, null, systemClass.determineBleStatus(payload), null, null, null, null);
                     break;
                 case 3:
                     notificationMessage.notificationType = systemClass.SystemType.TAMPER_DETECTION;
-                    notificationMessage.system = new systemClass.System( null, null, null, systemClass.determineTamperDetection(payload),null);
+                    notificationMessage.system = new systemClass.System( null, null, null, systemClass.determineTamperDetection(payload),null, null, null);
                     break;
                 case 4:
                     notificationMessage.notificationType = systemClass.SystemType.HEARTBEAT;
-                    notificationMessage.system = new systemClass.System(null, null, null, null, systemClass.determineHeartbeat(payload))
+                    notificationMessage.system = new systemClass.System(null, null, null, null, systemClass.determineHeartbeat(payload), null, null)
+                    break;
+                case 5:
+                    notificationMessage.notificationType = systemClass.SystemType.SHUTDOWN;
+                    notificationMessage.system = new systemClass.System(null, null, null, null, null, systemClass.determineShutdownCause(payload), null)
+                    break;
+                case 6:
+                    notificationMessage.notificationType = systemClass.SystemType.DATA_BUFFERING_STATUS;
+                    notificationMessage.system = new systemClass.System(null, null, null, null, null, null, systemClass.determineDataBuffering(payload))
                     break;
                 default:
                     throw new Error("System Notification Type Unknown");

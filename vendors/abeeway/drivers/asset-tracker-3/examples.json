@@ -754,7 +754,9 @@
                         "lowBattery": true,
                         "bleStatus": false,
                         "tamperDetection": true,
-                        "heartbeat": false
+                        "heartbeat": false, 
+                        "dataBuffering": false,
+                        "shutdown": false
                       }
                     },
                     { "sosClass": { "sosOn": true, "sosOff": true } },
@@ -1791,11 +1793,11 @@
                   "parameterValue": "LORA_ONLY"
                 },
                 {
-                  "parameterName": "netReconnectionSpacing",
+                  "parameterName": "netReconnectionSpacingStatic",
                   "parameterValue": 600
                 },
                 {
-                  "parameterName": "netMainProbeTimeout",
+                  "parameterName": "netMainProbeTimeoutStatic",
                   "parameterValue": "ERROR"
                 }
               ]
@@ -1836,14 +1838,14 @@
               "parameters": [
                 { "parameterName": "lorawanCnxTimeout", "parameterValue": 0 },
                 {
-                  "parameterName": "lorawanDlTriggerPeriod",
+                  "parameterName": "lorawanHeartbeatPeriod",
                   "parameterValue": 3600
                 },
                 {
-                  "parameterName": "lorawanProbeMaxAttempts",
+                  "parameterName": "lorawanProbeMaxAttemptsStatic",
                   "parameterValue": 0
                 },
-                { "parameterName": "lorawanProbePeriod", "parameterValue": 600 }
+                { "parameterName": "lorawanProbePeriodStatic", "parameterValue": 600 }
               ]
             }
           ],
@@ -1888,7 +1890,10 @@
                         "status": true,
                         "lowBattery": false,
                         "bleStatus": false,
-                        "tamperDetection": false
+                        "tamperDetection": false,
+                        "dataBuffering":false,
+                        "heartbeat":false,
+                        "shutdown":false
                       }
                     },
                     { "sosClass": { "sosOn": false, "sosOff": false } },
@@ -2230,7 +2235,7 @@
                   "parameterValue": 300
                 },
                 {
-                  "parameterName": "cellCnxNwLostTimeout",
+                  "parameterName": "cellCnxNwReconnectTimeout",
                   "parameterValue": 60
                 },
                 { "parameterName": "cellCnxMaxAttempts", "parameterValue": 3 }
@@ -3264,6 +3269,41 @@
     },
     "points": { "batteryLevel": { "unitId": "%", "record": 100 } }
   },
+    {
+    "description": "notification system data buffering",
+    "type": "uplink",
+    "input": {
+      "bytes": "092a240406020000000000000000",
+      "recvTime": "2025-09-23T16:28:00.000+02:00",
+      "fPort": 3
+    },
+    "output": {
+      "data": {
+        "header": {
+          "sos": false,
+          "type": "NOTIFICATION",
+          "ackToken": 1,
+          "multiFrame": false,
+          "batteryLevel": 42,
+          "timestamp": "2025-09-23T02:33:40.000Z"
+        },
+        "notification": {
+          "notificationClass": "SYSTEM",
+          "notificationType": "DATA_BUFFERING_STATUS",
+            "system":{"dataBufferingStatus": {
+              "latestTimestamp": "1970-01-01T00:00:00.000Z",
+              "oldestTimestamp": "1970-01-01T00:00:00.000Z",
+              "status": "NO_DATA_FOUND"
+            }}
+          },
+        
+        "payload": "092a240406020000000000000000"
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": { "batteryLevel": { "unitId": "%", "record": 42} }
+  },
   {
     "description": "Telemetry payload",
     "type": "uplink",
@@ -3730,7 +3770,7 @@
     "description": "downlik command start SOS.",
     "type": "downlink-decode",
     "input": {
-      "bytes": "0E02",
+      "bytes": "0e02",
       "recvTime": "2024-06-10T09:42:13.733+02:00",
       "fPort": 19
     },
@@ -4050,6 +4090,29 @@
           "requestType": "PARAM_CLASS_CONFIGURATION_GET"
         },
         "downMessageType": "REQUEST"
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+    {
+    "description": "downlik command get buffering data.",
+    "type": "downlink-decode",
+    "input": {
+      "bytes": "090C68D113A60E1003",
+      "recvTime": "2024-06-10T09:42:13.733+02:00",
+      "fPort": 19
+    },
+    "output": {
+      "data": {
+        "ackToken": 1,
+        "downMessageType": "COMMAND",
+        "command": { 
+           "beginUtcTime": "2025-09-22T09:15:18.000Z",
+          "bufferedDataType":  { "notification": true,"position": true,"telemetry": false},
+          "commandType": "GET_DATA_BUFFERING_ENTRIES",
+          "duration": 3600 },
+        "payload": "090c68d113a60e1003"
       },
       "errors": [],
       "warnings": []
@@ -4432,7 +4495,7 @@
             "group": "LORAWAN",
             "parameters": [
               {
-                "parameterName": "lorawanDlTriggerPeriod",
+                "parameterName": "lorawanHeartbeatPeriod",
                 "parameterValue": 3600
               }
             ]
@@ -4599,10 +4662,10 @@
         "getParameterClass": {
           "group": "LORAWAN",
           "parameters": [
-            "lorawanProbePeriod",
+            "lorawanProbePeriodStatic",
             "lorawanS1UlPort",
             "lorawanS1DlPort",
-            "lorawanDlTriggerPeriod"
+            "lorawanHeartbeatPeriod"
           ]
         }
       }
@@ -4615,7 +4678,7 @@
     }
   },
   {
-    "description": "Encode request set generic configuration ",
+    "description": "Encode request set generic configuration  ",
     "type": "downlink-encode",
     "input": {
       "data": {
@@ -4636,8 +4699,11 @@
             "group": "NETWORK",
             "parameters": [
               "netSelection",
-              "netReconnectionSpacing",
-              "netMainProbeTimeout"
+              "netReconnectionSpacingStatic",
+              "netMainProbeTimeoutStatic",
+              "netReconnectionSpacingMotion",
+              "netMainProbeTimeoutMotion"
+             
             ]
           }
         ]
@@ -4645,7 +4711,7 @@
     },
     "output": {
       "fPort": 3,
-      "bytes": "16020A090A0D0A010A15080008010802",
+      "bytes": "16020A090A0D0A010A1508000801080208030804",
       "errors": [],
       "warnings": []
     }
@@ -4681,5 +4747,238 @@
       "errors": [],
       "warnings": []
     }
+  },
+    {
+    "description": "notification system heartbeat with buffering enabled",
+    "type": "uplink",
+    "input": {
+      "bytes": "08e46862afe604170061df4b57",
+      "recvTime": "2025-03-01T11:05:00.000+02:00",
+      "fPort": 3
+    },
+    "output": {
+      "data": {
+        "header": {
+          "sos": false,
+          "type": "NOTIFICATION",
+          "ackToken": 0,
+          "multiFrame": false,
+          "batteryLevel": 100,
+          "timestamp": "2025-06-30T15:40:22.000Z",
+          "buffering": true
+        },
+        "notification": {
+          "notificationClass": "SYSTEM",
+          "notificationType": "HEARTBEAT",
+          "system": {
+            "heartbeat": {
+              "currentTemperature": 23,
+              "resetCause": "AOS_ERROR_NONE",
+              "globalCrc": "61df4b57"
+            }
+          }
+        },
+        "payload": "08e46862afe604170061df4b57"
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "description": "GNSS position with buffering enabled",
+    "type": "uplink",
+    "input": {
+      "bytes": "90e46862b11301aa010020450920041b071103131a18",
+      "recvTime": "2025-03-01T11:05:00.000+02:00",
+      "fPort": 3
+    },
+    "output": {
+      "data": {
+        "header": {
+          "sos": false,
+          "type": "POSITION",
+          "ackToken": 0,
+          "multiFrame": true,
+          "batteryLevel": 100,
+          "timestamp": "2025-06-30T15:45:23.000Z",
+          "buffering": true
+        },
+        "extendedHeader": {
+          "frameNumber": 1,
+          "groupId": 0,
+          "last": 0
+        },
+        "position": {
+          "gnssFailure": {
+            "satellitesSeen": [
+              {
+                "CN": 32,
+                "constellation": "GPS",
+                "svId": 9
+              },
+              {
+                "CN": 27,
+                "constellation": "GPS",
+                "svId": 4
+              },
+              {
+                "CN": 17,
+                "constellation": "GPS",
+                "svId": 7
+              },
+              {
+                "CN": 19,
+                "constellation": "GPS",
+                "svId": 3
+              },
+              {
+                "CN": 24,
+                "constellation": "GPS",
+                "svId": 26
+              }
+            ],
+            "timeoutCause": "ACQUISITION_TIMEOUT"
+          },
+          "motion": 1,
+          "motionCounter": 1,
+          "positionType": "GNSS",
+          "status": "TIMEOUT",
+          "triggers": {
+            "geoTriggerGeozoning": 0,
+            "geoTriggerInMotion": 0,
+            "geoTriggerInStatic": 1,
+            "geoTriggerMotionStart": 0,
+            "geoTriggerMotionStop": 0,
+            "geoTriggerPod": 0,
+            "geoTriggerShock": 0,
+            "geoTriggerSos": 0,
+            "geoTriggerTempHighThreshold": 0,
+            "geoTriggerTempLowThreshold": 0
+          }
+        },
+        "payload": "90e46862b11301aa010020450920041b071103131a18"
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "description": "BLE MAC position with buffering enabled",
+    "type": "uplink",
+    "input": {
+      "bytes": "90e46862b11612e4010020",
+      "recvTime": "2025-03-01T11:05:00.000+02:00",
+      "fPort": 3
+    },
+    "output": {
+      "data": {
+        "header": {
+          "sos": false,
+          "type": "POSITION",
+          "ackToken": 0,
+          "multiFrame": true,
+          "batteryLevel": 100,
+          "timestamp": "2025-06-30T15:45:26.000Z",
+          "buffering": true
+        },
+        "extendedHeader": {
+          "frameNumber": 2,
+          "groupId": 0,
+          "last": 1
+        },
+        
+        "payload": "90e46862b11612e4010020",
+        "position": {
+          "motion": 1,
+          "motionCounter": 1,
+          "positionType": "BLE_SCAN1_MAC",
+          "status": "NOT_SOLVABLE",
+          "triggers": {
+            "geoTriggerGeozoning": 0,
+            "geoTriggerInMotion": 0,
+            "geoTriggerInStatic": 1,
+            "geoTriggerMotionStart": 0,
+            "geoTriggerMotionStop": 0,
+            "geoTriggerPod": 0,
+            "geoTriggerShock": 0,
+            "geoTriggerSos": 0,
+            "geoTriggerTempHighThreshold": 0,
+            "geoTriggerTempLowThreshold": 0
+          },
+          "bleBeaconMacs":[]
+        }
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "description": "Wifi position with buffering enabled",
+    "type": "uplink",
+    "input": {
+      "bytes": "90e46862afe603010020307ecb757584b3",
+      "recvTime": "2025-03-01T11:05:00.000+02:00",
+      "fPort": 3
+    },
+    "output": {
+      "data": {
+        "header": {
+          "sos": false,
+          "type": "POSITION",
+          "ackToken": 0,
+          "multiFrame": true,
+          "batteryLevel": 100,
+          "timestamp": "2025-06-30T15:40:22.000Z",
+          "buffering": true
+        },
+        "extendedHeader": {
+          "frameNumber": 3,
+          "groupId": 0,
+          "last": 0
+        },
+        "payload": "90e46862afe603010020307ecb757584b3",
+        "position": {
+          "lr11xxGnssNav1": "7ecb757584b3",
+          "motion": 0,
+          "motionCounter": 0,
+          "positionType": "LR11xx_GNSS_NAV1",
+          "status": "SUCCESS",
+          "triggers": {
+            "geoTriggerGeozoning": 0,
+            "geoTriggerInMotion": 1,
+            "geoTriggerInStatic": 1,
+            "geoTriggerMotionStart": 0,
+            "geoTriggerMotionStop": 0,
+            "geoTriggerPod": 0,
+            "geoTriggerShock": 0,
+            "geoTriggerSos": 0,
+            "geoTriggerTempHighThreshold": 0,
+            "geoTriggerTempLowThreshold": 0
+          }
+        }
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+  "description": "Encode command GET_DATA_BUFFERING_ENTRIES ",
+  "type": "downlink-encode",
+  "input": {
+    "data": {
+      "downMessageType": "COMMAND",
+      "commandType": "GET_DATA_BUFFERING_ENTRIES",
+      "ackToken": 1,
+      "beginUtcTime": "2025-09-22T09:15:18.000Z",
+      "duration": 3600,
+      "bufferedDataType": { "position": true, "notification": true, "telemetry": false }
+    }
+  },
+  "output": {
+    "fPort": 3,
+    "bytes": "090C68D113A60E1003",
+    "errors": [],
+    "warnings": []
   }
+}
 ]

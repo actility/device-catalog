@@ -36,13 +36,20 @@ function decodeUplink(input) {
 
         //header decoding
         decodedData.header = basicHeadeClass.determineHeader(payload,receivedTime);
-
+        decodedData.payload = util.convertBytesToString(payload);
+        // NOTE: due to buffering, the header size is increased to 2 more bytes at the index 4 and 5 for timestamp.
+		// to simplify the decoding for other parts, we will exclude those bytes
+        
+        if (decodedData.header.buffering){
+            if (payload.length < 6) 
+                throw new Error("the payload is not valid to determine header with buffering")
+            payload.splice(4, 2);
+        }
         //if multiframe is true
         var multiFrame = !!(payload[0]>>7 & 0x01);
         if (multiFrame){
             decodedData.extendedHeader = extendedHeaderClass.determineExtendedHeader(payload);
         }
-        decodedData.payload = util.convertBytesToString(payload);
         switch (decodedData.header.type){
             case abeewayUplinkPayloadClass.messageType.NOTIFICATION:
                 decodedData.notification = notificationClass.determineNotification(payload);

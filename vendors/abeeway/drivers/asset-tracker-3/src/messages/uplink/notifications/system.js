@@ -1,19 +1,23 @@
 let util = require("../../../util");
 
 function System(status,
-    lowBattery, bleStatus, tamperDetection, heartbeat){
+    lowBattery, bleStatus, tamperDetection, heartbeat, shutdown, dataBufferingStatus){
     this.status = status;
     this.lowBattery = lowBattery;
     this.bleStatus = bleStatus;
     this.tamperDetection = tamperDetection;
     this.heartbeat = heartbeat;
+    this.shutdown = shutdown;
+    this.dataBufferingStatus = dataBufferingStatus;
 }
 const SystemType = Object.freeze({
     STATUS: "STATUS",
     LOW_BATTERY: "LOW_BATTERY",
     BLE_STATUS: "BLE_STATUS",
     TAMPER_DETECTION: "TAMPER_DETECTION",
-    HEARTBEAT : "HEARTBEAT"
+    HEARTBEAT : "HEARTBEAT",
+    SHUTDOWN : "SHUTDOWN",
+    DATA_BUFFERING_STATUS : "DATA_BUFFERING_STATUS"
 })
 const ResetCause = Object.freeze({
     AOS_ERROR_NONE: "AOS_ERROR_NONE",
@@ -35,6 +39,17 @@ const ResetCause = Object.freeze({
     AOS_ERROR_SW_APP_START: "AOS_ERROR_SW_APP_START",
 })
 
+const ShutdownCause = Object.freeze({
+    SHUTDOWN_CAUSE_NONE: "SHUTDOWN_CAUSE_NONE",
+    SHUTDOWN_CAUSE_USER_ACTION: "SHUTDOWN_CAUSE_USER_ACTION",
+    SHUTDOWN_CAUSE_LOW_BATTERY: "SHUTDOWN_CAUSE_LOW_BATTERY",
+})
+
+const DataBufferingStatus =Object.freeze({
+    SUCCESS :"SUCCESS",
+    TIMEOUT : "TIMEOUT",
+    NO_DATA_FOUND : "NO_DATA_FOUND"
+})
 function Status(currentTemperature, resetCause, pageId, AT3Version,
     configurationVersion,
     lrHwVersion,
@@ -127,6 +142,15 @@ function Heartbeat(currentTemperature, resetCause, globalCrc){
     this.resetCause = resetCause;
     this.globalCrc = globalCrc;
 }
+function Shutdown(shutdownCause){
+    this.shutdownCause = shutdownCause;
+}
+function DataBuffering(status, oldestTimestamp, latestTimestamp){
+    this.status = status
+    this.oldestTimestamp = oldestTimestamp
+    this.latestTimestamp = latestTimestamp 
+}
+
 
 function determineHeartbeat(payload) {
     var currentTemperature = util.convertNegativeInt(payload[5],1);
@@ -184,6 +208,35 @@ function determineTamperDetection(payload){
             return new TamperDetection("CASING_OPEN")
 
     }
+}
+function determineShutdownCause(payload){
+    switch (payload[5]){
+        case 0:
+            //unknown cause 
+            return new Shutdown(ShutdownCause.SHUTDOWN_CAUSE_NONE)
+        case 1:
+            return new Shutdown(ShutdownCause.SHUTDOWN_CAUSE_USER_ACTION)
+        case 2:
+            return new Shutdown(ShutdownCause.SHUTDOWN_CAUSE_LOW_BATTERY)
+    }
+}
+function determineDataBufferingStatus(payload){
+    switch (payload[5]){
+        case 0:
+            //unknown cause 
+            return DataBufferingStatus.SUCCESS
+        case 1:
+            return DataBufferingStatus.TIMEOUT
+        case 2:
+            return DataBufferingStatus.NO_DATA_FOUND
+    }
+}
+function determineDataBuffering(payload){
+    var dataBufferingStatus =  determineDataBufferingStatus(payload)
+    var oldestTimestamp = new Date(((payload[6] << 24) | (payload[7] << 16) | (payload[8] << 8) | payload[9]) * 1000).toISOString();
+    var latestTimestamp = new Date(((payload[10] << 24) | (payload[11] << 16) | (payload[12] << 8) | payload[13]) * 1000).toISOString();
+    return new DataBuffering(dataBufferingStatus, oldestTimestamp, latestTimestamp)
+
 }
 function determinePage0(payload, decodedStatus){
     decodedStatus.AT3Version = payload[7].toString()+"."+payload[8].toString()+"."+payload[9].toString();
@@ -336,5 +389,7 @@ module.exports = {
     determineBleStatus: determineBleStatus,
     determineTamperDetection: determineTamperDetection,
     determineHeartbeat : determineHeartbeat,
+    determineShutdownCause : determineShutdownCause,
+    determineDataBuffering: determineDataBuffering,
     SystemType: SystemType
 }

@@ -5,16 +5,19 @@ const batteryStatus = Object.freeze({
     UNKNOWN: "UNKNOWN"
 });
 
-function Header(sos, type, ackToken, multiFrame, batteryLevel, timestamp) {
+function Header(sos, type, ackToken, multiFrame, batteryLevel, timestamp, buffering) {
     this.sos = sos;
     this.type = type;
     this.ackToken = ackToken;
     this.multiFrame = multiFrame;
     this.batteryLevel = batteryLevel;
-    this.timestamp = timestamp;
+    this.timestamp = timestamp
+    this.buffering = buffering;
 }
 
 function determineHeader(payload, receivedTime) {
+    var  bufferingFlag 
+    var timestamp
     if (payload.length < 3)
         throw new Error("The payload is not valid to determine header");
     var sos = !!(payload[0] >> 6 & 0x01);
@@ -22,8 +25,19 @@ function determineHeader(payload, receivedTime) {
     var type = determineMessageType(payload);
     var multiFrame = !!(payload[0] >> 7 & 0x01);
     var batteryLevel = determineBatteryLevel(payload);
-    var timestamp = rebuildTime(receivedTime, ((payload[2] << 8) + payload[3]));
-    return new Header(sos, type, ackToken, multiFrame, batteryLevel, timestamp);
+    var buffering = (payload[1] >> 7) & 0x01; 
+    if (buffering == 0) {
+        timestamp = rebuildTime(receivedTime, ((payload[2] << 8) + payload[3]));
+    }else{
+        if (payload.length < 6) 
+            throw new Error("the payload is not valid to determine header with buffering")
+		bufferingFlag = true
+		var bufferingTimestamp = (payload[2] << 24) | (payload[3] << 16) | (payload[4] << 8) | payload[5];
+        timestamp = new Date(bufferingTimestamp * 1000).toISOString();
+        
+    }
+
+    return new Header(sos, type, ackToken, multiFrame, batteryLevel, timestamp, bufferingFlag);
 }
 
 function rebuildTime(receivedTime, seconds) {

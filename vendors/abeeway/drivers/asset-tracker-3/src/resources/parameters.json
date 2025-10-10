@@ -174,8 +174,17 @@
                            "name": "heartbeat",
                            "type": "PropertyBoolean",
                            "description": "Heartbeat message."
-                        }
-
+                        },
+                        {
+                           "name": "shutdown",
+                           "type": "PropertyBoolean",
+                           "description": "Shutdown message."
+                        },
+                        {
+                           "name": "dataBuffering",
+                           "type": "PropertyBoolean",
+                           "description": "Data buffering status"
+                        } 
                      ]
                   },
                   {
@@ -297,6 +306,18 @@
                            "type": "BitMaskValue",
                            "valueFor": "heartbeat",
                            "bitShift": 4,
+                           "length": 1
+                        },
+                        {
+                           "type": "BitMaskValue",
+                           "valueFor": "shutdown",
+                           "bitShift": 5,
+                           "length": 1
+                        },
+                        {
+                           "type": "BitMaskValue",
+                           "valueFor": "dataBuffering",
+                           "bitShift": 6,
                            "length": 1
                         }
                      ]
@@ -619,7 +640,8 @@
                         "START_DEVICE",
                         "STOP_DEVICE",
                         "START_ONLY_SOS",
-                        "START_BLE_ADVERTISING_FOR_CONNECTIVITY"
+                        "START_BLE_ADVERTISING_FOR_CONNECTIVITY",
+                        "REST_DEVICE"
                      ],
                      "firmwareValues":[
                         0,
@@ -630,7 +652,8 @@
                         5,
                         6,
                         7,
-                        8
+                        8,
+                        9
                      ]},
                      {
                         "name":"buttonSimpleSequence",
@@ -1726,6 +1749,326 @@
             "minimum":0
          }
       },
+      "compatibleTrackerModels":[
+         {
+            "producerId":"abeeway",
+            "moduleId":"compact-tracker",
+            "version":"2.0"
+         },
+         {
+            "producerId":"abeeway",
+            "moduleId":"combo-compact-tracker",
+            "version":"1.0"
+         }
+      ]
+   },
+   {
+      "driverParameterName":"coreDBTypeMask",
+      "groupId":"0x01",
+      "localId":"0x0F",
+      "description":"Data buffering type mask.",
+      "parameterType": {
+               "type": "ParameterTypeByteArray",
+               "size": 6,
+               "distinctValues":true,
+               "properties": [
+                  {
+                     "name": "dataBufferingType",
+                     "type": "PropertyObject",
+                     "properties": [
+                        {
+                           "name": "position",
+                           "type": "PropertyBoolean",
+                           "description": "If set, the positions are stored in the history."
+                        }
+                     ]
+                  },
+                  {
+                     "name": "systemClass",
+                     "type": "PropertyObject",
+                     "properties": [
+                        {
+                           "name": "status",
+                           "type": "PropertyBoolean",
+                           "description": "System status Versions, temperature, reset cause."
+                        },
+                        {
+                           "name": "lowBattery",
+                           "type": "PropertyBoolean",
+                           "description": "Low battery alert."
+                        },
+                        {
+                           "name": "bleStatus",
+                           "type": "PropertyBoolean",
+                           "description": "Bluetooth Low Energy status"
+                        },
+                        {
+                           "name": "tamperDetection",
+                           "type": "PropertyBoolean",
+                           "description": "Tamper detection alert."
+                        },
+                        {
+                           "name": "heartbeat",
+                           "type": "PropertyBoolean",
+                           "description": "Heartbeat message."
+                        },
+                        {
+                           "name": "shutdown",
+                           "type": "PropertyBoolean",
+                           "description": "Shutdown message."
+                        },
+                        {
+                           "name": "dataBuffering",
+                           "type": "PropertyBoolean",
+                           "description": "Data buffering status"
+                        } 
+                     ]
+                  },
+                  {
+                     "name": "sosClass",
+                     "type": "PropertyObject",
+                     "properties": [
+                        {
+                           "name": "sosOn",
+                           "type": "PropertyBoolean",
+                           "description": "SOS activated."
+                        },
+                        {
+                           "name": "sosOff",
+                           "type": "PropertyBoolean",
+                           "description": "SOS deactivated."
+                        }
+                     ]
+                  },
+                  {
+                     "name": "temperatureClass",
+                     "type": "PropertyObject",
+                     "properties": [
+                        {
+                           "name": "tempHigh",
+                           "type": "PropertyBoolean",
+                           "description": "Critical high temperature reached"
+                        },
+                        {
+                           "name": "tempLow",
+                           "type": "PropertyBoolean",
+                           "description": "Critical low temperature reached"
+                        },
+                        {
+                           "name": "tempNormal",
+                           "type": "PropertyBoolean",
+                           "description": "Temperature back to normal"
+                        }
+                     ]
+                  },
+                  {
+                     "name": "accelerometerClass",
+                     "type": "PropertyObject",
+                     "properties": [
+                        {
+                           "name": "motionStart",
+                           "type": "PropertyBoolean",
+                           "description": "Motion start detected."
+                        },
+                        {
+                           "name": "motionEnd",
+                           "type": "PropertyBoolean",
+                           "description": "Motion end detected."
+                        },
+                        {
+                           "name": "shock",
+                           "type": "PropertyBoolean",
+                           "description": "Shock detected."
+                        }
+                     ]
+                  },
+                  {
+                     "name": "networkingClass",
+                     "type": "PropertyObject",
+                     "properties": [
+                        {
+                           "name": "mainUp",
+                           "type": "PropertyBoolean",
+                           "description": "Main network is up."
+                        },
+                        {
+                           "name": "backupUp",
+                           "type": "PropertyBoolean",
+                           "description": "Main network down. Backup is up."
+                        }
+                     ]
+                  },
+                  {
+                     "name": "geozoningClass",
+                     "type": "PropertyObject",
+                     "properties": [
+                        {
+                           "name": "geozoningOn",
+                           "type": "PropertyBoolean",
+                           "description": "Geozoning is on."
+                        }
+                     ]
+                  }
+               ],
+               "byteMask": [
+                   {
+                     "valueFor": "dataBufferingType",
+                     "type": "BitMaskObject",
+                     "values": [
+                        {
+                           "type": "BitMaskValue",
+                           "valueFor": "position",
+                           "bitShift": 0,
+                           "length": 1
+                        }
+                     ]
+                  },
+                  {
+                     "valueFor": "systemClass",
+                     "type": "BitMaskObject",
+                     "values": [
+                        {
+                           "type": "BitMaskValue",
+                           "valueFor": "status",
+                           "bitShift": 0,
+                           "length": 1
+                        },
+                        {
+                           "type": "BitMaskValue",
+                           "valueFor": "lowBattery",
+                           "bitShift": 1,
+                           "length": 1
+                        },
+                        {
+                           "type": "BitMaskValue",
+                           "valueFor": "bleStatus",
+                           "bitShift": 2,
+                           "length": 1
+                        },
+                        {
+                           "type": "BitMaskValue",
+                           "valueFor": "tamperDetection",
+                           "bitShift": 3,
+                           "length": 1
+                        },
+                        {
+                           "type": "BitMaskValue",
+                           "valueFor": "heartbeat",
+                           "bitShift": 4,
+                           "length": 1
+                        },
+                        {
+                           "type": "BitMaskValue",
+                           "valueFor": "shutdown",
+                           "bitShift": 5,
+                           "length": 1
+                        },
+                        {
+                           "type": "BitMaskValue",
+                           "valueFor": "dataBuffering",
+                           "bitShift": 6,
+                           "length": 1
+                        }
+                     ]
+                  },
+                  {
+                     "valueFor": "sosClass",
+                     "type": "BitMaskObject",
+                     "values": [
+                        {
+                           "type": "BitMaskValue",
+                           "valueFor": "sosOn",
+                           "bitShift": 0,
+                           "length": 1
+                        },
+                        {
+                           "type": "BitMaskValue",
+                           "valueFor": "sosOff",
+                           "bitShift": 1,
+                           "length": 1
+                        }
+                     ]
+                  },
+                  {
+                     "valueFor": "temperatureClass",
+                     "type": "BitMaskObject",
+                     "values": [
+                        {
+                           "type": "BitMaskValue",
+                           "valueFor": "tempHigh",
+                           "bitShift": 0,
+                           "length": 1
+                        },
+                        {
+                           "type": "BitMaskValue",
+                           "valueFor": "tempLow",
+                           "bitShift": 1,
+                           "length": 1
+                        },
+                        {
+                           "type": "BitMaskValue",
+                           "valueFor": "tempNormal",
+                           "bitShift": 2,
+                           "length": 1
+                        }
+                     ]
+                  },
+                  {
+                     "valueFor": "accelerometerClass",
+                     "type": "BitMaskObject",
+                     "values": [
+                        {
+                           "type": "BitMaskValue",
+                           "valueFor": "motionStart",
+                           "bitShift": 0,
+                           "length": 1
+                        },
+                        {
+                           "type": "BitMaskValue",
+                           "valueFor": "motionEnd",
+                           "bitShift": 1,
+                           "length": 1
+                        },
+                        {
+                           "type": "BitMaskValue",
+                           "valueFor": "shock",
+                           "bitShift": 2,
+                           "length": 1
+                        }
+                     ]
+                  },
+                  {
+                     "valueFor": "networkingClass",
+                     "type": "BitMaskObject",
+                     "values": [
+                        {
+                           "type": "BitMaskValue",
+                           "valueFor": "mainUp",
+                           "bitShift": 0,
+                           "length": 1
+                        },
+                        {
+                           "type": "BitMaskValue",
+                           "valueFor": "backupUp",
+                           "bitShift": 1,
+                           "length": 1
+                        }
+                     ]
+                  },
+                  {
+                     "valueFor": "geozoningClass",
+                     "type": "BitMaskObject",
+                     "values": [
+                        {
+                           "type": "BitMaskValue",
+                           "valueFor": "geozoningOn",
+                           "bitShift": 0,
+                           "length": 1
+                        }
+                     ]
+                  }
+               ]
+            },
       "compatibleTrackerModels":[
          {
             "producerId":"abeeway",
@@ -4116,11 +4459,11 @@
             ]
          },
          {
-            "driverParameterName":"netReconnectionSpacing",
+            "driverParameterName":"netReconnectionSpacingStatic",
             "groupId":"0x08",
             "localId":"0x01",
             "defaultValue":600,
-            "description": "Time to wait before retrying to connect the main network",
+            "description": "Time to wait before retrying to connect the main network. Applicable when the tracker is static.",
             "parameterType":{
                "type":"ParameterTypeNumber",
                "range":{
@@ -4142,11 +4485,58 @@
             ]
          },
          {
-            "driverParameterName":"netMainProbeTimeout",
+            "driverParameterName":"netMainProbeTimeoutStatic",
             "groupId":"0x08",
             "localId":"0x02",
             "defaultValue":600,
-            "description": "Duration between each attempts reconnect the main network.",
+            "description": "Duration between each attempts reconnect the main network. Applicable when the tracker is static.",
+            "parameterType":{
+               "type":"ParameterTypeNumber",
+               "range":{
+                  "minimum":120,
+                  "maximum":2147483647
+               }
+            },
+            "compatibleTrackerModels":[
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"combo-compact-tracker",
+                  "version":"1.0"
+               }
+            ]
+         },
+                  {
+            "driverParameterName":"netReconnectionSpacingMotion",
+            "groupId":"0x08",
+            "localId":"0x03",
+            "defaultValue":600,
+            "description": "Time to wait before retrying to connect the main network. Applicable when the tracker is moving.",
+            "parameterType":{
+               "type":"ParameterTypeNumber",
+               "range":{
+                  "minimum":0,
+                  "maximum":2147483647
+               }
+            },
+            "compatibleTrackerModels":[
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"compact-tracker",
+                  "version":"2.0"
+               },
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"combo-compact-tracker",
+                  "version":"1.0"
+               }
+            ]
+         },
+         {
+            "driverParameterName":"netMainProbeTimeoutMotion",
+            "groupId":"0x08",
+            "localId":"0x04",
+            "defaultValue":600,
+            "description": "Duration between each attempts reconnect the main network. Applicable when the tracker is moving.",
             "parameterType":{
                "type":"ParameterTypeNumber",
                "range":{
@@ -4189,12 +4579,12 @@
             ]
          },
          {
-            "driverParameterName":"lorawanDlTriggerPeriod",
+            "driverParameterName":"lorawanHeartbeatPeriod",
             "groupId":"0x09",
             "localId":"0x01",
             "defaultValue":3600,
             "unit":"s",
-            "description": "Period at which an empty uplink is sent to trigger a downlink. 0 disable the function.",
+            "description": "Period at which an heartbeat notification is sent to trigger a Rx window for downlinks (if no uplink has been sent within this period). 0 disable the function.",
             "parameterType":{
                "type":"ParameterTypeNumber",
                "range":{
@@ -4216,16 +4606,16 @@
             ]
          },
          {
-            "driverParameterName":"lorawanProbeMaxAttempts",
+            "driverParameterName":"lorawanProbeMaxAttemptsStatic",
             "groupId":"0x09",
             "localId":"0x02",
             "defaultValue":4,
-            "description": "Number of link-check sent declaring the network as lost",
+            "description": "Number of link-check sent declaring the network as lost. Applicable when the tracker is static. 0 disable the function.",
             "parameterType":{
                "type":"ParameterTypeNumber",
                "range":{
                   "minimum":0,
-                  "maximum":10
+                  "maximum":20
                }
             },
             "compatibleTrackerModels":[
@@ -4242,11 +4632,11 @@
             ]
          },
          {
-            "driverParameterName":"lorawanProbePeriod",
+            "driverParameterName":"lorawanProbePeriodStatic",
             "groupId":"0x09",
             "localId":"0x03",
             "defaultValue":43200,
-            "description": "Time between link-check requests",
+            "description": "Time between link-check requests. Applicable when the tracker is static.",
             "parameterType":{
                "type":"ParameterTypeNumber",
                "range":{
@@ -4282,7 +4672,7 @@
                      "name": "systemClass",
                      "type": "PropertyObject",
                      "properties": [
-                        {
+                       {
                            "name": "status",
                            "type": "PropertyBoolean",
                            "description": "System status Versions, temperature, reset cause."
@@ -4301,7 +4691,22 @@
                            "name": "tamperDetection",
                            "type": "PropertyBoolean",
                            "description": "Tamper detection alert."
-                        }
+                        },
+                        {
+                           "name": "heartbeat",
+                           "type": "PropertyBoolean",
+                           "description": "Heartbeat message."
+                        },
+                        {
+                           "name": "shutdown",
+                           "type": "PropertyBoolean",
+                           "description": "Shutdown message."
+                        },
+                        {
+                           "name": "dataBuffering",
+                           "type": "PropertyBoolean",
+                           "description": "Data buffering status"
+                        } 
                      ]
                   },
                   {
@@ -4395,7 +4800,7 @@
                      "valueFor": "systemClass",
                      "type": "BitMaskObject",
                      "values": [
-                        {
+                       {
                            "type": "BitMaskValue",
                            "valueFor": "status",
                            "bitShift": 0,
@@ -4417,6 +4822,24 @@
                            "type": "BitMaskValue",
                            "valueFor": "tamperDetection",
                            "bitShift": 3,
+                           "length": 1
+                        },
+                        {
+                           "type": "BitMaskValue",
+                           "valueFor": "heartbeat",
+                           "bitShift": 4,
+                           "length": 1
+                        },
+                        {
+                           "type": "BitMaskValue",
+                           "valueFor": "shutdown",
+                           "bitShift": 5,
+                           "length": 1
+                        },
+                        {
+                           "type": "BitMaskValue",
+                           "valueFor": "dataBuffering",
+                           "bitShift": 6,
                            "length": 1
                         }
                      ]
@@ -4880,6 +5303,59 @@
                }
             ]
          },
+          {
+            "driverParameterName":"lorawanProbePeriodMotion",
+            "groupId":"0x09",
+            "localId":"0x09",
+            "defaultValue":43200,
+            "description": "Time between link-check requests. Applicable when the tracker is moving.",
+            "parameterType":{
+               "type":"ParameterTypeNumber",
+               "range":{
+                  "minimum":120,
+                  "maximum":2147483647
+               }
+            },
+            "compatibleTrackerModels":[
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"compact-tracker",
+                  "version":"2.0"
+               },
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"combo-compact-tracker",
+                  "version":"1.0"
+               }
+            ]
+         },
+                  {
+            "driverParameterName":"lorawanProbeMaxAttemptsMotion",
+            "groupId":"0x09",
+            "localId":"0x0a",
+            "defaultValue":4,
+            "description": "Number of link-check sent declaring the network as lost. Applicable when the tracker is moving.",
+            "parameterType":{
+               "type":"ParameterTypeNumber",
+               "range":{
+                  "minimum":0,
+                  "maximum":20
+               }
+            },
+            "compatibleTrackerModels":[
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"compact-tracker",
+                  "version":"2.0"
+               },
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"combo-compact-tracker",
+                  "version":"1.0"
+               }
+            ]
+         },
+        
          {
             "driverParameterName":"cellSimInterface",
             "groupId":"0x0A",
@@ -4998,7 +5474,7 @@
             ]
          },
          {
-            "driverParameterName":"cellCnxNwLostTimeout",
+            "driverParameterName":"cellCnxNwReconnectTimeout",
             "groupId":"0x0A",
             "localId":"0x05",
             "defaultValue":60,
@@ -5458,6 +5934,67 @@
                   "maximum":3600
                }
             },
+            "compatibleTrackerModels":[
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"combo-compact-tracker",
+                  "version":"1.0"
+               }
+            ]
+         },
+         {
+            "driverParameterName":"cellApnUserId",
+            "groupId":"0x0A",
+            "localId":"0x17",
+            "description":"String specifying the user identifier for private APN",
+            "defaultValue":"",
+            "parameterType":{
+               "type":"ParameterTypeAsciiString",
+               "maxSize":32
+            },
+            "compatibleTrackerModels":[
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"combo-compact-tracker",
+                  "version":"1.0"
+               }
+            ]
+         },
+                  {
+            "driverParameterName":"cellApnUserPwd",
+            "groupId":"0x0A",
+            "localId":"0x18",
+            "description":"String specifying the user password for private APN",
+            "defaultValue":"",
+            "parameterType":{
+               "type":"ParameterTypeAsciiString",
+               "maxSize":32
+            },
+            "compatibleTrackerModels":[
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"combo-compact-tracker",
+                  "version":"1.0"
+               }
+            ]
+         },
+                      {
+            "driverParameterName":"cellApnAuthProtocol",
+            "groupId":"0x0A",
+            "localId":"0x19",
+            "description":"String specifying the user password for private APN",
+            "defaultValue":"",
+            "parameterType":{
+               "type":"ParameterTypeString",
+               "possibleValues":[
+                  "PAP",
+                  "CHAP"
+               ],
+               "firmwareValues":[
+                  1,
+                  2
+
+               ]},
             "compatibleTrackerModels":[
                {
                   "producerId":"abeeway",
