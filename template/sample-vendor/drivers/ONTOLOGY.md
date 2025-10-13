@@ -65,7 +65,7 @@ This is the ontology supported by Actility. You can define a sensor inside your 
 | meter | m | double | m | distance, accuracy, range, altitude, height |
 | meter per second | m/s | double | m/s | velocity, speed |
 | meter per square second | m/s2 | double | m/s&#178; | acceleration, vibration |
-| micro-gravity | uG | double | &#181;G | acceleration, vibration |
+| micro-gravity | ugravity | double | &#181;g | acceleration, vibration |
 | microgram | ug | double | &#181;g | mass, weight |
 | microgram per cubic meter | ug/m3 | double | &#181;g/m&#179; | concentration |
 | micrometer | um | double | &#181;m | distance, accuracy, range, altitude, height |
