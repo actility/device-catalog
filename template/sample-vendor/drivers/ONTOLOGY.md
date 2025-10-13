@@ -4,8 +4,8 @@ This is the ontology supported by Actility. You can define a sensor inside your 
 
 > Our ontology is based on [oBIX protocol](http://docs.oasis-open.org/obix/obix/v1.1/csprd01/obix-v1.1-csprd01.pdf) which provides an extensive database of predefined units that are represented in seven main dimensions. These seven dimensions are represented in SI respectively as kilogram (kg), meter (m), second (sec), Kelvin (K), ampere (A), mole (mol), and candela (cd).
 
-| Unit | id | type | symbol | fields |
-|------|----|------|--------|--------|
+| Unit | unitId | type | symbol | fields |
+|------|--------|------|--------|--------|
 | acceleration compared to earth gravity | gravity | double | g | acceleration, vibration |
 | ampere | A | double | A | current |
 | ampere-hour | Ah | double | Ah | charge |
