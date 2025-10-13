@@ -72,7 +72,7 @@ This is the ontology supported by Actility. You can define a sensor inside your 
 | micromole per second and square meter | umol/m2.s | double | &#181;mol/m&#178;.s | fluxDensity, intensity |
 | microsiemens per centimeter | uS/cm | double | &#181;S/cm | conductivity |
 | microvolt | uV | double | &#181;V | batteryVoltage, rmsVoltage, voltage |
-| milli-gravity | mG | double | mgravity | acceleration, vibration |
+| milli-gravity | mgravity | double | mgravity | acceleration, vibration |
 | milliampere | mA | double | mA | current |
 | milliampere-hour | mAh | double | mAh | charge |
 | millibar | mbar | double | mbar | pressure |
