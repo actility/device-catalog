@@ -21,7 +21,17 @@ const removeEmpty = (obj) => {
     return obj;
   };
 
-
+function isContextUsedInPayload(input) {
+    const payload = input.payload;
+    const byteString = payload.slice(0, 2);
+    if(typeof byteString !== undefined) {
+        const byte0 = parseInt(byteString, 16);
+        const payloadType = (byte0 & 0b00111000) >> 3;
+        const isTelemetry = payloadType === 5;
+        return isTelemetry;
+    }
+    return false;
+}
 
 function decodeUplink(input) {
     let result = {
@@ -157,5 +167,6 @@ function encodeDownlink(input){
 module.exports = {
     decodeUplink: decodeUplink,
     decodeDownlink: decodeDownlink,
-    encodeDownlink: encodeDownlink
+    encodeDownlink: encodeDownlink,
+    isContextUsedInPayload: isContextUsedInPayload
 }
