@@ -22,7 +22,7 @@ const removeEmpty = (obj) => {
   };
 
 function isContextUsedInPayload(input) {
-    const payload = input.payload;
+    const payload = input.payload || util.convertBytesToString(input.bytes);
     const byteString = payload.slice(0, 2);
     if(typeof byteString !== undefined) {
         const byte0 = parseInt(byteString, 16);
