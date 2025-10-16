@@ -39,7 +39,8 @@ const GroupType = Object.freeze({
     NETWORK: "NETWORK",
     LORAWAN: "LORAWAN",
     CELLULAR: "CELLULAR",
-    BLE : "BLE"
+    BLE : "BLE",
+    TELEMETRY: "TELEMETRY"
  })
 const ParameterType = Object.freeze({
     DEPREACTED: "DEPREACTED",
@@ -185,6 +186,7 @@ function decodeBitmapAndCRC(bitmap, crcBytes) {
             case 9: return "LORAWAN";
             case 10: return "CELLULAR";
             case 11: return "BLE";
+            case 12: return "TELEMETRY";
             default: throw new Error("Unknown group identifier");
         }
     }
@@ -811,6 +813,8 @@ function determineGroupType(value)
             return GroupType.CELLULAR
         case 11:
             return GroupType.BLE
+        case 12:
+            return GroupType.TELEMETRY
         default:
             throw new Error("Unknown group")
     }

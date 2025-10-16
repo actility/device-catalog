@@ -6228,8 +6228,359 @@
                   "version":"1.0"
                }
             ]
-         }
-
+         },
+         {
+    "driverParameterName": "nmetaDataperiod",
+    "groupId": "0x0C",
+    "localId": "0x00",
+    "parameterType": { "type": "ParameterTypeNumber",  "range":{
+                  "minimum": 0
+               } },
+    "compatibleTrackerModels": [
+      { "producerId": "abeeway", "moduleId": "compact-tracker", "version": "2.0" },
+      { "producerId": "abeeway", "moduleId": "combo-compact-tracker", "version": "1.0" }
+    ]
+  },
+  {
+    "driverParameterName": "sensor0MeasNsampling",
+    "groupId": "0x0C",
+    "localId": "0x01",
+    "parameterType": { "type": "ParameterTypeNumber" , "range":{
+                  "minimum": 0
+               }},
+    "compatibleTrackerModels": [
+      { "producerId": "abeeway", "moduleId": "compact-tracker", "version": "2.0" },
+      { "producerId": "abeeway", "moduleId": "combo-compact-tracker", "version": "1.0" }
+    ]
+  },
+  {
+    "driverParameterName": "sensor0HighThreshold",
+    "groupId": "0x0C",
+    "localId": "0x02",
+    "parameterType": { "type": "ParameterTypeNumber", "range":{
+                  "minimum": 0
+               }  },
+    "compatibleTrackerModels": [
+      { "producerId": "abeeway", "moduleId": "compact-tracker", "version": "2.0" },
+      { "producerId": "abeeway", "moduleId": "combo-compact-tracker", "version": "1.0" }
+    ]
+  },
+  {
+    "driverParameterName": "sensor0LowThreshold",
+    "groupId": "0x0C",
+    "localId": "0x03",
+    "parameterType": { "type": "ParameterTypeNumber" , "range":{
+                  "minimum": 0
+               }},
+    "compatibleTrackerModels": [
+      { "producerId": "abeeway", "moduleId": "compact-tracker", "version": "2.0" },
+      { "producerId": "abeeway", "moduleId": "combo-compact-tracker", "version": "1.0" }
+    ]
+  },
+  {
+    "driverParameterName": "sensor0Hysteresis",
+    "groupId": "0x0C",
+    "localId": "0x04",
+    "parameterType": { "type": "ParameterTypeNumber","range":{
+                  "minimum": 0
+               } },
+    "compatibleTrackerModels": [
+      { "producerId": "abeeway", "moduleId": "compact-tracker", "version": "2.0" },
+      { "producerId": "abeeway", "moduleId": "combo-compact-tracker", "version": "1.0" }
+    ]
+  },
+    {
+    "driverParameterName": "sensor0MeasNmaxinterval",
+    "groupId": "0x0C",
+    "localId": "0x05",
+    "parameterType": { "type": "ParameterTypeNumber","range":{
+                  "minimum": 0
+               } },
+    "compatibleTrackerModels": [
+      { "producerId": "abeeway", "moduleId": "compact-tracker", "version": "2.0" },
+      { "producerId": "abeeway", "moduleId": "combo-compact-tracker", "version": "1.0" }
+    ]
+  },
+   {
+    "driverParameterName": "sensor0TelemNmaxinterval",
+    "groupId": "0x0C",
+    "localId": "0x06",
+    "parameterType": { "type": "ParameterTypeNumber","range":{
+                  "minimum": 0
+               } },
+    "compatibleTrackerModels": [
+      { "producerId": "abeeway", "moduleId": "compact-tracker", "version": "2.0" },
+      { "producerId": "abeeway", "moduleId": "combo-compact-tracker", "version": "1.0" }
+    ]
+  },
+     {
+    "driverParameterName": "sensor0CyclicVersion",
+    "groupId": "0x0C",
+    "localId": "0x07",
+    "parameterType": { "type": "ParameterTypeNumber","range":{
+                  "minimum": 0
+               } },
+    "compatibleTrackerModels": [
+      { "producerId": "abeeway", "moduleId": "compact-tracker", "version": "2.0" },
+      { "producerId": "abeeway", "moduleId": "combo-compact-tracker", "version": "1.0" }
+    ]
+  },
+  {
+    "driverParameterName": "sensor1MeasNsampling",
+    "groupId": "0x0C",
+    "localId": "0x08",
+    "parameterType": { "type": "ParameterTypeNumber" ,"range":{
+                  "minimum": 0
+               }},
+    "compatibleTrackerModels": [
+      { "producerId": "abeeway", "moduleId": "compact-tracker", "version": "2.0" },
+      { "producerId": "abeeway", "moduleId": "combo-compact-tracker", "version": "1.0" }
+    ]
+  },
+  {
+    "driverParameterName": "sensor1HighThreshold",
+    "groupId": "0x0C",
+    "localId": "0x09",
+    "parameterType": { "type": "ParameterTypeNumber" ,"range":{
+                  "minimum": -254,
+                  "maximum":256
+               }, "multiply":0.1},
+    "compatibleTrackerModels": [
+      { "producerId": "abeeway", "moduleId": "compact-tracker", "version": "2.0" },
+      { "producerId": "abeeway", "moduleId": "combo-compact-tracker", "version": "1.0" }
+    ]
+  },
+  {
+    "driverParameterName": "sensor1LowThreshold",
+    "groupId": "0x0C",
+    "localId": "0x0a",
+    "parameterType": { "type": "ParameterTypeNumber", "range":{
+                  "minimum": -254,
+                  "maximum":256
+               }, "multiply": 0.1},
+    "compatibleTrackerModels": [
+      { "producerId": "abeeway", "moduleId": "compact-tracker", "version": "2.0" },
+      { "producerId": "abeeway", "moduleId": "combo-compact-tracker", "version": "1.0" }
+    ]
+  },
+  {
+    "driverParameterName": "sensor1Hysteresis",
+    "groupId": "0x0C",
+    "localId": "0x0b",
+    "parameterType": { "type": "ParameterTypeNumber","range":{
+                  "minimum": -254,
+                  "maximum":256
+               }, "multiply": 0.1 },
+    "compatibleTrackerModels": [
+      { "producerId": "abeeway", "moduleId": "compact-tracker", "version": "2.0" },
+      { "producerId": "abeeway", "moduleId": "combo-compact-tracker", "version": "1.0" }
+    ]
+  },
+  {
+    "driverParameterName": "sensor1MeasNmaxinterval",
+    "groupId": "0x0C",
+    "localId": "0x0c",
+    "parameterType": { "type": "ParameterTypeNumber","range":{
+                  "minimum": 0
+               } },
+    "compatibleTrackerModels": [
+      { "producerId": "abeeway", "moduleId": "compact-tracker", "version": "2.0" },
+      { "producerId": "abeeway", "moduleId": "combo-compact-tracker", "version": "1.0" }
+    ]
+  },
+   {
+    "driverParameterName": "sensor1TelemNmaxinterval",
+    "groupId": "0x0C",
+    "localId": "0x0d",
+    "parameterType": { "type": "ParameterTypeNumber","range":{
+                  "minimum": 0
+               } },
+    "compatibleTrackerModels": [
+      { "producerId": "abeeway", "moduleId": "compact-tracker", "version": "2.0" },
+      { "producerId": "abeeway", "moduleId": "combo-compact-tracker", "version": "1.0" }
+    ]
+  },
+     {
+    "driverParameterName": "sensor1CyclicVersion",
+    "groupId": "0x0C",
+    "localId": "0x0e",
+    "parameterType": { "type": "ParameterTypeNumber","range":{
+                  "minimum": 0
+               } },
+    "compatibleTrackerModels": [
+      { "producerId": "abeeway", "moduleId": "compact-tracker", "version": "2.0" },
+      { "producerId": "abeeway", "moduleId": "combo-compact-tracker", "version": "1.0" }
+    ]
+  },
+  {
+    "driverParameterName": "sensor2MeasNsampling",
+    "groupId": "0x0C",
+    "localId": "0x0f",
+    "parameterType": { "type": "ParameterTypeNumber","range":{
+                  "minimum": 0
+               } },
+    "compatibleTrackerModels": [
+      { "producerId": "abeeway", "moduleId": "compact-tracker", "version": "2.0" },
+      { "producerId": "abeeway", "moduleId": "combo-compact-tracker", "version": "1.0" }
+    ]
+  },
+  {
+    "driverParameterName": "sensor2HighThreshold",
+    "groupId": "0x0C",
+    "localId": "0x10",
+    "parameterType": { "type": "ParameterTypeNumber" , "range":{
+                  "minimum": 0
+               }},
+    "compatibleTrackerModels": [
+      { "producerId": "abeeway", "moduleId": "compact-tracker", "version": "2.0" },
+      { "producerId": "abeeway", "moduleId": "combo-compact-tracker", "version": "1.0" }
+    ]
+  },
+  {
+    "driverParameterName": "sensor2LowThreshold",
+    "groupId": "0x0C",
+    "localId": "0x11",
+    "parameterType": { "type": "ParameterTypeNumber", "range":{
+                  "minimum": 0
+               } },
+    "compatibleTrackerModels": [
+      { "producerId": "abeeway", "moduleId": "compact-tracker", "version": "2.0" },
+      { "producerId": "abeeway", "moduleId": "combo-compact-tracker", "version": "1.0" }
+    ]
+  },
+  {
+    "driverParameterName": "sensor2Hysteresis",
+    "groupId": "0x0C",
+    "localId": "0x12",
+    "parameterType": { "type": "ParameterTypeNumber", "range":{
+                  "minimum": 0
+               } },
+    "compatibleTrackerModels": [
+      { "producerId": "abeeway", "moduleId": "compact-tracker", "version": "2.0" },
+      { "producerId": "abeeway", "moduleId": "combo-compact-tracker", "version": "1.0" }
+    ]
+  },
+  {
+    "driverParameterName": "sensor2MeasNmaxinterval",
+    "groupId": "0x0C",
+    "localId": "0x13",
+    "parameterType": { "type": "ParameterTypeNumber","range":{
+                  "minimum": 0
+               } },
+    "compatibleTrackerModels": [
+      { "producerId": "abeeway", "moduleId": "compact-tracker", "version": "2.0" },
+      { "producerId": "abeeway", "moduleId": "combo-compact-tracker", "version": "1.0" }
+    ]
+  },
+   {
+    "driverParameterName": "sensor2TelemNmaxinterval",
+    "groupId": "0x0C",
+    "localId": "0x14",
+    "parameterType": { "type": "ParameterTypeNumber","range":{
+                  "minimum": 0
+               } },
+    "compatibleTrackerModels": [
+      { "producerId": "abeeway", "moduleId": "compact-tracker", "version": "2.0" },
+      { "producerId": "abeeway", "moduleId": "combo-compact-tracker", "version": "1.0" }
+    ]
+  },
+     {
+    "driverParameterName": "sensor2CyclicVersion",
+    "groupId": "0x0C",
+    "localId": "0x15",
+    "parameterType": { "type": "ParameterTypeNumber","range":{
+                  "minimum": 0
+               } },
+    "compatibleTrackerModels": [
+      { "producerId": "abeeway", "moduleId": "compact-tracker", "version": "2.0" },
+      { "producerId": "abeeway", "moduleId": "combo-compact-tracker", "version": "1.0" }
+    ]
+  },
+  {
+    "driverParameterName": "sensor3MeasNsampling",
+    "groupId": "0x0C",
+    "localId": "0x16",
+    "parameterType": { "type": "ParameterTypeNumber", "range":{
+                  "minimum": 0
+               }},
+    "compatibleTrackerModels": [
+      { "producerId": "abeeway", "moduleId": "compact-tracker", "version": "2.0" },
+      { "producerId": "abeeway", "moduleId": "combo-compact-tracker", "version": "1.0" }
+    ]
+  },
+  {
+    "driverParameterName": "sensor3HighThreshold",
+    "groupId": "0x0C",
+    "localId": "0x17",
+    "parameterType": { "type": "ParameterTypeNumber","range":{
+                  "minimum": 0
+               } },
+    "compatibleTrackerModels": [
+      { "producerId": "abeeway", "moduleId": "compact-tracker", "version": "2.0" },
+      { "producerId": "abeeway", "moduleId": "combo-compact-tracker", "version": "1.0" }
+    ]
+  },
+  {
+    "driverParameterName": "sensor3LowThreshold",
+    "groupId": "0x0C",
+    "localId": "0x18",
+    "parameterType": { "type": "ParameterTypeNumber", "range":{
+                  "minimum": 0
+               } },
+    "compatibleTrackerModels": [
+      { "producerId": "abeeway", "moduleId": "compact-tracker", "version": "2.0" },
+      { "producerId": "abeeway", "moduleId": "combo-compact-tracker", "version": "1.0" }
+    ]
+  },
+  {
+    "driverParameterName": "sensor3Hysteresis",
+    "groupId": "0x0C",
+    "localId": "0x19",
+    "parameterType": { "type": "ParameterTypeNumber" , "range":{
+                  "minimum": 0
+               }},
+    "compatibleTrackerModels": [
+      { "producerId": "abeeway", "moduleId": "compact-tracker", "version": "2.0" },
+      { "producerId": "abeeway", "moduleId": "combo-compact-tracker", "version": "1.0" }
+    ]
+  },
+  {
+    "driverParameterName": "sensor3MeasNmaxinterval",
+    "groupId": "0x0C",
+    "localId": "0x1a",
+    "parameterType": { "type": "ParameterTypeNumber","range":{
+                  "minimum": 0
+               } },
+    "compatibleTrackerModels": [
+      { "producerId": "abeeway", "moduleId": "compact-tracker", "version": "2.0" },
+      { "producerId": "abeeway", "moduleId": "combo-compact-tracker", "version": "1.0" }
+    ]
+  },
+   {
+    "driverParameterName": "sensor3TelemNmaxinterval",
+    "groupId": "0x0C",
+    "localId": "0x1b",
+    "parameterType": { "type": "ParameterTypeNumber","range":{
+                  "minimum": 0
+               } },
+    "compatibleTrackerModels": [
+      { "producerId": "abeeway", "moduleId": "compact-tracker", "version": "2.0" },
+      { "producerId": "abeeway", "moduleId": "combo-compact-tracker", "version": "1.0" }
+    ]
+  },
+     {
+    "driverParameterName": "sensor3CyclicVersion",
+    "groupId": "0x0C",
+    "localId": "0x1c",
+    "parameterType": { "type": "ParameterTypeNumber","range":{
+                  "minimum": 0
+               } },
+    "compatibleTrackerModels": [
+      { "producerId": "abeeway", "moduleId": "compact-tracker", "version": "2.0" },
+      { "producerId": "abeeway", "moduleId": "combo-compact-tracker", "version": "1.0" }
+    ]
+  }
+         
       ]
    }
 ]

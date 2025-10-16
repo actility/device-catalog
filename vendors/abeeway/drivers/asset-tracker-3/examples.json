@@ -3902,7 +3902,8 @@
             "NETWORK",
             "LORAWAN",
             "CELLULAR",
-            "BLE"
+            "BLE",
+            "TELEMETRY"
           ]
         },
         "payload": "13050000"
@@ -5014,5 +5015,201 @@
     "errors": [],
     "warnings": []
   }
-}
+},
+{
+    "description": "Response of a parameter telemetry class configuration get request part1",
+    "type": "uplink",
+    "input": {
+      "bytes": "a5632b3200030c00210000a8c001210000012c02210000000003210000000004210000000005210000012c062100000e1007210000000508210000012c",
+      "recvTime": "2025-10-10T15:04:29.000Z",
+      "fPort": 19
+    },
+    "output": {
+      "data": {
+        "header": {
+          "sos": false,
+          "type": "RESPONSE",
+          "ackToken": 5,
+          "multiFrame": true,
+          "batteryLevel": 99,
+          "timestamp": "2025-10-10T15:04:18.000Z"
+        },
+        "extendedHeader": { "groupId": 0, "last": 0, "frameNumber": 0 },
+        "response": {
+          "responseType": "PARAM_CLASS_CONFIGURATION_GET",
+          "parameterClassConfigurationGet": [
+            {
+              "group": "TELEMETRY",
+              "parameters": [
+                {
+                  "parameterName": "nmetaDataperiod",
+                  "parameterValue": 43200
+                },
+                {
+                  "parameterName": "sensor0MeasNsampling",
+                  "parameterValue": 300
+                },
+                {
+                  "parameterName": "sensor0HighThreshold",
+                  "parameterValue": 0
+                },
+                {
+                  "parameterName": "sensor0LowThreshold",
+                  "parameterValue": 0
+                },
+                {
+                  "parameterName": "sensor0Hysteresis",
+                  "parameterValue": 0
+                },
+                {
+                  "parameterName": "sensor0MeasNmaxinterval",
+                  "parameterValue": 300
+                },
+                {
+                  "parameterName": "sensor0TelemNmaxinterval",
+                  "parameterValue": 3600
+                },
+                {
+                  "parameterName": "sensor0CyclicVersion",
+                  "parameterValue": 5
+                },
+                {
+                  "parameterName": "sensor1MeasNsampling",
+                  "parameterValue": 300
+                }
+                
+              ]
+            }
+          ]
+        },
+        "payload": "a5632b3200030c00210000a8c001210000012c02210000000003210000000004210000000005210000012c062100000e1007210000000508210000012c"
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": { "batteryLevel": { "unitId": "%", "record": 99 } }
+  },
+  {
+    "description": "Response of a parameter telemetry class configuration get request part2",
+    "type": "uplink",
+    "input": {
+      "bytes": "a5632b3211030c0921000000000a21000000000b2100000000",
+      "recvTime": "2025-10-10T15:04:29.000Z",
+      "fPort": 19
+    },
+    "output": {
+      "data": {
+        "header": {
+          "sos": false,
+          "type": "RESPONSE",
+          "ackToken": 5,
+          "multiFrame": true,
+          "batteryLevel": 99,
+          "timestamp": "2025-10-10T15:04:18.000Z"
+        },
+        "extendedHeader": { "groupId": 0, "last": 1, "frameNumber": 1 },
+        "response": {
+          "responseType": "PARAM_CLASS_CONFIGURATION_GET",
+          "parameterClassConfigurationGet": [
+            {
+              "group": "TELEMETRY",
+              "parameters": [
+                {
+                  "parameterName": "sensor1HighThreshold",
+                  "parameterValue": 0
+                },
+                {
+                  "parameterName": "sensor1LowThreshold",
+                  "parameterValue": 0
+                },
+                {
+                  "parameterName": "sensor1Hysteresis",
+                  "parameterValue": 0
+                }
+                
+              ]
+            }
+          ]
+        },
+        "payload": "a5632b3211030c0921000000000a21000000000b2100000000"
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": { "batteryLevel": { "unitId": "%", "record": 99 } }
+  },
+  {
+    "description": "Response of a parameter telemetry class configuration get request part3",
+    "type": "uplink",
+    "input": {
+      "bytes": "a5632b3420030c0c210000012c0d2100000e100e21000000050f210000000010210000000011210000000012210000000013210000012c142100000e10",
+      "recvTime": "2025-10-10T15:04:29.000Z",
+      "fPort": 19
+    },
+    "output": {
+      "data": {
+        "header": {
+          "sos": false,
+          "type": "RESPONSE",
+          "ackToken": 5,
+          "multiFrame": true,
+          "batteryLevel": 99,
+          "timestamp": "2025-10-10T15:04:20.000Z"
+        },
+        "extendedHeader": { "groupId": 1, "last": 0, "frameNumber": 0},
+        "response": {
+          "responseType": "PARAM_CLASS_CONFIGURATION_GET",
+          "parameterClassConfigurationGet": [
+            {
+              "group": "TELEMETRY",
+              "parameters": [
+      
+                {
+                  "parameterName": "sensor1MeasNmaxinterval",
+                  "parameterValue": 300
+                },
+                  {
+                  "parameterName": "sensor1TelemNmaxinterval",
+                  "parameterValue": 3600
+                },
+                {
+                  "parameterName": "sensor1CyclicVersion",
+                  "parameterValue": 5
+                }
+                ,
+                {
+                  "parameterName": "sensor2MeasNsampling",
+                  "parameterValue": 0
+                },
+                {
+                  "parameterName": "sensor2HighThreshold",
+                  "parameterValue": 0
+                },
+                          {
+                  "parameterName": "sensor2LowThreshold",
+                  "parameterValue": 0
+                },
+                {
+                  "parameterName": "sensor2Hysteresis",
+                  "parameterValue": 0
+                },
+                {
+                  "parameterName": "sensor2MeasNmaxinterval",
+                  "parameterValue": 300
+                },
+                {
+                  "parameterName": "sensor2TelemNmaxinterval",
+                  "parameterValue": 3600
+                }
+              ]
+            }
+          ]
+        },
+        "payload": "a5632b3420030c0c210000012c0d2100000e100e21000000050f210000000010210000000011210000000012210000000013210000012c142100000e10"
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": { "batteryLevel": { "unitId": "%", "record": 99 } }
+  }
 ]
