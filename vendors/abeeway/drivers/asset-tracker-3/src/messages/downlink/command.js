@@ -50,7 +50,7 @@ function encodeCommand(data) {
 
     let command = Object.values(CommandType).indexOf(data.commandType);
     if (command === -1) {
-        throw new Error("Unknown command");
+        throw new Error("Command unknown");
     }
 
     encode[1] = command;

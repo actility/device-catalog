@@ -60,12 +60,10 @@ function determineNotification(payload){
     let notificationMessage = new Notification();
     let classValue = payload[4]>>4 & 0x0F;
     let typeValue = payload[4] & 0x0F;
-    console.log("Hello, world!", typeValue);
     switch(classValue){
         case 0:
             notificationMessage.notificationClass = Class.SYSTEM;
             switch (typeValue){
-                
                 case 0:
                     notificationMessage.notificationType = systemClass.SystemType.STATUS
                     notificationMessage.system = new systemClass.System(systemClass.determineStatus(payload),null, null, null, null, null, null);
