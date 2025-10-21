@@ -1,21 +1,21 @@
 [
   {
     "type": "uplink",
-    "description": "CMi4110 Standard",
+    "description": "Standard",
     "input": {
-      "bytes": "000c06172885000c14751348020b2d2402000b3b5106000a5a07080a5e07050c789897967002fd170000",
+      "bytes": "000c06354189000c14951560020b2d2402000b3b5106000a5a07080a5e07050c789897967002fd170000",
       "fPort": 1,
       "recvTime": "2020-08-02T20:00:00.000+05:00"
     },
     "output": {
       "data": {
-        "energy": 852817,
+        "energy": 894135,
         "energyUnit": "kWh",
         "errorFlags": 0,
         "flow": 0.651,
-        "flowUnit": "mÂ³/h",
+        "flowUnit": "m³/h",
         "forwardTemperature": 80.7,
-        "forwardTemperatureUnit": "Â°C",
+        "forwardTemperatureUnit": "°C",
         "messageFormat": "00",
         "messageFormatInfo": [
           "CMi4110",
@@ -26,25 +26,53 @@
         "power": 22.4,
         "powerUnit": "kW",
         "returnTemperature": 50.7,
-        "returnTemperatureUnit": "Â°C",
-        "volume": 24813.75,
-        "volumeUnit": "mÂ³"
+        "returnTemperatureUnit": "°C",
+        "volume": 26015.95,
+        "volumeUnit": "m³"
       },
       "errors": [],
       "warnings": []
+    },
+    "points": {
+      "energy:0": {
+        "record": 894135000,
+        "unitId": "Wh"
+      },
+      "power": {
+        "record": 22400,
+        "unitId": "W"
+      },
+      "temperature:0": {
+        "record": 80.7,
+        "unitId": "Cel",
+        "nature": "forwardTemperature"
+      },
+      "temperature:1": {
+        "record": 50.7,
+        "unitId": "Cel",
+        "nature": "returnTemperature"
+      },
+      "volume": {
+        "record": 26015.95,
+        "unitId": "m3"
+      },
+      "flow:0": {
+        "record": 0.651,
+        "unitId": "m3/h"
+      }
     }
   },
   {
     "type": "uplink",
-    "description": "CMi4110 Compact",
+    "description": "Compact",
     "input": {
-      "bytes": "010c06212885000c789897967002fd170000",
+      "bytes": "010c06374189000c789897967002fd170000",
       "fPort": 1,
       "recvTime": "2020-08-02T20:00:00.000+05:00"
     },
     "output": {
       "data": {
-        "energy": 852821,
+        "energy": 894137,
         "energyUnit": "kWh",
         "errorFlags": 0,
         "messageFormat": "01",
@@ -57,38 +85,223 @@
       },
       "errors": [],
       "warnings": []
+    },
+    "points": {
+      "energy:0": {
+        "record": 894137000,
+        "unitId": "Wh"
+      }
     }
   },
   {
     "type": "uplink",
-    "description": "CMi4110 Scheduled Daily Redundant",
+    "description": "JSON",
     "input": {
-      "bytes": "030c06212885007c06000000000c7898979670046d0d2e3f3702fd170000",
+      "bytes": "027b2245223a22383934313337222c2255223a226b5768222c224944223a37303936393739387d",
       "fPort": 1,
       "recvTime": "2020-08-02T20:00:00.000+05:00"
     },
     "output": {
       "data": {
-
+        "energy": "894137",
+        "energyUnit": "kWh",
+        "messageFormat": "02",
+        "messageFormatInfo": [
+          "CMi4110",
+          "JSON",
+          "Landis+Gyr"
+        ],
+        "meterId": 70969798
       },
       "errors": [],
       "warnings": []
+    },
+    "points": {
+      "energy:0": {
+        "record": 894137000.00,
+        "unitId": "Wh"
+      }
     }
   },
   {
     "type": "uplink",
-    "description": "CMi4160 Standard",
+    "description": "Schedule",
     "input": {
-      "bytes": "1E0403A00000000413FF000000022BFF00023BFF00025AA000025EA000ABCD0A010000FF00010F01FD17FF",
+      "bytes": "030c06384189007c06000000000c7898979670046d392b303a02fd170000",
       "fPort": 1,
       "recvTime": "2020-08-02T20:00:00.000+05:00"
     },
     "output": {
       "data": {
-
+        "energy": 894138,
+        "energyUnit": "kWh",
+        "messageFormat": "03",
+        "messageFormatInfo": [
+          "CMi4110",
+          "Scheduled Daily Redundant",
+          "Landis+Gyr"
+        ]
+      },
+      "errors": [],
+      "warnings": ["Unknown measurement c06"]
+    },
+    "points": {
+      "energy:0": {
+        "record": 894138000,
+        "unitId": "Wh"
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Schedule Extended+",
+    "input": {
+      "bytes": "3f0c0638418900bc100600000000bc200600000000bc3006000000000c7898979670046d3a2b303a",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "energy": 894138,
+        "energyUnit": "kWh",
+        "messageFormat": "3f",
+        "messageFormatInfo": [
+          "CMi4110",
+          "Scheduled Extended+",
+          "Landis+Gyr"
+        ]
+      },
+      "errors": [],
+      "warnings": ["Unknown measurement c10"]
+    },
+    "points": {
+      "energy:0": {
+        "record": 894138000,
+        "unitId": "Wh"
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Compact Tariff",
+    "input": {
+      "bytes": "410c0638418900bc100600000000bc200600000000bc3006000000000c789897967002fd170000",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "energy": 894138,
+        "energyUnit": "kWh",
+        "messageFormat": "41",
+        "messageFormatInfo":  [
+          "CMi4110",
+          "Compact Tariff",
+          "Landis+Gyr"
+        ]
+      },
+      "errors": [],
+      "warnings": ["Unknown measurement c10"]
+    },
+    "points": {
+      "energy:0": {
+        "record": 894138000,
+        "unitId": "Wh"
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Maximum Flow",
+    "input": {
+      "bytes": "460c06394189008c0106165888009b013b480600046d000121390a5e07050c789897967002fd170000",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "energy": 894139,
+        "energyAtDueDate": 885816,
+        "energyAtDueDateUnit": "kWh",
+        "energyUnit": "kWh",
+        "errorFlags": 0,
+        "maxFlow": 0.648,
+        "maxFlowUnit": "m³/h",
+        "messageFormat": "46",
+        "messageFormatInfo": [
+          "CMi4110",
+          "Maximum Flow",
+          "Landis+Gyr"
+        ],
+        "meterId": 70969798,
+        "returnTemperature": 50.7,
+        "returnTemperatureUnit": "°C"
       },
       "errors": [],
       "warnings": []
+    },
+    "points": {
+      "energy:0": {
+        "record": 894139000,
+        "unitId": "Wh"
+      },
+      "energy:1": {
+        "record": 885816000,
+        "unitId": "Wh",
+        "nature": "max flow"
+      },
+      "temperature:1": {
+        "record": 50.7,
+        "unitId": "Cel",
+        "nature": "returnTemperature"
+      },
+      "flow:1": {
+        "record": 0.648,
+        "unitId": "m3/h",
+        "nature": "max"
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Schedule Daily Tariff",
+    "input": {
+      "bytes": "477c0600000000fc100600000000fc2006000000000c7898979670046d012c303a02fd170000",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "messageFormat": "47",
+        "messageFormatInfo": [
+          "CMi4110",
+          "Scheduled Daily Redundant Tariff",
+          "Landis+Gyr"
+        ]
+      },
+      "errors": [],
+      "warnings": ["Unknown measurement c06"]
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Schedule Daily",
+    "input": {
+      "bytes": "4a7c06000000000a5a07080a5e07050c7898979670046d022c303a02fd170000",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "messageFormat": "4a",
+        "messageFormatInfo": [
+          "CMi4110",
+          "Scheduled Daily",
+          "Landis+Gyr"
+        ]
+      },
+      "errors": [],
+      "warnings": ["Unknown measurement c06"]
     }
   }
 ]

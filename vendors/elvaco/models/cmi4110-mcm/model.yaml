@@ -34,13 +34,29 @@ LoRaWANCertified:
 # Format: `<8 characters max>:<16 characters max>:<digits only>`
 modelId: elvaco:cmi4110-mcm:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
-protocolId:
+protocolId: elvaco:cmi41xx:1
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 
 userGuideURL: 
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
+  - energy:Wh
+  - power:W
+  - temperature:Cel
+  - volume:m3
+  - flow:m3/h
+examples:
+    elvaco:cmi41xx:1:
+        - "Standard"
+        - "Compact"
+        - "JSON"
+        - "Schedule"
+        - "Schedule Extended+"
+        - "Compact Tariff"
+        - "Maximum Flow"
+        - "Schedule Daily Tariff"
+        - "Schedule Daily"
 
 LoRaWANRelay:
   canOperateAsARelay: false

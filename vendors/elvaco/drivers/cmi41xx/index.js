@@ -133,19 +133,19 @@ const valueMap = {
 
     // energy E8, E9
     0x04ff: {
-        0x07: ["energyE8", "mÂ³*Â°C", 1],
-        0x08: ["energyE9", "mÂ³*Â°C", 1],
+        0x07: ["energyE8", "m³*°C", 1],
+        0x08: ["energyE9", "m³*°C", 1],
     },
 
     // volume
-        0x0410: ["volume", "mÂ³", 0.000001],
-    0x0411: ["volume", "mÂ³", 0.00001],
-    0x0412: ["volume", "mÂ³", 0.0001],
-    0x0413: ["volume", "mÂ³", 0.001],
-    0x0414: ["volume", "mÂ³", 0.01],
-    0x0415: ["volume", "mÂ³", 0.1],
-    0x0416: ["volume", "mÂ³", 1],
-    0x0417: ["volume", "mÂ³", 10],
+        0x0410: ["volume", "m³", 0.000001],
+    0x0411: ["volume", "m³", 0.00001],
+    0x0412: ["volume", "m³", 0.0001],
+    0x0413: ["volume", "m³", 0.001],
+    0x0414: ["volume", "m³", 0.01],
+    0x0415: ["volume", "m³", 0.1],
+    0x0416: ["volume", "m³", 1],
+    0x0417: ["volume", "m³", 10],
 
     // power
         0x0228: ["power", "W", 0.001],
@@ -158,33 +158,33 @@ const valueMap = {
     0x022f: ["power", "kW", 10],
 
     // flow
-    0x023b: ["flow", "mÂ³/h", 0.001],
-    0x023c: ["flow", "mÂ³/h", 0.01],
-    0x023d: ["flow", "mÂ³/h", 0.1],
-    0x023e: ["flow", "mÂ³/h", 1],
-    0x023f: ["flow", "mÂ³/h", 10],
+    0x023b: ["flow", "m³/h", 0.001],
+    0x023c: ["flow", "m³/h", 0.01],
+    0x023d: ["flow", "m³/h", 0.1],
+    0x023e: ["flow", "m³/h", 1],
+    0x023f: ["flow", "m³/h", 10],
 
     // forwardTemperature
-    0x1258: ["maxForwardTemperature", "Â°C", 0.001],
-    0x1259: ["maxForwardTemperature", "Â°C", 0.01],
-    0x125a: ["maxForwardTemperature", "Â°C", 0.1],
-    0x125b: ["maxForwardTemperature", "Â°C", 1],
+    0x1258: ["maxForwardTemperature", "°C", 0.001],
+    0x1259: ["maxForwardTemperature", "°C", 0.01],
+    0x125a: ["maxForwardTemperature", "°C", 0.1],
+    0x125b: ["maxForwardTemperature", "°C", 1],
 
-    0x0258: ["forwardTemperature", "Â°C", 0.001],
-    0x0259: ["forwardTemperature", "Â°C", 0.01],
-    0x025a: ["forwardTemperature", "Â°C", 0.1],
-    0x025b: ["forwardTemperature", "Â°C", 1],
+    0x0258: ["forwardTemperature", "°C", 0.001],
+    0x0259: ["forwardTemperature", "°C", 0.01],
+    0x025a: ["forwardTemperature", "°C", 0.1],
+    0x025b: ["forwardTemperature", "°C", 1],
 
     // returnTemperature
-    0x125c: ["maxReturnTemperature", "Â°C", 0.001],
-    0x125d: ["maxReturnTemperature", "Â°C", 0.01],
-    0x125e: ["maxReturnTemperature", "Â°C", 0.1],
-    0x125f: ["maxReturnTemperature", "Â°C", 1],
+    0x125c: ["maxReturnTemperature", "°C", 0.001],
+    0x125d: ["maxReturnTemperature", "°C", 0.01],
+    0x125e: ["maxReturnTemperature", "°C", 0.1],
+    0x125f: ["maxReturnTemperature", "°C", 1],
 
-    0x025c: ["returnTemperature", "Â°C", 0.001],
-    0x025d: ["returnTemperature", "Â°C", 0.01],
-    0x025e: ["returnTemperature", "Â°C", 0.1],
-    0x025f: ["returnTemperature", "Â°C", 1],
+    0x025c: ["returnTemperature", "°C", 0.001],
+    0x025d: ["returnTemperature", "°C", 0.01],
+    0x025e: ["returnTemperature", "°C", 0.1],
+    0x025f: ["returnTemperature", "°C", 1],
 
     0x07ff: {
         0xa0: ["powerFlows", null, null],
@@ -194,25 +194,25 @@ const valueMap = {
     },
 
     // bcd values
-    0x0a58: ["forwardTemperature", "Â°C", 0.001],
-    0x0a59: ["forwardTemperature", "Â°C", 0.01],
-    0x0a5a: ["forwardTemperature", "Â°C", 0.1],
-    0x0a5b: ["forwardTemperature", "Â°C", 1],
+    0x0a58: ["forwardTemperature", "°C", 0.001],
+    0x0a59: ["forwardTemperature", "°C", 0.01],
+    0x0a5a: ["forwardTemperature", "°C", 0.1],
+    0x0a5b: ["forwardTemperature", "°C", 1],
 
-    0x0a5c: ["returnTemperature", "Â°C", 0.001],
-    0x0a5d: ["returnTemperature", "Â°C", 0.01],
-    0x0a5e: ["returnTemperature", "Â°C", 0.1],
-    0x0a5f: ["returnTemperature", "Â°C", 1],
+    0x0a5c: ["returnTemperature", "°C", 0.001],
+    0x0a5d: ["returnTemperature", "°C", 0.01],
+    0x0a5e: ["returnTemperature", "°C", 0.1],
+    0x0a5f: ["returnTemperature", "°C", 1],
 
     0x0b2b: ["power", "kW", 0.001],
     0x0b2c: ["power", "kW", 0.01],
     0x0b2d: ["power", "kW", 0.1],
     0x0b2e: ["power", "kW", 1],
 
-    0x0b3b: ["flow", "mÂ³/h", 0.001],
-    0x0b3c: ["flow", "mÂ³/h", 0.01],
-    0x0b3d: ["flow", "mÂ³/h", 0.1],
-    0x0b3e: ["flow", "mÂ³/h", 1],
+    0x0b3b: ["flow", "m³/h", 0.001],
+    0x0b3c: ["flow", "m³/h", 0.01],
+    0x0b3d: ["flow", "m³/h", 0.1],
+    0x0b3e: ["flow", "m³/h", 1],
 
     0x0c06: ["energy", "kWh", 1],
     0x0c07: ["energy", "MWh", 0.01],
@@ -225,9 +225,9 @@ const valueMap = {
     0x0c0e: ["energy", "GJ", 0.001],
     0x0c0f: ["energy", "GJ", 0.01],
 
-    0x0c14: ["volume", "mÂ³", 0.01],
-    0x0c15: ["volume", "mÂ³", 0.1],
-    0x0c16: ["volume", "mÂ³", 1],
+    0x0c14: ["volume", "m³", 0.01],
+    0x0c15: ["volume", "m³", 0.1],
+    0x0c16: ["volume", "m³", 1],
 
     0x8402: {
         0x03: ["tarif2energy", "Wh", 1],
@@ -236,26 +236,26 @@ const valueMap = {
         0x03: ["tarif3energy", "Wh", 1],
     },
     0x8440: {
-        0x13: ["pulse1volume", "mÂ³", 0.001],
-        0x14: ["pulse1volume", "mÂ³", 0.01],
-        0x15: ["pulse1volume", "mÂ³", 0.1],
+        0x13: ["pulse1volume", "m³", 0.001],
+        0x14: ["pulse1volume", "m³", 0.01],
+        0x15: ["pulse1volume", "m³", 0.1],
         0x06: ["pulse1energy", "MWh", 0.001],
         0x07: ["pulse1energy", "MWh", 0.01],
     },
     0x8480: {
         0x04: {
-            0x13: ["pulse2volume", "mÂ³", 0.001],
-            0x14: ["pulse2volume", "mÂ³", 0.01],
-            0x15: ["pulse2volume", "mÂ³", 0.1],
+            0x13: ["pulse2volume", "m³", 0.001],
+            0x14: ["pulse2volume", "m³", 0.01],
+            0x15: ["pulse2volume", "m³", 0.1],
             0x06: ["pulse2energy", "MWh", 0.001],
             0x07: ["pulse2energy", "MWh", 0.01],
         }
     },
     0x84c0: {
         0x04: {
-            0x13: ["pulse3volume", "mÂ³", 0.001],
-            0x14: ["pulse3volume", "mÂ³", 0.01],
-            0x15: ["pulse3volume", "mÂ³", 0.1],
+            0x13: ["pulse3volume", "m³", 0.001],
+            0x14: ["pulse3volume", "m³", 0.01],
+            0x15: ["pulse3volume", "m³", 0.1],
             0x06: ["pulse3energy", "MWh", 0.001],
             0x07: ["pulse3energy", "MWh", 0.01],
         }
@@ -266,7 +266,7 @@ const valueMap = {
     0x8c10: ["tariff1energy", null, 1],
     0x8c20: ["tariff2energy", null, 1],
     0x9b01: {
-        0x3b: ["maxFlow", "mÂ³/h", 0.001]
+        0x3b: ["maxFlow", "m³/h", 0.001]
     },
 
     0x4c06: ["energy", "kWh", 1],
@@ -280,9 +280,9 @@ const valueMap = {
     0x4c0e: ["energy", "GJ", 0.001],
     0x4c0f: ["energy", "GJ", 0.01],
 
-    0x4c14: ["volume", "mÂ³", 0.01],
-    0x4c15: ["volume", "mÂ³", 0.1],
-    0x4c16: ["volume", "mÂ³", 1],
+    0x4c14: ["volume", "m³", 0.01],
+    0x4c15: ["volume", "m³", 0.1],
+    0x4c16: ["volume", "m³", 1],
 
     0xb401: {
         0x00: ["previousMonthEnergy", "Wh", 0.001],
@@ -420,7 +420,7 @@ function decodeUplink(input) {
                 continue;
             }
 
-            let map = valueMap[(dif >> 12) === 0x7 ? dif & 0xfff : dif];
+            let map = valueMap[(dif >> 12) === 0x3 ? dif & 0xfff : dif];
             if (typeof (map) === "undefined") {
                 dif &= 0x0fff;
                 throw new Error(`Unknown measurement ${dif.toString(16)}`);
@@ -487,7 +487,7 @@ function decodeUplink(input) {
             }
 
             // set error flag
-            if ((dif >> 12) == 0x7) {
+            if ((dif >> 12) == 0x3) {
                 data[name + "Error"] = true
             }
             else {
@@ -509,8 +509,8 @@ function decodeUplink(input) {
 
         return {
             data: data,
-            warnings: [],
-            errors: [e.message]
+            warnings: [e.message],
+            errors: []
         }
     }
 
