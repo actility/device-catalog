@@ -522,4 +522,5 @@ function decodeUplink(input) {
         errors: []
     };
 }
-    
+
+exports.decodeUplink = decodeUplink;  
