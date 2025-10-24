@@ -79,8 +79,8 @@ async function checkCode() {
             report = await eslint.lintText(code);
         }
 
-        if(Object.keys(errors).length) {
-            throw new Error("Driver code is not compliant:\n" + JSON.stringify(errors, null, 2));
+        if(report[0].errorCount) {
+            throw new Error("Driver code is not compliant:\n" + report[0].messages.map(m => `${m.line}:${m.column}: ${m.message}`).join("\n"));
         }
     }
 }
