@@ -54,7 +54,6 @@ async function checkCode() {
     const skipCodeCheck = ["mcf88", "senlab", "semtech"];
     const driverPathSplit = DRIVER_PATH.split(path.sep);
     if(!skipCodeCheck.includes(driverPathSplit[driverPathSplit.length - 3])) {
-        let errors = {};
         let report;
         
         let code = "";
