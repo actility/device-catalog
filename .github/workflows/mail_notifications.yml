@@ -1,0 +1,25 @@
+name: Mail notifications
+on:
+  issues:
+    types: [ opened, reopened ]
+    pull_request:
+      types: [ opened, reopened, ready_for_review ]
+
+jobs:
+  send_email:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send email notification
+        uses: dawidd6/action-send-mail@v6
+        with:
+          server_address: ${{ secrets.SMTP_ADDRESS }}
+          server_port: ${{ secrets.SMTP_PORT }}
+          username: ${{ secrets.SMTP_USERNAME }}
+          password: ${{ secrets.SMTP_PASSWORD }}
+          subject: "GitHub Notification: ${{ github.event_name }} #${{ github.event.number }}"
+          to: "tpx-iot-flow@actility.com"
+          from: "GitHub Bot <bot@actility.com>"
+          body: |
+            A new ${{ github.event_name }} has been created:
+            Title: ${{ github.event.pull_request.title || github.event.issue.title }}
+            URL: ${{ github.event.pull_request.html_url || github.event.issue.html_url }}
