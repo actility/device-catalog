@@ -56,11 +56,11 @@
       "altitude": { "unitId": "m", "record": 161 }
     }
   },
-  {
-    "description": "BLE MAC position",
+   {
+    "description": "GNSS uplink position with negative altitude",
     "type": "uplink",
     "input": {
-      "bytes": "105e0c248a00000119ff3ff20436458000a10000000a1765",
+      "bytes": "10585eba8a0300101e83795e0299d0e4ffe1079000101164",
       "recvTime": "2024-06-20T14:51:53.243+02:00",
       "fPort": 199
     },
@@ -69,34 +69,34 @@
         "header": {
           "ackToken": 0,
           "multiFrame": false,
-          "batteryLevel": 94,
+          "batteryLevel": 88,
           "sos": false,
-          "timestamp": "2024-06-20T12:51:48.000Z",
+          "timestamp": "2024-06-20T06:44:10.000Z",
           "type": "POSITION"
         },
-        "payload": "105e0c248a00000119ff3ff20436458000a10000000a1765",
+        "payload": "10585eba8a0300101e83795e0299d0e4ffe1079000101164",
         "position": {
-          "coordinates": [7.06656, 43.615845, 161],
+          "coordinates": [4.3634916, 51.1932766, -31],
           "motion": 1,
-          "motionCounter": 0,
+          "motionCounter": 3,
           "gnssFix": {
-            "latitude": 43.615845,
-            "longitude": 7.06656,
-            "altitude": 161,
-            "COG": 0,
-            "EHPE": 23,
-            "SOG": 10,
-            "quality": { "fixQuality": "FIX_3D", "numberSatellitesUsed": 5 }
+            "latitude": 51.1932766,
+            "longitude": 4.3634916,
+            "altitude": -31,
+            "COG": 1936,
+            "EHPE": 17,
+            "SOG": 16,
+            "quality": { "fixQuality": "FIX_3D", "numberSatellitesUsed": 4 }
           },
           "positionType": "GNSS",
           "status": "SUCCESS",
           "triggers": {
             "geoTriggerGeozoning": 0,
-            "geoTriggerInMotion": 0,
+            "geoTriggerInMotion": 1,
             "geoTriggerInStatic": 0,
             "geoTriggerMotionStart": 0,
             "geoTriggerMotionStop": 0,
-            "geoTriggerPod": 1,
+            "geoTriggerPod": 0,
             "geoTriggerShock": 0,
             "geoTriggerSos": 0,
             "geoTriggerTempHighThreshold": 0,
@@ -108,9 +108,9 @@
       "warnings": []
     },
     "points": {
-      "batteryLevel": { "unitId": "%", "record": 94 },
-      "location": { "unitId": "GPS", "record": [7.06656, 43.615845] },
-      "altitude": { "unitId": "m", "record": 161 }
+      "batteryLevel": { "unitId": "%", "record": 88 },
+      "location": { "unitId": "GPS", "record": [4.3634916, 51.1932766] },
+      "altitude": { "unitId": "m", "record": -31 }
     }
   },
   {
