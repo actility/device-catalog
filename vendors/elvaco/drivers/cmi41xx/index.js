@@ -188,8 +188,6 @@ const valueMap = {
 
     0x07ff: {
         0xa0: ["powerFlows", null, null],
-    },
-    0x07ff: {
         0x21: ["meterInfo", null, null],
     },
 
@@ -409,7 +407,7 @@ function decodeUplink(input) {
                         {
                             ...trace, ...{
                                 headerInfo: ["timeStamp", null, null],
-                                dataStart: dataStart,
+                                dataStart: trace.dataStart,
                                 dataEnd: pos - 1,
                             }
                         }
