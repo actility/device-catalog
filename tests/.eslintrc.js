@@ -42,6 +42,7 @@ module.exports = {
         "no-irregular-whitespace": 0
     },
     "globals": {
-        Buffer: true
+        Buffer: true,
+        context: "writable"
     }
 }
