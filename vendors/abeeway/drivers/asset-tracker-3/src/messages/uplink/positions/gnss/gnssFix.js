@@ -48,7 +48,7 @@ function determineGnssFix (payload){
 function determineAltitude(payload){
     if (payload.length < 10)
         throw new Error("The payload is not valid to determine GPS altitude");
-    return (payload[8]<<8)+payload[9];
+    return util.convertNegativeInt(((payload[8]<<8)+payload[9]),2);
 }
 function determineCourseOverGround(payload){
     if (payload.length < 12)
