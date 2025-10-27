@@ -78,7 +78,7 @@ async function checkCode() {
             report = await eslint.lintText(code);
         }
 
-        if(typeof report[0] !== 'undefined' && report[0].errorCount) {
+        if(typeof report !== 'undefined' && typeof report[0] !== 'undefined' && report[0].errorCount) {
             throw new Error("Driver code is not compliant:\n" + report[0].messages.map(m => `${m.line}:${m.column}: ${m.message}`).join("\n"));
         }
     }
