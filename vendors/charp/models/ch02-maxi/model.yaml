@@ -1,0 +1,170 @@
+# Commercial name of the model 
+name: CHARP MAXI
+# Functional description of the product. Maximum 500 characters. 
+description: "Very long range. Highly accurate readings. Easy to mount. Suitable both for exhibition rooms and storage areas."
+# Logo of the device
+logo: ch02-maxi.png
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
+# id: as defined under /profiles.
+# lorawanDeviceProfileID: as defined by LoRa Alliance in https://lora-alliance.org/wp-content/uploads/2020/10/LoRa_Alliance_Vendor_ID_for_QR_Code_02142022.pdf.
+# The lorawanDeviceProfileID consists of 8 upper-case hexadecimal characters, 4 characters for VendorID + 4 characters for VendorProfileID. Please consider using single (') or double (") quotation.
+deviceProfileIds: 
+  - id: charp_eu868_1.0.4_classA
+  - id: charp_in865_1.0.4_classA
+  - id: charp_ru864_1.0.4_classA
+  - id: charp_us915_1.0.4_classA
+  - id: charp_au915_1.0.4_classA
+  - id: charp_as923_1.0.4_classA
+ 
+# You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
+# Maximum device TX Conducted output power in dBm. 
+maxTxPower:
+# Minimum device TX Conducted output power in dBm. 
+minTxPower:
+# Maximum device TX Radiated output power in dBm.  
+maxTxEIRP:
+# Minimum device TX Radiated output power in dBm.  
+minTxEIRP:
+# Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'  
+# or 'random' (not known, changes over time). 
+motionIndicator:
+ 
+# Is your device certified by the LoRa Alliance? Possible values: true, false. 
+LoRaWANCertified: 
+# Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
+# Format: `<8 characters max>:<16 characters max>:<digits only>`
+modelId: charp:ch02-maxi:1
+# <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
+protocolId:
+  - abeeway:asset-tracker-3:1
+# DataSheet URL (optional) 
+specificationURL: 
+# User Guide URL (optional) 
+userGuideURL: 
+# <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
+sensors:
+  - batteryLevel:%
+  - location:GPS
+  - altitude:m
+  - acceleration:mG
+examples:
+  abeeway:asset-tracker-3:1:
+    - "GNSS uplink"
+    - "BLE MAC position"
+    - "GNSS Uplink TIMEOUT/FAILURE"
+    - "Response of a parameter class configuration set request"
+    - "Response of a parameter ble class configuration get request part1"
+    - "Response of a parameter ble class configuration get request part2"
+    - "Response of a parameter ble class configuration get request part3"
+    - "Response of a parameter ble class configuration get request part2"
+    - "Configuration repsonse of core led 0 map"
+    - "Configuration repsonse of core buzzer map"
+    - "Response of a parameter Internal class configuration get request"
+    - "Response of a parameter system core class configuration get request part1"
+    - "Response of a parameter system core class configuration get request part2"
+    - "Response of a parameter system core class configuration get request"
+    - "Response of a parameter system core class configuration get request part3"
+    - "Response of a parameter system core class configuration get request part4"
+    - "Response of a generic configuration get request"
+    - "notification system Low battery"
+    - "notification system tamper on"
+    - "notification system tamper close"
+    - "Network notification main up"
+    - "Response of a parameter class configuration set request"
+    - "Response of a generic configuration set request."
+    - "Response of a parameter class configuration set request"
+    - "Response of a generic configuration get request"
+    - "Response of a parameter geoloc class configuration get request part1"
+    - "Response of a parameter geoloc class configuration get request part2"
+    - "Response of a generic configuration get request"
+    - "Response of a parameter LR11xx class configuration get request"
+    - "Response of a parameter LR11xx class configuration get request"
+    - "Response of a parameter GNSS core class configuration get request"
+    - "Response of a parameter GNSS core class configuration get request "
+    - "Response of a parameter accelerometer class configuration get request"
+    - "Response of a parameter network class configuration get request"
+    - "Response of a parameter lorawan class configuration get request"
+    - "Response of a parameter lorawan class configuration get request"
+    - "Response of a parameter bleScan class configuration get request part1"
+    - "Response of a parameter bleScan class configuration get request part2"
+    - "Response of a parameter bleScan class configuration get request part3"
+    - "Response of a parameter bleScan2 class configuration get request"
+    - "Response for a parameter in the cellular class configuration get request, part 1"
+    - "Response for a parameter in the cellular class configuration get request, part2"
+    - "Response for a parameter in the cellular class configuration get request, part3"
+    - "Response for a parameter in the cellular class configuration get request, part4"
+    - "Response for a parameter in the cellular class configuration get request, part 5"
+    - "Response for gloabl CRC"
+    - "Response for specific group CRC"
+    - "Response for sensor request"
+    - "Query update GPS almanac"
+    - "Query echo request (cellular only)"
+    - "Wifi position"
+    - "BLE MAC position"
+    - "Geolocation BLE uplink"
+    - "Wifi position"
+    - "Geolocation BLE -SHORT uplink"
+    - "Geolocation BLE-LONG uplink "
+    - "Notification start motion  uplink "
+    - "Notification motion end  uplink "
+    - "Notification end motion  uplink "
+    - "Notification SOS-ON uplink "
+    - "Notification SOS-OFF uplink "
+    - "Notification TEMP-NORMAL uplink "
+    - "Notification TEMP-HIGH uplink "
+    - "Notification TEMP-LOW uplink "
+    - "Notification system low battery uplink "
+    - "status uplink page0"
+    - "notification system status page1"
+    - "notification system heartbeat"
+    - "Telemetry payload"
+    - "Telemetry payload with context which contains an empty array"
+    - "Metadata payload alarmTrigger"
+    - "Telemetry payload"
+    - "Telemetry payload"
+    - "downlink command System status request."
+    - "downlik command position on demand request."
+    - "downlik command start SOS."
+    - "downlik command stop SOS."
+    - "downlik command clear and reset."
+    - "downlik command reset."
+    - "decode downlink request CRC all groups"
+    - "decode downlink request sensor"
+    - "decode downlink request CRC for specific groups"
+    - "downlik request generic configuration set 1"
+    - "downlik request generic configuration set"
+    - "downlink with wrong type"
+    - "downlik request generic configuration get 1"
+    - "downlik request generic configuration get wrong payload"
+    - "downlik request generic configuration get wrong payload"
+    - "downlik request parameter class configuration get"
+    - "Encode command RESET "
+    - "Encode command CLEAR_AND_RESET "
+    - "Encode command RESET"
+    - "Encode command START SOS"
+    - "Encode command STOP SOS"
+    - "Encode command SYSTEM_STATUS_REQUEST"
+    - "Encode command POSITION_ON_DEMAND"
+    - "Encode command START_BLE_CONNECTIVITY"
+    - "Encode command STOP_BLE_CONNECTIVITY"
+    - "Encode command SYSTEM_EVENT"
+    - "Encode command CLEAR_MOTION_PERCENTAGE"
+    - "Encode request set generic configuration"
+    - "Encode request CRC for all groups"
+    - "Encode request CRC for specific groups"
+    - "Encode request sensor"
+    - "Encode request set generic configuration 2"
+    - "Encode request set generic configuration "
+    - "Encode request set generic configuration "
+    - "Encode request set generic configuration "
+    - "Encode request set parameter class configuration "
+    - "Encode request set parameter class configuration "
+    - "Encode request set parameter class configuration "
+    - "Encode request get parameter class configuration "
+    - "Encode request get parameter class configuration "
+    - "Encode request set generic configuration "
+    - "Encode request set generic configuration "
+
+LoRaWANRelay:
+  canOperateAsARelay: false
+  defaultRelayActivation: false
