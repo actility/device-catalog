@@ -42,7 +42,7 @@ states:RBE,RBE,TRUE,string,R,STRING,,,,,,group11,State of Report By Exception
 states:co2_sampled,CO2 sampled,true,string,R,STRING,,,,,,600-053,CO2 measurement method
 states:led,LED,TRUE,string,R,STRING,,,,,,600-053,Use of LED
 states:movement_detected,Movement detected,true,string,R,STRING,,,,,,600-062,Whether a movement was detected or not
-states:window_opened,Window open,true,string,R,STRING,,,,,,600-065,Whether a window is open or not
+states:window_opened,Window open,true,boolean,R,BOOL,,,,,,600-065,Whether a window is open or not
 alarm_status:humidity:high,Humidity high,false,boolean,R,BOOL,,,,,,group2,Whether humidity is high or not
 alarm_status:humidity:low,Humidity low,false,boolean,R,BOOL,,,,,,group2,Whether humidity is low or not
 alarm_status:temperature:high,Temperature high,false,boolean,R,BOOL,,,,,,group2,Whether temperature is high or not
@@ -70,15 +70,15 @@ alarm_status:MotionGuard,MotionGuard type,alarm,string,R,STRING,,,,,,group13,Typ
 values:humidity:value,Humidity value,50.0,number,R,FLOAT,,%RH,,,1,group2,Value of relative humidity
 values:humidity:unit,Humidity unit,%,string,R,STRING,,,,,,group2,Unit of relative humidity
 values:temperature:value,Temperature value,20.0,number,R,FLOAT,,Cel,,,1,group2,Value of temperature
-values:temperature:unit,Temperature unit,°C,string,R,STRING,,,,,,group2,Unit of temperature
+values:temperature:unit,Temperature unit,ï¿½C,string,R,STRING,,,,,,group2,Unit of temperature
 values:voc:value,VOC value,20,number,R,UINT8,,ppb,,,1,group5,Value of Volatile Organic Compounds concentration
 values:voc:unit,VOC unit,ppb,string,R,STRING,,,,,,group5,Unit of Volatile Organic Compounds concentration
 values:co2:value,CO2 value,500,number,R,UINT8,,ppm,,,10,group6,Value of CO2 concentration
 values:co2:unit,CO2 unit,ppm,string,R,STRING,,,,,,group6,Unit of CO2 concentration
 values:temperature_1:value,Temperature 1 value,20,number,R,FLOAT,,Cel,,,1,group7,Value of temperature 1
-values:temperature_1:unit,Temperature 1 unit,°C,string,R,STRING,,,,,,group7,Unit of temperature 1
+values:temperature_1:unit,Temperature 1 unit,ï¿½C,string,R,STRING,,,,,,group7,Unit of temperature 1
 values:temperature_2:value,Temperature 2 value,20,number,R,FLOAT,,Cel,,,1,600-232,Value of temperature 2
-values:temperature_2:unit,Temperature 2 unit,°C,string,R,STRING,,,,,,600-232,Unit of temperature 2
+values:temperature_2:unit,Temperature 2 unit,ï¿½C,string,R,STRING,,,,,,600-232,Unit of temperature 2
 values:current:value,Current value,1,number,R,FLOAT,,mA,,,1,600-035,Value of electrical current
 values:current:unit,Current unit,mA,string,R,STRING,,,,,,600-035,Unit of electrical current
 values:pulse_ch1:value,Channel 1 pulse value,30,number,R,UINT8,,,,,1,group10,Value of channel 1 pulse count
