@@ -5211,5 +5211,233 @@
       "warnings": []
     },
     "points": { "batteryLevel": { "unitId": "%", "record": 99 } }
+  },
+  {
+   "description":"decode downlink : change Uplink message types that are stored in a buffer to allow resend requests",
+   "type":"downlink-decode",
+   "input":{
+      "bytes":"1000010f3c01710000030000",
+      "recvTime":"2025-02-17T07:23:21.803Z",
+      "fPort":19
+   },
+   "output":{
+      "data":{
+         "downMessageType":"REQUEST",
+         "ackToken":0,
+         "request":{
+            "requestType":"GENERIC_CONFIGURATION_SET",
+            "genericConfigurationSet":[
+               {
+                  "group":"SYSTEM_CORE",
+                  "parameters":[
+                     {
+                        "parameterName":"coreDBTypeMask",
+                        "parameterValue":[
+                           {
+                              "dataBufferingType":{
+                                 "position":true
+                              }
+                           },
+                           {
+                              "systemClass":{
+                                 "bleStatus":false,
+                                 "dataBuffering":true,
+                                 "heartbeat":true,
+                                 "lowBattery":false,
+                                 "shutdown":true,
+                                 "status":true,
+                                 "tamperDetection":false
+                              }
+                           },
+                           {
+                              "sosClass":{
+                                 "sosOff":false,
+                                 "sosOn":false
+                              }
+                           },
+                           {
+                              "temperatureClass":{
+                                 "tempHigh":false,
+                                 "tempLow":false,
+                                 "tempNormal":false
+                              }
+                           },
+                           {
+                              "accelerometerClass":{
+                                 "motionEnd":true,
+                                 "motionStart":true,
+                                 "shock":false
+                              }
+                           },
+                           {
+                              "networkingClass":{
+                                 "backupUp":false,
+                                 "mainUp":false
+                              }
+                           },
+                           {
+                              "geozoningClass":{
+                                 "geozoningOn":false
+                              }
+                           }
+                        ]
+                     }
+                  ]
+               }
+            ]
+         },
+         "payload":"1000010f3c01710000030000"
+      },
+      "errors":[ ],
+      "warnings":[ ]
+   }
+},
+
+ {
+  "description": "Encode request set generic configuration for coreNotifEnable (SYSTEM_CORE)",
+  "type": "downlink-encode",
+  "input": {
+    "data": {
+      "downMessageType": "REQUEST",
+      "requestType": "GENERIC_CONFIGURATION_SET",
+      "ackToken": 0,
+      "setGenericParameters": [
+        {
+          "group": "SYSTEM_CORE",
+          "parameters": [
+            {
+              "parameterName": "coreNotifEnable",
+              "parameterValue": [
+                {
+                  "systemClass": {
+                    "status": true,
+                    "lowBattery": true,
+                    "bleStatus": false,
+                    "tamperDetection": true,
+                    "heartbeat": false,
+                    "dataBuffering": false,
+                    "shutdown": false
+                  }
+                },
+                {
+                  "sosClass": {
+                    "sosOn": false,
+                    "sosOff": false
+                  }
+                },
+                {
+                  "temperatureClass": {
+                    "tempHigh": false,
+                    "tempLow": false,
+                    "tempNormal": false
+                  }
+                },
+                {
+                  "accelerometerClass": {
+                    "motionStart": false,
+                    "motionEnd": false,
+                    "shock": false
+                  }
+                },
+                {
+                  "networkingClass": {
+                    "mainUp": false,
+                    "backupUp": false
+                  }
+                },
+                {
+                  "geozoningClass": {
+                    "geozoningOn": false
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "output": {
+    "fPort": 3,
+    "bytes": "10000102340b0000000000",
+    "errors": [],
+    "warnings": []
   }
+},
+{
+  "description": "Encode request set generic configuration for coreDBTypeMask",
+  "type": "downlink-encode",
+  "input": {
+    "data": {
+      "downMessageType": "REQUEST",
+      "requestType": "GENERIC_CONFIGURATION_SET",
+      "ackToken": 0,
+      "setGenericParameters": [
+        {
+          "group": "SYSTEM_CORE",
+          "parameters": [
+            {
+              "parameterName": "coreDBTypeMask",
+              "parameterValue": [
+                {
+                  "dataBufferingType": {
+                    "position": true
+                  }
+                },
+                {
+                  "systemClass": {
+                    "bleStatus": false,
+                    "dataBuffering": true,
+                    "heartbeat": true,
+                    "lowBattery": false,
+                    "shutdown": true,
+                    "status": true,
+                    "tamperDetection": false
+                  }
+                },
+                {
+                  "sosClass": {
+                    "sosOff": false,
+                    "sosOn": false
+                  }
+                },
+                {
+                  "temperatureClass": {
+                    "tempHigh": false,
+                    "tempLow": false,
+                    "tempNormal": false
+                  }
+                },
+                {
+                  "accelerometerClass": {
+                    "motionEnd": true,
+                    "motionStart": true,
+                    "shock": false
+                  }
+                },
+                {
+                  "networkingClass": {
+                    "backupUp": false,
+                    "mainUp": false
+                  }
+                },
+                {
+                  "geozoningClass": {
+                    "geozoningOn": false
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "output": {
+    "fPort": 3,
+    "bytes": "1000010f3c01710000030000",
+    "errors": [],
+    "warnings": []
+  }
+}
 ]

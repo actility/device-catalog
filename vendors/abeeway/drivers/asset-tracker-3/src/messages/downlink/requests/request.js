@@ -756,10 +756,32 @@ function encodeRawByteArray(paramValue, size, encData, startIndex) {
 function encodeByteArrayWithProperties(parameter, paramValue, size, encData, startIndex) {
     const arrayProperties = parameter.parameterType.properties;
     const byteMask = parameter.parameterType.byteMask;
-
+    const distinctValues = parameter.parameterType.distinctValues === true;
     for (let j = 0; j < size; j++) {
         let flags = 0;
-        flags = encodeProperties(arrayProperties, byteMask, paramValue[j], flags);
+        
+ if (distinctValues) {
+    const currentParamValue = paramValue[j];
+
+    if (!currentParamValue || typeof currentParamValue !== 'object') {
+        throw new Error(`Invalid parameter value at index ${j}, expected an object but got ${currentParamValue}`);
+    }
+
+    const propertyName = Object.keys(currentParamValue)[0]; // e.g. "systemClass"
+    const propertyValue = currentParamValue[propertyName];
+
+    const bitMapping = byteMask.find(el => el.valueFor === propertyName);
+    const propertyDef = arrayProperties.find(el => el.name === propertyName);
+
+    if (!bitMapping || !propertyDef) {
+        throw new Error(`Property ${propertyName} not found in byteMask or properties`);
+    }
+
+    flags = encodeProperty(propertyDef, bitMapping, propertyValue, flags);
+} else {
+            // Standard encoding (no distinctValues)
+            flags = encodeProperties(arrayProperties, byteMask, paramValue[j], flags);
+        }
         encData[startIndex + j + 1] = flags & 0xFF;
     }
 }
