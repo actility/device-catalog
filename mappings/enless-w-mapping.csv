@@ -30,18 +30,18 @@ fw_version,Firmware version,1,number,R,UINT8,,,,,,all,Firmware version
 id,ID,1,number,R,UINT8,,,,,,all,ID
 seq_counter,Sequential counter,0,number,R,UINT8,,,,,1,all,Sequential Counter
 type,Type of device,4 - TX T&H AMB,string,R,STRING,,,,,,all,Type of device
-states:battery,Battery status,100%,string,R,STRING,,,,,,all,"Battery status (""100%"", ""75%"", ""50%"", ""25%"", ""unknown"")"
-states:msg_type,Message type,normal,string,R,STRING,,,,,,group1,"Message type (""normal"", ""alarm"")"
+batteryLevel,Battery level,100,number,R,FLOAT,0,%,,,1,all,"Battery level in % (possible values: 100,75,50,25,-1 for unknown)"
+msg_is_alarm,Alarm message,false,boolean,R,BOOL,,,,,,group1,Whether the message is an alarm message
 states:debounce_1,Debounce 1,false,boolean,R,BOOL,,,,,,group8,Whether there is debounce 1 or not
 states:debounce_2,Debounce 2,false,boolean,R,BOOL,,,,,,group8,Whether there is debounce 2 or not
 states:debounce_3,Debounce 3,false,boolean,R,BOOL,,,,,,group8,Whether there is debounce 3 or not
-states:pulse_ch1,Channel 1 pulse,open,string,R,STRING,,,,,,group9,State of pulse channel 1
-states:pulse_ch2,Channel 2 pulse,open,string,R,STRING,,,,,,group9,State of pulse channel 2
-states:pulse_oc,OC pulse,open,string,R,STRING,,,,,,group9,State of pulse OC
-states:RBE,RBE,TRUE,string,R,STRING,,,,,,group11,State of Report By Exception
-states:co2_sampled,CO2 sampled,true,string,R,STRING,,,,,,600-053,CO2 measurement method
-states:led,LED,TRUE,string,R,STRING,,,,,,600-053,Use of LED
-states:movement_detected,Movement detected,true,string,R,STRING,,,,,,600-062,Whether a movement was detected or not
+pulse_ch1_open,Pulse channel-1 open,true,boolean,R,BOOL,,,,,,group9,Whether the pulse channel-1 is open
+pulse_ch2_open,Pulse channel-2 open,true,boolean,R,BOOL,,,,,,group9,Whether the pulse channel-2 is open
+pulse_oc_open,Pulse OC open,true,boolean,R,BOOL,,,,,,group9,Whether the pulse OC is open
+states:RBE,RBE,true,boolean,R,BOOL,,,,,,group11,State of Report By Exception
+states:co2_sampled,CO2 sampled,true,boolean,R,BOOL,,,,,,600-053,CO2 measurement method
+states:led,LED,true,boolean,R,BOOL,,,,,,600-053,Use of LED
+states:movement_detected,Movement detected,true,boolean,R,BOOL,,,,,,600-062,Whether a movement was detected or not
 states:window_opened,Window open,true,boolean,R,BOOL,,,,,,600-065,Whether a window is open or not
 alarm_status:humidity:high,Humidity high,false,boolean,R,BOOL,,,,,,group2,Whether humidity is high or not
 alarm_status:humidity:low,Humidity low,false,boolean,R,BOOL,,,,,,group2,Whether humidity is low or not
@@ -67,47 +67,34 @@ alarm_status:pulse_oc_flow:high,OC pulse flow high,false,boolean,R,BOOL,,,,,,gro
 alarm_status:pulse_oc_flow:low,OC pulse flow low,false,boolean,R,BOOL,,,,,,group8,Whether OC flow is low or not
 alarm_status:pulse_oc_leak,OC pulse leak,false,boolean,R,BOOL,,,,,,group8,Whether OC is leaking or not
 alarm_status:MotionGuard,MotionGuard type,alarm,string,R,STRING,,,,,,group13,Type of MotionGuard
-values:humidity:value,Humidity value,50.0,number,R,FLOAT,,%RH,,,1,group2,Value of relative humidity
-values:humidity:unit,Humidity unit,%,string,R,STRING,,,,,,group2,Unit of relative humidity
-values:temperature:value,Temperature value,20.0,number,R,FLOAT,,Cel,,,1,group2,Value of temperature
-values:temperature:unit,Temperature unit,�C,string,R,STRING,,,,,,group2,Unit of temperature
-values:voc:value,VOC value,20,number,R,UINT8,,ppb,,,1,group5,Value of Volatile Organic Compounds concentration
-values:voc:unit,VOC unit,ppb,string,R,STRING,,,,,,group5,Unit of Volatile Organic Compounds concentration
-values:co2:value,CO2 value,500,number,R,UINT8,,ppm,,,10,group6,Value of CO2 concentration
-values:co2:unit,CO2 unit,ppm,string,R,STRING,,,,,,group6,Unit of CO2 concentration
-values:temperature_1:value,Temperature 1 value,20,number,R,FLOAT,,Cel,,,1,group7,Value of temperature 1
-values:temperature_1:unit,Temperature 1 unit,�C,string,R,STRING,,,,,,group7,Unit of temperature 1
-values:temperature_2:value,Temperature 2 value,20,number,R,FLOAT,,Cel,,,1,600-232,Value of temperature 2
-values:temperature_2:unit,Temperature 2 unit,�C,string,R,STRING,,,,,,600-232,Unit of temperature 2
-values:current:value,Current value,1,number,R,FLOAT,,mA,,,1,600-035,Value of electrical current
-values:current:unit,Current unit,mA,string,R,STRING,,,,,,600-035,Unit of electrical current
+humidity,Humidity,50.0,number,R,FLOAT,,%RH,,,1,group2,Value of relative humidity in %RH
+temperature,Temperature,20.0,number,R,FLOAT,,Cel,,,1,group2,Value of temperature in °C
+values:voc:value,VOC concentration,20,number,R,UINT8,,ppb,,,1,group5,Value of Volatile Organic Compounds concentration in ppb
+co2Level,CO2 concentration,500,number,R,UINT8,,ppm,,,10,group6,Value of CO2 concentration in ppm
+temperature:0,Temperature 1,20,number,R,FLOAT,,Cel,,,1,group7,Value of temperature 1 in °C
+temperature:1,Temperature 2,20,number,R,FLOAT,,Cel,,,1,600-232,Value of temperature 2 in °C
+current,Current value,1,number,R,FLOAT,,mA,,,1,600-035,Value of electrical current in mA
 values:pulse_ch1:value,Channel 1 pulse value,30,number,R,UINT8,,,,,1,group10,Value of channel 1 pulse count
-values:pulse_ch1:unit,Channel 1 pulse unit,count,string,R,STRING,,,,,,group10,Unit of channel 1 pulse count
 values:pulse_ch2:value,Channel 2 pulse value,30,number,R,UINT8,,,,,1,group10,Value of channel 2 pulse count
-values:pulse_ch2:unit,Channel 2 pulse unit,count,string,R,STRING,,,,,,group10,Unit of channel 2 pulse count
 values:pulse_oc:value,OC pulse value,30,number,R,UINT8,,,,,1,group10,Value of OC pulse count
-values:pulse_oc:unit,OC pulse unit,count,string,R,STRING,,,,,,group10,Unit of OC pulse count
 values:number_of_state_changes_ch1:value,Channel 1 state change value,30,number,R,UINT8,,,,,1,600-039,Value of channel 1 state changes
-values:number_of_state_changes_ch1:unit,Channel 1 state change unit,count,string,R,STRING,,,,,,600-039,Unit of channel 1 state changes
 values:number_of_state_changes_ch2:value,Channel 2 state change value,30,number,R,UINT8,,,,,1,600-039,Value of channel 2 state changes
-values:number_of_state_changes_ch2:unit,Channel 2 state change unit,count,string,R,STRING,,,,,,600-039,Unit of channel 2 state changes
 values:number_of_state_changes_oc:value,OC state change value,30,number,R,UINT8,,,,,1,600-039,Value of OC state changes
-values:number_of_state_changes_oc:unit,OC state change unit,count,string,R,STRING,,,,,,600-039,Unit of OC state changes
 values:PIR_count:value,PIR count,0,number,R,UINT8,,,,,1,600-062,Value of PIR count
-values:luminosity:value,Luminosity,0,number,R,UINT8,,,,,1,600-062,Value of luminosity
+illuminance,Luminosity,0,number,R,UINT8,,lx,,,1,600-062,Value of luminosity in lux
 values:window_count:value,Window count,0,number,R,UINT8,,,,,1,600-065,Number of windows open
 periodicity,Periodicity,5,number,RW,UINT8,,minute,,,,all,Periodicity of uplinks (in minutes)
-hiTempAlarm,High temperature alarm,40,number,RW,FLOAT,,Cel,,,,group3,High temperature threshold
-lowTempAlarm,Low temperature alarm,20,number,RW,FLOAT,,Cel,,,,group3,Low temperature threshold
-hiHumAlarm,High humidity alarm,80,number,RW,FLOAT,,%RH,,,,group4,High humidity threshold
-lowHumAlarm,Low humidity alarm,40,number,RW,FLOAT,,%RH,,,,group4,Low humidity threshold
-hiVOCAlarm,High VOC alarm,800,number,RW,UINT8,,ppb,,,,group5,High VOC threshold
-lowVOCAlarm,Low VOC alarm,200,number,RW,UINT8,,ppb,,,,group5,Low VOC threshold
-hiCO2Alarm,High CO2 alarm,600,number,RW,UINT8,,ppm,,,,group6,High CO2 threshold
-lowCO2Alarm,Low CO2 alarm,200,number,RW,UINT8,,ppm,,,,group6,Low CO2 threshold
-hi4_20Alarm,High CO2 alarm,600,number,RW,FLOAT,,mA,,,,600-035,High CO2 threshold
-low4_20Alarm,Low CO2 alarm,200,number,RW,FLOAT,,mA,,,,600-035,Low CO2 threshold
-loopPower,Loop power,500,number,RW,UINT8,,ms,,,,600-035,Low CO2 threshold
+hiTempAlarm,High temperature alarm,40,number,RW,FLOAT,,Cel,,,,group3,High temperature threshold in °C
+lowTempAlarm,Low temperature alarm,20,number,RW,FLOAT,,Cel,,,,group3,Low temperature threshold in °C
+hiHumAlarm,High humidity alarm,80,number,RW,FLOAT,,%RH,,,,group4,High humidity threshold in %RH
+lowHumAlarm,Low humidity alarm,40,number,RW,FLOAT,,%RH,,,,group4,Low humidity threshold in %RH
+hiVOCAlarm,High VOC alarm,800,number,RW,UINT8,,ppb,,,,group5,High VOC threshold in ppb
+lowVOCAlarm,Low VOC alarm,200,number,RW,UINT8,,ppb,,,,group5,Low VOC threshold in ppb
+hiCO2Alarm,High CO2 alarm,600,number,RW,UINT8,,ppm,,,,group6,High CO2 threshold in ppm
+lowCO2Alarm,Low CO2 alarm,200,number,RW,UINT8,,ppm,,,,group6,Low CO2 threshold in ppm
+hi4_20Alarm,High 4_20 alarm,600,number,RW,FLOAT,,mA,,,,600-035,High 4_20 threshold in mA
+low4_20Alarm,Low 4_20 alarm,200,number,RW,FLOAT,,mA,,,,600-035,Low 4_20 threshold in mA
+loopPower,Loop power,500,number,RW,UINT8,,ms,,,,600-035,Loop power in ms
 hiInput1Flow,High input 1 flow,100,number,RW,UINT8,,,,,,group8,High input 1 flow threshold
 lowInput1Flow,Low input 1 flow,10,number,RW,UINT8,,,,,,group8,Low input 1 flow threshold
 input1FlowTime,Input 1 flow time,1,number,RW,UINT8,,hour,,,,group8,Input 1 flow time
@@ -120,14 +107,14 @@ hiOCFlow,High OC flow,100,number,RW,UINT8,,,,,,group8,High OC flow threshold
 lowOCFlow,Low OC flow,10,number,RW,UINT8,,,,,,group8,Low OC flow threshold
 OCFlowTime,OC flow time,1,number,RW,UINT8,,hour,,,,group8,OC flow time
 OCLeakThreshold,OC leak threshold,15,number,RW,UINT8,,,,,,group8,OC leak threshold
-input1TxDelay,Input 1 Tx delay,5,number,RW,UINT8,,s,,,,600-039,Input 1 delay before Tx
-input2TxDelay,Input 2 Tx delay,5,number,RW,UINT8,,s,,,,600-039,Input 2 delay before Tx
+input1TxDelay,Input 1 Tx delay,5,number,RW,UINT8,,s,,,,600-039,Input 1 delay before Tx in seconds
+input2TxDelay,Input 2 Tx delay,5,number,RW,UINT8,,s,,,,600-039,Input 2 delay before Tx in seconds
 sensorSampPeriod,Sensor sampling period,30,number,RW,UINT8,,minute,,,,group12,Sensor sampling period in minutes
-hiLumAlarm,High luminosity alarm,40,number,RW,UINT8,,,,,,600-062,High luminosity threshold
-lowLumAlarm,Low luminosity alarm,20,number,RW,UINT8,,,,,,600-062,Low luminosity threshold
+hiLumAlarm,High luminosity alarm,40,number,RW,UINT8,,lx,,,,600-062,High luminosity threshold in lux
+lowLumAlarm,Low luminosity alarm,20,number,RW,UINT8,,lx,,,,600-062,Low luminosity threshold in lux
 pirSensitivity,PIR sensitivity,1,number,RW,UINT8,,,,,,600-062,PIR sensor sensitivity
 detectionSensitivity,Detection sensitivity,1,number,RW,UINT8,,,,,,600-065,Window detection sensitivity
-hiTempCh1Alarm,High temperature alarm on channel 1,40,number,RW,FLOAT,,Cel,,,,600-232,High temperature threshold on channel 1
-lowTempCh1Alarm,Low temperature alarm on channel 1,20,number,RW,FLOAT,,Cel,,,,600-232,Low temperature threshold on channel 1
-hiTempCh2Alarm,High temperature alarm on channel 2,40,number,RW,FLOAT,,Cel,,,,600-232,High temperature threshold on channel 2
-lowTempCh2Alarm,Low temperature alarm on channel 2,20,number,RW,FLOAT,,Cel,,,,600-232,Low temperature threshold on channel 2
+hiTempCh1Alarm,High temperature alarm on channel 1,40,number,RW,FLOAT,,Cel,,,,600-232,High temperature threshold on channel 1 in °C
+lowTempCh1Alarm,Low temperature alarm on channel 1,20,number,RW,FLOAT,,Cel,,,,600-232,Low temperature threshold on channel 1 in °C
+hiTempCh2Alarm,High temperature alarm on channel 2,40,number,RW,FLOAT,,Cel,,,,600-232,High temperature threshold on channel 2 in °C
+lowTempCh2Alarm,Low temperature alarm on channel 2,20,number,RW,FLOAT,,Cel,,,,600-232,Low temperature threshold on channel 2 in °C
