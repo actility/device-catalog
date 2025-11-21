@@ -1,0 +1,21 @@
+#pre-commit:
+#  skip:
+#    - run: test -z "${ACTILITY:-}"
+#  parallel: false
+#  commands:
+#    echo:
+#      run: echo "I'm in"
+#    update-db:
+#      run: node scripts/update-db1.js --from-staged {staged_files}
+#    #tests-changed-staged:
+#      #run: node scripts/run-tests-changed.js --from-staged
+#
+#pre-push:
+#  skip:
+#    - unless: ACTILITY
+#  parallel: false
+#  commands:
+##    tests-changed-since-tag:
+##      run: node scripts/run-tests-changed.js
+#    clear-db:
+#      run: node scripts/clear-db.js
