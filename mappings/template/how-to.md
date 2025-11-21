@@ -236,3 +236,15 @@ function encodeDownlink(input) {
 exports.encodeDownlink = encodeDownlink;
 ~~~
 
+## Survival guide
+For manual operations:
+- Get full drivers archive from Artifactory
+- Extract archive
+- Extract drivers that you need to update with mapping
+- Build mappings using : `npm run build-mappings` in device-catalog-private/scripts
+- Inject json inside driver package archive
+- Add the entry `"mapping": "mapping.json",` to the package.json
+- Create a new archive with the driver
+- Create a complete archive with all drivers
+- Delete from Artifactory
+- Push new version
