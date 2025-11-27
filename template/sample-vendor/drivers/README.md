@@ -252,6 +252,8 @@ This context is based on DevEUI, so each device has its own context, even if sev
 
 The context in the driver's environment is an array of flexible JSON objects.
 
+:warning: **WARNING:** If the context remains unchanged, it will not be updated in our database, and persistence is limited to 2 days. To keep your context for longer, add a timestamp or a counter to your context on each uplink.
+
 #### Enable the context
 
 To enable the context, you must set <code>useContext</code> to <code>true</code> in the driver's driver.yaml as such:
@@ -278,7 +280,6 @@ function decodeUplink(input){
     ...
 }
 ```
-
 #### Reload a context
 
 Inside a driver, data can be retrieved from the context:
