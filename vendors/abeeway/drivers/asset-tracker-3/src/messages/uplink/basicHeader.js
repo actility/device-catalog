@@ -67,7 +67,7 @@ function rebuildTime(receivedTime, seconds) {
     let exactTime = new Date(referenceTime.getTime() + seconds * 1000);
     // --- Apply 30s tolerance BEFORE rollover handling ---
     const timeDiff = Math.abs(exactTime.getTime() - timestamp.getTime());
-    const toleranceMs = 30 * 1000; // 30 seconds tolerance
+    const toleranceMs = 3600 * 1000; // 3600 seconds tolerance
     if (timeDiff <= toleranceMs) {
         // Within tolerance → use received time as reliable
         return exactTime.toISOString();

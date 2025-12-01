@@ -392,7 +392,7 @@
           "ackToken": 1,
           "multiFrame": true,
           "batteryLevel": "CHARGING",
-          "timestamp": "2024-06-20T01:51:28.000Z"
+          "timestamp": "2024-06-20T13:51:28.000Z"
         },
         "extendedHeader": { "groupId": 2, "last": 1, "frameNumber": 0 },
         "response": {
@@ -532,7 +532,7 @@
           "ackToken": 1,
           "multiFrame": true,
           "batteryLevel": "CHARGING",
-          "timestamp": "2024-06-20T01:51:28.000Z"
+          "timestamp": "2024-06-20T13:51:28.000Z"
         },
         "extendedHeader": { "groupId": 2, "last": 1, "frameNumber": 0 },
         "response": {
@@ -1486,7 +1486,7 @@
           "multiFrame": true,
           "batteryLevel": 100,
           "sos": false,
-          "timestamp": "2024-04-19T02:42:50.000Z",
+          "timestamp": "2024-04-19T14:42:50.000Z",
           "type": "RESPONSE"
         },
         "extendedHeader": { "frameNumber": 0, "groupId": 0, "last": 1 },
@@ -3283,7 +3283,7 @@
           "ackToken": 0,
           "multiFrame": false,
           "batteryLevel": 100,
-          "timestamp": "2025-02-28T21:21:05.000Z"
+          "timestamp": "2025-03-01T09:21:05.000Z"
         },
         "notification": {
           "notificationClass": "SYSTEM",
@@ -3319,7 +3319,7 @@
           "ackToken": 1,
           "multiFrame": false,
           "batteryLevel": 42,
-          "timestamp": "2025-09-23T02:33:40.000Z"
+          "timestamp": "2025-09-23T14:33:40.000Z"
         },
         "notification": {
           "notificationClass": "SYSTEM",
@@ -3495,6 +3495,7 @@
             "0": {
               "cyclicVersion": 0,
               "fixedTimeInterval": 0,
+              "timestamp": "2025-05-21T10:04:36.000Z",
               "measurementConfig": {
                 "codingPolicy": "DELTA_COMPRESSION",
                 "dataType": "16_BIT_SIGNED",
@@ -3511,6 +3512,7 @@
             "1": {
               "cyclicVersion": 1,
               "fixedTimeInterval": 0,
+              "timestamp": "2025-05-21T10:04:36.000Z",
               "measurementConfig": {
                 "codingPolicy": "DELTA_COMPRESSION",
                 "dataType": "16_BIT_SIGNED",
@@ -3527,6 +3529,7 @@
             "2": {
               "cyclicVersion": 2,
               "fixedTimeInterval": 0,
+              "timestamp": "2025-05-21T10:04:36.000Z",
               "measurementConfig": {
                 "codingPolicy": "DELTA_COMPRESSION",
                 "dataType": "16_BIT_SIGNED",
@@ -3782,7 +3785,7 @@
     }
   },
   {
-    "description": "downlik command position on demand request.",
+    "description": "downlink command position on demand request.",
     "type": "downlink-decode",
     "input": {
       "bytes": "0A05",
@@ -3801,7 +3804,7 @@
     }
   },
   {
-    "description": "downlik command start SOS.",
+    "description": "downlink command start SOS.",
     "type": "downlink-decode",
     "input": {
       "bytes": "0e02",
@@ -3820,7 +3823,7 @@
     }
   },
   {
-    "description": "downlik command stop SOS.",
+    "description": "downlink command stop SOS.",
     "type": "downlink-decode",
     "input": {
       "bytes": "0f03",
@@ -3839,7 +3842,7 @@
     }
   },
   {
-    "description": "downlik command clear and reset.",
+    "description": "downlink command clear and reset.",
     "type": "downlink-decode",
     "input": {
       "bytes": "0b00",
@@ -3858,7 +3861,7 @@
     }
   },
   {
-    "description": "downlik command reset.",
+    "description": "downlink command reset.",
     "type": "downlink-decode",
     "input": {
       "bytes": "0c01",
@@ -3960,7 +3963,7 @@
     }
   },
   {
-    "description": "downlik request generic configuration set 1",
+    "description": "downlink request generic configuration set 1",
     "type": "downlink-decode",
     "input": {
       "bytes": "110003012100000078",
@@ -3989,7 +3992,7 @@
     }
   },
   {
-    "description": "downlik request generic configuration set",
+    "description": "downlink request generic configuration set",
     "type": "downlink-decode",
     "input": {
       "bytes": "110003032100000005020b34030001020300",
@@ -4050,7 +4053,7 @@
     }
   },
   {
-    "description": "downlik request generic configuration get 1",
+    "description": "downlink request generic configuration get 1",
     "type": "downlink-decode",
     "input": {
       "bytes": "11020303030402010102",
@@ -4079,7 +4082,7 @@
     }
   },
   {
-    "description": "downlik request generic configuration get wrong payload",
+    "description": "downlink request generic configuration get wrong payload",
     "type": "downlink-decode",
     "input": {
       "bytes": "110204",
@@ -4089,7 +4092,7 @@
     "output": { "errors": ["Invalid payload"], "warnings": [] }
   },
   {
-    "description": "downlik request generic configuration get wrong payload",
+    "description": "downlink request generic configuration get wrong payload",
     "type": "downlink-decode",
     "input": {
       "bytes": "110304",
@@ -4102,7 +4105,7 @@
     }
   },
   {
-    "description": "downlik request parameter class configuration get",
+    "description": "downlink request parameter class configuration get",
     "type": "downlink-decode",
     "input": {
       "bytes": "110304020304",
@@ -4131,7 +4134,7 @@
     }
   },
     {
-    "description": "downlik command get buffering data.",
+    "description": "downlink command get buffering data.",
     "type": "downlink-decode",
     "input": {
       "bytes": "090C68D113A60E1003",

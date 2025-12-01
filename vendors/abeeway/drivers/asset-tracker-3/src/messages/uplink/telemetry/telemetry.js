@@ -20,7 +20,7 @@ function convert3BitToSigned(val) {
     return (val & 0x04) ? val - 8 : val;
 }
 
-function decodeMetadataPayload(telemetryPayload) {
+function decodeMetadataPayload(telemetryPayload, timestamp) {
     let telemetryMetadataStore = {};
     let offset = 0;
     while (offset + 8 <= telemetryPayload.length) {
@@ -48,6 +48,7 @@ function decodeMetadataPayload(telemetryPayload) {
             telemetryIDMaxInterval,
             measurementNMaxInterval,
             measurementConfig: measurementConfig,
+            timestamp,
         };
         offset += 8;
     }
@@ -248,7 +249,7 @@ function decodeTelemetry(payload, timestamp) {
     const payloadTypeByte = telemetryPayload[0];
     const isMetadata = (payloadTypeByte & 0x80) !== 0;
     if (isMetadata) {
-        const result = decodeMetadataPayload(telemetryPayload);
+        const result = decodeMetadataPayload(telemetryPayload, timestamp);
         if (result.data === undefined) {
             return {
                 errors: result.errors,
