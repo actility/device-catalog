@@ -1,96 +1,134 @@
 ##general,,,,,,,,,,,,
 version,max_downlink_commands,,,,,,,,,,,
-1.0,5,,,,,,,,,,,
+1,5,,,,,,,,,,,
 ##models,,,,,,,,,,,,
 name,selectors,,,,,,,,,,,
-all,"{ mId: novos-3}, {mId: mcs}, {mId: ags55-p}, {mId: akf10-p}, {mId: dpa250-p}, {mId: dpa2500-p}, {mId: dpa7000-p}, {mId: fta54-p}, {mId: ftk-p}, {mId: la-p}, {mId: li65-p}, {mId: lk-p}, {mId: ls02-p}, {mId: mwf-p}, {mId: wk02-p}, {mId: wsa}, {mId: vfg54-p}",,,,,,,,,,,
-novos,{ mId: novos-3},,,,,,,,,,,
-mcs,{mId: mcs},,,,,,,,,,,
+ags55,{ mId: ags55-p },,,,,,,,,,,
+akf10,{ mId: akf10-p },,,,,,,,,,,
+dpa250,{ mId: dpa250-p },,,,,,,,,,,
+dpa2500,{ mId: dpa2500-p },,,,,,,,,,,
+dpa2500_dual,{ mId: dpa2500-dual },,,,,,,,,,,
+dpa7000,{ mId: dpa7000-p },,,,,,,,,,,
+fta54,{ mId: fta54-p },,,,,,,,,,,
+fta54_bat,{ mId: fta54-bat },,,,,,,,,,,
+ftk,{ mId: ftk-p },,,,,,,,,,,
+ftk_bat,{ mId: ftk-bat },,,,,,,,,,,
+la_co2_temp,{ mId: la-co2-temp },,,,,,,,,,,
+la_co2_temp_rh_bat,{ mId: laco2temprhbat },,,,,,,,,,,
+la_co2_temp_rh,{ mId: la-co2-temp-rh },,,,,,,,,,,
+la_co2_voc,{ mId: la-co2-voc },,,,,,,,,,,
+la_co2_voc_temp,{ mId: la-co2-voc-temp },,,,,,,,,,,
+la_co2_voc_temp_rh,{ mId: laco2voctemprh },,,,,,,,,,,
+la_voc_temp,{ mId: la-voc-temp },,,,,,,,,,,
+la_voc_temp_rh,{ mId: la-voc-temp-rh },,,,,,,,,,,
+li65,{ mId: li65-p },,,,,,,,,,,
+li65_temp_rh_bat,{ mId: li65-temp-rh-bat },,,,,,,,,,,
+li65_temp_rh,{ mId: li65-temp-rh },,,,,,,,,,,
+li65_temp_rh_hpa,{ mId: li65-temp-rh-hpa },,,,,,,,,,,
+lk_co2_temp,{ mId: lk-co2-temp },,,,,,,,,,,
+lk_co2_temp_rh_bat,{ mId: lkco2temprhbat },,,,,,,,,,,
+lk_co2_temp_rh,{ mId: lk-co2-temp-rh },,,,,,,,,,,
+lk_co2_voc,{ mId: lk-co2-voc },,,,,,,,,,,
+lk_co2_voc_temp,{ mId: lk-co2-voc-temp },,,,,,,,,,,
+lk_co2_voc_temp_rh,{ mId: lkco2voctemprh },,,,,,,,,,,
+lk_voc_temp,{ mId: lk-voc-temp },,,,,,,,,,,
+lk_voc_temp_rh,{ mId: lk-voc-temp-rh },,,,,,,,,,,
+ls02_ext,{ mId: ls02-ext },,,,,,,,,,,
+ls02_flex,{ mId: ls02-flex },,,,,,,,,,,
+mcs_occ_lum_state_temp_rh,"{ mId: mcsoclustattemrh }, { mId: mcs }",,,,,,,,,,,
+mcs_lum_temp_rh,"{ mId: mcs-lum-temp-rh }, { mId: mcs }",,,,,,,,,,,
+mcs_occ_lum_temp_rh,"{ mId: mcsocclumtemprh }, { mId: mcs }",,,,,,,,,,,
+mcs_occ_temp_rh,"{ mId: mcs-occ-temp-rh }, { mId: mcs }",,,,,,,,,,,
+mcs_state_temp_rh,"{ mId: mcsstatetemprh }, { mId: mcs }",,,,,,,,,,,
+mcs_state,"{ mId: mcs-state }, { mId: mcs }",,,,,,,,,,,
+mcs_temp_rh,"{ mId: mcs-temp-rh }, { mId: mcs }",,,,,,,,,,,
+mwf,{ mId: mwf-p },,,,,,,,,,,
+n3_epd_co2_temp_rh,{ mId: n3epdco2temprh },,,,,,,,,,,
+n3_epd_temp_rh,{ mId: n3-epd-temp-rh },,,,,,,,,,,
+n3_inc_epd_co2_temp_rh,{ mId: n3incepdco2temrh },,,,,,,,,,,
+n3_inc_epd_temp_rh,{ mId: n3incepdtemprh },,,,,,,,,,,
+n3_inc_t_epd_co2_temp_rh,{ mId: n3inctepdco2terh },,,,,,,,,,,
+n3_inc_t_epd_temp_rh,{ mId: n3inctepdtemprh },,,,,,,,,,,
+n3_occ_lum_co2_temp_rh,{ mId: n3occlumco2temrh },,,,,,,,,,,
+n3_occ_lum_temp_rh,{ mId: n3occlumtemprh },,,,,,,,,,,
+n3_occ_temp_rh,{ mId: n3-occ-temp-rh },,,,,,,,,,,
+novos3_co2_temp_rh,"{ mId: novos3co2temprh }, { mId: novos-3 }",,,,,,,,,,,
+novos3_p_temp_rh,"{ mId: novos3-p-temp-rh }, { mId: novos-3 }",,,,,,,,,,,
+novos3_pt_co2_temp_rh,"{ mId: novos3ptco2temrh }, { mId: novos-3 }",,,,,,,,,,,
+novos3_t_co2_temp_rh,"{ mId: novos3tco2temprh }, { mId: novos-3 }",,,,,,,,,,,
+novos3_temp_rh,"{ mId: novos3-temp-rh }, { mId: novos-3 }",,,,,,,,,,,
+vfg54,{ mId: vfg54-p },,,,,,,,,,,
+wk02_ext,{ mId: wk02-ext },,,,,,,,,,,
+wsa,{ mId: wsa },,,,,,,,,,,
+af25_bat,{ mId: af25-bat },,,,,,,,,,,
+af25_dual_bat,{ mId: af25-dual-bat },,,,,,,,,,,
+tf25_bat,{ mId: tf25-bat },,,,,,,,,,,
+tf25_dual_bat,{ mId: tf25-dual-bat },,,,,,,,,,,
+of14_bat,{ mId: of14-bat },,,,,,,,,,,
+of14_dual_bat,{ mId: of14-dual-bat },,,,,,,,,,,
 others,,,,,,,,,,,,
 ##objects,,,,,,,,,,,,
 id,name,value,type,access_mode,value_type,precision,units,min_value,max_value,cov_increment,models,description
-PARSER,Parser,0,number,R,UINT8,,,,,,others,
-DUMMY,Dummy,0,number,R,UINT8,,,,,,others,
-DEV_KEY,Device key,0,number,R,UINT8,0,,,,,all,"Device key: 16385='MCS LRW', 16386='NOVOS 3 LRW', 16387='USE BAT LRW'"
-OCCU0ENABLE,Occupancy 0 enabled,0,binary,R,UINT8,,,,,,others,
-OCCU0_STATE,Occupancy 0 state,0,binary,R,UINT8,,,,,,all,"Occupancy state: 1='occupied', 0='unoccupied'"
-OCCU0_CNT,Occupancy 0 counter,0,number,R,UINT8,0,,,,1,all,Amount of detected movements since last transmission
-OCCU1_STATE,Occupancy 1 state,0,binary,R,UINT8,,,,,,others,"Occupancy state: 1='occupied', 0='unoccupied'"
-OCCU1_CNT,Occupancy 1 counter,0,number,R,UINT8,0,,,,1,others,Amount of detected movements since last transmission
-BUTTON_PRESSED,Button pressed,0,binary,R,UINT8,,,,,,others,"Actual state of button: 0='unpressed', 1='pressed'"
-BUTTON_CNT,Button counter,0,number,R,UINT8,,,,,1,others,Amount of detected switching operation since last transmission
-BUTTON_LAST_TYPE,Button last action type,,string,R,STRING,,,,,,others,"Button last action type: 'Long Press', 'Short Press'"
-BUTTON_2_PRESSED,Button 2 pressed,0,binary,R,UINT8,,,,,,novos,"Actual state of button 2: 0='unpressed', 1='pressed'"
-BUTTON_2_CNT,Button 2 counter,0,number,R,UINT8,,,,,1,novos,Amount of detected switching operation since last transmission
-BUTTON_2_LAST_TYPE,Button 2 last action type,,string,R,STRING,,,,,,novos,"Button 2 last action type: 'Long Press', 'Short Press'"
-SETPOINT,Setpoint,0,number,R,UINT8,0,%,,,1,all,"Setpoint 1 (0%='potentiometer left stop', 100%='potentiometer right stop')"
-SETPOINT_2,Setpoint 2,0,number,R,FLOAT,2,%,,,0.1,novos,"Setpoint 2 (0%='potentiometer left stop', 100%='potentiometer right stop')"
-TEMP,Temperature,0,number,R,FLOAT,2,Cel,,,0.1,all,Temperature in °C
-TEMP_2,Temperature 2,0,number,R,FLOAT,2,Cel,,,0.1,others,Temperature 2 in °C
-TEMP_3,Temperature 3,0,number,R,FLOAT,2,Cel,,,0.1,others,Temperature 3 in °C
-RHUM,Relative humidity,0,number,R,FLOAT,2,%RH,,,0.1,all,Relative humidity in % rH
-CO2,CO2,0,number,R,FLOAT,2,ppm,,,0.1,all,CO2 in ppm
-VOC,Volatile Organic Compounds,0,number,R,FLOAT,2,%,,,0.1,all,VOC in %
-ATM_P,Absolute pressure,0,number,R,FLOAT,2,,,,0.1,all,Absolute pressure in mBar/hPa
-DP,Differential pressure,0,number,R,FLOAT,2,Pa,,,0.1,all,Differential pressure in Pa
-FLOW,Volume flow,0,number,R,FLOAT,2,m3/h,,,0.1,all,Volume flow in m3/h
-VBAT,Energy level,0,number,R,FLOAT,2,mV,,,0.1,all,Energy level in mV
-VBAT_HI_RES,Energy level high resolution,0,number,R,FLOAT,,,,,,others,
-VISIBLE_LIGHT,Brightness,0,number,R,FLOAT,2,lx,,,0.1,all,Brightness in lux
-REED0_STATE,Reed 0 contact state,0,binary,R,UINT8,,,,,,all,"Actual state of reed contact: 0='off', 1='on'"
-REED0_CNT,Reed 0 state counter,0,number,R,UINT8,,,,,1,all,Amount of detected switching operation since last transmission
-REED1_STATE,Reed 1 contact state,0,binary,R,UINT8,,,,,,all,"Actual state of reed contact: 0='off', 1='on'"
-REED1_CNT,Reed 1 state counter,0,number,R,UINT8,,,,,1,all,Ammount of commutation since last transmission
-CONDENSATION_STATE,Leckage/Condensation actual value,0,binary,R,UINT8,,,,,,all,Leckage/Condensation actual relay state
-CONDENSATION_RAW,Leckage/Condensation raw value,0,number,R,UINT16,0,,,,1,all,Leckage/Condensation raw value
-CMD,Control commands,0,number,R,UINT8,,,1,3,1,all,"Control command: 1='Reset Configuration (Default values)', 2='Save configuration', 3='Reboot'"
-HEARTBEAT,Heartbeat interval,0,number,R,UINT8,,,,,,others,
-MEAS_INTERVAL,Measurement interval,0,number,R,UINT8,,,,,1,all,Measurement interval in seconds (or minutes depending on the sensor)
-CNT_MEAS,Count measurements,0,number,R,UINT8,,,,,1,all,Amount of measurements taken before a LoRa transmission
-FORCED_UPLINK,Forced uplink,0,binary,R,UINT8,,,,,,all,Forced immediate uplink (boolean encoded in 0 or 1)
-TLF_MODE,LoRa spreading factor,12,number,R,UINT8,,,,,1,all,LoRa spreading factor (ex. 0 to 12)
-TLF_ONTIME,TLF ontime,0,number,R,UINT16,,s,,,,others,TLF on duration in seconds
-TLF_INTERVAL_0,TLF interval 0,0,number,R,UINT16,,s,,,,others,TLF interval 0 in seconds
-TLF_INTERVAL_1,TLF interval 1,0,number,R,UINT16,,s,,,,others,TLF interval 1 in seconds
-TLF_INTERVAL_2,TLF interval 2,0,number,R,UINT16,,s,,,,others,TLF interval 2 in seconds
-TLF_INTERVAL_3,TLF interval 3,0,number,R,UINT16,,s,,,,others,TLF interval 3 in seconds
-TLF_INTERVAL_4,TLF interval 4,0,number,R,UINT16,,s,,,,others,TLF interval 4 in seconds
-TLF_INTERVAL_5,TLF interval 5,0,number,R,UINT16,,s,,,,others,TLF interval 5 in seconds
-LED_MODE,LED mode,0,binary,R,UINT8,,,,,,all,"LED mode: 0='off', 1='on action'"
-LED_ONTIME,LED on duration,0,number,R,UINT16,,s,,,,others,LED on duration in seconds
-LED_INTERVAL_0,LED 0 blink intervals,0,number,R,UINT16,,s,,,,others,LED 0 blink intervals in seconds
-LED_INTERVAL_1,LED 1 blink intervals,0,number,R,UINT16,,s,,,,others,LED 1 blink intervals in seconds
-LED_INTERVAL_2,LED 2 blink intervals,0,number,R,UINT16,,s,,,,others,LED 2 blink intervals in seconds
-LED_INTERVAL_3,LED 3 blink intervals,0,number,R,UINT16,,s,,,,others,LED 3 blink intervals in seconds
-LEARN,LEARN,0,number,R,UINT16,,,,,,others,LEARN
-BAT_TYPE,Battery type,0,number,R,UINT16,,,,,,others,Battery type
-BIN_LATENCY,Binary lantency,0,number,R,UINT16,,,,,,others,Binary lantency
-MOISTURE_2,Moisture 2,0,number,R,UINT16,,,,,,others,Moisture 2
-EPD_VALUE_EXT_OVERLOAD_0,EPD value ext overload 0,0,number,R,FLOAT,,,,,,others,EPD value ext overload 0
-EPD_VALUE_EXT_OVERLOAD_1,EPD value ext overload 1,0,number,R,FLOAT,,,,,,others,EPD value ext overload 1
-EPD_VALUE_EXT_OVERLOAD_2,EPD value ext overload 2,0,number,R,FLOAT,,,,,,others,EPD value ext overload 2
-EPD_VALUE_EXT_OVERLOAD_3,EPD value ext overload 3,0,number,R,FLOAT,,,,,,others,EPD value ext overload 3
-CMD,Control commands,0,number,RW,UINT8,,,1,3,,all,"Control command: 1='Reset Configuration (Default values)', 2='Save configuration', 3='Reboot'"
-HEARTBEAT_INTERVAL,Heartbeat interval,0,number,RW,UINT16,,minute,,,,all,Heartbeat interval in minutes (default 1440)
-HYSTERESIS_BEHAVIOR,Hysteresis transmission behaviour,0,number,RW,UINT8,,,0,3,,all,"Hysteresis mode: 0='no hysteresis',1='big hysteresis',2='medium hystersis',3='small hystersis'"
-MEAS_INTERVAL,Measurement/Uplink interval,0,number,RW,UINT16,,,,,,all,Measurement/Uplink interval in seconds (or minutes depending on the sensor)
-CNT_MEAS,Number of samples before a LoRa uplink,0,number,RW,UINT16,,,,,,others,Number of samples before a LoRa uplink
-LATENCY_TIME_DIGITAL_INPUTS,Latency time digital inputs,0,number,RW,UINT16,,s,,,,all,Latency time digital inputs in seconds
-DISABLE_OCCUPANCY_SENSOR,Disabeling time occupancy sensor,0,number,RW,UINT16,,s,,,,all,Disabeling time occupancy sensor in seconds
-FOLLOW_UP_TIME_OCCUPANCY_SENSOR,Follow-up time occupancy sensor,0,number,RW,UINT16,,s,,,,all,Follow-up time occupancy sensor in seconds
-TLF_MODE,LoRa spreading factor,12,number,RW,UINT8,,,,,1,all,LoRa spreading factor (ex. 0 to 12)
-TLF_ONTIME,TLF ontime,0,number,RW,UINT16,,,,,,others,TLF ontime
-TLF_INTERVAL_0,TLF interval 0,0,number,RW,UINT16,,,,,,others,TLF interval 0
-TLF_INTERVAL_1,TLF interval 1,0,number,RW,UINT16,,,,,,others,TLF interval 1
-TLF_INTERVAL_2,TLF interval 2,0,number,RW,UINT16,,,,,,others,TLF interval 2
-TLF_INTERVAL_3,TLF interval 3,0,number,RW,UINT16,,,,,,others,TLF interval 3
-TLF_INTERVAL_4,TLF interval 4,0,number,RW,UINT16,,,,,,others,TLF interval 4
-TLF_INTERVAL_5,TLF interval 5,0,number,RW,UINT16,,,,,,others,TLF interval 5
-LED_MODE,LED mode,0,binary,RW,UINT8,,,,,,all,"LED mode: 0='off', 1='on action'"
-LED_ONTIME,LED on duration,0,number,RW,UINT16,,s,,,,others,LED on duration in seconds
-LED_INTERVAL_0,LED 0 blink intervals,0,number,RW,UINT16,,s,,,,others,LED 0 blink intervals in seconds
-LED_INTERVAL_1,LED 1 blink intervals,0,number,RW,UINT16,,s,,,,others,LED 1 blink intervals in seconds
-LED_INTERVAL_2,LED 2 blink intervals,0,number,RW,UINT16,,s,,,,others,LED 2 blink intervals in seconds
-LED_INTERVAL_3,LED 3 blink intervals,0,number,RW,UINT16,,s,,,,others,LED 3 blink intervals in seconds
-FORCED_UPLINK,Forced uplink,0,binary,RW,UINT8,,,,,,all,Forced immediate uplink (boolean encoded in 0 or 1)
-SCREEN_TEMP_DISPLAY,Temperature display,0,number,RW,FLOAT,2,Cel,,,0.1,all,Displaying a temperature on the screen in °C
+TEMP,Temperature (deprecated),0,number,R,FLOAT,,Cel,,,0.1,"ags55,akf10,fta54,fta54_bat,ftk,ftk_bat,la_co2_temp,la_co2_temp_rh_bat,la_co2_temp_rh,la_co2_voc_temp,la_co2_voc_temp_rh,la_voc_temp,la_voc_temp_rh,li65_temp_rh_bat,li65_temp_rh,li65_temp_rh_hpa,lk_co2_temp,lk_co2_temp_rh_bat,lk_co2_temp_rh,lk_co2_voc_temp,lk_co2_voc_temp_rh,lk_voc_temp,lk_voc_temp_rh,mcs_occ_lum_state_temp_rh,mcs_lum_temp_rh,mcs_occ_lum_temp_rh,mcs_state_temp_rh,mcs_temp_rh,mwf,n3_epd_co2_temp_rh,n3_epd_temp_rh,n3_inc_epd_co2_temp_rh,n3_inc_t_epd_co2_temp_rh,n3_inc_t_epd_temp_rh,n3_occ_lum_co2_temp_rh,n3_occ_lum_temp_rh,n3_occ_temp_rh,novos3_co2_temp_rh,novos3_p_temp_rh,novos3_pt_co2_temp_rh,novos3_t_co2_temp_rh,novos3_temp_rh,vfg54,wk02_ext,wsa",Temperature in Celcuis
+temperature:0,Temperature,0,number,R,FLOAT,,Cel,,,0.1,"ags55,akf10,fta54,fta54_bat,ftk,ftk_bat,la_co2_temp,la_co2_temp_rh_bat,la_co2_temp_rh,la_co2_voc_temp,la_co2_voc_temp_rh,la_voc_temp,la_voc_temp_rh,li65_temp_rh_bat,li65_temp_rh,li65_temp_rh_hpa,lk_co2_temp,lk_co2_temp_rh_bat,lk_co2_temp_rh,lk_co2_voc_temp,lk_co2_voc_temp_rh,lk_voc_temp,lk_voc_temp_rh,mcs_occ_lum_state_temp_rh,mcs_lum_temp_rh,mcs_occ_lum_temp_rh,mcs_state_temp_rh,mcs_temp_rh,mwf,n3_epd_co2_temp_rh,n3_epd_temp_rh,n3_inc_epd_co2_temp_rh,n3_inc_t_epd_co2_temp_rh,n3_inc_t_epd_temp_rh,n3_occ_lum_co2_temp_rh,n3_occ_lum_temp_rh,n3_occ_temp_rh,novos3_co2_temp_rh,novos3_p_temp_rh,novos3_pt_co2_temp_rh,novos3_t_co2_temp_rh,novos3_temp_rh,vfg54,wk02_ext,wsa",Temperature in Celcuis
+temperature:1,Temperature 2,0,number,R,FLOAT,,Cel,,,0.1,"af25_bat,af25_dual_bat,tf25_bat,tf25_dual_bat,of14_bat,of14_dual_bat",Temperature 2 in Celcuis
+temperature:2,Temperature 3,0,number,R,FLOAT,,Cel,,,0.1,of14_dual_bat,Temperature 3 in Celcuis
+RHUM,Relative humidity (deprecated),0,number,R,UINT8,,%RH,,,0.1,"fta54,fta54_bat,ftk,ftk_bat,la_co2_temp_rh_bat,la_co2_temp_rh,la_co2_voc_temp_rh,la_voc_temp_rh,li65_temp_rh_bat,li65_temp_rh,li65_temp_rh_hpa,lk_co2_temp_rh_bat,lk_co2_temp_rh,lk_co2_voc_temp_rh,lk_voc_temp_rh,mcs_occ_lum_state_temp_rh,mcs_lum_temp_rh,mcs_occ_lum_temp_rh,mcs_state_temp_rh,mcs_temp_rh,n3_epd_co2_temp_rh,n3_epd_temp_rh,n3_inc_epd_co2_temp_rh,n3_inc_t_epd_co2_temp_rh,n3_inc_t_epd_temp_rh,n3_occ_lum_co2_temp_rh,n3_occ_lum_temp_rh,n3_occ_temp_rh,novos3_co2_temp_rh,novos3_p_temp_rh,novos3_pt_co2_temp_rh,novos3_t_co2_temp_rh,novos3_temp_rh,wsa",Relative humidity in % rH
+humidity,Relative humidity,0,number,R,UINT8,,%RH,,,0.1,"fta54,fta54_bat,ftk,ftk_bat,la_co2_temp_rh_bat,la_co2_temp_rh,la_co2_voc_temp_rh,la_voc_temp_rh,li65_temp_rh_bat,li65_temp_rh,li65_temp_rh_hpa,lk_co2_temp_rh_bat,lk_co2_temp_rh,lk_co2_voc_temp_rh,lk_voc_temp_rh,mcs_occ_lum_state_temp_rh,mcs_lum_temp_rh,mcs_occ_lum_temp_rh,mcs_state_temp_rh,mcs_temp_rh,n3_epd_co2_temp_rh,n3_epd_temp_rh,n3_inc_epd_co2_temp_rh,n3_inc_t_epd_co2_temp_rh,n3_inc_t_epd_temp_rh,n3_occ_lum_co2_temp_rh,n3_occ_lum_temp_rh,n3_occ_temp_rh,novos3_co2_temp_rh,novos3_p_temp_rh,novos3_pt_co2_temp_rh,novos3_t_co2_temp_rh,novos3_temp_rh,wsa",Relative humidity in % rH
+CO2,CO2,0,number,R,UINT16,,ppm,,,0.1,"la_co2_temp,la_co2_temp_rh_bat,la_co2_temp_rh,la_co2_voc,la_co2_voc_temp,la_co2_voc_temp_rh,la_voc_temp_rh,lk_co2_temp,lk_co2_temp_rh_bat,lk_co2_temp_rh,lk_co2_voc,lk_co2_voc_temp,lk_co2_voc_temp_rh,n3_epd_co2_temp_rh,n3_inc_t_epd_co2_temp_rh,n3_occ_lum_co2_temp_rh,novos3_co2_temp_rh,novos3_pt_co2_temp_rh,novos3_t_co2_temp_rh",CO2 concentration in ppm
+VOC,VOC level,0,number,R,UINT16,,%,,,0.1,"la_co2_voc,la_co2_voc_temp,la_co2_voc_temp_rh,la_voc_temp,la_voc_temp_rh,lk_co2_voc,lk_co2_voc_temp,lk_co2_voc_temp_rh,lk_voc_temp,lk_voc_temp_rh",VOC concentration in %
+ATM_P,Absolute pressure,0,number,R,UINT16,,hPa,,,0.1,li65_temp_rh_hpa,Absolute pressure in mBar/hPa
+DP,Differential pressure,0,number,R,INT16,,Pa,,,0.1,"dpa250,dpa2500,dpa2500_dual,dpa7000",Differential pressure in Pa
+FLOW,Flow rate,0,number,R,UINT16,,m3/h,,,0.1,others,Flow rate in m³/h
+VISIBLE_LIGHT,Brightness,0,number,R,UINT16,,Lx,,,0.1,"li65,li65_temp_rh_bat,li65_temp_rh_hpa,mcs_occ_lum_state_temp_rh,mcs_lum_temp_rh,mcs_occ_lum_temp_rh,n3_occ_lum_co2_temp_rh,n3_occ_lum_temp_rh",Brightness in lux
+OCCU0_STATE,Occupancy 0 state,0,boolean,R,BOOL,,,,,0.1,"mcs_occ_lum_state_temp_rh,mcs_occ_lum_temp_rh,n3_occ_lum_co2_temp_rh,n3_occ_lum_temp_rh,n3_occ_temp_rh","Occupancy 0 state: 1='occupied', 0='unoccupied'"
+OCCU0_CNT,Occupancy 0 counter,0,number,R,UINT8,,,,,0.1,"mcs_occ_lum_state_temp_rh,mcs_occ_lum_temp_rh,n3_occ_lum_co2_temp_rh,n3_occ_lum_temp_rh,n3_occ_temp_rh",Amount of detected movements since last transmission (Occupancy 0)
+OCCU1_STATE,Occupancy 1 state,0,boolean,R,BOOL,,,,,0.1,others,"Occupancy 1 state: 1='occupied', 0='unoccupied'"
+OCCU1_CNT,Occupancy 1 counter,0,number,R,UINT8,,,,,0.1,others,Amount of detected movements since last transmission (Occupancy 1)
+REED0_STATE,Reed 0 contact state,0,boolean,R,BOOL,,,,,0.1,"mcs_occ_lum_state_temp_rh,mcs_state_temp_rh,mcs_state","Reed 0 contact state: 0='off', 1='on'"
+REED0_CNT,Reed 0 state counter,0,number,R,UINT8,,,,,0.1,"mcs_occ_lum_state_temp_rh,mcs_state_temp_rh,mcs_state",Amount of detected switching operations since last transmission (Reed 0)
+REED1_STATE,Reed 1 contact state,0,boolean,R,BOOL,,,,,0.1,"mcs_occ_lum_state_temp_rh,mcs_state_temp_rh,mcs_state","Reed 1 contact state: 0='off', 1='on'"
+REED1_CNT,Reed 1 state counter,0,number,R,UINT8,,,,,0.1,"mcs_occ_lum_state_temp_rh,mcs_state_temp_rh,mcs_state",Amount of detected switching operations since last transmission (Reed 1)
+CONDENSATION_STATE,Condensation,0,boolean,R,BOOL,,,,,0.1,"ls02_ext,ls02_flex","Condensation relay state: 0='dry', 1='wet'"
+CONDENSATION_RAW,Condensation raw value,0,number,R,INT16,,,,,0.1,others,Condensation raw sensor value (0–4095)
+VBAT,Battery voltage (deprecated),0,number,R,UINT16,,mV,,,0.1,"fta54_bat,ftk_bat,la_co2_temp_rh_bat,li65_temp_rh_bat,lk_co2_temp_rh_bat,mcs_occ_lum_state_temp_rh,mcs_lum_temp_rh,mcs_occ_lum_temp_rh,mcs_state_temp_rh,mcs_state,mcs_temp_rh,n3_epd_co2_temp_rh,n3_epd_temp_rh,n3_inc_epd_co2_temp_rh,n3_inc_t_epd_co2_temp_rh,n3_inc_t_epd_temp_rh,n3_occ_lum_co2_temp_rh,n3_occ_lum_temp_rh,n3_occ_temp_rh,novos3_co2_temp_rh,novos3_p_temp_rh,novos3_pt_co2_temp_rh,novos3_t_co2_temp_rh,novos3_temp_rh,af25_bat,af25_dual_bat,tf25_bat,tf25_dual_bat,of14_bat,of14_dual_bat",Battery voltage in mV
+batteryVoltage,Battery voltage,0,number,R,UINT16,,mV,,,0.1,"fta54_bat,ftk_bat,la_co2_temp_rh_bat,li65_temp_rh_bat,lk_co2_temp_rh_bat,mcs_occ_lum_state_temp_rh,mcs_lum_temp_rh,mcs_occ_lum_temp_rh,mcs_state_temp_rh,mcs_state,mcs_temp_rh,n3_epd_co2_temp_rh,n3_epd_temp_rh,n3_inc_epd_co2_temp_rh,n3_inc_t_epd_co2_temp_rh,n3_inc_t_epd_temp_rh,n3_occ_lum_co2_temp_rh,n3_occ_lum_temp_rh,n3_occ_temp_rh,novos3_co2_temp_rh,novos3_p_temp_rh,novos3_pt_co2_temp_rh,novos3_t_co2_temp_rh,novos3_temp_rh,af25_bat,af25_dual_bat,tf25_bat,tf25_dual_bat,of14_bat,of14_dual_bat",Battery voltage in mV
+VBAT_HI_RES,Battery level high resolution,0,number,R,UINT16,,,,,0.1,"fta54_bat,ftk_bat,la_co2_temp_rh_bat,li65_temp_rh_bat,lk_co2_temp_rh_bat,mcs_occ_lum_state_temp_rh,mcs_lum_temp_rh,mcs_occ_lum_temp_rh,mcs_state_temp_rh,mcs_state,mcs_temp_rh,n3_epd_co2_temp_rh,n3_epd_temp_rh,n3_inc_epd_co2_temp_rh,n3_inc_t_epd_co2_temp_rh,n3_inc_t_epd_temp_rh,n3_occ_lum_co2_temp_rh,n3_occ_lum_temp_rh,n3_occ_temp_rh,novos3_co2_temp_rh,novos3_p_temp_rh,novos3_pt_co2_temp_rh,novos3_t_co2_temp_rh,novos3_temp_rh,af25_bat,af25_dual_bat,tf25_bat,tf25_dual_bat,of14_bat,of14_dual_bat",Battery level high resolution in mV
+SETPOINT,Setpoint,0,number,RW,UINT8,,%,,,0.1,"novos3_p_temp_rh,novos3_pt_co2_temp_rh",Setpoint value (0–100%) for potentiometer or rotary knob
+SETPOINT_2,Setpoint 2,0,number,RW,FLOAT,,%,,,0.1,"n3_inc_epd_co2_temp_rh,n3_inc_t_epd_co2_temp_rh",Setpoint 2 value (for extended control)
+CMD,Control commands,0,number,RW,UINT16,,,,,0.1,others,"Control command: 1='Reset Configuration (Default values)', 2='Save configuration', 3='Reboot'"
+LEARN,Learn mode,12,number,RW,UINT8,,,,,0.1,others,"Learn mode activation (0=disabled, 1=enabled)"
+HEARTBEAT_INTERVAL,Heartbeat interval,0,number,RW,UINT16,,minute,,,0.1,"ags55,akf10,dpa250,dpa2500,dpa2500_dual,dpa7000,fta54,fta54_bat,ftk,ftk_bat,la_co2_temp,la_co2_temp_rh_bat,la_co2_temp_rh,la_co2_voc,la_co2_voc_temp,la_co2_voc_temp_rh,la_voc_temp,la_voc_temp_rh,li65,li65_temp_rh_bat,li65_temp_rh,li65_temp_rh_hpa,lk_co2_temp,lk_co2_temp_rh_bat,lk_co2_temp_rh,lk_co2_voc,lk_co2_voc_temp,lk_co2_voc_temp_rh,lk_voc_temp_rh,ls02_ext,mcs_occ_lum_state_temp_rh,mcs_lum_temp_rh,mcs_occ_lum_temp_rh,mcs_state_temp_rh,mcs_state,mcs_temp_rh,mwf,n3_epd_co2_temp_rh,n3_epd_temp_rh,n3_inc_epd_co2_temp_rh,n3_inc_t_epd_co2_temp_rh,n3_inc_t_epd_temp_rh,n3_occ_lum_co2_temp_rh,n3_occ_lum_temp_rh,n3_occ_temp_rh,novos3_co2_temp_rh,novos3_p_temp_rh,novos3_pt_co2_temp_rh,novos3_t_co2_temp_rh,novos3_temp_rh,vfg54,wk02_ext,wsa,af25_bat,af25_dual_bat,tf25_bat,tf25_dual_bat,of14_bat,of14_dual_bat",Heartbeat interval in minutes
+MEAS_INTERVAL,Measurement interval,0,number,RW,UINT16,,,,,0.1,"ags55,akf10,dpa250,dpa2500,dpa2500_dual,dpa7000,fta54,fta54_bat,ftk,ftk_bat,la_co2_temp,la_co2_temp_rh_bat,la_co2_temp_rh,la_co2_voc,la_co2_voc_temp,la_co2_voc_temp_rh,la_voc_temp,la_voc_temp_rh,li65,li65_temp_rh_bat,li65_temp_rh,li65_temp_rh_hpa,lk_co2_temp,lk_co2_temp_rh_bat,lk_co2_temp_rh,lk_co2_voc,lk_co2_voc_temp,lk_co2_voc_temp_rh,lk_voc_temp_rh,ls02_ext,mcs_occ_lum_state_temp_rh,mcs_lum_temp_rh,mcs_occ_lum_temp_rh,mcs_state_temp_rh,mcs_state,mcs_temp_rh,mwf,n3_epd_co2_temp_rh,n3_epd_temp_rh,n3_inc_epd_co2_temp_rh,n3_inc_t_epd_co2_temp_rh,n3_inc_t_epd_temp_rh,n3_occ_lum_co2_temp_rh,n3_occ_lum_temp_rh,n3_occ_temp_rh,novos3_co2_temp_rh,novos3_p_temp_rh,novos3_pt_co2_temp_rh,novos3_t_co2_temp_rh,novos3_temp_rh,vfg54,wk02_ext,wsa,af25_bat,af25_dual_bat,tf25_bat,tf25_dual_bat,of14_bat,of14_dual_bat",Measurement interval in seconds or minutes depending on the device type
+CNT_MEAS,Count measurements,0,number,RW,UINT16,,,,,0.1,"mcs_occ_lum_state_temp_rh,mcs_occ_lum_temp_rh,n3_occ_lum_co2_temp_rh,n3_occ_lum_temp_rh,n3_occ_temp_rh",Amount of measurements taken before a LoRa uplink transmission
+BIN_LATENCY,Binary input latency,0,number,RW,UINT16,,,,,0.1,"mcs_occ_lum_state_temp_rh,mcs_state_temp_rh,mcs_state",Latency time of binary input in seconds
+TLF_MODE,LoRa spreading factor,0,number,RW,UINT8,,,,,0.1,"ags55,akf10,dpa250,dpa2500,dpa2500_dual,dpa7000,fta54,fta54_bat,ftk,ftk_bat,la_co2_temp,la_co2_temp_rh_bat,la_co2_temp_rh,la_co2_voc,la_co2_voc_temp,la_co2_voc_temp_rh,la_voc_temp,la_voc_temp_rh,li65,li65_temp_rh_bat,li65_temp_rh,li65_temp_rh_hpa,lk_co2_temp,lk_co2_temp_rh_bat,lk_co2_temp_rh,lk_co2_voc,lk_co2_voc_temp,lk_co2_voc_temp_rh,lk_voc_temp_rh,ls02_ext,mcs_occ_lum_state_temp_rh,mcs_lum_temp_rh,mcs_occ_lum_temp_rh,mcs_state_temp_rh,mcs_state,mcs_temp_rh,mwf,n3_epd_co2_temp_rh,n3_epd_temp_rh,n3_inc_epd_co2_temp_rh,n3_inc_t_epd_co2_temp_rh,n3_inc_t_epd_temp_rh,n3_occ_lum_co2_temp_rh,n3_occ_lum_temp_rh,n3_occ_temp_rh,novos3_co2_temp_rh,novos3_p_temp_rh,novos3_pt_co2_temp_rh,novos3_t_co2_temp_rh,novos3_temp_rh,vfg54,wk02_ext,wsa,af25_bat,af25_dual_bat,tf25_bat,tf25_dual_bat,of14_bat,of14_dual_bat","LoRa spreading factor (e.g., 0 to 12)"
+TLF_ONTIME,LoRa on-time,0,number,RW,UINT16,,,,,0.1,"ags55,akf10,dpa250,dpa2500,dpa2500_dual,dpa7000,fta54,fta54_bat,ftk,ftk_bat,la_co2_temp,la_co2_temp_rh_bat,la_co2_temp_rh,la_co2_voc,la_co2_voc_temp,la_co2_voc_temp_rh,la_voc_temp,la_voc_temp_rh,li65,li65_temp_rh_bat,li65_temp_rh,li65_temp_rh_hpa,lk_co2_temp,lk_co2_temp_rh_bat,lk_co2_temp_rh,lk_co2_voc,lk_co2_voc_temp,lk_co2_voc_temp_rh,lk_voc_temp_rh,ls02_ext,mcs_occ_lum_state_temp_rh,mcs_lum_temp_rh,mcs_occ_lum_temp_rh,mcs_state_temp_rh,mcs_state,mcs_temp_rh,mwf,n3_epd_co2_temp_rh,n3_epd_temp_rh,n3_inc_epd_co2_temp_rh,n3_inc_t_epd_co2_temp_rh,n3_inc_t_epd_temp_rh,n3_occ_lum_co2_temp_rh,n3_occ_lum_temp_rh,n3_occ_temp_rh,novos3_co2_temp_rh,novos3_p_temp_rh,novos3_pt_co2_temp_rh,novos3_t_co2_temp_rh,novos3_temp_rh,vfg54,wk02_ext,wsa,af25_bat,af25_dual_bat,tf25_bat,tf25_dual_bat,of14_bat,of14_dual_bat",LoRa transmission ON-time duration in seconds
+TLF_INTERVAL_0,LoRa interval 0,0,number,RW,UINT16,,s,,,0.1,"ags55,akf10,dpa250,dpa2500,dpa2500_dual,dpa7000,fta54,fta54_bat,ftk,ftk_bat,la_co2_temp,la_co2_temp_rh_bat,la_co2_temp_rh,la_co2_voc,la_co2_voc_temp,la_co2_voc_temp_rh,la_voc_temp,la_voc_temp_rh,li65,li65_temp_rh_bat,li65_temp_rh,li65_temp_rh_hpa,lk_co2_temp,lk_co2_temp_rh_bat,lk_co2_temp_rh,lk_co2_voc,lk_co2_voc_temp,lk_co2_voc_temp_rh,lk_voc_temp_rh,ls02_ext,mcs_occ_lum_state_temp_rh,mcs_lum_temp_rh,mcs_occ_lum_temp_rh,mcs_state_temp_rh,mcs_state,mcs_temp_rh,mwf,n3_epd_co2_temp_rh,n3_epd_temp_rh,n3_inc_epd_co2_temp_rh,n3_inc_t_epd_co2_temp_rh,n3_inc_t_epd_temp_rh,n3_occ_lum_co2_temp_rh,n3_occ_lum_temp_rh,n3_occ_temp_rh,novos3_co2_temp_rh,novos3_p_temp_rh,novos3_pt_co2_temp_rh,novos3_t_co2_temp_rh,novos3_temp_rh,vfg54,wk02_ext,wsa,af25_bat,af25_dual_bat,tf25_bat,tf25_dual_bat,of14_bat,of14_dual_bat",LoRa transmission interval 0 in seconds
+TLF_INTERVAL_1,LoRa interval 1,0,number,RW,UINT16,,s,,,0.1,"ags55,akf10,dpa250,dpa2500,dpa2500_dual,dpa7000,fta54,fta54_bat,ftk,ftk_bat,la_co2_temp,la_co2_temp_rh_bat,la_co2_temp_rh,la_co2_voc,la_co2_voc_temp,la_co2_voc_temp_rh,la_voc_temp,la_voc_temp_rh,li65,li65_temp_rh_bat,li65_temp_rh,li65_temp_rh_hpa,lk_co2_temp,lk_co2_temp_rh_bat,lk_co2_temp_rh,lk_co2_voc,lk_co2_voc_temp,lk_co2_voc_temp_rh,lk_voc_temp_rh,ls02_ext,mcs_occ_lum_state_temp_rh,mcs_lum_temp_rh,mcs_occ_lum_temp_rh,mcs_state_temp_rh,mcs_state,mcs_temp_rh,mwf,n3_epd_co2_temp_rh,n3_epd_temp_rh,n3_inc_epd_co2_temp_rh,n3_inc_t_epd_co2_temp_rh,n3_inc_t_epd_temp_rh,n3_occ_lum_co2_temp_rh,n3_occ_lum_temp_rh,n3_occ_temp_rh,novos3_co2_temp_rh,novos3_p_temp_rh,novos3_pt_co2_temp_rh,novos3_t_co2_temp_rh,novos3_temp_rh,vfg54,wk02_ext,wsa,af25_bat,af25_dual_bat,tf25_bat,tf25_dual_bat,of14_bat,of14_dual_bat",LoRa transmission interval 1 in seconds
+TLF_INTERVAL_2,LoRa interval 2,0,number,RW,UINT16,,s,,,0.1,"ags55,akf10,dpa250,dpa2500,dpa2500_dual,dpa7000,fta54,fta54_bat,ftk,ftk_bat,la_co2_temp,la_co2_temp_rh_bat,la_co2_temp_rh,la_co2_voc,la_co2_voc_temp,la_co2_voc_temp_rh,la_voc_temp,la_voc_temp_rh,li65,li65_temp_rh_bat,li65_temp_rh,li65_temp_rh_hpa,lk_co2_temp,lk_co2_temp_rh_bat,lk_co2_temp_rh,lk_co2_voc,lk_co2_voc_temp,lk_co2_voc_temp_rh,lk_voc_temp_rh,ls02_ext,mcs_occ_lum_state_temp_rh,mcs_lum_temp_rh,mcs_occ_lum_temp_rh,mcs_state_temp_rh,mcs_state,mcs_temp_rh,mwf,n3_epd_co2_temp_rh,n3_epd_temp_rh,n3_inc_epd_co2_temp_rh,n3_inc_t_epd_co2_temp_rh,n3_inc_t_epd_temp_rh,n3_occ_lum_co2_temp_rh,n3_occ_lum_temp_rh,n3_occ_temp_rh,novos3_co2_temp_rh,novos3_p_temp_rh,novos3_pt_co2_temp_rh,novos3_t_co2_temp_rh,novos3_temp_rh,vfg54,wk02_ext,wsa,af25_bat,af25_dual_bat,tf25_bat,tf25_dual_bat,of14_bat,of14_dual_bat",LoRa transmission interval 2 in seconds
+TLF_INTERVAL_3,LoRa interval 3,0,number,RW,UINT16,,s,,,0.1,"ags55,akf10,dpa250,dpa2500,dpa2500_dual,dpa7000,fta54,fta54_bat,ftk,ftk_bat,la_co2_temp,la_co2_temp_rh_bat,la_co2_temp_rh,la_co2_voc,la_co2_voc_temp,la_co2_voc_temp_rh,la_voc_temp,la_voc_temp_rh,li65,li65_temp_rh_bat,li65_temp_rh,li65_temp_rh_hpa,lk_co2_temp,lk_co2_temp_rh_bat,lk_co2_temp_rh,lk_co2_voc,lk_co2_voc_temp,lk_co2_voc_temp_rh,lk_voc_temp_rh,ls02_ext,mcs_occ_lum_state_temp_rh,mcs_lum_temp_rh,mcs_occ_lum_temp_rh,mcs_state_temp_rh,mcs_state,mcs_temp_rh,mwf,n3_epd_co2_temp_rh,n3_epd_temp_rh,n3_inc_epd_co2_temp_rh,n3_inc_t_epd_co2_temp_rh,n3_inc_t_epd_temp_rh,n3_occ_lum_co2_temp_rh,n3_occ_lum_temp_rh,n3_occ_temp_rh,novos3_co2_temp_rh,novos3_p_temp_rh,novos3_pt_co2_temp_rh,novos3_t_co2_temp_rh,novos3_temp_rh,vfg54,wk02_ext,wsa,af25_bat,af25_dual_bat,tf25_bat,tf25_dual_bat,of14_bat,of14_dual_bat",LoRa transmission interval 3 in seconds
+TLF_INTERVAL_4,LoRa interval 4,0,number,RW,UINT16,,s,,,0.1,"ags55,akf10,dpa250,dpa2500,dpa2500_dual,dpa7000,fta54,fta54_bat,ftk,ftk_bat,la_co2_temp,la_co2_temp_rh_bat,la_co2_temp_rh,la_co2_voc,la_co2_voc_temp,la_co2_voc_temp_rh,la_voc_temp,la_voc_temp_rh,li65,li65_temp_rh_bat,li65_temp_rh,li65_temp_rh_hpa,lk_co2_temp,lk_co2_temp_rh_bat,lk_co2_temp_rh,lk_co2_voc,lk_co2_voc_temp,lk_co2_voc_temp_rh,lk_voc_temp_rh,ls02_ext,mcs_occ_lum_state_temp_rh,mcs_lum_temp_rh,mcs_occ_lum_temp_rh,mcs_state_temp_rh,mcs_state,mcs_temp_rh,mwf,n3_epd_co2_temp_rh,n3_epd_temp_rh,n3_inc_epd_co2_temp_rh,n3_inc_t_epd_co2_temp_rh,n3_inc_t_epd_temp_rh,n3_occ_lum_co2_temp_rh,n3_occ_lum_temp_rh,n3_occ_temp_rh,novos3_co2_temp_rh,novos3_p_temp_rh,novos3_pt_co2_temp_rh,novos3_t_co2_temp_rh,novos3_temp_rh,vfg54,wk02_ext,wsa,af25_bat,af25_dual_bat,tf25_bat,tf25_dual_bat,of14_bat,of14_dual_bat",LoRa transmission interval 4 in seconds
+TLF_INTERVAL_5,LoRa interval 5,0,number,RW,UINT16,,s,,,0.1,"ags55,akf10,dpa250,dpa2500,dpa2500_dual,dpa7000,fta54,fta54_bat,ftk,ftk_bat,la_co2_temp,la_co2_temp_rh_bat,la_co2_temp_rh,la_co2_voc,la_co2_voc_temp,la_co2_voc_temp_rh,la_voc_temp,la_voc_temp_rh,li65,li65_temp_rh_bat,li65_temp_rh,li65_temp_rh_hpa,lk_co2_temp,lk_co2_temp_rh_bat,lk_co2_temp_rh,lk_co2_voc,lk_co2_voc_temp,lk_co2_voc_temp_rh,lk_voc_temp_rh,ls02_ext,mcs_occ_lum_state_temp_rh,mcs_lum_temp_rh,mcs_occ_lum_temp_rh,mcs_state_temp_rh,mcs_state,mcs_temp_rh,mwf,n3_epd_co2_temp_rh,n3_epd_temp_rh,n3_inc_epd_co2_temp_rh,n3_inc_t_epd_co2_temp_rh,n3_inc_t_epd_temp_rh,n3_occ_lum_co2_temp_rh,n3_occ_lum_temp_rh,n3_occ_temp_rh,novos3_co2_temp_rh,novos3_p_temp_rh,novos3_pt_co2_temp_rh,novos3_t_co2_temp_rh,novos3_temp_rh,vfg54,wk02_ext,wsa,af25_bat,af25_dual_bat,tf25_bat,tf25_dual_bat,of14_bat,of14_dual_bat",LoRa transmission interval 5 in seconds
+LED_MODE,LED mode,0,number,RW,UINT8,,,,,0.1,others,"LED mode: 0='off', 1='on action'"
+LED_ONTIME,LED on-time,0,number,RW,UINT16,,,,,0.1,others,LED on-time duration in seconds
+LED_INTERVAL_0,LED interval 0,0,number,RW,UINT16,,,,,0.1,others,LED interval 0 in seconds
+LED_INTERVAL_1,LED interval 1,0,number,RW,UINT16,,,,,0.1,others,LED interval 1 in seconds
+LED_INTERVAL_2,LED interval 2,0,number,RW,UINT16,,,,,0.1,others,LED interval 2 in seconds
+LED_INTERVAL_3,LED interval 3,0,number,RW,UINT16,,,,,0.1,others,LED interval 3 in seconds
+FORCED_UPLINK,Forced uplink,0,number,RW,UINT16,,,,,0.1,"ags55,akf10,dpa250,dpa2500,dpa2500_dual,dpa7000,fta54,fta54_bat,ftk,ftk_bat,la_co2_temp,la_co2_temp_rh_bat,la_co2_temp_rh,la_co2_voc,la_co2_voc_temp,la_co2_voc_temp_rh,la_voc_temp,la_voc_temp_rh,li65,li65_temp_rh_bat,li65_temp_rh,li65_temp_rh_hpa,lk_co2_temp,lk_co2_temp_rh_bat,lk_co2_temp_rh,lk_co2_voc,lk_co2_voc_temp,lk_co2_voc_temp_rh,lk_voc_temp_rh,ls02_ext,mcs_occ_lum_state_temp_rh,mcs_lum_temp_rh,mcs_occ_lum_temp_rh,mcs_state_temp_rh,mcs_state,mcs_temp_rh,mwf,n3_epd_co2_temp_rh,n3_epd_temp_rh,n3_inc_epd_co2_temp_rh,n3_inc_t_epd_co2_temp_rh,n3_inc_t_epd_temp_rh,n3_occ_lum_co2_temp_rh,n3_occ_lum_temp_rh,n3_occ_temp_rh,novos3_co2_temp_rh,novos3_p_temp_rh,novos3_pt_co2_temp_rh,novos3_t_co2_temp_rh,novos3_temp_rh,vfg54,wk02_ext,wsa,af25_bat,af25_dual_bat,tf25_bat,tf25_dual_bat,of14_bat,of14_dual_bat","Force immediate uplink: 0='disabled', 1='enabled'"
+OCCU0ENABLE,Occupancy 0 enable,0,number,RW,UINT8,,,,,0.1,"mcs_occ_lum_state_temp_rh,mcs_occ_lum_temp_rh,n3_occ_lum_co2_temp_rh,n3_occ_lum_temp_rh,n3_occ_temp_rh","Occupancy 0 enable: 0='disabled', 1='enabled'"
+BUTTON,Button,0,number,R,UINT8,,,,,0.1,"n3_inc_t_epd_co2_temp_rh,n3_inc_t_epd_temp_rh,n3_inc_t_epd_co2_temp_rh,novos3_pt_co2_temp_rh,novos3_t_co2_temp_rh","Button 1 pressed state: 0='unpressed', 1='pressed'"
+BUTTON_PRESSED,Button pressed,0,boolean,R,BOOL,,,,,0.1,"n3_inc_t_epd_co2_temp_rh,n3_inc_t_epd_temp_rh,n3_inc_t_epd_co2_temp_rh,novos3_pt_co2_temp_rh,novos3_t_co2_temp_rh",Button 1 total press counter
+BUTTON_CNT,Button counter,0,number,R,UINT8,,,,,0.1,"n3_inc_t_epd_co2_temp_rh,n3_inc_t_epd_temp_rh,n3_inc_t_epd_co2_temp_rh,novos3_pt_co2_temp_rh,novos3_t_co2_temp_rh",Button 1 last press type: 'Short Press' or 'Long Press'
+BUTTON_LAST_TYPE,Button last action type,0,string,R,STRING,,,,,0.1,"n3_inc_t_epd_co2_temp_rh,n3_inc_t_epd_temp_rh,n3_inc_t_epd_co2_temp_rh,novos3_pt_co2_temp_rh,novos3_t_co2_temp_rh",Button 1 last press type: 'Short Press' or 'Long Press'
+BUTTON_2,Button 2,0,number,R,UINT8,,,,,0.1,"n3_inc_t_epd_co2_temp_rh,n3_inc_t_epd_temp_rh,n3_inc_t_epd_co2_temp_rh","Button 2 pressed state: 0='unpressed', 1='pressed'"
+BUTTON_2_PRESSED,Button 2 pressed,0,boolean,R,BOOL,,,,,0.1,"n3_inc_t_epd_co2_temp_rh,n3_inc_t_epd_temp_rh,n3_inc_t_epd_co2_temp_rh",Button 2 total press counter
+BUTTON_2_CNT,Button 2 counter,0,number,R,UINT8,,,,,0.1,"n3_inc_t_epd_co2_temp_rh,n3_inc_t_epd_temp_rh,n3_inc_t_epd_co2_temp_rh",Button 2 last press type: 'Short Press' or 'Long Press'
+BUTTON_2_LAST_TYPE,Button 2 last action type,0,string,R,STRING,,,,,0.1,"n3_inc_t_epd_co2_temp_rh,n3_inc_t_epd_temp_rh,n3_inc_t_epd_co2_temp_rh",Button 2 last press type: 'Short Press' or 'Long Press'
+MOISTURE_2,Moisture 2,0,number,R,INT16,,,,,0.1,others,Moisture 2 raw measurement value
+EPD_VALUE_EXT_OVERLOAD_0,EPD overload value 0,0,number,R,INT16,,,,,0.1,"n3_inc_t_epd_co2_temp_rh,n3_inc_t_epd_temp_rh,n3_inc_t_epd_co2_temp_rh,n3_epd_co2_temp_rh,n3_epd_temp_rh",EPD extended overload value 0
+EPD_VALUE_EXT_OVERLOAD_1,EPD overload value 1,0,number,R,INT16,,,,,0.1,"n3_inc_t_epd_co2_temp_rh,n3_inc_t_epd_temp_rh,n3_inc_t_epd_co2_temp_rh,n3_epd_co2_temp_rh,n3_epd_temp_rh",EPD extended overload value 1
+EPD_VALUE_EXT_OVERLOAD_2,EPD overload value 2,0,number,R,INT16,,,,,0.1,"n3_inc_t_epd_co2_temp_rh,n3_inc_t_epd_temp_rh,n3_inc_t_epd_co2_temp_rh,n3_epd_co2_temp_rh,n3_epd_temp_rh",EPD extended overload value 2
+EPD_VALUE_EXT_OVERLOAD_3,EPD overload value 3,0,number,R,INT16,,,,,0.1,others,EPD extended overload value 3
+SCREEN_TEMP_DISPLAY,Temperature display,0,number,RW,FLOAT,,,,,0.1,"n3_inc_t_epd_co2_temp_rh,n3_inc_t_epd_temp_rh,n3_inc_t_epd_co2_temp_rh",Displaying temperature on the screen in °C
