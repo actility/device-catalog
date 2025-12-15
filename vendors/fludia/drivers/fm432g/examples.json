@@ -1,0 +1,104 @@
+[
+  {
+    "type": "uplink",
+    "description": "0x6d T1 Data Payload",
+    "input": {
+      "bytes": "6D0F0000FFFF00010002000300040005000600070008",
+      "fPort": 129,
+      "recvTime": "2024-08-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "data": {
+        "firmware_version": null,
+        "increments": [
+          ["2024-08-02T18:00:00.000Z", 0.1],
+          ["2024-08-02T18:15:00.000Z", 0.2],
+          ["2024-08-02T18:30:00.000Z", 0.3],
+          ["2024-08-02T18:45:00.000Z", 0.4],
+          ["2024-08-02T19:00:00.000Z", 0.5],
+          ["2024-08-02T19:15:00.000Z", 0.6],
+          ["2024-08-02T19:30:00.000Z", 0.7],
+          ["2024-08-02T19:45:00.000Z", 0.8]
+        ],
+        "index": 6553.5,
+        "indexes": [
+          ["2024-08-02T18:00:00.000Z", 6549.9],
+          ["2024-08-02T18:15:00.000Z", 6550],
+          ["2024-08-02T18:30:00.000Z", 6550.2],
+          ["2024-08-02T18:45:00.000Z", 6550.5],
+          ["2024-08-02T19:00:00.000Z", 6550.9],
+          ["2024-08-02T19:15:00.000Z", 6551.4],
+          ["2024-08-02T19:30:00.000Z", 6552],
+          ["2024-08-02T19:45:00.000Z", 6552.7],
+          ["2024-08-02T20:00:00.000Z", 6553.5]
+        ],
+        "message_type": "T1",
+        "meter_type": "Gas",
+        "number_of_starts": null,
+        "number_of_values": null,
+        "param_id": null,
+        "redundancy": null,
+        "time_step": 15
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "volume:0": {
+        "nature": "Volume consumed for each time period (to be multiplied by a factor depending on the selected digit)",
+        "records": [
+          {"eventTime": "2024-08-02T18:00:00.000Z", "value": 0.1},
+          {"eventTime": "2024-08-02T18:15:00.000Z", "value": 0.2},
+          {"eventTime": "2024-08-02T18:30:00.000Z", "value": 0.3},
+          {"eventTime": "2024-08-02T18:45:00.000Z", "value": 0.4},
+          {"eventTime": "2024-08-02T19:00:00.000Z", "value": 0.5},
+          {"eventTime": "2024-08-02T19:15:00.000Z", "value": 0.6},
+          {"eventTime": "2024-08-02T19:30:00.000Z", "value": 0.7},
+          {"eventTime": "2024-08-02T19:45:00.000Z", "value": 0.8}
+        ],
+        "unitId": "m3"
+      },
+      "volume:1": {
+        "nature": "Volume consumed since the start of the product (to be multiplied by a factor depending on the selected digit)",
+        "records": [
+          {"eventTime": "2024-08-02T18:00:00.000Z", "value": 6549.9},
+          {"eventTime": "2024-08-02T18:15:00.000Z", "value": 6550},
+          {"eventTime": "2024-08-02T18:30:00.000Z", "value": 6550.2},
+          {"eventTime": "2024-08-02T18:45:00.000Z", "value": 6550.5},
+          {"eventTime": "2024-08-02T19:00:00.000Z", "value": 6550.9},
+          {"eventTime": "2024-08-02T19:15:00.000Z", "value": 6551.4},
+          {"eventTime": "2024-08-02T19:30:00.000Z", "value": 6552},
+          {"eventTime": "2024-08-02T19:45:00.000Z", "value": 6552.7},
+          {"eventTime": "2024-08-02T20:00:00.000Z", "value": 6553.5}
+        ],
+        "unitId": "m3"
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "0x6e T2 Technical Payload",
+    "input": {
+      "bytes": "6E03000100210100000000FF0F0501",
+      "fPort": 129,
+      "recvTime": "2024-08-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "data": {
+        "firmware_version": 33,
+        "increments": [],
+        "index": 25.5,
+        "indexes": [],
+        "message_type": "T2",
+        "meter_type": "Gas",
+        "number_of_starts": 3,
+        "number_of_values": 5,
+        "param_id": 0,
+        "redundancy": 1,
+        "time_step": 15
+      },
+      "errors": [],
+      "warnings": []
+    }
+  }
+]
