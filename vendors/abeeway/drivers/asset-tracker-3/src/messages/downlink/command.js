@@ -12,8 +12,10 @@ const CommandType = Object.freeze({
     STOP_BLE_CONNECTIVITY: "STOP_BLE_CONNECTIVITY",
     SYSTEM_EVENT: "SYSTEM_EVENT",
     CLEAR_MOTION_PERCENTAGE: "CLEAR_MOTION_PERCENTAGE",
-    GET_DATA_BUFFERING_ENTRIES : "GET_DATA_BUFFERING_ENTRIES",
-    CLEAR_ALL_DATA_BUFFERING : "CLEAR_ALL_DATA_BUFFERING"
+    GET_DATA_BUFFERING_ENTRIES: "GET_DATA_BUFFERING_ENTRIES",
+    CLEAR_ALL_DATA_BUFFERING: "CLEAR_ALL_DATA_BUFFERING",
+    CLEAR_BLE_BOND_DATA: "CLEAR_BLE_BOND_DATA"
+
 
 });
 function Command(command, classId, eventType, beginUtcTime, duration, bufferedDataType) {
@@ -39,7 +41,8 @@ function determineCommand(value) {
         CommandType.SYSTEM_EVENT,
         CommandType.CLEAR_MOTION_PERCENTAGE,
         CommandType.GET_DATA_BUFFERING_ENTRIES,
-        CommandType.CLEAR_ALL_DATA_BUFFERING
+        CommandType.CLEAR_ALL_DATA_BUFFERING,
+        CommandType.CLEAR_BLE_BOND_DATA
     ];
     return commands[value] || null; // Returns null if the command is unknown
 }

@@ -6,6 +6,12 @@ const SENSOR_TYPES = {
    "DO_NOT_USE" :0,
     "ACCELEROMETER": 1
 };
+const FUOTA_BINARY_TYPES ={
+    "APPLICATION" : 0,
+    "BLE_STACK": 1,
+    "MT3333": 2,
+    "LR11XX": 3
+}
 function Request(requestType,
     genericConfigurationSet,
     parameterClassConfigurationSet,
@@ -13,7 +19,9 @@ function Request(requestType,
     parameterClassConfigurationGet,
     bleStatusConnectivity,
     crc,
-    sensorIds
+    sensorIds,
+    fuotaBinaryType,
+    filePath,
     ){
         this.requestType = requestType;
         this.genericConfigurationSet = genericConfigurationSet;
@@ -23,6 +31,8 @@ function Request(requestType,
         this.bleStatusConnectivity = bleStatusConnectivity;
         this.crc = crc;
         this.sensorIds = sensorIds;
+        this.fuotaBinaryType = fuotaBinaryType;
+        this.filePath = filePath;
 }
 function ParameterClassConfigurationGet(group, parameters){
     this.group = group
@@ -53,11 +63,20 @@ function encodeRequest(data){
         case 6:
             encData = encodeSensorRequest(data.sensorIds, encData)
             break;
+        case 7:
+            encData = encodeDebugInfoRequest(data.type, encData)
+            break;
+        case 8:
+            encData = encodeFuotaRequest(data.fuotaBinaryType, data.filePath, encData)
+            break;
         default:
             throw new Error("Unknown request type")
 
     }
     return encData
+}
+function encodeDebugInfoRequest(type,encData){
+    return encData[2]= type
 }
 function encodeRequestType(value){
     switch (value){
@@ -75,10 +94,32 @@ function encodeRequestType(value){
             return 5;
         case "SENSOR_REQUEST":
             return 6;
+        case "DEBUG_INFO_REQUEST":
+            return 7;
+        case "FUOTA_REQUEST":
+            return 8;
         default:
             throw new Error("Unknown request type")
-
     }
+}
+function encodeFuotaBinaryType(value){
+    switch (value){
+        case "APPLICATION":
+            return 0;
+        case "BLE_STACK":
+            return 1;
+        case "MT3333":
+            return 2;
+        case "LR11XX":
+            return 3
+         default:
+            throw new Error("Unknown FUOTA binary type")
+
+}}
+function  encodeFuotaRequest(binaryType, filePath, encData){
+    encData[2] = encodeFuotaBinaryType(binaryType)
+    encData = encodeFuotaFilePath(filePath,encData,3)
+    return encData;
 }
 function decodeRequest(payload){
     let request = new Request();
@@ -113,6 +154,11 @@ function decodeRequest(payload){
             request.requestType = RequestType.SENSOR_REQUEST
             request.sensorIds = decodeSensorRequest(payload.slice(2))
            break;
+        case 8:
+            request.requestType = RequestType.FUOTA_REQUEST
+            request.fuotaBinaryType = decodeBinaryFuotaType(payload[2]) 
+            request.filePath = decodeAsciiString(payload.slice(3))
+            break;
         default:
             throw new Error("Request Type Unknown");
     }
@@ -230,7 +276,6 @@ function encodeSensorRequest(sensorIds, encData) {
     });
     return encData;
 }
-
 
 function determineRequestParameterClassConfigurationSet(payload){
     let groupId = payload[0]
@@ -380,223 +425,6 @@ function encodeRequestParameterClassConfigurationGet (getParameterClass, encData
     return encData;
 }
 
-/* function encodeSetParameter( parameter, paramValue, encData , i){
-    let size
-    let paramType = parameter.parameterType.type
-    switch (paramType){ 
-
-    case "ParameterTypeNumber":
-        size = 4
-        encData[i] = encodeSizeAndType(size, 1)
-        let range = parameter.parameterType.range
-        let multiply = parameter.parameterType.multiply
-        let additionalValues = parameter.parameterType.additionalValues
-        let additionalRanges = parameter.parameterType.additionalRanges
-        // negative number
-    
-        if (util.checkParamValueRange(paramValue, range.minimum, range.maximum, range.exclusiveMinimum, range.exclusiveMaximum, additionalValues, additionalRanges)){
-            if (multiply != undefined){
-                paramValue = paramValue/multiply
-            }
-            if (paramValue < 0) {
-                paramValue += 0x100000000;
-            }
-            encData[i+1] = (paramValue >> 24) & 0xFF;
-            encData[i+2] = (paramValue >> 16) & 0xFF;
-            encData[i+3] = (paramValue >> 8) & 0xFF;
-            encData[i+4] = paramValue & 0xFF;
-            return i + size + 1
-        }
-        else{
-
-                throw new Error(parameter.driverParameterName +" parameter value is out of range");
-        }
-    case "ParameterTypeString":
-        size = 4
-        encData[i] = encodeSizeAndType(size, 1)
-        if (((parameter.parameterType.possibleValues).indexOf(paramValue)) != -1)
-            {
-                encData[i+1] = 0;
-                encData[i+2] = 0;
-                encData[i+3] = 0;
-                encData[i+4]  = (parameter.parameterType.firmwareValues[((parameter.parameterType.possibleValues).indexOf(paramValue))])
-                return i + size + 1
-            }
-        else{
-            
-            throw new Error(parameter.driverParameterName+" parameter value is unknown");
-        }
-    case "ParameterTypeBitMask":
-        size = 4
-        encData[i] = encodeSizeAndType(size, 1)
-        let flags =0 
-        let properties = parameter.parameterType.properties
-        let bitMap = parameter.parameterType.bitMask
-        for (let bit of bitMap){
-            let flagName = bit.valueFor
-            let flagValue = paramValue[flagName]
-            if (flagValue == undefined){
-                throw new Error("Bit "+ flagName +" is missing");
-            }
-            let  property = (properties.find(el => el.name === flagName))
-            let propertyType = property.type
-            switch (propertyType)
-            {
-                case "PropertyBoolean":
-                    if ((bit.inverted != undefined) && (bit.inverted)){
-                        flagValue =! flagValue;
-                    } 
-                    flags |= Number(flagValue) << bit.bitShift
-                    break;
-                case "PropertyString":
-                    if (property.possibleValues.indexOf(flagValue) != -1){
-                        flags |= (property.firmwareValues[property.possibleValues.indexOf(flagValue)]) << bit.bitShift
-                    }
-                    else {
-                        throw new Error(property.name+ " parameter value is not among possible values");
-                    }
-                    
-                    break;
-                case "PropertyNumber":
-                    if (property.range){ 
-                        if (util.checkParamValueRange(flagValue, property.range.minimum, property.range.maximum, property.range.exclusiveMinimum, property.range.exclusiveMaximum, property.additionalValues, property.additionalRanges)){
-                            flags |= flagValue << bit.bitShift    
-                        }
-                        else {
-                            throw new Error("Value out of range for "+ parameter.driverParameterName+"."+flagName);
-                        }
-                    }
-                    else{
-                        flags |= flagValue << bit.bitShift  
-                    }
-                    break;
-                case "PropertyObject":
-                    let bitValues = Object.entries(flagValue)
-                    for (let b of bit.values){
-                        let fValue = flagValue[b.valueFor]
-                        if (fValue == undefined){
-                            throw new Error("Bit "+ flagName +"."+ b.valueFor+" is missing");
-                        }
-                        if ((b.inverted != undefined) && (b.inverted)){
-                            fValue =! fValue;
-                        }
-                        flags |= Number(fValue) <<  b.bitShift 
-
-                    }
-                    break;
-                default:
-                    throw new Error("Property type is unknown");
-            }
-        }
-        
-        encData[i+1] = (flags >> 24) & 0xFF;
-        encData[i+2] = (flags >> 16) & 0xFF;
-        encData[i+3] = (flags >> 8) & 0xFF;
-        encData[i+4] = flags & 0xFF;
-        return i + size + 1 ;
-        
-    case "ParameterTypeAsciiString":
-        size = paramValue.length
-        encData[i] = encodeSizeAndType(size, 3)
-        for (let j = 0; j < paramValue.length; j++)
-            encData[i + j + 1] =paramValue.charCodeAt(j) & 0xFF;
-
-        return i + size + 1 ;
-    case "ParameterTypeByteArray":
-        size = parameter.parameterType.size
-        encData[i] = encodeSizeAndType(size, 4)
-        if  (parameter.parameterType.properties == undefined){
-            let paramValueHex = paramValue.toString().replace(/[{}]/g, '').replace(/,/g, ''); // Remove braces and commas
-            for (let j = 0; j < size; j++) {
-                encData[i + j + 1] = parseInt(paramValueHex.slice(j * 2, j * 2 + 2), 16);
-            }
-            return i + size + 1;
-        }else{
-            let arrayProperties = parameter.parameterType.properties
-            let byteMask = parameter.parameterType.byteMask
-            for (let j = 0; j < size; j++) {
-                let flags =0 
-
-                for (let bit of byteMask){
-                    let flagName = bit.valueFor
-                    let flagValue = paramValue[j][flagName]
-                    if (flagValue == undefined){
-                        throw new Error("byte "+ flagName +" is missing");
-                    }
-                    let  property = (arrayProperties.find(el => el.name === flagName))
-                    let propertyType = property.type
-                    switch (propertyType)
-                    {
-                        case "PropertyBoolean":
-                            if ((bit.inverted != undefined) && (bit.inverted)){
-                                flagValue =! flagValue;
-                            } 
-                            flags |= Number(flagValue) << bit.bitShift
-                            break;
-                        case "PropertyString":
-                            if (property.possibleValues.indexOf(flagValue) != -1){
-                                flags |= (property.firmwareValues[property.possibleValues.indexOf(flagValue)]) << bit.bitShift
-                            }
-                            else {
-                                throw new Error(property.name+ " parameter value is not among possible values");
-                            }
-                            
-                            break;
-                        case "PropertyNumber":
-                            if (property.range){ 
-                                if (util.checkParamValueRange(flagValue, property.range.minimum, property.range.maximum, property.range.exclusiveMinimum, property.range.exclusiveMaximum, property.additionalValues, property.additionalRanges)){
-                                    flags |= flagValue << bit.bitShift    
-                                }
-                                else {
-                                    throw new Error("Value out of range for "+ parameter.driverParameterName+"."+flagName);
-                                }
-                            }
-                            else{
-                                flags |= flagValue << bit.bitShift  
-                            }
-                            break;
-                        case "PropertyObject":
-                            for (let b of bit.values){
-                                let fValue = flagValue[b.valueFor]
-                                if (fValue == undefined){
-                                    throw new Error("Bit "+ flagName +"."+ b.valueFor+" is missing");
-                                }
-                                if ((b.inverted != undefined) && (b.inverted)){
-                                    fValue =! fValue;
-                                }
-                                flags |= Number(fValue) <<  b.bitShift 
-
-                            }
-                            break;
-                        default:
-                            throw new Error("Property type is unknown");
-                    }
-                }
-        
-                encData[i + j + 1] = flags & 0xFF
-        
-        }
-        return i + size + 1 ;
-    }
-    case "ParameterTypeByteArray":
-        size = parameter.parameterType.size;
-        encData[i] = encodeSizeAndType(size, 4);
-    
-        if (!parameter.parameterType.properties) {
-            // Handle raw byte array (no properties)
-            encodeRawByteArray(paramValue, size, encData, i);
-            return i + size + 1;
-        } else {
-            // Handle byte array with properties
-            encodeByteArrayWithProperties(parameter, paramValue, size, encData, i);
-            return i + size + 1;
-        }
-            
-    default:
-        throw new Error("Parameter type is unknown");
-        
-    }
-} */
 // Function encode size and type for a parameter
 
 function encodeSetParameter(parameter, paramValue, encData, i) {
@@ -709,6 +537,19 @@ function encodeBitMaskParameter(parameter, paramValue, encData, startIndex) {
 
     return startIndex + size + 1;
 }
+/** encode file path */
+function encodeFuotaFilePath(filePath, encData, startIndex) {
+    const size = filePath.length;
+    if (size >46){
+       throw new Error(`File path length exceeds the maximum allowed size of 46 bytes.`);
+    }
+
+    for (let j = 0; j < filePath.length; j++) {
+        encData[startIndex + j] = filePath.charCodeAt(j) & 0xFF;
+    }
+    return encData;
+}
+
 
 /**
  * Encodes an ASCII string parameter.
@@ -880,6 +721,31 @@ function encodeObjectProperty(bit, flagValue, flags) {
 function encodeSizeAndType(size, type){
     return ((size << 0x03)| type)
 
+}
+
+/** Reverse mapping from numeric value to string */
+function decodeBinaryFuotaType(value) {
+    switch (value) {
+        case 0: return "APPLICATION";
+        case 1: return "BLE_STACK";
+        case 2: return "MT3333";
+        case 3: return "LR11XX";
+        default:
+            throw new Error("Unknown binary fuota type: " + value);
+    }
+}
+
+/** Decode ASCII string from byte array */
+function decodeAsciiString(bytes) {
+    let result = "";
+
+    for (let i = 0; i < bytes.length; i++) {
+        const b = bytes[i];
+        if (b === 0) continue; // ignore padding
+        result += String.fromCharCode(b);
+    }
+
+    return result;
 }
 // Function to get parameters by groupId and driverParameterName
 function getParametersByGroupIdAndDriverParameterName(parameters, groupId, driverParameterName) {

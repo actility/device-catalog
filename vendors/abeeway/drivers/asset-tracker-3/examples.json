@@ -1013,6 +1013,212 @@
     },
     "points": { "batteryLevel": { "unitId": "%", "record": 1 } }
   },
+{
+   "description":"notification system FUOTA (1)",
+   "type":"uplink",
+   "input":{
+      "bytes":"085086840724",
+      "recvTime":"2024-06-17T07:23:21.803Z",
+      "fPort":19
+   },
+   "output":{
+      "data":{
+         "header":{
+            "ackToken":0,
+            "multiFrame":false,
+            "batteryLevel":80,
+            "sos":false,
+            "timestamp":"2024-06-16T21:33:56.000Z",
+            "type":"NOTIFICATION"
+         },
+         "payload":"085086840724",
+         "notification":{
+            "notificationClass":"SYSTEM",
+            "notificationType":"FUOTA",
+            "system":{
+               "fuota":{
+                  "binary":"APPLICATION",
+                  "raison":"FILE_NOT_FOUND",
+                  "source":"CELLULAR"
+               }
+            }
+         }
+      },
+      "errors":[
+         
+      ],
+      "warnings":[
+         
+      ]
+   },
+   "points":{
+      "batteryLevel":{
+         "unitId":"%",
+         "record":80
+      }
+   }
+},
+{
+    "description": "notification system FUOTA (2)",
+    "type": "uplink",
+    "input": {
+      "bytes": "085087200721",
+      "recvTime": "2024-06-16T21:36:32.000Z",
+      "fPort": 19
+    },
+    "output": {
+      "data": {
+        "header": {
+          "ackToken": 0,
+          "multiFrame": false,
+          "batteryLevel": 80,
+          "sos": false,
+          "timestamp": "2024-06-16T21:36:32.000Z",
+          "type": "NOTIFICATION"
+        },
+        "payload": "085087200721",
+        "notification": {
+          "notificationClass": "SYSTEM",
+          "notificationType": "FUOTA",
+          "system": {
+            "fuota": { "binary": "APPLICATION","raison": "NETWORK_ISSUE", "source": "CELLULAR" }
+          }
+        }
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": { "batteryLevel": { "unitId": "%", "record": 80 } }
+  },
+    {
+    "description": "notification system FUOTA (3)",
+    "type": "uplink",
+    "input": {
+      "bytes": "084e32700725",
+      "recvTime": "2024-06-17T07:23:21.803Z",
+      "fPort": 19
+    },
+    "output": {
+      "data": {
+        "header": {
+          "ackToken": 0,
+          "multiFrame": false,
+          "batteryLevel": 78,
+          "sos": false,
+          "timestamp": "2024-06-17T03:35:12.000Z",
+          "type": "NOTIFICATION"
+        },
+        "payload": "084e32700725",
+        "notification": {
+          "notificationClass": "SYSTEM",
+          "notificationType": "FUOTA",
+          "system": {
+            "fuota": { "binary": "APPLICATION","raison": "PLATFORM_ERROR", "source": "CELLULAR" }
+          }
+        }
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": { "batteryLevel": { "unitId": "%", "record": 78 } }
+  },
+  {
+    "description": "notification system FUOTA (4)",
+    "type": "uplink",
+    "input": {
+      "bytes": "084e103e0723",
+      "recvTime": "2024-06-17T07:23:21.803Z",
+      "fPort": 19
+    },
+    "output": {
+      "data": {
+        "header": {
+          "ackToken": 0,
+          "multiFrame": false,
+          "batteryLevel": 78,
+          "sos": false,
+          "timestamp": "2024-06-17T01:09:18.000Z",
+          "type": "NOTIFICATION"
+        },
+        "payload": "084e103e0723",
+        "notification": {
+          "notificationClass": "SYSTEM",
+          "notificationType": "FUOTA",
+          "system": {
+            "fuota": { "binary": "APPLICATION","raison": "MODEM_FAILURE", "source": "CELLULAR" }
+          }
+        }
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": { "batteryLevel": { "unitId": "%", "record": 78 } }
+  },
+   {
+    "description": "notification system FUOTA (5)",
+    "type": "uplink",
+    "input": {
+      "bytes": "084e32f00706",
+      "recvTime": "2024-06-17T07:23:21.803Z",
+      "fPort": 19
+    },
+    "output": {
+      "data": {
+        "header": {
+          "ackToken": 0,
+          "multiFrame": false,
+          "batteryLevel": 78,
+          "sos": false,
+          "timestamp": "2024-06-17T03:37:20.000Z",
+          "type": "NOTIFICATION"
+        },
+        "payload": "084e32f00706",
+        "notification": {
+          "notificationClass": "SYSTEM",
+          "notificationType": "FUOTA",
+          "system": {
+            "fuota": { "binary": "APPLICATION","raison": "PARSING_ERROR", "source": "XMODEM" }
+          }
+        }
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": { "batteryLevel": { "unitId": "%", "record": 78 } }
+  },
+  {
+    "description": "notification system FUOTA (6)",
+    "type": "uplink",
+    "input": {
+      "bytes": "084e7daf0746",
+      "recvTime": "2024-06-17T07:23:21.803Z",
+      "fPort": 19
+    },
+    "output": {
+      "data": {
+        "header": {
+          "ackToken": 0,
+          "multiFrame": false,
+          "batteryLevel": 78,
+          "sos": false,
+          "timestamp": "2024-06-16T20:56:15.000Z",
+          "type": "NOTIFICATION"
+        },
+        "payload": "084e7daf0746",
+        "notification": {
+          "notificationClass": "SYSTEM",
+          "notificationType": "FUOTA",
+          "system": {
+            "fuota": { "binary": "BLE_STACK","raison": "PARSING_ERROR", "source": "XMODEM" }
+          }
+        }
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": { "batteryLevel": { "unitId": "%", "record": 78 } }
+  },
+
   {
     "description": "notification system tamper on",
     "type": "uplink",
@@ -1106,6 +1312,42 @@
       "warnings": []
     },
     "points": { "batteryLevel": { "unitId": "%", "record": 94 } }
+  },
+    {
+    "description": "Network notification main up",
+    "type": "uplink",
+    "input": {
+      "bytes": "08629ad440020201000800003840",
+      "recvTime": "2024-06-06T15:36:59.740+02:00",
+      "fPort": 19
+    },
+    "output": {
+      "data": {
+        "header": {
+          "ackToken": 0,
+          "multiFrame": false,
+          "batteryLevel": 98,
+          "sos": false,
+          "timestamp": "2024-06-06T11:00:36.000Z",
+          "type": "NOTIFICATION"
+        },
+        "payload": "08629ad440020201000800003840",
+        "notification": {
+          "notificationClass": "NETWORK",
+          "notificationType": "MAIN_UP",
+          "network": {
+            "activeNetwork": "CELLULAR_NETWORK_IN_LOW_POWER_MODE",
+            "backupNetwork": "LORA_NETWORK",
+            "mainNetwork": "CELLULAR_NETWORK_IN_LOW_POWER_MODE",
+            "psmActiveTime": 8,
+            "psmTAU": 14400
+          }
+        }
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": { "batteryLevel": { "unitId": "%", "record": 98 } }
   },
   {
     "description": "Response of a parameter class configuration set request",
@@ -3785,6 +4027,25 @@
     }
   },
   {
+    "description": "downlink command CLEAR_BLE_BOND_DATA",
+    "type": "downlink-decode",
+    "input": {
+      "bytes": "090e",
+      "recvTime": "2024-06-10T09:42:13.733+02:00",
+      "fPort": 19
+    },
+    "output": {
+      "data": {
+        "ackToken": 1,
+        "downMessageType": "COMMAND",
+        "command": { "commandType": "CLEAR_BLE_BOND_DATA" },
+        "payload": "090e"
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
     "description": "downlink command position on demand request.",
     "type": "downlink-decode",
     "input": {
@@ -4169,16 +4430,28 @@
     "output": { "fPort": 3, "bytes": "0c01", "errors": [], "warnings": [] }
   },
   {
+    "description": "Encode command RESET ",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "downMessageType": "COMMAND",
+        "commandType": "RESET",
+        "ackToken": 4
+      }
+    },
+    "output": { "fPort": 3, "bytes": "0c01", "errors": [], "warnings": [] }
+  },
+  {
     "description": "Encode command CLEAR_AND_RESET ",
     "type": "downlink-encode",
     "input": {
       "data": {
         "downMessageType": "COMMAND",
-        "commandType": "CLEAR_AND_RESET",
+        "commandType": "CLEAR_BLE_BOND_DATA",
         "ackToken": 6
       }
     },
-    "output": { "fPort": 3, "bytes": "0E00", "errors": [], "warnings": [] }
+    "output": { "fPort": 3, "bytes": "0E0E", "errors": [], "warnings": [] }
   },
   {
     "description": "Encode command RESET",
@@ -5144,7 +5417,7 @@
   {
     "description": "Response of a parameter telemetry class configuration get request part3",
     "type": "uplink",
-    "input": {
+    "input": { 
       "bytes": "a5632b3420030c0c210000012c0d2100000e100e21000000050f210000000010210000000011210000000012210000000013210000012c142100000e10",
       "recvTime": "2025-10-10T15:04:29.000Z",
       "fPort": 19
@@ -5442,5 +5715,94 @@
     "errors": [],
     "warnings": []
   }
-}
+},
+{
+    "description": "Encode request FUOTA Application",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "downMessageType": "REQUEST",
+        "requestType": "FUOTA_REQUEST",
+        "ackToken": 2,
+        "fuotaBinaryType":"APPLICATION",
+        "filePath":"/fuota/at3-lte-combo-release_v1.4-0.bin.sign"
+      }},
+  "output": {
+    "fPort": 3,
+    "bytes": "1208002f66756f74612f6174332d6c74652d636f6d626f2d72656c656173655f76312e342d302e62696e2e7369676e",
+    "errors": [],
+    "warnings": []
+  }
+},
+{
+    "description": "Encode request FUOTA BLE",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "downMessageType": "REQUEST",
+        "requestType": "FUOTA_REQUEST",
+        "ackToken": 2,
+        "fuotaBinaryType":"BLE_STACK",
+        "filePath":"/AbeewayUser/hosting/main/BLE_Stack21.bin.sign"
+      }},
+  "output": {
+    "fPort": 3,
+    "bytes": "1208012f41626565776179557365722f686f7374696e672f6d61696e2f424c455f537461636b32312e62696e2e7369676e",
+    "errors": [],
+    "warnings": []
+  }
+},
+{
+    "description": "decode downlink request sensor",
+    "type": "downlink-decode",
+    "input": {
+      "bytes": "1208012f41626565776179557365722f686f7374696e672f6d61696e2f424c455f537461636b32312e62696e2e7369676e",
+      "recvTime": "2025-02-17T07:23:21.803Z",
+      "fPort": 19
+    },
+    "output": {
+      "data": {
+        "downMessageType": "REQUEST",
+        "ackToken": 2,
+        "request": {
+          "requestType": "FUOTA_REQUEST",
+          "fuotaBinaryType":"BLE_STACK",
+          "filePath":"/AbeewayUser/hosting/main/BLE_Stack21.bin.sign"
+        },
+        "payload": "1208012f41626565776179557365722f686f7374696e672f6d61696e2f424c455f537461636b32312e62696e2e7369676e"
+      },
+      "errors": [],
+      "warnings": []
+    }
+},
+{
+    "description": "Response of FUOTA request",
+    "type": "uplink",
+    "input": { 
+      "bytes": "204e183a0801",
+      "recvTime": "2025-10-10T15:04:29.000Z",
+      "fPort": 19
+    },
+    "output": {
+      "data": {
+        "header": {
+          "sos": false,
+          "type": "RESPONSE",
+          "ackToken": 0,
+          "multiFrame": false,
+          "batteryLevel": 78,
+          "timestamp": "2025-10-10T13:43:22.000Z"
+        },
+      
+        "response": {
+          "responseType": "FUOTA_REQUEST",
+          "fuotaStatus": "SCHEDULED"
+        },
+        "payload": "204e183a0801"
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": { "batteryLevel": { "unitId": "%", "record": 78 } }
+  }
 ]

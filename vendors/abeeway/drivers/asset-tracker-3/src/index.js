@@ -16,7 +16,7 @@ const DOWNLINK_PORT_NUMBER = 3;
 const removeEmpty = (obj) => {
     Object.keys(obj).forEach(k =>
       (obj[k] && typeof obj[k] === 'object') && removeEmpty(obj[k]) ||
-      (!obj[k] && (obj[k] === null || obj[k] === undefined)) && delete obj[k] 
+      (!obj[k] && (obj[k] === null || obj[k] === undefined || Number.isNaN(obj[k]))) && delete obj[k] 
     );
     return obj;
   };

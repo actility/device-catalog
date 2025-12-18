@@ -13,7 +13,9 @@ const ResponseType = Object.freeze({
     PARAM_CLASS_CONFIGURATION_GET: "PARAM_CLASS_CONFIGURATION_GET",
     BLE_STATUS_CONNECTIVITY: "BLE_STATUS_CONNECTIVITY",
     CRC_CONFIGURATION_REQUEST : "CRC_CONFIGURATION_REQUEST",
-    SENSOR_REQUEST: "SENSOR_REQUEST"
+    SENSOR_REQUEST: "SENSOR_REQUEST",
+    DEBUG_INFO_REQUEST: "DEBUG_INFO_REQUEST",
+    FUOTA_REQUEST: "FUOTA_REQUEST"
    
 })
 const StatusType = Object.freeze({
@@ -58,7 +60,8 @@ function Response(responseType,
     configurationCrcRequest,
     sensorRequest,
     globalCrc,
-    localCrc
+    localCrc,
+    fuotaStatus,
     ){
         this.responseType = responseType;
         this.genericConfigurationSet = genericConfigurationSet;
@@ -70,6 +73,7 @@ function Response(responseType,
         this.sensorRequest = sensorRequest;
         this.globalCrc = globalCrc;
         this.localCrc = localCrc;
+        this.fuotaStatus = fuotaStatus;
 }
 function ParameterClassConfigurationSet(group, parameters){
     this.group = group
@@ -113,6 +117,10 @@ function determineResponse(payload, multiFrame){
         case 6:
             response.responseType = ResponseType.SENSOR_REQUEST
             response.sensors = decodeSensorResponse(payload.slice(startingByte+1))
+            break;
+        case 8:
+            response.responseType = ResponseType.FUOTA_REQUEST
+            response.fuotaStatus = decodeFuotaStatus(payload.slice(startingByte+1))
             break;
         default:
             throw new Error("Response Type Unknown");
@@ -817,6 +825,24 @@ function determineGroupType(value)
             return GroupType.TELEMETRY
         default:
             throw new Error("Unknown group")
+    }
+}
+
+function decodeFuotaStatus(value) {
+    const v = Number(value)
+    switch (v) {
+        case 0:  return "START_ASAP";                       // FUOTA supported and will start ASAP
+        case 1:  return "SCHEDULED";                        // FUOTA supported and scheduled
+        case 2:  return "DENIED_OPERATION_NOT_SUPPORTED";   // No LTE module or external flash missing
+        case 3:  return "DENIED_CELLULAR_NOT_CONFIGURED";   // Missing IP/URL or port
+        case 4:  return "DENIED_SERVER_NOT_CONFIGURED";     // No FUOTA server configured
+        case 5:  return "DENIED_TEMPORARILY_NOT_ALLOWED";   // Example: SOS active
+        case 6:  return "DENIED_LOW_BATTERY";
+        case 7:  return "DENIED_LOW_TEMPERATURE";
+        case 8:  return "DENIED_HIGH_TEMPERATURE";
+        case 9:  return "DENIED_INCORRECT_USER_REQUEST";
+        default:
+            throw new Error("Unknown FUOTA status value: " + v);
     }
 }
 // Function to create the nested data structure

@@ -1,7 +1,7 @@
 let util = require("../../../util");
 
 function System(status,
-    lowBattery, bleStatus, tamperDetection, heartbeat, shutdown, dataBufferingStatus){
+    lowBattery, bleStatus, tamperDetection, heartbeat, shutdown, dataBufferingStatus, fuota){
     this.status = status;
     this.lowBattery = lowBattery;
     this.bleStatus = bleStatus;
@@ -9,6 +9,7 @@ function System(status,
     this.heartbeat = heartbeat;
     this.shutdown = shutdown;
     this.dataBufferingStatus = dataBufferingStatus;
+    this.fuota = fuota;
 }
 const SystemType = Object.freeze({
     STATUS: "STATUS",
@@ -17,7 +18,8 @@ const SystemType = Object.freeze({
     TAMPER_DETECTION: "TAMPER_DETECTION",
     HEARTBEAT : "HEARTBEAT",
     SHUTDOWN : "SHUTDOWN",
-    DATA_BUFFERING_STATUS : "DATA_BUFFERING_STATUS"
+    DATA_BUFFERING_STATUS : "DATA_BUFFERING_STATUS",
+    FUOTA : "FUOTA"
 })
 const ResetCause = Object.freeze({
     AOS_ERROR_NONE: "AOS_ERROR_NONE",
@@ -50,6 +52,31 @@ const DataBufferingStatus =Object.freeze({
     TIMEOUT : "TIMEOUT",
     NO_DATA_FOUND : "NO_DATA_FOUND"
 })
+const Binary = Object.freeze({
+    APPLICATION: "APPLICATION",
+    BLE_STACK: "BLE_STACK",
+    MT3333: "MT3333",
+    LR11XX: "LR11XX"
+});
+const Source = Object.freeze({
+    XMODEM: "XMODEM",
+    BLE: "BLE",
+    CELLULAR: "CELLULAR",
+    LORA: "LORA"
+});
+const Raison = Object.freeze({
+    NONE: "NONE",
+    NETWORK_ISSUE: "NETWORK_ISSUE",
+    DOWNLOAD_TIMEOUT: "DOWNLOAD_TIMEOUT",
+    MODEM_FAILURE: "MODEM_FAILURE",
+    FILE_NOT_FOUND: "FILE_NOT_FOUND",
+    PLATFORM_ERROR: "PLATFORM_ERROR",
+    PARSING_ERROR: "PARSING_ERROR",
+    FLASH_ERROR: "FLASH_ERROR",
+    LENGTH_ERROR: "LENGTH_ERROR",
+    SIGNATURE_ERROR: "SIGNATURE_ERROR"
+});
+
 function Status(currentTemperature, resetCause, pageId, AT3Version,
     configurationVersion,
     lrHwVersion,
@@ -150,7 +177,18 @@ function DataBuffering(status, oldestTimestamp, latestTimestamp){
     this.oldestTimestamp = oldestTimestamp
     this.latestTimestamp = latestTimestamp 
 }
+function Fuota(binary,source, raison){
+    this.binary = binary
+    this.source = source
+    this.raison = raison
+}
+function determineFuota(payload){
+    var binaryValue = determineFuotaBinary(payload[5]>>6 & 0x03)
+    var source = determineFuotaSource(payload[5]>>4 & 0X03)
+    var raison = determineFuotaRaison(payload[5] & 0X0F)
+return new Fuota(binaryValue, source, raison)
 
+}
 
 function determineHeartbeat(payload) {
     var currentTemperature = util.convertNegativeInt(payload[5],1);
@@ -357,7 +395,57 @@ function determineResetCause(value){
             throw new Error("Unknown Reset Cause");
     }
 }
-    
+function determineFuotaBinary(bin){
+    switch (bin){
+	    case 0:
+	        return Binary.APPLICATION;
+        case 1:
+            return Binary.BLE_STACK;
+        case 2:
+            return Binary.MT3333;
+        case 3:
+            return Binary.LR11XX;
+        default:
+            throw new Error("The fuota binary is unknown" )
+}}
+function determineFuotaSource(source){
+    switch (source){
+	    case 0:
+	        return Source.XMODEM;
+        case 1:
+            return Source.BLE;
+        case 2:
+            return Source.CELLULAR;
+        case 3:
+            return Source.LORA;
+        default:
+            throw new Error("The fuota source is unknown" )
+}}
+function determineFuotaRaison(raison){
+    switch (raison){
+	    case 0:
+	        return Raison.NONE
+        case 1:
+            return Raison.NETWORK_ISSUE
+        case 2:
+            return Raison.DOWNLOAD_TIMEOUT
+        case 3:
+            return Raison.MODEM_FAILURE
+        case 4:
+            return Raison.FILE_NOT_FOUND
+        case 5:
+            return Raison.PLATFORM_ERROR
+        case 6:
+            return Raison.PARSING_ERROR
+        case 7:
+            return Raison.FLASH_ERROR
+        case 8:
+            return Raison.LENGTH_ERROR
+        case 9:
+            return Raison.SIGNATURE_ERROR
+        default:
+            throw new Error("The fuota raison failure is unknown" )
+}}
 function getBit(value, position) {
     return (value >> position) & 1;
 }
@@ -391,5 +479,6 @@ module.exports = {
     determineHeartbeat : determineHeartbeat,
     determineShutdownCause : determineShutdownCause,
     determineDataBuffering: determineDataBuffering,
+    determineFuota: determineFuota,
     SystemType: SystemType
 }
