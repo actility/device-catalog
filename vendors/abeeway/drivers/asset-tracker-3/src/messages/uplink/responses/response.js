@@ -118,6 +118,10 @@ function determineResponse(payload, multiFrame){
             response.responseType = ResponseType.SENSOR_REQUEST
             response.sensors = decodeSensorResponse(payload.slice(startingByte+1))
             break;
+        case 7:
+            response.responseType = ResponseType.DEBUG_INFO_REQUEST
+            // response debug info is detailed in the documentation
+            break;
         case 8:
             response.responseType = ResponseType.FUOTA_REQUEST
             response.fuotaStatus = decodeFuotaStatus(payload.slice(startingByte+1))

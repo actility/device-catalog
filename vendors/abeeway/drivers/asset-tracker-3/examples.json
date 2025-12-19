@@ -5804,5 +5804,40 @@
       "warnings": []
     },
     "points": { "batteryLevel": { "unitId": "%", "record": 78 } }
-  }
+  },
+  {
+    "description": "Encode request DEBUG_INFO_REQUEST",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "downMessageType": "REQUEST",
+        "requestType": "DEBUG_INFO_REQUEST",
+        "ackToken": 3,
+        "debugInfoType": 0
+      }
+    },
+    "output": { "fPort": 3, "bytes": "130700", "errors": [], "warnings": [] }
+  },
+  {
+    "description": "decode downlink request DEBUG_INFO_REQUEST",
+    "type": "downlink-decode",
+    "input": {
+      "bytes": "130700",
+      "recvTime": "2025-02-17T07:23:21.803Z",
+      "fPort": 19
+    },
+    "output": {
+      "data": {
+        "downMessageType": "REQUEST",
+        "ackToken": 3,
+        "request": {
+          "requestType": "DEBUG_INFO_REQUEST",
+          "debugInfoType": 0
+        },
+        "payload": "130700"
+      },
+      "errors": [],
+      "warnings": []
+    }
+}
 ]

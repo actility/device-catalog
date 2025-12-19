@@ -22,6 +22,7 @@ function Request(requestType,
     sensorIds,
     fuotaBinaryType,
     filePath,
+    debugInfoType,
     ){
         this.requestType = requestType;
         this.genericConfigurationSet = genericConfigurationSet;
@@ -33,6 +34,7 @@ function Request(requestType,
         this.sensorIds = sensorIds;
         this.fuotaBinaryType = fuotaBinaryType;
         this.filePath = filePath;
+        this.debugInfoType = debugInfoType;
 }
 function ParameterClassConfigurationGet(group, parameters){
     this.group = group
@@ -64,7 +66,7 @@ function encodeRequest(data){
             encData = encodeSensorRequest(data.sensorIds, encData)
             break;
         case 7:
-            encData = encodeDebugInfoRequest(data.type, encData)
+            encData = encodeDebugInfoRequest(data.debugInfoType, encData)
             break;
         case 8:
             encData = encodeFuotaRequest(data.fuotaBinaryType, data.filePath, encData)
@@ -76,7 +78,8 @@ function encodeRequest(data){
     return encData
 }
 function encodeDebugInfoRequest(type,encData){
-    return encData[2]= type
+    encData[2]= type
+    return encData
 }
 function encodeRequestType(value){
     switch (value){
@@ -154,6 +157,10 @@ function decodeRequest(payload){
             request.requestType = RequestType.SENSOR_REQUEST
             request.sensorIds = decodeSensorRequest(payload.slice(2))
            break;
+        case 7:
+            request.requestType = RequestType.DEBUG_INFO_REQUEST
+            request.debugInfoType = util.convertNegativeInt(payload[2],8)
+            break;
         case 8:
             request.requestType = RequestType.FUOTA_REQUEST
             request.fuotaBinaryType = decodeBinaryFuotaType(payload[2]) 
@@ -165,6 +172,7 @@ function decodeRequest(payload){
     return request
 
 }
+
 
 function determineRequestGenericConfigurationSet(payload){
     let i = 0;
