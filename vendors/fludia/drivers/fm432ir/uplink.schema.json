@@ -1,0 +1,154 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "data": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "index": {
+          "oneOf": [
+            { "type": "number" },
+            {
+              "type": "object",
+              "properties": {
+                "e_pos": { "type": "number" },
+                "e_neg": { "type": "number" }
+              }
+            }
+          ],
+          "description": "The index starts at 0 when the device powers on for Electromechanical meters, and reflects the actual meter index if using mME. If 'E_POS and E_NEG' is activated, this variable will become an object in the format {e_pos: 1, e_neg: 2}"
+        },
+        "message_type": {
+          "type": ["string", "null"],
+          "description": "Type of message"
+        },
+        "increments": {
+          "description": "Array containing the index increments. If recvTime is provided, it becomes a 2-dimensional array with JavaScript Date objects [[2024-08-02T19:30:00.000Z, 1], ...]. If 'E_POS and E_NEG' is activated, you will find two 2-dimensional arrays: first for OBIS code 1.8.0, second for OBIS code 2.8.0.",
+          "type": "array",
+          "items": {
+            "oneOf": [
+              { "type": "number" },
+              {
+                "type": "array",
+                "items": [
+                  { "type": "string", "format": "date-time" },
+                  { "type": "number" }
+                ],
+                "minItems": 2,
+                "maxItems": 2
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "array",
+                  "items": [
+                    { "type": "string", "format": "date-time" },
+                    { "type": "number" }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        "powers": {
+          "description": "Array containing the load curve values in W. If recvTime is provided, it becomes a 2-dimensional array with JavaScript Date objects [[2024-08-02T19:30:00.000Z, 1], ...]. If 'E_POS and E_NEG' is activated, you will find two 2-dimensional arrays.",
+          "type": "array",
+          "items": {
+            "oneOf": [
+              { "type": "number" },
+              {
+                "type": "array",
+                "items": [
+                  { "type": "string", "format": "date-time" },
+                  { "type": "number" }
+                ]
+              }
+            ]
+          }
+        },
+        "indexes": {
+          "description": "Array containing the indexes. If recvTime is provided, it becomes a 2-dimensional array with JavaScript Date objects. If 'E_POS and E_NEG' is activated, you will find two 2-dimensional arrays.",
+          "type": "array",
+          "items": {
+            "oneOf": [
+              { "type": "number" },
+              {
+                "type": "array",
+                "items": [
+                  { "type": "string", "format": "date-time" },
+                  { "type": "number" }
+                ]
+              }
+            ]
+          }
+        },
+        "meter_type": {
+          "type": ["string", "null"],
+          "enum": ["Electromechanical (Position A)", "mME (Position B)", "Pulse", null],
+          "description": "Electromechanical (Position A), mME (Position B) or Pulse"
+        },
+        "low_battery": {
+          "type": ["integer", "null"],
+          "description": "1 means the battery is low / 0 otherwise"
+        },
+        "firmware_version": {
+          "type": ["integer", "string", "null"],
+          "description": "Firmware version as an integer or string"
+        },
+        "number_of_starts": {
+          "type": ["integer", "null"],
+          "description": "Number of starts of this sensor"
+        },
+        "time_step": {
+          "type": "integer",
+          "description": "Number of minutes for each measurement"
+        },
+        "scaler_e_pos": {
+          "type": ["number", "null"],
+          "description": "Scaler for OBIS code 1.8.0"
+        },
+        "scaler_e_sum": {
+          "type": ["number", "null"],
+          "description": "Scaler for OBIS code 16.8.0"
+        },
+        "scaler_e_neg": {
+          "type": ["number", "null"],
+          "description": "Scaler for OBIS code 2.8.0"
+        },
+        "obis": {
+          "type": ["string", "null"],
+          "description": "OBIS code description: 'E-POS values (OBIS code 1.8.0)' / 'E-SUM values (OBIS code 16.8.0)' / 'E-NEG values (OBIS code 2.8.0)' or combination for E_POS and E_NEG"
+        },
+        "param_id": {
+          "type": ["integer", "null"],
+          "description": "NA"
+        },
+        "redundancy": {
+          "type": ["integer", "null"],
+          "description": "When activated, previous increments are repeated (only available in _ap products)"
+        },
+        "number_of_values": {
+          "type": ["integer", "null"],
+          "description": "Number of measurement values in each T1 uplink (only available in _ap products)"
+        },
+        "sensitivity": {
+          "type": ["integer", "null"],
+          "minimum": 0,
+          "maximum": 3,
+          "description": "0 = highest sensitivity / 3 = lowest (_ap only)"
+        }
+      }
+    },
+    "errors": {
+      "type": "array",
+      "description": "List of error messages",
+      "items": { "type": "string" }
+    },
+    "warnings": {
+      "type": "array",
+      "description": "List of warning messages",
+      "items": { "type": "string" }
+    }
+  }
+}
