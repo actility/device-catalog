@@ -1,0 +1,72 @@
+[
+  {
+    "description": "Example 1",
+    "type": "uplink",
+    "input": {
+      "bytes": "01755AFFFE0103672C010482F4010500019482F401640201B482F40101",
+      "fPort": 100,
+      "time": "2024-11-03T17:00:00.000+02:00",
+      "points": {
+        "batteryLevel": {
+          "record": 90,
+          "unitId": "%"
+        },
+        "distance:2": {
+          "record": 500,
+          "unitId": "mm"
+        },
+        "temperature:1": {
+          "record": 30,
+          "unitId": "Cel"
+        },
+        "distance:0": {
+          "records": [
+            {
+              "value": 500,
+              "eventTime": null
+            },
+            {
+              "value": 500,
+              "eventTime": null
+            }
+          ],
+          "unitId": "mm",
+          "nature": "events"
+        },
+        "status:0": {
+          "record": true,
+          "unitId": "state",
+          "nature": "distance_alarm events"
+        },
+        "status:1": {
+          "record": true,
+          "unitId": "state",
+          "nature": "tilt"
+        },
+        "status:2": {
+          "record": true,
+          "unitId": "state",
+          "nature": "reset"
+        }
+      }
+    },
+    "output": {
+      "battery": 90,
+      "distance": 500,
+      "event": [
+        {
+          "distance": 500,
+          "distance_alarm": "threshold alarm",
+          "distance_mutation": 612
+        },
+        {
+          "distance": 500,
+          "distance_exception": "blind spot alarm"
+        }
+      ],
+      "position": "tilt",
+      "reset_event": "reset",
+      "temperature": 30
+    }
+  }
+]

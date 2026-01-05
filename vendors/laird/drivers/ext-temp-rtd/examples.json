@@ -1,0 +1,328 @@
+[
+  {
+    "description": "Send Temp and RH Aggregated Data Notification",
+    "type": "uplink",
+    "input": {
+      "bytes": "0200000000050200000000FFF6FFECFFE4FE77",
+      "fPort": 1,
+      "time": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "msgType": "Laird_Agg_TH",
+        "options": [
+          "None"
+        ],
+        "batteryCapacity": "80-100%",
+        "alarmMsgCount": 0,
+        "backlogMsgCount": 0,
+        "numberOfReadings": 2,
+        "timestamp": {
+          "year": 2000,
+          "month": "January",
+          "day": 1,
+          "hours": 0,
+          "minutes": 0,
+          "seconds": 0
+        },
+        "readings": [
+          {
+            "temperature": -20.1
+          },
+          {
+            "temperature": -393.28
+          }
+        ]
+      }
+    }
+  },
+  {
+    "description": "Send Backlog Message Notification with configuration error",
+    "type": "uplink",
+    "input": {
+      "bytes": "0302000000022A3D4C6B",
+      "fPort": 1,
+      "time": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "msgType": "SendBackLogMessage",
+        "options": [
+          "Sensor configuration error"
+        ],
+        "timestamp": {
+          "year": 2000,
+          "month": "January",
+          "day": 1,
+          "hours": 0,
+          "minutes": 0,
+          "seconds": 2
+        },
+        "temperature": 19671.13
+      }
+    }
+  },
+  {
+    "description": "Send Backlog Message Notification with server response error",
+    "type": "uplink",
+    "input": {
+      "bytes": "0401010000000000100100",
+      "fPort": 1,
+      "time": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "msgType": "SendBackLogMessages",
+        "options": [
+          "Sensor request for server time"
+        ],
+        "numberOfReadings": 1,
+        "readings": [
+          {
+            "timestamp": {
+              "year": 2000,
+              "month": "January",
+              "day": 1,
+              "hours": 0,
+              "minutes": 0,
+              "seconds": 0
+            },
+            "temperature": 256.16
+          }
+        ]
+      }
+    }
+  },
+  {
+    "description": "Send Sensor Config Simple Notification",
+    "type": "uplink",
+    "input": {
+      "bytes": "0500010100000100",
+      "fPort": 1,
+      "time": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "msgType": "Laird_Simple_Config",
+        "options": [
+          "None"
+        ],
+        "batteryType": "Alkaline",
+        "sensorReadPeriod": 256,
+        "sensorAggregate": 0,
+        "tempAlarmsEnabled": "True",
+        "humidityAlarmsEnabled": "False"
+      }
+    }
+  },
+  {
+    "description": "Send FW Version Notification",
+    "type": "uplink",
+    "input": {
+      "bytes": "0700140b05060101020304",
+      "fPort": 1,
+      "time": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "msgType": "Laird_FW_Version",
+        "options": [
+          "None"
+        ],
+        "releaseDate": "20/11/5",
+        "releaseNumber": "6.1",
+        "partNumber": 16909060
+      }
+    }
+  },
+  {
+    "description": "Send Battery Voltage",
+    "type": "uplink",
+    "input": {
+      "bytes": "0a000103",
+      "fPort": 1,
+      "time": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "msgType": "Laird_Battery_Voltage",
+        "options": [
+          "None"
+        ],
+        "voltage": 3.01
+      }
+    }
+  },
+  {
+    "description": "Generic Data Retrieval Notification",
+    "type": "downlink",
+    "input": {
+      "bytes": "0100",
+      "fPort": 1,
+      "time": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "msgType": "genericDataRetrieval",
+        "options": "None"
+      }
+    }
+  },
+  {
+    "description": "Set UTC Notification",
+    "type": "downlink",
+    "input": {
+      "bytes": "0201140101010203",
+      "fPort": 1,
+      "time": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "msgType": "generateRTCDownlink",
+        "options": "Send Simple Config",
+        "year": 2020,
+        "month": "January",
+        "day": 1,
+        "hours": 1,
+        "minutes": 2,
+        "seconds": 3
+      }
+    }
+  },
+  {
+    "description": "Backoff Notification",
+    "type": "downlink",
+    "input": {
+      "bytes": "050401f4",
+      "fPort": 1,
+      "time": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "msgType": "backoff",
+        "options": "Send Open Closed Config",
+        "backoffPeriod": 500
+      }
+    }
+  },
+  {
+    "description": "FIFO Backlog Retrieval Notification",
+    "type": "downlink",
+    "input": {
+      "bytes": "0605003901f4",
+      "fPort": 1,
+      "time": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "msgType": "asRequestBacklogFIFO",
+        "options": "Send Battery Voltage",
+        "backlogPullReqNum": 57,
+        "backlogPullReqPeriod": 500
+      }
+    }
+  },
+  {
+    "description": "Format Flash Log Notification",
+    "type": "downlink",
+    "input": {
+      "bytes": "0706",
+      "fPort": 1,
+      "time": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "msgType": "asFormatFlash",
+        "options": "Reset Sensor"
+      }
+    }
+  },
+  {
+    "description": "LIFO Backlog Retrieval Notification",
+    "type": "downlink",
+    "input": {
+      "bytes": "0a070100032c",
+      "fPort": 1,
+      "time": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "msgType": "asRequestBacklogLIFO",
+        "options": "Start Advertising",
+        "backlogPullReqNum": 256,
+        "backlogPullReqPeriod": 812
+      }
+    }
+  },
+  {
+    "description": "Cancel Backlog Retrieval",
+    "type": "downlink",
+    "input": {
+      "bytes": "0b08",
+      "fPort": 1,
+      "time": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "msgType": "asCancelBacklogRetrieval",
+        "options": "Send RTD Config"
+      }
+    }
+  },
+  {
+    "description": "FIFO Targeted Backlog Retrieval Notification",
+    "type": "downlink",
+    "input": {
+      "bytes": "0f01140c010203041501050607080100",
+      "fPort": 1,
+      "time": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "msgType": "asRequestTargetedBacklogFIFO",
+        "options": "Send Simple Config",
+        "startYear": 2020,
+        "startMonth": "December",
+        "startDay": 1,
+        "startHours": 2,
+        "startMinutes": 3,
+        "startSeconds": 4,
+        "endYear": 2021,
+        "endMonth": "January",
+        "endDay": 5,
+        "endHours": 6,
+        "endMinutes": 7,
+        "endSeconds": 8,
+        "backlogPullReqPeriod": 256
+      }
+    }
+  },
+  {
+    "description": "LIFO Targeted Backlog Retrieval Notification",
+    "type": "downlink",
+    "input": {
+      "bytes": "10011502030405061b08090a0b0c000d",
+      "fPort": 1,
+      "time": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "msgType": "asRequestTargetedBacklogLIFO",
+        "options": "Send Simple Config",
+        "startYear": 2021,
+        "startMonth": "February",
+        "startDay": 3,
+        "startHours": 4,
+        "startMinutes": 5,
+        "startSeconds": 6,
+        "endYear": 2027,
+        "endMonth": "August",
+        "endDay": 9,
+        "endHours": 10,
+        "endMinutes": 11,
+        "endSeconds": 12,
+        "backlogPullReqPeriod": 13
+      }
+    }
+  }
+]

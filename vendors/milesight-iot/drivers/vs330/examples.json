@@ -1,0 +1,37 @@
+[
+  {
+    "description": "Example 1",
+    "type": "uplink",
+    "input": {
+      "bytes": "01756202820F00038E01048E01",
+      "fPort": 100,
+      "time": "2024-11-03T17:00:00.000+02:00",
+      "points": {
+        "batteryLevel": {
+          "record": 98,
+          "unitId": "%"
+        },
+        "distance": {
+          "record": 15,
+          "unitId": "m"
+        },
+        "status:0": {
+          "record": true,
+          "unitId": "state",
+          "nature": "occupied"
+        },
+        "status:1": {
+          "record": true,
+          "unitId": "state",
+          "nature": "calibration_status success"
+        }
+      }
+    },
+    "output": {
+      "battery": 98,
+      "distance": 15,
+      "occupancy": "occupied",
+      "calibration_status": "success"
+    }
+  }
+]

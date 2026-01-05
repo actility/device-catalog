@@ -1,0 +1,44 @@
+[
+  {
+    "description": "Example 1",
+    "type": "uplink",
+    "input": {
+      "bytes": "01755C03010105010104C800E11F5A06C800000001",
+      "fPort": 100,
+      "time": "2022-11-03T17:00:00.000+02:00",
+      "points": {
+        "batteryLevel": {
+          "unitId": "%",
+          "record": 92
+        },
+        "counter:0": {
+          "unitId": "count",
+          "record": 1512038656,
+          "nature": "valve1"
+        },
+        "counter:1": {
+          "unitId": "count",
+          "record": 16777216,
+          "nature": "valve2"
+        },
+        "status:0": {
+          "unitId": "state",
+          "record": true,
+          "nature": "valve1 on"
+        },
+        "status:1": {
+          "unitId": "state",
+          "record": true,
+          "nature": "valve2 on"
+        }
+      }
+    },
+    "output": {
+      "battery": 92,
+      "valve1": "on",
+      "valve2": "on",
+      "valve1_pulse": 1512038656,
+      "valve2_pulse": 16777216
+    }
+  }
+]

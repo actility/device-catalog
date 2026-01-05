@@ -1,0 +1,121 @@
+[
+  {
+    "description": "downlink encode - change sampling rate - sample every 180 minutes (3hrs)",
+    "type": "downlink",
+    "input": {
+      "bytes": "100100B4",
+      "fPort": 5,
+      "time": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "command": 1,
+      "unit": "minute",
+      "time": 180
+    }
+  },
+  {
+    "description": "downlink encode - change sampling rate - sample every 180 seconds (3mins)",
+    "type": "downlink",
+    "input": {
+      "bytes": "100000B4",
+      "fPort": 5,
+      "time": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "command": 1,
+      "unit": "second",
+      "time": 180
+    }
+  },
+  {
+    "description": "downlink encode - enable confirmation",
+    "type": "downlink",
+    "input": {
+      "bytes": "0701",
+      "fPort": 5,
+      "time": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "command": 2,
+      "confirmation": true
+    }
+  },
+  {
+    "description": "downlink encode - disable confirmation",
+    "type": "downlink",
+    "input": {
+      "bytes": "0700",
+      "fPort": 5,
+      "time": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "command": 2,
+      "confirmation": false
+    }
+  },
+  {
+    "description": "downlink encode - reset device",
+    "type": "downlink",
+    "input": {
+      "bytes": "FF00",
+      "fPort": 5,
+      "time": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "command": 3,
+      "reset": true
+    }
+  },
+  {
+    "description": "downlink encode - change periodic auto-reset settings - device automatically reset after sending 3000 samples",
+    "type": "downlink",
+    "input": {
+      "bytes": "160BB8",
+      "fPort": 5,
+      "time": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "command": 4,
+      "count": 3000
+    }
+  },
+  {
+    "description": "downlink encode - change periodic auto-reset settings - disable autoreset",
+    "type": "downlink",
+    "input": {
+      "bytes": "160000",
+      "fPort": 5,
+      "time": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "command": 4,
+      "count": 0
+    }
+  },
+  {
+    "description": "negative payload",
+    "type": "uplink",
+    "input": {
+      "bytes": "01E800FB58000022",
+      "fPort": 1,
+      "time": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "level": -1192,
+      "battery": 3.4
+    }
+  },
+  {
+    "description": "positive payload",
+    "type": "uplink",
+    "input": {
+      "bytes": "01E80000D6000022",
+      "fPort": 1,
+      "time": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "level": 214,
+      "battery": 3.4
+    }
+  }
+]

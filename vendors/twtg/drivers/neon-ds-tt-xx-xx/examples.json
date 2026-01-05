@@ -1,0 +1,729 @@
+[
+  {
+    "description": "V3: TT boot message Payload - pattern",
+    "type": "uplink",
+    "input": {
+      "bytes": "3004EFBEADDE0100020003040610203040506070800708",
+      "fPort": 15,
+      "time": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "header": {
+        "protocol_version": 3,
+        "message_type": "boot"
+      },
+      "boot": {
+        "device_type": "tt",
+        "version_hash": "0xDEADBEEF",
+        "base_config_crc": "0x0001",
+        "sensor_config_crc": "0x0002",
+        "reset_flags": "0x03",
+        "reboot_counter": 4,
+        "reboot_info": "unknown (0x10, 0x20, 0x30, 0x40, 0x50, 0x60, 0x70, 0x80)",
+        "last_device_state": 7,
+        "bist": "0x08"
+      }
+    }
+  },
+  {
+    "description": "V3: TT activated message Payload - pattern",
+    "type": "uplink",
+    "input": {
+      "bytes": "31",
+      "fPort": 15,
+      "time": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "header": {
+        "message_type": "activated",
+        "protocol_version": 3
+      }
+    }
+  },
+  {
+    "description": "V3: TT deactivated message Payload - pattern",
+    "type": "uplink",
+    "input": {
+      "bytes": "32",
+      "fPort": 15,
+      "time": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "header": {
+        "message_type": "deactivated",
+        "protocol_version": 3
+      }
+    }
+  },
+  {
+    "description": "V3: TT sensor event message Payload - pattern",
+    "type": "uplink",
+    "input": {
+      "bytes": "330102000300040005",
+      "fPort": 15,
+      "time": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "header": {
+        "message_type": "sensor_event",
+        "protocol_version": 3
+      },
+      "sensor_event": {
+        "trigger": "condition_0",
+        "temperature": {
+          "min": 0.2,
+          "max": 0.3,
+          "avg": 0.4,
+          "status": "OK"
+        },
+        "condition_0": 1,
+        "condition_1": 0,
+        "condition_2": 1,
+        "condition_3": 0
+      }
+    }
+  },
+  {
+    "description": "V3: TT device status message - pattern",
+    "type": "uplink",
+    "input": {
+      "bytes": "34ADDEEFBE030B000C000D00151617060708",
+      "fPort": 15,
+      "time": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "header": {
+        "message_type": "device_status",
+        "protocol_version": 3
+      },
+      "device_status": {
+        "base_config_crc": "0xDEAD",
+        "sensor_config_crc": "0xBEEF",
+        "event_counter": 3,
+        "battery_voltage": {
+          "low": 0.011,
+          "high": 0.012,
+          "settle": 0.013
+        },
+        "temperature": {
+          "min": 21,
+          "max": 22,
+          "avg": 23
+        },
+        "tx_counter": 6,
+        "avg_rssi": -7,
+        "avg_snr": 8
+      }
+    }
+  },
+  {
+    "description": "V3: TT device status message payload - battery extreme 1",
+    "type": "uplink",
+    "input": {
+      "bytes": "340000000000A00F00000000000000000000",
+      "fPort": 15,
+      "time": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "header": {
+        "message_type": "device_status",
+        "protocol_version": 3
+      },
+      "device_status": {
+        "sensor_config_crc": "0x0000",
+        "base_config_crc": "0x0000",
+        "event_counter": 0,
+        "battery_voltage": {
+          "low": 4,
+          "high": 0,
+          "settle": 0
+        },
+        "temperature": {
+          "min": 0,
+          "max": 0,
+          "avg": 0
+        },
+        "tx_counter": 0,
+        "avg_rssi": -0,
+        "avg_snr": 0
+      }
+    }
+  },
+  {
+    "description": "V4 TT Boot message \u2013 Payload pattern",
+    "type": "uplink",
+    "input": {
+      "bytes": "4001",
+      "fPort": 1,
+      "time": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "boot": {
+        "protocol_version": 4,
+        "reboot_reason": {
+          "major": "config update",
+          "minor": "success"
+        }
+      }
+    }
+  },
+  {
+    "description": "V4 TT Activated message \u2013 Payload pattern",
+    "type": "uplink",
+    "input": {
+      "bytes": "4104",
+      "fPort": 5,
+      "time": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "activated": {
+        "protocol_version": 4,
+        "device_type": "tt"
+      }
+    }
+  },
+  {
+    "description": "V4 TT Deactivated message \u2013 Payload pattern",
+    "type": "uplink",
+    "input": {
+      "bytes": "410000",
+      "fPort": 6,
+      "time": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "deactivated": {
+        "protocol_version": 4,
+        "reason": "user_triggered"
+      }
+    }
+  },
+  {
+    "description": "V4 TT Sensor normal event message \u2013 Payload pattern",
+    "type": "uplink",
+    "input": {
+      "bytes": "43024A9CFF",
+      "fPort": 3,
+      "time": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "sensor_event": {
+        "protocol_version": 4,
+        "selection": "max_only",
+        "trigger": "periodic",
+        "condition_0": 0,
+        "condition_1": 1,
+        "condition_2": 0,
+        "condition_3": 1,
+        "temperature": {
+          "max": -10,
+          "status": "OK"
+        }
+      }
+    }
+  },
+  {
+    "description": "V4 TT Sensor extended event message \u2013 Payload pattern",
+    "type": "uplink",
+    "input": {
+      "bytes": "43004A44489CFFC800",
+      "fPort": 3,
+      "time": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "sensor_event": {
+        "protocol_version": 4,
+        "selection": "extended",
+        "trigger": "periodic",
+        "condition_0": 0,
+        "condition_1": 1,
+        "condition_2": 0,
+        "condition_3": 1,
+        "temperature": {
+          "max": -10,
+          "min": 1850,
+          "avg": 20,
+          "status": "OK"
+        }
+      }
+    }
+  },
+  {
+    "description": "V4 TT Device status message \u2013 Payload pattern",
+    "type": "uplink",
+    "input": {
+      "bytes": "447515030002060102",
+      "fPort": 2,
+      "time": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "device_status": {
+        "protocol_version": 4,
+        "battery_voltage": 2.9176470588235293,
+        "temperature": 21,
+        "lora_tx_counter": 3,
+        "avg_rssi": "-100..-129",
+        "bist": "0x06",
+        "event_counter": 1,
+        "sensor_type": "K"
+      }
+    }
+  },
+  {
+    "description": "V3 TT Complete Base message - Zeros",
+    "type": "downlink",
+    "input": {
+      "bytes": "3500010100010000000000000000000000000000DA90",
+      "fPort": 15,
+      "time": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "header": {
+        "message_type": "base_configuration",
+        "protocol_version": 3
+      },
+      "switch_mask": {
+        "enable_confirmed_event_message": false
+      },
+      "communication_max_retries": 1,
+      "number_of_unconfirmed_messages": 1,
+      "periodic_message_random_delay_seconds": 0,
+      "status_message_interval_seconds": 60,
+      "status_message_confirmed_interval": 0,
+      "lora_failure_holdoff_count": 0,
+      "lora_system_recover_count": 0,
+      "lorawan_fsb_mask": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  {
+    "description": "V3 TT Complete Base message - EU868",
+    "type": "downlink",
+    "input": {
+      "bytes": "350103023CA00501020100000000000000000000D455",
+      "fPort": 15,
+      "time": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "header": {
+        "message_type": "base_configuration",
+        "protocol_version": 3
+      },
+      "switch_mask": {
+        "enable_confirmed_event_message": true
+      },
+      "communication_max_retries": 3,
+      "number_of_unconfirmed_messages": 2,
+      "periodic_message_random_delay_seconds": 60,
+      "status_message_interval_seconds": 86400,
+      "status_message_confirmed_interval": 1,
+      "lora_failure_holdoff_count": 2,
+      "lora_system_recover_count": 1,
+      "lorawan_fsb_mask": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  {
+    "description": "V3 TT Complete Base message - US915 hybrid",
+    "type": "downlink",
+    "input": {
+      "bytes": "350103023CA005010201FF00000000000000020042E0",
+      "fPort": 15,
+      "time": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "header": {
+        "message_type": "base_configuration",
+        "protocol_version": 3
+      },
+      "switch_mask": {
+        "enable_confirmed_event_message": true
+      },
+      "communication_max_retries": 3,
+      "number_of_unconfirmed_messages": 2,
+      "periodic_message_random_delay_seconds": 60,
+      "status_message_interval_seconds": 86400,
+      "status_message_confirmed_interval": 1,
+      "lora_failure_holdoff_count": 2,
+      "lora_system_recover_count": 1,
+      "lorawan_fsb_mask": [
+        255,
+        0,
+        0,
+        0,
+        2
+      ]
+    }
+  },
+  {
+    "description": "V3 TT Sensor Message - Zeros",
+    "type": "downlink",
+    "input": {
+      "bytes": "36040000000000000000000000000000000000000000001FDD",
+      "fPort": 15,
+      "time": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "header": {
+        "message_type": "sensor_configuration",
+        "protocol_version": 3
+      },
+      "device_type": "tt",
+      "sensor_type": "PT100",
+      "temperature_measurement_interval_seconds": 0,
+      "periodic_event_message_interval": 0,
+      "events": [
+        {
+          "mode": "off",
+          "threshold_temperature": 0,
+          "measurement_window": 0
+        },
+        {
+          "mode": "off",
+          "threshold_temperature": 0,
+          "measurement_window": 0
+        },
+        {
+          "mode": "off",
+          "threshold_temperature": 0,
+          "measurement_window": 0
+        },
+        {
+          "mode": "off",
+          "threshold_temperature": 0,
+          "measurement_window": 0
+        }
+      ]
+    }
+  },
+  {
+    "description": "V3 TT Sensor Message - Official",
+    "type": "downlink",
+    "input": {
+      "bytes": "3604028403100000000000000000000000000000000000A6AD",
+      "fPort": 15,
+      "time": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "header": {
+        "message_type": "sensor_configuration",
+        "protocol_version": 3
+      },
+      "device_type": "tt",
+      "sensor_type": "K",
+      "temperature_measurement_interval_seconds": 900,
+      "periodic_event_message_interval": 16,
+      "events": [
+        {
+          "mode": "off",
+          "threshold_temperature": 0,
+          "measurement_window": 0
+        },
+        {
+          "mode": "off",
+          "threshold_temperature": 0,
+          "measurement_window": 0
+        },
+        {
+          "mode": "off",
+          "threshold_temperature": 0,
+          "measurement_window": 0
+        },
+        {
+          "mode": "off",
+          "threshold_temperature": 0,
+          "measurement_window": 0
+        }
+      ]
+    }
+  },
+  {
+    "description": "V4 TT Complete Base message - Zeros",
+    "type": "downlink",
+    "input": {
+      "bytes": "40000000000000",
+      "fPort": 7,
+      "time": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "config_update_req": {
+        "config_type": "base",
+        "protocol_version": 4,
+        "tag": "0x00000000",
+        "payload": {
+          "switch_mask": {
+            "enable_confirmed_event_message": false,
+            "enable_confirmed_data_message": false,
+            "allow_deactivation": false
+          },
+          "periodic_message_random_delay_seconds": 0,
+          "status_message_interval": "2 minutes"
+        }
+      }
+    }
+  },
+  {
+    "description": "V4 TT BaseLD Complete Message Pattern",
+    "type": "downlink",
+    "input": {
+      "bytes": "400000000005D1",
+      "fPort": 7,
+      "time": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "config_update_req": {
+        "config_type": "base",
+        "protocol_version": 4,
+        "tag": "0x00000000",
+        "payload": {
+          "switch_mask": {
+            "enable_confirmed_event_message": true,
+            "enable_confirmed_data_message": false,
+            "allow_deactivation": true
+          },
+          "periodic_message_random_delay_seconds": 17,
+          "status_message_interval": "2 days"
+        }
+      }
+    }
+  },
+  {
+    "description": "V4 TT BaseLD Complete Message Max",
+    "type": "downlink",
+    "input": {
+      "bytes": "400000000007FF",
+      "fPort": 7,
+      "time": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "config_update_req": {
+        "config_type": "base",
+        "protocol_version": 4,
+        "tag": "0x00000000",
+        "payload": {
+          "switch_mask": {
+            "enable_confirmed_event_message": true,
+            "enable_confirmed_data_message": true,
+            "allow_deactivation": true
+          },
+          "periodic_message_random_delay_seconds": 31,
+          "status_message_interval": "5 days"
+        }
+      }
+    }
+  },
+  {
+    "description": "V4 TT BaseLD Complete Message Offic. configuration",
+    "type": "downlink",
+    "input": {
+      "bytes": "4070496c0907FF",
+      "fPort": 7,
+      "time": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "config_update_req": {
+        "config_type": "base",
+        "protocol_version": 4,
+        "tag": "0x096c4970",
+        "payload": {
+          "switch_mask": {
+            "enable_confirmed_event_message": true,
+            "enable_confirmed_data_message": true,
+            "allow_deactivation": true
+          },
+          "periodic_message_random_delay_seconds": 31,
+          "status_message_interval": "5 days"
+        }
+      }
+    }
+  },
+  {
+    "description": "V4 TT Region Config Payload only Complete Msg - No payload",
+    "type": "downlink",
+    "input": {
+      "bytes": "41",
+      "fPort": 7,
+      "time": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "config_update_req": {
+        "config_type": "region",
+        "protocol_version": 4
+      }
+    }
+  },
+  {
+    "description": "V4 TT Region Config Payload only Complete Msg - Min config",
+    "type": "downlink",
+    "input": {
+      "bytes": "41000000000100000000000000",
+      "fPort": 7,
+      "time": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "config_update_req": {
+        "config_type": "region",
+        "protocol_version": 4,
+        "tag": "0x00000000",
+        "payload": {
+          "channel_plan": "EU868",
+          "join_trials": {
+            "holdoff_hours_max": 0,
+            "holdoff_steps": 0,
+            "burst_count": 1
+          },
+          "disable_switch": {
+            "frequency_bands": "0x0000",
+            "dwell_time": false
+          },
+          "rx1_delay": 0,
+          "adr": {
+            "ack_limit_exp": 0,
+            "ack_delay_exp": 0,
+            "mode": 0
+          },
+          "max_tx_power": 0
+        }
+      }
+    }
+  },
+  {
+    "description": "V4 Region config message \u2013 Compl \u2013 Max",
+    "type": "downlink",
+    "input": {
+      "bytes": "41FFFFFFFF0DFFFFFE1F0FFE0E",
+      "fPort": 7,
+      "time": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "config_update_req": {
+        "config_type": "region",
+        "protocol_version": 4,
+        "tag": "0xFFFFFFFF",
+        "payload": {
+          "channel_plan": "AS923-4",
+          "join_trials": {
+            "holdoff_hours_max": 255,
+            "holdoff_steps": 7,
+            "burst_count": 32
+          },
+          "disable_switch": {
+            "frequency_bands": "0x0FFE",
+            "dwell_time": true
+          },
+          "rx1_delay": 15,
+          "adr": {
+            "ack_limit_exp": 7,
+            "ack_delay_exp": 7,
+            "mode": 2
+          },
+          "max_tx_power": 14
+        }
+      }
+    }
+  },
+  {
+    "description": "V4 Region config message \u2013 Compl \u2013 EU868",
+    "type": "downlink",
+    "input": {
+      "bytes": "41FFFFFFFF01185C000000300E",
+      "fPort": 7,
+      "time": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "config_update_req": {
+        "config_type": "region",
+        "protocol_version": 4,
+        "tag": "0xFFFFFFFF",
+        "payload": {
+          "channel_plan": "EU868",
+          "join_trials": {
+            "holdoff_hours_max": 24,
+            "holdoff_steps": 4,
+            "burst_count": 12
+          },
+          "disable_switch": {
+            "frequency_bands": "0x0000",
+            "dwell_time": false
+          },
+          "rx1_delay": 0,
+          "adr": {
+            "ack_limit_exp": 4,
+            "ack_delay_exp": 1,
+            "mode": 0
+          },
+          "max_tx_power": 14
+        }
+      }
+    }
+  },
+  {
+    "description": "V4 Region config message \u2013 Compl \u2013 US915",
+    "type": "downlink",
+    "input": {
+      "bytes": "41FFFFFFFF02188D0000003008",
+      "fPort": 7,
+      "time": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "config_update_req": {
+        "config_type": "region",
+        "protocol_version": 4,
+        "tag": "0xFFFFFFFF",
+        "payload": {
+          "channel_plan": "US915",
+          "join_trials": {
+            "holdoff_hours_max": 24,
+            "holdoff_steps": 5,
+            "burst_count": 18
+          },
+          "disable_switch": {
+            "frequency_bands": "0x0000",
+            "dwell_time": false
+          },
+          "rx1_delay": 0,
+          "adr": {
+            "ack_limit_exp": 4,
+            "ack_delay_exp": 1,
+            "mode": 0
+          },
+          "max_tx_power": 8
+        }
+      }
+    }
+  },
+  {
+    "description": "V4 TT Sensor config message \u2013 Compl. - official config",
+    "type": "downlink",
+    "input": {
+      "bytes": "43DC9258E8040203050C00",
+      "fPort": 7,
+      "time": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "config_update_req": {
+        "config_type": "sensor",
+        "protocol_version": 4,
+        "tag": "0xE85892DC",
+        "payload": {
+          "device_type": "tt",
+          "sensor_type": "K",
+          "switch_mask": {
+            "selection": "avg_only"
+          },
+          "measurement_interval_minutes": 5,
+          "periodic_event_message_interval": 12
+        }
+      }
+    }
+  }
+]
