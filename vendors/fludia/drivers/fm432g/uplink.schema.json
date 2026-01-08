@@ -1,0 +1,95 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "data": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "firmware_version": {
+          "type": ["integer", "null"],
+          "description": "Firmware version as an integer"
+        },
+        "increments": {
+          "description": "Array containing the index increments. If recvTime is provided, it becomes a 2-dimensional array with JavaScript Date objects: [[2024-08-02T19:30:00.000Z, 1], ...].",
+          "type": "array",
+          "items": {
+            "oneOf": [
+              { "type": "number" },
+              {
+                "type": "array",
+                "items": [
+                  { "type": "string", "format": "date-time" },
+                  { "type": "number" }
+                ],
+                "minItems": 2,
+                "maxItems": 2
+              }
+            ]
+          }
+        },
+        "index": {
+          "type": "number",
+          "description": "Index starting at 0 when the device starts"
+        },
+        "indexes": {
+          "description": "Array containing the indexes. If recvTime is provided, it becomes a 2-dimensional array with JavaScript Date objects: [[2024-08-02T19:30:00.000Z, 1], ...].",
+          "type": "array",
+          "items": {
+            "oneOf": [
+              { "type": "number" },
+              {
+                "type": "array",
+                "items": [
+                  { "type": "string", "format": "date-time" },
+                  { "type": "number" }
+                ],
+                "minItems": 2,
+                "maxItems": 2
+              }
+            ]
+          }
+        },
+        "message_type": {
+          "type": "string",
+          "description": "Type of message"
+        },
+        "meter_type": {
+          "type": ["string", "null"],
+          "enum": ["Gas", null],
+          "description": "Type of meter"
+        },
+        "number_of_starts": {
+          "type": ["integer", "null"],
+          "description": "Number of starts of this sensor"
+        },
+        "number_of_values": {
+          "type": ["integer", "null"],
+          "description": "Number of measurement values in each T1 uplink (only available in _ap products)"
+        },
+        "param_id": {
+          "type": ["integer", "null"],
+          "description": "NA"
+        },
+        "redundancy": {
+          "type": ["integer", "null"],
+          "description": "When activated, previous increments are repeated (only available in _ap products)"
+        },
+        "time_step": {
+          "type": "integer",
+          "description": "Number of minutes for each measurement"
+        }
+      }
+    },
+    "errors": {
+      "type": "array",
+      "description": "List of error messages",
+      "items": { "type": "string" }
+    },
+    "warnings": {
+      "type": "array",
+      "description": "List of warning messages",
+      "items": { "type": "string" }
+    }
+  }
+}
