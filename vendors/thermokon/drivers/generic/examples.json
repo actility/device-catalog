@@ -11,7 +11,8 @@
         "REED0_CNT": 1,
         "REED0_STATE": 1
       }
-    }
+    },
+    "points": {}
   },
   {
     "type": "uplink",
@@ -30,7 +31,8 @@
         "REED1_CNT": 0,
         "REED1_STATE": 0
       }
-    }
+    },
+    "points": {}
   },
   {
     "type": "uplink",
@@ -45,6 +47,20 @@
         "TEMP": 23.8,
         "VBAT": 1560,
         "VISIBLE_LIGHT": 43
+      }
+    },
+    "points": {
+      "batteryVoltage": {
+        "unitId": "V",
+        "record": 1560
+      },
+      "temperature:0": {
+        "unitId": "Cel",
+        "record": 23.8
+      },
+      "humidity": {
+        "unitId": "%RH",
+        "record": 46
       }
     }
   },
@@ -61,7 +77,8 @@
         "BUTTON_2_LAST_TYPE": "Short Press",
         "BUTTON_2_PRESSED": 1
       }
-    }
+    },
+    "points": {}
   },
   {
     "type": "uplink",
@@ -75,7 +92,8 @@
         "OCCU0_CNT": 1,
         "OCCU0_STATE": 0
       }
-    }
+    },
+    "points": {}
   },
   {
     "type": "uplink",
@@ -88,7 +106,8 @@
       "data": {
         "SETPOINT_2": 21.5
       }
-    }
+    },
+    "points": {}
   },
   {
     "type": "uplink",
@@ -102,20 +121,30 @@
         "RHUM": 38,
         "TEMP": 22.2
       }
+    },
+    "points": {
+      "temperature:0": {
+        "unitId": "Cel",
+        "record": 22.2
+      },
+      "humidity": {
+        "unitId": "%RH",
+        "record": 38
+      }
     }
   },
   {
     "type": "downlink-encode",
     "description": "Downlink: Set open window detection",
     "input": {
-        "data": {
-          "HEARTBEAT_INTERVAL": 5,
-          "HYSTERESIS_BEHAVIOR": 3,
-          "MEAS_INTERVAL": 15,
-          "CNT_MEAS": 100,
-          "LED_MODE": 0,
-          "LED_ONTIME": 3
-        }
+      "data": {
+        "HEARTBEAT_INTERVAL": 5,
+        "HYSTERESIS_BEHAVIOR": 3,
+        "MEAS_INTERVAL": 15,
+        "CNT_MEAS": 100,
+        "LED_MODE": 0,
+        "LED_ONTIME": 3
+      }
     },
     "output": {
       "fPort": 2,
@@ -153,11 +182,11 @@
     "type": "downlink-encode",
     "description": "Downlink: command, led mode and heartbeat interval",
     "input": {
-        "data": {
-          "CMD": 1,
-          "LED_MODE" : 10,
-          "HEARTBEAT_INTERVAL" : 20
-        }
+      "data": {
+        "CMD": 1,
+        "LED_MODE": 10,
+        "HEARTBEAT_INTERVAL": 20
+      }
     },
     "output": {
       "fPort": 2,

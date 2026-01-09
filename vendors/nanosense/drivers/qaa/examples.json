@@ -1,177 +1,269 @@
 [
-    {
-        "type": "uplink",
-        "description": "uplink QAA with temperature, PM and noise sensors",
-        "input": {
-            "bytes": [
-                7,
-                27,
-                30,
-                0,
-                10,
-                100,
-                145,
-                1,
-                222,
-                0,
-                128,
-                0,
-                0,
-                88,
-                88,
-                144,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                147,
-                1,
-                215,
-                1,
-                0,
-                64,
-                32,
-                80,
-                218,
-                112,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0
-            ],
-            "fPort": 1,
-            "recvTime": "2025-08-05T22:35:55.000Z"
-        },
-        "output": {
-            "data": {
-                "device_info": {
-                    "autonomy_percent": 100,
-                    "capteurs_actifs": [
-                        "temperature_rh",
-                        "pm",
-                        "noise"
-                    ],
-                    "firmware_version": 2.1,
-                    "frm_lora": 2.4,
-                    "transmission_interval": 10
-                },
-                "measurements": [
-                    {
-                        "humidity": 56.86,
-                        "log_timestamp": 1754433055,
-                        "noise_average": 53,
-                        "noise_peak": 57,
-                        "pm1": 0,
-                        "pm10": 1,
-                        "pm25": 0,
-                        "temperature": 17.38
-                    },
-                    {
-                        "humidity": 57.65,
-                        "log_timestamp":  1754433355,
-                        "noise_average": 50,
-                        "noise_peak": 60,
-                        "pm1": 1,
-                        "pm10": 2,
-                        "pm25": 1,
-                        "temperature": 16.83
-                    }
-                ]
-            },
-            "errors": [],
-            "warnings": []
-        },
-        "points": {
-            "batteryLevel": { "unitId": "%", "record": 100 },
-            "humidity": { "unitId": "%", "records": [ { "value": 56.86, "eventTime": null }, { "value": 57.65, "eventTime": null } ] },
-            "sound:0": { "unitId": "dB", "records": [ { "value": 53, "eventTime": null }, { "value": 50, "eventTime": null } ], "nature": "noise_average" },
-            "sound:1": { "unitId": "dB", "records": [ { "value": 57, "eventTime": null }, { "value": 60, "eventTime": null } ], "nature": "noise_peak" },
-            "concentration:0": { "unitId": "ug/m3", "records": [ { "value": 0, "eventTime": null }, { "value": 1, "eventTime": null } ], "nature": "pm1" },
-            "concentration:1": { "unitId": "ug/m3", "records": [ { "value": 1, "eventTime": null }, { "value": 2, "eventTime": null } ], "nature": "pm10" },
-            "concentration:2": { "unitId": "ug/m3", "records": [ { "value": 0, "eventTime": null }, { "value": 1, "eventTime": null } ], "nature": "pm25" },
-            "temperature": { "unitId": "Cel", "records": [ { "value": 17.38, "eventTime": null }, { "value": 16.83, "eventTime": null } ] }
-        }
+  {
+    "type": "uplink",
+    "description": "uplink QAA with temperature, PM and noise sensors",
+    "input": {
+      "bytes": [
+        7,
+        27,
+        30,
+        0,
+        10,
+        100,
+        145,
+        1,
+        222,
+        0,
+        128,
+        0,
+        0,
+        88,
+        88,
+        144,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        147,
+        1,
+        215,
+        1,
+        0,
+        64,
+        32,
+        80,
+        218,
+        112,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "fPort": 1,
+      "recvTime": "2025-08-05T22:35:55.000Z"
     },
-    {
-        "type": "downlink-encode",
-        "description": "encode downlink to set transmission interval to 30 minutes",
-        "input": {
-            "data": {
-                "transmissionInterval": 30
-            }
+    "output": {
+      "data": {
+        "device_info": {
+          "autonomy_percent": 100,
+          "capteurs_actifs": [
+            "temperature_rh",
+            "pm",
+            "noise"
+          ],
+          "firmware_version": 2.1,
+          "frm_lora": 2.4,
+          "transmission_interval": 10
         },
-        "output": {
-            "bytes": [
-                1,
-                0,
-                30
-            ],
-            "fPort": 2,
-            "errors": [],
-            "warnings": []
-        }
+        "measurements": [
+          {
+            "humidity": 56.86,
+            "log_timestamp": 1754433055,
+            "noise_average": 53,
+            "noise_peak": 57,
+            "pm1": 0,
+            "pm10": 1,
+            "pm25": 0,
+            "temperature": 17.38
+          },
+          {
+            "humidity": 57.65,
+            "log_timestamp": 1754433355,
+            "noise_average": 50,
+            "noise_peak": 60,
+            "pm1": 1,
+            "pm10": 2,
+            "pm25": 1,
+            "temperature": 16.83
+          }
+        ]
+      },
+      "errors": [],
+      "warnings": []
     },
-    {
-        "type": "downlink-encode",
-        "description": "encode downlink to set transmission interval to 120 minutes",
-        "input": {
-            "data": {
-                "transmissionInterval": 120
-            }
-        },
-        "output": {
-            "bytes": [
-                1,
-                0,
-                120
-            ],
-            "fPort": 2,
-            "errors": [],
-            "warnings": []
-        }
-    },
-    {
-        "type": "downlink-encode",
-        "description": "fail encode downlink when transmission interval exceeds 720",
-        "input": {
-            "data": {
-                "transmissionInterval": 800
-            }
-        },
-        "output": {
-            "bytes": [],
-            "fPort": 2,
-            "errors": [
-                "Transmission interval be a number between 1 and 720 (minutes)"
-            ],
-            "warnings": []
-        }
-    },
-    {
-        "type": "downlink-encode",
-        "description": "fail encode downlink when transmission interval is below 1",
-        "input": {
-            "data": {
-                "transmissionInterval": 0
-            }
-        },
-        "output": {
-            "bytes": [],
-            "fPort": 2,
-            "errors": [
-                "Transmission interval be a number between 1 and 720 (minutes)"
-            ],
-            "warnings": []
-        }
+    "points": {
+      "batteryLevel": {
+        "unitId": "%",
+        "record": 100
+      },
+      "humidity": {
+        "unitId": "%",
+        "records": [
+          {
+            "value": 56.86,
+            "eventTime": null
+          },
+          {
+            "value": 57.65,
+            "eventTime": null
+          }
+        ]
+      },
+      "sound:0": {
+        "unitId": "dB",
+        "records": [
+          {
+            "value": 53,
+            "eventTime": null
+          },
+          {
+            "value": 50,
+            "eventTime": null
+          }
+        ],
+        "nature": "noise_average"
+      },
+      "sound:1": {
+        "unitId": "dB",
+        "records": [
+          {
+            "value": 57,
+            "eventTime": null
+          },
+          {
+            "value": 60,
+            "eventTime": null
+          }
+        ],
+        "nature": "noise_peak"
+      },
+      "concentration:0": {
+        "unitId": "ug/m3",
+        "records": [
+          {
+            "value": 0,
+            "eventTime": null
+          },
+          {
+            "value": 1,
+            "eventTime": null
+          }
+        ],
+        "nature": "pm1"
+      },
+      "concentration:1": {
+        "unitId": "ug/m3",
+        "records": [
+          {
+            "value": 1,
+            "eventTime": null
+          },
+          {
+            "value": 2,
+            "eventTime": null
+          }
+        ],
+        "nature": "pm10"
+      },
+      "concentration:2": {
+        "unitId": "ug/m3",
+        "records": [
+          {
+            "value": 0,
+            "eventTime": null
+          },
+          {
+            "value": 1,
+            "eventTime": null
+          }
+        ],
+        "nature": "pm25"
+      },
+      "temperature": {
+        "unitId": "Cel",
+        "records": [
+          {
+            "value": 17.38,
+            "eventTime": null
+          },
+          {
+            "value": 16.83,
+            "eventTime": null
+          }
+        ]
+      }
     }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "encode downlink to set transmission interval to 30 minutes",
+    "input": {
+      "data": {
+        "transmissionInterval": 30
+      }
+    },
+    "output": {
+      "bytes": [
+        1,
+        0,
+        30
+      ],
+      "fPort": 2,
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "encode downlink to set transmission interval to 120 minutes",
+    "input": {
+      "data": {
+        "transmissionInterval": 120
+      }
+    },
+    "output": {
+      "bytes": [
+        1,
+        0,
+        120
+      ],
+      "fPort": 2,
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "fail encode downlink when transmission interval exceeds 720",
+    "input": {
+      "data": {
+        "transmissionInterval": 800
+      }
+    },
+    "output": {
+      "bytes": [],
+      "fPort": 2,
+      "errors": [
+        "Transmission interval be a number between 1 and 720 (minutes)"
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "fail encode downlink when transmission interval is below 1",
+    "input": {
+      "data": {
+        "transmissionInterval": 0
+      }
+    },
+    "output": {
+      "bytes": [],
+      "fPort": 2,
+      "errors": [
+        "Transmission interval be a number between 1 and 720 (minutes)"
+      ],
+      "warnings": []
+    }
+  }
 ]

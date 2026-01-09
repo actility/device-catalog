@@ -19,6 +19,16 @@
         "alarmMsgCount": 256,
         "backlogMsgCount": 1
       }
+    },
+    "points": {
+      "temperature": {
+        "unitId": "Cel",
+        "record": 98.67
+      },
+      "humidity": {
+        "unitId": "%RH",
+        "record": 52.33
+      }
     }
   },
   {
@@ -58,6 +68,20 @@
           }
         ]
       }
+    },
+    "points": {
+      "temperature": {
+        "records": [
+          98.67,
+          99.68
+        ]
+      },
+      "humidity": {
+        "records": [
+          52.33,
+          53.34
+        ]
+      }
     }
   },
   {
@@ -84,6 +108,16 @@
         },
         "temperature": 107.76,
         "humidity": 61.42
+      }
+    },
+    "points": {
+      "temperature": {
+        "unitId": "Cel",
+        "record": 107.76
+      },
+      "humidity": {
+        "unitId": "%RH",
+        "record": 61.42
       }
     }
   },
@@ -129,6 +163,32 @@
           }
         ]
       }
+    },
+    "points": {
+      "temperature": {
+        "records": [
+          {
+            "eventTime": "2000-01-01T00:00:00.000Z",
+            "value": 107.76
+          },
+          {
+            "eventTime": "2000-01-01T00:00:00.000Z",
+            "value": 107.76
+          }
+        ]
+      },
+      "humidity": {
+        "records": [
+          {
+            "eventTime": "2000-01-01T00:00:00.000Z",
+            "value": 61.42
+          },
+          {
+            "eventTime": "2000-01-01T00:00:00.000Z",
+            "value": 61.42
+          }
+        ]
+      }
     }
   },
   {
@@ -151,7 +211,8 @@
         "tempAlarmsEnabled": "True",
         "humidityAlarmsEnabled": "False"
       }
-    }
+    },
+    "points": {}
   },
   {
     "description": "Send Sensor Config Advanced Notification",
@@ -179,7 +240,8 @@
         "ledBle": 10,
         "ledLora": 10
       }
-    }
+    },
+    "points": {}
   },
   {
     "description": "Send FW Version Notification",
@@ -199,7 +261,8 @@
         "releaseNumber": "6.1",
         "partNumber": 16909060
       }
-    }
+    },
+    "points": {}
   },
   {
     "description": "Send Battery Voltage",
@@ -216,6 +279,12 @@
           "None"
         ],
         "voltage": 3.01
+      }
+    },
+    "points": {
+      "batteryVoltage": {
+        "unitId": "V",
+        "record": 3.01
       }
     }
   },

@@ -9,33 +9,33 @@
     },
     "output": {
       "data": {
-        "flags":  {
-         "ch_temp_en": true,
-         "ch_vsys_en": true,
-         "ct_plus_mode": true,
-         "in1_ac_en": true,
-         "in1_dc_en": false,
-         "in1_freq_en": true,
-         "in1_scaled_mode": true,
-         "in1_voltage_mode": false,
-         "in2_ac_en": true,
-         "in2_dc_en": false,
-         "in2_freq_en": true,
-         "in2_scaled_mode": true,
-         "in2_voltage_mode": false,
-         "in3_ac_en": true,
-         "in3_dc_en": false,
-         "in3_freq_en": true,
-         "in3_scaled_mode": true,
-         "in3_voltage_mode": false,
-         "in4_ac_en": true,
-         "in4_dc_en": false,
-         "in4_freq_en": true,
-         "in4_scaled_mode": true,
-         "in4_voltage_mode": true,
-         "rogowski_mode": false,
-         "usb_powered": false
-      },
+        "flags": {
+          "ch_temp_en": true,
+          "ch_vsys_en": true,
+          "ct_plus_mode": true,
+          "in1_ac_en": true,
+          "in1_dc_en": false,
+          "in1_freq_en": true,
+          "in1_scaled_mode": true,
+          "in1_voltage_mode": false,
+          "in2_ac_en": true,
+          "in2_dc_en": false,
+          "in2_freq_en": true,
+          "in2_scaled_mode": true,
+          "in2_voltage_mode": false,
+          "in3_ac_en": true,
+          "in3_dc_en": false,
+          "in3_freq_en": true,
+          "in3_scaled_mode": true,
+          "in3_voltage_mode": false,
+          "in4_ac_en": true,
+          "in4_dc_en": false,
+          "in4_freq_en": true,
+          "in4_scaled_mode": true,
+          "in4_voltage_mode": true,
+          "rogowski_mode": false,
+          "usb_powered": false
+        },
         "in1_ac_A": 0,
         "in1_ac_raw_A": 0,
         "in1_coeff": 3000,
@@ -73,6 +73,16 @@
       },
       "errors": [],
       "warnings": []
+    },
+    "points": {
+      "temperature": {
+        "unitId": "Cel",
+        "record": 20
+      },
+      "batteryVoltage": {
+        "unitId": "V",
+        "record": 2.827
+      }
     }
   },
   {
@@ -86,69 +96,167 @@
     "output": {
       "data": {
         "flags": {
-         "ch_temp_en": true,
-         "ch_vsys_en": true,
-         "ct_plus_mode": true,
-         "in1_ac_en": true,
-         "in1_dc_en": false,
-         "in1_freq_en": true,
-         "in1_scaled_mode": true,
-         "in1_voltage_mode": false,
-         "in2_ac_en": true,
-         "in2_dc_en": false,
-         "in2_freq_en": true,
-         "in2_scaled_mode": true,
-         "in2_voltage_mode": false,
-         "in3_ac_en": true,
-         "in3_dc_en": false,
-         "in3_freq_en": true,
-         "in3_scaled_mode": true,
-         "in3_voltage_mode": false,
-         "in4_ac_en": true,
-         "in4_dc_en": false,
-         "in4_freq_en": true,
-         "in4_scaled_mode": true,
-         "in4_voltage_mode": true,
-         "rogowski_mode": false,
-         "usb_powered": false
-       },
-       "in1_ac_A": 3.685,
-       "in1_ac_raw_A": 0.001228,
-       "in1_coeff": 3000,
-       "in1_freq": 50.01,
-       "in1_pow_act_W": 638.35,
-       "in1_pow_app_VA": 859.52,
-       "in1_pow_factor": 0.7427,
-       "in1_pow_react_VAR": 575.58,
-       "in2_ac_A": 3.648,
-       "in2_ac_raw_A": 0.001216,
-       "in2_coeff": 3000,
-       "in2_freq": 50.01,
-       "in2_pow_act_W": 626.92,
-       "in2_pow_app_VA": 850.85,
-       "in2_pow_factor": 0.7368,
-       "in2_pow_react_VAR": 575.25,
-       "in3_ac_A": 3.905,
-       "in3_ac_raw_A": 0.001302,
-       "in3_coeff": 3000,
-       "in3_freq": 50.01,
-       "in3_pow_act_W": 698.3,
-       "in3_pow_app_VA": 910.91,
-       "in3_pow_factor": 0.7666,
-       "in3_pow_react_VAR": 584.91,
-       "in4_ac_raw_A": 0.015358,
-       "in4_coeff": 15.188,
-       "in4_freq": 50.01,
-       "in4_voltage_VAC": 233.25,
-       "sum_in1234_ac_A": 11.238,
-       "sum_in123_pow_act_W": 1963.57,
-       "sum_in123_pow_app_VA": 2621.28,
-       "sum_in123_pow_react_VAR": 1735.75,
-       "temp_C": 18.8,
-       "vsys_V": 3.623
-  },
+          "ch_temp_en": true,
+          "ch_vsys_en": true,
+          "ct_plus_mode": true,
+          "in1_ac_en": true,
+          "in1_dc_en": false,
+          "in1_freq_en": true,
+          "in1_scaled_mode": true,
+          "in1_voltage_mode": false,
+          "in2_ac_en": true,
+          "in2_dc_en": false,
+          "in2_freq_en": true,
+          "in2_scaled_mode": true,
+          "in2_voltage_mode": false,
+          "in3_ac_en": true,
+          "in3_dc_en": false,
+          "in3_freq_en": true,
+          "in3_scaled_mode": true,
+          "in3_voltage_mode": false,
+          "in4_ac_en": true,
+          "in4_dc_en": false,
+          "in4_freq_en": true,
+          "in4_scaled_mode": true,
+          "in4_voltage_mode": true,
+          "rogowski_mode": false,
+          "usb_powered": false
+        },
+        "in1_ac_A": 3.685,
+        "in1_ac_raw_A": 0.001228,
+        "in1_coeff": 3000,
+        "in1_freq": 50.01,
+        "in1_pow_act_W": 638.35,
+        "in1_pow_app_VA": 859.52,
+        "in1_pow_factor": 0.7427,
+        "in1_pow_react_VAR": 575.58,
+        "in2_ac_A": 3.648,
+        "in2_ac_raw_A": 0.001216,
+        "in2_coeff": 3000,
+        "in2_freq": 50.01,
+        "in2_pow_act_W": 626.92,
+        "in2_pow_app_VA": 850.85,
+        "in2_pow_factor": 0.7368,
+        "in2_pow_react_VAR": 575.25,
+        "in3_ac_A": 3.905,
+        "in3_ac_raw_A": 0.001302,
+        "in3_coeff": 3000,
+        "in3_freq": 50.01,
+        "in3_pow_act_W": 698.3,
+        "in3_pow_app_VA": 910.91,
+        "in3_pow_factor": 0.7666,
+        "in3_pow_react_VAR": 584.91,
+        "in4_ac_raw_A": 0.015358,
+        "in4_coeff": 15.188,
+        "in4_freq": 50.01,
+        "in4_voltage_VAC": 233.25,
+        "sum_in1234_ac_A": 11.238,
+        "sum_in123_pow_act_W": 1963.57,
+        "sum_in123_pow_app_VA": 2621.28,
+        "sum_in123_pow_react_VAR": 1735.75,
+        "temp_C": 18.8,
+        "vsys_V": 3.623
+      },
       "errors": [],
       "warnings": []
+    },
+    "points": {
+      "current:0": {
+        "unitId": "A",
+        "record": 3.685
+      },
+      "frequency:0": {
+        "unitId": "Hz",
+        "record": 50.01
+      },
+      "activePower:0": {
+        "unitId": "W",
+        "record": 638.35
+      },
+      "apparentPower:0": {
+        "unitId": "VA",
+        "record": 859.52
+      },
+      "reactivePower:0": {
+        "unitId": "VAR",
+        "record": 575.58
+      },
+      "current:1": {
+        "unitId": "A",
+        "record": 3.648
+      },
+      "frequency:1": {
+        "unitId": "Hz",
+        "record": 50.01
+      },
+      "activePower:1": {
+        "unitId": "W",
+        "record": 626.92
+      },
+      "apparentPower:1": {
+        "unitId": "VA",
+        "record": 850.85
+      },
+      "reactivePower:1": {
+        "unitId": "VAR",
+        "record": 575.25
+      },
+      "current:2": {
+        "unitId": "A",
+        "record": 3.905
+      },
+      "frequency:2": {
+        "unitId": "Hz",
+        "record": 50.01
+      },
+      "activePower:2": {
+        "unitId": "W",
+        "record": 698.3
+      },
+      "apparentPower:2": {
+        "unitId": "VA",
+        "record": 910.91
+      },
+      "reactivePower:2": {
+        "unitId": "VAR",
+        "record": 584.91
+      },
+      "frequency:3": {
+        "unitId": "Hz",
+        "record": 50.01
+      },
+      "voltage:3": {
+        "unitId": "V",
+        "record": 233.25
+      },
+      "current:4": {
+        "unitId": "A",
+        "record": 11.238,
+        "nature": "4 inputs sum"
+      },
+      "activePower:4": {
+        "unitId": "W",
+        "record": 1963.57,
+        "nature": "4 inputs sum"
+      },
+      "reactivePower:4": {
+        "unitId": "VAR",
+        "record": 1735.75,
+        "nature": "4 inputs sum"
+      },
+      "apparentPower:4": {
+        "unitId": "VA",
+        "record": 2621.28,
+        "nature": "4 inputs sum"
+      },
+      "temperature": {
+        "unitId": "Cel",
+        "record": 18.8
+      },
+      "batteryVoltage": {
+        "unitId": "V",
+        "record": 3.623
+      }
     }
   }
 ]
