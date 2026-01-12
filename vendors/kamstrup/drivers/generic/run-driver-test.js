@@ -3,9 +3,10 @@ const fs = require('fs');
 const path = require('path');
 
 let testsPath = path.resolve(__dirname, '../../../../tests');
-if(__dirname.includes("device-catalog-private")) {
-    testsPath = path.resolve(__dirname, '../../../../../device-catalog/tests');
+if(testsPath.includes("device-catalog-private")) {
+    testsPath = path.resolve(__dirname, "../../../../../device-catalog/tests");
 }
+
 const driverPath = path.resolve(__dirname);
 
 if (!fs.existsSync(path.join(testsPath, 'node_modules'))) {
