@@ -5,6 +5,7 @@ const yaml = require("js-yaml");
 const ivm = require("isolated-vm");
 const esl = require("eslint");
 const esbuild = require('esbuild');
+const {computeChecksum} = require("./crc32");
 
 const DRIVER_PATH = path.resolve(process.env.DRIVER_PATH || __dirname);
 const resolveDriverPath = (...paths) => path.join(DRIVER_PATH, ...paths);
@@ -269,10 +270,19 @@ function isTrusted() {
     const driverYamlPath = path.join(privateDir, "driver.yaml");
     let driverYamlTrusted = false;
     if(fs.existsSync(driverYamlPath)) {
-        driverYamlTrusted = yaml.load(fs.readFileSync(driverYamlPath)).trusted ?? false;
+        const driverYaml = yaml.load(fs.readFileSync(driverYamlPath))
+        const driverYamlTrustedCrc = driverYaml.trustedCRC;
+        let driverPath = privateDir;
+        if(!driverYaml.name) {
+            driverPath = driverPath.replace("device-catalog-private", "device-catalog")
+        }
+
+        const newTrustedCRC = computeChecksum(driverPath);
+        driverYamlTrusted = newTrustedCRC === driverYamlTrustedCrc;
+        console.log({ driverYamlTrusted });
     }
 
-    return (packageTrusted && DRIVER_PATH.includes("device-catalog-private")) || driverYamlTrusted;
+    return driverYamlTrusted;
 }
 
 const trusted = isTrusted();
