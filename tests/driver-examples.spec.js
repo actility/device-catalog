@@ -308,6 +308,24 @@ async function run(input, operation){
             }
         // }
 
+        if (signature === "ttn") {
+            if (operation === "decodeUplink") {
+                return fn.Decoder(input.bytes, input.fPort);
+            }
+            if (operation === "encodeDownlink") {
+                return fn.Encoder(input.data, input.fPort);
+            }
+        } else if (signature === "chirpstack") {
+            if (operation === "decodeUplink") {
+                return fn.Decode(input.fPort, input.bytes);
+            }
+            if (operation === "encodeDownlink") {
+                return fn.Encode(input.fPort, input.data);
+            }
+        } else if (signature === "actility" && operation === "encodeDownlink") {
+            return fn[operation](input.data);
+        }
+
         return fn[operation](input);
     }
 
