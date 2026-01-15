@@ -1,126 +1,286 @@
 [
-  {
-    "description": "Payload for Neon Valve Sensor MT 1",
-    "type": "uplink",
-    "input": {
-      "bytes": "230053085308530800",
-      "fPort": 1,
-      "time": "2023-02-28T12:00:00.000+02:00"
-    },
-    "output": {
-      "application_event": {
-        "angle": 2125.6,
-        "debug": {
-          "temperature": 8,
-          "vector": {
-            "x": 0,
-            "y": 0,
-            "z": 0
-          }
+    {
+        "description": "Payload for Neon Valve Sensor MT 1",
+        "type": "uplink",
+        "input": {
+            "bytes": "230053085308530800",
+            "fPort": 1,
+            "time": "2023-02-28T12:00:00.000+02:00"
         },
-        "detection_method": "angle",
-        "magnitude": 2125.6,
-        "state": "open",
-        "state_transition_sequence": 83,
-        "trigger": "state_transition"
-      },
-      "header": {
-        "message_type": "application_event",
-        "protocol_version": 2
-      }
-    }
-  },
-  {
-    "description": "Payload for Neon Valve Sensor MT 2",
-    "type": "uplink",
-    "input": {
-      "bytes": "230046084d084a0800",
-      "fPort": 1,
-      "time": "2023-02-28T12:00:00.000+02:00"
-    },
-    "output": {
-      "application_event": {
-        "angle": 1972,
-        "debug": {
-          "temperature": 8,
-          "vector": {
-            "x": 0,
-            "y": 0,
-            "z": 0
-          }
+        "output": {
+            "application_event": {
+                "angle": 2125.6,
+                "debug": {
+                    "temperature": 8,
+                    "vector": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                    }
+                },
+                "detection_method": "angle",
+                "magnitude": 2125.6,
+                "state": "open",
+                "state_transition_sequence": 83,
+                "trigger": "state_transition"
+            },
+            "header": {
+                "message_type": "application_event",
+                "protocol_version": 2
+            }
         },
-        "detection_method": "angle",
-        "magnitude": 1895.2,
-        "state": "open",
-        "state_transition_sequence": 70,
-        "trigger": "state_transition"
-      },
-      "header": {
-        "message_type": "application_event",
-        "protocol_version": 2
-      }
-    }
-  },
-  {
-    "description": "Payload for Neon Valve Sensor MT 3",
-    "type": "uplink",
-    "input": {
-      "bytes": "230046084608460800",
-      "fPort": 1,
-      "time": "2023-02-28T12:00:00.000+02:00"
+        "points": {
+            "angle:0": {
+                "unitId": "deg",
+                "record": 2125.6
+            },
+            "angle:1": {
+                "unitId": "deg",
+                "record": 2125.6,
+                "nature": "magnitude"
+            },
+            "temperature": {
+                "unitId": "Cel",
+                "record": 8
+            },
+            "acceleration:0": {
+                "unitId": "m/s2",
+                "record": 0,
+                "nature": "x"
+            },
+            "acceleration:1": {
+                "unitId": "m/s2",
+                "record": 0,
+                "nature": "y"
+            },
+            "acceleration:2": {
+                "unitId": "m/s2",
+                "record": 0,
+                "nature": "z"
+            },
+            "status": {
+                "unitId": "state",
+                "record": true,
+                "nature": "state"
+            },
+            "counter": {
+                "unitId": "count",
+                "record": 83,
+                "nature": "state_transition_sequence"
+            }
+        }
     },
-    "output": {
-      "application_event": {
-        "angle": 1792.8000000000002,
-        "debug": {
-          "temperature": 8,
-          "vector": {
-            "x": 0,
-            "y": 0,
-            "z": 0
-          }
+    {
+        "description": "Payload for Neon Valve Sensor MT 2",
+        "type": "uplink",
+        "input": {
+            "bytes": "230046084d084a0800",
+            "fPort": 1,
+            "time": "2023-02-28T12:00:00.000+02:00"
         },
-        "detection_method": "angle",
-        "magnitude": 1792.8000000000002,
-        "state": "open",
-        "state_transition_sequence": 70,
-        "trigger": "state_transition"
-      },
-      "header": {
-        "message_type": "application_event",
-        "protocol_version": 2
-      }
-    }
-  },
-  {
-    "description": "Payload for Neon Valve Sensor MT 4",
-    "type": "uplink",
-    "input": {
-      "bytes": "23004d0853084f0800",
-      "fPort": 1,
-      "time": "2023-02-28T12:00:00.000+02:00"
+        "output": {
+            "application_event": {
+                "angle": 1972,
+                "debug": {
+                    "temperature": 8,
+                    "vector": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                    }
+                },
+                "detection_method": "angle",
+                "magnitude": 1895.2,
+                "state": "open",
+                "state_transition_sequence": 70,
+                "trigger": "state_transition"
+            },
+            "header": {
+                "message_type": "application_event",
+                "protocol_version": 2
+            }
+        },
+        "points": {
+            "angle:0": {
+                "unitId": "deg",
+                "record": 1972
+            },
+            "angle:1": {
+                "unitId": "deg",
+                "record": 1895.2,
+                "nature": "magnitude"
+            },
+            "temperature": {
+                "unitId": "Cel",
+                "record": 8
+            },
+            "acceleration:0": {
+                "unitId": "m/s2",
+                "record": 0,
+                "nature": "x"
+            },
+            "acceleration:1": {
+                "unitId": "m/s2",
+                "record": 0,
+                "nature": "y"
+            },
+            "acceleration:2": {
+                "unitId": "m/s2",
+                "record": 0,
+                "nature": "z"
+            },
+            "status": {
+                "unitId": "state",
+                "record": true,
+                "nature": "state"
+            },
+            "counter": {
+                "unitId": "count",
+                "record": 70,
+                "nature": "state_transition_sequence"
+            }
+        }
     },
-    "output": {
-      "application_event": {
-        "angle": 2125.6,
-        "debug": {
-          "temperature": 8,
-          "vector": {
-            "x": 0,
-            "y": 0,
-            "z": 0
-          }
+    {
+        "description": "Payload for Neon Valve Sensor MT 3",
+        "type": "uplink",
+        "input": {
+            "bytes": "230046084608460800",
+            "fPort": 1,
+            "time": "2023-02-28T12:00:00.000+02:00"
         },
-        "detection_method": "angle",
-        "magnitude": 2023.2,
-        "state": "open",
-        "state_transition_sequence": 77,
-        "trigger": "state_transition"
-      },
-      "header": {
-        "message_type": "application_event",
-        "protocol_version": 2
-      }
+        "output": {
+            "application_event": {
+                "angle": 1792.8000000000002,
+                "debug": {
+                    "temperature": 8,
+                    "vector": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                    }
+                },
+                "detection_method": "angle",
+                "magnitude": 1792.8000000000002,
+                "state": "open",
+                "state_transition_sequence": 70,
+                "trigger": "state_transition"
+            },
+            "header": {
+                "message_type": "application_event",
+                "protocol_version": 2
+            }
+        },
+        "points": {
+            "angle:0": {
+                "unitId": "deg",
+                "record": 1792.8000000000002
+            },
+            "angle:1": {
+                "unitId": "deg",
+                "record": 1792.8000000000002,
+                "nature": "magnitude"
+            },
+            "temperature": {
+                "unitId": "Cel",
+                "record": 8
+            },
+            "acceleration:0": {
+                "unitId": "m/s2",
+                "record": 0,
+                "nature": "x"
+            },
+            "acceleration:1": {
+                "unitId": "m/s2",
+                "record": 0,
+                "nature": "y"
+            },
+            "acceleration:2": {
+                "unitId": "m/s2",
+                "record": 0,
+                "nature": "z"
+            },
+            "status": {
+                "unitId": "state",
+                "record": true,
+                "nature": "state"
+            },
+            "counter": {
+                "unitId": "count",
+                "record": 70,
+                "nature": "state_transition_sequence"
+            }
+        }
+    },
+    {
+        "description": "Payload for Neon Valve Sensor MT 4",
+        "type": "uplink",
+        "input": {
+            "bytes": "23004d0853084f0800",
+            "fPort": 1,
+            "time": "2023-02-28T12:00:00.000+02:00"
+        },
+        "output": {
+            "application_event": {
+                "angle": 2125.6,
+                "debug": {
+                    "temperature": 8,
+                    "vector": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                    }
+                },
+                "detection_method": "angle",
+                "magnitude": 2023.2,
+                "state": "open",
+                "state_transition_sequence": 77,
+                "trigger": "state_transition"
+            },
+            "header": {
+                "message_type": "application_event",
+                "protocol_version": 2
+            }
+        },
+        "points": {
+            "angle:0": {
+                "unitId": "deg",
+                "record": 2125.6
+            },
+            "angle:1": {
+                "unitId": "deg",
+                "record": 2023.2,
+                "nature": "magnitude"
+            },
+            "temperature": {
+                "unitId": "Cel",
+                "record": 8
+            },
+            "acceleration:0": {
+                "unitId": "m/s2",
+                "record": 0,
+                "nature": "x"
+            },
+            "acceleration:1": {
+                "unitId": "m/s2",
+                "record": 0,
+                "nature": "y"
+            },
+            "acceleration:2": {
+                "unitId": "m/s2",
+                "record": 0,
+                "nature": "z"
+            },
+            "status": {
+                "unitId": "state",
+                "record": true,
+                "nature": "state"
+            },
+            "counter": {
+                "unitId": "count",
+                "record": 77,
+                "nature": "state_transition_sequence"
+            }
+        }
     }
-  }
 ]

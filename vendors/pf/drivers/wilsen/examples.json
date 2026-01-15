@@ -891,8 +891,7 @@
             "warnings": []
         },
         "points": {}
-    }
-  },
+    },
   {
     "description": "WILSEN.valve Payload - 2",
     "type": "uplink",
@@ -935,6 +934,16 @@
           8.201041,
           49.398844
         ]
+      },
+      "counter:0": {
+        "unitId": "count",
+        "record": 49,
+        "nature": "valve_status"
+      },
+      "counter:1": {
+        "unitId": "count",
+        "record": 39169,
+        "nature": "sensor_details"
       }
     }
   },
@@ -962,6 +971,21 @@
       "batteryVoltage": {
         "unitId": "V",
         "record": 3.6
+      },
+      "counter:0": {
+        "unitId": "count",
+        "record": 2,
+        "nature": "gps_count"
+      },
+      "counter:1": {
+        "unitId": "count",
+        "record": 158,
+        "nature": "lora_count"
+      },
+      "counter:2": {
+        "unitId": "count",
+        "record": 3375,
+        "nature": "sensing_count"
       }
     }
   },
@@ -993,6 +1017,21 @@
       "batteryVoltage": {
         "unitId": "V",
         "record": 3.6
+      },
+      "counter": {
+        "unitId": "count",
+        "record": 0,
+        "nature": "sensor_status"
+      },
+      "status:0": {
+        "unitId": "state",
+        "record": false,
+        "nature": "sensor_1_status"
+      },
+      "status:1": {
+        "unitId": "state",
+        "record": false,
+        "nature": "sensor_2_status"
       }
     }
   },
@@ -1033,6 +1072,21 @@
           8.200627,
           49.399304
         ]
+      },
+      "counter": {
+        "unitId": "count",
+        "record": 0,
+        "nature": "sensor_status"
+      },
+      "status:0": {
+        "unitId": "state",
+        "record": false,
+        "nature": "sensor_1_status"
+      },
+      "status:1": {
+        "unitId": "state",
+        "record": false,
+        "nature": "sensor_2_status"
       }
     }
   },
@@ -1060,6 +1114,21 @@
       "batteryVoltage": {
         "unitId": "V",
         "record": 3.6
+      },
+      "counter:0": {
+        "unitId": "count",
+        "record": 2,
+        "nature": "gps_count"
+      },
+      "counter:1": {
+        "unitId": "count",
+        "record": 158,
+        "nature": "lora_count"
+      },
+      "counter:2": {
+        "unitId": "count",
+        "record": 3375,
+        "nature": "sensing_count"
       }
     }
   },
@@ -1083,7 +1152,28 @@
       "errors": [],
       "warnings": []
     },
-    "points": {}
+    "points": {
+      "counter": {
+        "unitId": "count",
+        "record": 10,
+        "nature": "us_additional_measurement"
+      },
+      "status": {
+        "unitId": "state",
+        "record": true,
+        "nature": "us_application_filter_active"
+      },
+      "distance:0": {
+        "unitId": "mm",
+        "record": 150,
+        "nature": "us_full_distance"
+      },
+      "distance:1": {
+        "unitId": "mm",
+        "record": 2000,
+        "nature": "us_empty_distance"
+      }
+    }
   },
   {
     "description": "WILSEN.sonic Downlink Acknowledgement - 1",
@@ -1108,7 +1198,23 @@
       "errors": [],
       "warnings": []
     },
-    "points": {}
+    "points": {
+      "counter": {
+        "unitId": "count",
+        "record": 9,
+        "nature": "us_measurements_per_sequence"
+      },
+      "status": {
+        "unitId": "state",
+        "record": true,
+        "nature": "us_measurement_sequence_active"
+      },
+      "interval": {
+        "unitId": "ms",
+        "record": 1000,
+        "nature": "us_at_intervals_of"
+      }
+    }
   },
   {
     "description": "WILSEN.sonic Downlink Acknowledgement - 2",
@@ -1128,7 +1234,23 @@
       "errors": [],
       "warnings": []
     },
-    "points": {}
+    "points": {
+      "status": {
+        "unitId": "state",
+        "record": true,
+        "nature": "gps_acquisition_active"
+      },
+      "interval": {
+        "unitId": "s",
+        "record": 1800,
+        "nature": "gps_acquisition_interval"
+      },
+      "duration": {
+        "unitId": "s",
+        "record": 60,
+        "nature": "gps_next_acquisition"
+      }
+    }
   },
   {
     "description": "WILSEN.sonic Downlink Acknowledgement - 3",
@@ -1151,7 +1273,33 @@
       "errors": [],
       "warnings": []
     },
-    "points": {}
+    "points": {
+      "counter": {
+        "unitId": "count",
+        "record": 3,
+        "nature": "lora_number_of_transmission"
+      },
+      "status": {
+        "unitId": "state",
+        "record": true,
+        "nature": "lora_data_transmission_active"
+      },
+      "interval": {
+        "unitId": "s",
+        "record": 43200,
+        "nature": "lora_transmission_interval"
+      },
+      "duration": {
+        "unitId": "s",
+        "record": 300,
+        "nature": "lora_next_transmission"
+      },
+      "index": {
+        "unitId": "index",
+        "record": 10,
+        "nature": "lora_spreading_factor"
+      }
+    }
   },
   {
     "description": "WILSEN.sonic Downlink Acknowledgement - 4",
@@ -1173,7 +1321,13 @@
       "errors": [],
       "warnings": []
     },
-    "points": {}
+    "points": {
+      "status": {
+        "unitId": "state",
+        "record": false,
+        "nature": "ble_enable"
+      }
+    }
   },
   {
     "description": "fail decode uplink payload containing too short data",
