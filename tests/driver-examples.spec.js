@@ -279,7 +279,6 @@ function isTrusted() {
 
         const newTrustedCRC = computeChecksum(driverPath);
         driverYamlTrusted = newTrustedCRC === driverYamlTrustedCrc;
-        console.log({ driverYamlTrusted });
     }
 
     return driverYamlTrusted;
@@ -477,7 +476,7 @@ describe("Legacy Decode downlink errors", () => {
 if(extractPoints) {
     describe("extractPoints - should extract expected points from decoded uplink", () => {
         examples.forEach((example, index) => {
-            if(example.type === "uplink" && example.output?.data && example.points) {
+            if(example.type === "uplink" && example.output?.data) {
                 test(`${index + 1} - ${example.description}`, () => {
                     const decoded = example.output.data;
                     const result = extractPoints(
@@ -489,12 +488,15 @@ if(extractPoints) {
                     );
 
                     const currentPoints = example.points;
-                    checkEventTimes(example.description, currentPoints);
-                    
-                    expect(result).toEqual(currentPoints);
+                    if(example.points){
+                        checkEventTimes(example.description, currentPoints);
+                        expect(result).toEqual(currentPoints);
+                    }else{
+                        expect(currentPoints).toEqual(result);
+                    }
                 });
             }
-            else if(example.type === "uplink" && example.output && example.points) {
+            else if(example.type === "uplink" && example.output) {
                 test(`${index + 1} - ${example.description}`, () => {
                     const decoded = example.output;
                     const result = extractPoints(
@@ -508,9 +510,13 @@ if(extractPoints) {
                     const currentPoints = example.points;
                     
                     // Checking if all eventTimes are of the right format
-                    checkEventTimes(example.description, currentPoints);
-
-                    expect(result).toEqual(currentPoints);
+                    if(example.points){
+                        checkEventTimes(example.description, currentPoints);
+                        expect(result).toEqual(currentPoints);
+                    }else{
+                        expect(currentPoints).toEqual(result);
+                    }
+                    
                 });
             }
         });
