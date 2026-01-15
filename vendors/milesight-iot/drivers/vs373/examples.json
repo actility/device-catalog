@@ -1,0 +1,95 @@
+[
+  {
+    "description": "Example 1",
+    "type": "uplink",
+    "input": {
+      "bytes": "03F802010A000F0004F900010002000305FA100000200000300000400006FB3412000301",
+      "fPort": 100,
+      "time": "2024-11-03T17:00:00.000+02:00",
+      "points": {
+        "status:0": {
+          "nature": "region_1 occupied",
+          "record": true,
+          "unitId": "state"
+        },
+        "status:1": {
+          "record": false,
+          "unitId": "state",
+          "nature": "region_2 occupied"
+        },
+        "status:2": {
+          "record": true,
+          "unitId": "state",
+          "nature": "region_3 occupied"
+        },
+        "duration:0": {
+          "record": 10,
+          "unitId": "min",
+          "nature": "now"
+        },
+        "duration:1": {
+          "record": 15,
+          "unitId": "min",
+          "nature": "today"
+        },
+        "status:4": {
+          "record": true,
+          "unitId": "state",
+          "nature": "in_bed"
+        },
+        "status:5": {
+          "record": false,
+          "unitId": "state",
+          "nature": "target moving"
+        }
+      }
+    },
+    "output": {
+      "detection_status": "in_bed",
+      "region_1_occupancy": "occupied",
+      "region_2_occupancy": "vacant",
+      "region_3_occupancy": "occupied",
+      "region_4_occupancy": "unknown",
+      "target_status": "motionless",
+      "use_time_now": 10,
+      "use_time_today": 15
+    },
+    "points": {
+      "duration:0": {
+        "unitId": "min",
+        "record": 10,
+        "nature": "now"
+      },
+      "duration:1": {
+        "unitId": "min",
+        "record": 15,
+        "nature": "today"
+      },
+      "status:4": {
+        "unitId": "state",
+        "record": true,
+        "nature": "in_bed"
+      },
+      "status:5": {
+        "unitId": "state",
+        "record": false,
+        "nature": "target moving"
+      },
+      "status:0": {
+        "unitId": "state",
+        "record": true,
+        "nature": "region_1 occupied"
+      },
+      "status:1": {
+        "unitId": "state",
+        "record": false,
+        "nature": "region_2 occupied"
+      },
+      "status:2": {
+        "unitId": "state",
+        "record": true,
+        "nature": "region_3 occupied"
+      }
+    }
+  }
+]

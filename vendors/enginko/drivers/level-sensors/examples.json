@@ -1,292 +1,295 @@
 [
-    {
-        "type": "uplink",
-        "description": "uplink example for timesync request",
-        "input": {
-            "bytes": [
-                1,
-                51,
-                230,
-                208,
-                46,
-                0,
-                2,
-                33,
-                4,
-                1,
-                0
-            ],
-            "fPort": 0,
-            "recvTime": "2024-11-20T18:24:25.000+05:00"
-        },
-        "output": {
-            "data": {
-                "syncID": "33E6D02E",
-                "syncVersion": "00.02.21",
-                "applicationType": "0401",
-                "rfu": "00"
-            },
-            "errors": null
-        }
+  {
+    "type": "uplink",
+    "description": "uplink example for timesync request",
+    "input": {
+      "bytes": [
+        1,
+        51,
+        230,
+        208,
+        46,
+        0,
+        2,
+        33,
+        4,
+        1,
+        0
+      ],
+      "fPort": 0,
+      "recvTime": "2024-11-20T18:24:25.000+05:00"
     },
-    {
-        "type": "uplink",
-        "description": "uplink example for IO data",
-        "input": {
-            "bytes": [
-                10,
-                86,
-                8,
-                117,
-                49,
-                1,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0
-            ],
-            "fPort": 0,
-            "recvTime": "2024-11-20T23:59:46.000+05:00"
-        },
-        "output": {
-            "data": {
-                "date": "11/21/2024, 1:02:44 AM",
-                "inputStatus": 1,
-                "outputStatus": 0,
-                "inputTrigger": 0
-            },
-            "errors": null
-        }
+    "output": {
+      "data": {
+        "syncID": "33E6D02E",
+        "syncVersion": "00.02.21",
+        "applicationType": "0401",
+        "rfu": "00"
+      },
+      "errors": null
     },
-    {
-        "type": "uplink",
-        "description": "uplink example for IO data (example 2)",
-        "input": {
-            "bytes": [
-                10,
-                102,
-                8,
-                117,
-                49,
-                1,
-                0,
-                0,
-                0,
-                1,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0
-            ],
-            "fPort": 0,
-            "recvTime": "2024-11-20T23:59:55.000+05:00"
-        },
-        "output": {
-            "data": {
-                "date": "11/21/2024, 1:03:12 AM",
-                "inputStatus": 1,
-                "outputStatus": 1,
-                "inputTrigger": 0
-            },
-            "errors": null
-        }
+    "points": {}
+  },
+  {
+    "type": "uplink",
+    "description": "uplink example for IO data",
+    "input": {
+      "bytes": [
+        10,
+        86,
+        8,
+        117,
+        49,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "fPort": 0,
+      "recvTime": "2024-11-20T23:59:46.000+05:00"
     },
-    {
-        "type": "uplink",
-        "description": "uplink example for level data (type 1)",
-        "input": {
-            "bytes": [
-                20,
-                1,
-                91,
-                7,
-                117,
-                49,
-                183,
-                11,
-                233,
-                1,
-                173,
-                0,
-                96,
-                210,
-                4,
-                73
-            ],
-            "fPort": 0,
-            "recvTime": "2024-11-20T23:56:43.000+05:00"
-        },
-        "output": {
-            "data": {
-                "type": 1,
-                "date": "11/21/2024, 12:58:54 AM",
-                "ADC": {
-                    "value": 2999,
-                    "unit": "mV"
-                },
-                "height": {
-                    "value": 489,
-                    "unit": "mm"
-                },
-                "distance1": {
-                    "value": 173,
-                    "unit": "mm"
-                },
-                "fillLevel": {
-                    "value": 96,
-                    "unit": "%"
-                },
-                "temperature": {
-                    "value": 12.34,
-                    "unit": "°C"
-                },
-                "battery": {
-                    "value": 73,
-                    "unit": "%"
-                }
-            },
-            "errors": null
-        },
-        "points": {
-            "voltage": {
-                "record": 2999,
-                "unitId": "mV",
-                "nature": "adc"
-            },
-            "height": {
-                "record": 489,
-                "unitId": "mm"
-            },
-            "distance": {
-                "record": 173,
-                "unitId": "mm"
-            },
-            "fillLevel": {
-                "record": 96,
-                "unitId": "%"
-            },
-            "temperature": {
-                "record": 12.34,
-                "unitId": "Cel"
-            },
-            "batteryLevel": {
-                "record": 73,
-                "unitId": "%"
-            }
-        }
+    "output": {
+      "data": {
+        "date": "11/21/2024, 1:02:44 AM",
+        "inputStatus": 1,
+        "outputStatus": 0,
+        "inputTrigger": 0
+      },
+      "errors": null
     },
-    {
-        "type": "uplink",
-        "description": "uplink example for level data (type 3)",
-        "input": {
-            "bytes": [
-                20,
-                3,
-                4,
-                1,
-                117,
-                49,
-                61,
-                11,
-                144,
-                0,
-                185,
-                0,
-                98,
-                152,
-                248,
-                141,
-                185,
-                128,
-                1,
-                78
-            ],
-            "fPort": 0,
-            "recvTime": "2024-11-20T23:59:54.000+05:00"
+    "points": {}
+  },
+  {
+    "type": "uplink",
+    "description": "uplink example for IO data (example 2)",
+    "input": {
+      "bytes": [
+        10,
+        102,
+        8,
+        117,
+        49,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "fPort": 0,
+      "recvTime": "2024-11-20T23:59:55.000+05:00"
+    },
+    "output": {
+      "data": {
+        "date": "11/21/2024, 1:03:12 AM",
+        "inputStatus": 1,
+        "outputStatus": 1,
+        "inputTrigger": 0
+      },
+      "errors": null
+    },
+    "points": {}
+  },
+  {
+    "type": "uplink",
+    "description": "uplink example for level data (type 1)",
+    "input": {
+      "bytes": [
+        20,
+        1,
+        91,
+        7,
+        117,
+        49,
+        183,
+        11,
+        233,
+        1,
+        173,
+        0,
+        96,
+        210,
+        4,
+        73
+      ],
+      "fPort": 0,
+      "recvTime": "2024-11-20T23:56:43.000+05:00"
+    },
+    "output": {
+      "data": {
+        "type": 1,
+        "date": "11/21/2024, 12:58:54 AM",
+        "ADC": {
+          "value": 2999,
+          "unit": "mV"
         },
-        "output": {
-            "data": {
-                "type": 3,
-                "date": "11/21/2024, 12:08:08 AM",
-                "ADC": {
-                    "value": 2877,
-                    "unit": "mV"
-                },
-                "height": {
-                    "value": 144,
-                    "unit": "mm"
-                },
-                "distance1": {
-                    "value": 185,
-                    "unit": "mm"
-                },
-                "fillLevel": {
-                    "value": 98,
-                    "unit": "%"
-                },
-                "temperature": {
-                    "value": -18.96,
-                    "unit": "°C"
-                },
-                "humidity": {
-                    "value": 70.5,
-                    "unit": "%"
-                },
-                "pressure": {
-                    "value": 984.89,
-                    "unit": "hPa"
-                },
-                "battery": {
-                    "value": 78,
-                    "unit": "%"
-                }
-            },
-            "errors": null
+        "height": {
+          "value": 489,
+          "unit": "mm"
         },
-        "points": {
-            "voltage": {
-                "record": 2877,
-                "unitId": "mV",
-                "nature": "adc"
-            },
-            "height": {
-                "record": 144,
-                "unitId": "mm"
-            },
-            "distance": {
-                "record": 185,
-                "unitId": "mm"
-            },
-            "fillLevel": {
-                "record": 98,
-                "unitId": "%"
-            },
-            "temperature": {
-                "record": -18.96,
-                "unitId": "Cel"
-            },
-            "humidity": {
-                "record": 70.5,
-                "unitId": "%RH"
-            },
-            "pressure": {
-                "record": 984.89,
-                "unitId": "hPa"
-            },
-            "batteryLevel": {
-                "record": 78,
-                "unitId": "%"
-            }
+        "distance1": {
+          "value": 173,
+          "unit": "mm"
+        },
+        "fillLevel": {
+          "value": 96,
+          "unit": "%"
+        },
+        "temperature": {
+          "value": 12.34,
+          "unit": "°C"
+        },
+        "battery": {
+          "value": 73,
+          "unit": "%"
         }
+      },
+      "errors": null
+    },
+    "points": {
+      "voltage": {
+        "unitId": "mV",
+        "record": 2999,
+        "nature": "adc"
+      },
+      "height": {
+        "unitId": "mm",
+        "record": 489
+      },
+      "distance": {
+        "unitId": "mm",
+        "record": 173
+      },
+      "fillLevel": {
+        "unitId": "%",
+        "record": 96
+      },
+      "temperature": {
+        "unitId": "Cel",
+        "record": 12.34
+      },
+      "batteryLevel": {
+        "unitId": "%",
+        "record": 73
+      }
     }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink example for level data (type 3)",
+    "input": {
+      "bytes": [
+        20,
+        3,
+        4,
+        1,
+        117,
+        49,
+        61,
+        11,
+        144,
+        0,
+        185,
+        0,
+        98,
+        152,
+        248,
+        141,
+        185,
+        128,
+        1,
+        78
+      ],
+      "fPort": 0,
+      "recvTime": "2024-11-20T23:59:54.000+05:00"
+    },
+    "output": {
+      "data": {
+        "type": 3,
+        "date": "11/21/2024, 12:08:08 AM",
+        "ADC": {
+          "value": 2877,
+          "unit": "mV"
+        },
+        "height": {
+          "value": 144,
+          "unit": "mm"
+        },
+        "distance1": {
+          "value": 185,
+          "unit": "mm"
+        },
+        "fillLevel": {
+          "value": 98,
+          "unit": "%"
+        },
+        "temperature": {
+          "value": -18.96,
+          "unit": "°C"
+        },
+        "humidity": {
+          "value": 70.5,
+          "unit": "%"
+        },
+        "pressure": {
+          "value": 984.89,
+          "unit": "hPa"
+        },
+        "battery": {
+          "value": 78,
+          "unit": "%"
+        }
+      },
+      "errors": null
+    },
+    "points": {
+      "voltage": {
+        "unitId": "mV",
+        "record": 2877,
+        "nature": "adc"
+      },
+      "height": {
+        "unitId": "mm",
+        "record": 144
+      },
+      "distance": {
+        "unitId": "mm",
+        "record": 185
+      },
+      "fillLevel": {
+        "unitId": "%",
+        "record": 98
+      },
+      "temperature": {
+        "unitId": "Cel",
+        "record": -18.96
+      },
+      "humidity": {
+        "unitId": "%RH",
+        "record": 70.5
+      },
+      "pressure": {
+        "unitId": "hPa",
+        "record": 984.89
+      },
+      "batteryLevel": {
+        "unitId": "%",
+        "record": 78
+      }
+    }
+  }
 ]

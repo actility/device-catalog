@@ -1,100 +1,203 @@
 [
-  {
-    "type": "uplink",
-    "description": "0x6b T1 Data Payload",
-    "input": {
-      "bytes": "6B0F0000FFFF00010002000300040005000600070008",
-      "fPort": 129,
-      "recvTime": "2024-08-02T20:00:00.000+00:00"
+    {
+        "type": "uplink",
+        "description": "0x6b T1 Data Payload",
+        "input": {
+            "bytes": "6B0F0000FFFF00010002000300040005000600070008",
+            "fPort": 129,
+            "recvTime": "2024-08-02T20:00:00.000+00:00"
+        },
+        "output": {
+            "data": {
+                "firmware_version": null,
+                "increments": [
+                    [
+                        "2024-08-02T18:00:00.000Z",
+                        1
+                    ],
+                    [
+                        "2024-08-02T18:15:00.000Z",
+                        2
+                    ],
+                    [
+                        "2024-08-02T18:30:00.000Z",
+                        3
+                    ],
+                    [
+                        "2024-08-02T18:45:00.000Z",
+                        4
+                    ],
+                    [
+                        "2024-08-02T19:00:00.000Z",
+                        5
+                    ],
+                    [
+                        "2024-08-02T19:15:00.000Z",
+                        6
+                    ],
+                    [
+                        "2024-08-02T19:30:00.000Z",
+                        7
+                    ],
+                    [
+                        "2024-08-02T19:45:00.000Z",
+                        8
+                    ]
+                ],
+                "index": 65535,
+                "indexes": [
+                    [
+                        "2024-08-02T18:00:00.000Z",
+                        65499
+                    ],
+                    [
+                        "2024-08-02T18:15:00.000Z",
+                        65500
+                    ],
+                    [
+                        "2024-08-02T18:30:00.000Z",
+                        65502
+                    ],
+                    [
+                        "2024-08-02T18:45:00.000Z",
+                        65505
+                    ],
+                    [
+                        "2024-08-02T19:00:00.000Z",
+                        65509
+                    ],
+                    [
+                        "2024-08-02T19:15:00.000Z",
+                        65514
+                    ],
+                    [
+                        "2024-08-02T19:30:00.000Z",
+                        65520
+                    ],
+                    [
+                        "2024-08-02T19:45:00.000Z",
+                        65527
+                    ],
+                    [
+                        "2024-08-02T20:00:00.000Z",
+                        65535
+                    ]
+                ],
+                "message_type": "T1_AP",
+                "meter_type": "Pulse",
+                "number_of_values": null,
+                "redundancy": null,
+                "time_step": 15
+            },
+            "errors": [],
+            "warnings": []
+        },
+        "points": {
+            "counter:0": {
+                "unitId": "count",
+                "records": [
+                    {
+                        "eventTime": "2024-08-02T18:00:00.000Z",
+                        "value": 1
+                    },
+                    {
+                        "eventTime": "2024-08-02T18:15:00.000Z",
+                        "value": 2
+                    },
+                    {
+                        "eventTime": "2024-08-02T18:30:00.000Z",
+                        "value": 3
+                    },
+                    {
+                        "eventTime": "2024-08-02T18:45:00.000Z",
+                        "value": 4
+                    },
+                    {
+                        "eventTime": "2024-08-02T19:00:00.000Z",
+                        "value": 5
+                    },
+                    {
+                        "eventTime": "2024-08-02T19:15:00.000Z",
+                        "value": 6
+                    },
+                    {
+                        "eventTime": "2024-08-02T19:30:00.000Z",
+                        "value": 7
+                    },
+                    {
+                        "eventTime": "2024-08-02T19:45:00.000Z",
+                        "value": 8
+                    }
+                ],
+                "nature": "Number of pulses detected for each time period"
+            },
+            "counter:1": {
+                "unitId": "count",
+                "records": [
+                    {
+                        "eventTime": "2024-08-02T18:00:00.000Z",
+                        "value": 65499
+                    },
+                    {
+                        "eventTime": "2024-08-02T18:15:00.000Z",
+                        "value": 65500
+                    },
+                    {
+                        "eventTime": "2024-08-02T18:30:00.000Z",
+                        "value": 65502
+                    },
+                    {
+                        "eventTime": "2024-08-02T18:45:00.000Z",
+                        "value": 65505
+                    },
+                    {
+                        "eventTime": "2024-08-02T19:00:00.000Z",
+                        "value": 65509
+                    },
+                    {
+                        "eventTime": "2024-08-02T19:15:00.000Z",
+                        "value": 65514
+                    },
+                    {
+                        "eventTime": "2024-08-02T19:30:00.000Z",
+                        "value": 65520
+                    },
+                    {
+                        "eventTime": "2024-08-02T19:45:00.000Z",
+                        "value": 65527
+                    },
+                    {
+                        "eventTime": "2024-08-02T20:00:00.000Z",
+                        "value": 65535
+                    }
+                ],
+                "nature": "Number of pulses detected since the start of the product"
+            }
+        }
     },
-    "output": {
-      "data": {
-        "firmware_version": null,
-        "increments": [
-          ["2024-08-02T18:00:00.000Z", 1],
-          ["2024-08-02T18:15:00.000Z", 2],
-          ["2024-08-02T18:30:00.000Z", 3],
-          ["2024-08-02T18:45:00.000Z", 4],
-          ["2024-08-02T19:00:00.000Z", 5],
-          ["2024-08-02T19:15:00.000Z", 6],
-          ["2024-08-02T19:30:00.000Z", 7],
-          ["2024-08-02T19:45:00.000Z", 8]
-        ],
-        "index": 65535,
-        "indexes": [
-          ["2024-08-02T18:00:00.000Z", 65499],
-          ["2024-08-02T18:15:00.000Z", 65500],
-          ["2024-08-02T18:30:00.000Z", 65502],
-          ["2024-08-02T18:45:00.000Z", 65505],
-          ["2024-08-02T19:00:00.000Z", 65509],
-          ["2024-08-02T19:15:00.000Z", 65514],
-          ["2024-08-02T19:30:00.000Z", 65520],
-          ["2024-08-02T19:45:00.000Z", 65527],
-          ["2024-08-02T20:00:00.000Z", 65535]
-        ],
-        "message_type": "T1_AP",
-        "meter_type": "Pulse",
-        "number_of_values": null,
-        "redundancy": null,
-        "time_step": 15
-      },
-      "errors": [],
-      "warnings": []
-    },
-    "points": {
-      "counter:0": {
-        "nature": "Number of pulses detected for each time period",
-        "records": [
-          {"eventTime": "2024-08-02T18:00:00.000Z", "value": 1},
-          {"eventTime": "2024-08-02T18:15:00.000Z", "value": 2},
-          {"eventTime": "2024-08-02T18:30:00.000Z", "value": 3},
-          {"eventTime": "2024-08-02T18:45:00.000Z", "value": 4},
-          {"eventTime": "2024-08-02T19:00:00.000Z", "value": 5},
-          {"eventTime": "2024-08-02T19:15:00.000Z", "value": 6},
-          {"eventTime": "2024-08-02T19:30:00.000Z", "value": 7},
-          {"eventTime": "2024-08-02T19:45:00.000Z", "value": 8}
-        ],
-        "unitId": "count"
-      },
-      "counter:1": {
-        "nature": "Number of pulses detected since the start of the product",
-        "records": [
-          {"eventTime": "2024-08-02T18:00:00.000Z", "value": 65499},
-          {"eventTime": "2024-08-02T18:15:00.000Z", "value": 65500},
-          {"eventTime": "2024-08-02T18:30:00.000Z", "value": 65502},
-          {"eventTime": "2024-08-02T18:45:00.000Z", "value": 65505},
-          {"eventTime": "2024-08-02T19:00:00.000Z", "value": 65509},
-          {"eventTime": "2024-08-02T19:15:00.000Z", "value": 65514},
-          {"eventTime": "2024-08-02T19:30:00.000Z", "value": 65520},
-          {"eventTime": "2024-08-02T19:45:00.000Z", "value": 65527},
-          {"eventTime": "2024-08-02T20:00:00.000Z", "value": 65535}
-        ],
-        "unitId": "count"
-      }
+    {
+        "type": "uplink",
+        "description": "0x6c T2 Technical Payload",
+        "input": {
+            "bytes": "6C0303060000FFFF0F0201",
+            "fPort": 129,
+            "recvTime": "2024-08-02T20:00:00.000+00:00"
+        },
+        "output": {
+            "data": {
+                "firmware_version": "3.3.6",
+                "increments": [],
+                "index": 65535,
+                "indexes": [],
+                "message_type": "T2_AP",
+                "meter_type": "Pulse",
+                "number_of_values": 2,
+                "redundancy": 1,
+                "time_step": 15
+            },
+            "errors": [],
+            "warnings": []
+        },
+        "points": {}
     }
-  },
-  {
-    "type": "uplink",
-    "description": "0x6c T2 Technical Payload",
-    "input": {
-      "bytes": "6C0303060000FFFF0F0201",
-      "fPort": 129,
-      "recvTime": "2024-08-02T20:00:00.000+00:00"
-    },
-    "output": {
-      "data": {
-        "firmware_version": "3.3.6",
-        "increments": [],
-        "index": 65535,
-        "indexes": [],
-        "message_type": "T2_AP",
-        "meter_type": "Pulse",
-        "number_of_values": 2,
-        "redundancy": 1,
-        "time_step": 15
-      },
-      "errors": [],
-      "warnings": []
-    }
-  }
 ]

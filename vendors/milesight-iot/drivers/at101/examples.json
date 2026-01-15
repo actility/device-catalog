@@ -1,70 +1,117 @@
 [
-    {
-      "type": "uplink",
-      "description": "AT101: Example 1",
-      "input": {
-        "bytes": "01756403671B01050000048836BF7701F000090722",
-        "fPort": 1,
-        "recvTime": "2020-08-02T20:00:00.000+05:00"
-      },
-      "output": {
-        "data": {
-          "battery": 100,
-          "geofence_status": "unset",
-          "latitude": 24.62495,
-          "longitude": 118.030576,
-          "motion_status": "moving",
-          "position": "normal",
-          "temperature": 28.3
-        },
-        "errors": [],
-        "warnings": []
-      }
+  {
+    "type": "uplink",
+    "description": "AT101: Example 1",
+    "input": {
+      "bytes": "01756403671B01050000048836BF7701F000090722",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
     },
-    {
-      "type": "uplink",
-      "description": "AT101: Example 2",
-      "input": {
-        "bytes": "01756403671B0105000106D9081CC316222DF9C30206D90824E124F6A667B60206D90824E124F54DE3BC0206D90824E124F57971B20206D90824E124F319A8C802",
-        "fPort": 1,
-        "recvTime": "2020-08-02T20:00:00.000+05:00"
+    "output": {
+      "data": {
+        "battery": 100,
+        "geofence_status": "unset",
+        "latitude": 24.62495,
+        "longitude": 118.030576,
+        "motion_status": "moving",
+        "position": "normal",
+        "temperature": 28.3
       },
-      "output": {
-        "data": {
-          "battery": 100,
-          "motion_status": "moving",
-          "position": "tilt",
-          "temperature": 28.3,
-          "wifi": [
-            {
-              "group": 8,
-              "mac": "1c:c3:16:22:2d:f9",
-              "rssi": -61
-            },
-            {
-              "group": 8,
-              "mac": "24:e1:24:f6:a6:67",
-              "rssi": -74
-            },
-            {
-              "group": 8,
-              "mac": "24:e1:24:f5:4d:e3",
-              "rssi": -68
-            },
-            {
-              "group": 8,
-              "mac": "24:e1:24:f5:79:71",
-              "rssi": -78
-            },
-            {
-              "group": 8,
-              "mac": "24:e1:24:f3:19:a8",
-              "rssi": -56
-            }
-          ]
-        },
-        "errors": [],
-        "warnings": []
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "batteryLevel": {
+        "unitId": "%",
+        "record": 100
+      },
+      "temperature": {
+        "unitId": "Cel",
+        "record": 28.3
+      },
+      "location": {
+        "unitId": "GPS",
+        "record": [
+          118.030576,
+          24.62495
+        ]
       }
     }
-  ]
+  },
+  {
+    "type": "uplink",
+    "description": "AT101: Example 2",
+    "input": {
+      "bytes": "01756403671B0105000106D9081CC316222DF9C30206D90824E124F6A667B60206D90824E124F54DE3BC0206D90824E124F57971B20206D90824E124F319A8C802",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "battery": 100,
+        "motion_status": "moving",
+        "position": "tilt",
+        "temperature": 28.3,
+        "wifi": [
+          {
+            "group": 8,
+            "mac": "1c:c3:16:22:2d:f9",
+            "rssi": -61
+          },
+          {
+            "group": 8,
+            "mac": "24:e1:24:f6:a6:67",
+            "rssi": -74
+          },
+          {
+            "group": 8,
+            "mac": "24:e1:24:f5:4d:e3",
+            "rssi": -68
+          },
+          {
+            "group": 8,
+            "mac": "24:e1:24:f5:79:71",
+            "rssi": -78
+          },
+          {
+            "group": 8,
+            "mac": "24:e1:24:f3:19:a8",
+            "rssi": -56
+          }
+        ]
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "batteryLevel": {
+        "unitId": "%",
+        "record": 100
+      },
+      "temperature": {
+        "unitId": "Cel",
+        "record": 28.3
+      },
+      "rssi:1": {
+        "unitId": "dBm",
+        "record": -61
+      },
+      "rssi:2": {
+        "unitId": "dBm",
+        "record": -74
+      },
+      "rssi:3": {
+        "unitId": "dBm",
+        "record": -68
+      },
+      "rssi:4": {
+        "unitId": "dBm",
+        "record": -78
+      },
+      "rssi:5": {
+        "unitId": "dBm",
+        "record": -56
+      }
+    }
+  }
+]

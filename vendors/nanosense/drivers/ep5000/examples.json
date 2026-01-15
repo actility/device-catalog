@@ -1,208 +1,319 @@
 [
-    {
-        "type": "uplink",
-        "description": "uplink EP5000 with full sensor data",
-        "input": {
-            "bytes": [
-                159,
-                85,
-                51,
-                0,
-                0,
-                100,
-                0,
-                10,
-                76,
-                135,
-                0,
-                0,
-                0,
-                7,
-                47,
-                1,
-                198,
-                0,
-                15,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                159,
-                24,
-                218,
-                182,
-                0,
-                100,
-                86,
-                92,
-                96,
-                95,
-                15,
-                10,
-                0,
-                100,
-                32
-            ],
-            "fPort": 1,
-            "recvTime": "2025-08-05T22:27:11.000Z"
-        },
-        "output": {
-            "data": {
-                "device_info": {
-                    "active_sensors": [
-                        "Lux, T°K light",
-                        "voc_sulfuric_odors",
-                        "co2",
-                        "noise",
-                        "pm",
-                        "temperature_rh"
-                    ],
-                    "autonomy_percent": 100,
-                    "firmware_version": 8.5,
-                    "frm_lora": 5.1,
-                    "transmission_rate": 10
-                },
-                "measurements": [
-                    {
-                        "benzene": 0,
-                        "building_health_index": 15,
-                        "co2": 454,
-                        "cognitivity_index": 86,
-                        "cooling_control": 100,
-                        "cov": 15,
-                        "formaldehyde": 0,
-                        "health_index": 100,
-                        "heating_control": 0,
-                        "humidity": 38,
-                        "light_flickering": 0,
-                        "light_temperature": 4186,
-                        "log_timestamp": 1754432831,
-                        "lux": 872,
-                        "noise_average": 74,
-                        "noise_peak": 77,
-                        "nox": 0,
-                        "o3": 0,
-                        "occupancy": 0,
-                        "pm1": 0,
-                        "pm10": 0,
-                        "pm25": 0,
-                        "pressure": 1018.2,
-                        "respiratory_index": 96,
-                        "sleep_index": 92,
-                        "temperature": 27,
-                        "ventilation_control": 10,
-                        "virus_risk_index": 95
-                    }
-                ]
-            },
-            "errors": [],
-            "warnings": []
-        },
-        "points": {
-            "batteryLevel": { "unitId": "%", "record": 100 },
-            "period": { "unitId": "min", "record": 10, "nature": "transmission" },
-            "quantity:0": { "unitId": "ug/m3", "record": 0, "nature": "benzene" },
-            "percentage:0": { "unitId": "%", "record": 15, "nature": "building_health_index" },
-            "co2Level": { "unitId": "ppm", "record": 454 },
-            "percentage:1": { "unitId": "%", "record": 86, "nature": "cognitivity_index" },
-            "percentage:2": { "unitId": "%", "record": 100, "nature": "cooling_control" },
-            "quantity:1": { "unitId": "ug/m3", "record": 15, "nature": "cov" },
-            "quantity:2": { "unitId": "ug/m3", "record": 0, "nature": "formaldehyde" },
-            "percentage:3": { "unitId": "%", "record": 100, "nature": "health_index" },
-            "percentage:4": { "unitId": "%", "record": 0, "nature": "heating_control" },
-            "humidity": { "unitId": "%RH", "record": 38 },
-            "percentage:5": { "unitId": "%", "record": 0, "nature": "light_flickering" },
-            "temperature:0": { "unitId": "K", "record": 4186, "nature": "light_temperature" },
-            "illuminance": { "unitId": "lx", "record": 872 },
-            "sound:0": { "unitId": "dB", "record": 74, "nature": "noise_average" },
-            "sound:1": { "unitId": "dB", "record": 77, "nature": "noise_peak" },
-            "amount:0": { "unitId": "ppb", "record": 0, "nature": "nox" },
-            "amount:1": { "unitId": "ppb", "record": 0, "nature": "o3" },
-            "counter": { "unitId": "count", "record": 0, "nature": "occupancy" },
-            "concentration:0": { "unitId": "ug/m3", "record": 0, "nature": "pm1" },
-            "concentration:1": { "unitId": "ug/m3", "record": 0, "nature": "pm10" },
-            "concentration:2": { "unitId": "ug/m3", "record": 0, "nature": "pm25" },
-            "pressure": { "unitId": "hPa", "record": 1018.2 },
-            "percentage:6": { "unitId": "%", "record": 96, "nature": "respiratory_index" },
-            "percentage:7": { "unitId": "%", "record": 92, "nature": "sleep_index" },
-            "temperature:1": { "unitId": "Cel", "record": 27, "nature": "temperature" },
-            "percentage:8": { "unitId": "%", "record": 10, "nature": "ventilation_control" },
-            "percentage:9": { "unitId": "%", "record": 95, "nature": "virus_risk_index" }
-        }
+  {
+    "type": "uplink",
+    "description": "uplink EP5000 with full sensor data",
+    "input": {
+      "bytes": [
+        159,
+        85,
+        51,
+        0,
+        0,
+        100,
+        0,
+        10,
+        76,
+        135,
+        0,
+        0,
+        0,
+        7,
+        47,
+        1,
+        198,
+        0,
+        15,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        159,
+        24,
+        218,
+        182,
+        0,
+        100,
+        86,
+        92,
+        96,
+        95,
+        15,
+        10,
+        0,
+        100,
+        32
+      ],
+      "fPort": 1,
+      "recvTime": "2025-08-05T22:27:11.000Z"
     },
-    {
-        "type": "downlink-encode",
-        "description": "encode downlink to set transmission interval to 30 minutes",
-        "input": {
-            "data": {
-                "transmissionInterval": 30
-            }
+    "output": {
+      "data": {
+        "device_info": {
+          "active_sensors": [
+            "Lux, T°K light",
+            "voc_sulfuric_odors",
+            "co2",
+            "noise",
+            "pm",
+            "temperature_rh"
+          ],
+          "autonomy_percent": 100,
+          "firmware_version": 8.5,
+          "frm_lora": 5.1,
+          "transmission_rate": 10
         },
-        "output": {
-            "bytes": [
-                1,
-                0,
-                30
-            ],
-            "fPort": 2,
-            "errors": [],
-            "warnings": []
-        }
+        "measurements": [
+          {
+            "benzene": 0,
+            "building_health_index": 15,
+            "co2": 454,
+            "cognitivity_index": 86,
+            "cooling_control": 100,
+            "cov": 15,
+            "formaldehyde": 0,
+            "health_index": 100,
+            "heating_control": 0,
+            "humidity": 38,
+            "light_flickering": 0,
+            "light_temperature": 4186,
+            "log_timestamp": 1754432831,
+            "lux": 872,
+            "noise_average": 74,
+            "noise_peak": 77,
+            "nox": 0,
+            "o3": 0,
+            "occupancy": 0,
+            "pm1": 0,
+            "pm10": 0,
+            "pm25": 0,
+            "pressure": 1018.2,
+            "respiratory_index": 96,
+            "sleep_index": 92,
+            "temperature": 27,
+            "ventilation_control": 10,
+            "virus_risk_index": 95
+          }
+        ]
+      },
+      "errors": [],
+      "warnings": []
     },
-    {
-        "type": "downlink-encode",
-        "description": "encode downlink to set transmission interval to 120 minutes",
-        "input": {
-            "data": {
-                "transmissionInterval": 120
-            }
-        },
-        "output": {
-            "bytes": [
-                1,
-                0,
-                120
-            ],
-            "fPort": 2,
-            "errors": [],
-            "warnings": []
-        }
-    },
-    {
-        "type": "downlink-encode",
-        "description": "fail encode downlink when transmission interval exceeds 720",
-        "input": {
-            "data": {
-                "transmissionInterval": 800
-            }
-        },
-        "output": {
-            "bytes": [],
-            "fPort": 2,
-            "errors": [
-                "Transmission interval be a number between 1 and 720 (minutes)"
-            ],
-            "warnings": []
-        }
-    },
-    {
-        "type": "downlink-encode",
-        "description": "fail encode downlink when transmission interval is below 1",
-        "input": {
-            "data": {
-                "transmissionInterval": 0
-            }
-        },
-        "output": {
-            "bytes": [],
-            "fPort": 2,
-            "errors": [
-                "Transmission interval be a number between 1 and 720 (minutes)"
-            ],
-            "warnings": []
-        }
+    "points": {
+      "batteryLevel": {
+        "unitId": "%",
+        "record": 100
+      },
+      "period": {
+        "unitId": "min",
+        "record": 10,
+        "nature": "transmission"
+      },
+      "quantity:0": {
+        "unitId": "ug/m3",
+        "record": 0,
+        "nature": "benzene"
+      },
+      "percentage:0": {
+        "unitId": "%",
+        "record": 15,
+        "nature": "building_health_index"
+      },
+      "co2Level": {
+        "unitId": "ppm",
+        "record": 454
+      },
+      "percentage:1": {
+        "unitId": "%",
+        "record": 86,
+        "nature": "cognitivity_index"
+      },
+      "percentage:2": {
+        "unitId": "%",
+        "record": 100,
+        "nature": "cooling_control"
+      },
+      "quantity:1": {
+        "unitId": "ug/m3",
+        "record": 15,
+        "nature": "cov"
+      },
+      "quantity:2": {
+        "unitId": "ug/m3",
+        "record": 0,
+        "nature": "formaldehyde"
+      },
+      "percentage:3": {
+        "unitId": "%",
+        "record": 100,
+        "nature": "health_index"
+      },
+      "percentage:4": {
+        "unitId": "%",
+        "record": 0,
+        "nature": "heating_control"
+      },
+      "humidity": {
+        "unitId": "%RH",
+        "record": 38
+      },
+      "percentage:5": {
+        "unitId": "%",
+        "record": 0,
+        "nature": "light_flickering"
+      },
+      "temperature:0": {
+        "unitId": "K",
+        "record": 4186,
+        "nature": "light_temperature"
+      },
+      "illuminance": {
+        "unitId": "lx",
+        "record": 872
+      },
+      "sound:0": {
+        "unitId": "dB",
+        "record": 74,
+        "nature": "noise_average"
+      },
+      "sound:1": {
+        "unitId": "dB",
+        "record": 77,
+        "nature": "noise_peak"
+      },
+      "amount:0": {
+        "unitId": "ppb",
+        "record": 0,
+        "nature": "nox"
+      },
+      "amount:1": {
+        "unitId": "ppb",
+        "record": 0,
+        "nature": "o3"
+      },
+      "counter": {
+        "unitId": "count",
+        "record": 0,
+        "nature": "occupancy"
+      },
+      "concentration:0": {
+        "unitId": "ug/m3",
+        "record": 0,
+        "nature": "pm1"
+      },
+      "concentration:1": {
+        "unitId": "ug/m3",
+        "record": 0,
+        "nature": "pm10"
+      },
+      "concentration:2": {
+        "unitId": "ug/m3",
+        "record": 0,
+        "nature": "pm25"
+      },
+      "pressure": {
+        "unitId": "hPa",
+        "record": 1018.2
+      },
+      "percentage:6": {
+        "unitId": "%",
+        "record": 96,
+        "nature": "respiratory_index"
+      },
+      "percentage:7": {
+        "unitId": "%",
+        "record": 92,
+        "nature": "sleep_index"
+      },
+      "temperature:1": {
+        "unitId": "Cel",
+        "record": 27,
+        "nature": "temperature"
+      },
+      "percentage:8": {
+        "unitId": "%",
+        "record": 10,
+        "nature": "ventilation_control"
+      },
+      "percentage:9": {
+        "unitId": "%",
+        "record": 95,
+        "nature": "virus_risk_index"
+      }
     }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "encode downlink to set transmission interval to 30 minutes",
+    "input": {
+      "data": {
+        "transmissionInterval": 30
+      }
+    },
+    "output": {
+      "bytes": [
+        1,
+        0,
+        30
+      ],
+      "fPort": 2,
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "encode downlink to set transmission interval to 120 minutes",
+    "input": {
+      "data": {
+        "transmissionInterval": 120
+      }
+    },
+    "output": {
+      "bytes": [
+        1,
+        0,
+        120
+      ],
+      "fPort": 2,
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "fail encode downlink when transmission interval exceeds 720",
+    "input": {
+      "data": {
+        "transmissionInterval": 800
+      }
+    },
+    "output": {
+      "bytes": [],
+      "fPort": 2,
+      "errors": [
+        "Transmission interval be a number between 1 and 720 (minutes)"
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "fail encode downlink when transmission interval is below 1",
+    "input": {
+      "data": {
+        "transmissionInterval": 0
+      }
+    },
+    "output": {
+      "bytes": [],
+      "fPort": 2,
+      "errors": [
+        "Transmission interval be a number between 1 and 720 (minutes)"
+      ],
+      "warnings": []
+    }
+  }
 ]

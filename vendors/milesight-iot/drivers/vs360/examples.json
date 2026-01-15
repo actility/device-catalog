@@ -1,0 +1,105 @@
+[
+  {
+    "description": "Example 1",
+    "type": "uplink",
+    "input": {
+      "bytes": "01756402756484CC011108110185CCE803E90301",
+      "fPort": 100,
+      "time": "2024-11-03T17:00:00.000+02:00",
+      "points": {
+        "batteryLevel:0": {
+          "record": 100,
+          "unitId": "%",
+          "nature": "battery_main"
+        },
+        "batteryLevel:1": {
+          "record": 100,
+          "unitId": "%",
+          "nature": "battery_node"
+        },
+        "status:0": {
+          "record": true,
+          "unitId": "state",
+          "nature": "period count threshold alarm"
+        },
+        "status:1": {
+          "record": true,
+          "unitId": "state",
+          "nature": "total count threshold alarm"
+        },
+        "counter:0": {
+          "record": 1000,
+          "unitId": "count",
+          "nature": "period_in"
+        },
+        "counter:1": {
+          "record": 1001,
+          "unitId": "count",
+          "nature": "period_out"
+        },
+        "counter:2": {
+          "record": 4353,
+          "unitId": "count",
+          "nature": "total_in"
+        },
+        "counter:3": {
+          "record": 4360,
+          "unitId": "count",
+          "nature": "total_out"
+        }
+      }
+    },
+    "output": {
+      "battery_main": 100,
+      "battery_node": 100,
+      "period_count_alarm": "threshold_alarm",
+      "period_in": 1000,
+      "period_out": 1001,
+      "total_count_alarm": "threshold_alarm",
+      "total_in": 4353,
+      "total_out": 4360
+    },
+    "points": {
+      "batteryLevel:0": {
+        "unitId": "%",
+        "record": 100,
+        "nature": "battery_main"
+      },
+      "batteryLevel:1": {
+        "unitId": "%",
+        "record": 100,
+        "nature": "battery_node"
+      },
+      "status:0": {
+        "unitId": "state",
+        "record": true,
+        "nature": "period count threshold alarm"
+      },
+      "status:1": {
+        "unitId": "state",
+        "record": true,
+        "nature": "total count threshold alarm"
+      },
+      "counter:0": {
+        "unitId": "count",
+        "record": 1000,
+        "nature": "period_in"
+      },
+      "counter:1": {
+        "unitId": "count",
+        "record": 1001,
+        "nature": "period_out"
+      },
+      "counter:2": {
+        "unitId": "count",
+        "record": 4353,
+        "nature": "total_in"
+      },
+      "counter:3": {
+        "unitId": "count",
+        "record": 4360,
+        "nature": "total_out"
+      }
+    }
+  }
+]

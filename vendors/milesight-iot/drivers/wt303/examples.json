@@ -1,0 +1,69 @@
+[
+  {
+    "description": "Example 1",
+    "type": "uplink",
+    "input": {
+      "bytes": "01eb0002370203fa00040168010501060272000702081109016701",
+      "fPort": 100,
+      "time": "2024-11-03T17:00:00.000+02:00",
+      "points": {
+        "humidity": {
+          "record": 56.7,
+          "unitId": "%RH"
+        },
+        "temperature:0": {
+          "record": 2.35,
+          "unitId": "Cel",
+          "nature": "room"
+        },
+        "temperature:1": {
+          "record": 2.5,
+          "unitId": "Cel",
+          "nature": "target"
+        },
+        "status": {
+          "record": true,
+          "unitId": "state",
+          "nature": "thermostat on"
+        }
+      }
+    },
+    "output": {
+      "fan_mode": "auto",
+      "fan_status": "medium",
+      "humidity": 56.7,
+      "plan_id": "unknown",
+      "system_status": "on",
+      "target_temperature": 2.5,
+      "temperature": 2.35,
+      "temperature_alarm": {
+        "type": "lower range error"
+      },
+      "temperature_control_mode": "fan",
+      "temperature_control_status": "heating",
+      "temperature_data_source": "ntc",
+      "valve_status": "unknown"
+    },
+    "points": {
+      "humidity": {
+        "unitId": "%RH",
+        "record": 56.7
+      },
+      "temperature:0": {
+        "unitId": "Cel",
+        "record": 2.35,
+        "nature": "room"
+      },
+      "temperature:1": {
+        "unitId": "Cel",
+        "record": 2.5,
+        "nature": "target"
+      },
+      "status": {
+        "unitId": "state",
+        "record": true,
+        "nature": "thermostat on"
+      }
+    }
+  }
+]

@@ -3,9 +3,9 @@ const path = require("path");
 module.exports = {
     target: "node",
     mode: "production",
-    entry: "./pilot_wire.js",
+        entry: "./main.js",
     output: {
-        filename: "main.js",
+                filename: "index.js",
         path: path.resolve(__dirname, "."),
         library: "driver",
     },
