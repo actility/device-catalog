@@ -273,8 +273,15 @@ function isTrusted() {
         const driverYaml = yaml.load(fs.readFileSync(driverYamlPath))
         const driverYamlTrustedCrc = driverYaml.trustedCRC;
         let driverPath = privateDir;
+
         if(!driverYaml.name) {
-            driverPath = driverPath.replace("device-catalog-private", "device-catalog")
+            const tmpSegment = `${path.sep}tmp${path.sep}`;
+            const hasTmp = driverPath.includes(tmpSegment) || driverPath.startsWith(`tmp${path.sep}`);
+            if (hasTmp) {
+                driverPath = driverPath.replace(`tmp${path.sep}device-catalog-private`, `tmp${path.sep}device-catalog`);
+            } else {
+                driverPath = driverPath.replace("device-catalog-private", "device-catalog");
+            }
         }
 
         const newTrustedCRC = computeChecksum(driverPath);
