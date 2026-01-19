@@ -1,0 +1,694 @@
+[
+    {
+        "type": "uplink",
+        "description": "active energy uplink (type 1)",
+        "input": {
+            "bytes": [
+                1,
+                34,
+                80,
+                237,
+                232,
+                67,
+                66,
+                216,
+                182,
+                206,
+                66,
+                98,
+                26,
+                102,
+                164,
+                67,
+                130,
+                195,
+                236,
+                102,
+                67,
+                162,
+                84,
+                57,
+                172,
+                66,
+                194,
+                97,
+                82,
+                200,
+                66
+            ],
+            "fPort": 1,
+            "recvTime": "2020-08-02T20:00:00.000+00:00"
+        },
+        "output": {
+            "data": {
+                "header": {
+                    "version": 2,
+                    "type": 1,
+                    "desc": "Active energy frame"
+                },
+                "channel_data": [
+                    {
+                        "channel_mode": 2,
+                        "channel": 0,
+                        "connector": 1,
+                        "values": {
+                            "e_act_index": 465.85400390625
+                        }
+                    },
+                    {
+                        "channel_mode": 2,
+                        "channel": 0,
+                        "connector": 2,
+                        "values": {
+                            "e_act_index": 103.35711669921875
+                        }
+                    },
+                    {
+                        "channel_mode": 2,
+                        "channel": 0,
+                        "connector": 3,
+                        "values": {
+                            "e_act_index": 328.79766845703125
+                        }
+                    },
+                    {
+                        "channel_mode": 2,
+                        "channel": 0,
+                        "connector": 4,
+                        "values": {
+                            "e_act_index": 230.9248504638672
+                        }
+                    },
+                    {
+                        "channel_mode": 2,
+                        "channel": 0,
+                        "connector": 5,
+                        "values": {
+                            "e_act_index": 86.11196899414062
+                        }
+                    },
+                    {
+                        "channel_mode": 2,
+                        "channel": 0,
+                        "connector": 6,
+                        "values": {
+                            "e_act_index": 100.16089630126953
+                        }
+                    }
+                ]
+            },
+            "errors": [],
+            "warnings": []
+        },
+        "points": {
+            "energy:0": {
+                "unitId": "Wh",
+                "record": 465854.00390625,
+                "nature": "e_act_index:c1:ch0"
+            },
+            "energy:1": {
+                "unitId": "Wh",
+                "record": 103357.11669921875,
+                "nature": "e_act_index:c2:ch0"
+            },
+            "energy:2": {
+                "unitId": "Wh",
+                "record": 328797.66845703125,
+                "nature": "e_act_index:c3:ch0"
+            },
+            "energy:3": {
+                "unitId": "Wh",
+                "record": 230924.8504638672,
+                "nature": "e_act_index:c4:ch0"
+            },
+            "energy:4": {
+                "unitId": "Wh",
+                "record": 86111.96899414062,
+                "nature": "e_act_index:c5:ch0"
+            },
+            "energy:5": {
+                "unitId": "Wh",
+                "record": 100160.89630126953,
+                "nature": "e_act_index:c6:ch0"
+            }
+        }
+    },
+    {
+        "type": "uplink",
+        "description": "reactive energy uplink (type 2)",
+        "input": {
+            "bytes": [
+                2,
+                41,
+                240,
+                167,
+                198,
+                61,
+                49,
+                57,
+                214,
+                197,
+                61,
+                57,
+                166,
+                10,
+                198,
+                61
+            ],
+            "fPort": 1,
+            "recvTime": "2020-08-02T20:00:00.000+00:00"
+        },
+        "output": {
+            "data": {
+                "header": {
+                    "version": 2,
+                    "type": 2,
+                    "desc": "Reactive energy frame"
+                },
+                "channel_data": [
+                    {
+                        "channel_mode": 1,
+                        "channel": 1,
+                        "connector": 1,
+                        "values": {
+                            "e_react_index": 0.09700000286102295
+                        }
+                    },
+                    {
+                        "channel_mode": 1,
+                        "channel": 2,
+                        "connector": 1,
+                        "values": {
+                            "e_react_index": 0.0966000035405159
+                        }
+                    },
+                    {
+                        "channel_mode": 1,
+                        "channel": 3,
+                        "connector": 1,
+                        "values": {
+                            "e_react_index": 0.09669999778270721
+                        }
+                    }
+                ]
+            },
+            "errors": [],
+            "warnings": []
+        },
+        "points": {
+            "reactiveEnergy:0": {
+                "unitId": "varh",
+                "record": 97.00000286102295,
+                "nature": "e_react_index:c1:ch1"
+            },
+            "reactiveEnergy:1": {
+                "unitId": "varh",
+                "record": 96.6000035405159,
+                "nature": "e_react_index:c1:ch2"
+            },
+            "reactiveEnergy:2": {
+                "unitId": "varh",
+                "record": 96.69999778270721,
+                "nature": "e_react_index:c1:ch3"
+            }
+        }
+    },
+    {
+        "type": "uplink",
+        "description": "expert frame (type 3) cycle 1 with only tri connector mode",
+        "input": {
+            "bytes": [
+                153,
+                60,
+                0,
+                1,
+                50,
+                32,
+                190,
+                35,
+                0,
+                0,
+                0,
+                7,
+                42,
+                101,
+                222,
+                11,
+                0,
+                0,
+                0,
+                0
+            ],
+            "fPort": 1,
+            "recvTime": "2020-08-02T20:00:00.000+00:00"
+        },
+        "output": {
+            "data": {
+                "header": {
+                    "type": 3,
+                    "desc": "Expert frame",
+                    "version": 2,
+                    "cycle": 1
+                },
+                "channel_data": [
+                    {
+                        "sensor": 6,
+                        "connector": 1,
+                        "channel": 0,
+                        "channel_mode": 8,
+                        "raw_values": {
+                            "e_act_counter": 2145827,
+                            "e_react-_counter": 0
+                        },
+                        "values": {
+                            "e_act_counter": 246770.105,
+                            "e_react-_counter": 0
+                        }
+                    },
+                    {
+                        "sensor": 5,
+                        "connector": 2,
+                        "channel": 0,
+                        "channel_mode": 8,
+                        "raw_values": {
+                            "e_act_counter": 6675979,
+                            "e_react-_counter": 0
+                        },
+                        "values": {
+                            "e_act_counter": 307095.034,
+                            "e_react-_counter": 0
+                        }
+                    }
+                ]
+            },
+            "errors": [],
+            "warnings": []
+        },
+        "points": {
+            "energy:0": {
+                "unitId": "Wh",
+                "record": 246770.105,
+                "nature": "e_act_counter:c1:ch0"
+            },
+            "reactiveEnergy:0": {
+                "unitId": "varh",
+                "record": 0,
+                "nature": "e_react-_counter:c1:ch0"
+            },
+            "energy:1": {
+                "unitId": "Wh",
+                "record": 307095.034,
+                "nature": "e_act_counter:c2:ch0"
+            },
+            "reactiveEnergy:1": {
+                "unitId": "varh",
+                "record": 0,
+                "nature": "e_react-_counter:c2:ch0"
+            }
+        }
+    },
+    {
+        "type": "uplink",
+        "description": "expert frame (type 3) cycle 0 with mixed connector modes",
+        "input": {
+            "bytes": [
+                144,
+                35,
+                0,
+                26,
+                174,
+                165,
+                92,
+                3,
+                18,
+                201,
+                47,
+                25,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                25,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                19,
+                81,
+                158,
+                18,
+                0,
+                32,
+                92,
+                59,
+                19,
+                45,
+                134,
+                67,
+                0,
+                250,
+                63,
+                8,
+                23,
+                7,
+                88,
+                34,
+                21,
+                195,
+                243,
+                163
+            ],
+            "fPort": 1,
+            "recvTime": "2020-08-02T20:00:00.000+00:00"
+        },
+        "output": {
+            "data": {
+                "header": {
+                    "type": 3,
+                    "desc": "Expert frame",
+                    "version": 2,
+                    "cycle": 0
+                },
+                "channel_data": [
+                    {
+                        "sensor": 3,
+                        "connector": 1,
+                        "channel": 0,
+                        "channel_mode": 8,
+                        "raw_values": {
+                            "e_act_counter": 11445596,
+                            "e_react+_counter": 201417
+                        },
+                        "values": {
+                            "e_act_counter": 92137.0478,
+                            "e_react+_counter": 1621.40685
+                        }
+                    },
+                    {
+                        "sensor": 3,
+                        "connector": 2,
+                        "channel": 1,
+                        "channel_mode": 0,
+                        "raw_values": {},
+                        "values": {}
+                    },
+                    {
+                        "sensor": 3,
+                        "connector": 2,
+                        "channel": 3,
+                        "channel_mode": 0,
+                        "raw_values": {},
+                        "values": {}
+                    },
+                    {
+                        "sensor": 2,
+                        "connector": 3,
+                        "channel": 2,
+                        "channel_mode": 7,
+                        "raw_values": {
+                            "e_act_counter": 5348882,
+                            "e_react+_counter": 8284
+                        },
+                        "values": {
+                            "e_act_counter": 18453.6429,
+                            "e_react+_counter": 28.5798
+                        },
+                        "phase": 1
+                    },
+                    {
+                        "sensor": 2,
+                        "connector": 4,
+                        "channel": 1,
+                        "channel_mode": 7,
+                        "raw_values": {
+                            "e_act_counter": 2983491,
+                            "e_react+_counter": 64063
+                        },
+                        "values": {
+                            "e_act_counter": 10293.04395,
+                            "e_react+_counter": 221.01735
+                        },
+                        "phase": 1
+                    },
+                    {
+                        "sensor": 2,
+                        "connector": 4,
+                        "channel": 3,
+                        "channel_mode": 7,
+                        "raw_values": {
+                            "e_act_counter": 481314,
+                            "e_react+_counter": 1426419
+                        },
+                        "values": {
+                            "e_act_counter": 1660.5333,
+                            "e_react+_counter": 4921.14555
+                        },
+                        "phase": 3
+                    }
+                ]
+            },
+            "errors": [],
+            "warnings": []
+        },
+        "points": {
+            "energy:0": {
+                "unitId": "Wh",
+                "record": 92137.0478,
+                "nature": "e_act_counter:c1:ch0"
+            },
+            "reactiveEnergy:0": {
+                "unitId": "varh",
+                "record": 1621.40685,
+                "nature": "e_react+_counter:c1:ch0"
+            },
+            "energy:1": {
+                "unitId": "Wh",
+                "record": 18453.6429,
+                "nature": "e_act_counter:c3:ch2:p1"
+            },
+            "reactiveEnergy:1": {
+                "unitId": "varh",
+                "record": 28.5798,
+                "nature": "e_react+_counter:c3:ch2:p1"
+            },
+            "energy:2": {
+                "unitId": "Wh",
+                "record": 10293.04395,
+                "nature": "e_act_counter:c4:ch1:p1"
+            },
+            "reactiveEnergy:2": {
+                "unitId": "varh",
+                "record": 221.01735,
+                "nature": "e_react+_counter:c4:ch1:p1"
+            },
+            "energy:3": {
+                "unitId": "Wh",
+                "record": 1660.5333,
+                "nature": "e_act_counter:c4:ch3:p3"
+            },
+            "reactiveEnergy:3": {
+                "unitId": "varh",
+                "record": 4921.14555,
+                "nature": "e_react+_counter:c4:ch3:p3"
+            }
+        }
+    },
+    {
+        "type": "uplink",
+        "description": "expert frame (type 3) cycle 5",
+        "input": {
+            "bytes": [
+                157,
+                48,
+                3,
+                1,
+                50,
+                68,
+                30,
+                84,
+                0,
+                0,
+                0,
+                2,
+                50,
+                181,
+                131,
+                98,
+                5,
+                0,
+                0,
+                2,
+                50,
+                39,
+                87,
+                192,
+                255,
+                255,
+                255,
+                2,
+                50,
+                23,
+                245,
+                216,
+                0,
+                0,
+                0,
+                2
+            ],
+            "fPort": 1,
+            "recvTime": "2020-08-02T20:00:00.000+00:00"
+        },
+        "output": {
+            "data": {
+                "header": {
+                    "type": 3,
+                    "desc": "Expert frame",
+                    "version": 2,
+                    "cycle": 5
+                },
+                "channel_data": [
+                    {
+                        "sensor": 6,
+                        "connector": 1,
+                        "channel": 0,
+                        "channel_mode": 8,
+                        "raw_values": {
+                            "e_act_counter": 4464212
+                        },
+                        "values": {
+                            "e_act_counter": 513384.38
+                        }
+                    },
+                    {
+                        "sensor": 6,
+                        "connector": 2,
+                        "channel": 0,
+                        "channel_mode": 8,
+                        "raw_values": {
+                            "e_act_counter": 11895650
+                        },
+                        "values": {
+                            "e_act_counter": 1367999.75
+                        }
+                    },
+                    {
+                        "sensor": 6,
+                        "connector": 3,
+                        "channel": 0,
+                        "channel_mode": 8,
+                        "raw_values": {
+                            "e_act_counter": 2578368
+                        },
+                        "values": {
+                            "e_act_counter": 296512.32
+                        }
+                    },
+                    {
+                        "sensor": 6,
+                        "connector": 4,
+                        "channel": 0,
+                        "channel_mode": 8,
+                        "raw_values": {
+                            "e_act_counter": 1570264
+                        },
+                        "values": {
+                            "e_act_counter": 180580.36000000002
+                        }
+                    }
+                ]
+            },
+            "errors": [],
+            "warnings": []
+        },
+        "points": {
+            "energy:0": {
+                "unitId": "Wh",
+                "record": 513384.38,
+                "nature": "e_act_counter:c1:ch0"
+            },
+            "energy:1": {
+                "unitId": "Wh",
+                "record": 1367999.75,
+                "nature": "e_act_counter:c2:ch0"
+            },
+            "energy:2": {
+                "unitId": "Wh",
+                "record": 296512.32,
+                "nature": "e_act_counter:c3:ch0"
+            },
+            "energy:3": {
+                "unitId": "Wh",
+                "record": 180580.36000000002,
+                "nature": "e_act_counter:c4:ch0"
+            }
+        }
+    },
+    {
+        "type": "uplink",
+        "description": "truncated payload",
+        "input": {
+            "bytes": [
+                2,
+                41,
+                240,
+                167,
+                198,
+                61,
+                49,
+                57,
+                214,
+                197,
+                61,
+                57,
+                166,
+                10
+            ],
+            "fPort": 1,
+            "recvTime": "2020-08-02T20:00:00.000+00:00"
+        },
+        "output": {
+            "errors": [
+                "Unexpected payload length"
+            ],
+            "warnings": []
+        },
+        "points": {}
+    },
+    {
+        "type": "uplink",
+        "description": "unsupported version",
+        "input": {
+            "bytes": [
+                3,
+                41,
+                240,
+                167,
+                198,
+                61,
+                49,
+                57,
+                214,
+                197,
+                61,
+                57,
+                166,
+                10
+            ],
+            "fPort": 1,
+            "recvTime": "2020-08-02T20:00:00.000+00:00"
+        },
+        "output": {
+            "errors": [
+                "Unknown standard frame version"
+            ],
+            "warnings": []
+        },
+        "points": {}
+    }
+]
