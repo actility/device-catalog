@@ -1,110 +1,237 @@
-##general,,,,,,,,,,,,
-version,max_downlink_commands,,,,,,,,,,,
-1.0,5,,,,,,,,,,,
-##models,,,,,,,,,,,,
-name,selectors,,,,,,,,,,,
-all,{ mId: vicki },,,,,,,,,,,
-others,,,,,,,,,,,,
-##objects,,,,,,,,,,,,
+##general,,,,,,,,,,,
+version,max_downlink_commands,,,,,,,,,,
+1.0,5,,,,,,,,,,
+##models,,,,,,,,,,,
+name,selectors,,,,,,,,,,
+16aspm,{ mId: 16aspm },,,,,,,,,,
+16ads,{ mId: 16ads },,,,,,,,,,
+group1,"{ mId: 16ads }, { mId: fct }",,,,,,,,,,
+fct,{ mId: fct },,,,,,,,,,
+all,"{ mId: 16ads }, { mId: 16aspm }, { mId: fct }, { mId: vicki }",,,,,,,,,,
+vicki,{ mId: vicki },,,,,,,,,,
+others,,,,,,,,,,
+##objects,,,,,,,,,,,
 id,name,value,type,access_mode,value_type,precision,units,cov_increment,min_value,max_value,models,description
-reason,Reason of uplink,0,number,R,UINT8,,,1,,,all,Reason
-targetTemperature,Target temperature in Celsius,0,number,R,FLOAT,2,Cel,0.1,,,all,Target temperature in �C
-sensorTemperature,Sensor temperature in Celsius,0,number,R,FLOAT,2,Cel,0.1,,,all,Temperature in �C
-relativeHumidity,Relative humidity in percentage,0,number,R,FLOAT,2,%RH,0.1,,,all,Relative humidity in RH
-motorPosition,Motor position in steps,0,number,R,FLOAT,2,,0.1,0,15,all,Motor position in steps
-motorRange,Motor range in steps,0,number,R,FLOAT,2,,0.1,0,15,all,Motor range in steps
-batteryVoltage,Battery voltage,0,number,R,FLOAT,2,V,0.1,,,all,Battery voltage in volts
-openWindow,Open window is detected,0,boolean,R,BOOL,,,,,,all,Open window is detected
-childLock,Child lock,false,boolean,R,BOOL,,,,,,all,Child lock option is enabled
-highMotorConsumption,High motor consumption flag,false,boolean,R,BOOL,,,,,,all,High motor consumption is detected
-lowMotorConsumption,Low motor consumption flag,false,boolean,R,BOOL,,,,,,all,Low motor consumption is detected
-brokenSensor,Broken sensor flag,false,boolean,R,BOOL,,,,,,all,Broken sensor is detected
-openWindow:enabled,Open window detection enabled,false,boolean,R,BOOL,,,,,,all,Open window detection is activated
-openWindow:duration,Open window detection duration,0,number,R,UINT16,,minutes,1,,,all,Open window duration in minutes
-openWindow:motorPosition,Open window detection motor position,0,number,R,UINT16,,,1,,,all,Open window motor position
-openWindow:delta,Open window detection delta,0,number,R,UINT8,,,0.1,0,255,all,Open window delta
-temperatureRangeSettings:min,Min temperature,0,number,R,UINT8,,Cel,,0,255,all,
-temperatureRangeSettings:max,Max temperature,0,number,R,UINT8,,Cel,,0,255,all,
-internalAlgoParams:period,Internal algo params period,0,number,R,UINT8,,,,0,255,all,
-internalAlgoParams:pFirstLast,Internal algo params pFirstLast,0,number,R,UINT8,,,,0,255,all,
-internalAlgoParams:pNext,Internal algo params pNext,0,number,R,UINT8,,,,0,255,all,
-internalAlgoTdiffParams:warm,Internal algo tdiff params warm,0,number,R,UINT8,,,,0,255,all,
-internalAlgoTdiffParams:cold,Internal algo tdiff params cold,0,number,R,UINT8,,,,0,255,all,
-operationalMode,Operational mode,0,number,R,UINT8,,,,0,255,all,
-joinRetryPeriod,Join retry period,0,number,R,FLOAT,2,,0.1,,,all,
-uplinkType,Uplink type,0,number,R,UINT8,,,,0,255,all,
-watchDogParams:wdpC,Watchdog params wdpC,0,number,R,UINT16,,,1,,,all,
-watchDogParams:wdpUc,Watchdog params wdpUc,0,number,R,UINT16,,,1,,,all,
-primaryOperationalMode,Primary operationnal mode,0,number,R,UINT8,,,,0,255,all,
-batteryRangesBoundaries:Boundary1,Battery ranges boundary 1,0,number,R,UINT16,,,1,,,all,
-batteryRangesBoundaries:Boundary2,Battery ranges boundary 2,0,number,R,UINT16,,,1,,,all,
-batteryRangesBoundaries:Boundary3,Battery ranges boundary 3,0,number,R,UINT16,,,1,,,all,
-batteryRangesOverVoltage:Range1,Battery ranges over voltage range 1,0,number,R,UINT8,,,,0,255,all,
-batteryRangesOverVoltage:Range2,Battery ranges over voltage range 2,0,number,R,UINT8,,,,0,255,all,
-batteryRangesOverVoltage:Range3,Battery ranges over voltage range 3,0,number,R,UINT8,,,,0,255,all,
-OVAC,OVAC,0,number,R,UINT8,,,,0,255,all,
-manualTargetTemperatureUpdate,Manual target temperature update,0,number,R,UINT8,,Cel,,0,255,all,
-keepAliveTime,Keep alive time,0,number,R,UINT8,,,1,0,255,all,PI run period
-deviceVersions:hardware,Hardware version,0,number,R,UINT8,,,,0,255,all,Hardware version
-deviceVersions:software,Software version,0,number,R,UINT8,,,,0,255,all,Software version
-setKeepAlive,Set keep alive time command,0,number,RW,UINT8,,,1,0,255,all,
-getKeepAliveTime,Get keep alive time command,0,binary,RW,UINT8,,,1,0,1,all,
-recalibrateMotor,Recalibrate moto command,0,binary,RW,UINT8,,,1,0,1,all,
-getDeviceVersions,Get device versions command,0,binary,RW,UINT8,,,1,0,1,all,
-setOpenWindow:enabled,Set open window enabled,0,binary,RW,UINT8,,,1,0,1,all,1 if we want to enable it or 0 if we want to disable it
-setOpenWindow:closeTime,Set open window close time,0,number,RW,FLOAT,1,minutes,0.1,,,all,for how long should the device keep the set motor position  after it detected an open window event (example value: 20 (if we want  to have the Vicki at the defined position for 20 minutes))
-setOpenWindow:delta,Set open window delta time,0,number,RW,UINT16,,Cel,1,0,65535,all,the value of the desired difference in the measured temperature (degrees in Celsius)
-setOpenWindow:motorPosition,Set open window motor position,0,number,RW,UINT16,,,1,0,65535,all,the motor position of the device for the specified time after an open window event was detected
-getOpenWindowParams,Get open window params command,0,binary,RW,UINT8,,,1,0,1,all,
-setChildLock,Set child lock command,0,binary,RW,UINT8,,,1,0,1,all,1 if we want to enable it or 0 if we want to disable it
-getChildLock,Get child lock command,0,binary,RW,UINT8,,,1,0,1,all,
-setTemperatureRange:min,Set temperature range min,0,number,RW,UINT8,,Cel,1,5,30,all,the minimum value for the device range (between 5 and 30)
-setTemperatureRange:max,Set temperature range max,0,number,RW,UINT8,,Cel,1,5,30,all,the maximum value for the device range (between 5 and 30)
-getTemperatureRange,Get temperature range command,0,binary,RW,UINT8,,,1,0,1,all,
-forceClose,Force close command,0,binary,RW,UINT8,,,1,0,1,all,
-setInternalAlgoParams:pFirstLast,Set internal algo params pFirstLast,0,number,RW,UINT8,,,1,0,255,all,steps
-setInternalAlgoParams:pNext,Set internal algo params pNext,0,number,RW,UINT8,,,1,0,255,all,steps
-getInternalAlgoParams,Get intenal algo params command,0,binary,RW,UINT8,,,1,0,1,all,
-setInternalAlgoTdiffParams:cold,Set internal algo tdiff cold,0,number,RW,UINT8,,Cel,1,0,255,all,in �C
-setInternalAlgoTdiffParams:warm,Set internal algo tdiff warm,0,number,RW,UINT8,,Cel,1,0,255,all,in �C
-getInternalAlgoTdiffParams,Get internal algo tdiff params command,0,binary,RW,UINT8,,,1,0,1,all,
-setOperationalMode,Set operational mode command,0,number,RW,UINT8,,,1,0,2,all,"0 - Online manual control mode. Default for the device, 1 - Online automatic control mode, 2 - Online automatic control mode with external temperature reading."
-getOperationalMode,Get operational mode command,0,binary,RW,UINT8,,,1,0,1,all,
-setTargetTemperature,Set target temperature command,0,number,RW,UINT8,,Cel,1,5,30,all,digits in range 5-30
-setExternalTemperature,Set external temperature command,0,number,RW,UINT8,,Cel,1,5,30,all,digits in range 5-30
-setJoinRetryPeriod,Set join retry period command,0,number,RW,UINT8,,,1,0,255,all,"minutes, cannot be 0"
-getJoinRetryPeriod,Get join retry period command,0,binary,RW,UINT8,,,1,0,1,all,
-setUplinkType,Set uplink type command,0,binary,RW,UINT8,,,1,0,1,all,"0 - unconfirmed, 1 - confirmed"
-getUplinkType,Get uplink type command,0,binary,RW,UINT8,,,1,0,1,all,
-setTargetTemperatureAndMotorPosition:motorPosition,Set target temperature and motorPosition,0,number,RW,UINT8,,,1,0,255,all,range 0 to motorRange
-setTargetTemperatureAndMotorPosition:targetTemperature,Set target temperature and targetTemperature,0,number,RW,UINT8,,Cel,1,5,30,all,digits in range 5-30
-setWatchDogParams:confirmedUplinks,Set watchdog params confirmedUplinks,0,number,RW,UINT8,,,1,0,255,all,
-setWatchDogParams:unconfirmedUplinks,Set watchdog params unconfirmedUplinks,0,number,RW,UINT8,,,1,0,255,all,
-getWatchDogParams,Get watchdog params command,0,binary,RW,UINT8,,,1,0,1,all,
-setPrimaryOperationalMode,Set primary operational mode command,0,number,RW,UINT8,,,1,0,255,all,"0 - Online manual control mode. Default for the device, 1 - Online automatic control mode, 2 - Online automatic control mode with external temperature reading."
-getPrimaryOperationalMode,Get primary operational mode command,0,binary,RW,UINT8,,,1,0,1,all,
-setProportionalAlgorithmParameters:coefficient,Set proportional algorithm parameters coefficent,0,number,RW,UINT8,,,1,0,255,all,
-setProportionalAlgorithmParameters:period,Set proportional algorithm parameters period,0,number,RW,UINT8,,,1,0,255,all,
-getProportionalAlgorithmParameters,Get proportional algorithm parameters command,0,binary,RW,UINT8,,,1,0,1,all,
-setTemperatureControlAlgorithm,Set temperature control algorithm command,0,binary,RW,UINT8,,,1,0,1,all,"0 - Proportional, 1 - Equal"
-getTemperatureControlAlgorithm,Get temperature control algorithm command,0,binary,RW,UINT8,,,1,0,1,all,
-setMotorPositionOnly,Set motor position only command,0,number,RW,UINT16,,,1,0,65535,all,range 0 to motorRange
-deviceReset,Device reset command,0,binary,RW,UINT8,,,1,0,1,all,
-setChildLockBehavior,Set child lock behavior command,0,binary,RW,UINT8,,,1,0,1,all,"0 - Child lock is automatically disabled when the device goes offline,  1 - Child lock remains unchanged when the device goes offline"
-getChildLockBehavior,Get child lock behavior command,0,binary,RW,UINT8,,,1,0,1,all,
-setProportionalGain,Set proportional gain command,0,number,RW,FLOAT,2,,0.1,,,all,
-getProportionalGain,Get proportional gain command,0,binary,RW,UINT8,,,1,0,1,all,
-setExternalTemperatureFloat,Set external temperature float command,0,number,RW,FLOAT,2,Cel,0.1,,,all,
-setIntegralGain,Set integral gain command,0,number,RW,FLOAT,2,,0.1,,,all,
-getIntegralGain,Get integral gain command,0,binary,RW,UINT8,,,1,0,1,all,
-setPiRunPeriod,Set PI run period command,0,number,RW,UINT8,,minutes,1,0,255,all,in minutes
-getPiRunPeriod,Get PI run period command,0,binary,RW,UINT8,,,1,0,1,all,
-setTempHysteresis,Set temp hysteresis command,0,number,RW,UINT8,,,1,0,255,all,
-getTempHysteresis,Get temp hysteresis command,0,binary,RW,UINT8,,,1,0,1,all,
-setOpenWindowPrecisely:enable,Set open window precisely enable,0,binary,RW,UINT8,,,1,0,255,all,
-setOpenWindowPrecisely:duration,Set open window precisely duration,0,number,RW,UINT16,,minutes,1,0,65535,all,in minutes
-setOpenWindowPrecisely:delta,Set open window precisely delta,0,number,RW,UINT16,,,1,0,65535,all,
-getOpenWindowPrecisely,Get open window precisely command,0,binary,RW,UINT8,,,1,0,1,all,
-setForceAttach,Set force attach command,0,binary,RW,UINT8,,,1,0,1,all,"0: disabled, 1: enabled"
-getForceAttach,Get force attach command,0,binary,RW,UINT8,,,1,0,1,all,
-sendCustomHexCommand,Send custom hex command command,"""""",string,RW,STRING,,,,,,all,Hexa payload as string like '014F32'
+OVAC,OVAC,0,number,R,UINT8,,,,0,255,vicki,
+acCurr_mA,AC Current,,number,R,UINT16,,mA,,,,16aspm,bacnet_type=analog_input_object; bacnet_unit_type_id=2; bacnet_unit_type=UNITS_MILLIAMPERES
+acVolt,AC Voltage,,number,R,UINT8,,V,,,,16aspm,bacnet_type=analog_input_object; bacnet_unit_type_id=5; bacnet_unit_type=UNITS_VOLTS
+actualFanSpeed,Actual Fan Speed,0,number,R,UINT8,,,1,1,7,fct,Actual fan speed
+additionalFanMode,Additional Fan Mode,0,number,RW,UINT8,,,1,0,255,fct,Additional fan mode
+afterOverheatingProtectionRecovery,After Overheating Protection Recovery,0,binary,RW,UINT8,,,1,0,1,16ads,"0=Off, 1=On"
+afterOverhtRec,AfterOverhtRec,,number,RW,UINT8,,,,,,16aspm,bacnet_type=analog_value_object; bacnet_unit_type_id=95; bacnet_unit_type=UNITS_NO_UNITS
+allowedOperationalModes,Allowed Operational Modes,0,number,RW,UINT8,,,1,0,255,fct,Allowed operational modes
+automaticChangeover,Automatic Changeover,0,binary,RW,UINT8,,,1,0,1,fct,"0=Off, 1=On"
+automaticChangeoverMode_automaticChangeover,Auto-Changeover Flag,0,binary,R,UINT8,,,1,0,1,fct,"0=Off, 1=On"
+automaticChangeoverMode_ntcTemperature,Auto-Changeover NTC Temperature,0,number,R,UINT8,,Cel,1,0,255,fct,Auto-changeover NTC temperature (°C)
+automaticChangeoverThreshold_cooling,Auto-Changeover Cooling Threshold,0,number,RW,UINT8,,Cel,1,0,255,fct,Auto-changeover cooling threshold (°C)
+automaticChangeoverThreshold_heating,Auto-Changeover Heating Threshold,0,number,RW,UINT8,,Cel,1,0,255,fct,Auto-changeover heating threshold (°C)
+batteryRangesBoundaries:Boundary1,Battery ranges boundary 1,0,number,R,UINT16,,,1,,,vicki,
+batteryRangesBoundaries:Boundary2,Battery ranges boundary 2,0,number,R,UINT16,,,1,,,vicki,
+batteryRangesBoundaries:Boundary3,Battery ranges boundary 3,0,number,R,UINT16,,,1,,,vicki,
+batteryRangesOverVoltage:Range1,Battery ranges over voltage range 1,0,number,R,UINT8,,,,0,255,vicki,
+batteryRangesOverVoltage:Range2,Battery ranges over voltage range 2,0,number,R,UINT8,,,,0,255,vicki,
+batteryRangesOverVoltage:Range3,Battery ranges over voltage range 3,0,number,R,UINT8,,,,0,255,vicki,
+batteryVoltage,Battery voltage,0,number,R,FLOAT,2,V,0.1,,,vicki,Battery voltage in volts
+brokenSensor,Broken sensor flag,false,boolean,R,BOOL,,,,,,vicki,Broken sensor is detected
+childLock,Child lock,false,boolean,R,BOOL,,,,,,vicki,Child lock option is enabled
+coolingSetpointNotOccupied,Cooling Setpoint (Not Occupied),0,number,RW,UINT8,,Cel,1,0,255,fct,Cooling setpoint not occupied (°C)
+coolingTempMax,Cooling Target Temp Max,0,number,RW,UINT8,,Cel,1,0,255,fct,Cooling target temp max (°C)
+coolingTempMaxUnocc,Cooling Target Temp Max (Unoccupied),0,number,RW,UINT8,,Cel,1,0,255,fct,Cooling target temp max unoccupied (°C)
+coolingTempMin,Cooling Target Temp Min,0,number,RW,UINT8,,Cel,1,0,255,fct,Cooling target temp min (°C)
+coolingTempMinUnocc,Cooling Target Temp Min (Unoccupied),0,number,RW,UINT8,,Cel,1,0,255,fct,Cooling target temp min unoccupied (°C)
+currentTemperatureVisibility,Current Temperature Visibility,0,binary,RW,UINT8,,,1,0,1,fct,"0=Off, 1=On"
+deltaTemperature1,Delta Temperature 1,0,number,RW,FLOAT,2,Cel,0.1,,,fct,Delta temperature 1 (°C)
+deltaTemperature2,Delta Temperature 2,0,number,RW,FLOAT,2,Cel,0.1,,,fct,Delta temperature 2 (°C)
+deltaTemperature3,Delta Temperature 3,0,number,RW,FLOAT,2,Cel,0.1,,,fct,Delta temperature 3 (°C)
+devHwVer,HW Version,,number,R,UINT8,,,,,,16aspm,Hardware version
+devSwVer,SW Version,,number,R,UINT8,,,,,,16aspm,Software version
+deviceHardwareVersion,Hardware Version,0,number,R,UINT8,,,1,0,255,group1,Hardware version
+deviceReset,Device reset command,0,binary,RW,UINT8,,,1,0,1,vicki,
+deviceSoftwareVersion,Software Version,0,number,R,UINT8,,,1,0,255,group1,Software version
+deviceStatus,Thermostat Status,0,binary,RW,UINT8,,,1,0,1,fct,"0=Off, 1=On"
+deviceVersions:hardware,Hardware version,0,number,R,UINT8,,,,0,255,vicki,Hardware version
+deviceVersions:software,Software version,0,number,R,UINT8,,,,0,255,vicki,Software version
+dewPointSensorStatus,Dew-Point Sensor Status,0,binary,R,UINT8,,,1,0,1,fct,"0=Off, 1=On"
+displayRefreshPeriod,Display Refresh Period,0,number,RW,UINT8,,s,1,0,255,fct,Display refresh period (s)
+displayedFanSpeed,Displayed Fan Speed,0,number,R,UINT8,,,1,1,7,fct,Displayed fan speed
+ecmRelay,ECM Relay,0,binary,RW,UINT8,,,1,0,1,fct,"0=Off, 1=On"
+ecmStartUpTime,ECM Start-Up Time,0,number,RW,UINT8,,s,1,0,255,fct,ECM start-up time (s)
+ecmVoltageRange_max,ECM Voltage Max,0,number,RW,FLOAT,2,V,0.1,,,fct,ECM voltage max (V)
+ecmVoltageRange_min,ECM Voltage Min,0,number,RW,FLOAT,2,V,0.1,,,fct,ECM voltage min (V)
+energy_kWh,Energy,,number,R,FLOAT,,kWh,,,,16aspm,bacnet_type=analog_input_object; bacnet_unit_type_id=19; bacnet_unit_type=UNITS_KILOWATT_HOURS
+extAutomaticTemperatureControl,External Automatic Temperature Control,0,binary,R,UINT8,,,1,0,1,fct,"0=Off, 1=On"
+extSensorTemperature,External Sensor Temperature,0,number,R,UINT16,,Cel,1,0,65535,fct,External sensor temperature (°C)
+externalTemperatureSensorError,External Temperature Sensor Error,0,binary,R,UINT8,,,1,0,1,fct,"0=Off, 1=On"
+fanOffDelayTime,Fan Off-Delay Time,0,number,RW,UINT8,,s,1,0,255,fct,Fan off-delay time (s)
+fanSpeed,Fan Speed,0,number,RW,UINT8,,,1,1,7,fct,Fan speed
+fanSpeedLimit,Fan Speed Limit,0,number,RW,UINT8,,,1,1,7,fct,Fan speed limit
+fanSpeedNotOccupied,Fan Speed (Not Occupied),0,number,RW,UINT8,,,1,1,7,fct,Fan speed not occupied
+filterAlarm,Filter Alarm,0,binary,R,UINT8,,,1,0,1,fct,"0=Off, 1=On"
+forceClose,Force close command,0,binary,RW,UINT8,,,1,0,1,vicki,
+frostProtection,Frost Protection,0,binary,RW,UINT8,,,1,0,1,fct,"0=Off, 1=On"
+frostProtectionSettings_setpoint,Frost Protection Setpoint,0,number,RW,UINT8,,Cel,1,0,255,fct,Frost protection setpoint (°C)
+frostProtectionSettings_threshold,Frost Protection Threshold,0,number,RW,UINT8,,Cel,1,0,255,fct,Frost protection threshold (°C)
+frostProtectionStatus,Frost Protection Status,0,binary,R,UINT8,,,1,0,1,fct,"0=Off, 1=On"
+fuota_address,FUOTA Address,0,number,R,UINT32,,,1,0,4294967295,16ads,FUOTA address
+fuota_address_raw,FUOTA Address (Raw Hex),"""""",string,R,STRING,,,,,,16ads,FUOTA address as raw hex (max length 64)
+getChildLock,Get child lock command,0,binary,RW,UINT8,,,1,0,1,vicki,
+getChildLockBehavior,Get child lock behavior command,0,binary,RW,UINT8,,,1,0,1,vicki,
+getDeviceVersions,Get device versions command,0,binary,RW,UINT8,,,1,0,1,vicki,
+getForceAttach,Get force attach command,0,binary,RW,UINT8,,,1,0,1,vicki,
+getIntegralGain,Get integral gain command,0,binary,RW,UINT8,,,1,0,1,vicki,
+getInternalAlgoParams,Get intenal algo params command,0,binary,RW,UINT8,,,1,0,1,vicki,
+getInternalAlgoTdiffParams,Get internal algo tdiff params command,0,binary,RW,UINT8,,,1,0,1,vicki,
+getJoinRetryPeriod,Get join retry period command,0,binary,RW,UINT8,,,1,0,1,vicki,
+getKeepAliveTime,Get keep alive time command,0,binary,RW,UINT8,,,1,0,1,vicki,
+getOpenWindowParams,Get open window params command,0,binary,RW,UINT8,,,1,0,1,vicki,
+getOpenWindowPrecisely,Get open window precisely command,0,binary,RW,UINT8,,,1,0,1,vicki,
+getOperationalMode,Get operational mode command,0,binary,RW,UINT8,,,1,0,1,vicki,
+getPiRunPeriod,Get PI run period command,0,binary,RW,UINT8,,,1,0,1,vicki,
+getPrimaryOperationalMode,Get primary operational mode command,0,binary,RW,UINT8,,,1,0,1,vicki,
+getProportionalAlgorithmParameters,Get proportional algorithm parameters command,0,binary,RW,UINT8,,,1,0,1,vicki,
+getProportionalGain,Get proportional gain command,0,binary,RW,UINT8,,,1,0,1,vicki,
+getTempHysteresis,Get temp hysteresis command,0,binary,RW,UINT8,,,1,0,1,vicki,
+getTemperatureControlAlgorithm,Get temperature control algorithm command,0,binary,RW,UINT8,,,1,0,1,vicki,
+getTemperatureRange,Get temperature range command,0,binary,RW,UINT8,,,1,0,1,vicki,
+getUplinkType,Get uplink type command,0,binary,RW,UINT8,,,1,0,1,vicki,
+getWatchDogParams,Get watchdog params command,0,binary,RW,UINT8,,,1,0,1,vicki,
+heatingSetpointNotOccupied,Heating Setpoint (Not Occupied),0,number,RW,UINT8,,Cel,1,0,255,fct,Heating setpoint not occupied (°C)
+heatingTempMax,Heating Target Temp Max,0,number,RW,UINT8,,Cel,1,0,255,fct,Heating target temp max (°C)
+heatingTempMaxUnocc,Heating Target Temp Max (Unoccupied),0,number,RW,UINT8,,Cel,1,0,255,fct,Heating target temp max unoccupied (°C)
+heatingTempMin,Heating Target Temp Min,0,number,RW,UINT8,,Cel,1,0,255,fct,Heating target temp min (°C)
+heatingTempMinUnocc,Heating Target Temp Min (Unoccupied),0,number,RW,UINT8,,Cel,1,0,255,fct,Heating target temp min unoccupied (°C)
+highMotorConsumption,High motor consumption flag,false,boolean,R,BOOL,,,,,,vicki,High motor consumption is detected
+humidityVisibility,Humidity Visibility,0,binary,RW,UINT8,,,1,0,1,fct,"0=Off, 1=On"
+intTemp,Internal Temp,,number,R,UINT8,,Cel,,,,16aspm,Internal temperature (°C)
+internalAlgoParams:pFirstLast,Internal algo params pFirstLast,0,number,R,UINT8,,,,0,255,vicki,
+internalAlgoParams:pNext,Internal algo params pNext,0,number,R,UINT8,,,,0,255,vicki,
+internalAlgoParams:period,Internal algo params period,0,number,R,UINT8,,,,0,255,vicki,
+internalAlgoTdiffParams:cold,Internal algo tdiff params cold,0,number,R,UINT8,,,,0,255,vicki,
+internalAlgoTdiffParams:warm,Internal algo tdiff params warm,0,number,R,UINT8,,,,0,255,vicki,
+internalTemperature,Internal Temperature,0,number,R,INT8,,Cel,1,-128,127,16ads,Internal temperature (°C)
+internalTemperatureSensorError,Internal Temperature Sensor Error,0,binary,R,UINT8,,,1,0,1,fct,"0=Off, 1=On"
+joinRetry,Join Retry,,number,RW,FLOAT,,h,,,,16aspm,Join retry period (hours)
+joinRetryPeriod,Join Retry Period,0,number,RW,FLOAT,2,hours,0.1,,,group1,Join retry period (hours)
+joinRetryPeriod,Join retry period,0,number,R,FLOAT,2,,0.1,,,vicki,
+keepAliveTime,Keep alive time,0,number,R,UINT8,,,1,0,255,vicki,PI run period
+keepAliveTime,Keep-Alive Time,0,number,RW,UINT8,,minutes,1,0,255,group1,Keep-alive time (minutes)
+keepAliveTime,KeepAlive Time,,number,RW,UINT8,,minutes,,,,16aspm,Keep-alive time (minutes)
+keysLock,Keys Lock,0,binary,RW,UINT8,,,1,0,1,fct,"0=Off, 1=On"
+ledIndMode,LED Ind Mode,,number,RW,UINT8,,,,,,16aspm,"0=Off, 1=On"
+ledIndicationMode,LED Indication Mode,0,number,RW,UINT8,,,1,0,1,16ads,"0=Off, 1=On"
+lowMotorConsumption,Low motor consumption flag,false,boolean,R,BOOL,,,,,,vicki,Low motor consumption is detected
+manualChangeRelayState,Manual Change Relay State,"""""",string,R,STRING,,,,,,16ads,Manual change relay state (max length 8)
+manualRelay_txt,Manual Relay,,text,R,STRING,,,,,,16aspm,Manual change relay state (max length 8)
+manualTargetTemperatureUpdate,Manual Target Temperature Update,0,binary,R,UINT8,,,1,0,1,fct,"0=Off, 1=On"
+manualTargetTemperatureUpdate,Manual target temperature update,0,number,R,UINT8,,Cel,,0,255,vicki,
+motorPosition,Motor position in steps,0,number,R,FLOAT,2,,0.1,0,15,vicki,Motor position in steps
+motorRange,Motor range in steps,0,number,R,FLOAT,2,,0.1,0,15,vicki,Motor range in steps
+occFunction,Occupancy Function,0,number,RW,UINT8,,,1,0,255,fct,Occupancy function
+occupancySensorStatus,Occupancy Sensor Status,0,number,R,UINT8,,,1,0,255,fct,Occupancy sensor status
+occupancySensorStatusSetPoint,Occupancy Sensor Status Setpoint,0,number,R,UINT8,,,1,0,255,fct,Occupancy sensor status setpoint
+openWindow,Open window is detected,0,boolean,R,BOOL,,,,,,vicki,Open window is detected
+openWindow:delta,Open window detection delta,0,number,R,UINT8,,,0.1,0,255,vicki,Open window delta
+openWindow:duration,Open window detection duration,0,number,R,UINT16,,minutes,1,,,vicki,Open window duration in minutes
+openWindow:enabled,Open window detection enabled,false,boolean,R,BOOL,,,,,,vicki,Open window detection is activated
+openWindow:motorPosition,Open window detection motor position,0,number,R,UINT16,,,1,,,vicki,Open window motor position
+operationalMode,Operational Mode,0,number,RW,UINT8,,,1,1,3,fct,Operational mode
+operationalMode,Operational mode,0,number,R,UINT8,,,,0,255,vicki,
+overcurrCnt,Overcurr Cnt,,number,R,UINT8,,,,,,16aspm,bacnet_type=analog_input_object; bacnet_unit_type_id=95; bacnet_unit_type=UNITS_NO_UNITS
+overcurrCurr,Overcurr Curr,,number,R,UINT16,,mA,,,,16aspm,bacnet_type=analog_input_object; bacnet_unit_type_id=2; bacnet_unit_type=UNITS_MILLIAMPERES
+overcurrRecTp,OvercurrRecTp,,number,RW,UINT8,,Cel,,,,16aspm,bacnet_type=analog_value_object; bacnet_unit_type_id=62; bacnet_unit_type=UNITS_DEGREES_CELSIUS
+overcurrThres,Overcurr Thres,,number,RW,UINT8,,mA,,,,16aspm,bacnet_type=analog_value_object; bacnet_unit_type_id=2; bacnet_unit_type=UNITS_MILLIAMPERES
+overheatCnt,Overheat Cnt,,number,R,UINT8,,,,,,16aspm,Overheating events count
+overheatEvTmp,Overheat EvTmp,,number,R,UINT8,,Cel,,,,16aspm,Overheating event temperature (°C)
+overheatRec,Overheat Rec,,number,RW,UINT8,,Cel,,,,16aspm,Overheating threshold recovery (°C)
+overheatRecTm,OverheatRecTm,,number,RW,UINT16,,s,,,,16aspm,Overheating recovery time (seconds)
+overheatTrig,Overheat Trig,,number,RW,UINT8,,Cel,,,,16aspm,Overheating threshold trigger (°C)
+overheatingEvents_events,Overheating Events Count,0,number,R,UINT8,,,1,0,255,16ads,Overheating events count
+overheatingEvents_temperature,Overheating Event Temperature,0,number,R,UINT8,,Cel,1,0,255,16ads,Overheating event temperature (°C)
+overheatingRecoveryTime,Overheating Recovery Time,0,number,RW,UINT16,,seconds,1,0,65535,16ads,Overheating recovery time (seconds)
+overheatingThreshold_recovery,Overheating Threshold (Recovery),0,number,RW,UINT8,,Cel,1,0,255,16ads,Overheating threshold recovery (°C)
+overheatingThreshold_trigger,Overheating Threshold (Trigger),0,number,RW,UINT8,,Cel,1,0,255,16ads,Overheating threshold trigger (°C)
+overpowerCnt,Overpower Cnt,,number,R,UINT8,,,,,,16aspm,bacnet_type=analog_input_object; bacnet_unit_type_id=95; bacnet_unit_type=UNITS_NO_UNITS
+overpowerPwr,Overpower Pwr,,number,R,UINT16,,W,,,,16aspm,bacnet_type=analog_input_object; bacnet_unit_type_id=47; bacnet_unit_type=UNITS_WATTS
+overpwrRecTmp,OverpwrRecTmp,,number,RW,UINT8,,Cel,,,,16aspm,bacnet_type=analog_value_object; bacnet_unit_type_id=62; bacnet_unit_type=UNITS_DEGREES_CELSIUS
+overpwrThres,Overpower Thr,,number,RW,UINT16,,W,,,,16aspm,bacnet_type=analog_value_object; bacnet_unit_type_id=47; bacnet_unit_type=UNITS_WATTS
+overvoltCnt,Overvolt Cnt,,number,R,UINT8,,,,,,16aspm,bacnet_type=analog_input_object; bacnet_unit_type_id=95; bacnet_unit_type=UNITS_NO_UNITS
+overvoltRec,Overvolt Rec,,number,RW,UINT8,,V,,,,16aspm,bacnet_type=analog_value_object; bacnet_unit_type_id=5; bacnet_unit_type=UNITS_VOLTS
+overvoltRecTm,OvervoltRecTm,,number,RW,UINT16,,s,,,,16aspm,bacnet_type=analog_value_object; bacnet_unit_type_id=73; bacnet_unit_type=UNITS_SECONDS
+overvoltTrig,Overvolt Trig,,number,RW,UINT16,,V,,,,16aspm,bacnet_type=analog_value_object; bacnet_unit_type_id=5; bacnet_unit_type=UNITS_VOLTS
+overvoltVolt,Overvolt Volt,,number,R,UINT16,,V,,,,16aspm,bacnet_type=analog_input_object; bacnet_unit_type_id=5; bacnet_unit_type=UNITS_VOLTS
+powerModuleStatus,Power Module Status,0,binary,R,UINT8,,,1,0,1,fct,"0=Off, 1=On"
+power_W,Power,,number,R,UINT16,,W,,,,16aspm,bacnet_type=analog_input_object; bacnet_unit_type_id=47; bacnet_unit_type=UNITS_WATTS
+primaryOperationalMode,Primary operationnal mode,0,number,R,UINT8,,,,0,255,vicki,
+reason,Reason of uplink,0,number,R,UINT8,,,1,,,vicki,Reason
+recalibrateMotor,Recalibrate moto command,0,binary,RW,UINT8,,,1,0,1,vicki,
+region,Region,0,number,R,UINT8,,,1,0,7,16ads,"0=EU868,1=US915,2=AU915,3=AS923,4=CN470,5=KR920,6=IN865,7=RU864"
+relativeHumidity,Relative Humidity,0,number,R,FLOAT,2,%RH,0.1,,,fct,Relative humidity in RH
+relativeHumidity,Relative humidity in percentage,0,number,R,FLOAT,2,%RH,0.1,,,vicki,Relative humidity in RH
+relayRecState,Relay Rec State,,number,RW,UINT8,,,,,,16aspm,"0=Restore Last, 1=Off, 2=On"
+relayRecoveryState,Relay Recovery State,0,number,RW,UINT8,,,1,0,2,16ads,"0=Restore Last, 1=Off, 2=On"
+relayState,Relay State,"""""",string,R,STRING,,,,,,16ads,Relay state (max length 8)
+relayState_txt,Relay State,,text,R,STRING,,,,,,16aspm,Relay state (max length 8)
+returnOfPowerOperation,Return of Power Operation,0,number,RW,UINT8,,,1,0,255,fct,Return of power operation
+sendCustomHexCommand,Send custom hex command command,"""""",string,RW,STRING,,,,,,vicki,Hexa payload as string like '014F32'
+sensorTemperature,Sensor temperature in Celsius,0,number,R,FLOAT,2,Cel,0.1,,,vicki,Temperature in �C
+sensorTemperature,Temperature,0,number,R,FLOAT,2,Cel,0.1,,,fct,Temperature in °C
+setChildLock,Set child lock command,0,binary,RW,UINT8,,,1,0,1,vicki,1 if we want to enable it or 0 if we want to disable it
+setChildLockBehavior,Set child lock behavior command,0,binary,RW,UINT8,,,1,0,1,vicki,"0 - Child lock is automatically disabled when the device goes offline,  1 - Child lock remains unchanged when the device goes offline"
+setExternalTemperature,Set external temperature command,0,number,RW,UINT8,,Cel,1,5,30,vicki,digits in range 5-30
+setExternalTemperatureFloat,Set external temperature float command,0,number,RW,FLOAT,2,Cel,0.1,,,vicki,
+setForceAttach,Set force attach command,0,binary,RW,UINT8,,,1,0,1,vicki,"0: disabled, 1: enabled"
+setIntegralGain,Set integral gain command,0,number,RW,FLOAT,2,,0.1,,,vicki,
+setInternalAlgoParams:pFirstLast,Set internal algo params pFirstLast,0,number,RW,UINT8,,,1,0,255,vicki,steps
+setInternalAlgoParams:pNext,Set internal algo params pNext,0,number,RW,UINT8,,,1,0,255,vicki,steps
+setInternalAlgoTdiffParams:cold,Set internal algo tdiff cold,0,number,RW,UINT8,,Cel,1,0,255,vicki,in �C
+setInternalAlgoTdiffParams:warm,Set internal algo tdiff warm,0,number,RW,UINT8,,Cel,1,0,255,vicki,in �C
+setJoinRetryPeriod,Set join retry period command,0,number,RW,UINT8,,,1,0,255,vicki,"minutes, cannot be 0"
+setKeepAlive,Set keep alive time command,0,number,RW,UINT8,,,1,0,255,vicki,
+setMotorPositionOnly,Set motor position only command,0,number,RW,UINT16,,,1,0,65535,vicki,range 0 to motorRange
+setOpenWindow:closeTime,Set open window close time,0,number,RW,FLOAT,1,minutes,0.1,,,vicki,for how long should the device keep the set motor position  after it detected an open window event (example value: 20 (if we want  to have the Vicki at the defined position for 20 minutes))
+setOpenWindow:delta,Set open window delta time,0,number,RW,UINT16,,Cel,1,0,65535,vicki,the value of the desired difference in the measured temperature (degrees in Celsius)
+setOpenWindow:enabled,Set open window enabled,0,binary,RW,UINT8,,,1,0,1,vicki,1 if we want to enable it or 0 if we want to disable it
+setOpenWindow:motorPosition,Set open window motor position,0,number,RW,UINT16,,,1,0,65535,vicki,the motor position of the device for the specified time after an open window event was detected
+setOpenWindowPrecisely:delta,Set open window precisely delta,0,number,RW,UINT16,,,1,0,65535,vicki,
+setOpenWindowPrecisely:duration,Set open window precisely duration,0,number,RW,UINT16,,minutes,1,0,65535,vicki,in minutes
+setOpenWindowPrecisely:enable,Set open window precisely enable,0,binary,RW,UINT8,,,1,0,255,vicki,
+setOperationalMode,Set operational mode command,0,number,RW,UINT8,,,1,0,2,vicki,"0 - Online manual control mode. Default for the device, 1 - Online automatic control mode, 2 - Online automatic control mode with external temperature reading."
+setPiRunPeriod,Set PI run period command,0,number,RW,UINT8,,minutes,1,0,255,vicki,in minutes
+setPrimaryOperationalMode,Set primary operational mode command,0,number,RW,UINT8,,,1,0,255,vicki,"0 - Online manual control mode. Default for the device, 1 - Online automatic control mode, 2 - Online automatic control mode with external temperature reading."
+setProportionalAlgorithmParameters:coefficient,Set proportional algorithm parameters coefficent,0,number,RW,UINT8,,,1,0,255,vicki,
+setProportionalAlgorithmParameters:period,Set proportional algorithm parameters period,0,number,RW,UINT8,,,1,0,255,vicki,
+setProportionalGain,Set proportional gain command,0,number,RW,FLOAT,2,,0.1,,,vicki,
+setRelayState,Set Relay,,binary,W,UINT8,,,,,,16aspm,"0=Off, 1=On"
+setRelayState,Set Relay State,0,binary,RW,UINT8,,,1,0,1,16ads,"0=Off, 1=On"
+setTargetTemperature,Set target temperature command,0,number,RW,UINT8,,Cel,1,5,30,vicki,digits in range 5-30
+setTargetTemperatureAndMotorPosition:motorPosition,Set target temperature and motorPosition,0,number,RW,UINT8,,,1,0,255,vicki,range 0 to motorRange
+setTargetTemperatureAndMotorPosition:targetTemperature,Set target temperature and targetTemperature,0,number,RW,UINT8,,Cel,1,5,30,vicki,digits in range 5-30
+setTempHysteresis,Set temp hysteresis command,0,number,RW,UINT8,,,1,0,255,vicki,
+setTemperatureControlAlgorithm,Set temperature control algorithm command,0,binary,RW,UINT8,,,1,0,1,vicki,"0 - Proportional, 1 - Equal"
+setTemperatureRange:max,Set temperature range max,0,number,RW,UINT8,,Cel,1,5,30,vicki,the maximum value for the device range (between 5 and 30)
+setTemperatureRange:min,Set temperature range min,0,number,RW,UINT8,,Cel,1,5,30,vicki,the minimum value for the device range (between 5 and 30)
+setUplinkType,Set uplink type command,0,binary,RW,UINT8,,,1,0,1,vicki,"0 - unconfirmed, 1 - confirmed"
+setWatchDogParams:confirmedUplinks,Set watchdog params confirmedUplinks,0,number,RW,UINT8,,,1,0,255,vicki,
+setWatchDogParams:unconfirmedUplinks,Set watchdog params unconfirmedUplinks,0,number,RW,UINT8,,,1,0,255,vicki,
+targetTemperature,Target Temperature,0,number,RW,FLOAT,2,Cel,0.1,,,fct,Target temperature (°C)
+targetTemperature,Target temperature in Celsius,0,number,R,FLOAT,2,Cel,0.1,,,vicki,Target temperature in �C
+targetTemperatureStep,Target Temperature Step,0,number,RW,FLOAT,2,Cel,0.1,,,fct,Target temperature step (°C)
+tempSensorCompensation_compensation,Temp Sensor Compensation,0,number,RW,UINT8,,,1,0,255,fct,Temp sensor compensation
+tempSensorCompensation_temperature,Temp Sensor Compensation Temperature,0,number,RW,UINT8,,Cel,1,0,255,fct,Temp sensor compensation temperature (°C)
+temperatureRangeSettings:max,Max temperature,0,number,R,UINT8,,Cel,,0,255,vicki,
+temperatureRangeSettings:min,Min temperature,0,number,R,UINT8,,Cel,,0,255,vicki,
+temperatureRange_max,Temperature Range Max,0,number,RW,UINT8,,Cel,1,0,255,fct,Temperature range max (°C)
+temperatureRange_min,Temperature Range Min,0,number,RW,UINT8,,Cel,1,0,255,fct,Temperature range min (°C)
+uplinkType,Uplink Type,0,number,RW,UINT8,,,1,0,1,group1,"0=Unconfirmed, 1=Confirmed"
+uplinkType,Uplink Type,,number,RW,UINT8,,,,,,16aspm,"0=Unconfirmed, 1=Confirmed"
+uplinkType,Uplink type,0,number,R,UINT8,,,,0,255,vicki,
+userInterfaceLanguage,User Interface Language,0,number,R,UINT8,,,1,0,255,fct,User interface language
+valveOpenCloseTime,Valve Open/Close Time,0,number,RW,UINT8,,s,1,0,255,fct,Valve open/close time (s)
+valveStatus,Valve Status,0,binary,R,UINT8,,,1,0,1,fct,"0=Off, 1=On"
+watchDogParams:wdpC,Watchdog params wdpC,0,number,R,UINT16,,,1,,,vicki,
+watchDogParams:wdpUc,Watchdog params wdpUc,0,number,R,UINT16,,,1,,,vicki,
+watchDogParams_wdpC,Watchdog WDP-C,0,number,RW,UINT8,,,1,0,255,group1,Watchdog param WDP-C
+watchDogParams_wdpUc,Watchdog WDP-UC,0,number,RW,UINT8,,,1,0,255,group1,Watchdog param WDP-UC
+wdog_wdpC,WDP-C,,number,RW,UINT8,,,,,,16aspm,Watchdog param WDP-C
+wdog_wdpUc,WDP-UC,,number,RW,UINT8,,,,,,16aspm,Watchdog param WDP-UC
+wiringDiagram,Wiring Diagram,0,number,RW,UINT8,,,1,0,255,fct,Wiring diagram
