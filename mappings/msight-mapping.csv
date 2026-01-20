@@ -174,13 +174,13 @@ group167,{ mId: wts506 }
 ##objects
 id,name,value,type,access_mode,value_type,precision,units,cov_increment,min_value,max_value,models,description
 lorawan_class,LoRaWAN Class Type,,number,R,UINT8,,,,,,group1,LoRaWAN Class Type
-firmware_version,Firmware Version,,text,R,STRING,,,,,,group2,Firmware Version
-hardware_version,Hardware Version,,text,R,STRING,,,,,,group2,Hardware Version
-ipso_version,IPSO Version,,text,R,STRING,,,,,,group2,IPSO Version
-sn,SN,,text,R,STRING,,,,,,group2,SN
+firmware_version,Firmware Version,,string,R,STRING,,,,,,group2,Firmware Version
+hardware_version,Hardware Version,,string,R,STRING,,,,,,group2,Hardware Version
+ipso_version,IPSO Version,,string,R,STRING,,,,,,group2,IPSO Version
+sn,SN,,string,R,STRING,,,,,,group2,SN
 reboot,Reboot,,bool,W,UINT8,,,,,,group3,Reboot
 device_status,Device Status,1,bool,R,UINT8,,,,,,group4,Device Status
-tsl_version,TSL Version,,text,R,STRING,,,,,,group5,TSL Version
+tsl_version,TSL Version,,string,R,STRING,,,,,,group5,TSL Version
 reset_event,Reset Event,,bool,R,UINT8,,,,,,group6,Reset Event
 fetch_history.end_time,Fetch History (End Time),,number,W,UINT32,,s,,,,group7,Fetch History (End Time)
 fetch_history.start_time,Fetch History (Start Time),,number,W,UINT32,,s,,,,group7,Fetch History (Start Time)
@@ -198,7 +198,7 @@ report_interval,Report Interval,,number,RW,UINT16,,s,,60,64800,group18,Report In
 collection_interval,Collection Interval,,number,RW,UINT16,,s,,,,group19,Collection Interval
 temperature_alarm,Temperature Alarm,,number,R,UINT8,,,,,,group20,Temperature Alarm
 d2d_enable,D2D Enable,,bool,RW,UINT8,,,,,,group21,D2D Enable
-d2d_key,D2D Key,,text,RW,STRING,,,,,,group22,D2D Key
+d2d_key,D2D Key,,string,RW,STRING,,,,,,group22,D2D Key
 temperature_alarm_config.threshold_max,Temperature Alarm Config (Threshold Max),,number,RW,FLOAT,,Cel,,,,group23,Temperature Alarm Config (Threshold Max)
 temperature_alarm_config.threshold_min,Temperature Alarm Config (Threshold Min),,number,RW,FLOAT,,Cel,,,,group23,Temperature Alarm Config (Threshold Min)
 battery,Battery,92,number,R,UINT8,,%,,1,100,group24,Battery
@@ -414,7 +414,7 @@ collection_interval,Collection Interval,,number,RW,UINT16,,minute,,,,group85,Col
 temperature_alarm_settings.condition,Temperature Alarm Settings (Threshold Condition),,number,RW,UINT8,,,,,,group86,Temperature Alarm Settings (Threshold Condition)
 temperature_alarm_config.threshold_max,Temperature Alarm Config (Max Threshold),,number,RW,FLOAT,,Cel,,,,group87,Temperature Alarm Config (Max Threshold)
 temperature_alarm_config.threshold_min,Temperature Alarm Config (Min Threshold),,number,RW,FLOAT,,Cel,,,,group87,Temperature Alarm Config (Min Threshold)
-angle_alarm_condition,Angle Alarm Condition,,text,RW,STRING,,,,,,group88,Angle Alarm Condition
+angle_alarm_condition,Angle Alarm Condition,,string,RW,STRING,,,,,,group88,Angle Alarm Condition
 angle_x_alarm_config.condition,Angle X Alarm Config (Condition),,number,RW,UINT8,,,,,,group88,Angle X Alarm Config (Condition)
 angle_x_alarm_config.threshold_max,Angle X Alarm Config (Threshold Max),,number,RW,FLOAT,,,,,,group88,Angle X Alarm Config (Threshold Max)
 angle_x_alarm_config.threshold_min,Angle X Alarm Config (Threshold Min),,number,RW,FLOAT,,,,,,group88,Angle X Alarm Config (Threshold Min)
@@ -440,17 +440,17 @@ collection_interval,Collection Interval,,number,RW,UINT16,,s,,60,64800,group92,C
 measuring_equipment.rate,Measuring Equipment (Rate),,number,R,UINT8,,,,,,group93,Measuring Equipment (Rate)
 query_life_remain,Query Life Remain,,bool,W,UINT8,,,,,,group94,Query Life Remain
 device_status,Device Status,,number,R,UINT8,,,,,,group95,Device Status
-oem_id,OEM ID,,text,R,STRING,,,,,,group95,OEM ID
-product_frequency_band,Product Frequency Band,,text,R,STRING,,,,,,group95,Product Frequency Band
-product_name,Product Name,,text,R,STRING,,,,,,group95,Product Name
-product_pn,Product PN,,text,R,STRING,,,,,,group95,Product PN
-product_sn,Product SN,,text,R,STRING,,,,,,group95,Product SN
+oem_id,OEM ID,,string,R,STRING,,,,,,group95,OEM ID
+product_frequency_band,Product Frequency Band,,string,R,STRING,,,,,,group95,Product Frequency Band
+product_name,Product Name,,string,R,STRING,,,,,,group95,Product Name
+product_pn,Product PN,,string,R,STRING,,,,,,group95,Product PN
+product_sn,Product SN,,string,R,STRING,,,,,,group95,Product SN
 reconnect,Reconnect,,bool,W,UINT8,,,,,,group95,Reconnect
 synchronize_time,Synchronize Time,,bool,W,UINT8,,,,,,group95,Synchronize Time
 temperature_alarm.temperature,Temperature Alarm (Temperature),,number,R,FLOAT,,Cel,,,,group95,Temperature Alarm (Temperature)
 temperature_alarm.type,Temperature Alarm (Type),,number,R,UINT8,,,,,,group95,Temperature Alarm (Type)
-version.firmware_version,Firmware Version,,text,R,STRING,,,,,,group95,Firmware Version
-version.hardware_version,Hardware Version,,text,R,STRING,,,,,,group95,Hardware Version
+version.firmware_version,Firmware Version,,string,R,STRING,,,,,,group95,Firmware Version
+version.hardware_version,Hardware Version,,string,R,STRING,,,,,,group95,Hardware Version
 temperature,Temperature,26.3,number,R,FLOAT,,Cel,1,,,group96,Temperature
 temperature_mutation,Temperature Change,,number,R,FLOAT,,Cel,,,,group97,Temperature Change
 child_lock,Child Lock,,bool,RW,UINT8,,,,,,group98,Child Lock
@@ -458,7 +458,7 @@ display_enable,Display Enable,,bool,RW,UINT8,,,,,,group98,Display Enable
 magnet_throttle,Magnet Throttle,,number,RW,UINT16,,s,,,,group98,Magnet Throttle
 temperature_unit_display,Temperature Unit Display,,number,RW,UINT8,,,,,,group98,Temperature Unit Display
 time_display,Time Display,,number,RW,UINT8,,,,,,group98,Time Display
-custom_message,Custom Message,,text,R,STRING,,,,,,group99,Custom Message
+custom_message,Custom Message,,string,R,STRING,,,,,,group99,Custom Message
 gpio_counter_1,GPIO Counter (Channel 1),,number,R,UINT32,,,,,,group100,GPIO Counter (Channel 1)
 gpio_counter_2,GPIO Counter (Channel 2),,number,R,UINT32,,,,,,group100,GPIO Counter (Channel 2)
 gpio_input_1,GPIO Input (Channel 1),0,bool,R,UINT8,,,,,,group100,GPIO Input (Channel 1)
@@ -573,7 +573,7 @@ delay_task.delay_time,Delay Task (Delay Time),,number,W,UINT16,,,,,,group113,Del
 delay_task.switch_1,Delay Task (Switch 1),,bool,W,UINT8,,,,,,group113,Delay Task (Switch 1)
 delay_task.switch_2,Delay Task (Switch 2),,bool,W,UINT8,,,,,,group113,Delay Task (Switch 2)
 delay_task.switch_3,Delay Task (Switch 3),,bool,W,UINT8,,,,,,group113,Delay Task (Switch 3)
-d2d_command,D2D Command,0000,text,W,STRING,,,,,,group114,D2D Command
+d2d_command,D2D Command,0000,string,W,STRING,,,,,,group114,D2D Command
 delay_task.delay_time,Delay Task (Delay Time),10,number,W,UINT16,,s,,,,group114,Delay Task (Delay Time)
 delay_task.frame_count,Delay Task (Frame Count),1,number,W,UINT8,,,,,,group114,Delay Task (Frame Count)
 delay_task.socket_status,Delay Task (Socket Status),1,bool,W,UINT8,,,,,,group114,Delay Task (Socket Status)
@@ -646,7 +646,7 @@ pulse,Pulse,,number,R,UINT32,,,,,,group120,Pulse
 pulse_conv,Pulse Conversion Coefficient,1,number,R,FLOAT,,,,,,group120,Pulse Conversion Coefficient
 pulse_conversion_settings.enable,Pulse Conversion Settings (Enable),,bool,RW,UINT8,,,,,,group120,Pulse Conversion Settings (Enable)
 pulse_conversion_settings.pulse,Pulse Conversion Settings (Pulse),,number,RW,FLOAT,,,,,,group120,Pulse Conversion Settings (Pulse)
-pulse_conversion_settings.unit,Pulse Conversion Settings (Unit),,text,RW,STRING,,,,,,group120,Pulse Conversion Settings (Unit)
+pulse_conversion_settings.unit,Pulse Conversion Settings (Unit),,string,RW,STRING,,,,,,group120,Pulse Conversion Settings (Unit)
 pulse_conversion_settings.water,Pulse Conversion Settings (Water),,number,RW,FLOAT,,,,,,group120,Pulse Conversion Settings (Water)
 pulse_filter_enable,Pulse Filter Enable,,bool,RW,UINT8,,,,,,group120,Pulse Filter Enable
 start_counter,Start Counter,,bool,W,UINT8,,,,,,group120,Start Counter
@@ -832,7 +832,7 @@ nh3_calibration_result.type,NH3 Calibration Result (Type),,number,R,UINT8,,,,,,g
 nh3_calibration_settings.calibration_value,NH3 Calibration Settings (Calibration Value),,number,RW,FLOAT,,ppm,,,,group134,NH3 Calibration Settings (Calibration Value)
 nh3_calibration_settings.mode,NH3 Calibration Settings (Mode),,number,RW,UINT8,,,,,,group134,NH3 Calibration Settings (Mode)
 nh3_sensor_status,NH3 Sensor Status,,number,R,UINT8,,,,,,group134,NH3 Sensor Status
-sensor_id,Sensor ID,,text,R,STRING,,,,,,group134,Sensor ID
+sensor_id,Sensor ID,,string,R,STRING,,,,,,group134,Sensor ID
 temperature,Temperature,28.4,number,R,FLOAT,,Cel,1,,,group134,Temperature
 threshold_report_interval,Threshold Report Interval,,number,RW,UINT16,,s,,,,group134,Threshold Report Interval
 alarm_deactivation_enable,Threshold Alarm Release,1,bool,RW,UINT8,,,,,,group135,Threshold Alarm Release
@@ -922,7 +922,7 @@ alarm_report_counts,Alarm Count,,number,RW,UINT16,,,,,,group137,Alarm Count
 button_lock_config.power_button,Button Lock Config (Power Button),,bool,RW,UINT8,,,,,,group137,Button Lock Config (Power Button)
 button_lock_config.report_button,Button Lock Config (Report Button),,bool,RW,UINT8,,,,,,group137,Button Lock Config (Report Button)
 collection_interval,Collection Interval,60,number,RW,UINT16,,s,,60,64800,group137,Collection Interval
-d2d_key,D2D Key,,text,W,STRING,,,,,,group137,D2D Key
+d2d_key,D2D Key,,string,W,STRING,,,,,,group137,D2D Key
 d2d_uplink_config.d2d_uplink_enable,D2D Uplink Config (D2D Uplink Enable),,bool,RW,UINT8,,,,,,group137,D2D Uplink Config (D2D Uplink Enable)
 d2d_uplink_config.lora_uplink_enable,D2D Uplink Config (LoRa Uplink Enable),,bool,RW,UINT8,,,,,,group137,D2D Uplink Config (LoRa Uplink Enable)
 d2d_uplink_config.sensor_data_config.humidity,D2D Uplink Config (Sensor Data Config (Humidity)),,bool,RW,UINT8,,,,,,group137,D2D Uplink Config (Sensor Data Config (Humidity))
@@ -940,7 +940,7 @@ led_indicator_enable,Led Indicator Enable,,bool,RW,UINT8,,,,,,group137,Led Indic
 resend_interval,Resend Interval,10,number,RW,UINT16,,s,,,,group137,Resend Interval
 retransmit_config.enable,Retransmit Config (enable),1,bool,W,UINT8,,,,,,group137,Retransmit Config (enable)
 retransmit_config.interval,Retransmit Config (Interval),10,number,RW,UINT16,,s,,,,group137,Retransmit Config (Interval)
-sensor_1_sn,Sensor 1 (SN),,text,R,STRING,,,,,,group137,Sensor 1 (SN)
+sensor_1_sn,Sensor 1 (SN),,string,R,STRING,,,,,,group137,Sensor 1 (SN)
 sensor_1_type,Sensor 1 (Type),,number,R,UINT8,,,,,,group137,Sensor 1 (Type)
 temperature_alarm_config.condition,Temperature Threshold Config (Condition),,number,RW,UINT8,,,,,,group137,Temperature Threshold Config (Condition)
 temperature_alarm_config.enable,Temperature Threshold Config (Enable),,bool,RW,UINT8,,,,,,group137,Temperature Threshold Config (Enable)
@@ -1231,7 +1231,7 @@ pt100_2_max,PT100 Max (Channel 2),,number,R,FLOAT,,,,,,group141,PT100 Max (Chann
 pt100_2_min,PT100 Min (Channel 2),,number,R,FLOAT,,,,,,group141,PT100 Min (Channel 2)
 sniffer_config.channel_id,Sniffer Config Channel ID,,number,RW,UINT8,,,,,,group141,Sniffer Config Channel ID
 sniffer_config.sniffer_interval,Sniffer Config Interval,,number,RW,UINT32,,ms,,,,group141,Sniffer Config Interval
-text,Text,,text,R,STRING,,,,,,group141,Text
+text,Text,,string,R,STRING,,,,,,group141,Text
 timestamp,Timestamp,,number,RW,UINT32,,,,,,group141,Timestamp
 analog_input_1,Analog Input (Channel 1),,number,R,FLOAT,,,,,,group142,Analog Input (Channel 1)
 analog_input_1_alarm,Analog Input Alarm (Channel 1),,number,R,UINT8,,,,,,group142,Analog Input Alarm (Channel 1)
@@ -1247,7 +1247,7 @@ analog_input_2_min,Analog Input Min (Channel 2),,number,R,FLOAT,,,,,,group142,An
 analog_input_2_type,Analog Input Type (Channel 2),,number,R,UINT8,,,,,,group142,Analog Input Type (Channel 2)
 collection_interval,Collection Interval,60,number,RW,UINT16,,s,,10,65535,group142,Collection Interval
 report_interval,Report Interval,10,number,RW,UINT16,,s,,10,65535,group142,Report Interval
-sid12,SID-12,,text,R,STRING,,,,,,group142,SID-12
+sid12,SID-12,,string,R,STRING,,,,,,group142,SID-12
 timestamp,History (Timestamp),,number,W,UINT32,,s,,,,group142,History (Timestamp)
 class_a_response_time,Class A Response Time,,number,RW,UINT32,,s,,0,64800,group143,Class A Response Time
 clear_valve_1_pulse,Clear Valve 1 Pulse,,bool,W,UINT8,,,,,,group143,Clear Valve 1 Pulse
@@ -1599,7 +1599,7 @@ temperature_control.enable,Temperature Control Enable,1,bool,RW,UINT8,,,,,,group
 temperature_control.mode,Temperature Control Mode,0,number,RW,UINT8,,,,,,group163,Temperature Control Mode
 temperature_tolerance,Temperature Tolerance,0,number,RW,FLOAT,,Cel,,,,group163,Temperature Tolerance
 time_sync_enable,Time Sync Enable,1,bool,RW,UINT8,,,,,,group163,Time Sync Enable
-tsl_version,Tsl Version,,text,R,STRING,,,,,,group163,Tsl Version
+tsl_version,Tsl Version,,string,R,STRING,,,,,,group163,Tsl Version
 valve_calibration,Valve Calibration,0,bool,W,UINT8,,,,,,group163,Valve Calibration
 valve_control_algorithm,Valve Control Algorithm,0,number,RW,UINT8,,,,,,group163,Valve Control Algorithm
 valve_opening,Valve Opening,100,number,RW,UINT8,,%,,0,100,group163,Valve Opening
