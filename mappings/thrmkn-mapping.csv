@@ -66,6 +66,7 @@ tf25_bat,{ mId: tf25-bat },,,,,,,,,,,
 tf25_dual_bat,{ mId: tf25-dual-bat },,,,,,,,,,,
 of14_bat,{ mId: of14-bat },,,,,,,,,,,
 of14_dual_bat,{ mId: of14-dual-bat },,,,,,,,,,,
+sab07,{ mId: sab07 },,,,,,,,,,,
 others,,,,,,,,,,,,
 ##objects,,,,,,,,,,,,
 id,name,value,type,access_mode,value_type,precision,units,min_value,max_value,cov_increment,models,description
@@ -79,7 +80,7 @@ CO2,CO2,0,number,R,UINT16,,ppm,,,0.1,"la_co2_temp,la_co2_temp_rh_bat,la_co2_temp
 VOC,VOC level,0,number,R,UINT16,,%,,,0.1,"la_co2_voc,la_co2_voc_temp,la_co2_voc_temp_rh,la_voc_temp,la_voc_temp_rh,lk_co2_voc,lk_co2_voc_temp,lk_co2_voc_temp_rh,lk_voc_temp,lk_voc_temp_rh",VOC concentration in %
 ATM_P,Absolute pressure,0,number,R,UINT16,,hPa,,,0.1,li65_temp_rh_hpa,Absolute pressure in mBar/hPa
 DP,Differential pressure,0,number,R,INT16,,Pa,,,0.1,"dpa250,dpa2500,dpa2500_dual,dpa7000",Differential pressure in Pa
-FLOW,Flow rate,0,number,R,UINT16,,m3/h,,,0.1,others,Flow rate in m³/h
+FLOW,Flow rate,0,number,R,UINT16,,m3/h,,,0.1,others,Flow rate in mï¿½/h
 VISIBLE_LIGHT,Brightness,0,number,R,UINT16,,Lx,,,0.1,"li65,li65_temp_rh_bat,li65_temp_rh_hpa,mcs_occ_lum_state_temp_rh,mcs_lum_temp_rh,mcs_occ_lum_temp_rh,n3_occ_lum_co2_temp_rh,n3_occ_lum_temp_rh",Brightness in lux
 OCCU0_STATE,Occupancy 0 state,0,boolean,R,BOOL,,,,,0.1,"mcs_occ_lum_state_temp_rh,mcs_occ_lum_temp_rh,n3_occ_lum_co2_temp_rh,n3_occ_lum_temp_rh,n3_occ_temp_rh","Occupancy 0 state: 1='occupied', 0='unoccupied'"
 OCCU0_CNT,Occupancy 0 counter,0,number,R,UINT8,,,,,0.1,"mcs_occ_lum_state_temp_rh,mcs_occ_lum_temp_rh,n3_occ_lum_co2_temp_rh,n3_occ_lum_temp_rh,n3_occ_temp_rh",Amount of detected movements since last transmission (Occupancy 0)
@@ -90,11 +91,11 @@ REED0_CNT,Reed 0 state counter,0,number,R,UINT8,,,,,0.1,"mcs_occ_lum_state_temp_
 REED1_STATE,Reed 1 contact state,0,boolean,R,BOOL,,,,,0.1,"mcs_occ_lum_state_temp_rh,mcs_state_temp_rh,mcs_state","Reed 1 contact state: 0='off', 1='on'"
 REED1_CNT,Reed 1 state counter,0,number,R,UINT8,,,,,0.1,"mcs_occ_lum_state_temp_rh,mcs_state_temp_rh,mcs_state",Amount of detected switching operations since last transmission (Reed 1)
 CONDENSATION_STATE,Condensation,0,boolean,R,BOOL,,,,,0.1,"ls02_ext,ls02_flex","Condensation relay state: 0='dry', 1='wet'"
-CONDENSATION_RAW,Condensation raw value,0,number,R,INT16,,,,,0.1,others,Condensation raw sensor value (0–4095)
+CONDENSATION_RAW,Condensation raw value,0,number,R,INT16,,,,,0.1,others,Condensation raw sensor value (0ï¿½4095)
 VBAT,Battery voltage (deprecated),0,number,R,UINT16,,mV,,,0.1,"fta54_bat,ftk_bat,la_co2_temp_rh_bat,li65_temp_rh_bat,lk_co2_temp_rh_bat,mcs_occ_lum_state_temp_rh,mcs_lum_temp_rh,mcs_occ_lum_temp_rh,mcs_state_temp_rh,mcs_state,mcs_temp_rh,n3_epd_co2_temp_rh,n3_epd_temp_rh,n3_inc_epd_co2_temp_rh,n3_inc_t_epd_co2_temp_rh,n3_inc_t_epd_temp_rh,n3_occ_lum_co2_temp_rh,n3_occ_lum_temp_rh,n3_occ_temp_rh,novos3_co2_temp_rh,novos3_p_temp_rh,novos3_pt_co2_temp_rh,novos3_t_co2_temp_rh,novos3_temp_rh,af25_bat,af25_dual_bat,tf25_bat,tf25_dual_bat,of14_bat,of14_dual_bat",Battery voltage in mV
 batteryVoltage,Battery voltage,0,number,R,UINT16,,mV,,,0.1,"fta54_bat,ftk_bat,la_co2_temp_rh_bat,li65_temp_rh_bat,lk_co2_temp_rh_bat,mcs_occ_lum_state_temp_rh,mcs_lum_temp_rh,mcs_occ_lum_temp_rh,mcs_state_temp_rh,mcs_state,mcs_temp_rh,n3_epd_co2_temp_rh,n3_epd_temp_rh,n3_inc_epd_co2_temp_rh,n3_inc_t_epd_co2_temp_rh,n3_inc_t_epd_temp_rh,n3_occ_lum_co2_temp_rh,n3_occ_lum_temp_rh,n3_occ_temp_rh,novos3_co2_temp_rh,novos3_p_temp_rh,novos3_pt_co2_temp_rh,novos3_t_co2_temp_rh,novos3_temp_rh,af25_bat,af25_dual_bat,tf25_bat,tf25_dual_bat,of14_bat,of14_dual_bat",Battery voltage in mV
 VBAT_HI_RES,Battery level high resolution,0,number,R,UINT16,,,,,0.1,"fta54_bat,ftk_bat,la_co2_temp_rh_bat,li65_temp_rh_bat,lk_co2_temp_rh_bat,mcs_occ_lum_state_temp_rh,mcs_lum_temp_rh,mcs_occ_lum_temp_rh,mcs_state_temp_rh,mcs_state,mcs_temp_rh,n3_epd_co2_temp_rh,n3_epd_temp_rh,n3_inc_epd_co2_temp_rh,n3_inc_t_epd_co2_temp_rh,n3_inc_t_epd_temp_rh,n3_occ_lum_co2_temp_rh,n3_occ_lum_temp_rh,n3_occ_temp_rh,novos3_co2_temp_rh,novos3_p_temp_rh,novos3_pt_co2_temp_rh,novos3_t_co2_temp_rh,novos3_temp_rh,af25_bat,af25_dual_bat,tf25_bat,tf25_dual_bat,of14_bat,of14_dual_bat",Battery level high resolution in mV
-SETPOINT,Setpoint,0,number,RW,UINT8,,%,,,0.1,"novos3_p_temp_rh,novos3_pt_co2_temp_rh",Setpoint value (0–100%) for potentiometer or rotary knob
+SETPOINT,Setpoint,0,number,RW,UINT8,,%,,,0.1,"novos3_p_temp_rh,novos3_pt_co2_temp_rh",Setpoint value (0ï¿½100%) for potentiometer or rotary knob
 SETPOINT_2,Setpoint 2,0,number,RW,FLOAT,,%,,,0.1,"n3_inc_epd_co2_temp_rh,n3_inc_t_epd_co2_temp_rh",Setpoint 2 value (for extended control)
 CMD,Control commands,0,number,RW,UINT16,,,,,0.1,others,"Control command: 1='Reset Configuration (Default values)', 2='Save configuration', 3='Reboot'"
 LEARN,Learn mode,12,number,RW,UINT8,,,,,0.1,others,"Learn mode activation (0=disabled, 1=enabled)"
@@ -131,4 +132,42 @@ EPD_VALUE_EXT_OVERLOAD_0,EPD overload value 0,0,number,R,INT16,,,,,0.1,"n3_inc_t
 EPD_VALUE_EXT_OVERLOAD_1,EPD overload value 1,0,number,R,INT16,,,,,0.1,"n3_inc_t_epd_co2_temp_rh,n3_inc_t_epd_temp_rh,n3_inc_t_epd_co2_temp_rh,n3_epd_co2_temp_rh,n3_epd_temp_rh",EPD extended overload value 1
 EPD_VALUE_EXT_OVERLOAD_2,EPD overload value 2,0,number,R,INT16,,,,,0.1,"n3_inc_t_epd_co2_temp_rh,n3_inc_t_epd_temp_rh,n3_inc_t_epd_co2_temp_rh,n3_epd_co2_temp_rh,n3_epd_temp_rh",EPD extended overload value 2
 EPD_VALUE_EXT_OVERLOAD_3,EPD overload value 3,0,number,R,INT16,,,,,0.1,others,EPD extended overload value 3
-SCREEN_TEMP_DISPLAY,Temperature display,0,number,RW,FLOAT,,,,,0.1,"n3_inc_t_epd_co2_temp_rh,n3_inc_t_epd_temp_rh,n3_inc_t_epd_co2_temp_rh",Displaying temperature on the screen in °C
+SCREEN_TEMP_DISPLAY,Temperature display,0,number,RW,FLOAT,,,,,0.1,"n3_inc_t_epd_co2_temp_rh,n3_inc_t_epd_temp_rh,n3_inc_t_epd_co2_temp_rh",Displaying temperature on the screen in ï¿½C
+targetTemperature,Target temperature,0,number,R,FLOAT,2,Cel,0.1,,,sab07,Target temperature in ï¿½C
+sensorTemperature,Temperature,0,number,R,FLOAT,2,Cel,0.1,,,sab07,Temperature in ï¿½C
+relativeHumidity,Relative humidity,0,number,R,FLOAT,2,%RH,0.1,,,sab07,Relative humidity in RH
+motorPosition,Motor position,0,number,R,FLOAT,2,deg,0.1,0,15,sab07,Motor position in ï¿½
+motorRange,Motor range,0,number,R,FLOAT,2,deg,0.1,0,15,sab07,Motor range in ï¿½
+batteryVoltage,Battery voltage,0,number,R,FLOAT,2,V,0.1,,,sab07,Battery voltage in volts
+statusFlags:openWindow,Open window flag,0,binary,R,UINT8,,state,,,,sab07,Open window flag (0: closed 1: open)
+statusFlags:highMotorConsumption,High motor consumption flag,0,binary,R,UINT8,,state,,,,sab07,"High motor consumption flag (0: no alarm, 1: alarm)"
+statusFlags:lowMotorConsumption,Low motor consumption flag,0,binary,R,UINT8,,state,,,,sab07,Low motor consumption flag
+statusFlags:brokenSensor,Broken sensor flag,0,binary,R,UINT8,,state,,,,sab07,"Broken sensor flag (0: no alarm, 1: alarm)"
+extraFlags:manualTempDisabled,Manual temperature disabled flag,0,binary,R,UINT8,,state,,,,sab07,Manual temperature disabled flag
+extraFlags:motorCalibrationFailed,Motor calibration failed flag,0,binary,R,UINT8,,state,,,,sab07,"Motor calibration failed flag (0: no alarm, 1: alarm)"
+extraFlags:deviceAttachedToBackplate,Device attached to backplate flag,0,binary,R,UINT8,,state,,,,sab07,Device attached to backplate flag
+extraFlags:deviceOnline,Device online flag,0,binary,R,UINT8,,state,,,,sab07,"Device online flag (0: no alarm, 1: alarm)"
+proportionalAlgorithmParameters,Proportional algorithm parameters,0,number,R,FLOAT,2,,0.1,0,255,sab07,Proportional algorithm parameters
+integralGain,Integral gain,0,number,R,FLOAT,2,,0.1,,,sab07,Integral gain
+integralValue,Integral value,0,number,R,FLOAT,2,,0.1,,,sab07,Integral value
+piRunPeriod,PI run period,0,number,R,FLOAT,2,,0.1,0,255,sab07,Keep alive period in minutes
+keepAlivePeriod,Keep alive period,0,number,R,FLOAT,2,,0.1,0,255,sab07,PI run period
+temperatureHysteresis,Hysteresis temperature,0,number,R,FLOAT,2,,0.1,,,sab07,Hysteresis temperature
+hardwareVersion,Hardware version,"""""",string,R,STRING,,,,,,sab07,Hardware version
+softwareVersion,Software version,"""""",string,R,STRING,,,,,,sab07,Software version
+watchdogParameters:confirmedValue,Watchdog confirmed value,0,number,R,UINT8,,,1,0,255,sab07,Watchdog confirmed value
+watchdogParameters:unconfirmedValue,Watchdog unconfirmed value,0,number,R,UINT8,,,1,0,255,sab07,Watchdog unconfirmed value
+targetWithRange,Target temperature with range,0,number,RW,FLOAT,1,Cel,0.1,,,sab07,
+externalTemperature,External temperature,0,number,RW,FLOAT,1,,0.1,,,sab07,
+operationalMode,Operational mode,0,number,RW,UINT8,,,1,0,2,sab07,"Operational mode (0: manual, 1: auto, 2: forced)"
+recalibrateMotor,Motor recalibration,false,boolean,RW,BOOL,,,1,,,sab07,Motor recalibration
+motorPosition,Motor position,0,number,RW,FLOAT,1,,1,0,65535,sab07,"Motor position, take care to also update targetTemperature, they must be part of the same downlink"
+targetTemperature,Target temperature,0,number,RW,FLOAT,1,Cel,0.1,,,sab07,"Target temperature, take care to also update motorPosition, they must be part of the same downlink"
+openWindowDetection:enable,Open window detection enable,0,binary,RW,UINT8,,,,,,sab07,
+openWindowDetection:duration,Open window detection duration,0,number,RW,FLOAT,1,minute,0.1,0,255,sab07,Open window detection in minutes
+openWindowDetection:tempDelta,Open window detection delta temperature,0,number,RW,FLOAT,1,,0.1,0,255,sab07,Open window detection delta temperature in tenths of degrees Celsius
+keepAlivePeriod,Keep alive period,0,number,RW,FLOAT,1,minute,0.1,0,255,sab07,Keep alive period in minutes
+childLock,Child lock,0,binary,RW,UINT8,,,,,,sab07,Child lock activation
+resetDevice,Device reset,false,boolean,RW,BOOL,,,,,,sab07,Reset the device
+piAlgorithm:proportionalGain,PI algorithm proportional gain,0,number,RW,FLOAT,1,,0.1,,,sab07,PI algorithm proportional gain
+piAlgorithm:integralGain,PI algorithm integral gain,0,number,RW,FLOAT,1,,0.1,,,sab07,PI algorithm integral gain
