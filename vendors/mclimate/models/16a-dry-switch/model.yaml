@@ -9,8 +9,7 @@ logo: 16adryswitch.jpeg
 # lorawanDeviceProfileID: as defined by LoRa Alliance in https://lora-alliance.org/wp-content/uploads/2020/10/LoRa_Alliance_Vendor_ID_for_QR_Code_02142022.pdf.
 # The lorawanDeviceProfileID consists of 8 upper-case hexadecimal characters, 4 characters for VendorID + 4 characters for VendorProfileID. Please consider using single (') or double (") quotation.
 deviceProfileIds:
-  - id: svendor_RFGroup1_1.0.2revB_classA
-  - id: svendor_RFGroup2_1.0.2revB_classA
+  - id: mclimate_RFGroup1_1.0.3a_classC
 
 # You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings.
 # Maximum device TX Conducted output power in dBm.
@@ -30,12 +29,12 @@ LoRaWANCertified: true
 # Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
 # Format: `<8 characters max>:<16 characters max>:<digits only>`
 # Be careful: Once you chose a model, it cannot be changed later
-modelId: mclimate:16-a-dry-switch:1
+modelId: mclimate:16a-dry-switch:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 # Format: `<8 characters max>:<16 characters max>:<digits only>`
 # Be careful: Once you chose a protocolId, it cannot be changed later
 protocolId:
-  - mclimate:16-a-dry-switch:1
+  - mclimate:16a-dry-switch:1
 # DataSheet URL (optional)
 specificationURL: https://3940008670-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F-McDr-jr9h3qA888r1Yp%2Fuploads%2F4PSdg1EADYeBfci7DCmK%2FMClimate-16ADS-Datasheet.pdf?alt=media&token=8c95eed3-7cac-4859-855c-ba65ab3a6e5a
 # User Guide URL (optional)
@@ -43,27 +42,28 @@ userGuideURL: https://3940008670-files.gitbook.io/~/files/v0/b/gitbook-x-prod.ap
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
   - temperature:Cel
-  - humidity:%RH
+  - status:state
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
-  mclimate:16-a-dry-switch:1:
-    - uplink containing only pulse counter
-    - uplink containing three measurements
-    - uplink containing only humidity
-    - uplink containing only temperature
-    - fail decode uplink containing only humidity with unknown id
-    - fail decode uplink containing only humidity with oob
-    - encode downlink containing only pulseCounterThreshold
-    - encode downlink containing only alarm
-    - encode downlink containing alarm and pulseCounterThreshold
-    - fail encode downlink when pulseCounterThreshold exceeds 255
-    - decode downlink containing only pulseCounterThreshold
-    - decode downlink containing only alarm
-    - decode downlink containing alarm and pulseCounterThreshold
-    - fail decode downlink when payload contains pulseCounterThreshold with oob
-    - fail decode downlink when payload contains alarm with oob
-    - fail decode downlink when unknown id
+  mclimate:16a-dry-switch:1:
+    - internal temperature positive, relay ON
+    - internal temperature positive, relay OFF
+    - internal temperature negative (sign bit set), relay ON
+    - device versions (0x04) + keepalive trailer
+    - keepAliveTime (0x12) + keepalive trailer
+    - joinRetryPeriod (0x19) where 0x3C -> 5 minutes + keepalive trailer
+    - watchdog params (0x1d) + keepalive trailer
+    - overheating thresholds (0x1f) + keepalive trailer
+    - FUOTA address (0xa0) + region (0xa4) + keepalive trailer
+    - too short payload -> decoder throws 'Unhandled data'
+    - setKeepAlive (0x02)
+    - getDeviceVersions (0x04)
+    - getKeepAliveTime (0x12)
+    - setJoinRetryPeriod (minutes -> 5sec steps) for 5 minutes => 0x3C
+    - setRelayState (0xC1)
+    - setRelayTimerMiliseconds (0x55) state=1 time=500ms => 0x01F4
+    - passthrough bytes (as per MClimate decodeDownlink)
 
 LoRaWANRelay:
   canOperateAsARelay: false
