@@ -151,16 +151,16 @@ overheatingRecoveryTime,Overheating Recovery Time,0,number,RW,UINT16,,seconds,1,
 overheatingThreshold_recovery,Overheating Threshold (Recovery),0,number,RW,UINT8,,Cel,1,0,255,16a-dry-switch,Overheating threshold recovery (°C)
 overheatingThreshold_trigger,Overheating Threshold (Trigger),0,number,RW,UINT8,,Cel,1,0,255,16a-dry-switch,Overheating threshold trigger (°C)
 overpowerCnt,Overpower Cnt,,number,R,UINT8,,,,,,16aspm,bacnet_type=analog_input_object; bacnet_unit_type_id=95; bacnet_unit_type=UNITS_NO_UNITS
-overpowerPwr,Overpower Pwr,,number,R,UINT16,,W,,,,16aspm,bacnet_type=analog_input_object; bacnet_unit_type_id=47; bacnet_unit_type=UNITS_WATTS
+overpowerPwr,Overpower Pwr,,number,R,UINT16,,RW,,,,16aspm,bacnet_type=analog_input_object; bacnet_unit_type_id=47; bacnet_unit_type=UNITS_WATTS
 overpwrRecTmp,OverpwrRecTmp,,number,RW,UINT8,,Cel,,,,16aspm,bacnet_type=analog_value_object; bacnet_unit_type_id=62; bacnet_unit_type=UNITS_DEGREES_CELSIUS
-overpwrThres,Overpower Thr,,number,RW,UINT16,,W,,,,16aspm,bacnet_type=analog_value_object; bacnet_unit_type_id=47; bacnet_unit_type=UNITS_WATTS
+overpwrThres,Overpower Thr,,number,RW,UINT16,,RW,,,,16aspm,bacnet_type=analog_value_object; bacnet_unit_type_id=47; bacnet_unit_type=UNITS_WATTS
 overvoltCnt,Overvolt Cnt,,number,R,UINT8,,,,,,16aspm,bacnet_type=analog_input_object; bacnet_unit_type_id=95; bacnet_unit_type=UNITS_NO_UNITS
 overvoltRec,Overvolt Rec,,number,RW,UINT8,,V,,,,16aspm,bacnet_type=analog_value_object; bacnet_unit_type_id=5; bacnet_unit_type=UNITS_VOLTS
 overvoltRecTm,OvervoltRecTm,,number,RW,UINT16,,s,,,,16aspm,bacnet_type=analog_value_object; bacnet_unit_type_id=73; bacnet_unit_type=UNITS_SECONDS
 overvoltTrig,Overvolt Trig,,number,RW,UINT16,,V,,,,16aspm,bacnet_type=analog_value_object; bacnet_unit_type_id=5; bacnet_unit_type=UNITS_VOLTS
 overvoltVolt,Overvolt Volt,,number,R,UINT16,,V,,,,16aspm,bacnet_type=analog_input_object; bacnet_unit_type_id=5; bacnet_unit_type=UNITS_VOLTS
 powerModuleStatus,Power Module Status,0,binary,R,UINT8,,,1,0,1,fct,"0=Off, 1=On"
-power_W,Power,,number,R,UINT16,,W,,,,16aspm,bacnet_type=analog_input_object; bacnet_unit_type_id=47; bacnet_unit_type=UNITS_WATTS
+power_W,Power,,number,R,UINT16,,RW,,,,16aspm,bacnet_type=analog_input_object; bacnet_unit_type_id=47; bacnet_unit_type=UNITS_WATTS
 primaryOperationalMode,Primary operationnal mode,0,number,R,UINT8,,,,0,255,vicki,
 reason,Reason of uplink,0,number,R,UINT8,,,1,,,vicki,Reason
 recalibrateMotor,Recalibrate moto command,0,binary,RW,UINT8,,,1,0,1,vicki,
@@ -201,7 +201,7 @@ setPrimaryOperationalMode,Set primary operational mode command,0,number,RW,UINT8
 setProportionalAlgorithmParameters:coefficient,Set proportional algorithm parameters coefficent,0,number,RW,UINT8,,,1,0,255,vicki,
 setProportionalAlgorithmParameters:period,Set proportional algorithm parameters period,0,number,RW,UINT8,,,1,0,255,vicki,
 setProportionalGain,Set proportional gain command,0,number,RW,FLOAT,2,,0.1,,,vicki,
-setRelayState,Set Relay,,binary,W,UINT8,,,,,,16aspm,"0=Off, 1=On"
+setRelayState,Set Relay,,binary,RW,UINT8,,,,,,16aspm,"0=Off, 1=On"
 setRelayState,Set Relay State,0,binary,RW,UINT8,,,1,0,1,16a-dry-switch,"0=Off, 1=On"
 setTargetTemperature,Set target temperature command,0,number,RW,UINT8,,Cel,1,5,30,vicki,digits in range 5-30
 setTargetTemperatureAndMotorPosition:motorPosition,Set target temperature and motorPosition,0,number,RW,UINT8,,,1,0,255,vicki,range 0 to motorRange
