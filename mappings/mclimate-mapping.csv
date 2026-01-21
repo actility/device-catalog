@@ -121,7 +121,7 @@ ledIndMode,LED Ind Mode,,number,RW,UINT8,,,,,,16aspm,"0=Off, 1=On"
 ledIndicationMode,LED Indication Mode,0,number,RW,UINT8,,,1,0,1,16a-dry-switch,"0=Off, 1=On"
 lowMotorConsumption,Low motor consumption flag,false,boolean,R,BOOL,,,,,,vicki,Low motor consumption is detected
 manualChangeRelayState,Manual Change Relay State,"""""",string,R,STRING,,,,,,16a-dry-switch,Manual change relay state (max length 8)
-manualRelay_txt,Manual Relay,,text,R,STRING,,,,,,16aspm,Manual change relay state (max length 8)
+manualRelay_txt,Manual Relay,,string,R,STRING,,,,,,16aspm,Manual change relay state (max length 8)
 manualTargetTemperatureUpdate,Manual Target Temperature Update,0,binary,R,UINT8,,,1,0,1,fct,"0=Off, 1=On"
 manualTargetTemperatureUpdate,Manual target temperature update,0,number,R,UINT8,,Cel,,0,255,vicki,
 motorPosition,Motor position in steps,0,number,R,FLOAT,2,,0.1,0,15,vicki,Motor position in steps
@@ -170,7 +170,7 @@ relativeHumidity,Relative humidity in percentage,0,number,R,FLOAT,2,%RH,0.1,,,vi
 relayRecState,Relay Rec State,,number,RW,UINT8,,,,,,16aspm,"0=Restore Last, 1=Off, 2=On"
 relayRecoveryState,Relay Recovery State,0,number,RW,UINT8,,,1,0,2,16a-dry-switch,"0=Restore Last, 1=Off, 2=On"
 relayState,Relay State,"""""",string,R,STRING,,,,,,16a-dry-switch,Relay state (max length 8)
-relayState_txt,Relay State,,text,R,STRING,,,,,,16aspm,Relay state (max length 8)
+relayState_txt,Relay State,,string,R,STRING,,,,,,16aspm,Relay state (max length 8)
 returnOfPowerOperation,Return of Power Operation,0,number,RW,UINT8,,,1,0,255,fct,Return of power operation
 sendCustomHexCommand,Send custom hex command command,"""""",string,RW,STRING,,,,,,vicki,Hexa payload as string like '014F32'
 sensorTemperature,Sensor temperature in Celsius,0,number,R,FLOAT,2,Cel,0.1,,,vicki,Temperature in �C
