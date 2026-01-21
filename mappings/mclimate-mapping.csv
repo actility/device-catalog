@@ -4,10 +4,10 @@ version,max_downlink_commands,,,,,,,,,,
 ##models,,,,,,,,,,,
 name,selectors,,,,,,,,,,
 16aspm,{ mId: 16aspm },,,,,,,,,,
-16ads,{ mId: 16ads },,,,,,,,,,
-group1,"{ mId: 16ads }, { mId: fct }",,,,,,,,,,
+16a-dry-switch,{ mId: 16a-dry-switch },,,,,,,,,,
+group1,"{ mId: 16a-dry-switch }, { mId: fct }",,,,,,,,,,
 fct,{ mId: fct },,,,,,,,,,
-all,"{ mId: 16ads }, { mId: 16aspm }, { mId: fct }, { mId: vicki }",,,,,,,,,,
+all,"{ mId: 16a-dry-switch }, { mId: 16aspm }, { mId: fct }, { mId: vicki }",,,,,,,,,,
 vicki,{ mId: vicki },,,,,,,,,,
 others,,,,,,,,,,
 ##objects,,,,,,,,,,,
@@ -17,7 +17,7 @@ acCurr_mA,AC Current,,number,R,UINT16,,mA,,,,16aspm,bacnet_type=analog_input_obj
 acVolt,AC Voltage,,number,R,UINT8,,V,,,,16aspm,bacnet_type=analog_input_object; bacnet_unit_type_id=5; bacnet_unit_type=UNITS_VOLTS
 actualFanSpeed,Actual Fan Speed,0,number,R,UINT8,,,1,1,7,fct,Actual fan speed
 additionalFanMode,Additional Fan Mode,0,number,RW,UINT8,,,1,0,255,fct,Additional fan mode
-afterOverheatingProtectionRecovery,After Overheating Protection Recovery,0,binary,RW,UINT8,,,1,0,1,16ads,"0=Off, 1=On"
+afterOverheatingProtectionRecovery,After Overheating Protection Recovery,0,binary,RW,UINT8,,,1,0,1,16a-dry-switch,"0=Off, 1=On"
 afterOverhtRec,AfterOverhtRec,,number,RW,UINT8,,,,,,16aspm,bacnet_type=analog_value_object; bacnet_unit_type_id=95; bacnet_unit_type=UNITS_NO_UNITS
 allowedOperationalModes,Allowed Operational Modes,0,number,RW,UINT8,,,1,0,255,fct,Allowed operational modes
 automaticChangeover,Automatic Changeover,0,binary,RW,UINT8,,,1,0,1,fct,"0=Off, 1=On"
@@ -72,8 +72,8 @@ frostProtection,Frost Protection,0,binary,RW,UINT8,,,1,0,1,fct,"0=Off, 1=On"
 frostProtectionSettings_setpoint,Frost Protection Setpoint,0,number,RW,UINT8,,Cel,1,0,255,fct,Frost protection setpoint (°C)
 frostProtectionSettings_threshold,Frost Protection Threshold,0,number,RW,UINT8,,Cel,1,0,255,fct,Frost protection threshold (°C)
 frostProtectionStatus,Frost Protection Status,0,binary,R,UINT8,,,1,0,1,fct,"0=Off, 1=On"
-fuota_address,FUOTA Address,0,number,R,UINT32,,,1,0,4294967295,16ads,FUOTA address
-fuota_address_raw,FUOTA Address (Raw Hex),"""""",string,R,STRING,,,,,,16ads,FUOTA address as raw hex (max length 64)
+fuota_address,FUOTA Address,0,number,R,UINT32,,,1,0,4294967295,16a-dry-switch,FUOTA address
+fuota_address_raw,FUOTA Address (Raw Hex),"""""",string,R,STRING,,,,,,16a-dry-switch,FUOTA address as raw hex (max length 64)
 getChildLock,Get child lock command,0,binary,RW,UINT8,,,1,0,1,vicki,
 getChildLockBehavior,Get child lock behavior command,0,binary,RW,UINT8,,,1,0,1,vicki,
 getDeviceVersions,Get device versions command,0,binary,RW,UINT8,,,1,0,1,vicki,
@@ -108,7 +108,7 @@ internalAlgoParams:pNext,Internal algo params pNext,0,number,R,UINT8,,,,0,255,vi
 internalAlgoParams:period,Internal algo params period,0,number,R,UINT8,,,,0,255,vicki,
 internalAlgoTdiffParams:cold,Internal algo tdiff params cold,0,number,R,UINT8,,,,0,255,vicki,
 internalAlgoTdiffParams:warm,Internal algo tdiff params warm,0,number,R,UINT8,,,,0,255,vicki,
-internalTemperature,Internal Temperature,0,number,R,INT8,,Cel,1,-128,127,16ads,Internal temperature (°C)
+internalTemperature,Internal Temperature,0,number,R,INT8,,Cel,1,-128,127,16a-dry-switch,Internal temperature (°C)
 internalTemperatureSensorError,Internal Temperature Sensor Error,0,binary,R,UINT8,,,1,0,1,fct,"0=Off, 1=On"
 joinRetry,Join Retry,,number,RW,FLOAT,,h,,,,16aspm,Join retry period (hours)
 joinRetryPeriod,Join Retry Period,0,number,RW,FLOAT,2,hours,0.1,,,group1,Join retry period (hours)
@@ -118,9 +118,9 @@ keepAliveTime,Keep-Alive Time,0,number,RW,UINT8,,minutes,1,0,255,group1,Keep-ali
 keepAliveTime,KeepAlive Time,,number,RW,UINT8,,minutes,,,,16aspm,Keep-alive time (minutes)
 keysLock,Keys Lock,0,binary,RW,UINT8,,,1,0,1,fct,"0=Off, 1=On"
 ledIndMode,LED Ind Mode,,number,RW,UINT8,,,,,,16aspm,"0=Off, 1=On"
-ledIndicationMode,LED Indication Mode,0,number,RW,UINT8,,,1,0,1,16ads,"0=Off, 1=On"
+ledIndicationMode,LED Indication Mode,0,number,RW,UINT8,,,1,0,1,16a-dry-switch,"0=Off, 1=On"
 lowMotorConsumption,Low motor consumption flag,false,boolean,R,BOOL,,,,,,vicki,Low motor consumption is detected
-manualChangeRelayState,Manual Change Relay State,"""""",string,R,STRING,,,,,,16ads,Manual change relay state (max length 8)
+manualChangeRelayState,Manual Change Relay State,"""""",string,R,STRING,,,,,,16a-dry-switch,Manual change relay state (max length 8)
 manualRelay_txt,Manual Relay,,text,R,STRING,,,,,,16aspm,Manual change relay state (max length 8)
 manualTargetTemperatureUpdate,Manual Target Temperature Update,0,binary,R,UINT8,,,1,0,1,fct,"0=Off, 1=On"
 manualTargetTemperatureUpdate,Manual target temperature update,0,number,R,UINT8,,Cel,,0,255,vicki,
@@ -145,11 +145,11 @@ overheatEvTmp,Overheat EvTmp,,number,R,UINT8,,Cel,,,,16aspm,Overheating event te
 overheatRec,Overheat Rec,,number,RW,UINT8,,Cel,,,,16aspm,Overheating threshold recovery (°C)
 overheatRecTm,OverheatRecTm,,number,RW,UINT16,,s,,,,16aspm,Overheating recovery time (seconds)
 overheatTrig,Overheat Trig,,number,RW,UINT8,,Cel,,,,16aspm,Overheating threshold trigger (°C)
-overheatingEvents_events,Overheating Events Count,0,number,R,UINT8,,,1,0,255,16ads,Overheating events count
-overheatingEvents_temperature,Overheating Event Temperature,0,number,R,UINT8,,Cel,1,0,255,16ads,Overheating event temperature (°C)
-overheatingRecoveryTime,Overheating Recovery Time,0,number,RW,UINT16,,seconds,1,0,65535,16ads,Overheating recovery time (seconds)
-overheatingThreshold_recovery,Overheating Threshold (Recovery),0,number,RW,UINT8,,Cel,1,0,255,16ads,Overheating threshold recovery (°C)
-overheatingThreshold_trigger,Overheating Threshold (Trigger),0,number,RW,UINT8,,Cel,1,0,255,16ads,Overheating threshold trigger (°C)
+overheatingEvents_events,Overheating Events Count,0,number,R,UINT8,,,1,0,255,16a-dry-switch,Overheating events count
+overheatingEvents_temperature,Overheating Event Temperature,0,number,R,UINT8,,Cel,1,0,255,16a-dry-switch,Overheating event temperature (°C)
+overheatingRecoveryTime,Overheating Recovery Time,0,number,RW,UINT16,,seconds,1,0,65535,16a-dry-switch,Overheating recovery time (seconds)
+overheatingThreshold_recovery,Overheating Threshold (Recovery),0,number,RW,UINT8,,Cel,1,0,255,16a-dry-switch,Overheating threshold recovery (°C)
+overheatingThreshold_trigger,Overheating Threshold (Trigger),0,number,RW,UINT8,,Cel,1,0,255,16a-dry-switch,Overheating threshold trigger (°C)
 overpowerCnt,Overpower Cnt,,number,R,UINT8,,,,,,16aspm,bacnet_type=analog_input_object; bacnet_unit_type_id=95; bacnet_unit_type=UNITS_NO_UNITS
 overpowerPwr,Overpower Pwr,,number,R,UINT16,,W,,,,16aspm,bacnet_type=analog_input_object; bacnet_unit_type_id=47; bacnet_unit_type=UNITS_WATTS
 overpwrRecTmp,OverpwrRecTmp,,number,RW,UINT8,,Cel,,,,16aspm,bacnet_type=analog_value_object; bacnet_unit_type_id=62; bacnet_unit_type=UNITS_DEGREES_CELSIUS
@@ -164,12 +164,12 @@ power_W,Power,,number,R,UINT16,,W,,,,16aspm,bacnet_type=analog_input_object; bac
 primaryOperationalMode,Primary operationnal mode,0,number,R,UINT8,,,,0,255,vicki,
 reason,Reason of uplink,0,number,R,UINT8,,,1,,,vicki,Reason
 recalibrateMotor,Recalibrate moto command,0,binary,RW,UINT8,,,1,0,1,vicki,
-region,Region,0,number,R,UINT8,,,1,0,7,16ads,"0=EU868,1=US915,2=AU915,3=AS923,4=CN470,5=KR920,6=IN865,7=RU864"
+region,Region,0,number,R,UINT8,,,1,0,7,16a-dry-switch,"0=EU868,1=US915,2=AU915,3=AS923,4=CN470,5=KR920,6=IN865,7=RU864"
 relativeHumidity,Relative Humidity,0,number,R,FLOAT,2,%RH,0.1,,,fct,Relative humidity in RH
 relativeHumidity,Relative humidity in percentage,0,number,R,FLOAT,2,%RH,0.1,,,vicki,Relative humidity in RH
 relayRecState,Relay Rec State,,number,RW,UINT8,,,,,,16aspm,"0=Restore Last, 1=Off, 2=On"
-relayRecoveryState,Relay Recovery State,0,number,RW,UINT8,,,1,0,2,16ads,"0=Restore Last, 1=Off, 2=On"
-relayState,Relay State,"""""",string,R,STRING,,,,,,16ads,Relay state (max length 8)
+relayRecoveryState,Relay Recovery State,0,number,RW,UINT8,,,1,0,2,16a-dry-switch,"0=Restore Last, 1=Off, 2=On"
+relayState,Relay State,"""""",string,R,STRING,,,,,,16a-dry-switch,Relay state (max length 8)
 relayState_txt,Relay State,,text,R,STRING,,,,,,16aspm,Relay state (max length 8)
 returnOfPowerOperation,Return of Power Operation,0,number,RW,UINT8,,,1,0,255,fct,Return of power operation
 sendCustomHexCommand,Send custom hex command command,"""""",string,RW,STRING,,,,,,vicki,Hexa payload as string like '014F32'
@@ -202,7 +202,7 @@ setProportionalAlgorithmParameters:coefficient,Set proportional algorithm parame
 setProportionalAlgorithmParameters:period,Set proportional algorithm parameters period,0,number,RW,UINT8,,,1,0,255,vicki,
 setProportionalGain,Set proportional gain command,0,number,RW,FLOAT,2,,0.1,,,vicki,
 setRelayState,Set Relay,,binary,W,UINT8,,,,,,16aspm,"0=Off, 1=On"
-setRelayState,Set Relay State,0,binary,RW,UINT8,,,1,0,1,16ads,"0=Off, 1=On"
+setRelayState,Set Relay State,0,binary,RW,UINT8,,,1,0,1,16a-dry-switch,"0=Off, 1=On"
 setTargetTemperature,Set target temperature command,0,number,RW,UINT8,,Cel,1,5,30,vicki,digits in range 5-30
 setTargetTemperatureAndMotorPosition:motorPosition,Set target temperature and motorPosition,0,number,RW,UINT8,,,1,0,255,vicki,range 0 to motorRange
 setTargetTemperatureAndMotorPosition:targetTemperature,Set target temperature and targetTemperature,0,number,RW,UINT8,,Cel,1,5,30,vicki,digits in range 5-30
