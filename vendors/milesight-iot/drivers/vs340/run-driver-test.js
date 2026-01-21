@@ -14,7 +14,7 @@ if (!fs.existsSync(path.join(testsPath, 'node_modules'))) {
     execSync('npm install', { cwd: testsPath, stdio: 'inherit' });
 }
 
-execSync(`cross-env DRIVER_PATH="${driverPath}" jest --config=jest.config.js --collectCoverage`, {
+execSync(`cross-env DRIVER_PATH="${driverPath}" TZ=UTC jest --config=jest.config.js --collectCoverage`, {
     cwd: testsPath,
     stdio: 'inherit'
 });
