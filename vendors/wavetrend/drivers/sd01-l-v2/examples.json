@@ -1,0 +1,400 @@
+[
+  {
+    "type": "uplink",
+    "description": "uplink containing configuration response",
+    "input": {
+      "bytes": "000000000000000000004A",
+      "fPort": 4,
+      "recvTime": "2020-08-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "data":     {
+        "error_code": 0,
+        "downlink_hours": 0,
+        "reporting_period": 0,
+        "message_flags": {
+          "scald": false,
+          "freeze": false,
+          "debug": false,
+          "history_count": 0,
+          "simple": false,
+          "act_poll": false,
+          "stat_poll": false
+        },
+        "scald_threshold": 0,
+        "freeze_threshold": 0,
+        "config_type": [
+          {
+            "flow_settling_count": 0,
+            "config": 0
+          },
+          {
+            "flow_settling_count": 0,
+            "config": 0
+          },
+          {
+            "flow_settling_count": 0,
+            "config": 0
+          }
+        ],
+        "flow_delta": {
+          "cold": 4,
+          "hot": 10
+        }
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink containing install request (device status)",
+    "input": {
+      "bytes": "3102010000",
+      "fPort": 2,
+      "recvTime": "2020-08-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "data": {
+        "pvd_level": 6,
+        "sensor": [
+          true, false, false
+        ],
+        "firmware_version": {
+          "major": 2,
+          "minor": 1
+        },
+        "reset_reason": 0
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink containing standard report (full)",
+    "input": {
+      "bytes": "5F271B40013150101",
+      "fPort": 3,
+      "recvTime": "2020-08-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "data": {
+        "timestamp": 1596398400,
+        "sensor_id": 0,
+        "minC": 19,
+        "maxC": 21,
+        "events": 1,
+        "reports": 1
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink containing standard report (simple)",
+    "input": {
+      "bytes": "5F271B40131513151315",
+      "fPort": 10,
+      "recvTime": "2020-08-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "data": {
+        "timestamp": 1596398400,
+        "S1minC": 19,
+        "S1maxC": 21,
+        "S2minC": 19,
+        "S2maxC": 21,
+        "S3minC": 19,
+        "S4maxC": 21
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink containing sensor error",
+    "input": {
+      "bytes": "00",
+      "fPort": 5,
+      "recvTime": "2020-08-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "data": {
+        "sensor_id": 0
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink containing general error",
+    "input": {
+      "bytes": "000000000000",
+      "fPort": 6,
+      "recvTime": "2020-08-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "data": {
+        "error_code": 0,
+        "file_hash": 0,
+        "line": 0
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink containing freeze alert",
+    "input": {
+      "bytes": "0000",
+      "fPort": 7,
+      "recvTime": "2020-08-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "data": {
+        "sensor_id": 0,
+        "temperature": 0
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink containing scald alert",
+    "input": {
+      "bytes": "0000",
+      "fPort": 8,
+      "recvTime": "2020-08-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "data": {
+        "sensor_id": 0,
+        "temperature": 0
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink containing debug report",
+    "input": {
+      "bytes": "5F271B400D0000000007FF0000000007FF",
+      "fPort": 9,
+      "recvTime": "2020-08-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "data": {
+        "timestamp": 1596398400,
+        "pvd_level": 0,
+        "readings": [
+          {
+            "timestamp": -1,
+            "sensors": [
+              {
+                "state": 0,
+                "direction": 0,
+                "report": false,
+                "tempC": -27
+              },
+              {
+                "state": 0,
+                "direction": 0,
+                "report": false,
+                "tempC": -27
+              },
+              {
+                "state": 0,
+                "direction": 0,
+                "report": false,
+                "tempC": null
+              }
+            ]
+          },
+          {
+            "timestamp": 0,
+            "sensors": [
+              {
+                "state": 0,
+                "direction": 0,
+                "report": false,
+                "tempC": -27
+              },
+              {
+                "state": 0,
+                "direction": 0,
+                "report": false,
+                "tempC": -27
+              },
+              {
+                "state": 0,
+                "direction": 0,
+                "report": false,
+                "tempC": null
+              }
+            ]
+          }
+        ]
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "fail decode uplink due to invalid port",
+    "input": {
+      "bytes": "",
+      "fPort": 0,
+      "recvTime": "2020-08-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "errors": [
+        "LoRaWAN reserved payload type"
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "fail decode uplink due to invalid port",
+    "input": {
+      "bytes": "",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "errors": [
+        "V1 Deprecated Payload, unsupported"
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "fail decode uplink due to invalid port",
+    "input": {
+      "bytes": "",
+      "fPort": 3,
+      "recvTime": "2020-08-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "errors": [
+        "Unrecognised type for downlink decoding"
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "downlink containing configuration",
+    "input": {
+      "bytes": "0000000000000000004A",
+      "fPort": 2,
+      "recvTime": "2020-08-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "data": {
+        "type": 2,
+        "downlink_hours": 0,
+        "reporting_period": 0,
+        "message_flags": {
+          "scald": false,
+          "freeze": false,
+          "debug": false,
+          "history_count": 0,
+          "simple": false,
+          "act_poll": false,
+          "stat_poll": false
+        },
+        "scald_threshold": 0,
+        "freeze_threshold": 0,
+        "config_type": [
+          {
+            "flow_settling_count": 0,
+            "config": 0
+          },
+          {
+            "flow_settling_count": 0,
+            "config": 0
+          },
+          {
+            "flow_settling_count": 0,
+            "config": 0
+          }
+        ],
+        "flow_delta": {
+          "cold": 4,
+          "hot": 10
+        }
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "fail decode uplink due to invalid port",
+    "input": {
+      "bytes": "",
+      "fPort": 3,
+      "recvTime": "2020-08-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "errors": [
+        "Unrecognised type for downlink decoding"
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "fail decode uplink due to invalid port",
+    "input": {
+      "type": 2,
+      "downlink_hours": 0,
+      "reporting_period": 0,
+      "message_flags": {
+        "scald": false,
+        "freeze": false,
+        "debug": false,
+        "history_count": 0,
+        "simple": false,
+        "act_poll": false,
+        "stat_poll": false
+      },
+      "scald_threshold": 0,
+      "freeze_threshold": 0,
+      "config_type": [
+        {
+          "flow_settling_count": 0,
+          "config": 0
+        },
+        {
+          "flow_settling_count": 0,
+          "config": 0
+        },
+        {
+          "flow_settling_count": 0,
+          "config": 0
+        }
+      ],
+      "flow_delta": {
+        "cold": 4,
+        "hot": 10
+      }
+    },
+    "output": {
+      "bytes": "0000000000000000004A",
+      "fPort": 2,
+      "errors": [],
+      "warnings": []
+    }
+  }
+]
