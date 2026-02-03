@@ -9,8 +9,7 @@ logo: logo.png
 # lorawanDeviceProfileID: as defined by LoRa Alliance in https://lora-alliance.org/wp-content/uploads/2020/10/LoRa_Alliance_Vendor_ID_for_QR_Code_02142022.pdf.
 # The lorawanDeviceProfileID consists of 8 upper-case hexadecimal characters, 4 characters for VendorID + 4 characters for VendorProfileID. Please consider using single (') or double (") quotation.
 deviceProfileIds:
-  - id: wavetrend_EU868_1.1_classA
-    lorawanDeviceProfileID: '00010001'
+  - id: wavetrnd_RFGroup1_1.1_classA
 
 # You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings.
 # Maximum device TX Conducted output power in dBm.
@@ -42,9 +41,7 @@ specificationURL:
 userGuideURL:
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
-  - temp1:Cel
-  - temp2:Cel
-  - temp3:Cel
+  - temperature:Cel
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
