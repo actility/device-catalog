@@ -8,7 +8,7 @@
 #    RFGroup4: as923
 # Please do not change the existing IDs (Some may follow the old format)
 # The name of the profile .yaml file should be the same as the following ID
-id: wavetrnd_EU868_1.1_classA
+id: wavetrnd_RFGroup1_1.1_classA
 # LoRaWAN class of the Device: Possible values: [ A, B, C ] (Should not have several values)
 # 'A': Class A (Bi-directional end-devices with downlink listening only after uplink transmission)
 # 'B': Class B (Bi-directional end-devices with downlink listening on predefined synchronized pingslots)
@@ -36,13 +36,13 @@ mac:
   # The device Tx Power Capabilities here will not be taken into consideration if it is overwritten in the model.yaml
   devicesTxPowerCapabilities:
     # Minimum device TX Conducted output power in dBm.
-    minTxPower: 2         # TODO: check if this is correct
+    minTxPower: 2       
     # Maximum device TX Conducted output power in dBm.
-    maxTxPower: 18         # TODO: check if this is correct
+    maxTxPower: 18
     # Minimum device TX Radiated output power in dBm.
-    minTxEIRP: 2         # TODO: check if this is correct
+    minTxEIRP: 2
     # Maximum device TX Radiated output power in dBm.
-    maxTxEIRP: 18         # TODO: check if this is correct
+    maxTxEIRP: 18
 
   uplinkFrameRepetition:
     # Maximum number of transmissions per uplink frame, supported by the device.
@@ -77,20 +77,21 @@ bootSettings:
 # Which MAC commands are supported by your device and which are not? Leave it as the template if your device supports all the MAC commands specified for your regional
 # profile. Put 'true' only if a command is supported.
 supportedMACCommands:
-  linkADRReqAns: true         # TODO: check if this is correct
-  devStatusReqAns: true         # TODO: check if this is correct
-  joinRequestAccept: true         # TODO: check if this is correct
-  dutyCycleReqAns: true         # TODO: check if this is correct
-  linkCheckReqAns: true         # TODO: check if this is correct
-  rxParamSetupReqAns: true         # TODO: check if this is correct
-  rxTimingSetupReqAns: true         # TODO: check if this is correct
-  newChannelReqAns: true         # TODO: check if this is correct
-  dlChannelReqAns: true         # TODO: check if this is correct
-  txParamSetupReqAns: true         # TODO: check if this is correct
-  pingSlotChannelReqAns: false         # TODO: check if this is correct
-  pingSlotInfoReqAns: true         # TODO: check if this is correct
-  deviceTimeReqAns: true         # TODO: check if this is correct
-  beaconFreqReqAns: false         # TODO: check if this is correct
+  linkADRReqAns: true
+  devStatusReqAns: true
+  joinRequestAccept: true
+  dutyCycleReqAns: true
+  linkCheckReqAns: true
+  rxParamSetupReqAns: true
+  rxTimingSetupReqAns: true
+  newChannelReqAns: true
+  dlChannelReqAns: true
+  txParamSetupReqAns: true
+  pingSlotChannelReqAns: false
+  pingSlotInfoReqAns: true
+  deviceTimeReqAns: true
+  beaconFreqReqAns: false
+  extendedNotifyNewEndDeviceReq: false
 
 # Does your device support [Technical Recommendation for LoRaWAN L2 1.0.x Join Security] recommending implemeting the DevNonce as a counter for
 # OTAA devices? See https://lora-alliance.org/resource_hub/technical-recommendations-for-preventing-state-synchronization-issues-around-lorawan-1-0-x-join-procedure/
