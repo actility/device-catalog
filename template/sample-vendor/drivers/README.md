@@ -1,3 +1,31 @@
+# Prerequisites
+
+Before running the tests, make sure the following requirements are met.
+
+## Supported Operating Systems
+
+Tests can only be executed on:
+
+- **Linux**
+- **Windows**
+
+⚠️ **macOS is not supported** and the tests will not work properly on it.
+
+---
+
+## Required Node.js Version
+
+You **must** use **Node.js 20**.
+
+The recommended way to install it is via **NVM**.
+
+### Install Node 20 with NVM
+
+```bash
+nvm install 20
+nvm use 20
+```
+
 # JavaScript driver structure
 
 > If you have a driver already follows the LoRa Alliance standard codec API, then you need just to add `driver.yaml` file as the one [here](sample-driver/driver.yaml).
