@@ -74,7 +74,7 @@
     "type": "uplink",
     "description": "uplink containing standard report (full)",
     "input": {
-      "bytes": "5F271B40013150101",
+      "bytes": "5F271B400013150101",
       "fPort": 3,
       "recvTime": "2020-08-02T20:00:00.000+00:00"
     },
@@ -102,12 +102,12 @@
     "output": {
       "data": {
         "timestamp": 1596398400,
-        "S1minC": 19,
-        "S1maxC": 21,
-        "S2minC": 19,
-        "S2maxC": 21,
-        "S3minC": 19,
-        "S4maxC": 21
+        "s1MinC": 19,
+        "s1MaxC": 21,
+        "s2MinC": 19,
+        "s2MaxC": 21,
+        "s3MinC": 19,
+        "s3MaxC": 21
       },
       "errors": [],
       "warnings": []
@@ -185,29 +185,29 @@
     "type": "uplink",
     "description": "uplink containing debug report",
     "input": {
-      "bytes": "5F271B400D0000000007FF0000000007FF",
+      "bytes": "5F271B40C201E001CC07FF01E001CC07FF",
       "fPort": 9,
       "recvTime": "2020-08-02T20:00:00.000+00:00"
     },
     "output": {
       "data": {
         "timestamp": 1596398400,
-        "pvd_level": 0,
+        "pvd_level": 6,
         "readings": [
           {
-            "timestamp": -1,
+            "timestamp": 1596398390,
             "sensors": [
               {
                 "state": 0,
                 "direction": 0,
                 "report": false,
-                "tempC": -27
+                "tempC": 21
               },
               {
                 "state": 0,
                 "direction": 0,
                 "report": false,
-                "tempC": -27
+                "tempC": 19
               },
               {
                 "state": 0,
@@ -218,19 +218,19 @@
             ]
           },
           {
-            "timestamp": 0,
+            "timestamp": 1596398400,
             "sensors": [
               {
                 "state": 0,
                 "direction": 0,
                 "report": false,
-                "tempC": -27
+                "tempC": 21
               },
               {
                 "state": 0,
                 "direction": 0,
                 "report": false,
-                "tempC": -27
+                "tempC": 19
               },
               {
                 "state": 0,
@@ -248,7 +248,7 @@
   },
   {
     "type": "uplink",
-    "description": "fail decode uplink due to invalid port",
+    "description": "fail decode uplink due to reserved port",
     "input": {
       "bytes": "",
       "fPort": 0,
@@ -256,14 +256,14 @@
     },
     "output": {
       "errors": [
-        "LoRaWAN reserved payload type"
+        "Unrecognised type for uplink decoding"
       ],
       "warnings": []
     }
   },
   {
     "type": "uplink",
-    "description": "fail decode uplink due to invalid port",
+    "description": "fail decode uplink due to v1 payload port",
     "input": {
       "bytes": "",
       "fPort": 1,
@@ -271,22 +271,7 @@
     },
     "output": {
       "errors": [
-        "V1 Deprecated Payload, unsupported"
-      ],
-      "warnings": []
-    }
-  },
-  {
-    "type": "uplink",
-    "description": "fail decode uplink due to invalid port",
-    "input": {
-      "bytes": "",
-      "fPort": 3,
-      "recvTime": "2020-08-02T20:00:00.000+00:00"
-    },
-    "output": {
-      "errors": [
-        "Unrecognised type for downlink decoding"
+        "Unrecognised type for uplink decoding"
       ],
       "warnings": []
     }
@@ -355,39 +340,41 @@
   },
   {
     "type": "downlink-encode",
-    "description": "fail decode uplink due to invalid port",
+    "description": "encode downlink containing configuration",
     "input": {
-      "type": 2,
-      "downlink_hours": 0,
-      "reporting_period": 0,
-      "message_flags": {
-        "scald": false,
-        "freeze": false,
-        "debug": false,
-        "history_count": 0,
-        "simple": false,
-        "act_poll": false,
-        "stat_poll": false
-      },
-      "scald_threshold": 0,
-      "freeze_threshold": 0,
-      "config_type": [
-        {
-          "flow_settling_count": 0,
-          "config": 0
+      "data": {
+        "type": 2,
+        "downlink_hours": 0,
+        "reporting_period": 0,
+        "message_flags": {
+          "scald": false,
+          "freeze": false,
+          "debug": false,
+          "history_count": 0,
+          "simple": false,
+          "act_poll": false,
+          "stat_poll": false
         },
-        {
-          "flow_settling_count": 0,
-          "config": 0
-        },
-        {
-          "flow_settling_count": 0,
-          "config": 0
+        "scald_threshold": 0,
+        "freeze_threshold": 0,
+        "config_type": [
+          {
+            "flow_settling_count": 0,
+            "config": 0
+          },
+          {
+            "flow_settling_count": 0,
+            "config": 0
+          },
+          {
+            "flow_settling_count": 0,
+            "config": 0
+          }
+        ],
+        "flow_delta": {
+          "cold": 4,
+          "hot": 10
         }
-      ],
-      "flow_delta": {
-        "cold": 4,
-        "hot": 10
       }
     },
     "output": {
