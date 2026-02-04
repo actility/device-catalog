@@ -314,10 +314,10 @@ function Decode_SD01L_Payload(bytes, port) {
         + unsignedByte(bytes[i++]);
 
       const flags = unsignedByte(bytes[i++]);
-      const interval_divide = !!(flags & 0b10000000);
-      let interval = ((flags & 0b01111000) >> 3);
+      const interval_divide = !!(flags & 0b00000001);
+      let interval = ((flags & 0b00011110) >> 1);
       interval = interval_divide ? interval / 10 : interval * 10;
-      const pvdLevel = (flags & 0b00000111);
+      const pvdLevel = (flags & 0b11100000) >> 5;
 
       while (i < bytes.length) {
 
