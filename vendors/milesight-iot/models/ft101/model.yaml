@@ -34,13 +34,25 @@ LoRaWANCertified: false
 # Format: `<8 characters max>:<16 characters max>:<digits only>`
 modelId: msight:ft101:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
-protocolId:
+protocolId: msight:ft101:1
 # DataSheet URL (optional) 
 specificationURL: https://resource.milesight.com/milesight/iot/document/ft101-datasheet-en.pdf
 # User Guide URL (optional) 
 userGuideURL: https://resource.milesight.com/milesight/iot/document/ft101-user-guide-en.pdf
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
-sensors: 
+sensors:
+    - location:GPS
+    - rssi:dBm
+    - powerFactor:/
+    - snr:dB
+    - powerLevel:dB
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
+    msight:ft101:1:
+        - "Example 1"
+        - "Example 2"
+
+LoRaWANRelay:
+  canOperateAsARelay: false
+  defaultRelayActivation: false

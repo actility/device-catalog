@@ -17,27 +17,28 @@ deviceProfileIds:
  
 # You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
 # Maximum device TX Conducted output power in dBm. 
-maxTxPower:
+maxTxPower: 14
 # Minimum device TX Conducted output power in dBm. 
 minTxPower:
 # Maximum device TX Radiated output power in dBm.  
-maxTxEIRP:
+maxTxEIRP: 14
 # Minimum device TX Radiated output power in dBm.  
 minTxEIRP:
 # Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'  
 # or 'random' (not known, changes over time). 
-motionIndicator:
+motionIndicator: near_static
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
-LoRaWANCertified: 
+LoRaWANCertified: true
 # Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
 # Format: `<8 characters max>:<16 characters max>:<digits only>`
 modelId: microplt:mlr003:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId: 
     - os1-micr:mlr003:1
+    - microplt:mlr003:1
 # DataSheet URL (optional) 
-specificationURL: 
+specificationURL: https://micropelt.atlassian.net/wiki/spaces/MH/pages/19300575/MLR003RiEU61-07+Title+Page
 # User Guide URL (optional) 
 userGuideURL: 
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
@@ -50,3 +51,31 @@ examples:
         - "REV1.1 Example 2"
         - "REV1.0 Example 3"
         - "REV1.0 Example 4"
+    microplt:mlr003:1:
+        - "FPort 1 Basic Device Data #1"
+        - "FPort 2 Device Version"
+        - "FPort 3 Motor Travel Distance"
+        - "FPort 4 LoRa Spread Factor #1"
+        - "FPort 4 LoRa Spread Factor #2"
+        - "FPort 4 Wrong LoRa Spread Factor"
+        - "FPort 5 Opening Point Detction and Slow Harvesting #1"
+        - "FPort 5 Opening Point Detction and Slow Harvesting #2"
+        - "FPort 6 Temperature Drop Detection"
+        - "FPort 7 PID Parameters"
+        - "FPort 15 On/Off"
+        - "FPort 1 Downlink"
+        - "FPort 3 Downlink"
+        - "FPort 4 Downlink #1"
+        - "FPort 4 Downlink #2"
+        - "FPort 5 Downlink"
+        - "FPort 6 Downlink"
+        - "FPort 7  Downlink"
+        - "FPort 9 Downlink"
+        - "FPort 10  Downlink"
+        - "FPort 11 Downlink"
+        - "FPort 15 Downlink"
+
+
+LoRaWANRelay:
+  canOperateAsARelay: false
+  defaultRelayActivation: false

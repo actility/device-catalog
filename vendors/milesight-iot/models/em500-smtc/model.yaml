@@ -1,7 +1,7 @@
 # Commercial name of the model
 name: EM500-SMTC Soil Moisture, Temperature and Electrical Conductivity Sensor
 # Functional description of the product. Maximum 500 characters.
-description: Milesight EM500-SMTC is designed for measuring soil moisture, temperature, and electrical conductivity with high precision in harsh environments. EM500-SMTC features a long-lasting battery life of up to 10 years and can be easily configured via NFC. It offers a corrosion resistance probe and an IP67 UV-resistant and waterproof enclosure. EM500-SMTC is widely used for outdoor applications like smart agriculture, smart horticulture, etc.
+description: "Milesight EM500-SMTC is designed for measuring soil moisture, temperature, and electrical conductivity with high precision in harsh environments. EM500-SMTC features a long-lasting battery life of up to 10 years and can be easily configured via NFC. It offers a corrosion resistance probe and an IP67 UV-resistant and waterproof enclosure. EM500-SMTC is widely used for outdoor applications like smart agriculture, smart horticulture, etc."
 # Logo of the device
 logo: em500-smtc.png
 # Product name & Version
@@ -38,7 +38,7 @@ LoRaWANCertified: true
 # Format: `<8 characters max>:<16 characters max>:<digits only>`
 modelId: msight:em500-smtc:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
-protocolId: 
+protocolId: msight:em500-smt:1
 # DataSheet URL (optional) 
 specificationURL: https://resource.milesight-iot.com/milesight/document/em500-smtc-datasheet-en.pdf
 # User Guide URL (optional) 
@@ -48,3 +48,11 @@ sensors:
     - batteryLevel:%
     - humidity:%RH
     - temperature:Cel
+    - conductivity:uS/cm
+examples:
+    msight:em500-smt:1:
+        - "Example 1"
+
+LoRaWANRelay:
+  canOperateAsARelay: false
+  defaultRelayActivation: false

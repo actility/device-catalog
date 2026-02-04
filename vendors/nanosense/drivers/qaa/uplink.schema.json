@@ -1,0 +1,55 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/uplink.schema.json",
+  "type": "object",
+  "properties": {
+    "device_info": {
+      "type": "object",
+      "properties": {
+        "autonomy_percent": { "type": "integer" },
+        "transmission_interval": { "type": "integer" },
+        "capteurs_actifs": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "firmware_version": { "type": "number" },
+        "frm_lora": { "type": "number" }
+      },
+      "required": [
+        "autonomy_percent",
+        "transmission_interval",
+        "capteurs_actifs",
+        "firmware_version",
+        "frm_lora"
+      ],
+      "additionalProperties": false
+    },
+    "measurements": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "temperature": { "type": "number" },
+          "humidity": { "type": "number" },
+          "pm1": { "type": "number" },
+          "pm25": { "type": "number" },
+          "pm10": { "type": "number" },
+          "noise_average": { "type": "number" },
+          "noise_peak": { "type": "number" },
+          "log_timestamp": { "type": "integer" }
+        },
+        "required": [
+          "temperature",
+          "humidity",
+          "pm1",
+          "pm25",
+          "pm10",
+          "log_timestamp"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": ["device_info", "measurements"],
+  "additionalProperties": false
+}

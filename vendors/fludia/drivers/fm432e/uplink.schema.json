@@ -1,0 +1,127 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "data": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "firmware_version": {
+          "type": ["integer", "null"],
+          "description": "Firmware version as an integer"
+        },
+        "increments": {
+          "description": "Array of increments. If recvTime is provided: [[date, value], ...]. Empty for 1min products.",
+          "type": "array",
+          "items": {
+            "oneOf": [
+              { "type": "number" },
+              {
+                "type": "array",
+                "items": [
+                  { "type": "string", "format": "date-time" },
+                  { "type": "number" }
+                ],
+                "minItems": 2,
+                "maxItems": 2
+              }
+            ]
+          }
+        },
+        "index": {
+          "type": "number",
+          "description": "Index starting at 0 when the device starts"
+        },
+        "indexes": {
+          "description": "Array of indexes. If recvTime is provided: [[date, value], ...]. Empty for 1min products.",
+          "type": "array",
+          "items": {
+            "oneOf": [
+              { "type": "number" },
+              {
+                "type": "array",
+                "items": [
+                  { "type": "string", "format": "date-time" },
+                  { "type": "number" }
+                ],
+                "minItems": 2,
+                "maxItems": 2
+              }
+            ]
+          }
+        },
+        "low_battery": {
+          "type": ["integer", "null"],
+          "description": "1 = low battery, 0 = OK"
+        },
+        "message_type": {
+          "type": "string",
+          "description": "Type of uplink message (T1, T2, ...)"
+        },
+        "meter_type": {
+          "type": ["string", "null"],
+          "enum": [
+            "Electromechanical (Position A)",
+            "Electronic (Position B)",
+            null
+          ],
+          "description": "Type of meter"
+        },
+        "number_of_starts": {
+          "type": ["integer", "null"],
+          "description": "Number of starts of the sensor"
+        },
+        "number_of_values": {
+          "type": ["integer", "null"],
+          "description": "Number of measurement values in each T1 uplink (_ap only)"
+        },
+        "param_id": {
+          "type": ["integer", "null"],
+          "description": "Parameter ID"
+        },
+        "powers": {
+          "description": "Load curve values in W. If recvTime is provided: [[date, value], ...].",
+          "type": "array",
+          "items": {
+            "oneOf": [
+              { "type": "number" },
+              {
+                "type": "array",
+                "items": [
+                  { "type": "string", "format": "date-time" },
+                  { "type": "number" }
+                ],
+                "minItems": 2,
+                "maxItems": 2
+              }
+            ]
+          }
+        },
+        "redundancy": {
+          "type": ["integer", "null"],
+          "description": "Redundancy flag (previous increments repeated)"
+        },
+        "sensitivity": {
+          "type": ["integer", "null"],
+          "minimum": 0,
+          "maximum": 3,
+          "description": "0 = highest sensitivity, 3 = lowest (_ap only)"
+        },
+        "time_step": {
+          "type": "integer",
+          "description": "Number of minutes per measurement"
+        }
+      }
+    },
+    "errors": {
+      "type": "array",
+      "description": "List of error messages",
+      "items": { "type": "string" }
+    },
+    "warnings": {
+      "type": "array",
+      "description": "List of warning messages",
+      "items": { "type": "string" }
+    }
+  }
+}

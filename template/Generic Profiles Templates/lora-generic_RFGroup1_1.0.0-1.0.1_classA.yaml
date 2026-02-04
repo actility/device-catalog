@@ -22,11 +22,13 @@ ISMbands: eu868
 motionIndicator: RANDOM
 
 mac:
+    # This value defines the minimal required RX1 delay that allows the application server managing the device to quickly respond to an uplink packet with a downlink applicative packet.
+    minRx1Delay:
     # Activation modes supported by the device (put true where applicable).
     # (ABP)
     activationByPersonalization: true
     #(OTAA)
-    overTheAirActivation: false
+    overTheAirActivation: true
     # Supported version of the LoRaWAN MAC (Layer-2) specification. Possible values are '1.0.0/1.0.1', '1.0.2', '1.0.3', '1.0.4', '1.1'
     loRaWANMacVersion: 1.0.0/1.0.1
     # Supported version of the LoRaWAN regional parameters (PHY) specification. Possible values are '1.0.2revA', '1.0.2revB', '1.0.2revC', 
@@ -52,7 +54,7 @@ mac:
 
 # The following section defines the default settings used by the device during iniial boot stage. Leave empty if your device respects the 
 # default values indicated by LoRaWAN Regional Parameters (PHY) specification. Personalize fields only when different from default PHY values.
-bootSettings: 
+bootSettings:
     # Delay between the end of uplink transmission and the start of downlink RX1 slot, in milliseconds. Refer to 'receiveDelay1' in LoRaWAN 
     # Specification.
     rx1Delay: 1000

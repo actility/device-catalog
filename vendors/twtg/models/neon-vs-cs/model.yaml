@@ -32,7 +32,7 @@ LoRaWANCertified: false
 # Format: `<8 characters max>:<16 characters max>:<digits only>`
 modelId: twtg:neon-vs-cs:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
-protocolId:
+protocolId: twtg:neon-vb:4
 # DataSheet URL (optional)
 specificationURL: https://github.com/TWTG-R-D-B-V/neon-product-documentation/blob/main/VS-CS/Installation%20%26%20Use/601_P20-017_NEON-Data-Sheet-CS_A7.pdf
 # User Guide URL (optional)
@@ -40,3 +40,27 @@ userGuideURL: https://github.com/TWTG-R-D-B-V/neon-product-documentation/blob/ma
 # Available sensors following Actility ontology: https://github.com/actility/thingpark-iot-flow-js-driver/blob/master/UNITS.md
 sensors:
 examples:
+  twtg:neon-vb:4:
+    - "Configuration Update Request - Schedule - Transmitter Status"
+    - "Configuration Update Request - Schedule - Transmitter Battery"
+    - "Configuration Update Request - Transmitter"
+    - "Past Measurement Request"
+    - "Alert"
+    - "Configuration Update Answer - Transmitter"
+    - "DevVersionAns"
+    - "Fragmented Uplink Start"
+    - "Fragmented Uplink Data"
+    - "Machine Fault Indicator"
+    - "Sensor Boot"
+    - "Transmitter Battery"
+    - "Transmitter Boot"
+    - "Transmitter Deactivated"
+    - "Transmitter Status"
+    - "Measurement - X"
+    - "Spectrum - X Acceleration"
+    - "Statistics"
+
+
+LoRaWANRelay:
+  canOperateAsARelay: false
+  defaultRelayActivation: false

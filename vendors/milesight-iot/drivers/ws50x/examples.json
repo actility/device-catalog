@@ -1,0 +1,53 @@
+[
+  {
+    "description": "Example 1",
+    "type": "uplink",
+    "input": {
+      "bytes": "FF2911",
+      "fPort": 100,
+      "time": "2022-11-03T17:00:00.000+02:00",
+      "points": {
+        "status:0": {
+          "unitId": "state",
+          "record": true,
+          "nature": "switch_1 open"
+        },
+        "status:1": {
+          "unitId": "state",
+          "record": false,
+          "nature": "switch_2 open"
+        },
+        "status:2": {
+          "unitId": "state",
+          "record": false,
+          "nature": "switch_3 open"
+        }
+      }
+    },
+    "output": {
+      "switch_1": "open",
+      "switch_2": "close",
+      "switch_3": "close",
+      "switch_1_change": "yes",
+      "switch_2_change": "no",
+      "switch_3_change": "no"
+    },
+    "points": {
+      "status:0": {
+        "unitId": "state",
+        "record": true,
+        "nature": "switch_1 open"
+      },
+      "status:1": {
+        "unitId": "state",
+        "record": false,
+        "nature": "switch_2 open"
+      },
+      "status:2": {
+        "unitId": "state",
+        "record": false,
+        "nature": "switch_3 open"
+      }
+    }
+  }
+]

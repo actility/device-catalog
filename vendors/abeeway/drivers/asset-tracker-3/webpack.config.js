@@ -5,8 +5,8 @@ module.exports = {
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, './'),
-    filename: 'main.js',
-    library: "driver",
+    library: 'driver',
+    filename: 'main.js'
   }
 };
 

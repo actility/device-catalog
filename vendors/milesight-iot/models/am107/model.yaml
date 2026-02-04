@@ -53,8 +53,17 @@ sensors:
     - light:lx
     - co2Level:ppm
     - pressure:hPa
+    - quantity:ppb
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
     msight:am100-series:1:
         - "Example am107"
+    os1-mile:am107:1:
+        - "Ambience Monitoring Sensors (example 1) - Milesight IoT"
+        - "Ambience Monitoring Sensors (example 2) - Milesgiht IoT"
+        - "Ambience Monitoring Sensors (example 3) - Milesgiht IoT"
+
+LoRaWANRelay:
+  canOperateAsARelay: false
+  defaultRelayActivation: false

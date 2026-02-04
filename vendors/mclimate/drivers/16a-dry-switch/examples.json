@@ -1,0 +1,396 @@
+[
+  {
+    "type": "uplink",
+    "description": "keepalive: internal temperature positive, relay ON",
+    "input": {
+      "bytes": [1, 30, 1],
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "internalTemperature": 30,
+        "relayState": "ON"
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "temperature": {
+        "unitId": "Cel",
+        "record": 30
+      },
+      "status": {
+        "unitId": "state",
+        "record": true,
+        "nature": "relay"
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "keepalive: internal temperature positive, relay OFF",
+    "input": {
+      "bytes": [1, 22, 0],
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:01:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "internalTemperature": 22,
+        "relayState": "OFF"
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "temperature": {
+        "unitId": "Cel",
+        "record": 22
+      },
+      "status": {
+        "unitId": "state",
+        "record": false,
+        "nature": "relay"
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "keepalive: internal temperature negative (sign bit set), relay ON",
+    "input": {
+      "bytes": [1, 133, 1],
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:02:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "internalTemperature": -5,
+        "relayState": "ON"
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "temperature": {
+        "unitId": "Cel",
+        "record": -5
+      },
+      "status": {
+        "unitId": "state",
+        "record": true,
+        "nature": "relay"
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "response: device versions (0x04) + keepalive trailer",
+    "input": {
+      "bytes": [4, 2, 5, 1, 30, 1],
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:03:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "deviceVersions": {
+          "hardware": 2,
+          "software": 5
+        },
+        "internalTemperature": 30,
+        "relayState": "ON"
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "temperature": {
+        "unitId": "Cel",
+        "record": 30
+      },
+      "status": {
+        "unitId": "state",
+        "record": true,
+        "nature": "relay"
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "response: keepAliveTime (0x12) + keepalive trailer",
+    "input": {
+      "bytes": [18, 10, 1, 20, 0],
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:04:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "keepAliveTime": 10,
+        "internalTemperature": 20,
+        "relayState": "OFF"
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "temperature": {
+        "unitId": "Cel",
+        "record": 20
+      },
+      "status": {
+        "unitId": "state",
+        "record": false,
+        "nature": "relay"
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "response: joinRetryPeriod (0x19) where 0x3C -> 5 minutes + keepalive trailer",
+    "input": {
+      "bytes": [25, 60, 1, 25, 1],
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:05:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "joinRetryPeriod": 5,
+        "internalTemperature": 25,
+        "relayState": "ON"
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "temperature": {
+        "unitId": "Cel",
+        "record": 25
+      },
+      "status": {
+        "unitId": "state",
+        "record": true,
+        "nature": "relay"
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "response: watchdog params (0x1d) + keepalive trailer",
+    "input": {
+      "bytes": [29, 3, 4, 1, 10, 0],
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:06:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "watchDogParams": {
+          "wdpC": 3,
+          "wdpUc": 4
+        },
+        "internalTemperature": 10,
+        "relayState": "OFF"
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "temperature": {
+        "unitId": "Cel",
+        "record": 10
+      },
+      "status": {
+        "unitId": "state",
+        "record": false,
+        "nature": "relay"
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "response: overheating thresholds (0x1f) + keepalive trailer",
+    "input": {
+      "bytes": [31, 80, 69, 1, 45, 1],
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:07:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "overheatingThresholds": {
+          "trigger": 80,
+          "recovery": 69
+        },
+        "internalTemperature": 45,
+        "relayState": "ON"
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "temperature": {
+        "unitId": "Cel",
+        "record": 45
+      },
+      "status": {
+        "unitId": "state",
+        "record": true,
+        "nature": "relay"
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "response: FUOTA address (0xa0) + region (0xa4) + keepalive trailer",
+    "input": {
+      "bytes": [160, 1, 2, 3, 4, 164, 1, 1, 30, 0],
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:08:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "fuota": {
+          "fuota_address": 16909060,
+          "fuota_address_raw": "01020304"
+        },
+        "region": 1,
+        "internalTemperature": 30,
+        "relayState": "OFF"
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "temperature": {
+        "unitId": "Cel",
+        "record": 30
+      },
+      "status": {
+        "unitId": "state",
+        "record": false,
+        "nature": "relay"
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "fail: too short payload -> decoder throws 'Unhandled data'",
+    "input": {
+      "bytes": [1],
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:09:00.000+05:00"
+    },
+    "output": {
+      "errors": ["Unhandled data"],
+      "warnings": []
+    },
+    "points":{}
+  },
+  {
+    "type": "downlink-encode",
+    "description": "encode: setKeepAlive (0x02)",
+    "input": {
+      "data": {
+        "setKeepAlive": 10
+      }
+    },
+    "output": {
+      "bytes": [2, 10],
+      "fPort": 1,
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "encode: getDeviceVersions (0x04)",
+    "input": {
+      "data": {
+        "getDeviceVersions": ""
+      }
+    },
+    "output": {
+      "bytes": [4],
+      "fPort": 1,
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "encode: getKeepAliveTime (0x12)",
+    "input": {
+      "data": {
+        "getKeepAliveTime": ""
+      }
+    },
+    "output": {
+      "bytes": [18],
+      "fPort": 1,
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "encode: setJoinRetryPeriod (minutes -> 5sec steps) for 5 minutes => 0x3C",
+    "input": {
+      "data": {
+        "setJoinRetryPeriod": 5
+      }
+    },
+    "output": {
+      "bytes": [16, 60],
+      "fPort": 1,
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "encode: setRelayState (0xC1)",
+    "input": {
+      "data": {
+        "setRelayState": 1
+      }
+    },
+    "output": {
+      "bytes": [193, 1],
+      "fPort": 1,
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "encode: setRelayTimerMiliseconds (0x55) state=1 time=500ms => 0x01F4",
+    "input": {
+      "data": {
+        "setRelayTimerMiliseconds": {
+          "state": 1,
+          "time": 500
+        }
+      }
+    },
+    "output": {
+      "bytes": [85, 1, 1, 244],
+      "fPort": 1,
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "decode: passthrough bytes (as per MClimate decodeDownlink)",
+    "input": {
+      "bytes": [193, 1],
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:10:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "bytes": [193, 1]
+      },
+      "errors": [],
+      "warnings": []
+    }
+  }
+]

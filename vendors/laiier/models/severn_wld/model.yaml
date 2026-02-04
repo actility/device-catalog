@@ -48,6 +48,31 @@ sensors:
 # A list of examples description that are compatible with this model
 examples:
   laiier:severn-wld:1:
-    - uplink containing sensor wetness data and temperature
-    - decode downlink containing message interval and wetness threshold
+    - "Startup Message 1"
+    - "Startup Message 2 - Different FW version"
+    - "Startup Message 3 - too short"
+    - "Startup Message 4 - too long"
+    - "Regular Message 1"
+    - "Emergency Message 1"
+    - "Emergency Message 2 - Too long"
+    - "Emergency Message 3 - Too short"
+    - "Self Test Message 1"
+    - "Unexpected Port"
+    - "Startup Message 5 - invalid serial"
+    - "Regular Message P1 1"
+    - "Emergency Message P1 1"
+    - "Emergency Message P1 2 - Too short"
+    - "Self Test Message P1 1"
+    - "Regular Message P1 2"
+    - "Downlink 1 Profile 0"
+    - "Downlink 2 Profile 0"
+    - "Downlink 3 Profile 0"
+    - "Downlink 1 Profile 1"
+    - "Downlink 2 Profile 1"
+    - "Downlink 3 Profile 1"
+    - "Downlink 4 Profile 1"
+    - "Downlink 5 Profile 1, change to Profile 0"
 
+LoRaWANRelay:
+  canOperateAsARelay: false
+  defaultRelayActivation: false

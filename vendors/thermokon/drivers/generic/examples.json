@@ -1,0 +1,198 @@
+[
+  {
+    "type": "uplink",
+    "description": "ex1",
+    "input": {
+      "fPort": 1,
+      "bytes": "5003"
+    },
+    "output": {
+      "data": {
+        "REED0_CNT": 1,
+        "REED0_STATE": 1
+      }
+    },
+    "points": {}
+  },
+  {
+    "type": "uplink",
+    "description": "ex2",
+    "input": {
+      "fPort": 1,
+      "bytes": "c000400141005000950000"
+    },
+    "output": {
+      "data": {
+        "DEV_KEY": 16385,
+        "OCCU0_CNT": 0,
+        "OCCU0_STATE": 0,
+        "REED0_CNT": 0,
+        "REED0_STATE": 0,
+        "REED1_CNT": 0,
+        "REED1_STATE": 0
+      }
+    },
+    "points": {}
+  },
+  {
+    "type": "uplink",
+    "description": "ex3",
+    "input": {
+      "fPort": 1,
+      "bytes": "544e1000ee112e40002b"
+    },
+    "output": {
+      "data": {
+        "RHUM": 46,
+        "TEMP": 23.8,
+        "VBAT": 1560,
+        "VISIBLE_LIGHT": 43
+      }
+    },
+    "points": {
+      "batteryVoltage": {
+        "unitId": "V",
+        "record": 1560
+      },
+      "temperature:0": {
+        "unitId": "Cel",
+        "record": 23.8
+      },
+      "humidity": {
+        "unitId": "%RH",
+        "record": 46
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "ex4",
+    "input": {
+      "fPort": 1,
+      "bytes": "955002"
+    },
+    "output": {
+      "data": {
+        "BUTTON_2_CNT": 1,
+        "BUTTON_2_LAST_TYPE": "Short Press",
+        "BUTTON_2_PRESSED": 1
+      }
+    },
+    "points": {}
+  },
+  {
+    "type": "uplink",
+    "description": "ex5",
+    "input": {
+      "fPort": 1,
+      "bytes": "4102"
+    },
+    "output": {
+      "data": {
+        "OCCU0_CNT": 1,
+        "OCCU0_STATE": 0
+      }
+    },
+    "points": {}
+  },
+  {
+    "type": "uplink",
+    "description": "ex6",
+    "input": {
+      "fPort": 1,
+      "bytes": "963000d7"
+    },
+    "output": {
+      "data": {
+        "SETPOINT_2": 21.5
+      }
+    },
+    "points": {}
+  },
+  {
+    "type": "uplink",
+    "description": "ex7",
+    "input": {
+      "fPort": 1,
+      "bytes": "1000de1126"
+    },
+    "output": {
+      "data": {
+        "RHUM": 38,
+        "TEMP": 22.2
+      }
+    },
+    "points": {
+      "temperature:0": {
+        "unitId": "Cel",
+        "record": 22.2
+      },
+      "humidity": {
+        "unitId": "%RH",
+        "record": 38
+      }
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Downlink: Set open window detection",
+    "input": {
+      "data": {
+        "HEARTBEAT_INTERVAL": 5,
+        "HYSTERESIS_BEHAVIOR": 3,
+        "MEAS_INTERVAL": 15,
+        "CNT_MEAS": 100,
+        "LED_MODE": 0,
+        "LED_ONTIME": 3
+      }
+    },
+    "output": {
+      "fPort": 2,
+      "bytes": [
+        193,
+        6,
+        0,
+        5,
+        193,
+        7,
+        0,
+        3,
+        193,
+        8,
+        0,
+        15,
+        193,
+        10,
+        0,
+        100,
+        193,
+        52,
+        0,
+        0,
+        193,
+        53,
+        0,
+        3
+      ],
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Downlink: command, led mode and heartbeat interval",
+    "input": {
+      "data": {
+        "CMD": 1,
+        "LED_MODE": 10,
+        "HEARTBEAT_INTERVAL": 20
+      }
+    },
+    "output": {
+      "fPort": 2,
+      "bytes": "c1000001c134000ac1060014",
+      "errors": [],
+      "warnings": []
+    }
+  }
+]

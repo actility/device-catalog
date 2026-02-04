@@ -1,0 +1,37 @@
+[
+  {
+    "description": "Example 1",
+    "type": "uplink",
+    "input": {
+      "bytes": "017564030001",
+      "fPort": 100,
+      "time": "2024-11-03T17:00:00.000+02:00",
+      "points": {
+        "batteryLevel": {
+          "record": 100,
+          "unitId": "%"
+        },
+        "status": {
+          "record": true,
+          "unitId": "state",
+          "nature": "leak"
+        }
+      }
+    },
+    "output": {
+      "battery": 100,
+      "leakage_status": "leak"
+    },
+    "points": {
+      "batteryLevel": {
+        "unitId": "%",
+        "record": 100
+      },
+      "status": {
+        "unitId": "state",
+        "record": true,
+        "nature": "leak"
+      }
+    }
+  }
+]

@@ -44,6 +44,9 @@ specificationURL: https://resource.milesight.com/milesight/iot/document/ts30x-da
 userGuideURL: https://resource.milesight.com/milesight/iot/document/ts30x-user-guide-en.pdf
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
+  - batteryLevel:%
+  - temperature:Cel
+  - status:state
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
@@ -55,3 +58,8 @@ examples:
     - Battery, Temperature CHN1, Temperature CHN2 and Temperature CHN2 alarm
     - Temperature CHN2, Temperature CHN2 change and Temperature CHN2 alarm
     - History
+
+
+LoRaWANRelay:
+  canOperateAsARelay: false
+  defaultRelayActivation: false

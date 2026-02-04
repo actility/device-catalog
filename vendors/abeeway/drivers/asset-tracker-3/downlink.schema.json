@@ -1,0 +1,827 @@
+{
+  "type": "object",
+  "properties": {
+    "downMessageType": {
+      "type": "string",
+      "description": "Type of the downlink message, e.g., RESET, CONFIGURE."
+    },
+    "requestType": {
+      "type": "string"
+    },
+    "commandType": {
+      "type": "string"
+    },
+    "classId": {
+      "type": "string"
+    },
+    "eventType": {
+      "type": "number"
+    },
+    "ackToken": {
+      "type": "number",
+      "description": "Acknowledgment token for the downlink message."
+    },
+    "payload": {
+      "type": "string",
+      "description": "Raw payload of the downlink message."
+    },
+    "crc": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "sensorIds": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "type": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "setParameterClass": {
+      "type": "object",
+      "properties": {
+        "group": {
+          "type": "string"
+        },
+        "parameters": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "parameterName": {
+                "type": "string"
+              },
+              "parameterValue": {
+                "type": ["number", "string", "array", "object"],
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "Action": {
+                      "type": "string"
+                    },
+                    "Technology": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "properties": {
+                  "geoTriggerGeozoning": {
+                    "type": "boolean"
+                  },
+                  "geoTriggerInMotion": {
+                    "type": "boolean"
+                  },
+                  "geoTriggerInStatic": {
+                    "type": "boolean"
+                  },
+                  "geoTriggerMotionStart": {
+                    "type": "boolean"
+                  },
+                  "geoTriggerMotionStop": {
+                    "type": "boolean"
+                  },
+                  "geoTriggerPod": {
+                    "type": "boolean"
+                  },
+                  "geoTriggerShock": {
+                    "type": "boolean"
+                  },
+                  "geoTriggerSos": {
+                    "type": "boolean"
+                  },
+                  "geoTriggerTempHighThreshold": {
+                    "type": "boolean"
+                  },
+                  "geoTriggerTempLowThreshold": {
+                    "type": "boolean"
+                  }
+                },
+                "additionalProperties": false
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "getParameterClass": {
+      "type": "object",
+      "properties": {
+        "group": {
+          "type": "string"
+        },
+        "parameters": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "setParameters": {
+      "type": "object",
+      "description": "Parameters to set in the downlink message.",
+      "properties": {
+        "angleDetectionMode": {
+          "type": "string"
+        },
+        "angleReferenceAcquisition": {
+          "type": "string"
+        },
+        "angleReferenceAccelerationX": {
+          "type": "number"
+        },
+        "angleReferenceAccelerationY": {
+          "type": "number"
+        },
+        "angleReferenceAccelerationZ": {
+          "type": "number"
+        },
+        "angleCritical": {
+          "type": "number"
+        },
+        "angleCriticalHysteresis": {
+          "type": "number"
+        },
+        "angleReportingPeriod": {
+          "type": "number"
+        },
+        "angleReportingRepeat": {
+          "type": "number"
+        },
+        "angleRisingTime": {
+          "type": "number"
+        },
+        "angleFallingTime": {
+          "type": "number"
+        },
+        "angleLearningTime": {
+          "type": "number"
+        },
+        "angleAccelerationAccuracy": {
+          "type": "number"
+        },
+        "angleDeviationDelta": {
+          "type": "number"
+        },
+        "angleDeviationMinInterval": {
+          "type": "number"
+        },
+        "angleReportingMode": {
+          "type": "object",
+          "properties": {
+            "normalToCritical": {
+              "type": "boolean"
+            },
+            "criticalToNormal": {
+              "type": "boolean"
+            },
+            "learningToNormal": {
+              "type": "boolean"
+            },
+            "normalToLearning": {
+              "type": "boolean"
+            },
+            "criticalToLearning": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        },
+        "bleBeaconCount": {
+          "type": "number"
+        },
+        "bleBeaconTimeout": {
+          "type": "number"
+        },
+        "bleRssiFilter": {
+          "type": "number"
+        },
+        "bleFilterReportType": {
+          "type": "string"
+        },
+        "bleFilterSecMask": {
+          "type": "number"
+        },
+        "bleFilterType": {
+          "type": "string"
+        },
+        "bleFilterMain1": {
+          "type": "number"
+        },
+        "bleFilterMain2": {
+          "type": "number"
+        },
+        "bleFilterSecValue": {
+          "type": "number"
+        },
+        "loralivePeriod": {
+          "type": "number"
+        },
+        "trackingUlPeriod": {
+          "type": "number"
+        },
+        "geolocSensorProfile": {
+          "type": "string"
+        },
+        "motionStartEndNbTx": {
+          "type": "number"
+        },
+        "motionDuration": {
+          "type": "number"
+        },
+        "periodicPositionInterval": {
+          "type": "number"
+        },
+        "oneshotGeolocMethod": {
+          "type": "string"
+        },
+        "periodicActivityPeriod": {
+          "type": "number"
+        },
+        "gpsConvergence": {
+          "type": "number"
+        },
+        "gpsScanMode": {
+          "type": "number"
+        },
+        "gpsTimeout": {
+          "type": "number"
+        },
+        "gpsEHPE": {
+          "type": "number"
+        },
+        "gpsStandbyTimeout": {
+          "type": "number"
+        },
+        "geofencingScanPeriod": {
+          "type": "number"
+        },
+        "geofencingCollectPeriod": {
+          "type": "number"
+        },
+        "confirmedUplink": {
+          "type": "object",
+          "properties": {
+            "position": {
+              "type": "boolean"
+            },
+            "proximity": {
+              "type": "boolean"
+            },
+            "activityStatus": {
+              "type": "boolean"
+            },
+            "configuration": {
+              "type": "boolean"
+            },
+            "debug": {
+              "type": "boolean"
+            },
+            "energyStatus": {
+              "type": "boolean"
+            },
+            "healthStatus": {
+              "type": "boolean"
+            },
+            "event": {
+              "type": "boolean"
+            },
+            "framePending": {
+              "type": "boolean"
+            },
+            "extendedPosition": {
+              "type": "boolean"
+            },
+            "heartbeat": {
+              "type": "boolean"
+            },
+            "shockDetection": {
+              "type": "boolean"
+            },
+            "shutdown": {
+              "type": "boolean"
+            },
+            "sms": {
+              "type": "boolean"
+            },
+            "scanCollection": {
+              "type": "boolean"
+            },
+            "confirmedUlBitmap": {
+              "type": "number"
+            },
+            "confirmedUlRetry": {
+              "type": "number"
+            }
+          },
+          "additionalProperties": false
+        },
+        "transmitStrat": {
+          "type": "string"
+        },
+        "defaultDatarate": {
+          "type": "number"
+        },
+        "energyStatusPeriod": {
+          "type": "number"
+        },
+        "extAntennaProfile": {
+          "type": "string"
+        },
+        "configFlags": {
+          "type": "object",
+          "properties": {
+            "framePendingMechanism": {
+              "type": "boolean"
+            },
+            "buttonPressToTurnOFF": {
+              "type": "boolean"
+            },
+            "doubleClickIsSosModeOrAlert": {
+              "type": "boolean"
+            },
+            "downlinkSetParameterConfirmation": {
+              "type": "boolean"
+            },
+            "wifiPayloadWithNoCypher": {
+              "type": "boolean"
+            },
+            "bleAdvertisingAtStart": {
+              "type": "boolean"
+            },
+            "selectWifiScanOrGeolocStartMessage": {
+              "type": "boolean"
+            },
+            "ledBlinkWithGpsFix": {
+              "type": "boolean"
+            },
+            "startMotionEventUplink": {
+              "type": "boolean"
+            },
+            "endMotionEventUplink": {
+              "type": "boolean"
+            },
+            "otaJoinWhenLeavingModeOff": {
+              "type": "boolean"
+            },
+            "rejectAsymmetricPairing": {
+              "type": "boolean"
+            },
+            "enableLongWifiPayload": {
+              "type": "boolean"
+            },
+            "collectionLongReport": {
+              "type": "boolean"
+            },
+            "autoStart": {
+              "type": "boolean"
+            },
+            "forbidModeOff": {
+              "type": "boolean"
+            },
+            "sosModeSound": {
+              "type": "boolean"
+            },
+            "automaticDatarateSelection": {
+              "type": "boolean"
+            },
+            "extendedPosition": {
+              "type": "boolean"
+            },
+            "bleCli": {
+              "type": "boolean"
+            },
+            "blePasskey": {
+              "type": "boolean"
+            },
+            "wifiDatabase": {
+              "type": "boolean"
+            },
+            "activeWifiScan": {
+              "type": "boolean"
+            },
+            "gnssHoldOnEnable": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        },
+        "buzzerVolume": {
+          "type": "number"
+        },
+        "sosPeriod": {
+          "type": "number"
+        },
+        "temperatureHigh": {
+          "type": "number"
+        },
+        "temperatureLow": {
+          "type": "number"
+        },
+        "bleBond": {
+          "type": "string"
+        },
+        "transmitStratCustom": {
+          "type": "object",
+          "properties": {
+            "ADREnabled": {
+              "type": "boolean"
+            },
+            "transmissionType": {
+              "type": "string"
+            },
+            "firstTransmissionDatarateDistribution": {
+              "type": "string"
+            },
+            "secondTransmissionDatarateDistribution": {
+              "type": "string"
+            },
+            "firstTransmissionDatarate": {
+              "type": "object",
+              "properties": {
+                "dr0": {
+                  "type": "boolean"
+                },
+                "dr1": {
+                  "type": "boolean"
+                },
+                "dr2": {
+                  "type": "boolean"
+                },
+                "dr3": {
+                  "type": "boolean"
+                },
+                "dr4": {
+                  "type": "boolean"
+                },
+                "dr5": {
+                  "type": "boolean"
+                },
+                "dr6": {
+                  "type": "boolean"
+                },
+                "dr7": {
+                  "type": "boolean"
+                }
+              },
+              "additionalProperties": false
+            },
+            "secondTransmissionDatarate": {
+              "type": "object",
+              "properties": {
+                "dr0": {
+                  "type": "boolean"
+                },
+                "dr1": {
+                  "type": "boolean"
+                },
+                "dr2": {
+                  "type": "boolean"
+                },
+                "dr3": {
+                  "type": "boolean"
+                },
+                "dr4": {
+                  "type": "boolean"
+                },
+                "dr5": {
+                  "type": "boolean"
+                },
+                "dr6": {
+                  "type": "boolean"
+                },
+                "dr7": {
+                  "type": "boolean"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "motionSensitivity": {
+          "type": "object",
+          "properties": {
+            "fullScale": {
+              "type": "string"
+            },
+            "outputDataRate": {
+              "type": "string"
+            },
+            "sensitivity": {
+              "type": "number"
+            }
+          },
+          "additionalProperties": false
+        },
+        "shockDetection": {
+          "type": "number"
+        },
+        "motionDebounce": {
+          "type": "number"
+        },
+        "dynamicProfile": {
+          "type": "string"
+        },
+        "defaultProfile": {
+          "type": "string"
+        },
+        "beaconingType": {
+          "type": "string"
+        },
+        "beaconingTxPower": {
+          "type": "string"
+        },
+        "beaconingStaticInterval": {
+          "type": "number"
+        },
+        "beaconingMotionInterval": {
+          "type": "number"
+        },
+        "beaconingMotionDuration": {
+          "type": "number"
+        },
+        "batteryCapacity": {
+          "type": "number"
+        },
+        "reedSwitchConfiguration": {
+          "type": "string"
+        },
+        "gnssConstellation": {
+          "type": "string"
+        },
+        "buttonMapping": {
+          "type": "object",
+          "properties": {
+            "buttonPress": {
+              "type": "string"
+            },
+            "oneButtonClick": {
+              "type": "string"
+            },
+            "twoButtonClick": {
+              "type": "string"
+            },
+            "threeButtonClick": {
+              "type": "string"
+            },
+            "buttonPressDuration": {
+              "type": "number"
+            }
+          },
+          "additionalProperties": false
+        },
+        "collectionNbEntry": {
+          "type": "number"
+        },
+        "collectionBleFilterMain1": {
+          "type": "number"
+        },
+        "collectionBleFilterMain2": {
+          "type": "number"
+        },
+        "collectionBleFilterSecValue": {
+          "type": "number"
+        },
+        "collectionBleFilterSecMask": {
+          "type": "number"
+        },
+        "angleDeviationMaxInterval": {
+          "type": "number"
+        },
+        "temperatureAction": {
+          "type": "string",
+          "description": "Action to take for temperature, e.g., NO_ACTION."
+        },
+        "gpsT0Timeout": {
+          "type": "number",
+          "description": "GPS T0 timeout value."
+        },
+        "gpsFixTimeout": {
+          "type": "number",
+          "description": "GPS fix timeout value."
+        },
+        "bleConnectivityAdvertisingDuration": {
+          "type": "number",
+          "description": "BLE connectivity advertising duration in seconds."
+        },
+        "gpsEHPEMotion": {
+          "type": "number",
+          "description": "GPS EHPE motion value."
+        },
+        "gpsConvergenceMotion": {
+          "type": "number",
+          "description": "GPS convergence motion value."
+        },
+        "gpsT0TimeoutMotion": {
+          "type": "number",
+          "description": "GPS T0 timeout motion value."
+        },
+        "powerConsumption": {
+          "type": "number",
+          "description": "Power consumption value."
+        },
+        "collectionScanType": {
+          "type": "string",
+          "description": "Type of collection scan, e.g., NO_COLLECTION_SCAN, BLE_BEACONS."
+        },
+        "collectionBleFilterType": {
+          "type": "string",
+          "description": "Type of BLE filter, e.g., NO_FILTER, EDDYSTONE_URL."
+        },
+        "passwordCommandLineInterface": {
+          "type": "number",
+          "description": "Password for the command-line interface."
+        },
+        "xgpsTimeout": {
+          "type": "number",
+          "description": "Timeout for XGPS."
+        },
+        "mode": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "setGenericParameters": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "group": {
+            "type": "string"
+          },
+          "parameters": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "parameterName": {
+                  "type": "string"
+                },
+                "parameterValue": {
+                  "type": ["number", "string", "object", "array"],
+                  "properties": {
+                    "buttonDoubleClicks": {
+                      "type": "string"
+                    },
+                    "buttonLongPress": {
+                      "type": "string"
+                    },
+                    "buttonLongPressDuration": {
+                      "type": "number"
+                    },
+                    "buttonPress": {
+                      "type": "string"
+                    },
+                    "buttonPressDuration": {
+                      "type": "number"
+                    },
+                    "buttonSingleClick": {
+                      "type": "string"
+                    },
+                    "buttonTripleClicksOrAbove": {
+                      "type": "string"
+                    },
+                    "buttonSimpleSequence": {
+                      "type": "string"
+                    }
+                  },
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "Action": {
+                        "type": "string"
+                      },
+                      "Technology": {
+                        "type": "string"
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "additionalProperties": false
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "getGenericParameters": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "group": {
+            "type": "string"
+          },
+          "parameters": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "debugCommandType": {
+      "type": "string",
+      "description": "Type of debug command, e.g., RESET, MAKE_TRACKER_RING."
+    },
+    "melodyId": {
+      "type": "string",
+      "description": "Melody ID for the tracker ring."
+    },
+    "buzzerDuration": {
+      "type": "number",
+      "description": "Duration of the buzzer in seconds."
+    },
+    "angleDetectionControl": {
+      "type": "string",
+      "description": "Control for angle detection, e.g., RESET_ANGLE_DETECTION."
+    },
+    "resetAction": {
+      "type": "string",
+      "description": "Action to take during reset, e.g., RESET_DEVICE, DELETE_CONFIG_RESET."
+    },
+    "txPowerIndex": {
+      "type": "number",
+      "description": "Transmission power index."
+    },
+    "startupModes": {
+      "type": "object",
+      "description": "Startup modes configuration.",
+      "properties": {
+        "manufacturing": {
+          "type": "boolean",
+          "description": "Indicates if manufacturing mode is enabled."
+        },
+        "shipping": {
+          "type": "boolean",
+          "description": "Indicates if shipping mode is enabled."
+        }
+      },
+      "additionalProperties": false
+    },
+    "bleAdvertisementDuration": {
+      "type": "number",
+      "description": "Duration of BLE advertisement in seconds."
+    },
+    "optionalCommand": {
+      "type": "string",
+      "description": "Optional command for the downlink."
+    },
+    "statusType": {
+      "type": "string",
+      "description": "Type of status requested, e.g., TEMPERATURE_STATUS."
+    },
+    "listParameterID": {
+      "type": "array",
+      "items": {
+        "type": "number"
+      },
+      "description": "List of parameter IDs."
+    },
+    "listParameterIDNames": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of parameter ID names."
+    },
+    "modeValue": {
+      "type": "string",
+      "description": "Mode value for the downlink, e.g., STANDBY, MOTION_TRACKING."
+    },
+    "sms": {
+      "type": "object",
+      "properties": {
+        "senderId": {
+          "type": "number"
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "description": "SMS"
+    }
+  },
+  "additionalProperties": false
+}

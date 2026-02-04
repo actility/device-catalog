@@ -1,7 +1,7 @@
 # Commercial name of the model
 name: EM300-DI Pusle counter
 # Functional description of the product. Maximum 500 characters.
-description: EM300-DI is a compact LoRaWAN® pulse counter which transforms traditional water meters into wireless intelligent meters.
+description: "EM300-DI is a compact LoRaWAN® pulse counter which transforms traditional water meters into wireless intelligent meters."
 # Logo of the device
 logo: em300-di.png
 # ID(s) of the profile that defines the LoRaWAN characteristics of this model.
@@ -44,9 +44,12 @@ sensors:
     - batteryLevel:%
     - temperature:Cel
     - humidity:%RH
-    - frequency:hertz
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
     msight:em300-di:1:
         - "Example 1"
+
+LoRaWANRelay:
+  canOperateAsARelay: false
+  defaultRelayActivation: false

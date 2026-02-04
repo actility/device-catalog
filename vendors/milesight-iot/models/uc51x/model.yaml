@@ -1,7 +1,7 @@
 # Commercial name of the model
 name: UC51x Series LoRaWAN® Solenoid Valve Controller
 # Functional description of the product. Maximum 500 characters.
-description: Milesight UC51x series is a device used to remotely control DC latching solenoids of the valve. It contains 2 solenoid interfaces and 2 GPIO interfaces, which can be easily controlled locally or remotely. Besides ultra-low-power LoRaWAN® technology, UC51x series also provides built-in solar pannel and high-capacity battery power supply for long-term operation. For outdoor applications, it equips with IP67-rated enclosure and M12 connectors to protect from water and dust under harsh environments.
+description: "Milesight UC51x series is a device used to remotely control DC latching solenoids of the valve. It contains 2 solenoid interfaces and 2 GPIO interfaces, which can be easily controlled locally or remotely. Besides ultra-low-power LoRaWAN® technology, UC51x series also provides built-in solar pannel and high-capacity battery power supply for long-term operation. For outdoor applications, it equips with IP67-rated enclosure and M12 connectors to protect from water and dust under harsh environments."
 # Logo of the device
 logo: uc51x.png
 # Product name & Version
@@ -51,3 +51,13 @@ specificationURL: https://www.milesight-iot.com/lorawan/controller/uc51x/
 userGuideURL: 
 # Available sensors following Actility ontology: https://github.com/actility/thingpark-iot-flow-js-driver/blob/master/UNITS.md 
 sensors:
+    - batteryLevel:%
+    - status:state
+    - counter:count
+examples:
+    msight:uc51x-series:1:
+        - "Example 1"
+
+LoRaWANRelay:
+  canOperateAsARelay: false
+  defaultRelayActivation: false

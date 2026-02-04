@@ -34,6 +34,7 @@ LoRaWANCertified:
 # Be careful: Once you chose a model, it cannot be changed later
 modelId: svendor:sample-model:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
+# Format: `<8 characters max>:<16 characters max>:<digits only>`
 # Be careful: Once you chose a protocolId, it cannot be changed later
 protocolId:
   - svendor:sample-model-protocol:1
@@ -65,3 +66,7 @@ examples:
     - fail decode downlink when payload contains pulseCounterThreshold with oob
     - fail decode downlink when payload contains alarm with oob
     - fail decode downlink when unknown id
+
+LoRaWANRelay:
+  canOperateAsARelay: false
+  defaultRelayActivation: false

@@ -38,6 +38,7 @@ LoRaWANCertified:
 modelId: elsys:ers:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId: 
+    - os1-elsy:ers:1
     - elsys:generic:1
 # DataSheet URL (optional) 
 specificationURL: https://elsys.se/public/documents/Sensor_payload.pdf
@@ -48,3 +49,7 @@ sensors:
     - temperature:Cel
     - humidity:%RH
     - light:lx
+
+LoRaWANRelay:
+  canOperateAsARelay: false
+  defaultRelayActivation: false

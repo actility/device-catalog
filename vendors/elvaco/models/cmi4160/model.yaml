@@ -1,0 +1,64 @@
+# Commercial name of the model
+name: CMi4160
+# Functional description of the product. Maximum 500 characters.
+description: With the CMi4160, Elvaco offers a meter communication module that has been specially developed as an easy-to-use and cost-effective solution for transmitting data from the heat meter Diehl Metering SHARKY 775 to a receiving server. The device is mounted internally in the meter and works on the basis of the IoT technology LoRaWAN. The internal Meter Connectivity Module (MCM) is characterized by a long battery life of 11 years, high energy efficiency and a long communication range. Last but not least, the CMi4160 can easily be retrofitted into already installed meters.
+# Logo of the device
+logo: cmi4160.jpg
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
+# id: as defined under /profiles.
+# lorawanDeviceProfileID: as defined by LoRa Alliance in https://lora-alliance.org/wp-content/uploads/2020/10/LoRa_Alliance_Vendor_ID_for_QR_Code_02142022.pdf.
+# The lorawanDeviceProfileID consists of 8 upper-case hexadecimal characters, 4 characters for VendorID + 4 characters for VendorProfileID. Please consider using single (') or double (") quotation.
+deviceProfileIds:
+  - id: elvaco_RFGroup1_1.0.2b_classA
+
+# You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings.
+# Maximum device TX Conducted output power in dBm.
+maxTxPower:
+# Minimum device TX Conducted output power in dBm.
+minTxPower:
+# Maximum device TX Radiated output power in dBm.
+maxTxEIRP:
+# Minimum device TX Radiated output power in dBm.
+minTxEIRP:
+# Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'
+# or 'random' (not known, changes over time).
+motionIndicator:
+
+# Is your device certified by the LoRa Alliance? Possible values: true, false.
+LoRaWANCertified: true
+# Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
+# Format: `<8 characters max>:<16 characters max>:<digits only>`
+# Be careful: Once you chose a model, it cannot be changed later
+modelId: elvaco:cmi4160:1
+# <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
+# Format: `<8 characters max>:<16 characters max>:<digits only>`
+# Be careful: Once you chose a protocolId, it cannot be changed later
+protocolId: elvaco:cmi41xx:1
+# DataSheet URL (optional)
+specificationURL: https://www.elvaco.com/Image/GetDocument/en/339/cmi4160%20data%20sheet%20english%20.pdf
+# User Guide URL (optional)
+userGuideURL: https://www.elvaco.com/Image/GetDocument/fr/355/cmi4160%20quick%20manual%20english.pdf
+# <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
+sensors:
+  - energy:Wh
+  - power:W
+  - temperature:Cel
+  - volume:m3
+  - flow:m3/h
+# Driver examples
+# A list of examples description that are compatible with this model
+examples:
+    elvaco:cmi41xx:1:
+        - "Standard"
+        - "Compact"
+        - "JSON"
+        - "Schedule"
+        - "Schedule Extended+"
+        - "Compact Tariff"
+        - "Maximum Flow"
+        - "Schedule Daily Tariff"
+        - "Schedule Daily"
+
+LoRaWANRelay:
+  canOperateAsARelay: false
+  defaultRelayActivation: false

@@ -1,0 +1,802 @@
+[
+  {
+    "type": "uplink",
+    "description": "uplink with empty payload",
+    "input": {
+      "bytes": [],
+      "fPort": 1,
+      "recvTime": "2025-08-05T11:25:05.000+01:00"
+    },
+    "output": {
+      "errors": [
+        "Invalid uplink payload: payload is empty"
+      ],
+      "warnings": []
+    },
+    "points": {}
+  },
+  {
+    "type": "uplink",
+    "description": "digital-only uplink (all off)",
+    "input": {
+      "bytes": [
+        1
+      ],
+      "fPort": 1,
+      "recvTime": "2025-08-05T11:25:05.000+01:00"
+    },
+    "output": {
+      "data": {
+        "D1": 0,
+        "D2": 0,
+        "D3": 0,
+        "D4": 0
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {}
+  },
+  {
+    "type": "uplink",
+    "description": "digital-only uplink (all on)",
+    "input": {
+      "bytes": [
+        31
+      ],
+      "fPort": 1,
+      "recvTime": "2025-08-05T11:25:05.000+01:00"
+    },
+    "output": {
+      "data": {
+        "D1": 1,
+        "D2": 1,
+        "D3": 1,
+        "D4": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {}
+  },
+  {
+    "type": "uplink",
+    "description": "digital-only uplink (more than 1 byte)",
+    "input": {
+      "bytes": [
+        21,
+        255
+      ],
+      "fPort": 1,
+      "recvTime": "2025-08-05T11:25:05.000+01:00"
+    },
+    "output": {
+      "data": {
+        "D1": 0,
+        "D2": 1,
+        "D3": 0,
+        "D4": 1
+      },
+      "errors": [],
+      "warnings": [
+        "Spurious payload bytes ignored"
+      ]
+    },
+    "points": {}
+  },
+  {
+    "type": "uplink",
+    "description": "Standard digital uplink",
+    "input": {
+      "bytes": [
+        2,
+        5
+      ],
+      "fPort": 1,
+      "recvTime": "2025-08-05T11:25:05.000+01:00"
+    },
+    "output": {
+      "data": {
+        "D1": 1,
+        "D2": 0,
+        "D3": 1,
+        "D4": 0
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {}
+  },
+  {
+    "type": "uplink",
+    "description": "Standard digital uplink - payload too short",
+    "input": {
+      "bytes": [
+        2
+      ],
+      "fPort": 1,
+      "recvTime": "2025-08-05T11:25:05.000+01:00"
+    },
+    "output": {
+      "errors": [
+        "Invalid uplink payload: payload too short"
+      ],
+      "warnings": []
+    },
+    "points": {}
+  },
+  {
+    "type": "uplink",
+    "description": "Analogue A1 uplink",
+    "input": {
+      "bytes": [
+        4,
+        0,
+        64,
+        246,
+        66
+      ],
+      "fPort": 1,
+      "recvTime": "2025-08-05T11:25:05.000+01:00"
+    },
+    "output": {
+      "data": {
+        "A1": 123.125
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {}
+  },
+  {
+    "type": "uplink",
+    "description": "Analogue A1 uplink - payload too short",
+    "input": {
+      "bytes": [
+        4,
+        0,
+        64,
+        246
+      ],
+      "fPort": 1,
+      "recvTime": "2025-08-05T11:25:05.000+01:00"
+    },
+    "output": {
+      "errors": [
+        "Invalid uplink payload: payload too short"
+      ],
+      "warnings": []
+    },
+    "points": {}
+  },
+  {
+    "type": "uplink",
+    "description": "Analogue A2 uplink",
+    "input": {
+      "bytes": [
+        8,
+        0,
+        63,
+        245,
+        65
+      ],
+      "fPort": 1,
+      "recvTime": "2025-08-05T11:25:05.000+01:00"
+    },
+    "output": {
+      "data": {
+        "A2": 30.65576171875
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {}
+  },
+  {
+    "type": "uplink",
+    "description": "Analogue A2 uplink - payload too short",
+    "input": {
+      "bytes": [
+        8,
+        0,
+        63,
+        245
+      ],
+      "fPort": 1,
+      "recvTime": "2025-08-05T11:25:05.000+01:00"
+    },
+    "output": {
+      "errors": [
+        "Invalid uplink payload: payload too short"
+      ],
+      "warnings": []
+    },
+    "points": {}
+  },
+  {
+    "type": "uplink",
+    "description": "All values apart from MODBUS",
+    "input": {
+      "bytes": [
+        254,
+        46,
+        9,
+        0,
+        0,
+        48,
+        65,
+        0,
+        0,
+        176,
+        65,
+        0,
+        0,
+        4,
+        66,
+        0,
+        0,
+        48,
+        66,
+        0,
+        0,
+        92,
+        66,
+        66,
+        0,
+        0,
+        0,
+        77,
+        0,
+        0,
+        0,
+        38,
+        238,
+        64,
+        36,
+        146,
+        104,
+        63,
+        0,
+        0,
+        204,
+        66,
+        0,
+        0,
+        206,
+        66,
+        0,
+        0,
+        208,
+        66,
+        0,
+        0,
+        74,
+        67,
+        0,
+        0,
+        75,
+        67,
+        0,
+        0,
+        76,
+        67
+      ],
+      "fPort": 1,
+      "recvTime": "2025-08-05T11:25:05.000+01:00"
+    },
+    "output": {
+      "data": {
+        "D1": 1,
+        "D2": 0,
+        "D3": 0,
+        "D4": 1,
+        "A1": 11,
+        "A2": 22,
+        "A3": 33,
+        "A4": 44,
+        "A5": 55,
+        "CNT1": 66,
+        "CNT2": 77,
+        "VOLT": 1.88,
+        "TEMP": 99,
+        "TIME": 1754408000,
+        "A1_H2": 102,
+        "A1_H3": 103,
+        "A1_H4": 104,
+        "A2_H2": 202,
+        "A2_H3": 203,
+        "A2_H4": 204
+      },
+      "errors": [],
+      "warnings": [
+        "Payload is longer than 50 bytes"
+      ]
+    },
+    "points": {
+      "voltage": {
+        "unitId": "V",
+        "record": 1.88
+      },
+      "temperature": {
+        "unitId": "Far",
+        "record": 99
+      },
+      "time": {
+        "unitId": "s",
+        "record": 1754408000
+      },
+      "counter:0": {
+        "unitId": "count",
+        "record": 66,
+        "nature": "CNT1"
+      },
+      "counter:1": {
+        "unitId": "count",
+        "record": 77,
+        "nature": "CNT2"
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Random values apart from MODBUS",
+    "input": {
+      "bytes": [
+        254,
+        46,
+        6,
+        67,
+        120,
+        10,
+        66,
+        226,
+        82,
+        75,
+        65,
+        96,
+        82,
+        131,
+        67,
+        134,
+        76,
+        223,
+        66,
+        93,
+        208,
+        180,
+        67,
+        46,
+        74,
+        3,
+        0,
+        117,
+        63,
+        15,
+        38,
+        248,
+        208,
+        162,
+        11,
+        147,
+        104,
+        63,
+        143,
+        16,
+        65,
+        68,
+        105,
+        245,
+        151,
+        68,
+        187,
+        255,
+        106,
+        68,
+        103,
+        80,
+        6,
+        69,
+        245,
+        146,
+        37,
+        69,
+        40,
+        192,
+        129,
+        68
+      ],
+      "fPort": 1,
+      "recvTime": "2025-08-05T11:25:05.000+01:00"
+    },
+    "output": {
+      "data": {
+        "D1": 0,
+        "D2": 1,
+        "D3": 1,
+        "D4": 0,
+        "A1": 34.6174430847168,
+        "A2": 12.707735061645508,
+        "A3": 262.6435546875,
+        "A4": 111.64945983886719,
+        "A5": 361.6278381347656,
+        "CNT1": 215598,
+        "CNT2": 638533493,
+        "VOLT": 3.98,
+        "TEMP": 84,
+        "TIME": 1754467234,
+        "A1_H2": 772.2587280273438,
+        "A1_H3": 1215.6690673828125,
+        "A1_H4": 939.9957885742188,
+        "A2_H2": 2149.025146484375,
+        "A2_H3": 2649.184814453125,
+        "A2_H4": 1038.0048828125
+      },
+      "errors": [],
+      "warnings": [
+        "Payload is longer than 50 bytes"
+      ]
+    },
+    "points": {
+      "voltage": {
+        "unitId": "V",
+        "record": 3.98
+      },
+      "temperature": {
+        "unitId": "Far",
+        "record": 84
+      },
+      "time": {
+        "unitId": "s",
+        "record": 1754467234
+      },
+      "counter:0": {
+        "unitId": "count",
+        "record": 215598,
+        "nature": "CNT1"
+      },
+      "counter:1": {
+        "unitId": "count",
+        "record": 638533493,
+        "nature": "CNT2"
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "MODBUS only",
+    "input": {
+      "bytes": [
+        128,
+        1,
+        22,
+        1,
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "fPort": 1,
+      "recvTime": "2025-08-05T11:25:05.000+01:00"
+    },
+    "output": {
+      "data": {
+        "MB_DATA": [
+          1,
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20
+        ]
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {}
+  },
+  {
+    "type": "uplink",
+    "description": "Random values apart from MODBUS",
+    "input": {
+      "bytes": [
+        254,
+        47,
+        6,
+        67,
+        120,
+        10,
+        66,
+        226,
+        82,
+        75,
+        65,
+        96,
+        82,
+        131,
+        67,
+        134,
+        76,
+        223,
+        66,
+        93,
+        208,
+        180,
+        67,
+        46,
+        74,
+        3,
+        0,
+        117,
+        63,
+        15,
+        38,
+        248,
+        208,
+        162,
+        11,
+        147,
+        104,
+        22,
+        1,
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        63,
+        143,
+        16,
+        65,
+        68,
+        105,
+        245,
+        151,
+        68,
+        187,
+        255,
+        106,
+        68,
+        103,
+        80,
+        6,
+        69,
+        245,
+        146,
+        37,
+        69,
+        40,
+        192,
+        129,
+        68
+      ],
+      "fPort": 1,
+      "recvTime": "2025-08-05T11:25:05.000+01:00"
+    },
+    "output": {
+      "data": {
+        "D1": 0,
+        "D2": 1,
+        "D3": 1,
+        "D4": 0,
+        "A1": 34.6174430847168,
+        "A2": 12.707735061645508,
+        "A3": 262.6435546875,
+        "A4": 111.64945983886719,
+        "A5": 361.6278381347656,
+        "CNT1": 215598,
+        "CNT2": 638533493,
+        "VOLT": 3.98,
+        "TEMP": 84,
+        "TIME": 1754467234,
+        "MB_DATA": [
+          1,
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20
+        ],
+        "A1_H2": 772.2587280273438,
+        "A1_H3": 1215.6690673828125,
+        "A1_H4": 939.9957885742188,
+        "A2_H2": 2149.025146484375,
+        "A2_H3": 2649.184814453125,
+        "A2_H4": 1038.0048828125
+      },
+      "errors": [],
+      "warnings": [
+        "Payload is longer than 50 bytes"
+      ]
+    },
+    "points": {
+      "voltage": {
+        "unitId": "V",
+        "record": 3.98
+      },
+      "temperature": {
+        "unitId": "Far",
+        "record": 84
+      },
+      "time": {
+        "unitId": "s",
+        "record": 1754467234
+      },
+      "counter:0": {
+        "unitId": "count",
+        "record": 215598,
+        "nature": "CNT1"
+      },
+      "counter:1": {
+        "unitId": "count",
+        "record": 638533493,
+        "nature": "CNT2"
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Random values apart from MODBUS. 1 byte too short.",
+    "input": {
+      "bytes": [
+        254,
+        47,
+        6,
+        67,
+        120,
+        10,
+        66,
+        226,
+        82,
+        75,
+        65,
+        96,
+        82,
+        131,
+        67,
+        134,
+        76,
+        223,
+        66,
+        93,
+        208,
+        180,
+        67,
+        46,
+        74,
+        3,
+        0,
+        117,
+        63,
+        15,
+        38,
+        248,
+        208,
+        162,
+        11,
+        147,
+        104,
+        22,
+        1,
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        63,
+        143,
+        16,
+        65,
+        68,
+        105,
+        245,
+        151,
+        68,
+        187,
+        255,
+        106,
+        68,
+        103,
+        80,
+        6,
+        69,
+        245,
+        146,
+        37,
+        69,
+        40,
+        192,
+        129
+      ],
+      "fPort": 1,
+      "recvTime": "2025-08-05T11:25:05.000+01:00"
+    },
+    "output": {
+      "errors": [
+        "Invalid uplink payload: payload too short"
+      ],
+      "warnings": []
+    },
+    "points": {}
+  }
+]

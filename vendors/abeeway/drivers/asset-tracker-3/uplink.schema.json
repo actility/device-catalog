@@ -1,0 +1,1057 @@
+{
+  "type": "object",
+  "properties": {
+    "header": {
+      "type": "object",
+      "properties": {
+        "ackToken": { "type": "number" },
+        "multiFrame": { "type": "boolean" },
+        "batteryLevel": { "type": ["number", "string"] },
+        "sos": { "type": "boolean" },
+        "timestamp": { "type": "string" },
+        "type": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "extendedHeader": {
+        "type": "object",
+        "properties": {
+            "groupId": {
+                "type": "number"
+            },
+            "last": {
+                "type": "number"
+            },
+            "frameNumber": {
+                "type": "number"
+            }
+        },
+        "additionalProperties": false
+    },
+    "notification": {
+        "type": "object",
+        "properties": {
+            "accelerometer": {
+                "type": "object",
+                "properties": {
+                    "accelerationVector": {
+                        "type": "array",
+                        "items": {
+                            "type": "number"
+                        }
+                    },
+                    "motionPercent": {
+                        "type": "number"
+                    },
+                    "gaddIndex": {
+                        "type": "number"
+                    },
+                    "numberShocks": {
+                        "type": "number"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "notificationClass": { "type": "string" },
+            "notificationType": { "type": "string" },
+            "system": {
+                "type": "object",
+                "properties": {
+                    "lowBattery": {
+                        "type": "object",
+                        "properties": {
+                            "batteryVoltage": { "type": "number" },
+                            "consumption": { "type": "number" }
+                        },
+                        "additionalProperties": false
+                    },
+                    "tamperDetection": {
+                        "type": "object",
+                        "properties": {
+                            "state": { "type": "string" }
+                        },
+                        "additionalProperties": false
+                    },
+                    "status": {
+                        "type": "object",
+                        "properties": {
+                            "AT3Version": {
+                                "type": "string"
+                            },
+                            "batteryVoltage": {
+                                "type": "number"
+                            },
+                            "bleConsumption": {
+                                "type": "number"
+                            },
+                            "cellularConsumption": {
+                                "type": "number"
+                            },
+                            "configurationVersion": {
+                                "type": "string"
+                            },
+                            "currentTemperature": {
+                                "type": "number"
+                            },
+                            "gnssConsumption": {
+                                "type": "number"
+                            },
+                            "hwBatchId": {
+                                "type": "number"
+                            },
+                            "hwBomId": {
+                                "type": "number"
+                            },
+                            "lrGnssConsumption": {
+                                "type": "number"
+                            },
+                            "lrHwVersion": {
+                                "type": "object",
+                                "properties": {
+                                    "firmwareVersion": {
+                                        "type": "string"
+                                    },
+                                    "hardwareType": {
+                                        "type": "string"
+                                    },
+                                    "hardwareVersion": {
+                                        "type": "string"
+                                    }
+                                },
+                                "additionalProperties": false
+                            },
+                            "maxTemperature": {
+                                "type": "number"
+                            },
+                            "mcuConsumption": {
+                                "type": "number"
+                            },
+                            "minTemperature": {
+                                "type": "number"
+                            },
+                            "motionPercent": {
+                                "type": "number"
+                            },
+                            "pageId": {
+                                "type": "number"
+                            },
+                            "resetCause": {
+                                "type": "string"
+                            },
+                            "totalConsumption": {
+                                "type": "number"
+                            },
+                            "wifiConsumption": {
+                                "type": "number"
+                            },
+                            "globalCrc": {
+                                "type": "string"
+                            },
+                            "gnssBeidouDate": {
+                                "type": "number"
+                            },
+                            "gnssBeidouGood": {
+                                "type": "number"
+                            },
+                            "gnssBeidouOutdated": {
+                                "type": "array",
+                                "items": {
+                                    "type": "number"
+                                }
+                            },
+                            "gnssGpsDate": {
+                                "type": "number"
+                            },
+                            "gnssGpsGood": {
+                                "type": "number"
+                            },
+                            "gnssGpsOutdated": {
+                                "type": "array",
+                                "items": {
+                                    "type": "number"
+                                }
+                            },
+                            "lr11xxBeidouDate": {
+                                "type": "number"
+                            },
+                            "lr11xxBeidouGood": {
+                                "type": "number"
+                            },
+                            "lr11xxBeidouOutdated": {
+                                "type": "array",
+                                "items": {
+                                    "type": "number"
+                                }
+                            },
+                            "lr11xxGpsDate": {
+                                "type": "number"
+                            },
+                            "lr11xxGpsGood": {
+                                "type": "number"
+                            },
+                            "lr11xxGpsOutdated": {
+                                "type": "array",
+                                "items": {
+                                    "type": "number"
+                                }
+                            }
+                        },
+                        "additionalProperties": false
+                    },
+                    "heartbeat": {
+                        "type": "object",
+                        "properties": {
+                            "currentTemperature": {
+                                "type": "number"
+                            },
+                            "resetCause": {
+                                "type": "string"
+                            },
+                            "globalCrc": {
+                                "type": "string"
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                },
+                "additionalProperties": false
+        },
+        "network": {
+            "type": "object",
+            "properties": {
+                "activeNetwork": {
+                    "type": "string"
+                },
+                "backupNetwork": {
+                    "type": "string"
+                },
+                "mainNetwork": {
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false
+        },
+        "temperature": {
+            "type": "number"
+        }
+        },
+        "additionalProperties": false
+    },
+    "payload": { "type": "string" },
+    "position": {
+      "type": "object",
+      "properties": {
+        "coordinates": {
+          "type": "array",
+          "items": { "type": "number" }
+        },
+        "motion": { "type": "number" },
+        "motionCounter": { "type": "number" },
+        "gnssFix": {
+          "type": "object",
+          "properties": {
+            "latitude": { "type": "number" },
+            "longitude": { "type": "number" },
+            "altitude": { "type": "number" },
+            "COG": { "type": "number" },
+            "EHPE": { "type": "number" },
+            "SOG": { "type": "number" },
+            "quality": {
+              "type": "object",
+              "properties": {
+                "fixQuality": { "type": "string" },
+                "numberSatellitesUsed": { "type": "number" }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "positionType": { "type": "string" },
+        "status": { "type": "string" },
+        "triggers": {
+          "type": "object",
+          "properties": {
+            "geoTriggerGeozoning": { "type": "number" },
+            "geoTriggerInMotion": { "type": "number" },
+            "geoTriggerInStatic": { "type": "number" },
+            "geoTriggerMotionStart": { "type": "number" },
+            "geoTriggerMotionStop": { "type": "number" },
+            "geoTriggerPod": { "type": "number" },
+            "geoTriggerShock": { "type": "number" },
+            "geoTriggerSos": { "type": "number" },
+            "geoTriggerTempHighThreshold": { "type": "number" },
+            "geoTriggerTempLowThreshold": { "type": "number" }
+          },
+          "additionalProperties": false
+        },
+        "gnssFailure": { 
+            "type": "object",
+            "properties": {
+                "satellitesSeen": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "svId": {
+                                "type": "number"
+                            }, 
+                            "constellation": {
+                                "type": "string"
+                            },
+                            "CN": {
+                                "type": "number"
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                },
+                "timeoutCause": {
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false
+        },
+        "wifiBssids": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "mac": {
+                        "type": "string"
+                    },
+                    "rssi": {
+                        "type": "number"
+                    }
+                },
+                "additionalProperties": false
+            }
+        },
+        "bleBeaconMacs": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "mac": {
+                        "type": "string"
+                    },
+                    "rssi": {
+                        "type": "number"
+                    }
+                },
+                "additionalProperties": false
+            }
+        },
+        "bleBeaconIds": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "rssi": {
+                        "type": "number"
+                    }
+                },
+                "additionalProperties": false
+            }
+        }
+      },
+      "additionalProperties": false
+    },
+    "response": {
+        "type": "object",
+        "properties": {
+            "responseType": { "type": "string" },
+            "parameterClassConfigurationSet": {
+                "type": "object",
+                "properties": {
+                    "group": { "type": "string" },
+                    "parameters": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "parameterName": { "type": "string" },
+                                "status": { "type": "string" }
+                            },
+                            "additionalProperties": false
+                        }
+                    }
+                },
+            "additionalProperties": false
+            },
+            "parameterClassConfigurationGet": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "group": {
+                            "type": "string"
+                        },
+                        "parameters": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "parameterName": {
+                                        "type": "string"
+                                    },
+                                    "parameterValue": {
+                                        "type": ["number", "string", "array", "object"],
+                                        "properties": {
+                                            "durationButtonPress": {
+                                                "type": "number"
+                                            },
+                                            "durationButtonLongPress": {
+                                                "type": "number"
+                                            },
+                                            "debounceDurationOnButton1": {
+                                                "type": "number"
+                                            },
+                                            "debounceDurationOnButton2": {
+                                                "type": "number"
+                                            },
+                                            "buttonPress": {
+                                                "type": "string"
+                                            },
+                                            "buttonLongPress": {
+                                                "type": "string"
+                                            },
+                                            "buttonSingleClick": {
+                                                "type": "string"
+                                            },
+                                            "buttonDoubleClicks": {
+                                                "type": "string"
+                                            },
+                                            "buttonTripleClicksOrAbove": {
+                                                "type": "string"
+                                            },
+                                            "buttonSimpleSequence": {
+                                                "type": "string"
+                                            },
+                                            "geoTriggerGeozoning": {
+                                                "type": "boolean"
+                                            },
+                                            "geoTriggerInMotion": {
+                                                "type": "boolean"
+                                            },
+                                            "geoTriggerInStatic": {
+                                                "type": "boolean"
+                                            },
+                                            "geoTriggerMotionStart": {
+                                                "type": "boolean"
+                                            },
+                                            "geoTriggerMotionStop": {
+                                                "type": "boolean"
+                                            },
+                                            "geoTriggerPod": {
+                                                "type": "boolean"
+                                            },
+                                            "geoTriggerShock": {
+                                                "type": "boolean"
+                                            },
+                                            "geoTriggerSos": {
+                                                "type": "boolean"
+                                            },
+                                            "geoTriggerTempHighThreshold": {
+                                                "type": "boolean"
+                                            },
+                                            "geoTriggerTempLowThreshold": {
+                                                "type": "boolean"
+                                            },
+                                            "ADREnabled": {
+                                                "type": "boolean"
+                                            },
+                                            "dualTransmissionInStaticEnabled": {
+                                                "type": "boolean"
+                                            },
+                                            "dualTransmissionInMotionEnabled": {
+                                                "type": "boolean"
+                                            },
+                                            "dataRateModification": {
+                                                "type": "boolean"
+                                            },
+                                            "firstTransmissionDatarate": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "dr0": {
+                                                        "type": "boolean"
+                                                    },
+                                                    "dr1": {
+                                                        "type": "boolean"
+                                                    },
+                                                    "dr2": {
+                                                        "type": "boolean"
+                                                    },
+                                                    "dr3": {
+                                                        "type": "boolean"
+                                                    },
+                                                    "dr4": {
+                                                        "type": "boolean"
+                                                    },
+                                                    "dr5": {
+                                                        "type": "boolean"
+                                                    },
+                                                    "dr6": {
+                                                        "type": "boolean"
+                                                    },
+                                                    "dr7": {
+                                                        "type": "boolean"
+                                                    }
+                                                },
+                                                "additionalProperties": false
+                                            },
+                                            "secondTransmissionDatarate": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "dr0": {
+                                                        "type": "boolean"
+                                                    },
+                                                    "dr1": {
+                                                        "type": "boolean"
+                                                    },
+                                                    "dr2": {
+                                                        "type": "boolean"
+                                                    },
+                                                    "dr3": {
+                                                        "type": "boolean"
+                                                    },
+                                                    "dr4": {
+                                                        "type": "boolean"
+                                                    },
+                                                    "dr5": {
+                                                        "type": "boolean"
+                                                    },
+                                                    "dr6": {
+                                                        "type": "boolean"
+                                                    },
+                                                    "dr7": {
+                                                        "type": "boolean"
+                                                    }
+                                                },
+                                                "additionalProperties": false
+                                            },
+                                            "timerValue": {
+                                                "type": "number"
+                                            },
+                                            "timerValueUnit": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "additionalProperties": false,
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                "Action": {
+                                                    "type": "string"
+                                                },
+                                                "Technology": {
+                                                    "type": "string"
+                                                },
+                                                "slice": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "systemEventClass": {
+                                                            "type": "string"
+                                                        },
+                                                        "melodyCountExtension": {
+                                                            "type": "number"
+                                                        },
+                                                        "melodyIdentifier": {
+                                                            "type": "string"
+                                                        },
+                                                        "patternLoopExtension": {
+                                                            "type": "number"
+                                                        },
+                                                        "patternInversion": {
+                                                            "type": "boolean"
+                                                        },
+                                                        "type": {
+                                                            "type": "number"
+                                                        },
+                                                        "patternIdentifier": {
+                                                            "type": "string"
+                                                        },
+                                                        "patternLoop": {
+                                                            "type": "number"
+                                                        }
+                                                    },
+                                                    "additionalProperties": false
+                                                },
+                                                "systemClass": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "status": {
+                                                            "type": "boolean"
+                                                        },
+                                                        "lowBattery": {
+                                                            "type": "boolean"
+                                                        },
+                                                        "bleStatus": {
+                                                            "type": "boolean"
+                                                        },
+                                                        "tamperDetection": {
+                                                            "type": "boolean"
+                                                        }
+                                                    },
+                                                    "additionalProperties": false
+                                                },
+                                                "sosClass": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "sosOn": {
+                                                            "type": "boolean"
+                                                        },
+                                                        "sosOff": {
+                                                            "type": "boolean"
+                                                        }
+                                                    },
+                                                    "additionalProperties": false
+                                                },
+                                                "temperatureClass": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "tempHigh": {
+                                                            "type": "boolean"
+                                                        },
+                                                        "tempLow": {
+                                                            "type": "boolean"
+                                                        },
+                                                        "tempNormal": {
+                                                            "type": "boolean"
+                                                        }
+                                                    },
+                                                    "additionalProperties": false
+                                                },
+                                                "accelerometerClass": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "motionStart": {
+                                                            "type": "boolean"
+                                                        },
+                                                        "motionEnd": {
+                                                            "type": "boolean"
+                                                        },
+                                                        "shock": {
+                                                            "type": "boolean"
+                                                        }
+                                                    },
+                                                    "additionalProperties": false
+                                                },
+                                                "networkingClass": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "mainUp": {
+                                                            "type": "boolean"
+                                                        },
+                                                        "backupUp": {
+                                                            "type": "boolean"
+                                                        }
+                                                    },
+                                                    "additionalProperties": false
+                                                },
+                                                "geozoningClass": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "geozoningOn": {
+                                                            "type": "boolean"
+                                                        }
+                                                    },
+                                                    "additionalProperties": false
+                                                }
+                                            },
+                                            "additionalProperties": false
+                                        }
+                                    }
+                                },
+                                "additionalProperties": false
+                            }
+                        }
+                    },
+                    "additionalProperties": false
+                }
+            },
+            "localCrc": {
+                "type": "string"
+            },
+            "genericConfigurationGet": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "group": {
+                            "type": "string"
+                        },
+                        "parameters": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "parameterName": {
+                                        "type": "string"
+                                    },
+                                    "parameterValue": {
+                                        "type": ["number", "object", "array"],
+                                        "properties": {
+                                            "durationButtonPress": {
+                                                "type": "number"
+                                            },
+                                            "durationButtonLongPress": {
+                                                "type": "number"
+                                            },
+                                            "debounceDurationOnButton1": {
+                                                "type": "number"
+                                            },
+                                            "debounceDurationOnButton2": {
+                                                "type": "number"
+                                            },
+                                            "buttonPress": {
+                                                "type": "string"
+                                            },
+                                            "buttonLongPress": {
+                                                "type": "string"
+                                            },
+                                            "buttonSingleClick": {
+                                                "type": "string"
+                                            },
+                                            "buttonDoubleClicks": {
+                                                "type": "string"
+                                            },
+                                            "buttonTripleClicksOrAbove": {
+                                                "type": "string"
+                                            },
+                                            "buttonSimpleSequence": {
+                                                "type": "string"
+                                            },
+                                            "geoTriggerGeozoning": {
+                                                "type": "boolean"
+                                            },
+                                            "geoTriggerInMotion": {
+                                                "type": "boolean"
+                                            },
+                                            "geoTriggerInStatic": {
+                                                "type": "boolean"
+                                            },
+                                            "geoTriggerMotionStart": {
+                                                "type": "boolean"
+                                            },
+                                            "geoTriggerMotionStop": {
+                                                "type": "boolean"
+                                            },
+                                            "geoTriggerPod": {
+                                                "type": "boolean"
+                                            },
+                                            "geoTriggerShock": {
+                                                "type": "boolean"
+                                            },
+                                            "geoTriggerSos": {
+                                                "type": "boolean"
+                                            },
+                                            "geoTriggerTempHighThreshold": {
+                                                "type": "boolean"
+                                            },
+                                            "geoTriggerTempLowThreshold": {
+                                                "type": "boolean"
+                                            }
+                                        },
+                                        "additionalProperties": false,
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                "Action": {
+                                                    "type": "string"
+                                                },
+                                                "Technology": {
+                                                    "type": "string"
+                                                },
+                                                "systemClass": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "status": {
+                                                            "type": "boolean"
+                                                        },
+                                                        "lowBattery": {
+                                                            "type": "boolean"
+                                                        },
+                                                        "bleStatus": {
+                                                            "type": "boolean"
+                                                        },
+                                                        "tamperDetection": {
+                                                            "type": "boolean"
+                                                        },
+                                                        "heartbeat": {
+                                                            "type": "boolean"
+                                                        }
+                                                    },
+                                                    "additionalProperties": false
+                                                },
+                                                "sosClass": { 
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "sosOn": {
+                                                            "type": "boolean"
+                                                        },
+                                                        "sosOff": {
+                                                            "type": "boolean"
+                                                        }
+                                                    },
+                                                    "additionalProperties": false
+                                                },
+                                                "temperatureClass": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "tempHigh": {
+                                                            "type": "boolean"
+                                                        },
+                                                        "tempLow": {
+                                                            "type": "boolean"
+                                                        },
+                                                        "tempNormal": {
+                                                            "type": "boolean"
+                                                        }
+                                                    },
+                                                    "additionalProperties": false
+                                                },
+                                                "accelerometerClass": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "motionStart": {
+                                                            "type": "boolean"
+                                                        },
+                                                        "motionEnd": {
+                                                            "type": "boolean"
+                                                        },
+                                                        "shock": {
+                                                            "type": "boolean"
+                                                        }
+                                                    },
+                                                    "additionalProperties": false
+                                                },
+                                                "networkingClass": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "mainUp": {
+                                                            "type": "boolean"
+                                                        },
+                                                        "backupUp": {
+                                                            "type": "boolean"
+                                                        }
+                                                    },
+                                                    "additionalProperties": false
+                                                },
+                                                "geozoningClass": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "geozoningOn": {
+                                                            "type": "boolean"
+                                                        }
+                                                    },
+                                                    "additionalProperties": false
+                                                }
+                                            },
+                                            "additionalProperties": false
+                                        }
+                                    }
+                                },
+                                "additionalProperties": false
+                            }
+                        }
+                    },
+                    "additionalProperties": false
+                }
+            },
+            "genericConfigurationSet": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "group": {
+                            "type": "string"
+                        },
+                        "parameters": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "parameterName": {
+                                        "type": "string"
+                                    },
+                                    "status": {
+                                        "type": "string"
+                                    }
+                                },
+                                "additionalProperties": false
+                            }
+                        }
+                    },
+                    "additionalProperties": false
+                }
+            },
+            "globalCrc": {
+                "type": "string"
+            },
+            "crc": {
+                "type": "array",
+                "items": {
+                    "type": "string"
+                }
+            },
+            "sensors": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "sensorId": {
+                            "type": "number"
+                        },
+                        "type": {
+                            "type": "string"
+                        },
+                        "accelerationVector": {
+                            "type": "array",
+                            "items": {
+                                "type": "number"
+                            }
+                        }
+                    },
+                    "additionalProperties": false
+                }
+                
+            }
+        },
+        "additionalProperties": false
+    },
+    "telemetry": {
+        "type": "object",
+        "properties": {
+            "type": { "type": "string" },
+            "alarmTrigger": {
+                "type": "boolean"
+            },
+            "cyclicCounter": {
+                "type": "number"
+            },
+            "cyclicVersion": {
+                "type": "number"
+            },
+            "measurementConfig": {
+                "type": "object",
+                "properties": {
+                    "codingPolicy": {
+                        "type": "string"
+                    },
+                    "dataType": {
+                        "type": "string"
+                    },
+                    "measurementId": {
+                        "type": "number"
+                    },
+                    "recordingPolicy": {
+                        "type": "string"
+                    },
+                    "sampleCompression": {
+                        "type": "string"
+                    },
+                    "scalingFactor": {
+                        "type": "number"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "telemetryId": {
+                "type": "number"
+            },
+            "TelemetryIDs": {
+                "type": "object",
+                "properties": {
+                    "0": {
+                        "type": "object",
+                        "properties": {
+                            "cyclicVersion": {
+                                "type": "number"
+                            },
+                            "fixedTimeInterval": {
+                                "type": "number"
+                            },
+                            "measurementConfig": {
+                                "type": "object",
+                                "properties": {
+                                    "codingPolicy": {
+                                        "type": "string"
+                                    },
+                                    "dataType": {
+                                        "type": "string"
+                                    },
+                                    "measurementId": {
+                                        "type": "number"
+                                    },
+                                    "recordingPolicy": {
+                                        "type": "string"
+                                    },
+                                    "sampleCompression": {
+                                        "type": "string"
+                                    },
+                                    "scalingFactor": {
+                                        "type": "number"
+                                    }
+                                },
+                                "additionalProperties": false
+                            },
+                            "measurementNMaxInterval": {
+                                "type": "number"
+                            },
+                            "numMeasurements": {
+                                "type": "number"
+                            },
+                            "telemetryIDMaxInterval": {
+                                "type": "number"
+                            },
+                            "telemetryId": {
+                                "type": "number"
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                },
+                "additionalProperties": true
+            },
+            "measurements": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "timestamp": { "type": "string" },
+                        "value": { "type": "number" }
+                    },
+                    "additionalProperties": false
+                }
+            }
+        },
+        "additionalProperties": false
+    },
+    "query": {
+        "type": "object",
+        "properties": {
+            "gpsSvid": {
+                "type": "array",
+                "items": {
+                    "type": "number"
+                }
+            },
+            "queryType": {
+                "type": "string"
+            },
+            "sequenceNumber": {
+                "type": "array",
+                "items": {
+                    "type": "number"
+                }
+            }
+        },
+        "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

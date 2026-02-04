@@ -9,18 +9,29 @@ let queryClass = require("./messages/uplink/queries/query");
 let util = require("./util");
 let commandClass = require("./messages/downlink/command");
 let requestClass = require("./messages/downlink/requests/request");
+let telemetryClass = require("./messages/uplink/telemetry/telemetry");
 
 const DOWNLINK_PORT_NUMBER = 3;
 
 const removeEmpty = (obj) => {
     Object.keys(obj).forEach(k =>
       (obj[k] && typeof obj[k] === 'object') && removeEmpty(obj[k]) ||
-      (!obj[k] && (obj[k] === null || obj[k] === undefined)) && delete obj[k] 
+      (!obj[k] && (obj[k] === null || obj[k] === undefined || Number.isNaN(obj[k]))) && delete obj[k] 
     );
     return obj;
   };
 
-
+function isContextUsedInPayload(input) {
+    const payload = input.payload || util.convertBytesToString(input.bytes);
+    const byteString = payload.slice(0, 2);
+    if(typeof byteString !== undefined) {
+        const byte0 = parseInt(byteString, 16);
+        const payloadType = (byte0 & 0b00111000) >> 3;
+        const isTelemetry = payloadType === 5;
+        return isTelemetry;
+    }
+    return false;
+}
 
 function decodeUplink(input) {
     let result = {
@@ -35,14 +46,20 @@ function decodeUplink(input) {
 
         //header decoding
         decodedData.header = basicHeadeClass.determineHeader(payload,receivedTime);
-
+        decodedData.payload = util.convertBytesToString(payload);
+        // NOTE: due to buffering, the header size is increased to 2 more bytes at the index 4 and 5 for timestamp.
+		// to simplify the decoding for other parts, we will exclude those bytes
+        
+        if (decodedData.header.buffering){
+            if (payload.length < 6) 
+                throw new Error("the payload is not valid to determine header with buffering")
+            payload.splice(4, 2);
+        }
         //if multiframe is true
         var multiFrame = !!(payload[0]>>7 & 0x01);
         if (multiFrame){
             decodedData.extendedHeader = extendedHeaderClass.determineExtendedHeader(payload);
-        } 
-        decodedData.payload = util.convertBytesToString(payload);
-
+        }
         switch (decodedData.header.type){
             case abeewayUplinkPayloadClass.messageType.NOTIFICATION:
                 decodedData.notification = notificationClass.determineNotification(payload);
@@ -55,6 +72,9 @@ function decodeUplink(input) {
                 break;
             case abeewayUplinkPayloadClass.messageType.RESPONSE:
                 decodedData.response = responseClass.determineResponse(payload, multiFrame);
+                break;
+            case abeewayUplinkPayloadClass.messageType.TELEMETRY:
+                decodedData.telemetry = telemetryClass.decodeTelemetry(payload,decodedData.header.timestamp);
                 break;
         }
         decodedData = removeEmpty(decodedData);
@@ -79,12 +99,13 @@ function decodeDownlink(input){
         decodedData.payload = util.convertBytesToString(payload);
         switch (decodedData.downMessageType){
             case abeewayDownlinkPayloadClass.MessageType.COMMAND:
-                decodedData.command = commandClass.determineCommand(payload[1])
+                decodedData.command = commandClass.decodeCommand(payload.slice(1))
                 break;
             case abeewayDownlinkPayloadClass.MessageType.REQUEST:
                 decodedData.request = requestClass.decodeRequest(payload)
                 break;
             case abeewayDownlinkPayloadClass.MessageType.ANSWER:
+                decodedData.response = responseClass.determineResponse(payload, multiFrame);
                 break;
         }
         decodedData = removeEmpty(decodedData);
@@ -127,7 +148,7 @@ function encodeDownlink(input){
                 bytes = requestClass.encodeRequest(data);
                 break;
             case abeewayDownlinkPayloadClass.MessageType.ANSWER:
-                
+
                 break;
             
         }
@@ -146,5 +167,6 @@ function encodeDownlink(input){
 module.exports = {
     decodeUplink: decodeUplink,
     decodeDownlink: decodeDownlink,
-    encodeDownlink: encodeDownlink
+    encodeDownlink: encodeDownlink,
+    isContextUsedInPayload: isContextUsedInPayload
 }

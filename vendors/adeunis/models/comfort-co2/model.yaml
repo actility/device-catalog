@@ -41,7 +41,7 @@ sensors:
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
-    adeunis:comfort:1:
+    adeunis:comfort-co2:1:
         - "uplink containing Comfort CO2 configuration 0x10"
         - "uplink containing digital input configuration 0x1f"
         - "uplink containing configuration 0x20"
@@ -52,3 +52,8 @@ examples:
         - "uplink containing digital input 2 alarm 0x52"
         - "uplink containing Comfort CO2 data 0x6a"
         - "uplink containing comfort CO2 alarm 0x6b"
+
+
+LoRaWANRelay:
+  canOperateAsARelay: false
+  defaultRelayActivation: false

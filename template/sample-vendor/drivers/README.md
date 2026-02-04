@@ -1,3 +1,31 @@
+# Prerequisites
+
+Before running the tests, make sure the following requirements are met.
+
+## Supported Operating Systems
+
+Tests can only be executed on:
+
+- **Linux**
+- **Windows**
+
+⚠️ **macOS is not supported** and the tests will not work properly on it.
+
+---
+
+## Required Node.js Version
+
+You **must** use **Node.js 20**.
+
+The recommended way to install it is via **NVM**.
+
+### Install Node 20 with NVM
+
+```bash
+nvm install 20
+nvm use 20
+```
+
 # JavaScript driver structure
 
 > If you have a driver already follows the LoRa Alliance standard codec API, then you need just to add `driver.yaml` file as the one [here](sample-driver/driver.yaml).
@@ -236,6 +264,14 @@ The returned `output` is represented by the following json-schema:
 }
 ```
 
+### Driver Execution Environment and Available Libraries
+
+Drivers that get __tested locally__ before submission and __deployed__ on our platforms are executed through an isolated virtual machine provided by __isolated-vm__ (a node module that executes the drivers in a __secure environment__).
+
+This implies that only a __select few libraries__ are made available during the execution of the drivers. 
+
+Currently, only the ``Buffer`` library is available on top of all the standard NodeJS classes, functions and methods (e.g.: ``Array``, ``Object``, ``JSON``, ``Math``, etc.). This list can extend depending on how popular a certain module is becoming in recent drivers.
+
 ### Store and reload context
 
 On some devices, some information from a previous payload are useful for the current one. Thus, a context array is accessible to the driver's developer where some info can be injected/retrieved while decoding/encoding payloads.
@@ -243,6 +279,17 @@ On some devices, some information from a previous payload are useful for the cur
 This context is based on DevEUI, so each device has its own context, even if several devices use the same driver.
 
 The context in the driver's environment is an array of flexible JSON objects.
+
+:warning: **WARNING:** If the context remains unchanged, it will not be updated in our database, and persistence is limited to 2 days. To keep your context for longer, add a timestamp or a counter to your context on each uplink.
+
+#### Enable the context
+
+To enable the context, you must set <code>useContext</code> to <code>true</code> in the driver's driver.yaml as such:
+```
+# When a driver uses a context, this field must be set to true
+# https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/README.md#store-and-reload-context
+useContext: true
+```
 
 #### Store a context
 
@@ -261,7 +308,6 @@ function decodeUplink(input){
     ...
 }
 ```
-
 #### Reload a context
 
 Inside a driver, data can be retrieved from the context:
@@ -497,6 +543,12 @@ use cases as well as error cases.
 _**PS:** If your driver outputs values as ISO string dates or instances of class Date in the format "xxxx-xx-xxTxx:xx:xx.xxxZ", **declared when compiled**, you can validate the test by replacing the date value by_ "XXXX-XX-XXTXX:XX:XX.XXXZ" _in the JSON examples file._
 
 > A pre-implemented [spec file](sample-driver/driver-examples.spec.js) for testing can be copied from the template in order to test the driver with all the provided examples.
+
+## BACnet Integration
+
+As you may wish your devices and drivers to include a BACnet integration, our catalogs allow you to do so.
+Along with all the driver and device profiles, you can deploy a BACnet mapping inside [this folder](../../../mappings/).
+Please refer to [this markdown file for further instructions](../../../mappings/template/how-to.md).
 
 ##
 # Sample driver developer guide
@@ -916,9 +968,39 @@ The returned object must be:
   Here's an example:
 ```json
 {
-    "temperature": 31.4,
-    "location": [48.875158, 2.333822],
-    "fft": [0.32, 0.33, 0.4523, 0.4456, 0.4356]
+  "temperature": {
+      "record": 31.4,
+      "unitId": "Cel"
+    },
+    "location": {
+      "unitId": "GPS",
+      "records": [
+        {
+          "value": [48.875158, 2.333822],
+          "eventTime": "2019-01-01T10:00:00+01:00"
+        }
+      ]
+    },
+    "power:0": {
+        "record": 0.32,
+        "unitId": "GW"
+    },
+    "power:1": {
+        "record": 0.33,
+        "unitId": "GW"
+    },
+    "power:2": {
+        "record": 0.4523,
+        "unitId": "GW"
+    }, 
+    "power:3": {
+      "record": 0.4456,
+      "unitId": "GW"
+    },
+    "power:4": {
+      "record": 0.4356,
+      "unitId": "GW"
+    }
 }
 ```
 - OR, it is defined by the following json-schema in case the point has several values in different timestamp.
@@ -937,31 +1019,70 @@ The returned object must be:
           "required": true
         },
         "value": {
-          "type": ["string", "number", "boolean"],
-          "required": false
+          "type": [
+            "string",
+            "number",
+            "boolean"
+          ],
+          "required": true
         }
       }
     }
   }
 }
 ```
-Here's an example:
+Here are a few examples:
+
+Simple :
 ```json
 {
-  "temperature": [
+  "temperature": 
     {
-      "eventTime": "2019-01-01T10:00:00+01:00",
-      "value": 31.4
-    },
-    {
-      "eventTime": "2019-01-01T11:00:00+01:00",
-      "value": 31.2
-    },
-    {
-      "eventTime": "2019-01-01T12:00:00+01:00",
-      "value": 32
+      "record": 31.4,
+      "unitId": "Cel"
     }
-  ]
+}
+```
+
+Multiple measurements with different measurement time :
+```json
+{
+  "temperature": {
+    "unitId": "Cel",
+    "records": [
+      {
+        "eventTime": "2019-01-01T10:00:00+01:00",
+        "value": 31.4
+      },
+      {
+        "eventTime": "2019-01-01T11:00:00+01:00",
+        "value": 31.2
+      },
+      {
+        "eventTime": "2019-01-01T12:00:00+01:00",
+        "value": 32
+      }
+    ]
+  }
+}
+```
+
+Multiple of the same sensor type : \
+(In case of mutiple sensors of the same type, the ID should start at 0)
+```json
+{
+  "temperature:0": {
+    "record": 31.4,
+    "unitId": "Cel"
+  },
+  "temperature:1": {
+    "record": 31.2,
+    "unitId": "Cel"
+  },
+  "temperature:2": {
+    "record": 32,
+    "unitId": "Cel"
+  }
 }
 ```
 

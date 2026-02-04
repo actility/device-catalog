@@ -1,0 +1,20 @@
+# Formal driver name
+name: Mbus parser
+# Simple description of the driver functionalities
+description: This is a codec that is able to parse certain Mbus data including manufacture specific fields for Kamstrup Water Meters.
+# Mandatory - id of the company that developed the driver
+# This id will be used to construct the id of the driver (Should be in lowercase, no special characters, maximum 8 characters)
+producerId: kamstrup
+# Email of the developer
+developerEmail: akk@kamstrup.com
+# In case of a driver per model: `<vendorId>:<modelName>:<modelVersion>`
+# In case of a driver for multiples model: `<vendorId>:generic:<genericVersion>`
+# Needed for linking the model with a specific driver -> must be the same one used in model.yaml in the corresponding model
+# You should have only one protocolId per driver
+protocolId: kamstrup:generic:1
+# This is to specify the type of functions signature used in this driver. Possible values: actility, lora-alliance, ttn, chirpstack.
+# Keep it empty if you followed the lora-alliance payload codec api
+signature: actility
+# When a driver uses a context, this field must be set to true
+# https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/README.md#store-and-reload-context
+useContext: true

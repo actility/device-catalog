@@ -14,6 +14,8 @@ product:
 # The lorawanDeviceProfileID consists of 8 upper-case hexadecimal characters, 4 characters for VendorID + 4 characters for VendorProfileID. Please consider using single (') or double (") quotation.
 deviceProfileIds: 
     - id: ATIM/SPDCA.1.0.2b_ETSI
+      distinction: (deprecated)
+    - id: atim_RFGroup1_1.0.2a_classA
  
 # You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
 # Maximum device TX Conducted output power in dBm. 
@@ -43,12 +45,12 @@ userGuideURL: https://www.atim.com/wp-content/uploads/documentation/ACW/ACW-MR2-
 sensors: 
     - batteryVoltage:V
 examples:
-    os1-atim:decode1:1:
-        - "Example MR4 trame de mesure sur 4 voie"
-        - "Example MR4 trame de mesure sur 1 voie"
-        - "Example MR4 trame de mesure de l'état des entrées"
-        - "Example MR4 trame de mesure avec détection de changement d'état"
-        - "Example MR4 trame de mesure de l'état des entrées avec horodatage"
-        - "Example MR4 trame de vie"
-        - "Example MR4 trame de test avec mesure de l'état des entrées"
-        - "Example MR4 trame de mesure avec échantillonnage + historisation"
+
+
+
+
+
+
+LoRaWANRelay:
+  canOperateAsARelay: false
+  defaultRelayActivation: false

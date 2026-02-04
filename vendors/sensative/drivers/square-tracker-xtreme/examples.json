@@ -1,0 +1,469 @@
+[
+  {
+    "type": "uplink",
+    "description": "uplink containing three measurements",
+    "input": {
+      "bytes": "78f5830c6747317d32346365383432",
+      "fPort": 15,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "decoded": {
+          "result": {
+            "vsm": {
+              "appName": "Tracker",
+              "appVersions": "R22 R23 R24 R25",
+              "buildDate": "2024-11-27T14:49:32.000Z",
+              "buildGitVersion": "24ce842",
+              "buildType": 1,
+              "rulesCrc32": 2029355788,
+              "schema": "M input averageTempIntervalHours 160 0xa0  1 + M input backUpWifiGnssScanMinutes 173 0xad  1 + M input fullScanChannels 185 0xb9  1 + M input fullWifiScan_minutes 168 0xa8  1 + M input gnssMode 172 0xac  1 + M input gpsScan_minutes 169 0xa9  1 + M input limitedScanChannels 184 0xb8  1 + M input maxBudget 181 0xb5  1 + M input minimumGnssCount 167 0xa7  1 + M input minimumWifiCount 166 0xa6  1 + M input motionCountEnabled 170 0xaa  1 + M input motionTimeEnabled 171 0xab  1 + M input movingMotionThreshold_mm_s2 180 0xb4  1 + M input movingScanIntervalMinutes 188 0xbc  1 + M input quarterlyScanBudget 164 0xa4  1 + M input quickRejoinBudgetMax 182 0xb6  1 + M input roamNetworkCount 163 0xa3  1 + M input singleWifiScanAgain_minutes 165 0xa5  1 + M input stationaryScanIntervalMinutes 189 0xbd  1 + M input stillMotionThreshold_mm_s2 179 0xb3  1 + M input tempAlarmHighLevel 162 0xa2  1 + M input tempAlarmLowLevel 161 0xa1  1 + M input tempHysteresis 178 0xb2  0.01 + M output averageTemp 177 0xb1  0.01 + M output batteryPercent 174 0xae  1 + M output motionCount 186 0xba  1 + M output motionTimeMinutes 187 0xbb  1 + M output temp 176 0xb0  0.01 + M output tempAlarm 128 0x80  1",
+              "translatorVersion": "0.2.89"
+            }
+          }
+        }
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {}
+  },
+  {
+    "type": "uplink",
+    "description": "uplink containing all output data",
+    "input": {
+      "bytes": "6014023200c8223c210223012502240335006433003234001e293c280f26033cffffffff36000a27032dff3d000005a0",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "decoded": {
+          "result": {
+            "output": {
+              "averageTempIntervalHours": 2,
+              "backUpWifiGnssScanMinutes": -1,
+              "fullWifiScan_minutes": 15,
+              "gpsScan_minutes": 60,
+              "maxBudget": 100,
+              "minimumGnssCount": 3,
+              "minimumWifiCount": 3,
+              "movingMotionThreshold_mm_s2": 30,
+              "movingScanIntervalMinutes": -1,
+              "quarterlyScanBudget": 3,
+              "quickRejoinBudgetMax": 10,
+              "roamNetworkCount": 1,
+              "singleWifiScanAgain_minutes": 2,
+              "stationaryScanIntervalMinutes": 1440,
+              "stillMotionThreshold_mm_s2": 50,
+              "tempAlarmHighLevel": 60,
+              "tempAlarmLowLevel": 2,
+              "tempHysteresis": 2
+            },
+            "timestamps": {
+              "averageTempIntervalHours": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+              "backUpWifiGnssScanMinutes": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+              "fullWifiScan_minutes": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+              "gpsScan_minutes": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+              "maxBudget": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+              "minimumGnssCount": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+              "minimumWifiCount": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+              "movingMotionThreshold_mm_s2": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+              "movingScanIntervalMinutes": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+              "quarterlyScanBudget": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+              "quickRejoinBudgetMax": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+              "roamNetworkCount": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+              "singleWifiScanAgain_minutes": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+              "stationaryScanIntervalMinutes": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+              "stillMotionThreshold_mm_s2": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+              "tempAlarmHighLevel": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+              "tempAlarmLowLevel": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+              "tempHysteresis": "XXXX-XX-XXTXX:XX:XX.XXXZ"
+            }
+          },
+          "timeseries": [
+            {
+              "timestamp": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+              "value": {
+                "output": {
+                  "averageTempIntervalHours": 2
+                }
+              }
+            },
+            {
+              "timestamp": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+              "value": {
+                "output": {
+                  "tempHysteresis": 2
+                }
+              }
+            },
+            {
+              "timestamp": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+              "value": {
+                "output": {
+                  "tempAlarmHighLevel": 60
+                }
+              }
+            },
+            {
+              "timestamp": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+              "value": {
+                "output": {
+                  "tempAlarmLowLevel": 2
+                }
+              }
+            },
+            {
+              "timestamp": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+              "value": {
+                "output": {
+                  "roamNetworkCount": 1
+                }
+              }
+            },
+            {
+              "timestamp": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+              "value": {
+                "output": {
+                  "singleWifiScanAgain_minutes": 2
+                }
+              }
+            },
+            {
+              "timestamp": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+              "value": {
+                "output": {
+                  "quarterlyScanBudget": 3
+                }
+              }
+            },
+            {
+              "timestamp": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+              "value": {
+                "output": {
+                  "maxBudget": 100
+                }
+              }
+            },
+            {
+              "timestamp": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+              "value": {
+                "output": {
+                  "stillMotionThreshold_mm_s2": 50
+                }
+              }
+            },
+            {
+              "timestamp": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+              "value": {
+                "output": {
+                  "movingMotionThreshold_mm_s2": 30
+                }
+              }
+            },
+            {
+              "timestamp": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+              "value": {
+                "output": {
+                  "gpsScan_minutes": 60
+                }
+              }
+            },
+            {
+              "timestamp": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+              "value": {
+                "output": {
+                  "fullWifiScan_minutes": 15
+                }
+              }
+            },
+            {
+              "timestamp": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+              "value": {
+                "output": {
+                  "minimumWifiCount": 3
+                }
+              }
+            },
+            {
+              "timestamp": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+              "value": {
+                "output": {
+                  "movingScanIntervalMinutes": -1
+                }
+              }
+            },
+            {
+              "timestamp": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+              "value": {
+                "output": {
+                  "quickRejoinBudgetMax": 10
+                }
+              }
+            },
+            {
+              "timestamp": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+              "value": {
+                "output": {
+                  "minimumGnssCount": 3
+                }
+              }
+            },
+            {
+              "timestamp": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+              "value": {
+                "output": {
+                  "backUpWifiGnssScanMinutes": -1
+                }
+              }
+            },
+            {
+              "timestamp": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+              "value": {
+                "output": {
+                  "stationaryScanIntervalMinutes": 1440
+                }
+              }
+            }
+          ]
+        }
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {}
+  },
+  {
+    "type": "uplink",
+    "description": "uplink containing gnss",
+    "input": {
+      "bytes": "00000000000000000000000067642a24",
+      "fPort": 22,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "decoded": {
+          "result": {
+            "gnss": {
+              "assistancePositionTimestamp": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+              "almanacTimestamp": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+              "assistanceLatitude": 0,
+              "assistanceLongitude": 0,
+              "deviceTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+              "deviceTimeTimestamp": "XXXX-XX-XXTXX:XX:XX.XXXZ"
+            }
+          }
+        }
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "location": {
+        "unitId": "GPS",
+        "record": [
+          0,
+          0
+        ]
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink containing idd",
+    "input": {
+      "bytes": "0a000c00020002004b2a02000000720006003000000008001606576750e960673387000000000000000039fd9c008f0000000000",
+      "fPort": 4,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "decoded": {
+          "result": {
+            "idd": {
+              "crashCount": 0,
+              "crashStoreCount": 0,
+              "daysJoined": 8,
+              "daysRunning": 10,
+              "firstDeviceTime": "2024-12-09T15:00:38.000Z",
+              "firstJoinDay": 2,
+              "firstJoinedDay": 2,
+              "gnssFoundSVLpf": 0,
+              "gnssSnrLpf": 0,
+              "gnssSnrMaxLpf": 0,
+              "gnssValidSVLpf": 0,
+              "joinCount": 48,
+              "lastDeviceTime": "2024-12-17T03:00:32.000Z",
+              "loraMcpsCount": 114,
+              "loraMcpsFailCount": 6,
+              "loraMlmeCount": 2,
+              "loraMlmeFailCount": 0,
+              "loraRssiLpf": -71.1,
+              "loraSnrLpf": 15.6,
+              "loraStartupCount": 10827,
+              "startupCount": 12,
+              "timestamp": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+              "vmExecCount": 34611,
+              "watchdogCount": 0,
+              "wifiGwsLpf": 14.3
+            }
+          }
+        }
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {}
+  },
+  {
+    "type": "uplink",
+    "description": "uplink containing wifi",
+    "input": {
+      "bytes": "00000000b624e124f66569b66c8d77f8b743c4a842a1d39416c2a842a1d38bbcc1d84489e811dccbfcecdafd7731acb827eb99943dc1fcecdafd73ccbafcecdafd7a86b504f0212319e5a86c8d77f730c3ad7e4558278c57c00aecdafd73cc",
+      "fPort": 23,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "decoded": {
+          "result": {
+            "semtechEncoded": {
+              "msgtype": "wifi",
+              "payload": "01b624e124f66569b66c8d77f8b743c4a842a1d39416c2a842a1d38bbcc1d84489e811dccbfcecdafd7731acb827eb99943dc1fcecdafd73ccbafcecdafd7a86b504f0212319e5a86c8d77f730c3ad7e4558278c57c00aecdafd73cc",
+              "timestamp": "SKIP_NUMBER"
+            },
+            "wifi": {
+              "timestamp": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+              "wifiAccessPoints": [
+                {
+                  "macAddress": "24:e1:24:f6:65:69",
+                  "signalStrength": -74
+                },
+                {
+                  "macAddress": "6c:8d:77:f8:b7:43",
+                  "signalStrength": -74
+                },
+                {
+                  "macAddress": "a8:42:a1:d3:94:16",
+                  "signalStrength": -60
+                },
+                {
+                  "macAddress": "a8:42:a1:d3:8b:bc",
+                  "signalStrength": -62
+                },
+                {
+                  "macAddress": "d8:44:89:e8:11:dc",
+                  "signalStrength": -63
+                },
+                {
+                  "macAddress": "fc:ec:da:fd:77:31",
+                  "signalStrength": -53
+                },
+                {
+                  "macAddress": "b8:27:eb:99:94:3d",
+                  "signalStrength": -84
+                },
+                {
+                  "macAddress": "fc:ec:da:fd:73:cc",
+                  "signalStrength": -63
+                },
+                {
+                  "macAddress": "fc:ec:da:fd:7a:86",
+                  "signalStrength": -70
+                },
+                {
+                  "macAddress": "04:f0:21:23:19:e5",
+                  "signalStrength": -75
+                },
+                {
+                  "macAddress": "6c:8d:77:f7:30:c3",
+                  "signalStrength": -88
+                },
+                {
+                  "macAddress": "7e:45:58:27:8c:57",
+                  "signalStrength": -83
+                },
+                {
+                  "macAddress": "0a:ec:da:fd:73:cc",
+                  "signalStrength": -64
+                }
+              ]
+            }
+          }
+        }
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "rssi:1": {
+        "unitId": "dBm",
+        "record": -74,
+        "nature": "24:e1:24:f6:65:69"
+      },
+      "rssi:2": {
+        "unitId": "dBm",
+        "record": -74,
+        "nature": "6c:8d:77:f8:b7:43"
+      },
+      "rssi:3": {
+        "unitId": "dBm",
+        "record": -60,
+        "nature": "a8:42:a1:d3:94:16"
+      },
+      "rssi:4": {
+        "unitId": "dBm",
+        "record": -62,
+        "nature": "a8:42:a1:d3:8b:bc"
+      },
+      "rssi:5": {
+        "unitId": "dBm",
+        "record": -63,
+        "nature": "d8:44:89:e8:11:dc"
+      },
+      "rssi:6": {
+        "unitId": "dBm",
+        "record": -53,
+        "nature": "fc:ec:da:fd:77:31"
+      },
+      "rssi:7": {
+        "unitId": "dBm",
+        "record": -84,
+        "nature": "b8:27:eb:99:94:3d"
+      },
+      "rssi:8": {
+        "unitId": "dBm",
+        "record": -63,
+        "nature": "fc:ec:da:fd:73:cc"
+      },
+      "rssi:9": {
+        "unitId": "dBm",
+        "record": -70,
+        "nature": "fc:ec:da:fd:7a:86"
+      },
+      "rssi:10": {
+        "unitId": "dBm",
+        "record": -75,
+        "nature": "04:f0:21:23:19:e5"
+      },
+      "rssi:11": {
+        "unitId": "dBm",
+        "record": -88,
+        "nature": "6c:8d:77:f7:30:c3"
+      },
+      "rssi:12": {
+        "unitId": "dBm",
+        "record": -83,
+        "nature": "7e:45:58:27:8c:57"
+      },
+      "rssi:13": {
+        "unitId": "dBm",
+        "record": -64,
+        "nature": "0a:ec:da:fd:73:cc"
+      }
+    }
+  }
+]

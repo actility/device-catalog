@@ -1,0 +1,59 @@
+[
+  {
+    "type": "uplink",
+    "description": "Uplink containing status data",
+    "input": {
+      "bytes": "04078A00DB37",
+      "fPort": 10,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "room_humidity": 55,
+        "room_temperature": 219,
+        "voltage": 2880
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "batteryVoltage": {
+        "unitId": "mV",
+        "record": 2880
+      },
+      "temperature": {
+        "unitId": "Cel",
+        "record": 219,
+        "nature": "room"
+      },
+      "humidity": {
+        "unitId": "%RH",
+        "record": 55,
+        "nature": "room"
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Set-Point-Temperature Change",
+    "input": {
+      "bytes": "212B",
+      "fPort": 10,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "set_point_temperature": "21.5"
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "temperature": {
+        "unitId": "Cel",
+        "record": 21.5,
+        "nature": "set point"
+      }
+    }
+  }
+]

@@ -45,9 +45,14 @@ specificationURL: https://resource.milesight-iot.com/milesight/document/gs101-da
 # User Guide URL (optional) 
 userGuideURL: https://resource.milesight-iot.com/milesight/document/gs101-user-guide-en.pdf
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
-sensors: 
+sensors:
+    - duration:s
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
     msight:gs101:1:
         - "Example 1"
+
+LoRaWANRelay:
+  canOperateAsARelay: false
+  defaultRelayActivation: false

@@ -1,0 +1,186 @@
+[
+    {
+        "description": "uplink config alarm",
+        "type": "uplink",
+        "input": {
+            "bytes": "FF05AC007c924980439149005043480050c347010000964300809543000089430080884303",
+            "fPort": 1,
+            "time": "2022-06-28T14:00:00.000+02:00"
+        },
+        "output": {
+            "messageType": "CONFIG",
+            "configType": "Alarm",
+            "status": "0xac",
+            "alarms": [
+                {
+                    "highIsActive": true,
+                    "lowIsActive": false,
+                    "highThreshold": 1200000,
+                    "highHysteresis": 1190000
+                },
+                {
+                    "highIsActive": true,
+                    "highThreshold": 300,
+                    "highHysteresis": 299,
+                    "lowIsActive": true,
+                    "lowThreshold": 273,
+                    "lowHysteresis": 274
+                }
+            ]
+        },
+        "points": {}
+    },
+    {
+        "description": "uplink config Lora",
+        "type": "uplink",
+        "input": {
+            "bytes": "FF04AB05070302a0bb0d00000100",
+            "fPort": 1,
+            "time": "2022-06-28T14:00:00.000+02:00"
+        },
+        "output": {
+            "messageType": "CONFIG",
+            "configType": "LoRaWAN",
+            "status": "0xab",
+            "txDataRate": 5,
+            "txPower": 7,
+            "txRetries": 3,
+            "appPort": 2,
+            "txPeriodicity": 900000,
+            "isTxConfirmed": false,
+            "adrEnable": true,
+            "publicNetworkEnable": false
+        },
+        "points": {}
+    },
+    {
+        "description": "uplink valve device",
+        "type": "uplink",
+        "input": {
+            "bytes": "038DB1B41C1B006300",
+            "fPort": 1,
+            "time": "2022-06-28T14:00:00.000+02:00"
+        },
+        "output": {
+            "sensorType": "MOTION",
+            "messageType": "PERIODIC",
+            "batteryLevel": 99,
+            "version": "1.3.0",
+            "deviceTemperature": 301,
+            "deviceShock": 867,
+            "flags": "OK",
+            "sensorData": {
+                "motion_position": 99,
+                "motion_time": 0
+            }
+        },
+        "points": {
+            "batteryLevel": {
+                "unitId": "%",
+                "record": 99
+            },
+            "temperature": {
+                "unitId": "Cel",
+                "record": 301
+            }
+        }
+    },
+    {
+        "description": "uplink pressure device",
+        "type": "uplink",
+        "input": {
+            "bytes": "014591a40c6b00243bd6489a999343",
+            "fPort": 1,
+            "time": "2022-06-28T14:00:00.000+02:00"
+        },
+        "output": {
+            "sensorType": "PRESSURE",
+            "messageType": "PERIODIC",
+            "batteryLevel": 81,
+            "version": "1.1.0",
+            "deviceTemperature": 297,
+            "deviceShock": 3425,
+            "flags": "OK",
+            "sensorData": {
+                "pressure": 438745.125,
+                "temperature": 295.20001220703125
+            }
+        },
+        "points": {
+            "batteryLevel": {
+                "unitId": "%",
+                "record": 81
+            },
+            "temperature": {
+                "unitId": "Cel",
+                "record": 295.20001220703125
+            },
+            "pressure": {
+                "unitId": "hPa",
+                "record": 438745.125
+            }
+        }
+    },
+    {
+        "description": "uplink temperature rtd",
+        "type": "uplink",
+        "input": {
+            "bytes": "024591a40c6b009a999343",
+            "fPort": 1,
+            "time": "2022-06-28T14:00:00.000+02:00"
+        },
+        "output": {
+            "sensorType": "RTD",
+            "messageType": "PERIODIC",
+            "batteryLevel": 81,
+            "version": "1.1.0",
+            "deviceTemperature": 297,
+            "deviceShock": 3425,
+            "flags": "OK",
+            "sensorData": {
+                "temperature": 295.20001220703125
+            }
+        },
+        "points": {
+            "batteryLevel": {
+                "unitId": "%",
+                "record": 81
+            },
+            "temperature": {
+                "unitId": "Cel",
+                "record": 295.20001220703125
+            }
+        }
+    },
+    {
+        "description": "uplink temperature tck",
+        "type": "uplink",
+        "input": {
+            "bytes": "044591a40c6b009a999343",
+            "fPort": 1,
+            "time": "2022-06-28T14:00:00.000+02:00"
+        },
+        "output": {
+            "sensorType": "TCK",
+            "messageType": "PERIODIC",
+            "batteryLevel": 81,
+            "version": "1.1.0",
+            "deviceTemperature": 297,
+            "deviceShock": 3425,
+            "flags": "OK",
+            "sensorData": {
+                "temperature": 295.20001220703125
+            }
+        },
+        "points": {
+            "batteryLevel": {
+                "unitId": "%",
+                "record": 81
+            },
+            "temperature": {
+                "unitId": "Cel",
+                "record": 295.20001220703125
+            }
+        }
+    }
+]

@@ -1,17 +1,25 @@
 let util = require("../../../util");
 
 function System(status,
-    lowBattery, bleStatus, tamperDetection){
+    lowBattery, bleStatus, tamperDetection, heartbeat, shutdown, dataBufferingStatus, fuota){
     this.status = status;
     this.lowBattery = lowBattery;
     this.bleStatus = bleStatus;
     this.tamperDetection = tamperDetection;
+    this.heartbeat = heartbeat;
+    this.shutdown = shutdown;
+    this.dataBufferingStatus = dataBufferingStatus;
+    this.fuota = fuota;
 }
 const SystemType = Object.freeze({
     STATUS: "STATUS",
     LOW_BATTERY: "LOW_BATTERY",
     BLE_STATUS: "BLE_STATUS",
-    TAMPER_DETECTION: "TAMPER_DETECTION"
+    TAMPER_DETECTION: "TAMPER_DETECTION",
+    HEARTBEAT : "HEARTBEAT",
+    SHUTDOWN : "SHUTDOWN",
+    DATA_BUFFERING_STATUS : "DATA_BUFFERING_STATUS",
+    FUOTA : "FUOTA"
 })
 const ResetCause = Object.freeze({
     AOS_ERROR_NONE: "AOS_ERROR_NONE",
@@ -33,6 +41,42 @@ const ResetCause = Object.freeze({
     AOS_ERROR_SW_APP_START: "AOS_ERROR_SW_APP_START",
 })
 
+const ShutdownCause = Object.freeze({
+    SHUTDOWN_CAUSE_NONE: "SHUTDOWN_CAUSE_NONE",
+    SHUTDOWN_CAUSE_USER_ACTION: "SHUTDOWN_CAUSE_USER_ACTION",
+    SHUTDOWN_CAUSE_LOW_BATTERY: "SHUTDOWN_CAUSE_LOW_BATTERY",
+})
+
+const DataBufferingStatus =Object.freeze({
+    SUCCESS :"SUCCESS",
+    TIMEOUT : "TIMEOUT",
+    NO_DATA_FOUND : "NO_DATA_FOUND"
+})
+const Binary = Object.freeze({
+    APPLICATION: "APPLICATION",
+    BLE_STACK: "BLE_STACK",
+    MT3333: "MT3333",
+    LR11XX: "LR11XX"
+});
+const Source = Object.freeze({
+    XMODEM: "XMODEM",
+    BLE: "BLE",
+    CELLULAR: "CELLULAR",
+    LORA: "LORA"
+});
+const Raison = Object.freeze({
+    NONE: "NONE",
+    NETWORK_ISSUE: "NETWORK_ISSUE",
+    DOWNLOAD_TIMEOUT: "DOWNLOAD_TIMEOUT",
+    MODEM_FAILURE: "MODEM_FAILURE",
+    FILE_NOT_FOUND: "FILE_NOT_FOUND",
+    PLATFORM_ERROR: "PLATFORM_ERROR",
+    PARSING_ERROR: "PARSING_ERROR",
+    FLASH_ERROR: "FLASH_ERROR",
+    LENGTH_ERROR: "LENGTH_ERROR",
+    SIGNATURE_ERROR: "SIGNATURE_ERROR"
+});
+
 function Status(currentTemperature, resetCause, pageId, AT3Version,
     configurationVersion,
     lrHwVersion,
@@ -49,6 +93,7 @@ function Status(currentTemperature, resetCause, pageId, AT3Version,
     lrGnssConsumption,
     bleConsumption,
     mcuConsumption,
+    globalCrc,
     lr11xxGpsDate, 
     lr11xxGpsOutdated,
     lr11xxGpsGood,
@@ -86,6 +131,7 @@ function Status(currentTemperature, resetCause, pageId, AT3Version,
     this.lrGnssConsumption = lrGnssConsumption;
     this.bleConsumption = bleConsumption;
     this.mcuConsumption =mcuConsumption;
+    this.globalCrc = globalCrc;
     this.lr11xxGpsDate = lr11xxGpsDate;
     this.lr11xxGpsOutdated = lr11xxGpsOutdated;
     this.lr11xxGpsGood = lr11xxGpsGood;
@@ -117,6 +163,41 @@ function BleStatus(state){
 }
 function TamperDetection(state){
     this.state = state
+}
+function Heartbeat(currentTemperature, resetCause, globalCrc){
+    this.currentTemperature = currentTemperature;
+    this.resetCause = resetCause;
+    this.globalCrc = globalCrc;
+}
+function Shutdown(shutdownCause){
+    this.shutdownCause = shutdownCause;
+}
+function DataBuffering(status, oldestTimestamp, latestTimestamp){
+    this.status = status
+    this.oldestTimestamp = oldestTimestamp
+    this.latestTimestamp = latestTimestamp 
+}
+function Fuota(binary,source, raison){
+    this.binary = binary
+    this.source = source
+    this.raison = raison
+}
+function determineFuota(payload){
+    var binaryValue = determineFuotaBinary(payload[5]>>6 & 0x03)
+    var source = determineFuotaSource(payload[5]>>4 & 0X03)
+    var raison = determineFuotaRaison(payload[5] & 0X0F)
+return new Fuota(binaryValue, source, raison)
+
+}
+
+function determineHeartbeat(payload) {
+    var currentTemperature = util.convertNegativeInt(payload[5],1);
+    var resetCause = determineResetCause(((payload[6]>>3)& 0x1F));
+    // Extract the n bytes of the CRC (big-endian)
+    const crcBytes = payload.slice(7, 11);
+    // Convert each byte to a 2-digit hexadecimal string and concatenate
+    const crc = crcBytes.map(b => b.toString(16).padStart(2, "0")).join("");
+    return new Heartbeat(currentTemperature, resetCause, crc)
 }
 function determineLowBattery(payload){
     var consumption = (payload[5] << 8) + payload[6];
@@ -166,6 +247,35 @@ function determineTamperDetection(payload){
 
     }
 }
+function determineShutdownCause(payload){
+    switch (payload[5]){
+        case 0:
+            //unknown cause 
+            return new Shutdown(ShutdownCause.SHUTDOWN_CAUSE_NONE)
+        case 1:
+            return new Shutdown(ShutdownCause.SHUTDOWN_CAUSE_USER_ACTION)
+        case 2:
+            return new Shutdown(ShutdownCause.SHUTDOWN_CAUSE_LOW_BATTERY)
+    }
+}
+function determineDataBufferingStatus(payload){
+    switch (payload[5]){
+        case 0:
+            //unknown cause 
+            return DataBufferingStatus.SUCCESS
+        case 1:
+            return DataBufferingStatus.TIMEOUT
+        case 2:
+            return DataBufferingStatus.NO_DATA_FOUND
+    }
+}
+function determineDataBuffering(payload){
+    var dataBufferingStatus =  determineDataBufferingStatus(payload)
+    var oldestTimestamp = new Date(((payload[6] << 24) | (payload[7] << 16) | (payload[8] << 8) | payload[9]) * 1000).toISOString();
+    var latestTimestamp = new Date(((payload[10] << 24) | (payload[11] << 16) | (payload[12] << 8) | payload[13]) * 1000).toISOString();
+    return new DataBuffering(dataBufferingStatus, oldestTimestamp, latestTimestamp)
+
+}
 function determinePage0(payload, decodedStatus){
     decodedStatus.AT3Version = payload[7].toString()+"."+payload[8].toString()+"."+payload[9].toString();
     decodedStatus.configurationVersion = payload[10].toString()+"."+payload[11].toString()+"."+payload[12].toString()+"."+payload[13].toString();
@@ -183,6 +293,9 @@ function determinePage0(payload, decodedStatus){
     decodedStatus.lrGnssConsumption = (payload[34] << 8) + payload[35];
     decodedStatus.bleConsumption = (payload[36] << 8) + payload[37];
     decodedStatus.mcuConsumption = (payload[38] << 8) + payload[39];
+    const crcBytes = payload.slice(40, 44);
+    // Convert each byte to a 2-digit hexadecimal string and concatenate
+    decodedStatus.globalCrc = crcBytes.map(b => b.toString(16).padStart(2, "0")).join("");
 }
 
 function determinePage1(payload, decodedStatus){
@@ -282,7 +395,57 @@ function determineResetCause(value){
             throw new Error("Unknown Reset Cause");
     }
 }
-    
+function determineFuotaBinary(bin){
+    switch (bin){
+	    case 0:
+	        return Binary.APPLICATION;
+        case 1:
+            return Binary.BLE_STACK;
+        case 2:
+            return Binary.MT3333;
+        case 3:
+            return Binary.LR11XX;
+        default:
+            throw new Error("The fuota binary is unknown" )
+}}
+function determineFuotaSource(source){
+    switch (source){
+	    case 0:
+	        return Source.XMODEM;
+        case 1:
+            return Source.BLE;
+        case 2:
+            return Source.CELLULAR;
+        case 3:
+            return Source.LORA;
+        default:
+            throw new Error("The fuota source is unknown" )
+}}
+function determineFuotaRaison(raison){
+    switch (raison){
+	    case 0:
+	        return Raison.NONE
+        case 1:
+            return Raison.NETWORK_ISSUE
+        case 2:
+            return Raison.DOWNLOAD_TIMEOUT
+        case 3:
+            return Raison.MODEM_FAILURE
+        case 4:
+            return Raison.FILE_NOT_FOUND
+        case 5:
+            return Raison.PLATFORM_ERROR
+        case 6:
+            return Raison.PARSING_ERROR
+        case 7:
+            return Raison.FLASH_ERROR
+        case 8:
+            return Raison.LENGTH_ERROR
+        case 9:
+            return Raison.SIGNATURE_ERROR
+        default:
+            throw new Error("The fuota raison failure is unknown" )
+}}
 function getBit(value, position) {
     return (value >> position) & 1;
 }
@@ -313,5 +476,9 @@ module.exports = {
     determineLowBattery: determineLowBattery,
     determineBleStatus: determineBleStatus,
     determineTamperDetection: determineTamperDetection,
+    determineHeartbeat : determineHeartbeat,
+    determineShutdownCause : determineShutdownCause,
+    determineDataBuffering: determineDataBuffering,
+    determineFuota: determineFuota,
     SystemType: SystemType
 }

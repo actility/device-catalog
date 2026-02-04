@@ -1,0 +1,547 @@
+[
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing temperature value | payload:110A04020000290B89",
+    "input": {
+      "bytes": "110a04020000290b89",
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:31.598957793Z"
+    },
+    "output": {
+      "data": {
+        "samples": [
+          {
+            "variable": "temperature",
+            "value": 29.53,
+            "date": "2023-07-19T07:51:31.598957793Z",
+            "unit": "Cel"
+          }
+        ],
+        "temperature": 29.53,
+        "temperature_unit": "Cel"
+      },
+      "warnings": []
+    },
+    "points": {
+      "temperature": {
+        "unitId": "Cel",
+        "records": [
+          {
+            "value": 29.53,
+            "eventTime": "2023-07-19T07:51:31.598957793Z"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing 2 short threshold alarms on temperature value | payload:118A0402000029075590B0B1",
+    "input": {
+      "bytes": "118a0402000029075590b0b1",
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": {
+        "samples": [
+          {
+            "variable": "temperature",
+            "value": 18.77,
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "Cel"
+          }
+        ],
+        "temperature": 18.77,
+        "temperature_unit": "Cel"
+      },
+      "warnings": [
+        "alarm triggered",
+        "cause:{alarm:true, criterion_index: 0, mode: threshold, crossing: fall}",
+        "cause:{alarm:true, criterion_index: 1, mode: threshold, crossing: fall}"
+      ]
+    },
+    "points": {
+      "temperature": {
+        "unitId": "Cel",
+        "records": [
+          {
+            "value": 18.77,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing 3 long threshold alarms on temperature value | payload:118a0402000029010ea0b008fc000001b10834000001b207d0000001",
+    "input": {
+      "bytes": "118a0402000029010ea0b008fc000001b10834000001b207d0000001",
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": {
+        "samples": [
+          {
+            "variable": "temperature",
+            "value": 2.7,
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "Cel"
+          }
+        ],
+        "temperature": 2.7,
+        "temperature_unit": "Cel"
+      },
+      "warnings": [
+        "alarm triggered",
+        "cause:{alarm:true, criterion_index: 0, mode: threshold, crossing: fall, value: 23, gap: 0, occurences: 1}",
+        "cause:{alarm:true, criterion_index: 1, mode: threshold, crossing: fall, value: 21, gap: 0, occurences: 1}",
+        "cause:{alarm:true, criterion_index: 2, mode: threshold, crossing: fall, value: 20, gap: 0, occurences: 1}"
+      ]
+    },
+    "points": {
+      "temperature": {
+        "unitId": "Cel",
+        "records": [
+          {
+            "value": 2.7,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing a long delta alarm on temperature value | payload:118A04020000290B35A0C80014",
+    "input": {
+      "bytes": "118a04020000290b35a0c80014",
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": {
+        "samples": [
+          {
+            "variable": "temperature",
+            "value": 28.69,
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "Cel"
+          }
+        ],
+        "temperature": 28.69,
+        "temperature_unit": "Cel"
+      },
+      "warnings": [
+        "alarm triggered",
+        "cause:{alarm:true, criterion_index: 0, mode: delta, value: 0.2}"
+      ]
+    },
+    "points": {
+      "temperature": {
+        "unitId": "Cel",
+        "records": [
+          {
+            "value": 28.69,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing humidity value | payload:110A04050000210E89",
+    "input": {
+      "bytes": "110a04050000210e89",
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": {
+        "samples": [
+          {
+            "variable": "humidity",
+            "value": 37.21,
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "%RH"
+          }
+        ],
+        "humidity": 37.21,
+        "humidity_unit": "%RH"
+      },
+      "warnings": []
+    },
+    "points": {
+      "humidity": {
+        "unitId": "%RH",
+        "records": [
+          {
+            "value": 37.21,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing state of case | payload:110A000F00551001",
+    "input": {
+      "bytes": "110a000f00551001",
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": {
+        "samples": [
+          {
+            "variable": "violation_detection",
+            "value": true,
+            "date": "2023-07-19T07:51:25.508306410Z"
+          }
+        ],
+        "violation_detection": true
+      },
+      "warnings": []
+    },
+    "points": {
+      "status": {
+        "unitId": "state",
+        "records": [
+          {
+            "value": true,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ],
+        "nature": "violation detection"
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing number of pulse detection on input 1 | payload:110A000F04022300000000",
+    "input": {
+      "bytes": "110a000f04022300000000",
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": {
+        "samples": [
+          {
+            "variable": "index",
+            "value": 0,
+            "date": "2023-07-19T07:51:25.508306410Z"
+          }
+        ],
+        "index": 0
+      },
+      "warnings": []
+    },
+    "points": {
+      "counter": {
+        "unitId": "count",
+        "records": [
+          {
+            "value": 0,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing cmdID 0x07 response for temperature cluster | payload:1107040200800000",
+    "input": {
+      "bytes": "1107040200800000",
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": {
+        "report": "standard",
+        "endpoint": 0,
+        "cmdID": "0x07",
+        "clustID": "0x0402",
+        "attID": "0x0000",
+        "status": 0,
+        "report_parameters": {
+          "new_mode_configuration": "1",
+          "cause_request": "none",
+          "secured_if_alarm": "0",
+          "secured": "0",
+          "no_hearde_port": "0",
+          "batch": "0"
+        }
+      },
+      "warnings": []
+    },
+    "points": {}
+  },
+  {
+    "type": "uplink",
+    "description": "uplink of read current value on cluster 0x0402 | payload:11010402000000290992",
+    "input": {
+      "bytes": "11010402000000290992",
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": {
+        "samples": [
+          {
+            "variable": "temperature",
+            "value": 24.5,
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "Cel"
+          }
+        ],
+        "temperature": 24.5,
+        "temperature_unit": "Cel"
+      },
+      "warnings": []
+    },
+    "points": {
+      "temperature": {
+        "unitId": "Cel",
+        "records": [
+          {
+            "value": 24.5,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink containing a batch of values | payload:362100808098c31ecb824d7b07ba3d",
+    "input": {
+      "bytes": "362100808098c31ecb824d7b07ba3d",
+      "fPort": 125,
+      "recvTime": "2023-07-18T12:19:53.243Z"
+    },
+    "output": {
+      "data": {
+        "batch_counter": 1,
+        "samples": [
+          {
+            "variable": "temperature",
+            "value": 28.7,
+            "date": "2023-07-18T12:19:53.243Z",
+            "unit": "Cel"
+          },
+          {
+            "variable": "humidity",
+            "value": 37,
+            "date": "2023-07-18T12:19:53.243Z",
+            "unit": "%RH"
+          },
+          {
+            "variable": "battery_voltage",
+            "value": 3.707,
+            "date": "2023-07-18T12:19:52.243Z",
+            "unit": "V"
+          }
+        ],
+        "temperature": 28.7,
+        "humidity": 37,
+        "battery_voltage": 3.707,
+        "temperature_unit": "Cel",
+        "humidity_unit": "%RH",
+        "battery_voltage_unit": "V"
+      },
+      "warnings": []
+    },
+    "points": {
+      "temperature": {
+        "unitId": "Cel",
+        "records": [
+          {
+            "value": 28.7,
+            "eventTime": "2023-07-18T12:19:53.243Z"
+          }
+        ]
+      },
+      "humidity": {
+        "unitId": "%RH",
+        "records": [
+          {
+            "value": 37,
+            "eventTime": "2023-07-18T12:19:53.243Z"
+          }
+        ]
+      },
+      "batteryVoltage": {
+        "unitId": "V",
+        "records": [
+          {
+            "value": 3.707,
+            "eventTime": "2023-07-18T12:19:52.243Z"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Send a custom hex frame (here: read firmware version)",
+    "input": {
+      "data": {
+        "sendHexFrame": "110000000002"
+      }
+    },
+    "output": {
+      "bytes": [
+        17,
+        0,
+        0,
+        0,
+        0,
+        2
+      ],
+      "fPort": 125,
+      "warnings": []
+    },
+    "points": {}
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Send a custom hex frame with specific port",
+    "input": {
+      "data": {
+        "sendHexFrame": "110000000002:100"
+      }
+    },
+    "output": {
+      "bytes": [
+        17,
+        0,
+        0,
+        0,
+        0,
+        2
+      ],
+      "fPort": 100,
+      "warnings": []
+    },
+    "points": {}
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Set confirmed transmission mode (1=confirmed, 0=unconfirmed)",
+    "input": {
+      "data": {
+        "sendConfirmedMode": 1
+      }
+    },
+    "output": {
+      "bytes": [
+        17,
+        5,
+        128,
+        4,
+        0,
+        0,
+        8,
+        1
+      ],
+      "fPort": 125,
+      "warnings": []
+    },
+    "points": {}
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Reboot device",
+    "input": {
+      "data": {
+        "sendReboot": true
+      }
+    },
+    "output": {
+      "bytes": [
+        17,
+        80,
+        0,
+        80,
+        0
+      ],
+      "fPort": 125,
+      "warnings": []
+    },
+    "points": {}
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Factory reset device",
+    "input": {
+      "data": {
+        "sendFactoryReset": true
+      }
+    },
+    "output": {
+      "bytes": [
+        17,
+        80,
+        0,
+        80,
+        7
+      ],
+      "fPort": 125,
+      "warnings": []
+    },
+    "points": {}
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Set LoRa retries to 3",
+    "input": {
+      "data": {
+        "sendLoraRetries": 3
+      }
+    },
+    "output": {
+      "bytes": [
+        17,
+        5,
+        128,
+        4,
+        0,
+        1,
+        32,
+        3
+      ],
+      "fPort": 125,
+      "warnings": []
+    },
+    "points": {}
+  },
+  {
+    "type": "downlink-encode",
+    "description": "LoRa Rejoin with 60 minutes interval",
+    "input": {
+      "data": {
+        "sendLoraRejoin": 60
+      }
+    },
+    "output": {
+      "bytes": [
+        17,
+        80,
+        128,
+        4,
+        0,
+        0,
+        60
+      ],
+      "fPort": 125,
+      "warnings": []
+    },
+    "points": {}
+  }
+]

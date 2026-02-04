@@ -1,3 +1,5 @@
+# Deprecated models will not be added to the next device profiles catalog. Models cannot just be deleted from the repository.
+deprecated: true
 # Commercial name of the model 
 name: Press'O
 # Functional description of the product. Maximum 500 characters. 
@@ -49,3 +51,7 @@ examples:
     nke:zcl:1:
         - "Press'O Report of the analog value of connector 4-20mA"
         - "Press'O Report of the analog value of connector 0-10V"
+
+LoRaWANRelay:
+  canOperateAsARelay: false
+  defaultRelayActivation: false

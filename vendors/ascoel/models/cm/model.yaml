@@ -1,0 +1,74 @@
+# Commercial name of the model
+name: CM sensor
+# Functional description of the product. Maximum 500 characters.
+description: The CM sensor is a magnetic contact sensor capable of detecting opening or closures of object such as doors and windows. The compact design of this sensor make it ideal to use indoor in homes and officess. This sensor features a very low battery consuption, allowing this sensor to last several years without battery replacement. This sensor is LoRaWAN 1.0.2 compliant.
+# Logo of the device
+logo: cm.png
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
+# id: as defined under /profiles.
+# lorawanDeviceProfileID: as defined by LoRa Alliance in https://lora-alliance.org/wp-content/uploads/2020/10/LoRa_Alliance_Vendor_ID_for_QR_Code_02142022.pdf.
+# The lorawanDeviceProfileID consists of 8 upper-case hexadecimal characters, 4 characters for VendorID + 4 characters for VendorProfileID. Please consider using single (') or double (") quotation.
+deviceProfileIds:
+  - id: ascoel_RFGroup1_1.0.2a_classA
+  - id: ascoel_RFGroup2_1.0.2a_classA
+  - id: ascoel_RFGroup4_1.0.2a_classA
+
+# You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings.
+# Maximum device TX Conducted output power in dBm.
+maxTxPower:
+# Minimum device TX Conducted output power in dBm.
+minTxPower:
+# Maximum device TX Radiated output power in dBm.
+maxTxEIRP:
+# Minimum device TX Radiated output power in dBm.
+minTxEIRP:
+# Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'
+# or 'random' (not known, changes over time).
+motionIndicator:
+
+# Is your device certified by the LoRa Alliance? Possible values: true, false.
+LoRaWANCertified:
+# Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
+# Format: `<8 characters max>:<16 characters max>:<digits only>`
+# Be careful: Once you chose a model, it cannot be changed later
+modelId: ascoel:cm:1
+# <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
+# Format: `<8 characters max>:<16 characters max>:<digits only>`
+# Be careful: Once you chose a protocolId, it cannot be changed later
+protocolId:
+  - ascoel:cm:1
+# DataSheet URL (optional)
+specificationURL: https://www.ascoel.it/images/Datasheets/CM868LR_eng.pdf
+# User Guide URL (optional)
+userGuideURL:
+# <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
+sensors:
+# Driver examples
+# A list of examples description that are compatible with this model
+examples:
+  ascoel:cm:1:
+    - "uplink containing the model of CM868LR device in ASCII format"
+    - "uplink containing the model of CM868LRTH device in ASCII format"
+    - "uplink containing the model of CMUS915LR device in ASCII format"
+    - "uplink containing the model of CMUS915LRTH device in ASCII format"
+    - "uplink containing the serial number of any device in ASCII format"
+    - "uplink containing the FW release, LoRaWAN client library version, HW release message of any device in ASCII format"
+    - "uplink containing battery information of any device with a lithium battery"
+    - "uplink containing battery information of any device with an alkaline battery"
+    - "uplink containing alive message from CM868LR/CMUS915LR device"
+    - "uplink containing alive message from CM868LRTH/CMUS915LRTH device"
+    - "uplink containing Ack message sent to the server from any device every time a setting message received, with the corresponding port"
+    - "uplink containing NAck message send to the server from any device every time a setting message received, with the corresponding port"
+    - "uplink containing event information and opening counter of CM868LR/CMUS915LR device with all normal events"
+    - "uplink containing event information and opening counter of CM868LR/CMUS915LR device with all non-normal events"
+    - "uplink containing event information and opening counter of CM868LR/CMUS915LR device with all non-normal events and line open external input"
+    - "uplink containing event information and opening counter of CM868LR/CMUS915LR device with all non-normal events and line short circuit external input"        
+    - "uplink containing event information, opening counter, temperature and relative humidity values of CM868LRTH/CMUS915LRTH device with all normal events"       
+    - "uplink containing event information, opening counter, temperature and relative humidity values of CM868LRTH/CMUS915LRTH device with all non-normal events"   
+    - "uplink containing event information, opening counter, temperature and relative humidity values of CM868LRTH/CMUS915LRTH device with all non-normal events and line open external input"
+    - "uplink containing event information, opening counter, temperature and relative humidity values of CM868LRTH/CMUS915LRTH device with all non-normal events and line short circuit external input"
+
+
+LoRaWANRelay:
+  canOperateAsARelay: false
+  defaultRelayActivation: false

@@ -1,7 +1,7 @@
 # Commercial name of the model
 name: TS201 Cost-Effective Temperature Sensor
 # Functional description of the product. Maximum 500 characters.
-description: Milesight TS201 Temperature Sensor is rugged with IP67 rating offering real-time alerts, while complying with EN12830 Standard and HACCP Requirements. It is specially designed for various application scenarios like cold chain, pharmaceutical, food processing and more.
+description: "Milesight TS201 Temperature Sensor is rugged with IP67 rating offering real-time alerts, while complying with EN12830 Standard and HACCP Requirements. It is specially designed for various application scenarios like cold chain, pharmaceutical, food processing and more."
 # Logo of the device
 logo: ts201.png
 # ID(s) of the profile that defines the LoRaWAN characteristics of this model.
@@ -44,6 +44,7 @@ specificationURL: https://resource.milesight.com/milesight/iot/document/ts201-da
 userGuideURL: https://resource.milesight.com/milesight/iot/document/ts201-user-guide-en.pdf
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
+  - temperature:Cel
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
@@ -53,3 +54,8 @@ examples:
     - "uplink containing temperature, event of temperature, temperature alarm and temperature mutation"
     - "uplink containing only event of temperature error"
     - "uplink containing history of event type, read status, temperature and timestamp"
+
+
+LoRaWANRelay:
+  canOperateAsARelay: false
+  defaultRelayActivation: false

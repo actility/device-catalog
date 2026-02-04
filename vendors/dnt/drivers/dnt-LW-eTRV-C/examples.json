@@ -1,0 +1,74 @@
+[
+  {
+    "type": "uplink",
+    "description": "uplink containing only pulse counter",
+    "input": {
+      "bytes": "04F4B664640004",
+      "fPort": 10,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "battery_voltage": {
+          "unit": "mV",
+          "value": "3320"
+        },
+        "heating_control": {
+          "mode": {
+            "active_mode": {
+              "unit": "string",
+              "value": "Manu Temp"
+            },
+            "holiday": {
+              "is_pending": {
+                "unit": "bool",
+                "value": false
+              }
+            },
+            "window_open_detection": {
+              "is_open": {
+                "unit": "bool",
+                "value": false
+              }
+            }
+          },
+          "room_temperature": {
+            "unit": "°C",
+            "value": "2570.0"
+          },
+          "set_point_temperature": {
+            "unit": "°C",
+            "value": "0.0"
+          },
+          "valve_position": {
+            "unit": "%",
+            "value": "2.0"
+          }
+        }
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "batteryVoltage": {
+        "unitId": "mV",
+        "record": 3320
+      },
+      "temperature:0": {
+        "unitId": "Cel",
+        "record": 2570,
+        "nature": "room"
+      },
+      "temperature:1": {
+        "unitId": "Cel",
+        "record": 0,
+        "nature": "point"
+      },
+      "angle": {
+        "unitId": "deg",
+        "record": 2,
+        "nature": "valve"
+      }
+    }
+  }
+]

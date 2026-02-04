@@ -1,3 +1,5 @@
+# Deprecated models will not be added to the next device profiles catalog. Models cannot just be deleted from the repository.
+deprecated: true
 # Commercial name of the model 
 name: Temperature indoor sensor
 # Functional description of the product. Maximum 500 characters. 
@@ -43,3 +45,7 @@ specificationURL:
 userGuideURL: 
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
+
+LoRaWANRelay:
+  canOperateAsARelay: false
+  defaultRelayActivation: false

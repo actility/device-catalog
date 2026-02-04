@@ -15,6 +15,8 @@ product:
 deviceProfileIds: 
     - id: MCLI/TVLVEA.1.0.1a_ETSI
       lorawanDeviceProfileID: '03380000'
+    - id: mclimate_RFGroup2_1.0.1a_classA
+    - id: mclimate_RFGroup4_1.0.1a_classA
  
 # You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
 # Maximum device TX Conducted output power in dBm. 
@@ -48,3 +50,8 @@ sensors:
 examples:
     os1-mcli:t-valve:1:
         - "Short periodic uplink"
+
+
+LoRaWANRelay:
+  canOperateAsARelay: false
+  defaultRelayActivation: false

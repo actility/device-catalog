@@ -1,0 +1,53 @@
+# Commercial name of the model 
+name: TX T&H AMB 600-022
+# Functional description of the product. Maximum 500 characters.
+description: "The Enless Wireless Wireless LoRa / LoRaWAN humidity and temperature transmitter allows you to monitor occupant comfort levels, thanks to its integrated sensors of temperature and humidity and save energy by monitoring HVAC systems – Heating Ventilation Air Conditioning – in situ."
+# Logo of the device
+logo: 600-022.png
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
+# id: as defined under /profiles.
+# lorawanDeviceProfileID: as defined by LoRa Alliance in https://lora-alliance.org/wp-content/uploads/2020/10/LoRa_Alliance_Vendor_ID_for_QR_Code_02242022.pdf.
+# The lorawanDeviceProfileID consists of 8 upper-case hexadecimal characters, 4 characters for VendorID + 4 characters for VendorProfileID. Please consider using single (') or double (") quotation.
+deviceProfileIds:
+    - id: enless_RFGroup1_1.0.2b_classA
+
+# You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings.
+# Maximum device TX Conducted output power in dBm.
+maxTxPower:
+# Minimum device TX Conducted output power in dBm.
+minTxPower:
+# Maximum device TX Radiated output power in dBm.
+maxTxEIRP:
+# Minimum device TX Radiated output power in dBm.
+minTxEIRP:
+# Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'
+# or 'random' (not known, changes over time).
+motionIndicator:
+
+# Is your device certified by the LoRa Alliance? Possible values: true, false.
+LoRaWANCertified: true
+# Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
+# Format: `<8 characters max>:<16 characters max>:<digits only>`
+modelId: enless-w:tx-amb-600-022:1
+# <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
+protocolId: enless-w:600-022:1
+# DataSheet URL (optional)
+specificationURL:
+# User Guide URL (optional)
+userGuideURL:
+# <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
+sensors:
+    - batteryLevel:%
+    - co2Level:ppm
+    - concentration:ppb
+    - humidity:%RH
+    - temperature:Cel
+    - status:state
+examples:
+    enless-w:600-022:1:
+        - "Example: 600-022"
+        - "Downlink 600-022"
+
+LoRaWANRelay:
+  canOperateAsARelay: false
+  defaultRelayActivation: false

@@ -1,19 +1,19 @@
 {
   "name": "asset-tracker-3",
-  "version": "3.0.2",
+  "version": "3.2.24",
   "description": "abeeway asset tracker AT3 js driver",
   "main": "main.js",
+  "metadata": "metadata.json",
   "scripts": {
-    "test": "jest",
+    "test": "node run-driver-test.js",
     "build": "webpack",
     "develop": "webpack --mode development --watch"
   },
   "contributors": [],
   "license": "ISC",
   "devDependencies": {
-    "fs-extra": "^11.2.0",
+    "cross-env": "^7.0.3",
     "jest": "^29.7.0",
-    "js-yaml": "^4.1.0",
     "path": "^0.12.7",
     "webpack": "^5.91.0",
     "webpack-cli": "^5.1.4"
@@ -24,5 +24,9 @@
       "html"
     ],
     "verbose": true
+  },
+  "dependencies": {
+    "ajv": "^8.17.1",
+    "fs": "^0.0.1-security"
   }
 }

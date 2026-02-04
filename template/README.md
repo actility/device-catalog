@@ -125,6 +125,10 @@ Example: `vendor_RFGroup1_1.0.2revB_classA.yaml`
 
 You can find several generic templates under [here](Generic Profiles Templates). It is highly recommended to start by copying one/several of them according to the characteristics of your models and then customize.
 
+### Deprecation
+To deprecate a device profile, you will need to add `distinction: (deprecated)` under your device profile, in order to inform the users of the coming deprecation\
+Then wait 3 months\
+After those 3 months, you can put `deprecated: true` under your device profile, which will be removed from the catalog during the next release
 
 ## Driver
 A driver decodes binary payload to Json object and encodes Json object to binary, following the recommendations provided by LoRa-Alliance.

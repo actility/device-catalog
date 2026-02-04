@@ -1,3 +1,5 @@
+# Deprecated profiles will not be added to the next device profiles catalog. Profiles cannot just be deleted from the repository.
+deprecated: true
 # ID that represents the profile of your device model.
 # SHALL Follow this convention: <vendorID> (lowercase) + '_' + <Profile Group> + '_' <LoRaWAN L2 & PHY versions> + '_class' + <LoRaWAN class A, B or C>
 # Follow the information below to know the profile group to use in the ID
@@ -22,6 +24,9 @@ ISMbands: us915
 motionIndicator: NEAR_STATIC
 
 mac:
+    # This value defines the minimal required RX1 delay that allows the application server managing the device to quickly respond to an uplink packet with a downlink applicative packet.
+    minRx1Delay:    
+
     # Activation modes supported by the device (put true where applicable).
     # (ABP)
     activationByPersonalization: false
@@ -91,6 +96,7 @@ supportedMACCommands:
     pingSlotInfoReqAns: true
     deviceTimeReqAns: true
     beaconFreqReqAns: true
+    extendedNotifyNewEndDeviceReq: false
 
 # Does your device support [Technical Recommendation for LoRaWAN L2 1.0.x Join Security] recommending implemeting the DevNonce as a counter for 
 # OTAA devices? See https://lora-alliance.org/resource_hub/technical-recommendations-for-preventing-state-synchronization-issues-around-lorawan-1-0-x-join-procedure/

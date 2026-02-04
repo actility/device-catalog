@@ -1,0 +1,55 @@
+[
+  {
+    "description": "Example 1",
+    "type": "uplink",
+    "input": {
+      "bytes": "01755C0367010104824408050001",
+      "fPort": 100,
+      "time": "2024-11-03T17:00:00.000+02:00",
+      "points": {
+        "batteryLevel": {
+          "record": 92,
+          "unitId": "%"
+        },
+        "distance": {
+          "record": 2116,
+          "unitId": "mm"
+        },
+        "status:0": {
+          "record": true,
+          "unitId": "state",
+          "nature": "tilt"
+        },
+        "temperature": {
+          "record": 25.7,
+          "unitId": "Cel"
+        }
+      }
+    },
+    "output": {
+      "battery": 92,
+      "distance": 2116,
+      "position": "tilt",
+      "temperature": 25.7
+    },
+    "points": {
+      "batteryLevel": {
+        "unitId": "%",
+        "record": 92
+      },
+      "temperature": {
+        "unitId": "Cel",
+        "record": 25.7
+      },
+      "distance": {
+        "unitId": "mm",
+        "record": 2116
+      },
+      "status:0": {
+        "unitId": "state",
+        "record": true,
+        "nature": "tilt"
+      }
+    }
+  }
+]

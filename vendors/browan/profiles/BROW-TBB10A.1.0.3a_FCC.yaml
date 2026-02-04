@@ -22,11 +22,14 @@ ISMbands: us915
 motionIndicator: RANDOM
 
 mac:
+    # This value defines the minimal required RX1 delay that allows the application server managing the device to quickly respond to an uplink packet with a downlink applicative packet.
+    minRx1Delay:    
+
     # Activation modes supported by the device (put true where applicable).
     # (ABP)
     activationByPersonalization: true
     #(OTAA)
-    overTheAirActivation: false
+    overTheAirActivation: true
     # Supported version of the LoRaWAN MAC (Layer-2) specification. Possible values are '1.0.0/1.0.1', '1.0.2', '1.0.3', '1.0.4', '1.1'
     loRaWANMacVersion: 1.0.3
     # Supported version of the LoRaWAN regional parameters (PHY) specification. Possible values are '1.0.2revA', '1.0.2revB', '1.0.2revC', 
@@ -91,6 +94,7 @@ supportedMACCommands:
     pingSlotInfoReqAns: true
     deviceTimeReqAns: true
     beaconFreqReqAns: false
+    extendedNotifyNewEndDeviceReq: false
 
 # Does your device support [Technical Recommendation for LoRaWAN L2 1.0.x Join Security] recommending implemeting the DevNonce as a counter for 
 # OTAA devices? See https://lora-alliance.org/resource_hub/technical-recommendations-for-preventing-state-synchronization-issues-around-lorawan-1-0-x-join-procedure/

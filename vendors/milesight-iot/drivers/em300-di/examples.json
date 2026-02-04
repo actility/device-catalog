@@ -1,28 +1,40 @@
 [
-    {
-      "type": "uplink",
-      "description": "Example 1",
-      "input": {
-          "bytes": "01755C0367340104686520CE9E74466310015D020000010000",
-          "fPort": 100,
-          "recvTime": "2022-11-02T20:00:00.000+05:00"
+  {
+    "type": "uplink",
+    "description": "Example 1",
+    "input": {
+      "bytes": "01755C0367340104686520CE9E74466310015D020000010000",
+      "fPort": 100,
+      "recvTime": "2022-11-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "battery": 92,
+        "temperature": 30.8,
+        "humidity": 50.5,
+        "history": [
+          {
+            "timestamp": 1665561758,
+            "temperature": 27.2,
+            "humidity": 46.5,
+            "pulse": 256
+          }
+        ]
+      }
+    },
+    "points": {
+      "batteryLevel": {
+        "unitId": "%",
+        "record": 92
       },
-      "output": {
-        "data": {
-          "battery": 92,
-          "temperature": 30.8,
-          "humidity": 50.5,
-          "history": [
-            {
-              "timestamp": 1665561758,
-              "temperature": 27.2,
-              "humidity": 46.5,
-              "pulse": 256
-            }
-          ]
-        }
-       }
-     }
-      
-  ]
-  
+      "temperature": {
+        "unitId": "Cel",
+        "record": 30.8
+      },
+      "humidity": {
+        "unitId": "%RH",
+        "record": 50.5
+      }
+    }
+  }
+]

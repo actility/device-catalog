@@ -25,7 +25,7 @@ minTxEIRP:
 motionIndicator:
  
 # Is your device certified by the LoRa Alliance? Possible values: true, false. 
-LoRaWANCertified: true
+LoRaWANCertified: false
 # Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
 # Format: `<8 characters max>:<16 characters max>:<digits only>`
 modelId: enless-w:600-032:1
@@ -37,4 +37,14 @@ specificationURL: https://enless-wireless.com/wp-content/uploads/2022/06/EN-TX-T
 userGuideURL: https://enless.gitbook.io/installation-guide-lorawan/
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors: 
+    - batteryLevel:%
+    - temperature:Cel
+    - status:state
 examples:
+    enless-w:600-032:1:
+        - "Example: 600-032"
+        - "Downlink 600-032"
+
+LoRaWANRelay:
+  canOperateAsARelay: false
+  defaultRelayActivation: false

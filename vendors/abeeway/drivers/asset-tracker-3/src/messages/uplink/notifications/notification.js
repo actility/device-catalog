@@ -42,6 +42,18 @@ function Notification(notificationClass,
     this.telemetryMeasurements = telemetryMeasurements;
 }
 
+function decodeCrc(payload) {
+    // Ensure the payload has enough bytes for the CRC
+    if (payload.length < startingByte + byteNumber) {
+        throw new Error("Payload is too short to contain a valid CRC.");
+    }
+
+    // Extract the n bytes of the CRC (big-endian)
+    const crcBytes = payload.slice(startingByte, startingByte + byteNumber);
+    // Convert each byte to a 2-digit hexadecimal string and concatenate
+    const crc = crcBytes.map(b => b.toString(16).padStart(2, "0")).join("");
+    return crc;
+}
 function determineNotification(payload){
     if (payload.length < 5)
         throw new Error("The payload is not valid to determine notification message");
@@ -54,19 +66,35 @@ function determineNotification(payload){
             switch (typeValue){
                 case 0:
                     notificationMessage.notificationType = systemClass.SystemType.STATUS
-                    notificationMessage.system = new systemClass.System(systemClass.determineStatus(payload),null, null, null);
+                    notificationMessage.system = new systemClass.System(systemClass.determineStatus(payload),null, null, null, null, null, null, null);
                     break;
                 case 1:
                     notificationMessage.notificationType = systemClass.SystemType.LOW_BATTERY
-                    notificationMessage.system = new systemClass.System( null, systemClass.determineLowBattery(payload), null);
+                    notificationMessage.system = new systemClass.System( null, systemClass.determineLowBattery(payload), null, null, null, null, null);
                     break;
                 case 2:
                     notificationMessage.notificationType = systemClass.SystemType.BLE_STATUS;
-                    notificationMessage.system = new systemClass.System( null, null, systemClass.determineBleStatus(payload), null);
+                    notificationMessage.system = new systemClass.System( null, null, systemClass.determineBleStatus(payload), null, null, null, null, null);
                     break;
                 case 3:
                     notificationMessage.notificationType = systemClass.SystemType.TAMPER_DETECTION;
-                    notificationMessage.system = new systemClass.System( null, null, null, systemClass.determineTamperDetection(payload));
+                    notificationMessage.system = new systemClass.System( null, null, null, systemClass.determineTamperDetection(payload),null, null, null, null);
+                    break;
+                case 4:
+                    notificationMessage.notificationType = systemClass.SystemType.HEARTBEAT;
+                    notificationMessage.system = new systemClass.System(null, null, null, null, systemClass.determineHeartbeat(payload), null, null, null)
+                    break;
+                case 5:
+                    notificationMessage.notificationType = systemClass.SystemType.SHUTDOWN;
+                    notificationMessage.system = new systemClass.System(null, null, null, null, null, systemClass.determineShutdownCause(payload), null, null)
+                    break;
+                case 6:
+                    notificationMessage.notificationType = systemClass.SystemType.DATA_BUFFERING_STATUS;
+                    notificationMessage.system = new systemClass.System(null, null, null, null, null, null, systemClass.determineDataBuffering(payload), null)
+                    break;
+                case 7:
+                    notificationMessage.notificationType = systemClass.SystemType.FUOTA;
+                    notificationMessage.system = new systemClass.System(null, null, null, null, null, null, null, systemClass.determineFuota(payload))
                     break;
                 default:
                     throw new Error("System Notification Type Unknown");
@@ -112,11 +140,11 @@ function determineNotification(payload){
                     break;
                 case 1:
                     notificationMessage.notificationType = accelerometerClass.AcceleroType.MOTION_END
-                    notificationMessage.accelerometer = new accelerometerClass.Accelerometer(accelerometerClass.determineAccelerationVector(payload), accelerometerClass.determineMotion(payload), null, null)
+                    notificationMessage.accelerometer = new accelerometerClass.Accelerometer(accelerometerClass.determineAccelerationVector(payload,5, 7, 9), accelerometerClass.determineMotion(payload), null, null)
                     break;
                 case 2:
                     notificationMessage.notificationType = accelerometerClass.AcceleroType.SHOCK
-                    notificationMessage.accelerometer = new accelerometerClass.Accelerometer(accelerometerClass.determineAccelerationVector(payload), null, accelerometerClass.determineGaddIndex(payload), accelerometerClass.determineNumberShocks(payload))
+                    notificationMessage.accelerometer = new accelerometerClass.Accelerometer(accelerometerClass.determineAccelerationVector(payload, 5, 7, 9), null, accelerometerClass.determineGaddIndex(payload), accelerometerClass.determineNumberShocks(payload))
                     break;
                 default:
                     throw new Error("Accelerometer Notification Type Unknown");
@@ -186,5 +214,6 @@ function determineNotification(payload){
 
 module.exports = {
     Notification: Notification,
-    determineNotification: determineNotification
+    determineNotification: determineNotification,
+    Class : Class
 }

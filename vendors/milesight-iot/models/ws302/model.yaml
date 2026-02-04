@@ -1,5 +1,5 @@
 # Commercial name of the model
-name: Milesight WS302 is a LoRa sound level sensor
+name: WS302
 # Functional description of the product. Maximum 500 characters.
 description: "Milesight WS302 is a LoRa sound level sensor with integrated microphone. WS302 can not only measure a wide range of noise levels and send various kinds of noise level values via LoRaWAN® network, but also supports multiple weighting measurements for different application scenarios. Compliant with Milesight LoRaWAN® gateway and Milesight IoT Cloud solution, users can manage all sensor data and trigger other sensors or appliances easily via webpage or mobile App remotely."
 # Logo of the device
@@ -46,8 +46,13 @@ userGuideURL: https://resource.milesight-iot.com/milesight/document/ws302-user-g
 # Available sensors following Actility ontology: https://github.com/actility/thingpark-iot-flow-js-driver/blob/master/UNITS.md 
 sensors: 
     - batteryLevel:%
+    - sound:dB
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
     msight:ws302:1:
         - "Example 1"
+
+LoRaWANRelay:
+  canOperateAsARelay: false
+  defaultRelayActivation: false

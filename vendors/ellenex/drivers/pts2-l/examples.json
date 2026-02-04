@@ -3,17 +3,23 @@
     "description": "Example 1",
     "type": "uplink",
     "input": {
-      "bytes": "01e800fb58000022",
+      "bytes": "01820012FC000022",
       "fPort": 1,
       "recvTime": "2020-08-02T20:00:00.000+05:00"
     },
     "output": {
       "data": {
-        "pressure": -1192,
+        "pressure": 4860,
         "batteryVoltage": 3.4
       },
       "errors": [],
       "warnings": []
+    },
+    "points": {
+      "batteryVoltage": {
+        "unitId": "%",
+        "record": 3.4
+      }
     }
   },
   {
@@ -31,6 +37,12 @@
       },
       "errors": [],
       "warnings": []
+    },
+    "points": {
+      "batteryVoltage": {
+        "unitId": "%",
+        "record": 3.4
+      }
     }
   },
   {
@@ -43,8 +55,11 @@
     },
     "output": {
       "data": {},
-      "errors": ["Invalid uplink payload: length is not 8 byte"],
+      "errors": [
+        "Invalid uplink payload: length is not 8 byte"
+      ],
       "warnings": []
-    }
+    },
+    "points": {}
   }
 ]

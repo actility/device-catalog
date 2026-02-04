@@ -1,0 +1,130 @@
+[
+  {
+    "type": "uplink",
+    "description": "Standard",
+    "input": {
+      "bytes": "01756104672C0103670A01059264099000000B900000",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "battery": 97,
+        "motor_position": 0,
+        "motor_stroke": 0,
+        "target_temperature": 30,
+        "temperature": 26.6,
+        "valve_opening": 100
+      }
+    },
+    "points": {
+      "batteryLevel": {
+        "unitId": "%",
+        "record": 97
+      },
+      "temperature:1": {
+        "unitId": "Cel",
+        "record": 26.6,
+        "nature": "ambient"
+      },
+      "temperature:2": {
+        "unitId": "Cel",
+        "record": 30,
+        "nature": "target"
+      },
+      "percentage": {
+        "unitId": "%",
+        "record": 100,
+        "nature": "valve"
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Motor Information",
+    "input": {
+      "bytes": "08E50009900802",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "motor_calibration_result": "success",
+        "motor_stroke": 520
+      }
+    },
+    "points": {}
+  },
+  {
+    "type": "uplink",
+    "description": "Installation Status",
+    "input": {
+      "bytes": "060000",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "tamper_status": "installed"
+      }
+    },
+    "points": {}
+  },
+  {
+    "type": "uplink",
+    "description": "Window Detection",
+    "input": {
+      "bytes": "070001",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "window_detection": "open"
+      }
+    },
+    "points": {
+      "status:1": {
+        "unitId": "state",
+        "record": true,
+        "nature": "window open"
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Motor Calibration Result",
+    "input": {
+      "bytes": "08E501",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "motor_calibration_result": "fail: out of range"
+      }
+    },
+    "points": {}
+  },
+  {
+    "type": "uplink",
+    "description": "Freeze Protection",
+    "input": {
+      "bytes": "0A0001",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "freeze_protection": "triggered"
+      }
+    },
+    "points": {
+      "status:2": {
+        "unitId": "state",
+        "record": true,
+        "nature": "freeze protection"
+      }
+    }
+  }
+]

@@ -42,9 +42,17 @@ specificationURL:
 userGuideURL: 
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors: 
+    - batteryLevel:%
+    - co2Level:ppm
+    - amount:count
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
     zenner:co2-ind-ID-A:1:
         - "uplink containing data"
         - "uplink containing data"
+
+
+LoRaWANRelay:
+  canOperateAsARelay: false
+  defaultRelayActivation: false

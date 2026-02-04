@@ -14,7 +14,11 @@ product:
 # The lorawanDeviceProfileID consists of 8 upper-case hexadecimal characters, 4 characters for VendorID + 4 characters for VendorProfileID. Please consider using single (') or double (") quotation.
 deviceProfileIds: 
     - id: ATIM/DindinA.1.0.2b_ETSI
+      distinction: (deprecated)
     - id: ATIM/DindinC.1.0.2b_ETSI
+      distinction: (deprecated)
+    - id: atim_RFGroup1_1.0.2a_classA
+    - id: atim_RFGroup1_1.0.2a_classC
  
 # You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
 # Maximum device TX Conducted output power in dBm. 
@@ -42,3 +46,7 @@ specificationURL:
 userGuideURL: 
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
+
+LoRaWANRelay:
+  canOperateAsARelay: false
+  defaultRelayActivation: false

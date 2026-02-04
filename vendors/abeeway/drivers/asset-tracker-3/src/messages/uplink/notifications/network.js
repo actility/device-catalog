@@ -1,7 +1,9 @@
-function Network(activeNetwork, mainNetwork, backupNetwork){
+function Network(activeNetwork, mainNetwork, backupNetwork, psmActiveTime, psmTAU){
     this.activeNetwork = activeNetwork;
     this.mainNetwork = mainNetwork;
     this.backupNetwork = backupNetwork;
+    this.psmActiveTime = psmActiveTime;
+    this.psmTAU = psmTAU;
 }
 const NetworkType = Object.freeze({
     MAIN_UP: "MAIN_UP",
@@ -32,10 +34,16 @@ function determineNetwork(value){
 
 }
 function determineNetworkInfo(payload){
+    let psmActiveTime
+    let psmTAU
     let activeNetwork = determineNetwork(payload[5])
     let mainNetwork =  determineNetwork(payload[6])
     let backupNetwork = determineNetwork(payload[7])
-    return new Network(activeNetwork, mainNetwork, backupNetwork);
+    if (payload.length > 7){
+        psmActiveTime = (payload[8] << 8) + payload[9];
+        psmTAU = (payload[10] << 24) + (payload[11] << 16) + (payload[12] << 8) + payload[13];
+    }
+    return new Network(activeNetwork, mainNetwork, backupNetwork, psmActiveTime, psmTAU);
 }
 
 module.exports = {

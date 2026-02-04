@@ -1,16 +1,17 @@
 let util = require("../../../util");
 const QueryType = Object.freeze({
     AIDING_POSITION: "AIDING_POSITION",
-    UPDATE_SYS_TIME: "UPDATE_SYS_TIME",
+    ECHO_REQUEST: "ECHO_REQUEST",
     UPDATE_GPS_ALMANAC: "UPDATE_GPS_ALMANAC",
     UPDATE_BEIDOU_ALMANAC: "UPDATE_BEIDOU_ALMANAC"
 })
 
 function Query(queryType,
-    gpsSvid, beidouSvid){
+    gpsSvid, beidouSvid, sequenceNumber){
         this.queryType = queryType;
         this.gpsSvid = gpsSvid;
         this.beidouSvid = beidouSvid;
+        this.sequenceNumber = sequenceNumber;
 }
 
 function determineQuery(payload){
@@ -21,7 +22,8 @@ function determineQuery(payload){
             query.queryType = QueryType.AIDING_POSITION
             break;
         case 1:
-            query.queryType = QueryType.UPDATE_SYS_TIME
+            query.queryType = QueryType.ECHO_REQUEST
+            query.sequenceNumber = payload.slice(5)
             break;
         case 2:
             query.queryType = QueryType.UPDATE_GPS_ALMANAC

@@ -1,28 +1,41 @@
-function getDriverEngineResult(){
-    if(typeof driver === 'undefined' || typeof driver.decodeUplink !== 'function'){
+function getDriverEngineResult() {
+    let drv = null;
+
+    if (typeof driver !== 'undefined') {
+        drv = driver;
+    } else if (typeof exports !== 'undefined' && typeof exports.driver !== 'undefined') {
+        drv = exports.driver;
+    } else if (typeof exports !== 'undefined' && (typeof exports.decodeUplink === 'function' || typeof exports.encodeDownlink === 'function' || typeof exports.decodeDownlink === 'function')) {
+        drv = exports;
+    }
+
+    let result;
+
+    if (drv && typeof drv.decodeUplink === 'function') {
         if (operation === 'decodeUplink') {
-            return decodeUplink(input);
-        }
-        else if (operation === 'decodeDownlink' && typeof decodeDownlink === 'function') {
-            return decodeDownlink(input);
-        }
-        else if (operation === 'encodeDownlink' && typeof encodeDownlink === 'function') {
-            return encodeDownlink(input);
+            result = drv.decodeUplink(input);
+        } else if (operation === 'decodeDownlink' && typeof drv.decodeDownlink === 'function') {
+            result = drv.decodeDownlink(input);
+        } else if (operation === 'encodeDownlink' && typeof drv.encodeDownlink === 'function') {
+            result = drv.encodeDownlink(input);
         } else {
-            throw new Error(`Unsupported operation ${operation} on lora-alliance driver`);
+            throw new Error(`Unsupported operation ${operation}`);
+        }
+    } else {
+        if (operation === 'decodeUplink' && typeof decodeUplink === 'function') {
+            result = decodeUplink(input);
+        } else if (operation === 'decodeDownlink' && typeof decodeDownlink === 'function') {
+            result = decodeDownlink(input);
+        } else if (operation === 'encodeDownlink' && typeof encodeDownlink === 'function') {
+            result = encodeDownlink(input);
+        } else {
+            throw new Error(`Unsupported operation ${operation} on fallback context`);
         }
     }
-    else{
-        if (operation === 'decodeUplink') {
-            return driver.decodeUplink(input);
-        }
-        else if (operation === 'decodeDownlink' && typeof driver.decodeDownlink === 'function') {
-            return driver.decodeDownlink(input);
-        }
-        else if (operation === 'encodeDownlink' && typeof driver.encodeDownlink === 'function') {
-            return driver.encodeDownlink(input);
-        } else {
-            throw new Error(`Unsupported operation ${operation} on lora-alliance driver`);
-        }
+
+    if (typeof result !== 'object') {
+        throw new Error(`Unexpected result type for operation ${operation}`);
     }
+
+    return result;
 }
