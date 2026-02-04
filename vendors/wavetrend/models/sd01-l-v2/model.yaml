@@ -46,16 +46,21 @@ sensors:
 # A list of examples description that are compatible with this model
 examples:
   wavetrnd:sd01-l:2:
-    - uplink containing device status
-    - uplink containing sensor status and history (standard)
-    - uplink containing sensor status and history (simple)
-    - uplink containing device configuration result
+    - uplink containing configuration response (2 ms)
+    - uplink containing install request (device status)
+    - uplink containing standard report (full) (1 ms)
+    - uplink containing standard report (simple)
     - uplink containing sensor error
     - uplink containing general error
-    - uplink containing freeze/scald alert
-    - uplink containing debug data
-    - downlink containing device configuration
-
+    - uplink containing freeze alert
+    - uplink containing scald alert
+    - uplink containing debug report (1 ms)
+    - fail decode uplink due to reserved port
+    - fail decode uplink due to v1 payload port
+    - downlink containing configuration
+    - fail decode uplink due to invalid port
+    - encode downlink containing configuration
+  
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false
