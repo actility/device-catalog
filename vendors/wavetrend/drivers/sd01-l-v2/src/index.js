@@ -1,3 +1,5 @@
-export { decodeUplink } from './uplink';
-export { encodeDownlink, decodeDownlink } from './downlink';
-export { extractPoints } from '../extractPoints';
+module.exports = {
+    ...require('./uplink'),
+    ...require('./downlink'),
+    ...require('../extractPoints'),
+};
