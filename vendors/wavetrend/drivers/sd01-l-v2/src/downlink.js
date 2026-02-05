@@ -217,7 +217,7 @@ function encodeDownlink(input) {
   };
 
   try {
-    output = Encode_SD01L_Payload(input.data);
+    let output = Encode_SD01L_Payload(input.data);
     obj.bytes = output.bytes;
     obj.fPort = output.fPort;
   } catch (error) {
