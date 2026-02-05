@@ -33,12 +33,12 @@ function payloadParser(hexStr) {
         254: 'Small',
         253: 'Medium',
         252: 'Wide',
-        55: 'User-defined',
+        55: 'User-defined'
     };
     const SonicBurstLength = {
         5: 'Normal',
         3: 'Short',
-        16: 'Very short',
+        16: 'Very short'
     };
     const SonicTransmittingPower = {
         63: 'High',
@@ -51,7 +51,7 @@ function payloadParser(hexStr) {
         48: 'High',
         38: 'Medium',
         27: 'Low',
-        15: 'Minimum',
+        15: 'Minimum'
     };
     const SonicEvaluationMethod = {
         1: 'Average value'
@@ -65,15 +65,15 @@ function payloadParser(hexStr) {
         2: 'Undefined',
         3: 'Not connected',
         7: 'Not inquired'
-    }
+    };
     const SensorDetails = {
         0: 'Low',
         1: 'High',
         7: 'Not inquired',
         8: 'Short circuit',
         9: 'Not connected',
-        10: 'Invalid current level',
-    }
+        10: 'Invalid current level'
+    };
     const ValveOpenSignal = {
         1: 'Sensor 1',
         2: 'Sensor 2'
@@ -81,7 +81,7 @@ function payloadParser(hexStr) {
     const ValveTriggerEventType = {
         1: 'State change',
         2: 'Valve open',
-        3: 'Valve closed',
+        3: 'Valve closed'
     };
     const NodeOutputLogic = {
         1: 'Normally open',
@@ -93,16 +93,16 @@ function payloadParser(hexStr) {
         7: 'Not inquired',
         8: 'Short circuit',
         9: 'Not connected',
-        10: 'Invalid current level',
-    }
+        10: 'Invalid current level'
+    };
     const NodeTriggerEventType = {
         1: 'State change',
         2: 'Target detected',
-        3: 'No target detected',
+        3: 'No target detected'
     };
     const GPSAccuracyMode = {
         1: 'Eco mode',
-        2: 'Precision mode',
+        2: 'Precision mode'
     };
     var len;
     var sID;
