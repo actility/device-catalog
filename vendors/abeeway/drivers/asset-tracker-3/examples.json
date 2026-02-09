@@ -204,7 +204,7 @@
         }
     },
     {
-        "description": "Response of a parameter class configuration set request",
+        "description": "Response of a parameter class configuration set request (BLE_SCAN2)",
         "type": "uplink",
         "input": {
             "bytes": "a5609ff1700106bd4726010004000d000700",
@@ -423,63 +423,6 @@
                     ]
                 },
                 "payload": "a563a77370030b00210000001901210000003c022100000001"
-            },
-            "errors": [],
-            "warnings": []
-        },
-        "points": {
-            "batteryLevel": {
-                "unitId": "%",
-                "record": 99
-            }
-        }
-    },
-    {
-        "description": "Response of a parameter ble class configuration get request part2",
-        "type": "uplink",
-        "input": {
-            "bytes": "a563020690030b022100000001032100000019042100000000",
-            "recvTime": "2025-03-06T11:05:00.000+02:00",
-            "fPort": 19
-        },
-        "output": {
-            "data": {
-                "header": {
-                    "sos": false,
-                    "type": "RESPONSE",
-                    "ackToken": 5,
-                    "multiFrame": true,
-                    "batteryLevel": 99,
-                    "timestamp": "2025-03-06T00:08:38.000Z"
-                },
-                "extendedHeader": {
-                    "groupId": 4,
-                    "last": 1,
-                    "frameNumber": 0
-                },
-                "response": {
-                    "responseType": "PARAM_CLASS_CONFIGURATION_GET",
-                    "parameterClassConfigurationGet": [
-                        {
-                            "group": "BLE",
-                            "parameters": [
-                                {
-                                    "parameterName": "bleCnxBehavior",
-                                    "parameterValue": "ENABLE_NO_PASSKEY"
-                                },
-                                {
-                                    "parameterName": "bleBeaconTxPower",
-                                    "parameterValue": 25
-                                },
-                                {
-                                    "parameterName": "bleBeaconType",
-                                    "parameterValue": "DISABLE"
-                                }
-                            ]
-                        }
-                    ]
-                },
-                "payload": "a563020690030b022100000001032100000019042100000000"
             },
             "errors": [],
             "warnings": []
@@ -1122,7 +1065,7 @@
         }
     },
     {
-        "description": "Response of a generic configuration get request",
+        "description": "Response of a generic configuration get request (Mixed groups)",
         "type": "uplink",
         "input": {
             "bytes": "a10036973003010321000000640421ffffff9c052100000005",
@@ -1538,7 +1481,7 @@
         }
     },
     {
-        "description": "Network notification main up",
+        "description": "Network notification main up (LoRa)",
         "type": "uplink",
         "input": {
             "bytes": "085e16b940010100",
@@ -1577,7 +1520,7 @@
         }
     },
     {
-        "description": "Network notification main up",
+        "description": "Network notification main up (Cellular)",
         "type": "uplink",
         "input": {
             "bytes": "08629ad440020201000800003840",
@@ -1618,7 +1561,7 @@
         }
     },
     {
-        "description": "Response of a parameter class configuration set request",
+        "description": "Response of a parameter class configuration set request (GEOLOC)",
         "type": "uplink",
         "input": {
             "bytes": "a660292cd00102f784480b00030006000800",
@@ -1737,7 +1680,7 @@
         }
     },
     {
-        "description": "Response of a parameter class configuration set request",
+        "description": "Response of a parameter class configuration set request (BLE_SCAN1 – errors)",
         "type": "uplink",
         "input": {
             "bytes": "a1620e795001058d10e9080500050b05",
@@ -1793,7 +1736,7 @@
         }
     },
     {
-        "description": "Response of a generic configuration get request",
+        "description": "Response of a generic configuration get request (INTERNAL)",
         "type": "uplink",
         "input": {
             "bytes": "a20165a250020001210000001c02082100000034",
@@ -2106,7 +2049,7 @@
         "points": {}
     },
     {
-        "description": "Response of a generic configuration get request",
+        "description": "Response of a generic configuration get request (GEOLOC)",
         "type": "uplink",
         "input": {
             "bytes": "a164262a1002020b3406048300000500022100000000",
@@ -2189,7 +2132,7 @@
         }
     },
     {
-        "description": "Response of a parameter LR11xx class configuration get request",
+        "description": "Response of a parameter LR11xx class configuration get request (GNSS/WiFi scan)",
         "type": "uplink",
         "input": {
             "bytes": "a1647295300304002100000006012100000001022100000002032100000005042100000004",
@@ -2254,7 +2197,7 @@
         }
     },
     {
-        "description": "Response of a parameter LR11xx class configuration get request",
+        "description": "Response of a parameter LR11xx class configuration get request (WiFi thresholds)",
         "type": "uplink",
         "input": {
             "bytes": "a5641ef4900304052100000003062100000000072100000001",
@@ -2562,7 +2505,7 @@
         }
     },
     {
-        "description": "Response of a parameter lorawan class configuration get request",
+        "description": "Response of a parameter lorawan class configuration get request (basic)",
         "type": "uplink",
         "input": {
             "bytes": "a164007c900309002100000000012100000e10022100000000032100000258",
@@ -2623,7 +2566,7 @@
         }
     },
     {
-        "description": "Response of a parameter lorawan class configuration get request",
+        "description": "Response of a parameter lorawan class configuration get request (confirm / strategy)",
         "type": "uplink",
         "input": {
             "bytes": "a5642cdbd003090434010000000000052100000000062100001009072100000013082100000003",
@@ -3518,7 +3461,7 @@
         }
     },
     {
-        "description": "Wifi position",
+        "description": "Wifi position (standard scan)",
         "type": "uplink",
         "input": {
             "bytes": "110028bf830100102f4a0adba6c8b908bfb88e7ca8b4b0b353809e83a59a254ae3f7f7a3",
@@ -3706,7 +3649,7 @@
         }
     },
     {
-        "description": "Wifi position",
+        "description": "Wifi position (invalid / placeholder BSSIDs)",
         "type": "uplink",
         "input": {
             "bytes": "10648790830a0004204d410008a303a5410008a74108410008ab4100a900000000000000",
