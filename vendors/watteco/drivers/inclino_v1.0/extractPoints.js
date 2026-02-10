@@ -28,7 +28,7 @@ function extractPoints(input) {
 
                     case "ACCmg":
                         if (!result.acceleration) {
-                            result.acceleration = { unitId: "mG", records: [] }
+                            result.acceleration = { unitId: "mgravity", records: [] }
                         }
                         result.acceleration.records.push({
                             eventTime: new Date(item.date).toISOString(),
@@ -72,7 +72,7 @@ function extractPoints(input) {
 
     if(result.acceleration != null && result.acceleration.records.length === 1) {
         let val = result.acceleration.records[0].value
-        result.acceleration = { unitId: "mG", record: val }
+        result.acceleration = { unitId: "mgravity", record: val }
     }
 
     if(result.presence != null && result.presence.records.length === 1) {

@@ -22,9 +22,9 @@ function extractPoints(input) {
         result["temperature:1"] = { unitId: "Cel", record: data.header.notification.system.status.maxTemperature, nature: "max" };
     }
     if (data.notification?.accelerometer?.accelerationVector != null) {
-        result["acceleration:0"] = { unitId: "mG", record: data.notification.accelerometer.accelerationVector[0], nature: "Acceleration X" };
-        result["acceleration:1"] = { unitId: "mG", record: data.notification.accelerometer.accelerationVector[1], nature: "Acceleration Y" };
-        result["acceleration:2"] = { unitId: "mG", record: data.notification.accelerometer.accelerationVector[2], nature: "Acceleration Z" };
+        result["acceleration:0"] = { unitId: "mgravity", record: data.notification.accelerometer.accelerationVector[0], nature: "Acceleration X" };
+        result["acceleration:1"] = { unitId: "mgravity", record: data.notification.accelerometer.accelerationVector[1], nature: "Acceleration Y" };
+        result["acceleration:2"] = { unitId: "mgravity", record: data.notification.accelerometer.accelerationVector[2], nature: "Acceleration Z" };
     }
 
     if (data.header?.notification?.system?.status?.minTemperature != null) {
