@@ -52,20 +52,20 @@ sensors:
 # A list of examples description that are compatible with this model
 examples:
   yzsyst:aircom:1:
-    - "uplink with empty payload"
-    - "digital-only uplink (all off)"
-    - "digital-only uplink (all on)"
-    - "digital-only uplink (more than 1 byte)"
-    - "Standard digital uplink"
-    - "Standard digital uplink - payload too short"
-    - "Analogue A1 uplink"
-    - "Analogue A1 uplink - payload too short"
-    - "Analogue A2 uplink"
-    - "Analogue A2 uplink - payload too short"
+    - "Uplink fPort1 invalid payload (empty)"
+    - "Uplink fPort1 - digital inputs only, all OFF (D1-D4=0)"
+    - "Uplink fPort1 - digital inputs only, all ON (D1-D4=1)"
+    - "Uplink fPort1 - digital inputs only, extra byte ignored"
+    - "Uplink fPort1 - digital inputs only (D1/D3 ON)"
+    - "Uplink fPort1 - digital inputs only, payload too short"
+    - "Uplink fPort1 - analogue input A1 only"
+    - "Uplink fPort1 - analogue input A1, payload too short"
+    - "Uplink fPort1 - analogue input A2 only"
+    - "Uplink fPort1 - analogue input A2, payload too short"
     - "All values apart from MODBUS"
     - "Random values apart from MODBUS"
     - "MODBUS only"
-    - "Random values apart from MODBUS"
+    - "Random values apart from MODBUS - 2"
     - "Random values apart from MODBUS. 1 byte too short."
 
 LoRaWANRelay:
