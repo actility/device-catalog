@@ -7,35 +7,35 @@ name,selectors,,,,,,,,,,,
 16a-dry-switch,{ mId: 16a-dry-switch },,,,,,,,,,,
 ht-pir-lite,{ mId: ht-pir-lite },,,,,,,,,,,
 co2-pir-lite,{ mId: co2-pir-lite },,,,,,,,,,,
-group1,"{ mId: 16a-dry-switch }, { mId: fct }",,,,,,,,,,,
-fct,{ mId: fct },,,,,,,,,,,
-all,"{ mId: 16a-dry-switch }, { mId: 16aspm }, { mId: fct }, { mId: vicki }",,,,,,,,,,,
+group1,"{ mId: 16a-dry-switch }, { mId: fan-coil }",,,,,,,,,,,
+fan-coil,{ mId: fan-coil },,,,,,,,,,,
+all,"{ mId: 16a-dry-switch }, { mId: 16aspm }, { mId: fan-coil }, { mId: vicki }",,,,,,,,,,,
 vicki,{ mId: vicki },,,,,,,,,,,
 others,,,,,,,,,,,,
 group_batteryVoltage,"{ mId: co2-pir-lite }, { mId: ht-pir-lite }, { mId: vicki }",,,,,,,,,,,
-group_keepAliveTime,"{ mId: 16aspm }, { mId: 16a-dry-switch }, { mId: fct }",,,,,,,,,,,
+group_keepAliveTime,"{ mId: 16aspm }, { mId: 16a-dry-switch }, { mId: fan-coil }",,,,,,,,,,,
 group_region,"{ mId: 16a-dry-switch }, { mId: co2-pir-lite }, { mId: ht-pir-lite }",,,,,,,,,,,
 group_setRelayState,"{ mId: 16a-dry-switch }, { mId: 16aspm }",,,,,,,,,,,
-group_targetTemperature,"{ mId: fct }, { mId: vicki }",,,,,,,,,,,
-group_uplinkType,"{ mId: 16aspm }, { mId: co2-pir-lite }, { mId: 16a-dry-switch }, { mId: fct }, { mId: ht-pir-lite }, { mId: vicki }",,,,,,,,,,,
+group_targetTemperature,"{ mId: fan-coil }, { mId: vicki }",,,,,,,,,,,
+group_uplinkType,"{ mId: 16aspm }, { mId: co2-pir-lite }, { mId: 16a-dry-switch }, { mId: fan-coil }, { mId: ht-pir-lite }, { mId: vicki }",,,,,,,,,,,
 group_co2_ht_pir_lite,"{ mId: co2-pir-lite }, { mId: ht-pir-lite }",,,,,,,,,,,
-group_co2_16a_fct_ht,"{ mId: co2-pir-lite }, { mId: 16a-dry-switch }, { mId: fct }, { mId: ht-pir-lite }",,,,,,,,,,,
-group_fct_vicki_common,"{ mId: fct }, { mId: vicki }",,,,,,,,,,,
+group_co2_16a_fan-coil_ht,"{ mId: co2-pir-lite }, { mId: 16a-dry-switch }, { mId: fan-coil }, { mId: ht-pir-lite }",,,,,,,,,,,
+group_fan-coil_vicki_common,"{ mId: fan-coil }, { mId: vicki }",,,,,,,,,,,
 ##objects,,,,,,,,,,,,
 id,name,value,type,access_mode,value_type,precision,units,cov_increment,min_value,max_value,models,description
 OVAC,OVAC,0,number,R,UINT8,,,,0,255,vicki,
 acCurr_mA,AC Current,,number,R,UINT16,,mA,,,,16aspm,bacnet_type=analog_input_object; bacnet_unit_type_id=2; bacnet_unit_type=UNITS_MILLIAMPERES
 acVolt,AC Voltage,,number,R,UINT8,,V,,,,16aspm,bacnet_type=analog_input_object; bacnet_unit_type_id=5; bacnet_unit_type=UNITS_VOLTS
-actualFanSpeed,Actual Fan Speed,0,number,R,UINT8,,,1,1,7,fct,Actual fan speed
-additionalFanMode,Additional Fan Mode,0,number,RW,UINT8,,,1,0,255,fct,Additional fan mode
+actualFanSpeed,Actual Fan Speed,0,number,R,UINT8,,,1,1,7,fan-coil,Actual fan speed
+additionalFanMode,Additional Fan Mode,0,number,RW,UINT8,,,1,0,255,fan-coil,Additional fan mode
 afterOverheatingProtectionRecovery,After Overheating Protection Recovery,0,binary,RW,UINT8,,,1,0,1,16a-dry-switch,"0=Off, 1=On"
 afterOverhtRec,AfterOverhtRec,,number,RW,UINT8,,,,,,16aspm,bacnet_type=analog_value_object; bacnet_unit_type_id=95; bacnet_unit_type=UNITS_NO_UNITS
-allowedOperationalModes,Allowed Operational Modes,0,number,RW,UINT8,,,1,0,255,fct,Allowed operational modes
-automaticChangeover,Automatic Changeover,0,binary,RW,UINT8,,,1,0,1,fct,"0=Off, 1=On"
-automaticChangeoverMode_automaticChangeover,Auto-Changeover Flag,0,binary,R,UINT8,,,1,0,1,fct,"0=Off, 1=On"
-automaticChangeoverMode_ntcTemperature,Auto-Changeover NTC Temperature,0,number,R,UINT8,,Cel,1,0,255,fct,Auto-changeover NTC temperature (°C)
-automaticChangeoverThreshold_cooling,Auto-Changeover Cooling Threshold,0,number,RW,UINT8,,Cel,1,0,255,fct,Auto-changeover cooling threshold (°C)
-automaticChangeoverThreshold_heating,Auto-Changeover Heating Threshold,0,number,RW,UINT8,,Cel,1,0,255,fct,Auto-changeover heating threshold (°C)
+allowedOperationalModes,Allowed Operational Modes,0,number,RW,UINT8,,,1,0,255,fan-coil,Allowed operational modes
+automaticChangeover,Automatic Changeover,0,binary,RW,UINT8,,,1,0,1,fan-coil,"0=Off, 1=On"
+automaticChangeoverMode_automaticChangeover,Auto-Changeover Flag,0,binary,R,UINT8,,,1,0,1,fan-coil,"0=Off, 1=On"
+automaticChangeoverMode_ntcTemperature,Auto-Changeover NTC Temperature,0,number,R,UINT8,,Cel,1,0,255,fan-coil,Auto-changeover NTC temperature (°C)
+automaticChangeoverThreshold_cooling,Auto-Changeover Cooling Threshold,0,number,RW,UINT8,,Cel,1,0,255,fan-coil,Auto-changeover cooling threshold (°C)
+automaticChangeoverThreshold_heating,Auto-Changeover Heating Threshold,0,number,RW,UINT8,,Cel,1,0,255,fan-coil,Auto-changeover heating threshold (°C)
 batteryRangesBoundaries:Boundary1,Battery ranges boundary 1,0,number,R,UINT16,,,1,,,vicki,
 batteryRangesBoundaries:Boundary2,Battery ranges boundary 2,0,number,R,UINT16,,,1,,,vicki,
 batteryRangesBoundaries:Boundary3,Battery ranges boundary 3,0,number,R,UINT16,,,1,,,vicki,
@@ -45,44 +45,44 @@ batteryRangesOverVoltage:Range3,Battery ranges over voltage range 3,0,number,R,U
 batteryVoltage,Battery voltage,0,number,R,FLOAT,2,V,0.1,,,group_batteryVoltage,Battery voltage in volts
 brokenSensor,Broken sensor flag,false,boolean,R,BOOL,,,,,,vicki,Broken sensor is detected
 childLock,Child lock,false,boolean,R,BOOL,,,,,,vicki,Child lock option is enabled
-coolingSetpointNotOccupied,Cooling Setpoint (Not Occupied),0,number,RW,UINT8,,Cel,1,0,255,fct,Cooling setpoint not occupied (°C)
-coolingTempMax,Cooling Target Temp Max,0,number,RW,UINT8,,Cel,1,0,255,fct,Cooling target temp max (°C)
-coolingTempMaxUnocc,Cooling Target Temp Max (Unoccupied),0,number,RW,UINT8,,Cel,1,0,255,fct,Cooling target temp max unoccupied (°C)
-coolingTempMin,Cooling Target Temp Min,0,number,RW,UINT8,,Cel,1,0,255,fct,Cooling target temp min (°C)
-coolingTempMinUnocc,Cooling Target Temp Min (Unoccupied),0,number,RW,UINT8,,Cel,1,0,255,fct,Cooling target temp min unoccupied (°C)
-currentTemperatureVisibility,Current Temperature Visibility,0,binary,RW,UINT8,,,1,0,1,fct,"0=Off, 1=On"
-deltaTemperature1,Delta Temperature 1,0,number,RW,FLOAT,2,Cel,0.1,,,fct,Delta temperature 1 (°C)
-deltaTemperature2,Delta Temperature 2,0,number,RW,FLOAT,2,Cel,0.1,,,fct,Delta temperature 2 (°C)
-deltaTemperature3,Delta Temperature 3,0,number,RW,FLOAT,2,Cel,0.1,,,fct,Delta temperature 3 (°C)
+coolingSetpointNotOccupied,Cooling Setpoint (Not Occupied),0,number,RW,UINT8,,Cel,1,0,255,fan-coil,Cooling setpoint not occupied (°C)
+coolingTempMax,Cooling Target Temp Max,0,number,RW,UINT8,,Cel,1,0,255,fan-coil,Cooling target temp max (°C)
+coolingTempMaxUnocc,Cooling Target Temp Max (Unoccupied),0,number,RW,UINT8,,Cel,1,0,255,fan-coil,Cooling target temp max unoccupied (°C)
+coolingTempMin,Cooling Target Temp Min,0,number,RW,UINT8,,Cel,1,0,255,fan-coil,Cooling target temp min (°C)
+coolingTempMinUnocc,Cooling Target Temp Min (Unoccupied),0,number,RW,UINT8,,Cel,1,0,255,fan-coil,Cooling target temp min unoccupied (°C)
+currentTemperatureVisibility,Current Temperature Visibility,0,binary,RW,UINT8,,,1,0,1,fan-coil,"0=Off, 1=On"
+deltaTemperature1,Delta Temperature 1,0,number,RW,FLOAT,2,Cel,0.1,,,fan-coil,Delta temperature 1 (°C)
+deltaTemperature2,Delta Temperature 2,0,number,RW,FLOAT,2,Cel,0.1,,,fan-coil,Delta temperature 2 (°C)
+deltaTemperature3,Delta Temperature 3,0,number,RW,FLOAT,2,Cel,0.1,,,fan-coil,Delta temperature 3 (°C)
 devHwVer,HW Version,,number,R,UINT8,,,,,,16aspm,Hardware version
 devSwVer,SW Version,,number,R,UINT8,,,,,,16aspm,Software version
-deviceHardwareVersion,Hardware Version,0,number,R,UINT8,,,1,0,255,group_co2_16a_fct_ht,Hardware version
+deviceHardwareVersion,Hardware Version,0,number,R,UINT8,,,1,0,255,group_co2_16a_fan-coil_ht,Hardware version
 deviceReset,Device reset command,0,binary,RW,UINT8,,,1,0,1,vicki,
-deviceSoftwareVersion,Software Version,0,number,R,UINT8,,,1,0,255,group_co2_16a_fct_ht,Software version
-deviceStatus,Thermostat Status,0,binary,RW,UINT8,,,1,0,1,fct,"0=Off, 1=On"
+deviceSoftwareVersion,Software Version,0,number,R,UINT8,,,1,0,255,group_co2_16a_fan-coil_ht,Software version
+deviceStatus,Thermostat Status,0,binary,RW,UINT8,,,1,0,1,fan-coil,"0=Off, 1=On"
 deviceVersions:hardware,Hardware version,0,number,R,UINT8,,,,0,255,vicki,Hardware version
 deviceVersions:software,Software version,0,number,R,UINT8,,,,0,255,vicki,Software version
-dewPointSensorStatus,Dew-Point Sensor Status,0,binary,R,UINT8,,,1,0,1,fct,"0=Off, 1=On"
-displayRefreshPeriod,Display Refresh Period,0,number,RW,UINT8,,s,1,0,255,fct,Display refresh period (s)
-displayedFanSpeed,Displayed Fan Speed,0,number,R,UINT8,,,1,1,7,fct,Displayed fan speed
-ecmRelay,ECM Relay,0,binary,RW,UINT8,,,1,0,1,fct,"0=Off, 1=On"
-ecmStartUpTime,ECM Start-Up Time,0,number,RW,UINT8,,s,1,0,255,fct,ECM start-up time (s)
-ecmVoltageRange_max,ECM Voltage Max,0,number,RW,FLOAT,2,V,0.1,,,fct,ECM voltage max (V)
-ecmVoltageRange_min,ECM Voltage Min,0,number,RW,FLOAT,2,V,0.1,,,fct,ECM voltage min (V)
+dewPointSensorStatus,Dew-Point Sensor Status,0,binary,R,UINT8,,,1,0,1,fan-coil,"0=Off, 1=On"
+displayRefreshPeriod,Display Refresh Period,0,number,RW,UINT8,,s,1,0,255,fan-coil,Display refresh period (s)
+displayedFanSpeed,Displayed Fan Speed,0,number,R,UINT8,,,1,1,7,fan-coil,Displayed fan speed
+ecmRelay,ECM Relay,0,binary,RW,UINT8,,,1,0,1,fan-coil,"0=Off, 1=On"
+ecmStartUpTime,ECM Start-Up Time,0,number,RW,UINT8,,s,1,0,255,fan-coil,ECM start-up time (s)
+ecmVoltageRange_max,ECM Voltage Max,0,number,RW,FLOAT,2,V,0.1,,,fan-coil,ECM voltage max (V)
+ecmVoltageRange_min,ECM Voltage Min,0,number,RW,FLOAT,2,V,0.1,,,fan-coil,ECM voltage min (V)
 energy_kWh,Energy,,number,R,FLOAT,,kWh,,,,16aspm,bacnet_type=analog_input_object; bacnet_unit_type_id=19; bacnet_unit_type=UNITS_KILOWATT_HOURS
-extAutomaticTemperatureControl,External Automatic Temperature Control,0,binary,R,UINT8,,,1,0,1,fct,"0=Off, 1=On"
-extSensorTemperature,External Sensor Temperature,0,number,R,UINT16,,Cel,1,0,65535,fct,External sensor temperature (°C)
-externalTemperatureSensorError,External Temperature Sensor Error,0,binary,R,UINT8,,,1,0,1,fct,"0=Off, 1=On"
-fanOffDelayTime,Fan Off-Delay Time,0,number,RW,UINT8,,s,1,0,255,fct,Fan off-delay time (s)
-fanSpeed,Fan Speed,0,number,RW,UINT8,,,1,1,7,fct,Fan speed
-fanSpeedLimit,Fan Speed Limit,0,number,RW,UINT8,,,1,1,7,fct,Fan speed limit
-fanSpeedNotOccupied,Fan Speed (Not Occupied),0,number,RW,UINT8,,,1,1,7,fct,Fan speed not occupied
-filterAlarm,Filter Alarm,0,binary,R,UINT8,,,1,0,1,fct,"0=Off, 1=On"
+extAutomaticTemperatureControl,External Automatic Temperature Control,0,binary,R,UINT8,,,1,0,1,fan-coil,"0=Off, 1=On"
+extSensorTemperature,External Sensor Temperature,0,number,R,UINT16,,Cel,1,0,65535,fan-coil,External sensor temperature (°C)
+externalTemperatureSensorError,External Temperature Sensor Error,0,binary,R,UINT8,,,1,0,1,fan-coil,"0=Off, 1=On"
+fanOffDelayTime,Fan Off-Delay Time,0,number,RW,UINT8,,s,1,0,255,fan-coil,Fan off-delay time (s)
+fanSpeed,Fan Speed,0,number,RW,UINT8,,,1,1,7,fan-coil,Fan speed
+fanSpeedLimit,Fan Speed Limit,0,number,RW,UINT8,,,1,1,7,fan-coil,Fan speed limit
+fanSpeedNotOccupied,Fan Speed (Not Occupied),0,number,RW,UINT8,,,1,1,7,fan-coil,Fan speed not occupied
+filterAlarm,Filter Alarm,0,binary,R,UINT8,,,1,0,1,fan-coil,"0=Off, 1=On"
 forceClose,Force close command,0,binary,RW,UINT8,,,1,0,1,vicki,
-frostProtection,Frost Protection,0,binary,RW,UINT8,,,1,0,1,fct,"0=Off, 1=On"
-frostProtectionSettings_setpoint,Frost Protection Setpoint,0,number,RW,UINT8,,Cel,1,0,255,fct,Frost protection setpoint (°C)
-frostProtectionSettings_threshold,Frost Protection Threshold,0,number,RW,UINT8,,Cel,1,0,255,fct,Frost protection threshold (°C)
-frostProtectionStatus,Frost Protection Status,0,binary,R,UINT8,,,1,0,1,fct,"0=Off, 1=On"
+frostProtection,Frost Protection,0,binary,RW,UINT8,,,1,0,1,fan-coil,"0=Off, 1=On"
+frostProtectionSettings_setpoint,Frost Protection Setpoint,0,number,RW,UINT8,,Cel,1,0,255,fan-coil,Frost protection setpoint (°C)
+frostProtectionSettings_threshold,Frost Protection Threshold,0,number,RW,UINT8,,Cel,1,0,255,fan-coil,Frost protection threshold (°C)
+frostProtectionStatus,Frost Protection Status,0,binary,R,UINT8,,,1,0,1,fan-coil,"0=Off, 1=On"
 fuota_address,FUOTA Address,0,number,R,UINT32,,,1,0,4294967295,16a-dry-switch,FUOTA address
 fuota_address_raw,FUOTA Address (Raw Hex),"""""",string,R,STRING,,,,,,16a-dry-switch,FUOTA address as raw hex (max length 64)
 getChildLock,Get child lock command,0,binary,RW,UINT8,,,1,0,1,vicki,
@@ -106,13 +106,13 @@ getTemperatureControlAlgorithm,Get temperature control algorithm command,0,binar
 getTemperatureRange,Get temperature range command,0,binary,RW,UINT8,,,1,0,1,vicki,
 getUplinkType,Get uplink type command,0,binary,RW,UINT8,,,1,0,1,vicki,
 getWatchDogParams,Get watchdog params command,0,binary,RW,UINT8,,,1,0,1,vicki,
-heatingSetpointNotOccupied,Heating Setpoint (Not Occupied),0,number,RW,UINT8,,Cel,1,0,255,fct,Heating setpoint not occupied (°C)
-heatingTempMax,Heating Target Temp Max,0,number,RW,UINT8,,Cel,1,0,255,fct,Heating target temp max (°C)
-heatingTempMaxUnocc,Heating Target Temp Max (Unoccupied),0,number,RW,UINT8,,Cel,1,0,255,fct,Heating target temp max unoccupied (°C)
-heatingTempMin,Heating Target Temp Min,0,number,RW,UINT8,,Cel,1,0,255,fct,Heating target temp min (°C)
-heatingTempMinUnocc,Heating Target Temp Min (Unoccupied),0,number,RW,UINT8,,Cel,1,0,255,fct,Heating target temp min unoccupied (°C)
+heatingSetpointNotOccupied,Heating Setpoint (Not Occupied),0,number,RW,UINT8,,Cel,1,0,255,fan-coil,Heating setpoint not occupied (°C)
+heatingTempMax,Heating Target Temp Max,0,number,RW,UINT8,,Cel,1,0,255,fan-coil,Heating target temp max (°C)
+heatingTempMaxUnocc,Heating Target Temp Max (Unoccupied),0,number,RW,UINT8,,Cel,1,0,255,fan-coil,Heating target temp max unoccupied (°C)
+heatingTempMin,Heating Target Temp Min,0,number,RW,UINT8,,Cel,1,0,255,fan-coil,Heating target temp min (°C)
+heatingTempMinUnocc,Heating Target Temp Min (Unoccupied),0,number,RW,UINT8,,Cel,1,0,255,fan-coil,Heating target temp min unoccupied (°C)
 highMotorConsumption,High motor consumption flag,false,boolean,R,BOOL,,,,,,vicki,High motor consumption is detected
-humidityVisibility,Humidity Visibility,0,binary,RW,UINT8,,,1,0,1,fct,"0=Off, 1=On"
+humidityVisibility,Humidity Visibility,0,binary,RW,UINT8,,,1,0,1,fan-coil,"0=Off, 1=On"
 intTemp,Internal Temp,,number,R,UINT8,,Cel,,,,16aspm,Internal temperature (°C)
 internalAlgoParams:pFirstLast,Internal algo params pFirstLast,0,number,R,UINT8,,,,0,255,vicki,
 internalAlgoParams:pNext,Internal algo params pNext,0,number,R,UINT8,,,,0,255,vicki,
@@ -120,31 +120,31 @@ internalAlgoParams:period,Internal algo params period,0,number,R,UINT8,,,,0,255,
 internalAlgoTdiffParams:cold,Internal algo tdiff params cold,0,number,R,UINT8,,,,0,255,vicki,
 internalAlgoTdiffParams:warm,Internal algo tdiff params warm,0,number,R,UINT8,,,,0,255,vicki,
 internalTemperature,Internal Temperature,0,number,R,INT8,,Cel,1,-128,127,16a-dry-switch,Internal temperature (°C)
-internalTemperatureSensorError,Internal Temperature Sensor Error,0,binary,R,UINT8,,,1,0,1,fct,"0=Off, 1=On"
+internalTemperatureSensorError,Internal Temperature Sensor Error,0,binary,R,UINT8,,,1,0,1,fan-coil,"0=Off, 1=On"
 joinRetry,Join Retry,,number,RW,FLOAT,,h,,,,16aspm,Join retry period (hours)
 joinRetryPeriod,Join Retry Period,0,number,RW,FLOAT,2,hours,0.1,,,group1,Join retry period (hours)
 joinRetryPeriod,Join retry period,0,number,R,FLOAT,2,,0.1,,,vicki,
 keepAliveTime,Keep alive time,0,number,R,UINT8,,,1,0,255,vicki,PI run period
 keepAliveTime,Keep-Alive Time,0,number,RW,UINT8,,minutes,1,0,255,group_keepAliveTime,Keep-alive time (minutes)
-keysLock,Keys Lock,0,binary,RW,UINT8,,,1,0,1,fct,"0=Off, 1=On"
+keysLock,Keys Lock,0,binary,RW,UINT8,,,1,0,1,fan-coil,"0=Off, 1=On"
 ledIndMode,LED Ind Mode,,number,RW,UINT8,,,,,,16aspm,"0=Off, 1=On"
 ledIndicationMode,LED Indication Mode,0,number,RW,UINT8,,,1,0,1,16a-dry-switch,"0=Off, 1=On"
 lowMotorConsumption,Low motor consumption flag,false,boolean,R,BOOL,,,,,,vicki,Low motor consumption is detected
 manualChangeRelayState,Manual Change Relay State,"""""",string,R,STRING,,,,,,16a-dry-switch,Manual change relay state (max length 8)
 manualRelay_txt,Manual Relay,,string,R,STRING,,,,,,16aspm,Manual change relay state (max length 8)
-manualTargetTemperatureUpdate,Manual Target Temperature Update,0,binary,R,UINT8,,,1,0,1,fct,"0=Off, 1=On"
+manualTargetTemperatureUpdate,Manual Target Temperature Update,0,binary,R,UINT8,,,1,0,1,fan-coil,"0=Off, 1=On"
 manualTargetTemperatureUpdate,Manual target temperature update,0,number,R,UINT8,,Cel,,0,255,vicki,
 motorPosition,Motor position in steps,0,number,R,FLOAT,2,,0.1,0,15,vicki,Motor position in steps
 motorRange,Motor range in steps,0,number,R,FLOAT,2,,0.1,0,15,vicki,Motor range in steps
-occFunction,Occupancy Function,0,number,RW,UINT8,,,1,0,255,fct,Occupancy function
-occupancySensorStatus,Occupancy Sensor Status,0,number,R,UINT8,,,1,0,255,fct,Occupancy sensor status
-occupancySensorStatusSetPoint,Occupancy Sensor Status Setpoint,0,number,R,UINT8,,,1,0,255,fct,Occupancy sensor status setpoint
+occFunction,Occupancy Function,0,number,RW,UINT8,,,1,0,255,fan-coil,Occupancy function
+occupancySensorStatus,Occupancy Sensor Status,0,number,R,UINT8,,,1,0,255,fan-coil,Occupancy sensor status
+occupancySensorStatusSetPoint,Occupancy Sensor Status Setpoint,0,number,R,UINT8,,,1,0,255,fan-coil,Occupancy sensor status setpoint
 openWindow,Open window is detected,0,boolean,R,BOOL,,,,,,vicki,Open window is detected
 openWindow:delta,Open window detection delta,0,number,R,UINT8,,,0.1,0,255,vicki,Open window delta
 openWindow:duration,Open window detection duration,0,number,R,UINT16,,minutes,1,,,vicki,Open window duration in minutes
 openWindow:enabled,Open window detection enabled,false,boolean,R,BOOL,,,,,,vicki,Open window detection is activated
 openWindow:motorPosition,Open window detection motor position,0,number,R,UINT16,,,1,,,vicki,Open window motor position
-operationalMode,Operational Mode,0,number,RW,UINT8,,,1,1,3,group_fct_vicki_common,Operational mode
+operationalMode,Operational Mode,0,number,RW,UINT8,,,1,1,3,group_fan-coil_vicki_common,Operational mode
 overcurrCnt,Overcurr Cnt,,number,R,UINT8,,,,,,16aspm,bacnet_type=analog_input_object; bacnet_unit_type_id=95; bacnet_unit_type=UNITS_NO_UNITS
 overcurrCurr,Overcurr Curr,,number,R,UINT16,,mA,,,,16aspm,bacnet_type=analog_input_object; bacnet_unit_type_id=2; bacnet_unit_type=UNITS_MILLIAMPERES
 overcurrRecTp,OvercurrRecTp,,number,RW,UINT8,,Cel,,,,16aspm,bacnet_type=analog_value_object; bacnet_unit_type_id=62; bacnet_unit_type=UNITS_DEGREES_CELSIUS
@@ -168,20 +168,20 @@ overvoltRec,Overvolt Rec,,number,RW,UINT8,,V,,,,16aspm,bacnet_type=analog_value_
 overvoltRecTm,OvervoltRecTm,,number,RW,UINT16,,s,,,,16aspm,bacnet_type=analog_value_object; bacnet_unit_type_id=73; bacnet_unit_type=UNITS_SECONDS
 overvoltTrig,Overvolt Trig,,number,RW,UINT16,,V,,,,16aspm,bacnet_type=analog_value_object; bacnet_unit_type_id=5; bacnet_unit_type=UNITS_VOLTS
 overvoltVolt,Overvolt Volt,,number,R,UINT16,,V,,,,16aspm,bacnet_type=analog_input_object; bacnet_unit_type_id=5; bacnet_unit_type=UNITS_VOLTS
-powerModuleStatus,Power Module Status,0,binary,R,UINT8,,,1,0,1,fct,"0=Off, 1=On"
+powerModuleStatus,Power Module Status,0,binary,R,UINT8,,,1,0,1,fan-coil,"0=Off, 1=On"
 power_W,Power,,number,R,UINT16,,RW,,,,16aspm,bacnet_type=analog_input_object; bacnet_unit_type_id=47; bacnet_unit_type=UNITS_WATTS
 primaryOperationalMode,Primary operationnal mode,0,number,R,UINT8,,,,0,255,vicki,
 reason,Reason of uplink,0,number,R,UINT8,,,1,,,vicki,Reason
 recalibrateMotor,Recalibrate moto command,0,binary,RW,UINT8,,,1,0,1,vicki,
 region,Region,0,number,R,UINT8,,,1,0,7,group_region,"0=EU868,1=US915,2=AU915,3=AS923,4=CN470,5=KR920,6=IN865,7=RU864"
-relativeHumidity,Relative Humidity,0,number,R,FLOAT,2,%RH,0.1,,,group_fct_vicki_common,Relative humidity in RH
+relativeHumidity,Relative Humidity,0,number,R,FLOAT,2,%RH,0.1,,,group_fan-coil_vicki_common,Relative humidity in RH
 relayRecState,Relay Rec State,,number,RW,UINT8,,,,,,16aspm,"0=Restore Last, 1=Off, 2=On"
 relayRecoveryState,Relay Recovery State,0,number,RW,UINT8,,,1,0,2,16a-dry-switch,"0=Restore Last, 1=Off, 2=On"
 relayState,Relay State,"""""",string,R,STRING,,,,,,16a-dry-switch,Relay state (max length 8)
 relayState_txt,Relay State,,string,R,STRING,,,,,,16aspm,Relay state (max length 8)
-returnOfPowerOperation,Return of Power Operation,0,number,RW,UINT8,,,1,0,255,fct,Return of power operation
+returnOfPowerOperation,Return of Power Operation,0,number,RW,UINT8,,,1,0,255,fan-coil,Return of power operation
 sendCustomHexCommand,Send custom hex command command,"""""",string,RW,STRING,,,,,,vicki,Hexa payload as string like '014F32'
-sensorTemperature,Sensor temperature in Celsius,0,number,R,FLOAT,2,Cel,0.1,,,group_fct_vicki_common,Temperature in �C
+sensorTemperature,Sensor temperature in Celsius,0,number,R,FLOAT,2,Cel,0.1,,,group_fan-coil_vicki_common,Temperature in �C
 setChildLock,Set child lock command,0,binary,RW,UINT8,,,1,0,1,vicki,1 if we want to enable it or 0 if we want to disable it
 setChildLockBehavior,Set child lock behavior command,0,binary,RW,UINT8,,,1,0,1,vicki,"0 - Child lock is automatically disabled when the device goes offline,  1 - Child lock remains unchanged when the device goes offline"
 setExternalTemperature,Set external temperature command,0,number,RW,UINT8,,Cel,1,5,30,vicki,digits in range 5-30
@@ -220,27 +220,27 @@ setUplinkType,Set uplink type command,0,binary,RW,UINT8,,,1,0,1,vicki,"0 - uncon
 setWatchDogParams:confirmedUplinks,Set watchdog params confirmedUplinks,0,number,RW,UINT8,,,1,0,255,vicki,
 setWatchDogParams:unconfirmedUplinks,Set watchdog params unconfirmedUplinks,0,number,RW,UINT8,,,1,0,255,vicki,
 targetTemperature,Target Temperature,0,number,RW,FLOAT,2,Cel,0.1,,,group_targetTemperature,Target temperature (°C)
-targetTemperatureStep,Target Temperature Step,0,number,RW,FLOAT,2,Cel,0.1,,,fct,Target temperature step (°C)
-tempSensorCompensation_compensation,Temp Sensor Compensation,0,number,RW,UINT8,,,1,0,255,fct,Temp sensor compensation
-tempSensorCompensation_temperature,Temp Sensor Compensation Temperature,0,number,RW,UINT8,,Cel,1,0,255,fct,Temp sensor compensation temperature (°C)
+targetTemperatureStep,Target Temperature Step,0,number,RW,FLOAT,2,Cel,0.1,,,fan-coil,Target temperature step (°C)
+tempSensorCompensation_compensation,Temp Sensor Compensation,0,number,RW,UINT8,,,1,0,255,fan-coil,Temp sensor compensation
+tempSensorCompensation_temperature,Temp Sensor Compensation Temperature,0,number,RW,UINT8,,Cel,1,0,255,fan-coil,Temp sensor compensation temperature (°C)
 temperatureRangeSettings:max,Max temperature,0,number,R,UINT8,,Cel,,0,255,vicki,
 temperatureRangeSettings:min,Min temperature,0,number,R,UINT8,,Cel,,0,255,vicki,
-temperatureRange_max,Temperature Range Max,0,number,RW,UINT8,,Cel,1,0,255,fct,Temperature range max (°C)
-temperatureRange_min,Temperature Range Min,0,number,RW,UINT8,,Cel,1,0,255,fct,Temperature range min (°C)
+temperatureRange_max,Temperature Range Max,0,number,RW,UINT8,,Cel,1,0,255,fan-coil,Temperature range max (°C)
+temperatureRange_min,Temperature Range Min,0,number,RW,UINT8,,Cel,1,0,255,fan-coil,Temperature range min (°C)
 uplinkType,Uplink Type,0,number,RW,UINT8,,,1,0,1,group_uplinkType,"0=Unconfirmed, 1=Confirmed"
-userInterfaceLanguage,User Interface Language,0,number,R,UINT8,,,1,0,255,fct,User interface language
-valveOpenCloseTime,Valve Open/Close Time,0,number,RW,UINT8,,s,1,0,255,fct,Valve open/close time (s)
-valveStatus,Valve Status,0,binary,R,UINT8,,,1,0,1,fct,"0=Off, 1=On"
+userInterfaceLanguage,User Interface Language,0,number,R,UINT8,,,1,0,255,fan-coil,User interface language
+valveOpenCloseTime,Valve Open/Close Time,0,number,RW,UINT8,,s,1,0,255,fan-coil,Valve open/close time (s)
+valveStatus,Valve Status,0,binary,R,UINT8,,,1,0,1,fan-coil,"0=Off, 1=On"
 watchDogParams:wdpC,Watchdog params wdpC,0,number,R,UINT16,,,1,,,vicki,
 watchDogParams:wdpUc,Watchdog params wdpUc,0,number,R,UINT16,,,1,,,vicki,
-watchDogParams_wdpC,Watchdog WDP-C,0,number,RW,UINT8,,,1,0,255,group_co2_16a_fct_ht,Watchdog param WDP-C
-watchDogParams_wdpUc,Watchdog WDP-UC,0,number,RW,UINT8,,,1,0,255,group_co2_16a_fct_ht,Watchdog param WDP-UC
+watchDogParams_wdpC,Watchdog WDP-C,0,number,RW,UINT8,,,1,0,255,group_co2_16a_fan-coil_ht,Watchdog param WDP-C
+watchDogParams_wdpUc,Watchdog WDP-UC,0,number,RW,UINT8,,,1,0,255,group_co2_16a_fan-coil_ht,Watchdog param WDP-UC
 wdog_wdpC,WDP-C,,number,RW,UINT8,,,,,,16aspm,Watchdog param WDP-C
 wdog_wdpUc,WDP-UC,,number,RW,UINT8,,,,,,16aspm,Watchdog param WDP-UC
-wiringDiagram,Wiring Diagram,0,number,RW,UINT8,,,1,0,255,fct,Wiring diagram
+wiringDiagram,Wiring Diagram,0,number,RW,UINT8,,,1,0,255,fan-coil,Wiring diagram
 occupied,Occupied,,binary,R,UINT8,,,1,0,1,group_co2_ht_pir_lite,"bacnet_type=binary_value_object; bacnet_unit_type_id=95; bacnet_unit_type=UNITS_NO_UNITS; 0=Unoccupied, 1=Occupied"
-sensorTemperature,Temperature,,number,R,FLOAT,,°C,,,,group_fct_vicki_common,bacnet_type=analog_input_object; bacnet_unit_type_id=62; bacnet_unit_type=UNITS_DEGREES_CELSIUS
-relativeHumidity,Relative Humidity,,number,R,FLOAT,,%,,,,group_fct_vicki_common,bacnet_type=analog_input_object; bacnet_unit_type_id=29; bacnet_unit_type=PERCENT_RELATIVE_HUMIDITY
+sensorTemperature,Temperature,,number,R,FLOAT,,°C,,,,group_fan-coil_vicki_common,bacnet_type=analog_input_object; bacnet_unit_type_id=62; bacnet_unit_type=UNITS_DEGREES_CELSIUS
+relativeHumidity,Relative Humidity,,number,R,FLOAT,,%,,,,group_fan-coil_vicki_common,bacnet_type=analog_input_object; bacnet_unit_type_id=29; bacnet_unit_type=PERCENT_RELATIVE_HUMIDITY
 CO2,CO₂ Concentration,,number,R,UINT16,,ppm,,,,co2-pir-lite,bacnet_type=analog_input_object; bacnet_unit_type_id=98; bacnet_unit_type=PARTS_PER_MILLION
 pirTriggerCount,PIR Trigger Count,,number,R,UINT8,,,,,,group_co2_ht_pir_lite,bacnet_type=analog_input_object; bacnet_unit_type_id=95; bacnet_unit_type=UNITS_NO_UNITS
 pirSensorStatus,PIR Motion,,binary,R,UINT8,,,1,0,1,group_co2_ht_pir_lite,"bacnet_type=binary_value_object; bacnet_unit_type_id=95; bacnet_unit_type=UNITS_NO_UNITS; 0=No motion, 1=Motion detected"
