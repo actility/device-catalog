@@ -68,7 +68,7 @@ function extractPoints(input) {
 
                     case "frequency":
                         if (!result["frequency:0"]) {
-                            result["frequency:0"] = { unitId: "Hz", records: [], nature: "current frequency" }
+                            result["frequency:0"] = { unitId: "hertz", records: [], nature: "current frequency" }
                         }
                         result["frequency:0"].records.push({
                             eventTime: new Date(item.date).toISOString(),
@@ -78,7 +78,7 @@ function extractPoints(input) {
 
                     case "frequency_min":
                         if (!result["frequency:1"]) {
-                            result["frequency:1"] = { unitId: "Hz", records: [], nature: "frequency min" }
+                            result["frequency:1"] = { unitId: "hertz", records: [], nature: "frequency min" }
                         }
                         result["frequency:1"].records.push({
                             eventTime: new Date(item.date).toISOString(),
@@ -88,7 +88,7 @@ function extractPoints(input) {
 
                     case "frequency_max":
                         if (!result["frequency:2"]) {
-                            result["frequency:2"] = { unitId: "Hz", records: [], nature: "frequency max" }
+                            result["frequency:2"] = { unitId: "hertz", records: [], nature: "frequency max" }
                         }
                         result["frequency:2"].records.push({
                             eventTime: new Date(item.date).toISOString(),
@@ -243,17 +243,17 @@ function extractPoints(input) {
 
     if(result["frequency:0"] != null && result["frequency:0"].records.length === 1) {
         let val = result["frequency:0"].records[0].value
-        result["frequency:0"] = { unitId: "Hz", record: val, nature: "current frequency" }
+        result["frequency:0"] = { unitId: "hertz", record: val, nature: "current frequency" }
     }
 
     if(result["frequency:1"] != null && result["frequency:1"].records.length === 1) {
         let val = result["frequency:1"].records[0].value
-        result["frequency:1"] = { unitId: "Hz", record: val, nature: "frequency min" }
+        result["frequency:1"] = { unitId: "hertz", record: val, nature: "frequency min" }
     }
 
     if(result["frequency:2"] != null && result["frequency:2"].records.length === 1) {
         let val = result["frequency:2"].records[0].value
-        result["frequency:2"] = { unitId: "Hz", record: val, nature: "frequency max" }
+        result["frequency:2"] = { unitId: "hertz", record: val, nature: "frequency max" }
     }
 
     if(result["rmsVoltage:0"] != null && result["rmsVoltage:0"].records.length === 1) {
