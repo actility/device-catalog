@@ -18,7 +18,7 @@ function extractPoints(input) {
 
                     case "reactive_energy":
                         if (!result.reactiveEnergy) {
-                            result.reactiveEnergy = { unitId: "var/h", records: [] }
+                            result.reactiveEnergy = { unitId: "varh", records: [] }
                         }
                         result.reactiveEnergy.records.push({
                             eventTime: new Date(item.date).toISOString(),
@@ -97,7 +97,7 @@ function extractPoints(input) {
 
     if(result.reactiveEnergy != null && result.reactiveEnergy.records.length === 1) {
         let val = result.reactiveEnergy.records[0].value
-        result.reactiveEnergy = { unitId: "var/h", record: val }
+        result.reactiveEnergy = { unitId: "varh", record: val }
     }
 
     if(result.duration != null && result.duration.records.length === 1) {
