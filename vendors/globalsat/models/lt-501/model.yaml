@@ -39,6 +39,9 @@ specificationURL: https://www.globalsat.com.tw/files/LT-501_specification_V0.9H_
 userGuideURL: 
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
+  - batteryLevel:%
+  - location:GPS
+  - rssi:dBm
 examples:
     glbsat:lt-501:1:
         - "uplink with full message received from LT-501 device with protocol 12 and command ID 4098"

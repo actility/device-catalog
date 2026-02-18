@@ -37,9 +37,13 @@ specificationURL: https://enless-wireless.com/wp-content/uploads/2022/07/EN-TX-P
 userGuideURL: https://enless.gitbook.io/installation-guide-lorawan
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors: 
-    - batteryLevel:%
-    - counter:count
-    - status:state
+  - batteryLevel:%
+  - counter:count
+  - status:state
+  - msg_is_alarm:state
+  - pulse_ch1_open:state
+  - pulse_ch2_open:state
+  - pulse_oc_open:state
 examples:
     enless-w:600-037:1:
         - "Example: 600-037"

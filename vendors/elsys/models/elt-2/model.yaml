@@ -46,9 +46,18 @@ specificationURL: https://elsys.se/public/documents/Sensor_payload.pdf
 userGuideURL: 
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
-    - temperature:Cel
-    - humidity:%RH
-
+  - temperature:Cel
+  - humidity:%RH
+  - light:lx
+  - co2Level:ppm
+  - batteryVoltage:mV
+  - batteryLevel:%
+  - sound:dB
+  - acceleration:mgravity
+  - distance:mm
+  - counter:count
+  - pressure:hPa
+  - location:GPS
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false
