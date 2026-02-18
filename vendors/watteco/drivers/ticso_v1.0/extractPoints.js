@@ -18,7 +18,7 @@ function extractPoints(input) {
 
                     case "reactive_energy":
                         if (!result.reactiveEnergy) {
-                            result.reactiveEnergy = { unitId: "varh", records: [] }
+                            result.reactiveEnergy = { unitId: "VArh", records: [] }
                         }
                         result.reactiveEnergy.records.push({
                             eventTime: new Date(item.date).toISOString(),
@@ -48,7 +48,7 @@ function extractPoints(input) {
 
                     case "reactive_power":
                         if (!result.reactivePower) {
-                            result.reactivePower = { unitId: "var", records: [] }
+                            result.reactivePower = { unitId: "VAr", records: [] }
                         }
                         result.reactivePower.records.push({
                             eventTime: new Date(item.date).toISOString(),
@@ -97,7 +97,7 @@ function extractPoints(input) {
 
     if(result.reactiveEnergy != null && result.reactiveEnergy.records.length === 1) {
         let val = result.reactiveEnergy.records[0].value
-        result.reactiveEnergy = { unitId: "varh", record: val }
+        result.reactiveEnergy = { unitId: "VArh", record: val }
     }
 
     if(result.duration != null && result.duration.records.length === 1) {
@@ -112,7 +112,7 @@ function extractPoints(input) {
 
     if(result.reactivePower != null && result.reactivePower.records.length === 1) {
         let val = result.reactivePower.records[0].value
-        result.reactivePower = { unitId: "var", record: val }
+        result.reactivePower = { unitId: "VAr", record: val }
     }
 
     return result

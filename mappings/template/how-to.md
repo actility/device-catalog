@@ -174,7 +174,7 @@ This field is only for 'number' type, the table below shows the string that can 
 | T         | BACNET.TESLAS                                 |
 | VA        | BACNET.VOLT_AMPERES                           |
 | VAh       | BACNET.VOLT_AMPERE_HOURS                      |
-| var       | BACNET.VOLT_AMPERES_REACTIVE                  |
+| VAr | BACNET.VOLT_AMPERES_REACTIVE                  |
 | V         | BACNET.VOLTS                                  |
 | W         | BACNET.WATTS                                  |
 | W/m2      | BACNET.WATTS_PER_SQUARE_METER                 |

@@ -112,8 +112,8 @@ This is the ontology supported by Actility. You can define a sensor inside your 
 | volt | V | double | V | batteryVoltage, rmsVoltage, voltage |
 | volt-ampere | VA | double | VA | apparentPower |
 | volt-ampere hour | VAh | double | VAh | apparentEnergy |
-| volt-ampere reactive | var | double | var | reactivePower |
-| volt-ampere reactive hour | varh | double | varh | reactiveEnergy |
+| volt-ampere reactive | VAr | double | VAr | reactivePower |
+| volt-ampere reactive hour | VArh | double | VArh | reactiveEnergy |
 | watt | W | double | W | power, activePower |
 | watt per hour | W/h | double | W/h | powerRate |
 | watt per second | W/s | double | W/s | powerRate |

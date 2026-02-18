@@ -133,7 +133,7 @@ function extractPoints(input) {
 
                     case "positive_reactive_energy_a":
                         if (!result["reactiveEnergy:0"]) {
-                            result["reactiveEnergy:0"] = { unitId: "varh", records: [], nature: "Positive reactive energy" }
+                            result["reactiveEnergy:0"] = { unitId: "VArh", records: [], nature: "Positive reactive energy" }
                         }
                         result["reactiveEnergy:0"].records.push({
                             eventTime: new Date(item.date).toISOString(),
@@ -143,7 +143,7 @@ function extractPoints(input) {
 
                     case "positive_reactive_energy_b":
                         if (!result["reactiveEnergy:1"]) {
-                            result["reactiveEnergy:1"] = { unitId: "varh", records: [], nature: "Positive reactive energy" }
+                            result["reactiveEnergy:1"] = { unitId: "VArh", records: [], nature: "Positive reactive energy" }
                         }
                         result["reactiveEnergy:1"].records.push({
                             eventTime: new Date(item.date).toISOString(),
@@ -154,7 +154,7 @@ function extractPoints(input) {
 
                     case "positive_reactive_energy_c":
                         if (!result["reactiveEnergy:2"]) {
-                            result["reactiveEnergy:2"] = { unitId: "varh", records: [], nature: "Positive reactive energy" }
+                            result["reactiveEnergy:2"] = { unitId: "VArh", records: [], nature: "Positive reactive energy" }
                         }
                         result["reactiveEnergy:2"].records.push({
                             eventTime: new Date(item.date).toISOString(),
@@ -165,7 +165,7 @@ function extractPoints(input) {
 
                     case "positive_reactive_energy_abc":
                         if (!result["reactiveEnergy:3"]) {
-                            result["reactiveEnergy:3"] = { unitId: "varh", records: [], nature: "Positive reactive energy" }
+                            result["reactiveEnergy:3"] = { unitId: "VArh", records: [], nature: "Positive reactive energy" }
                         }
                         result["reactiveEnergy:3"].records.push({
                             eventTime: new Date(item.date).toISOString(),
@@ -175,7 +175,7 @@ function extractPoints(input) {
 
                     case "reactive_energy_a":
                         if (!result["reactiveEnergy:0"]) {
-                            result["reactiveEnergy:0"] = { unitId: "varh", records: [], nature: "Positive reactive energy" }
+                            result["reactiveEnergy:0"] = { unitId: "VArh", records: [], nature: "Positive reactive energy" }
                         }
                         result["reactiveEnergy:0"].records.push({
                             eventTime: new Date(item.date).toISOString(),
@@ -185,7 +185,7 @@ function extractPoints(input) {
 
                     case "reactive_energy_b":
                         if (!result["reactiveEnergy:1"]) {
-                            result["reactiveEnergy:1"] = { unitId: "varh", records: [], nature: "Positive reactive energy" }
+                            result["reactiveEnergy:1"] = { unitId: "VArh", records: [], nature: "Positive reactive energy" }
                         }
                         result["reactiveEnergy:1"].records.push({
                             eventTime: new Date(item.date).toISOString(),
@@ -196,7 +196,7 @@ function extractPoints(input) {
 
                     case "reactive_energy_c":
                         if (!result["reactiveEnergy:2"]) {
-                            result["reactiveEnergy:2"] = { unitId: "varh", records: [], nature: "Positive reactive energy" }
+                            result["reactiveEnergy:2"] = { unitId: "VArh", records: [], nature: "Positive reactive energy" }
                         }
                         result["reactiveEnergy:2"].records.push({
                             eventTime: new Date(item.date).toISOString(),
@@ -207,7 +207,7 @@ function extractPoints(input) {
 
                     case "reactive_energy_abc":
                         if (!result["reactiveEnergy:3"]) {
-                            result["reactiveEnergy:3"] = { unitId: "varh", records: [], nature: "Positive reactive energy" }
+                            result["reactiveEnergy:3"] = { unitId: "VArh", records: [], nature: "Positive reactive energy" }
                         }
                         result["reactiveEnergy:3"].records.push({
                             eventTime: new Date(item.date).toISOString(),
@@ -217,7 +217,7 @@ function extractPoints(input) {
 
                     case "negative_reactive_energy_a":
                         if (!result["reactiveEnergy:4"]) {
-                            result["reactiveEnergy:4"] = { unitId: "varh", records: [], nature: "Negative reactive energy" }
+                            result["reactiveEnergy:4"] = { unitId: "VArh", records: [], nature: "Negative reactive energy" }
                         }
                         result["reactiveEnergy:4"].records.push({
                             eventTime: new Date(item.date).toISOString(),
@@ -227,7 +227,7 @@ function extractPoints(input) {
 
                     case "negative_reactive_energy_b":
                         if (!result["reactiveEnergy:5"]) {
-                            result["reactiveEnergy:5"] = { unitId: "varh", records: [], nature: "Negative reactive energy" }
+                            result["reactiveEnergy:5"] = { unitId: "VArh", records: [], nature: "Negative reactive energy" }
                         }
                         result["reactiveEnergy:5"].records.push({
                             eventTime: new Date(item.date).toISOString(),
@@ -238,7 +238,7 @@ function extractPoints(input) {
 
                     case "negative_reactive_energy_c":
                         if (!result["reactiveEnergy:6"]) {
-                            result["reactiveEnergy:6"] = { unitId: "varh", records: [], nature: "Negative reactive energy" }
+                            result["reactiveEnergy:6"] = { unitId: "VArh", records: [], nature: "Negative reactive energy" }
                         }
                         result["reactiveEnergy:6"].records.push({
                             eventTime: new Date(item.date).toISOString(),
@@ -249,7 +249,7 @@ function extractPoints(input) {
 
                     case "negative_reactive_energy_abc":
                         if (!result["reactiveEnergy:7"]) {
-                            result["reactiveEnergy:7"] = { unitId: "varh", records: [], nature: "Negative active energy" }
+                            result["reactiveEnergy:7"] = { unitId: "VArh", records: [], nature: "Negative active energy" }
                         }
                         result["reactiveEnergy:7"].records.push({
                             eventTime: new Date(item.date).toISOString(),
@@ -386,7 +386,7 @@ function extractPoints(input) {
 
                     case "positive_reactive_power_a":
                         if (!result["reactivePower:0"]) {
-                            result["reactivePower:0"] = { unitId: "var", records: [], nature: "Positive reactive power" }
+                            result["reactivePower:0"] = { unitId: "VAr", records: [], nature: "Positive reactive power" }
                         }
                         result["reactivePower:0"].records.push({
                             eventTime: new Date(item.date).toISOString(),
@@ -396,7 +396,7 @@ function extractPoints(input) {
 
                     case "positive_reactive_power_b":
                         if (!result["reactivePower:1"]) {
-                            result["reactivePower:1"] = { unitId: "var", records: [], nature: "Positive reactive power" }
+                            result["reactivePower:1"] = { unitId: "VAr", records: [], nature: "Positive reactive power" }
                         }
                         result["reactivePower:1"].records.push({
                             eventTime: new Date(item.date).toISOString(),
@@ -407,7 +407,7 @@ function extractPoints(input) {
 
                     case "positive_reactive_power_c":
                         if (!result["reactivePower:2"]) {
-                            result["reactivePower:2"] = { unitId: "var", records: [], nature: "Positive reactive power" }
+                            result["reactivePower:2"] = { unitId: "VAr", records: [], nature: "Positive reactive power" }
                         }
                         result["reactivePower:2"].records.push({
                             eventTime: new Date(item.date).toISOString(),
@@ -418,7 +418,7 @@ function extractPoints(input) {
 
                     case "positive_reactive_power_abc":
                         if (!result["reactivePower:3"]) {
-                            result["reactivePower:3"] = { unitId: "var", records: [], nature: "Positive reactive power" }
+                            result["reactivePower:3"] = { unitId: "VAr", records: [], nature: "Positive reactive power" }
                         }
                         result["reactivePower:3"].records.push({
                             eventTime: new Date(item.date).toISOString(),
@@ -428,7 +428,7 @@ function extractPoints(input) {
 
                     case "reactive_power_a":
                         if (!result["reactivePower:0"]) {
-                            result["reactivePower:0"] = { unitId: "var", records: [], nature: "Positive reactive power" }
+                            result["reactivePower:0"] = { unitId: "VAr", records: [], nature: "Positive reactive power" }
                         }
                         result["reactivePower:0"].records.push({
                             eventTime: new Date(item.date).toISOString(),
@@ -438,7 +438,7 @@ function extractPoints(input) {
 
                     case "reactive_power_b":
                         if (!result["reactivePower:1"]) {
-                            result["reactivePower:1"] = { unitId: "var", records: [], nature: "Positive reactive power" }
+                            result["reactivePower:1"] = { unitId: "VAr", records: [], nature: "Positive reactive power" }
                         }
                         result["reactivePower:1"].records.push({
                             eventTime: new Date(item.date).toISOString(),
@@ -449,7 +449,7 @@ function extractPoints(input) {
 
                     case "reactive_power_c":
                         if (!result["reactivePower:2"]) {
-                            result["reactivePower:2"] = { unitId: "var", records: [], nature: "Positive reactive power" }
+                            result["reactivePower:2"] = { unitId: "VAr", records: [], nature: "Positive reactive power" }
                         }
                         result["reactivePower:2"].records.push({
                             eventTime: new Date(item.date).toISOString(),
@@ -460,7 +460,7 @@ function extractPoints(input) {
 
                     case "reactive_power_abc":
                         if (!result["reactivePower:3"]) {
-                            result["reactivePower:3"] = { unitId: "var", records: [], nature: "Positive reactive power" }
+                            result["reactivePower:3"] = { unitId: "VAr", records: [], nature: "Positive reactive power" }
                         }
                         result["reactivePower:3"].records.push({
                             eventTime: new Date(item.date).toISOString(),
@@ -470,7 +470,7 @@ function extractPoints(input) {
 
                     case "negative_reactive_power_a":
                         if (!result["reactivePower:4"]) {
-                            result["reactivePower:4"] = { unitId: "var", records: [], nature: "Negative reactive power" }
+                            result["reactivePower:4"] = { unitId: "VAr", records: [], nature: "Negative reactive power" }
                         }
                         result["reactivePower:4"].records.push({
                             eventTime: new Date(item.date).toISOString(),
@@ -480,7 +480,7 @@ function extractPoints(input) {
 
                     case "negative_reactive_power_b":
                         if (!result["reactivePower:5"]) {
-                            result["reactivePower:5"] = { unitId: "var", records: [], nature: "Negative reactive power" }
+                            result["reactivePower:5"] = { unitId: "VAr", records: [], nature: "Negative reactive power" }
                         }
                         result["reactivePower:5"].records.push({
                             eventTime: new Date(item.date).toISOString(),
@@ -491,7 +491,7 @@ function extractPoints(input) {
 
                     case "negative_reactive_power_c":
                         if (!result["reactivePower:6"]) {
-                            result["reactivePower:6"] = { unitId: "var", records: [], nature: "Negative reactive power" }
+                            result["reactivePower:6"] = { unitId: "VAr", records: [], nature: "Negative reactive power" }
                         }
                         result["reactivePower:6"].records.push({
                             eventTime: new Date(item.date).toISOString(),
@@ -502,7 +502,7 @@ function extractPoints(input) {
 
                     case "negative_reactive_power_abc":
                         if (!result["reactivePower:7"]) {
-                            result["reactivePower:7"] = { unitId: "var", records: [], nature: "Negative reactive power" }
+                            result["reactivePower:7"] = { unitId: "VAr", records: [], nature: "Negative reactive power" }
                         }
                         result["reactivePower:7"].records.push({
                             eventTime: new Date(item.date).toISOString(),
@@ -681,42 +681,42 @@ function extractPoints(input) {
 
     if(result["reactiveEnergy:0"] != null && result["reactiveEnergy:0"].records.length === 1) {
         let val = result["reactiveEnergy:0"].records[0].value
-        result["reactiveEnergy:0"] = { unitId: "varh", record: val, nature: "Positive reactive energy" }
+        result["reactiveEnergy:0"] = { unitId: "VArh", record: val, nature: "Positive reactive energy" }
     }
 
     if(result["reactiveEnergy:1"] != null && result["reactiveEnergy:1"].records.length === 1) {
         let val = result["reactiveEnergy:1"].records[0].value
-        result["reactiveEnergy:1"] = { unitId: "varh", record: val, nature: "Positive reactive energy" }
+        result["reactiveEnergy:1"] = { unitId: "VArh", record: val, nature: "Positive reactive energy" }
     }
 
     if(result["reactiveEnergy:2"] != null && result["reactiveEnergy:2"].records.length === 1) {
         let val = result["reactiveEnergy:2"].records[0].value
-        result["reactiveEnergy:2"] = { unitId: "varh", record: val, nature: "Positive reactive energy" }
+        result["reactiveEnergy:2"] = { unitId: "VArh", record: val, nature: "Positive reactive energy" }
     }
 
     if(result["reactiveEnergy:3"] != null && result["reactiveEnergy:3"].records.length === 1) {
         let val = result["reactiveEnergy:3"].records[0].value
-        result["reactiveEnergy:3"] = { unitId: "varh", record: val, nature: "Positive reactive energy" }
+        result["reactiveEnergy:3"] = { unitId: "VArh", record: val, nature: "Positive reactive energy" }
     }
 
     if(result["reactiveEnergy:4"] != null && result["reactiveEnergy:4"].records.length === 1) {
         let val = result["reactiveEnergy:4"].records[0].value
-        result["reactiveEnergy:4"] = { unitId: "varh", record: val, nature: "Negative reactive energy" }
+        result["reactiveEnergy:4"] = { unitId: "VArh", record: val, nature: "Negative reactive energy" }
     }
 
     if(result["reactiveEnergy:5"] != null && result["reactiveEnergy:5"].records.length === 1) {
         let val = result["reactiveEnergy:5"].records[0].value
-        result["reactiveEnergy:5"] = { unitId: "varh", record: val, nature: "Negative reactive energy" }
+        result["reactiveEnergy:5"] = { unitId: "VArh", record: val, nature: "Negative reactive energy" }
     }
 
     if(result["reactiveEnergy:6"] != null && result["reactiveEnergy:6"].records.length === 1) {
         let val = result["reactiveEnergy:6"].records[0].value
-        result["reactiveEnergy:6"] = { unitId: "varh", record: val, nature: "Negative reactive energy" }
+        result["reactiveEnergy:6"] = { unitId: "VArh", record: val, nature: "Negative reactive energy" }
     }
 
     if(result["reactiveEnergy:7"] != null && result["reactiveEnergy:7"].records.length === 1) {
         let val = result["reactiveEnergy:7"].records[0].value
-        result["reactiveEnergy:7"] = { unitId: "varh", record: val, nature: "Negative reactive energy" }
+        result["reactiveEnergy:7"] = { unitId: "VArh", record: val, nature: "Negative reactive energy" }
     }
 
     if(result["activePower:0"] != null && result["activePower:0"].records.length === 1) {
@@ -761,42 +761,42 @@ function extractPoints(input) {
 
     if(result["reactivePower:0"] != null && result["reactivePower:0"].records.length === 1) {
         let val = result["reactivePower:0"].records[0].value
-        result["reactivePower:0"] = { unitId: "var", record: val, nature: "Positive reactive energy" }
+        result["reactivePower:0"] = { unitId: "VAr", record: val, nature: "Positive reactive energy" }
     }
 
     if(result["reactivePower:1"] != null && result["reactivePower:1"].records.length === 1) {
         let val = result["reactivePower:1"].records[0].value
-        result["reactivePower:1"] = { unitId: "var", record: val, nature: "Positive reactive energy" }
+        result["reactivePower:1"] = { unitId: "VAr", record: val, nature: "Positive reactive energy" }
     }
 
     if(result["reactivePower:2"] != null && result["reactivePower:2"].records.length === 1) {
         let val = result["reactivePower:2"].records[0].value
-        result["reactivePower:2"] = { unitId: "var", record: val, nature: "Positive reactive energy" }
+        result["reactivePower:2"] = { unitId: "VAr", record: val, nature: "Positive reactive energy" }
     }
 
     if(result["reactivePower:3"] != null && result["reactivePower:3"].records.length === 1) {
         let val = result["reactivePower:3"].records[0].value
-        result["reactivePower:3"] = { unitId: "var", record: val, nature: "Positive reactive energy" }
+        result["reactivePower:3"] = { unitId: "VAr", record: val, nature: "Positive reactive energy" }
     }
 
     if(result["reactivePower:4"] != null && result["reactivePower:4"].records.length === 1) {
         let val = result["reactivePower:4"].records[0].value
-        result["reactivePower:4"] = { unitId: "var", record: val, nature: "Negative reactive energy" }
+        result["reactivePower:4"] = { unitId: "VAr", record: val, nature: "Negative reactive energy" }
     }
 
     if(result["reactivePower:5"] != null && result["reactivePower:5"].records.length === 1) {
         let val = result["reactivePower:5"].records[0].value
-        result["reactivePower:5"] = { unitId: "var", record: val, nature: "Negative reactive energy" }
+        result["reactivePower:5"] = { unitId: "VAr", record: val, nature: "Negative reactive energy" }
     }
 
     if(result["reactivePower:6"] != null && result["reactivePower:6"].records.length === 1) {
         let val = result["reactivePower:6"].records[0].value
-        result["reactivePower:6"] = { unitId: "var", record: val, nature: "Negative reactive energy" }
+        result["reactivePower:6"] = { unitId: "VAr", record: val, nature: "Negative reactive energy" }
     }
 
     if(result["reactivePower:7"] != null && result["reactivePower:7"].records.length === 1) {
         let val = result["reactivePower:7"].records[0].value
-        result["reactivePower:7"] = { unitId: "var", record: val, nature: "Negative reactive energy" }
+        result["reactivePower:7"] = { unitId: "VAr", record: val, nature: "Negative reactive energy" }
     }
 
     if(result["rmsVoltage:0"] != null && result["rmsVoltage:0"].records.length === 1) {
