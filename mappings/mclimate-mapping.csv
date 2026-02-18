@@ -144,7 +144,7 @@ openWindow:delta,Open window detection delta,0,number,R,UINT8,,,0.1,0,255,vicki,
 openWindow:duration,Open window detection duration,0,number,R,UINT16,,minutes,1,,,vicki,Open window duration in minutes
 openWindow:enabled,Open window detection enabled,false,boolean,R,BOOL,,,,,,vicki,Open window detection is activated
 openWindow:motorPosition,Open window detection motor position,0,number,R,UINT16,,,1,,,vicki,Open window motor position
-operationalMode,Operational Mode,0,number,RW,UINT8,,,1,1,3,group_fan-coil_vicki_common,Operational mode
+operationalMode,Operational Mode,0,number,R,UINT8,,,1,1,3,group_fan-coil_vicki_common,Operational mode
 overcurrCnt,Overcurr Cnt,,number,R,UINT8,,,,,,16aspm,bacnet_type=analog_input_object; bacnet_unit_type_id=95; bacnet_unit_type=UNITS_NO_UNITS
 overcurrCurr,Overcurr Curr,,number,R,UINT16,,mA,,,,16aspm,bacnet_type=analog_input_object; bacnet_unit_type_id=2; bacnet_unit_type=UNITS_MILLIAMPERES
 overcurrRecTp,OvercurrRecTp,,number,RW,UINT8,,Cel,,,,16aspm,bacnet_type=analog_value_object; bacnet_unit_type_id=62; bacnet_unit_type=UNITS_DEGREES_CELSIUS
@@ -219,7 +219,7 @@ setTemperatureRange:min,Set temperature range min,0,number,RW,UINT8,,Cel,1,5,30,
 setUplinkType,Set uplink type command,0,binary,RW,UINT8,,,1,0,1,vicki,"0 - unconfirmed, 1 - confirmed"
 setWatchDogParams:confirmedUplinks,Set watchdog params confirmedUplinks,0,number,RW,UINT8,,,1,0,255,vicki,
 setWatchDogParams:unconfirmedUplinks,Set watchdog params unconfirmedUplinks,0,number,RW,UINT8,,,1,0,255,vicki,
-targetTemperature,Target Temperature,0,number,RW,FLOAT,2,Cel,0.1,,,group_targetTemperature,Target temperature (°C)
+targetTemperature,Target Temperature,0,number,R,FLOAT,2,Cel,0.1,,,group_targetTemperature,Target temperature (°C)
 targetTemperatureStep,Target Temperature Step,0,number,RW,FLOAT,2,Cel,0.1,,,fan-coil,Target temperature step (°C)
 tempSensorCompensation_compensation,Temp Sensor Compensation,0,number,RW,UINT8,,,1,0,255,fan-coil,Temp sensor compensation
 tempSensorCompensation_temperature,Temp Sensor Compensation Temperature,0,number,RW,UINT8,,Cel,1,0,255,fan-coil,Temp sensor compensation temperature (°C)
@@ -227,7 +227,7 @@ temperatureRangeSettings:max,Max temperature,0,number,R,UINT8,,Cel,,0,255,vicki,
 temperatureRangeSettings:min,Min temperature,0,number,R,UINT8,,Cel,,0,255,vicki,
 temperatureRange_max,Temperature Range Max,0,number,RW,UINT8,,Cel,1,0,255,fan-coil,Temperature range max (°C)
 temperatureRange_min,Temperature Range Min,0,number,RW,UINT8,,Cel,1,0,255,fan-coil,Temperature range min (°C)
-uplinkType,Uplink Type,0,number,RW,UINT8,,,1,0,1,group_uplinkType,"0=Unconfirmed, 1=Confirmed"
+uplinkType,Uplink Type,0,number,R,UINT8,,,1,0,1,group_uplinkType,"0=Unconfirmed, 1=Confirmed"
 userInterfaceLanguage,User Interface Language,0,number,R,UINT8,,,1,0,255,fan-coil,User interface language
 valveOpenCloseTime,Valve Open/Close Time,0,number,RW,UINT8,,s,1,0,255,fan-coil,Valve open/close time (s)
 valveStatus,Valve Status,0,binary,R,UINT8,,,1,0,1,fan-coil,"0=Off, 1=On"
@@ -239,8 +239,6 @@ wdog_wdpC,WDP-C,,number,RW,UINT8,,,,,,16aspm,Watchdog param WDP-C
 wdog_wdpUc,WDP-UC,,number,RW,UINT8,,,,,,16aspm,Watchdog param WDP-UC
 wiringDiagram,Wiring Diagram,0,number,RW,UINT8,,,1,0,255,fan-coil,Wiring diagram
 occupied,Occupied,,binary,R,UINT8,,,1,0,1,group_co2_ht_pir_lite,"bacnet_type=binary_value_object; bacnet_unit_type_id=95; bacnet_unit_type=UNITS_NO_UNITS; 0=Unoccupied, 1=Occupied"
-sensorTemperature,Temperature,,number,R,FLOAT,,°C,,,,group_fan-coil_vicki_common,bacnet_type=analog_input_object; bacnet_unit_type_id=62; bacnet_unit_type=UNITS_DEGREES_CELSIUS
-relativeHumidity,Relative Humidity,,number,R,FLOAT,,%,,,,group_fan-coil_vicki_common,bacnet_type=analog_input_object; bacnet_unit_type_id=29; bacnet_unit_type=PERCENT_RELATIVE_HUMIDITY
 CO2,CO₂ Concentration,,number,R,UINT16,,ppm,,,,co2-pir-lite,bacnet_type=analog_input_object; bacnet_unit_type_id=98; bacnet_unit_type=PARTS_PER_MILLION
 pirTriggerCount,PIR Trigger Count,,number,R,UINT8,,,,,,group_co2_ht_pir_lite,bacnet_type=analog_input_object; bacnet_unit_type_id=95; bacnet_unit_type=UNITS_NO_UNITS
 pirSensorStatus,PIR Motion,,binary,R,UINT8,,,1,0,1,group_co2_ht_pir_lite,"bacnet_type=binary_value_object; bacnet_unit_type_id=95; bacnet_unit_type=UNITS_NO_UNITS; 0=No motion, 1=Motion detected"
