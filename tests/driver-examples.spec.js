@@ -10,7 +10,7 @@ const {computeChecksum} = require("./crc32");
 const DRIVER_PATH = path.resolve(process.env.DRIVER_PATH || __dirname);
 const resolveDriverPath = (...paths) => path.join(DRIVER_PATH, ...paths);
 let privateDir = DRIVER_PATH;
-if(!privateDir.includes("device-catalog-private")) {
+if(!privateDir.includes("device-catalog-private") && !privateDir.includes("device-catalog-shadow")) {
     privateDir = path.join(privateDir.replace("device-catalog", "device-catalog-private"));
 }
 else if(privateDir.includes("tmp")) {
@@ -287,7 +287,6 @@ function isTrusted() {
         const newTrustedCRC = computeChecksum(driverPath);
         driverYamlTrusted = newTrustedCRC === driverYamlTrustedCrc;
     }
-
     return driverYamlTrusted;
 }
 
