@@ -1,378 +1,378 @@
 [
-    {
-        "type": "uplink",
-        "description": "uplink standard report containing temperature value | payload:110A04020000290B89",
-        "input": {
-            "bytes": [
-                17,
-                10,
-                4,
-                2,
-                0,
-                0,
-                41,
-                11,
-                137
-            ],
-            "fPort": 125,
-            "recvTime": "2023-07-19T07:51:31.598957793Z"
-        },
-        "output": {
-            "data": [
-                {
-                    "variable": "temperature",
-                    "value": 29.53,
-                    "date": "2023-07-19T07:51:31.598957793Z"
-                }
-            ],
-            "warnings": []
-        },
-        "points": {
-            "temperature": {
-                "unitId": "Cel",
-                "record": 29.53
-            }
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing temperature value | payload:110A04020000290B89",
+    "input": {
+      "bytes": [
+        17,
+        10,
+        4,
+        2,
+        0,
+        0,
+        41,
+        11,
+        137
+      ],
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:31.598957793Z"
+    },
+    "output": {
+      "data": [
+        {
+          "variable": "temperature",
+          "value": 29.53,
+          "date": "2023-07-19T07:51:31.598957793Z"
         }
+      ],
+      "warnings": []
     },
-    {
-        "type": "uplink",
-        "description": "uplink standard report containing humidity value | payload:110A04050000210E89",
-        "input": {
-            "bytes": [
-                17,
-                10,
-                4,
-                5,
-                0,
-                0,
-                33,
-                14,
-                137
-            ],
-            "fPort": 125,
-            "recvTime": "2023-07-19T07:51:25.508306410Z"
-        },
-        "output": {
-            "data": [
-                {
-                    "variable": "humidity",
-                    "value": 37.21,
-                    "date": "2023-07-19T07:51:25.508306410Z"
-                }
-            ],
-            "warnings": []
-        },
-        "points": {
-            "humidity": {
-                "unitId": "%H",
-                "record": 37.21
-            }
-        }
-    },
-    {
-        "type": "uplink",
-        "description": "uplink standard report containing pressure value | payload:110A04030000290045",
-        "input": {
-            "bytes": [
-                17,
-                10,
-                4,
-                3,
-                0,
-                0,
-                41,
-                0,
-                69
-            ],
-            "fPort": 125,
-            "recvTime": "2023-07-19T07:51:25.508306410Z"
-        },
-        "output": {
-            "data": [
-                {
-                    "variable": "pressure",
-                    "value": 69,
-                    "date": "2023-07-19T07:51:25.508306410Z"
-                }
-            ],
-            "warnings": []
-        },
-        "points": {
-            "pressure": {
-                "unitId": "hPa",
-                "record": 69
-            }
-        }
-    },
-    {
-        "type": "uplink",
-        "description": "uplink standard report containing state of pin 1 | payload:110A000F00551001",
-        "input": {
-            "bytes": [
-                17,
-                10,
-                0,
-                15,
-                0,
-                85,
-                16,
-                1
-            ],
-            "fPort": 125,
-            "recvTime": "2023-07-19T07:51:25.508306410Z"
-        },
-        "output": {
-            "data": [
-                {
-                    "variable": "pin_state_1",
-                    "value": true,
-                    "date": "2023-07-19T07:51:25.508306410Z"
-                }
-            ],
-            "warnings": []
-        },
-        "points": {}
-    },
-    {
-        "type": "uplink",
-        "description": "uplink standard report containing number of pulse detection on input 1 | payload:110A000F04022300000000",
-        "input": {
-            "bytes": [
-                17,
-                10,
-                0,
-                15,
-                4,
-                2,
-                35,
-                0,
-                0,
-                0,
-                0
-            ],
-            "fPort": 125,
-            "recvTime": "2023-07-19T07:51:25.508306410Z"
-        },
-        "output": {
-            "data": [
-                {
-                    "variable": "index_1",
-                    "value": 0,
-                    "date": "2023-07-19T07:51:25.508306410Z"
-                }
-            ],
-            "warnings": []
-        },
-        "points": {}
-    },
-    {
-        "type": "uplink",
-        "description": "uplink standard report containing firmware version | payload:110100000002000D0305020015E2",
-        "input": {
-            "bytes": [
-                17,
-                1,
-                0,
-                0,
-                0,
-                2,
-                0,
-                13,
-                3,
-                5,
-                2,
-                0,
-                21,
-                226
-            ],
-            "fPort": 125,
-            "recvTime": "2023-07-19T07:51:25.508306410Z"
-        },
-        "output": {
-            "data": [
-                {
-                    "variable": "firmware",
-                    "value": "3.5.2.5602",
-                    "date": "2023-07-19T07:51:25.508306410Z"
-                }
-            ],
-            "warnings": []
-        },
-        "points": {}
-    },
-    {
-        "type": "uplink",
-        "description": "uplink standard report  containing battery charge | payload:110A00500006410503040E6804",
-        "input": {
-            "bytes": [
-                17,
-                10,
-                0,
-                80,
-                0,
-                6,
-                65,
-                5,
-                3,
-                4,
-                14,
-                104,
-                4
-            ],
-            "fPort": 125,
-            "recvTime": "2023-07-19T07:51:25.508306410Z"
-        },
-        "output": {
-            "data": [
-                {
-                    "variable": "disposable_battery_voltage",
-                    "value": 3.688,
-                    "date": "2023-07-19T07:51:25.508306410Z"
-                }
-            ],
-            "warnings": []
-        },
-        "points": {
-            "batteryVoltage": {
-                "unitId": "V",
-                "record": 3.688
-            }
-        }
-    },
-    {
-        "type": "uplink",
-        "description": "uplink standard report containing dataup info | payload:110180040000000800",
-        "input": {
-            "bytes": [
-                17,
-                1,
-                128,
-                4,
-                0,
-                0,
-                0,
-                8,
-                0
-            ],
-            "fPort": 125,
-            "recvTime": "2023-07-19T07:51:25.508306410Z"
-        },
-        "output": {
-            "data": [
-                {
-                    "variable": "message_type",
-                    "value": "unconfirmed",
-                    "date": "2023-07-19T07:51:25.508306410Z"
-                }
-            ],
-            "warnings": []
-        },
-        "points": {}
-    },
-    {
-        "type": "uplink",
-        "description": "uplink batch report contenaing several pressures and battery level  | payload:20220080039281F268D3212D54A0C3E170380AB000",
-        "input": {
-            "bytes": [
-                32,
-                34,
-                0,
-                128,
-                3,
-                146,
-                129,
-                242,
-                104,
-                211,
-                33,
-                45,
-                84,
-                160,
-                195,
-                225,
-                112,
-                56,
-                10,
-                176,
-                0
-            ],
-            "fPort": 125,
-            "recvTime": "2023-07-19T07:51:25.508306410Z"
-        },
-        "output": {
-            "data": [
-                {
-                    "variable": "pressure",
-                    "value": 997,
-                    "date": "2023-07-19T07:50:34.508Z"
-                },
-                {
-                    "variable": "pressure",
-                    "value": 997,
-                    "date": "2023-07-19T07:50:44.508Z"
-                },
-                {
-                    "variable": "pressure",
-                    "value": 997,
-                    "date": "2023-07-19T07:50:54.508Z"
-                },
-                {
-                    "variable": "pressure",
-                    "value": 997,
-                    "date": "2023-07-19T07:51:04.508Z"
-                },
-                {
-                    "variable": "pressure",
-                    "value": 997,
-                    "date": "2023-07-19T07:51:14.508Z"
-                },
-                {
-                    "variable": "pressure",
-                    "value": 997,
-                    "date": "2023-07-19T07:51:24.508Z"
-                },
-                {
-                    "variable": "battery_voltage",
-                    "value": 3.689,
-                    "date": "2023-07-19T07:51:24.508Z"
-                }
-            ],
-            "warnings": []
-        },
-        "points": {
-            "pressure": {
-                "unitId": "hPa",
-                "records": [
-                    {
-                        "eventTime": "2023-07-19T07:50:34.508Z",
-                        "value": 997
-                    },
-                    {
-                        "eventTime": "2023-07-19T07:50:44.508Z",
-                        "value": 997
-                    },
-                    {
-                        "eventTime": "2023-07-19T07:50:54.508Z",
-                        "value": 997
-                    },
-                    {
-                        "eventTime": "2023-07-19T07:51:04.508Z",
-                        "value": 997
-                    },
-                    {
-                        "eventTime": "2023-07-19T07:51:14.508Z",
-                        "value": 997
-                    },
-                    {
-                        "eventTime": "2023-07-19T07:51:24.508Z",
-                        "value": 997
-                    }
-                ]
-            },
-            "batteryVoltage": {
-                "unitId": "V",
-                "record": 3.689
-            }
-        }
+    "points": {
+      "temperature": {
+        "unitId": "Cel",
+        "record": 29.53
+      }
     }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing humidity value | payload:110A04050000210E89",
+    "input": {
+      "bytes": [
+        17,
+        10,
+        4,
+        5,
+        0,
+        0,
+        33,
+        14,
+        137
+      ],
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": [
+        {
+          "variable": "humidity",
+          "value": 37.21,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        }
+      ],
+      "warnings": []
+    },
+    "points": {
+      "humidity": {
+        "unitId": "%RH",
+        "record": 37.21
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing pressure value | payload:110A04030000290045",
+    "input": {
+      "bytes": [
+        17,
+        10,
+        4,
+        3,
+        0,
+        0,
+        41,
+        0,
+        69
+      ],
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": [
+        {
+          "variable": "pressure",
+          "value": 69,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        }
+      ],
+      "warnings": []
+    },
+    "points": {
+      "pressure": {
+        "unitId": "hPa",
+        "record": 69
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing state of pin 1 | payload:110A000F00551001",
+    "input": {
+      "bytes": [
+        17,
+        10,
+        0,
+        15,
+        0,
+        85,
+        16,
+        1
+      ],
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": [
+        {
+          "variable": "pin_state_1",
+          "value": true,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        }
+      ],
+      "warnings": []
+    },
+    "points": {}
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing number of pulse detection on input 1 | payload:110A000F04022300000000",
+    "input": {
+      "bytes": [
+        17,
+        10,
+        0,
+        15,
+        4,
+        2,
+        35,
+        0,
+        0,
+        0,
+        0
+      ],
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": [
+        {
+          "variable": "index_1",
+          "value": 0,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        }
+      ],
+      "warnings": []
+    },
+    "points": {}
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing firmware version | payload:110100000002000D0305020015E2",
+    "input": {
+      "bytes": [
+        17,
+        1,
+        0,
+        0,
+        0,
+        2,
+        0,
+        13,
+        3,
+        5,
+        2,
+        0,
+        21,
+        226
+      ],
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": [
+        {
+          "variable": "firmware",
+          "value": "3.5.2.5602",
+          "date": "2023-07-19T07:51:25.508306410Z"
+        }
+      ],
+      "warnings": []
+    },
+    "points": {}
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report  containing battery charge | payload:110A00500006410503040E6804",
+    "input": {
+      "bytes": [
+        17,
+        10,
+        0,
+        80,
+        0,
+        6,
+        65,
+        5,
+        3,
+        4,
+        14,
+        104,
+        4
+      ],
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": [
+        {
+          "variable": "disposable_battery_voltage",
+          "value": 3.688,
+          "date": "2023-07-19T07:51:25.508306410Z"
+        }
+      ],
+      "warnings": []
+    },
+    "points": {
+      "batteryVoltage": {
+        "unitId": "V",
+        "record": 3.688
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing dataup info | payload:110180040000000800",
+    "input": {
+      "bytes": [
+        17,
+        1,
+        128,
+        4,
+        0,
+        0,
+        0,
+        8,
+        0
+      ],
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": [
+        {
+          "variable": "message_type",
+          "value": "unconfirmed",
+          "date": "2023-07-19T07:51:25.508306410Z"
+        }
+      ],
+      "warnings": []
+    },
+    "points": {}
+  },
+  {
+    "type": "uplink",
+    "description": "uplink batch report contenaing several pressures and battery level  | payload:20220080039281F268D3212D54A0C3E170380AB000",
+    "input": {
+      "bytes": [
+        32,
+        34,
+        0,
+        128,
+        3,
+        146,
+        129,
+        242,
+        104,
+        211,
+        33,
+        45,
+        84,
+        160,
+        195,
+        225,
+        112,
+        56,
+        10,
+        176,
+        0
+      ],
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": [
+        {
+          "variable": "pressure",
+          "value": 997,
+          "date": "2023-07-19T07:50:34.508Z"
+        },
+        {
+          "variable": "pressure",
+          "value": 997,
+          "date": "2023-07-19T07:50:44.508Z"
+        },
+        {
+          "variable": "pressure",
+          "value": 997,
+          "date": "2023-07-19T07:50:54.508Z"
+        },
+        {
+          "variable": "pressure",
+          "value": 997,
+          "date": "2023-07-19T07:51:04.508Z"
+        },
+        {
+          "variable": "pressure",
+          "value": 997,
+          "date": "2023-07-19T07:51:14.508Z"
+        },
+        {
+          "variable": "pressure",
+          "value": 997,
+          "date": "2023-07-19T07:51:24.508Z"
+        },
+        {
+          "variable": "battery_voltage",
+          "value": 3.689,
+          "date": "2023-07-19T07:51:24.508Z"
+        }
+      ],
+      "warnings": []
+    },
+    "points": {
+      "pressure": {
+        "unitId": "hPa",
+        "records": [
+          {
+            "eventTime": "2023-07-19T07:50:34.508Z",
+            "value": 997
+          },
+          {
+            "eventTime": "2023-07-19T07:50:44.508Z",
+            "value": 997
+          },
+          {
+            "eventTime": "2023-07-19T07:50:54.508Z",
+            "value": 997
+          },
+          {
+            "eventTime": "2023-07-19T07:51:04.508Z",
+            "value": 997
+          },
+          {
+            "eventTime": "2023-07-19T07:51:14.508Z",
+            "value": 997
+          },
+          {
+            "eventTime": "2023-07-19T07:51:24.508Z",
+            "value": 997
+          }
+        ]
+      },
+      "batteryVoltage": {
+        "unitId": "V",
+        "record": 3.689
+      }
+    }
+  }
 ]

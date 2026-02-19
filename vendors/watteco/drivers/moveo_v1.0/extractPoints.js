@@ -102,7 +102,7 @@ function extractPoints(input) {
 
     if(result.humidity != null && result.humidity.records.length === 1) {
         let val = result.humidity.records[0].value
-        result.humidity = { unitId: "%H", record: val }
+        result.humidity = { unitId: "%RH", record: val }
     }
 
     if(result.illuminance != null && result.illuminance.records.length === 1) {
