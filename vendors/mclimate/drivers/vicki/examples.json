@@ -112,6 +112,39 @@
     }
   },
   {
+    "description": "Downlink: Set target temperature and motor position",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setTargetTemperatureAndMotorPosition": {
+          "motorPosition": 50,
+          "targetTemperature": 22
+        }
+      }
+    },
+    "output": {
+      "bytes": "31003216",
+      "errors": [],
+      "fPort": 1,
+      "warnings": []
+    }
+  },
+  {
+    "description": "Downlink: Set motor position only",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setMotorPositionOnly": 50
+      }
+    },
+    "output": {
+      "bytes": "2D0032",
+      "errors": [],
+      "fPort": 1,
+      "warnings": []
+    }
+  },
+  {
     "description": "Downlink decode: passthrough bytes",
     "type": "downlink-decode",
     "input": {

@@ -246,6 +246,23 @@ function decodeUplink(input) {
                         resultToPass = merge_obj(resultToPass, data);
                     }
                 break;
+                case '2d':
+                    {
+                        command_len = 2;
+                        var motorPosition = (parseInt(commands[i + 1], 16) << 8) | parseInt(commands[i + 2], 16);
+                        var data = { 'motorPosition': motorPosition };
+                        resultToPass = merge_obj(resultToPass, data);
+                    }
+                break;
+                case '31':
+                    {
+                        command_len = 3;
+                        var targetTemperature = parseInt(commands[i + 3], 16);
+                        var motorPosition = (parseInt(commands[i + 1], 16) << 8) | parseInt(commands[i + 2], 16);
+                        var data = { 'targetTemperature': targetTemperature, 'targetTemperatureFloat': parseFloat(targetTemperature), 'motorPosition': motorPosition };
+                        resultToPass = merge_obj(resultToPass, data);
+                    }
+                break;
                 case '36':
                     {
                         command_len = 3;
@@ -728,8 +745,12 @@ function encodeDownlink(input) {
                     bytes.push(0x1b);
                     break;
                 case "setTargetTemperatureAndMotorPosition":
+                    var motorPosition = input.data.setTargetTemperatureAndMotorPosition.motorPosition;
+                    var motorPositionFirstPart = motorPosition & 0xff;
+                    var motorPositionSecondPart = (motorPosition >> 8) & 0xff;
                     bytes.push(0x31);
-                    bytes.push(input.data.setTargetTemperatureAndMotorPosition.motorPosition);
+                    bytes.push(motorPositionSecondPart);
+                    bytes.push(motorPositionFirstPart);
                     bytes.push(input.data.setTargetTemperatureAndMotorPosition.targetTemperature);
                     break;
                 case "setWatchDogParams":
