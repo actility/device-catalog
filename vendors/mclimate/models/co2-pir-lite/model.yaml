@@ -1,0 +1,39 @@
+# Commercial name of the model
+name: CO2 + PIR Lite LoRaWAN
+# Functional description of the product. Maximum 500 characters.
+description: MClimate CO2 + PIR Lite is a LoRaWAN indoor sensor combining CO2, temperature, humidity and PIR occupancy detection.
+# Logo of the device
+logo: co2-pir-lite.png
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
+deviceProfileIds:
+  - id: mclimate_RFGroup2_1.0.3a_classA
+  - id: mclimate_RFGroup4_1.0.3a_classA
+
+maxTxPower:
+minTxPower:
+maxTxEIRP:
+minTxEIRP:
+motionIndicator:
+
+LoRaWANCertified:
+modelId: mclimate:co2-pir-lite:1
+protocolId:
+  - mclimate:co2-pir-lite:1
+specificationURL: https://docs.mclimate.eu/mclimate-lorawan-devices/devices/mclimate-co2-+-pir-lite
+userGuideURL:
+sensors:
+  - temperature:Cel
+  - humidity:%RH
+  - co2Level:ppm
+  - counter:count
+  - presence:state
+  - batteryVoltage:V
+examples:
+  mclimate:co2-pir-lite:1:
+    - "Periodic uplink (keepalive)"
+    - "Downlink: set PIR blind period"
+    - "Downlink decode: passthrough bytes"
+
+LoRaWANRelay:
+  canOperateAsARelay: false
+  defaultRelayActivation: false

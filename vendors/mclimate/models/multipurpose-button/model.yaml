@@ -1,0 +1,37 @@
+# Commercial name of the model
+name: Multipurpose Button LoRaWAN
+# Functional description of the product. Maximum 500 characters.
+description: MClimate Multipurpose Button is a LoRaWAN button device with thermistor temperature sensing and multi-press event counters.
+# Logo of the device
+logo: multipurpose-button.png
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
+deviceProfileIds:
+  - id: mclimate_RFGroup2_1.0.3a_classA
+  - id: mclimate_RFGroup4_1.0.3a_classA
+
+maxTxPower:
+minTxPower:
+maxTxEIRP:
+minTxEIRP:
+motionIndicator:
+
+LoRaWANCertified:
+modelId: mclimate:multipurpose-btn:1
+protocolId:
+  - mclimate:multipurpose-btn:1
+specificationURL: https://docs.mclimate.eu/mclimate-lorawan-devices/devices/mclimate-multipurpose-button-lorawan
+userGuideURL:
+sensors:
+  - batteryVoltage:V
+  - temperature:Cel
+  - counter:count
+  - status:state
+examples:
+  mclimate:multipurpose-btn:1:
+    - "Periodic uplink (keepalive)"
+    - "Downlink encode: unsupported in public docs"
+    - "Downlink decode: passthrough bytes"
+
+LoRaWANRelay:
+  canOperateAsARelay: false
+  defaultRelayActivation: false

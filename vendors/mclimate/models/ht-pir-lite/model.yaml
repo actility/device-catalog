@@ -1,0 +1,38 @@
+# Commercial name of the model
+name: HT + PIR Lite LoRaWAN
+# Functional description of the product. Maximum 500 characters.
+description: MClimate HT + PIR Lite is a LoRaWAN indoor sensor with temperature, humidity and PIR occupancy monitoring.
+# Logo of the device
+logo: ht-pir-lite.png
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
+deviceProfileIds:
+  - id: mclimate_RFGroup2_1.0.3a_classA
+  - id: mclimate_RFGroup4_1.0.3a_classA
+
+maxTxPower:
+minTxPower:
+maxTxEIRP:
+minTxEIRP:
+motionIndicator:
+
+LoRaWANCertified:
+modelId: mclimate:ht-pir-lite:1
+protocolId:
+  - mclimate:ht-pir-lite:1
+specificationURL: https://docs.mclimate.eu/mclimate-lorawan-devices/devices/mclimate-ht-+-pir-lite
+userGuideURL:
+sensors:
+  - temperature:Cel
+  - humidity:%RH
+  - counter:count
+  - presence:state
+  - batteryVoltage:V
+examples:
+  mclimate:ht-pir-lite:1:
+    - "Periodic uplink (keepalive)"
+    - "Downlink: set PIR blind period"
+    - "Downlink decode: passthrough bytes"
+
+LoRaWANRelay:
+  canOperateAsARelay: false
+  defaultRelayActivation: false

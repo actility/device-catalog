@@ -1,0 +1,38 @@
+# Commercial name of the model
+name: 16A Switch & Power Meter LoRaWAN
+# Functional description of the product. Maximum 500 characters.
+description: MClimate 16A Switch & Power Meter LoRaWAN is a compact relay controller with power metering capabilities for monitoring and automating electrical loads.
+# Logo of the device
+logo: 16a-switch-power-meter.png
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
+deviceProfileIds:
+  - id: mclimate_RFGroup1_1.0.3a_classC
+
+maxTxPower:
+minTxPower:
+maxTxEIRP:
+minTxEIRP:
+motionIndicator:
+
+LoRaWANCertified:
+modelId: mclimate:16a-spm:1
+protocolId:
+  - mclimate:16a-spm:1
+specificationURL: https://docs.mclimate.eu/mclimate-lorawan-devices/devices/mclimate-16a-switch-and-power-meter-lorawan-16aspm
+userGuideURL:
+sensors:
+  - temperature:Cel
+  - energy:kWh
+  - power:W
+  - voltage:V
+  - current:A
+  - status:state
+examples:
+  mclimate:16a-spm:1:
+    - "Periodic uplink (keepalive)"
+    - "Downlink: set relay state ON"
+    - "Downlink decode: passthrough bytes"
+
+LoRaWANRelay:
+  canOperateAsARelay: false
+  defaultRelayActivation: false

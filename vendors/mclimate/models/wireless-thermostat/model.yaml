@@ -1,0 +1,36 @@
+# Commercial name of the model
+name: Wireless Thermostat LoRaWAN
+# Functional description of the product. Maximum 500 characters.
+description: MClimate Wireless Thermostat is a LoRaWAN thermostat providing temperature and humidity monitoring with target temperature control and occupancy sensing support.
+# Logo of the device
+logo: wireless-thermostat.png
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
+deviceProfileIds:
+  - id: mclimate_RFGroup2_1.0.3a_classA
+  - id: mclimate_RFGroup4_1.0.3a_classA
+
+maxTxPower:
+minTxPower:
+maxTxEIRP:
+minTxEIRP:
+motionIndicator:
+
+LoRaWANCertified:
+modelId: mclimate:w-thermostat:1
+protocolId:
+  - mclimate:w-thermostat:1
+specificationURL: https://docs.mclimate.eu/mclimate-lorawan-devices/devices/mclimate-wireless-thermostat
+userGuideURL:
+sensors:
+  - temperature:Cel
+  - humidity:%RH
+  - illuminance:lx
+  - presence:state
+  - status:state
+  - batteryVoltage:V
+examples:
+  mclimate:w-thermostat:1: []
+
+LoRaWANRelay:
+  canOperateAsARelay: false
+  defaultRelayActivation: false
