@@ -1,0 +1,80 @@
+[
+  {
+    "description": "Periodic uplink (keepalive)",
+    "type": "uplink",
+    "input": {
+      "bytes": "5105F480A007",
+      "fPort": 1
+    },
+    "output": {
+      "data": {
+        "occupied": true,
+        "sensorTemperature": 10,
+        "relativeHumidity": 50,
+        "batteryVoltage": 2.98,
+        "pirTriggerCount": 7,
+        "pirSensorStatus": "Motion detected",
+        "pirSensorValue": 1
+      }
+    },
+    "points": {
+      "temperature": {
+        "unitId": "Cel",
+        "record": 10
+      },
+      "humidity": {
+        "unitId": "%RH",
+        "record": 50
+      },
+      "counter": {
+        "unitId": "count",
+        "record": 7,
+        "nature": "pir triggers"
+      },
+      "presence": {
+        "unitId": "state",
+        "record": true,
+        "nature": "pir occupancy"
+      },
+      "batteryVoltage": {
+        "unitId": "V",
+        "record": 2.98
+      }
+    }
+  },
+  {
+    "description": "Downlink: set PIR blind period",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setPIRBlindPeriod": 20
+      }
+    },
+    "output": {
+      "bytes": "4C0014",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "description": "Downlink decode: passthrough bytes",
+    "type": "downlink-decode",
+    "input": {
+      "bytes": "4C0014",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "bytes": [
+          76,
+          0,
+          20
+        ]
+      },
+      "warnings": [],
+      "errors": []
+    }
+  }
+]

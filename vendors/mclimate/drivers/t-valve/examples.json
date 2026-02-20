@@ -1,0 +1,35 @@
+[
+  {
+    "description": "Short periodic uplink",
+    "type": "uplink",
+    "input": {
+      "bytes": "2cc0",
+      "fPort": 2
+    },
+    "output": {
+      "data": {
+        "reason": "keepalive",
+        "waterTemp": 22,
+        "valveState": true,
+        "ambientTemp": 22
+      }
+    },
+    "points": {
+      "temperature:0": {
+        "unitId": "Cel",
+        "record": 22,
+        "nature": "water"
+      },
+      "temperature:1": {
+        "unitId": "Cel",
+        "record": 22,
+        "nature": "ambient"
+      },
+      "status": {
+        "unitId": "state",
+        "record": true,
+        "nature": "valve"
+      }
+    }
+  }
+]

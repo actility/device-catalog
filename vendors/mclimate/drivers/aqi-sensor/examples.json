@@ -1,0 +1,65 @@
+[
+  {
+    "description": "Periodic uplink",
+    "type": "uplink",
+    "input": {
+      "bytes": "0107a04d034bc8aa2bd6",
+      "fPort": 2
+    },
+    "output": {
+      "data": {
+        "AQI": 128,
+        "CO2eq": 2464,
+        "VOC": 12,
+        "accuracy_aqi": 3,
+        "pressure": 942,
+        "relative_humidity": 30,
+        "sAQI": 240,
+        "temperature": 25,
+        "voltage": 3.312
+      }
+    },
+    "points": {
+      "temperature": {
+        "unitId": "Cel",
+        "record": 25
+      },
+      "humidity": {
+        "unitId": "%RH",
+        "record": 30
+      },
+      "pressure": {
+        "unitId": "hPa",
+        "record": 942
+      },
+      "co2Level": {
+        "unitId": "ppm",
+        "record": 2464
+      },
+      "concentration": {
+        "unitId": "ppb",
+        "record": 12,
+        "nature": "voc"
+      },
+      "quantity:0": {
+        "unitId": "count",
+        "record": 128,
+        "nature": "aqi"
+      },
+      "quantity:1": {
+        "unitId": "count",
+        "record": 240,
+        "nature": "saqi"
+      },
+      "quantity:2": {
+        "unitId": "count",
+        "record": 3,
+        "nature": "aqi accuracy"
+      },
+      "batteryVoltage": {
+        "unitId": "V",
+        "record": 3.312
+      }
+    }
+  }
+]

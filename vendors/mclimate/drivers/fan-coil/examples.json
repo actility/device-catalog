@@ -1,0 +1,39 @@
+[
+  {
+    "description": "Periodic uplink",
+    "type": "uplink",
+    "input": {
+      "bytes": "01028875013B0100060101",
+      "fPort": 1,
+      "recvTime": "2024-04-04T12:00:00.000+02:00"
+    },
+    "output": {
+      "data": {
+        "actualFanSpeed": 6,
+        "deviceStatus": 1,
+        "displayedFanSpeed": 0,
+        "operationalMode": 1,
+        "relativeHumidity": 45.7,
+        "sensorTemperature": 24.8,
+        "targetTemperature": 31.5,
+        "valveStatus": 1
+      }
+    },
+    "points": {
+      "humidity": {
+        "unitId": "%RH",
+        "record": 45.7
+      },
+      "temperature:1": {
+        "unitId": "Cel",
+        "record": 24.8,
+        "nature": "sensor"
+      },
+      "temperature:2": {
+        "unitId": "Cel",
+        "record": 31.5,
+        "nature": "target"
+      }
+    }
+  }
+]

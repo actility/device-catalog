@@ -1,0 +1,72 @@
+[
+  {
+    "description": "Periodic uplink (keepalive)",
+    "type": "uplink",
+    "input": {
+      "bytes": "01A0012C02",
+      "fPort": 1
+    },
+    "output": {
+      "data": {
+        "batteryVoltage": 2.9,
+        "thermistorProperlyConnected": true,
+        "sensorTemperature": 30,
+        "pressEvent": 2
+      }
+    },
+    "points": {
+      "batteryVoltage": {
+        "unitId": "V",
+        "record": 2.9
+      },
+      "temperature": {
+        "unitId": "Cel",
+        "record": 30
+      },
+      "counter:0": {
+        "unitId": "count",
+        "record": 2,
+        "nature": "press event"
+      },
+      "status": {
+        "unitId": "state",
+        "record": true,
+        "nature": "thermistor connected"
+      }
+    }
+  },
+  {
+    "description": "Downlink encode: unsupported in public docs",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setKeepAlive": 10
+      }
+    },
+    "output": {
+      "errors": [
+        "Downlink encoder is not provided on the public MClimate docs page for this device"
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "description": "Downlink decode: passthrough bytes",
+    "type": "downlink-decode",
+    "input": {
+      "bytes": "4E32",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "bytes": [
+          78,
+          50
+        ]
+      },
+      "errors": [],
+      "warnings": []
+    }
+  }
+]

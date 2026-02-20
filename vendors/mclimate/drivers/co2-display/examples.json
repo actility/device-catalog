@@ -1,0 +1,82 @@
+[
+  {
+    "description": "Periodic uplink (keepalive)",
+    "type": "uplink",
+    "input": {
+      "bytes": "010258800CE49020012C01",
+      "fPort": 1
+    },
+    "output": {
+      "data": {
+        "sensorTemperature": 20,
+        "relativeHumidity": 50,
+        "batteryVoltage": 3.3,
+        "ppm": 1168,
+        "powerSourceStatus": 0,
+        "lux": 300,
+        "pir": true
+      }
+    },
+    "points": {
+      "temperature": {
+        "unitId": "Cel",
+        "record": 20
+      },
+      "humidity": {
+        "unitId": "%RH",
+        "record": 50
+      },
+      "co2Level": {
+        "unitId": "ppm",
+        "record": 1168
+      },
+      "illuminance": {
+        "unitId": "lx",
+        "record": 300
+      },
+      "presence": {
+        "unitId": "state",
+        "record": true,
+        "nature": "pir"
+      },
+      "batteryVoltage": {
+        "unitId": "V",
+        "record": 3.3
+      }
+    }
+  },
+  {
+    "description": "Downlink encode: unsupported in public docs",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setKeepAlive": 10
+      }
+    },
+    "output": {
+      "errors": [
+        "Downlink encoder is not provided on the public MClimate docs page for this device"
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "description": "Downlink decode: passthrough bytes",
+    "type": "downlink-decode",
+    "input": {
+      "bytes": "4E32",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "bytes": [
+          78,
+          50
+        ]
+      },
+      "errors": [],
+      "warnings": []
+    }
+  }
+]

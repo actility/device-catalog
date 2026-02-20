@@ -1,0 +1,81 @@
+[
+  {
+    "description": "Periodic uplink (keepalive)",
+    "type": "uplink",
+    "input": {
+      "bytes": "01190000271001F4E600C801",
+      "fPort": 1
+    },
+    "output": {
+      "data": {
+        "internalTemperature": 25,
+        "energy_kWh": 10,
+        "power_W": 500,
+        "acVoltage_V": 230,
+        "acCurrent_mA": 200,
+        "relayState": "ON"
+      }
+    },
+    "points": {
+      "temperature": {
+        "unitId": "Cel",
+        "record": 25
+      },
+      "energy": {
+        "unitId": "kWh",
+        "record": 10
+      },
+      "power": {
+        "unitId": "W",
+        "record": 500
+      },
+      "voltage": {
+        "unitId": "V",
+        "record": 230
+      },
+      "current": {
+        "unitId": "A",
+        "record": 0.2
+      },
+      "status": {
+        "unitId": "state",
+        "record": true,
+        "nature": "relay"
+      }
+    }
+  },
+  {
+    "description": "Downlink: set relay state ON",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setRelayState": 1
+      }
+    },
+    "output": {
+      "bytes": "C101",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "description": "Downlink decode: passthrough bytes",
+    "type": "downlink-decode",
+    "input": {
+      "bytes": "C101",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "bytes": [
+          193,
+          1
+        ]
+      },
+      "warnings": [],
+      "errors": []
+    }
+  }
+]

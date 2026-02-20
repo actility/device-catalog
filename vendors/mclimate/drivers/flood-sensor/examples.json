@@ -1,0 +1,34 @@
+[
+  {
+    "description": "Short periodic uplink",
+    "type": "uplink",
+    "input": {
+      "bytes": "08c9",
+      "fPort": 2
+    },
+    "output": {
+      "data": {
+        "reason": "keepalive",
+        "boxTamper": true,
+        "flood": false,
+        "battery": 3.216
+      }
+    },
+    "points": {
+      "batteryVoltage": {
+        "unitId": "V",
+        "record": 3.216
+      },
+      "presence": {
+        "unitId": "state",
+        "record": false,
+        "nature": "flood"
+      },
+      "status": {
+        "unitId": "state",
+        "record": true,
+        "nature": "box tamper"
+      }
+    }
+  }
+]
