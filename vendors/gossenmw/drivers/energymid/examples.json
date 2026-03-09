@@ -1,0 +1,38 @@
+[
+  {
+    "description": "Uplink with timestamp, import/export energy and error flags",
+    "input": {
+      "fPort": 2,
+      "bytes": [
+        36, 0, 50, 10, 27, 1, 234, 7,
+        37, 51, 51, 51, 51, 51, 12, 172, 64,
+        38, 154, 153, 153, 153, 61, 149, 64, 84,
+        41
+      ]
+    },
+    "output": {
+      "data": {
+        "timestamp": {
+          "second": 0,
+          "minute": 50,
+          "hour": 10,
+          "day": 27,
+          "month": 1,
+          "year": 2026,
+          "timestamp_iso": "2026-01-27 10:50:00"
+        },
+        "import_active_energy": 3.5901,
+        "export_active_energy": 1.3594,
+        "error_status": {
+          "phase_voltage_too_low": true,
+          "phase_voltage_too_high": false,
+          "phase_current_exceeded": false,
+          "frequency_synchronization_error": true,
+          "reset_performed": false,
+          "internal_communication_problem": false,
+          "dc_offset_too_high": false
+        }
+      }
+    }
+  }
+]
