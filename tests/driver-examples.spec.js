@@ -9,20 +9,51 @@ const {computeChecksum} = require("./crc32");
 
 const DRIVER_PATH = path.resolve(process.env.DRIVER_PATH || __dirname);
 const resolveDriverPath = (...paths) => path.join(DRIVER_PATH, ...paths);
-let privateDir = DRIVER_PATH;
-if(!privateDir.includes("device-catalog-private") && !privateDir.includes("device-catalog-shadow")) {
-    privateDir = path.join(privateDir.replace("device-catalog", "device-catalog-private"));
+const catalogRepos = ["device-catalog", "device-catalog-private", "device-catalog-shadow"];
+
+function replaceRepoSegment(driverPath, repoName) {
+    const driverPathSplit = driverPath.split(path.sep);
+    const repoIndex = driverPathSplit.reduce((index, segment, currentIndex) => {
+        if (catalogRepos.includes(segment)) {
+            return currentIndex;
+        }
+        return index;
+    }, -1);
+    if (repoIndex === -1) {
+        return null;
+    }
+
+    const newPath = [...driverPathSplit];
+    newPath[repoIndex] = repoName;
+    return newPath.join(path.sep);
 }
-else if(privateDir.includes("tmp")) {
-    let privateDirSplit = privateDir.split(path.sep);
-    for(let i = privateDirSplit.length-1 ; i >= 0 ; i--) {
-        if(privateDirSplit[i] === "device-catalog") {
-            privateDirSplit[i] = "device-catalog-private";
-            break;
+
+function getDriverPathCandidates(driverPath) {
+    const candidates = [driverPath];
+    for (const repoName of catalogRepos) {
+        const candidate = replaceRepoSegment(driverPath, repoName);
+        if (candidate && !candidates.includes(candidate)) {
+            candidates.push(candidate);
         }
     }
-    privateDir = privateDirSplit.join(path.sep);
+    return candidates;
 }
+
+function getTrustedYamlPath(driverPath) {
+    if (driverPath.includes("device-catalog-shadow")) {
+        return path.join(driverPath, "driver.yaml");
+    }
+
+    const privateDriverPath = replaceRepoSegment(driverPath, "device-catalog-private");
+    if (!privateDriverPath) {
+        return path.join(driverPath, "driver.yaml");
+    }
+
+    return path.join(privateDriverPath, "driver.yaml");
+}
+
+const privateDir = getDriverPathCandidates(DRIVER_PATH)
+    .find((candidate) => candidate.includes("device-catalog-private")) ?? DRIVER_PATH;
 
 let extractPoints;
 if(fs.existsSync(path.join(privateDir, "extractPoints.js"))) {
@@ -39,7 +70,6 @@ else if(fs.existsSync(resolveDriverPath("extractPoints.js"))) {
  */
 const packageJson = fs.readJsonSync(resolveDriverPath("package.json"));
 const mainPath = packageJson.main;
-const packageTrusted = packageJson.trusted ?? false;
 
 /**
  * Read the driver's signature from `driver.yaml`
@@ -267,25 +297,14 @@ const code = (() => {
  * Checking whether the driver is trusted or not
  */
 function isTrusted() {
-    const driverYamlPath = path.join(privateDir, "driver.yaml");
+    const driverYamlPath = getTrustedYamlPath(DRIVER_PATH);
     let driverYamlTrusted = false;
     if(fs.existsSync(driverYamlPath)) {
         const driverYaml = yaml.load(fs.readFileSync(driverYamlPath))
         const driverYamlTrustedCrc = driverYaml.trustedCRC;
-        let driverPath = privateDir;
-
-        if(!driverYaml.name) {
-            const tmpSegment = `${path.sep}tmp${path.sep}`;
-            const hasTmp = driverPath.includes(tmpSegment) || driverPath.startsWith(`tmp${path.sep}`);
-            if (hasTmp) {
-                driverPath = driverPath.replace(`tmp${path.sep}device-catalog-private`, `tmp${path.sep}device-catalog`);
-            } else {
-                driverPath = driverPath.replace("device-catalog-private", "device-catalog");
-            }
+        if (driverYamlTrustedCrc) {
+            driverYamlTrusted = computeChecksum(DRIVER_PATH) === driverYamlTrustedCrc;
         }
-
-        const newTrustedCRC = computeChecksum(driverPath);
-        driverYamlTrusted = newTrustedCRC === driverYamlTrustedCrc;
     }
     return driverYamlTrusted;
 }
