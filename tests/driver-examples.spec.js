@@ -155,91 +155,149 @@ const isDownlinkDecodeDefined = (() =>{
 /**
  * Read the examples according to the signature of driver, wrap them if needed
  */
+function wrapLegacyExamples(rawExamples = []) {
+    const wrapped = [];
+    console.log(rawExamples);
+    for (const example of rawExamples) {
+        if (!example || !example.type) continue;
+
+        if (example.type === "uplink") {
+            let thing = example.thing;
+            if (thing != undefined && example.model != undefined) {
+                thing.model = example.model;
+            }
+
+            wrapped.push({
+                type: "uplink",
+                description: example.description,
+                useContext: example.useContext,
+                input: {
+                    bytes: example.bytes,
+                    fPort: example.fPort,
+                    time: example.time,
+                    thing: example.thing,
+                    context: example.context
+                },
+                output: example.data,
+                points: example.points
+            });
+        }
+        else if (example.type === "downlink") {
+            // map to downlink-decode examples only on drivers which have this function
+            if (isDownlinkDecodeDefined) {
+                wrapped.push({
+                    type: "downlink-decode",
+                    description: example.description,
+                    input: {
+                        bytes: example.bytes,
+                        fPort: example.fPort,
+                        time: example.time,
+                        thing: example.thing
+                    },
+                    output: example.data
+                });
+            }
+
+            const enc = {
+                type: "downlink-encode",
+                description: example.description,
+                input: {
+                    data: example.data,
+                    fPort: example.fPort
+                },
+                output: {
+                    bytes: example.bytes,
+                    fPort: example.fPort
+                }
+            };
+            if (typeof example.errors !== "undefined") enc.output.errors = example.errors;
+            if (typeof example.warnings !== "undefined") enc.output.warnings = example.warnings;
+
+            wrapped.push(enc);
+        }
+        else {
+            // Already wrapped format (uplink / downlink-encode / downlink-decode)
+            wrapped.push(example);
+        }
+    }
+
+    return wrapped;
+}
+
+function loadExamplesFromExamplesFolder() {
+    if (!fs.pathExistsSync(resolveDriverPath("examples"))) {
+        return [];
+    }
+
+    const examplesFiles = fs.readdirSync(resolveDriverPath("examples"));
+    let all = [];
+
+    for (const exampleFile of examplesFiles) {
+        if (exampleFile.endsWith(".examples.json")) {
+            const legacy = fs.readJsonSync(resolveDriverPath("examples/" + exampleFile));
+            all = all.concat(wrapLegacyExamples(legacy));
+        }
+    }
+
+    return all;
+}
+
+/**
+ * Regular examples (existing behavior)
+ */
 const examples = (() => {
-    // for default (lora-alliance) signature,
-    // all examples are stored in one file on the root `examples.json`
-    if(fs.pathExistsSync(resolveDriverPath("examples.json"))){
+    // default (lora-alliance): root examples.json is already expected in wrapped format
+    if (fs.pathExistsSync(resolveDriverPath("examples.json"))) {
         return fs.readJsonSync(resolveDriverPath("examples.json"));
     }
 
-    // for the rest of signature,
-    // examples are stored in a separate folder, in one or several json files that ends with `.examples.json`
-    // Get the list of files in the directory `examples`
-    // The examples are stored in a legacy format
-    // They should be wrapped
-
-    if(!fs.pathExistsSync(resolveDriverPath("examples"))){
-        return [];
-    }
-    let examplesFiles = fs.readdirSync(resolveDriverPath("examples"));
-
-    // Wrap and store all the examples in an array
-    let examples = [];
-    for (const exampleFile of examplesFiles) {
-        if (exampleFile.endsWith(".examples.json")) {
-            let newExamples = fs.readJsonSync(resolveDriverPath("examples/" + exampleFile));
-            for(const example of newExamples){
-                if(example.type === "uplink"){
-
-                    let thing = example.thing;
-                    if(thing != undefined && example.model != undefined) {
-                        thing.model = example.model;
-                    }
-
-                    let wrappedExample = {
-                        type: example.type,
-                        description: example.description,
-                        useContext: example.useContext,
-                        input: {
-                            bytes: example.bytes,
-                            fPort: example.fPort,
-                            time: example.time,
-                            thing: example.thing,
-                            context: example.context
-                        },
-                        output: example.data,
-                        points: example.points
-                    }
-                    examples.push(wrappedExample);
-                } else if(example.type === "downlink"){
-                    // map to downlink-decode examples only on drivers which have this function
-                    if(isDownlinkDecodeDefined){
-                        let wrappedDecodeDownlink = {
-                            type: "downlink-decode",
-                            description: example.description,
-                            input: {
-                                bytes: example.bytes,
-                                fPort: example.fPort,
-                                time: example.time,
-                                thing: example.thing
-                            },
-                            output: example.data
-                        }
-                        examples.push(wrappedDecodeDownlink);
-                    }
-
-                    let wrappedEncodeDownlink = {
-                        type: "downlink-encode",
-                        description: example.description,
-                        input: {
-                            data: example.data,
-                            fPort: example.fPort
-                        },
-                        output: {
-                            bytes: example.bytes,
-                            fPort: example.fPort
-                        }
-                    };
-                    if(typeof example.errors !== "undefined") wrappedEncodeDownlink.output.errors = example.errors;
-                    if(typeof example.warnings !== "undefined") wrappedEncodeDownlink.output.warnings = example.warnings;
-
-                    examples.push(wrappedEncodeDownlink);
-                }
-            }
-        }
-    }
-    return examples;
+    // other signatures: legacy folder examples/*.examples.json
+    return loadExamplesFromExamplesFolder();
 })();
+
+/**
+ * Non-regression tests (separate dataset)
+ * Supports both legacy format (uplink/downlink) and already-wrapped format.
+ */
+const nonRegressionTests = (() => {
+    let examples
+    if (fs.pathExistsSync(resolveDriverPath("non-regression.json"))) {
+        examples = fs.readJsonSync(resolveDriverPath("non-regression.json"));
+    }else{
+        return loadExamplesFromExamplesFolder();
+    }
+
+    return examples
+})();
+
+function normalizeNonRegressionUplinkResult(result) {
+    if (!result || typeof result !== "object") {
+        return { data: result, errors: [], warnings: [] };
+    }
+
+    // Déjà au bon format
+    if ("data" in result && "errors" in result && "warnings" in result) {
+        return result;
+    }
+
+    // Si le driver renvoie errors/warnings au top-level mais pas data
+    if (("errors" in result || "warnings" in result) && !("data" in result)) {
+        return {
+            data: result.data ?? (result.message ?? result.payload ?? result),
+            errors: result.errors ?? [],
+            warnings: result.warnings ?? []
+        };
+    }
+
+    // Cas "data brut"
+    if(result.data != null){
+        return { data: result.data, errors: [], warnings: [] };
+    }
+
+    return { data: result, errors: [], warnings: [] };
+
+}
+
 
 /**
  * Read the legacy error examples if there is any
@@ -377,6 +435,113 @@ async function run(input, operation){
 /**
  Test suites compatible with all driver types
  */
+describe("Non-regression tests", () => {
+    describe("Decode uplink", () => {
+        nonRegressionTests.forEach((example) => {
+            if (example.type === "uplink") {
+                it(example.description, async () => {
+                    const input = example.input;
+
+                    input.bytes = adaptBytesArray(input.bytes);
+                    input.useContext = example.useContext;
+
+                    const raw = await run(input, "decodeUplink");
+                    const result = normalizeNonRegressionUplinkResult(raw);
+
+                    const expected = example.output;
+
+                    skipTypes(result, expected);
+                    dateIsLocal(example.description, input.time ?? input.recvTime);
+
+                    expect(result).toStrictEqual(expected);
+                });
+            }
+        });
+    });
+
+    describe("Decode downlink", () => {
+        nonRegressionTests.forEach((example) => {
+            if (example.type === "downlink-decode") {
+                it(example.description, async () => {
+                    const input = example.input;
+                    input.bytes = adaptBytesArray(input.bytes);
+
+                    const result = await run(input, "decodeDownlink");
+                    const expected = example.output;
+
+                    dateIsLocal(example.description, input.time ?? input.recvTime);
+
+                    expect(result).toStrictEqual(expected);
+                });
+            }
+        });
+    });
+
+    describe("Encode downlink", () => {
+        nonRegressionTests.forEach((example) => {
+            if (example.type === "downlink-encode") {
+                it(example.description, async () => {
+                    const input = example.input;
+
+                    const result = await run(input, "encodeDownlink");
+                    const expected = example.output;
+
+                    if (result.bytes) result.bytes = adaptBytesArray(result.bytes);
+                    if (expected.bytes) expected.bytes = adaptBytesArray(expected.bytes);
+
+                    dateIsLocal(example.description, input.time ?? input.recvTime);
+
+                    expect(result).toStrictEqual(expected);
+                });
+            }
+        });
+    });
+
+    if (extractPoints) {
+        describe("extractPoints", () => {
+            nonRegressionTests.forEach((example, index) => {
+                if (example.type === "uplink" && example.output?.data) {
+                    test(`${index + 1} - ${example.description}`, () => {
+                        const decoded = example.output.data;
+                        const result = extractPoints({
+                            message: decoded,
+                            time: example.input?.time,
+                            thing: example.input?.thing
+                        });
+
+                        const currentPoints = example.points;
+                        if (example.points) {
+                            checkEventTimes(example.description, currentPoints);
+                            expect(result).toEqual(currentPoints);
+                        } else {
+                            expect(currentPoints).toEqual(result);
+                        }
+                    });
+                } else if (example.type === "uplink" && example.output) {
+                    test(`${index + 1} - ${example.description}`, () => {
+                        const decoded = example.output;
+                        const result = extractPoints({
+                            message: decoded,
+                            time: example.input?.time,
+                            thing: example.input?.thing
+                        });
+
+                        const currentPoints = example.points;
+
+                        if (example.points) {
+                            checkEventTimes(example.description, currentPoints);
+                            expect(result).toEqual(currentPoints);
+                        } else {
+                            expect(currentPoints).toEqual(result);
+                        }
+                    });
+                }
+            });
+        });
+    }
+});
+
+
 describe("Decode uplink", () => {
     examples.forEach((example) => {
         if (example.type === "uplink") {
@@ -595,10 +760,10 @@ function skipTypes(result, expected) {
         let value = result;
         let expectedValue = expected;
         let skipProperty = false;
-        for(let key of keys) {
-            value = value[key];
-            expectedValue = expectedValue[key];
-            if(expectedValue == null) {
+        for (let key of keys) {
+            value = value?.[key];
+            expectedValue = expectedValue?.[key];
+            if (expectedValue == null) {
                 skipProperty = true;
                 break;
             }
@@ -678,6 +843,9 @@ function checkEventTimes(description, points) {
         }
         for(let record of value.records) {
             if(record.eventTime !== undefined) {
+                if(record.eventTime === "XXXX-XX-XXTXX:XX:XX.XXXZ") {
+                    continue;
+                }
                 dateIsLocal(description, record.eventTime, true);
             }
         }
