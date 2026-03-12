@@ -1,15 +1,14 @@
 # Commercial name of the model
-name: Minomess A B.One
+name: zelsius C5-CMF B.One
 # Functional description of the product. Maximum 500 characters.
-description: Surface-mounted single-jet water meter with integrated LoRaWAN radio module for remote water consumption reading and transmission of meter status information.
+description: Thermal energy meter with coaxial measuring capsule and integrated LoRaWAN interface for remote reading of energy, volume, temperatures, power, and flow values.
 # Logo of the device
-logo: minomess-a-b-one.jpg
+logo: zelsius-c5-cmf-b-one.jpg
 # ID(s) of the profile that defines the LoRaWAN characteristics of this model.
 # id: as defined under /profiles.
 # lorawanDeviceProfileID: as defined by LoRa Alliance in https://lora-alliance.org/wp-content/uploads/2020/10/LoRa_Alliance_Vendor_ID_for_QR_Code_02142022.pdf.
 # The lorawanDeviceProfileID consists of 8 upper-case hexadecimal characters, 4 characters for VendorID + 4 characters for VendorProfileID. Please consider using single (') or double (") quotation.
-deviceProfileIds:
-  - id: zenner_RFGroup1_1.0.2b_classA
+deviceProfileIds: []
 
 # You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings.
 # Maximum device TX Conducted output power in dBm.
@@ -29,27 +28,30 @@ LoRaWANCertified:
 # Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
 # Format: `<8 characters max>:<16 characters max>:<digits only>`
 # Be careful: Once you chose a model, it cannot be changed later
-modelId: zenner:minomess-a-b-one:1
+modelId: zenner:zelsius-c5-cmf:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 # Format: `<8 characters max>:<16 characters max>:<digits only>`
 # Be careful: Once you chose a protocolId, it cannot be changed later
-protocolId: zenner:minomess-a-b-one:1
+protocolId: zenner:zelsius-c5-cmf:1
 # DataSheet URL (optional)
-specificationURL: https://pim.zenner.com/wp-content/uploads/documents/data_sheets/WZ/WWZ/FR/DB_WWZ_Minomess_A_LoRa_wMB_FR.pdf
+specificationURL: https://pim.zenner.com/wp-content/uploads/documents/data_sheets/WMZ/FR/DB_WMZ_zelsius_C5-CMF_FR.pdf
 # User Guide URL (optional)
-userGuideURL: https://pim.zenner.com/wp-content/uploads/documents/assembly_instruction/ST/MA_ST_Funkmodul_APZ_UPZ.pdf
+userGuideURL: https://pim.zenner.com/wp-content/uploads/documents/assembly_instruction/WMZ/MA_WMZ_zelsius-C5_ISF_CMF.pdf
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
-  - volume:m3
+  - energy:kWh
+  - volume:l
+  - temperature:Cel
   - status:state
 
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
-  zenner:minomess-a-b-one:1:
-    - SP12 hourly values from the EDC/Minomess user guide
-    - SP9.1 timestamp with Minomess status summary
-    - AP1 coil manipulation event
+  zenner:zelsius-c5-cmf:1:
+    - SP9.3 C5 static information for a heat meter
+    - SP5 heat-only daily value
+    - SP5 changeover daily values
+    - SP0.1 diagnostic packet
 
 LoRaWANRelay:
   canOperateAsARelay: false
