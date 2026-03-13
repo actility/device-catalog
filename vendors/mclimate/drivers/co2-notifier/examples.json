@@ -1,0 +1,143 @@
+[
+  {
+    "description": "Periodic uplink keepalive",
+    "type": "uplink",
+    "input": {
+      "bytes": [
+        1,
+        2,
+        113,
+        2,
+        115,
+        132,
+        237
+      ],
+      "fPort": 1,
+      "recvTime": "2024-04-04T12:00:00.000+02:00"
+    },
+    "output": {
+      "data": {
+        "CO2": 625,
+        "sensorTemperature": 22.7,
+        "relativeHumidity": 51.56,
+        "batteryVoltage": 3.5
+      }
+    },
+    "points": {
+      "co2Level": {
+        "unitId": "ppm",
+        "record": 625
+      },
+      "temperature": {
+        "unitId": "Cel",
+        "record": 22.7
+      },
+      "humidity": {
+        "unitId": "%RH",
+        "record": 51.56
+      },
+      "batteryVoltage": {
+        "unitId": "V",
+        "record": 3.5
+      }
+    }
+  },
+  {
+    "description": "Response keepAliveTime with keepalive trailer",
+    "type": "uplink",
+    "input": {
+      "bytes": [
+        18,
+        10,
+        1,
+        2,
+        113,
+        2,
+        115,
+        132,
+        237
+      ],
+      "fPort": 1,
+      "recvTime": "2024-04-04T12:01:00.000+02:00"
+    },
+    "output": {
+      "data": {
+        "keepAliveTime": 10,
+        "CO2": 625,
+        "sensorTemperature": 22.7,
+        "relativeHumidity": 51.56,
+        "batteryVoltage": 3.5
+      }
+    },
+    "points": {
+      "co2Level": {
+        "unitId": "ppm",
+        "record": 625
+      },
+      "temperature": {
+        "unitId": "Cel",
+        "record": 22.7
+      },
+      "humidity": {
+        "unitId": "%RH",
+        "record": 51.56
+      },
+      "batteryVoltage": {
+        "unitId": "V",
+        "record": 3.5
+      }
+    }
+  },
+  {
+    "description": "Response boundary levels with keepalive trailer",
+    "type": "uplink",
+    "input": {
+      "bytes": [
+        31,
+        1,
+        144,
+        3,
+        32,
+        1,
+        2,
+        113,
+        2,
+        115,
+        132,
+        237
+      ],
+      "fPort": 1,
+      "recvTime": "2024-04-04T12:02:00.000+02:00"
+    },
+    "output": {
+      "data": {
+        "boundaryLevels": {
+          "good_medium": 400,
+          "medium_bad": 800
+        },
+        "CO2": 625,
+        "sensorTemperature": 22.7,
+        "relativeHumidity": 51.56,
+        "batteryVoltage": 3.5
+      }
+    },
+    "points": {
+      "co2Level": {
+        "unitId": "ppm",
+        "record": 625
+      },
+      "temperature": {
+        "unitId": "Cel",
+        "record": 22.7
+      },
+      "humidity": {
+        "unitId": "%RH",
+        "record": 51.56
+      },
+      "batteryVoltage": {
+        "unitId": "V",
+        "record": 3.5
+      }
+    }
+  }
+]
