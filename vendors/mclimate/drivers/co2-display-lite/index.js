@@ -193,10 +193,9 @@ function decodeUplink(input) {
             bytes = bytes.slice(-10);
             data = handleKeepalive(bytes, data);
         }
-        return {data: data};
+        return { data: data, errors: [], warnings: [] };
     } catch (e) {
-        console.log(e)
-        throw new Error('Unhandled data');
+        return { data: {}, errors: ['Unhandled data'], warnings: [] };
     }
 }
 
