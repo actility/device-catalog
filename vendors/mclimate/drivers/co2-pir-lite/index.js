@@ -20,7 +20,7 @@ function decodeUplink(input) {
             // Byte 1 bit 2: Occupied flag
             var occupiedValue = (bytes[1] & 0x04) >> 2;
             data.occupied = occupiedValue === 1;
-            
+
             // Byte 1 (bits 1:0) and Byte 2: Internal temperature sensor data
             // Formula: t[°C] = (T[9:0] - 400) / 10
             // Extract bits 1:0 from byte 1 for the higher bits (bits 9:8)
@@ -30,15 +30,15 @@ function decodeUplink(input) {
             // Combine to get the full 10-bit temperature value
             var tempValue = tempHighBits | tempLowBits;
             data.sensorTemperature = Number(((tempValue - 400) / 10).toFixed(2));
-            
+
             // Byte 3: Relative Humidity data
             // Formula: RH[%] = (XX * 100) / 256
             data.relativeHumidity = Number(((bytes[3] * 100) / 256).toFixed(2));
-            
+
             // Byte 4: Device battery voltage data
             // Battery voltage [mV] = ((XX * 2200) / 255) + 1600
             data.batteryVoltage = Number(((((bytes[4] * 2200) / 255) + 1600) / 1000).toFixed(2));
-            
+
             // Bytes 5-6: CO2 value in ppm
             // Byte 5: CO2 value lower bits [7:0]
             // Byte 6 bits 7:3: CO2 value higher bits [12:8]
@@ -48,22 +48,22 @@ function decodeUplink(input) {
 
             // Byte 7: PIR trigger count
             data.pirTriggerCount = bytes[7];
-            
+
             // For backward compatibility
             var pirValue = (bytes[1] & 0x04) >> 2;
             data.pirSensorStatus = pirValue === 1 ? "Motion detected" : "No motion detected";
             data.pirSensorValue = pirValue;
-            
+
             return data;
         }
 
         function handleResponse(bytes, data){
             var commands = bytes.map(function(byte){
-                return ("0" + byte.toString(16)).substr(-2); 
+                return ("0" + byte.toString(16)).substr(-2);
             });
             commands = commands.slice(0,-8); // Adjust based on CO2-PIR-Lite keepalive message length (8 bytes)
             var command_len = 0;
-        
+
             commands.map(function (command, i) {
                 switch (command) {
                     case '04':
@@ -105,9 +105,9 @@ function decodeUplink(input) {
                     case '1f':
                         {
                             command_len = 4;
-                            var good_medium = (parseInt(commands[i + 1], 16) << 8) | 
+                            var good_medium = (parseInt(commands[i + 1], 16) << 8) |
                             parseInt(commands[i + 2], 16);
-                            var medium_bad = (parseInt(commands[i + 3], 16) << 8) | 
+                            var medium_bad = (parseInt(commands[i + 3], 16) << 8) |
                             parseInt(commands[i + 4], 16);
 
                             data.boundaryLevels = { good_medium: Number(good_medium), medium_bad: Number(medium_bad) };
@@ -116,7 +116,7 @@ function decodeUplink(input) {
                     case '21':
                         {
                             command_len = 2;
-                            data.autoZeroValue = (parseInt(commands[i + 1], 16) << 8) | 
+                            data.autoZeroValue = (parseInt(commands[i + 1], 16) << 8) |
                             parseInt(commands[i + 2], 16);
                         }
                         break;
@@ -212,10 +212,13 @@ function decodeUplink(input) {
             }
         }
 
-        return { data: data };
+        return { data: data, errors: [], warnings: [] };
     } catch (e) {
         // console.log(e);
-        throw new Error('Unhandled data');
+        return {
+            warnings: [],
+            errors: ["Unhandled data"],
+        };
     }
 }
 
