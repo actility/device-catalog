@@ -186,3 +186,5 @@ function readDeviceStatus(bytes) {
     var device_status_map = { 1: "on", 0: "off" };
     return getValue(device_status_map, bytes);
 }
+
+exports.decodeUplink = decodeUplink;

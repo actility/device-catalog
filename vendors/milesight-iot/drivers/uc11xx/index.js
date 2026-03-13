@@ -143,4 +143,67 @@ function readFloatLE(bytes) {
     return f;
 }
 
-exports.Decoder = Decoder;
+exports.decodeUplink = decodeUplink;
+
+function decodeUplink(input) {
+    var decoded = Decoder(input.bytes, input.fPort);
+    return { data: decoded };
+}
+
+var __milesightDownlinkCodec = (function () {
+/**
+ * Payload Encoder
+ *
+ * Copyright 2025 Milesight IoT
+ *
+ * @product UC11xx
+ */
+// eslint-disable-next-line no-unused-vars
+var RAW_VALUE = 0x00;
+
+/* eslint no-redeclare: "off" */
+/* eslint-disable */
+// Chirpstack v4
+function encodeDownlink(input) {
+    var encoded = milesightDeviceEncode(input.data);
+    return { bytes: encoded };
+}
+
+// Chirpstack v3
+function Encode(fPort, obj) {
+    return milesightDeviceEncode(obj);
+}
+
+// The Things Network
+function Encoder(obj, port) {
+    return milesightDeviceEncode(obj);
+}
+
+function milesightDeviceEncode(payload) {
+    var encoded = [];
+    return encoded;
+}
+    return {
+        encodeDownlink: encodeDownlink,
+        Encode: Encode,
+        Encoder: Encoder,
+    };
+})();
+
+function encodeDownlink(input) {
+    var result = __milesightDownlinkCodec.encodeDownlink(input);
+    if (result && typeof input.fPort !== "undefined" && typeof result.fPort === "undefined") {
+        result.fPort = input.fPort;
+    }
+    return result;
+}
+
+function Encode(fPort, obj) {
+    return __milesightDownlinkCodec.Encode(fPort, obj);
+}
+
+function Encoder(obj, port) {
+    return __milesightDownlinkCodec.Encoder(obj, port);
+}
+
+exports.encodeDownlink = encodeDownlink;

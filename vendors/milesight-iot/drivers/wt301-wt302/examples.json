@@ -62,5 +62,24 @@
         "nature": "thermostat on"
       }
     }
+  },
+  {
+    "description": "Downlink encode: thermostat_status",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "thermostat_status": "on"
+      },
+      "fPort": 100
+    },
+    "output": [
+      85,
+      1,
+      0,
+      2,
+      1,
+      1,
+      90
+    ]
   }
 ]

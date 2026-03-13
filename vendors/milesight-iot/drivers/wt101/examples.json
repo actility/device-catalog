@@ -126,5 +126,32 @@
         "nature": "freeze protection"
       }
     }
+  },
+  {
+    "description": "Downlink encode: report_interval",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "report_interval": 600
+      },
+      "fPort": 1
+    },
+    "output": {
+      "bytes": "FF8E005802",
+      "fPort": 1
+    }
+  },
+  {
+    "description": "Downlink decode: report_interval",
+    "type": "downlink-decode",
+    "input": {
+      "bytes": "FF8E005802",
+      "fPort": 1
+    },
+    "output": {
+      "data": {
+        "report_interval": 600
+      }
+    }
   }
 ]
