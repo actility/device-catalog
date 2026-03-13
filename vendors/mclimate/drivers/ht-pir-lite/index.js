@@ -175,10 +175,13 @@ function decodeUplink(input) {
             }
         }
 
-        return { data: data };
+        return { data: data, errors: [], warnings: [] };
     } catch (e) {
         // console.log(e);
-        throw new Error('Unhandled data');
+        return {
+            warnings: [],
+            errors: ["Unhandled data"],
+        };
     }
 }
 
