@@ -35,10 +35,10 @@ modelId: mclimate:fan-coil:1
 protocolId:
   - mclimate:fan-coil:1
   - os1-mcli:fan-coil:1
-# DataSheet URL (optional) 
-specificationURL: https://mclimate.eu/products/mclimate-fan-coil-thermostat-lorawan?variant=47859154911564
+# DataSheet URL (optional)
+specificationURL: https://3940008670-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F-McDr-jr9h3qA888r1Yp%2Fuploads%2FxVLLS2zmBIebkHJ2pnzo%2FMClimate-FCT-Datasheet.pdf?alt=media&token=bd51a623-fc3e-44a6-9abc-12b2a1d4d254
 # User Guide URL (optional) 
-userGuideURL: 
+userGuideURL: https://3940008670-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F-McDr-jr9h3qA888r1Yp%2Fuploads%2FNwocfBCysfinSTLFpYkP%2FMClimate-FCT-User-Manual.pdf?alt=media&token=9ccc8d06-c114-4f9c-bc46-0832698dc423
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
     - humidity:%RH
@@ -46,6 +46,8 @@ sensors:
 examples:
     os1-mcli:fan-coil:1:
         - "Periodic uplink"
+    mclimate:fan-coil:1:
+      - "Periodic uplink"
 
 LoRaWANRelay:
   canOperateAsARelay: false
