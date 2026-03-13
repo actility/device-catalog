@@ -431,302 +431,174 @@ async function run(input, operation){
     return result;
 }
 
+function getExampleDecodedOutput(example) {
+    return example.output?.data ?? example.output;
+}
 
-/**
- Test suites compatible with all driver types
- */
-describe("Non-regression tests", () => {
-    describe("Decode uplink", () => {
-        nonRegressionTests.forEach((example) => {
-            if (example.type === "uplink") {
-                it(example.description, async () => {
-                    const input = example.input;
+function getExpectedPoints(points) {
+    return hasDefinedPoints(points) ? points : undefined;
+}
 
-                    input.bytes = adaptBytesArray(input.bytes);
-                    input.useContext = example.useContext;
+function isEmptyPointsResult(points) {
+    return points == null || (typeof points === "object" && Object.keys(points).length === 0);
+}
 
-                    const raw = await run(input, "decodeUplink");
-                    const result = normalizeNonRegressionUplinkResult(raw);
+async function expectDecodeUplinkExample(example, normalizeResult = false) {
+    const input = example.input;
+    input.bytes = adaptBytesArray(input.bytes);
+    input.useContext = example.useContext;
 
-                    const expected = example.output;
+    const raw = await run(input, "decodeUplink");
+    const result = normalizeResult ? normalizeNonRegressionUplinkResult(raw) : raw;
+    const expected = example.output;
 
-                    skipTypes(result, expected);
-                    dateIsLocal(example.description, input.time ?? input.recvTime);
+    skipTypes(result, expected);
+    dateIsLocal(example.description, input.time ?? input.recvTime);
 
-                    expect(result).toStrictEqual(expected);
-                });
-            }
-        });
-    });
+    expect(result).toStrictEqual(expected);
+}
 
-    describe("Decode downlink", () => {
-        nonRegressionTests.forEach((example) => {
-            if (example.type === "downlink-decode") {
-                it(example.description, async () => {
-                    const input = example.input;
-                    input.bytes = adaptBytesArray(input.bytes);
+async function expectDecodeDownlinkExample(example) {
+    const input = example.input;
+    input.bytes = adaptBytesArray(input.bytes);
 
-                    const result = await run(input, "decodeDownlink");
-                    const expected = example.output;
+    const result = await run(input, "decodeDownlink");
+    const expected = example.output;
 
-                    dateIsLocal(example.description, input.time ?? input.recvTime);
+    dateIsLocal(example.description, input.time ?? input.recvTime);
 
-                    expect(result).toStrictEqual(expected);
-                });
-            }
-        });
-    });
+    expect(result).toStrictEqual(expected);
+}
 
-    describe("Encode downlink", () => {
-        nonRegressionTests.forEach((example) => {
-            if (example.type === "downlink-encode") {
-                it(example.description, async () => {
-                    const input = example.input;
+async function expectEncodeDownlinkExample(example) {
+    const input = example.input;
 
-                    const result = await run(input, "encodeDownlink");
-                    const expected = example.output;
+    const result = await run(input, "encodeDownlink");
+    const expected = example.output;
 
-                    if (result.bytes) result.bytes = adaptBytesArray(result.bytes);
-                    if (expected.bytes) expected.bytes = adaptBytesArray(expected.bytes);
-
-                    dateIsLocal(example.description, input.time ?? input.recvTime);
-
-                    expect(result).toStrictEqual(expected);
-                });
-            }
-        });
-    });
-
-    if (extractPoints) {
-        describe("extractPoints", () => {
-            nonRegressionTests.forEach((example, index) => {
-                if (example.type === "uplink" && example.output?.data) {
-                    test(`${index + 1} - ${example.description}`, () => {
-                        const decoded = example.output.data;
-                        const result = extractPoints({
-                            message: decoded,
-                            time: example.input?.time,
-                            thing: example.input?.thing
-                        });
-
-                        const currentPoints = example.points;
-                        if (example.points) {
-                            checkEventTimes(example.description, currentPoints);
-                            expect(result).toEqual(currentPoints);
-                        } else {
-                            expect(currentPoints).toEqual(result);
-                        }
-                    });
-                } else if (example.type === "uplink" && example.output) {
-                    test(`${index + 1} - ${example.description}`, () => {
-                        const decoded = example.output;
-                        const result = extractPoints({
-                            message: decoded,
-                            time: example.input?.time,
-                            thing: example.input?.thing
-                        });
-
-                        const currentPoints = example.points;
-
-                        if (example.points) {
-                            checkEventTimes(example.description, currentPoints);
-                            expect(result).toEqual(currentPoints);
-                        } else {
-                            expect(currentPoints).toEqual(result);
-                        }
-                    });
-                }
-            });
-        });
+    if (result.bytes) {
+        result.bytes = adaptBytesArray(result.bytes);
     }
-});
+    if (expected.bytes) {
+        expected.bytes = adaptBytesArray(expected.bytes);
+    }
+    dateIsLocal(example.description, input.time ?? input.recvTime);
 
+    expect(result).toStrictEqual(expected);
+}
 
-describe("Decode uplink", () => {
-    examples.forEach((example) => {
-        if (example.type === "uplink") {
-            it(example.description, async () => {
-                // Given
-                const input = example.input;
-
-                // Adaptation
-                input.bytes = adaptBytesArray(input.bytes);
-
-                // Modifying input
-                input.useContext = example.useContext;
-
-                // When
-                const result = await run(input, "decodeUplink");
-
-                // Then
-                const expected = example.output;
-
-                // Adaptations
-                skipTypes(result, expected);
-                dateIsLocal(example.description, input.time ?? input.recvTime);
-
-                expect(result).toStrictEqual(expected);
-            });
-        }
+function expectExtractPointsExample(example) {
+    const decoded = getExampleDecodedOutput(example);
+    const result = extractPoints({
+        message: decoded,
+        time: example.input?.time,
+        thing: example.input?.thing
     });
-});
 
-describe("Decode downlink", () => {
-    examples.forEach((example) => {
-        if (example.type === "downlink-decode") {
-            it(example.description, async () => {
-                // Given
-                const input = example.input;
+    const currentPoints = getExpectedPoints(example.points);
+    if (currentPoints) {
+        checkEventTimes(example.description, currentPoints);
+        expect(result).toEqual(currentPoints);
+        return;
+    }
 
-                // Adaptation
-                input.bytes = adaptBytesArray(input.bytes);
+    expect(isEmptyPointsResult(result)).toBe(true);
+}
 
-                // When
-                const result = await run(input, "decodeDownlink");
+function defineExtractPointsSuite(suiteName, dataset) {
+    if (!extractPoints) {
+        return;
+    }
 
-                // Then
-                const expected = example.output;
-
-                // Adaptations
-                dateIsLocal(example.description, input.time ?? input.recvTime);
-
-                // Then
-                expect(result).toStrictEqual(expected);
-            });
-        }
-    });
-});
-
-describe("Encode downlink", () => {
-    examples.forEach((example) => {
-        if (example.type === "downlink-encode") {
-            it(example.description, async () => {
-                // Given
-                const input = example.input;
-
-                // When
-                const result = await run(input, "encodeDownlink");
-
-                // Then
-                const expected = example.output;
-
-                // Adaptation
-                if(result.bytes){
-                    result.bytes = adaptBytesArray(result.bytes);
-                }
-                if(expected.bytes){
-                    expected.bytes = adaptBytesArray(expected.bytes);
-                }
-                dateIsLocal(example.description, input.time ?? input.recvTime);
-
-                expect(result).toStrictEqual(expected);
-            });
-        }
-    });
-});
-
-describe("Legacy Decode uplink errors", () => {
-    errors.forEach((error) => {
-        if (error.type === "uplink" && !error.data) {
-            it(error.description, () => {
-                // Given
-                const input = {
-                    bytes: adaptBytesArray(error.bytes),
-                    fPort: error.fPort,
-                    time: error.time
-                };
-
-                // When / Then
-                const expected = error.error;
-                expect(async () => await run(input, "decodeUplink").toThrow(expected));
-            });
-        }
-    });
-});
-
-describe("Legacy Decode downlink errors", () => {
-    errors.forEach((error) => {
-        if (error.type === "uplink" && !error.data) {
-            it(error.description, () => {
-                // Given
-                const input = {
-                    bytes: adaptBytesArray(error.bytes),
-                    fPort: error.fPort,
-                    time: error.time
-                };
-
-                // When / Then
-                const expected = error.error;
-                expect(async () => await run(input, "decodeDownlink").toThrow(expected));
-            });
-        }
-    });
-});
-
-if(extractPoints) {
-    describe("extractPoints - should extract expected points from decoded uplink", () => {
-        examples.forEach((example, index) => {
-            if(example.type === "uplink" && example.output?.data) {
-                test(`${index + 1} - ${example.description}`, () => {
-                    const decoded = example.output.data;
-                    const result = extractPoints(
-                        { 
-                            message: decoded,
-                            time: example.input?.time,
-                            thing: example.input?.thing
-                        }
-                    );
-
-                    const currentPoints = example.points;
-                    if(example.points){
-                        checkEventTimes(example.description, currentPoints);
-                        expect(result).toEqual(currentPoints);
-                    }else{
-                        expect(currentPoints).toEqual(result);
-                    }
-                });
+    describe(suiteName, () => {
+        dataset.forEach((example, index) => {
+            if (example.type !== "uplink" || !example.output) {
+                return;
             }
-            else if(example.type === "uplink" && example.output) {
-                test(`${index + 1} - ${example.description}`, () => {
-                    const decoded = example.output;
-                    const result = extractPoints(
-                        { 
-                            message: decoded,
-                            time: example.input?.time,
-                            thing: example.input?.thing
-                        }
-                    );
 
-                    const currentPoints = example.points;
-                    
-                    // Checking if all eventTimes are of the right format
-                    if(example.points){
-                        checkEventTimes(example.description, currentPoints);
-                        expect(result).toEqual(currentPoints);
-                    }else{
-                        expect(currentPoints).toEqual(result);
-                    }
-                    
-                });
-            }
+            test(`${index + 1} - ${example.description}`, () => {
+                expectExtractPointsExample(example);
+            });
         });
     });
 }
 
-describe("Legacy Encode downlink errors", () => {
-    errors.forEach((error) => {
-        if (error.type === "uplink" && error.data) {
-            it(error.description, () => {
-                // Given
-                const input = error.data;
+function defineLegacyErrorSuite(suiteName, operation, shouldUseData) {
+    describe(suiteName, () => {
+        errors.forEach((error) => {
+            if (error.type !== "uplink" || Boolean(error.data) !== shouldUseData) {
+                return;
+            }
 
-                // When / Then
+            it(error.description, () => {
+                const input = error.data ? error.data : {
+                    bytes: adaptBytesArray(error.bytes),
+                    fPort: error.fPort,
+                    time: error.time
+                };
+
                 const expected = error.error;
-                expect(async () => await run(input, "encodeDownlink").toThrow(expected));
+                expect(async () => await run(input, operation).toThrow(expected));
             });
-        }
+        });
     });
-});
+}
+
+function defineCodecSuites(parentName, dataset, options = {}) {
+    const { normalizeDecodeUplink = false } = options;
+
+    describe(parentName, () => {
+        describe("Decode uplink", () => {
+            dataset.forEach((example) => {
+                if (example.type !== "uplink") {
+                    return;
+                }
+
+                it(example.description, async () => {
+                    await expectDecodeUplinkExample(example, normalizeDecodeUplink);
+                });
+            });
+        });
+
+        describe("Decode downlink", () => {
+            dataset.forEach((example) => {
+                if (example.type !== "downlink-decode") {
+                    return;
+                }
+
+                it(example.description, async () => {
+                    await expectDecodeDownlinkExample(example);
+                });
+            });
+        });
+
+        describe("Encode downlink", () => {
+            dataset.forEach((example) => {
+                if (example.type !== "downlink-encode") {
+                    return;
+                }
+
+                it(example.description, async () => {
+                    await expectEncodeDownlinkExample(example);
+                });
+            });
+        });
+    });
+}
+
+
+/**
+ Test suites compatible with all driver types
+ */
+defineCodecSuites("Non-regression tests", nonRegressionTests, { normalizeDecodeUplink: true });
+defineExtractPointsSuite("extractPoints", nonRegressionTests);
+
+defineCodecSuites("Examples", examples);
+defineExtractPointsSuite("extractPoints - should extract expected points from decoded uplink", examples);
+
+defineLegacyErrorSuite("Legacy Decode uplink errors", "decodeUplink", false);
+defineLegacyErrorSuite("Legacy Decode downlink errors", "decodeDownlink", false);
+defineLegacyErrorSuite("Legacy Encode downlink errors", "encodeDownlink", true);
 
 /**
  Utils used for unusual inputs
@@ -834,6 +706,10 @@ function listProperties(obj, parent = '', result = []) {
         }
     }
     return result;
+}
+
+function hasDefinedPoints(points) {
+    return points != null && (typeof points !== "object" || Object.keys(points).length > 0);
 }
 
 function checkEventTimes(description, points) {
