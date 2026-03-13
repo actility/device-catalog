@@ -57,7 +57,7 @@ function decodeUplink(input) {
         }
     
         function handleResponse(bytes, data, keepaliveLength){
-        var commands = bytes.map(function(byte){
+        var commands = Array.from(bytes, function(byte){
             return ("0" + byte.toString(16)).substr(-2); 
         });
         commands = commands.slice(0,-keepaliveLength);
@@ -262,10 +262,10 @@ function decodeUplink(input) {
             bytes = bytes.slice(-keepaliveLength);
             data = handleKeepalive(bytes, data);
         }
-        return {data: data};
+        return { data: data, errors: [], warnings: [] };
     } catch (e) {
         console.log(e)
-        throw new Error('Unhandled data');
+        return { data: {}, errors: ['Unhandled data'], warnings: [] };
     }
 }
 

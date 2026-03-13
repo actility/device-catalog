@@ -1,1 +1,199 @@
-[]
+[
+  {
+    "description": "Periodic uplink keepalive type 0x01",
+    "type": "uplink",
+    "input": {
+      "bytes": "0102887509c41502007801",
+      "fPort": 1,
+      "recvTime": "2024-04-04T12:00:00.000+02:00"
+    },
+    "output": {
+      "data": {
+        "sensorTemperature": 24.8,
+        "relativeHumidity": 45.7,
+        "batteryVoltage": 2.5,
+        "targetTemperature": 21,
+        "powerSourceStatus": 2,
+        "lux": 120,
+        "pir": true
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "humidity": {
+        "unitId": "%RH",
+        "record": 45.7
+      },
+      "temperature:1": {
+        "unitId": "Cel",
+        "record": 24.8,
+        "nature": "sensor"
+      },
+      "temperature:2": {
+        "unitId": "Cel",
+        "record": 21,
+        "nature": "target"
+      },
+      "illuminance": {
+        "unitId": "lx",
+        "record": 120
+      },
+      "presence": {
+        "unitId": "state",
+        "record": true,
+        "nature": "pir"
+      },
+      "batteryVoltage": {
+        "unitId": "V",
+        "record": 2.5
+      }
+    }
+  },
+  {
+    "description": "Periodic uplink keepalive type 0x81 with decimal target temperature",
+    "type": "uplink",
+    "input": {
+      "bytes": "8102887509c400d702007800",
+      "fPort": 1,
+      "recvTime": "2024-04-04T12:01:00.000+02:00"
+    },
+    "output": {
+      "data": {
+        "sensorTemperature": 24.8,
+        "relativeHumidity": 45.7,
+        "batteryVoltage": 2.5,
+        "targetTemperature": 21.5,
+        "powerSourceStatus": 2,
+        "lux": 120,
+        "pir": false
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "humidity": {
+        "unitId": "%RH",
+        "record": 45.7
+      },
+      "temperature:1": {
+        "unitId": "Cel",
+        "record": 24.8,
+        "nature": "sensor"
+      },
+      "temperature:2": {
+        "unitId": "Cel",
+        "record": 21.5,
+        "nature": "target"
+      },
+      "illuminance": {
+        "unitId": "lx",
+        "record": 120
+      },
+      "presence": {
+        "unitId": "state",
+        "record": false,
+        "nature": "pir"
+      },
+      "batteryVoltage": {
+        "unitId": "V",
+        "record": 2.5
+      }
+    }
+  },
+  {
+    "description": "Response keepAliveTime with keepalive trailer",
+    "type": "uplink",
+    "input": {
+      "bytes": "120a0102887509c41502007801",
+      "fPort": 1,
+      "recvTime": "2024-04-04T12:02:00.000+02:00"
+    },
+    "output": {
+      "data": {
+        "keepAliveTime": 10,
+        "sensorTemperature": 24.8,
+        "relativeHumidity": 45.7,
+        "batteryVoltage": 2.5,
+        "targetTemperature": 21,
+        "powerSourceStatus": 2,
+        "lux": 120,
+        "pir": true
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "humidity": {
+        "unitId": "%RH",
+        "record": 45.7
+      },
+      "temperature:1": {
+        "unitId": "Cel",
+        "record": 24.8,
+        "nature": "sensor"
+      },
+      "temperature:2": {
+        "unitId": "Cel",
+        "record": 21,
+        "nature": "target"
+      },
+      "illuminance": {
+        "unitId": "lx",
+        "record": 120
+      },
+      "presence": {
+        "unitId": "state",
+        "record": true,
+        "nature": "pir"
+      },
+      "batteryVoltage": {
+        "unitId": "V",
+        "record": 2.5
+      }
+    }
+  },
+  {
+    "description": "Encode downlink setTargetTemperature to 21.5C",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setTargetTemperature": 21.5
+      }
+    },
+    "output": {
+      "bytes": [
+        46,
+        0,
+        215
+      ],
+      "fPort": 1,
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "description": "Decode downlink passthrough bytes",
+    "type": "downlink-decode",
+    "input": {
+      "bytes": [
+        46,
+        0,
+        215
+      ],
+      "fPort": 1,
+      "recvTime": "2024-04-04T12:03:00.000+02:00"
+    },
+    "output": {
+      "data": {
+        "bytes": [
+          46,
+          0,
+          215
+        ]
+      },
+      "errors": [],
+      "warnings": []
+    }
+  }
+]
