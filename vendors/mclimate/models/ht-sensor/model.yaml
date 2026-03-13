@@ -41,17 +41,21 @@ protocolId:
   - mclimate:ht-sensor:1
   - os1-mcli:ht-sensor:1
 # DataSheet URL (optional) 
-specificationURL: 
+specificationURL: https://3940008670-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F-McDr-jr9h3qA888r1Yp%2Fuploads%2FuWtULrkAnkdqgLeWDsIu%2FMClimate-HT-Sensor-LoRaWAN-Batteries-Datasheet-en.pdf?alt=media&token=efb23d15-d43d-490b-b82a-c205131feb5c
 # User Guide URL (optional) 
-userGuideURL: 
+userGuideURL: https://3940008670-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F-McDr-jr9h3qA888r1Yp%2Fuploads%2F7XhSdQYa7vjG4TQsuTOu%2FHT-Sensor-LoRaWAN-User-Manual.pdf?alt=media&token=26baeb9c-d25c-4048-98b9-f8d41134717d
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
-sensors: 
+sensors:
+  - temperature:Cel
+  - humidity:%RH
+  - batteryVoltage:V
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
     os1-mcli:ht-sensor:1:
-        - "Short periodic uplink"
-
+      - "Short periodic uplink"
+    mclimate:ht-sensor:1:
+      - "Short periodic uplink"
 
 LoRaWANRelay:
   canOperateAsARelay: false
