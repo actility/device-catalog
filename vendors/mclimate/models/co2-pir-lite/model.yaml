@@ -5,22 +5,42 @@ description: MClimate CO2 + PIR Lite is a LoRaWAN indoor sensor combining CO2, t
 # Logo of the device
 logo: co2-pir-lite.png
 # ID(s) of the profile that defines the LoRaWAN characteristics of this model.
+# id: as defined under /profiles.
+# lorawanDeviceProfileID: as defined by LoRa Alliance in https://lora-alliance.org/wp-content/uploads/2020/10/LoRa_Alliance_Vendor_ID_for_QR_Code_02142022.pdf.
+# The lorawanDeviceProfileID consists of 8 upper-case hexadecimal characters, 4 characters for VendorID + 4 characters for VendorProfileID. Please consider using single (') or double (") quotation.
 deviceProfileIds:
   - id: mclimate_RFGroup2_1.0.3a_classA
   - id: mclimate_RFGroup4_1.0.3a_classA
 
+# You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings.
+# Maximum device TX Conducted output power in dBm.
 maxTxPower:
+# Minimum device TX Conducted output power in dBm.
 minTxPower:
+# Maximum device TX Radiated output power in dBm.
 maxTxEIRP:
+# Minimum device TX Radiated output power in dBm.
 minTxEIRP:
+# Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'
+# or 'random' (not known, changes over time).
 motionIndicator:
 
+# Is your device certified by the LoRa Alliance? Possible values: true, false.
 LoRaWANCertified:
+# Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
+# Format: `<8 characters max>:<16 characters max>:<digits only>`
+# Be careful: Once you chose a model, it cannot be changed later
 modelId: mclimate:co2-pir-lite:1
+# <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
+# Format: `<8 characters max>:<16 characters max>:<digits only>`
+# Be careful: Once you chose a protocolId, it cannot be changed later
 protocolId:
   - mclimate:co2-pir-lite:1
-specificationURL: https://docs.mclimate.eu/mclimate-lorawan-devices/devices/mclimate-co2-+-pir-lite
-userGuideURL:
+# DataSheet URL (optional)
+specificationURL: https://3940008670-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F-McDr-jr9h3qA888r1Yp%2Fuploads%2FfIB9BNmF8U8iJbnSrNNb%2FMClimate-CO2%2BPIR-lite-Datasheet.pdf?alt=media&token=80d3dbd4-1302-49b7-a793-fd201c4efbca
+# User Guide URL (optional)
+userGuideURL: https://3940008670-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F-McDr-jr9h3qA888r1Yp%2Fuploads%2FQKnd8pPoYYBnFZJdgKZL%2FMClimate-CO2%2BPIR-lite-User-%D0%9Canual.pdf?alt=media&token=64f6ffa6-4101-4a7c-9660-34271e0ed11e
+# <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
   - temperature:Cel
   - humidity:%RH
@@ -28,6 +48,8 @@ sensors:
   - counter:count
   - presence:state
   - batteryVoltage:V
+# Driver examples
+# A list of examples description that are compatible with this model
 examples:
   mclimate:co2-pir-lite:1:
     - "Periodic uplink (keepalive)"
