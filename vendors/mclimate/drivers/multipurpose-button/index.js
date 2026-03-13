@@ -147,14 +147,14 @@ function decodeUplink(input) {
             bytes = bytes.slice(-5);
             data = handleKeepalive(bytes, data);
         }
-        return { data: data };
+        return { data: data, errors : [], warnings: [] };
     } catch (e) {
         // console.log(e);
-        throw new Error('Unhandled data');
+        return { data: {}, errors : ['Unhandled data'], warnings: [] };
     }
 }
 
-function encodeDownlink(input) {
+function encodeDownlink() {
     return {
         errors: ["Downlink encoder is not provided on the public MClimate docs page for this device"],
         warnings: []
