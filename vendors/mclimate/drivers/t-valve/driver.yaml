@@ -1,5 +1,18 @@
+# Formal driver name
 name: mclimate t-valve driver
-producerId: mclimate
+# Simple description of the driver functionalities
 description: The MClimate T-Valve is a LoRaWAN® water valve equipped with water temperature, ambient temperature, magnetic, flood, and box tampering sensors. It can be used in residential or commercial buildings.
+# Mandatory - id of the company that developed the driver
+# This id will be used to construct the id of the driver (Should be in lowercase, no special characters, maximum 8 characters)
+producerId: mclimate
+# Email of the developer
+developerEmail:
+# In case of a driver per model: `<vendorId>:<modelName>:<modelVersion>`
+# In case of a driver for multiples model: `<vendorId>:generic:<genericVersion>`
+# Format: `<8 characters max>:<16 characters max>:<digits only>`
+# Needed for linking the model with a specific driver -> must be the same one used in model.yaml in the corresponding model
+# You should have only one protocolId per driver
 protocolId: mclimate:t-valve:1
-signature: actility
+# This is to specify the type of functions signature used in this driver. Possible values: actility, lora-alliance, ttn, chirpstack.
+# Keep it empty if you followed the lora-alliance payload codec api
+signature:
