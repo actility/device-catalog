@@ -1,0 +1,38 @@
+[
+  {
+    "description": "Uplink example for EM500-SMTC",
+    "type": "uplink",
+    "input": {
+      "bytes": "01756403671901046873057FF000",
+      "fPort": 85,
+      "time": "2025-01-01T00:00:00.000+00:00"
+    },
+    "output": {
+      "data": {
+        "battery": 100,
+        "temperature": 28.1,
+        "moisture": 57.5,
+        "electricity": 240
+      }
+    }
+  },
+  {
+    "description": "Downlink encode: report_interval",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "report_interval": 600
+      },
+      "fPort": 85
+    },
+    "output": {
+      "bytes": [
+        255,
+        3,
+        88,
+        2
+      ],
+      "fPort": 85
+    }
+  }
+]

@@ -1,0 +1,38 @@
+[
+  {
+    "description": "Uplink example for AM103L",
+    "type": "uplink",
+    "input": {
+      "bytes": "0175640367040104687B077DAC02",
+      "fPort": 85,
+      "time": "2025-01-01T00:00:00.000+00:00"
+    },
+    "output": {
+      "data": {
+        "battery": 100,
+        "temperature": 26,
+        "humidity": 61.5,
+        "co2": 684
+      }
+    }
+  },
+  {
+    "description": "Downlink encode: report_interval",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "report_interval": 600
+      },
+      "fPort": 85
+    },
+    "output": {
+      "bytes": [
+        255,
+        3,
+        88,
+        2
+      ],
+      "fPort": 85
+    }
+  }
+]

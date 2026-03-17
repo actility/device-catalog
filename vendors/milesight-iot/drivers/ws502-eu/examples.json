@@ -1,0 +1,43 @@
+[
+  {
+    "description": "Uplink example for WS502-EU",
+    "type": "uplink",
+    "input": {
+      "bytes": "08291305816407c902000374b208068301000000048001000000",
+      "fPort": 85,
+      "time": "2025-01-01T00:00:00.000+00:00"
+    },
+    "output": {
+      "data": {
+        "switch_1": "on",
+        "switch_1_change": "yes",
+        "switch_2": "on",
+        "switch_2_change": "no",
+        "power_factor": 100,
+        "current": 2,
+        "voltage": 222.6,
+        "power_consumption": 1,
+        "active_power": 1
+      }
+    }
+  },
+  {
+    "description": "Downlink encode: report_interval",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "report_interval": 600
+      },
+      "fPort": 85
+    },
+    "output": {
+      "bytes": [
+        255,
+        3,
+        88,
+        2
+      ],
+      "fPort": 85
+    }
+  }
+]
