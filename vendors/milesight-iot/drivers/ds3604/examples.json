@@ -1,0 +1,39 @@
+[
+  {
+    "description": "Uplink example for DS3604",
+    "type": "uplink",
+    "input": {
+      "bytes": "017564FB0100054D696C6573FB010A0568656C6C6F",
+      "fPort": 85,
+      "time": "2025-01-01T00:00:00.000+00:00"
+    },
+    "output": {
+      "data": {
+        "battery": 100,
+        "template_1": {
+          "text_1": "Miles",
+          "qrcode": "hello"
+        }
+      }
+    }
+  },
+  {
+    "description": "Downlink encode: report_interval",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "report_interval": 600
+      },
+      "fPort": 85
+    },
+    "output": {
+      "bytes": [
+        255,
+        3,
+        88,
+        2
+      ],
+      "fPort": 85
+    }
+  }
+]

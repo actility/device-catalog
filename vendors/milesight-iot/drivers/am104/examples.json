@@ -1,0 +1,41 @@
+[
+  {
+    "description": "Uplink example for AM104",
+    "type": "uplink",
+    "input": {
+      "bytes": "0175640367000104688206653100c2001b00056a0000",
+      "fPort": 85,
+      "time": "2025-01-01T00:00:00.000+00:00"
+    },
+    "output": {
+      "data": {
+        "battery": 100,
+        "temperature": 25.6,
+        "humidity": 65,
+        "illumination": 49,
+        "infrared_and_visible": 194,
+        "infrared": 27,
+        "activity": 0
+      }
+    }
+  },
+  {
+    "description": "Downlink encode: report_interval",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "report_interval": 600
+      },
+      "fPort": 85
+    },
+    "output": {
+      "bytes": [
+        255,
+        3,
+        88,
+        2
+      ],
+      "fPort": 85
+    }
+  }
+]

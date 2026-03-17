@@ -1,0 +1,37 @@
+[
+  {
+    "description": "Uplink example for AM107",
+    "type": "uplink",
+    "input": {
+      "bytes": "0175640367fe000468800a6a0200077d5902",
+      "fPort": 85,
+      "time": "2025-01-01T00:00:00.000+00:00"
+    },
+    "output": {
+      "data": {
+        "battery": 100,
+        "temperature": 25.4,
+        "humidity": 64
+      }
+    }
+  },
+  {
+    "description": "Downlink encode: report_interval",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "report_interval": 600
+      },
+      "fPort": 85
+    },
+    "output": {
+      "bytes": [
+        255,
+        3,
+        88,
+        2
+      ],
+      "fPort": 85
+    }
+  }
+]
