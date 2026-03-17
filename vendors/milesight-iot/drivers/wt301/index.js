@@ -34,7 +34,9 @@ function milesightDeviceDecode(bytes) {
     decoded.data_length = readInt16BE(bytes.slice(i + 2, i + 4));
     decoded.type = readType(bytes[i + 4]);
     decoded.raw = bytes.slice(i + 5, i + 5 + decoded.data_length);
-    decoded.crc = bytes[i + 5 + decoded.data_length];
+    if (i + 5 + decoded.data_length < bytes.length) {
+        decoded.crc = bytes[i + 5 + decoded.data_length];
+    }
 
     var data_id = bytes[i + 4];
     switch (data_id) {

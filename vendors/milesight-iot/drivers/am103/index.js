@@ -121,7 +121,7 @@ function milesightDeviceDecode(bytes) {
         // DOWNLINK RESPONSE
         else if (channel_id === 0xfe || channel_id === 0xff) {
             var result = handle_downlink_response(channel_type, bytes, i);
-            decoded = Object.assign(decoded, result.data);
+            mergeDecodedData(decoded, result.data);
             i = result.offset;
         } else {
             break;
@@ -129,6 +129,14 @@ function milesightDeviceDecode(bytes) {
     }
 
     return decoded;
+}
+
+function mergeDecodedData(target, source) {
+    for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+        }
+    }
 }
 
 function handle_downlink_response(channel_type, bytes, offset) {
@@ -416,44 +424,6 @@ function getValue(map, key) {
     if (!value) value = "unknown";
     return value;
 }
-
-//if (!Object.assign) {
-    Object.defineProperty(Object, "assign", {
-        enumerable: false,
-        configurable: true,
-        writable: true,
-        value: function (target) {
-            "use strict";
-            if (target == null) {
-                throw new TypeError("Cannot convert first argument to object");
-            }
-
-            var to = Object(target);
-            for (var i = 1; i < arguments.length; i++) {
-                var nextSource = arguments[i];
-                if (nextSource == null) {
-                    continue;
-                }
-                nextSource = Object(nextSource);
-
-                var keysArray = Object.keys(Object(nextSource));
-                for (var nextIndex = 0, len = keysArray.length; nextIndex < len; nextIndex++) {
-                    var nextKey = keysArray[nextIndex];
-                    var desc = Object.getOwnPropertyDescriptor(nextSource, nextKey);
-                    if (desc !== undefined && desc.enumerable) {
-                        // concat array
-                        if (Array.isArray(to[nextKey]) && Array.isArray(nextSource[nextKey])) {
-                            to[nextKey] = to[nextKey].concat(nextSource[nextKey]);
-                        } else {
-                            to[nextKey] = nextSource[nextKey];
-                        }
-                    }
-                }
-            }
-            return to;
-        },
-    });
-//}
 
 exports.decodeUplink = decodeUplink;
 
