@@ -1558,14 +1558,6 @@ function milesightDeviceEncode(payload) {
 		var buffer = new Buffer();
 		buffer.writeUInt8(0x08);
 		buffer.writeUInt8(payload.temperature_alarm.type);
-		if (payload.temperature_alarm.type == 0x00) {
-		}
-		if (payload.temperature_alarm.type == 0x01) {
-		}
-		if (payload.temperature_alarm.type == 0x02) {
-		}
-		if (payload.temperature_alarm.type == 0x03) {
-		}
 		if (payload.temperature_alarm.type == 0x10) {
 			if (payload.temperature_alarm.lower_range_alarm_deactivation.temperature < -200 || payload.temperature_alarm.lower_range_alarm_deactivation.temperature > 800) {
 				throw new Error('temperature_alarm.lower_range_alarm_deactivation.temperature must be between -200 and 800');
@@ -1645,14 +1637,6 @@ function milesightDeviceEncode(payload) {
 		var buffer = new Buffer();
 		buffer.writeUInt8(0x09);
 		buffer.writeUInt8(payload.humidity_alarm.type);
-		if (payload.humidity_alarm.type == 0x00) {
-		}
-		if (payload.humidity_alarm.type == 0x01) {
-		}
-		if (payload.humidity_alarm.type == 0x02) {
-		}
-		if (payload.humidity_alarm.type == 0x03) {
-		}
 		if (payload.humidity_alarm.type == 0x10) {
 			if (payload.humidity_alarm.lower_range_alarm_deactivation.humidity < 0 || payload.humidity_alarm.lower_range_alarm_deactivation.humidity > 100) {
 				throw new Error('humidity_alarm.lower_range_alarm_deactivation.humidity must be between 0 and 100');
@@ -1732,20 +1716,6 @@ function milesightDeviceEncode(payload) {
 		var buffer = new Buffer();
 		buffer.writeUInt8(0x0a);
 		buffer.writeUInt8(payload.tilt_alarm.type);
-		if (payload.tilt_alarm.type == 0x00) {
-		}
-		if (payload.tilt_alarm.type == 0x01) {
-		}
-		if (payload.tilt_alarm.type == 0x02) {
-		}
-		if (payload.tilt_alarm.type == 0x03) {
-		}
-		if (payload.tilt_alarm.type == 0x10) {
-		}
-		if (payload.tilt_alarm.type == 0x11) {
-		}
-		if (payload.tilt_alarm.type == 0x21) {
-		}
 		encoded = encoded.concat(buffer.toBytes());
 	}
 	//0x1d
@@ -1761,18 +1731,6 @@ function milesightDeviceEncode(payload) {
 		var buffer = new Buffer();
 		buffer.writeUInt8(0x0b);
 		buffer.writeUInt8(payload.light_alarm.type);
-		if (payload.light_alarm.type == 0x00) {
-		}
-		if (payload.light_alarm.type == 0x01) {
-		}
-		if (payload.light_alarm.type == 0x02) {
-		}
-		if (payload.light_alarm.type == 0x03) {
-		}
-		if (payload.light_alarm.type == 0x10) {
-		}
-		if (payload.light_alarm.type == 0x11) {
-		}
 		encoded = encoded.concat(buffer.toBytes());
 	}
 	//0x0c

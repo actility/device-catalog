@@ -85,7 +85,6 @@ function milesightDeviceDecode(bytes) {
             var btn_chn_name = "button_" + id;
             decoded[btn_chn_name] = 1;
             decoded[btn_chn_name + "_d2d"] = readUInt16LE(bytes.slice(i + 1, i + 3));
-            decoded[btn_chn_name + "_msgid"] = getRandomIntInclusive(100000, 999999);
             i += 3;
         } else {
             break;
@@ -147,12 +146,6 @@ function readDeviceStatus(status) {
     return getValue(status_map, status);
 }
 
-function getRandomIntInclusive(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
 /* eslint-disable */
 function readUInt8(bytes) {
     return bytes & 0xff;
@@ -181,43 +174,35 @@ function getValue(map, key) {
     return value;
 }
 
-//if (!Object.assign) {
-    Object.defineProperty(Object, "assign", {
-        enumerable: false,
-        configurable: true,
-        writable: true,
-        value: function (target) {
-            "use strict";
-            if (target == null) {
-                throw new TypeError("Cannot convert first argument to object");
-            }
+function mergeObjects(target) {
+    "use strict";
+    if (target == null) {
+        throw new TypeError("Cannot convert first argument to object");
+    }
 
-            var to = Object(target);
-            for (var i = 1; i < arguments.length; i++) {
-                var nextSource = arguments[i];
-                if (nextSource == null) {
-                    continue;
-                }
-                nextSource = Object(nextSource);
+    var to = Object(target);
+    for (var i = 1; i < arguments.length; i++) {
+        var nextSource = arguments[i];
+        if (nextSource == null) {
+            continue;
+        }
+        nextSource = Object(nextSource);
 
-                var keysArray = Object.keys(Object(nextSource));
-                for (var nextIndex = 0, len = keysArray.length; nextIndex < len; nextIndex++) {
-                    var nextKey = keysArray[nextIndex];
-                    var desc = Object.getOwnPropertyDescriptor(nextSource, nextKey);
-                    if (desc !== undefined && desc.enumerable) {
-                        // concat array
-                        if (Array.isArray(to[nextKey]) && Array.isArray(nextSource[nextKey])) {
-                            to[nextKey] = to[nextKey].concat(nextSource[nextKey]);
-                        } else {
-                            to[nextKey] = nextSource[nextKey];
-                        }
-                    }
+        var keysArray = Object.keys(Object(nextSource));
+        for (var nextIndex = 0, len = keysArray.length; nextIndex < len; nextIndex++) {
+            var nextKey = keysArray[nextIndex];
+            var desc = Object.getOwnPropertyDescriptor(nextSource, nextKey);
+            if (desc !== undefined && desc.enumerable) {
+                if (Array.isArray(to[nextKey]) && Array.isArray(nextSource[nextKey])) {
+                    to[nextKey] = to[nextKey].concat(nextSource[nextKey]);
+                } else {
+                    to[nextKey] = nextSource[nextKey];
                 }
             }
-            return to;
-        },
-    });
-//}
+        }
+    }
+    return to;
+}
 
 exports.decodeUplink = decodeUplink;
 
