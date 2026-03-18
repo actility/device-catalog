@@ -1,6 +1,6 @@
 ##general,,,,,,,,,,,,
 version,max_downlink_commands,,,,,,,,,,,
-1.0,5,,,,,,,,,,,
+1.2,20,,,,,,,,,,,
 ##models,,,,,,,,,,,,
 name,selectors,,,,,,,,,,,
 all,"{ mId: tx-amb-600-021 }, { mId: tx-amb-600-022 }, { mId: tx-amb-600-023 }, { mId: 600-031 }, { mId: 600-032 }, { mId: 600-034 }, { mId: 600-035 }, { mId: tx-pulse-600-036 }, { mId: tx-pulse-600-037 }, { mId: tx-pulse-600-038 }, { mId: tx-contact-039 }, { mId: tx-mini-600-050 }, { mId: tx-amb-600-051 }, { mId: tx-amb-600-052 }, { mId: tx-amb-600-053 }, { mId: tx-pir-600-062 }, { mId: tx-win-600-065 }, { mId: 600-232 }, { mId: tx-amb-600-121 }, { mId: tx-amb-600-123 }, { mId: tx-ins-600-131 }, { mId: tx-cont1-600-132 }, { mId: tx-ext-600-134 }, { mId: tx-600-135 }, { mId: tx-600-136 }, { mId: tx-led-600-138 }, { mId: tx-cont-600-139 }, { mId: tx-cont2-600-332 }",,,,,,,,,,,
@@ -23,6 +23,21 @@ group13,"{ mId: tx-amb-600-051 }, { mId: tx-amb-600-052 }, { mId: tx-amb-600-053
 600-062,{ mId: tx-pir-600-062 },,,,,,,,,,,
 600-065,{ mId: tx-win-600-065 },,,,,,,,,,,
 600-232,"{ mId: 600-232 }, { mId: tx-cont2-600-332 }",,,,,,,,,,,
+rbe-group,"{ mId: tx-amb-600-051 }, { mId: tx-amb-600-052 }, { mId: tx-amb-600-053 }, { mId: tx-pir-600-062 }, { mId: tx-pir-600-050 }",,,,,,,,,,,
+motion-guard-group,"{ mId: tx-amb-600-051 }, { mId: tx-amb-600-052 }, { mId: tx-amb-600-053 }",,,,,,,,,,,
+link1,"{ mId: 600-021 },{ mId: tx-amb-600-021 }, { mId: 600-034 }",,,,,,,,,,,
+link2, { mId: tx-amb-600-022 },,,,,,,,,,,
+link3, { mId: tx-amb-600-023 },,,,,,,,,,,
+link4,"{ mId: 600-031 }, { mId: 600-032 }",,,,,,,,,,,
+link5," { mId: tx-pulse-600-036 },  { mId: tx-pulse-600-037 }",,,,,,,,,,,
+link6, { mId: tx-contact-039 },,,,,,,,,,,
+link7,{ mId: 600-232 },,,,,,,,,,,
+link8,{ mid: 600-035 },,,,,,,,,,,
+link9,"{ mId: tx-amb-600-051 }, { mId: tx-amb-600-052 }",,,,,,,,,,,
+link10,{ mId: tx-pir-600-062 },,,,,,,,,,,
+link11, { mId: tx-amb-600-053 },,,,,,,,,,,
+link12,{ mid: tx-mini-600-050 },,,,,,,,,,,
+link13,{ mId: tx-win-600-065 },,,,,,,,,,,
 ,,,,,,,,,,,,
 ##objects,,,,,,,,,,,,
 id,name,value,type,access_mode,value_type,precision,units,min_value,max_value,cov_increment,models,description
@@ -38,7 +53,9 @@ states:debounce_3,Debounce 3,false,boolean,R,BOOL,,,,,,group8,Whether there is d
 pulse_ch1_open,Pulse channel-1 open,true,boolean,R,BOOL,,,,,,group9,Whether the pulse channel-1 is open
 pulse_ch2_open,Pulse channel-2 open,true,boolean,R,BOOL,,,,,,group9,Whether the pulse channel-2 is open
 pulse_oc_open,Pulse OC open,true,boolean,R,BOOL,,,,,,group9,Whether the pulse OC is open
-states:RBE,RBE,true,boolean,RW,BOOL,,,,,,group11,State of Report By Exception
+states:RBE,RBE,false,boolean,R,UINT8,,,,,,rbe-group,State of Report By Exception
+states:RBE,RBE,false,boolean,RW,UINT8,,,,,,rbe-group,State of Report By Exception
+states:motionGuard,Motion guard,false,boolean,RW,UINT8,,,,,,motion-guard-group,State of Motion Guard
 states:co2_sampled,CO2 sampled,true,boolean,R,BOOL,,,,,,600-053,CO2 measurement method
 states:led,LED,true,boolean,R,BOOL,,,,,,600-053,Use of LED
 states:movement_detected,Movement detected,true,boolean,R,BOOL,,,,,,600-062,Whether a movement was detected or not
@@ -67,12 +84,12 @@ alarm_status:pulse_oc_flow:high,OC pulse flow high,false,boolean,R,BOOL,,,,,,gro
 alarm_status:pulse_oc_flow:low,OC pulse flow low,false,boolean,R,BOOL,,,,,,group8,Whether OC flow is low or not
 alarm_status:pulse_oc_leak,OC pulse leak,false,boolean,R,BOOL,,,,,,group8,Whether OC is leaking or not
 alarm_status:MotionGuard,MotionGuard type,alarm,string,R,STRING,,,,,,group13,Type of MotionGuard
-humidity,Humidity,50.0,number,R,FLOAT,,%RH,,,1,group2,Value of relative humidity in %RH
-temperature,Temperature,20.0,number,R,FLOAT,,Cel,,,1,group2,Value of temperature in °C
+humidity,Humidity,50,number,R,FLOAT,,%RH,,,1,group2,Value of relative humidity in %RH
+temperature,Temperature,20,number,R,FLOAT,,Cel,,,1,group2,Value of temperature in �C
 values:voc:value,VOC concentration,20,number,R,UINT8,,ppb,,,1,group5,Value of Volatile Organic Compounds concentration in ppb
 co2Level,CO2 concentration,500,number,R,UINT8,,ppm,,,10,group6,Value of CO2 concentration in ppm
-temperature:0,Temperature 1,20,number,R,FLOAT,,Cel,,,1,group7,Value of temperature 1 in °C
-temperature:1,Temperature 2,20,number,R,FLOAT,,Cel,,,1,600-232,Value of temperature 2 in °C
+temperature:0,Temperature 1,20,number,R,FLOAT,,Cel,,,1,group7,Value of temperature 1 in �C
+temperature:1,Temperature 2,20,number,R,FLOAT,,Cel,,,1,600-232,Value of temperature 2 in �C
 current,Current value,1,number,R,FLOAT,,mA,,,1,600-035,Value of electrical current in mA
 values:pulse_ch1:value,Channel 1 pulse value,30,number,R,UINT8,,,,,1,group10,Value of channel 1 pulse count
 values:pulse_ch2:value,Channel 2 pulse value,30,number,R,UINT8,,,,,1,group10,Value of channel 2 pulse count
@@ -84,8 +101,8 @@ values:PIR_count:value,PIR count,0,number,R,UINT8,,,,,1,600-062,Value of PIR cou
 illuminance,Luminosity,0,number,R,UINT8,,lx,,,1,600-062,Value of luminosity in lux
 values:window_count:value,Window count,0,number,R,UINT8,,,,,1,600-065,Number of windows open
 periodicity,Periodicity,5,number,RW,UINT8,,minute,,,,all,Periodicity of uplinks (in minutes)
-hiTempAlarm,High temperature alarm,40,number,RW,FLOAT,,Cel,,,,group3,High temperature threshold in °C
-lowTempAlarm,Low temperature alarm,20,number,RW,FLOAT,,Cel,,,,group3,Low temperature threshold in °C
+hiTempAlarm,High temperature alarm,40,number,RW,FLOAT,,Cel,,,,group3,High temperature threshold in �C
+lowTempAlarm,Low temperature alarm,20,number,RW,FLOAT,,Cel,,,,group3,Low temperature threshold in �C
 hiHumAlarm,High humidity alarm,80,number,RW,FLOAT,,%RH,,,,group4,High humidity threshold in %RH
 lowHumAlarm,Low humidity alarm,40,number,RW,FLOAT,,%RH,,,,group4,Low humidity threshold in %RH
 hiVOCAlarm,High VOC alarm,800,number,RW,UINT8,,ppb,,,,group5,High VOC threshold in ppb
@@ -114,7 +131,23 @@ hiLumAlarm,High luminosity alarm,40,number,RW,UINT8,,lx,,,,600-062,High luminosi
 lowLumAlarm,Low luminosity alarm,20,number,RW,UINT8,,lx,,,,600-062,Low luminosity threshold in lux
 pirSensitivity,PIR sensitivity,1,number,RW,UINT8,,,,,,600-062,PIR sensor sensitivity
 detectionSensitivity,Detection sensitivity,1,number,RW,UINT8,,,,,,600-065,Window detection sensitivity
-hiTempCh1Alarm,High temperature alarm on channel 1,40,number,RW,FLOAT,,Cel,,,,600-232,High temperature threshold on channel 1 in °C
-lowTempCh1Alarm,Low temperature alarm on channel 1,20,number,RW,FLOAT,,Cel,,,,600-232,Low temperature threshold on channel 1 in °C
-hiTempCh2Alarm,High temperature alarm on channel 2,40,number,RW,FLOAT,,Cel,,,,600-232,High temperature threshold on channel 2 in °C
-lowTempCh2Alarm,Low temperature alarm on channel 2,20,number,RW,FLOAT,,Cel,,,,600-232,Low temperature threshold on channel 2 in °C
+hiTempCh1Alarm,High temperature alarm on channel 1,40,number,RW,FLOAT,,Cel,,,,600-232,High temperature threshold on channel 1 in �C
+lowTempCh1Alarm,Low temperature alarm on channel 1,20,number,RW,FLOAT,,Cel,,,,600-232,Low temperature threshold on channel 1 in �C
+hiTempCh2Alarm,High temperature alarm on channel 2,40,number,RW,FLOAT,,Cel,,,,600-232,High temperature threshold on channel 2 in �C
+lowTempCh2Alarm,Low temperature alarm on channel 2,20,number,RW,FLOAT,,Cel,,,,600-232,Low temperature threshold on channel 2 in �C
+,,,,,,,,,,,,
+##linked objects,,,,,,,,,,,,
+models,object_list,,,,,,,,,,,
+link1,"periodicity, hiTempAlarm, lowTempAlarm, hiHumAlarm, lowHumAlarm",,,,,,,,,,,
+link2,"periodicity, hiTempAlarm, lowTempAlarm, hiHumAlarm, lowHumAlarm, hiVOCAlarm, lowVOCAlarm",,,,,,,,,,,
+link3,"periodicity, hiTempAlarm, lowTempAlarm, hiHumAlarm, lowHumAlarm, hiVOCAlarm, lowVOCAlarm, hiCO2Alarm, lowCO2Alarm",,,,,,,,,,,
+link4,"periodicity, hiTempAlarm, lowTempAlarm",,,,,,,,,,,
+link5,"periodicity, hiInput1Flow, lowInput1Flow, input1FlowTime, input1LeakThreshold, hiInput2Flow, lowInput2Flow, input2FlowTime, input2LeakThreshold, hiOCFlow, lowOCFlow, OCFlowTime, OCLeakThreshold, ",,,,,,,,,,,
+link6,"periodicity, input1TxDelay, input2TxDelay",,,,,,,,,,,
+link7,"periodicity, hiTempCh1Alarm, lowTempCh1Alarm, hiTempCh2Alarm, lowTempCh2Alarm",,,,,,,,,,,
+link8,"periodicity, hi4_20Alarm, low4_20Alarm, loopPower",,,,,,,,,,,
+link9,"periodicity, hiTempAlarm, lowTempAlarm, hiHumAlarm, lowHumAlarm, sensorSampPeriod, states:RBE, states:motionGuard",,,,,,,,,,,
+link10,"periodicity, hiTempAlarm, lowTempAlarm, hiHumAlarm, lowHumAlarm, sensorSampPeriod, states:RBE, states:motionGuard, hiLumAlarm, lowLumAlarm, pirSensitivity",,,,,,,,,,,
+link11,"periodicity, hiCO2Alarm, lowCO2Alarm, sensorSampPeriod, states:RBE, states:motionGuard",,,,,,,,,,,
+link12,"periodicity, hiTempAlarm, lowTempAlarm, hiHumAlarm, lowHumAlarm, sensorSampPeriod, states:RBE",,,,,,,,,,,
+link13,"periodicity, sensorSampPeriod, detectionSensitivity",,,,,,,,,,,
