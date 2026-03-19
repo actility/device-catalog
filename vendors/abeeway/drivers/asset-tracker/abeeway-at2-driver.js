@@ -102,8 +102,6 @@ const MelodyId = __webpack_require__(408);
 const ErrorCode = __webpack_require__(766);
 const AngleDetectionControl = __webpack_require__(698);
 const GpsFixStatus = __webpack_require__(552);
-const pointExtractions = __webpack_require__(415);
-
 function convertToByteArray(payload){
     var bytes = [];
     var length = payload.length/2;
@@ -3023,15 +3021,10 @@ function encodeDownlink(input) {
     return result;
 }
 
-function extractPoints(input) {
-    return pointExtractions.extractPoints(input);
-}
-
 module.exports = {
     decodeUplink: decodeUplink,
     decodeDownlink: decodeDownlink,
     encodeDownlink: encodeDownlink,
-    extractPoints: extractPoints
 }
 
 /***/ }),
@@ -3402,51 +3395,6 @@ module.exports = {
         MAC_ADDRESS: "MAC_ADDRESS"
     }
 }
-
-/***/ }),
-
-/***/ 415:
-/***/ ((__unused_webpack_module, exports) => {
-
-function extractPoints(input) {
-    let points = {};
-
-    if(input.message == null){
-        return points;
-    }
-
-    if (input.message.batteryLevel != null) {
-        points.batteryLevel = {unitId: "%", record: input.message.batteryLevel};
-    }
-    if (input.message.temperatureMeasure != null) {
-        points.temperature = {unitId: "Cel", record: input.message.temperatureMeasure};
-    }
-    if (input.message.batteryVoltage != null) {
-        points.batteryVoltage = {unitId: "V", record: input.message.batteryVoltage};
-    }
-    if (input.message.angleDetection != null && input.message.angleDetection.angle != null) {
-        points.angle = {unitId: "deg", record: input.message.angleDetection.angle};
-    }
-    if (input.message.gpsLatitude != null && input.message.gpsLongitude) {
-        points.location = {unitId: "GPS", record: [input.message.gpsLongitude,input.message.gpsLatitude]};
-    }
-    if (input.message.gpsAltitude != null) {
-        points.altitude = {unitId: "m", record: input.message.gpsAltitude};
-    }
-    if (input.message.horizontalAccuracy != null) {
-        points.accuracy = {unitId: "m", record: input.message.horizontalAccuracy};
-    }
-    if (input.message.age != null) {
-        points.age = {unitId: "s", record: input.message.age};
-    }
-    if (input.message.gpsSpeedOverGround != null) {
-        points.speed = {unitId: "m/s", record: Number((input.message.gpsSpeedOverGround / 100).toFixed(2))};
-    }
-
-    return points;
-}
-
-exports.extractPoints = extractPoints;
 
 /***/ }),
 
@@ -3903,7 +3851,6 @@ module.exports = Object.freeze({
     CONFIGURATION: "CONFIGURATION",
     SHOCK_DETECTION: "SHOCK_DETECTION",
     BLE_MAC: "BLE_MAC",
-    HEARTBEAT: "HEARTBEAT",
     EVENT: "EVENT",
     DATA_SCAN_COLLECTION: "DATA_SCAN_COLLECTION",
     PROXIMITY_DETECTION: "PROXIMITY_DETECTION",

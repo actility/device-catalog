@@ -41,7 +41,6 @@ import timeoutCause from "./enums/timeoutCause.js";
 export const decodeUplink = driver.decodeUplink;
 export const decodeDownlink = driver.decodeDownlink;
 export const encodeDownlink = driver.encodeDownlink;
-export const extractPoints = driver.extractPoints;
 
 export const AbeewayDownlinkPayload = abeewayDownlinkPayload.AbeewayDownlinkPayload;
 export const AbeewayUplinkPayload = abeewayUplinkPayload.AbeewayUplinkPayload;

@@ -39,8 +39,6 @@ const MelodyId = require("./enums/melodyId");
 const ErrorCode = require("./enums/errorCode");
 const AngleDetectionControl = require("./enums/angleDetectionControl");
 const GpsFixStatus = require("./enums/gpsFixStatus");
-const pointExtractions = require("../extractPoints");
-
 function convertToByteArray(payload){
     var bytes = [];
     var length = payload.length/2;
@@ -2960,13 +2958,8 @@ function encodeDownlink(input) {
     return result;
 }
 
-function extractPoints(input) {
-    return pointExtractions.extractPoints(input);
-}
-
 module.exports = {
     decodeUplink: decodeUplink,
     decodeDownlink: decodeDownlink,
     encodeDownlink: encodeDownlink,
-    extractPoints: extractPoints
 }
