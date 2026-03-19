@@ -52,8 +52,7 @@ function getTrustedYamlPath(driverPath) {
     return path.join(privateDriverPath, "driver.yaml");
 }
 
-const privateDir = getDriverPathCandidates(DRIVER_PATH)
-    .find((candidate) => candidate.includes("device-catalog-private")) ?? DRIVER_PATH;
+const privateDir = replaceRepoSegment(DRIVER_PATH, "device-catalog-private") ?? DRIVER_PATH;
 
 let extractPoints;
 if(fs.existsSync(path.join(privateDir, "extractPoints.js"))) {
