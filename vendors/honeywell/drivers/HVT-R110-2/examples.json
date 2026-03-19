@@ -1,0 +1,61 @@
+[
+  {
+    "description": "uplink containing periodic average measurements with sampling frequency",
+    "type": "uplink",
+    "input": {
+      "bytes": [
+        1, 0, 0, 0, 24, 26, 220, 35, 100, 0, 110, 0, 120, 0, 55, 0, 66, 0, 77, 0, 54, 98, 200, 0, 11, 12, 13, 14, 15, 16, 17, 18, 19, 52, 18, 120, 86, 154, 0
+      ],
+      "fPort": 3,
+      "recvTime": "2024-12-19T12:00:00.000+00:00"
+    },
+    "output": {
+      "data": {
+        "timestamp": 1,
+        "var_Ambient_Temp_Avg": 24,
+        "var_Surface_Temp_Avg": 26,
+        "var_Ambient_Pressure_Avg": 995,
+        "var_Ambient_Humidity_Avg": 35,
+        "var_Vib_Accel_X_Axis_RMS": 1,
+        "var_Vib_Accel_Y_Axis_RMS": 1.1,
+        "var_Vib_Accel_Z_Axis_RMS": 1.2,
+        "var_Vib_Velocity_X_Axis_RMS": 0.55,
+        "var_Vib_Velocity_Y_Axis_RMS": 0.66,
+        "var_Vib_Velocity_Z_Axis_RMS": 0.77,
+        "var_Audio_dBSPL": 54,
+        "var_Remaining_battery_perc": 98,
+        "var_Measured_RPM": 200,
+        "var_Vib_Kurtosis_X_Axis": 1.1,
+        "var_Vib_Crest_X_Axis": 1.2,
+        "var_Vib_Skewness_X_Axis": 1.3,
+        "var_Vib_Kurtosis_Y_Axis": 1.4,
+        "var_Vib_Crest_Y_Axis": 1.5,
+        "var_Vib_Skewness_Y_Axis": 1.6,
+        "var_Vib_Kurtosis_Z_Axis": 1.7,
+        "var_Vib_Crest_Z_Axis": 1.8,
+        "var_Vib_Skewness_Z_Axis": 1.9,
+        "var_crc_alarm_config": 4660,
+        "var_crc_dev_info_config": 22136,
+        "var_sampling_freq": 154
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "temperature:0": { "unitId": "Cel", "record": 24, "nature": "Ambient temperature" },
+      "temperature:1": { "unitId": "Cel", "record": 26, "nature": "Surface temperature" },
+      "pressure": { "unitId": "hPa", "record": 995 },
+      "humidity": { "unitId": "%RH", "record": 35 },
+      "acceleration:0": { "unitId": "m/s2", "record": 1, "nature": "X axis RMS" },
+      "acceleration:1": { "unitId": "m/s2", "record": 1.1, "nature": "Y axis RMS" },
+      "acceleration:2": { "unitId": "m/s2", "record": 1.2, "nature": "Z axis RMS" },
+      "velocity:0": { "unitId": "mm/s", "record": 0.55, "nature": "X axis RMS" },
+      "velocity:1": { "unitId": "mm/s", "record": 0.66, "nature": "Y axis RMS" },
+      "velocity:2": { "unitId": "mm/s", "record": 0.77, "nature": "Z axis RMS" },
+      "sound": { "unitId": "dB", "record": 54 },
+      "batteryLevel": { "unitId": "%", "record": 98 },
+      "angularVelocity": { "unitId": "rpm", "record": 200 },
+      "frequency": { "unitId": "hertz", "record": 154 }
+    }
+  }
+]
