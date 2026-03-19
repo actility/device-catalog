@@ -91,8 +91,6 @@ const MelodyId = __webpack_require__(408);
 const ErrorCode = __webpack_require__(766);
 const AngleDetectionControl = __webpack_require__(698);
 const GpsFixStatus = __webpack_require__(552);
-const pointExtractions = __webpack_require__(415);
-
 function convertToByteArray(payload){
     var bytes = [];
     var length = payload.length/2;
@@ -3012,15 +3010,10 @@ function encodeDownlink(input) {
     return result;
 }
 
-function extractPoints(input) {
-    return pointExtractions.extractPoints(input);
-}
-
 module.exports = {
     decodeUplink: decodeUplink,
     decodeDownlink: decodeDownlink,
     encodeDownlink: encodeDownlink,
-    extractPoints: extractPoints
 }
 
 /***/ }),
@@ -3390,51 +3383,6 @@ module.exports = {
         MAC_ADDRESS: "MAC_ADDRESS"
     }
 }
-
-/***/ }),
-
-/***/ 415:
-/***/ ((__unused_webpack_module, exports) => {
-
-function extractPoints(input) {
-    let points = {};
-
-    if(input.message == null){
-        return points;
-    }
-
-    if (input.message.batteryLevel != null) {
-        points.batteryLevel = {unitId: "%", record: input.message.batteryLevel};
-    }
-    if (input.message.temperatureMeasure != null) {
-        points.temperature = {unitId: "Cel", record: input.message.temperatureMeasure};
-    }
-    if (input.message.batteryVoltage != null) {
-        points.batteryVoltage = {unitId: "V", record: input.message.batteryVoltage};
-    }
-    if (input.message.angleDetection != null && input.message.angleDetection.angle != null) {
-        points.angle = {unitId: "deg", record: input.message.angleDetection.angle};
-    }
-    if (input.message.gpsLatitude != null && input.message.gpsLongitude) {
-        points.location = {unitId: "GPS", record: [input.message.gpsLongitude,input.message.gpsLatitude]};
-    }
-    if (input.message.gpsAltitude != null) {
-        points.altitude = {unitId: "m", record: input.message.gpsAltitude};
-    }
-    if (input.message.horizontalAccuracy != null) {
-        points.accuracy = {unitId: "m", record: input.message.horizontalAccuracy};
-    }
-    if (input.message.age != null) {
-        points.age = {unitId: "s", record: input.message.age};
-    }
-    if (input.message.gpsSpeedOverGround != null) {
-        points.speed = {unitId: "m/s", record: Number((input.message.gpsSpeedOverGround / 100).toFixed(2))};
-    }
-
-    return points;
-}
-
-exports.extractPoints = extractPoints;
 
 /***/ }),
 
@@ -3890,7 +3838,6 @@ module.exports = Object.freeze({
     CONFIGURATION: "CONFIGURATION",
     SHOCK_DETECTION: "SHOCK_DETECTION",
     BLE_MAC: "BLE_MAC",
-    HEARTBEAT: "HEARTBEAT",
     EVENT: "EVENT",
     DATA_SCAN_COLLECTION: "DATA_SCAN_COLLECTION",
     PROXIMITY_DETECTION: "PROXIMITY_DETECTION",
@@ -4048,7 +3995,6 @@ var __webpack_exports__ = {};
 /* harmony export */   ji: () => (/* binding */ TimeoutCause),
 /* harmony export */   jx: () => (/* binding */ ProximityWhiteListing),
 /* harmony export */   mE: () => (/* binding */ BatteryStatus),
-/* harmony export */   nT: () => (/* binding */ extractPoints),
 /* harmony export */   oW: () => (/* binding */ Sms),
 /* harmony export */   oi: () => (/* binding */ AngleDetectionFlags),
 /* harmony export */   pI: () => (/* binding */ BleBondStatus),
@@ -4182,7 +4128,6 @@ var __webpack_exports__ = {};
 const decodeUplink = (_index_js__WEBPACK_IMPORTED_MODULE_0___default().decodeUplink);
 const decodeDownlink = (_index_js__WEBPACK_IMPORTED_MODULE_0___default().decodeDownlink);
 const encodeDownlink = (_index_js__WEBPACK_IMPORTED_MODULE_0___default().encodeDownlink);
-const extractPoints = (_index_js__WEBPACK_IMPORTED_MODULE_0___default().extractPoints);
 
 const AbeewayDownlinkPayload = (_messages_abeewayDownlinkPayload_js__WEBPACK_IMPORTED_MODULE_1___default().AbeewayDownlinkPayload);
 const AbeewayUplinkPayload = (_messages_abeewayUplinkPayload_js__WEBPACK_IMPORTED_MODULE_2___default().AbeewayUplinkPayload);
@@ -4303,5 +4248,4 @@ const __webpack_exports__decodeDownlink = __webpack_exports__.R7;
 const __webpack_exports__decodeUplink = __webpack_exports__.uR;
 const __webpack_exports__default = __webpack_exports__.Ay;
 const __webpack_exports__encodeDownlink = __webpack_exports__.$y;
-const __webpack_exports__extractPoints = __webpack_exports__.nT;
-export { __webpack_exports__AbeewayDownlinkPayload as AbeewayDownlinkPayload, __webpack_exports__AbeewayUplinkPayload as AbeewayUplinkPayload, __webpack_exports__AngleDetection as AngleDetection, __webpack_exports__AngleDetectionControl as AngleDetectionControl, __webpack_exports__AngleDetectionFlags as AngleDetectionFlags, __webpack_exports__BatteryStatus as BatteryStatus, __webpack_exports__BeaconIdInfo as BeaconIdInfo, __webpack_exports__BleBeaconFailure as BleBeaconFailure, __webpack_exports__BleBondStatus as BleBondStatus, __webpack_exports__BssidInfo as BssidInfo, __webpack_exports__CollectionScanType as CollectionScanType, __webpack_exports__DataFormat as DataFormat, __webpack_exports__DebugCommandTag as DebugCommandTag, __webpack_exports__DebugCommandType as DebugCommandType, __webpack_exports__DownMessageType as DownMessageType, __webpack_exports__DynamicMotionState as DynamicMotionState, __webpack_exports__ErrorCode as ErrorCode, __webpack_exports__EventType as EventType, __webpack_exports__GeofencingNotification as GeofencingNotification, __webpack_exports__GeofencingType as GeofencingType, __webpack_exports__GpsFixStatus as GpsFixStatus, __webpack_exports__HealthStatus as HealthStatus, __webpack_exports__List as List, __webpack_exports__MeasuredTemperature as MeasuredTemperature, __webpack_exports__MelodyId as MelodyId, __webpack_exports__MessageType as MessageType, __webpack_exports__MiscDataTag as MiscDataTag, __webpack_exports__Mode as Mode, __webpack_exports__NotificationType as NotificationType, __webpack_exports__OptionalCommand as OptionalCommand, __webpack_exports__ProximityDailyReport as ProximityDailyReport, __webpack_exports__ProximityDailyResponse as ProximityDailyResponse, __webpack_exports__ProximityMessage as ProximityMessage, __webpack_exports__ProximityMessageType as ProximityMessageType, __webpack_exports__ProximityNotification as ProximityNotification, __webpack_exports__ProximityWhiteListing as ProximityWhiteListing, __webpack_exports__RawPositionType as RawPositionType, __webpack_exports__RecordAction as RecordAction, __webpack_exports__RecordStatus as RecordStatus, __webpack_exports__ResetAction as ResetAction, __webpack_exports__ScanCollection as ScanCollection, __webpack_exports__ScanType as ScanType, __webpack_exports__SetRecordStatus as SetRecordStatus, __webpack_exports__ShutdownCause as ShutdownCause, __webpack_exports__Sms as Sms, __webpack_exports__StartupModes as StartupModes, __webpack_exports__TemperatureState as TemperatureState, __webpack_exports__TimeoutCause as TimeoutCause, __webpack_exports__Transition as Transition, __webpack_exports__TriggerType as TriggerType, __webpack_exports__decodeDownlink as decodeDownlink, __webpack_exports__decodeUplink as decodeUplink, __webpack_exports__default as default, __webpack_exports__encodeDownlink as encodeDownlink, __webpack_exports__extractPoints as extractPoints };
+export { __webpack_exports__AbeewayDownlinkPayload as AbeewayDownlinkPayload, __webpack_exports__AbeewayUplinkPayload as AbeewayUplinkPayload, __webpack_exports__AngleDetection as AngleDetection, __webpack_exports__AngleDetectionControl as AngleDetectionControl, __webpack_exports__AngleDetectionFlags as AngleDetectionFlags, __webpack_exports__BatteryStatus as BatteryStatus, __webpack_exports__BeaconIdInfo as BeaconIdInfo, __webpack_exports__BleBeaconFailure as BleBeaconFailure, __webpack_exports__BleBondStatus as BleBondStatus, __webpack_exports__BssidInfo as BssidInfo, __webpack_exports__CollectionScanType as CollectionScanType, __webpack_exports__DataFormat as DataFormat, __webpack_exports__DebugCommandTag as DebugCommandTag, __webpack_exports__DebugCommandType as DebugCommandType, __webpack_exports__DownMessageType as DownMessageType, __webpack_exports__DynamicMotionState as DynamicMotionState, __webpack_exports__ErrorCode as ErrorCode, __webpack_exports__EventType as EventType, __webpack_exports__GeofencingNotification as GeofencingNotification, __webpack_exports__GeofencingType as GeofencingType, __webpack_exports__GpsFixStatus as GpsFixStatus, __webpack_exports__HealthStatus as HealthStatus, __webpack_exports__List as List, __webpack_exports__MeasuredTemperature as MeasuredTemperature, __webpack_exports__MelodyId as MelodyId, __webpack_exports__MessageType as MessageType, __webpack_exports__MiscDataTag as MiscDataTag, __webpack_exports__Mode as Mode, __webpack_exports__NotificationType as NotificationType, __webpack_exports__OptionalCommand as OptionalCommand, __webpack_exports__ProximityDailyReport as ProximityDailyReport, __webpack_exports__ProximityDailyResponse as ProximityDailyResponse, __webpack_exports__ProximityMessage as ProximityMessage, __webpack_exports__ProximityMessageType as ProximityMessageType, __webpack_exports__ProximityNotification as ProximityNotification, __webpack_exports__ProximityWhiteListing as ProximityWhiteListing, __webpack_exports__RawPositionType as RawPositionType, __webpack_exports__RecordAction as RecordAction, __webpack_exports__RecordStatus as RecordStatus, __webpack_exports__ResetAction as ResetAction, __webpack_exports__ScanCollection as ScanCollection, __webpack_exports__ScanType as ScanType, __webpack_exports__SetRecordStatus as SetRecordStatus, __webpack_exports__ShutdownCause as ShutdownCause, __webpack_exports__Sms as Sms, __webpack_exports__StartupModes as StartupModes, __webpack_exports__TemperatureState as TemperatureState, __webpack_exports__TimeoutCause as TimeoutCause, __webpack_exports__Transition as Transition, __webpack_exports__TriggerType as TriggerType, __webpack_exports__decodeDownlink as decodeDownlink, __webpack_exports__decodeUplink as decodeUplink, __webpack_exports__default as default, __webpack_exports__encodeDownlink as encodeDownlink };
