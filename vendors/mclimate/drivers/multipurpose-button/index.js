@@ -154,13 +154,6 @@ function decodeUplink(input) {
     }
 }
 
-function encodeDownlink() {
-    return {
-        errors: ["Downlink encoder is not provided on the public MClimate docs page for this device"],
-        warnings: []
-    };
-}
-
 function decodeDownlink(input) {
     return {
         data: { bytes: input.bytes },
