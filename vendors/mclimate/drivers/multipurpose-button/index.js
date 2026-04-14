@@ -163,5 +163,4 @@ function decodeDownlink(input) {
 }
 
 exports.decodeUplink = decodeUplink;
-exports.encodeDownlink = encodeDownlink;
 exports.decodeDownlink = decodeDownlink;
