@@ -36,8 +36,8 @@ This skill captures the standard workflow for fixing a device catalog driver iss
    - Keep the driver folder limited to production files only.
 
 5. Update the changelog
-   - Add an entry in the appropriate changelog file.
-   - Create or use the correct release version section for the current catalog.
+   - Add an entry in `change-log-drivers.txt` in the `device-catalog-private` repository.
+   - Add the entry under the **existing** current version section. Only create a new version section if a new catalog release is being prepared.
    - Include the ticket number and a concise description of the fix.
 
 ## Acceptance criteria
@@ -54,4 +54,5 @@ This skill captures the standard workflow for fixing a device catalog driver iss
 - Prefer small, targeted fixes that preserve existing driver behavior.
 - Validate with both the ticket payload and official driver examples.
 - Document the driver fix clearly in the changelog, including the ticket ID.
+- Commit the driver changes on the `device-catalog` repository and the changelog update on the `device-catalog-private` repository.
 - Start the commit message with the ticket number, for example: `TXIF-4062: Fix BigInt serialization error in Elvaco CMi41xx driver`.
