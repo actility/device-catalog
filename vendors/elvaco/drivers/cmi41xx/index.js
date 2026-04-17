@@ -490,7 +490,7 @@ function decodeUplink(input) {
             }
             else {
                 // normalize and store the floating point value
-                data[name] = (Number.isInteger(value) || typeof (value) === "bigint") ? value : parseFloat(value.toPrecision(8), 10);
+                data[name] = (Number.isInteger(value) || typeof (value) === "bigint") ? Number(value) : parseFloat(value.toPrecision(8), 10);
                 measurementNo++;
 
                 trace.dataEnd = pos - 1;
