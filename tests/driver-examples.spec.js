@@ -64,11 +64,27 @@ else if(fs.existsSync(resolveDriverPath("extractPoints.js"))) {
     extractPoints = require(extractPointsPath).extractPoints;
 }
 
-/**
- * Read the driver's package information
- */
-const packageJson = fs.readJsonSync(resolveDriverPath("package.json"));
-const mainPath = packageJson.main;
+function resolveDriverMainFile() {
+    const packageJsonPath = resolveDriverPath("package.json");
+    if (fs.existsSync(packageJsonPath)) {
+        const packageJson = fs.readJsonSync(packageJsonPath);
+        if (typeof packageJson.main === "string" && packageJson.main.trim().length > 0) {
+            return packageJson.main.replace(/\\/g, "/").replace(/^\.\//, "").trim();
+        }
+    }
+
+    if (fs.existsSync(resolveDriverPath("index.js"))) {
+        return "index.js";
+    }
+
+    if (fs.existsSync(resolveDriverPath("main.js"))) {
+        return "main.js";
+    }
+
+    throw new Error(`Unable to resolve driver entry file for ${DRIVER_PATH}`);
+}
+
+const mainPath = resolveDriverMainFile();
 
 /**
  * Read the driver's signature from `driver.yaml`

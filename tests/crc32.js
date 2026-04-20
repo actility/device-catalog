@@ -49,18 +49,33 @@ function crc32HexFromJsonObject(obj, indent = 4) {
     return crc32HexFromBuffer(Buffer.from(text, "utf8"));
 }
 
-function computeChecksum(driverPath) {
+function resolveMainFile(driverPath) {
     const packageJsonPath = path.join(driverPath, "package.json");
-    if (!fs.existsSync(packageJsonPath)) {
-        throw new Error(`package.json not found at ${packageJsonPath}`);
+    if (fs.existsSync(packageJsonPath)) {
+        const packageJson = fs.readJsonSync(packageJsonPath, "utf8");
+        if (typeof packageJson.main === "string" && packageJson.main.trim().length > 0) {
+            return packageJson.main.replace(/\\/g, "/").replace(/^\.\//, "").trim();
+        }
     }
 
-    const packageJson = fs.readJsonSync(packageJsonPath, "utf8");
-    if (!packageJson.main) {
-        throw new Error(`package.json missing "main" at ${packageJsonPath}`);
+    if (fs.existsSync(path.join(driverPath, "index.js"))) {
+        return "index.js";
     }
 
-    const mainPath = path.join(driverPath, packageJson.main);
+    if (fs.existsSync(path.join(driverPath, "main.js"))) {
+        return "main.js";
+    }
+
+    return null;
+}
+
+function computeChecksum(driverPath) {
+    const mainFile = resolveMainFile(driverPath);
+    if (!mainFile) {
+        throw new Error(`No driver entry file found in ${driverPath}`);
+    }
+
+    const mainPath = path.join(driverPath, mainFile);
 
     return crc32HexFromFile(mainPath);
 }
