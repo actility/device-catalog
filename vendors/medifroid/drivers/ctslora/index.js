@@ -26,7 +26,7 @@ function decodeUplink(input) {
     const warnings = [];
 
     try {
-        const payload = Buffer.from(input.bytes);
+        const payload = normalizePayload(input.bytes);
 
         // SYNC_ASKED (frameType 0x02): single byte, special early exit
         if (payload[0] === 0x02) {
@@ -69,6 +69,16 @@ function decodeUplink(input) {
         errors.push(err.message);
         return { data: {}, errors, warnings };
     }
+}
+
+function normalizePayload(bytes) {
+    if (Array.isArray(bytes)) {
+        return Buffer.from(bytes);
+    }
+    if (typeof bytes === "string") {
+        return Buffer.from(bytes, "hex");
+    }
+    throw new Error("Unsupported bytes format. Expected byte array or hex string.");
 }
 
 function decodeHeader(payload) {
