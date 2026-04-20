@@ -1,0 +1,66 @@
+[
+  {
+    "type": "uplink",
+    "description": "TYPE_NEW_DATAS - 1 channel, 5 temperature measures",
+    "input": {
+      "bytes": "031a13112270c4000000000046e846e346ee46f346f8",
+      "fPort": 1,
+      "recvTime": "2024-01-15T12:00:00.000Z"
+    },
+    "output": {
+      "data": {
+        "header": {
+          "frameType": 3,
+          "battery": 10,
+          "channelCount": 1,
+          "protocolVersion": 1,
+          "settingVersion": 3,
+          "date": 287469764
+        },
+        "channels": [
+          {
+            "measures": [
+              { "value": 6.90625 },
+              { "value": 6.88671875 },
+              { "value": 6.9296875 },
+              { "value": 6.94921875 },
+              { "value": 6.96875 }
+            ]
+          }
+        ],
+        "alarms": [0, 0, 0, 0, 0],
+        "completeData": true,
+        "measureCount": 5
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "temperature:1": { "unitId": "Cel", "record": 6.90625 },
+      "temperature:2": { "unitId": "Cel", "record": 6.88671875 },
+      "temperature:3": { "unitId": "Cel", "record": 6.9296875 },
+      "temperature:4": { "unitId": "Cel", "record": 6.94921875 },
+      "temperature:5": { "unitId": "Cel", "record": 6.96875 }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "TYPE_SYNC_ASKED - synchronisation request",
+    "input": {
+      "bytes": "02",
+      "fPort": 1,
+      "recvTime": "2024-01-15T11:00:00.000Z"
+    },
+    "output": {
+      "data": {
+        "header": {
+          "frameType": 2,
+          "message": "syncronisation asked"
+        }
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": null
+  }
+]

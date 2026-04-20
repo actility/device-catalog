@@ -1,0 +1,40 @@
+# Commercial name of the model
+name: CTSLORA600
+# Functional description of the product. Maximum 500 characters.
+description: "Medifroid CTSLORA600 LoRaWAN cold chain temperature logger. Designed for monitoring temperatures in refrigerated storage, transport and pharmaceutical environments."
+# Logo of the device
+logo: ctslora600.png
+# Product name & Version
+product:
+    name: MEDF/CTS600
+    version: 1
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
+deviceProfileIds:
+    - id: LORA/GenericA.1.0.2a_ETSI_Rx2-SF12
+
+maxTxPower:
+minTxPower:
+maxTxEIRP:
+minTxEIRP:
+motionIndicator: near_static
+
+LoRaWANCertified:
+# Always mandatory: `<vendorId>:<modelName>:<modelVersion>`
+modelId: medifrd:ctslora600:1
+# <vendorId>:<protocolName>:<protocolVersion>
+protocolId: medifrd:ctslora:1
+# DataSheet URL (optional)
+specificationURL: https://www.medifroid.fr/
+# User Guide URL (optional)
+userGuideURL:
+sensors:
+    - temperature:Cel
+
+examples:
+    medifrd:ctslora:1:
+        - "TYPE_NEW_DATAS - 1 channel, 5 temperature measures"
+        - "TYPE_SYNC_ASKED - synchronisation request"
+
+LoRaWANRelay:
+  canOperateAsARelay: false
+  defaultRelayActivation: false

@@ -1,0 +1,15 @@
+# Formal driver name
+name: Medifroid CTS LORA Driver
+# Simple description of the driver functionalities
+description: Decoder for Medifroid CTS LORA 200, 300 and 600 cold chain temperature loggers. Supports data frames, synchronisation frames and campaign info frames.
+# Mandatory - id of the company that developed the driver
+producerId: medifrd
+# Email of the developer
+developerEmail: delphine.vignes@sauermanngroup.com
+# In case of a driver per model: `<vendorId>:<modelName>:<modelVersion>`
+# In case of a driver for multiples model: `<vendorId>:generic:<genericVersion>`
+# Needed for linking the model with a specific driver -> must be the same one used in model.yaml in the corresponding model
+protocolId: medifrd:ctslora:1
+# This is to specify the type of functions signature used in this driver. Possible values: actility, lora-alliance, ttn, chirpstack.
+# Keep it empty if you followed the lora-alliance payload codec api
+signature: lora-alliance
