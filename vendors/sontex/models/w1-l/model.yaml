@@ -1,0 +1,19 @@
+name: Supercom W1-L
+description: Supercom W1-L LoRaWAN water meter parser based on vendor-provided M-Bus codec.
+logo: w1-l.png
+deviceProfileIds:
+  - id: sontex_RFGroup1_1.0.2b_classA
+  - id: sontex_RFGroup2_1.0.2b_classA
+LoRaWANCertified: false
+modelId: sontex:w1-l:1
+protocolId: sontex:w1w2:1
+specificationURL: https://sontex.ch/wp-content/uploads/2024/03/ds-smw1-v01-2402-en.pdf
+userGuideURL:
+sensors:
+examples:
+  sontex:w1w2:1:
+    - "Sample uplink payload decode"
+
+LoRaWANRelay:
+  canOperateAsARelay: false
+  defaultRelayActivation: false
