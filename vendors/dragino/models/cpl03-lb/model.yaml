@@ -1,0 +1,37 @@
+# Commercial name of the model
+name: CPL03-LB
+# Functional description of the product. Maximum 500 characters.
+description: "Outdoor LoRaWAN open/close dry contact sensor for status, open duration, and pulse count monitoring."
+# Logo of the device
+logo: dragino-cpl03-lb.png
+# Product name & Version
+product:
+    name: DRAG/CPL03
+    version: 1
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
+deviceProfileIds:
+    - id: DRAG/CPL03A.1.0.3a_AS923
+    - id: DRAG/CPL03A.1.0.3a_AU
+    - id: DRAG/CPL03A.1.0.3a_ETSI
+    - id: DRAG/CPL03A.1.0.3a_FCC
+
+maxTxPower:
+minTxPower:
+maxTxEIRP:
+minTxEIRP:
+motionIndicator:
+
+LoRaWANCertified:
+modelId: dragino:cpl03-lb:1
+protocolId:
+    - dragino:cpl03-lb:1
+specificationURL: https://www.dragino.com/products/lorawan-nb-iot-door-sensor-water-leak/item/278-cpl03-lb-ls.html
+userGuideURL: https://www.dragino.com/downloads/index.php?dir=LoRa_End_Node/CPL03-LB/
+sensors:
+examples:
+    dragino:cpl03-lb:1:
+        - "CPL03-LB single-channel contact status uplink"
+
+LoRaWANRelay:
+  canOperateAsARelay: false
+  defaultRelayActivation: false

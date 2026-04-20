@@ -1,0 +1,52 @@
+# ID that represents the profile of your device model.
+id: DRAG/CPL03A.1.0.3a_ETSI
+loRaWANClass: A
+ISMbands: eu868,eu433,in865,kr920,ru864
+motionIndicator: RANDOM
+
+mac:
+    minRx1Delay:
+    activationByPersonalization: true
+    overTheAirActivation: true
+    loRaWANMacVersion: 1.0.3
+    regionalParameterVersion: 1.0.3revA
+
+    devicesTxPowerCapabilities:
+        minTxPower:
+        maxTxPower: 16
+        minTxEIRP:
+        maxTxEIRP: 16
+
+    uplinkFrameRepetition:
+        maxNbTrans:
+        maxRedundancyForConfirmedUL:
+
+bootSettings:
+    rx1Delay: 5000
+    rx1DROffset:
+    rx2DataRate:
+    rx2Frequency: 869.525
+    pingSlotChannelDataRate:
+    pingSlotChannelFrequency:
+    beaconFrequency:
+    downlinkDwellTime: 0
+    uplinkDwellTime: 0
+
+supportedMACCommands:
+    linkADRReqAns: true
+    devStatusReqAns: true
+    joinRequestAccept: true
+    dutyCycleReqAns: true
+    linkCheckReqAns: true
+    rxParamSetupReqAns: true
+    rxTimingSetupReqAns: true
+    newChannelReqAns: true
+    dlChannelReqAns: true
+    txParamSetupReqAns: true
+    pingSlotChannelReqAns: false
+    pingSlotInfoReqAns: true
+    deviceTimeReqAns: true
+    beaconFreqReqAns: false
+    extendedNotifyNewEndDeviceReq: false
+
+devNonceCounterBased: false
