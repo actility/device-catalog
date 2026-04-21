@@ -1,0 +1,78 @@
+[
+  {
+    "description": "TT v3 device status uplink",
+    "type": "uplink",
+    "input": {
+      "bytes": "343412CDABFFA00F100E5E0ED850157B4BF6",
+      "fPort": 15,
+      "time": "2026-04-22T10:00:00.000+00:00"
+    },
+    "output": {
+      "header": {
+        "protocol_version": 3,
+        "message_type": "device_status"
+      },
+      "device_status": {
+        "base_config_crc": "0x1234",
+        "sensor_config_crc": "0xABCD",
+        "event_counter": 255,
+        "battery_voltage": {
+          "low": 4,
+          "high": 3.6,
+          "settle": 3.678
+        },
+        "temperature": {
+          "min": -40,
+          "max": 80,
+          "avg": 21
+        },
+        "tx_counter": 123,
+        "avg_rssi": -75,
+        "avg_snr": -10
+      }
+    },
+    "points": null
+  },
+  {
+    "description": "TT v3 sensor configuration downlink encode",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "header": {
+          "message_type": "sensor_configuration",
+          "protocol_version": 3
+        },
+        "device_type": "tt",
+        "sensor_type": "K",
+        "temperature_measurement_interval_seconds": 900,
+        "periodic_event_message_interval": 16,
+        "events": [
+          {
+            "mode": "off",
+            "threshold_temperature": 0,
+            "measurement_window": 0
+          },
+          {
+            "mode": "off",
+            "threshold_temperature": 0,
+            "measurement_window": 0
+          },
+          {
+            "mode": "off",
+            "threshold_temperature": 0,
+            "measurement_window": 0
+          },
+          {
+            "mode": "off",
+            "threshold_temperature": 0,
+            "measurement_window": 0
+          }
+        ]
+      }
+    },
+    "output": {
+      "fPort": 15,
+      "bytes": "3604028403100000000000000000000000000000000000A6AD"
+    }
+  }
+]

@@ -1,12 +1,12 @@
 # Commercial name of the model
-name: TWTG NEON Temperature Transmitter (DS-TT-01-xx)
+name: NEON Temperature Transmitter v3 (DS-TT-01-xx)
 # Functional description of the product. Maximum 500 characters.
 description: "The NEON Temperature Transmitter provides insight on extreme temperatures and can send alerts if set triggers are reached. This folder contains the latest product documentation, please note that documents may be updated regularly."
 # Logo of the device
 logo: twtg-tt.png
 # Product name & Version
 product:
-    name: TWTG/TT
+    name: TWTG/TTV3
     version: 1
 # ID(s) of the profile that defines the LoRaWAN characteristics of this model.
 # id: as defined under /profiles.
@@ -34,7 +34,7 @@ motionIndicator: NEAR_STATIC
 LoRaWANCertified: false
 # Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
 # Format: `<8 characters max>:<16 characters max>:<digits only>`
-modelId: twtg:neon-tt:1
+modelId: twtg:neon-tt:2
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId: twtg:neon-tt:4
 # DataSheet URL (optional)
@@ -48,12 +48,8 @@ sensors:
 # A list of examples description that are compatible with this model
 examples:
     twtg:neon-tt:4:
-          - "TT Boot message – Payload pattern"
-          - "TT Activated message – Payload pattern"
-          - "TT Deactivated message – Payload pattern"
-          - "TT Sensor normal event message – Payload pattern"
-          - "TT Sensor extended event message – Payload pattern"
-          - "TT Device status message – Payload pattern"
+          - "TT v4 device status uplink"
+          - "TT v4 sensor config downlink encode"
 
 
 LoRaWANRelay:

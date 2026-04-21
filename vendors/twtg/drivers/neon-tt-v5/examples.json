@@ -1,0 +1,30 @@
+[
+  {
+    "description": "TT v5 dev_version_ans uplink",
+    "type": "uplink",
+    "input": {
+      "bytes": "01ddccbbaa44332211",
+      "fPort": 203,
+      "time": "2023-02-15T13:58:57.743Z"
+    },
+    "output": {
+      "message_name": "dev_version_ans",
+      "FW_version": "0xaabbccdd",
+      "HW_version": "0x11223344"
+    },
+    "points": null
+  },
+  {
+    "description": "TT v5 dev_version_req downlink encode",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "message_name": "dev_version_req"
+      }
+    },
+    "output": {
+      "fPort": 203,
+      "bytes": "01"
+    }
+  }
+]

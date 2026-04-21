@@ -1,21 +1,22 @@
 # Commercial name of the model
-name: NEON Temperature Transmitter v2 (DS-TT-01-xx)
+name: NEON Temperature Transmitter v5 (DS-TT-02-00)
 # Functional description of the product. Maximum 500 characters.
 description: "The NEON Temperature Transmitter provides insight on extreme temperatures and can send alerts if set triggers are reached. This folder contains the latest product documentation, please note that documents may be updated regularly."
 # Logo of the device
 logo: twtg-tt.png
 # Product name & Version
 product:
-    name: TWTG/TTV2
+    name: TWTG/TTV5
     version: 1
 # ID(s) of the profile that defines the LoRaWAN characteristics of this model.
 # id: as defined under /profiles.
 # lorawanDeviceProfileID: as defined by LoRa Alliance in https://lora-alliance.org/wp-content/uploads/2020/10/LoRa_Alliance_Vendor_ID_for_QR_Code_02142022.pdf.
 # The lorawanDeviceProfileID consists of 8 upper-case hexadecimal characters, 4 characters for VendorID + 4 characters for VendorProfileID. Please consider using single (') or double (") quotation.
 deviceProfileIds:
-    - id: twtg_RFGroup1_1.0.2revB_classA
-    - id: twtg_RFGroup2_1.0.2revB_classA
-    - id: twtg_RFGroup4_1.0.2revB_classA
+    - id: twtg_RFGroup1_1.0.4_RP2-1.0.3_classA
+    - id: twtg_RFGroup2_1.0.4_RP2-1.0.3_classA
+    - id: twtg_RFGroup3_1.0.4_RP2-1.0.3_classA
+    - id: twtg_RFGroup4_1.0.4_RP2-1.0.3_classA
 
 # You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings.
 # Maximum device TX Conducted output power in dBm.
@@ -34,9 +35,9 @@ motionIndicator: NEAR_STATIC
 LoRaWANCertified: false
 # Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
 # Format: `<8 characters max>:<16 characters max>:<digits only>`
-modelId: twtg:neon-tt:2
+modelId: twtg:neon-tt:5
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
-protocolId: twtg:neon-tt:2
+protocolId: twtg:neon-tt:5
 # DataSheet URL (optional)
 specificationURL: https://github.com/TWTG-R-D-B-V/neon-product-documentation/blob/main/TT/6015_P20-002_Data-Sheet-NEON-Temperature-Transmitter_C.pdf
 # User Guide URL (optional)
@@ -47,9 +48,9 @@ sensors:
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
-    twtg:neon-tt:2:
-          - "TT v2 device status uplink"
-          - "TT v2 sensor configuration downlink encode"
+    twtg:neon-tt:5:
+          - "TT v5 dev_version_ans uplink"
+          - "TT v5 dev_version_req downlink encode"
 
 
 LoRaWANRelay:
