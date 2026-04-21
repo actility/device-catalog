@@ -1,0 +1,97 @@
+[
+  {
+    "description": "RT v1 device status uplink",
+    "type": "uplink",
+    "input": {
+      "bytes": "107515030002230101",
+      "fPort": 2,
+      "time": "2026-04-21T10:00:00.000+00:00"
+    },
+    "output": {
+      "device_status": {
+        "protocol_version": 1,
+        "battery_voltage": 2.9176470588235293,
+        "temperature": 21,
+        "lora_tx_counter": 3,
+        "avg_rssi": "-100..-129",
+        "bist": "0x0123",
+        "event_counter": 1
+      }
+    },
+    "points": {
+      "batteryVoltage": {
+        "unitId": "V",
+        "record": 2.9176470588235293
+      },
+      "batteryLevel": {
+        "unitId": "%",
+        "record": 72.94
+      },
+      "temperature": {
+        "unitId": "Cel",
+        "record": 21
+      },
+      "counter": {
+        "unitId": "count",
+        "record": 1
+      }
+    }
+  },
+  {
+    "description": "RT v1 sensor event uplink",
+    "type": "uplink",
+    "input": {
+      "bytes": "10028D295CA341",
+      "fPort": 3,
+      "time": "2026-04-21T10:00:00.000+00:00"
+    },
+    "output": {
+      "sensor_event": {
+        "protocol_version": 1,
+        "selection": "max_only",
+        "condition_0": 1,
+        "condition_1": 0,
+        "condition_2": 1,
+        "condition_3": 1,
+        "trigger": "button press",
+        "measurement": {
+          "status": "OK",
+          "max": 20.420000076293945
+        }
+      }
+    },
+    "points": {
+      "pressure:2": {
+        "unitId": "hPa",
+        "record": 20.420000076293945,
+        "nature": "maximum"
+      }
+    }
+  },
+  {
+    "description": "RT v1 base config downlink encode",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "config_update_req": {
+          "config_type": "base",
+          "protocol_version": 1,
+          "tag": "0x11223344",
+          "payload": {
+            "switch_mask": {
+              "enable_confirmed_event_message": false,
+              "enable_confirmed_data_message": false,
+              "allow_deactivation": true
+            },
+            "periodic_message_random_delay_seconds": 30,
+            "status_message_interval": "1 day"
+          }
+        }
+      }
+    },
+    "output": {
+      "fPort": 7,
+      "bytes": "104433221104be"
+    }
+  }
+]
