@@ -1,19 +1,19 @@
 # Commercial name of the model 
-name: IWM-LR3
+name: IWM-LR4
 # Functional description of the product. Maximum 500 characters. 
-description: "IWM-LR3 has been designed to allow wireless remote reading in different types of applications from the residential sector to the commercial and industrial sectors. It can read the inductive target of the meter dial using a pulse sensor."
+description: "IWM-LR4 is a LoRaWAN radio module applicable to the series of Woltmann water meters mod. WDE-K50. It reports current consumption, detects fraud attempts, prolonged operation at maximum flow rate (Q4), and potential water leaks. Designed for wireless remote reading in commercial and industrial sectors."
 # Logo of the device
-logo: b-meters-iwm-lr3.png
+logo: b-meters-iwm-lr4.png
 # Product name & Version
 product:
-    name: B-ME/IWLR3
+    name: B-ME/IWLR4
     version: 1
 # ID(s) of the profile that defines the LoRaWAN characteristics of this model.
 # id: as defined under /profiles.
 # lorawanDeviceProfileID: as defined by LoRa Alliance in https://lora-alliance.org/wp-content/uploads/2020/10/LoRa_Alliance_Vendor_ID_for_QR_Code_02142022.pdf.
 # The lorawanDeviceProfileID consists of 8 upper-case hexadecimal characters, 4 characters for VendorID + 4 characters for VendorProfileID. Please consider using single (') or double (") quotation.
 deviceProfileIds:
-    - id: B/ME-IWLR3A.1.0.1a_ETSI
+    - id: B-ME/IWLR4A.1.0.1a_ETSI
  
 # You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
 # Maximum device TX Conducted output power in dBm. 
@@ -32,14 +32,14 @@ motionIndicator:
 LoRaWANCertified: 
 # Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
 # Format: `<8 characters max>:<16 characters max>:<digits only>`
-modelId: b-meters:iwm-lr3:1
+modelId: b-meters:iwm-lr4:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId: 
     - b-meters:iwm-lrx:1
 # DataSheet URL (optional) 
-specificationURL: 
+specificationURL: https://www.bmeters.com/wp-content/uploads/2023/07/v1.1_IWM-LR4_DS_EN.pdf
 # User Guide URL (optional) 
-userGuideURL: 
+userGuideURL: https://www.bmeters.com/wp-content/uploads/2021/07/v1.0_IWM-LR3_LR4_UM_EN.pdf
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
 - volume:l
