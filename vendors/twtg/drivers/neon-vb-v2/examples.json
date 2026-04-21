@@ -1,0 +1,136 @@
+[
+  {
+    "description": "VB v2 sensor event uplink",
+    "type": "uplink",
+    "input": {
+      "bytes": "23010100d20488130200d30487130300d40486130400d50485130500d60484130600d704831361f0d204401f15",
+      "fPort": 15,
+      "time": "2026-04-21T10:00:00.000+00:00"
+    },
+    "output": {
+      "header": {
+        "protocol_version": 2,
+        "message_type": "sensor_event"
+      },
+      "sensor_event": {
+        "trigger": "button",
+        "rms_velocity": {
+          "x": {
+            "min": 0.01,
+            "max": 12.34,
+            "avg": 50
+          },
+          "y": {
+            "min": 0.02,
+            "max": 12.35,
+            "avg": 49.99
+          },
+          "z": {
+            "min": 0.03,
+            "max": 12.36,
+            "avg": 49.98
+          }
+        },
+        "acceleration": {
+          "x": {
+            "min": 0.04,
+            "max": 12.37,
+            "avg": 49.97
+          },
+          "y": {
+            "min": 0.05,
+            "max": 12.38,
+            "avg": 49.96
+          },
+          "z": {
+            "min": 0.06,
+            "max": 12.39,
+            "avg": 49.95
+          }
+        },
+        "temperature": {
+          "min": -39.99,
+          "max": 12.34,
+          "avg": 80
+        },
+        "condition_0": 1,
+        "condition_1": 0,
+        "condition_2": 1,
+        "condition_3": 0,
+        "condition_4": 1,
+        "condition_5": 0
+      }
+    },
+    "points": {
+      "temperature": {
+        "unitId": "Cel",
+        "record": 80
+      },
+      "velocity:1": {
+        "unitId": "mm/s",
+        "record": 50,
+        "nature": "x rms"
+      },
+      "velocity:2": {
+        "unitId": "mm/s",
+        "record": 49.99,
+        "nature": "y rms"
+      },
+      "velocity:3": {
+        "unitId": "mm/s",
+        "record": 49.98,
+        "nature": "z rms"
+      },
+      "acceleration:1": {
+        "unitId": "m/s2",
+        "record": 49.97,
+        "nature": "x rms"
+      },
+      "acceleration:2": {
+        "unitId": "m/s2",
+        "record": 49.96,
+        "nature": "y rms"
+      },
+      "acceleration:3": {
+        "unitId": "m/s2",
+        "record": 49.95,
+        "nature": "z rms"
+      }
+    }
+  },
+  {
+    "description": "VB v2 base configuration downlink encode",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "header": {
+          "message_type": "base_configuration",
+          "protocol_version": 2
+        },
+        "switch_mask": {
+          "enable_confirmed_event_message": false,
+          "enable_confirmed_data_message": false,
+          "allow_deactivation": true
+        },
+        "communication_max_retries": 3,
+        "number_of_unconfirmed_messages": 1,
+        "periodic_message_random_delay_seconds": 60,
+        "status_message_interval_seconds": 86400,
+        "status_message_confirmed_interval": 1,
+        "lora_failure_holdoff_count": 5,
+        "lora_system_recover_count": 1,
+        "lorawan_fsb_mask": [
+          "0x00FF",
+          "0x0000",
+          "0x0000",
+          "0x0000",
+          "0x0001"
+        ]
+      }
+    },
+    "output": {
+      "fPort": 15,
+      "bytes": "250803013ca005010501ff000000000000000100579c"
+    }
+  }
+]
