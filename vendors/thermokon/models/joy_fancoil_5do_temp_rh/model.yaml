@@ -1,0 +1,55 @@
+# Commercial name of the model
+name: JOY_FANCOIL_5DO_TEMP_RH
+
+# Functional description of the product. Maximum 500 characters.
+description: "Fancoil régulateur, Régulateur d'ambiance température, humidité | Actif, LoRaWAN® (868 MHz), Contact de commutation | Contrôle du Climat Ambiant, Mesurer les valeurs 2x contact NO, 1x chaud, 1x froid, charge max. 500 mA (240 V, Triac), 3x contact NO, étapes de ventilateur, charge max. 3 A"
+# Logo of the device
+logo: JOY_Fancoil_white.jpg
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
+# id: as defined under /profiles.
+# lorawanDeviceProfileID: as defined by LoRa Alliance in https://lora-alliance.org/wp-content/uploads/2020/10/LoRa_Alliance_Vendor_ID_for_QR_Code_02142022.pdf.
+# The lorawanDeviceProfileID consists of 8 upper-case hexadecimal characters, 4 characters for VendorID + 4 characters for VendorProfileID. Please consider using single (') or double (") quotation.
+deviceProfileIds:
+  - id: thrmkn_RFGroup1_1.0.3a_classC
+
+# You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings.
+# Maximum device TX Conducted output power in dBm.
+maxTxPower:
+# Minimum device TX Conducted output power in dBm.
+minTxPower:
+# Maximum device TX Radiated output power in dBm.
+maxTxEIRP:
+# Minimum device TX Radiated output power in dBm.
+minTxEIRP:
+# Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'
+# or 'random' (not known, changes over time).
+motionIndicator:
+
+# Is your device certified by the LoRa Alliance? Possible values: true, false.
+LoRaWANCertified:
+# Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
+# Format: `<8 characters max>:<16 characters max>:<digits only>`
+# Be careful: Once you chose a model, it cannot be changed later
+modelId: thrmkn:joy-fancoil-5do-temp_rh:1
+# <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
+# Be careful: Once you chose a protocolId, it cannot be changed later
+protocolId: thrmkn:joylrw:1
+# DataSheet URL (optional)
+specificationURL: https://www.thermokon.de/direct/fr-fr/categories/g-joy-fc-lorawan?filter_show=1&limit=18&sbscf%3Asbscf1%2Fattr%2F8470%5B0%5D=thermokon%3A%2F%2F%7Br%3D0%2Cb%3D0%2Cl%3Dfr_FR%7D%2F1%2F7%2F8%2F338%2F339%2F8470%2F10570
+# User Guide URL (optional)
+userGuideURL:
+# <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
+sensors:
+# Driver examples
+# A list of examples description that are compatible with this model
+examples:
+  thrmkn:joylrw:1:
+    - "JOY heartbeat with setpoints and internal temperature"
+    - "JOY COV internal temperature heating and fan state"
+    - "JOY forced uplink response"
+    - "JOY encode basic setpoint and eco mode"
+    - "JOY encode request registers by keys"
+
+LoRaWANRelay:
+  canOperateAsARelay: false
+  defaultRelayActivation: false

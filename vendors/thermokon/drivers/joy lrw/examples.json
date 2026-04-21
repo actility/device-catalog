@@ -1,0 +1,67 @@
+[
+  {
+    "type": "uplink",
+    "description": "JOY heartbeat with setpoints and internal temperature",
+    "input": {
+      "fPort": 2,
+      "bytes": "c0000601020000d2020100e60202000a022a00dc020300de"
+    },
+    "output": {
+      "data": {
+        "HB_DEVICE_TYPE": 1537,
+        "SETPOINT_HEAT": 21,
+        "SETPOINT_COOL": 23,
+        "SETPOINT_OFFSET": 1,
+        "SETPOINT_ABSOLUTE": 22,
+        "SENSOR_INTERN": 22.2
+      },
+      "warnings": []
+    },
+    "points": {
+      "temperature:1": {
+        "unitId": "Cel",
+        "record": 22.2
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "JOY COV internal temperature heating and fan state",
+    "input": {
+      "fPort": 2,
+      "bytes": "020300de020500010207ff02"
+    },
+    "output": {
+      "data": {
+        "SENSOR_INTERN": 22.2,
+        "OUTPUT_HEATING": 1,
+        "OUTPUT_FAN_6WV": 2
+      },
+      "warnings": []
+    },
+    "points": {
+      "temperature:1": {
+        "unitId": "Cel",
+        "record": 22.2
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "JOY forced uplink response",
+    "input": {
+      "fPort": 2,
+      "bytes": "c230020000c8020500010207ff01c1060001"
+    },
+    "output": {
+      "data": {
+        "SETPOINT_HEAT": 20,
+        "OUTPUT_HEATING": 1,
+        "OUTPUT_FAN_6WV": 1,
+        "LRW_HEARTBEAT_INTERVAL": 1
+      },
+      "warnings": []
+    },
+    "points": {}
+  }
+]
