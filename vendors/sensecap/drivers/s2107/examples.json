@@ -1,0 +1,54 @@
+[
+  {
+    "type": "uplink",
+    "description": "official three-channel temperature packet",
+    "input": {
+      "bytes": "4709c909ec0a00",
+      "fPort": 1,
+      "recvTime": "2026-04-22T12:00:00.000Z"
+    },
+    "output": {
+      "data": {
+        "err": 0,
+        "payload": "4709C909EC0A00",
+        "valid": true,
+        "messages": [
+          [
+            {
+              "measurementValue": 25.05,
+              "measurementId": "4203",
+              "type": "Temperature",
+              "measurementChannel": "1"
+            },
+            {
+              "measurementValue": 25.4,
+              "measurementId": "4203",
+              "type": "Temperature",
+              "measurementChannel": "2"
+            },
+            {
+              "measurementValue": 25.6,
+              "measurementId": "4203",
+              "type": "Temperature",
+              "measurementChannel": "3"
+            }
+          ]
+        ]
+      }
+    },
+    "points": {
+      "temperature:1": {
+        "unitId": "Cel",
+        "record": 25.05
+      },
+      "temperature:2": {
+        "unitId": "Cel",
+        "record": 25.4
+      },
+      "temperature:3": {
+        "unitId": "Cel",
+        "record": 25.6
+      }
+    }
+  }
+]
