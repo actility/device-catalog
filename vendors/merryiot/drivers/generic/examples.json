@@ -1,0 +1,328 @@
+[
+  {
+    "description": "CD10 v3 payload",
+    "type": "uplink",
+    "input": {
+      "bytes": "330f15411e02",
+      "fPort": 127,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "fPort": 127,
+        "byteLength": 6,
+        "battery_volt": 3.6,
+        "temperature": 21,
+        "humi": 65,
+        "trigger": 1,
+        "button": 1,
+        "co2threshold": 1,
+        "co2calibration": 1,
+        "co2_ppm": 542
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "batteryVoltage": {
+        "unitId": "V",
+        "record": 3.6
+      },
+      "temperature": {
+        "unitId": "Cel",
+        "record": 21,
+        "nature": "air"
+      },
+      "humidity": {
+        "unitId": "%RH",
+        "record": 65,
+        "nature": "air"
+      },
+      "co2Level": {
+        "unitId": "ppm",
+        "record": 542
+      },
+      "status:1": {
+        "unitId": "state",
+        "record": true,
+        "nature": "button"
+      },
+      "status:2": {
+        "unitId": "state",
+        "record": true,
+        "nature": "trigger"
+      },
+      "status:3": {
+        "unitId": "state",
+        "record": true,
+        "nature": "co2 threshold"
+      },
+      "status:4": {
+        "unitId": "state",
+        "record": true,
+        "nature": "co2 calibration"
+      }
+    }
+  },
+  {
+    "description": "DW10 v3 payload",
+    "type": "uplink",
+    "input": {
+      "bytes": "0f0b37322c01100e00",
+      "fPort": 120,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "fPort": 120,
+        "byteLength": 9,
+        "battery_volt": 3.2,
+        "temperature": 55,
+        "humi": 50,
+        "open": 1,
+        "button": 1,
+        "tamper": 1,
+        "tilt": 1,
+        "time": 300,
+        "count": 3600
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "batteryVoltage": {
+        "unitId": "V",
+        "record": 3.2
+      },
+      "temperature": {
+        "unitId": "Cel",
+        "record": 55,
+        "nature": "air"
+      },
+      "humidity": {
+        "unitId": "%RH",
+        "record": 50,
+        "nature": "air"
+      },
+      "time": {
+        "unitId": "s",
+        "record": 300
+      },
+      "counter": {
+        "unitId": "count",
+        "record": 3600,
+        "nature": "event triggers"
+      },
+      "status:1": {
+        "unitId": "state",
+        "record": true,
+        "nature": "open"
+      },
+      "status:2": {
+        "unitId": "state",
+        "record": true,
+        "nature": "button"
+      },
+      "status:3": {
+        "unitId": "state",
+        "record": true,
+        "nature": "tamper"
+      },
+      "status:4": {
+        "unitId": "state",
+        "record": true,
+        "nature": "tilt"
+      }
+    }
+  },
+  {
+    "description": "DW10 v4 payload",
+    "type": "uplink",
+    "input": {
+      "bytes": "000fd4003400001d0000",
+      "fPort": 120,
+      "recvTime": "2026-04-22T12:00:00.000+00:00"
+    },
+    "output": {
+      "data": {
+        "fPort": 120,
+        "byteLength": 10,
+        "battery_volt": 3.6,
+        "temperature": 21.2,
+        "humi": 52,
+        "open": 0,
+        "button": 0,
+        "tamper": 0,
+        "tilt": 0,
+        "time": 0,
+        "count": 29
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "batteryVoltage": {
+        "unitId": "V",
+        "record": 3.6
+      },
+      "temperature": {
+        "unitId": "Cel",
+        "record": 21.2,
+        "nature": "air"
+      },
+      "humidity": {
+        "unitId": "%RH",
+        "record": 52,
+        "nature": "air"
+      },
+      "time": {
+        "unitId": "s",
+        "record": 0
+      },
+      "counter": {
+        "unitId": "count",
+        "record": 29,
+        "nature": "event triggers"
+      },
+      "status:1": {
+        "unitId": "state",
+        "record": false,
+        "nature": "open"
+      },
+      "status:2": {
+        "unitId": "state",
+        "record": false,
+        "nature": "button"
+      },
+      "status:3": {
+        "unitId": "state",
+        "record": false,
+        "nature": "tamper"
+      },
+      "status:4": {
+        "unitId": "state",
+        "record": false,
+        "nature": "tilt"
+      }
+    }
+  },
+  {
+    "description": "MS10 v3 payload",
+    "type": "uplink",
+    "input": {
+      "bytes": "070715442c01e80300",
+      "fPort": 122,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "fPort": 122,
+        "byteLength": 9,
+        "battery_volt": 2.8,
+        "temperature": 21,
+        "humi": 68,
+        "motion": 1,
+        "button": 1,
+        "tamper": 1,
+        "time": 300,
+        "count": 1000
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "batteryVoltage": {
+        "unitId": "V",
+        "record": 2.8
+      },
+      "temperature": {
+        "unitId": "Cel",
+        "record": 21,
+        "nature": "air"
+      },
+      "humidity": {
+        "unitId": "%RH",
+        "record": 68,
+        "nature": "air"
+      },
+      "time": {
+        "unitId": "s",
+        "record": 300
+      },
+      "counter": {
+        "unitId": "count",
+        "record": 1000,
+        "nature": "event triggers"
+      },
+      "status:1": {
+        "unitId": "state",
+        "record": true,
+        "nature": "motion"
+      },
+      "status:2": {
+        "unitId": "state",
+        "record": true,
+        "nature": "button"
+      },
+      "status:3": {
+        "unitId": "state",
+        "record": true,
+        "nature": "tamper"
+      }
+    }
+  },
+  {
+    "description": "WL10 v3 payload",
+    "type": "uplink",
+    "input": {
+      "bytes": "0706163f",
+      "fPort": 126,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "fPort": 126,
+        "byteLength": 4,
+        "battery_volt": 2.7,
+        "temperature": 22,
+        "humi": 63,
+        "water": 1,
+        "button": 1,
+        "tamper": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "batteryVoltage": {
+        "unitId": "V",
+        "record": 2.7
+      },
+      "temperature": {
+        "unitId": "Cel",
+        "record": 22,
+        "nature": "air"
+      },
+      "humidity": {
+        "unitId": "%RH",
+        "record": 63,
+        "nature": "air"
+      },
+      "status:1": {
+        "unitId": "state",
+        "record": true,
+        "nature": "water"
+      },
+      "status:2": {
+        "unitId": "state",
+        "record": true,
+        "nature": "button"
+      },
+      "status:3": {
+        "unitId": "state",
+        "record": true,
+        "nature": "tamper"
+      }
+    }
+  }
+]
