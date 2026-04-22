@@ -1,0 +1,50 @@
+id: vega_RFGroup1_1.0.2b_classA
+loRaWANClass: A
+ISMbands: eu868
+motionIndicator: near_static
+
+mac:
+  activationByPersonalization: false
+  overTheAirActivation: true
+  loRaWANMacVersion: 1.0.2
+  regionalParameterVersion: 1.0.2revB
+
+  devicesTxPowerCapabilities:
+    minTxPower:
+    maxTxPower:
+    minTxEIRP:
+    maxTxEIRP:
+
+  uplinkFrameRepetition:
+    maxNbTrans:
+    maxRedundancyForConfirmedUL: 3
+
+bootSettings:
+  rx1Delay: 1000
+  rx1DROffset:
+  rx2DataRate:
+  rx2Frequency:
+  pingSlotChannelDataRate:
+  pingSlotChannelFrequency:
+  beaconFrequency:
+  downlinkDwellTime:
+  uplinkDwellTime:
+
+supportedMACCommands:
+  linkADRReqAns: true
+  devStatusReqAns: true
+  joinRequestAccept: true
+  dutyCycleReqAns: true
+  linkCheckReqAns: true
+  rxParamSetupReqAns: true
+  rxTimingSetupReqAns: true
+  newChannelReqAns: true
+  dlChannelReqAns: true
+  txParamSetupReqAns: true
+  pingSlotChannelReqAns: false
+  pingSlotInfoReqAns: true
+  deviceTimeReqAns: true
+  beaconFreqReqAns: false
+  extendedNotifyNewEndDeviceReq: false
+
+devNonceCounterBased: false

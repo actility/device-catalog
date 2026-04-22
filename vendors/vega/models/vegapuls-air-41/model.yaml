@@ -1,0 +1,41 @@
+# Commercial name of the model
+name: VEGAPULS Air 41
+# Functional description of the product.
+description: Autonomous radar level sensor with LoRaWAN uplink for distance and device health transmission.
+# Logo of the device
+logo: vegapuls-air-41.png
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
+deviceProfileIds:
+  - id: vega_RFGroup1_1.0.2b_classA
+
+maxTxPower:
+minTxPower:
+maxTxEIRP:
+minTxEIRP:
+motionIndicator:
+LoRaWANCertified: false
+
+modelId: vega:vegapuls-air-41:1
+protocolId:
+  - vega:vegapuls-air:1
+
+specificationURL: https://www.vega.com/fr-fr/produits/catalogue-produits/mesure-de-niveau/radar/vegapuls-air-41
+userGuideURL: https://www.m2mgermany.de/shop/media/webshop_dl/Other/7392_64808-DE-Betriebsanleitung-VEGAPULS-Air-41.pdf
+
+sensors:
+  - distance:m
+  - batteryLevel:%
+  - temperature:Cel
+  - angle:deg
+  - location:GPS
+  - status:state
+
+examples:
+  vega:vegapuls-air:1:
+    - Packet 2 with nominal distance measurement
+    - Packet 5 with failure status and GNSS
+    - Packet 254 dummy payload
+
+LoRaWANRelay:
+  canOperateAsARelay: false
+  defaultRelayActivation: false

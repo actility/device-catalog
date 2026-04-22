@@ -1,0 +1,133 @@
+[
+  {
+    "type": "uplink",
+    "description": "Packet 2 with nominal distance measurement",
+    "input": {
+      "bytes": "02003FA31F152D2400FA09"
+    },
+    "output": {
+      "data": {
+        "packetId": 2,
+        "rawHex": "02003fa31f152d2400fa09",
+        "namurStatus": {
+          "code": 0,
+          "label": "good"
+        },
+        "measurement": {
+          "value": 1.2743860483169556,
+          "unitCode": 45,
+          "unit": "m"
+        },
+        "batteryLevel": 36,
+        "temperature": 25,
+        "tiltAngle": 9
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "distance": {
+        "unitId": "m",
+        "record": 1.2743860483169556
+      },
+      "batteryLevel": {
+        "unitId": "%",
+        "record": 36
+      },
+      "temperature": {
+        "unitId": "Cel",
+        "record": 25,
+        "nature": "electronics"
+      },
+      "angle": {
+        "unitId": "deg",
+        "record": 9,
+        "nature": "tilt"
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Packet 5 with failure status and GNSS",
+    "input": {
+      "bytes": "05047FFFFFFF2D24010442412A784105329B0000565409"
+    },
+    "output": {
+      "data": {
+        "packetId": 5,
+        "rawHex": "05047fffffff2d24010442412a784105329b0000565409",
+        "namurStatus": {
+          "code": 4,
+          "label": "failure"
+        },
+        "measurement": {
+          "value": null,
+          "unitCode": 45,
+          "unit": "m"
+        },
+        "batteryLevel": 36,
+        "temperature": 26,
+        "location": {
+          "latitude": 48.291473388671875,
+          "longitude": 8.324854850769043
+        },
+        "vegaDeviceStatus": 22100,
+        "tiltAngle": 9
+      },
+      "errors": [],
+      "warnings": [
+        "Measurement value is NaN"
+      ]
+    },
+    "points": {
+      "batteryLevel": {
+        "unitId": "%",
+        "record": 36
+      },
+      "temperature": {
+        "unitId": "Cel",
+        "record": 26,
+        "nature": "electronics"
+      },
+      "location": {
+        "unitId": "GPS",
+        "record": [
+          8.324854850769043,
+          48.291473388671875
+        ]
+      },
+      "angle": {
+        "unitId": "deg",
+        "record": 9,
+        "nature": "tilt"
+      },
+      "status:1": {
+        "unitId": "state",
+        "record": true,
+        "nature": "namur failure"
+      },
+      "status:2": {
+        "unitId": "state",
+        "record": true,
+        "nature": "vega device status 22100"
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Packet 254 dummy payload",
+    "input": {
+      "bytes": "FE"
+    },
+    "output": {
+      "data": {
+        "packetId": 254,
+        "rawHex": "fe",
+        "packetType": "dummy"
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": null
+  }
+]
