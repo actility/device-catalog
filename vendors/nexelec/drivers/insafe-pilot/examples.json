@@ -1,0 +1,297 @@
+[
+  {
+    "description": "Example 1: InSafe+ Pilot Product General Configuration",
+    "type": "uplink",
+    "input": {
+      "bytes": "636c0a065a73050a18150C",
+      "fPort": 1,
+      "recvTime": "2023-10-21T12:00:00.000+00:00"
+    },
+    "output": {
+      "data": {
+        "typeOfProduct": "Insafe+ Pilot LoRa",
+        "typeOfMessage": "Product General Configuration",
+        "ledBlinkEnable": "Non-Active",
+        "buttonNotificationEnable": "Active",
+        "realTimeDataEnable": "Active",
+        "datalogEnable": "Non-Active",
+        "temperatureAlertEnable": "Active",
+        "keepaliveEnable": "Active",
+        "measurementPeriod": {
+          "unit": "minute",
+          "value": 10
+        },
+        "datalogDecimation": 6,
+        "temperatureAlertThreshold1": {
+          "unit": "Cel",
+          "value": 18
+        },
+        "temperatureAlertThreshold2": {
+          "unit": "Cel",
+          "value": 23
+        },
+        "deltaTemperature": {
+          "unit": "Cel",
+          "value": 0.5
+        },
+        "deltaHumidity": {
+          "unit": "%RH",
+          "value": 5
+        },
+        "keepalivePeriod": {
+          "unit": "hour",
+          "value": 24
+        },
+        "softwareVersion": "2.1",
+        "nfcStatus": "Discoverable",
+        "realTimeSendingPeriod": {
+          "unit": "minute",
+          "value": 120
+        }
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "temperature:1": {
+        "unitId": "Cel",
+        "record": 18,
+        "nature": "Temperature alert threshold 1"
+      },
+      "temperature:2": {
+        "unitId": "Cel",
+        "record": 23,
+        "nature": "Temperature alert threshold 2"
+      },
+      "temperature:3": {
+        "unitId": "Cel",
+        "record": 0.5,
+        "nature": "Real-time temperature delta"
+      },
+      "interval:1": {
+        "unitId": "minute",
+        "record": 10,
+        "nature": "Measurement period"
+      },
+      "interval:2": {
+        "unitId": "minute",
+        "record": 120,
+        "nature": "Real-time sending period"
+      },
+      "interval:3": {
+        "unitId": "h",
+        "record": 24,
+        "nature": "Keepalive period"
+      }
+    }
+  },
+  {
+    "description": "Example 2: InSafe+ Pilot Real Time Data",
+    "type": "uplink",
+    "input": {
+      "bytes": "617259000008",
+      "fPort": 1,
+      "recvTime": "2023-10-21T12:00:00.000+00:00"
+    },
+    "output": {
+      "data": {
+        "typeOfProduct": "Insafe+ Pilot LoRa",
+        "typeOfMessage": "Real Time Data",
+        "temperature": {
+          "unit": "Cel",
+          "value": 22.8
+        },
+        "humidity": {
+          "unit": "%RH",
+          "value": 44.5
+        },
+        "iaqGlobal": "Excellent",
+        "iaqSource": "All",
+        "iaqDry": "Excellent",
+        "iaqMould": "Excellent",
+        "iaqDustMite": "Excellent",
+        "hygrothermalComfortIndex": "Good",
+        "frameIndex": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "temperature": {
+        "unitId": "Cel",
+        "record": 22.8
+      },
+      "humidity": {
+        "unitId": "%RH",
+        "record": 44.5
+      }
+    }
+  },
+  {
+    "description": "Example 3: InSafe+ Pilot Datalog Data",
+    "type": "uplink",
+    "input": {
+      "bytes": "6263676266616760675f6768",
+      "fPort": 1,
+      "recvTime": "2023-10-21T12:00:00.000+00:00",
+      "time": "2023-10-21T12:00:00.000Z"
+    },
+    "output": {
+      "data": {
+        "typeOfProduct": "Insafe+ Pilot LoRa",
+        "typeOfMessage": "Datalog Data",
+        "temperature": {
+          "unit": "Cel",
+          "value": [
+            19.8,
+            19.6,
+            19.4,
+            19.2,
+            19
+          ]
+        },
+        "humidity": {
+          "unit": "%RH",
+          "value": [
+            51.5,
+            51,
+            51.5,
+            51.5,
+            51.5
+          ]
+        },
+        "timeBetweenMeasurements": {
+          "unit": "minute",
+          "value": 60
+        },
+        "frameIndex": 4
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "temperature": {
+        "unitId": "Cel",
+        "records": [
+          {
+            "value": 19.8,
+            "eventTime": "2023-10-21T08:00:00.000Z"
+          },
+          {
+            "value": 19.6,
+            "eventTime": "2023-10-21T09:00:00.000Z"
+          },
+          {
+            "value": 19.4,
+            "eventTime": "2023-10-21T10:00:00.000Z"
+          },
+          {
+            "value": 19.2,
+            "eventTime": "2023-10-21T11:00:00.000Z"
+          },
+          {
+            "value": 19,
+            "eventTime": "2023-10-21T12:00:00.000Z"
+          }
+        ]
+      },
+      "humidity": {
+        "unitId": "%RH",
+        "records": [
+          {
+            "value": 51.5,
+            "eventTime": "2023-10-21T08:00:00.000Z"
+          },
+          {
+            "value": 51,
+            "eventTime": "2023-10-21T09:00:00.000Z"
+          },
+          {
+            "value": 51.5,
+            "eventTime": "2023-10-21T10:00:00.000Z"
+          },
+          {
+            "value": 51.5,
+            "eventTime": "2023-10-21T11:00:00.000Z"
+          },
+          {
+            "value": 51.5,
+            "eventTime": "2023-10-21T12:00:00.000Z"
+          }
+        ]
+      },
+      "interval:1": {
+        "unitId": "minute",
+        "record": 60
+      }
+    }
+  },
+  {
+    "description": "Example 4: InSafe+ Pilot Button Press",
+    "type": "uplink",
+    "input": {
+      "bytes": "6400",
+      "fPort": 1,
+      "recvTime": "2023-10-21T12:00:00.000+00:00"
+    },
+    "output": {
+      "data": {
+        "typeOfProduct": "Insafe+ Pilot LoRa",
+        "typeOfMessage": "Button Press",
+        "buttonPress": "Short press",
+        "frameIndex": 0
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {}
+  },
+  {
+    "description": "Example 5: InSafe+ Pilot Temperature Alert",
+    "type": "uplink",
+    "input": {
+      "bytes": "6573C0",
+      "fPort": 1,
+      "recvTime": "2023-10-21T12:00:00.000+00:00"
+    },
+    "output": {
+      "data": {
+        "typeOfProduct": "Insafe+ Pilot LoRa",
+        "typeOfMessage": "Temperature Alert",
+        "temperature": {
+          "unit": "Cel",
+          "value": 23
+        },
+        "threshold1Reached": true,
+        "threshold2Reached": true,
+        "frameIndex": 0
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "temperature:1": {
+        "unitId": "Cel",
+        "record": 23
+      }
+    }
+  },
+  {
+    "description": "Example 6: InSafe+ Pilot Keepalive",
+    "type": "uplink",
+    "input": {
+      "bytes": "66",
+      "fPort": 1,
+      "recvTime": "2023-10-21T12:00:00.000+00:00"
+    },
+    "output": {
+      "data": {
+        "typeOfProduct": "Insafe+ Pilot LoRa",
+        "typeOfMessage": "Keepalive"
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {}
+  }
+]

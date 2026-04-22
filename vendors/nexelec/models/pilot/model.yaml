@@ -1,0 +1,47 @@
+# Commercial name of the model
+name: InSafe+ Pilot LoRa
+# Functional description of the product. Maximum 500 characters.
+description: "Connected indoor environment monitor with programmable push button, real-time and datalog temperature/humidity measurements, and configurable temperature alerts."
+# Logo of the device
+logo: pilot.png
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
+deviceProfileIds:
+    - id: nexelec_RFGroup1_1.0.2b_classA
+
+# You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model.
+maxTxPower:
+minTxPower:
+maxTxEIRP:
+minTxEIRP:
+motionIndicator:
+
+# Is your device certified by the LoRa Alliance? Possible values: true, false.
+LoRaWANCertified: false
+# Always mandatory: `<vendorId>:<modelName>:<modelVersion>`
+modelId: nexelec:pilot:1
+# <vendorId>:<protocolName>:<protocolVersion>
+protocolId: nexelec:insafe-pilot:1
+# DataSheet URL (optional)
+specificationURL: https://support.nexelec.fr/helpdesk/attachments/80252435551
+# User Guide URL (optional)
+userGuideURL: https://support.nexelec.fr/fr/support/solutions/articles/80001089286-guide-technique-pilot-lorawan
+# Available sensors following Actility ontology
+sensors:
+- temperature:Cel
+- humidity:%RH
+- interval:minute
+- interval:h
+
+# Driver examples
+examples:
+    nexelec:insafe-pilot:1:
+        - "Example 1: InSafe+ Pilot Product General Configuration"
+        - "Example 2: InSafe+ Pilot Real Time Data"
+        - "Example 3: InSafe+ Pilot Datalog Data"
+        - "Example 4: InSafe+ Pilot Button Press"
+        - "Example 5: InSafe+ Pilot Temperature Alert"
+        - "Example 6: InSafe+ Pilot Keepalive"
+
+LoRaWANRelay:
+  canOperateAsARelay: false
+  defaultRelayActivation: false

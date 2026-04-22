@@ -37,9 +37,25 @@ specificationURL: https://nexelec.eu/wp-content/uploads/2023/08/D926A_FR-Datashe
 userGuideURL: https://support.nexelec.fr/fr/support/solutions/articles/80001089289-guide-technique-sense-lorawan
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
+- amount:ppm
+- co2Level:ppm
+- concentration:ug/m3
+- humidity:%RH
+- illuminance:lx
+- intensity:dB
+- interval:h
+- percentage:%
+- pressure:hPa
+- quantity:ppb
+- temperature:Cel
+- time:s
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
+  nexelec:generic:1:
+    - "Example 1: ATMO_LoRa frame"
+    - "Example 2: ATMO_LoRa frame"
+    - "Example 3: ATMO_LoRa frame"
 
 
 LoRaWANRelay:
