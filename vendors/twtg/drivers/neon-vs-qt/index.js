@@ -692,8 +692,12 @@ function Encoder(obj, fPort) { // Used for The Things Network server
 }
 
 function decodeUplink(input) {
-  var fport;
-  return Decoder(input, fport);
+  var bytes = input.bytes;
+  if (typeof bytes === "string") {
+    bytes = bytes.match(/.{1,2}/g).map(function(byte) { return parseInt(byte, 16); });
+  }
+  return { data: Decode(input.fPort, bytes) };
+}
 }
 
 function encodeDownlink(input) {
@@ -702,3 +706,4 @@ function encodeDownlink(input) {
 }
 
 exports.Decode = Decode;
+exports.decodeUplink = decodeUplink;

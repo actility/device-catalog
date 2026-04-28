@@ -620,4 +620,11 @@ function calc_crc(buf) {
   return C & 0xFFFF;
 }
 
-exports.Decode = Decode;
+exports.Decode = Decode;function decodeUplink(input) {
+  var bytes = input.bytes;
+  if (typeof bytes === 'string') {
+    bytes = bytes.match(/.{1,2}/g).map(function(byte) { return parseInt(byte, 16); });
+  }
+  return { data: Decode(input.fPort, bytes) };
+}
+exports.decodeUplink = decodeUplink;

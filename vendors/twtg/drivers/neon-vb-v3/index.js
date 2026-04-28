@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /*
  * Single-file driver bundle for vendors/twtg/drivers/neon-vb-v3
  * Source merged from decoder_vb_rev-12.js and encoder_vb_rev-10.js
@@ -199,7 +200,7 @@ if (typeof module !== 'undefined') {
         // Protocol V3 reserves each fPort for different purpose
         switch (fPort) {
           case FPORT_BOOT:
-            header = decode_header_v3(bytes, cursor);
+            var header = decode_header_v3(bytes, cursor);
             decoded.boot = decode_boot_msg_v3(bytes, cursor);
             decoded.boot.protocol_version = header.protocol_version;
             break;
@@ -912,11 +913,6 @@ if (typeof module !== 'undefined') {
     }
   }
 
-  Object.prototype.in = function () {
-    for (var i = 0; i < arguments.length; i++)
-      if (arguments[i] == this) return true;
-    return false;
-  }
 
   /***************************
    * Message decoder functions
@@ -1190,7 +1186,7 @@ if (typeof module !== 'undefined') {
     var sensor_event = {};
 
     // byte[1]
-    selection = decode_uint8(bytes, cursor);
+    var selection = decode_uint8(bytes, cursor);
 
     sensor_event.selection = lookup_selection(selection);
     if (sensor_event.selection == "extended") {
@@ -1242,7 +1238,7 @@ if (typeof module !== 'undefined') {
     var sensor_event = {};
 
     // byte[1]
-    selection = decode_uint8(bytes, cursor);
+    var selection = decode_uint8(bytes, cursor);
 
     sensor_event.selection = lookup_selection(selection);
     if (sensor_event.selection != "extended") {

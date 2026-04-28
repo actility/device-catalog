@@ -8,54 +8,56 @@
       "time": "2026-04-21T10:00:00.000+00:00"
     },
     "output": {
-      "sensor_event": {
-        "selection": "extended",
-        "condition_0": 1,
-        "condition_1": 0,
-        "condition_2": 1,
-        "condition_3": 0,
-        "condition_4": 1,
-        "trigger": "button press",
-        "rms_velocity": {
-          "x": {
-            "min": 0.01,
+      "data": {
+        "sensor_event": {
+          "selection": "extended",
+          "condition_0": 1,
+          "condition_1": 0,
+          "condition_2": 1,
+          "condition_3": 0,
+          "condition_4": 1,
+          "trigger": "button press",
+          "rms_velocity": {
+            "x": {
+              "min": 0.01,
+              "max": 12.34,
+              "avg": 50
+            },
+            "y": {
+              "min": 0.02,
+              "max": 12.35,
+              "avg": 49.99
+            },
+            "z": {
+              "min": 0.03,
+              "max": 12.36,
+              "avg": 49.98
+            }
+          },
+          "acceleration": {
+            "x": {
+              "min": 0.04,
+              "peak": 12.37,
+              "rms": 49.97
+            },
+            "y": {
+              "min": 0.05,
+              "peak": 12.38,
+              "rms": 49.96
+            },
+            "z": {
+              "min": 0.06,
+              "peak": 12.39,
+              "rms": 49.95
+            }
+          },
+          "temperature": {
+            "min": -39.99,
             "max": 12.34,
-            "avg": 50
+            "avg": 80
           },
-          "y": {
-            "min": 0.02,
-            "max": 12.35,
-            "avg": 49.99
-          },
-          "z": {
-            "min": 0.03,
-            "max": 12.36,
-            "avg": 49.98
-          }
-        },
-        "acceleration": {
-          "x": {
-            "min": 0.04,
-            "peak": 12.37,
-            "rms": 49.97
-          },
-          "y": {
-            "min": 0.05,
-            "peak": 12.38,
-            "rms": 49.96
-          },
-          "z": {
-            "min": 0.06,
-            "peak": 12.39,
-            "rms": 49.95
-          }
-        },
-        "temperature": {
-          "min": -39.99,
-          "max": 12.34,
-          "avg": 80
-        },
-        "protocol_version": 3
+          "protocol_version": 3
+        }
       }
     },
     "points": {
@@ -118,7 +120,7 @@
     },
     "output": {
       "fPort": 7,
-      "bytes": "30096c497006ff"
+      "bytes": "3070496c0906ff"
     }
   }
 ]

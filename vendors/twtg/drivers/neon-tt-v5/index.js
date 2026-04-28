@@ -148,7 +148,7 @@ function unsignedToSigned(unsignedValue, bitSize) {
 /**
  * Decodes a boolean value
  */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+// eslint-disable-next-line no-unused-vars
 function decodeBool(context, cursor, recvTime) {
     return cursor.readBits(1) > 0 ? true : false;
 }
@@ -186,7 +186,7 @@ function float16ToNumber(encoded) {
  * @param {ReadCursor} cursor Instance of ReadCursor containing the received message
  * @returns a Number
  */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+// eslint-disable-next-line no-unused-vars
 function decodeFloat16(context, cursor, recvTime) {
     var encoded = cursor.readBits(16);
     return float16ToNumber(encoded);
@@ -198,7 +198,7 @@ function decodeFloat16(context, cursor, recvTime) {
  * @param {ReadCursor} cursor Instance of ReadCursor containing the received message
  * @returns a Number
  */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+// eslint-disable-next-line no-unused-vars
 function decodePFloat15(context, cursor, recvTime) {
     var encoded = cursor.readBits(15); // the 16th bit is the sign bit, which is kept zero
     return float16ToNumber(encoded);
@@ -289,7 +289,7 @@ function encodePFloat15(cursor, value) {
  * @param {ReadCursor} cursor Instance of ReadCursor containing the received message
  * @returns a Number
  */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+// eslint-disable-next-line no-unused-vars
 function decodeFloat32(context, cursor, recvTime) {
     var encoded = cursor.readBits(32);
     var sign = encoded & 0x80000000 ? -1 : 1;
@@ -386,7 +386,7 @@ function decodeShortTimestamp(context, cursor, recvTime) {
     return new Date(msgMinutes * 60 * 1000).toISOString();
 }
 function decodeTimestamp(context, cursor, 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+// eslint-disable-next-line no-unused-vars
 recvTime) {
     return new Date(cursor.readBits(32) * 1000).toISOString();
 }
@@ -636,8 +636,8 @@ function encodeTiming(cursor, value) {
         throw new Error("Invalid timing value: ".concat(value, ", must be a string or number"));
     }
 }
-function decodeVbSpectrumFrequenciesV0(context, cursor, // eslint-disable-line @typescript-eslint/no-unused-vars
-recvTime // eslint-disable-line @typescript-eslint/no-unused-vars
+function decodeVbSpectrumFrequenciesV0(context, cursor, // eslint-disable-line no-unused-vars
+recvTime // eslint-disable-line no-unused-vars
 ) {
     var frequencies = [];
     for (var i = 0; i < context.magnitude_values.length; i++) {
@@ -645,16 +645,16 @@ recvTime // eslint-disable-line @typescript-eslint/no-unused-vars
     }
     return frequencies;
 }
-function decodeVbSpectrumMagnitudesV0(context, cursor, // eslint-disable-line @typescript-eslint/no-unused-vars
-recvTime // eslint-disable-line @typescript-eslint/no-unused-vars
+function decodeVbSpectrumMagnitudesV0(context, cursor, // eslint-disable-line no-unused-vars
+recvTime // eslint-disable-line no-unused-vars
 ) {
     var scaling = context.magnitudes_scaling;
     return context.magnitude_values.map(function (value) {
         return scaling * value;
     });
 }
-function decodeVbHarmonicFrequencyV0(context, cursor, // eslint-disable-line @typescript-eslint/no-unused-vars
-recvTime // eslint-disable-line @typescript-eslint/no-unused-vars
+function decodeVbHarmonicFrequencyV0(context, cursor, // eslint-disable-line no-unused-vars
+recvTime // eslint-disable-line no-unused-vars
 ) {
     if (!('frequency_index' in context)) {
         var frequencies = [];
@@ -672,8 +672,8 @@ recvTime // eslint-disable-line @typescript-eslint/no-unused-vars
     }
     return context.frequencies[context.frequency_index];
 }
-function decodeVbHarmonicAmplitudeV0(context, cursor, // eslint-disable-line @typescript-eslint/no-unused-vars
-recvTime // eslint-disable-line @typescript-eslint/no-unused-vars
+function decodeVbHarmonicAmplitudeV0(context, cursor, // eslint-disable-line no-unused-vars
+recvTime // eslint-disable-line no-unused-vars
 ) {
     if (!('amplitude_index' in context)) {
         var amp1_1 = context.amplitude_first_harmonic;
@@ -691,7 +691,7 @@ recvTime // eslint-disable-line @typescript-eslint/no-unused-vars
     }
     return context.amplitudes[context.amplitude_index];
 }
-// eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-empty-function
+// eslint-disable-next-line no-unused-vars, no-empty-function
 function encodeStub(cursor, value) { }
 var TypeCodec_TypeCodec = /** @class */ (function () {
     function TypeCodec() {
@@ -841,7 +841,6 @@ var TypeCodec_TypeCodec = /** @class */ (function () {
 
 
 function applyUSConversions(
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 data, units) {
     var _loop_1 = function (key) {
         // Error if field is missing from data
@@ -906,7 +905,6 @@ data, units) {
         _loop_1(key);
     }
 }
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function trimExcessSlots(data) {
     // Find the number_of_slots value using regex
     var numberOfSlots = 0;
@@ -928,7 +926,6 @@ function trimExcessSlots(data) {
         }
     }
 }
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function processBistFields(data) {
     var bistFields = Object.keys(data).filter(function (key) {
         return key.indexOf('bist_') === 0;
@@ -975,13 +972,11 @@ function genericDecodeUplink(input, decodeApplicationUplink, enableUSConversions
             result.data = decoded.data;
             // Post process
             if (Object.prototype.hasOwnProperty.call(result.data, 'message_name') &&
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 result.data.message_name == 'schedule_update_answer') {
                 trimExcessSlots(result.data);
             }
             // Post process BIST fields for transmitter_status messages
             if (Object.prototype.hasOwnProperty.call(result.data, 'message_name') &&
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 result.data.message_name === 'transmitter_status') {
                 processBistFields(result.data);
             }
@@ -1017,7 +1012,7 @@ function getObjectPropertyValue(obj, path) {
     return value;
 }
 function encodeFields(cursor, fields, data) {
-    var typeCodec = TypeCodec.getInstance();
+    var typeCodec = TypeCodec_TypeCodec.getInstance();
     for (var _i = 0, fields_1 = fields; _i < fields_1.length; _i++) {
         var field = fields_1[_i];
         var value = getObjectPropertyValue(data, field.id);
@@ -1074,7 +1069,6 @@ function genericEncodeDownlink(input, encodeApplicationDownlink) {
     var result = {};
     try {
         if (Object.prototype.hasOwnProperty.call(input.data, 'message_name') &&
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             input.data.message_name === 'dev_version_req') {
             result.fPort = 203;
             result.bytes = [1];
@@ -1332,7 +1326,6 @@ function convertBatteryVoltage(raw) {
  * @returns An object with 'status' and if it is 'ok', one of the 'min', 'max' or 'avg' fields.
  */
 function decodeSensorSingleValue(des, selection
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 ) {
     // TODO: use an interface for the return
     var status = 'OK';
@@ -2289,7 +2282,7 @@ var tt_v5_encodeDownlink = function (input) {
     return genericEncodeDownlink(input, encodeDownlink);
 };
 var tt_v5_decodeDownlink = function (
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+// eslint-disable-next-line no-unused-vars
 input) {
     var result = {};
     return result;
