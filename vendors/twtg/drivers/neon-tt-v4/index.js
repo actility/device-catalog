@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /*
  * Single-file driver bundle for neon-tt-v4
  * Source merged from decoder_tt_rev-6.js and encoder_tt_rev-4.js
@@ -204,7 +205,7 @@ function Decode(fPort, bytes) { // Used for ChirpStack (aka LoRa Network Server)
       // Protocol V4 reserves each fPort for different purpose
       switch (fPort) {
         case FPORT_BOOT:
-          header = decode_header_v4(bytes, cursor);
+          var header = decode_header_v4(bytes, cursor);
           decoded.boot = decode_boot_msg_v4(bytes, cursor);
           decoded.boot.protocol_version = header.protocol_version;
           break;
@@ -917,7 +918,7 @@ function decode_device_status_msg_v4(bytes, cursor) {
   device_status.lora_tx_counter = decode_uint16(bytes, cursor);
 
   // byte[5]
-  rssi = decode_uint8(bytes, cursor);
+  var rssi = decode_uint8(bytes, cursor);
   device_status.avg_rssi = rssi_lookup(rssi);
 
   // byte[6]

@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /*
  * Single-file driver bundle for vendors/twtg/drivers/neon-vb-v2
  * Source merged from decoder_vb_rev-12.js and encoder_vb_rev-10.js
@@ -734,7 +735,7 @@ if (typeof module !== 'undefined') {
   }
 
   function message_type_lookup(type_id) {
-    type_names = ["boot",
+    var type_names = ["boot",
       "activated",
       "deactivated",
       "sensor_event",
@@ -751,7 +752,7 @@ if (typeof module !== 'undefined') {
   }
 
   function config_type_lookup(type_id) {
-    type_names = [
+    var type_names = [
       "base",
       "region",
       "reserved",
@@ -766,7 +767,7 @@ if (typeof module !== 'undefined') {
   }
 
   function device_types_lookup(type_id) {
-    type_names = ["", // reserved
+    var type_names = ["", // reserved
       "ts",
       "vs-qt",
       "vs-mt",
@@ -1111,7 +1112,7 @@ if (typeof module !== 'undefined') {
     }
 
     // byte[1]
-    trigger = decode_uint8(bytes, cursor);
+    var trigger = decode_uint8(bytes, cursor);
     sensor_event.trigger = trigger_lookup(trigger);
 
     sensor_event.rms_velocity = {};

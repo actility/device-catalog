@@ -8,57 +8,59 @@
       "time": "2026-04-21T10:00:00.000+00:00"
     },
     "output": {
-      "header": {
-        "protocol_version": 2,
-        "message_type": "sensor_event"
-      },
-      "sensor_event": {
-        "trigger": "button",
-        "rms_velocity": {
-          "x": {
-            "min": 0.01,
+      "data": {
+        "header": {
+          "protocol_version": 2,
+          "message_type": "sensor_event"
+        },
+        "sensor_event": {
+          "trigger": "button",
+          "rms_velocity": {
+            "x": {
+              "min": 0.01,
+              "max": 12.34,
+              "avg": 50
+            },
+            "y": {
+              "min": 0.02,
+              "max": 12.35,
+              "avg": 49.99
+            },
+            "z": {
+              "min": 0.03,
+              "max": 12.36,
+              "avg": 49.98
+            }
+          },
+          "acceleration": {
+            "x": {
+              "min": 0.04,
+              "max": 12.37,
+              "avg": 49.97
+            },
+            "y": {
+              "min": 0.05,
+              "max": 12.38,
+              "avg": 49.96
+            },
+            "z": {
+              "min": 0.06,
+              "max": 12.39,
+              "avg": 49.95
+            }
+          },
+          "temperature": {
+            "min": -39.99,
             "max": 12.34,
-            "avg": 50
+            "avg": 80
           },
-          "y": {
-            "min": 0.02,
-            "max": 12.35,
-            "avg": 49.99
-          },
-          "z": {
-            "min": 0.03,
-            "max": 12.36,
-            "avg": 49.98
-          }
-        },
-        "acceleration": {
-          "x": {
-            "min": 0.04,
-            "max": 12.37,
-            "avg": 49.97
-          },
-          "y": {
-            "min": 0.05,
-            "max": 12.38,
-            "avg": 49.96
-          },
-          "z": {
-            "min": 0.06,
-            "max": 12.39,
-            "avg": 49.95
-          }
-        },
-        "temperature": {
-          "min": -39.99,
-          "max": 12.34,
-          "avg": 80
-        },
-        "condition_0": 1,
-        "condition_1": 0,
-        "condition_2": 1,
-        "condition_3": 0,
-        "condition_4": 1,
-        "condition_5": 0
+          "condition_0": 1,
+          "condition_1": 0,
+          "condition_2": 1,
+          "condition_3": 0,
+          "condition_4": 1,
+          "condition_5": 0
+        }
       }
     },
     "points": {

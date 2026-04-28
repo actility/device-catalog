@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /*
  * Single-file driver bundle for neon-tt-v3
  * Source merged from decoder_tt_rev-6.js and encoder_tt_rev-4.js
@@ -681,7 +682,7 @@ function uint32_to_hex(d) {
 }
 
 function message_types_lookup_v2(type_id) {
-  type_names = ["boot",
+  var type_names = ["boot",
     "activated",
     "deactivated",
     "sensor_event",
@@ -701,7 +702,7 @@ function message_types_lookup_v2(type_id) {
 }
 
 function device_types_lookup(type_id) {
-  type_names = ["", // reserved
+  var type_names = ["", // reserved
     "ts",
     "vs-qt",
     "vs-mt",
@@ -1188,7 +1189,7 @@ function decode_config_update_ans_msg(bytes, cursor) {
 }
 
 function config_type_lookup(type_id) {
-  type_names = [
+  var type_names = [
     "base",
     "region",
     "reserved",

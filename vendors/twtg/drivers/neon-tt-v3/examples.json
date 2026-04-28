@@ -8,27 +8,29 @@
       "time": "2026-04-22T10:00:00.000+00:00"
     },
     "output": {
-      "header": {
-        "protocol_version": 3,
-        "message_type": "device_status"
-      },
-      "device_status": {
-        "base_config_crc": "0x1234",
-        "sensor_config_crc": "0xABCD",
-        "event_counter": 255,
-        "battery_voltage": {
-          "low": 4,
-          "high": 3.6,
-          "settle": 3.678
+      "data": {
+        "header": {
+          "protocol_version": 3,
+          "message_type": "device_status"
         },
-        "temperature": {
-          "min": -40,
-          "max": 80,
-          "avg": 21
-        },
-        "tx_counter": 123,
-        "avg_rssi": -75,
-        "avg_snr": -10
+        "device_status": {
+          "base_config_crc": "0x1234",
+          "sensor_config_crc": "0xABCD",
+          "event_counter": 255,
+          "battery_voltage": {
+            "low": 4,
+            "high": 3.6,
+            "settle": 3.678
+          },
+          "temperature": {
+            "min": -40,
+            "max": 80,
+            "avg": 21
+          },
+          "tx_counter": 123,
+          "avg_rssi": -75,
+          "avg_snr": -10
+        }
       }
     },
     "points": null
