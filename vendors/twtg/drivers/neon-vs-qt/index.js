@@ -698,7 +698,6 @@ function decodeUplink(input) {
   }
   return { data: Decode(input.fPort, bytes) };
 }
-}
 
 function encodeDownlink(input) {
   var fport;
