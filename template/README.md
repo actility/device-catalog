@@ -138,6 +138,8 @@ A driver could either be public (open-source) or private and not exposed (contac
 
 The file `driver.yaml` contains the information related to driver.
 
+Trusted driver execution (outside sandbox), eligibility conditions, and review requirements are documented in [sample-vendor/drivers/README.md](sample-vendor/drivers/README.md#trusted-mode).
+
 > Pay attention when choosing a `protocolId`, it should be the same used in `model.yaml`, it is important for establishing a link between the model and the expected driver.
 
 

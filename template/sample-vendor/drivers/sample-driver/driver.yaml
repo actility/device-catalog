@@ -16,3 +16,6 @@ protocolId: sample-vendor:sample-model-protocol:1
 # This is to specify the type of functions signature used in this driver. Possible values: actility, lora-alliance, ttn, chirpstack.
 # Keep it empty if you followed the lora-alliance payload codec api
 signature:
+# Optional, managed by Actility only after security code review.
+# If present and valid, it marks the driver as trusted and allows execution outside sandbox.
+# trustedCRC: 01234567

@@ -272,6 +272,22 @@ This implies that only a __select few libraries__ are made available during the 
 
 Currently, only the ``Buffer`` library is available on top of all the standard NodeJS classes, functions and methods (e.g.: ``Array``, ``Object``, ``JSON``, ``Math``, etc.). This list can extend depending on how popular a certain module is becoming in recent drivers.
 
+### Trusted mode
+
+By default, drivers are executed in a sandboxed isolated environment.
+
+For specific advanced use cases, a driver can be marked as trusted. In trusted mode, the driver is executed outside of the sandbox and can use external Node.js libraries available in the runtime environment.
+
+:warning: **WARNING:** Trusted mode must only be enabled by Actility administrators after a dedicated code review.
+
+To request trusted mode:
+- open a pull request with the driver changes,
+- explain why sandbox execution is not sufficient,
+- wait for explicit Actility approval before expecting trusted execution.
+
+Trusted mode is controlled by the `trustedCRC` field in `driver.yaml`.
+This field is managed by Actility during review/release and must not be set arbitrarily.
+
 ### Store and reload context
 
 On some devices, some information from a previous payload are useful for the current one. Thus, a context array is accessible to the driver's developer where some info can be injected/retrieved while decoding/encoding payloads.
