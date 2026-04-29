@@ -1,0 +1,45 @@
+# Commercial name of the model
+name: PolluTherm
+# Functional description of the product. Maximum 500 characters.
+description: Thermal energy meter with integrated LoRaWAN communication for remote reading of energy, volume, power, flow rate, temperatures, and alarm status.
+# Logo of the device
+logo: pollutherm.png
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
+deviceProfileIds:
+  - id: sensus_RFGroup1_1.0.2revB_classA
+
+# You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model.
+maxTxPower: 14
+minTxPower:
+maxTxEIRP:
+minTxEIRP:
+motionIndicator: near_static
+
+# Is your device certified by the LoRa Alliance? Possible values: true, false.
+LoRaWANCertified:
+# Always mandatory: `<vendorId>:<modelName>:<modelVersion>`
+modelId: sensus:pollutherm:1
+# <vendorId>:<protocolName>:<protocolVersion>
+protocolId:
+  - actility:pollutherm:1
+# DataSheet URL (optional)
+specificationURL: https://www.xylem.com/siteassets/brand/sensus/resources/data-sheets/pollutherm-f-data-sheet.pdf
+# User Guide URL (optional)
+userGuideURL: https://www.xylem.com/siteassets/brand/sensus/resources/data-sheets/pollutherm-f-data-sheet.pdf
+# Available sensors following Actility ontology
+sensors:
+  - energy:kWh
+  - volume:m3
+  - power:W
+  - flowRate:m3/h
+  - temperature:Cel
+  - status:state
+
+# Driver examples
+examples:
+  actility:pollutherm:1:
+    - "Example 1: Standard metering frame"
+
+LoRaWANRelay:
+  canOperateAsARelay: false
+  defaultRelayActivation: false

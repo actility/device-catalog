@@ -1,0 +1,77 @@
+[
+  {
+    "type": "uplink",
+    "description": "Example 1: Standard metering frame",
+    "input": {
+      "bytes": "ff03283c000000a2362200000000000000003007960524100000ccea15032000c08d0200",
+      "fPort": 1,
+      "recvTime": "2026-04-29T19:00:00.000Z"
+    },
+    "output": {
+      "data": {
+        "type": 1023,
+        "energy": 15400,
+        "volume": 574005760,
+        "power": 0,
+        "flowRate": 0,
+        "temperature": {
+          "supply": 1840,
+          "return": 1430,
+          "delta": 4132
+        },
+        "serialNumber": 51768012,
+        "errorCode": 2,
+        "coolingEnergy": 167360
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "energy:1": {
+        "unitId": "kWh",
+        "record": 15400,
+        "nature": "heating"
+      },
+      "energy:2": {
+        "unitId": "kWh",
+        "record": 167360,
+        "nature": "cooling"
+      },
+      "volume:1": {
+        "unitId": "m3",
+        "record": 574005.76,
+        "nature": "total"
+      },
+      "power:1": {
+        "unitId": "W",
+        "record": 0,
+        "nature": "thermal"
+      },
+      "flowRate:1": {
+        "unitId": "m3/h",
+        "record": 0,
+        "nature": "thermal"
+      },
+      "temperature:1": {
+        "unitId": "Cel",
+        "record": 18.4,
+        "nature": "supply"
+      },
+      "temperature:2": {
+        "unitId": "Cel",
+        "record": 14.3,
+        "nature": "return"
+      },
+      "temperature:3": {
+        "unitId": "Cel",
+        "record": 41.32,
+        "nature": "delta"
+      },
+      "status:1": {
+        "unitId": "state",
+        "record": "2",
+        "nature": "error code"
+      }
+    }
+  }
+]
