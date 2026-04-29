@@ -10,9 +10,8 @@ All mappings must be found in the mappings folder.
 
 Their naming format must follow one of these 2 patterns:
 * {vendorId}-mapping.csv
-* {vendorId}-{moduleId}-mapping.csv
 
-Make sure to replace {vendorId} with the ID of your vendor and {moduleId} with the module ID found in your modelId (vendorId:moduleId:1 - it is the middle field).
+Make sure to replace {vendorId} with the ID of your vendor.
 
 
 ## Structure
