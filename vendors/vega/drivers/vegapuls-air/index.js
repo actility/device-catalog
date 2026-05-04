@@ -157,12 +157,6 @@ function decodeUplink(input) {
     };
 }
 
-function encodeDownlink() {
-    return {
-        errors: ["Downlink encoding is not supported for this device"],
-        warnings: []
-    };
-}
+
 
 exports.decodeUplink = decodeUplink;
-exports.encodeDownlink = encodeDownlink;

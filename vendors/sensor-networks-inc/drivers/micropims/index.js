@@ -112,21 +112,6 @@ function Decoder(bytes, fPort) {
   }
 }
 
-function encodeDownlink() {
-  return {
-    errors: ["Downlink encoding is not implemented for microPIMS"],
-    warnings: [],
-  };
-}
-
-function decodeDownlink() {
-  return {
-    errors: ["Downlink decoding is not implemented for microPIMS"],
-    warnings: [],
-  };
-}
 
 exports.decodeUplink = decodeUplink;
 exports.Decoder = Decoder;
-exports.encodeDownlink = encodeDownlink;
-exports.decodeDownlink = decodeDownlink;
