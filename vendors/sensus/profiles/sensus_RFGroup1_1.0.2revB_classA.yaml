@@ -40,3 +40,28 @@ bootSettings:
     rx2DataRate:
     rx2Frequency:
     pingSlotChannelDataRate:
+
+
+# Which MAC commands are supported by your device and which are not? Leave it as the template if your device supports all the MAC commands specified for your regional
+# profile. Put 'true' only if a command is supported.
+supportedMACCommands: 
+    linkADRReqAns: true
+    devStatusReqAns: true
+    joinRequestAccept: true
+    dutyCycleReqAns: true
+    linkCheckReqAns: true
+    rxParamSetupReqAns: true
+    rxTimingSetupReqAns: true
+    newChannelReqAns: true
+    dlChannelReqAns: true
+    txParamSetupReqAns: false
+    pingSlotChannelReqAns: false
+    pingSlotInfoReqAns: true
+    deviceTimeReqAns: true
+    beaconFreqReqAns: false
+    extendedNotifyNewEndDeviceReq: false
+
+# Does your device support [Technical Recommendation for LoRaWAN L2 1.0.x Join Security] recommending implemeting the DevNonce as a counter for 
+# OTAA devices? See https://lora-alliance.org/resource_hub/technical-recommendations-for-preventing-state-synchronization-issues-around-lorawan-1-0-x-join-procedure/
+# Possible values: true, false. This field is automatically forced to true for LoRaWAN MAC versions 1.0.4 and 1.1.
+devNonceCounterBased: false
