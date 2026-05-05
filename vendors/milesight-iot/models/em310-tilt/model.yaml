@@ -38,7 +38,9 @@ LoRaWANCertified: true
 # Format: `<8 characters max>:<16 characters max>:<digits only>`
 modelId: msight:em310-tilt:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
-protocolId: msight:em310-tilt:1
+protocolId:
+    - msight:em310-tilt:1
+    - os1-mile:em310-tilt:1
 # DataSheet URL (optional) 
 specificationURL: https://www.milesight-iot.com/lorawan/sensor/em310-tilt/
 # User Guide URL (optional) 

@@ -39,6 +39,7 @@ protocolId:
   - watteco:atmo:4
   - nke:zcl:1
   - os1-nke:atmo-sensor:3
+    - os1-watt:atmo:3
 # DataSheet URL (optional)
 specificationURL: https://www.watteco.com/product/atmo-sensor-lorawan/
 # User Guide URL (optional)
@@ -52,3 +53,15 @@ sensors:
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false
+
+examples:
+    os1-watt:atmo:3:
+        - "uplink standard report containing temperature value | payload:110A04020000290B89"
+        - "uplink standard report containing humidity value | payload:110A04050000210E89"
+        - "uplink standard report containing pressure value | payload:110A04030000290045"
+        - "uplink standard report containing state of pin 1 | payload:110A000F00551001"
+        - "uplink standard report containing number of pulse detection on input 1 | payload:110A000F04022300000000"
+        - "uplink standard report containing firmware version | payload:110100000002000D0305020015E2"
+        - "uplink standard report  containing battery charge | payload:110A00500006410503040E6804"
+        - "uplink standard report containing dataup info | payload:110180040000000800"
+        - "uplink batch report contenaing several pressures and battery level  | payload:20220080039281F268D3212D54A0C3E170380AB000"

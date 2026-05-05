@@ -37,7 +37,9 @@ modelId: msight:ct305:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 # Format: `<8 characters max>:<16 characters max>:<digits only>`
 # Be careful: Once you chose a protocolId, it cannot be changed later
-protocolId: msight:ct305:1
+protocolId:
+    - msight:ct305:1
+    - os1-mile:ct305:1
 # DataSheet URL (optional)
 specificationURL: https://resource.milesight.com/milesight/iot/document/ct3xx-datasheet-en.pdf
 # User Guide URL (optional)
@@ -54,6 +56,8 @@ examples:
 
 
 
+    os1-mile:ct305:1:
+        - "Smart Current Transformer - Milesight IoT"
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false

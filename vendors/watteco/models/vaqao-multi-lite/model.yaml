@@ -34,6 +34,7 @@ modelId: watteco:vaqao-multi-lite:4
 protocolId:
   - watteco:vaqao-lite:5
   - watteco:vaqao-plus:4
+    - os1-watt:vaqao-multi-lite:3
 # DataSheet URL (optional)
 specificationURL: https://www.watteco.fr/produit/vaqao-multi-lite-lorawan/
 # User Guide URL (optional)
@@ -51,3 +52,14 @@ sensors:
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false
+examples:
+    os1-watt:vaqao-multi-lite:3:
+        - "uplink standard report containing temperature value | payload:110A04020000290B89"
+        - "uplink standard report containing humidity value | payload:110A04050000210E89"
+        - "uplink standard report containing IAQ value | payload:110A800C0000210019"
+        - "uplink standard report containing state the case | payload:110A000F00551001"
+        - "uplink standard report containing firmware version | payload:110100000002000D0305020015E2"
+        - "uplink standard report  containing battery charge | payload:110A00500006410503040E6804"
+        - "uplink standard report containing dataup info | payload:110180040000000800"
+        - "uplink batch report | payload:30b200b6e7c7004d8887202fda75b914b4b28276cbf26e59bb5bd6ed96e5ddb2948076cb9200f6"
+        - "uplink batch report | payload:70060000e2760090cfc0015b028423fb03272919804c121c003ebc5bd6895f0040000b68b72c27a0ddb4dc8076db920c68b72c19605b04"

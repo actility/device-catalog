@@ -37,7 +37,9 @@ modelId: msight:vs321:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 # Format: `<8 characters max>:<16 characters max>:<digits only>`
 # Be careful: Once you chose a protocolId, it cannot be changed later
-protocolId: msight:vs321:1
+protocolId:
+    - msight:vs321:1
+    - os1-mile:vs321:1
 # DataSheet URL (optional)
 specificationURL: https://resource.milesight.com/milesight/iot/document/vs321-datasheet-en.pdf
 # User Guide URL (optional)
@@ -55,6 +57,8 @@ examples:
     - "Example 1"
 
 
+    os1-mile:vs321:1:
+        - "Wireless AI Occupancy Sensor - Milesight IoT"
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false

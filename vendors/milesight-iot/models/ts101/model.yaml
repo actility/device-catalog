@@ -37,7 +37,9 @@ modelId: msight:ts101:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 # Format: `<8 characters max>:<16 characters max>:<digits only>`
 # Be careful: Once you chose a protocolId, it cannot be changed later
-protocolId: msight:ts101:1
+protocolId:
+    - msight:ts101:1
+    - os1-mile:ts101:1
 # DataSheet URL (optional)
 specificationURL: 
 # User Guide URL (optional)
@@ -53,6 +55,8 @@ examples:
   msight:ts101:1:
     - "Example 1"
 
+    os1-mile:ts101:1:
+        - "LoRaWAN Insertion Temperature Sensor - Milesight IoT"
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false

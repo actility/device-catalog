@@ -36,6 +36,7 @@ protocolId:
   - watteco:closo:4
   - nke:zcl:1
   - os1-nke:closo-sensor:3
+    - os1-watt:closo:3
 # DataSheet URL (optional)
 specificationURL: https://www.watteco.com/product/closo-sensor-lorawan/
 # User Guide URL (optional)
@@ -48,3 +49,11 @@ sensors:
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false
+examples:
+    os1-watt:closo:3:
+        - "uplink standard report containing open case detection state | payload:110A000F00551001"
+        - "uplink standard report containing open status | payload:310A000F00551001"
+        - "uplink standard report containing number of pulse detection on input 1 | payload:110A000F04022300000000"
+        - "uplink standard report containing firmware version | payload:110100000002000D0305020015E2"
+        - "uplink standard report  containing battery charge | payload:110A00500006410503040E6804"
+        - "uplink standard report containing dataup info | payload:110180040000000800"

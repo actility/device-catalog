@@ -39,6 +39,7 @@ modelId: dragino:lbt1:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId: 
     - os1-drag:lbt1:1
+    - os1-drag:lbt1:2
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 
@@ -52,6 +53,9 @@ examples:
         - "Bluetooth Tracker"
 
 
+    os1-drag:lbt1:2:
+        - "Bluetooth Tracker"
+        - "Unknown FPort"
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false

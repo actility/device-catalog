@@ -36,6 +36,7 @@ protocolId:
   - watteco:indoor-temp:4
   - nke:zcl:1
   - os1-nke:t-indoor-sensor:3
+    - os1-watt:indoor-temperatu:3
 # DataSheet URL (optional)
 specificationURL: https://www.watteco.com/product/ambient-temperature/
 # User Guide URL (optional)
@@ -48,3 +49,9 @@ sensors:
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false
+examples:
+    os1-watt:indoor-temperatu:3:
+        - "uplink standard report containing temperature value | payload:110A04020000290B89"
+        - "uplink standard report containing firmware version | payload:110100000002000D0305020015E2"
+        - "uplink standard report  containing battery charge | payload:110A00500006410503040E6804"
+        - "uplink standard report containing dataup info | payload:110180040000000800"

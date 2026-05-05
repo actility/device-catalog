@@ -36,6 +36,7 @@ modelId: netvox:r718ma:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId: 
     - netvox:lorawan:1
+    - os1-netv:r718ma:10
 
 # DataSheet URL (optional) 
 specificationURL: http://www.netvox.com.tw/um/R718MA/R718MAdatasheet.pdf
@@ -49,6 +50,11 @@ examples:
     netvox:lorawan:1:
         - "uplink containing battery level, RSSI and SNR and heart interval from R718MA device"
 
+    os1-netv:r718ma:10:
+        - "Startup version report"
+        - "Status report"
+        - "Configure report response"
+        - "Read configure report response"
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false

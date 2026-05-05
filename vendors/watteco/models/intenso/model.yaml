@@ -36,6 +36,7 @@ protocolId:
   - watteco:intenso:4
   - nke:zcl:1
   - os1-nke:intenso-sensor:3
+    - os1-watt:intenso:3
 # DataSheet URL (optional)
 specificationURL: https://www.watteco.fr/produit/capteur-intenso-lorawan/
 # User Guide URL (optional)
@@ -48,3 +49,10 @@ sensors:
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false
+examples:
+    os1-watt:intenso:3:
+        - "uplink standard report containing intensity value | payload:110A000C00553941500000"
+        - "uplink standard report containing firmware version | payload:110100000002000D0305020015E2"
+        - "uplink standard report  containing battery charge | payload:110A00500006410503040E6804"
+        - "uplink standard report containing dataup info | payload:110180040000000800"
+        - "uplink batch report| payload:20100000C08F0344D0030000008804FCF941C08B8B15"

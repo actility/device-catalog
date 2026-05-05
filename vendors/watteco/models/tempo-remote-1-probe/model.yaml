@@ -36,6 +36,7 @@ modelId: watteco:temp-remte-1-prb:4
 protocolId:
   - watteco:temp-remte-1-prb:5
   - watteco:remote-temp:4
+    - os1-watt:tempo-remote-1-p:3
 # DataSheet URL (optional)
 specificationURL: https://www.watteco.com/product/temperature-1x-remote-probe-lorawan/
 # User Guide URL (optional)
@@ -46,3 +47,10 @@ sensors:
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false
+examples:
+    os1-watt:tempo-remote-1-p:3:
+        - "uplink standard report containing temperature value | payload:110A04020000290B89"
+        - "uplink standard report containing firmware version | payload:110100000002000D0305020015E2"
+        - "uplink standard report  containing battery charge | payload:110A00500006410503040E6804"
+        - "uplink standard report containing dataup info | payload:110180040000000800"
+        - "uplink batch report | payload:1000a062bfecc11715b45b96dd2d8b76cb12bb65c5b35bd67705"

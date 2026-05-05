@@ -31,7 +31,9 @@ LoRaWANCertified:
 # Format: `<8 characters max>:<16 characters max>:<digits only>`
 modelId: adeunis:comfort-co2:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
-protocolId: adeunis:comfort-co2:1
+protocolId:
+    - adeunis:comfort-co2:1
+    - os1-adeu:comfort-co2:1
 # DataSheet URL (optional) 
 specificationURL: https://lora-alliance.org/wp-content/uploads/2022/03/SMART_BUILDING_COMFORT-CO2_LoRaWAN_V1.1.2.pdf
 # User Guide URL (optional) 
@@ -54,6 +56,8 @@ examples:
         - "uplink containing comfort CO2 alarm 0x6b"
 
 
+    os1-adeu:comfort-co2:1:
+        - "0x6a Comfort CO2 data"
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false

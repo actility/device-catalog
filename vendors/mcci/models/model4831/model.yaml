@@ -39,6 +39,7 @@ modelId: mcci:model4831:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId: 
     - os1-mcci:model4831:1
+    - os1-mcci:model4831:2
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 
@@ -53,6 +54,8 @@ examples:
         - "Sensor report format 0x14, with pulse/power input"
 
 
+    os1-mcci:model4831:2:
+        - "Sensor report for catena 4618 m201"
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false

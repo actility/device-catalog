@@ -36,6 +36,7 @@ modelId: mclimate:co2-display:1
 # Be careful: Once you chose a protocolId, it cannot be changed later
 protocolId:
   - mclimate:co2-display:1
+    - os1-mcli:co2-display:1
 # DataSheet URL (optional)
 specificationURL: https://3940008670-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F-McDr-jr9h3qA888r1Yp%2Fuploads%2FayhC2LiSECIybZVCubgn%2FMClimate-CO2-Display-Datasheet.pdf?alt=media&token=94ce5f00-de21-4049-9209-0ffde58f4975
 # User Guide URL (optional)
@@ -56,6 +57,8 @@ examples:
     - "Downlink encode: unsupported in public docs"
     - "Downlink decode: passthrough bytes"
 
+    os1-mcli:co2-display:1:
+        - "Periodic uplink"
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false

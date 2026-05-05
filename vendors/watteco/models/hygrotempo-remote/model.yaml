@@ -36,6 +36,7 @@ modelId: watteco:hygrotemp-remote:4
 protocolId:
   - watteco:hygrotemp-remote:5
   - watteco:hygrotempo:4
+    - os1-watt:hygrotempo-remot:3
 # DataSheet URL (optional)
 specificationURL: https://www.watteco.fr/produit/hygrotempo-sonde-deportee-lorawan/
 # User Guide URL (optional)
@@ -46,3 +47,15 @@ sensors:
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false
+examples:
+    os1-watt:hygrotempo-remot:3:
+        - "uplink standard report containing temperature value | payload:110A04020000290B89"
+        - "uplink standard report containing 2 short threshold alarms on temperature value | payload:118A0402000029075590B0B1"
+        - "uplink standard report containing 3 long threshold alarms on temperature value | payload:118a0402000029010ea0b008fc000001b10834000001b207d0000001"
+        - "uplink standard report containing a long delta alarm on temperature value | payload:118A04020000290B35A0C80014"
+        - "uplink standard report containing humidity value | payload:110A04050000210E89"
+        - "uplink standard report containing state of case | payload:110A000F00551001"
+        - "uplink standard report containing number of pulse detection on input 1 | payload:110A000F04022300000000"
+        - "uplink standard report containing cmdID 0x07 response for temperature cluster | payload:1107040200800000"
+        - "uplink of read current value on cluster 0x0402 | payload:11010402000000290992"
+        - "uplink containing a batch of values | payload:362100808098c31ecb824d7b07ba3d"

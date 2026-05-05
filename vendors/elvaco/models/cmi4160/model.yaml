@@ -33,7 +33,9 @@ modelId: elvaco:cmi4160:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 # Format: `<8 characters max>:<16 characters max>:<digits only>`
 # Be careful: Once you chose a protocolId, it cannot be changed later
-protocolId: elvaco:cmi41xx:1
+protocolId:
+    - elvaco:cmi41xx:1
+    - os1-elva:cmi4160:1
 # DataSheet URL (optional)
 specificationURL: https://www.elvaco.com/Image/GetDocument/en/339/cmi4160%20data%20sheet%20english%20.pdf
 # User Guide URL (optional)
@@ -59,6 +61,8 @@ examples:
         - "Schedule Daily Tariff"
         - "Schedule Daily"
 
+    os1-elva:cmi4160:1:
+        - "Second example"
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false

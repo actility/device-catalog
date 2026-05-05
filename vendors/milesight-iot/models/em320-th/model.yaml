@@ -40,6 +40,7 @@ modelId: msight:em320-th:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId: 
     - msight:em320-th:1
+    - os1-mile:em320-th:1
 # DataSheet URL (optional) 
 specificationURL: https://resource.milesight-iot.com/milesight/document/em320-th-datasheet-en.pdf
 # User Guide URL (optional) 
@@ -55,6 +56,8 @@ examples:
     msight:em320-th:1:
         - "Example 1"
 
+    os1-mile:em320-th:1:
+        - "Temperature & Humidity Sensor - Milesight IoT"
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false

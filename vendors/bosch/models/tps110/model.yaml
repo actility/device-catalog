@@ -37,6 +37,7 @@ modelId: bosch:tps110:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId: 
     - os1-bosc:tps110:1
+    - os1-bosc:tps110:0
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 
@@ -54,6 +55,10 @@ examples:
         - "Startup with codes 804 and 885"
 
 
+    os1-bosc:tps110:0:
+        - "Parking Status"
+        - "Heartbeat"
+        - "Startup with codes 804 and 885"
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false

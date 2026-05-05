@@ -29,7 +29,9 @@ LoRaWANCertified: false
 # Format: `<8 characters max>:<16 characters max>:<digits only>`
 modelId: gwf:rcm-lrw10:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
-protocolId: gwf:rcm-lrw10:1
+protocolId:
+    - gwf:rcm-lrw10:1
+    - os1-gwf:rcm-lrw10:1
 # DataSheet URL (optional) 
 specificationURL: https://products.gwf.ch/wp-content/uploads/2019/07/RCM-LoRaWAN_EPe40261.pdf
 # User Guide URL (optional) 
