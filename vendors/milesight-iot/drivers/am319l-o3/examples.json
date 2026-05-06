@@ -1,44 +1,82 @@
 [
-  {
-    "description": "Uplink example for AM319L-O3",
-    "type": "uplink",
-    "input": {
-      "bytes": "03670A0104685805000106CB01077DFF02087DE3000973FE270B7D07000C7D0800017562",
-      "fPort": 85,
-      "time": "2025-01-01T00:00:00.000+00:00"
+    {
+        "description": "Uplink example for AM319L-O3",
+        "type": "uplink",
+        "input": {
+            "bytes": "03670A0104685805000106CB01077DFF02087DE3000973FE270B7D07000C7D0800017562",
+            "fPort": 85,
+            "time": "2025-01-01T00:00:00.000+00:00"
+        },
+        "output": {
+            "data": {
+                "temperature": 26.6,
+                "humidity": 44,
+                "pir": "trigger",
+                "light_level": 1,
+                "co2": 767,
+                "tvoc": 2.27,
+                "pressure": 1023.8,
+                "pm2_5": 7,
+                "pm10": 8,
+                "battery": 98
+            }
+        },
+        "points": {
+            "temperature": {
+                "unitId": "Cel",
+                "record": 26.6
+            },
+            "humidity": {
+                "unitId": "%RH",
+                "record": 44
+            },
+            "light_level": {
+                "unitId": "lx",
+                "record": 1
+            },
+            "co2": {
+                "unitId": "ppm",
+                "record": 767
+            },
+            "tvoc": {
+                "unitId": "",
+                "record": 2.27
+            },
+            "pressure": {
+                "unitId": "hPa",
+                "record": 1023.8
+            },
+            "pm2_5": {
+                "unitId": "",
+                "record": 7
+            },
+            "pm10": {
+                "unitId": "",
+                "record": 8
+            },
+            "battery": {
+                "unitId": "%",
+                "record": 98
+            }
+        }
     },
-    "output": {
-      "data": {
-        "temperature": 26.6,
-        "humidity": 44,
-        "pir": "trigger",
-        "light_level": 1,
-        "co2": 767,
-        "tvoc": 2.27,
-        "pressure": 1023.8,
-        "pm2_5": 7,
-        "pm10": 8,
-        "battery": 98
-      }
+    {
+        "description": "Downlink encode: report_interval",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "report_interval": 600
+            },
+            "fPort": 85
+        },
+        "output": {
+            "bytes": [
+                255,
+                3,
+                88,
+                2
+            ],
+            "fPort": 85
+        }
     }
-  },
-  {
-    "description": "Downlink encode: report_interval",
-    "type": "downlink-encode",
-    "input": {
-      "data": {
-        "report_interval": 600
-      },
-      "fPort": 85
-    },
-    "output": {
-      "bytes": [
-        255,
-        3,
-        88,
-        2
-      ],
-      "fPort": 85
-    }
-  }
 ]

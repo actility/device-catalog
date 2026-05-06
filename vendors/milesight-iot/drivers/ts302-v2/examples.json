@@ -1,37 +1,47 @@
 [
-  {
-    "description": "Uplink example for TS302-V2",
-    "type": "uplink",
-    "input": {
-      "bytes": "01756403670701",
-      "fPort": 85,
-      "time": "2025-01-01T00:00:00.000+00:00"
+    {
+        "description": "Uplink example for TS302-V2",
+        "type": "uplink",
+        "input": {
+            "bytes": "01756403670701",
+            "fPort": 85,
+            "time": "2025-01-01T00:00:00.000+00:00"
+        },
+        "output": {
+            "data": {
+                "battery": 100,
+                "temperature_chn1": 26.3
+            }
+        },
+        "points": {
+            "battery": {
+                "unitId": "%",
+                "record": 100
+            },
+            "temperature_chn1": {
+                "unitId": "Cel",
+                "record": 26.3
+            }
+        }
     },
-    "output": {
-      "data": {
-        "battery": 100,
-        "temperature_chn1": 26.3
-      }
+    {
+        "description": "Downlink encode: report_interval",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "report_interval": 600
+            },
+            "fPort": 85
+        },
+        "output": {
+            "bytes": [
+                255,
+                142,
+                0,
+                88,
+                2
+            ],
+            "fPort": 85
+        }
     }
-  },
-  {
-    "description": "Downlink encode: report_interval",
-    "type": "downlink-encode",
-    "input": {
-      "data": {
-        "report_interval": 600
-      },
-      "fPort": 85
-    },
-    "output": {
-      "bytes": [
-        255,
-        142,
-        0,
-        88,
-        2
-      ],
-      "fPort": 85
-    }
-  }
 ]
