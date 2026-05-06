@@ -1,58 +1,47 @@
 [
-  {
-    "type": "uplink",
-    "description": "uplink containing a microPIMS thickness and temperature packet (TnT)",
-    "input": {
-      "bytes": "008100303901980985CF00",
-      "fPort": 1,
-      "recvTime": "2026-04-19T09:00:00.000+00:00"
-    },
-    "output": {
-      "data": {
-        "readingNumber": 0,
-        "header": {
-          "isFirstPacket": true,
-          "packetCounter": 1,
-          "fPort": 1
+    {
+        "type": "uplink",
+        "description": "uplink containing a microPIMS thickness and temperature packet (TnT)",
+        "input": {
+            "bytes": "008100303901980985CF00",
+            "fPort": 1,
+            "recvTime": "2026-04-19T09:00:00.000+00:00"
         },
-        "messageType": "thicknessAndTemperature",
-        "calculatedThickness": 12.345,
-        "materialTemperature": 25.5,
-        "dsiTemperature": 24.37,
-        "status": {
-          "raw": 52992,
-          "batteryPercentage": 80,
-          "signalStrength": 100,
-          "thicknessError": false,
-          "temperatureError": false,
-          "negative5VSupplyOutOfTolerance": false,
-          "positive5VSupplyOutOfTolerance": false,
-          "positive1V2SupplyOutOfTolerance": false
+        "output": {
+            "data": {
+                "readingNumber": 0,
+                "header": {
+                    "isFirstPacket": true,
+                    "packetCounter": 1,
+                    "fPort": 1
+                },
+                "messageType": "thicknessAndTemperature",
+                "calculatedThickness": 12.345,
+                "materialTemperature": 25.5,
+                "dsiTemperature": 24.37,
+                "status": {
+                    "raw": 52992,
+                    "batteryPercentage": 80,
+                    "signalStrength": 100,
+                    "thicknessError": false,
+                    "temperatureError": false,
+                    "negative5VSupplyOutOfTolerance": false,
+                    "positive5VSupplyOutOfTolerance": false,
+                    "positive1V2SupplyOutOfTolerance": false
+                }
+            },
+            "errors": [],
+            "warnings": []
+        },
+        "points": {
+            "materialTemperature": {
+                "unitId": "Cel",
+                "record": 25.5
+            },
+            "dsiTemperature": {
+                "unitId": "Cel",
+                "record": 24.37
+            }
         }
-      },
-      "errors": [],
-      "warnings": []
-    },
-    "points": {
-      "distance": {
-        "unitId": "mm",
-        "record": 12.345,
-        "nature": "wallThickness"
-      },
-      "temperature:1": {
-        "unitId": "Cel",
-        "record": 25.5,
-        "nature": "materialTemperature"
-      },
-      "temperature:2": {
-        "unitId": "Cel",
-        "record": 24.37,
-        "nature": "dsiTemperature"
-      },
-      "batteryLevel": {
-        "unitId": "%",
-        "record": 80
-      }
     }
-  }
 ]
