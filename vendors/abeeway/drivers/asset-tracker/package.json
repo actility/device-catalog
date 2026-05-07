@@ -4,10 +4,6 @@
   "description": "abeeway asset tracker AT2 js driver",
   "main": "./main.js",
   "metadata": "metadata.json",
-  "scripts": {
-    "test": "node run-driver-test.js",
-    "build": "webpack"
-  },
   "repository": {
     "type": "git",
     "url": "git@git.int.actility.com:abeeway-software/iot-flow-js-driver-assettracker.git"
@@ -16,18 +12,11 @@
   "contributors": [],
   "license": "ISC",
   "devDependencies": {
-    "buffer": "^6.0.3",
-    "cross-env": "^7.0.3",
-    "jest": "^29.7.0",
-    "path": "^0.12.7",
     "webpack": "^5.91.0",
-    "webpack-cli": "^5.1.4"
+    "webpack-cli": "^5.1.4",
+    "buffer": "^6.0.3"
   },
-  "jest": {
-    "coverageReporters": [
-      "text",
-      "html"
-    ],
-    "verbose": true
+  "scripts": {
+    "build": "webpack"
   }
 }
