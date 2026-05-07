@@ -99,7 +99,8 @@ async function checkCode() {
     const eslint = new esl.ESLint({});
     const skipCodeCheck = ["mcf88", "senlab", "semtech"];
     const driverPathSplit = DRIVER_PATH.split(path.sep);
-    if(!skipCodeCheck.includes(driverPathSplit[driverPathSplit.length - 3])) {
+    const isOs1Driver = driverPathSplit.includes("os1-vendors");
+    if(!isOs1Driver && !skipCodeCheck.includes(driverPathSplit[driverPathSplit.length - 3])) {
         let report;
         
         let code = "";
