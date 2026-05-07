@@ -1,144 +1,144 @@
 [
-  {
-    "type": "uplink",
-    "description": "Data message with both channels enabled",
-    "input": {
-      "fPort": 10,
-      "bytes": "0100002E971253"
-    },
-    "output": {
-      "data": {
-        "messageType": "dataNoAlarm",
-        "configId": 0,
-        "reserved": 0,
-        "measurements": {
-          "channel0": {
-            "raw": 11927,
-            "percentOfSpan": 94.27,
-            "isValid": true
-          },
-          "channel1": {
-            "raw": 4691,
-            "percentOfSpan": 21.91,
-            "isValid": true,
-            "temperatureC": -18.09
-          }
-        }
-      },
-      "errors": [],
-      "warnings": []
-    },
-    "points": {
-      "pressure": {
-        "unitId": "%",
-        "record": 94.27,
-        "nature": "channel0 span"
-      },
-      "temperature": {
-        "unitId": "Cel",
-        "record": -18.09,
-        "nature": "channel1 internal"
-      }
-    }
-  },
-  {
-    "type": "uplink",
-    "description": "Process alarm message: channel 0 low threshold triggered",
-    "input": {
-      "fPort": 10,
-      "bytes": "031100000D73"
-    },
-    "output": {
-      "data": {
-        "messageType": "processAlarm",
-        "configId": 17,
-        "reserved": 0,
-        "processAlarms": [
-          {
-            "sense": "triggered",
-            "channelId": 0,
-            "alarmType": "lowThreshold",
-            "relatedRaw": 3443,
-            "relatedValue": 9.43,
-            "relatedUnit": "%Span"
-          }
-        ]
-      },
-      "errors": [],
-      "warnings": []
-    },
-    "points": {
-      "status:1": {
-        "unitId": "state",
-        "record": true,
-        "nature": "process alarm channel0 lowThreshold triggered"
-      }
-    }
-  },
-  {
-    "type": "uplink",
-    "description": "Radio unit alarm: low battery and duty cycle exceeded",
-    "input": {
-      "fPort": 10,
-      "bytes": "05130005"
-    },
-    "output": {
-      "data": {
-        "messageType": "radioUnitAlarm",
-        "configId": 19,
-        "radioAlarms": {
-          "uartCommunicationError": false,
-          "dutyCycleExceeded": true,
-          "temperatureOutOfRange": false,
-          "lowBattery": true
-        }
-      },
-      "errors": [],
-      "warnings": []
-    },
-    "points": {
-      "status:1": {
-        "unitId": "state",
-        "record": true,
-        "nature": "radio alarm lowBattery"
-      },
-      "status:2": {
-        "unitId": "state",
-        "record": true,
-        "nature": "radio alarm dutyCycleExceeded"
-      }
-    }
-  },
-  {
-    "type": "uplink",
-    "description": "Identification message with gauge pressure and temperature ranges",
-    "input": {
-      "fPort": 10,
-      "bytes": "07110F0000150300000000412000000701C22000004270000001"
-    },
-    "output": {
-      "data": {
-        "messageType": "identification",
-        "configId": 17,
-        "wirelessProductId": 15,
-        "wirelessProductSubId": 0,
-        "instrumentTypeId": 21,
-        "channel0": {
-          "measurandId": 3,
-          "minRange": 0,
-          "maxRange": 10,
-          "unitId": 7
+    {
+        "type": "uplink",
+        "description": "Data message with both channels enabled",
+        "input": {
+            "fPort": 10,
+            "bytes": "0100002E971253"
         },
-        "channel1": {
-          "measurandId": 1,
-          "minRange": -40,
-          "maxRange": 60,
-          "unitId": 1
+        "output": {
+            "data": {
+                "messageType": "dataNoAlarm",
+                "configId": 0,
+                "reserved": 0,
+                "measurements": {
+                    "channel0": {
+                        "raw": 11927,
+                        "percentOfSpan": 94.27,
+                        "isValid": true
+                    },
+                    "channel1": {
+                        "raw": 4691,
+                        "percentOfSpan": 21.91,
+                        "isValid": true,
+                        "temperatureC": -18.09
+                    }
+                }
+            },
+            "errors": [],
+            "warnings": []
+        },
+        "points": {
+            "percentage": {
+                "unitId": "%",
+                "record": 94.27,
+                "nature": "pressure span"
+            },
+            "temperature": {
+                "unitId": "Cel",
+                "record": -18.09,
+                "nature": "channel1 internal"
+            }
         }
-      },
-      "errors": [],
-      "warnings": []
     },
-    "points": null
-  }
+    {
+        "type": "uplink",
+        "description": "Process alarm message: channel 0 low threshold triggered",
+        "input": {
+            "fPort": 10,
+            "bytes": "031100000D73"
+        },
+        "output": {
+            "data": {
+                "messageType": "processAlarm",
+                "configId": 17,
+                "reserved": 0,
+                "processAlarms": [
+                    {
+                        "sense": "triggered",
+                        "channelId": 0,
+                        "alarmType": "lowThreshold",
+                        "relatedRaw": 3443,
+                        "relatedValue": 9.43,
+                        "relatedUnit": "%Span"
+                    }
+                ]
+            },
+            "errors": [],
+            "warnings": []
+        },
+        "points": {
+            "status:1": {
+                "unitId": "state",
+                "record": true,
+                "nature": "process alarm channel0 lowThreshold triggered"
+            }
+        }
+    },
+    {
+        "type": "uplink",
+        "description": "Radio unit alarm: low battery and duty cycle exceeded",
+        "input": {
+            "fPort": 10,
+            "bytes": "05130005"
+        },
+        "output": {
+            "data": {
+                "messageType": "radioUnitAlarm",
+                "configId": 19,
+                "radioAlarms": {
+                    "uartCommunicationError": false,
+                    "dutyCycleExceeded": true,
+                    "temperatureOutOfRange": false,
+                    "lowBattery": true
+                }
+            },
+            "errors": [],
+            "warnings": []
+        },
+        "points": {
+            "status:1": {
+                "unitId": "state",
+                "record": true,
+                "nature": "radio alarm lowBattery"
+            },
+            "status:2": {
+                "unitId": "state",
+                "record": true,
+                "nature": "radio alarm dutyCycleExceeded"
+            }
+        }
+    },
+    {
+        "type": "uplink",
+        "description": "Identification message with gauge pressure and temperature ranges",
+        "input": {
+            "fPort": 10,
+            "bytes": "07110F0000150300000000412000000701C22000004270000001"
+        },
+        "output": {
+            "data": {
+                "messageType": "identification",
+                "configId": 17,
+                "wirelessProductId": 15,
+                "wirelessProductSubId": 0,
+                "instrumentTypeId": 21,
+                "channel0": {
+                    "measurandId": 3,
+                    "minRange": 0,
+                    "maxRange": 10,
+                    "unitId": 7
+                },
+                "channel1": {
+                    "measurandId": 1,
+                    "minRange": -40,
+                    "maxRange": 60,
+                    "unitId": 1
+                }
+            },
+            "errors": [],
+            "warnings": []
+        },
+        "points": null
+    }
 ]
