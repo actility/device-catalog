@@ -35,7 +35,7 @@ LoRaWANCertified: false
 modelId: netvox:r718ib:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId: 
-    - netvox:lorawan:1
+  - netvox:lorawan:1
 # DataSheet URL (optional) 
 specificationURL: http://www.netvox.com.tw/um/R718IB/R718IBdatasheet.pdf
 # User Guide URL (optional) 
@@ -45,9 +45,8 @@ sensors:
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
-    netvox:lorawan:1:
-        - "uplink containing battery level, and ADC raw value from R718IB device"
-
+  netvox:lorawan:1:
+    - "uplink containing battery level, and ADC raw value from R718IB device"
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false

@@ -35,9 +35,9 @@ LoRaWANCertified: true
 modelId: adeunis:modbus:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId:
-    - adeunis:modbus:1
-    - adeunis:modbus:2
-    - os1-adeu:modbus:3
+  - adeunis:modbus:1
+  - adeunis:modbus:2
+  - os1-adeu:modbus:3
 # DataSheet URL (optional) 
 specificationURL: https://adeunis.freshdesk.com/helpdesk/attachments/22047543672
 # User Guide URL (optional) 
@@ -47,35 +47,34 @@ sensors:
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
-    adeunis:modbus:1:
-        - "0x10 Modbus configuration"
-        - "0x20 Configuration"
-        - "0x2f Downlink ack"
-        - "0x30 Keep alive"
-        - "0x33 Set register status"
-        - "0x37 Software version"
-        - "0x44 Modbus data (int32)"
-        - "0x45 Modbus alarm"
-        - "0x5e Modbus read registers"
-        - "0x5f Modbus data (int32)"
-        - "0x60 Modbus data (float)"
-        - "0x61 Modbus data (float)"
-        - "0x62 Modbus data (uint32)"
-        - "0x63 Modbus data (uint32)"
-    adeunis:modbus:2:
-        - "uplink containing the information frame on product configuration"
-        - "uplink containing the information frame on network configuration"
-        - "uplink containing the keep alive frame"
-        - "uplink containing the periodic data 1 frame"
-        - "uplink containing the alarm frame"
-        - "downlink message containing the product configuration request frame"
-        - "downlink message containing the network configuration request frame"
-        - "downlink message containing the specific register value request frame"
-        - "downlink message containing the update register request frame with periodic data 1"
-        - "Modbus Device Uplink PERIODIC_DATA_1_FRAME"
-
-    os1-adeu:modbus:3:
-        - "0x44 Modbus data (int32)"
+  adeunis:modbus:1:
+    - "0x10 Modbus configuration"
+    - "0x20 Configuration"
+    - "0x2f Downlink ack"
+    - "0x30 Keep alive"
+    - "0x33 Set register status"
+    - "0x37 Software version"
+    - "0x44 Modbus data (int32)"
+    - "0x45 Modbus alarm"
+    - "0x5e Modbus read registers"
+    - "0x5f Modbus data (int32)"
+    - "0x60 Modbus data (float)"
+    - "0x61 Modbus data (float)"
+    - "0x62 Modbus data (uint32)"
+    - "0x63 Modbus data (uint32)"
+  adeunis:modbus:2:
+    - "uplink containing the information frame on product configuration"
+    - "uplink containing the information frame on network configuration"
+    - "uplink containing the keep alive frame"
+    - "uplink containing the periodic data 1 frame"
+    - "uplink containing the alarm frame"
+    - "downlink message containing the product configuration request frame"
+    - "downlink message containing the network configuration request frame"
+    - "downlink message containing the specific register value request frame"
+    - "downlink message containing the update register request frame with periodic data 1"
+    - "Modbus Device Uplink PERIODIC_DATA_1_FRAME"
+  os1-adeu:modbus:3:
+    - "0x44 Modbus data (int32)"
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false

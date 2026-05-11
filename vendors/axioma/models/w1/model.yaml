@@ -36,7 +36,7 @@ LoRaWANCertified: true
 modelId: axioma:w1:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId: 
-    - axioma:w1:1
+  - axioma:w1:1
 # DataSheet URL (optional) 
 specificationURL: https://www.axiomametering.com/storage/app/uploads/public/614/c25/ee6/614c25ee67d60380449538.pdf
 # User Guide URL (optional) 
@@ -48,15 +48,13 @@ sensors:
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
-    axioma:w1:1:
-        - "Example 1: uplink containing consumption data"
-        - "Example 2: uplink containing consumption data"
-        - "Example 3: uplink containing configuration parameters"
-        - "Example 4: uplink containing configuration parameters"
-        - "Example 5: uplink containing an alarm telegram"
-        - "Example 6: Corrupted uplink"
-
-
+  axioma:w1:1:
+    - "Example 1: uplink containing consumption data"
+    - "Example 2: uplink containing consumption data"
+    - "Example 3: uplink containing configuration parameters"
+    - "Example 4: uplink containing configuration parameters"
+    - "Example 5: uplink containing an alarm telegram"
+    - "Example 6: Corrupted uplink"
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false

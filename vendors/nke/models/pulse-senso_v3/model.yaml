@@ -36,8 +36,8 @@ LoRaWANCertified: true
 modelId: nke:pulse-senso:3
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId: 
-    - nke:zcl:1
-    - os1-nke:pulse-senso-sens:3
+  - nke:zcl:1
+  - os1-nke:pulse-senso-sens:3
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 
@@ -47,10 +47,9 @@ sensors:
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
-    nke:zcl:1:
-        - "Pulse Sens'O Report of the state of connector input 1+/1-"
-        - "Pulse Sens'O Report the counter associated to connector input 2+/2-"
-
+  nke:zcl:1:
+    - "Pulse Sens'O Report of the state of connector input 1+/1-"
+    - "Pulse Sens'O Report the counter associated to connector input 2+/2-"
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false

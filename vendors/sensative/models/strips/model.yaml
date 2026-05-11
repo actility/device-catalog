@@ -36,8 +36,8 @@ LoRaWANCertified: false
 modelId: sensativ:strips:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId: 
-    - sensativ:strips:1
-    - os1-sens:strips:1
+  - sensativ:strips:1
+  - os1-sens:strips:1
 # DataSheet URL (optional) 
 specificationURL: https://sensative.com/product/strips-lorawan/
 # User Guide URL (optional) 
@@ -47,19 +47,17 @@ sensors:
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
-    sensativ:strips:1:
-        - "strips presence person detect uplink"
-        - "strips presence object detect uplink"
-        - "strips presence desinfection uplink"
-        - "strips presence battery status uplink"
-        - "strips presence empty frame uplink"
-        - "strips presence linkcheck uplink"
-        - "strips command status uplink"
-        - "strips presence office mode downlink"
-        - "strips presence object presence downlink"
-        - "strips presence disinfect downlink"
-
-
+  sensativ:strips:1:
+    - "strips presence person detect uplink"
+    - "strips presence object detect uplink"
+    - "strips presence desinfection uplink"
+    - "strips presence battery status uplink"
+    - "strips presence empty frame uplink"
+    - "strips presence linkcheck uplink"
+    - "strips command status uplink"
+    - "strips presence office mode downlink"
+    - "strips presence object presence downlink"
+    - "strips presence disinfect downlink"
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false

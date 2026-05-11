@@ -35,7 +35,7 @@ LoRaWANCertified: false
 modelId: netvox:r718n325:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId: 
-    - netvox:lorawan:1
+  - netvox:lorawan:1
 
 # DataSheet URL (optional) 
 specificationURL: http://www.netvox.com.tw/um/R718N325/R718N325datasheet.pdf
@@ -46,10 +46,9 @@ sensors:
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
-    netvox:lorawan:1:
-        - "uplink containing battery level, currents 1, 2 and 3 and multiplier 1 from R718N325 device"
-        - "uplink containing battery level and multipliers 2 and 3 from R718N325 device"
-
+  netvox:lorawan:1:
+    - "uplink containing battery level, currents 1, 2 and 3 and multiplier 1 from R718N325 device"
+    - "uplink containing battery level and multipliers 2 and 3 from R718N325 device"
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false

@@ -35,9 +35,9 @@ LoRaWANCertified: false
 modelId: adeunis:motion:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId: 
-    - adeunis:motion:1
-    - adeunis:motion:2
-    - os1-adeu:motion:1
+  - adeunis:motion:1
+  - adeunis:motion:2
+  - os1-adeu:motion:1
 # DataSheet URL (optional) 
 specificationURL: https://www.adeunis.com/wp-content/uploads/2019/09/User_Guide_MOTION_LoRaWAN_V2.0.1.pdf
 # User Guide URL (optional) 
@@ -47,41 +47,39 @@ sensors:
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
-    adeunis:motion:1:
-        - "0x10 Motion configuration"
-        - "0x1f digital input configuration"
-        - "0x20 Configuration"
-        - "0x30 Keep alive"
-        - "0x33 Set register status"
-        - "0x4e Motion data"
-        - "0x4f Motion presence alarm"
-        - "0x50 Motion luminosity alarm"
-        - "0x51 digital input 1 alarm"
-        - "0x52 digital input 2 alarm"
-        - "0x5c Motion data"
-        - "0x5d Motion presence alarm"
-    adeunis:motion:2:
-        - "uplink containing the information frame on device configuration"
-        - "uplink containing the information frame on digital inputs configuration when an input is deactivated"
-        - "uplink containing the information frame on digital inputs configuration"
-        - "uplink containing the information frame on network configuration"
-        - "uplink containing the keep alive frame"
-        - "uplink containing the response frame of updating a register when the request status is success"
-        - "uplink containing the response frame of updating a register when an error occurred"
-        - "uplink containing the periodic data frame when having two values of presence and luminosity"
-        - "uplink containing the periodic data frame when having six values of temperature and humidity"
-        - "uplink containing the presence alarm frame"
-        - "uplink containing the luminosity alarm frame"
-        - "uplink containing the digital input 1 alarm frame"
-        - "uplink containing the digital input 2 alarm frame"
-        - "downlink message containing the product configuration request frame"
-        - "downlink message containing the network configuration request frame"
-        - "downlink message containing specific register value request frame"
-        - "downlink message containing the frame for updating the value of a specific register"
-
-
-    os1-adeu:motion:1:
-        - "0x5c Motion data"
+  adeunis:motion:1:
+    - "0x10 Motion configuration"
+    - "0x1f digital input configuration"
+    - "0x20 Configuration"
+    - "0x30 Keep alive"
+    - "0x33 Set register status"
+    - "0x4e Motion data"
+    - "0x4f Motion presence alarm"
+    - "0x50 Motion luminosity alarm"
+    - "0x51 digital input 1 alarm"
+    - "0x52 digital input 2 alarm"
+    - "0x5c Motion data"
+    - "0x5d Motion presence alarm"
+  adeunis:motion:2:
+    - "uplink containing the information frame on device configuration"
+    - "uplink containing the information frame on digital inputs configuration when an input is deactivated"
+    - "uplink containing the information frame on digital inputs configuration"
+    - "uplink containing the information frame on network configuration"
+    - "uplink containing the keep alive frame"
+    - "uplink containing the response frame of updating a register when the request status is success"
+    - "uplink containing the response frame of updating a register when an error occurred"
+    - "uplink containing the periodic data frame when having two values of presence and luminosity"
+    - "uplink containing the periodic data frame when having six values of temperature and humidity"
+    - "uplink containing the presence alarm frame"
+    - "uplink containing the luminosity alarm frame"
+    - "uplink containing the digital input 1 alarm frame"
+    - "uplink containing the digital input 2 alarm frame"
+    - "downlink message containing the product configuration request frame"
+    - "downlink message containing the network configuration request frame"
+    - "downlink message containing specific register value request frame"
+    - "downlink message containing the frame for updating the value of a specific register"
+  os1-adeu:motion:1:
+    - "0x5c Motion data"
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false

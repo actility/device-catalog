@@ -37,8 +37,8 @@ LoRaWANCertified: false
 modelId: dl:dl-atm22:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId: 
-    - dl:dl-atm22:1
-    - os1-dece:dl-atm22:1
+  - dl:dl-atm22:1
+  - os1-dece:dl-atm22:1
 # DataSheet URL (optional) 
 specificationURL: https://cdn.decentlab.com/download/datasheets/Decentlab-DL-ATM22-datasheet.pdf
 # User Guide URL (optional) 
@@ -50,14 +50,13 @@ sensors:
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
-    dl:dl-atm22:1:
-        - "uplink containing only the first sensor's data that gives battery voltage"
-        - "uplink containing only second sensor's data that gives wind speed and direction, air temperature, orientation angles"
-        - "uplink containing both sensor's data that gives the full measurements"
-    os1-dece:dl-atm22:1:
-        - "Example 1"
-        - "Example 2"
-
+  dl:dl-atm22:1:
+    - "uplink containing only the first sensor's data that gives battery voltage"
+    - "uplink containing only second sensor's data that gives wind speed and direction, air temperature, orientation angles"
+    - "uplink containing both sensor's data that gives the full measurements"
+  os1-dece:dl-atm22:1:
+    - "Example 1"
+    - "Example 2"
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false

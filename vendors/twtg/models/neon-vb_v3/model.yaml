@@ -38,7 +38,7 @@ LoRaWANCertified: false
 modelId: twtg:neon-vb:3
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId:
-    - twtg:neon-vb:3
+  - twtg:neon-vb:3
 # DataSheet URL (optional) 
 specificationURL: https://github.com/TWTG-R-D-B-V/neon-product-documentation/blob/main/VB/6016_P20-002_Data-Sheet-NEON-Vibration-Sensor_C.pdf
 # User Guide URL (optional)
@@ -53,11 +53,9 @@ sensors:
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
-    twtg:neon-vb:3:
-          - "VB v3 sensor event uplink"
-          - "VB v3 base configuration downlink encode"
-
-
+  twtg:neon-vb:3:
+    - "VB v3 sensor event uplink"
+    - "VB v3 base configuration downlink encode"
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false

@@ -39,8 +39,8 @@ LoRaWANCertified: true
 modelId: msight:em500-smtc:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId:
-    - msight:em500-smt:1
-    - os1-mile:em500-smtc:1
+  - msight:em500-smt:1
+  - os1-mile:em500-smtc:1
 # DataSheet URL (optional) 
 specificationURL: https://resource.milesight-iot.com/milesight/document/em500-smtc-datasheet-en.pdf
 # User Guide URL (optional) 
@@ -52,11 +52,10 @@ sensors:
     - temperature:Cel
     - conductivity:uS/cm
 examples:
-    msight:em500-smt:1:
-        - "Example 1"
-
-    os1-mile:em500-smtc:1:
-        - "Soil Moisture, Temperature, Electrical Conductivity Sensor (example 1) - Milesight IoT"
+  msight:em500-smt:1:
+    - "Example 1"
+  os1-mile:em500-smtc:1:
+    - "Soil Moisture, Temperature, Electrical Conductivity Sensor (example 1) - Milesight IoT"
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false

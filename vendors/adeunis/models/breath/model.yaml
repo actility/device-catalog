@@ -32,8 +32,8 @@ LoRaWANCertified: true
 modelId: adeunis:breath:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId:
-    - adeunis:breath:1
-    - os1-adeu:breath:1
+  - adeunis:breath:1
+  - os1-adeu:breath:1
 # DataSheet URL (optional) 
 specificationURL: https://www.adeunis.com/wp-content/uploads/2021/07/DS_Breath_EN.pdf
 # User Guide URL (optional) 
@@ -47,20 +47,19 @@ sensors:
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
-    adeunis:breath:1:
-        - "0x10 Breath configuration"
-        - "0x1f digital input configuration"
-        - "0x20 Configuration"
-        - "0x30 Daily frame"
-        - "0x33 Set register status"
-        - "0x37 Software version"
-        - "0x51 digital input 1 alarm"
-        - "0x52 digital input 2 alarm"
-        - "0x6d Breath periodic data"
-        - "0x6e Breath alarm"
-
-    os1-adeu:breath:1:
-        - "0x6d Breath periodic data"
+  adeunis:breath:1:
+    - "0x10 Breath configuration"
+    - "0x1f digital input configuration"
+    - "0x20 Configuration"
+    - "0x30 Daily frame"
+    - "0x33 Set register status"
+    - "0x37 Software version"
+    - "0x51 digital input 1 alarm"
+    - "0x52 digital input 2 alarm"
+    - "0x6d Breath periodic data"
+    - "0x6e Breath alarm"
+  os1-adeu:breath:1:
+    - "0x6d Breath periodic data"
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false

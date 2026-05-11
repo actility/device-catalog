@@ -35,7 +35,7 @@ LoRaWANCertified: true
 modelId: swisscom:multisense:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId: 
-    - swisscom:multisense:1
+  - swisscom:multisense:1
 # DataSheet URL (optional) 
 specificationURL: https://documents.swisscom.com/product/filestore/lib/7e5a5e13-1446-4693-b1c9-7b62e4890444/multisense_user_guide-en.pdf
 # User Guide URL (optional) 
@@ -52,19 +52,17 @@ sensors:
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
-    swisscom:multisense:1:
-        - "uplink containing five measurements"
-        - "uplink containing ten measurements"
-        - "uplink containing a motion event"
-        - "uplink containing temperature alarm and negative temperature"
-        - "uplink containing humidity alarm"
-        - "uplink containing a life sign"
-        - "uplink for usage start in workplace mode"
-        - "uplink for usage check in workplace mode"
-        - "uplink for button in workplace mode"
-        - "uplink for lifesign in workplace mode"
-
-
+  swisscom:multisense:1:
+    - "uplink containing five measurements"
+    - "uplink containing ten measurements"
+    - "uplink containing a motion event"
+    - "uplink containing temperature alarm and negative temperature"
+    - "uplink containing humidity alarm"
+    - "uplink containing a life sign"
+    - "uplink for usage start in workplace mode"
+    - "uplink for usage check in workplace mode"
+    - "uplink for button in workplace mode"
+    - "uplink for lifesign in workplace mode"
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false

@@ -37,8 +37,8 @@ LoRaWANCertified: false
 modelId: dl:dl-tbrg:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId: 
-    - dl:dl-tbrg:1
-    - os1-dece:dl-tbrg:1
+  - dl:dl-tbrg:1
+  - os1-dece:dl-tbrg:1
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 
@@ -49,15 +49,13 @@ sensors:
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
-    dl:dl-tbrg:1:
-        - "uplink containing only first sensor's data that gives the precipitation in interval and the total accumulated precipitation"
-        - "uplink containing only the second sensor's data that gives battery voltage"
-        - "uplink containing both sensor's data that gives the full measurements"
-    os1-dece:dl-tbrg:1:
-        - "Example 1"
-        - "Example 2"
-
-
+  dl:dl-tbrg:1:
+    - "uplink containing only first sensor's data that gives the precipitation in interval and the total accumulated precipitation"
+    - "uplink containing only the second sensor's data that gives battery voltage"
+    - "uplink containing both sensor's data that gives the full measurements"
+  os1-dece:dl-tbrg:1:
+    - "Example 1"
+    - "Example 2"
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false

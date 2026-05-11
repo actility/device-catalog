@@ -45,8 +45,8 @@ LoRaWANCertified: true
 modelId: abeeway:smart-badge:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId: 
-    - abeeway:asset-tracker:2
-    - os1-abee:smart-badge:2
+  - abeeway:asset-tracker:2
+  - os1-abee:smart-badge:2
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 
@@ -388,10 +388,9 @@ examples:
     - "fail decode downlink for unknown parameter"
     - "fail decode downlink for unknown mode"
     - "fail decode downlink for an unknown debug command"
-
-    os1-abee:smart-badge:2:
-        - "Uplink containing GPS_FIX position"
-        - "Uplink containing GEOLOC_START event"
+  os1-abee:smart-badge:2:
+    - "Uplink containing GPS_FIX position"
+    - "Uplink containing GEOLOC_START event"
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false

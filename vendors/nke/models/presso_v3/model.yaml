@@ -36,8 +36,8 @@ LoRaWANCertified: false
 modelId: nke:presso:3
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId: 
-    - nke:zcl:1
-    - os1-nke:presso-sensor:3
+  - nke:zcl:1
+  - os1-nke:presso-sensor:3
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 
@@ -47,10 +47,9 @@ sensors:
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
-    nke:zcl:1:
-        - "Press'O Report of the analog value of connector 4-20mA"
-        - "Press'O Report of the analog value of connector 0-10V"
-
+  nke:zcl:1:
+    - "Press'O Report of the analog value of connector 4-20mA"
+    - "Press'O Report of the analog value of connector 0-10V"
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false

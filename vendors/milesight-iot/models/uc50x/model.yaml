@@ -44,8 +44,8 @@ LoRaWANCertified: true
 modelId: msight:uc50x:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId:
-    - msight:uc500-series:1
-    - os1-mile:uc50x:1
+  - msight:uc500-series:1
+  - os1-mile:uc50x:1
 # DataSheet URL (optional) 
 specificationURL: https://www.milesight-iot.com/lorawan/controller/uc500/
 # User Guide URL (optional) 
@@ -56,12 +56,11 @@ sensors:
     - counter:count
     - status:state
 examples:
-    msight:uc500-series:1:
-        - "Example 1"
-
-    os1-mile:uc50x:1:
-        - "LoRa Controllers (example 1) - Milesight IoT"
-        - "LoRa Controllers (example 2) - Milesight IoT"
+  msight:uc500-series:1:
+    - "Example 1"
+  os1-mile:uc50x:1:
+    - "LoRa Controllers (example 1) - Milesight IoT"
+    - "LoRa Controllers (example 2) - Milesight IoT"
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false

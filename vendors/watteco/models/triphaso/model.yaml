@@ -39,7 +39,7 @@ protocolId:
   - watteco:triphaso:4
   - nke:zcl:1
   - os1-nke:triphaso-sensor:3
-    - os1-watt:triphaso:3
+  - os1-watt:triphaso:3
 # DataSheet URL (optional)
 specificationURL: https://www.watteco.com/product/triphaso-sensor-lorawan/
 # User Guide URL (optional)
@@ -60,20 +60,20 @@ LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false
 examples:
-    os1-watt:triphaso:3:
-        - "uplink standard report containing state of pin 1 | payload:110A000F00551001"
-        - "uplink standard report containing number of pulse detection on input 1 | payload:110A000F04022300000000"
-        - "uplink standard report containing state value | payload:110A000600001001"
-        - "uplink standard report containing state value | payload:110A000600001000"
-        - "uplink standard report containing energy/power value | payload:710A800A000041200003A96A00000000000092990000705000007C7F00000000000000C000000F6F"
-        - "uplink standard report containing energy/power long threshold alarm | payload:118A800A000041200010760A0000020400005A6E000A210D000018A20000000000000000000003A6A0B1060000000F0000000002"
-        - "uplink standard report containing volt, amp, and phase value | payload:110A800B00004106094C030E0163"
-        - "uplink standard report containing short threshold alarm | payload:310a800b000041060973010d01629050"
-        - "uplink standard report containing long threshold alarm | payload:118A800B00004106097801150162A0500003E8000001D1010032000001"
-        - "uplink standard report containing report of the 3 phases | payload:110a8010000041200000010000000200000003000000040000000500000006000000070000000800"
-        - "uplink standard report containing report of the 3 phases | payload:110A80100001412000001843FFFFFC20000024CAFFFFF50F00001F35FFFFF42A00005C42FFFFE559A050000000003200000001015100000000140000000001"
-        - "uplink standard report containing report of the 3 phases | payload:110A800D0000411208A10052000308A20042004008A300320030"
-        - "uplink standard report containing long threshold alarm | payload:118A800D000041120975010C01610974015E0153098301610150A0D0000032000001D1010005000001B208015E000001"
-        - "uplink standard report containing firmware version | payload:110100000002000D0305020015E2"
-        - "uplink standard report  containing battery charge | payload:110A00500006410503040E6804"
-        - "uplink standard report containing dataup info | payload:110180040000000800"
+  os1-watt:triphaso:3:
+    - "uplink standard report containing state of pin 1 | payload:110A000F00551001"
+    - "uplink standard report containing number of pulse detection on input 1 | payload:110A000F04022300000000"
+    - "uplink standard report containing state value | payload:110A000600001001"
+    - "uplink standard report containing state value | payload:110A000600001000"
+    - "uplink standard report containing energy/power value | payload:710A800A000041200003A96A00000000000092990000705000007C7F00000000000000C000000F6F"
+    - "uplink standard report containing energy/power long threshold alarm | payload:118A800A000041200010760A0000020400005A6E000A210D000018A20000000000000000000003A6A0B1060000000F0000000002"
+    - "uplink standard report containing volt, amp, and phase value | payload:110A800B00004106094C030E0163"
+    - "uplink standard report containing short threshold alarm | payload:310a800b000041060973010d01629050"
+    - "uplink standard report containing long threshold alarm | payload:118A800B00004106097801150162A0500003E8000001D1010032000001"
+    - "uplink standard report containing report of the 3 phases | payload:110a8010000041200000010000000200000003000000040000000500000006000000070000000800"
+    - "uplink standard report containing report of the 3 phases | payload:110A80100001412000001843FFFFFC20000024CAFFFFF50F00001F35FFFFF42A00005C42FFFFE559A050000000003200000001015100000000140000000001"
+    - "uplink standard report containing report of the 3 phases | payload:110A800D0000411208A10052000308A20042004008A300320030"
+    - "uplink standard report containing long threshold alarm | payload:118A800D000041120975010C01610974015E0153098301610150A0D0000032000001D1010005000001B208015E000001"
+    - "uplink standard report containing firmware version | payload:110100000002000D0305020015E2"
+    - "uplink standard report  containing battery charge | payload:110A00500006410503040E6804"
+    - "uplink standard report containing dataup info | payload:110180040000000800"

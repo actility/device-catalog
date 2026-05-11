@@ -31,8 +31,8 @@ LoRaWANCertified: false
 modelId: adeunis:comfort-co2:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId:
-    - adeunis:comfort-co2:1
-    - os1-adeu:comfort-co2:1
+  - adeunis:comfort-co2:1
+  - os1-adeu:comfort-co2:1
 # DataSheet URL (optional) 
 specificationURL: https://lora-alliance.org/wp-content/uploads/2022/03/SMART_BUILDING_COMFORT-CO2_LoRaWAN_V1.1.2.pdf
 # User Guide URL (optional) 
@@ -42,21 +42,19 @@ sensors:
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
-    adeunis:comfort-co2:1:
-        - "uplink containing Comfort CO2 configuration 0x10"
-        - "uplink containing digital input configuration 0x1f"
-        - "uplink containing configuration 0x20"
-        - "uplink containing daily frame data 0x30"
-        - "uplink containing register status configuration 0x33"
-        - "uplink containing software version data 0x37"
-        - "uplink containing digital input 1 alarm 0x51"
-        - "uplink containing digital input 2 alarm 0x52"
-        - "uplink containing Comfort CO2 data 0x6a"
-        - "uplink containing comfort CO2 alarm 0x6b"
-
-
-    os1-adeu:comfort-co2:1:
-        - "0x6a Comfort CO2 data"
+  adeunis:comfort-co2:1:
+    - "uplink containing Comfort CO2 configuration 0x10"
+    - "uplink containing digital input configuration 0x1f"
+    - "uplink containing configuration 0x20"
+    - "uplink containing daily frame data 0x30"
+    - "uplink containing register status configuration 0x33"
+    - "uplink containing software version data 0x37"
+    - "uplink containing digital input 1 alarm 0x51"
+    - "uplink containing digital input 2 alarm 0x52"
+    - "uplink containing Comfort CO2 data 0x6a"
+    - "uplink containing comfort CO2 alarm 0x6b"
+  os1-adeu:comfort-co2:1:
+    - "0x6a Comfort CO2 data"
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false

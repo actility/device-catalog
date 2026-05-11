@@ -34,7 +34,7 @@ LoRaWANCertified: true
 modelId: imst:ioke868:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId: 
-    - os1-imst:ioke868:1
+  - os1-imst:ioke868:1
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 
@@ -44,16 +44,14 @@ sensors:
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
-    os1-imst:ioke868:1:
-        - "Object with Unit: OBIS_ID=1-0:1.8.1*255"
-        - "Object without Unit: OBIS_ID=1-0:1.8.1*255"
-        - "Object with String: OBIS_ID=1-0:1.8.1*255"
-        - "segmented Objects: OBIS_ID=1-0:1.8.1*255"
-        - "Time & Status Field"
-        - "Meter ID Field"
-        - "Status"
-
-
+  os1-imst:ioke868:1:
+    - "Object with Unit: OBIS_ID=1-0:1.8.1*255"
+    - "Object without Unit: OBIS_ID=1-0:1.8.1*255"
+    - "Object with String: OBIS_ID=1-0:1.8.1*255"
+    - "segmented Objects: OBIS_ID=1-0:1.8.1*255"
+    - "Time & Status Field"
+    - "Meter ID Field"
+    - "Status"
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false
