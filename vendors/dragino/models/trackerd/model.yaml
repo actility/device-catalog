@@ -1,0 +1,43 @@
+# Commercial name of the model 
+name: "TrackerD - GPS Tracker"
+# Functional description of the product. Maximum 500 characters. 
+description: "The Dragino TrackerD consists of a LoRaWAN tracker based on ESP32 MCU and Semtech LoRa Wireless Chip. It features various sensors and functions such as GPS, WiFi, BLE, temperature, humidity, motion detection, alarm button and a buzzer."
+# Logo of the device
+logo: trackerd.png
+# Product name & Version
+product:
+    name: DRAGINO/TRACKERD
+    version: 1
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
+deviceProfileIds: 
+    - id: dragino_RFGroup1_1.0.3a_classA
+    - id: dragino_RFGroup2_1.0.3a_classA
+    - id: dragino_RFGroup4_1.0.3a_classA
+ 
+# You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
+# Maximum device TX Conducted output power in dBm. 
+maxTxPower:
+# Minimum device TX Conducted output power in dBm. 
+minTxPower:
+# Maximum device TX Radiated output power in dBm.  
+maxTxEIRP:
+# Minimum device TX Radiated output power in dBm.  
+minTxEIRP:
+# Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'  
+# or 'random' (not known, changes over time). 
+motionIndicator:
+ 
+# Is your device certified by the LoRa Alliance? Possible values: true, false. 
+LoRaWANCertified: true
+# Format: `<8 characters max>:<16 characters max>:<digits only>`
+modelId: dragino:trackerd:1
+# <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
+protocolId:
+    - os1-drag:trackerd:2
+# DataSheet URL (optional) 
+specificationURL: https://www.dropbox.com/sh/4oiobuaaxjxhhuk/AADSJsm8X4oPvJJzIOAVvqVKa?dl=0
+# User Guide URL (optional) 
+userGuideURL: https://www.dropbox.com/sh/4oiobuaaxjxhhuk/AADSJsm8X4oPvJJzIOAVvqVKa?dl=0
+# <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
+sensors: 
+    - water:

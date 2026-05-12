@@ -1,0 +1,42 @@
+# Commercial name of the model 
+name: "16A Switch & Power Meter (16ASPM)"
+# Functional description of the product. Maximum 500 characters. 
+description: "The МClimate 16A Switch & Power Meter LoRaWAN (16ASPM) is a miniature device that features a wet 16A relay and an electricity meter inside. The device has 4 terminals L, N, N, Lout, connecting and disconnecting Lout from Lin. The device operates in LoRaWAN Class C, features FUOTA (Firmware Upgrades Over The Air) and has overheating protection"
+# Logo of the device
+logo: 16aspm.png
+# Product name & Version
+product:
+    name: MCLIMATE/16ASPM
+    version: 1
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
+deviceProfileIds: 
+    - id: mclimate_RFGroup1_1.0.3a_classA
+    - id: mclimate_RFGroup1_1.0.3a_classC
+ 
+# You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
+# Maximum device TX Conducted output power in dBm. 
+maxTxPower:
+# Minimum device TX Conducted output power in dBm. 
+minTxPower:
+# Maximum device TX Radiated output power in dBm.  
+maxTxEIRP:
+# Minimum device TX Radiated output power in dBm.  
+minTxEIRP:
+# Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'  
+# or 'random' (not known, changes over time). 
+motionIndicator:
+ 
+# Is your device certified by the LoRa Alliance? Possible values: true, false. 
+LoRaWANCertified: false
+# Format: `<8 characters max>:<16 characters max>:<digits only>`
+modelId: mclimate:16aspm:1
+# <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
+protocolId:
+    - os1-mcli:16aspm:1
+# DataSheet URL (optional) 
+specificationURL: https://3940008670-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F-McDr-jr9h3qA888r1Yp%2Fuploads%2F6ySZvZUpeLGiEza7qAWz%2FMClimate-16ASPM-Datasheet.pdf?alt=media&token=baf39b06-3946-4f7e-acc3-29faadc0f0e0
+# User Guide URL (optional) 
+userGuideURL: https://3940008670-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F-McDr-jr9h3qA888r1Yp%2Fuploads%2F6ySZvZUpeLGiEza7qAWz%2FMClimate-16ASPM-Datasheet.pdf?alt=media&token=baf39b06-3946-4f7e-acc3-29faadc0f0e0
+# <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
+sensors: 
+    - temperature:°C

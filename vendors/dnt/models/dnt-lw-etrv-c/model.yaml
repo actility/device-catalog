@@ -1,0 +1,41 @@
+# Commercial name of the model 
+name: "LoRaWAN® Radiator Thermostat Controllable"
+# Functional description of the product. Maximum 500 characters. 
+description: "The dnt® LoRaWAN® Radiator thermostat Controllable (dnt-lw-eTRV-C) enables two ways to adjust the room temperature: directly on the device with the integrated buttons or remote control via Downlinks. It features an always-on e-paper display to show the current temperature settings, three customizable heating profiles with up to ten switching times per day, a window open detection to automatically reduce temperature and the possibility to perform a dynamic adaptive adjustment of the radiator. ..."
+# Logo of the device
+logo: dnt-lw-etrv-c.png
+# Product name & Version
+product:
+    name: DNT/DNT-LW-ETRV-C
+    version: 1
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
+deviceProfileIds: 
+    - id: dnt_RFGroup1_1.0.3a_classA
+ 
+# You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
+# Maximum device TX Conducted output power in dBm. 
+maxTxPower:
+# Minimum device TX Conducted output power in dBm. 
+minTxPower:
+# Maximum device TX Radiated output power in dBm.  
+maxTxEIRP:
+# Minimum device TX Radiated output power in dBm.  
+minTxEIRP:
+# Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'  
+# or 'random' (not known, changes over time). 
+motionIndicator:
+ 
+# Is your device certified by the LoRa Alliance? Possible values: true, false. 
+LoRaWANCertified: true
+# Format: `<8 characters max>:<16 characters max>:<digits only>`
+modelId: dnt:dnt-lw-etrv-c:1
+# <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
+protocolId:
+    - os1-dnt:lw-etrv-c:1
+# DataSheet URL (optional) 
+specificationURL: https://dnt.de/business/
+# User Guide URL (optional) 
+userGuideURL: 
+# <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
+sensors: 
+    - temperature:°C

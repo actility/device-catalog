@@ -1,0 +1,47 @@
+# Commercial name of the model 
+name: "tg-lr82"
+# Functional description of the product. Maximum 500 characters. 
+description: "Programmable temperature, humidity, orientation, motion and magnetic switch sensor."
+# Logo of the device
+logo: tg-lr82.png
+# Product name & Version
+product:
+    name: MIKROTIK/TG-LR82
+    version: 1
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
+deviceProfileIds: 
+    - id: mikrotik_RFGroup1_1.0.4a_classA
+    - id: mikrotik_RFGroup1_1.0.4a_classB
+ 
+# You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
+# Maximum device TX Conducted output power in dBm. 
+maxTxPower:
+# Minimum device TX Conducted output power in dBm. 
+minTxPower:
+# Maximum device TX Radiated output power in dBm.  
+maxTxEIRP:
+# Minimum device TX Radiated output power in dBm.  
+minTxEIRP:
+# Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'  
+# or 'random' (not known, changes over time). 
+motionIndicator:
+ 
+# Is your device certified by the LoRa Alliance? Possible values: true, false. 
+LoRaWANCertified: true
+# Format: `<8 characters max>:<16 characters max>:<digits only>`
+modelId: mikrotik:tg-lr82:1
+# <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
+protocolId:
+    - os1-mikr:tg-lr82:2
+# DataSheet URL (optional) 
+specificationURL: https://help.mikrotik.com/docs/spaces/UM/pages/181338171/TG-LR
+# User Guide URL (optional) 
+userGuideURL: https://help.mikrotik.com/docs/spaces/UM/pages/181338171/TG-LR
+# <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
+sensors: 
+    - temperature:°C
+    - humidity:%RH
+    - motion:
+    - acceleration:m/s²
+    - batteryLevel:%
+    - pulseCounter:

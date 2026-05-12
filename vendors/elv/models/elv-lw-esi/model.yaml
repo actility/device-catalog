@@ -1,0 +1,41 @@
+# Commercial name of the model 
+name: "LoRaWAN® Energy Sensing Interface"
+# Functional description of the product. Maximum 500 characters. 
+description: "The ELV LoRaWAN® Energy Meter Sensor Interface ELV-LW-ESI kit is an interface module that, in conjunction with a radio module (included in the kit), records the energy consumption directly on the electricity or gas meter and sends the determined data via LoRaWAN®. The flexible meter reading can be implemented conveniently  for many of the common electricity and gas consumption meters. Various sensors can be used to read out the meters, e.g. electricity meters with IEC or LED interface, Ferrar..."
+# Logo of the device
+logo: elv-lw-esi.jpg
+# Product name & Version
+product:
+    name: ELV/ELV-LW-ESI
+    version: 1
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
+deviceProfileIds: 
+    - id: elv_RFGroup1_1.0.3a_classA
+ 
+# You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
+# Maximum device TX Conducted output power in dBm. 
+maxTxPower:
+# Minimum device TX Conducted output power in dBm. 
+minTxPower:
+# Maximum device TX Radiated output power in dBm.  
+maxTxEIRP:
+# Minimum device TX Radiated output power in dBm.  
+minTxEIRP:
+# Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'  
+# or 'random' (not known, changes over time). 
+motionIndicator:
+ 
+# Is your device certified by the LoRa Alliance? Possible values: true, false. 
+LoRaWANCertified: true
+# Format: `<8 characters max>:<16 characters max>:<digits only>`
+modelId: elv:elv-lw-esi:1
+# <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
+protocolId:
+    - os1-elv:lw-esi:1
+# DataSheet URL (optional) 
+specificationURL: https://de.elv.com/
+# User Guide URL (optional) 
+userGuideURL: 
+# <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
+sensors: 
+    - energy:Wh

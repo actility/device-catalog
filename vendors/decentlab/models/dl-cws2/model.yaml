@@ -1,0 +1,45 @@
+# Commercial name of the model 
+name: "DL-CWS2 - High-Precision Winter Road Maintenance Sensor with Radiation Shield"
+# Functional description of the product. Maximum 500 characters. 
+description: "The Decentlab DL-CWS2 includes a high-precision infrared pyrometer, temperature, humidity and dew point sensors. It is suitable for use in road weather information systems, winter road maintenance, frost alarming, ice alerting, and smart agriculture."
+# Logo of the device
+logo: dl-cws.png
+# Product name & Version
+product:
+    name: DECENTLA/DL-CWS2
+    version: 1
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
+deviceProfileIds: 
+    - id: decentla_RFGroup1_1.0.2b_classA
+    - id: decentla_RFGroup4_1.0.2b_classA
+    - id: decentla_RFGroup2_1.0.2b_classA
+ 
+# You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
+# Maximum device TX Conducted output power in dBm. 
+maxTxPower:
+# Minimum device TX Conducted output power in dBm. 
+minTxPower:
+# Maximum device TX Radiated output power in dBm.  
+maxTxEIRP:
+# Minimum device TX Radiated output power in dBm.  
+minTxEIRP:
+# Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'  
+# or 'random' (not known, changes over time). 
+motionIndicator:
+ 
+# Is your device certified by the LoRa Alliance? Possible values: true, false. 
+LoRaWANCertified: true
+# Format: `<8 characters max>:<16 characters max>:<digits only>`
+modelId: decentla:dl-cws2:1
+# <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
+protocolId:
+    - os1-dece:dl-cws2:1
+# DataSheet URL (optional) 
+specificationURL: https://cdn.decentlab.com/download/datasheets/Decentlab-DL-CWS2-datasheet.pdf
+# User Guide URL (optional) 
+userGuideURL: https://cdn.decentlab.com/download/datasheets/Decentlab-DL-CWS2-datasheet.pdf
+# <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
+sensors: 
+    - temperature:°C
+    - humidity:%RH
+    - batteryLevel:%

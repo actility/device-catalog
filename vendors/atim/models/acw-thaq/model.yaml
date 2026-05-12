@@ -1,0 +1,44 @@
+# Commercial name of the model 
+name: "ACW-THAQ - CO2/VOC/Temperature/Humidity Sensor"
+# Functional description of the product. Maximum 500 characters. 
+description: "The THAQ facilitates the monitoring of your rooms and buildings thanks to its CO2, VOC (volatile organic compounds), temperature and relative humidity sensors. Equipped with a LED on the front panel (Green > Orange > Red) clearly indicating the need to ventilate the room, the air quality is displayed locally or the complete measurements are sent to an operated LoRaWAN network."
+# Logo of the device
+logo: acw-thaq.png
+# Product name & Version
+product:
+    name: ATIM/ACW-THAQ
+    version: 1
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
+deviceProfileIds: 
+    - id: atim_RFGroup1_1.0.2a_classA
+ 
+# You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
+# Maximum device TX Conducted output power in dBm. 
+maxTxPower:
+# Minimum device TX Conducted output power in dBm. 
+minTxPower:
+# Maximum device TX Radiated output power in dBm.  
+maxTxEIRP:
+# Minimum device TX Radiated output power in dBm.  
+minTxEIRP:
+# Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'  
+# or 'random' (not known, changes over time). 
+motionIndicator:
+ 
+# Is your device certified by the LoRa Alliance? Possible values: true, false. 
+LoRaWANCertified: true
+# Format: `<8 characters max>:<16 characters max>:<digits only>`
+modelId: atim:acw-thaq:1
+# <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
+protocolId:
+    - os1-atim:acw-thaq:1
+# DataSheet URL (optional) 
+specificationURL: https://www.atim.com/wp-content/uploads/documentation/ACW/ACW-THAQ/FRANCAIS/ATIM_ACW-THAQ_UG_FR.pdf
+# User Guide URL (optional) 
+userGuideURL: https://www.atim.com/wp-content/uploads/documentation/ACW/ACW-THAQ/FRANCAIS/ATIM_ACW-THAQ_UG_FR.pdf
+# <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
+sensors: 
+    - temperature:°C
+    - humidity:%RH
+    - co2Level:ppm
+    - pm25:µg/m³

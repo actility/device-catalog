@@ -1,0 +1,42 @@
+# Commercial name of the model 
+name: "FM432ir - Sensor for German electricity meters - 10/15 min"
+# Functional description of the product. Maximum 500 characters. 
+description: "FM432ir is an IoT sensor for monitoring the electricity consumption (electric power) of all types of buildings. It has been specially designed for meters with infrared communication ports (mMEGerman meters with SML protocol), but can also be used with old Ferraris meters. It is easy to install on the existing main electricity meter. It connects to LoRaWAN communication networks so that the power curve can be collected at regular intervals. This professional solution is extremely adequate for ..."
+# Logo of the device
+logo: fm432ir.png
+# Product name & Version
+product:
+    name: FLUDIA/FM432IR-10-15MN
+    version: 1
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
+deviceProfileIds: 
+    - id: fludia_RFGroup1_1.0a_classA
+ 
+# You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
+# Maximum device TX Conducted output power in dBm. 
+maxTxPower:
+# Minimum device TX Conducted output power in dBm. 
+minTxPower:
+# Maximum device TX Radiated output power in dBm.  
+maxTxEIRP:
+# Minimum device TX Radiated output power in dBm.  
+minTxEIRP:
+# Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'  
+# or 'random' (not known, changes over time). 
+motionIndicator:
+ 
+# Is your device certified by the LoRa Alliance? Possible values: true, false. 
+LoRaWANCertified: true
+# Format: `<8 characters max>:<16 characters max>:<digits only>`
+modelId: fludia:fm432ir-10-15mn:1
+# <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
+protocolId:
+    - os1-flud:fm432ir-10-15mn:1
+# DataSheet URL (optional) 
+specificationURL: https://shop.fludia.com/shop/en/isoFR/26-fm432ir-iot-sensor-for-german-electricity-meters-lorawan.html
+# User Guide URL (optional) 
+userGuideURL: 
+# <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
+sensors: 
+    - power:W
+    - energy:Wh

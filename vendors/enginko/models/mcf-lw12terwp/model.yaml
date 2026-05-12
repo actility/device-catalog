@@ -1,0 +1,46 @@
+# Commercial name of the model 
+name: "MCF-LW12TERWP - Outdoor Environmental Sensor"
+# Functional description of the product. Maximum 500 characters. 
+description: "The mfc88 MCF-LW12TERWP is a LoRaWAN® end device that has a temperature sensor, humidity sensor, and pressure sensor for monitoring outdoor environments. Ideally suited for a wide range of applications such as weather stations, urban monitoring, air quality, industrial, environmental, or farming projects."
+# Logo of the device
+logo: mcf-lw12terwp.png
+# Product name & Version
+product:
+    name: ENGINKO/MCF-LW12TERWP
+    version: 1
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
+deviceProfileIds: 
+    - id: enginko_RFGroup1_1.0.2b_classA
+    - id: enginko_RFGroup2_1.0.2b_classA
+    - id: enginko_RFGroup4_1.0.2b_classA
+ 
+# You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
+# Maximum device TX Conducted output power in dBm. 
+maxTxPower:
+# Minimum device TX Conducted output power in dBm. 
+minTxPower:
+# Maximum device TX Radiated output power in dBm.  
+maxTxEIRP:
+# Minimum device TX Radiated output power in dBm.  
+minTxEIRP:
+# Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'  
+# or 'random' (not known, changes over time). 
+motionIndicator:
+ 
+# Is your device certified by the LoRa Alliance? Possible values: true, false. 
+LoRaWANCertified: true
+# Format: `<8 characters max>:<16 characters max>:<digits only>`
+modelId: enginko:mcf-lw12terwp:1
+# <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
+protocolId:
+    - os1-engi:mcf-lw12terwp:1
+# DataSheet URL (optional) 
+specificationURL: https://www.enginko.it/wp-content/uploads/2020/07/MCF-LW12TERWP.pdf
+# User Guide URL (optional) 
+userGuideURL: https://www.enginko.it/wp-content/uploads/2020/07/MCF-LW12TERWP.pdf
+# <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
+sensors: 
+    - temperature:°C
+    - humidity:%RH
+    - pressure:hPa
+    - batteryLevel:%

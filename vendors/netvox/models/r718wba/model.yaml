@@ -1,0 +1,45 @@
+# Commercial name of the model 
+name: "R718WBA - Wireless Temperature and Humidity Sensor & Water Leakage"
+# Functional description of the product. Maximum 500 characters. 
+description: "The R718WBA is a wireless communication device that detects ambient air temperature and humidity and non-locating leak detection. The R718WBA detects the temperature and humidity of the air. At the same time, it detects the presence or absence of water leakage through the 2-core non-locating leak detection sensor line, and transmits the detected data to the gateway through the wireless network. The SX1276 wireless communication module is used."
+# Logo of the device
+logo: photos/r718wba.jpg
+# Product name & Version
+product:
+    name: NETVOX/R718WBA
+    version: 2
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
+deviceProfileIds: 
+    - id: netvox_RFGroup1_1.0.2b_classA
+    - id: netvox_RFGroup4_1.0.2b_classA
+    - id: netvox_RFGroup2_1.0.2b_classA
+ 
+# You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
+# Maximum device TX Conducted output power in dBm. 
+maxTxPower:
+# Minimum device TX Conducted output power in dBm. 
+minTxPower:
+# Maximum device TX Radiated output power in dBm.  
+maxTxEIRP:
+# Minimum device TX Radiated output power in dBm.  
+minTxEIRP:
+# Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'  
+# or 'random' (not known, changes over time). 
+motionIndicator:
+ 
+# Is your device certified by the LoRa Alliance? Possible values: true, false. 
+LoRaWANCertified: false
+# Format: `<8 characters max>:<16 characters max>:<digits only>`
+modelId: netvox:r718wba:2
+# <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
+protocolId:
+    - os1-netv:r718wba:10
+# DataSheet URL (optional) 
+specificationURL: http://www.netvox.com.tw/um/R718WBA/R718WBAdatasheet.pdf
+# User Guide URL (optional) 
+userGuideURL: http://www.netvox.com.tw/um/R718WBA/R718WBAdatasheet.pdf
+# <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
+sensors: 
+    - temperature:°C
+    - humidity:%RH
+    - water:

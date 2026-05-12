@@ -1,0 +1,47 @@
+# Commercial name of the model 
+name: "SPU20B - Senspuck Pure Battery"
+# Functional description of the product. Maximum 500 characters. 
+description: "The Senzemo Senpuck Pure is an indoor LoRaWAN® air quality sensor that measures CO2, TVOC, temperature, realtive humidity, and pressure. Suitable for monitoring air quality in enterprise and public spaces. The device sends data to the LoRaWAN® network and notifies users to open the windows if the air quality is poor."
+# Logo of the device
+logo: spu20b.jpg
+# Product name & Version
+product:
+    name: SENZEMO/SPU20B
+    version: 20
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
+deviceProfileIds: 
+    - id: senzemo_RFGroup1_1.0.3a_classA
+    - id: senzemo_RFGroup4_1.0.3a_classA
+    - id: senzemo_RFGroup2_1.0.3a_classA
+ 
+# You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
+# Maximum device TX Conducted output power in dBm. 
+maxTxPower:
+# Minimum device TX Conducted output power in dBm. 
+minTxPower:
+# Maximum device TX Radiated output power in dBm.  
+maxTxEIRP:
+# Minimum device TX Radiated output power in dBm.  
+minTxEIRP:
+# Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'  
+# or 'random' (not known, changes over time). 
+motionIndicator:
+ 
+# Is your device certified by the LoRa Alliance? Possible values: true, false. 
+LoRaWANCertified: false
+# Format: `<8 characters max>:<16 characters max>:<digits only>`
+modelId: senzemo:spu20b:20
+# <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
+protocolId:
+    - os1-senz:spu20b:1
+# DataSheet URL (optional) 
+specificationURL: https://senstick.co/downloads/Senspuck-Pure-Battery-SPU20B-Datasheet.pdf
+# User Guide URL (optional) 
+userGuideURL: https://senstick.co/downloads/Senspuck-Pure-Battery-SPU20B-Datasheet.pdf
+# <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
+sensors: 
+    - co2Level:ppm
+    - tvoc:ppm
+    - temperature:°C
+    - humidity:%RH
+    - pressure:hPa

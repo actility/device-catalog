@@ -1,0 +1,40 @@
+# Commercial name of the model 
+name: "ACW-TM1P - Temperature Probe"
+# Functional description of the product. Maximum 500 characters. 
+description: "The TMxP facilitates the monitoring of up to two remote temperatures of your buildings and energy installations thanks to its two meters long -196°C | +200°C temperature probes. Measurements are regularly transmitted on** LoRaWAN** networks and its configuration is configurable from the tools of the ATIM suite."
+# Logo of the device
+logo: acw-tm1p.png
+# Product name & Version
+product:
+    name: ATIM/ACW-TM1P
+    version: 1
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
+deviceProfileIds: 
+    - id: atim_RFGroup1_1.0.2a_classA
+ 
+# You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
+# Maximum device TX Conducted output power in dBm. 
+maxTxPower:
+# Minimum device TX Conducted output power in dBm. 
+minTxPower:
+# Maximum device TX Radiated output power in dBm.  
+maxTxEIRP:
+# Minimum device TX Radiated output power in dBm.  
+minTxEIRP:
+# Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'  
+# or 'random' (not known, changes over time). 
+motionIndicator:
+ 
+# Is your device certified by the LoRa Alliance? Possible values: true, false. 
+LoRaWANCertified: true
+# Format: `<8 characters max>:<16 characters max>:<digits only>`
+modelId: atim:acw-tm1p:1
+# <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
+protocolId:
+    - os1-atim:acw-tm1p:1
+# DataSheet URL (optional) 
+specificationURL: https://www.atim.com/wp-content/uploads/documentation/ACW/ACW-TMxP/FRANCAIS/ATIM_ACW-TMxP_UG_FR.pdf
+# User Guide URL (optional) 
+userGuideURL: https://www.atim.com/wp-content/uploads/documentation/ACW/ACW-TMxP/FRANCAIS/ATIM_ACW-TMxP_UG_FR.pdf
+# <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
+sensors: 

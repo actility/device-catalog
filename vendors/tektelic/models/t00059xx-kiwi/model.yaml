@@ -1,0 +1,44 @@
+# Commercial name of the model 
+name: "KIWI Agriculture Sensor"
+# Functional description of the product. Maximum 500 characters. 
+description: "The KIWI Agriculture Sensor is is the ideal solution to streamline and simplify the collection of key soil and environmental metrics for crops, residential and commercial lawns and gardens and golf courses.The device provides a straightforward and easy to deploy solution for soil moisture and temperature, air temperature and humidity, and outdoor light monitoring. Enjoy increased crop yields and decreased operating expenses with the deployment of this versatile device. The KIWI utilizes a rug..."
+# Logo of the device
+logo: kiwi-agriculture-sensor.png
+# Product name & Version
+product:
+    name: TEKTELIC/T00059XX-KIWI
+    version: 1
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
+deviceProfileIds: 
+    - id: tektelic_RFGroup1_1.0.2b_classA
+    - id: tektelic_RFGroup2_1.0.2b_classA
+    - id: tektelic_RFGroup4_1.0.2b_classA
+ 
+# You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
+# Maximum device TX Conducted output power in dBm. 
+maxTxPower:
+# Minimum device TX Conducted output power in dBm. 
+minTxPower:
+# Maximum device TX Radiated output power in dBm.  
+maxTxEIRP:
+# Minimum device TX Radiated output power in dBm.  
+minTxEIRP:
+# Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'  
+# or 'random' (not known, changes over time). 
+motionIndicator:
+ 
+# Is your device certified by the LoRa Alliance? Possible values: true, false. 
+LoRaWANCertified: true
+# Format: `<8 characters max>:<16 characters max>:<digits only>`
+modelId: tektelic:t00059xx-kiwi:1
+# <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
+protocolId:
+    - os1-tekt:t00059xx-kiwi:1
+# DataSheet URL (optional) 
+specificationURL: https://tektelic.com/uploads/Spec-sheet/KIWI_-_Agriculture_Sensor.pdf
+# User Guide URL (optional) 
+userGuideURL: https://tektelic.com/uploads/Spec-sheet/KIWI_-_Agriculture_Sensor.pdf
+# <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
+sensors: 
+    - temperature:°C
+    - humidity:%RH

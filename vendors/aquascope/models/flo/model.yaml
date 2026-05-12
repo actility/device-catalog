@@ -1,0 +1,43 @@
+# Commercial name of the model 
+name: "Flood Sensor FLOLWE01"
+# Functional description of the product. Maximum 500 characters. 
+description: "The Flood Sensor detects the presence of water on its exposed sensor pins and sends an alarm message wirelessly when triggered. In addition, the device will regularly report the ambient temperature and humidity and send an alarm when the readings exceed thresholds that can be set for both humidity and temperature. The device itself is designed to sit on the floor, where 3 brass telescopic pins can detect water on both hard floors (tiles) and soft carpets. The unit comes with a mounting bracke..."
+# Logo of the device
+logo: flo.jpg
+# Product name & Version
+product:
+    name: AQUASCOP/FLO
+    version: 1
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
+deviceProfileIds: 
+    - id: aquascop_RFGroup1_1.0.3a_classA
+ 
+# You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
+# Maximum device TX Conducted output power in dBm. 
+maxTxPower:
+# Minimum device TX Conducted output power in dBm. 
+minTxPower:
+# Maximum device TX Radiated output power in dBm.  
+maxTxEIRP:
+# Minimum device TX Radiated output power in dBm.  
+minTxEIRP:
+# Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'  
+# or 'random' (not known, changes over time). 
+motionIndicator:
+ 
+# Is your device certified by the LoRa Alliance? Possible values: true, false. 
+LoRaWANCertified: true
+# Format: `<8 characters max>:<16 characters max>:<digits only>`
+modelId: aquascop:flo:1
+# <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
+protocolId:
+    - os1-aqua:flo:1
+# DataSheet URL (optional) 
+specificationURL: https://www.aqua-scope.com/manuals/?sku=FLOLWE01&type=d&html=1&lang=en
+# User Guide URL (optional) 
+userGuideURL: https://www.aqua-scope.com/manuals/?sku=FLOLWE01&type=d&html=1&lang=en
+# <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
+sensors: 
+    - temperature:°C
+    - humidity:%RH
+    - water:

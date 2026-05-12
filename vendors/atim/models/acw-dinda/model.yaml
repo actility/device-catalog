@@ -1,0 +1,42 @@
+# Commercial name of the model 
+name: "ACW-DINDA - Analog Monitoring"
+# Functional description of the product. Maximum 500 characters. 
+description: "The DINDA facilitates the wireless supervision of an analog signal from a 4-20 mA or 0-10V sensor.  It takes care of controlling the power supply of the sensor in order to optimize the energy consumption, it is thus particularly adapted for the isolated sites without energy.  In this case, a small solar panel or a simple battery can power the sensor and the radio transmitter.The readings are regularly transmitted on LoRaWAN networks and its configuration is configurable from the tools of the ..."
+# Logo of the device
+logo: acw-dinda.png
+# Product name & Version
+product:
+    name: ATIM/ACW-DINDA
+    version: 1
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
+deviceProfileIds: 
+    - id: atim_RFGroup1_1.0.2a_classA
+    - id: atim_RFGroup1_1.0.2a_classC
+ 
+# You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
+# Maximum device TX Conducted output power in dBm. 
+maxTxPower:
+# Minimum device TX Conducted output power in dBm. 
+minTxPower:
+# Maximum device TX Radiated output power in dBm.  
+maxTxEIRP:
+# Minimum device TX Radiated output power in dBm.  
+minTxEIRP:
+# Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'  
+# or 'random' (not known, changes over time). 
+motionIndicator:
+ 
+# Is your device certified by the LoRa Alliance? Possible values: true, false. 
+LoRaWANCertified: true
+# Format: `<8 characters max>:<16 characters max>:<digits only>`
+modelId: atim:acw-dinda:1
+# <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
+protocolId:
+    - os1-atim:acw-dinda:1
+# DataSheet URL (optional) 
+specificationURL: https://www.atim.com/wp-content/uploads/documentation/ACW/ACW-DINDA/FRANCAIS/ATIM_ACW-DINDA_UG_FR.pdf
+# User Guide URL (optional) 
+userGuideURL: https://www.atim.com/wp-content/uploads/documentation/ACW/ACW-DINDA/FRANCAIS/ATIM_ACW-DINDA_UG_FR.pdf
+# <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
+sensors: 
+    - analogInput:V

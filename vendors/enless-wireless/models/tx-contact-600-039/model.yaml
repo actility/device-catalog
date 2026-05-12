@@ -1,0 +1,41 @@
+# Commercial name of the model 
+name: "600-039 - Digital Input sensor (status report ON/OFF)"
+# Functional description of the product. Maximum 500 characters. 
+description: "This LoRaWAN contact/status change transmitter is specifically designed for smart building, security and industrial applications.It meets all types of ON/OFF status change monitoring needs thanks to its two dry-contact inputs (binary output signal)."
+# Logo of the device
+logo: 600-039.png
+# Product name & Version
+product:
+    name: ENLESS-W/TX-CONTACT-600-0
+    version: 1
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
+deviceProfileIds: 
+    - id: enless-w_RFGroup1_1.0.3a_classA
+ 
+# You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
+# Maximum device TX Conducted output power in dBm. 
+maxTxPower:
+# Minimum device TX Conducted output power in dBm. 
+minTxPower:
+# Maximum device TX Radiated output power in dBm.  
+maxTxEIRP:
+# Minimum device TX Radiated output power in dBm.  
+minTxEIRP:
+# Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'  
+# or 'random' (not known, changes over time). 
+motionIndicator:
+ 
+# Is your device certified by the LoRa Alliance? Possible values: true, false. 
+LoRaWANCertified: true
+# Format: `<8 characters max>:<16 characters max>:<digits only>`
+modelId: enless-w:tx-contact-600-0:1
+# <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
+protocolId:
+    - os1-enle:tx-contact-600-0:1
+# DataSheet URL (optional) 
+specificationURL: https://enless-wireless.com/wp-content/uploads/2024/01/EN-600-039-LEAK-CABLE.pdf
+# User Guide URL (optional) 
+userGuideURL: https://enless-wireless.com/wp-content/uploads/2024/01/EN-600-039-LEAK-CABLE.pdf
+# <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
+sensors: 
+    - pulseCounter:

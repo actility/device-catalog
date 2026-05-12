@@ -1,0 +1,46 @@
+# Commercial name of the model 
+name: "Tracking Label"
+# Functional description of the product. Maximum 500 characters. 
+description: "Lansitec LoRaWAN tracking label is designed based on GNSS, Bluetooth 5.0 and LoRaWAN technology. It supports indoor and outdoor tracking. The super thin label design makes it a perfect disposable device for tracking packages, pallets and all sorts of containers. The built-in 3-axis accelerator determines the motion status of the label and can help save battery and enhance user experience."
+# Logo of the device
+logo: tracking-label.png
+# Product name & Version
+product:
+    name: LANSITEC/TRACKING-LABEL
+    version: 1
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
+deviceProfileIds: 
+    - id: lansitec_RFGroup1_1.0.2a_classA
+    - id: lansitec_RFGroup2_1.0.2a_classA
+    - id: lansitec_RFGroup4_1.0.2a_classA
+ 
+# You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
+# Maximum device TX Conducted output power in dBm. 
+maxTxPower:
+# Minimum device TX Conducted output power in dBm. 
+minTxPower:
+# Maximum device TX Radiated output power in dBm.  
+maxTxEIRP:
+# Minimum device TX Radiated output power in dBm.  
+minTxEIRP:
+# Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'  
+# or 'random' (not known, changes over time). 
+motionIndicator:
+ 
+# Is your device certified by the LoRa Alliance? Possible values: true, false. 
+LoRaWANCertified: false
+# Format: `<8 characters max>:<16 characters max>:<digits only>`
+modelId: lansitec:tracking-label:1
+# <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
+protocolId:
+    - os1-lans:tracking-label:1
+# DataSheet URL (optional) 
+specificationURL: 
+# User Guide URL (optional) 
+userGuideURL: 
+# <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
+sensors: 
+    - acceleration:m/s²
+    - latitude:°
+    - illuminance:lx
+    - batteryLevel:%

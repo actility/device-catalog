@@ -1,0 +1,43 @@
+# Commercial name of the model 
+name: "eDoctor Device"
+# Functional description of the product. Maximum 500 characters. 
+description: "The TEKTELIC eDoctor Device is the ideal solution to monitor patients and vulnerable individuals for potential respiratory illness. This specialized device is designed to continuously monitor and detect the most common symptoms of respiratory illness including increased body temperature and breathing rate, persistent cough and accelerated heart rate. An adjustable, washable strap ensures the device can be worn comfortably and discreetly in any situation. The eDoctor utilizes the long range an..."
+# Logo of the device
+logo: edoctor.png
+# Product name & Version
+product:
+    name: TEKTELIC/T0006923-EDOCTOR
+    version: 1
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
+deviceProfileIds: 
+    - id: tektelic_RFGroup1_1.0.2b_classA
+    - id: tektelic_RFGroup2_1.0.2b_classA
+    - id: tektelic_RFGroup4_1.0.2b_classA
+ 
+# You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
+# Maximum device TX Conducted output power in dBm. 
+maxTxPower:
+# Minimum device TX Conducted output power in dBm. 
+minTxPower:
+# Maximum device TX Radiated output power in dBm.  
+maxTxEIRP:
+# Minimum device TX Radiated output power in dBm.  
+minTxEIRP:
+# Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'  
+# or 'random' (not known, changes over time). 
+motionIndicator:
+ 
+# Is your device certified by the LoRa Alliance? Possible values: true, false. 
+LoRaWANCertified: false
+# Format: `<8 characters max>:<16 characters max>:<digits only>`
+modelId: tektelic:t0006923-edoctor:1
+# <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
+protocolId:
+    - os1-tekt:t0006923-edoctor:0
+# DataSheet URL (optional) 
+specificationURL: https://tektelic.com/uploads/Spec-sheet/eDoctor%20device%20(1).pdf
+# User Guide URL (optional) 
+userGuideURL: https://tektelic.com/uploads/Spec-sheet/eDoctor%20device%20(1).pdf
+# <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
+sensors: 
+    - temperature:°C

@@ -1,0 +1,42 @@
+# Commercial name of the model 
+name: "RB02C - Wireless 3-Gang Push Button"
+# Functional description of the product. Maximum 500 characters. 
+description: "RB02C is a high-reliability wireless controlling terminal device for smart homes. It has the characteristics of standby, low power consumption, and applying the SX1276 wireless communication module. RB02C has three buttons which can control three switch devices."
+# Logo of the device
+logo: photos/rb02c.jpg
+# Product name & Version
+product:
+    name: NETVOX/RB02C
+    version: 2
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
+deviceProfileIds: 
+    - id: netvox_RFGroup1_1.0.2b_classA
+    - id: netvox_RFGroup4_1.0.2b_classA
+    - id: netvox_RFGroup2_1.0.2b_classA
+ 
+# You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
+# Maximum device TX Conducted output power in dBm. 
+maxTxPower:
+# Minimum device TX Conducted output power in dBm. 
+minTxPower:
+# Maximum device TX Radiated output power in dBm.  
+maxTxEIRP:
+# Minimum device TX Radiated output power in dBm.  
+minTxEIRP:
+# Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'  
+# or 'random' (not known, changes over time). 
+motionIndicator:
+ 
+# Is your device certified by the LoRa Alliance? Possible values: true, false. 
+LoRaWANCertified: false
+# Format: `<8 characters max>:<16 characters max>:<digits only>`
+modelId: netvox:rb02c:2
+# <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
+protocolId:
+    - os1-netv:rb02c:10
+# DataSheet URL (optional) 
+specificationURL: http://www.netvox.com.tw/um/RB02C/RB02Cdatasheet.pdf
+# User Guide URL (optional) 
+userGuideURL: http://www.netvox.com.tw/um/RB02C/RB02Cdatasheet.pdf
+# <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
+sensors: 

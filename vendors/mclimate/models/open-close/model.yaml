@@ -1,0 +1,41 @@
+# Commercial name of the model 
+name: "Open/Close Sensor"
+# Functional description of the product. Maximum 500 characters. 
+description: "MClimate Open/Close Sensor LoRaWAN® is a device detecting the event of opening or closing windows, doors, cabinets and more. It features long battery life, LED, temperature sensor and a button that triggers an uplink. The device sends an uplink for every event of opening/closing and keeps an internal counter of the total number of events."
+# Logo of the device
+logo: open-close.png
+# Product name & Version
+product:
+    name: MCLIMATE/OPEN-CLOSE
+    version: 1
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
+deviceProfileIds: 
+    - id: mclimate_RFGroup1_1.0.3a_classA
+ 
+# You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
+# Maximum device TX Conducted output power in dBm. 
+maxTxPower:
+# Minimum device TX Conducted output power in dBm. 
+minTxPower:
+# Maximum device TX Radiated output power in dBm.  
+maxTxEIRP:
+# Minimum device TX Radiated output power in dBm.  
+minTxEIRP:
+# Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'  
+# or 'random' (not known, changes over time). 
+motionIndicator:
+ 
+# Is your device certified by the LoRa Alliance? Possible values: true, false. 
+LoRaWANCertified: false
+# Format: `<8 characters max>:<16 characters max>:<digits only>`
+modelId: mclimate:open-close:1
+# <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
+protocolId:
+    - os1-mcli:open-close:1
+# DataSheet URL (optional) 
+specificationURL: https://3940008670-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F-McDr-jr9h3qA888r1Yp%2Fuploads%2F7hmYi0hNrcCkkK0C1Faw%2FMClimate-Open-Close-Sensor-Datasheet-LoRaWAN-en.pdf?alt=media&token=311b102f-d6cd-47d3-84c2-61b280aa11d5
+# User Guide URL (optional) 
+userGuideURL: https://3940008670-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F-McDr-jr9h3qA888r1Yp%2Fuploads%2F7hmYi0hNrcCkkK0C1Faw%2FMClimate-Open-Close-Sensor-Datasheet-LoRaWAN-en.pdf?alt=media&token=311b102f-d6cd-47d3-84c2-61b280aa11d5
+# <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
+sensors: 
+    - temperature:°C

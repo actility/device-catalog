@@ -1,0 +1,44 @@
+# Commercial name of the model 
+name: "LoRa Multi-Function Device"
+# Functional description of the product. Maximum 500 characters. 
+description: "The Mutelcor LoRa Multi-Function Device is a LoRaWAN® Device that allows you to connect up to 3 external switches. Whenever the status of a connected switch changes, a LoRa message is sent indicating which switch status changed and what the status of the other connected switches is. Can be used to combine e.g. monitoring of a manhole cover with a float sensor inside the manhole to alert on a rising water level."
+# Logo of the device
+logo: mtc-mf01.png
+# Product name & Version
+product:
+    name: MUTELCOR/MTC-MF01
+    version: 1
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
+deviceProfileIds: 
+    - id: mutelcor_RFGroup1_1.0.3a_classA
+    - id: mutelcor_RFGroup2_1.0.3a_classA
+    - id: mutelcor_RFGroup4_1.0.3a_classA
+ 
+# You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
+# Maximum device TX Conducted output power in dBm. 
+maxTxPower:
+# Minimum device TX Conducted output power in dBm. 
+minTxPower:
+# Maximum device TX Radiated output power in dBm.  
+maxTxEIRP:
+# Minimum device TX Radiated output power in dBm.  
+minTxEIRP:
+# Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'  
+# or 'random' (not known, changes over time). 
+motionIndicator:
+ 
+# Is your device certified by the LoRa Alliance? Possible values: true, false. 
+LoRaWANCertified: false
+# Format: `<8 characters max>:<16 characters max>:<digits only>`
+modelId: mutelcor:mtc-mf01:1
+# <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
+protocolId:
+    - os1-mute:mtc-mf01:1
+# DataSheet URL (optional) 
+specificationURL: https://mutelcor.com/wp-content/uploads/2025/12/MUTELCOR_Datasheet_LoRa_Multi-Function_Device.pdf
+# User Guide URL (optional) 
+userGuideURL: https://mutelcor.com/wp-content/uploads/2025/12/MUTELCOR_Datasheet_LoRa_Multi-Function_Device.pdf
+# <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
+sensors: 
+    - batteryLevel:%
+    - digitalInput:

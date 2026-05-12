@@ -1,0 +1,42 @@
+# Commercial name of the model 
+name: "flowIQ®2200 OMS over LoRaWAN"
+# Functional description of the product. Maximum 500 characters. 
+description: "Kamstrup flowIQ®2200 OMS over LoRaWAN water meter. Configuration no 02K73A******"
+# Logo of the device
+logo: flowiq2200-02k73a.png
+# Product name & Version
+product:
+    name: KAMSTRUP/FLOWIQ2200-02K73
+    version: 1
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
+deviceProfileIds: 
+    - id: kamstrup_RFGroup1_1.0.4a_classA
+ 
+# You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
+# Maximum device TX Conducted output power in dBm. 
+maxTxPower:
+# Minimum device TX Conducted output power in dBm. 
+minTxPower:
+# Maximum device TX Radiated output power in dBm.  
+maxTxEIRP:
+# Minimum device TX Radiated output power in dBm.  
+minTxEIRP:
+# Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'  
+# or 'random' (not known, changes over time). 
+motionIndicator:
+ 
+# Is your device certified by the LoRa Alliance? Possible values: true, false. 
+LoRaWANCertified: true
+# Format: `<8 characters max>:<16 characters max>:<digits only>`
+modelId: kamstrup:flowiq2200-02k73:1
+# <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
+protocolId:
+    - os1-kams:flowiq2200-02k73:1
+# DataSheet URL (optional) 
+specificationURL: https://documentation.kamstrup.com/docs/flowIQ_2200_EU/en-GB/Data_sheet/CONT86024E18ECB94BD6B9510C582087F03F/
+# User Guide URL (optional) 
+userGuideURL: https://documentation.kamstrup.com/docs/flowIQ_2200_EU/en-GB/Data_sheet/CONT86024E18ECB94BD6B9510C582087F03F/
+# <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
+sensors: 
+    - water:
+    - temperature:°C

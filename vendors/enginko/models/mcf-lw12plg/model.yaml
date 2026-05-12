@@ -1,0 +1,49 @@
+# Commercial name of the model 
+name: "MCF-LW12PLG - Smart Plug"
+# Functional description of the product. Maximum 500 characters. 
+description: "The enginko MCF-LW12PLG is a LoRaWAN® Energy Meter plug with On/Off capability that supports metering and switching of a 230Vac – 16 Amp Load (active, reactive, and apparent energy; Class 0.2)."
+# Logo of the device
+logo: mcf-lw12plg.png
+# Product name & Version
+product:
+    name: ENGINKO/MCF-LW12PLG
+    version: 1
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
+deviceProfileIds: 
+    - id: enginko_RFGroup1_1.0.2b_classA
+    - id: enginko_RFGroup1_1.0.2b_classC
+    - id: enginko_RFGroup2_1.0.2b_classA
+    - id: enginko_RFGroup2_1.0.2b_classC
+    - id: enginko_RFGroup4_1.0.2b_classA
+    - id: enginko_RFGroup4_1.0.2b_classC
+ 
+# You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
+# Maximum device TX Conducted output power in dBm. 
+maxTxPower:
+# Minimum device TX Conducted output power in dBm. 
+minTxPower:
+# Maximum device TX Radiated output power in dBm.  
+maxTxEIRP:
+# Minimum device TX Radiated output power in dBm.  
+minTxEIRP:
+# Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'  
+# or 'random' (not known, changes over time). 
+motionIndicator:
+ 
+# Is your device certified by the LoRa Alliance? Possible values: true, false. 
+LoRaWANCertified: false
+# Format: `<8 characters max>:<16 characters max>:<digits only>`
+modelId: enginko:mcf-lw12plg:1
+# <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
+protocolId:
+    - os1-engi:mcf-lw12plg:1
+# DataSheet URL (optional) 
+specificationURL: https://www.enginko.it/wp-content/uploads/2020/07/MCF-LW12PLG.pdf
+# User Guide URL (optional) 
+userGuideURL: https://www.enginko.it/wp-content/uploads/2020/07/MCF-LW12PLG.pdf
+# <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
+sensors: 
+    - voltage:V
+    - current:A
+    - energy:Wh
+    - power:W

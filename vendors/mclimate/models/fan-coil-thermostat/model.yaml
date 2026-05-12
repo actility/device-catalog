@@ -1,0 +1,43 @@
+# Commercial name of the model 
+name: "Fan Coil Thermostat"
+# Functional description of the product. Maximum 500 characters. 
+description: "MClimate Fan Coil Thermostat (FCT) is a thermostat compatible with 2-pipe and 4-pipe Fan Coil Units with 4 SPST relays, 1 DPST dry relay and 0-10V input/output. It features a 4.2\" e-ink display, digital temperature and humidity sensor, and 4 buttons."
+# Logo of the device
+logo: co2-display.png
+# Product name & Version
+product:
+    name: MCLIMATE/FAN-COIL-THERMOS
+    version: 1
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
+deviceProfileIds: 
+    - id: mclimate_RFGroup1_1.0.3a_classA
+    - id: mclimate_RFGroup1_1.0.3a_classC
+ 
+# You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
+# Maximum device TX Conducted output power in dBm. 
+maxTxPower:
+# Minimum device TX Conducted output power in dBm. 
+minTxPower:
+# Maximum device TX Radiated output power in dBm.  
+maxTxEIRP:
+# Minimum device TX Radiated output power in dBm.  
+minTxEIRP:
+# Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'  
+# or 'random' (not known, changes over time). 
+motionIndicator:
+ 
+# Is your device certified by the LoRa Alliance? Possible values: true, false. 
+LoRaWANCertified: false
+# Format: `<8 characters max>:<16 characters max>:<digits only>`
+modelId: mclimate:fan-coil-thermos:1
+# <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
+protocolId:
+    - os1-mcli:fan-coil-thermos:1
+# DataSheet URL (optional) 
+specificationURL: http://docs.mclimate.eu/mclimate-lorawan-devices/devices/mclimate-fan-coil-thermostat-fct
+# User Guide URL (optional) 
+userGuideURL: http://docs.mclimate.eu/mclimate-lorawan-devices/devices/mclimate-fan-coil-thermostat-fct
+# <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
+sensors: 
+    - temperature:°C
+    - humidity:%RH

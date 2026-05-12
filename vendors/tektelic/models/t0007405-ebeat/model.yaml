@@ -1,0 +1,43 @@
+# Commercial name of the model 
+name: "eBeat Device Arm Band"
+# Functional description of the product. Maximum 500 characters. 
+description: "The eBeat by TEKTELIC is the ideal solution to continuously monitor the health and well-being of medical facility patients, senior care residents, or any other individual for potential respiratory illness or other health indicators requiring intervention. This specialized device is designed to continuously monitor an individuals body temperature, one of the most common symptoms of respiratory illness. An adjustable, washable arm-band strap ensures the device can be worn comfortably and discre..."
+# Logo of the device
+logo: ebeat.png
+# Product name & Version
+product:
+    name: TEKTELIC/T0007405-EBEAT
+    version: 1
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
+deviceProfileIds: 
+    - id: tektelic_RFGroup1_1.0.2b_classA
+    - id: tektelic_RFGroup2_1.0.2b_classA
+    - id: tektelic_RFGroup4_1.0.2b_classA
+ 
+# You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
+# Maximum device TX Conducted output power in dBm. 
+maxTxPower:
+# Minimum device TX Conducted output power in dBm. 
+minTxPower:
+# Maximum device TX Radiated output power in dBm.  
+maxTxEIRP:
+# Minimum device TX Radiated output power in dBm.  
+minTxEIRP:
+# Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'  
+# or 'random' (not known, changes over time). 
+motionIndicator:
+ 
+# Is your device certified by the LoRa Alliance? Possible values: true, false. 
+LoRaWANCertified: false
+# Format: `<8 characters max>:<16 characters max>:<digits only>`
+modelId: tektelic:t0007405-ebeat:1
+# <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
+protocolId:
+    - os1-tekt:t0007405-ebeat:1
+# DataSheet URL (optional) 
+specificationURL: https://tektelic.com/uploads/Spec-sheet/TEKTELIC_eBeat.pdf
+# User Guide URL (optional) 
+userGuideURL: https://tektelic.com/uploads/Spec-sheet/TEKTELIC_eBeat.pdf
+# <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
+sensors: 
+    - temperature:°C

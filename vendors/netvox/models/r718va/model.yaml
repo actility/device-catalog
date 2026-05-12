@@ -1,0 +1,42 @@
+# Commercial name of the model 
+name: "R718VA - Wireless Capacitive Proximity Sensor"
+# Functional description of the product. Maximum 500 characters. 
+description: "R718VA is a device to detect the status of toilet water, hand sanitizer level, presence or absence of tissue. This device is connected with a non-contact capacitive sensor can be mounted to the exterior of the container, without direct contact with the object to be detected, which may detect the current water level of positions mounted, or the presence or absence of liquid soap or toilet paper; the detected data is transmitted to other devices through the wireless network. It uses the SX1276 ..."
+# Logo of the device
+logo: photos/r718va.jpg
+# Product name & Version
+product:
+    name: NETVOX/R718VA
+    version: 11
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
+deviceProfileIds: 
+    - id: netvox_RFGroup1_1.0.2b_classA
+    - id: netvox_RFGroup4_1.0.2b_classA
+    - id: netvox_RFGroup2_1.0.2b_classA
+ 
+# You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
+# Maximum device TX Conducted output power in dBm. 
+maxTxPower:
+# Minimum device TX Conducted output power in dBm. 
+minTxPower:
+# Maximum device TX Radiated output power in dBm.  
+maxTxEIRP:
+# Minimum device TX Radiated output power in dBm.  
+minTxEIRP:
+# Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'  
+# or 'random' (not known, changes over time). 
+motionIndicator:
+ 
+# Is your device certified by the LoRa Alliance? Possible values: true, false. 
+LoRaWANCertified: false
+# Format: `<8 characters max>:<16 characters max>:<digits only>`
+modelId: netvox:r718va:11
+# <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
+protocolId:
+    - os1-netv:r718va:10
+# DataSheet URL (optional) 
+specificationURL: http://www.netvox.com.tw/um/R718VA/R718VAdatasheet.pdf
+# User Guide URL (optional) 
+userGuideURL: http://www.netvox.com.tw/um/R718VA/R718VAdatasheet.pdf
+# <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
+sensors: 

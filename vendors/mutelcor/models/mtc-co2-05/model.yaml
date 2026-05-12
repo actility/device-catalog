@@ -1,0 +1,46 @@
+# Commercial name of the model 
+name: "LoRa Wireless CO2 Sensor"
+# Functional description of the product. Maximum 500 characters. 
+description: "The Mutelcor Wireless CO2 Sensor is the batteryu powered version of our well known Smart CO2 LoRa Sensor. It measures CO2 levels along with temperature and humidity at configurable intervals, by default once every hour. With that configuration, we're able to achieve a battery life of about 2 years. Ideal for installations where regular monitoring of CO2 levels is required, but real time alerts are not critical, e.g. mushroom farming, industrial complexes and many more."
+# Logo of the device
+logo: mtc-co2-05.png
+# Product name & Version
+product:
+    name: MUTELCOR/MTC-CO2-05
+    version: 1
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
+deviceProfileIds: 
+    - id: mutelcor_RFGroup1_1.0.3a_classA
+    - id: mutelcor_RFGroup2_1.0.3a_classA
+    - id: mutelcor_RFGroup4_1.0.3a_classA
+ 
+# You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
+# Maximum device TX Conducted output power in dBm. 
+maxTxPower:
+# Minimum device TX Conducted output power in dBm. 
+minTxPower:
+# Maximum device TX Radiated output power in dBm.  
+maxTxEIRP:
+# Minimum device TX Radiated output power in dBm.  
+minTxEIRP:
+# Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'  
+# or 'random' (not known, changes over time). 
+motionIndicator:
+ 
+# Is your device certified by the LoRa Alliance? Possible values: true, false. 
+LoRaWANCertified: false
+# Format: `<8 characters max>:<16 characters max>:<digits only>`
+modelId: mutelcor:mtc-co2-05:1
+# <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
+protocolId:
+    - os1-mute:mtc-co2-05:1
+# DataSheet URL (optional) 
+specificationURL: https://mutelcor.com/wp-content/uploads/2025/12/MUTELCOR_Datasheet_LoRa_Wireless_CO2_Sensor.pdf
+# User Guide URL (optional) 
+userGuideURL: https://mutelcor.com/wp-content/uploads/2025/12/MUTELCOR_Datasheet_LoRa_Wireless_CO2_Sensor.pdf
+# <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
+sensors: 
+    - co2Level:ppm
+    - humidity:%RH
+    - temperature:°C
+    - digitalInput:

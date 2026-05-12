@@ -1,0 +1,41 @@
+# Commercial name of the model 
+name: "ACW-MR2-EX - Smart Metering"
+# Functional description of the product. Maximum 500 characters. 
+description: "The MR2-EX allows the remote reading of one or two meters with pulse type output (dry contacts). The cycle time is configurable as well as the number of samples per message transmitted. For example, in order to save energy, the meter index can be read every 10 minutes and the 6 indexes can be transmitted only once per hour.This information is transmitted by radio and on the LoRaWAN operated networks or in local mode with a Gateway installed on the site. The configuration can be configured loc..."
+# Logo of the device
+logo: acw-mr2-ex.png
+# Product name & Version
+product:
+    name: ATIM/ACW-MR2-EX
+    version: 1
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
+deviceProfileIds: 
+    - id: atim_RFGroup1_1.0.2a_classA
+ 
+# You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
+# Maximum device TX Conducted output power in dBm. 
+maxTxPower:
+# Minimum device TX Conducted output power in dBm. 
+minTxPower:
+# Maximum device TX Radiated output power in dBm.  
+maxTxEIRP:
+# Minimum device TX Radiated output power in dBm.  
+minTxEIRP:
+# Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'  
+# or 'random' (not known, changes over time). 
+motionIndicator:
+ 
+# Is your device certified by the LoRa Alliance? Possible values: true, false. 
+LoRaWANCertified: true
+# Format: `<8 characters max>:<16 characters max>:<digits only>`
+modelId: atim:acw-mr2-ex:1
+# <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
+protocolId:
+    - os1-atim:acw-mr2-ex:1
+# DataSheet URL (optional) 
+specificationURL: https://www.atim.com/wp-content/uploads/documentation/ACW/ACW-MR2-EX/FRANCAIS/ATIM_ACW-MR2-EX_UG_FR.pdf
+# User Guide URL (optional) 
+userGuideURL: https://www.atim.com/wp-content/uploads/documentation/ACW/ACW-MR2-EX/FRANCAIS/ATIM_ACW-MR2-EX_UG_FR.pdf
+# <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
+sensors: 
+    - pulseCounter:
