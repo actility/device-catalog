@@ -743,13 +743,11 @@
             }
         },
         "points": {
-            "points": [
-                {
-                    "unitId": "Cel",
-                    "type": "temperature",
-                    "record": 19.515625
-                }
-            ]
+            "temperature:2": {
+                "unitId": "Cel",
+                "record": 19.515625,
+                "nature": "battery average"
+            }
         }
     },
     {
@@ -816,13 +814,11 @@
             }
         },
         "points": {
-            "points": [
-                {
-                    "unitId": "Cel",
-                    "type": "temperature",
-                    "record": 0
-                }
-            ]
+            "temperature:3": {
+                "unitId": "Cel",
+                "record": 0,
+                "nature": "transmitter"
+            }
         }
     },
     {
@@ -847,28 +843,26 @@
             }
         },
         "points": {
-            "points": [
-                {
-                    "unitId": "Cel",
-                    "type": "temperature",
-                    "record": -12
-                },
-                {
-                    "unitId": "m/s2",
-                    "type": "peakAcceleration",
-                    "record": 0.035675048828125
-                },
-                {
-                    "unitId": "m/s2",
-                    "type": "rmsAcceleration",
-                    "record": 0.01322174072265625
-                },
-                {
-                    "unitId": "mm/s",
-                    "type": "rmsVelocity",
-                    "record": 0.33447265625
-                }
-            ]
+            "temperature:1": {
+                "unitId": "Cel",
+                "record": -12,
+                "nature": "measurement"
+            },
+            "acceleration:1": {
+                "unitId": "m/s2",
+                "record": 0.035675048828125,
+                "nature": "peak"
+            },
+            "acceleration:2": {
+                "unitId": "m/s2",
+                "record": 0.01322174072265625,
+                "nature": "RMS"
+            },
+            "speed": {
+                "unitId": "mm/s",
+                "record": 0.33447265625,
+                "nature": "RMS"
+            }
         }
     },
     {
