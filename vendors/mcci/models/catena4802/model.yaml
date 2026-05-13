@@ -37,8 +37,6 @@ LoRaWANCertified: false
 modelId: mcci:catena4802:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId: 
-  - os1-mcci:catena4802:1
-  - os1-mcci:catena4802:2
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 
@@ -48,11 +46,6 @@ sensors:
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
-  os1-mcci:catena4802:1:
-    - "Sensor report format 0x14, no pulse/power input"
-    - "Sensor report format 0x14, with pulse/power input"
-  os1-mcci:catena4802:2:
-    - "Vbat 2.5 Boot 45 Env 16 60 ."
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false

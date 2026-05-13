@@ -36,7 +36,6 @@ modelId: netvox:ra02a:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId: 
   - netvox:lorawan:1
-  - os1-netv:ra02a:10
 # DataSheet URL (optional) 
 specificationURL: http://www.netvox.com.tw/um/RA02A/RA02Adatasheet.pdf
 # User Guide URL (optional) 
@@ -51,11 +50,6 @@ examples:
   netvox:lorawan:1:
     - "uplink containing the software and hardware version for all devices"
     - "uplink containing battery level, fire alarm, and high temperature alarm from RA02A device"
-  os1-netv:ra02a:10:
-    - "Startup version report"
-    - "Status report"
-    - "Configure report response"
-    - "Read configure report response"
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false
