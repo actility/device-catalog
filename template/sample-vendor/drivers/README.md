@@ -997,23 +997,23 @@ The returned object must be:
         }
       ]
     },
-    "power:0": {
+    "power:1": {
         "record": 0.32,
         "unitId": "GW"
     },
-    "power:1": {
+    "power:2": {
         "record": 0.33,
         "unitId": "GW"
     },
-    "power:2": {
+    "power:3": {
         "record": 0.4523,
         "unitId": "GW"
     }, 
-    "power:3": {
+    "power:4": {
       "record": 0.4456,
       "unitId": "GW"
     },
-    "power:4": {
+    "power:5": {
       "record": 0.4356,
       "unitId": "GW"
     }
@@ -1087,15 +1087,15 @@ Multiple of the same sensor type : \
 (In case of mutiple sensors of the same type, the ID should start at 0)
 ```json
 {
-  "temperature:0": {
+  "temperature:1": {
     "record": 31.4,
     "unitId": "Cel"
   },
-  "temperature:1": {
+  "temperature:2": {
     "record": 31.2,
     "unitId": "Cel"
   },
-  "temperature:2": {
+  "temperature:3": {
     "record": 32,
     "unitId": "Cel"
   }
