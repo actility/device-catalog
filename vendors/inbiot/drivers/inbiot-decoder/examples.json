@@ -1,0 +1,309 @@
+[
+  {
+    "description": "Device Information Uplink (Firmware, MAC, Modbus Config)",
+    "type": "uplink",
+    "input": {
+      "bytes": "0202004157454c4c5f4c4f52415f3030305f5641434d4943415f57454c4c30c922601ff801000000258001",
+      "fPort": 1,
+      "recvTime": "2024-05-11T12:00:00.000Z"
+    },
+    "output": {
+      "data": {
+        "fwVersion": "2.65",
+        "model": "WELL_LORA_000_VAC",
+        "micaType": "MICA_WELL",
+        "mac": "30:C9:22:60:1F:F8",
+        "resetReason": "1 Reset due to power-on event",
+        "modbusAddress": 1,
+        "modbusParity": 0,
+        "modbusBaudRate": 9600
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "description": "Device Configuration Uplink (Tx Period, LED, ADR)",
+    "type": "uplink",
+    "input": {
+      "bytes": "000101010005ff0001",
+      "fPort": 1,
+      "recvTime": "2024-05-11T12:00:00.000Z"
+    },
+    "output": {
+      "data": {
+        "timeToSend": 1,
+        "ventilation": 1,
+        "ledStatus": true,
+        "useWifi": false,
+        "lorawanRegion": "EU868",
+        "lorawanChannelMask": 255,
+        "ledConfiguration": 0,
+        "touchEnable": true
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "description": "MICA Telemetry Uplink (Temp, Hum, CO2, PMs, Sound)",
+    "type": "uplink",
+    "input": {
+      "bytes": "0100de0207032f000200000001000100010001ffffffffffff00024d494341003440314fffffff",
+      "fPort": 1,
+      "recvTime": "2024-05-11T12:00:00.000Z"
+    },
+    "output": {
+      "data": {
+        "type": "MICA",
+        "temperature": 22.2,
+        "humidity": 51.9,
+        "co2": 815,
+        "tvoc": 0,
+        "pm2_5": 1,
+        "pm10": 1,
+        "vIndex": 52,
+        "tIndex": 64,
+        "virusIndex": 49,
+        "iaqIndex": 79,
+        "moldIndex": "Calculating",
+        "dB": "Preheating",
+        "counter": 2
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "description": "MINI Telemetry Uplink (Temp, Hum, CO2)",
+    "type": "uplink",
+    "input": {
+      "bytes": "0100fa0207032f000200000001000100010001ffffffffffff00024d494e49003440314fffffff",
+      "fPort": 1,
+      "recvTime": "2024-05-11T12:00:00.000Z"
+    },
+    "output": {
+      "data": {
+        "type": "MINI",
+        "temperature": 25,
+        "humidity": 51.9,
+        "co2": 815,
+        "vIndex": 52,
+        "tIndex": 64,
+        "virusIndex": 49,
+        "iaqIndex": 79,
+        "moldIndex": "Calculating",
+        "dB": "Preheating",
+        "counter": 2
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "description": "PLUS Telemetry Uplink (Temp, Hum, CO2, PMs, CH2O)",
+    "type": "uplink",
+    "input": {
+      "bytes": "0100e90207032f000200000001000100010001ffffffffffff0002504c5553003440314fffffff",
+      "fPort": 1,
+      "recvTime": "2024-05-11T12:00:00.000Z"
+    },
+    "output": {
+      "data": {
+        "type": "PLUS",
+        "temperature": 23.3,
+        "humidity": 51.9,
+        "co2": 815,
+        "tvoc": 0,
+        "pm2_5": 1,
+        "pm10": 1,
+        "ch2o": 2,
+        "pm1_0": 1,
+        "pm4": 1,
+        "vIndex": 52,
+        "tIndex": 64,
+        "virusIndex": 49,
+        "iaqIndex": 79,
+        "moldIndex": "Calculating",
+        "dB": "Preheating",
+        "counter": 2
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "description": "WELL Telemetry Uplink (Temp, Hum, CO2, PMs, CH2O, O3, NO2, CO)",
+    "type": "uplink",
+    "input": {
+      "bytes": "0100d80207032f000200000001000100010001ffffffffffff000257454c4c003440314fffffff",
+      "fPort": 1,
+      "recvTime": "2024-05-11T12:00:00.000Z"
+    },
+    "output": {
+      "data": {
+        "type": "WELL",
+        "temperature": 21.6,
+        "humidity": 51.9,
+        "co2": 815,
+        "tvoc": 0,
+        "pm2_5": 1,
+        "pm10": 1,
+        "ch2o": 2,
+        "pm1_0": 1,
+        "pm4": 1,
+        "o3": "Preheating",
+        "no2": "Preheating",
+        "co": "Preheating",
+        "vIndex": 52,
+        "tIndex": 64,
+        "virusIndex": 49,
+        "iaqIndex": 79,
+        "moldIndex": "Calculating",
+        "dB": "Preheating",
+        "counter": 2
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "description": "PLUS Telemetry Uplink (CH2O Preheating)",
+    "type": "uplink",
+    "input": {
+      "bytes": "0100e90207032fffff00000001000100010001ffffffffffff0002504c5553003440314fffffff",
+      "fPort": 1,
+      "recvTime": "2024-05-11T12:00:00.000Z"
+    },
+    "output": {
+      "data": {
+        "type": "PLUS",
+        "temperature": 23.3,
+        "humidity": 51.9,
+        "co2": 815,
+        "tvoc": 0,
+        "pm2_5": 1,
+        "pm10": 1,
+        "ch2o": "Preheating",
+        "pm1_0": 1,
+        "pm4": 1,
+        "vIndex": 52,
+        "tIndex": 64,
+        "virusIndex": 49,
+        "iaqIndex": 79,
+        "moldIndex": "Calculating",
+        "dB": "Preheating",
+        "counter": 2
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "description": "WELL Active Sensor Readings",
+    "type": "uplink",
+    "input": {
+      "bytes": "0100e1022603e8001400320002000300040005001e000f000f000a57454c4c003c463755012d",
+      "fPort": 1,
+      "recvTime": "2024-05-11T12:00:00.000Z"
+    },
+    "output": {
+      "data": {
+        "type": "WELL",
+        "temperature": 22.5,
+        "humidity": 55.0,
+        "co2": 1000,
+        "ch2o": 20,
+        "tvoc": 50,
+        "pm1_0": 2,
+        "pm2_5": 3,
+        "pm4": 4,
+        "pm10": 5,
+        "o3": 30,
+        "no2": 15,
+        "co": 1.5,
+        "counter": 10,
+        "vIndex": 60,
+        "tIndex": 70,
+        "virusIndex": 55,
+        "iaqIndex": 85,
+        "moldIndex": 1,
+        "dB": 45
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "description": "Downlink: Enable LED indicator",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "ledStatus": true
+      }
+    },
+    "output": {
+      "bytes": "010101",
+      "fPort": 1,
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "description": "Downlink: Set transmission period to 10 min and disable LED",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "ledStatus": false,
+        "timeToSend": 10
+      }
+    },
+    "output": {
+      "bytes": "01010002010a",
+      "fPort": 1,
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "description": "Downlink: Invoke software reset",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "resetDevice": true
+      }
+    },
+    "output": {
+      "bytes": "0f0101",
+      "fPort": 1,
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "description": "Downlink: Configure overarching parameters (Period, LED, ADR, TX Power)",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "ledStatus": true,
+        "timeToSend": 0,
+        "ventilation": 1,
+        "ledConfiguration": 0,
+        "touchEnable": true,
+        "ADREnable": true,
+        "DR": 0,
+        "sendRetransmissions": 5,
+        "TXPower": 5,
+        "confirmationEnable": true,
+        "dutyCycleEnable": true,
+        "resetDevice": false
+      }
+    },
+    "output": {
+      "bytes": "01010102010f0301010401000501010901010a01000b01050c01050d01010f0100",
+      "fPort": 1,
+      "errors": [],
+      "warnings": []
+    }
+  }
+]

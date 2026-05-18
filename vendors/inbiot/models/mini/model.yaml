@@ -1,0 +1,39 @@
+name: MICA MINI - Indoor Air Quality Sensor
+description: MICA Mini is a compact indoor air quality sensor that measures temperature, relative humidity and CO2, and provides thermohygrometric comfort, ventilation efficiency and resistance to mold growth indicators, with optional noise monitoring and integration with building management systems via Modbus and BACnet.
+logo: mini.png
+deviceProfileIds:
+  - id: inbiot_RFGroup1_1.0.4a_classA
+    lorawanDeviceProfileID: ''
+  - id: inbiot_RFGroup2_1.0.4a_classA
+    lorawanDeviceProfileID: ''
+
+maxTxPower: 
+minTxPower: 
+maxTxEIRP: 
+minTxEIRP: 
+motionIndicator: RANDOM
+
+LoRaWANCertified: true
+modelId: inbiot:mini:1
+protocolId:
+  - inbiot:inbiot-decoder:1
+
+sensors:
+  - temperature:Cel
+  - humidity:%RH
+  - co2:ppm
+  - sound:dB
+
+examples:
+  inbiot:inbiot-decoder:1:
+    - Device Information Uplink (Firmware, MAC, Modbus Config)
+    - Device Configuration Uplink (Tx Period, LED, ADR)
+    - MINI Telemetry Uplink (Temp, Hum, CO2)
+    - Downlink: Enable LED indicator
+    - Downlink: Set transmission period to 10 min and disable LED
+    - Downlink: Invoke software reset
+    - Downlink: Configure overarching parameters (Period, LED, ADR, TX Power)
+
+LoRaWANRelay:
+  canOperateAsARelay: false
+  defaultRelayActivation: false
