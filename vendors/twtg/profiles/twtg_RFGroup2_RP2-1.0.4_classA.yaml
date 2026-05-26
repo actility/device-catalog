@@ -93,12 +93,13 @@ supportedMACCommands:
     pingSlotChannelReqAns: false
     pingSlotInfoReqAns: true
     deviceTimeReqAns: true
-    beaconFreqReqAns: true
+    beaconFreqReqAns: false
     extendedNotifyNewEndDeviceReq: false
 
 # Does your device support [Technical Recommendation for LoRaWAN L2 1.0.x Join Security] recommending implemeting the DevNonce as a counter for
 # OTAA devices? See https://lora-alliance.org/resource_hub/technical-recommendations-for-preventing-state-synchronization-issues-around-lorawan-1-0-x-join-procedure/
 # Possible values: true, false. This field is automatically forced to true for LoRaWAN MAC versions 1.0.4 and 1.1.
+# This field should be true, but since the beginning, it has been false. To avoid risk, we disabled the associated alarm.
 devNonceCounterBased: false
 
 

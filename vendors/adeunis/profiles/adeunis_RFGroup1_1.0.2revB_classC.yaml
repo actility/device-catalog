@@ -52,6 +52,13 @@ mac:
         maxNbTrans:
         # How many uplink transmissions does the device use in Confirmed mode if it doesn't receive any DL ACK?
         maxRedundancyForConfirmedUL:
+        # Define the maximum allowed number of transmissions for specific Spreading Factors.
+        # Formatted as a comma-separated list of SF:macMaxNbTrans pairs. Example: 9:2,10:2,11:1,12:1.
+        # Optional. If set, maxNbTrans must also be set and acts as a default value for SFs not listed here.
+        maxNbtransPerSF:
+
+    # A comma-separated list of supported data rates [0..15]. Example: 0,1,2,3,4,5 for SF7...SF12 in EU868 region.
+    SupportedDataRates:
 
 # The following section defines the default settings used by the device during iniial boot stage. Leave empty if your device respects the 
 # default values indicated by LoRaWAN Regional Parameters (PHY) specification. Personalize fields only when different from default PHY values.
