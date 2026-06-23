@@ -1,18 +1,15 @@
 # Commercial name of the model
-name: 8931N
+name: Honeywell Versatilis Transmitter R110.2
 # Functional description of the product. Maximum 500 characters.
-description: The TE model 8931N wireless vibration sensor combines a tri axis accelerometer, a bundled DSP (FFT peak search), a data collector, and a radio into one compact, battery operated device that measures both vibration and temperature data. It was designed for hash environment and comes with the ATEX certification.
+description: "LoRaWAN® multi-variant sensing platform for equipment health monitoring, with vibration, acoustics, surface and ambient temperature, humidity, and ambient pressure sensing plus configurable FFT and advanced vibration data."
 # Logo of the device
-logo: 8931N.png
+logo: HVT-EHM.png
 # ID(s) of the profile that defines the LoRaWAN characteristics of this model.
-# id: as defined under /profiles.
-# lorawanDeviceProfileID: as defined by LoRa Alliance in https://lora-alliance.org/wp-content/uploads/2020/10/LoRa_Alliance_Vendor_ID_for_QR_Code_02142022.pdf.
-# The lorawanDeviceProfileID consists of 8 upper-case hexadecimal characters, 4 characters for VendorID + 4 characters for VendorProfileID. Please consider using single (') or double (") quotation.
 deviceProfileIds:
-  - id: te-conn_RFGroup1_1.0.3a_classA
-    lorawanDeviceProfileID: '0260'
-  - id: te-conn_RFGroup2_1.0.3a_classA
-    lorawanDeviceProfileID: '0260'
+  - id: honey-w_RFGroup1_1.0.4a_classA
+  - id: honey-w_RFGroup2_1.0.4a_classA
+  - id: honey-w_RFGroup3_1.0.4a_classA
+  - id: honey-w_RFGroup4_1.0.4a_classA
 
 # You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings.
 # Maximum device TX Conducted output power in dBm.
@@ -31,27 +28,31 @@ motionIndicator:
 LoRaWANCertified: false
 # Format: `<8 characters max>:<16 characters max>:<digits only>`
 # Be careful: Once you chose a model, it cannot be changed later
-modelId: te-conn:8931n:1
+modelId: honey-w:HVT-R110-2:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 # Be careful: Once you chose a protocolId, it cannot be changed later
 protocolId:
-  - te-conn:universal:1
+  - honey-w:HVT-R110-2:1
 # DataSheet URL (optional)
 specificationURL:
 # User Guide URL (optional)
 userGuideURL:
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
- - batteryLevel:%
- - temperature:Cel
- - interval:s
- - frequency:hertz
- - vibration:gravity
+  - temperature:Cel
+  - pressure:hPa
+  - humidity:%RH
+  - acceleration:m/s2
+  - velocity:mm/s
+  - sound:dB
+  - batteryLevel:%
+  - angularVelocity:rpm
+  - frequency:hertz
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
-  te-conn:universal:1:
-    - uplink containing 8931N vibration data
+  honey-w:HVT-R110-2:1:
+    - uplink containing periodic average measurements with sampling frequency
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false
