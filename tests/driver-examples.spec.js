@@ -273,16 +273,23 @@ const examples = (() => {
 /**
  * Non-regression tests (separate dataset)
  * Supports both legacy format (uplink/downlink) and already-wrapped format.
+ *
+ * Loading priority:
+ *   1. nonRegressionSamples.json — production samples imported from tpx-driver-samples
+ *   2. non-regression.json       — legacy hand-crafted non-regression file
+ *   3. legacy examples/ folder   — fallback
+ *
+ * nonRegressionSamples.json may have `points: null` for samples where extractPoints
+ * output was not known at collection time. Those entries skip the extractPoints assertion.
  */
 const nonRegressionTests = (() => {
-    let examples
-    if (fs.pathExistsSync(resolveDriverPath("non-regression.json"))) {
-        examples = fs.readJsonSync(resolveDriverPath("non-regression.json"));
-    }else{
-        return loadExamplesFromExamplesFolder();
+    if (fs.pathExistsSync(resolveDriverPath("nonRegressionSamples.json"))) {
+        return fs.readJsonSync(resolveDriverPath("nonRegressionSamples.json"));
     }
-
-    return examples
+    if (fs.pathExistsSync(resolveDriverPath("non-regression.json"))) {
+        return fs.readJsonSync(resolveDriverPath("non-regression.json"));
+    }
+    return loadExamplesFromExamplesFolder();
 })();
 
 function normalizeNonRegressionUplinkResult(result) {
@@ -520,7 +527,7 @@ function expectExtractPointsExample(example) {
     expect(isEmptyPointsResult(result)).toBe(true);
 }
 
-function defineExtractPointsSuite(suiteName, dataset) {
+function defineExtractPointsSuite(suiteName, dataset, { skipNullPoints = false } = {}) {
     if (!extractPoints) {
         return;
     }
@@ -528,6 +535,13 @@ function defineExtractPointsSuite(suiteName, dataset) {
     describe(suiteName, () => {
         dataset.forEach((example, index) => {
             if (example.type !== "uplink" || !example.output) {
+                return;
+            }
+
+            // When skipNullPoints is true, samples with points: null are skipped.
+            // This is used for nonRegressionSamples.json where points were not
+            // known at collection time and should not be asserted.
+            if (skipNullPoints && example.points === null) {
                 return;
             }
 
@@ -606,7 +620,7 @@ function defineCodecSuites(parentName, dataset, options = {}) {
  Test suites compatible with all driver types
  */
 defineCodecSuites("Non-regression tests", nonRegressionTests, { normalizeDecodeUplink: true });
-defineExtractPointsSuite("extractPoints", nonRegressionTests);
+defineExtractPointsSuite("extractPoints (non-regression)", nonRegressionTests, { skipNullPoints: true });
 
 defineCodecSuites("Examples", examples);
 defineExtractPointsSuite("extractPoints - should extract expected points from decoded uplink", examples);
