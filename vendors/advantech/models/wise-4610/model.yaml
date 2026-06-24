@@ -41,15 +41,19 @@ modelId: advantec:wise-4610:1
 protocolId: 
   - advantec:wise:1
 # DataSheet URL (optional) 
-specificationURL: https://www.integral-system.fr/shop/media/product/file/wise2410_user_manual_ed1final-5f9bd254ef9d2.pdf
+specificationURL: https://downloadt.advantech.com/download/downloadsr.aspx?File_Id=1-2L6KL6O
 # User Guide URL (optional) 
-userGuideURL: 
+userGuideURL: https://downloadt.advantech.com/download/downloadsr.aspx?File_Id=1-2NKOM2G
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
     - temperature:Cel
     - location:GPS
     - batteryVoltage:V
     - batteryLevel:%
+# Driver examples
+examples:
+  advantec:wise:1:
+    - "uplink containing location information"
 
 LoRaWANRelay:
   canOperateAsARelay: false

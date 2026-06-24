@@ -37,15 +37,18 @@ modelId: advantec:wise-2200:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId: advantec:wise:1
 # DataSheet URL (optional) 
-specificationURL: 
+specificationURL: https://downloadt.advantech.com/download/downloadsr.aspx?File_Id=1-2L9NG0D
 # User Guide URL (optional) 
-userGuideURL: 
+userGuideURL: https://downloadt.advantech.com/download/downloadsr.aspx?File_Id=1-2NKOM2G
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
-  - temperature:Cel
-  - batteryVoltage:V
   - batteryLevel:%
-  - location:GPS
+# Driver examples
+examples:
+  advantec:wise:1:
+    - "uplink containing di information"
+    - "uplink containing rs-485 information"
+
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false
