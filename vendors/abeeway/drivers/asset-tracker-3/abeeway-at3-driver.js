@@ -10232,11 +10232,43 @@ var require_telemetry2 = __commonJS({
   }
 });
 
-// ../vendors/charp/drivers/ch02-maxi/extractPoints.js
+// ../vendors/abeeway/drivers/asset-tracker-3/extractPoints.js
 var require_extractPoints = __commonJS({
-  "../vendors/charp/drivers/ch02-maxi/extractPoints.js"(exports2) {
+  "../vendors/abeeway/drivers/asset-tracker-3/extractPoints.js"(exports2) {
     function extractPoints(input) {
-      return null;
+      var _a, _b, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m, _n, _o, _p, _q, _r, _s, _t, _u, _v, _w;
+      let result = {};
+      if (!input.message) {
+        return result;
+      }
+      let data = input.message;
+      if (((_a = data.header) == null ? void 0 : _a.batteryLevel) != null && typeof data.header.batteryLevel != "string") {
+        result.batteryLevel = { unitId: "%", record: data.header.batteryLevel };
+      }
+      if (((_e = (_d = (_c = (_b = data.header) == null ? void 0 : _b.notification) == null ? void 0 : _c.system) == null ? void 0 : _d.status) == null ? void 0 : _e.batteryVoltage) != null) {
+        result.batteryVoltage = { unitId: "V", record: data.header.notification.system.status.batteryVoltage };
+      }
+      if (((_i = (_h = (_g = (_f = data.header) == null ? void 0 : _f.notification) == null ? void 0 : _g.system) == null ? void 0 : _h.status) == null ? void 0 : _i.currentTemperature) != null) {
+        result["temperature:1"] = { unitId: "Cel", record: data.header.notification.system.status.currentTemperature, nature: "current" };
+      }
+      if (((_m = (_l = (_k = (_j = data.header) == null ? void 0 : _j.notification) == null ? void 0 : _k.system) == null ? void 0 : _l.status) == null ? void 0 : _m.maxTemperature) != null) {
+        result["temperature:2"] = { unitId: "Cel", record: data.header.notification.system.status.maxTemperature, nature: "max" };
+      }
+      if (((_o = (_n = data.notification) == null ? void 0 : _n.accelerometer) == null ? void 0 : _o.accelerationVector) != null) {
+        result["acceleration:1"] = { unitId: "mgravity", record: data.notification.accelerometer.accelerationVector[0], nature: "Acceleration X" };
+        result["acceleration:2"] = { unitId: "mgravity", record: data.notification.accelerometer.accelerationVector[1], nature: "Acceleration Y" };
+        result["acceleration:3"] = { unitId: "mgravity", record: data.notification.accelerometer.accelerationVector[2], nature: "Acceleration Z" };
+      }
+      if (((_s = (_r = (_q = (_p = data.header) == null ? void 0 : _p.notification) == null ? void 0 : _q.system) == null ? void 0 : _r.status) == null ? void 0 : _s.minTemperature) != null) {
+        result["temperature:3"] = { unitId: "Cel", record: data.header.notification.system.status.minTemperature, nature: "min" };
+      }
+      if (((_u = (_t = data.position) == null ? void 0 : _t.gnssFix) == null ? void 0 : _u.longitude) != null) {
+        result.location = { unitId: "GPS", record: [data.position.gnssFix.longitude, data.position.gnssFix.latitude] };
+      }
+      if (((_w = (_v = data.position) == null ? void 0 : _v.gnssFix) == null ? void 0 : _w.altitude) != null) {
+        result.altitude = { unitId: "m", record: data.position.gnssFix.altitude };
+      }
+      return result;
     }
     exports2.extractPoints = extractPoints;
   }
