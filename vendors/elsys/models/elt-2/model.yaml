@@ -57,6 +57,14 @@ sensors:
   - counter:count
   - pressure:hPa
   - location:GPS
+examples:
+  elsys:generic:1:
+    - "uplink message that contains the full payload of the device"
+    - "uplink message that contains only acceleration information"
+    - "uplink message that contains only external distance"
+    - "uplink message that contains only acceleration movements count"
+    - "uplink message that contains only pressure"
+    - "uplink message that contains only GPS information"
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false

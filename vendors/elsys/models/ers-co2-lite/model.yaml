@@ -48,7 +48,11 @@ sensors:
     - temperature:Cel
     - humidity:%RH
     - co2Level:ppm
-
+examples:
+  elsys:generic:1:
+    - "uplink message that contains only temperature"
+    - "uplink message that contains only humidity"
+    - "uplink message that contains only co2"
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false

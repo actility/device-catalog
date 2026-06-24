@@ -48,9 +48,13 @@ sensors:
   - temperature:Cel
   - humidity:%RH
   - light:lx
-  - illuminance:lx
   - counter:count
-  - amount:count
+examples:
+  elsys:generic:1:
+    - "uplink message that contains only temperature"
+    - "uplink message that contains only humidity"
+    - "uplink message that contains only light"
+    - "uplink message that contains only acceleration movements count"
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false
