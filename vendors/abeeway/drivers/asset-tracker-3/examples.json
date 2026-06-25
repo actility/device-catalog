@@ -844,7 +844,8 @@
                         "tamperDetection": true,
                         "heartbeat": false,
                         "dataBuffering": false,
-                        "shutdown": false
+                        "shutdown": false,
+                        "fuota": false
                       }
                     },
                     {
@@ -1399,6 +1400,47 @@
       "batteryLevel": {
         "unitId": "%",
         "record": 78
+      }
+    }
+  },
+  {
+    "description": "notification system FUOTA (7) - AUTHENTICATION_ERROR",
+    "type": "uplink",
+    "input": {
+      "bytes": "08508684072a",
+      "recvTime": "2024-06-17T07:23:21.803Z",
+      "fPort": 19
+    },
+    "output": {
+      "data": {
+        "header": {
+          "ackToken": 0,
+          "multiFrame": false,
+          "batteryLevel": 80,
+          "sos": false,
+          "timestamp": "2024-06-16T21:33:56.000Z",
+          "type": "NOTIFICATION"
+        },
+        "payload": "08508684072a",
+        "notification": {
+          "notificationClass": "SYSTEM",
+          "notificationType": "FUOTA",
+          "system": {
+            "fuota": {
+              "binary": "APPLICATION",
+              "raison": "AUTHENTICATION_ERROR",
+              "source": "CELLULAR"
+            }
+          }
+        }
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "batteryLevel": {
+        "unitId": "%",
+        "record": 80
       }
     }
   },
@@ -2605,7 +2647,8 @@
                         "tamperDetection": false,
                         "dataBuffering": false,
                         "heartbeat": false,
-                        "shutdown": false
+                        "shutdown": false,
+                        "fuota": false
                       }
                     },
                     {
@@ -5707,6 +5750,30 @@
     "points": {}
   },
   {
+    "description": "command SYSTEM_EVENT decode",
+    "type": "downlink-decode",
+    "input": {
+      "bytes": "0c0a0301",
+      "recvTime": "2024-06-10T09:42:13.733+02:00",
+      "fPort": 3
+    },
+    "output": {
+      "data": {
+        "downMessageType": "COMMAND",
+        "ackToken": 4,
+        "command": {
+          "commandType": "SYSTEM_EVENT",
+          "classId": "ACCELEROMETER",
+          "eventType": 1
+        },
+        "payload": "0c0a0301"
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {}
+  },
+  {
     "description": "command CLEAR_MOTION_PERCENTAGE",
     "type": "downlink-encode",
     "input": {
@@ -6823,7 +6890,8 @@
                         "lowBattery": false,
                         "shutdown": true,
                         "status": true,
-                        "tamperDetection": false
+                        "tamperDetection": false,
+                        "fuota": false
                       }
                     },
                     {
@@ -6893,7 +6961,8 @@
                       "tamperDetection": true,
                       "heartbeat": false,
                       "dataBuffering": false,
-                      "shutdown": false
+                      "shutdown": false,
+                      "fuota": false
                     }
                   },
                   {
@@ -6970,7 +7039,8 @@
                       "lowBattery": false,
                       "shutdown": true,
                       "status": true,
-                      "tamperDetection": false
+                      "tamperDetection": false,
+                      "fuota": false
                     }
                   },
                   {
@@ -7158,5 +7228,241 @@
       "warnings": []
     },
     "points": {}
+  },
+  {
+    "description": "request get generic configuration (LR11xx rbeacon + CELLULAR restrictedPlmns)",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "downMessageType": "REQUEST",
+        "requestType": "GENERIC_CONFIGURATION_GET",
+        "ackToken": 5,
+        "getGenericParameters": [
+          {
+            "group": "LR11xx",
+            "parameters": [
+              "lrRbeaconType",
+              "lrRbeaconSosPeriod",
+              "lrRbeaconMotionPeriod",
+              "lrRbeaconStaticPeriod",
+              "lrRbeaconRangingTimeout"
+            ]
+          },
+          {
+            "group": "CELLULAR",
+            "parameters": [
+              "cellRestrictedPlmns"
+            ]
+          }
+        ]
+      }
+    },
+    "output": {
+      "fPort": 3,
+      "bytes": "150204080409040a040b040c0a1b",
+      "errors": [],
+      "warnings": []
+    },
+    "points": {}
+  },
+  {
+    "description": "response to generic get (LR11xx rbeacon + CELLULAR restrictedPlmns)",
+    "type": "uplink",
+    "input": {
+      "bytes": "a52e7a0ad0020408210000000204092100000000040a2100000000040b2100000000040c21000000780a1b03",
+      "recvTime": "2025-01-01T00:00:00.000Z",
+      "fPort": 3
+    },
+    "output": {
+      "data": {
+        "header": {
+          "ackToken": 5,
+          "multiFrame": true,
+          "batteryLevel": 46,
+          "sos": false,
+          "timestamp": "2024-12-31T20:40:42.000Z",
+          "type": "RESPONSE"
+        },
+        "extendedHeader": {
+          "groupId": 6,
+          "last": 1,
+          "frameNumber": 0
+        },
+        "payload": "a52e7a0ad0020408210000000204092100000000040a2100000000040b2100000000040c21000000780a1b03",
+        "response": {
+          "responseType": "GENERIC_CONFIGURATION_GET",
+          "genericConfigurationGet": [
+            {
+              "group": "LR11xx",
+              "parameters": [
+                { "parameterName": "lrRbeaconType",          "parameterValue": "LONG_ID" },
+                { "parameterName": "lrRbeaconSosPeriod",     "parameterValue": 0 },
+                { "parameterName": "lrRbeaconMotionPeriod",  "parameterValue": 0 },
+                { "parameterName": "lrRbeaconStaticPeriod",  "parameterValue": 0 },
+                { "parameterName": "lrRbeaconRangingTimeout","parameterValue": 120 }
+              ]
+            },
+            {
+              "group": "CELLULAR",
+              "parameters": [
+                { "parameterName": "cellRestrictedPlmns", "parameterValue": "" }
+              ]
+            }
+          ]
+        }
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "batteryLevel": {
+        "unitId": "%",
+        "record": 46
+      }
+    }
+  },
+  {
+    "description": "request set parameter class configuration (LR11xx: rbeaconSosPeriod/motionPeriod/staticPeriod/rangingTimeout)",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "downMessageType": "REQUEST",
+        "requestType": "PARAM_CLASS_CONFIGURATION_SET",
+        "ackToken": 5,
+        "setParameterClass": {
+          "group": "LR11xx",
+          "parameters": [
+            { "parameterName": "lrRbeaconSosPeriod",     "parameterValue": 5   },
+            { "parameterName": "lrRbeaconMotionPeriod",  "parameterValue": 3   },
+            { "parameterName": "lrRbeaconStaticPeriod",  "parameterValue": 2   },
+            { "parameterName": "lrRbeaconRangingTimeout","parameterValue": 120 }
+          ]
+        }
+      }
+    },
+    "output": {
+      "fPort": 3,
+      "bytes": "1501040921000000050a21000000030b21000000020c2100000078",
+      "errors": [],
+      "warnings": []
+    },
+    "points": {}
+  },
+  {
+    "description": "request set parameter class configuration (CELLULAR: cellRestrictedPlmns)",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "downMessageType": "REQUEST",
+        "requestType": "PARAM_CLASS_CONFIGURATION_SET",
+        "ackToken": 5,
+        "setParameterClass": {
+          "group": "CELLULAR",
+          "parameters": [
+            { "parameterName": "cellRestrictedPlmns", "parameterValue": "hello" }
+          ]
+        }
+      }
+    },
+    "output": {
+      "fPort": 3,
+      "bytes": "15010a1b2b68656c6c6f",
+      "errors": [],
+      "warnings": []
+    },
+    "points": {}
+  },
+  {
+    "description": "response to parameter class set (LR11xx: rbeaconSosPeriod/motionPeriod/staticPeriod/rangingTimeout) - all SUCCESS",
+    "type": "uplink",
+    "input": {
+      "bytes": "a52e7f423001042b868c09000a000b000c00",
+      "recvTime": "2025-01-01T00:00:00.000Z",
+      "fPort": 3
+    },
+    "output": {
+      "data": {
+        "header": {
+          "ackToken": 5,
+          "multiFrame": true,
+          "batteryLevel": 46,
+          "sos": false,
+          "timestamp": "2024-12-31T21:02:58.000Z",
+          "type": "RESPONSE"
+        },
+        "extendedHeader": {
+          "groupId": 1,
+          "last": 1,
+          "frameNumber": 0
+        },
+        "payload": "a52e7f423001042b868c09000a000b000c00",
+        "response": {
+          "responseType": "PARAM_CLASS_CONFIGURATION_SET",
+          "localCrc": "2b868c",
+          "parameterClassConfigurationSet": {
+            "group": "LR11xx",
+            "parameters": [
+              { "parameterName": "lrRbeaconSosPeriod",     "status": "SUCCESS" },
+              { "parameterName": "lrRbeaconMotionPeriod",  "status": "SUCCESS" },
+              { "parameterName": "lrRbeaconStaticPeriod",  "status": "SUCCESS" },
+              { "parameterName": "lrRbeaconRangingTimeout","status": "SUCCESS" }
+            ]
+          }
+        }
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "batteryLevel": {
+        "unitId": "%",
+        "record": 46
+      }
+    }
+  },
+  {
+    "description": "response to parameter class set (CELLULAR: cellRestrictedPlmns=hello) - BAD_VALUE",
+    "type": "uplink",
+    "input": {
+      "bytes": "a52e844550010aa005a91b04",
+      "recvTime": "2025-01-01T00:00:00.000Z",
+      "fPort": 3
+    },
+    "output": {
+      "data": {
+        "header": {
+          "ackToken": 5,
+          "multiFrame": true,
+          "batteryLevel": 46,
+          "sos": false,
+          "timestamp": "2024-12-31T21:24:21.000Z",
+          "type": "RESPONSE"
+        },
+        "extendedHeader": {
+          "groupId": 2,
+          "last": 1,
+          "frameNumber": 0
+        },
+        "payload": "a52e844550010aa005a91b04",
+        "response": {
+          "responseType": "PARAM_CLASS_CONFIGURATION_SET",
+          "localCrc": "a005a9",
+          "parameterClassConfigurationSet": {
+            "group": "CELLULAR",
+            "parameters": [
+              { "parameterName": "cellRestrictedPlmns", "status": "BAD_VALUE" }
+            ]
+          }
+        }
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "batteryLevel": {
+        "unitId": "%",
+        "record": 46
+      }
+    }
   }
 ]

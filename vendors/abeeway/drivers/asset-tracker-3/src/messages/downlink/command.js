@@ -103,8 +103,8 @@ function decodeCommand(bytes) {
     }
 
     decoded.commandType = command
-    if (command === Command.SYSTEM_EVENT) {
-        if (bytes.length < 4) {
+    if (command === CommandType.SYSTEM_EVENT) {
+        if (bytes.length < 3) {
             throw new Error("Invalid SYSTEM_EVENT byte array length");
         }
         decoded.classId = getClassName(bytes[1]);

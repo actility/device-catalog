@@ -23,6 +23,9 @@ function Request(requestType,
     fuotaBinaryType,
     filePath,
     debugInfoType,
+    k0Key,
+    k1Key,
+    rootKeyIndex,
     ){
         this.requestType = requestType;
         this.genericConfigurationSet = genericConfigurationSet;
@@ -35,6 +38,9 @@ function Request(requestType,
         this.fuotaBinaryType = fuotaBinaryType;
         this.filePath = filePath;
         this.debugInfoType = debugInfoType;
+        this.k0Key = k0Key;
+        this.k1Key = k1Key;
+        this.rootKeyIndex = rootKeyIndex;
 }
 function ParameterClassConfigurationGet(group, parameters){
     this.group = group
@@ -71,6 +77,12 @@ function encodeRequest(data){
         case 8:
             encData = encodeFuotaRequest(data.fuotaBinaryType, data.filePath, encData)
             break;
+        case 9:
+            encData = encodeRecoveryBeaconKeyUpdateRequest(data.k0Key, data.k1Key, data.rootKeyIndex, encData)
+            break;
+        case 10:
+            // no data
+            break;
         default:
             throw new Error("Unknown request type")
 
@@ -101,6 +113,10 @@ function encodeRequestType(value){
             return 7;
         case "FUOTA_REQUEST":
             return 8;
+        case "RECOVERY_BEACON_KEY_UPDATE":
+            return 9;
+        case "RECOVERY_BEACON_ROOT_KEY_INDEX_GET":
+            return 10;
         default:
             throw new Error("Unknown request type")
     }
@@ -163,8 +179,17 @@ function decodeRequest(payload){
             break;
         case 8:
             request.requestType = RequestType.FUOTA_REQUEST
-            request.fuotaBinaryType = decodeBinaryFuotaType(payload[2]) 
+            request.fuotaBinaryType = decodeBinaryFuotaType(payload[2])
             request.filePath = decodeAsciiString(payload.slice(3))
+            break;
+        case 9:
+            request.requestType = RequestType.RECOVERY_BEACON_KEY_UPDATE
+            request.k0Key = decodeKeyBytes(payload.slice(2, 18))
+            request.k1Key = decodeKeyBytes(payload.slice(18, 34))
+            request.rootKeyIndex = payload[34]
+            break;
+        case 10:
+            request.requestType = RequestType.RECOVERY_BEACON_ROOT_KEY_INDEX_GET
             break;
         default:
             throw new Error("Request Type Unknown");
@@ -729,6 +754,30 @@ function encodeObjectProperty(bit, flagValue, flags) {
 function encodeSizeAndType(size, type){
     return ((size << 0x03)| type)
 
+}
+
+function encodeRecoveryBeaconKeyUpdateRequest(k0Key, k1Key, rootKeyIndex, encData) {
+    if (rootKeyIndex < 0 || rootKeyIndex > 7) {
+        throw new Error("rootKeyIndex must be between 0 and 7");
+    }
+    encodeHexKey(k0Key, 16, encData);
+    encodeHexKey(k1Key, 16, encData);
+    encData.push(rootKeyIndex & 0xFF);
+    return encData;
+}
+
+function encodeHexKey(hexStr, expectedBytes, encData) {
+    const cleaned = hexStr.replace(/\s/g, '');
+    if (cleaned.length !== expectedBytes * 2) {
+        throw new Error(`Key must be ${expectedBytes} bytes (${expectedBytes * 2} hex chars), got ${cleaned.length / 2}`);
+    }
+    for (let i = 0; i < expectedBytes; i++) {
+        encData.push(parseInt(cleaned.slice(i * 2, i * 2 + 2), 16));
+    }
+}
+
+function decodeKeyBytes(bytes) {
+    return Array.from(bytes).map(b => b.toString(16).padStart(2, '0')).join('');
 }
 
 /** Reverse mapping from numeric value to string */

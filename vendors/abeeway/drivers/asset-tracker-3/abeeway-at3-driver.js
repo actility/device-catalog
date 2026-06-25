@@ -325,6 +325,25 @@ var require_util = __commonJS({
     };
   }
 });
+const Source = Object.freeze({
+    XMODEM: "XMODEM",
+    BLE: "BLE",
+    CELLULAR: "CELLULAR",
+    LORA: "LORA"
+});
+const Raison = Object.freeze({
+    NONE: "NONE",
+    NETWORK_ISSUE: "NETWORK_ISSUE",
+    DOWNLOAD_TIMEOUT: "DOWNLOAD_TIMEOUT",
+    MODEM_FAILURE: "MODEM_FAILURE",
+    FILE_NOT_FOUND: "FILE_NOT_FOUND",
+    PLATFORM_ERROR: "PLATFORM_ERROR",
+    PARSING_ERROR: "PARSING_ERROR",
+    FLASH_ERROR: "FLASH_ERROR",
+    LENGTH_ERROR: "LENGTH_ERROR",
+    SIGNATURE_ERROR: "SIGNATURE_ERROR",
+    AUTHENTICATION_ERROR: "AUTHENTICATION_ERROR"
+});
 
 // ../../device-catalog/vendors/abeeway/drivers/asset-tracker-3/src/messages/uplink/notifications/system.js
 var require_system = __commonJS({
@@ -710,7 +729,9 @@ var require_system = __commonJS({
         case 8:
           return Raison.LENGTH_ERROR;
         case 9:
-          return Raison.SIGNATURE_ERROR;
+            return Raison.SIGNATURE_ERROR
+        case 10:
+            return Raison.AUTHENTICATION_ERROR
         default:
           throw new Error("The fuota raison failure is unknown");
       }
@@ -8298,67 +8319,90 @@ var require_parameters = __commonJS({
   }
 });
 
-// ../../device-catalog/vendors/abeeway/drivers/asset-tracker-3/src/messages/uplink/responses/response.js
-var require_response = __commonJS({
-  "../../device-catalog/vendors/abeeway/drivers/asset-tracker-3/src/messages/uplink/responses/response.js"(exports2, module2) {
-    var util2 = require_util();
-    var jsonParameters = require_parameters();
-    var accelerometer = require_accelerometer();
-    var ResponseType = Object.freeze({
-      GENERIC_CONFIGURATION_SET: "GENERIC_CONFIGURATION_SET",
-      PARAM_CLASS_CONFIGURATION_SET: "PARAM_CLASS_CONFIGURATION_SET",
-      GENERIC_CONFIGURATION_GET: "GENERIC_CONFIGURATION_GET",
-      PARAM_CLASS_CONFIGURATION_GET: "PARAM_CLASS_CONFIGURATION_GET",
-      BLE_STATUS_CONNECTIVITY: "BLE_STATUS_CONNECTIVITY",
-      CRC_CONFIGURATION_REQUEST: "CRC_CONFIGURATION_REQUEST",
-      SENSOR_REQUEST: "SENSOR_REQUEST",
-      DEBUG_INFO_REQUEST: "DEBUG_INFO_REQUEST",
-      FUOTA_REQUEST: "FUOTA_REQUEST"
-    });
-    var StatusType = Object.freeze({
-      SUCCESS: "SUCCESS",
-      NOT_FOUND: "NOT_FOUND",
-      BELOW_LOWER_BOUND: "BELOW_LOWER_BOUND",
-      ABOVE_HIGHER_BOUND: "ABOVE_HIGHER_BOUND",
-      BAD_VALUE: "BAD_VALUE",
-      TYPE_MISMATCH: "TYPE_MISMATCH",
-      OPERATION_ERROR: "OPERATION_ERROR",
-      READ_ONLY: "READ_ONLY"
-    });
-    var GroupType = Object.freeze({
-      INTERNAL: "INTERNAL",
-      SYSTEM_CORE: "SYSTEM_CORE",
-      GEOLOC: "GEOLOC",
-      GNSS: "GNSS",
-      LR11xx: "LR11xx",
-      BLE_SCAN1: "BLE_SCAN1",
-      BLE_SCAN2: "BLE_SCAN2",
-      ACCELEROMETER: "ACCELEROMETER",
-      NETWORK: "NETWORK",
-      LORAWAN: "LORAWAN",
-      CELLULAR: "CELLULAR",
-      BLE: "BLE",
-      TELEMETRY: "TELEMETRY"
-    });
-    var ParameterType = Object.freeze({
-      DEPREACTED: "DEPREACTED",
-      INTEGER: "INTEGER",
-      FLOATING_POINT: "FLOATING_POINT",
-      ASCCII_STRING: "ASCCII_STRING",
-      BYTE_ARRAY: "BYTE_ARRAY"
-    });
-    function Response(responseType, genericConfigurationSet, parameterClassConfigurationSet, genericConfigurationGet, parameterClassConfigurationGet, bleStatusConnectivity, configurationCrcRequest, sensorRequest, globalCrc, localCrc, fuotaStatus) {
-      this.responseType = responseType;
-      this.genericConfigurationSet = genericConfigurationSet;
-      this.parameterClassConfigurationSet = parameterClassConfigurationSet;
-      this.genericConfigurationGet = genericConfigurationGet;
-      this.parameterClassConfigurationGet = parameterClassConfigurationGet;
-      this.bleStatusConnectivity = bleStatusConnectivity;
-      this.configurationCrcRequest = configurationCrcRequest;
-      this.sensorRequest = sensorRequest;
-      this.globalCrc = globalCrc;
-      this.localCrc = localCrc;
-      this.fuotaStatus = fuotaStatus;
+const ResponseType = Object.freeze({
+    GENERIC_CONFIGURATION_SET: "GENERIC_CONFIGURATION_SET",
+    PARAM_CLASS_CONFIGURATION_SET: "PARAM_CLASS_CONFIGURATION_SET",
+    GENERIC_CONFIGURATION_GET: "GENERIC_CONFIGURATION_GET",
+    PARAM_CLASS_CONFIGURATION_GET: "PARAM_CLASS_CONFIGURATION_GET",
+    BLE_STATUS_CONNECTIVITY: "BLE_STATUS_CONNECTIVITY",
+    CRC_CONFIGURATION_REQUEST : "CRC_CONFIGURATION_REQUEST",
+    SENSOR_REQUEST: "SENSOR_REQUEST",
+    DEBUG_INFO_REQUEST: "DEBUG_INFO_REQUEST",
+    FUOTA_REQUEST: "FUOTA_REQUEST",
+    RECOVERY_BEACON_KEY_UPDATE: "RECOVERY_BEACON_KEY_UPDATE",
+    RECOVERY_BEACON_ROOT_KEY_INDEX_GET: "RECOVERY_BEACON_ROOT_KEY_INDEX_GET"
+})
+const StatusType = Object.freeze({
+   SUCCESS: "SUCCESS",
+   NOT_FOUND: "NOT_FOUND",
+   BELOW_LOWER_BOUND: "BELOW_LOWER_BOUND",
+   ABOVE_HIGHER_BOUND: "ABOVE_HIGHER_BOUND",
+   BAD_VALUE: "BAD_VALUE",
+   TYPE_MISMATCH: "TYPE_MISMATCH",
+   OPERATION_ERROR: "OPERATION_ERROR",
+   READ_ONLY: "READ_ONLY"
+})
+
+const GroupType = Object.freeze({
+    INTERNAL: "INTERNAL",
+    SYSTEM_CORE: "SYSTEM_CORE",
+    GEOLOC: "GEOLOC",
+    GNSS: "GNSS",
+    LR11xx: "LR11xx",
+    BLE_SCAN1: "BLE_SCAN1",
+    BLE_SCAN2: "BLE_SCAN2",
+    ACCELEROMETER : "ACCELEROMETER",
+    NETWORK: "NETWORK",
+    LORAWAN: "LORAWAN",
+    CELLULAR: "CELLULAR",
+    BLE : "BLE",
+    TELEMETRY: "TELEMETRY"
+ })
+const ParameterType = Object.freeze({
+    DEPREACTED: "DEPREACTED",
+    INTEGER: "INTEGER",
+    FLOATING_POINT: "FLOATING_POINT",
+    ASCCII_STRING: "ASCCII_STRING",
+    BYTE_ARRAY: "BYTE_ARRAY"
+})
+function Response(responseType,
+    genericConfigurationSet,
+    parameterClassConfigurationSet,
+    genericConfigurationGet,
+    parameterClassConfigurationGet,
+    bleStatusConnectivity,
+    configurationCrcRequest,
+    sensorRequest,
+    globalCrc,
+    localCrc,
+    fuotaStatus,
+    recoveryBeaconKeyUpdateStatus,
+    recoveryBeaconRootKeyIndex,
+    ){
+        this.responseType = responseType;
+        this.genericConfigurationSet = genericConfigurationSet;
+        this.parameterClassConfigurationSet = parameterClassConfigurationSet;
+        this.genericConfigurationGet = genericConfigurationGet;
+        this.parameterClassConfigurationGet = parameterClassConfigurationGet;
+        this.bleStatusConnectivity= bleStatusConnectivity;
+        this.configurationCrcRequest = configurationCrcRequest;
+        this.sensorRequest = sensorRequest;
+        this.globalCrc = globalCrc;
+        this.localCrc = localCrc;
+        this.fuotaStatus = fuotaStatus;
+        this.recoveryBeaconKeyUpdateStatus = recoveryBeaconKeyUpdateStatus;
+        this.recoveryBeaconRootKeyIndex = recoveryBeaconRootKeyIndex;
+}
+function ParameterClassConfigurationSet(group, parameters){
+    this.group = group
+    this.parameters = parameters
+}
+
+function determineResponse(payload, multiFrame){
+    let response = new Response();
+    let startingByte = 4;
+    if (multiFrame){
+        startingByte = 5;
     }
     function ParameterClassConfigurationSet(group, parameters) {
       this.group = group;
@@ -8406,9 +8450,17 @@ var require_response = __commonJS({
           response.responseType = ResponseType.DEBUG_INFO_REQUEST;
           break;
         case 8:
-          response.responseType = ResponseType.FUOTA_REQUEST;
-          response.fuotaStatus = decodeFuotaStatus(payload.slice(startingByte2 + 1));
-          break;
+            response.responseType = ResponseType.FUOTA_REQUEST
+            response.fuotaStatus = decodeFuotaStatus(payload.slice(startingByte+1))
+            break;
+        case 9:
+            response.responseType = ResponseType.RECOVERY_BEACON_KEY_UPDATE
+            response.recoveryBeaconKeyUpdateStatus = decodeRecoveryBeaconKeyUpdateStatus(payload[startingByte+1])
+            break;
+        case 10:
+            response.responseType = ResponseType.RECOVERY_BEACON_ROOT_KEY_INDEX_GET
+            response.recoveryBeaconRootKeyIndex = payload[startingByte+1]
+            break;
         default:
           throw new Error("Response Type Unknown");
       }
@@ -9024,7 +9076,9 @@ var require_response = __commonJS({
         case 5:
           return StatusType.TYPE_MISMATCH;
         case 6:
-          return StatusType.OPERATION_ERROR;
+            return StatusType.OPERATION_ERROR
+        case 7:
+            return StatusType.READ_ONLY
         default:
           throw new Error("Status Type Unknown");
       }
@@ -9061,9 +9115,342 @@ var require_response = __commonJS({
           throw new Error("Unknown group");
       }
     }
-    function decodeFuotaStatus(value) {
-      const v = Number(value);
-      switch (v) {
+}
+
+function decodeRecoveryBeaconKeyUpdateStatus(value) {
+    switch (Number(value)) {
+        case 0: return "SUCCESS";
+        case 1: return "FAILED_INVALID_ROOT_INDEX";
+        case 2: return "FAILED_WRITING_ERROR";
+        case 3: return "FAILED_SAVING_ERROR";
+        default: throw new Error("Unknown recovery beacon key update status: " + value);
+    }
+}
+
+function decodeFuotaStatus(value) {
+    const v = Number(value)
+    switch (v) {
+        case 0:  return "START_ASAP";                       // FUOTA supported and will start ASAP
+        case 1:  return "SCHEDULED";                        // FUOTA supported and scheduled
+        case 2:  return "DENIED_OPERATION_NOT_SUPPORTED";   // No LTE module or external flash missing
+        case 3:  return "DENIED_CELLULAR_NOT_CONFIGURED";   // Missing IP/URL or port
+        case 4:  return "DENIED_SERVER_NOT_CONFIGURED";     // No FUOTA server configured
+        case 5:  return "DENIED_TEMPORARILY_NOT_ALLOWED";   // Example: SOS active
+        case 6:  return "DENIED_LOW_BATTERY";
+        case 7:  return "DENIED_LOW_TEMPERATURE";
+        case 8:  return "DENIED_HIGH_TEMPERATURE";
+        case 9:  return "DENIED_INCORRECT_USER_REQUEST";
+        default:
+            throw new Error("Unknown FUOTA status value: " + v);
+    }
+}
+// Function to create the nested data structure
+function jsonParametersByGroupIdAndLocalId() {
+    // Initialize an empty object to store parameters grouped by groupId and localId
+    let parametersByGroupIdAndLocalId = {};
+
+    // Iterate over each entry in the JSON parameters array
+    jsonParameters.forEach(entry => {
+        // Iterate over each firmware parameter within the entry
+        entry.firmwareParameters.forEach(parameter => {
+            // Convert hexadecimal strings to integers for groupId and localId
+            let groupId = parseInt(parameter.groupId, 16);
+            let localId = parseInt(parameter.localId, 16);
+
+            // Check if the groupId exists in the parametersByGroupIdAndLocalId object
+            if (!parametersByGroupIdAndLocalId[groupId]) {
+                // If not, create an empty object for the groupId
+                parametersByGroupIdAndLocalId[groupId] = {};
+            }
+
+            // Check if the localId exists within the groupId object
+            if (!parametersByGroupIdAndLocalId[groupId][localId]) {
+                // If not, create an empty object for the localId
+                parametersByGroupIdAndLocalId[groupId][localId] = {};
+            }
+
+            // Store the parameter object within the groupId and localId
+            parametersByGroupIdAndLocalId[groupId][localId] = parameter;
+        });
+    });
+
+    // Return the nested data structure
+    return parametersByGroupIdAndLocalId;
+}
+
+// Function to get a parameter by groupId and localId
+function getParameterByGroupIdAndLocalId(parameters, groupId, localId) {
+    // Check if the parameters object contains the groupId
+    // and if the groupId object contains the localId
+    if (parameters[groupId] && parameters[groupId][localId]) {
+        return parameters[groupId][localId];
+    } else {
+        return null;
+    }
+}
+
+//create the nested data structure
+const parametersByGroupIdAndLocalId = jsonParametersByGroupIdAndLocalId();
+
+module.exports = {
+    Response: Response,
+    ResponseType : ResponseType,
+    determineResponse: determineResponse,
+    determineConfiguration: determineConfiguration,
+    parametersByGroupIdAndLocalId: parametersByGroupIdAndLocalId,
+    getParameterByGroupIdAndLocalId: getParameterByGroupIdAndLocalId,
+    determineGroupType:determineGroupType,
+    GroupType: GroupType
+
+}
+
+
+/***/ }),
+
+/***/ 320:
+/***/ ((module) => {
+
+function BeaconIdInfo(id,
+    rssi
+){
+    this.id = id;
+    this.rssi = rssi;
+}
+function BeaconMacInfo(mac,
+    rssi
+){
+    this.mac = mac;
+    this.rssi = rssi;
+}
+
+
+
+module.exports = {
+    BeaconIdInfo: BeaconIdInfo, 	
+    BeaconMacInfo: BeaconMacInfo
+}
+
+/***/ }),
+
+/***/ 343:
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+let util = __webpack_require__(94);
+
+const TelemetryType = Object.freeze({
+    TELEMETRY: "TELEMETRY",
+    TELEMETRY_MODE_BATCH: "TELEMETRY_MODE_BATCH"
+})
+// for more details to telemetry refer to https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
+const OntologyConstants = Object.freeze({
+    RESISTANCE: {
+        id: 1,
+        ontology: "resistance",
+        type: "int16",
+        unit: "Ohm"
+    },
+    TEMPERATURE: {
+        id: 2,
+        ontology: "temperature",
+        type: "float",
+        unit: "Cel"
+    },
+    HUMIDITY: {
+        id: 3,
+        ontology: "humidity",
+        type: "int16",
+        unit: "%RH", 
+        factor: 10
+    }
+});
+
+// Construct counters based on OntologyConstants
+const counters = Object.keys(OntologyConstants).reduce((acc, key) => {
+    const ontology = OntologyConstants[key];
+    acc[ontology.ontology] = 0;
+    return acc;
+}, {});
+
+function floatFromBytes(bytes) {
+    const buffer = new ArrayBuffer(4);
+    const view = new DataView(buffer);
+    for (let i = 0; i < 4; i++) {
+        view.setUint8(i, bytes[i]);
+    }
+    return view.getFloat32(0, false); // true for little-endian
+}
+function formatFloat(float, decimals = 2) {
+    return Number(float.toFixed(decimals));
+}
+
+function determineTelemetryMeasurements(data) {
+    let index = 0;
+    const ontologies = {};
+    const dataLength = data.length;
+    while (index < dataLength) {
+        if (index >= dataLength) {
+            throw new Error("Unexpected end of data.");
+        }
+        let ontology = determineOntology(data[index] & 0x7F);
+        let valueSize = (data[index] >> 7) & 0x01;
+        let value;
+        if (ontology.type === 'float') {
+            if (valueSize === 1) {
+                if (index + 4 >= dataLength) {
+                    throw new Error("Not enough data for a 4-byte float.");
+                }
+                value = floatFromBytes(data.slice(index + 1, index + 5));
+                value = formatFloat(value);
+                index += 5; // Move to the next data element
+            } else {
+                throw new Error("Unexpected value size for float.");
+            }
+            
+        } else {
+            if (valueSize === 1) {
+                throw new Error("Unexpected value size for int.");
+            }
+            if (index + 2 >= dataLength) {
+                throw new Error("Not enough data for a 2-byte value.");
+            }
+            value = util.convertNegativeInt((data[index + 1] << 8) + data[index + 2],2);
+            index += 3; // Move to the next data element
+        }
+
+        const ontologyName = ontology.ontology;
+        const unit = ontology.unit;
+        const counter = counters[ontologyName];
+        const key = `${ontologyName}:${counter}`;
+
+        // Add the telemetry measurement to the result
+        ontologies[key] = { unitId: unit, record: value };
+
+        // Update the counter
+        counters[ontologyName]++;
+    }
+    Object.keys(ontologies).forEach(key => {
+        const baseKey = key.split(':')[0];
+        if (counters[baseKey] === 1) {
+            const value = ontologies[key];
+            delete ontologies[key];
+            ontologies[baseKey] = value;
+        }
+    });
+    return ontologies;
+}
+
+function determineOntology(value) {
+    const ontology = Object.values(OntologyConstants).find(o => o.id === value);
+    if (ontology) {
+        return ontology;
+    } else {
+        throw new Error("Ontology Unknown");
+    }
+}
+
+
+module.exports = {
+    TelemetryType: TelemetryType,
+    determineTelemetryMeasurements: determineTelemetryMeasurements
+}
+
+
+/***/ }),
+
+/***/ 406:
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+let util = __webpack_require__(94);
+
+const TempType = Object.freeze({
+    TEMP_HIGH: "TEMP_HIGH",
+    TEMP_LOW: "TEMP_LOW",
+    TEMP_NORMAL: "TEMP_NORMAL"
+})
+
+
+function determineTemperature(payload){
+    return util.convertNegativeInt(payload[5],1)
+}
+module.exports = {
+    determineTemperature: determineTemperature,
+    TempType: TempType
+}
+
+/***/ }),
+
+/***/ 457:
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+let TriggerBitMapClass = __webpack_require__(483);
+let bleClass = __webpack_require__(504);
+let util = __webpack_require__(94);
+let gnssFixClass = __webpack_require__(792)
+let gnssFailureClass = __webpack_require__(541)
+let wifiClass = __webpack_require__(508);
+const gnssFailure = __webpack_require__(541);
+//let bssidInfoClass = require("./wifi/bssidInfo")
+
+const PositionStatus = Object.freeze({
+    SUCCESS: "SUCCESS",
+    TIMEOUT: "TIMEOUT",
+    FAILURE: "FAILURE",
+    NOT_SOLVABLE : "NOT_SOLVABLE"
+})
+
+const PositionType = Object.freeze({
+    LR11xx_A_GNSS: "LR11xx_A_GNSS",
+    LR11xx_GNSS_NAV1: "LR11xx_GNSS_NAV1",
+    LR11xx_GNSS_NAV2: "LR11xx_GNSS_NAV2",
+    WIFI: "WIFI",
+    BLE_SCAN1_MAC: "BLE_SCAN1_MAC",
+    BLE_SCAN1_SHORT: "BLE_SCAN1_SHORT",
+    BLE_SCAN1_LONG: "BLE_SCAN1_LONG",
+    BLE_SCAN2_MAC: "BLE_SCAN2_MAC",
+    BLE_SCAN2_SHORT: "BLE_SCAN2_SHORT",
+    BLE_SCAN2_LONG: "BLE_SCAN2_LONG",
+    GNSS: "GNSS",
+    AIDED_GNSS: "AIDED_GNSS"
+})
+
+function Position(motion, motionCounter,
+    status,
+    positionType,
+    triggers,
+    lr11xxAGnss,
+    lr11xxGnssNav1, 
+    lr11xxGnssNav2, 
+    wifiBssids, 
+    bleBeaconMacs,
+    bleBeaconIds,
+    gnssFix,
+    gnssFailure,
+    aidedGnss,
+    coordinates){
+        this.motion = motion;
+        this.motionCounter = motionCounter;
+        this.status = status;
+        this.positionType = positionType;
+        this.triggers = triggers;
+        this.lr11xxAGnss = lr11xxAGnss;
+        this.lr11xxGnssNav1 = lr11xxGnssNav1;
+        this.lr11xxGnssNav2 = lr11xxGnssNav2;
+        this.wifiBssids = wifiBssids;
+        this.bleBeaconMacs =bleBeaconMacs;
+        this.bleBeaconIds = bleBeaconIds;
+        this.gnssFix = gnssFix;
+        this.gnssFailure = gnssFailure;
+        this.aidedGnss = aidedGnss;
+        this.coordinates = coordinates;
+}
+
+/************************ Header position decodage *************************/
+/********************************************************************/
+function determinePositionHeader(payload, startingByte){
+    let positionMessage = new Position();
+    positionMessage.motion = payload[startingByte]>>7 & 0x01;
+    var statusValue = payload[startingByte]>>5 & 0x03;
+    switch (statusValue){
         case 0:
           return "START_ASAP";
         // FUOTA supported and will start ASAP
@@ -9094,43 +9481,81 @@ var require_response = __commonJS({
           throw new Error("Unknown FUOTA status value: " + v);
       }
     }
-    function jsonParametersByGroupIdAndLocalId() {
-      let parametersByGroupIdAndLocalId2 = {};
-      jsonParameters.forEach((entry) => {
-        entry.firmwareParameters.forEach((parameter) => {
-          let groupId = parseInt(parameter.groupId, 16);
-          let localId = parseInt(parameter.localId, 16);
-          if (!parametersByGroupIdAndLocalId2[groupId]) {
-            parametersByGroupIdAndLocalId2[groupId] = {};
-          }
-          if (!parametersByGroupIdAndLocalId2[groupId][localId]) {
-            parametersByGroupIdAndLocalId2[groupId][localId] = {};
-          }
-          parametersByGroupIdAndLocalId2[groupId][localId] = parameter;
-        });
-      });
-      return parametersByGroupIdAndLocalId2;
+    positionMessage.motionCounter =  payload[startingByte+1]&0x0F;
+    positionMessage.triggers = new TriggerBitMapClass.TriggerBitMap(payload[startingByte+3] & 0x01,
+        payload[startingByte+3]>>1 & 0x01,
+        payload[startingByte+3]>>2 & 0x01,
+        payload[startingByte+3]>>3 & 0x01,
+        payload[startingByte+3]>>4 & 0x01,
+        payload[startingByte+3]>>5 & 0x01,
+        payload[startingByte+3]>>6 & 0x01,
+        payload[startingByte+3]>>7 & 0x01,
+        payload[startingByte+2] & 0x01,
+        payload[startingByte+2]>>1 & 0x01
+    )
+   
+    return positionMessage;
+}
+
+
+
+
+/************************ Position decodage *************************/
+/********************************************************************/
+function determinePosition(payload, multiFrame){
+
+    var startingByte = 4;
+    if (multiFrame){
+        startingByte = 5;
     }
-    function getParameterByGroupIdAndLocalId(parameters, groupId, localId) {
-      if (parameters[groupId] && parameters[groupId][localId]) {
-        return parameters[groupId][localId];
-      } else {
-        return null;
-      }
+    let positionMessage = determinePositionHeader(payload, startingByte);
+    // position status success
+    if (positionMessage.status == PositionStatus.SUCCESS || positionMessage.status == PositionStatus.NOT_SOLVABLE){
+        switch (positionMessage.positionType){
+            case PositionType.LR11xx_A_GNSS:
+                positionMessage.lr11xxAGnss = util.convertBytesToString(payload.slice(startingByte+4));
+                break;
+            case PositionType.LR11xx_GNSS_NAV1:
+                positionMessage.lr11xxGnssNav1 = util.convertBytesToString(payload.slice(startingByte+4));
+                break;
+            case PositionType.LR11xx_GNSS_NAV2:
+                positionMessage.lr11xxGnssNav2 = util.convertBytesToString(payload.slice(startingByte+4));
+                break;
+            case PositionType.WIFI:
+                positionMessage.wifiBssids = wifiClass.determineWifiPositionMessage(payload.slice(startingByte+4));
+                break;
+            case PositionType.BLE_SCAN1_MAC:
+                positionMessage.bleBeaconMacs = bleClass.determineBleMacPositionMessage(payload.slice(startingByte+4));
+                break;
+            case PositionType.BLE_SCAN1_SHORT:
+                positionMessage.bleBeaconIds = bleClass.determineBleIdShortPositionMessage(payload.slice(startingByte+4));
+                break;
+            case PositionType.BLE_SCAN1_LONG:
+                positionMessage.bleBeaconIds = bleClass.determineBleIdLongPositionMessage(payload.slice(startingByte+4));
+                break;
+            case PositionType.BLE_SCAN2_MAC:
+                positionMessage.bleBeaconMacs = bleClass.determineBleMacPositionMessage(payload.slice(startingByte+4));
+                break;
+            case PositionType.BLE_SCAN2_SHORT:
+                positionMessage.bleBeaconIds = bleClass.determineBleIdShortPositionMessage(payload.slice(startingByte+4));
+                break;
+            case PositionType.BLE_SCAN2_LONG:
+                positionMessage.bleBeaconIds = bleClass.determineBleIdLongPositionMessage(payload.slice(startingByte+4));
+                break;
+            case PositionType.GNSS:
+                positionMessage.gnssFix = gnssFixClass.determineGnssFix(payload.slice(startingByte+4));
+                positionMessage.coordinates = [positionMessage.gnssFix.longitude, positionMessage.gnssFix.latitude, positionMessage.gnssFix.altitude]
+                break;
+            case PositionType.AIDED_GNSS:
+                break;    
+        }       
+    }else if ((positionMessage.status == PositionStatus.TIMEOUT)||(positionMessage.status == PositionStatus.FAILURE)){
+        //only for GNSS
+        if (positionMessage.positionType == PositionType.GNSS){
+            positionMessage.gnssFailure = gnssFailureClass.determineGnssFailure(payload.slice(startingByte+4))
+        }
     }
-    var parametersByGroupIdAndLocalId = jsonParametersByGroupIdAndLocalId();
-    module2.exports = {
-      Response,
-      ResponseType,
-      determineResponse,
-      determineConfiguration,
-      parametersByGroupIdAndLocalId,
-      getParameterByGroupIdAndLocalId,
-      determineGroupType,
-      GroupType
-    };
-  }
-});
+    return positionMessage;
 
 // ../../device-catalog/vendors/abeeway/drivers/asset-tracker-3/src/messages/uplink/queries/query.js
 var require_query = __commonJS({
@@ -9148,13 +9573,89 @@ var require_query = __commonJS({
       this.beidouSvid = beidouSvid;
       this.sequenceNumber = sequenceNumber;
     }
-    function determineQuery(payload) {
-      let query = new Query();
-      let typeValue = payload[4] & 31;
-      switch (typeValue) {
-        case 0:
-          query.queryType = QueryType.AIDING_POSITION;
-          break;
+    return beaconInfos;
+}
+
+module.exports = {
+    determineBleMacPositionMessage,
+    determineBleIdShortPositionMessage,
+    determineBleIdLongPositionMessage
+};
+
+/***/ }),
+
+/***/ 508:
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+let BssidInfoClass = __webpack_require__(69);
+let util = __webpack_require__(94);
+
+function determineWifiPositionMessage(payload){
+  
+    const wifiBssids = [];
+    var i = 0;
+    while (payload.length >= 7*(i+1)){
+        let key = util.convertByteToString(payload[i*7]) + ":" 
+                    + util.convertByteToString(payload[1+i*7]) + ":"
+                    + util.convertByteToString(payload[2+i*7]) + ":"
+                    + util.convertByteToString(payload[3+i*7]) + ":"
+                    + util.convertByteToString(payload[4+i*7]) + ":"
+                    + util.convertByteToString(payload[5+i*7]);
+        let value = util.convertNegativeInt(payload[6+i*7],1);
+        
+        wifiBssids.push(new BssidInfoClass.BssidInfo(key, value));
+        i++;
+    }
+
+    return wifiBssids;
+}
+
+module.exports = {
+    determineWifiPositionMessage : determineWifiPositionMessage	
+}
+
+/***/ }),
+
+/***/ 522:
+/***/ ((module) => {
+
+const MessageType = Object.freeze({
+    COMMAND: "COMMAND",
+    REQUEST: "REQUEST",
+    ANSWER: "ANSWER"
+});
+
+const AnswerType = Object.freeze({
+    AIDING_POSITION: "AIDING_POSITION",
+    ECHO_REPLY: "ECHO_REPLY",
+    UPDATE_GPS_ALMANAC: "UPDATE_GPS_ALMANAC",
+    UPDATE_BEIDOU_ALMANAC: "UPDATE_BEIDOU_ALMANAC"
+});
+
+function AbeewayDownlinkPayload(downMessageType, 
+        ackToken,
+        command,
+        request,
+        payload) {
+        this.downMessageType = downMessageType;
+        this.ackToken = ackToken;
+        this.command = command;
+        this.request = request;
+        this.payload = payload;
+}
+
+function determineDownlinkHeader(payload){
+    if (payload.length < 1)
+        throw new Error("The payload is not valid to determine header");
+    var ackToken = payload[0] & 0x07;
+    var type = determineMessageType(payload);
+    return new AbeewayDownlinkPayload(type, ackToken)
+}
+
+function determineMessageType(payload){
+    var messageType = payload[0]>>3 & 0x07;
+    
+    switch (messageType){
         case 1:
           query.queryType = QueryType.ECHO_REQUEST;
           query.sequenceNumber = payload.slice(5);
@@ -9164,13 +9665,162 @@ var require_query = __commonJS({
           query.gpsSvid = determineSvId(payload.slice(5), 0, 31, "GPS");
           break;
         case 3:
-          query.queryType = QueryType.UPDATE_BEIDOU_ALMANAC;
-          query.beidouSvid = determineSvId(payload.slice(5), 0, 34, "BEIDOU");
-          break;
+            return MessageType.ANSWER;
+    }
+}
+
+module.exports = {
+    AbeewayDownlinkPayload: AbeewayDownlinkPayload,
+    MessageType: MessageType,
+    AnswerType: AnswerType,
+    determineDownlinkHeader: determineDownlinkHeader
+}
+
+/***/ }),
+
+/***/ 541:
+/***/ ((module) => {
+
+function GnssFailure(timeoutCause,
+    satelliteSeen){
+    this.timeoutCause = timeoutCause;
+    this.satellitesSeen = satelliteSeen
+}
+const timeOutCause = Object.freeze({
+    T0_TIMEOUT: "T0_TIMEOUT",
+    T1_TIMEOUT: "T1_TIMEOUT",
+    ACQUISITION_TIMEOUT: "ACQUISITION_TIMEOUT"
+});
+const constellation = Object.freeze({
+    GPS: "GPS",
+    GLONASS: "GLONASS",
+    BEIDOU: "BEIDOU",
+    GALILEO: "GALILEO"
+});
+function determineTimeoutCause(timeoutCause){
+    switch (timeoutCause){
+	    case 0:
+	        return timeOutCause.T0_TIMEOUT;
+	    case 1:
+	        return timeOutCause.T1_TIMEOUT;
+	    case 2:
+	    	return timeOutCause.ACQUISITION_TIMEOUT;
+	    default:
+	    	throw new Error("The timeout cause is unknown");
+    }
+}
+function determineConstellation(cons){
+
+    switch (cons){
+	    case 0:
+	        return constellation.GPS;
+        case 1:
+            return constellation.GLONASS;
+        case 2:
+            return constellation.BEIDOU;
+        case 3:
+            return constellation.GALILEO;
         default:
-          throw new Error("Query Type Unknown");
-      }
-      return query;
+            throw new Error("The constellation is unknown" )
+}}
+
+function determineGnssFailure(payload){
+
+    let timeoutCause = determineTimeoutCause(payload[0]>>5 & 0x07)
+    let nbSatSeen = payload[0] & 0x1F
+    payload = payload.slice(1)
+    let satelliteSeen = []
+    for (let i = 0; i < nbSatSeen*2; i += 2) {
+        let svId = payload[i]
+        let constellation = determineConstellation(payload[i+1]>>6 & 0x03)
+        let CN = payload[i+1] & 0x3F
+        satelliteSeen.push({svId, constellation, CN})
+    } 
+    return new GnssFailure(timeoutCause, satelliteSeen)
+}
+
+module.exports = {
+    GnssFailure: GnssFailure,
+    determineGnssFailure: determineGnssFailure
+}
+
+
+/***/ }),
+
+/***/ 548:
+/***/ ((module) => {
+
+
+const GeozoningType = Object.freeze({
+    ENTRY: "ENTRY",
+    EXIT: "EXIT",
+    IN_HAZARD: "IN_HAZARD",
+    OUT_HAZARD: "OUT_HAZARD",
+    MEETING_POINT: "MEETING_POINT"
+})
+
+module.exports = {
+    GeozoningType: GeozoningType
+}
+
+/***/ }),
+
+/***/ 560:
+/***/ ((module) => {
+
+const CodingPolicy = Object.freeze({
+    NO_COMPRESSION: "NO_COMPRESSION",
+    DELTA_COMPRESSION: "DELTA_COMPRESSION",
+    HUFFMAN_COMPRESSION: "HUFFMAN_COMPRESSION",
+})
+
+const DataTypes = Object.freeze({
+    _8_BIT_UNSIGNED: "8_BIT_UNSIGNED",
+    _16_BIT_SIGNED: "16_BIT_SIGNED"
+})
+
+const RecordingPolicy = Object.freeze({
+    INSTANT: "INSTANT",
+    MIN: "MIN",
+    MAX: "MAX",
+    CHANGE_OF_VALUE: "CHANGE_OF_VALUE"
+});
+
+function convert3BitToSigned(val) {
+    return (val & 0x04) ? val - 8 : val;
+}
+
+function decodeMetadataPayload(telemetryPayload, timestamp) {
+    let telemetryMetadataStore = {};
+    let offset = 0;
+    while (offset + 8 <= telemetryPayload.length) {
+        const block = telemetryPayload.slice(offset, offset + 8);
+        const payloadType = (block[0] & 0x80) >> 7;
+        if (payloadType !== 1) break;
+        const telemetryId = (block[0] >> 4) & 0x07;
+        const cyclicVersion = block[0] & 0x07;
+
+        const fixedTimeInterval = (block[1] >> 3) & 0x03;
+        const numMeasurements = block[1] & 0x07;
+
+        const telemetryIDMaxInterval = telemetryPayload.readUInt16BE(offset + 2);
+        const measurementNMaxInterval = telemetryPayload.readUInt16BE(offset + 4);
+
+        const measurementConfigByte1 = block[6];
+        const measurementConfigByte2 = block[7];
+
+        const measurementConfig = decodeMeasurementConfigBytes(measurementConfigByte1, measurementConfigByte2);
+        telemetryMetadataStore[telemetryId] = {
+            telemetryId,
+            cyclicVersion,
+            fixedTimeInterval,
+            numMeasurements,
+            telemetryIDMaxInterval,
+            measurementNMaxInterval,
+            measurementConfig: measurementConfig,
+            timestamp,
+        };
+        offset += 8;
     }
     function determineSvId(payload, min, max, constellation) {
       let svid = [];
@@ -9374,12 +10024,142 @@ var require_request = __commonJS({
       this.group = group;
       this.parameters = parameters;
     }
-    function encodeRequest(data) {
-      let encData = [];
-      encData[0] = 2 << 3 | data.ackToken;
-      let requestType = encodeRequestType(data.requestType);
-      encData[1] = requestType;
-      switch (requestType) {
+
+    // Create a Date object set to the start of the UTC day
+    const utcDate = new Date(Date.UTC(timestamp.getUTCFullYear(), timestamp.getUTCMonth(), timestamp.getUTCDate(), 0, 0, 0));
+
+    // Calculate the total seconds since the start of the day for the received time
+    const referenceTotalSeconds = (timestamp.getUTCHours() * 3600) + (timestamp.getUTCMinutes() * 60) + timestamp.getUTCSeconds();
+
+    // Determine if the reference time is closer to midnight or noon
+    let referenceTime;
+    if (referenceTotalSeconds < 43200) { // 43200 seconds is 12 hours
+        referenceTime = utcDate; // Midnight
+    } else {
+        referenceTime = new Date(utcDate.getTime() + 43200 * 1000); // Noon
+    }
+
+    // Add the given number of seconds to the reference time
+    let exactTime = new Date(referenceTime.getTime() + seconds * 1000);
+    // --- Apply 30s tolerance BEFORE rollover handling ---
+    const timeDiff = Math.abs(exactTime.getTime() - timestamp.getTime());
+    const toleranceMs = 3600 * 1000; // 3600 seconds tolerance
+    if (timeDiff <= toleranceMs) {
+        // Within tolerance → use received time as reliable
+        return exactTime.toISOString();
+    }
+    // Check if the rebuilt time is after the original timestamp (rollover)
+    if (exactTime > timestamp) {
+        // Rebuilt time is after the received time, so subtract 43200 seconds (12 hours)
+        exactTime = new Date(exactTime.getTime() - 43200 * 1000);
+    }
+
+    return exactTime.toISOString(); // Return the exact time in ISO 8601 format
+}
+function determineMessageType(payload){
+    if (payload.length < 4)
+        throw new Error("The payload is not valid to determine Message Type");
+    var messageType = payload[0]>>3 & 0x07
+    switch (messageType){
+        case 1:
+            return abeewayUplinkPayloadClass.messageType.NOTIFICATION;
+        case 2:
+            return abeewayUplinkPayloadClass.messageType.POSITION;
+        case 3:
+            return abeewayUplinkPayloadClass.messageType.QUERY;
+        case 4:
+            return abeewayUplinkPayloadClass.messageType.RESPONSE;
+        case 5:
+            return abeewayUplinkPayloadClass.messageType.TELEMETRY;
+        default:
+            return abeewayUplinkPayloadClass.messageType.UNKNOWN;
+    }
+}
+
+function determineBatteryLevel(payload){
+    if (payload.length < 4)
+        throw new Error("The payload is not valid to determine Battery Level");
+    var value = payload[1] & 0x7F;
+    if (value == 0)
+        return batteryStatus.CHARGING;
+    else if (value == 127)
+        return batteryStatus.UNKNOWN; 
+    return value;
+}
+
+module.exports = {
+    Header: Header,
+    determineHeader: determineHeader
+}
+
+/***/ }),
+
+/***/ 635:
+/***/ ((module) => {
+
+"use strict";
+module.exports = /*#__PURE__*/JSON.parse('[{"firmwareVersion":"3.0","uplinkPort":"19","firmwareParameters":[{"driverParameterName":"sysHighestTemperature","groupId":"0x00","localId":"0x00","defaultValue":0,"unit":"Cel","description":"Highest temperature reached","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":-100,"maximum":100}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"sysLowestTemperature","groupId":"0x00","localId":"0x01","defaultValue":0,"unit":"Cel","description":"Lowest temperature reached","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":-100,"maximum":100}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"sysPowerConsumption","groupId":"0x00","localId":"0x02","defaultValue":0,"unit":"mAH","description":"Total power consumed","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":0}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"coreMonitoringPeriod","groupId":"0x01","localId":"0x00","defaultValue":300,"unit":"s","description":"Device monitoring period","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":15}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"coreStatusPeriod","groupId":"0x01","localId":"0x01","defaultValue":3600,"unit":"s","description":"Status monitoring period","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":0}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"coreNotifEnable","groupId":"0x01","localId":"0x02","defaultValue":"{0B,00,00,00,00,00}","description":"Enables core notifications for various events.","parameterType":{"type":"ParameterTypeByteArray","size":6,"distinctValues":true,"properties":[{"name":"systemClass","type":"PropertyObject","properties":[{"name":"status","type":"PropertyBoolean","description":"System status Versions, temperature, reset cause."},{"name":"lowBattery","type":"PropertyBoolean","description":"Low battery alert."},{"name":"bleStatus","type":"PropertyBoolean","description":"Bluetooth Low Energy status"},{"name":"tamperDetection","type":"PropertyBoolean","description":"Tamper detection alert."},{"name":"heartbeat","type":"PropertyBoolean","description":"Heartbeat message."},{"name":"shutdown","type":"PropertyBoolean","description":"Shutdown message."},{"name":"dataBuffering","type":"PropertyBoolean","description":"Data buffering status"},{"name":"fuota","type":"PropertyBoolean","description":"Firmware Update Over The Air"}]},{"name":"sosClass","type":"PropertyObject","properties":[{"name":"sosOn","type":"PropertyBoolean","description":"SOS activated."},{"name":"sosOff","type":"PropertyBoolean","description":"SOS deactivated."}]},{"name":"temperatureClass","type":"PropertyObject","properties":[{"name":"tempHigh","type":"PropertyBoolean","description":"Critical high temperature reached"},{"name":"tempLow","type":"PropertyBoolean","description":"Critical low temperature reached"},{"name":"tempNormal","type":"PropertyBoolean","description":"Temperature back to normal"}]},{"name":"accelerometerClass","type":"PropertyObject","properties":[{"name":"motionStart","type":"PropertyBoolean","description":"Motion start detected."},{"name":"motionEnd","type":"PropertyBoolean","description":"Motion end detected."},{"name":"shock","type":"PropertyBoolean","description":"Shock detected."}]},{"name":"networkingClass","type":"PropertyObject","properties":[{"name":"mainUp","type":"PropertyBoolean","description":"Main network is up."},{"name":"backupUp","type":"PropertyBoolean","description":"Main network down. Backup is up."}]},{"name":"geozoningClass","type":"PropertyObject","properties":[{"name":"geozoningOn","type":"PropertyBoolean","description":"Geozoning is on."}]}],"byteMask":[{"valueFor":"systemClass","type":"BitMaskObject","values":[{"type":"BitMaskValue","valueFor":"status","bitShift":0,"length":1},{"type":"BitMaskValue","valueFor":"lowBattery","bitShift":1,"length":1},{"type":"BitMaskValue","valueFor":"bleStatus","bitShift":2,"length":1},{"type":"BitMaskValue","valueFor":"tamperDetection","bitShift":3,"length":1},{"type":"BitMaskValue","valueFor":"heartbeat","bitShift":4,"length":1},{"type":"BitMaskValue","valueFor":"shutdown","bitShift":5,"length":1},{"type":"BitMaskValue","valueFor":"dataBuffering","bitShift":6,"length":1},{"type":"BitMaskValue","valueFor":"fuota","bitShift":7,"length":1}]},{"valueFor":"sosClass","type":"BitMaskObject","values":[{"type":"BitMaskValue","valueFor":"sosOn","bitShift":0,"length":1},{"type":"BitMaskValue","valueFor":"sosOff","bitShift":1,"length":1}]},{"valueFor":"temperatureClass","type":"BitMaskObject","values":[{"type":"BitMaskValue","valueFor":"tempHigh","bitShift":0,"length":1},{"type":"BitMaskValue","valueFor":"tempLow","bitShift":1,"length":1},{"type":"BitMaskValue","valueFor":"tempNormal","bitShift":2,"length":1}]},{"valueFor":"accelerometerClass","type":"BitMaskObject","values":[{"type":"BitMaskValue","valueFor":"motionStart","bitShift":0,"length":1},{"type":"BitMaskValue","valueFor":"motionEnd","bitShift":1,"length":1},{"type":"BitMaskValue","valueFor":"shock","bitShift":2,"length":1}]},{"valueFor":"networkingClass","type":"BitMaskObject","values":[{"type":"BitMaskValue","valueFor":"mainUp","bitShift":0,"length":1},{"type":"BitMaskValue","valueFor":"backupUp","bitShift":1,"length":1}]},{"valueFor":"geozoningClass","type":"BitMaskObject","values":[{"type":"BitMaskValue","valueFor":"geozoningOn","bitShift":0,"length":1}]}]},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"coreTempHighThreshold","groupId":"0x01","localId":"0x03","defaultValue":60,"unit":"Cel","description":"Highest temperature detection threshold","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":-100,"maximum":100}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"coreTempLowThreshold","groupId":"0x01","localId":"0x04","defaultValue":0,"unit":"Cel","description":"Lowest temperature detection threshold","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":-100,"maximum":100}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"coreTempHysteresis","groupId":"0x01","localId":"0x05","defaultValue":5,"unit":"Cel","description":"Temperature hysteresis","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":-100,"maximum":100}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"coreButton1Map","groupId":"0x01","localId":"0x06","description":"Button 1 mapping","parameterType":{"type":"ParameterTypeBitMask","properties":[{"name":"buttonPress","type":"PropertyString","description":"Event to execute with a button press.","possibleValues":["NO_ACTION","DISPLAY_BATTERY_LEVEL_ON_THE_LED","START_STOP_SOS","REQUEST_A_POSITION_ON_DEMAND","FORCE_AN_UPLINK_SYSTEM_STATUS_NOTIFICATION_TRANSMISSION","START_DEVICE","STOP_DEVICE","START_ONLY_SOS","START_BLE_ADVERTISING_FOR_CONNECTIVITY"],"firmwareValues":[0,1,2,3,4,5,6,7,8]},{"name":"buttonLongPress","type":"PropertyString","description":"Event generated on a button long press.","possibleValues":["NO_ACTION","DISPLAY_BATTERY_LEVEL_ON_THE_LED","START_STOP_SOS","REQUEST_A_POSITION_ON_DEMAND","FORCE_AN_UPLINK_SYSTEM_STATUS_NOTIFICATION_TRANSMISSION","START_DEVICE","STOP_DEVICE","START_ONLY_SOS","START_BLE_ADVERTISING_FOR_CONNECTIVITY"],"firmwareValues":[0,1,2,3,4,5,6,7,8]},{"name":"buttonSingleClick","type":"PropertyString","description":"Event generated on a button single click.","possibleValues":["NO_ACTION","DISPLAY_BATTERY_LEVEL_ON_THE_LED","START_STOP_SOS","REQUEST_A_POSITION_ON_DEMAND","FORCE_AN_UPLINK_SYSTEM_STATUS_NOTIFICATION_TRANSMISSION","START_DEVICE","STOP_DEVICE","START_ONLY_SOS","START_BLE_ADVERTISING_FOR_CONNECTIVITY"],"firmwareValues":[0,1,2,3,4,5,6,7,8]},{"name":"buttonDoubleClicks","type":"PropertyString","description":"Event generated on a button double clicks.","possibleValues":["NO_ACTION","DISPLAY_BATTERY_LEVEL_ON_THE_LED","START_STOP_SOS","REQUEST_A_POSITION_ON_DEMAND","FORCE_AN_UPLINK_SYSTEM_STATUS_NOTIFICATION_TRANSMISSION","START_DEVICE","STOP_DEVICE","START_ONLY_SOS","START_BLE_ADVERTISING_FOR_CONNECTIVITY"],"firmwareValues":[0,1,2,3,4,5,6,7,8]},{"name":"buttonTripleClicksOrAbove","type":"PropertyString","description":"Event generated on a button triple clicks or above.","possibleValues":["NO_ACTION","DISPLAY_BATTERY_LEVEL_ON_THE_LED","START_STOP_SOS","REQUEST_A_POSITION_ON_DEMAND","FORCE_AN_UPLINK_SYSTEM_STATUS_NOTIFICATION_TRANSMISSION","START_DEVICE","STOP_DEVICE","START_ONLY_SOS","START_BLE_ADVERTISING_FOR_CONNECTIVITY","REST_DEVICE"],"firmwareValues":[0,1,2,3,4,5,6,7,8,9]},{"name":"buttonSimpleSequence","type":"PropertyString","description":"Event generated on a button simple sequence.","possibleValues":["NO_ACTION","DISPLAY_BATTERY_LEVEL_ON_THE_LED","START_STOP_SOS","REQUEST_A_POSITION_ON_DEMAND","FORCE_AN_UPLINK_SYSTEM_STATUS_NOTIFICATION_TRANSMISSION","START_DEVICE","STOP_DEVICE","START_ONLY_SOS","START_BLE_ADVERTISING_FOR_CONNECTIVITY"],"firmwareValues":[0,1,2,3,4,5,6,7,8]}],"bitMask":[{"type":"BitMaskValue","valueFor":"buttonPress","bitShift":0,"length":4},{"type":"BitMaskValue","valueFor":"buttonLongPress","bitShift":4,"length":4},{"type":"BitMaskValue","valueFor":"buttonSingleClick","bitShift":8,"length":4},{"type":"BitMaskValue","valueFor":"buttonDoubleClicks","bitShift":12,"length":4},{"type":"BitMaskValue","valueFor":"buttonTripleClicksOrAbove","bitShift":16,"length":4},{"type":"BitMaskValue","valueFor":"buttonSimpleSequence","bitShift":20,"length":4}]},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"coreButton2Map","groupId":"0x01","localId":"0x07","description":"Button 2 mapping","parameterType":{"type":"ParameterTypeBitMask","properties":[{"name":"buttonPress","type":"PropertyString","description":"Event to execute with a button press.","possibleValues":["NO_ACTION","DISPLAY_BATTERY_LEVEL_ON_THE_LED","START_STOP_SOS","REQUEST_A_POSITION_ON_DEMAND","FORCE_AN_UPLINK_SYSTEM_STATUS_NOTIFICATION_TRANSMISSION","START_DEVICE","STOP_DEVICE","START_ONLY_SOS","START_BLE_ADVERTISING_FOR_CONNECTIVITY"],"firmwareValues":[0,1,2,3,4,5,6,7,8]},{"name":"buttonLongPress","type":"PropertyString","description":"Event generated on a button long press.","possibleValues":["NO_ACTION","DISPLAY_BATTERY_LEVEL_ON_THE_LED","START_STOP_SOS","REQUEST_A_POSITION_ON_DEMAND","FORCE_AN_UPLINK_SYSTEM_STATUS_NOTIFICATION_TRANSMISSION","START_DEVICE","STOP_DEVICE","START_ONLY_SOS","START_BLE_ADVERTISING_FOR_CONNECTIVITY"],"firmwareValues":[0,1,2,3,4,5,6,7,8]},{"name":"buttonSingleClick","type":"PropertyString","description":"Event generated on a button single click.","possibleValues":["NO_ACTION","DISPLAY_BATTERY_LEVEL_ON_THE_LED","START_STOP_SOS","REQUEST_A_POSITION_ON_DEMAND","FORCE_AN_UPLINK_SYSTEM_STATUS_NOTIFICATION_TRANSMISSION","START_DEVICE","STOP_DEVICE","START_ONLY_SOS","START_BLE_ADVERTISING_FOR_CONNECTIVITY"],"firmwareValues":[0,1,2,3,4,5,6,7,8]},{"name":"buttonDoubleClicks","type":"PropertyString","description":"Event generated on a button double clicks.","possibleValues":["NO_ACTION","DISPLAY_BATTERY_LEVEL_ON_THE_LED","START_STOP_SOS","REQUEST_A_POSITION_ON_DEMAND","FORCE_AN_UPLINK_SYSTEM_STATUS_NOTIFICATION_TRANSMISSION","START_DEVICE","STOP_DEVICE","START_ONLY_SOS","START_BLE_ADVERTISING_FOR_CONNECTIVITY"],"firmwareValues":[0,1,2,3,4,5,6,7,8]},{"name":"buttonTripleClicksOrAbove","type":"PropertyString","description":"Event generated on a button triple clicks or above.","possibleValues":["NO_ACTION","DISPLAY_BATTERY_LEVEL_ON_THE_LED","START_STOP_SOS","REQUEST_A_POSITION_ON_DEMAND","FORCE_AN_UPLINK_SYSTEM_STATUS_NOTIFICATION_TRANSMISSION","START_DEVICE","STOP_DEVICE","START_ONLY_SOS","START_BLE_ADVERTISING_FOR_CONNECTIVITY"],"firmwareValues":[0,1,2,3,4,5,6,7,8]},{"name":"buttonSimpleSequence","type":"PropertyString","description":"Event generated on a button simple sequence.","possibleValues":["NO_ACTION","DISPLAY_BATTERY_LEVEL_ON_THE_LED","START_STOP_SOS","REQUEST_A_POSITION_ON_DEMAND","FORCE_AN_UPLINK_SYSTEM_STATUS_NOTIFICATION_TRANSMISSION","START_DEVICE","STOP_DEVICE","START_ONLY_SOS","START_BLE_ADVERTISING_FOR_CONNECTIVITY"],"firmwareValues":[0,1,2,3,4,5,6,7,8]}],"bitMask":[{"type":"BitMaskValue","valueFor":"buttonPress","bitShift":0,"length":4},{"type":"BitMaskValue","valueFor":"buttonLongPress","bitShift":4,"length":4},{"type":"BitMaskValue","valueFor":"buttonSingleClick","bitShift":8,"length":4},{"type":"BitMaskValue","valueFor":"buttonDoubleClicks","bitShift":12,"length":4},{"type":"BitMaskValue","valueFor":"buttonTripleClicksOrAbove","bitShift":16,"length":4},{"type":"BitMaskValue","valueFor":"buttonSimpleSequence","bitShift":20,"length":4}]},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"coreButtonsTiming","groupId":"0x01","localId":"0x08","description":"Define the buttons timing parameters.","parameterType":{"type":"ParameterTypeBitMask","properties":[{"name":"durationButtonPress","type":"PropertyNumber","description":"Duration of the button press in seconds."},{"name":"durationButtonLongPress","type":"PropertyNumber","description":"Duration of the button long press in seconds."},{"name":"debounceDurationOnButton1","type":"PropertyNumber","description":"Debounce duration on button 1 in milliseconds."},{"name":"debounceDurationOnButton2","type":"PropertyNumber","description":"Debounce duration on button 2 in milliseconds."}],"bitMask":[{"type":"BitMaskValue","valueFor":"durationButtonPress","bitShift":0,"length":4},{"type":"BitMaskValue","valueFor":"durationButtonLongPress","bitShift":4,"length":4},{"type":"BitMaskValue","valueFor":"debounceDurationOnButton1","bitShift":8,"length":8},{"type":"BitMaskValue","valueFor":"debounceDurationOnButton2","bitShift":16,"length":8}]},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"coreLed0Map","groupId":"0x01","localId":"0x09","defaultValue":"{00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00}","description":"Defines LED patterns for system events. Configurable as 10 slices of 3 bytes each.","parameterType":{"type":"ParameterTypeByteArray","size":30,"distinctValues":false,"properties":[{"name":"slice","type":"PropertByteArray","size":3,"distinctValues":true,"properties":[{"name":"systemEventClass","type":"PropertyString","description":"System event class.","possibleValues":["BUTTON1","BUTTON2","BUZZER","ACCELEROMETER","POWER","TEMPERATURE","GEOLOCATION","CONFIGURATION","NETWORK","CORE","BLE_CONNECTIVITY","USER"],"firmwareValues":[0,1,2,3,4,5,6,7,8,9,10,11]},{"name":"patternLoopExtension","type":"PropertyNumber","description":"Pattern loop extension."},{"name":"patternInversion","type":"PropertyBoolean","description":"Indicates whether the pattern is inverted."},{"name":"type","type":"PropertyNumber","description":"System event type."},{"name":"patternIdentifier","type":"PropertyString","description":"Defines the LED behavior.","possibleValues":["NOT_CONFIGURED","LED_OFF","LED_ON","FADE_IN","FADE_OUT","BLINK_SLOW","BLINK_MEDIUM","BLINK_FAST","FLASH_SLOW","FLASH_FAST","HEART_ON"],"firmwareValues":[0,1,2,3,4,5,6,7,8,9,10]},{"name":"patternLoop","type":"PropertyNumber","description":"Number of times the pattern is displayed."}],"bitMask":[{"type":"BitMaskValue","valueFor":"systemEventClass","bitShift":0,"length":5},{"type":"BitMaskValue","valueFor":"patternLoopExtension","bitShift":5,"length":2},{"type":"BitMaskValue","valueFor":"patternInversion","bitShift":7,"length":1},{"type":"BitMaskValue","valueFor":"type","bitShift":8,"length":8},{"type":"BitMaskValue","valueFor":"patternIdentifier","bitShift":16,"length":4},{"type":"BitMaskValue","valueFor":"patternLoop","bitShift":20,"length":4}]}],"byteMask":[{"type":"BitMaskValue","valueFor":"slice","bitShift":0,"length":24}]},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"coreLed1Map","groupId":"0x01","localId":"0x0A","defaultValue":"{00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00}","description":"Defines LED patterns for system events. Configurable as 10 slices of 3 bytes each.","parameterType":{"type":"ParameterTypeByteArray","size":30,"distinctValues":false,"properties":[{"name":"slice","type":"PropertByteArray","size":3,"distinctValues":true,"properties":[{"name":"systemEventClass","type":"PropertyString","description":"System event class.","possibleValues":["BUTTON1","BUTTON2","BUZZER","ACCELEROMETER","POWER","TEMPERATURE","GEOLOCATION","CONFIGURATION","NETWORK","CORE","BLE_CONNECTIVITY","USER"],"firmwareValues":[0,1,2,3,4,5,6,7,8,9,10,11]},{"name":"patternLoopExtension","type":"PropertyNumber","description":"Pattern loop extension."},{"name":"patternInversion","type":"PropertyBoolean","description":"Indicates whether the pattern is inverted."},{"name":"type","type":"PropertyNumber","description":"System event type."},{"name":"patternIdentifier","type":"PropertyString","description":"Defines the LED behavior.","possibleValues":["NOT_CONFIGURED","LED_OFF","LED_ON","FADE_IN","FADE_OUT","BLINK_SLOW","BLINK_MEDIUM","BLINK_FAST","FLASH_SLOW","FLASH_FAST","HEART_ON"],"firmwareValues":[0,1,2,3,4,5,6,7,8,9,10]},{"name":"patternLoop","type":"PropertyNumber","description":"Number of times the pattern is displayed."}],"bitMask":[{"type":"BitMaskValue","valueFor":"systemEventClass","bitShift":0,"length":5},{"type":"BitMaskValue","valueFor":"patternLoopExtension","bitShift":5,"length":2},{"type":"BitMaskValue","valueFor":"patternInversion","bitShift":7,"length":1},{"type":"BitMaskValue","valueFor":"type","bitShift":8,"length":8},{"type":"BitMaskValue","valueFor":"patternIdentifier","bitShift":16,"length":4},{"type":"BitMaskValue","valueFor":"patternLoop","bitShift":20,"length":4}]}],"byteMask":[{"type":"BitMaskValue","valueFor":"slice","bitShift":0,"length":24}]},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"coreBuzzerMap","groupId":"0x01","localId":"0x0B","defaultValue":"{00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00}","description":"Defines LED patterns for system events. Configurable as 10 slices of 3 bytes each.","parameterType":{"type":"ParameterTypeByteArray","size":30,"distinctValues":false,"properties":[{"name":"slice","type":"PropertByteArray","size":3,"distinctValues":true,"properties":[{"name":"systemEventClass","type":"PropertyString","description":"System event class.","possibleValues":["BUTTON1","BUTTON2","BUZZER","ACCELEROMETER","POWER","TEMPERATURE","GEOLOCATION","CONFIGURATION","NETWORK","CORE","BLE_CONNECTIVITY","USER"],"firmwareValues":[0,1,2,3,4,5,6,7,8,9,10,11]},{"name":"melodyCountExtension","type":"PropertyNumber","description":"Melody count extension"},{"name":"type","type":"PropertyNumber","description":"System event type."},{"name":"melodyIdentifier","type":"PropertyString","description":"Defines the LED behavior.","possibleValues":["NOT_CONFIGURED","OFF","MELODY_2","MELODY_3","MELODY_4","MELODY_5","MELODY_6","MELODY_7","MELODY_8","MELODY_9","MELODY_10","MELODY_11","MELODY_12","MELODY_13","MELODY_14","MELODY_15","MELODY_16","MELODY_17","MELODY_18","MELODY_19","MELODY_20","MELODY_21"],"firmwareValues":[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23]},{"name":"melodyCount","type":"PropertyNumber","description":"Number of times the melody is displayed."}],"bitMask":[{"type":"BitMaskValue","valueFor":"systemEventClass","bitShift":0,"length":5},{"type":"BitMaskValue","valueFor":"melodyCountExtension","bitShift":5,"length":3},{"type":"BitMaskValue","valueFor":"type","bitShift":8,"length":8},{"type":"BitMaskValue","valueFor":"melodyIdentifier","bitShift":16,"length":5},{"type":"BitMaskValue","valueFor":"patternLoop","bitShift":21,"length":3}]}],"byteMask":[{"type":"BitMaskValue","valueFor":"slice","bitShift":0,"length":24}]},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"coreAlmanacValidity","groupId":"0x01","localId":"0x0C","defaultValue":120,"unit":"days","description":"Number of days for which the GNSS almanac is considered as valid.","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":7,"maximum":365}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"coreAlmanacOutdatedRatio","groupId":"0x01","localId":"0x0D","defaultValue":100,"unit":"%","description":"Percentage of outdated GNSS almanac entries which will trigger network update requests. A value of 100% disable the network requests. Applicable for both GNSS devices","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":0,"maximum":100}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"coreCliPassword","groupId":"0x01","localId":"0x0E","defaultValue":123,"description":"User cli password","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":0}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"coreDBTypeMask","groupId":"0x01","localId":"0x0F","description":"Data buffering type mask.","parameterType":{"type":"ParameterTypeByteArray","size":7,"distinctValues":true,"properties":[{"name":"dataBufferingType","type":"PropertyObject","properties":[{"name":"position","type":"PropertyBoolean","description":"If set, the positions are stored in the history."}]},{"name":"systemClass","type":"PropertyObject","properties":[{"name":"status","type":"PropertyBoolean","description":"System status Versions, temperature, reset cause."},{"name":"lowBattery","type":"PropertyBoolean","description":"Low battery alert."},{"name":"bleStatus","type":"PropertyBoolean","description":"Bluetooth Low Energy status"},{"name":"tamperDetection","type":"PropertyBoolean","description":"Tamper detection alert."},{"name":"heartbeat","type":"PropertyBoolean","description":"Heartbeat message."},{"name":"shutdown","type":"PropertyBoolean","description":"Shutdown message."},{"name":"dataBuffering","type":"PropertyBoolean","description":"Data buffering status"},{"name":"fuota","type":"PropertyBoolean","description":"Firmware Update Over The Air"}]},{"name":"sosClass","type":"PropertyObject","properties":[{"name":"sosOn","type":"PropertyBoolean","description":"SOS activated."},{"name":"sosOff","type":"PropertyBoolean","description":"SOS deactivated."}]},{"name":"temperatureClass","type":"PropertyObject","properties":[{"name":"tempHigh","type":"PropertyBoolean","description":"Critical high temperature reached"},{"name":"tempLow","type":"PropertyBoolean","description":"Critical low temperature reached"},{"name":"tempNormal","type":"PropertyBoolean","description":"Temperature back to normal"}]},{"name":"accelerometerClass","type":"PropertyObject","properties":[{"name":"motionStart","type":"PropertyBoolean","description":"Motion start detected."},{"name":"motionEnd","type":"PropertyBoolean","description":"Motion end detected."},{"name":"shock","type":"PropertyBoolean","description":"Shock detected."}]},{"name":"networkingClass","type":"PropertyObject","properties":[{"name":"mainUp","type":"PropertyBoolean","description":"Main network is up."},{"name":"backupUp","type":"PropertyBoolean","description":"Main network down. Backup is up."}]},{"name":"geozoningClass","type":"PropertyObject","properties":[{"name":"geozoningOn","type":"PropertyBoolean","description":"Geozoning is on."}]}],"byteMask":[{"valueFor":"dataBufferingType","type":"BitMaskObject","values":[{"type":"BitMaskValue","valueFor":"position","bitShift":0,"length":1}]},{"valueFor":"systemClass","type":"BitMaskObject","values":[{"type":"BitMaskValue","valueFor":"status","bitShift":0,"length":1},{"type":"BitMaskValue","valueFor":"lowBattery","bitShift":1,"length":1},{"type":"BitMaskValue","valueFor":"bleStatus","bitShift":2,"length":1},{"type":"BitMaskValue","valueFor":"tamperDetection","bitShift":3,"length":1},{"type":"BitMaskValue","valueFor":"heartbeat","bitShift":4,"length":1},{"type":"BitMaskValue","valueFor":"shutdown","bitShift":5,"length":1},{"type":"BitMaskValue","valueFor":"dataBuffering","bitShift":6,"length":1},{"type":"BitMaskValue","valueFor":"fuota","bitShift":7,"length":1}]},{"valueFor":"sosClass","type":"BitMaskObject","values":[{"type":"BitMaskValue","valueFor":"sosOn","bitShift":0,"length":1},{"type":"BitMaskValue","valueFor":"sosOff","bitShift":1,"length":1}]},{"valueFor":"temperatureClass","type":"BitMaskObject","values":[{"type":"BitMaskValue","valueFor":"tempHigh","bitShift":0,"length":1},{"type":"BitMaskValue","valueFor":"tempLow","bitShift":1,"length":1},{"type":"BitMaskValue","valueFor":"tempNormal","bitShift":2,"length":1}]},{"valueFor":"accelerometerClass","type":"BitMaskObject","values":[{"type":"BitMaskValue","valueFor":"motionStart","bitShift":0,"length":1},{"type":"BitMaskValue","valueFor":"motionEnd","bitShift":1,"length":1},{"type":"BitMaskValue","valueFor":"shock","bitShift":2,"length":1}]},{"valueFor":"networkingClass","type":"BitMaskObject","values":[{"type":"BitMaskValue","valueFor":"mainUp","bitShift":0,"length":1},{"type":"BitMaskValue","valueFor":"backupUp","bitShift":1,"length":1}]},{"valueFor":"geozoningClass","type":"BitMaskObject","values":[{"type":"BitMaskValue","valueFor":"geozoningOn","bitShift":0,"length":1}]}]},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"geolocMotionPeriod","groupId":"0x02","localId":"0x00","defaultValue":300,"unit":"s","description":"Position acquisition period while in motion","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":10,"maximum":86400}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"geolocStaticPeriod","groupId":"0x02","localId":"0x01","defaultValue":3600,"unit":"s","description":"Position acquisition period while static","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":10,"maximum":86400}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"geolocSosPeriod","groupId":"0x02","localId":"0x02","defaultValue":60,"unit":"s","description":"Position acquisition period while in sos","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":10,"maximum":86400}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"geolocMotionNbStart","groupId":"0x02","localId":"0x03","defaultValue":1,"description":"Number of acquisitions on motion start event","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":0,"maximum":10}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"geolocMotionNbStop","groupId":"0x02","localId":"0x04","defaultValue":1,"description":"Number of acquisitions on motion stop event","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":0,"maximum":10}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"geolocStartStopPeriod","groupId":"0x02","localId":"0x05","defaultValue":120,"unit":"s","description":"Position acquisition period while acquiring consecutive positions on motion start or stop","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":10,"maximum":86400}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"geolocGnssHoldOnMode","groupId":"0x02","localId":"0x06","description":"Select the GNSS hold on mode. Possible Values are:\\n0: Disabled\\n1: Always. Hold-on mode always set. Only controlled by the timer.\\n2: techno: If the gnss is actually used (meaning GNSS techno not skipped).\\n3: moving: Hold-mode set while moving.\\n4: techno and moving: if the gnss is actually used (meaning GNSS techno not skipped) and tracker is moving.","parameterType":{"type":"ParameterTypeString","possibleValues":["DISABLED","ALWAYS","TECHNO","MOVING","STATIC","TECHNO_AND_MOVING"],"firmwareValues":[0,1,2,3,4,5]},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"geolocGnssHoldOnTimeout","groupId":"0x02","localId":"0x07","defaultValue":0,"unit":"s","description":"GNSS hold on mode timeout.","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":0,"maximum":86400}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"geolocProfile0Triggers","groupId":"0x02","localId":"0x08","description":"Geolocation event triggers 0","parameterType":{"type":"ParameterTypeBitMask","properties":[{"name":"geoTriggerPod","type":"PropertyBoolean","description":"Geoloc triggered on Position-on-demand via downlink or via button."},{"name":"geoTriggerSos","type":"PropertyBoolean","description":"SOS started"},{"name":"geoTriggerMotionStart","type":"PropertyBoolean","description":"Geoloc triggered on motion start event"},{"name":"geoTriggerMotionStop","type":"PropertyBoolean","description":"Geoloc triggered on motion stop event"},{"name":"geoTriggerInMotion","type":"PropertyBoolean","description":"Periodic geoloc while the tracker is in motion"},{"name":"geoTriggerInStatic","type":"PropertyBoolean","description":"Periodic geoloc running while the tracker is static"},{"name":"geoTriggerShock","type":"PropertyBoolean","description":"Geoloc triggered on shock action"},{"name":"geoTriggerTempHighThreshold","type":"PropertyBoolean","description":"Geoloc triggered on temperature high."},{"name":"geoTriggerTempLowThreshold","type":"PropertyBoolean","description":"Geoloc triggered on temperature high."},{"name":"geoTriggerGeozoning","type":"PropertyBoolean","description":"Geoloc triggered on geoTriggerGeozoning"}],"bitMask":[{"type":"BitMaskValue","valueFor":"geoTriggerPod","bitShift":0,"length":1},{"type":"BitMaskValue","valueFor":"geoTriggerSos","bitShift":1,"length":1},{"type":"BitMaskValue","valueFor":"geoTriggerMotionStart","bitShift":2,"length":1},{"type":"BitMaskValue","valueFor":"geoTriggerMotionStop","bitShift":3,"length":1},{"type":"BitMaskValue","valueFor":"geoTriggerInMotion","bitShift":4,"length":1},{"type":"BitMaskValue","valueFor":"geoTriggerInStatic","bitShift":5,"length":1},{"type":"BitMaskValue","valueFor":"geoTriggerShock","bitShift":6,"length":1},{"type":"BitMaskValue","valueFor":"geoTriggerTempHighThreshold","bitShift":7,"length":1},{"type":"BitMaskValue","valueFor":"geoTriggerTempLowThreshold","bitShift":8,"length":1},{"type":"BitMaskValue","valueFor":"geoTriggerGeozoning","bitShift":9,"length":1}]},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"geolocProfile1Triggers","groupId":"0x02","localId":"0x09","description":"Geolocation event triggers 1","parameterType":{"type":"ParameterTypeBitMask","properties":[{"name":"geoTriggerPod","type":"PropertyBoolean","description":"Geoloc triggered on Position-on-demand via downlink or via button."},{"name":"geoTriggerSos","type":"PropertyBoolean","description":"SOS started"},{"name":"geoTriggerMotionStart","type":"PropertyBoolean","description":"Geoloc triggered on motion start event"},{"name":"geoTriggerMotionStop","type":"PropertyBoolean","description":"Geoloc triggered on motion stop event"},{"name":"geoTriggerInMotion","type":"PropertyBoolean","description":"Periodic geoloc while the tracker is in motion"},{"name":"geoTriggerInStatic","type":"PropertyBoolean","description":"Periodic geoloc running while the tracker is static"},{"name":"geoTriggerShock","type":"PropertyBoolean","description":"Geoloc triggered on shock action"},{"name":"geoTriggerTempHighThreshold","type":"PropertyBoolean","description":"Geoloc triggered on temperature high."},{"name":"geoTriggerTempLowThreshold","type":"PropertyBoolean","description":"Geoloc triggered on temperature high."},{"name":"geoTriggerGeozoning","type":"PropertyBoolean","description":"Geoloc triggered on temperature low."}],"bitMask":[{"type":"BitMaskValue","valueFor":"geoTriggerPod","bitShift":0,"length":1},{"type":"BitMaskValue","valueFor":"geoTriggerSos","bitShift":1,"length":1},{"type":"BitMaskValue","valueFor":"geoTriggerMotionStart","bitShift":2,"length":1},{"type":"BitMaskValue","valueFor":"geoTriggerMotionStop","bitShift":3,"length":1},{"type":"BitMaskValue","valueFor":"geoTriggerInMotion","bitShift":4,"length":1},{"type":"BitMaskValue","valueFor":"geoTriggerInStatic","bitShift":5,"length":1},{"type":"BitMaskValue","valueFor":"geoTriggerShock","bitShift":6,"length":1},{"type":"BitMaskValue","valueFor":"geoTriggerTempHighThreshold","bitShift":7,"length":1},{"type":"BitMaskValue","valueFor":"geoTriggerTempLowThreshold","bitShift":8,"length":1},{"type":"BitMaskValue","valueFor":"geoTriggerGeozoning","bitShift":9,"length":1}]},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"geolocProfile2Triggers","groupId":"0x02","localId":"0x0A","description":"Geolocation event triggers 2","parameterType":{"type":"ParameterTypeBitMask","properties":[{"name":"geoTriggerPod","type":"PropertyBoolean","description":"Geoloc triggered on Position-on-demand via downlink or via button."},{"name":"geoTriggerSos","type":"PropertyBoolean","description":"SOS started"},{"name":"geoTriggerMotionStart","type":"PropertyBoolean","description":"Geoloc triggered on motion start event"},{"name":"geoTriggerMotionStop","type":"PropertyBoolean","description":"Geoloc triggered on motion stop event"},{"name":"geoTriggerInMotion","type":"PropertyBoolean","description":"Periodic geoloc while the tracker is in motion"},{"name":"geoTriggerInStatic","type":"PropertyBoolean","description":"Periodic geoloc running while the tracker is static"},{"name":"geoTriggerShock","type":"PropertyBoolean","description":"Geoloc triggered on shock action"},{"name":"geoTriggerTempHighThreshold","type":"PropertyBoolean","description":"Geoloc triggered on temperature high."},{"name":"geoTriggerTempLowThreshold","type":"PropertyBoolean","description":"Geoloc triggered on temperature high."},{"name":"geoTriggerGeozoning","type":"PropertyBoolean","description":"Geoloc triggered on temperature low."}],"bitMask":[{"type":"BitMaskValue","valueFor":"geoTriggerPod","bitShift":0,"length":1},{"type":"BitMaskValue","valueFor":"geoTriggerSos","bitShift":1,"length":1},{"type":"BitMaskValue","valueFor":"geoTriggerMotionStart","bitShift":2,"length":1},{"type":"BitMaskValue","valueFor":"geoTriggerMotionStop","bitShift":3,"length":1},{"type":"BitMaskValue","valueFor":"geoTriggerInMotion","bitShift":4,"length":1},{"type":"BitMaskValue","valueFor":"geoTriggerInStatic","bitShift":5,"length":1},{"type":"BitMaskValue","valueFor":"geoTriggerShock","bitShift":6,"length":1},{"type":"BitMaskValue","valueFor":"geoTriggerTempHighThreshold","bitShift":7,"length":1},{"type":"BitMaskValue","valueFor":"geoTriggerTempLowThreshold","bitShift":8,"length":1},{"type":"BitMaskValue","valueFor":"geoTriggerGeozoning","bitShift":9,"length":1}]},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"geolocGbeProfile0Techno","groupId":"0x02","localId":"0x0B","description":"Technologies to schedule using the basic engine for events in triggers 0","parameterType":{"type":"ParameterTypeByteArray","size":6,"properties":[{"name":"Action","type":"PropertyString","possibleValues":["SKIP_ON_SUCCESS","ALWAYS_DONE"],"firmwareValues":[0,1]},{"name":"Technology","type":"PropertyString","possibleValues":["NONE","LR11xx_A_GNSS","WIFI","BLE_SCAN1","BLE_SCAN2","AIDED_GNSS","GNSS"],"firmwareValues":[0,1,2,3,4,5,6]}],"byteMask":[{"type":"BitMaskValue","valueFor":"Technology","bitShift":0,"length":7},{"type":"BitMaskValue","valueFor":"Action","bitShift":7,"length":1}]},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"geolocGbeProfile1Techno","groupId":"0x02","localId":"0x0C","description":"Technologies to schedule using the basic engine for events in triggers 1","parameterType":{"type":"ParameterTypeByteArray","size":6,"properties":[{"name":"Action","type":"PropertyString","possibleValues":["SKIP_ON_SUCCESS","ALWAYS_DONE"],"firmwareValues":[0,1]},{"name":"Technology","type":"PropertyString","possibleValues":["NONE","LR11xx_A_GNSS","WIFI","BLE_SCAN1","BLE_SCAN2","AIDED_GNSS","GNSS"],"firmwareValues":[0,1,2,3,4,5,6]}],"byteMask":[{"type":"BitMaskValue","valueFor":"Technology","bitShift":0,"length":7},{"type":"BitMaskValue","valueFor":"Action","bitShift":7,"length":1}]},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"geolocGbeProfile2Techno","groupId":"0x02","localId":"0x0D","description":"Technologies to schedule using the basic engine for events in triggers 2","parameterType":{"type":"ParameterTypeByteArray","size":6,"properties":[{"name":"Action","type":"PropertyString","possibleValues":["SKIP_ON_SUCCESS","ALWAYS_DONE"],"firmwareValues":[0,1]},{"name":"Technology","type":"PropertyString","possibleValues":["NONE","LR11xx_A_GNSS","WIFI","BLE_SCAN1","BLE_SCAN2","AIDED_GNSS","GNSS"],"firmwareValues":[0,1,2,3,4,5,6]}],"byteMask":[{"type":"BitMaskValue","valueFor":"Technology","bitShift":0,"length":7},{"type":"BitMaskValue","valueFor":"Action","bitShift":7,"length":1}]},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"gnssConstellation","groupId":"0x03","localId":"0x00","defaultValue":2,"description":"GNSS constellations to be used","parameterType":{"type":"ParameterTypeString","possibleValues":["GPS_ONLY","GLONASS_ONLY","GPS_GLONASS","GPS_GALILEO","GPS_GLONASS_GALILEO","BEIDOU_ONLY","BEIDOU_GPS"],"firmwareValues":[0,1,2,3,4,5,6]},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"gnssMaxTime","groupId":"0x03","localId":"0x01","defaultValue":300,"unit":"s","description":"GNSS max acquisition time.","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":30,"maximum":300}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"gnssT0TimeoutStatic","groupId":"0x03","localId":"0x02","defaultValue":30,"unit":"s","description":"Max time to acquire at least one satellite when tracker is static","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":0,"maximum":300}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"gnssEhpeStatic","groupId":"0x03","localId":"0x03","defaultValue":30,"unit":"m","description":"Expected estimated horizontal position error when the tracker is static","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":0,"maximum":100}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"gnssConvergenceStatic","groupId":"0x03","localId":"0x04","defaultValue":20,"unit":"s","description":"Extra-time after a first fix to refine the fix","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":0,"maximum":300}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"gnssT0TimeoutMotion","groupId":"0x03","localId":"0x05","defaultValue":30,"unit":"s","description":"Max time to acquire at least one satellite when tracker is moving","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":0,"maximum":300}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"gnssEhpeMotion","groupId":"0x03","localId":"0x06","defaultValue":30,"unit":"m","description":"Expected estimated horizontal position error when the tracker is moving","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":0,"maximum":100}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"gnssConvergenceMotion","groupId":"0x03","localId":"0x07","defaultValue":20,"unit":"s","description":"Extra-time after a first fix to refine the fix when the tracker is moving","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":0,"maximum":300}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"gnssStandby","groupId":"0x03","localId":"0x08","defaultValue":604800,"unit":"s","description":"Max time to let the device in standby mode.","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":0}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"gnssAgnssMaxTime","groupId":"0x03","localId":"0x09","defaultValue":45,"unit":"s","description":"Aided GNSS max acquisition time.","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":15,"maximum":240}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"gnssT1Timeout","groupId":"0x03","localId":"0x0A","defaultValue":0,"unit":"s","description":"Extra time let in Aided GNSS mode to try doing a fix.","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":0,"maximum":300}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"lrConstellation","groupId":"0x04","localId":"0x00","description":"GNSS constellations to be used","parameterType":{"type":"ParameterTypeString","possibleValues":["GPS_ONLY","BEIDOU_ONLY","BEIDOU_GPS"],"firmwareValues":[0,5,6]},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"lrScanMode","groupId":"0x04","localId":"0x01","description":"Scan mode (NAV1 / NAV2)","parameterType":{"type":"ParameterTypeString","possibleValues":["NAV1_SCAN","NAV2_SCAN"],"firmwareValues":[1,2]},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"lrNbScans","groupId":"0x04","localId":"0x02","defaultValue":2,"description":"Number of scans for one position acquisition","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":1,"maximum":4}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"lrInterScanTime","groupId":"0x04","localId":"0x03","defaultValue":5,"unit":"s","description":"Time to wait between the scans for a position","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":0,"maximum":15}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"lrWifiReportNbBssid","groupId":"0x04","localId":"0x04","defaultValue":4,"description":"Max number of WIFI BSSID per scan","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":1,"maximum":32}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"lrWifiMinNbBssid","groupId":"0x04","localId":"0x05","defaultValue":3,"description":"Minimum number of BSSID to consider the scan as success (solvable)","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":1,"maximum":10}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"lrWifiMinRssi","groupId":"0x04","localId":"0x06","defaultValue":3,"description":"Minimum number of BSSID to consider the scan as success (solvable)","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":-100,"maximum":0}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"lrWifiBssidMacType","groupId":"0x04","localId":"0x07","defaultValue":1,"description":"MAC administration type of the BSSID to report.","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":0,"maximum":2}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"lrRbeaconType","groupId":"0x04","localId":"0x08","defaultValue":2,"description":"Recovery beacon type.","parameterType":{"type":"ParameterTypeString","possibleValues":["SHORT_ID","LONG_ID"],"firmwareValues":[1,2]},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"lrRbeaconSosPeriod","groupId":"0x04","localId":"0x09","defaultValue":0,"unit":"s","description":"Recovery beacon period in SOS.","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":0,"maximum":63}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"lrRbeaconMotionPeriod","groupId":"0x04","localId":"0x0A","defaultValue":0,"unit":"s","description":"Recovery beacon period in motion.","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":0,"maximum":63}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"lrRbeaconStaticPeriod","groupId":"0x04","localId":"0x0B","defaultValue":0,"unit":"s","description":"Recovery beacon period in static.","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":0,"maximum":63}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"lrRbeaconRangingTimeout","groupId":"0x04","localId":"0x0C","defaultValue":120,"unit":"s","description":"Maximum timeout to exit the ranging mode.","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":120,"maximum":300}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"bleScanDuration","groupId":"0x05","localId":"0x00","defaultValue":3000,"unit":"ms","description":"Total time for a BLE scan","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":50,"maximum":61440}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"bleScanWindow","groupId":"0x05","localId":"0x01","defaultValue":120,"unit":"ms","description":"Scan window","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":3,"maximum":10240}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"bleScanInterval","groupId":"0x05","localId":"0x02","defaultValue":130,"unit":"ms","description":"Scan interval","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":1,"maximum":10240}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"bleScanType","groupId":"0x05","localId":"0x03","defaultValue":0,"description":"Type of beacons to scan","parameterType":{"type":"ParameterTypeString","possibleValues":["ALL_BEACONS","EDDYSTONE_UUID","EDDYSTONE_URL","ALL_EDDYSTONE","IBEACON_ONLY","ALTBEACON_ONLY","CUSTOM","EXPOSURE_ADVERTISEMENT"],"firmwareValues":[0,1,2,3,4,5,6,7]},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"bleScanMinRssi","groupId":"0x05","localId":"0x04","defaultValue":-80,"unit":"dB","description":"Min RSSI to consider the beacon","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":-120,"maximum":0}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"bleScanMinNbBeacons","groupId":"0x05","localId":"0x05","defaultValue":1,"description":"Min number of beacons to consider the scan as success (solvable).","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":1,"maximum":20}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"bleScanFilter1Mask","groupId":"0x05","localId":"0x06","defaultValue":[0],"description":"Mask (10 bytes) to be applied to the ADV frame.","parameterType":{"type":"ParameterTypeByteArray","size":10},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"bleScanFilter1Value","groupId":"0x05","localId":"0x07","defaultValue":[0],"description":"Comparison value (10 bytes) belonging to filter1","parameterType":{"type":"ParameterTypeByteArray","size":10},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"bleScanFilter1Offset","groupId":"0x05","localId":"0x08","defaultValue":0,"description":"Offset in the ADV from which we apply the filter1","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":0,"maximum":256}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"bleScanFilter2Mask","groupId":"0x05","localId":"0x09","defaultValue":[0],"description":"Mask (10 bytes) to be applied to the ADV frame.","parameterType":{"type":"ParameterTypeByteArray","size":10},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"bleScanFilter2Value","groupId":"0x05","localId":"0x0A","defaultValue":[0],"description":"Comparison value (10 bytes) belonging to filter2","parameterType":{"type":"ParameterTypeByteArray","size":10},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"bleScanFilter2Offset","groupId":"0x05","localId":"0x0B","defaultValue":0,"description":"Offset in the ADV from which we apply the filter2","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":0,"maximum":256}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"bleScanNbBeacons","groupId":"0x05","localId":"0x0C","defaultValue":4,"description":"Number of beacons to report","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":1,"maximum":20}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"bleScanReportType","groupId":"0x05","localId":"0x0D","defaultValue":0,"description":"Scan report type","parameterType":{"type":"ParameterTypeString","possibleValues":["MAC_ADDRESS","SHORT_IDENTIFIER","LONG_IDENTIFIER"],"firmwareValues":[0,1,2]},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"bleScanReportIdOfs","groupId":"0x05","localId":"0x0E","defaultValue":4,"description":"Offset in ADV to extract the beacon identifier","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":0,"maximum":256}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"bleScanDuration","groupId":"0x06","localId":"0x00","defaultValue":3000,"unit":"ms","description":"Total time for a BLE scan","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":50,"maximum":61440}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"bleScanWindow","groupId":"0x06","localId":"0x01","defaultValue":120,"unit":"ms","description":"Scan window","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":3,"maximum":10240}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"bleScanInterval","groupId":"0x06","localId":"0x02","defaultValue":130,"unit":"ms","description":"Scan interval","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":1,"maximum":10240}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"bleScanType","groupId":"0x06","localId":"0x03","defaultValue":0,"description":"Type of beacons to scan","parameterType":{"type":"ParameterTypeString","possibleValues":["ALL_BEACONS","EDDYSTONE_UUID","EDDYSTONE_URL","ALL_EDDYSTONE","IBEACON_ONLY","ALTBEACON_ONLY","CUSTOM","EXPOSURE_ADVERTISEMENT"],"firmwareValues":[0,1,2,3,4,5,6,7]},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"bleScanMinRssi","groupId":"0x06","localId":"0x04","defaultValue":-100,"unit":"dB","description":"Min RSSI to consider the beacon","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":-120,"maximum":0}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"bleScanMinNbBeacons","groupId":"0x06","localId":"0x05","defaultValue":1,"description":"Min number of beacons to consider the scan as success (solvable).","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":1,"maximum":20}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"bleScanFilter1Mask","groupId":"0x06","localId":"0x06","defaultValue":[0],"description":"Mask (10 bytes) to be applied to the ADV frame.","parameterType":{"type":"ParameterTypeByteArray","size":10},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"bleScanFilter1Value","groupId":"0x06","localId":"0x07","defaultValue":[0],"description":"Comparison value (10 bytes) belonging to filter1","parameterType":{"type":"ParameterTypeByteArray","size":10},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"bleScanFilter1Offset","groupId":"0x06","localId":"0x08","defaultValue":0,"description":"Offset in the ADV from which we apply the filter1","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":0,"maximum":256}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"bleScanFilter2Mask","groupId":"0x06","localId":"0x09","defaultValue":[0],"description":"Mask (10 bytes) to be applied to the ADV frame.","parameterType":{"type":"ParameterTypeByteArray","size":10},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"bleScanFilter2Value","groupId":"0x06","localId":"0x0A","defaultValue":[0],"description":"Comparison value (10 bytes) belonging to filter2","parameterType":{"type":"ParameterTypeByteArray","size":10},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"bleScanFilter2Offset","groupId":"0x06","localId":"0x0B","defaultValue":0,"description":"Offset in the ADV from which we apply the filter2","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":0,"maximum":256}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"bleScanNbBeacons","groupId":"0x06","localId":"0x0C","defaultValue":4,"description":"Number of beacons to report","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":1,"maximum":20}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"bleScanReportType","groupId":"0x06","localId":"0x0D","defaultValue":0,"description":"Scan report type","parameterType":{"type":"ParameterTypeString","possibleValues":["MAC_ADDRESS","SHORT_IDENTIFIER","LONG_IDENTIFIER"],"firmwareValues":[0,1,2]},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"bleScanReportIdOfs","groupId":"0x06","localId":"0x0E","defaultValue":4,"description":"Offset in ADV to extract the beacon identifier","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":0,"maximum":256}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"acceleroMotionSensi","groupId":"0x07","localId":"0x00","defaultValue":1,"unit":"mg","description":"Motion sensitivity. Step 31 mg.","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":1,"maximum":96},"multiply":31},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"acceleroMotionDuration","groupId":"0x07","localId":"0x01","defaultValue":120,"unit":"s","description":"Motion duration","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":10,"maximum":3600}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"acceleroFullScale","groupId":"0x07","localId":"0x02","defaultValue":3,"description":"Scale use (2,4,8,16 g).","parameterType":{"type":"ParameterTypeString","possibleValues":["2_G","4_G","8_G","16_G"],"firmwareValues":[0,1,2,3]},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"acceleroOutputDataRate","groupId":"0x07","localId":"0x03","defaultValue":0,"description":"Output data rate (12.5, 25, 50, 100, 200 Hz).","parameterType":{"type":"ParameterTypeString","possibleValues":["12_5_HZ","25_HZ","50_HZ","100_HZ","200_HZ"],"firmwareValues":[0,1,2,3,4]},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"acceleroShockThreshold","groupId":"0x07","localId":"0x04","defaultValue":0,"description":"Shock threshold. Step 63 mg","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":0,"maximum":128},"multiply":63},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"netSelection","groupId":"0x08","localId":"0x00","defaultValue":0,"description":"Define the networking type","parameterType":{"type":"ParameterTypeString","possibleValues":["LORA_ONLY","CELLULAR_ONLY","LORA_FALLBACK_CELLULAR","CELLULAR_FALLBACK_LORA"],"firmwareValues":[0,1,2,3]},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"netReconnectionSpacingStatic","groupId":"0x08","localId":"0x01","defaultValue":600,"description":"Time to wait before retrying to connect the main network. Applicable when the tracker is static.","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":0,"maximum":2147483647}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"netMainProbeTimeoutStatic","groupId":"0x08","localId":"0x02","defaultValue":600,"description":"Duration between each attempts reconnect the main network. Applicable when the tracker is static.","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":120,"maximum":2147483647}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"netReconnectionSpacingMotion","groupId":"0x08","localId":"0x03","defaultValue":600,"description":"Time to wait before retrying to connect the main network. Applicable when the tracker is moving.","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":0,"maximum":2147483647}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"netMainProbeTimeoutMotion","groupId":"0x08","localId":"0x04","defaultValue":600,"description":"Duration between each attempts reconnect the main network. Applicable when the tracker is moving.","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":120,"maximum":2147483647}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"lorawanCnxTimeout","groupId":"0x09","localId":"0x00","defaultValue":0,"description":"Max time to wait for joining the network. The value 0 disables the timer.","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":0,"maximum":2147483647}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"lorawanHeartbeatPeriod","groupId":"0x09","localId":"0x01","defaultValue":3600,"unit":"s","description":"Period at which an heartbeat notification is sent to trigger a Rx window for downlinks (if no uplink has been sent within this period). 0 disable the function.","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":0,"maximum":2147483647}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"lorawanProbeMaxAttemptsStatic","groupId":"0x09","localId":"0x02","defaultValue":4,"description":"Number of link-check sent declaring the network as lost. Applicable when the tracker is static. 0 disable the function.","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":0,"maximum":20}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"lorawanProbePeriodStatic","groupId":"0x09","localId":"0x03","defaultValue":43200,"description":"Time between link-check requests. Applicable when the tracker is static.","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":120,"maximum":2147483647}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"lorawanConfirmNotifMap","groupId":"0x09","localId":"0x04","defaultValue":"{00}","description":"Map enabling the LoRaWAN confirmed message for notifications.","parameterType":{"type":"ParameterTypeByteArray","size":6,"distinctValues":true,"properties":[{"name":"systemClass","type":"PropertyObject","properties":[{"name":"status","type":"PropertyBoolean","description":"System status Versions, temperature, reset cause."},{"name":"lowBattery","type":"PropertyBoolean","description":"Low battery alert."},{"name":"bleStatus","type":"PropertyBoolean","description":"Bluetooth Low Energy status"},{"name":"tamperDetection","type":"PropertyBoolean","description":"Tamper detection alert."},{"name":"heartbeat","type":"PropertyBoolean","description":"Heartbeat message."},{"name":"shutdown","type":"PropertyBoolean","description":"Shutdown message."},{"name":"dataBuffering","type":"PropertyBoolean","description":"Data buffering status"},{"name":"fuota","type":"PropertyBoolean","description":"Firmware Update Over The Air"}]},{"name":"sosClass","type":"PropertyObject","properties":[{"name":"sosOn","type":"PropertyBoolean","description":"SOS activated."},{"name":"sosOff","type":"PropertyBoolean","description":"SOS deactivated."}]},{"name":"temperatureClass","type":"PropertyObject","properties":[{"name":"tempHigh","type":"PropertyBoolean","description":"Critical high temperature reached"},{"name":"tempLow","type":"PropertyBoolean","description":"Critical low temperature reached"},{"name":"tempNormal","type":"PropertyBoolean","description":"Temperature back to normal"}]},{"name":"accelerometerClass","type":"PropertyObject","properties":[{"name":"motionStart","type":"PropertyBoolean","description":"Motion start detected."},{"name":"motionEnd","type":"PropertyBoolean","description":"Motion end detected."},{"name":"shock","type":"PropertyBoolean","description":"Shock detected."}]},{"name":"networkingClass","type":"PropertyObject","properties":[{"name":"mainUp","type":"PropertyBoolean","description":"Main network is up."},{"name":"backupUp","type":"PropertyBoolean","description":"Main network down. Backup is up."}]},{"name":"geozoningClass","type":"PropertyObject","properties":[{"name":"geozoningOn","type":"PropertyBoolean","description":"Geozoning is on."}]}],"byteMask":[{"valueFor":"systemClass","type":"BitMaskObject","values":[{"type":"BitMaskValue","valueFor":"status","bitShift":0,"length":1},{"type":"BitMaskValue","valueFor":"lowBattery","bitShift":1,"length":1},{"type":"BitMaskValue","valueFor":"bleStatus","bitShift":2,"length":1},{"type":"BitMaskValue","valueFor":"tamperDetection","bitShift":3,"length":1},{"type":"BitMaskValue","valueFor":"heartbeat","bitShift":4,"length":1},{"type":"BitMaskValue","valueFor":"shutdown","bitShift":5,"length":1},{"type":"BitMaskValue","valueFor":"dataBuffering","bitShift":6,"length":1},{"type":"BitMaskValue","valueFor":"fuota","bitShift":7,"length":1}]},{"valueFor":"sosClass","type":"BitMaskObject","values":[{"type":"BitMaskValue","valueFor":"sosOn","bitShift":0,"length":1},{"type":"BitMaskValue","valueFor":"sosOff","bitShift":1,"length":1}]},{"valueFor":"temperatureClass","type":"BitMaskObject","values":[{"type":"BitMaskValue","valueFor":"tempHigh","bitShift":0,"length":1},{"type":"BitMaskValue","valueFor":"tempLow","bitShift":1,"length":1},{"type":"BitMaskValue","valueFor":"tempNormal","bitShift":2,"length":1}]},{"valueFor":"accelerometerClass","type":"BitMaskObject","values":[{"type":"BitMaskValue","valueFor":"motionStart","bitShift":0,"length":1},{"type":"BitMaskValue","valueFor":"motionEnd","bitShift":1,"length":1},{"type":"BitMaskValue","valueFor":"shock","bitShift":2,"length":1}]},{"valueFor":"networkingClass","type":"BitMaskObject","values":[{"type":"BitMaskValue","valueFor":"mainUp","bitShift":0,"length":1},{"type":"BitMaskValue","valueFor":"backupUp","bitShift":1,"length":1}]},{"valueFor":"geozoningClass","type":"BitMaskObject","values":[{"type":"BitMaskValue","valueFor":"geozoningOn","bitShift":0,"length":1}]}]},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"lorawanConfirmNotifRetry","groupId":"0x09","localId":"0x05","defaultValue":0,"description":"Time between link-check requests","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":0,"maximum":15}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"lorawanS1TxStrategy","groupId":"0x09","localId":"0x06","defaultValue":473102,"description":"Socket 1. Transmission strategy","parameterType":{"type":"ParameterTypeBitMask","properties":[{"name":"ADREnabled","type":"PropertyBoolean","description":"true: to enable the LoRa network ADR if the tracker is static. false: to disable the network ADR regardless the motion state of the tracker"},{"name":"dualTransmissionInStaticEnabled","type":"PropertyBoolean","description":"Control the dual transmission when the tracker is static. true: to enable the dual transmission in static state. false: to disable it"},{"name":"dualTransmissionInMotionEnabled","type":"PropertyBoolean","description":"Control the dual transmission when the tracker is in motion. true: to enable the dual transmission in motion state. false: to disable it in motion state."},{"name":"dataRateModification","type":"PropertyBoolean","description":"Control the DR (Datarate) modification for over-sized messages. true: to allow AOS to adapt the DR for messages not fitting the allowed size for a given datarate.false: to prevent sending of over-sized messages"},{"name":"firstTransmissionDatarate","type":"PropertyObject","properties":[{"name":"dr0","type":"PropertyBoolean","description":"false: dr0 is disabled. true: dr0 is enabled."},{"name":"dr1","type":"PropertyBoolean","description":"false: dr1 is disabled. true: dr1 is enabled."},{"name":"dr2","type":"PropertyBoolean","description":"false: dr2 is disabled. true: dr2 is enabled."},{"name":"dr3","type":"PropertyBoolean","description":"false: dr3 is disabled. true: dr3 is enabled."},{"name":"dr4","type":"PropertyBoolean","description":"false: dr4 is disabled. true: dr4 is enabled."},{"name":"dr5","type":"PropertyBoolean","description":"false: dr5 is disabled. true: dr5 is enabled."},{"name":"dr6","type":"PropertyBoolean","description":"false: dr6 is disabled. true: dr6 is enabled."},{"name":"dr7","type":"PropertyBoolean","description":"false: dr7 is disabled. true: dr7 is enabled."}]},{"name":"secondTransmissionDatarate","type":"PropertyObject","properties":[{"name":"dr0","type":"PropertyBoolean","description":"false: dr0 is disabled. true: dr0 is enabled."},{"name":"dr1","type":"PropertyBoolean","description":"false: dr1 is disabled. true: dr1 is enabled."},{"name":"dr2","type":"PropertyBoolean","description":"false: dr2 is disabled. true: dr2 is enabled."},{"name":"dr3","type":"PropertyBoolean","description":"false: dr3 is disabled. true: dr3 is enabled."},{"name":"dr4","type":"PropertyBoolean","description":"false: dr4 is disabled. true: dr4 is enabled."},{"name":"dr5","type":"PropertyBoolean","description":"false: dr5 is disabled. true: dr5 is enabled."},{"name":"dr6","type":"PropertyBoolean","description":"false: dr6 is disabled. true: dr6 is enabled."},{"name":"dr7","type":"PropertyBoolean","description":"false: dr7 is disabled. true: dr7 is enabled."}]}],"bitMask":[{"type":"BitMaskValue","valueFor":"ADREnabled","bitShift":0,"length":1},{"type":"BitMaskValue","valueFor":"dualTransmissionInStaticEnabled","bitShift":1,"length":1},{"type":"BitMaskValue","valueFor":"dualTransmissionInMotionEnabled","bitShift":2,"length":1},{"type":"BitMaskValue","valueFor":"dataRateModification","bitShift":3,"length":1},{"valueFor":"firstTransmissionDatarate","type":"BitMaskObject","values":[{"type":"BitMaskValue","valueFor":"dr0","bitShift":8,"length":1},{"type":"BitMaskValue","valueFor":"dr1","bitShift":9,"length":1},{"type":"BitMaskValue","valueFor":"dr2","bitShift":10,"length":1},{"type":"BitMaskValue","valueFor":"dr3","bitShift":11,"length":1},{"type":"BitMaskValue","valueFor":"dr4","bitShift":12,"length":1},{"type":"BitMaskValue","valueFor":"dr5","bitShift":13,"length":1},{"type":"BitMaskValue","valueFor":"dr6","bitShift":14,"length":1},{"type":"BitMaskValue","valueFor":"dr7","bitShift":15,"length":1}]},{"valueFor":"secondTransmissionDatarate","type":"BitMaskObject","values":[{"type":"BitMaskValue","valueFor":"dr0","bitShift":16,"length":1},{"type":"BitMaskValue","valueFor":"dr1","bitShift":17,"length":1},{"type":"BitMaskValue","valueFor":"dr2","bitShift":18,"length":1},{"type":"BitMaskValue","valueFor":"dr3","bitShift":19,"length":1},{"type":"BitMaskValue","valueFor":"dr4","bitShift":20,"length":1},{"type":"BitMaskValue","valueFor":"dr5","bitShift":21,"length":1},{"type":"BitMaskValue","valueFor":"dr6","bitShift":22,"length":1},{"type":"BitMaskValue","valueFor":"dr7","bitShift":23,"length":1}]}]},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"lorawanS1UlPort","groupId":"0x09","localId":"0x07","defaultValue":19,"description":"Socket 1. Uplink port","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":1,"maximum":252}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"lorawanS1DlPort","groupId":"0x09","localId":"0x08","defaultValue":3,"description":"Socket 1. Downlink port","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":1,"maximum":252}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"lorawanProbePeriodMotion","groupId":"0x09","localId":"0x09","defaultValue":43200,"description":"Time between link-check requests. Applicable when the tracker is moving.","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":120,"maximum":2147483647}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"lorawanProbeMaxAttemptsMotion","groupId":"0x09","localId":"0x0a","defaultValue":4,"description":"Number of link-check sent declaring the network as lost. Applicable when the tracker is moving.","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":0,"maximum":20}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"cellSimInterface","groupId":"0x0A","localId":"0x00","description":"Sim interface.","defaultValue":"","parameterType":{"type":"ParameterTypeString","possibleValues":["SIM0","E_SIM"],"firmwareValues":[0,1]},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"cellNetworkType","groupId":"0x0A","localId":"0x01","description":"Network type","defaultValue":"","parameterType":{"type":"ParameterTypeString","possibleValues":["CELLULAR_NOT_USED","LTE_M","NB_IOT"],"firmwareValues":[0,1,2]},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"cellSearchBands","groupId":"0x0A","localId":"0x02","defaultValue":"{00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00}","description":"Radio frequency bands scanned to search a cell.","parameterType":{"type":"ParameterTypeByteArray","size":19},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"cellCnxTimeoutStatic","groupId":"0x0A","localId":"0x03","defaultValue":180,"unit":"s","description":"Duration during which the modem searches for a cellular network. Applicable when the tracker is static.","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":180,"maximum":900}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"cellCnxTimeoutMotion","groupId":"0x0A","localId":"0x04","defaultValue":300,"unit":"s","description":"Duration during which the modem searches for a cellular network. Applicable when the tracker is motion.","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":180,"maximum":900}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"cellCnxNwReconnectTimeout","groupId":"0x0A","localId":"0x05","defaultValue":60,"unit":"s","description":"Duration let to the modem to automatically recover the network after a network lost.","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":0,"maximum":900}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"cellCnxMaxAttempts","groupId":"0x0A","localId":"0x06","defaultValue":3,"description":"Number of times the network search is repeated before shutting down the modem.","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":1,"maximum":10}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"cellAccessPointName","groupId":"0x0A","localId":"0x07","description":"String providing the service access point name. If not provided, this information is retrieve from the SIM.","defaultValue":"","parameterType":{"type":"ParameterTypeAsciiString","maxSize":32},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"cellOperatorSimSlot0","groupId":"0x0A","localId":"0x08","description":"Cellular operator name when using the SIM0","defaultValue":"","parameterType":{"type":"ParameterTypeAsciiString","maxSize":32},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"cellOperatorSimSlot1","groupId":"0x0A","localId":"0x09","description":"Cellular operator name when using the SIM1 (E.SIM).","defaultValue":"","parameterType":{"type":"ParameterTypeAsciiString","maxSize":32},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"cellLowPowerMode","groupId":"0x0A","localId":"0x0A","description":"Low power mode","defaultValue":"","parameterType":{"type":"ParameterTypeString","possibleValues":["DISABLED","PSM","EDRX","PSM_EDRX"],"firmwareValues":[0,1,2,3]},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"cellPsmTauPeriod","groupId":"0x0A","localId":"0x0B","description":"Bit-field giving the requested TAU period.","defaultValue":254,"parameterType":{"type":"ParameterTypeBitMask","properties":[{"name":"timerValue","type":"PropertyNumber"},{"name":"timerValueUnit","type":"PropertyString","possibleValues":["VALUE_IS_INCREMENTED_IN_MULTIPLES_OF_10_MINUTES","VALUE_IS_INCREMENTED_IN_MULTIPLES_OF_1_HOUR","VALUE_IS_INCREMENTED_IN_MULTIPLES_OF_10_HOURS","VALUE_IS_INCREMENTED_IN_MULTIPLES_OF_2_SECONDS","VALUE_IS_INCREMENTED_IN_MULTIPLES_OF_30_SECONDS","VALUE_IS_INCREMENTED_IN_MULTIPLES_OF_1_MINUTE","VALUE_IS_INCREMENTED_IN_MULTIPLES_OF_320_HOURS","THE_TIMER_IS_DEACTIVATED"],"firmwareValues":[0,1,2,3,4,5,6,7]}],"bitMask":[{"type":"BitMaskValue","valueFor":"timerValue","bitShift":0,"length":5},{"type":"BitMaskValue","valueFor":"timerValueUnit","bitShift":5,"length":3}]},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"cellPsmActiveTime","groupId":"0x0A","localId":"0x0C","description":"Bit-field giving the requested active time.","defaultValue":2,"parameterType":{"type":"ParameterTypeBitMask","properties":[{"name":"timerValue","type":"PropertyNumber"},{"name":"timerValueUnit","type":"PropertyString","possibleValues":["VALUE_IS_INCREMENTED_IN_MULTIPLES_OF_2_SECONDS","VALUE_IS_INCREMENTED_IN_MULTIPLES_OF_1_MINUTE","VALUE_IS_INCREMENTED_IN_MULTIPLES_OF_DECI_HOURS","THE_TIMER_IS_DEACTIVATED"],"firmwareValues":[0,1,2,7]}],"bitMask":[{"type":"BitMaskValue","valueFor":"timerValue","bitShift":0,"length":5},{"type":"BitMaskValue","valueFor":"timerValueUnit","bitShift":5,"length":3}]},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"cellEdrxPcl","groupId":"0x0A","localId":"0x0D","description":"Requested paging cycle length","defaultValue":15,"parameterType":{"type":"ParameterTypeNumber","range":{"minimum":0,"maximum":15}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"cellEdrxPtw","groupId":"0x0A","localId":"0x0E","description":"Requested paging time window","defaultValue":3,"parameterType":{"type":"ParameterTypeNumber","range":{"minimum":0,"maximum":15}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"cellRaiTimeout","groupId":"0x0A","localId":"0x0F","description":"RAI (Release Assistance Indication) timeout. A null value disables the feature. Use only with UDP protocol.","defaultValue":500,"unit":"ms","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":0,"maximum":10000}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"cellProbeMaxAttempts","groupId":"0x0A","localId":"0x10","description":"Number of echo-request sent before declaring the network as lost. Set 0 to disable the feature.","defaultValue":0,"parameterType":{"type":"ParameterTypeNumber","range":{"minimum":0,"maximum":10}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"cellProbePeriod","groupId":"0x0A","localId":"0x11","description":"Time between echo-request, or since the last downlink activity.","defaultValue":120,"parameterType":{"type":"ParameterTypeNumber","range":{"minimum":120}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"cellS1TransportProto","groupId":"0x0A","localId":"0x12","description":"Socket 1 transport protocol","defaultValue":1,"parameterType":{"type":"ParameterTypeString","possibleValues":["TCP","UDP"],"firmwareValues":[0,1]},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"cellS1IpUrlAddr","groupId":"0x0A","localId":"0x13","description":"Socket 1 remote IP address or URL in string format (max 32 bytes)","defaultValue":"","parameterType":{"type":"ParameterTypeAsciiString","maxSize":32},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"cellS1DstIpPort","groupId":"0x0A","localId":"0x14","description":"Socket 1 destination UDP/TCP port","defaultValue":0,"parameterType":{"type":"ParameterTypeNumber","range":{"minimum":0,"maximum":65535}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"cellS1SrcIpPort","groupId":"0x0A","localId":"0x15","description":"Socket 1 local UDP/TCP port number. Value 0 means that the modem will choose one.","defaultValue":0,"parameterType":{"type":"ParameterTypeNumber","range":{"minimum":0,"maximum":65535}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"cellS1TxAggrTime","groupId":"0x0A","localId":"0x16","description":"Duration in second for which the messages are hold in the socket 1 transmit queue before being transmitted","defaultValue":120,"unit":"s","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":0,"maximum":3600}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"cellApnUserId","groupId":"0x0A","localId":"0x17","description":"String specifying the user identifier for private APN","defaultValue":"","parameterType":{"type":"ParameterTypeAsciiString","maxSize":32},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"cellApnUserPwd","groupId":"0x0A","localId":"0x18","description":"String specifying the user password for private APN","defaultValue":"","parameterType":{"type":"ParameterTypeAsciiString","maxSize":32},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"cellApnAuthProtocol","groupId":"0x0A","localId":"0x19","description":"String specifying the user password for private APN","defaultValue":"","parameterType":{"type":"ParameterTypeString","possibleValues":["PAP","CHAP"],"firmwareValues":[1,2]},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"cellFuotaServerIpUrlAddr","groupId":"0x0A","localId":"0x1A","description":"FUOTA server IP/URL in string format","defaultValue":"","parameterType":{"type":"ParameterTypeAsciiString","maxSize":32},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"cellRestrictedPlmns","groupId":"0x0A","localId":"0x1B","defaultValue":"","description":"List of restricted Public Land Mobile Networks (PLMNs)","parameterType":{"type":"ParameterTypeAsciiString","maxSize":32},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"bleCnxTxPower","groupId":"0x0B","localId":"0x00","defaultValue":19,"description":"BLE Tx power level.","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":0,"maximum":31}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"bleCnxAdvDuration","groupId":"0x0B","localId":"0x01","defaultValue":60,"description":"Time to wait before stopping advertising or switching to slow advertising","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":30}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"bleCnxBehavior","groupId":"0x0B","localId":"0x02","defaultValue":1,"description":"The connectivity configuration.","parameterType":{"type":"ParameterTypeString","possibleValues":["DISABLE","ENABLE_NO_PASSKEY","ENABLE_PASSKEY","ENABLE_NO_PASSKEY_NO_SLOW_ADV","ENABLE_PASSKEY_NO_SLOW_ADV"],"firmwareValues":[0,1,2,3,4]},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"bleBeaconTxPower","groupId":"0x0B","localId":"0x03","defaultValue":19,"description":"Time to wait before stopping advertising or switching to slow advertising","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":0,"maximum":31}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"bleBeaconType","groupId":"0x0B","localId":"0x04","defaultValue":1,"description":"The connectivity configuration.","parameterType":{"type":"ParameterTypeString","possibleValues":["DISABLE","EDDYSTONE_UID","IBEACON","ALTBEACON","QUUPPA","EXPOSURE_ADVERTISEMENT"],"firmwareValues":[0,1,2,3,4,5,6,7]},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"bleBeaconIdentifier","groupId":"0x0B","localId":"0x05","description":"BLE beaconing ID parameter","parameterType":{"type":"ParameterTypeByteArray"},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"bleBeaconFastAdvInterval","groupId":"0x0B","localId":"0x06","defaultValue":333,"description":"BLE beacon fast advertising interval.","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":20,"maximum":10240}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"bleBeaconFastSlowInterval","groupId":"0x0B","localId":"0x07","defaultValue":1000,"description":"BLE beacon slow advertising interval.","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":20,"maximum":10240}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"nmetaDataperiod","groupId":"0x0C","localId":"0x00","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":0}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"sensor0MeasNsampling","groupId":"0x0C","localId":"0x01","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":0}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"sensor0HighThreshold","groupId":"0x0C","localId":"0x02","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":0}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"sensor0LowThreshold","groupId":"0x0C","localId":"0x03","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":0}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"sensor0Hysteresis","groupId":"0x0C","localId":"0x04","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":0}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"sensor0MeasNmaxinterval","groupId":"0x0C","localId":"0x05","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":0}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"sensor0TelemNmaxinterval","groupId":"0x0C","localId":"0x06","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":0}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"sensor0CyclicVersion","groupId":"0x0C","localId":"0x07","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":0}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"sensor1MeasNsampling","groupId":"0x0C","localId":"0x08","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":0}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"sensor1HighThreshold","groupId":"0x0C","localId":"0x09","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":-254,"maximum":256},"multiply":0.1},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"sensor1LowThreshold","groupId":"0x0C","localId":"0x0a","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":-254,"maximum":256},"multiply":0.1},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"sensor1Hysteresis","groupId":"0x0C","localId":"0x0b","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":-254,"maximum":256},"multiply":0.1},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"sensor1MeasNmaxinterval","groupId":"0x0C","localId":"0x0c","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":0}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"sensor1TelemNmaxinterval","groupId":"0x0C","localId":"0x0d","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":0}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"sensor1CyclicVersion","groupId":"0x0C","localId":"0x0e","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":0}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"sensor2MeasNsampling","groupId":"0x0C","localId":"0x0f","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":0}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"sensor2HighThreshold","groupId":"0x0C","localId":"0x10","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":0}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"sensor2LowThreshold","groupId":"0x0C","localId":"0x11","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":0}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"sensor2Hysteresis","groupId":"0x0C","localId":"0x12","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":0}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"sensor2MeasNmaxinterval","groupId":"0x0C","localId":"0x13","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":0}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"sensor2TelemNmaxinterval","groupId":"0x0C","localId":"0x14","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":0}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"sensor2CyclicVersion","groupId":"0x0C","localId":"0x15","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":0}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"sensor3MeasNsampling","groupId":"0x0C","localId":"0x16","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":0}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"sensor3HighThreshold","groupId":"0x0C","localId":"0x17","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":0}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"sensor3LowThreshold","groupId":"0x0C","localId":"0x18","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":0}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"sensor3Hysteresis","groupId":"0x0C","localId":"0x19","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":0}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"sensor3MeasNmaxinterval","groupId":"0x0C","localId":"0x1a","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":0}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"sensor3TelemNmaxinterval","groupId":"0x0C","localId":"0x1b","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":0}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]},{"driverParameterName":"sensor3CyclicVersion","groupId":"0x0C","localId":"0x1c","parameterType":{"type":"ParameterTypeNumber","range":{"minimum":0}},"compatibleTrackerModels":[{"producerId":"abeeway","moduleId":"compact-tracker","version":"2.0"},{"producerId":"abeeway","moduleId":"combo-compact-tracker","version":"1.0"}]}]}]');
+
+/***/ }),
+
+/***/ 788:
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+let responseClass = __webpack_require__(289);
+let util = __webpack_require__(94);
+
+let RequestType = responseClass.ResponseType
+const SENSOR_TYPES = {
+   "DO_NOT_USE" :0,
+    "ACCELEROMETER": 1
+};
+const FUOTA_BINARY_TYPES ={
+    "APPLICATION" : 0,
+    "BLE_STACK": 1,
+    "MT3333": 2,
+    "LR11XX": 3
+}
+function Request(requestType,
+    genericConfigurationSet,
+    parameterClassConfigurationSet,
+    genericConfigurationGet,
+    parameterClassConfigurationGet,
+    bleStatusConnectivity,
+    crc,
+    sensorIds,
+    fuotaBinaryType,
+    filePath,
+    debugInfoType,
+    k0Key,
+    k1Key,
+    rootKeyIndex,
+    ){
+        this.requestType = requestType;
+        this.genericConfigurationSet = genericConfigurationSet;
+        this.parameterClassConfigurationSet = parameterClassConfigurationSet;
+        this.genericConfigurationGet = genericConfigurationGet;
+        this.parameterClassConfigurationGet = parameterClassConfigurationGet;
+        this.bleStatusConnectivity = bleStatusConnectivity;
+        this.crc = crc;
+        this.sensorIds = sensorIds;
+        this.fuotaBinaryType = fuotaBinaryType;
+        this.filePath = filePath;
+        this.debugInfoType = debugInfoType;
+        this.k0Key = k0Key;
+        this.k1Key = k1Key;
+        this.rootKeyIndex = rootKeyIndex;
+}
+function ParameterClassConfigurationGet(group, parameters){
+    this.group = group
+    this.parameters = parameters
+}
+function encodeRequest(data){
+    let encData = [] 
+    // encode type and ackToken
+    encData[0] = (0x02 <<3) | data.ackToken
+    let requestType = encodeRequestType(data.requestType)
+    encData[1] = requestType
+    switch (requestType){
         case 0:
           encData = encodeRequestGenericConfigurationSet(data.setGenericParameters, encData);
           break;
@@ -9402,8 +10182,14 @@ var require_request = __commonJS({
           encData = encodeDebugInfoRequest(data.debugInfoType, encData);
           break;
         case 8:
-          encData = encodeFuotaRequest(data.fuotaBinaryType, data.filePath, encData);
-          break;
+            encData = encodeFuotaRequest(data.fuotaBinaryType, data.filePath, encData)
+            break;
+        case 9:
+            encData = encodeRecoveryBeaconKeyUpdateRequest(data.k0Key, data.k1Key, data.rootKeyIndex, encData)
+            break;
+        case 10:
+            // no data
+            break;
         default:
           throw new Error("Unknown request type");
       }
@@ -9432,7 +10218,11 @@ var require_request = __commonJS({
         case "DEBUG_INFO_REQUEST":
           return 7;
         case "FUOTA_REQUEST":
-          return 8;
+            return 8;
+        case "RECOVERY_BEACON_KEY_UPDATE":
+            return 9;
+        case "RECOVERY_BEACON_ROOT_KEY_INDEX_GET":
+            return 10;
         default:
           throw new Error("Unknown request type");
       }
@@ -9492,10 +10282,19 @@ var require_request = __commonJS({
           request.debugInfoType = util2.convertNegativeInt(payload[2], 8);
           break;
         case 8:
-          request.requestType = RequestType.FUOTA_REQUEST;
-          request.fuotaBinaryType = decodeBinaryFuotaType(payload[2]);
-          request.filePath = decodeAsciiString(payload.slice(3));
-          break;
+            request.requestType = RequestType.FUOTA_REQUEST
+            request.fuotaBinaryType = decodeBinaryFuotaType(payload[2])
+            request.filePath = decodeAsciiString(payload.slice(3))
+            break;
+        case 9:
+            request.requestType = RequestType.RECOVERY_BEACON_KEY_UPDATE
+            request.k0Key = decodeKeyBytes(payload.slice(2, 18))
+            request.k1Key = decodeKeyBytes(payload.slice(18, 34))
+            request.rootKeyIndex = payload[34]
+            break;
+        case 10:
+            request.requestType = RequestType.RECOVERY_BEACON_ROOT_KEY_INDEX_GET
+            break;
         default:
           throw new Error("Request Type Unknown");
       }
@@ -9926,19 +10725,44 @@ var require_request = __commonJS({
       }
       return flags;
     }
-    function encodeSizeAndType(size, type) {
-      return size << 3 | type;
+    return flags;
+}
+function encodeSizeAndType(size, type){
+    return ((size << 0x03)| type)
+
+}
+
+function encodeRecoveryBeaconKeyUpdateRequest(k0Key, k1Key, rootKeyIndex, encData) {
+    if (rootKeyIndex < 0 || rootKeyIndex > 7) {
+        throw new Error("rootKeyIndex must be between 0 and 7");
     }
-    function decodeBinaryFuotaType(value) {
-      switch (value) {
-        case 0:
-          return "APPLICATION";
-        case 1:
-          return "BLE_STACK";
-        case 2:
-          return "MT3333";
-        case 3:
-          return "LR11XX";
+    encodeHexKey(k0Key, 16, encData);
+    encodeHexKey(k1Key, 16, encData);
+    encData.push(rootKeyIndex & 0xFF);
+    return encData;
+}
+
+function encodeHexKey(hexStr, expectedBytes, encData) {
+    const cleaned = hexStr.replace(/\s/g, '');
+    if (cleaned.length !== expectedBytes * 2) {
+        throw new Error(`Key must be ${expectedBytes} bytes (${expectedBytes * 2} hex chars), got ${cleaned.length / 2}`);
+    }
+    for (let i = 0; i < expectedBytes; i++) {
+        encData.push(parseInt(cleaned.slice(i * 2, i * 2 + 2), 16));
+    }
+}
+
+function decodeKeyBytes(bytes) {
+    return Array.from(bytes).map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+/** Reverse mapping from numeric value to string */
+function decodeBinaryFuotaType(value) {
+    switch (value) {
+        case 0: return "APPLICATION";
+        case 1: return "BLE_STACK";
+        case 2: return "MT3333";
+        case 3: return "LR11XX";
         default:
           throw new Error("Unknown binary fuota type: " + value);
       }
@@ -10322,9 +11146,14 @@ function decodeUplink(input) {
         throw new Error("the payload is not valid to determine header with buffering");
       payload.splice(4, 2);
     }
-    var multiFrame2 = !!(payload[0] >> 7 & 1);
-    if (multiFrame2) {
-      decodedData.extendedHeader = extendedHeaderClass.determineExtendedHeader(payload);
+
+    decoded.commandType = command
+    if (command === CommandType.SYSTEM_EVENT) {
+        if (bytes.length < 3) {
+            throw new Error("Invalid SYSTEM_EVENT byte array length");
+        }
+        decoded.classId = getClassName(bytes[1]);
+        decoded.eventType = bytes[2];
     }
     switch (decodedData.header.type) {
       case abeewayUplinkPayloadClass.messageType.NOTIFICATION:

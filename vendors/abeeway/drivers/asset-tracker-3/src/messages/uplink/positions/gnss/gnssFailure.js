@@ -44,12 +44,12 @@ function determineConstellation(cons){
 function determineGnssFailure(payload){
 
     let timeoutCause = determineTimeoutCause(payload[0]>>5 & 0x07)
-    let nbSatSeen = payload[0] & 0x0F
+    let nbSatSeen = payload[0] & 0x1F
     payload = payload.slice(1)
     let satelliteSeen = []
     for (let i = 0; i < nbSatSeen*2; i += 2) {
         let svId = payload[i]
-        let constellation = determineConstellation(payload[i]+1>>6 & 0x03)
+        let constellation = determineConstellation(payload[i+1]>>6 & 0x03)
         let CN = payload[i+1] & 0x3F
         satelliteSeen.push({svId, constellation, CN})
     } 
