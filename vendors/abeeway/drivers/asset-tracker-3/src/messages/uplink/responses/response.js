@@ -15,8 +15,9 @@ const ResponseType = Object.freeze({
     CRC_CONFIGURATION_REQUEST : "CRC_CONFIGURATION_REQUEST",
     SENSOR_REQUEST: "SENSOR_REQUEST",
     DEBUG_INFO_REQUEST: "DEBUG_INFO_REQUEST",
-    FUOTA_REQUEST: "FUOTA_REQUEST"
-   
+    FUOTA_REQUEST: "FUOTA_REQUEST",
+    RECOVERY_BEACON_KEY_UPDATE: "RECOVERY_BEACON_KEY_UPDATE",
+    RECOVERY_BEACON_ROOT_KEY_INDEX_GET: "RECOVERY_BEACON_ROOT_KEY_INDEX_GET"
 })
 const StatusType = Object.freeze({
    SUCCESS: "SUCCESS",
@@ -25,7 +26,7 @@ const StatusType = Object.freeze({
    ABOVE_HIGHER_BOUND: "ABOVE_HIGHER_BOUND",
    BAD_VALUE: "BAD_VALUE",
    TYPE_MISMATCH: "TYPE_MISMATCH",
-   OPERATION_ERROR : "OPERATION_ERROR",
+   OPERATION_ERROR: "OPERATION_ERROR",
    READ_ONLY: "READ_ONLY"
 })
 
@@ -62,6 +63,8 @@ function Response(responseType,
     globalCrc,
     localCrc,
     fuotaStatus,
+    recoveryBeaconKeyUpdateStatus,
+    recoveryBeaconRootKeyIndex,
     ){
         this.responseType = responseType;
         this.genericConfigurationSet = genericConfigurationSet;
@@ -74,6 +77,8 @@ function Response(responseType,
         this.globalCrc = globalCrc;
         this.localCrc = localCrc;
         this.fuotaStatus = fuotaStatus;
+        this.recoveryBeaconKeyUpdateStatus = recoveryBeaconKeyUpdateStatus;
+        this.recoveryBeaconRootKeyIndex = recoveryBeaconRootKeyIndex;
 }
 function ParameterClassConfigurationSet(group, parameters){
     this.group = group
@@ -125,6 +130,14 @@ function determineResponse(payload, multiFrame){
         case 8:
             response.responseType = ResponseType.FUOTA_REQUEST
             response.fuotaStatus = decodeFuotaStatus(payload.slice(startingByte+1))
+            break;
+        case 9:
+            response.responseType = ResponseType.RECOVERY_BEACON_KEY_UPDATE
+            response.recoveryBeaconKeyUpdateStatus = decodeRecoveryBeaconKeyUpdateStatus(payload[startingByte+1])
+            break;
+        case 10:
+            response.responseType = ResponseType.RECOVERY_BEACON_ROOT_KEY_INDEX_GET
+            response.recoveryBeaconRootKeyIndex = payload[startingByte+1]
             break;
         default:
             throw new Error("Response Type Unknown");
@@ -793,6 +806,8 @@ function determineStatusType(value){
             return StatusType.TYPE_MISMATCH
         case 6:
             return StatusType.OPERATION_ERROR
+        case 7:
+            return StatusType.READ_ONLY
         default:
           throw new Error("Status Type Unknown");
     }
@@ -829,6 +844,16 @@ function determineGroupType(value)
             return GroupType.TELEMETRY
         default:
             throw new Error("Unknown group")
+    }
+}
+
+function decodeRecoveryBeaconKeyUpdateStatus(value) {
+    switch (Number(value)) {
+        case 0: return "SUCCESS";
+        case 1: return "FAILED_INVALID_ROOT_INDEX";
+        case 2: return "FAILED_WRITING_ERROR";
+        case 3: return "FAILED_SAVING_ERROR";
+        default: throw new Error("Unknown recovery beacon key update status: " + value);
     }
 }
 

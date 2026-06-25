@@ -4,6 +4,13 @@ const MessageType = Object.freeze({
     ANSWER: "ANSWER"
 });
 
+const AnswerType = Object.freeze({
+    AIDING_POSITION: "AIDING_POSITION",
+    ECHO_REPLY: "ECHO_REPLY",
+    UPDATE_GPS_ALMANAC: "UPDATE_GPS_ALMANAC",
+    UPDATE_BEIDOU_ALMANAC: "UPDATE_BEIDOU_ALMANAC"
+});
+
 function AbeewayDownlinkPayload(downMessageType, 
         ackToken,
         command,
@@ -40,5 +47,6 @@ function determineMessageType(payload){
 module.exports = {
     AbeewayDownlinkPayload: AbeewayDownlinkPayload,
     MessageType: MessageType,
+    AnswerType: AnswerType,
     determineDownlinkHeader: determineDownlinkHeader
 }

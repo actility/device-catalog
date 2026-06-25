@@ -184,7 +184,12 @@
                            "name": "dataBuffering",
                            "type": "PropertyBoolean",
                            "description": "Data buffering status"
-                        } 
+                        },
+                        {
+                           "name": "fuota",
+                           "type": "PropertyBoolean",
+                           "description": "Firmware Update Over The Air"
+                        }
                      ]
                   },
                   {
@@ -318,6 +323,12 @@
                            "type": "BitMaskValue",
                            "valueFor": "dataBuffering",
                            "bitShift": 6,
+                           "length": 1
+                        },
+                        {
+                           "type": "BitMaskValue",
+                           "valueFor": "fuota",
+                           "bitShift": 7,
                            "length": 1
                         }
                      ]
@@ -1364,147 +1375,6 @@
              }
          ]
      },
-     {
-      "driverParameterName": "coreBuzzerMap",
-      "groupId": "0x01",
-      "localId": "0x0B",
-      "defaultValue": "{00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00}",
-      "description": "Defines LED patterns for system events. Configurable as 10 slices of 3 bytes each.",
-      "parameterType": {
-          "type": "ParameterTypeByteArray",
-          "size": 30,
-          "distinctValues": false,
-          "properties": [
-              {
-                  "name": "slice",
-                  "type": "PropertByteArray",
-                  "size": 3,
-                  "distinctValues": true,
-                  "properties": [
-                      {
-                          "name": "systemEventClass",
-                          "type": "PropertyString",
-                          "description": "System event class.",
-                          "possibleValues": [
-                              "BUTTON1",
-                              "BUTTON2",
-                              "BUZZER",
-                              "ACCELEROMETER",
-                              "POWER",
-                              "TEMPERATURE",
-                              "GEOLOCATION",
-                              "CONFIGURATION",
-                              "NETWORK",
-                              "CORE",
-                              "BLE_CONNECTIVITY",
-                              "USER"
-                          ],
-                          "firmwareValues": [
-                              0,
-                              1,
-                              2,
-                              3,
-                              4,
-                              5,
-                              6,
-                              7,
-                              8,
-                              9,
-                              10,
-                              11
-                          ]
-                      },
-                      {
-                          "name": "melodyCountExtension",
-                          "type": "PropertyNumber",
-                          "description": "Melody count extension"
-                      },
-                      {
-                          "name": "type",
-                          "type": "PropertyNumber",
-                          "description": "System event type."
-                      },
-                      {
-                          "name": "melodyIdentifier",
-                          "type": "PropertyString",
-                          "description": "Defines the LED behavior.",
-                          "possibleValues": [
-                              "NOT_CONFIGURED",
-                              "OFF",
-                              "MELODY_1",
-                              "MELODY_2",
-                              "MELODY_3"
-                          ],
-                          "firmwareValues": [
-                              0,
-                              1,
-                              2,
-                              3,
-                              4
-                          ]
-                      },
-                      {
-                          "name": "melodyCount",
-                          "type": "PropertyNumber",
-                          "description": "Number of times the melody is displayed."
-                      }
-                  ],
-                  "bitMask": [
-                      {
-                          "type": "BitMaskValue",
-                          "valueFor": "systemEventClass",
-                          "bitShift": 0,
-                          "length": 5
-                      },
-                      {
-                          "type": "BitMaskValue",
-                          "valueFor": "melodyCountExtension",
-                          "bitShift": 5,
-                          "length": 3
-                      },
-                      {
-                          "type": "BitMaskValue",
-                          "valueFor": "type",
-                          "bitShift": 8,
-                          "length": 8
-                      },
-                      {
-                          "type": "BitMaskValue",
-                          "valueFor": "melodyIdentifier",
-                          "bitShift": 16,
-                          "length": 5
-                      },
-                      {
-                          "type": "BitMaskValue",
-                          "valueFor": "patternLoop",
-                          "bitShift": 21,
-                          "length": 3
-                      }
-                  ]
-              }
-          ],
-          "byteMask": [
-              {
-                  "type": "BitMaskValue",
-                  "valueFor": "slice",
-                  "bitShift": 0,
-                  "length": 24
-              }
-          ]
-      },
-      "compatibleTrackerModels": [
-          {
-              "producerId": "abeeway",
-              "moduleId": "compact-tracker",
-              "version": "2.0"
-          },
-          {
-              "producerId": "abeeway",
-              "moduleId": "combo-compact-tracker",
-              "version": "1.0"
-          }
-      ]
-   },
    {
       "driverParameterName": "coreBuzzerMap",
       "groupId": "0x01",
@@ -1821,7 +1691,12 @@
                            "name": "dataBuffering",
                            "type": "PropertyBoolean",
                            "description": "Data buffering status"
-                        } 
+                        },
+                        {
+                           "name": "fuota",
+                           "type": "PropertyBoolean",
+                           "description": "Firmware Update Over The Air"
+                        }
                      ]
                   },
                   {
@@ -1967,6 +1842,12 @@
                            "type": "BitMaskValue",
                            "valueFor": "dataBuffering",
                            "bitShift": 6,
+                           "length": 1
+                        },
+                        {
+                           "type": "BitMaskValue",
+                           "valueFor": "fuota",
+                           "bitShift": 7,
                            "length": 1
                         }
                      ]
@@ -3460,6 +3341,144 @@
          }
       ]
    },
+   {
+      "driverParameterName":"lrRbeaconType",
+      "groupId":"0x04",
+      "localId":"0x08",
+      "defaultValue":2,
+      "description":"Recovery beacon type.",
+      "parameterType":{
+         "type":"ParameterTypeString",
+         "possibleValues":[
+            "SHORT_ID",
+            "LONG_ID"
+         ],
+         "firmwareValues":[
+            1,
+            2
+         ]
+      },
+      "compatibleTrackerModels":[
+         {
+            "producerId":"abeeway",
+            "moduleId":"compact-tracker",
+            "version":"2.0"
+         },
+         {
+            "producerId":"abeeway",
+            "moduleId":"combo-compact-tracker",
+            "version":"1.0"
+         }
+      ]
+   },
+   {
+      "driverParameterName":"lrRbeaconSosPeriod",
+      "groupId":"0x04",
+      "localId":"0x09",
+      "defaultValue":0,
+      "unit":"s",
+      "description":"Recovery beacon period in SOS.",
+      "parameterType":{
+         "type":"ParameterTypeNumber",
+         "range":{
+            "minimum":0,
+            "maximum":63
+         }
+      },
+      "compatibleTrackerModels":[
+         {
+            "producerId":"abeeway",
+            "moduleId":"compact-tracker",
+            "version":"2.0"
+         },
+         {
+            "producerId":"abeeway",
+            "moduleId":"combo-compact-tracker",
+            "version":"1.0"
+         }
+      ]
+   },
+   {
+      "driverParameterName":"lrRbeaconMotionPeriod",
+      "groupId":"0x04",
+      "localId":"0x0A",
+      "defaultValue":0,
+      "unit":"s",
+      "description":"Recovery beacon period in motion.",
+      "parameterType":{
+         "type":"ParameterTypeNumber",
+         "range":{
+            "minimum":0,
+            "maximum":63
+         }
+      },
+      "compatibleTrackerModels":[
+         {
+            "producerId":"abeeway",
+            "moduleId":"compact-tracker",
+            "version":"2.0"
+         },
+         {
+            "producerId":"abeeway",
+            "moduleId":"combo-compact-tracker",
+            "version":"1.0"
+         }
+      ]
+   },
+   {
+      "driverParameterName":"lrRbeaconStaticPeriod",
+      "groupId":"0x04",
+      "localId":"0x0B",
+      "defaultValue":0,
+      "unit":"s",
+      "description":"Recovery beacon period in static.",
+      "parameterType":{
+         "type":"ParameterTypeNumber",
+         "range":{
+            "minimum":0,
+            "maximum":63
+         }
+      },
+      "compatibleTrackerModels":[
+         {
+            "producerId":"abeeway",
+            "moduleId":"compact-tracker",
+            "version":"2.0"
+         },
+         {
+            "producerId":"abeeway",
+            "moduleId":"combo-compact-tracker",
+            "version":"1.0"
+         }
+      ]
+   },
+   {
+      "driverParameterName":"lrRbeaconRangingTimeout",
+      "groupId":"0x04",
+      "localId":"0x0C",
+      "defaultValue":120,
+      "unit":"s",
+      "description":"Maximum timeout to exit the ranging mode.",
+      "parameterType":{
+         "type":"ParameterTypeNumber",
+         "range":{
+            "minimum":120,
+            "maximum":300
+         }
+      },
+      "compatibleTrackerModels":[
+         {
+            "producerId":"abeeway",
+            "moduleId":"compact-tracker",
+            "version":"2.0"
+         },
+         {
+            "producerId":"abeeway",
+            "moduleId":"combo-compact-tracker",
+            "version":"1.0"
+         }
+      ]
+   },
          {
             "driverParameterName":"bleScanDuration",
             "groupId":"0x05",
@@ -4706,7 +4725,12 @@
                            "name": "dataBuffering",
                            "type": "PropertyBoolean",
                            "description": "Data buffering status"
-                        } 
+                        },
+                        {
+                           "name": "fuota",
+                           "type": "PropertyBoolean",
+                           "description": "Firmware Update Over The Air"
+                        }
                      ]
                   },
                   {
@@ -4840,6 +4864,12 @@
                            "type": "BitMaskValue",
                            "valueFor": "dataBuffering",
                            "bitShift": 6,
+                           "length": 1
+                        },
+                        {
+                           "type": "BitMaskValue",
+                           "valueFor": "fuota",
+                           "bitShift": 7,
                            "length": 1
                         }
                      ]
@@ -6009,6 +6039,24 @@
             "localId":"0x1A",
             "description":"FUOTA server IP/URL in string format",
             "defaultValue":"",
+            "parameterType":{
+               "type":"ParameterTypeAsciiString",
+               "maxSize":32
+            },
+            "compatibleTrackerModels":[
+               {
+                  "producerId":"abeeway",
+                  "moduleId":"combo-compact-tracker",
+                  "version":"1.0"
+               }
+            ]
+         },
+         {
+            "driverParameterName":"cellRestrictedPlmns",
+            "groupId":"0x0A",
+            "localId":"0x1B",
+            "defaultValue":"",
+            "description":"List of restricted Public Land Mobile Networks (PLMNs)",
             "parameterType":{
                "type":"ParameterTypeAsciiString",
                "maxSize":32

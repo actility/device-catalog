@@ -1,7 +1,6 @@
 let TriggerBitMapClass = require("./triggerBitMap");
 let bleClass = require("./ble/blePosition");
 let util = require("../../../util");
-let SatelliteInfoClass = require("./gnss/satelliteInfo");
 let gnssFixClass = require("./gnss/gnssFix")
 let gnssFailureClass = require("./gnss/gnssFailure")
 let wifiClass = require("./wifi/wifiPosition");
@@ -24,7 +23,7 @@ const PositionType = Object.freeze({
     BLE_SCAN1_SHORT: "BLE_SCAN1_SHORT",
     BLE_SCAN1_LONG: "BLE_SCAN1_LONG",
     BLE_SCAN2_MAC: "BLE_SCAN2_MAC",
-    BLE_SCAN2_SHORT: "BLE_SCAN12_SHORT",
+    BLE_SCAN2_SHORT: "BLE_SCAN2_SHORT",
     BLE_SCAN2_LONG: "BLE_SCAN2_LONG",
     GNSS: "GNSS",
     AIDED_GNSS: "AIDED_GNSS"
@@ -139,46 +138,7 @@ function determinePositionHeader(payload, startingByte){
 
 
 
-function determineLR1110GnssPositionMessage(payload){
-    let lr1110gnss = {};
-    lr1110gnss.time = (payload[0] << 8 + payload[1]) * 16;
-    var i = 0;
-    let satelliteInfos = [];
-    while (payload.length >= 2+4*(i+1)){
-        var satelliteInfo = new SatelliteInfoClass.SatelliteInfo();
-        var c = payload[2+4*i]>>6 & 0x03;
-        switch (c){
-            case 0:
-                satelliteInfo.constellation = SatelliteInfoClass.Constellation.GPS;
-                break;
-            case 1:
-                satelliteInfo.constellation = SatelliteInfoClass.Constellation.BEIDOU;
-                break;
-        }
-        var id = payload[2+4*i] & 0x3F;
-        var cnValue = payload[3+4*i]>>6 & 0x03;
-        switch (cnValue){
-            case 0:
-                satelliteInfo.cn = SatelliteInfoClass.CN[0];
-                break;
-            case 1:
-                satelliteInfo.cn = SatelliteInfoClass.CN[1];
-                break;
-            case 2:
-                satelliteInfo.cn = SatelliteInfoClass.CN[2];
-                break;
-            case 3:
-                satelliteInfo.cn = SatelliteInfoClass.CN[3];
-                break;
-        }
-        satelliteInfo.pseudoRangeValue = (payload[3+4*i] & 0x07) << 16 + payload[4+4*i] << 8 + payload[5+4*i];
-        
-        satelliteInfos.push(satelliteInfo);
-        i++;
-    }
-    lr1110gnss.satelliteInfos = satelliteInfos;
-    return lr1110gnss;
-}
+
 /************************ Position decodage *************************/
 /********************************************************************/
 function determinePosition(payload, multiFrame){
@@ -192,7 +152,7 @@ function determinePosition(payload, multiFrame){
     if (positionMessage.status == PositionStatus.SUCCESS || positionMessage.status == PositionStatus.NOT_SOLVABLE){
         switch (positionMessage.positionType){
             case PositionType.LR11xx_A_GNSS:
-                positionMessage.lr11xxAGnss = determineLR1110GnssPositionMessage(payload.slice(startingByte+4));
+                positionMessage.lr11xxAGnss = util.convertBytesToString(payload.slice(startingByte+4));
                 break;
             case PositionType.LR11xx_GNSS_NAV1:
                 positionMessage.lr11xxGnssNav1 = util.convertBytesToString(payload.slice(startingByte+4));

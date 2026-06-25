@@ -74,7 +74,8 @@ const Raison = Object.freeze({
     PARSING_ERROR: "PARSING_ERROR",
     FLASH_ERROR: "FLASH_ERROR",
     LENGTH_ERROR: "LENGTH_ERROR",
-    SIGNATURE_ERROR: "SIGNATURE_ERROR"
+    SIGNATURE_ERROR: "SIGNATURE_ERROR",
+    AUTHENTICATION_ERROR: "AUTHENTICATION_ERROR"
 });
 
 function Status(currentTemperature, resetCause, pageId, AT3Version,
@@ -443,6 +444,8 @@ function determineFuotaRaison(raison){
             return Raison.LENGTH_ERROR
         case 9:
             return Raison.SIGNATURE_ERROR
+        case 10:
+            return Raison.AUTHENTICATION_ERROR
         default:
             throw new Error("The fuota raison failure is unknown" )
 }}
