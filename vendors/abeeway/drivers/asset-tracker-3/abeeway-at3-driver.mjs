@@ -11140,9 +11140,9 @@ var require_telemetry2 = __commonJS({
   }
 });
 
-// ../vendors/abeeway/drivers/asset-tracker-3/extractPoints.js
+// ../../device-catalog/vendors/abeeway/drivers/asset-tracker-3/extractPoints.js
 var require_extractPoints = __commonJS({
-  "../vendors/abeeway/drivers/asset-tracker-3/extractPoints.js"(exports2) {
+  "../../device-catalog/vendors/abeeway/drivers/asset-tracker-3/extractPoints.js"(exports2) {
     function extractPoints(input) {
       var _a, _b, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m, _n, _o, _p, _q, _r, _s, _t, _u, _v, _w;
       let result = {};
