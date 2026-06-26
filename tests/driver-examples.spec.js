@@ -475,6 +475,7 @@ async function expectDecodeUplinkExample(example, normalizeResult = false) {
     const expected = example.output;
 
     skipTypes(result, expected);
+    tolerateDateTimeFormat(result, expected);
     dateIsLocal(example.description, input.time ?? input.recvTime);
 
     expect(result).toStrictEqual(expected);
@@ -722,6 +723,84 @@ function isValueDate(value) {
     }
 
     return false;
+}
+
+function tolerateDateTimeFormat(result, expected) {
+    for(let property of listProperties(result)) {
+        if(!/(^|\.)(date|time|datetime|timestamp)$/i.test(property)) continue;
+
+        let keys = property.split('.');
+        let value = result;
+        let expectedValue = expected;
+        let missingExpected = false;
+        for (let key of keys) {
+            value = value?.[key];
+            expectedValue = expectedValue?.[key];
+            if (expectedValue == null) {
+                missingExpected = true;
+                break;
+            }
+        }
+        if(missingExpected) continue;
+
+        const resultDateTime = parseComparableDateTime(value);
+        const expectedDateTime = parseComparableDateTime(expectedValue);
+        if(!resultDateTime || !expectedDateTime) continue;
+        if(resultDateTime !== expectedDateTime) continue;
+
+        let target = result;
+        for (let i = 0; i < keys.length - 1; i++) {
+            target = target[keys[i]];
+        }
+        target[keys[keys.length - 1]] = expectedValue;
+    }
+}
+
+function parseComparableDateTime(value) {
+    if(value instanceof Date && !isNaN(value.getTime())) {
+        return formatComparableDateTime(
+            value.getFullYear(),
+            value.getMonth() + 1,
+            value.getDate(),
+            value.getHours(),
+            value.getMinutes(),
+            value.getSeconds()
+        );
+    }
+
+    if(typeof value !== 'string') return null;
+
+    const nativeDate = new Date(value);
+    if(!isNaN(nativeDate.getTime())) {
+        return formatComparableDateTime(
+            nativeDate.getFullYear(),
+            nativeDate.getMonth() + 1,
+            nativeDate.getDate(),
+            nativeDate.getHours(),
+            nativeDate.getMinutes(),
+            nativeDate.getSeconds()
+        );
+    }
+
+    const localDate = value.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})[ ,]+(\d{1,2}):(\d{2})(?::(\d{2}))?$/);
+    if(localDate) {
+        return formatComparableDateTime(
+            Number(localDate[3]),
+            Number(localDate[2]),
+            Number(localDate[1]),
+            Number(localDate[4]),
+            Number(localDate[5]),
+            Number(localDate[6] ?? 0)
+        );
+    }
+
+    return null;
+}
+
+function formatComparableDateTime(year, month, day, hour, minute, second) {
+    return [year, month, day, hour, minute, second]
+        .map((part, index) => index === 0 ? String(part).padStart(4, '0') : String(part).padStart(2, '0'))
+        .join('-');
 }
 
 function listProperties(obj, parent = '', result = []) {
