@@ -1,0 +1,49 @@
+name: MICA WELL - Indoor Air Quality Sensor
+description: MICA WELL is the most comprehensive indoor air quality monitoring device in the MICA range, measuring temperature, relative humidity, CO2, TVOC, PM1.0, PM2.5, PM4.0, PM10, formaldehyde, ozone, NO2 and CO, combined with thermohygrometric comfort, ventilation efficiency, resistance to mold growth, virus spread resistance and indoor air quality indicators, with optional noise monitoring and full compatibility with Modbus and BACnet for professional BMS and certification-driven projects.
+logo: well.png
+deviceProfileIds:
+  - id: inbiot_RFGroup1_1.0.4a_classA
+    lorawanDeviceProfileID: ''
+  - id: inbiot_RFGroup2_1.0.4a_classA
+    lorawanDeviceProfileID: ''
+
+maxTxPower: 
+minTxPower: 
+maxTxEIRP: 
+minTxEIRP: 
+motionIndicator: RANDOM
+
+LoRaWANCertified: true
+modelId: inbiot:well:1
+protocolId:
+  - inbiot:inbiot-decoder:1
+
+sensors:
+  - temperature:Cel
+  - humidity:%RH
+  - co2Level:ppm
+  - concentration:ppb
+  - concentration:ug/m3
+  - concentration:ug/m3
+  - concentration:ug/m3
+  - concentration:ug/m3
+  - concentration:ppb
+  - concentration:ppb
+  - concentration:ppb
+  - concentration:ppm
+  - sound:dB
+
+examples:
+  inbiot:inbiot-decoder:1:
+    - Device Information Uplink (Firmware, MAC, Modbus Config)
+    - Device Configuration Uplink (Tx Period, LED, ADR)
+    - WELL Telemetry Uplink (Temp, Hum, CO2, PMs, CH2O, O3, NO2, CO)
+    - WELL Active Sensor Readings
+    - Downlink: Enable LED indicator
+    - Downlink: Set transmission period to 10 min and disable LED
+    - Downlink: Invoke software reset
+    - Downlink: Configure overarching parameters (Period, LED, ADR, TX Power)
+
+LoRaWANRelay:
+  canOperateAsARelay: false
+  defaultRelayActivation: false

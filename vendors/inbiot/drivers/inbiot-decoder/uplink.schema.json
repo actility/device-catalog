@@ -1,0 +1,58 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "object",
+      "properties": {
+        "timeToSend": { "type": "integer" },
+        "ventilation": { "type": "integer" },
+        "ledStatus": { "type": "boolean" },
+        "useWifi": { "type": "boolean" },
+        "lorawanRegion": { "type": "string" },
+        "lorawanChannelMask": { "type": "integer" },
+        "ledConfiguration": { "type": "integer" },
+        "touchEnable": { "type": "boolean" },
+        "type": { "type": "string", "enum": ["MINI", "MICA", "PLUS", "WELL", "NULL"] },
+        "temperature": { "type": "number" },
+        "humidity": { "type": "number" },
+        "co2": { "type": "integer" },
+        "tvoc": { "type": "integer" },
+        "pm2_5": { "type": "integer" },
+        "pm10": { "type": "integer" },
+        "ch2o": { "oneOf": [{ "type": "integer" }, { "type": "string" }] },
+        "pm1_0": { "type": "integer" },
+        "pm4": { "type": "integer" },
+        "o3": { "oneOf": [{ "type": "integer" }, { "type": "string" }] },
+        "no2": { "oneOf": [{ "type": "integer" }, { "type": "string" }] },
+        "co": { "oneOf": [{ "type": "number" }, { "type": "string" }] },
+        "vIndex": { "type": "integer" },
+        "tIndex": { "type": "integer" },
+        "virusIndex": { "type": "integer" },
+        "iaqIndex": { "type": "integer" },
+        "moldIndex": { "oneOf": [{ "type": "integer" }, { "type": "string" }] },
+        "dB": { "oneOf": [{ "type": "integer" }, { "type": "string" }] },
+        "counter": { "type": "integer" },
+        "fwVersion": { "type": "string" },
+        "model": { "type": "string" },
+        "micaType": { "type": "string" },
+        "mac": { "type": "string" },
+        "resetReason": { "type": "string" },
+        "modbusAddress": { "type": "integer" },
+        "modbusParity": { "type": "integer" },
+        "modbusBaudRate": { "type": "integer" }
+      },
+      "additionalProperties": false
+    },
+    "errors": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "warnings": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  },
+  "required": ["data", "errors", "warnings"],
+  "additionalProperties": false
+}

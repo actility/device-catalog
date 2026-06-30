@@ -1,0 +1,43 @@
+name: MICA - Indoor Air Quality Sensor
+description: MICA is a smart indoor air quality monitor that measures temperature, relative humidity, CO2, TVOC, PM2.5 and PM10, and delivers advanced virtual indicators including thermohygrometric comfort, ventilation efficiency, resistance to mold growth, virus spread resistance and overall indoor air quality, with optional noise monitoring and native BMS integration via Modbus and BACnet.
+logo: mica.png
+deviceProfileIds:
+  - id: inbiot_RFGroup1_1.0.4a_classA
+    lorawanDeviceProfileID: ''
+  - id: inbiot_RFGroup2_1.0.4a_classA
+    lorawanDeviceProfileID: ''
+
+maxTxPower: 
+minTxPower: 
+maxTxEIRP: 
+minTxEIRP: 
+motionIndicator: RANDOM
+
+LoRaWANCertified: true
+modelId: inbiot:mica:1
+protocolId:
+  - inbiot:inbiot-decoder:1
+specificationURL: https://cdn.prod.website-files.com/62cd3926b5783244d0a104e3/6790df56c42bff75f1f3a22d_a5d3244282390ed8a8d5a7e36d0d66ee_MICA_EN.pdf
+userGuideURL: https://cdn.prod.website-files.com/62cd3926b5783244d0a104e3/662b648f55ec7acd2696b922_3ed4a58768dcc3088bfc93cb03ed2b71_APP_EN.pdf
+
+sensors:
+  - temperature:Cel
+  - humidity:%RH
+  - co2Level:ppm
+  - concentration:ppb
+  - concentration:ug/m3
+  - concentration:ug/m3
+
+examples:
+  inbiot:inbiot-decoder:1:
+    - Device Information Uplink (Firmware, MAC, Modbus Config)
+    - Device Configuration Uplink (Tx Period, LED, ADR)
+    - MICA Telemetry Uplink (Temp, Hum, CO2, PMs, Sound)
+    - Downlink: Enable LED indicator
+    - Downlink: Set transmission period to 10 min and disable LED
+    - Downlink: Invoke software reset
+    - Downlink: Configure overarching parameters (Period, LED, ADR, TX Power)
+
+LoRaWANRelay:
+  canOperateAsARelay: false
+  defaultRelayActivation: false
