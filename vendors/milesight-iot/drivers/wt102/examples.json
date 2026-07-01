@@ -1,7 +1,51 @@
 [
   {
+    "description": "Basic report",
+    "type": "uplink",
+    "input": {
+      "bytes": "0064019d080432066c07073c",
+      "fPort": 85,
+      "recvTime": "2026-07-01T00:00:00.000Z"
+    },
+    "output": {
+      "data": {
+        "battery": 100,
+        "temperature": 22.1,
+        "valve_opening_degree": 50,
+        "target_temperature": 19,
+        "target_valve_opening_degree": 60
+      }
+    },
+    "points": {
+      "batteryLevel": {
+        "unitId": "%",
+        "record": 100
+      },
+      "temperature:1": {
+        "unitId": "Cel",
+        "record": 22.1,
+        "nature": "ambient"
+      },
+      "temperature:2": {
+        "unitId": "Cel",
+        "record": 19,
+        "nature": "target"
+      },
+      "percentage:1": {
+        "unitId": "%",
+        "record": 50,
+        "nature": "current valve opening"
+      },
+      "percentage:2": {
+        "unitId": "%",
+        "record": 60,
+        "nature": "target valve opening"
+      }
+    }
+  },
+  {
     "description": "Downlink encode: reboot",
-    "type": "downlink-encode",
+    "type": "downlink",
     "input": {
       "data": {
         "reboot": 1

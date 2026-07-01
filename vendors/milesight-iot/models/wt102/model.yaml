@@ -1,0 +1,37 @@
+# Commercial name of the model
+name: WT102 Smart Radiator Thermostat
+# Functional description of the product. Maximum 500 characters.
+description: "Milesight WT102 is a LoRaWAN smart radiator thermostat for room temperature control. It reports ambient and target temperature, battery level, valve opening information and supports remote configuration through LoRaWAN downlinks."
+# Logo of the device
+logo: wt102.png
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
+deviceProfileIds:
+  - id: msight_RFGroup1_1.0.3a_classA
+  - id: msight_RFGroup4_1.0.3a_classA
+  - id: msight_us915-22dBm_1.0.3a_classA
+  - id: msight_au915-22dBm_1.0.3a_classA
+  - id: msight_cn470-19dBm_1.0.3a_classA
+
+maxTxPower:
+minTxPower:
+maxTxEIRP:
+minTxEIRP:
+motionIndicator:
+
+LoRaWANCertified: false
+modelId: msight:wt102:1
+protocolId:
+  - msight:wt102:1
+specificationURL: https://www.milesight.com/iot/product/lorawan-sensor/wt102
+userGuideURL: https://github.com/Milesight-IoT/SensorDecoders/tree/main/wt-series/wt102
+sensors:
+  - batteryLevel:%
+  - percentage:%
+  - temperature:Cel
+examples:
+  msight:wt102:1:
+    - "Basic report"
+    - "Downlink encode: reboot"
+LoRaWANRelay:
+  canOperateAsARelay: false
+  defaultRelayActivation: false
