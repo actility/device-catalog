@@ -1,0 +1,24 @@
+name: TEK766 Ultrasonic Level Sensor
+description: Battery-powered LoRaWAN ultrasonic level sensor for tank level monitoring. It reports tank ullage or level measurements and device temperature over LoRaWAN.
+logo: tek-766.png
+deviceProfileIds:
+  - id: tekelek_RFGroup1_1.0.2revB_classA
+
+maxTxPower:
+minTxPower:
+maxTxEIRP:
+minTxEIRP:
+motionIndicator: near_static
+LoRaWANCertified: false
+
+modelId: tekelek:tek-766:1
+protocolId: spt-teke:tek-766-inc:1
+
+specificationURL: https://www.tek-asia.com/en/list_32/196.html
+userGuideURL: https://github.com/yreiser/tek766-ttn-decoder/blob/main/tek766_manual.pdf
+
+sensors:
+
+LoRaWANRelay:
+  canOperateAsARelay: false
+  defaultRelayActivation: false

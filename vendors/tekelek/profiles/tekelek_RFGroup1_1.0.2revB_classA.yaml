@@ -1,0 +1,49 @@
+id: tekelek_RFGroup1_1.0.2revB_classA
+loRaWANClass: A
+ISMbands: eu868
+motionIndicator: NEAR_STATIC
+
+mac:
+  minRx1Delay:
+  activationByPersonalization: true
+  overTheAirActivation: true
+  loRaWANMacVersion: 1.0.2
+  regionalParameterVersion: 1.0.2revB
+  devicesTxPowerCapabilities:
+    minTxPower:
+    maxTxPower: 14
+    minTxEIRP:
+    maxTxEIRP: 16
+  uplinkFrameRepetition:
+    maxNbTrans:
+    maxRedundancyForConfirmedUL:
+
+bootSettings:
+  rx1Delay: 1000
+  rx1DROffset:
+  rx2DataRate:
+  rx2Frequency:
+  pingSlotChannelDataRate:
+  pingSlotChannelFrequency:
+  beaconFrequency:
+  downlinkDwellTime: 0
+  uplinkDwellTime: 0
+
+supportedMACCommands:
+  linkADRReqAns: true
+  devStatusReqAns: true
+  joinRequestAccept: true
+  dutyCycleReqAns: true
+  linkCheckReqAns: true
+  rxParamSetupReqAns: true
+  rxTimingSetupReqAns: true
+  newChannelReqAns: true
+  dlChannelReqAns: true
+  txParamSetupReqAns: false
+  pingSlotChannelReqAns: false
+  pingSlotInfoReqAns: false
+  deviceTimeReqAns: false
+  beaconFreqReqAns: false
+  extendedNotifyNewEndDeviceReq: false
+
+devNonceCounterBased: false
