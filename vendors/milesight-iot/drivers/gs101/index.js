@@ -1,91 +1,12 @@
-/**
- * Payload Decoder for The Things Network
+﻿/**
+ * Payload Decoder
  *
- * Copyright 2022 Milesight IoT
+ * Copyright 2025 Milesight IoT
  *
  * @product GS101
  */
-function Decoder(bytes, port) {
-    var decoded = {};
-
-    for (var i = 0; i < bytes.length;) {
-        var channel_id = bytes[i++];
-        var channel_type = bytes[i++];
-        //gas status
-        if (channel_id === 0x05 && channel_type === 0x8e) {
-            decoded.state= (bytes[i] === 0) ? 'normal' : 'abnormal';
-            i += 1;
-        }
-	//vale
-        else if (channel_id === 0x06 && channel_type === 0x01) {
-            decoded.valve = (bytes[i] === 0) ? 'close' : 'open';
-            i += 1;
-        }
-        //relay
-        else if (channel_id === 0x07 && channel_type === 0x01) {
-            decoded.relay = (bytes[i] === 0) ? 'close' : 'open';
-            i += 1;
-        }
-        //remained life time for the sensor
-	else if (channel_id === 0x08 && channel_type === 0x90) {
-            decoded.life_remain = readUInt32LE(bytes.slice(i, i + 4)) + "s";
-            i += 4;
-        }
-        //alarm info
-	else if (channel_id === 0xff && channel_type === 0x3f) {
-            var alarm_type = bytes[i];
-            switch (alarm_type) {
-                case 0:
-                    decoded.alarm = 'power down';
-                    i += 1;
-                    break;
-                case 1:
-                    decoded.alarm = 'power on';
-                    i += 1;
-                    break;
-		case 2:
-		    decoded.alarm = 'sensor failure';
-                    i += 1;
-                    break;
-                case 3:
-                    decoded.alarm = 'sensor recover';
-                    i += 1;
-                    break;
-                case 4:
-                    decoded.alarm = 'sensor about to fail';
-                    i += 1;
-                    break;
-                case 5:
-                    decoded.alarm = 'sensor failed';
-                    i += 1;
-                    break;
-            }
-        }else {
-            break;
-        }
-    }
-
-    return decoded;
-}
-
-/* ******************************************
- * bytes to number
- ********************************************/
-function readUInt32LE(bytes) {
-    var value = (bytes[3] << 24) + (bytes[2] << 16) + (bytes[1] << 8) + bytes[0];
-    return value & 0xffffffff;
-}
-
-exports.decodeUplink = decodeUplink;
-
-function decodeUplink(input) {
-    var decoded = Decoder(input.bytes, input.fPort);
-    return { data: decoded };
-}
-
-var __milesightDownlinkCodec = (function () {
 /**
- * Payload Encoder
+ * Payload Decoder
  *
  * Copyright 2025 Milesight IoT
  *
@@ -96,22 +17,313 @@ var RAW_VALUE = 0x00;
 /* eslint no-redeclare: "off" */
 /* eslint-disable */
 // Chirpstack v4
-function encodeDownlink(input) {
-    var encoded = milesightDeviceEncode(input.data);
-    return { bytes: encoded };
+function decodeUplink(input) {
+    var decoded = milesightDeviceDecode(input.bytes);
+    return { data: decoded };
 }
 
 // Chirpstack v3
-function Encode(fPort, obj) {
-    return milesightDeviceEncode(obj);
+function Decode(fPort, bytes) {
+    return milesightDeviceDecode(bytes);
 }
 
 // The Things Network
-function Encoder(obj, port) {
-    return milesightDeviceEncode(obj);
+function Decoder(bytes, port) {
+    return milesightDeviceDecode(bytes);
 }
 /* eslint-enable */
 
+function milesightDeviceDecode(bytes) {
+    var decoded = {};
+
+    for (var i = 0; i < bytes.length; ) {
+        var channel_id = bytes[i++];
+        var channel_type = bytes[i++];
+
+        // IPSO VERSION
+        if (channel_id === 0xff && channel_type === 0x01) {
+            decoded.ipso_version = readProtocolVersion(bytes[i]);
+            i += 1;
+        }
+        // HARDWARE VERSION
+        else if (channel_id === 0xff && channel_type === 0x09) {
+            decoded.hardware_version = readHardwareVersion(bytes.slice(i, i + 2));
+            i += 2;
+        }
+        // FIRMWARE VERSION
+        else if (channel_id === 0xff && channel_type === 0x0a) {
+            decoded.firmware_version = readFirmwareVersion(bytes.slice(i, i + 2));
+            i += 2;
+        }
+        // TSL VERSION
+        else if (channel_id === 0xff && channel_type === 0xff) {
+            decoded.tsl_version = readTslVersion(bytes.slice(i, i + 2));
+            i += 2;
+        }
+        // SERIAL NUMBER
+        else if (channel_id === 0xff && channel_type === 0x16) {
+            decoded.sn = readSerialNumber(bytes.slice(i, i + 8));
+            i += 8;
+        }
+        // LORAWAN CLASS TYPE
+        else if (channel_id === 0xff && channel_type === 0x0f) {
+            decoded.lorawan_class = readLoRaWANClass(bytes[i]);
+            i += 1;
+        }
+        // RESET EVENT
+        else if (channel_id === 0xff && channel_type === 0xfe) {
+            decoded.reset_event = readResetEvent(1);
+            i += 1;
+        }
+        // DEVICE STATUS
+        else if (channel_id === 0xff && channel_type === 0x0b) {
+            decoded.device_status = readDeviceStatus(1);
+            i += 1;
+        }
+        // GAS STATUS
+        else if (channel_id === 0x05 && channel_type === 0x8e) {
+            decoded.gas_status = readGasStatus(bytes[i]);
+            decoded.state = decoded.gas_status; // legacy alias
+            i += 1;
+        }
+        // VALVE
+        else if (channel_id === 0x06 && channel_type === 0x01) {
+            decoded.valve_status = readOnOffStatus(bytes[i]);
+            decoded.valve = decoded.valve_status; // legacy alias
+            i += 1;
+        }
+        // RELAY
+        else if (channel_id === 0x07 && channel_type === 0x01) {
+            decoded.relay_output_status = readOnOffStatus(bytes[i]);
+            decoded.relay = decoded.relay_output_status; // legacy alias
+            i += 1;
+        }
+        // REMAINED LIFE TIME
+        else if (channel_id === 0x08 && channel_type === 0x90) {
+            decoded.life_remain = readUInt32LE(bytes.slice(i, i + 4));
+            i += 4;
+        }
+        // ALARM
+        else if (channel_id === 0xff && channel_type === 0x3f) {
+            decoded.alarm = readAlarmStatus(bytes[i]);
+            i += 1;
+        }
+        // DOWNLINK RESPONSE
+        else if (channel_id === 0xfe) {
+            var result = handle_downlink_response(channel_type, bytes, i);
+            decoded = Object.assign(decoded, result.data);
+            i = result.offset;
+        } else {
+            break;
+        }
+    }
+
+    return decoded;
+}
+
+function handle_downlink_response(channel_type, bytes, offset) {
+    var decoded = {};
+
+    switch (channel_type) {
+        case 0x03:
+            decoded.report_interval = readUInt16LE(bytes.slice(offset, offset + 2));
+            offset += 2;
+            break;
+        case 0x11:
+            decoded.timestamp = readUInt32LE(bytes.slice(offset, offset + 4));
+            offset += 4;
+            break;
+        case 0x12:
+            decoded.time_zone = readTimeZone(readInt16LE(bytes.slice(offset, offset + 2)));
+            offset += 2;
+            break;
+        case 0x2f:
+            decoded.led_indicator_enable = readEnableStatus(bytes[offset]);
+            offset += 1;
+            break;
+        case 0x3b:
+            decoded.time_sync_enable = readEnableStatus(bytes[offset]);
+            offset += 1;
+            break;
+        case 0x3e:
+            decoded.buzzer_enable = readEnableStatus(bytes[offset]);
+            offset += 1;
+            break;
+        case 0x61:
+            decoded.stop_buzzer_with_silent_time = readUInt16LE(bytes.slice(offset, offset + 2));
+            offset += 2;
+            break;
+        default:
+            throw new Error("unknown downlink response");
+    }
+
+    return { data: decoded, offset: offset };
+}
+
+function readProtocolVersion(bytes) {
+    var major = (bytes & 0xf0) >> 4;
+    var minor = bytes & 0x0f;
+    return "v" + major + "." + minor;
+}
+
+function readHardwareVersion(bytes) {
+    var major = (bytes[0] & 0xff).toString(16);
+    var minor = (bytes[1] & 0xff) >> 4;
+    return "v" + major + "." + minor;
+}
+
+function readFirmwareVersion(bytes) {
+    var major = (bytes[0] & 0xff).toString(16);
+    var minor = (bytes[1] & 0xff).toString(16);
+    return "v" + major + "." + minor;
+}
+
+function readTslVersion(bytes) {
+    var major = bytes[0] & 0xff;
+    var minor = bytes[1] & 0xff;
+    return "v" + major + "." + minor;
+}
+
+function readSerialNumber(bytes) {
+    var temp = [];
+    for (var idx = 0; idx < bytes.length; idx++) {
+        temp.push(("0" + (bytes[idx] & 0xff).toString(16)).slice(-2));
+    }
+    return temp.join("");
+}
+
+function readLoRaWANClass(type) {
+    var class_map = {
+        0: "Class A",
+        1: "Class B",
+        2: "Class C",
+        3: "Class CtoB",
+    };
+    return getValue(class_map, type);
+}
+
+function readResetEvent(status) {
+    var status_map = { 0: "normal", 1: "reset" };
+    return getValue(status_map, status);
+}
+
+function readDeviceStatus(status) {
+    var status_map = { 0: "off", 1: "on" };
+    return getValue(status_map, status);
+}
+
+function readGasStatus(type) {
+    var status_map = { 0: "normal", 1: "alarm" };
+    return getValue(status_map, type);
+}
+
+function readOnOffStatus(type) {
+    var status_map = { 0: "off", 1: "on" };
+    return getValue(status_map, type);
+}
+
+function readAlarmStatus(type) {
+    var status_map = {
+        0: "power off",
+        1: "power on",
+        2: "device fault",
+        3: "device fault recovered",
+        4: "device will be invalid soon",
+        5: "device invalid",
+    };
+    return getValue(status_map, type);
+}
+
+function readEnableStatus(type) {
+    var status_map = { 0: "disable", 1: "enable" };
+    return getValue(status_map, type);
+}
+
+function readTimeZone(time_zone) {
+    var timezone_map = { "-120": "UTC-12", "-110": "UTC-11", "-100": "UTC-10", "-95": "UTC-9:30", "-90": "UTC-9", "-80": "UTC-8", "-70": "UTC-7", "-60": "UTC-6", "-50": "UTC-5", "-40": "UTC-4", "-35": "UTC-3:30", "-30": "UTC-3", "-20": "UTC-2", "-10": "UTC-1", 0: "UTC", 10: "UTC+1", 20: "UTC+2", 30: "UTC+3", 35: "UTC+3:30", 40: "UTC+4", 45: "UTC+4:30", 50: "UTC+5", 55: "UTC+5:30", 57: "UTC+5:45", 60: "UTC+6", 65: "UTC+6:30", 70: "UTC+7", 80: "UTC+8", 90: "UTC+9", 95: "UTC+9:30", 100: "UTC+10", 105: "UTC+10:30", 110: "UTC+11", 120: "UTC+12", 127: "UTC+12:45", 130: "UTC+13", 140: "UTC+14" };
+    return getValue(timezone_map, time_zone);
+}
+
+/* eslint-disable */
+function readUInt8(bytes) {
+    return bytes & 0xff;
+}
+
+function readInt8(bytes) {
+    var ref = readUInt8(bytes);
+    return ref > 0x7f ? ref - 0x100 : ref;
+}
+
+function readUInt16LE(bytes) {
+    var value = (bytes[1] << 8) + bytes[0];
+    return value & 0xffff;
+}
+
+function readInt16LE(bytes) {
+    var ref = readUInt16LE(bytes);
+    return ref > 0x7fff ? ref - 0x10000 : ref;
+}
+
+function readUInt32LE(bytes) {
+    var value = (bytes[3] << 24) + (bytes[2] << 16) + (bytes[1] << 8) + bytes[0];
+    return (value & 0xffffffff) >>> 0;
+}
+
+function readInt32LE(bytes) {
+    var ref = readUInt32LE(bytes);
+    return ref > 0x7fffffff ? ref - 0x100000000 : ref;
+}
+
+function getValue(map, key) {
+    if (RAW_VALUE) return key;
+
+    var value = map[key];
+    if (!value) value = "unknown";
+    return value;
+}
+
+//if (!Object.assign) {
+    Object.defineProperty(Object, "assign", {
+        enumerable: false,
+        configurable: true,
+        writable: true,
+        value: function (target) {
+            "use strict";
+            if (target == null) {
+                throw new TypeError("Cannot convert first argument to object");
+            }
+
+            var to = Object(target);
+            for (var i = 1; i < arguments.length; i++) {
+                var nextSource = arguments[i];
+                if (nextSource == null) {
+                    continue;
+                }
+                nextSource = Object(nextSource);
+
+                var keysArray = Object.keys(Object(nextSource));
+                for (var nextIndex = 0, len = keysArray.length; nextIndex < len; nextIndex++) {
+                    var nextKey = keysArray[nextIndex];
+                    var desc = Object.getOwnPropertyDescriptor(nextSource, nextKey);
+                    if (desc !== undefined && desc.enumerable) {
+                        // concat array
+                        if (Array.isArray(to[nextKey]) && Array.isArray(nextSource[nextKey])) {
+                            to[nextKey] = to[nextKey].concat(nextSource[nextKey]);
+                        } else {
+                            to[nextKey] = nextSource[nextKey];
+                        }
+                    }
+                }
+            }
+            return to;
+        },
+    });
+//}
+
+
+exports.decodeUplink = decodeUplink;
+
+var __milesightDownlinkCodec = (function () {
 function milesightDeviceEncode(payload) {
     var encoded = [];
 
@@ -503,27 +715,12 @@ Buffer.prototype.writeInt32LE = function (value) {
 Buffer.prototype.toBytes = function () {
     return this.buffer;
 };
-    return {
-        encodeDownlink: encodeDownlink,
-        Encode: Encode,
-        Encoder: Encoder,
-    };
+
+    return { encodeDownlink: encodeDownlink, Encode: Encode, Encoder: Encoder };
 })();
 
-function encodeDownlink(input) {
-    var result = __milesightDownlinkCodec.encodeDownlink(input);
-    if (result && typeof input.fPort !== "undefined" && typeof result.fPort === "undefined") {
-        result.fPort = input.fPort;
-    }
-    return result;
-}
-
-function Encode(fPort, obj) {
-    return __milesightDownlinkCodec.Encode(fPort, obj);
-}
-
-function Encoder(obj, port) {
-    return __milesightDownlinkCodec.Encoder(obj, port);
-}
+function encodeDownlink(input) { var r=__milesightDownlinkCodec.encodeDownlink(input); if (r && typeof input.fPort!=='undefined' && typeof r.fPort==='undefined'){r.fPort=input.fPort;}else{r.fPort=85;} return r; }
+function Encode(fPort,obj){return __milesightDownlinkCodec.Encode(fPort,obj);}
+function Encoder(obj,port){return __milesightDownlinkCodec.Encoder(obj,port);}
 
 exports.encodeDownlink = encodeDownlink;

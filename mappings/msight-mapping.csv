@@ -810,6 +810,7 @@ gas_status,GAS Status,,boolean,R,BOOL,,,,,,group133,GAS Status
 life_remain,Life Remain,,number,R,UINT32,,s,,,,group133,Life Remain
 relay_output_status,Relay Output Status,0,boolean,RW,BOOL,,,,,,group133,Relay Output Status
 valve_status,Valve Status,0,boolean,RW,BOOL,,,,,,group133,Valve Status
+stop_buzzer_with_silent_time,Stop Buzzer With Silent Time,,boolean,W,BOOL,,,,,,group133,Stop Buzzer With Silent Time
 alarm_config.condition,Alarm Config (Condition),,number,RW,UINT8,,,,,,group134,Alarm Config (Condition)
 alarm_config.continue_time,Alarm Config (Continue Time),,number,RW,UINT16,,s,,,,group134,Alarm Config (Continue Time)
 alarm_config.lock_time,Alarm Config (Lock Time),,number,RW,UINT16,,s,,,,group134,Alarm Config (Lock Time)
@@ -1232,6 +1233,7 @@ sniffer_config.channel_id,Sniffer Config Channel ID,,number,RW,UINT8,,,,,,group1
 sniffer_config.sniffer_interval,Sniffer Config Interval,,number,RW,UINT32,,ms,,,,group141,Sniffer Config Interval
 text,Text,,string,R,STRING,,,,,,group141,Text
 timestamp,Timestamp,,number,RW,UINT32,,,,,,group141,Timestamp
+rejoin,Rejoin,,boolean,W,BOOL,,,,,,group141,Rejoin
 analog_input_1,Analog Input (Channel 1),,number,R,FLOAT,,,,,,group142,Analog Input (Channel 1)
 analog_input_1_alarm,Analog Input Alarm (Channel 1),,number,R,UINT8,,,,,,group142,Analog Input Alarm (Channel 1)
 analog_input_1_avg,Analog Input Avg (Channel 1),,number,R,FLOAT,,,,,,group142,Analog Input Avg (Channel 1)
@@ -1541,14 +1543,14 @@ delay_task.switch_8,Delay Task (Switch 8),,boolean,RW,BOOL,,,,,,group162,Delay T
 delay_task.task_id,Delay Task (Task ID),,number,RW,UINT8,,,,,,group162,Delay Task (Task ID)
 power_consumption,Power Consumption,1,number,R,UINT32,,Wh,,,,group162,Power Consumption
 power_consumption_enable,Power Consumption Enable,,boolean,RW,BOOL,,,,,,group162,Power Consumption Enable
-switch_1,Switch 1,1,boolean,R,BOOL,,,,,,group162,Switch 1
-switch_2,Switch 2,0,boolean,R,BOOL,,,,,,group162,Switch 2
-switch_3,Switch 3,0,boolean,R,BOOL,,,,,,group162,Switch 3
-switch_4,Switch 4,0,boolean,R,BOOL,,,,,,group162,Switch 4
-switch_5,Switch 5,0,boolean,R,BOOL,,,,,,group162,Switch 5
-switch_6,Switch 6,0,boolean,R,BOOL,,,,,,group162,Switch 6
-switch_7,Switch 7,0,boolean,R,BOOL,,,,,,group162,Switch 7
-switch_8,Switch 8,0,boolean,R,BOOL,,,,,,group162,Switch 8
+switch_1,Switch 1,1,boolean,RW,BOOL,,,,,,group162,Switch 1
+switch_2,Switch 2,0,boolean,RW,BOOL,,,,,,group162,Switch 2
+switch_3,Switch 3,0,boolean,RW,BOOL,,,,,,group162,Switch 3
+switch_4,Switch 4,0,boolean,RW,BOOL,,,,,,group162,Switch 4
+switch_5,Switch 5,0,boolean,RW,BOOL,,,,,,group162,Switch 5
+switch_6,Switch 6,0,boolean,RW,BOOL,,,,,,group162,Switch 6
+switch_7,Switch 7,0,boolean,RW,BOOL,,,,,,group162,Switch 7
+switch_8,Switch 8,0,boolean,RW,BOOL,,,,,,group162,Switch 8
 voltage,Voltage,222.6,number,R,FLOAT,,V,1,,,group162,Voltage
 battery,Battery,97,number,R,UINT8,,%,,1,100,group163,Battery
 change_report_enable,Change Report Enable,1,boolean,RW,BOOL,,,,,,group163,Change Report Enable

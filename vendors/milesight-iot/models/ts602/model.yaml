@@ -1,0 +1,43 @@
+# Commercial name of the model
+name: TS602 3-in-1 Temperature & Humidity Sensor
+# Functional description of the product. Maximum 500 characters.
+description: "Milesight TS602 3-in-1 Temperature & Humidity Sensor."
+# Logo of the device
+logo:
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
+deviceProfileIds:
+  - id: msight_RFGroup1_1.0.3a_classA
+  - id: msight_RFGroup4_1.0.3a_classA
+  - id: msight_us915-22dBm_1.0.3a_classA
+  - id: msight_cn470-19dBm_1.0.3a_classA
+  - id: msight_au915-22dBm_1.0.3a_classA
+
+# You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings.
+maxTxPower:
+minTxPower:
+maxTxEIRP:
+minTxEIRP:
+motionIndicator:
+
+# Is your device certified by the LoRa Alliance? Possible values: true, false.
+LoRaWANCertified: false
+# Format: `<8 characters max>:<16 characters max>:<digits only>`
+modelId: msight:ts602:1
+# <vendorId>:<protocolName>:<protocolVersion>
+protocolId:
+  - msight:ts602:1
+# DataSheet URL (optional)
+specificationURL:
+# User Guide URL (optional)
+userGuideURL:
+# <sensor>:<unitId> Available sensors following Actility ontology
+sensors:
+  - temperature:Cel
+  - humidity:%RH
+# Driver examples
+examples:
+  msight:ts602:1:
+    - "Example 1"
+LoRaWANRelay:
+  canOperateAsARelay: false
+  defaultRelayActivation: false
