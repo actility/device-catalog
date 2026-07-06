@@ -42,6 +42,44 @@
         }
     },
     {
+        "description": "Downlink encode: socket_status on",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "socket_status": "on"
+            },
+            "fPort": 85
+        },
+        "output": {
+            "bytes": [
+                8,
+                1,
+                255,
+                255
+            ],
+            "fPort": 85
+        }
+    },
+    {
+        "description": "Downlink encode: socket_status off",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "socket_status": "off"
+            },
+            "fPort": 85
+        },
+        "output": {
+            "bytes": [
+                8,
+                0,
+                255,
+                255
+            ],
+            "fPort": 85
+        }
+    },
+    {
         "description": "Downlink encode: report_interval",
         "type": "downlink-encode",
         "input": {

@@ -1468,7 +1468,7 @@ function encodeDownlink(input) {
     if (result && typeof input.fPort !== "undefined" && typeof result.fPort === "undefined") {
         result.fPort = input.fPort;
     } else {
-        result.fPort = 85;
+        result.fPort = 100;
     }
     return result;
 }

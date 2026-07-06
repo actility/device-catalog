@@ -730,6 +730,8 @@ function encodeDownlink(input) {
     var result = __milesightDownlinkCodec.encodeDownlink(input);
     if (result && typeof input.fPort !== "undefined" && typeof result.fPort === "undefined") {
         result.fPort = input.fPort;
+    } else if (result && typeof result.fPort === "undefined") {
+        result.fPort = 1;
     }
     return result;
 }

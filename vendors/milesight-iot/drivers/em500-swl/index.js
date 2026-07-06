@@ -1154,7 +1154,7 @@ function hexStringToBytes(hex) {
     return { encodeDownlink: encodeDownlink, Encode: Encode, Encoder: Encoder };
 })();
 
-function encodeDownlink(input) { var r=__milesightDownlinkCodec.encodeDownlink(input); if (r && typeof input.fPort!=='undefined' && typeof r.fPort==='undefined'){r.fPort=input.fPort;}else{r.fPort=85;} return r; }
+function encodeDownlink(input) { var r=__milesightDownlinkCodec.encodeDownlink(input); if (r && typeof input.fPort!=='undefined' && typeof r.fPort==='undefined'){r.fPort=input.fPort;}else{r.fPort=100;} return r; }
 function Encode(fPort,obj){return __milesightDownlinkCodec.Encode(fPort,obj);}
 function Encoder(obj,port){return __milesightDownlinkCodec.Encoder(obj,port);}
 
