@@ -85,14 +85,15 @@ function milesightDeviceDecode(bytes) {
             decoded.battery = readUInt8(bytes[i]);
             i += 1;
         }
-        // PIR
+        // PIR — output as integer (0/1) for BACnet BOOL compatibility
+        // readPirStatus() returns a string with RAW_VALUE=0, which BACnet converts to NaN→0
         else if (channel_id === 0x03 && channel_type === 0x00) {
-            decoded.pir = readPirStatus(bytes[i]);
+            decoded.pir = bytes[i] === 1 ? 1 : 0;
             i += 1;
         }
-        // DAYLIGHT
+        // DAYLIGHT — same fix: output integer (0=dim, 1=bright) for BACnet BOOL compatibility
         else if (channel_id === 0x04 && channel_type === 0x00) {
-            decoded.daylight = readDaylight(bytes[i]);
+            decoded.daylight = bytes[i] === 1 ? 1 : 0;
             i += 1;
         }
         // DOWNLINK RESPONSE
@@ -445,7 +446,7 @@ function encodeDownlink(input) {
     if (result && typeof input.fPort !== "undefined" && typeof result.fPort === "undefined") {
         result.fPort = input.fPort;
     } else {
-        result.fPort = 85;
+        result.fPort = 100;
     }
     return result;
 }
