@@ -388,7 +388,7 @@ power_consumption,Power Consumption,74,number,R,UINT32,,Wh,3,,,group77,Power Con
 power_consumption_enable,Power Consumption Enable,1,boolean,RW,BOOL,,,,,,group77,Power Consumption Enable
 report_interval,Report Interval,10,number,RW,UINT16,,s,,60,64800,group77,Report Interval
 reset_power_consumption,Reset Power Consumption,0,boolean,RW,BOOL,,,,,,group77,Reset Power Consumption
-socket_status,Socket Status,1,boolean,RW,BOOL,,,,,,group77,Socket Status
+socket_status,Socket Status,on,string,RW,STRING,,,,,,group77,"Socket Status: on or off"
 voltage,Voltage,235,number,R,FLOAT,,V,1,,,group77,Voltage
 led_indicator_mode,Led Indicator Mode,,number,RW,UINT8,,,,0,2,group78,"Led Indicator Mode: 0 = OFF, 2 = Blink"
 screen_display_time_enable,Screen Display Time Enable,,boolean,RW,BOOL,,,,,,group79,Screen Display Time Enable
@@ -408,7 +408,7 @@ pm2_5,PM2.5,7,number,R,UINT16,,Âµg/mÂ³,,,,group82,PM2.5
 pm2_5_collection_interval,PM2.5 Collection Interval,,number,RW,UINT16,,s,,,,group82,PM2.5 Collection Interval
 screen_display_element_settings.pm10,Screen Display (PM10),,boolean,RW,BOOL,,,,,,group82,Screen Display (PM10)
 screen_display_element_settings.pm2_5,Screen Display (PM2.5),,boolean,RW,BOOL,,,,,,group82,Screen Display (PM2.5)
-pir,PIR,1,boolean,R,BOOL,,,,,,group83,PIR
+pir,PIR,normal,string,R,STRING,,,,,,group83,PIR (normal / trigger)
 alarm_config.enable,Alarm Config (Enable),,boolean,RW,BOOL,,,,,,group84,Alarm Config (Enable)
 collection_interval,Collection Interval,,number,RW,UINT16,,minute,,,,group85,Collection Interval
 temperature_alarm_settings.condition,Temperature Alarm Settings (Threshold Condition),,number,RW,UINT8,,,,,,group86,Temperature Alarm Settings (Threshold Condition)
@@ -576,7 +576,7 @@ delay_task.switch_3,Delay Task (Switch 3),,boolean,RW,BOOL,,,,,,group113,Delay T
 d2d_command,D2D Command,0,string,RW,STRING,,,,,,group114,D2D Command
 delay_task.delay_time,Delay Task (Delay Time),10,number,RW,UINT16,,s,,,,group114,Delay Task (Delay Time)
 delay_task.frame_count,Delay Task (Frame Count),1,number,RW,UINT8,,,,,,group114,Delay Task (Frame Count)
-delay_task.socket_status,Delay Task (Socket Status),1,boolean,RW,BOOL,,,,,,group114,Delay Task (Socket Status)
+delay_task.socket_status,Delay Task (Socket Status),on,string,RW,STRING,,,,,,group114,"Delay Task (Socket Status): on or off"
 led_indicator_reserve,LED Indicator Reserve,1,boolean,RW,BOOL,,,,,,group114,LED Indicator Reserve
 overload_current_protection.enable,Overload Current Protection (Enable),1,boolean,RW,BOOL,,,,,,group114,Overload Current Protection (Enable)
 temperature,Temperature,20,number,R,FLOAT,,Cel,1,-20,100,group114,Temperature
@@ -1498,7 +1498,7 @@ depth,Depth,,number,RW,UINT16,,mm,,,,group154,Depth
 distance,Distance,62,number,R,UINT16,,mm,,,,group154,Distance
 remaining,Remaining,69,number,R,UINT8,,%,,,,group154,Remaining
 report_interval,Report Interval,10,number,RW,UINT16,,s,,3600,64800,group154,Report Interval
-daylight,Daylight,0,boolean,R,BOOL,,,,,,group155,Daylight
+daylight,Daylight,dim,string,R,STRING,,,,,,group155,Daylight (dim / bright)
 light_alarm_config.threshold_max,Light Alarm Config (Threshold Max),,number,RW,UINT16,,,,,,group155,Light Alarm Config (Threshold Max)
 light_alarm_config.threshold_min,Light Alarm Config (Threshold Min),,number,RW,UINT16,,,,,,group155,Light Alarm Config (Threshold Min)
 occupancy,Occupancy,0,boolean,R,BOOL,,,,,,group156,Occupancy
