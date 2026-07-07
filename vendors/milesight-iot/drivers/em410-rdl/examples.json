@@ -1,94 +1,104 @@
 [
-  {
-    "description": "Example 1",
-    "type": "uplink",
-    "input": {
-      "bytes": "01755AFFFE0103672C010482F4010500019482F401640201B482F40101",
-      "fPort": 100,
-      "time": "2024-11-03T17:00:00.000+02:00"
-    },
-    "output": {
-      "data": {
-        "battery": 90,
-        "distance": 500,
-        "event": [
-          {
+    {
+        "description": "Example 1",
+        "type": "uplink",
+        "input": {
+            "bytes": "01755AFFFE0103672C010482F4010500019482F401640201B482F40101",
+            "fPort": 100,
+            "time": "2024-11-03T17:00:00.000+02:00"
+        },
+        "output": {
+            "data": {
+                "battery": 90,
+                "distance": 500,
+                "event": [
+                    {
+                        "distance": 500,
+                        "distance_alarm": "threshold alarm",
+                        "distance_mutation": 612
+                    },
+                    {
+                        "distance": 500,
+                        "distance_exception": "blind spot alarm"
+                    }
+                ],
+                "position": "tilt",
+                "reset_event": "reset",
+                "temperature": 30
+            }
+        },
+        "points": {
+            "batteryLevel": {
+                "unitId": "%",
+                "record": 90
+            },
+            "status:2": {
+                "unitId": "state",
+                "record": true,
+                "nature": "tilt"
+            },
+            "status:3": {
+                "unitId": "state",
+                "record": true,
+                "nature": "reset"
+            },
+            "distance:3": {
+                "unitId": "mm",
+                "record": 500
+            },
+            "temperature:2": {
+                "unitId": "Cel",
+                "record": 30
+            },
+            "distance:1": {
+                "unitId": "mm",
+                "records": [
+                    {
+                        "value": 500,
+                        "eventTime": null
+                    },
+                    {
+                        "value": 500,
+                        "eventTime": null
+                    }
+                ],
+                "nature": "events"
+            },
+            "status:1": {
+                "unitId": "state",
+                "record": true,
+                "nature": "distance_alarm events"
+            }
+        },
+        "bacnet": {
+            "reset_event": "reset",
+            "battery": 90,
             "distance": 500,
-            "distance_alarm": "threshold alarm",
-            "distance_mutation": 612
-          },
-          {
-            "distance": 500,
-            "distance_exception": "blind spot alarm"
-          }
-        ],
-        "position": "tilt",
-        "reset_event": "reset",
-        "temperature": 30
-      }
+            "position": "tilt",
+            "temperature": 30
+        }
     },
-    "points": {
-      "batteryLevel": {
-        "unitId": "%",
-        "record": 90
-      },
-      "status:2": {
-        "unitId": "state",
-        "record": true,
-        "nature": "tilt"
-      },
-      "status:3": {
-        "unitId": "state",
-        "record": true,
-        "nature": "reset"
-      },
-      "distance:3": {
-        "unitId": "mm",
-        "record": 500
-      },
-      "temperature:2": {
-        "unitId": "Cel",
-        "record": 30
-      },
-      "distance:1": {
-        "unitId": "mm",
-        "records": [
-          {
-            "value": 500,
-            "eventTime": null
-          },
-          {
-            "value": 500,
-            "eventTime": null
-          }
-        ],
-        "nature": "events"
-      },
-      "status:1": {
-        "unitId": "state",
-        "record": true,
-        "nature": "distance_alarm events"
-      }
+    {
+        "description": "Downlink encode: report_interval",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "report_interval": 600
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                142,
+                0,
+                88,
+                2
+            ],
+            "fPort": 100
+        },
+        "bacnet": {
+            "report_interval": 600
+        }
     }
-  },
-  {
-    "description": "Downlink encode: report_interval",
-    "type": "downlink-encode",
-    "input": {
-      "data": {
-        "report_interval": 600
-      },
-      "fPort": 100
-    },
-    "output": {
-      "bytes": [
-        255,
-        142,
-        0,
-        88,
-        2
-      ],
-      "fPort": 100
-    }
-  }
 ]

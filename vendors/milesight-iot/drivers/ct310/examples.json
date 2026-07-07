@@ -1,87 +1,96 @@
 [
-  {
-    "description": "Example 1",
-    "type": "uplink",
-    "input": {
-      "bytes": "0397102700008499B80BD007C40905",
-      "fPort": 100,
-      "time": "2024-11-03T17:00:00.000+02:00"
-    },
-    "output": {
-      "data": {
-        "current_chn1": 250,
-        "current_chn1_alarm": {
-          "current_over_range_alarm": "yes",
-          "current_over_range_alarm_release": "no",
-          "current_threshold_alarm": "yes",
-          "current_threshold_alarm_release": "no"
+    {
+        "description": "Example 1",
+        "type": "uplink",
+        "input": {
+            "bytes": "0397102700008499B80BD007C40905",
+            "fPort": 100,
+            "time": "2024-11-03T17:00:00.000+02:00"
         },
-        "current_chn1_max": 300,
-        "current_chn1_min": 200,
-        "current_chn1_total": 100
-      }
+        "output": {
+            "data": {
+                "current_chn1": 250,
+                "current_chn1_alarm": {
+                    "current_over_range_alarm": "yes",
+                    "current_over_range_alarm_release": "no",
+                    "current_threshold_alarm": "yes",
+                    "current_threshold_alarm_release": "no"
+                },
+                "current_chn1_max": 300,
+                "current_chn1_min": 200,
+                "current_chn1_total": 100
+            }
+        },
+        "points": {
+            "current:1": {
+                "unitId": "A",
+                "record": 250,
+                "nature": "chn1"
+            },
+            "current:2": {
+                "unitId": "A",
+                "record": 300,
+                "nature": "chn1_max"
+            },
+            "current:3": {
+                "unitId": "A",
+                "record": 200,
+                "nature": "chn1_min"
+            },
+            "current:4": {
+                "unitId": "A",
+                "record": 100,
+                "nature": "chn1_total"
+            },
+            "status:1": {
+                "unitId": "state",
+                "record": true,
+                "nature": "over_range_alarm"
+            },
+            "status:2": {
+                "unitId": "state",
+                "record": false,
+                "nature": "over_range_alarm_release"
+            },
+            "status:3": {
+                "unitId": "state",
+                "record": true,
+                "nature": "threshold_alarm"
+            },
+            "status:4": {
+                "unitId": "state",
+                "record": false,
+                "nature": "threshold_alarm_release"
+            }
+        },
+        "bacnet": {
+            "current_chn1": 250,
+            "current_chn1_max": 300,
+            "current_chn1_min": 200,
+            "current_chn1_total": 100
+        }
     },
-    "points": {
-      "current:1": {
-        "unitId": "A",
-        "record": 250,
-        "nature": "chn1"
-      },
-      "current:2": {
-        "unitId": "A",
-        "record": 300,
-        "nature": "chn1_max"
-      },
-      "current:3": {
-        "unitId": "A",
-        "record": 200,
-        "nature": "chn1_min"
-      },
-      "current:4": {
-        "unitId": "A",
-        "record": 100,
-        "nature": "chn1_total"
-      },
-      "status:1": {
-        "unitId": "state",
-        "record": true,
-        "nature": "over_range_alarm"
-      },
-      "status:2": {
-        "unitId": "state",
-        "record": false,
-        "nature": "over_range_alarm_release"
-      },
-      "status:3": {
-        "unitId": "state",
-        "record": true,
-        "nature": "threshold_alarm"
-      },
-      "status:4": {
-        "unitId": "state",
-        "record": false,
-        "nature": "threshold_alarm_release"
-      }
+    {
+        "description": "Downlink encode: report_interval",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "report_interval": 600
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                142,
+                0,
+                88,
+                2
+            ],
+            "fPort": 100
+        },
+        "bacnet": {
+            "report_interval": 600
+        }
     }
-  },
-  {
-    "description": "Downlink encode: report_interval",
-    "type": "downlink-encode",
-    "input": {
-      "data": {
-        "report_interval": 600
-      },
-      "fPort": 100
-    },
-    "output": {
-      "bytes": [
-        255,
-        142,
-        0,
-        88,
-        2
-      ],
-      "fPort": 100
-    }
-  }
 ]

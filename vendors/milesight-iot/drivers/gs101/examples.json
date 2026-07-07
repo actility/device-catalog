@@ -1,1 +1,67 @@
-[{"description":"Uplink - gas normal, valve/relay on","type":"uplink","input":{"bytes":"FF0BFF","fPort":85,"time":"2024-01-01T00:00:00.000Z"},"output":{"data":{"gas_status":"normal","valve_status":"on","relay_output_status":"on","life_remain":60}},"points":{"duration":{"unitId":"s","record":60,"nature":"battery life"},"status:1":{"unitId":"state","record":false,"nature":"gas alarm"},"status:2":{"unitId":"state","record":true,"nature":"valve"},"status:3":{"unitId":"state","record":true,"nature":"relay"}}},{"description":"Downlink encode: reboot","type":"downlink-encode","input":{"data":{"reboot":1},"fPort":85},"output":{"bytes":[190,1],"fPort":85}}]
+[
+    {
+        "description": "Uplink - gas normal, valve/relay on",
+        "type": "uplink",
+        "input": {
+            "bytes": "FF0BFF",
+            "fPort": 85,
+            "time": "2024-01-01T00:00:00.000Z"
+        },
+        "output": {
+            "data": {
+                "gas_status": "normal",
+                "valve_status": "on",
+                "relay_output_status": "on",
+                "life_remain": 60
+            }
+        },
+        "points": {
+            "duration": {
+                "unitId": "s",
+                "record": 60,
+                "nature": "battery life"
+            },
+            "status:1": {
+                "unitId": "state",
+                "record": false,
+                "nature": "gas alarm"
+            },
+            "status:2": {
+                "unitId": "state",
+                "record": true,
+                "nature": "valve"
+            },
+            "status:3": {
+                "unitId": "state",
+                "record": true,
+                "nature": "relay"
+            }
+        },
+        "bacnet": {
+            "gas_status": "normal",
+            "life_remain": 60,
+            "relay_output_status": "on",
+            "valve_status": "on"
+        }
+    },
+    {
+        "description": "Downlink encode: reboot",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "reboot": 1
+            },
+            "fPort": 85
+        },
+        "output": {
+            "bytes": [
+                190,
+                1
+            ],
+            "fPort": 85
+        },
+        "bacnet": {
+            "reboot": 1
+        }
+    }
+]

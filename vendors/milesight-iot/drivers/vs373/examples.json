@@ -1,80 +1,93 @@
 [
-  {
-    "description": "Example 1",
-    "type": "uplink",
-    "input": {
-      "bytes": "03F802010A000F0004F900010002000305FA100000200000300000400006FB3412000301",
-      "fPort": 100,
-      "time": "2024-11-03T17:00:00.000+02:00"
+    {
+        "description": "Example 1",
+        "type": "uplink",
+        "input": {
+            "bytes": "03F802010A000F0004F900010002000305FA100000200000300000400006FB3412000301",
+            "fPort": 100,
+            "time": "2024-11-03T17:00:00.000+02:00"
+        },
+        "output": {
+            "data": {
+                "detection_status": "in_bed",
+                "region_1_occupancy": "occupied",
+                "region_2_occupancy": "vacant",
+                "region_3_occupancy": "occupied",
+                "region_4_occupancy": "unknown",
+                "target_status": "motionless",
+                "use_time_now": 10,
+                "use_time_today": 15
+            }
+        },
+        "points": {
+            "duration:1": {
+                "unitId": "minute",
+                "record": 10,
+                "nature": "now"
+            },
+            "duration:2": {
+                "unitId": "minute",
+                "record": 15,
+                "nature": "today"
+            },
+            "status:5": {
+                "unitId": "state",
+                "record": true,
+                "nature": "in_bed"
+            },
+            "status:6": {
+                "unitId": "state",
+                "record": false,
+                "nature": "target moving"
+            },
+            "status:1": {
+                "unitId": "state",
+                "record": true,
+                "nature": "region_1 occupied"
+            },
+            "status:2": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_2 occupied"
+            },
+            "status:3": {
+                "unitId": "state",
+                "record": true,
+                "nature": "region_3 occupied"
+            }
+        },
+        "bacnet": {
+            "detection_status": "in_bed",
+            "region_1_occupancy": "occupied",
+            "region_2_occupancy": "vacant",
+            "region_3_occupancy": "occupied",
+            "region_4_occupancy": "unknown",
+            "target_status": "motionless",
+            "use_time_now": 10,
+            "use_time_today": 15
+        }
     },
-    "output": {
-      "data": {
-        "detection_status": "in_bed",
-        "region_1_occupancy": "occupied",
-        "region_2_occupancy": "vacant",
-        "region_3_occupancy": "occupied",
-        "region_4_occupancy": "unknown",
-        "target_status": "motionless",
-        "use_time_now": 10,
-        "use_time_today": 15
-      }
-    },
-    "points": {
-      "duration:1": {
-        "unitId": "minute",
-        "record": 10,
-        "nature": "now"
-      },
-      "duration:2": {
-        "unitId": "minute",
-        "record": 15,
-        "nature": "today"
-      },
-      "status:5": {
-        "unitId": "state",
-        "record": true,
-        "nature": "in_bed"
-      },
-      "status:6": {
-        "unitId": "state",
-        "record": false,
-        "nature": "target moving"
-      },
-      "status:1": {
-        "unitId": "state",
-        "record": true,
-        "nature": "region_1 occupied"
-      },
-      "status:2": {
-        "unitId": "state",
-        "record": false,
-        "nature": "region_2 occupied"
-      },
-      "status:3": {
-        "unitId": "state",
-        "record": true,
-        "nature": "region_3 occupied"
-      }
+    {
+        "description": "Downlink encode: report_interval",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "report_interval": 600
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                142,
+                0,
+                88,
+                2
+            ],
+            "fPort": 100
+        },
+        "bacnet": {
+            "report_interval": 600
+        }
     }
-  },
-  {
-    "description": "Downlink encode: report_interval",
-    "type": "downlink-encode",
-    "input": {
-      "data": {
-        "report_interval": 600
-      },
-      "fPort": 100
-    },
-    "output": {
-      "bytes": [
-        255,
-        142,
-        0,
-        88,
-        2
-      ],
-      "fPort": 100
-    }
-  }
 ]

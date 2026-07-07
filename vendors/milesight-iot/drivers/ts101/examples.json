@@ -1,51 +1,58 @@
 [
-  {
-    "description": "Example 1",
-    "type": "uplink",
-    "input": {
-      "bytes": "01756403670701",
-      "fPort": 100,
-      "time": "2024-11-03T17:00:00.000+02:00"
+    {
+        "description": "Example 1",
+        "type": "uplink",
+        "input": {
+            "bytes": "01756403670701",
+            "fPort": 100,
+            "time": "2024-11-03T17:00:00.000+02:00"
+        },
+        "output": {
+            "data": {
+                "battery": 100,
+                "temperature": 26.3
+            }
+        },
+        "points": {
+            "batteryLevel": {
+                "unitId": "%",
+                "record": 100
+            },
+            "temperature:2": {
+                "unitId": "Cel",
+                "record": 26.3
+            },
+            "status": {
+                "unitId": "state",
+                "record": false,
+                "nature": "temperature_alarm"
+            }
+        },
+        "bacnet": {
+            "battery": 100,
+            "temperature": 26.3
+        }
     },
-    "output": {
-      "data": {
-        "battery": 100,
-        "temperature": 26.3
-      }
-    },
-    "points": {
-      "batteryLevel": {
-        "unitId": "%",
-        "record": 100
-      },
-      "temperature:2": {
-        "unitId": "Cel",
-        "record": 26.3
-      },
-      "status": {
-        "unitId": "state",
-        "record": false,
-        "nature": "temperature_alarm"
-      }
+    {
+        "description": "Downlink encode: report_interval",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "report_interval": 600
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                3,
+                88,
+                2
+            ],
+            "fPort": 100
+        },
+        "bacnet": {
+            "report_interval": 600
+        }
     }
-  },
-  {
-    "description": "Downlink encode: report_interval",
-    "type": "downlink-encode",
-    "input": {
-      "data": {
-        "report_interval": 600
-      },
-      "fPort": 100
-    },
-    "output": {
-      "bytes": [
-        255,
-        3,
-        88,
-        2
-      ],
-      "fPort": 100
-    }
-  }
 ]

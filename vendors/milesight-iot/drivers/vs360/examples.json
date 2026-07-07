@@ -1,85 +1,98 @@
 [
-  {
-    "description": "Example 1",
-    "type": "uplink",
-    "input": {
-      "bytes": "01756402756484CC011108110185CCE803E90301",
-      "fPort": 100,
-      "time": "2024-11-03T17:00:00.000+02:00"
+    {
+        "description": "Example 1",
+        "type": "uplink",
+        "input": {
+            "bytes": "01756402756484CC011108110185CCE803E90301",
+            "fPort": 100,
+            "time": "2024-11-03T17:00:00.000+02:00"
+        },
+        "output": {
+            "data": {
+                "battery_main": 100,
+                "battery_node": 100,
+                "period_count_alarm": "threshold_alarm",
+                "period_in": 1000,
+                "period_out": 1001,
+                "total_count_alarm": "threshold_alarm",
+                "total_in": 4353,
+                "total_out": 4360
+            }
+        },
+        "points": {
+            "batteryLevel:1": {
+                "unitId": "%",
+                "record": 100,
+                "nature": "battery_main"
+            },
+            "batteryLevel:2": {
+                "unitId": "%",
+                "record": 100,
+                "nature": "battery_node"
+            },
+            "status:1": {
+                "unitId": "state",
+                "record": true,
+                "nature": "period count threshold alarm"
+            },
+            "status:2": {
+                "unitId": "state",
+                "record": true,
+                "nature": "total count threshold alarm"
+            },
+            "counter:1": {
+                "unitId": "count",
+                "record": 1000,
+                "nature": "period_in"
+            },
+            "counter:2": {
+                "unitId": "count",
+                "record": 1001,
+                "nature": "period_out"
+            },
+            "counter:3": {
+                "unitId": "count",
+                "record": 4353,
+                "nature": "total_in"
+            },
+            "counter:4": {
+                "unitId": "count",
+                "record": 4360,
+                "nature": "total_out"
+            }
+        },
+        "bacnet": {
+            "period_in": 1000,
+            "period_out": 1001,
+            "total_in": 4353,
+            "total_out": 4360,
+            "battery_main": 100,
+            "battery_node": 100,
+            "period_count_alarm": "threshold_alarm",
+            "total_count_alarm": "threshold_alarm"
+        }
     },
-    "output": {
-      "data": {
-        "battery_main": 100,
-        "battery_node": 100,
-        "period_count_alarm": "threshold_alarm",
-        "period_in": 1000,
-        "period_out": 1001,
-        "total_count_alarm": "threshold_alarm",
-        "total_in": 4353,
-        "total_out": 4360
-      }
-    },
-    "points": {
-      "batteryLevel:1": {
-        "unitId": "%",
-        "record": 100,
-        "nature": "battery_main"
-      },
-      "batteryLevel:2": {
-        "unitId": "%",
-        "record": 100,
-        "nature": "battery_node"
-      },
-      "status:1": {
-        "unitId": "state",
-        "record": true,
-        "nature": "period count threshold alarm"
-      },
-      "status:2": {
-        "unitId": "state",
-        "record": true,
-        "nature": "total count threshold alarm"
-      },
-      "counter:1": {
-        "unitId": "count",
-        "record": 1000,
-        "nature": "period_in"
-      },
-      "counter:2": {
-        "unitId": "count",
-        "record": 1001,
-        "nature": "period_out"
-      },
-      "counter:3": {
-        "unitId": "count",
-        "record": 4353,
-        "nature": "total_in"
-      },
-      "counter:4": {
-        "unitId": "count",
-        "record": 4360,
-        "nature": "total_out"
-      }
+    {
+        "description": "Downlink encode: report_interval",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "report_interval": 600
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                142,
+                0,
+                88,
+                2
+            ],
+            "fPort": 100
+        },
+        "bacnet": {
+            "report_interval": 600
+        }
     }
-  },
-  {
-    "description": "Downlink encode: report_interval",
-    "type": "downlink-encode",
-    "input": {
-      "data": {
-        "report_interval": 600
-      },
-      "fPort": 100
-    },
-    "output": {
-      "bytes": [
-        255,
-        142,
-        0,
-        88,
-        2
-      ],
-      "fPort": 100
-    }
-  }
 ]

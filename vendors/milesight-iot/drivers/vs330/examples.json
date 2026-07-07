@@ -1,58 +1,67 @@
 [
-  {
-    "description": "Example 1",
-    "type": "uplink",
-    "input": {
-      "bytes": "01756202820F00038E01048E01",
-      "fPort": 100,
-      "time": "2024-11-03T17:00:00.000+02:00"
+    {
+        "description": "Example 1",
+        "type": "uplink",
+        "input": {
+            "bytes": "01756202820F00038E01048E01",
+            "fPort": 100,
+            "time": "2024-11-03T17:00:00.000+02:00"
+        },
+        "output": {
+            "data": {
+                "battery": 98,
+                "distance": 15,
+                "occupancy": "occupied",
+                "calibration_status": "success"
+            }
+        },
+        "points": {
+            "batteryLevel": {
+                "unitId": "%",
+                "record": 98
+            },
+            "distance": {
+                "unitId": "m",
+                "record": 15
+            },
+            "status:1": {
+                "unitId": "state",
+                "record": true,
+                "nature": "occupied"
+            },
+            "status:2": {
+                "unitId": "state",
+                "record": true,
+                "nature": "calibration_status success"
+            }
+        },
+        "bacnet": {
+            "occupancy": "occupied",
+            "battery": 98,
+            "calibration_status": "success",
+            "distance": 15
+        }
     },
-    "output": {
-      "data": {
-        "battery": 98,
-        "distance": 15,
-        "occupancy": "occupied",
-        "calibration_status": "success"
-      }
-    },
-    "points": {
-      "batteryLevel": {
-        "unitId": "%",
-        "record": 98
-      },
-      "distance": {
-        "unitId": "m",
-        "record": 15
-      },
-      "status:1": {
-        "unitId": "state",
-        "record": true,
-        "nature": "occupied"
-      },
-      "status:2": {
-        "unitId": "state",
-        "record": true,
-        "nature": "calibration_status success"
-      }
+    {
+        "description": "Downlink encode: report_interval",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "report_interval": 600
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                3,
+                88,
+                2
+            ],
+            "fPort": 100
+        },
+        "bacnet": {
+            "report_interval": 600
+        }
     }
-  },
-  {
-    "description": "Downlink encode: report_interval",
-    "type": "downlink-encode",
-    "input": {
-      "data": {
-        "report_interval": 600
-      },
-      "fPort": 100
-    },
-    "output": {
-      "bytes": [
-        255,
-        3,
-        88,
-        2
-      ],
-      "fPort": 100
-    }
-  }
 ]

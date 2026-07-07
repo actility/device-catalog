@@ -1,39 +1,55 @@
 [
-  {
-    "description": "Example 1",
-    "type": "uplink",
-    "input": {
-      "bytes": "0397102700000498B80B00000000",
-      "fPort": 100,
-      "time": "2024-11-03T17:00:00.000+02:00"
+    {
+        "description": "Example 1",
+        "type": "uplink",
+        "input": {
+            "bytes": "0397102700000498B80B00000000",
+            "fPort": 100,
+            "time": "2024-11-03T17:00:00.000+02:00"
+        },
+        "output": {
+            "data": {
+                "total_current": 100,
+                "current": 30
+            }
+        },
+        "points": {
+            "charge": {
+                "unitId": "Ah",
+                "record": 100,
+                "nature": "total_current"
+            },
+            "current": {
+                "unitId": "A",
+                "record": 30
+            }
+        },
+        "bacnet": {
+            "current": 30,
+            "total_current": 100
+        }
     },
-    "output": {
-      "data": {
-        "total_current": 100,
-        "current": 30
-      }
-    },
-    "points": {
-      "charge": {
-        "unitId": "Ah",
-        "record": 100,
-        "nature": "total_current"
-      },
-      "current": {
-        "unitId": "A",
-        "record": 30
-      }
+    {
+        "description": "Downlink encode: report_interval",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "report_interval": 600
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                142,
+                0,
+                88,
+                2
+            ],
+            "fPort": 100
+        },
+        "bacnet": {
+            "report_interval": 600
+        }
     }
-  },
-  {
-    "description": "Downlink encode: report_interval",
-    "type": "downlink-encode",
-    "input": {
-      "data": {
-        "report_interval": 600
-      },
-      "fPort": 100
-    },
-    "output": {"bytes": [255, 142, 0, 88, 2], "fPort": 100}
-  }
 ]
