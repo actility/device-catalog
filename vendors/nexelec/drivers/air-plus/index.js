@@ -332,3 +332,4 @@ function decodeUplink(input) {
         return data;
     }
 } // end of decoder
+exports.decodeUplink = decodeUplink;

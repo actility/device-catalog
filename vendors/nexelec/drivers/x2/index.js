@@ -726,3 +726,5 @@ function decodeUplink(input) {
     }
 } // end of decoder
 
+
+exports.decodeUplink = decodeUplink;
