@@ -1,0 +1,32 @@
+name: SIGN+
+description: "Connected 7-in-1 indoor air quality sensor with E-ink display. SIGN+ measures temperature, humidity, CO2, VOC, presence, luminosity and noise. Up to 20 years battery life."
+logo: sign-plus.png
+deviceProfileIds:
+    - id: nexelec_RFGroup1_1.0.4-RP2-1.0.3_classA
+maxTxPower:
+minTxPower:
+maxTxEIRP:
+minTxEIRP:
+motionIndicator: near_static
+LoRaWANCertified: false
+modelId: nexelec:sign-plus:1
+protocolId: nexelec:x2:1
+specificationURL: https://support.nexelec.fr/fr/support/solutions/articles/80001156722-datasheet-sign-
+userGuideURL:
+sensors:
+- co2Level:ppm
+- humidity:%RH
+- illuminance:lx
+- intensity:dB
+- interval:minute
+- percentage:%
+- temperature:Cel
+examples:
+  nexelec:x2:1:
+    - "SIGN+ Periodic Data"
+    - "SIGN+ Product Status"
+    - "SIGN+ Product Configuration"
+    - "SIGN+ Product Screen Configuration"
+LoRaWANRelay:
+  canOperateAsARelay: false
+  defaultRelayActivation: false

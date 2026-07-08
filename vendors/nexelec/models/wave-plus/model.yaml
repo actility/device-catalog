@@ -1,0 +1,29 @@
+name: WAVE+
+description: "Connected 5-in-1 indoor air quality sensor with E-ink display. WAVE+ monitors temperature, humidity, CO2, luminosity and presence. Up to 20 years battery life."
+logo: wave-plus.png
+deviceProfileIds:
+    - id: nexelec_RFGroup1_1.0.4-RP2-1.0.3_classA
+maxTxPower:
+minTxPower:
+maxTxEIRP:
+minTxEIRP:
+motionIndicator: near_static
+LoRaWANCertified: false
+modelId: nexelec:wave-plus:1
+protocolId: nexelec:x2:1
+specificationURL: https://support.nexelec.fr/fr/support/solutions/articles/80001156719-datasheet-wave-
+userGuideURL:
+sensors:
+- co2Level:ppm
+- humidity:%RH
+- illuminance:lx
+- interval:minute
+- percentage:%
+- temperature:Cel
+examples:
+  nexelec:x2:1:
+    - "WAVE+ Periodic Data"
+    - "WAVE+ Product Configuration"
+LoRaWANRelay:
+  canOperateAsARelay: false
+  defaultRelayActivation: false

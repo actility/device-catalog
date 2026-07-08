@@ -1,0 +1,28 @@
+name: AIR+
+description: "Connected CO detector with temperature and humidity monitoring. AIR+ alerts occupants in real time in case of carbon monoxide danger. Designed for 10 years of operation. Wall-mounted installation."
+logo: air-plus.png
+deviceProfileIds:
+    - id: nexelec_RFGroup1_1.0.2b_classA
+maxTxPower:
+minTxPower:
+maxTxEIRP:
+minTxEIRP:
+motionIndicator: near_static
+LoRaWANCertified: false
+modelId: nexelec:air-plus:1
+protocolId: nexelec:air-plus:1
+specificationURL: https://support.nexelec.fr/fr/support/solutions/articles/80001088483-fiche-produit-air-
+userGuideURL:
+sensors:
+- amount:ppm
+- humidity:%RH
+- temperature:Cel
+examples:
+  nexelec:air-plus:1:
+    - "AIR+ CO Alarm Status"
+    - "AIR+ Product Status"
+    - "AIR+ Real Time"
+    - "AIR+ Product Function Configuration"
+LoRaWANRelay:
+  canOperateAsARelay: false
+  defaultRelayActivation: false

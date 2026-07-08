@@ -1,0 +1,29 @@
+name: TRACK+
+description: "Outdoor air quality monitoring station. TRACK+ measures fine particles (PM0.5/PM1/PM2.5/PM5/PM10), temperature, humidity and atmospheric pressure with integrated GPS. LoRaWAN and LTE 4G connectivity. Solar, AC or battery powered."
+logo: track-plus.png
+deviceProfileIds:
+    - id: nexelec_RFGroup1_1.0.4-RP2-1.0.3_classA
+maxTxPower:
+minTxPower:
+maxTxEIRP:
+minTxEIRP:
+motionIndicator: near_static
+LoRaWANCertified: false
+modelId: nexelec:track-plus:1
+protocolId: nexelec:track-plus:1
+specificationURL: https://support.nexelec.fr/fr/support/solutions/articles/80001170202-fiche-technique-track-
+userGuideURL:
+sensors:
+- concentration:ug/m3
+- humidity:%RH
+- pressure:hPa
+- temperature:Cel
+examples:
+  nexelec:track-plus:1:
+    - "TRACK+ Periodic Data"
+    - "TRACK+ Product Status"
+    - "TRACK+ Positioning Frame"
+    - "TRACK+ Product Configuration"
+LoRaWANRelay:
+  canOperateAsARelay: false
+  defaultRelayActivation: false

@@ -1,0 +1,27 @@
+name: FEEL+
+description: "Connected 2-in-1 indoor comfort sensor. FEEL+ measures ambient temperature and humidity with E-ink screen readout. Configurable via NFC. Up to 20 years battery life."
+logo: feel-plus.png
+deviceProfileIds:
+    - id: nexelec_RFGroup1_1.0.4-RP2-1.0.3_classA
+maxTxPower:
+minTxPower:
+maxTxEIRP:
+minTxEIRP:
+motionIndicator: near_static
+LoRaWANCertified: false
+modelId: nexelec:feel-plus:1
+protocolId: nexelec:x2:1
+specificationURL: https://support.nexelec.fr/fr/support/solutions/articles/80001156716-datasheet-feel-
+userGuideURL:
+sensors:
+- humidity:%RH
+- interval:minute
+- temperature:Cel
+examples:
+  nexelec:x2:1:
+    - "FEEL+ Periodic Data"
+    - "FEEL+ Temperature Historical Data"
+    - "FEEL+ Humidity Historical Data"
+LoRaWANRelay:
+  canOperateAsARelay: false
+  defaultRelayActivation: false

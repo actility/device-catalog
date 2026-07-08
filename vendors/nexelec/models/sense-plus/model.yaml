@@ -1,0 +1,33 @@
+name: SENSE+
+description: "Connected 9-in-1 indoor air quality sensor with E-ink display. SENSE+ monitors temperature, humidity, CO2, VOC, noise, luminosity, presence, pressure and fine particles (PM1/PM2.5/PM10). Up to 20 years battery life."
+logo: sense-plus.png
+deviceProfileIds:
+    - id: nexelec_RFGroup1_1.0.4-RP2-1.0.3_classA
+maxTxPower:
+minTxPower:
+maxTxEIRP:
+minTxEIRP:
+motionIndicator: near_static
+LoRaWANCertified: false
+modelId: nexelec:sense-plus:1
+protocolId: nexelec:x2:1
+specificationURL: https://support.nexelec.fr/fr/support/solutions/articles/80001156720-datasheet-sense-
+userGuideURL:
+sensors:
+- co2Level:ppm
+- concentration:ug/m3
+- humidity:%RH
+- illuminance:lx
+- intensity:dB
+- interval:minute
+- percentage:%
+- pressure:hPa
+- temperature:Cel
+examples:
+  nexelec:x2:1:
+    - "SENSE+ Periodic Data"
+    - "SENSE+ Presence Alert"
+    - "SENSE+ Product Configuration"
+LoRaWANRelay:
+  canOperateAsARelay: false
+  defaultRelayActivation: false

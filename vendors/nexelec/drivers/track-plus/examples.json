@@ -1,0 +1,121 @@
+[
+  {
+    "description": "TRACK+ Periodic Data",
+    "type": "uplink",
+    "input": {
+      "bytes": "B50101000102000103000304000005000006000013001214000007020C08015D0903F50A0338",
+      "fPort": 1,
+      "recvTime": "2024-01-15T10:00:00.000Z"
+    },
+    "output": {
+      "data": {
+        "productType": "TRACK+ LoRa",
+        "messageType": "Periodic Data",
+        "pm1": { "value": 1, "unit": "ug/m3" },
+        "pm2_5": { "value": 1, "unit": "ug/m3" },
+        "pm10": { "value": 3, "unit": "ug/m3" },
+        "pm2_5_c": { "value": 0, "unit": "pcs/cm3" },
+        "pm10_c": { "value": 0, "unit": "pcs/cm3" },
+        "pm5_c": { "value": 0, "unit": "pcs/cm3" },
+        "pm1_c": { "value": 18, "unit": "pcs/cm3" },
+        "pm0_5_c": { "value": 0, "unit": "pcs/cm3" },
+        "temperature": { "value": 22.4, "unit": "°C" },
+        "humidity": { "value": 34.9, "unit": "%RH" },
+        "pressure": { "value": 1013, "unit": "hPa" },
+        "co2": { "value": 824, "unit": "ppm" }
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "concentration:1": { "unitId": "ug/m3", "record": 1 },
+      "concentration:2": { "unitId": "ug/m3", "record": 1 },
+      "concentration:3": { "unitId": "ug/m3", "record": 3 },
+      "temperature:1": { "unitId": "Cel", "record": 22.4 },
+      "humidity:1": { "unitId": "%RH", "record": 34.9 },
+      "pressure:1": { "unitId": "hPa", "record": 1013 }
+    }
+  },
+  {
+    "description": "TRACK+ Product Status",
+    "type": "uplink",
+    "input": {
+      "bytes": "B5020406FFFF007C40",
+      "fPort": 1,
+      "recvTime": "2024-01-15T10:00:00.000Z"
+    },
+    "output": {
+      "data": {
+        "productType": "TRACK+ LoRa",
+        "messageType": "Product Status",
+        "hwVersion": 4,
+        "swVersion": 0.6,
+        "batteryVoltage": "Error",
+        "powerIn": { "value": 0, "unit": "Wh" },
+        "batteryBalance": { "value": -124, "unit": "Wh" },
+        "productOrientation": "Incorrect orientation",
+        "workingMode": "Normal",
+        "powerSource": "External(AC,DC or PV)"
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": null
+  },
+  {
+    "description": "TRACK+ Positioning Frame",
+    "type": "uplink",
+    "input": {
+      "bytes": "B503000000000000000000",
+      "fPort": 1,
+      "recvTime": "2024-01-15T10:00:00.000Z"
+    },
+    "output": {
+      "data": {
+        "productType": "TRACK+ LoRa",
+        "messageType": "Positionning Frame",
+        "latitudeDegrees": { "value": 0, "units": "°" },
+        "latitudeMinutes": { "value": 0, "units": "min" },
+        "latitudeSeconds": { "value": 0, "units": "s" },
+        "latitudeMilliseconds": { "value": 0, "units": "ms" },
+        "latitudeNorthSouth": "North",
+        "longitudeDegrees": { "value": 0, "units": "°" },
+        "longitudeMinutes": { "value": 0, "units": "min" },
+        "longitudeSeconds": { "value": 0, "units": "s" },
+        "longitudeMilliseconds": { "value": 0, "units": "ms" },
+        "longitudeEastWest": "East",
+        "HDOP": "Very good",
+        "satellitesNumber": 0,
+        "fixType": "No fix"
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": null
+  },
+  {
+    "description": "TRACK+ Product Configuration",
+    "type": "uplink",
+    "input": {
+      "bytes": "B504004A84",
+      "fPort": 1,
+      "recvTime": "2024-01-15T10:00:00.000Z"
+    },
+    "output": {
+      "data": {
+        "productType": "TRACK+ LoRa",
+        "messageType": "Product Configuration",
+        "reconfigurationSource": "NFC",
+        "reconfigurationState": "Total Succes",
+        "co2Autocalibration": "Automatic calibration desactivated",
+        "region": "EU868",
+        "measurePeriod": { "value": 10, "unit": "minutes" },
+        "measureMode": "Continuous",
+        "timeZone": "UTC -8"
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": null
+  }
+]
