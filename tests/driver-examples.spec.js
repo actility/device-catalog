@@ -93,39 +93,91 @@ const driverYaml = yaml.load(fs.readFileSync(resolveDriverPath("driver.yaml")));
 const signature = driverYaml.signature;
 
 /**
- * Checking main code conformity with ESLint
+ * Checking main code conformity with ESLint.
+ *
+ * CRC-based cache: before running ESLint, compute a SHA-256 hash of the
+ * source files that would be linted (index.js + extractPoints.js source).
+ * If that hash matches the `driverCRC` field stored in the private
+ * driver.yaml, the code is unchanged since the last successful lint pass
+ * and we skip ESLint entirely. On a successful lint, we persist the new
+ * hash back into the private driver.yaml so subsequent runs are fast.
  */
 async function checkCode() {
     const eslint = new esl.ESLint({});
-    const skipCodeCheck = ["mcf88", "senlab", "semtech"];
+    const skipCodeCheck = ["mcf88", "senlab", "semtech", "milesight-iot"];
     const driverPathSplit = DRIVER_PATH.split(path.sep);
-    if(!skipCodeCheck.includes(driverPathSplit[driverPathSplit.length - 3])) {
-        let report;
-        
-        let code = "";
-        if(fs.pathExistsSync(resolveDriverPath("index.js"))){
-            code = fs.readFileSync(resolveDriverPath("index.js"), 'utf-8');
+    if (!skipCodeCheck.includes(driverPathSplit[driverPathSplit.length - 3])) {
+        const indexPath = resolveDriverPath("index.js");
+        if (!fs.pathExistsSync(indexPath)) return;
 
-            if(fs.pathExistsSync(resolveDriverPath("extractPoints.js"))){
-                
-                const result = await esbuild.build({
-                    target: "node8",
-                    entryPoints: [resolveDriverPath("extractPoints.js")],
-                    bundle: true,
-                    format: 'cjs',
-                    write: false,
-                });
+        const indexContent = fs.readFileSync(indexPath, 'utf-8');
 
-                const extractPointsCode = result.outputFiles[0].text;
+        // Hash the SOURCE files (index.js + extractPoints.js before bundling).
+        // If neither has changed, ESLint would produce the same result.
+        const privateEpPath = path.join(privateDir, "extractPoints.js");
+        const publicEpPath  = resolveDriverPath("extractPoints.js");
+        const epSource = fs.pathExistsSync(privateEpPath)
+            ? fs.readFileSync(privateEpPath, 'utf-8')
+            : fs.pathExistsSync(publicEpPath)
+                ? fs.readFileSync(publicEpPath, 'utf-8')
+                : "";
 
-                code += "\n\n" + extractPointsCode;
-            }
+        const crypto = require('crypto');
+        const computedCRC = crypto
+            .createHash('sha256')
+            .update(indexContent + epSource)
+            .digest('hex')
+            .slice(0, 16);
 
-            report = await eslint.lintText(code);
+        // Read the cached CRC from the private driver.yaml (same path used by trustedCRC).
+        const privateDrvYamlPath = getTrustedYamlPath(DRIVER_PATH);
+        let privateDrvYamlRaw = null;
+        let privateDrvYaml   = null;
+        if (fs.existsSync(privateDrvYamlPath)) {
+            privateDrvYamlRaw = fs.readFileSync(privateDrvYamlPath, 'utf-8');
+            privateDrvYaml    = yaml.load(privateDrvYamlRaw) || {};
         }
 
-        if(typeof report !== 'undefined' && typeof report[0] !== 'undefined' && report[0].errorCount) {
+        if (privateDrvYaml && privateDrvYaml.driverCRC === computedCRC) {
+            // Source unchanged since last successful ESLint pass — skip.
+            return;
+        }
+
+        // Run ESLint on index.js (+ bundled extractPoints when present).
+        let code = indexContent;
+        const epPath = fs.pathExistsSync(privateEpPath)
+            ? privateEpPath
+            : fs.pathExistsSync(publicEpPath)
+                ? publicEpPath
+                : null;
+
+        if (epPath) {
+            const result = await esbuild.build({
+                target: "node8",
+                entryPoints: [epPath],
+                bundle: true,
+                format: 'cjs',
+                write: false,
+            });
+            code += "\n\n" + result.outputFiles[0].text;
+        }
+
+        const report = await eslint.lintText(code);
+
+        if (report[0]?.errorCount) {
             throw new Error("Driver code is not compliant:\n" + report[0].messages.map(m => `${m.line}:${m.column}: ${m.message}`).join("\n"));
+        }
+
+        // ESLint passed — persist the CRC to the private driver.yaml.
+        // Uses a simple text-level update to preserve the existing YAML formatting.
+        if (privateDrvYamlRaw !== null) {
+            let updatedYaml;
+            if (/^driverCRC:/m.test(privateDrvYamlRaw)) {
+                updatedYaml = privateDrvYamlRaw.replace(/^driverCRC:.*$/m, `driverCRC: ${computedCRC}`);
+            } else {
+                updatedYaml = privateDrvYamlRaw.trimEnd() + `\ndriverCRC: ${computedCRC}\n`;
+            }
+            fs.writeFileSync(privateDrvYamlPath, updatedYaml, 'utf-8');
         }
     }
 }

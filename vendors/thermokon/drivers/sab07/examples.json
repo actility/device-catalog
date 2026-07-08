@@ -1,206 +1,262 @@
 [
-  {
-    "type": "uplink",
-    "description": "Keep-Alive",
-    "input": {
-      "fPort": 1,
-      "bytes": "811DA878FA2C01F080"
-    },
-    "output": {
-      "data": {
-        "batteryVoltage": 3.5,
-        "extraFlags": {
-          "deviceAttachedToBackplate": false,
-          "deviceOnline": false,
-          "manualTempDisabled": false,
-          "motorCalibrationFailed": false
+    {
+        "type": "uplink",
+        "description": "Keep-Alive",
+        "input": {
+            "fPort": 1,
+            "bytes": "811DA878FA2C01F080"
         },
-        "motorPosition": 506,
-        "motorRange": 44,
-        "relativeHumidity": 46.88,
-        "sensorTemperature": 24.65,
-        "statusFlags": {
-          "brokenSensor": false,
-          "highMotorConsumption": false,
-          "lowMotorConsumption": false,
-          "openWindow": false
+        "output": {
+            "data": {
+                "batteryVoltage": 3.5,
+                "extraFlags": {
+                    "deviceAttachedToBackplate": false,
+                    "deviceOnline": false,
+                    "manualTempDisabled": false,
+                    "motorCalibrationFailed": false
+                },
+                "motorPosition": 506,
+                "motorRange": 44,
+                "relativeHumidity": 46.88,
+                "sensorTemperature": 24.65,
+                "statusFlags": {
+                    "brokenSensor": false,
+                    "highMotorConsumption": false,
+                    "lowMotorConsumption": false,
+                    "openWindow": false
+                },
+                "targetTemperature": 29
+            }
         },
-        "targetTemperature": 29
-      }
-    },
-    "points": {
-      "batteryVoltage": {
-        "unitId": "V",
-        "record": 3.5
-      },
-      "temperature:1": {
-        "unitId": "Cel",
-        "record": 24.65,
-        "nature": "Ambient"
-      },
-      "temperature:2": {
-        "unitId": "Cel",
-        "record": 29,
-        "nature": "Target"
-      },
-      "humidity": {
-        "unitId": "%RH",
-        "record": 46.88
-      }
-    }
-  },
-  {
-    "type": "uplink",
-    "description": "Keep-Alive 2",
-    "input": {
-      "fPort": 1,
-      "bytes": "810C9D8EA0A011F030"
-    },
-    "output": {
-      "data": {
-        "batteryVoltage": 3.5,
-        "extraFlags": {
-          "deviceAttachedToBackplate": false,
-          "deviceOnline": false,
-          "manualTempDisabled": false,
-          "motorCalibrationFailed": false
+        "points": {
+            "batteryVoltage": {
+                "unitId": "V",
+                "record": 3.5
+            },
+            "temperature:1": {
+                "unitId": "Cel",
+                "record": 24.65,
+                "nature": "Ambient"
+            },
+            "temperature:2": {
+                "unitId": "Cel",
+                "record": 29,
+                "nature": "Target"
+            },
+            "humidity": {
+                "unitId": "%RH",
+                "record": 46.88
+            }
         },
-        "motorPosition": 416,
-        "motorRange": 416,
-        "relativeHumidity": 55.47,
-        "sensorTemperature": 22.71,
-        "statusFlags": {
-          "brokenSensor": false,
-          "highMotorConsumption": false,
-          "lowMotorConsumption": false,
-          "openWindow": false
-        },
-        "targetTemperature": 12
-      }
-    },
-    "points": {
-      "batteryVoltage": {
-        "unitId": "V",
-        "record": 3.5
-      },
-      "temperature:1": {
-        "unitId": "Cel",
-        "record": 22.71,
-        "nature": "Ambient"
-      },
-      "temperature:2": {
-        "unitId": "Cel",
-        "record": 12,
-        "nature": "Target"
-      },
-      "humidity": {
-        "unitId": "%RH",
-        "record": 55.47
-      }
-    }
-  },
-  {
-    "type": "uplink",
-    "description": "Command Response: Keep-Alive Period",
-    "input": {
-      "fPort": 1,
-      "bytes": "1209"
-    },
-    "output": {
-      "data": {
-        "keepAlivePeriod": 9
-      }
-    },
-    "points": {}
-  },
-  {
-    "type": "uplink",
-    "description": "Command Response: Algorithm - Integral Gain",
-    "input": {
-      "fPort": 1,
-      "bytes": "3D112233"
-    },
-    "output": {
-      "data": {
-        "integralGain": 2193.1
-      }
-    },
-    "points": {}
-  },
-  {
-    "type": "uplink",
-    "description": "Command Response: Algorithm - Value of the Integral",
-    "input": {
-      "fPort": 1,
-      "bytes": "3F0019"
-    },
-    "output": {
-      "data": {
-        "integralValue": 2.5
-      }
-    },
-    "points": {}
-  },
-  {
-    "type": "uplink",
-    "description": "Command Response: Algorithm - PI Run Period",
-    "input": {
-      "fPort": 1,
-      "bytes": "400B"
-    },
-    "output": {
-      "data": {
-        "piRunPeriod": 11
-      }
-    },
-    "points": {}
-  },
-  {
-    "type": "uplink",
-    "description": "Command Response: Algorithm - Temperature Hytheresis (THYS)",
-    "input": {
-      "fPort": 1,
-      "bytes": "42FF"
-    },
-    "output": {
-      "data": {
-        "temperatureHysteresis": 25.5
-      }
-    },
-    "points": {}
-  },
-  {
-    "type": "uplink",
-    "description": "Command Response: Device Hardware and Software Versions",
-    "input": {
-      "fPort": 1,
-      "bytes": "041242"
-    },
-    "output": {
-      "data": {
-        "hardwareVersion": "1.2",
-        "softwareVersion": "4.2"
-      }
-    },
-    "points": {}
-  },
-  {
-    "type": "downlink-encode",
-    "description": "Downlink: Set open window detection",
-    "input": {
-      "data": {
-        "openWindowDetection": {
-          "enable": true,
-          "duration": 6,
-          "tempDelta": 1.3
+        "BACnet": {
+            "targetTemperature": 29,
+            "sensorTemperature": 24.65,
+            "relativeHumidity": 46.88,
+            "motorPosition": 506,
+            "motorRange": 44,
+            "batteryVoltage": 3.5,
+            "statusFlags:openWindow": false,
+            "statusFlags:highMotorConsumption": false,
+            "statusFlags:lowMotorConsumption": false,
+            "statusFlags:brokenSensor": false,
+            "extraFlags:manualTempDisabled": false,
+            "extraFlags:motorCalibrationFailed": false,
+            "extraFlags:deviceAttachedToBackplate": false,
+            "extraFlags:deviceOnline": false
         }
-      }
     },
-    "output": {
-      "fPort": 2,
-      "bytes": "4501060D",
-      "errors": [],
-      "warnings": []
+    {
+        "type": "uplink",
+        "description": "Keep-Alive 2",
+        "input": {
+            "fPort": 1,
+            "bytes": "810C9D8EA0A011F030"
+        },
+        "output": {
+            "data": {
+                "batteryVoltage": 3.5,
+                "extraFlags": {
+                    "deviceAttachedToBackplate": false,
+                    "deviceOnline": false,
+                    "manualTempDisabled": false,
+                    "motorCalibrationFailed": false
+                },
+                "motorPosition": 416,
+                "motorRange": 416,
+                "relativeHumidity": 55.47,
+                "sensorTemperature": 22.71,
+                "statusFlags": {
+                    "brokenSensor": false,
+                    "highMotorConsumption": false,
+                    "lowMotorConsumption": false,
+                    "openWindow": false
+                },
+                "targetTemperature": 12
+            }
+        },
+        "points": {
+            "batteryVoltage": {
+                "unitId": "V",
+                "record": 3.5
+            },
+            "temperature:1": {
+                "unitId": "Cel",
+                "record": 22.71,
+                "nature": "Ambient"
+            },
+            "temperature:2": {
+                "unitId": "Cel",
+                "record": 12,
+                "nature": "Target"
+            },
+            "humidity": {
+                "unitId": "%RH",
+                "record": 55.47
+            }
+        },
+        "BACnet": {
+            "targetTemperature": 12,
+            "sensorTemperature": 22.71,
+            "relativeHumidity": 55.47,
+            "motorPosition": 416,
+            "motorRange": 416,
+            "batteryVoltage": 3.5,
+            "statusFlags:openWindow": false,
+            "statusFlags:highMotorConsumption": false,
+            "statusFlags:lowMotorConsumption": false,
+            "statusFlags:brokenSensor": false,
+            "extraFlags:manualTempDisabled": false,
+            "extraFlags:motorCalibrationFailed": false,
+            "extraFlags:deviceAttachedToBackplate": false,
+            "extraFlags:deviceOnline": false
+        }
+    },
+    {
+        "type": "uplink",
+        "description": "Command Response: Keep-Alive Period",
+        "input": {
+            "fPort": 1,
+            "bytes": "1209"
+        },
+        "output": {
+            "data": {
+                "keepAlivePeriod": 9
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "keepAlivePeriod": 9
+        }
+    },
+    {
+        "type": "uplink",
+        "description": "Command Response: Algorithm - Integral Gain",
+        "input": {
+            "fPort": 1,
+            "bytes": "3D112233"
+        },
+        "output": {
+            "data": {
+                "integralGain": 2193.1
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "integralGain": 2193.1
+        }
+    },
+    {
+        "type": "uplink",
+        "description": "Command Response: Algorithm - Value of the Integral",
+        "input": {
+            "fPort": 1,
+            "bytes": "3F0019"
+        },
+        "output": {
+            "data": {
+                "integralValue": 2.5
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "integralValue": 2.5
+        }
+    },
+    {
+        "type": "uplink",
+        "description": "Command Response: Algorithm - PI Run Period",
+        "input": {
+            "fPort": 1,
+            "bytes": "400B"
+        },
+        "output": {
+            "data": {
+                "piRunPeriod": 11
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "piRunPeriod": 11
+        }
+    },
+    {
+        "type": "uplink",
+        "description": "Command Response: Algorithm - Temperature Hytheresis (THYS)",
+        "input": {
+            "fPort": 1,
+            "bytes": "42FF"
+        },
+        "output": {
+            "data": {
+                "temperatureHysteresis": 25.5
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "temperatureHysteresis": 25.5
+        }
+    },
+    {
+        "type": "uplink",
+        "description": "Command Response: Device Hardware and Software Versions",
+        "input": {
+            "fPort": 1,
+            "bytes": "041242"
+        },
+        "output": {
+            "data": {
+                "hardwareVersion": "1.2",
+                "softwareVersion": "4.2"
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "hardwareVersion": "1.2",
+            "softwareVersion": "4.2"
+        }
+    },
+    {
+        "type": "downlink-encode",
+        "description": "Downlink: Set open window detection",
+        "input": {
+            "data": {
+                "openWindowDetection": {
+                    "enable": true,
+                    "duration": 6,
+                    "tempDelta": 1.3
+                }
+            }
+        },
+        "output": {
+            "fPort": 2,
+            "bytes": "4501060D",
+            "errors": [],
+            "warnings": []
+        },
+        "BACnet": {
+            "openWindowDetection:enable": true,
+            "openWindowDetection:duration": 6,
+            "openWindowDetection:tempDelta": 1.3
+        }
     }
-  }
 ]
