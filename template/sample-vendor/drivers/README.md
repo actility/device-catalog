@@ -528,18 +528,6 @@ The downlink encode example used is an object represented by the following json-
     }
 }
 ```
-
-### Json Schemas
-
-The following section describes the Json Schema of the decoded payloads of the driver.
-
-As the output data from the decoding payload process is not predictable, it is better to declare Json schemas that defines the structure of this output to ease the use of driver after decoding.
-
-The Json schemas of uplink and downlink payloads must be declared directly in the driver package.
-Two Json schemas can be declared following the pattern: `uplink.schema.json` for uplink data, and `downlink.schema.json` for downlink data if supported.
-
-An `*.schema.json` file contains a generic json schema for all types of payload decoded by this driver of several uplink/downlink examples.
-
 ## Packaging
 
 To simplify the open distribution and integration with our platform, a packaging leveraging NPMs is defined.
@@ -878,66 +866,6 @@ npm run test
 This command will give a full report about the coverage of your tests. The most important value in this report is the
 percentage of the statements' coverage which appears under `stmts`.
 
-### Add Json Schemas
-
-To provide json schemas of your driver, create a file named `uplink.schema.json` and add the following json schema that describes the structure of the `decodeUplink` output:
-
-```json
-{
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "object",
-  "properties": {
-    "temperature": {
-      "type": "number"
-    },
-    "humidity": {
-      "type": "number"
-    },
-    "pulseCounter": {
-      "type": "number"
-    },
-    "volumes": {
-      "type": "array",
-      "items": [
-        {
-          "type": "object",
-          "properties": {
-            "time": {
-              "type": "string"
-            },
-            "volume": {
-              "type": "integer"
-            }
-          },
-          "required": [
-            "time",
-            "volume"
-          ]
-        }
-      ]
-    }
-  },
-  "additionalProperties": false
-}
-```
-
-Create a file named `downlink.schema.json` and add the following json schema that describes the structure of the `decodeDownlink` output:
-
-```json
-{
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "object",
-  "properties": {
-    "pulseCounterThreshold": {
-      "type": "integer"
-    },
-    "alarm": {
-      "type": "boolean"
-    }
-  },
-  "additionalProperties": false
-}
-```
 ### Create a tarball from the package
 
 To create a tarball from the already defined package, you must use the following command:
