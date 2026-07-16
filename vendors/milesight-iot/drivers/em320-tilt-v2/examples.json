@@ -1,0 +1,53 @@
+[
+    {
+        "description": "Example 1",
+        "type": "uplink",
+        "input": {
+            "bytes": "01756403D4000001005046",
+            "fPort": 100,
+            "time": "2022-11-03T17:00:00.000+02:00"
+        },
+        "output": {
+            "data": {
+                "battery": 100,
+                "angle_x": 0,
+                "angle_y": 0,
+                "angle_z": 90,
+                "threhold_x": "normal",
+                "threhold_y": "trigger",
+                "threhold_z": "normal"
+            }
+        },
+        "points": {
+            "batteryLevel": {
+                "unitId": "%",
+                "record": 100
+            }
+        },
+        "BACnet": {
+            "battery": 100,
+            "angle_x": 0,
+            "angle_y": 0,
+            "angle_z": 90
+        }
+    },
+    {
+        "description": "Downlink encode: report_interval",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "report_interval": 600
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                3,
+                88,
+                2
+            ],
+            "fPort": 100
+        }
+    }
+]

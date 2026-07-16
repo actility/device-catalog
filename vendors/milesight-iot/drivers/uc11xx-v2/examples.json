@@ -1,0 +1,45 @@
+[
+    {
+        "description": "Example 1",
+        "type": "uplink",
+        "input": {
+            "bytes": "01C80102C80101C8A34CA34C02C8A34C1C6E09000A0011B65A43122FFE5C5C12C80101C8A34C02C8FF0E00",
+            "fPort": 100,
+            "time": "2022-11-03T17:00:00.000+02:00"
+        },
+        "output": {
+            "data": {
+                "gpio_counter_1": 1285770403,
+                "gpio_counter_2": 1847348387,
+                "gpio_output_1": "unknown",
+                "adc_2": 2.57,
+                "adc_2_min": -236.08,
+                "adc_2_max": 5.88,
+                "adc_2_avg": -0.56
+            }
+        },
+        "points": {
+            "counter:1": {
+                "unitId": "count",
+                "record": 1285770403,
+                "nature": "counter1"
+            },
+            "counter:2": {
+                "unitId": "count",
+                "record": 1847348387,
+                "nature": "counter2"
+            }
+        }
+    },
+    {
+        "description": "Downlink encode: empty payload",
+        "type": "downlink-encode",
+        "input": {
+            "data": {},
+            "fPort": 100
+        },
+        "output": {
+            "bytes": []
+        }
+    }
+]

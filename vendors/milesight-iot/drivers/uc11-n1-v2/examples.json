@@ -1,0 +1,43 @@
+[
+    {
+        "description": "Example 1",
+        "type": "uplink",
+        "input": {
+            "bytes": "01755C03C80104C80105AC6E23EEACA11101FF0E01030607",
+            "fPort": 100,
+            "time": "2022-11-03T17:00:00.000+02:00"
+        },
+        "output": {
+            "data": {
+                "battery": 92,
+                "adc_1": 90.7,
+                "adc_1_min": -212.66,
+                "adc_1_max": 45.13,
+                "adc_1_avg": -2.55,
+                "gpio_1": "unknown"
+            }
+        },
+        "points": {
+            "batteryLevel": {
+                "unitId": "%",
+                "record": 92
+            },
+            "status:1": {
+                "unitId": "state",
+                "record": true,
+                "nature": "gpio1"
+            }
+        }
+    },
+    {
+        "description": "Downlink encode: empty payload",
+        "type": "downlink-encode",
+        "input": {
+            "data": {},
+            "fPort": 100
+        },
+        "output": {
+            "bytes": []
+        }
+    }
+]
