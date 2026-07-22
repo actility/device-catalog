@@ -1,0 +1,24 @@
+name: CT303-V2 Smart Current Transformer
+description: "Milesight CT303-V2 Smart Current Transformer."
+logo: ct303.png
+deviceProfileIds:
+  - id: msight_RFGroup1_1.0.3a_classA
+  - id: msight_RFGroup4_1.0.3a_classA
+  - id: msight_us915-22dBm_1.0.3a_classA
+  - id: msight_cn470-19dBm_1.0.3a_classA
+  - id: msight_au915-22dBm_1.0.3a_classA
+LoRaWANCertified: false
+modelId: msight:ct303-v2:1
+protocolId:
+  - msight:ct303:2
+specificationURL: https://resource.milesight.com/milesight/iot/document/ct3xx-datasheet-en.pdf
+userGuideURL:
+sensors:
+  - current:A
+  - status:state
+examples:
+  msight:ct303:2:
+    - "Example 1"
+LoRaWANRelay:
+  canOperateAsARelay: false
+  defaultRelayActivation: false

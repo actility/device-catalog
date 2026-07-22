@@ -1,0 +1,33 @@
+[
+  {
+    "description": "Uplink example for WS515 v3",
+    "type": "uplink",
+    "input": {
+      "bytes": "03742e0904800000000005816406838088710007c9d007087001",
+      "fPort": 85
+    },
+    "output": {
+      "data": {
+        "voltage": 2350,
+        "electric_power": 0,
+        "power_factor": 100,
+        "power_consumption": 74.40512,
+        "current_rating": 2,
+        "socket_status": { "switch_status_1": 1 }
+      }
+    },
+    "points": {
+      "voltage": { "unitId": "V", "record": 2350 },
+      "activePower": { "unitId": "W", "record": 0 },
+      "powerFactor": { "unitId": "%", "record": 100 },
+      "energy": { "unitId": "kWh", "record": 74.40512 },
+      "current": { "unitId": "A", "record": 2 }
+    }
+  },
+  {
+    "description": "Downlink encode: power_consumption_enable",
+    "type": "downlink-encode",
+    "input": { "data": { "power_consumption_enable": 1 }, "fPort": 85 },
+    "output": { "bytes": [255, 38, 1] }
+  }
+]

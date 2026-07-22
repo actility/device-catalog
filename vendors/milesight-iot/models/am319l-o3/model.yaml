@@ -1,0 +1,32 @@
+# Commercial name of the model
+name: AM319L-O3 Indoor Air Quality Sensor
+description: "Milesight AM319L-O3 indoor air quality sensor."
+logo: am300l.png
+deviceProfileIds:
+  - id: msight_RFGroup1_1.0.3a_classA
+  - id: msight_RFGroup4_1.0.3a_classA
+  - id: msight_us915-22dBm_1.0.3a_classA
+  - id: msight_cn470-19dBm_1.0.3a_classA
+  - id: msight_au915-22dBm_1.0.3a_classA
+maxTxPower:
+minTxPower:
+maxTxEIRP:
+minTxEIRP:
+motionIndicator:
+LoRaWANCertified: false
+modelId: msight:am319l-o3:1
+protocolId:
+  - msight:am319l-o3:1
+specificationURL: https://www.milesight.com/iot/product/lorawan-sensor/am319
+userGuideURL:
+sensors:
+  - temperature:Cel
+  - humidity:%RH
+  - pressure:hPa
+  - co2Level:ppm
+examples:
+  msight:am319l-o3:1:
+    - "Uplink example for AM319L-O3"
+LoRaWANRelay:
+  canOperateAsARelay: false
+  defaultRelayActivation: false

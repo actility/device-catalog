@@ -1,0 +1,23 @@
+name: UC501 Multi-interface Controller
+description: "Milesight UC501 multi-interface controller."
+logo: uc501-v3.png
+deviceProfileIds:
+  - id: msight_RFGroup1_1.0.3a_classC
+  - id: msight_RFGroup4_1.0.3a_classC
+  - id: msight_us915-22dBm_1.0.3a_classC
+  - id: msight_cn470-19dBm_1.0.3a_classC
+  - id: msight_au915-22dBm_1.0.3a_classC
+LoRaWANCertified: false
+modelId: msight:uc501:1
+protocolId:
+  - msight:uc501:1
+specificationURL: https://resource.milesight.com/milesight/iot/document/uc501-datasheet-en.pdf
+userGuideURL:
+sensors:
+  - status:state
+examples:
+  msight:uc501:1:
+    - "Downlink encode: report_interval"
+LoRaWANRelay:
+  canOperateAsARelay: false
+  defaultRelayActivation: false

@@ -1,0 +1,30 @@
+# Commercial name of the model
+name: WT302 Smart Thermostat
+description: "Milesight WT302 smart thermostat for LoRaWAN HVAC control."
+logo: wt302.png
+deviceProfileIds:
+  - id: msight_RFGroup1_1.0.3a_classC
+  - id: msight_RFGroup4_1.0.3a_classC
+  - id: msight_us915-22dBm_1.0.3a_classC
+  - id: msight_au915-22dBm_1.0.3a_classC
+  - id: msight_cn470-19dBm_1.0.3a_classC
+maxTxPower:
+minTxPower:
+maxTxEIRP:
+minTxEIRP:
+motionIndicator:
+LoRaWANCertified: false
+modelId: msight:wt302:1
+protocolId:
+  - msight:wt302:1
+specificationURL: https://www.milesight.com/iot/product/lorawan-sensor/wt30x
+userGuideURL:
+sensors:
+  - temperature:Cel
+  - status:state
+examples:
+  msight:wt302:1:
+    - "Uplink example for WT302"
+LoRaWANRelay:
+  canOperateAsARelay: false
+  defaultRelayActivation: false

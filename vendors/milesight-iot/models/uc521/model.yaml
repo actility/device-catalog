@@ -1,0 +1,24 @@
+name: UC521 Electric Valve Controller
+description: "Milesight UC521 electric valve controller."
+logo: uc521.png
+deviceProfileIds:
+  - id: msight_RFGroup1_1.0.3a_classA
+  - id: msight_RFGroup4_1.0.3a_classA
+  - id: msight_us915-22dBm_1.0.3a_classA
+  - id: msight_cn470-19dBm_1.0.3a_classA
+  - id: msight_au915-22dBm_1.0.3a_classA
+LoRaWANCertified: false
+modelId: msight:uc521:1
+protocolId:
+  - msight:uc521:1
+specificationURL: https://resource.milesight.com/milesight/iot/document/uc521-datasheet-en.pdf
+userGuideURL:
+sensors:
+  - batteryLevel:%
+  - status:state
+examples:
+  msight:uc521:1:
+    - "Uplink example for UC521"
+LoRaWANRelay:
+  canOperateAsARelay: false
+  defaultRelayActivation: false

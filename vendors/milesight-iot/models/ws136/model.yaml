@@ -1,0 +1,23 @@
+name: WS136 Smart Scene Panel
+description: "Milesight WS136 LoRaWAN Smart Scene Panel."
+logo: ws136.png
+deviceProfileIds:
+  - id: msight_RFGroup1_1.0.3a_classA
+  - id: msight_RFGroup4_1.0.3a_classA
+  - id: msight_us915-22dBm_1.0.3a_classA
+  - id: msight_cn470-19dBm_1.0.3a_classA
+  - id: msight_au915-22dBm_1.0.3a_classA
+LoRaWANCertified: false
+modelId: msight:ws136:1
+protocolId:
+  - msight:ws136:1
+specificationURL: https://resource.milesight-iot.com/milesight/document/ws136-datasheet-en.pdf
+userGuideURL:
+sensors:
+  - batteryLevel:%
+examples:
+  msight:ws136:1:
+    - "Uplink example for WS136"
+LoRaWANRelay:
+  canOperateAsARelay: false
+  defaultRelayActivation: false

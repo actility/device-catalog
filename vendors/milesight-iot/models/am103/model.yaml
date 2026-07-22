@@ -1,0 +1,39 @@
+# Commercial name of the model
+name: AM103 - 3-in-1 Indoor Air Quality Sensor
+# Functional description of the product. Maximum 500 characters.
+description: "Milesight AM103 is an indoor air quality sensor measuring temperature, humidity, and CO2, with a built-in E-ink display and NFC-assisted installation."
+# Logo of the device
+logo: am103.png
+# Product name & Version
+product:
+    name: MILE/AM103
+    version: 1
+deviceProfileIds:
+  - id: msight_RFGroup1_1.0.3a_classA
+  - id: msight_RFGroup4_1.0.3a_classA
+  - id: msight_us915-22dBm_1.0.3a_classA
+  - id: msight_au915-22dBm_1.0.3a_classA
+  - id: msight_cn470-19dBm_1.0.3a_classA
+maxTxPower:
+minTxPower:
+maxTxEIRP:
+minTxEIRP:
+motionIndicator:
+LoRaWANCertified: true
+modelId: msight:am103:1
+protocolId:
+  - msight:am103:1
+  - msight:am100-series:1
+specificationURL: https://www.milesight.com/iot/product/lorawan-sensor/am103-am103l
+userGuideURL: https://resource.milesight.com/milesight/iot/document/am102(l)-and-am103(l)-user-guide-en.pdf
+sensors:
+  - batteryLevel:%
+  - temperature:Cel
+  - humidity:%RH
+  - co2Level:ppm
+examples:
+  msight:am103:1:
+    - "Uplink example for AM103"
+LoRaWANRelay:
+  canOperateAsARelay: false
+  defaultRelayActivation: false

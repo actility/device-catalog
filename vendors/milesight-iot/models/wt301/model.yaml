@@ -1,0 +1,30 @@
+# Commercial name of the model
+name: WT301 Smart Fan Coil Thermostat
+description: "Milesight WT301 smart fan coil thermostat for LoRaWAN HVAC control."
+logo: wt301.png
+deviceProfileIds:
+  - id: msight_RFGroup1_1.0.3a_classC
+  - id: msight_RFGroup4_1.0.3a_classC
+  - id: msight_us915-22dBm_1.0.3a_classC
+  - id: msight_au915-22dBm_1.0.3a_classC
+  - id: msight_cn470-19dBm_1.0.3a_classC
+maxTxPower:
+minTxPower:
+maxTxEIRP:
+minTxEIRP:
+motionIndicator:
+LoRaWANCertified: false
+modelId: msight:wt301:1
+protocolId:
+  - msight:wt301:1
+specificationURL: https://www.milesight.com/iot/product/lorawan-sensor/wt30x
+userGuideURL:
+sensors:
+  - temperature:Cel
+  - status:state
+examples:
+  msight:wt301:1:
+    - "Uplink example for WT301"
+LoRaWANRelay:
+  canOperateAsARelay: false
+  defaultRelayActivation: false

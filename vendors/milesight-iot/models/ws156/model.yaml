@@ -1,0 +1,23 @@
+name: WS156 Smart Scene Panel
+description: "Milesight WS156 LoRaWAN Smart Scene Panel."
+logo: ws156.png
+deviceProfileIds:
+  - id: msight_RFGroup1_1.0.3a_classA
+  - id: msight_RFGroup4_1.0.3a_classA
+  - id: msight_us915-22dBm_1.0.3a_classA
+  - id: msight_cn470-19dBm_1.0.3a_classA
+  - id: msight_au915-22dBm_1.0.3a_classA
+LoRaWANCertified: false
+modelId: msight:ws156:1
+protocolId:
+  - msight:ws156:1
+specificationURL: https://resource.milesight-iot.com/milesight/document/ws156-datasheet-en.pdf
+userGuideURL:
+sensors:
+  - batteryLevel:%
+examples:
+  msight:ws156:1:
+    - "Uplink example for WS156"
+LoRaWANRelay:
+  canOperateAsARelay: false
+  defaultRelayActivation: false

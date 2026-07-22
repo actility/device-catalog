@@ -1,0 +1,20 @@
+name: WS502-EU Smart Wall Switch
+description: "Milesight WS502-EU smart wall switch."
+logo: ws502-eu.png
+deviceProfileIds:
+  - id: msight_RFGroup1_1.0.3a_classC
+  - id: msight_RFGroup4_1.0.3a_classC
+LoRaWANCertified: false
+modelId: msight:ws502-eu:1
+protocolId:
+  - msight:ws502-eu:1
+specificationURL: https://resource.milesight.com/milesight/iot/document/ws50x-datasheet-en.pdf
+userGuideURL:
+sensors:
+  - status:state
+examples:
+  msight:ws502-eu:1:
+    - "Uplink example for WS502-EU"
+LoRaWANRelay:
+  canOperateAsARelay: false
+  defaultRelayActivation: false

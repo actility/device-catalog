@@ -1,0 +1,25 @@
+name: TS301-V2 Temperature Sensor
+description: "Milesight TS301-V2 temperature sensor."
+logo: ts301.png
+deviceProfileIds:
+  - id: msight_RFGroup1_1.0.3a_classA
+  - id: msight_RFGroup4_1.0.3a_classA
+  - id: msight_us915-22dBm_1.0.3a_classA
+  - id: msight_cn470-19dBm_1.0.3a_classA
+  - id: msight_au915-20dBm_1.0.3a_classA
+LoRaWANCertified: false
+modelId: msight:ts301-v2:1
+protocolId:
+  - msight:ts301:2
+specificationURL: https://resource.milesight.com/milesight/iot/document/ts301-datasheet-en.pdf
+userGuideURL:
+sensors:
+  - batteryLevel:%
+  - temperature:Cel
+  - status:state
+examples:
+  msight:ts301:2:
+    - "Uplink example for TS301-V2"
+LoRaWANRelay:
+  canOperateAsARelay: false
+  defaultRelayActivation: false

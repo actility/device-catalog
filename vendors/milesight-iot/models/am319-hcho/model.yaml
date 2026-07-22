@@ -1,0 +1,32 @@
+# Commercial name of the model
+name: AM319-HCHO Indoor Air Quality Sensor
+description: "Milesight AM319-HCHO indoor air quality sensor with formaldehyde, temperature, humidity, CO2, TVOC, PM2.5, and PM10 measurement."
+logo: am319.png
+deviceProfileIds:
+  - id: msight_RFGroup1_1.0.3a_classA
+  - id: msight_RFGroup4_1.0.3a_classA
+  - id: msight_us915-22dBm_1.0.3a_classA
+  - id: msight_cn470-19dBm_1.0.3a_classA
+  - id: msight_au915-22dBm_1.0.3a_classA
+maxTxPower:
+minTxPower:
+maxTxEIRP:
+minTxEIRP:
+motionIndicator:
+LoRaWANCertified: false
+modelId: msight:am319-hcho:1
+protocolId:
+  - msight:am319-hcho:1
+specificationURL: https://www.milesight.com/iot/product/lorawan-sensor/am319
+userGuideURL:
+sensors:
+  - temperature:Cel
+  - humidity:%RH
+  - pressure:hPa
+  - co2Level:ppm
+examples:
+  msight:am319-hcho:1:
+    - "Uplink example for AM319-HCHO"
+LoRaWANRelay:
+  canOperateAsARelay: false
+  defaultRelayActivation: false

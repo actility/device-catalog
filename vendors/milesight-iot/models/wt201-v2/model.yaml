@@ -1,0 +1,30 @@
+# Commercial name of the model
+name: WT201-V2 Smart Thermostat
+description: "Milesight WT201-V2 smart thermostat for LoRaWAN HVAC control."
+logo: wt201-v2.png
+deviceProfileIds:
+  - id: msight_RFGroup1_1.0.3a_classC
+  - id: msight_RFGroup4_1.0.3a_classC
+  - id: msight_us915-22dBm_1.0.3a_classC
+  - id: msight_au915-22dBm_1.0.3a_classC
+  - id: msight_cn470-19dBm_1.0.3a_classC
+maxTxPower:
+minTxPower:
+maxTxEIRP:
+minTxEIRP:
+motionIndicator:
+LoRaWANCertified: false
+modelId: msight:wt201-v2:1
+protocolId:
+  - msight:wt201:2
+specificationURL: https://www.milesight.com/iot/product/lorawan-sensor/wt201
+userGuideURL:
+sensors:
+  - temperature:Cel
+  - humidity:%RH
+examples:
+  msight:wt201:2:
+    - "Downlink encode: report_interval"
+LoRaWANRelay:
+  canOperateAsARelay: false
+  defaultRelayActivation: false
