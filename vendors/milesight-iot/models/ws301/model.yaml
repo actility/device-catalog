@@ -38,6 +38,7 @@ LoRaWANCertified: true
 modelId: msight:ws301:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId: 
+  - msight:ws301:2
   - msight:ws301:1
 # DataSheet URL (optional) 
 specificationURL: https://resource.milesight-iot.com/milesight/document/ws301-datasheet-en.pdf
@@ -49,6 +50,8 @@ sensors:
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
+  msight:ws301:2:
+    - "Example 1 v2"
   msight:ws301:1:
     - "Example 1"
 LoRaWANRelay:

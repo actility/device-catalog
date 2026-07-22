@@ -36,6 +36,7 @@ modelId: msight:wt201:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 # Be careful: Once you chose a protocolId, it cannot be changed later
 protocolId:
+  - msight:wt201:2
   - msight:wt201:1
 # DataSheet URL (optional)
 specificationURL: https://resource.milesight.com/milesight/iot/document/wt201-datasheet-en.pdf
@@ -47,6 +48,8 @@ sensors:
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
+  msight:wt201:2:
+    - "Example 1"
   msight:wt201:1:
     - "Temperature Control"
     - "Temperature Alarm"

@@ -59,5 +59,48 @@
             ],
             "fPort": 85
         }
+    },
+    {
+        "description": "BACnet example",
+        "type": "uplink",
+        "input": {
+            "bytes": "08700105816407c9020003742e0906834a000000048000000000",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "socket_status": "on",
+                "power_factor": 100,
+                "current": 2,
+                "voltage": 235,
+                "power_consumption": 74,
+                "active_power": 0
+            },
+            "errors": [],
+            "warnings": []
+        },
+        "points": {
+            "powerFactor": {
+                "unitId": "/",
+                "record": 100
+            },
+            "current": {
+                "unitId": "mA",
+                "record": 2
+            },
+            "voltage": {
+                "unitId": "V",
+                "record": 235
+            },
+            "power": {
+                "unitId": "W",
+                "record": 74,
+                "nature": "consumption"
+            },
+            "activePower": {
+                "unitId": "W",
+                "record": 0
+            }
+        }
     }
 ]

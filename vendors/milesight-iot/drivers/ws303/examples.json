@@ -59,5 +59,32 @@
         "BACnet": {
             "report_interval": 600
         }
+    },
+    {
+        "description": "BACnet example",
+        "type": "uplink",
+        "input": {
+            "bytes": "017564030001",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "battery": 100,
+                "leakage_status": "leak"
+            },
+            "errors": [],
+            "warnings": []
+        },
+        "points": {
+            "batteryLevel": {
+                "unitId": "%",
+                "record": 100
+            },
+            "status": {
+                "unitId": "state",
+                "record": true,
+                "nature": "leak"
+            }
+        }
     }
 ]

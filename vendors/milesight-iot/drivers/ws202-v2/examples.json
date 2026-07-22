@@ -11,7 +11,7 @@
             "data": {
                 "battery": 16,
                 "pir": "trigger",
-                "daylight": "dark"
+                "daylight": "dim"
             }
         },
         "points": {
@@ -23,7 +23,7 @@
         "BACnet": {
             "battery": 16,
             "pir": true,
-            "daylight": "dark"
+            "daylight": "dim"
         }
     },
     {
@@ -41,6 +41,35 @@
                 3,
                 88,
                 2
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink encode: light_alarm_config",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "light_alarm_config": {
+                    "threshold_min": 300,
+                    "threshold_max": 3000
+                }
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                6,
+                0,
+                44,
+                1,
+                184,
+                11,
+                0,
+                0,
+                0,
+                0
             ],
             "fPort": 100
         }

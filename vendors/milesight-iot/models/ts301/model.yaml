@@ -37,6 +37,7 @@ modelId: msight:ts301:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 # Be careful: Once you chose a protocolId, it cannot be changed later
 protocolId:
+  - msight:ts301:2
   - msight:ts30x:1
 # DataSheet URL (optional)
 specificationURL: https://resource.milesight.com/milesight/iot/document/ts30x-datasheet-en.pdf
@@ -50,6 +51,8 @@ sensors:
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
+  msight:ts301:2:
+    - "Example 1"
   msight:ts30x:1:
     - Battery, Temperature CHN1 and Magnet CHN2
     - Battery, Temperature CHN1 and Temperature CHN2

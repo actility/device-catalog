@@ -139,5 +139,28 @@
             "pir": "normal",
             "daylight": "dim"
         }
+    },
+    {
+        "description": "BACnet example",
+        "type": "uplink",
+        "input": {
+            "bytes": "01755c030001040000",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "battery": 92,
+                "pir": "trigger",
+                "daylight": "dark"
+            },
+            "errors": [],
+            "warnings": []
+        },
+        "points": {
+            "batteryLevel": {
+                "unitId": "%",
+                "record": 92
+            }
+        }
     }
 ]

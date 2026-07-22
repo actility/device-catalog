@@ -67,5 +67,38 @@
         "BACnet": {
             "report_interval": 600
         }
+    },
+    {
+        "description": "BACnet example",
+        "type": "uplink",
+        "input": {
+            "bytes": "01756403823e0004d645",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "battery": 100,
+                "distance": 62,
+                "remaining": 69
+            },
+            "errors": [],
+            "warnings": []
+        },
+        "points": {
+            "batteryLevel": {
+                "unitId": "%",
+                "record": 100
+            },
+            "distance": {
+                "unitId": "mm",
+                "record": 62,
+                "nature": "distance"
+            },
+            "height": {
+                "unitId": "mm",
+                "record": 69,
+                "nature": "remaining"
+            }
+        }
     }
 ]

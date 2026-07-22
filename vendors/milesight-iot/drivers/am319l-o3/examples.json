@@ -81,5 +81,70 @@
             ],
             "fPort": 85
         }
+    },
+    {
+        "description": "BACnet example",
+        "type": "uplink",
+        "input": {
+            "bytes": "03670a0104685805000106cb01077dff02087de3000973fe270b7d07000c7d0800017562",
+            "fPort": 100
+        },
+        "output": {
+            "data": {
+                "temperature": 26.6,
+                "humidity": 44,
+                "pir": "trigger",
+                "light_level": 1,
+                "co2": 767,
+                "tvoc": 2.27,
+                "pressure": 1023.8,
+                "pm2_5": 7,
+                "pm10": 8,
+                "battery": 98
+            },
+            "errors": [],
+            "warnings": []
+        },
+        "points": {
+            "temperature": {
+                "unitId": "Cel",
+                "record": 26.6
+            },
+            "humidity": {
+                "unitId": "%RH",
+                "record": 44
+            },
+            "light": {
+                "unitId": "lx",
+                "record": 1
+            },
+            "co2Level": {
+                "unitId": "ppm",
+                "record": 767
+            },
+            "concentration": {
+                "unitId": "ppm",
+                "record": 2.27,
+                "nature": "TVOC"
+            },
+            "pressure": {
+                "unitId": "hPa",
+                "record": 1023.8
+            },
+            "concentration:1": {
+                "unitId": "ug/m3",
+                "record": 7,
+                "nature": "PM2.5"
+            },
+            "concentration:2": {
+                "unitId": "ug/m3",
+                "record": 8,
+                "nature": "PM10"
+            },
+            "batteryLevel": {
+                "unitId": "%",
+                "record": 98
+            }
+        }
     }
 ]

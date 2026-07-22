@@ -53,5 +53,42 @@
       ],
       "fPort": 85
     }
+  },
+  {
+    "description": "BACnet example",
+    "type": "uplink",
+    "input": {
+      "bytes": "082911",
+      "fPort": 85
+    },
+    "output": {
+      "data": {
+        "switch_1": "on",
+        "switch_1_change": "yes",
+        "switch_2": "off",
+        "switch_2_change": "no",
+        "switch_3": "off",
+        "switch_3_change": "no"
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "status:1": {
+        "unitId": "state",
+        "record": true,
+        "nature": "switch 1"
+      },
+      "status:2": {
+        "unitId": "state",
+        "record": false,
+        "nature": "switch 2"
+      },
+      "status:3": {
+        "unitId": "state",
+        "record": false,
+        "nature": "switch 3"
+      }
+    }
   }
 ]

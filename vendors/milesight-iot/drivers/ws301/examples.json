@@ -53,5 +53,28 @@
         "BACnet": {
             "report_interval": 600
         }
+    },
+    {
+        "description": "BACnet example",
+        "type": "uplink",
+        "input": {
+            "bytes": "01755d030001040000",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "battery": 93,
+                "state": "open",
+                "install": "yes"
+            },
+            "errors": [],
+            "warnings": []
+        },
+        "points": {
+            "batteryLevel": {
+                "unitId": "%",
+                "record": 93
+            }
+        }
     }
 ]

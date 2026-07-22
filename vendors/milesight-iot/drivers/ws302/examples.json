@@ -79,5 +79,46 @@
         "BACnet": {
             "reboot": "yes"
         }
+    },
+    {
+        "description": "BACnet example",
+        "type": "uplink",
+        "input": {
+            "bytes": "017564055b053f02da016a02",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "battery": 100,
+                "freq_weight": "A",
+                "time_weight": "impulse",
+                "la": 57.5,
+                "laeq": 47.4,
+                "lamax": 61.8
+            },
+            "errors": [],
+            "warnings": []
+        },
+        "points": {
+            "batteryLevel": {
+                "unitId": "%",
+                "record": 100
+            },
+            "sound:1": {
+                "unitId": "dB",
+                "record": 57.5,
+                "nature": "A-weighted"
+            },
+            "sound:2": {
+                "unitId": "dB",
+                "record": 47.4,
+                "nature": "A-weighted equivalent"
+            },
+            "sound:3": {
+                "unitId": "dB",
+                "record": 61.8,
+                "nature": "A-weighted max"
+            }
+        }
     }
 ]

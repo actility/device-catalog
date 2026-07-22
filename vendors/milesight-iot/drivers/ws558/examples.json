@@ -144,5 +144,95 @@
         "BACnet": {
             "report_interval": 600
         }
+    },
+    {
+        "description": "BACnet example",
+        "type": "uplink",
+        "input": {
+            "bytes": "0831000105816407c902000374b208068301000000048001000000",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "switch_1": "on",
+                "switch_2": "off",
+                "switch_3": "off",
+                "switch_4": "off",
+                "switch_5": "off",
+                "switch_6": "off",
+                "switch_7": "off",
+                "switch_8": "off",
+                "power_factor": 100,
+                "total_current": 2,
+                "voltage": 222.6,
+                "power_consumption": 1,
+                "active_power": 1
+            },
+            "errors": [],
+            "warnings": []
+        },
+        "points": {
+            "voltage": {
+                "unitId": "V",
+                "record": 222.6
+            },
+            "activePower": {
+                "unitId": "W",
+                "record": 1
+            },
+            "powerFactor": {
+                "unitId": "/",
+                "record": 1
+            },
+            "energy": {
+                "unitId": "Wh",
+                "record": 1
+            },
+            "status:1": {
+                "unitId": "state",
+                "record": true,
+                "nature": "switch_1 on"
+            },
+            "status:2": {
+                "unitId": "state",
+                "record": false,
+                "nature": "switch_2 on"
+            },
+            "status:3": {
+                "unitId": "state",
+                "record": false,
+                "nature": "switch_3 on"
+            },
+            "status:4": {
+                "unitId": "state",
+                "record": false,
+                "nature": "switch_4 on"
+            },
+            "status:5": {
+                "unitId": "state",
+                "record": false,
+                "nature": "switch_5 on"
+            },
+            "status:6": {
+                "unitId": "state",
+                "record": false,
+                "nature": "switch_6 on"
+            },
+            "status:7": {
+                "unitId": "state",
+                "record": false,
+                "nature": "switch_7 on"
+            },
+            "status:8": {
+                "unitId": "state",
+                "record": false,
+                "nature": "switch_8 on"
+            },
+            "current": {
+                "unitId": "mA",
+                "record": 2,
+                "nature": "total"
+            }
+        }
     }
 ]

@@ -74,5 +74,42 @@
         "BACnet": {
             "report_interval": 600
         }
+    },
+    {
+        "description": "BACnet example",
+        "type": "uplink",
+        "input": {
+            "bytes": "01756403673401046865050000",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "battery": 100,
+                "temperature": 30.8,
+                "humidity": 50.5,
+                "occupancy": "vacant"
+            },
+            "errors": [],
+            "warnings": []
+        },
+        "points": {
+            "batteryLevel": {
+                "unitId": "%",
+                "record": 100
+            },
+            "humidity": {
+                "unitId": "%RH",
+                "record": 50.5
+            },
+            "temperature": {
+                "unitId": "Cel",
+                "record": 30.8
+            },
+            "status": {
+                "unitId": "state",
+                "record": false,
+                "nature": "occupied"
+            }
+        }
     }
 ]

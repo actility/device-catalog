@@ -51,5 +51,27 @@
         "BACnet": {
             "reboot": "yes"
         }
+    },
+    {
+        "description": "BACnet example",
+        "type": "uplink",
+        "input": {
+            "bytes": "01755cff2e03",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "battery": 92,
+                "press": "double"
+            },
+            "errors": [],
+            "warnings": []
+        },
+        "points": {
+            "batteryLevel": {
+                "unitId": "%",
+                "record": 92
+            }
+        }
     }
 ]
