@@ -31,5 +31,56 @@
             }
         },
         "points": null
+    },
+    {
+        "description": "Temperature",
+        "type": "uplink",
+        "input": {
+            "bytes": "010100010534",
+            "fPort": 85,
+            "time": "2025-01-01T00:00:00.000+00:00"
+        },
+        "output": {
+            "data": {
+                "head": 1,
+                "command": "control",
+                "data_length": 1,
+                "type": "temperature_target",
+                "raw": [52],
+                "temperature": 26
+            }
+        },
+        "points": {
+            "temperature": {
+                "unitId": "Cel",
+                "record": 26
+            }
+        }
+    },
+    {
+        "description": "Thermostat status",
+        "type": "uplink",
+        "input": {
+            "bytes": "010100010101",
+            "fPort": 85,
+            "time": "2025-01-01T00:00:00.000+00:00"
+        },
+        "output": {
+            "data": {
+                "head": 1,
+                "command": "control",
+                "data_length": 1,
+                "type": "btn_lock_enable",
+                "raw": [1],
+                "thermostat_status": "on"
+            }
+        },
+        "points": {
+            "status": {
+                "unitId": "state",
+                "record": true,
+                "nature": "thermostat status"
+            }
+        }
     }
 ]

@@ -1,1 +1,53 @@
-[{"description":"Example 1","type":"uplink","input":{"bytes":"FF0BFF","fPort":85,"time":"2024-01-01T00:00:00.000Z"},"output":{"data":{"device_status":"on"}},"points":null}]
+[
+	{
+		"description": "Example 1",
+		"type": "uplink",
+		"input": {
+			"bytes": "FF0BFF",
+			"fPort": 85,
+			"time": "2024-01-01T00:00:00.000Z"
+		},
+		"output": {
+			"data": {
+				"device_status": "on"
+			}
+		},
+		"points": {
+			"status": {
+				"unitId": "state",
+				"record": true,
+				"nature": "device status"
+			}
+		}
+	},
+	{
+		"description": "Example 2 - current alarm",
+		"type": "uplink",
+		"input": {
+			"bytes": "0397102700008499B80BD007C40905",
+			"fPort": 100,
+			"time": "2024-11-03T17:00:00.000+02:00"
+		},
+		"output": {
+			"data": {
+				"current_chn1_total": 100,
+				"current_chn1_max": 300,
+				"current_chn1_min": 200,
+				"current_chn1": 250,
+				"current_chn1_alarm": {
+					"current_threshold_alarm": "yes",
+					"current_threshold_alarm_release": "no",
+					"current_over_range_alarm": "yes",
+					"current_over_range_alarm_release": "no"
+				}
+			}
+		},
+		"points": {
+			"current:1": {
+				"unitId": "A",
+				"record": 250,
+				"nature": "current_chn1"
+			}
+		}
+	}
+]

@@ -30,6 +30,36 @@
         }
     },
     {
+        "description": "BACnet example",
+        "type": "uplink",
+        "input": {
+            "bytes": "0175640367040104687b",
+            "fPort": 100,
+            "time": "2024-11-03T17:00:00.000+02:00"
+        },
+        "output": {
+            "data": {
+                "battery": 100,
+                "temperature": 26,
+                "humidity": 61.5
+            }
+        },
+        "points": {
+            "batteryLevel": {
+                "unitId": "%",
+                "record": 100
+            },
+            "temperature": {
+                "unitId": "Cel",
+                "record": 26
+            },
+            "humidity": {
+                "unitId": "%RH",
+                "record": 61.5
+            }
+        }
+    },
+    {
         "description": "Downlink encode: report_interval",
         "type": "downlink-encode",
         "input": {

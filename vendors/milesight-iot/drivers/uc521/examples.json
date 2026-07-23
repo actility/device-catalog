@@ -38,5 +38,14 @@
             ],
             "fPort": 85
         }
+    },
+    {
+        "description": "Device status",
+        "type": "uplink",
+        "input": { "bytes": "FF0BFF", "fPort": 85 },
+        "output": { "data": { "device_status": "on" } },
+        "points": {
+            "status": { "unitId": "state", "record": true, "nature": "device status" }
+        }
     }
 ]

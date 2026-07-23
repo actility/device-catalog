@@ -32,14 +32,18 @@ specificationURL:
 userGuideURL:
 # <sensor>:<unitId> Available sensors following Actility ontology
 sensors:
+  - batteryLevel:%
   - temperature:Cel
   - humidity:%RH
+  - light:lx
+  - concentration:ppm
   - pressure:hPa
   - co2Level:ppm
+  - concentration:ug/m3
 # Driver examples
 examples:
   msight:am308l:1:
-    - "Example 1"
+    - "Uplink example for AM308L"
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false

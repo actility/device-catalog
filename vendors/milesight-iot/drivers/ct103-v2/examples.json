@@ -1,1 +1,43 @@
-[{"description":"Example 1","type":"uplink","input":{"bytes":"FF0BFF","fPort":85,"time":"2024-01-01T00:00:00.000Z"},"output":{"data":{"device_status":"on"}},"points":null}]
+[
+	{
+		"description": "Example 1",
+		"type": "uplink",
+		"input": {
+			"bytes": "FF0BFF",
+			"fPort": 85,
+			"time": "2024-01-01T00:00:00.000Z"
+		},
+		"output": {
+			"data": {
+				"device_status": "on"
+			}
+		},
+		"points": null
+	},
+	{
+		"description": "Example 2 - current measurement",
+		"type": "uplink",
+		"input": {
+			"bytes": "0397102700000498B80B00000000",
+			"fPort": 100,
+			"time": "2024-11-03T17:00:00.000+02:00"
+		},
+		"output": {
+			"data": {
+				"total_current": 100,
+				"current": 30
+			}
+		},
+		"points": {
+			"charge": {
+				"unitId": "Ah",
+				"record": 100,
+				"nature": "total current"
+			},
+			"current": {
+				"unitId": "A",
+				"record": 30
+			}
+		}
+	}
+]
