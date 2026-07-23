@@ -376,3 +376,7 @@ function encodeDownlink(input) {
     };
 }
 
+
+
+exports.encodeDownlink = encodeDownlink;
+exports.decodeUplink = decodeUplink;

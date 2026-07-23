@@ -903,3 +903,7 @@ function decodeDownlink(input) {
         errors: []
     };
 }
+
+
+exports.encodeDownlink = encodeDownlink;
+exports.decodeUplink = decodeUplink;

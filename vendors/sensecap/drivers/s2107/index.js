@@ -386,3 +386,5 @@ function bytes2HexString(arrBytes) {
   }
   return str;
 }
+
+exports.decodeUplink = decodeUplink;

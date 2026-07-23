@@ -1018,3 +1018,6 @@ if (typeof encodeDownlink === "function") moduleExports.encodeDownlink = encodeD
 })(exports);
 
 if (typeof decodeUplink === "function") exports.decodeUplink = decodeUplink;
+
+
+exports.encodeDownlink = encodeDownlink;

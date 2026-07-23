@@ -23,3 +23,5 @@ function decodeUplink(input){
         }
     }
 }
+
+exports.decodeUplink = decodeUplink;

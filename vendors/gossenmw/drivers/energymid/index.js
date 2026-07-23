@@ -94,3 +94,5 @@ function decodeErrorStatus(byte) {
         dc_offset_too_high: (byte & 0x80) !== 0
     };
 }
+
+exports.decodeUplink = decodeUplink;

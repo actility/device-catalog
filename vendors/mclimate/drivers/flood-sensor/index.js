@@ -38,3 +38,5 @@ function decodeUplink(input) {
 		return shortPackage(byteArray);
 	}
 }
+
+exports.decodeUplink = decodeUplink;

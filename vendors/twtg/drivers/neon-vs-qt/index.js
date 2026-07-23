@@ -706,3 +706,4 @@ function encodeDownlink(input) {
 
 exports.Decode = Decode;
 exports.decodeUplink = decodeUplink;
+exports.encodeDownlink = encodeDownlink;

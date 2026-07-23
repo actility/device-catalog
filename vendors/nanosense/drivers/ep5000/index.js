@@ -240,3 +240,7 @@ function encodeDownlink(input) {
         warnings: []
     };
 }
+
+
+exports.encodeDownlink = encodeDownlink;
+exports.decodeUplink = decodeUplink;
