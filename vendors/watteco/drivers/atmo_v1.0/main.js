@@ -21,3 +21,41 @@ exports.decodeUplink = decodeUplink;
 module.exports.extractPoints = require("C:/Actility/Projets_Tpx/device-catalog-private/scripts/tmp/device-catalog/vendors/watteco/drivers/atmo_v1.0/extractPoints.js").extractPoints;
 
 module.exports.extractPoints = require("C:/Actility/Projets_Tpx/device-catalog-private/scripts/tmp/device-catalog/vendors/watteco/drivers/atmo_v1.0/extractPoints.js").extractPoints;
+
+module.exports.extractPoints = require("C:/Actility/Projets_Tpx/device-catalog-private/scripts/tmp/device-catalog/vendors/watteco/drivers/atmo_v1.0/extractPoints.js").extractPoints;
+
+module.exports.extractPoints = require("C:/Actility/Projets_Tpx/device-catalog-private/scripts/tmp/device-catalog/vendors/watteco/drivers/atmo_v1.0/extractPoints.js").extractPoints;
+
+module.exports.extractPoints = require("C:/Actility/Projets_Tpx/device-catalog-private/scripts/tmp/device-catalog/vendors/watteco/drivers/atmo_v1.0/extractPoints.js").extractPoints;
+
+module.exports.extractPoints = require("C:/Actility/Projets_Tpx/device-catalog-private/scripts/tmp/device-catalog/vendors/watteco/drivers/atmo_v1.0/extractPoints.js").extractPoints;
+
+module.exports.extractPoints = require("C:/Actility/Projets_Tpx/device-catalog-private/scripts/tmp/device-catalog/vendors/watteco/drivers/atmo_v1.0/extractPoints.js").extractPoints;
+
+module.exports.extractPoints = require("C:/Actility/Projets_Tpx/device-catalog-private/scripts/tmp/device-catalog/vendors/watteco/drivers/atmo_v1.0/extractPoints.js").extractPoints;
+
+module.exports.extractPoints = require("C:/Actility/Projets_Tpx/device-catalog-private/scripts/tmp/device-catalog/vendors/watteco/drivers/atmo_v1.0/extractPoints.js").extractPoints;
+
+module.exports.extractPoints = require("C:/Actility/Projets_Tpx/device-catalog-private/scripts/tmp/device-catalog/vendors/watteco/drivers/atmo_v1.0/extractPoints.js").extractPoints;
+
+module.exports.extractPoints = require("C:/Actility/Projets_Tpx/device-catalog-private/scripts/tmp/device-catalog/vendors/watteco/drivers/atmo_v1.0/extractPoints.js").extractPoints;
+
+module.exports.extractPoints = require("C:/Actility/Projets_Tpx/device-catalog-private/scripts/tmp/device-catalog/vendors/watteco/drivers/atmo_v1.0/extractPoints.js").extractPoints;
+
+module.exports.extractPoints = require("C:/Actility/Projets_Tpx/device-catalog-private/scripts/tmp/device-catalog/vendors/watteco/drivers/atmo_v1.0/extractPoints.js").extractPoints;
+
+module.exports.extractPoints = require("C:/Actility/Projets_Tpx/device-catalog-private/scripts/tmp/device-catalog/vendors/watteco/drivers/atmo_v1.0/extractPoints.js").extractPoints;
+
+module.exports.extractPoints = require("C:/Actility/Projets_Tpx/device-catalog-private/scripts/tmp/device-catalog/vendors/watteco/drivers/atmo_v1.0/extractPoints.js").extractPoints;
+
+module.exports.extractPoints = require("C:/Actility/Projets_Tpx/device-catalog-private/scripts/tmp/device-catalog/vendors/watteco/drivers/atmo_v1.0/extractPoints.js").extractPoints;
+
+module.exports.extractPoints = require("C:/Actility/Projets_Tpx/device-catalog-private/scripts/tmp/device-catalog/vendors/watteco/drivers/atmo_v1.0/extractPoints.js").extractPoints;
+
+module.exports.extractPoints = require("C:/Actility/Projets_Tpx/device-catalog-private/scripts/tmp/device-catalog/vendors/watteco/drivers/atmo_v1.0/extractPoints.js").extractPoints;
+
+module.exports.extractPoints = require("C:/Actility/Projets_Tpx/device-catalog-private/scripts/tmp/device-catalog/vendors/watteco/drivers/atmo_v1.0/extractPoints.js").extractPoints;
+
+module.exports.extractPoints = require("C:/Actility/Projets_Tpx/device-catalog-private/scripts/tmp/device-catalog/vendors/watteco/drivers/atmo_v1.0/extractPoints.js").extractPoints;
+
+module.exports.extractPoints = require("C:/Actility/Projets_Tpx/device-catalog-private/scripts/tmp/device-catalog/vendors/watteco/drivers/atmo_v1.0/extractPoints.js").extractPoints;

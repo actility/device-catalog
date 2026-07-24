@@ -3,8 +3,345 @@ var __commonJS = (cb, mod) => function __require() {
   return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
 };
 
-// ../../device-catalog/vendors/sensative/drivers/strips/strips-translate.js
-var require_strips_translate = __commonJS({
+// librairies/extractPoints.js
+var require_extractPoints = __commonJS({
+  "librairies/extractPoints.js"(exports2, module2) {
+    function mapPoints(ontologyFieldName, value, timestamp, unit, nature, result, isArray = false) {
+      var _a;
+      if (result[ontologyFieldName] == null) {
+        result[ontologyFieldName] = { unitId: unit, records: [] };
+      }
+      if (nature !== null) result[ontologyFieldName].nature = nature;
+      if (Array.isArray(value)) {
+        if (value.length === 1 && value[0].value !== void 0 && value[0].value !== void 0) {
+          result[ontologyFieldName]["records"].push({
+            value: value[0].value,
+            eventTime: (_a = value[0].eventTime) != null ? _a : timestamp != null ? timestamp : null
+          });
+        } else {
+          value.forEach((item) => {
+            var _a2, _b;
+            result[ontologyFieldName]["records"].push({ value: (_a2 = item.value) != null ? _a2 : item, eventTime: (_b = item.eventTime) != null ? _b : timestamp != null ? timestamp : null });
+          });
+        }
+      } else {
+        result[ontologyFieldName]["records"].push({ value, eventTime: timestamp != null ? timestamp : null });
+      }
+      result[ontologyFieldName]["isArray"] = isArray;
+    }
+    function mapPointGPS(longitude, latitude, altitude, timestamp, ontologyFieldName, nature, result, isArray = false) {
+      if (longitude !== void 0 && latitude !== void 0) {
+        result[ontologyFieldName] = { unitId: "GPS", records: [] };
+        if (nature !== null) result[ontologyFieldName].nature = nature;
+        result[ontologyFieldName]["records"].push({
+          value: [longitude, latitude],
+          eventTime: timestamp
+        });
+        altitude !== null ? result[ontologyFieldName]["records"][0].value.push(altitude) : "";
+      }
+      result[ontologyFieldName]["isArray"] = isArray;
+    }
+    function recordOrRecords(result) {
+      var _a, _b, _c;
+      for (const [key, item] of Object.entries(result)) {
+        if (item.records.length === 1 && !item.isArray) {
+          if (item.unitId === "GPS") {
+            if (item.records[0].value[2] !== void 0) {
+              result[key] = { unitId: item.unitId, record: [item.records[0].value[0], item.records[0].value[1], item.records[0].value[2]] };
+            } else {
+              result[key] = { unitId: item.unitId, record: [item.records[0].value[0], item.records[0].value[1]] };
+            }
+          } else {
+            if (((_a = item.records[0]) == null ? void 0 : _a.eventTime) !== null) {
+              result[key] = { unitId: item.unitId, records: [{ value: item.records[0].value, eventTime: (_b = item.records[0]) == null ? void 0 : _b.eventTime }] };
+            } else {
+              result[key] = { unitId: item.unitId, record: (_c = item.records[0].value) != null ? _c : null };
+            }
+          }
+          if (item.nature !== void 0) {
+            result[key].nature = item.nature;
+          }
+        }
+        delete result[key]["isArray"];
+      }
+      return result;
+    }
+    function mapArrayPoints(array) {
+      let result = {};
+      array.forEach((point) => {
+        var _a, _b, _c, _d;
+        if (point.value !== null && !isNaN(point.value) && point.value !== void 0 || Array.isArray(point.value)) {
+          switch (point.ontologyFieldName) {
+            case "location":
+              mapPointGPS(point.value[0], point.value[1], point.value[2] ? point.value[2] : null, (_a = point.timestamp) != null ? _a : null, "location", (_b = point.nature) != null ? _b : null, result, point.isArray);
+              break;
+            default:
+              mapPoints(point.ontologyFieldName, point.value, (_c = point.timestamp) != null ? _c : null, point.unitId, (_d = point.nature) != null ? _d : null, result, point.isArray);
+          }
+        }
+      });
+      recordOrRecords(result);
+      return result;
+    }
+    module2.exports = { mapArrayPoints };
+  }
+});
+
+// ../device-catalog/vendors/sensative/drivers/strips/extractPoints.js
+var require_extractPoints2 = __commonJS({
+  "../device-catalog/vendors/sensative/drivers/strips/extractPoints.js"(exports2) {
+    var { mapArrayPoints } = require_extractPoints();
+    function extractPoints(input) {
+      var _a, _b, _c, _d;
+      const data = input.message || {};
+      const array = [];
+      let counterIndex = 1;
+      if (data.BatteryReport !== void 0) {
+        array.push({ ontologyFieldName: "batteryLevel", value: (_a = data.BatteryReport) == null ? void 0 : _a.value, unitId: "%" });
+      }
+      if (data.PresenceReport !== void 0) {
+        array.push({ ontologyFieldName: "presence", value: (_b = data.PresenceReport) == null ? void 0 : _b.value, unitId: "state" });
+      }
+      if (data.IRProximityReport !== void 0) {
+        array.push({ ontologyFieldName: ["counter:" + counterIndex++], value: (_c = data.IRProximityReport) == null ? void 0 : _c.value, unitId: "count", nature: "IR proximity" });
+      }
+      if (data.IRCloseProximityReport !== void 0) {
+        array.push({ ontologyFieldName: ["counter:" + counterIndex++], value: (_d = data.IRCloseProximityReport) == null ? void 0 : _d.value, unitId: "count", nature: "IR close proximity" });
+      }
+      return mapArrayPoints(array);
+    }
+    exports2.extractPoints = extractPoints;
+  }
+});
+
+// ../device-catalog/vendors/sensative/drivers/strips/index.js
+var __getOwnPropNames2 = Object.getOwnPropertyNames;
+var __commonJS2 = (cb, mod) => function __require() {
+  return mod || (0, cb[__getOwnPropNames2(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
+};
+var require_extractPoints3 = __commonJS2({
+  "librairies/extractPoints.js"(exports2, module2) {
+    function mapPoints(ontologyFieldName, value, timestamp, unit, nature, result, isArray = false) {
+      var _a;
+      if (result[ontologyFieldName] == null) {
+        result[ontologyFieldName] = { unitId: unit, records: [] };
+      }
+      if (nature !== null) result[ontologyFieldName].nature = nature;
+      if (Array.isArray(value)) {
+        if (value.length === 1 && value[0].value !== void 0 && value[0].value !== void 0) {
+          result[ontologyFieldName]["records"].push({
+            value: value[0].value,
+            eventTime: (_a = value[0].eventTime) != null ? _a : timestamp != null ? timestamp : null
+          });
+        } else {
+          value.forEach((item) => {
+            var _a2, _b;
+            result[ontologyFieldName]["records"].push({ value: (_a2 = item.value) != null ? _a2 : item, eventTime: (_b = item.eventTime) != null ? _b : timestamp != null ? timestamp : null });
+          });
+        }
+      } else {
+        result[ontologyFieldName]["records"].push({ value, eventTime: timestamp != null ? timestamp : null });
+      }
+      result[ontologyFieldName]["isArray"] = isArray;
+    }
+    function mapPointGPS(longitude, latitude, altitude, timestamp, ontologyFieldName, nature, result, isArray = false) {
+      if (longitude !== void 0 && latitude !== void 0) {
+        result[ontologyFieldName] = { unitId: "GPS", records: [] };
+        if (nature !== null) result[ontologyFieldName].nature = nature;
+        result[ontologyFieldName]["records"].push({
+          value: [longitude, latitude],
+          eventTime: timestamp
+        });
+        altitude !== null ? result[ontologyFieldName]["records"][0].value.push(altitude) : "";
+      }
+      result[ontologyFieldName]["isArray"] = isArray;
+    }
+    function recordOrRecords(result) {
+      var _a, _b, _c;
+      for (const [key, item] of Object.entries(result)) {
+        if (item.records.length === 1 && !item.isArray) {
+          if (item.unitId === "GPS") {
+            if (item.records[0].value[2] !== void 0) {
+              result[key] = { unitId: item.unitId, record: [item.records[0].value[0], item.records[0].value[1], item.records[0].value[2]] };
+            } else {
+              result[key] = { unitId: item.unitId, record: [item.records[0].value[0], item.records[0].value[1]] };
+            }
+          } else {
+            if (((_a = item.records[0]) == null ? void 0 : _a.eventTime) !== null) {
+              result[key] = { unitId: item.unitId, records: [{ value: item.records[0].value, eventTime: (_b = item.records[0]) == null ? void 0 : _b.eventTime }] };
+            } else {
+              result[key] = { unitId: item.unitId, record: (_c = item.records[0].value) != null ? _c : null };
+            }
+          }
+          if (item.nature !== void 0) {
+            result[key].nature = item.nature;
+          }
+        }
+        delete result[key]["isArray"];
+      }
+      return result;
+    }
+    function mapArrayPoints(array) {
+      let result = {};
+      array.forEach((point) => {
+        var _a, _b, _c, _d;
+        if (point.value !== null && !isNaN(point.value) && point.value !== void 0 || Array.isArray(point.value)) {
+          switch (point.ontologyFieldName) {
+            case "location":
+              mapPointGPS(point.value[0], point.value[1], point.value[2] ? point.value[2] : null, (_a = point.timestamp) != null ? _a : null, "location", (_b = point.nature) != null ? _b : null, result, point.isArray);
+              break;
+            default:
+              mapPoints(point.ontologyFieldName, point.value, (_c = point.timestamp) != null ? _c : null, point.unitId, (_d = point.nature) != null ? _d : null, result, point.isArray);
+          }
+        }
+      });
+      recordOrRecords(result);
+      return result;
+    }
+    module2.exports = { mapArrayPoints };
+  }
+});
+var require_extractPoints22 = __commonJS2({
+  "../device-catalog/vendors/sensative/drivers/strips/extractPoints.js"(exports2) {
+    var { mapArrayPoints } = require_extractPoints3();
+    function extractPoints(input) {
+      var _a, _b, _c, _d;
+      const data = input.message || {};
+      const array = [];
+      let counterIndex = 1;
+      if (data.BatteryReport !== void 0) {
+        array.push({ ontologyFieldName: "batteryLevel", value: (_a = data.BatteryReport) == null ? void 0 : _a.value, unitId: "%" });
+      }
+      if (data.PresenceReport !== void 0) {
+        array.push({ ontologyFieldName: "presence", value: (_b = data.PresenceReport) == null ? void 0 : _b.value, unitId: "state" });
+      }
+      if (data.IRProximityReport !== void 0) {
+        array.push({ ontologyFieldName: ["counter:" + counterIndex++], value: (_c = data.IRProximityReport) == null ? void 0 : _c.value, unitId: "count", nature: "IR proximity" });
+      }
+      if (data.IRCloseProximityReport !== void 0) {
+        array.push({ ontologyFieldName: ["counter:" + counterIndex++], value: (_d = data.IRCloseProximityReport) == null ? void 0 : _d.value, unitId: "count", nature: "IR close proximity" });
+      }
+      return mapArrayPoints(array);
+    }
+    exports2.extractPoints = extractPoints;
+  }
+});
+var __getOwnPropNames22 = Object.getOwnPropertyNames;
+var __commonJS22 = (cb, mod) => function __require() {
+  return mod || (0, cb[__getOwnPropNames22(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
+};
+var require_extractPoints32 = __commonJS22({
+  "../librairies/extractPoints.js"(exports2, module2) {
+    function mapPoints(ontologyFieldName, value, timestamp, unit, nature, result, isArray = false) {
+      var _a;
+      if (result[ontologyFieldName] == null) {
+        result[ontologyFieldName] = { unitId: unit, records: [] };
+      }
+      if (nature !== null) result[ontologyFieldName].nature = nature;
+      if (Array.isArray(value)) {
+        if (value.length === 1 && value[0].value !== void 0 && value[0].value !== void 0) {
+          result[ontologyFieldName]["records"].push({
+            value: value[0].value,
+            eventTime: (_a = value[0].eventTime) != null ? _a : timestamp != null ? timestamp : null
+          });
+        } else {
+          value.forEach((item) => {
+            var _a2, _b;
+            result[ontologyFieldName]["records"].push({ value: (_a2 = item.value) != null ? _a2 : item, eventTime: (_b = item.eventTime) != null ? _b : timestamp != null ? timestamp : null });
+          });
+        }
+      } else {
+        result[ontologyFieldName]["records"].push({ value, eventTime: timestamp != null ? timestamp : null });
+      }
+      result[ontologyFieldName]["isArray"] = isArray;
+    }
+    function mapPointGPS(longitude, latitude, altitude, timestamp, ontologyFieldName, nature, result, isArray = false) {
+      if (longitude !== void 0 && latitude !== void 0) {
+        result[ontologyFieldName] = { unitId: "GPS", records: [] };
+        if (nature !== null) result[ontologyFieldName].nature = nature;
+        result[ontologyFieldName]["records"].push({
+          value: [longitude, latitude],
+          eventTime: timestamp
+        });
+        altitude !== null ? result[ontologyFieldName]["records"][0].value.push(altitude) : "";
+      }
+      result[ontologyFieldName]["isArray"] = isArray;
+    }
+    function recordOrRecords(result) {
+      var _a, _b, _c;
+      for (const [key, item] of Object.entries(result)) {
+        if (item.records.length === 1 && !item.isArray) {
+          if (item.unitId === "GPS") {
+            if (item.records[0].value[2] !== void 0) {
+              result[key] = { unitId: item.unitId, record: [item.records[0].value[0], item.records[0].value[1], item.records[0].value[2]] };
+            } else {
+              result[key] = { unitId: item.unitId, record: [item.records[0].value[0], item.records[0].value[1]] };
+            }
+          } else {
+            if (((_a = item.records[0]) == null ? void 0 : _a.eventTime) !== null) {
+              result[key] = { unitId: item.unitId, records: [{ value: item.records[0].value, eventTime: (_b = item.records[0]) == null ? void 0 : _b.eventTime }] };
+            } else {
+              result[key] = { unitId: item.unitId, record: (_c = item.records[0].value) != null ? _c : null };
+            }
+          }
+          if (item.nature !== void 0) {
+            result[key].nature = item.nature;
+          }
+        }
+        delete result[key]["isArray"];
+      }
+      return result;
+    }
+    function mapArrayPoints(array) {
+      let result = {};
+      array.forEach((point) => {
+        var _a, _b, _c, _d;
+        if (point.value !== null && !isNaN(point.value) && point.value !== void 0 || Array.isArray(point.value)) {
+          switch (point.ontologyFieldName) {
+            case "location":
+              mapPointGPS(point.value[0], point.value[1], point.value[2] ? point.value[2] : null, (_a = point.timestamp) != null ? _a : null, "location", (_b = point.nature) != null ? _b : null, result, point.isArray);
+              break;
+            default:
+              mapPoints(point.ontologyFieldName, point.value, (_c = point.timestamp) != null ? _c : null, point.unitId, (_d = point.nature) != null ? _d : null, result, point.isArray);
+          }
+        }
+      });
+      recordOrRecords(result);
+      return result;
+    }
+    module2.exports = { mapArrayPoints };
+  }
+});
+var require_extractPoints222 = __commonJS22({
+  "../../device-catalog/vendors/sensative/drivers/strips/extractPoints.js"(exports2) {
+    var { mapArrayPoints } = require_extractPoints32();
+    function extractPoints(input) {
+      var _a, _b, _c, _d;
+      const data = input.message || {};
+      const array = [];
+      let counterIndex = 1;
+      if (data.BatteryReport !== void 0) {
+        array.push({ ontologyFieldName: "batteryLevel", value: (_a = data.BatteryReport) == null ? void 0 : _a.value, unitId: "%" });
+      }
+      if (data.PresenceReport !== void 0) {
+        array.push({ ontologyFieldName: "presence", value: (_b = data.PresenceReport) == null ? void 0 : _b.value, unitId: "state" });
+      }
+      if (data.IRProximityReport !== void 0) {
+        array.push({ ontologyFieldName: ["counter:" + counterIndex++], value: (_c = data.IRProximityReport) == null ? void 0 : _c.value, unitId: "count", nature: "IR proximity" });
+      }
+      if (data.IRCloseProximityReport !== void 0) {
+        array.push({ ontologyFieldName: ["counter:" + counterIndex++], value: (_d = data.IRCloseProximityReport) == null ? void 0 : _d.value, unitId: "count", nature: "IR close proximity" });
+      }
+      return mapArrayPoints(array);
+    }
+    exports2.extractPoints = extractPoints;
+  }
+});
+var __getOwnPropNames222 = Object.getOwnPropertyNames;
+var __commonJS222 = (cb, mod) => function __require() {
+  return mod || (0, cb[__getOwnPropNames222(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
+};
+var require_strips_translate = __commonJS222({
   "../../device-catalog/vendors/sensative/drivers/strips/strips-translate.js"(exports2) {
     var decodeU32dec = (n) => {
       return n.toString(10);
@@ -555,9 +892,7 @@ var require_strips_translate = __commonJS({
     exports2.commandLine = commandLineTest;
   }
 });
-
-// ../librairies/extractPoints.js
-var require_extractPoints = __commonJS({
+var require_extractPoints322 = __commonJS222({
   "../librairies/extractPoints.js"(exports2, module2) {
     function mapPoints(ontologyFieldName, value, timestamp, unit, nature, result, isArray = false) {
       var _a;
@@ -639,11 +974,9 @@ var require_extractPoints = __commonJS({
     module2.exports = { mapArrayPoints };
   }
 });
-
-// ../../device-catalog/vendors/sensative/drivers/strips/extractPoints.js
-var require_extractPoints2 = __commonJS({
+var require_extractPoints2222 = __commonJS222({
   "../../device-catalog/vendors/sensative/drivers/strips/extractPoints.js"(exports2) {
-    var { mapArrayPoints } = require_extractPoints();
+    var { mapArrayPoints } = require_extractPoints322();
     function extractPoints(input) {
       var _a, _b, _c, _d;
       const data = input.message || {};
@@ -666,8 +999,6 @@ var require_extractPoints2 = __commonJS({
     exports2.extractPoints = extractPoints;
   }
 });
-
-// ../../device-catalog/vendors/sensative/drivers/strips/index.js
 var translator = require_strips_translate();
 function transformStripsDecodeDownlinkToActilityFormat(obj) {
   let result = {};
@@ -724,4 +1055,7 @@ function encodeDownlink(input) {
 exports.decodeUplink = decodeUplink;
 exports.decodeDownlink = decodeDownlink;
 exports.encodeDownlink = encodeDownlink;
+module.exports.extractPoints = require_extractPoints2222().extractPoints;
+module.exports.extractPoints = require_extractPoints222().extractPoints;
+module.exports.extractPoints = require_extractPoints22().extractPoints;
 module.exports.extractPoints = require_extractPoints2().extractPoints;

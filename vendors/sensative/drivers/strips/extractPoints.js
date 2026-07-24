@@ -1,4 +1,4 @@
-const { mapArrayPoints } = require("C:/Actility/Projets_Tpx/device-catalog-private/scripts/tmp/device-catalog-private/librairies/extractPoints");
+const { mapArrayPoints } = require("C:/Actility/Projets_Tpx/device-catalog-private/librairies/extractPoints");
 
 function extractPoints(input) {
     const data = input.message || {};

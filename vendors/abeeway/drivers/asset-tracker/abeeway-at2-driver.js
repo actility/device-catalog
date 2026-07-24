@@ -11,7 +11,7 @@
 return /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 901:
+/***/ 44:
 /***/ ((module) => {
 
 // ../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/index.js
@@ -9445,7 +9445,7 @@ module.exports.extractPoints = require_extractPoints().extractPoints;
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module is referenced by other modules so it can't be inlined
-/******/ 	var __webpack_exports__ = __webpack_require__(901);
+/******/ 	var __webpack_exports__ = __webpack_require__(44);
 /******/ 	
 /******/ 	return __webpack_exports__;
 /******/ })()

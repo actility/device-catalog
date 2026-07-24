@@ -1,706 +1,19 @@
 /******/ var __webpack_modules__ = ({
 
-/***/ 47:
+/***/ 25:
 /***/ ((module) => {
 
 module.exports = Object.freeze({
-    POSITION_MESSAGE: "POSITION_MESSAGE",
-    EXTENDED_POSITION_MESSAGE: "EXTENDED_POSITION_MESSAGE",
-    HEARTBEAT: "HEARTBEAT",
-    ENERGY_STATUS: "ENERGY_STATUS",
-    HEALTH_STATUS: "HEALTH_STATUS",
-    SHUTDOWN: "SHUTDOWN",
-    FRAME_PENDING: "FRAME_PENDING",
-    DEBUG: "DEBUG",
-    ACTIVITY_STATUS: "ACTIVITY_STATUS",
-    CONFIGURATION: "CONFIGURATION",
+    ACTIVITY_COUNTER: "ACTIVITY_COUNTER",
+    DEVICE_CONFIGURATION: "DEVICE_CONFIGURATION",
     SHOCK_DETECTION: "SHOCK_DETECTION",
-    BLE_MAC: "BLE_MAC",
-    EVENT: "EVENT",
-    DATA_SCAN_COLLECTION: "DATA_SCAN_COLLECTION",
-    PROXIMITY_DETECTION: "PROXIMITY_DETECTION",
-    SMS: "SMS",
-    UNKNOWN: "UNKNOWN"
-});
-
-
-
-/***/ }),
-
-/***/ 81:
-/***/ ((module) => {
-
-function ScanCollection(scanType,
-        again,
-        dataFormat,
-        fragmentIdentification,
-        collectionIdentifier,
-        hash,
-        beaconIdData,
-        macAddressData){
-            this.scanType = scanType;
-            this.again = again;
-            this.dataFormat = dataFormat;
-            this.fragmentIdentification = fragmentIdentification;
-            this.collectionIdentifier = collectionIdentifier;
-            this.hash = hash;
-            this.beaconIdData = beaconIdData;
-            this.macAddressData = macAddressData;
-}
-
-module.exports = {
-    ScanCollection: ScanCollection,
-    ScanType: {
-        BLE_BEACONS: "BLE_BEACONS",
-        WIFI_BSSID: "WIFI_BSSID",
-        BLE_BEACONS_COLLECTION: "BLE_BEACONS_COLLECTION"
-    },
-    DataFormat: {
-        BEACON_ID: "BEACON_ID",
-        MAC_ADDRESS: "MAC_ADDRESS"
-    }
-}
-
-/***/ }),
-
-/***/ 135:
-/***/ ((module) => {
-
-module.exports = Object.freeze({
-    NO_COLLECTION_SCAN: "NO_COLLECTION_SCAN",
-    BLE_BEACONS: "BLE_BEACONS",
-    WIFI_BSSID: "WIFI_BSSID"
+    PERIODIC_ACTIVITY: "PERIODIC_ACTIVITY",
+    BLE_MAC: "BLE_MAC"
 });
 
 /***/ }),
 
-/***/ 137:
-/***/ ((module) => {
-
-function BeaconIdInfo(beaconId,rssi){
-    this.beaconId = beaconId;
-    this.rssi = rssi;
-}
-
-module.exports = {
-    BeaconIdInfo: BeaconIdInfo
-}
-
-/***/ }),
-
-/***/ 144:
-/***/ ((module) => {
-
-module.exports = Object.freeze({
-    DEBUG_CRASH_INFORMATION: "DEBUG_CRASH_INFORMATION",
-    TX_POWER_INDEX_VALUE: "TX_POWER_INDEX_VALUE",
-    UPLINK_LENGTH_ERR: "UPLINK_LENGTH_ERR",
-    GENERIC_ERROR: "GENERIC_ERROR",
-    SPECIFIC_FIRMWARE_PARAMETERS: "SPECIFIC_FIRMWARE_PARAMETERS",
-    UNKNOWN: "UNKNOWN"
-});
-
-/***/ }),
-
-/***/ 151:
-/***/ ((module) => {
-
-module.exports = Object.freeze({
-    POS_ON_DEMAND: "POS_ON_DEMAND",
-    SET_MODE: "SET_MODE",
-    REQUEST_CONFIG: "REQUEST_CONFIG",
-    START_SOS: "START_SOS",
-    STOP_SOS: "STOP_SOS",
-    REQUEST_TEMPERATURE_STATUS: "REQUEST_TEMPERATURE_STATUS",
-    PROXIMITY: "PROXIMITY",
-    ANGLE_DETECTION :"ANGLE_DETECTION",
-    REQUEST_STATUS: "REQUEST_STATUS",
-    SET_PARAM: "SET_PARAM",
-    CLEAR_MOTION_PERCENTAGE: "CLEAR_MOTION_PERCENTAGE",
-    SMS: "SMS",
-    DEBUG_COMMAND: "DEBUG_COMMAND"
-});
-
-/***/ }),
-
-/***/ 158:
-/***/ ((module) => {
-
-module.exports = Object.freeze({
-    RESET: "RESET",
-    READ_CURRENT_ERROR_AND_SEND_IT: "READ_CURRENT_ERROR_AND_SEND_IT",
-    MAKE_TRACKER_RING: "MAKE_TRACKER_RING",
-    TRIGGER_AN_ERROR: "TRIGGER_AN_ERROR",
-    RESET_BLE_PAIRING: "RESET_BLE_PAIRING",
-    TRIGGER_HEARTBEAT_MESSAGE: "TRIGGER_HEARTBEAT_MESSAGE",
-    READ_TX_POWER_INDEX: "READ_TX_POWER_INDEX",
-    WRITE_TX_POWER_INDEX: "WRITE_TX_POWER_INDEX",
-    TRIGGER_BLE_BOOTLOADER: "TRIGGER_BLE_BOOTLOADER",
-    SPECIFIC_FIRMWARE_PARAMETERS_REQUEST: "SPECIFIC_FIRMWARE_PARAMETERS_REQUEST",
-    CONFIGURE_STARTUP_MODES: "CONFIGURE_STARTUP_MODES",
-    START_AND_STOP_BLE_ADVERTISEMENT:"START_AND_STOP_BLE_ADVERTISEMENT"
-});
-
-/***/ }),
-
-/***/ 167:
-/***/ ((module) => {
-
-module.exports = Object.freeze({
-    BLE_NOT_RESPONDING: "BLE_NOT_RESPONDING",
-    INTERNAL_ERROR: "INTERNAL_ERROR",
-    SHARED_ANTENNA_NOT_AVAILABLE: "SHARED_ANTENNA_NOT_AVAILABLE",
-    SCAN_ALREADY_ON_GOING: "SCAN_ALREADY_ON_GOING",
-    NO_BEACON_DETECTED: "NO_BEACON_DETECTED",
-    HARDWARE_INCOMPATIBILITY: "HARDWARE_INCOMPATIBILITY",
-    UNKNOWN_BLE_FIRMWARE_VERSION: "UNKNOWN_BLE_FIRMWARE_VERSION"
-});
-
-/***/ }),
-
-/***/ 214:
-/***/ ((module) => {
-
-module.exports = Object.freeze({
-    NOT_BONDED: "NOT_BONDED",
-    BONDED: "BONDED",
-    UNKNOWN: "UNKNOWN"
-});
-
-/***/ }),
-
-/***/ 243:
-/***/ ((module) => {
-
-module.exports = Object.freeze({
-    FIX_2D: "FIX_2D",
-    FIX_3D: "FIX_3D",
-});
-
-/***/ }),
-
-/***/ 244:
-/***/ ((module) => {
-
-function ProximityDailyReport(dailyAlertDay0,
-        dailyWarningDay0,
-        dailyExposureDay0,
-        dailyAlertDay1,
-        dailyWarningDay1,
-        dailyExposureDay1,
-        dailyAlertDay2,
-        dailyWarningDay2,
-        dailyExposureDay2){
-            this.dailyAlertDay0 = dailyAlertDay0;
-            this.dailyWarningDay0 = dailyWarningDay0;
-            this.dailyExposureDay0 = dailyExposureDay0;
-            this.dailyAlertDay1 = dailyAlertDay1;
-            this.dailyWarningDay1 = dailyWarningDay1;
-            this.dailyExposureDay1 = dailyExposureDay1;
-            this.dailyAlertDay2 = dailyAlertDay2;
-            this.dailyWarningDay2 = dailyWarningDay2;
-            this.dailyExposureDay2 = dailyExposureDay2;
-}
-
-module.exports = {
-    ProximityDailyReport: ProximityDailyReport
-}
-
-/***/ }),
-
-/***/ 284:
-/***/ ((module) => {
-
-function MeasuredTemperature(state, max, min, highCounter, lowCounter){
-        this.state = state;
-        this.max = max;
-        this.min = min;
-        this.highCounter = highCounter;
-        this.lowCounter = lowCounter;
-}
-
-module.exports = {
-    MeasuredTemperature: MeasuredTemperature,
-    TemperatureState: {
-        NORMAL: "NORMAL",
-        HIGH: "HIGH",
-        LOW: "LOW",
-        FEATURE_NOT_ACTIVATED: "FEATURE_NOT_ACTIVATED"
-    }
-}
-
-/***/ }),
-
-/***/ 304:
-/***/ ((module) => {
-
-function HealthStatus (totalConsumption,
-    maxTemperature,
-    minTemperature,
-    loraPowerConsumption,
-    blePowerConsumption,
-    gpsPowerConsumption,
-    wifiPowerConsumption,
-    batteryVoltage){
-        this.totalConsumption = totalConsumption;
-        this.maxTemperature = maxTemperature;
-        this.minTemperature = minTemperature;
-        this.loraPowerConsumption = loraPowerConsumption;
-        this.blePowerConsumption = blePowerConsumption;
-        this.gpsPowerConsumption = gpsPowerConsumption;
-        this.wifiPowerConsumption = wifiPowerConsumption;
-        this.batteryVoltage = batteryVoltage;
-}
-
-module.exports = {
-    HealthStatus: HealthStatus
-}
-
-/***/ }),
-
-/***/ 333:
-/***/ ((module) => {
-
-module.exports = Object.freeze({
-    GPS: "GPS",
-    GPS_TIMEOUT: "GPS_TIMEOUT",
-    ENCRYPTED_WIFI_BSSIDS: "ENCRYPTED_WIFI_BSSIDS",
-    WIFI_TIMEOUT: "WIFI_TIMEOUT",
-    WIFI_FAILURE: "WIFI_FAILURE",
-    XGPS_DATA: "XGPS_DATA",
-    XGPS_DATA_WITH_GPS_SW_TIME: "XGPS_DATA_WITH_GPS_SW_TIME",
-    BLE_BEACON_SCAN: "BLE_BEACON_SCAN",
-    BLE_BEACON_FAILURE: "BLE_BEACON_FAILURE",
-    WIFI_BSSIDS_WITH_NO_CYPHER: "WIFI_BSSIDS_WITH_NO_CYPHER",
-    BLE_BEACON_SCAN_SHORT_ID: "BLE_BEACON_SCAN_SHORT_ID",
-    BLE_BEACON_SCAN_LONG_ID: "BLE_BEACON_SCAN_LONG_ID",
-    UNKNOWN: "UNKNOWN"
-});
-
-/***/ }),
-
-/***/ 355:
-/***/ ((module) => {
-
-module.exports = Object.freeze({
-    CHARGING: "CHARGING",
-    OPERATING: "OPERATING",
-    UNKNOWN: "UNKNOWN"
-});
-
-/***/ }),
-
-/***/ 378:
-/***/ ((module) => {
-
-function AbeewayDownlinkPayload(downMessageType, 
-        ackToken,
-        modeValue,
-        debugCommandType,
-        listParameterID,
-        listParameterIDNames,
-        statusType,
-        setParameters,
-        resetAction,
-        optionalCommand,
-        txPowerIndex,
-        melodyId,
-        buzzerDuration,
-        proximityMessage,
-        angleDetectionControl,
-        bleAdvertisementDuration,
-        startupModes,
-        sms,
-        payload) {
-        this.downMessageType = downMessageType;
-        this.ackToken = ackToken;
-        this.modeValue = modeValue;
-        this.debugCommandType = debugCommandType;
-        this.listParameterID = listParameterID;
-        this.listParameterIDNames = listParameterIDNames;
-        this.statusType = statusType;
-        this.setParameters = setParameters;
-        this.resetAction = resetAction;
-        this.optionalCommand = optionalCommand;
-        this.txPowerIndex = txPowerIndex;
-        this.melodyId = melodyId;
-        this.buzzerDuration = buzzerDuration;
-        this.proximityMessage = proximityMessage;
-        this.angleDetectionControl = angleDetectionControl;
-        this.bleAdvertisementDuration = bleAdvertisementDuration;
-        this.startupModes = startupModes;
-        this.sms = sms;
-        this.payload = payload;
-}
-
-module.exports = {
-    AbeewayDownlinkPayload: AbeewayDownlinkPayload
-}
-
-/***/ }),
-
-/***/ 423:
-/***/ ((module) => {
-
-function Sms(destinationId,
-		senderId,
-        message){
-            this.destinationId = destinationId;
-            this.senderId = senderId;
-            this.message = message;
-}
-
-module.exports = {
-    Sms: Sms
-}
-
-/***/ }),
-
-/***/ 462:
-/***/ ((module) => {
-
-module.exports = Object.freeze({
-    STATIC: "STATIC",
-    MOVING: "MOVING"
-});
-
-/***/ }),
-
-/***/ 505:
-/***/ ((module) => {
-
-module.exports = Object.freeze({
-    STAND_BY: "STAND_BY",
-    MOTION_TRACKING: "MOTION_TRACKING",
-    PERMANENT_TRACKING: "PERMANENT_TRACKING",
-    MOTION_START_END_TRACKING: "MOTION_START_END_TRACKING",
-    ACTIVITY_TRACKING: "ACTIVITY_TRACKING",
-    OFF: "OFF",
-    UNKNOWN: "UNKNOWN"
-});
-
-/***/ }),
-
-/***/ 523:
-/***/ ((module) => {
-
-function BssidInfo (bssid,rssi){
-        this.bssid = bssid;
-        this.rssi = rssi;
-}
-
-module.exports = {
-    BssidInfo: BssidInfo
-}
-
-/***/ }),
-
-/***/ 553:
-/***/ ((module) => {
-
-function AbeewayUplinkPayload(gpsLatitude, 
-    gpsLongitude,
-    horizontalAccuracy,
-    messageType,
-    age,
-    trackingMode,
-    batteryVoltage,
-    batteryLevel,
-    batteryStatus,
-    ackToken,
-    firmwareVersion,
-    bleFirmwareVersion,
-    bleMac,
-    resetCause,
-    rawPositionType,
-    periodicPosition,
-    gpsOnRuntime,
-    gpsStandbyRuntime,
-    wifiScanCount,
-    timeoutCause,
-    bestSatellitesCOverN,
-    temperatureMeasure,
-    miscDataTag,
-    sosFlag,
-    appState,
-    dynamicMotionState,
-    onDemand,
-    batteryVoltageMeasures,
-    errorCode,
-    debugErrorCode,
-    genericErrorCode,
-    shutdownCause,
-    currentAckTokenValue,
-    payload,
-    debugCrashInfo,
-    activityCount,
-    deviceConfiguration,
-    wifiBssids,
-    bleBssids,
-    bleBeaconIds,
-    bleBeaconFailure,
-    eventType,
-    debugCommandTag,
-    txPowerIndex,
-    nbOfshock,
-    accelerometerShockData,
-    trackerOrientation,
-    activityReportingWindow,
-    measuredTemperature,
-    lengthErrCounter,
-    dataScanCollection,
-    proximityNotification,
-    proximityDailyReport,
-    proximityWhiteListing,
-    proximityDailyResponse,
-    angleDetection, 
-    geofencingNotification,
-    specificFirmwareParameters,
-    gpsAltitude,
-    gpsCourseOverGround,
-    gpsSpeedOverGround,
-    gpsFixStatus,
-    gpsPayloadType,
-    gpsPrevious,
-    healthStatus,
-    motionDutyCycle,
-    gaddIndex,
-    sms) {
-    this.gpsLatitude = gpsLatitude;
-    this.gpsLongitude = gpsLongitude;
-    this.gpsAltitude = gpsAltitude;
-    this.gpsCourseOverGround = gpsCourseOverGround;
-    this.gpsSpeedOverGround = gpsSpeedOverGround;
-    this.gpsFixStatus = gpsFixStatus;
-    this.gpsPayloadType = gpsPayloadType;
-    this.horizontalAccuracy = horizontalAccuracy;
-    this.gpsPrevious = gpsPrevious;
-    this.messageType = messageType;
-    this.age = age;
-    this.trackingMode = trackingMode;
-    this.batteryVoltage = batteryVoltage;
-    this.batteryLevel = batteryLevel;
-    this.batteryStatus = batteryStatus;
-    this.ackToken = ackToken;
-    this.firmwareVersion = firmwareVersion;
-    this.bleFirmwareVersion = bleFirmwareVersion;
-    this.bleMac = bleMac;
-    this.resetCause = resetCause;
-    this.rawPositionType = rawPositionType;
-    this.periodicPosition = periodicPosition;
-    this.gpsOnRuntime = gpsOnRuntime;
-    this.gpsStandbyRuntime = gpsStandbyRuntime;
-    this.wifiScanCount = wifiScanCount;
-    this.timeoutCause = timeoutCause;
-    this.bestSatellitesCOverN = bestSatellitesCOverN;
-    this.temperatureMeasure = temperatureMeasure;
-    this.miscDataTag = miscDataTag;
-    this.sosFlag = sosFlag;
-    this.appState = appState;
-    this.dynamicMotionState = dynamicMotionState;
-    this.onDemand = onDemand;
-    this.batteryVoltageMeasures = batteryVoltageMeasures;
-    this.errorCode = errorCode;
-    this.debugErrorCode = debugErrorCode;
-    this.genericErrorCode = genericErrorCode;
-    this.shutdownCause = shutdownCause;
-    this.currentAckTokenValue = currentAckTokenValue;
-    this.payload = payload;
-    this.debugCrashInfo = debugCrashInfo;
-    this.activityCount = activityCount;
-    this.deviceConfiguration = deviceConfiguration;
-    this.wifiBssids = wifiBssids;
-    this.bleBssids = bleBssids;
-    this.bleBeaconIds = bleBeaconIds;
-    this.bleBeaconFailure = bleBeaconFailure;
-    this.eventType = eventType;
-    this.debugCommandTag = debugCommandTag;
-    this.txPowerIndex = txPowerIndex;
-    this.nbOfshock = nbOfshock;
-    this.accelerometerShockData = accelerometerShockData;
-    this.trackerOrientation = trackerOrientation;
-    this.activityReportingWindow = activityReportingWindow;
-    this.measuredTemperature = measuredTemperature;
-    this.lengthErrCounter = lengthErrCounter;
-    this.dataScanCollection = dataScanCollection;
-    this.proximityNotification = proximityNotification;
-    this.proximityDailyReport = proximityDailyReport;
-    this.proximityWhiteListing = proximityWhiteListing;
-    this.proximityDailyResponse = proximityDailyResponse;
-    this.angleDetection =angleDetection;
-    this.geofencingNotification = geofencingNotification;
-    this.specificFirmwareParameters = specificFirmwareParameters;
-    this.healthStatus = healthStatus;
-    this.motionDutyCycle = motionDutyCycle;
-    this.gaddIndex = gaddIndex;
-    this.sms = sms;
-}
-
-module.exports = {
-    AbeewayUplinkPayload: AbeewayUplinkPayload
-}
-
-/***/ }),
-
-/***/ 559:
-/***/ ((module) => {
-
-function StartupModes(manufacturing,
-        shipping){
-            this.manufacturing = manufacturing;
-            this.shipping = shipping;
-}
-
-module.exports = {
-		StartupModes: StartupModes
-	}
-
-
-/***/ }),
-
-/***/ 613:
-/***/ ((module) => {
-
-function ProximityDailyResponse(dayIdentifier,
-        dailyAlert,
-        dailyWarning,
-        dailyExposure){
-            this.dayIdentifier = dayIdentifier;
-            this.dailyAlert = dailyAlert;
-            this.dailyWarning = dailyWarning;
-            this.dailyExposure = dailyExposure;
-}
-
-module.exports = {
-    ProximityDailyResponse: ProximityDailyResponse
-}
-
-/***/ }),
-
-/***/ 636:
-/***/ ((module) => {
-
-function ProximityWhiteListing (encrypted,
-        rollingProximityIdentifier,
-        list,
-        recordStatus,
-        solicited){
-            this.encrypted = encrypted;
-            this.rollingProximityIdentifier = rollingProximityIdentifier;
-            this.list = list;
-            this.recordStatus = recordStatus;
-            this.solicited = solicited;
-}
-
-module.exports = {
-    ProximityWhiteListing: ProximityWhiteListing,
-    List: {
-        PEER_LIST: "PEER_LIST",
-        WARNING_LIST: "WARNING_LIST",
-        ALERT_LIST: "ALERT_LIST"
-    },
-    RecordStatus: {
-        NOT_WHITE_LISTED: "NOT_WHITE_LISTED",
-        WHITE_LISTED: "WHITE_LISTED"
-    }
-}
-
-/***/ }),
-
-/***/ 679:
-/***/ ((module) => {
-
-module.exports = Object.freeze({
-	STOP_ANGLE_DETECTION: "STOP_ANGLE_DETECTION",
-	START_ANGLE_DETECTION: "START_ANGLE_DETECTION"
-
-});
-
-/***/ }),
-
-/***/ 682:
-/***/ ((module) => {
-
-function GeofencingNotification(geofencingFormat, geofencingType, id)
-  {
-            this.geofencingFormat = geofencingFormat;
-            this.geofencingType = geofencingType;
-            this.id = id;
-  }
-
-module.exports = {
-	GeofencingNotification: GeofencingNotification,
-	GeofencingType: {
-        SAFE_AREA: "SAFE_AREA",
-        ENTRY: "ENTRY",
-        EXIT: "EXIT",
-        HAZARD: "HAZARD"
-    }
-}
-
-/***/ }),
-
-/***/ 699:
-/***/ ((module) => {
-
-module.exports = Object.freeze({
-    INVALID_GEOLOC_SENSOR: "INVALID_GEOLOC_SENSOR",
-    INVALID_GEOLOC_CONFIG: "INVALID_GEOLOC_CONFIG"
-});
-
-/***/ }),
-
-/***/ 761:
-/***/ ((module) => {
-
-module.exports = Object.freeze({
-    RESET_DEVICE: "RESET_DEVICE",
-    DELETE_CONFIG_RESET: "DELETE_CONFIG_RESET",
-    DELETE_CONFIG_BLE_BOND_RESET: "DELETE_CONFIG_BLE_BOND_RESET"
-});
-
-/***/ }),
-
-/***/ 764:
-/***/ ((module) => {
-
-function ProximityMessage (type,rollingProximityIdentifier,recordStatus,dayIdentifier){
-        this.type = type;
-        this.rollingProximityIdentifier = rollingProximityIdentifier;
-        this.recordStatus = recordStatus;
-        this.dayIdentifier = dayIdentifier;
-}
-
-module.exports = {
-    ProximityMessage: ProximityMessage,
-    Type: {
-        GET_RECORD_STATUS: "GET_RECORD_STATUS",
-        SET_WHITE_LIST_STATUS: "SET_WHITE_LIST_STATUS",
-        GET_DAILY_INFORMATION: "GET_DAILY_INFORMATION",
-        CLEAR_DAILY_INFORMATION: "CLEAR_DAILY_INFORMATION"
-    },
-    SetRecordStatus: {
-        RESET_WHITE_LISTING: "RESET_WHITE_LISTING",
-        SET_WHITE_LISTING: "SET_WHITE_LISTING"
-    }
-}
-
-/***/ }),
-
-/***/ 769:
-/***/ ((module) => {
-
-module.exports = Object.freeze({
-    USER_ACTION: "USER_ACTION",
-    LOW_BATTERY: "LOW_BATTERY",
-    DOWNLINK_REQUEST: "DOWNLINK_REQUEST",
-    BLE_REQUEST: "BLE_REQUEST",
-    BLE_CONNECTED: "BLE_CONNECTED"
-});
-
-/***/ }),
-
-/***/ 783:
+/***/ 32:
 /***/ ((module) => {
 
 function AngleDetectionFlags (transition, triggerType, notificationIdentifier){
@@ -734,115 +47,7 @@ module.exports = {
 
 /***/ }),
 
-/***/ 786:
-/***/ ((module) => {
-
-function AngleDetection (flags, age, referenceGravityVector, criticalGravityVector, angle){
-        this.flags = flags;
-        this.age = age;
-        this.referenceVector = referenceGravityVector;
-        this.criticalVector = criticalGravityVector;
-        this.angle =angle;
-}
-
-module.exports = {
-  AngleDetection: AngleDetection
- 	
-}
-
-
-/***/ }),
-
-/***/ 788:
-/***/ ((module) => {
-
-/*export default class ProximityNotification{
-    constructor(notificationType,
-        encrypted,
-        recordAction,
-        rollingProximityIdentifier,
-        closestDistanceRecording,
-        distanceAverageRecorded,
-        cumulatedExposure,
-        metadata,
-        cumulatedContactDuration,
-        currentDailyExposure){
-            this.notificationType = notificationType;
-            this.encrypted = encrypted;
-            this.recordAction = recordAction;
-            this.rollingProximityIdentifier = rollingProximityIdentifier;
-            this.closestDistanceRecording = closestDistanceRecording;
-            this.distanceAverageRecorded = distanceAverageRecorded;
-            this.cumulatedExposure = cumulatedExposure;
-            this.metadata = metadata;
-            this.cumulatedContactDuration = cumulatedContactDuration;
-            this.currentDailyExposure = currentDailyExposure;
-    }
-}
-
-export const NotificationType = {
-    WARNING_MESSAGE: "WARNING_MESSAGE",
-    ALERT_MESSAGE: "ALERT_MESSAGE",
-    RECORD_MESSAGE: "RECORD_MESSAGE"
-};
-
-export const RecordAction = {
-    RECORD_START: "RECORD_START",
-    RECORD_UPDATE: "RECORD_UPDATE",
-    RECORD_STOP: "RECORD_STOP"
-};*/
-// constructor function for the ProximityNotification class
-function ProximityNotification(notificationType,
-    encrypted,
-    recordAction,
-    rollingProximityIdentifier,
-    closestDistanceRecording,
-    distanceAverageRecorded,
-    cumulatedExposure,
-    metadata,
-    cumulatedContactDuration,
-    currentDailyExposure){
-        this.notificationType = notificationType;
-        this.encrypted = encrypted;
-        this.recordAction = recordAction;
-        this.rollingProximityIdentifier = rollingProximityIdentifier;
-        this.closestDistanceRecording = closestDistanceRecording;
-        this.distanceAverageRecorded = distanceAverageRecorded;
-        this.cumulatedExposure = cumulatedExposure;
-        this.metadata = metadata;
-        this.cumulatedContactDuration = cumulatedContactDuration;
-        this.currentDailyExposure = currentDailyExposure;
-}
-
-module.exports = {
-    ProximityNotification: ProximityNotification,
-    NotificationType: {
-        WARNING_MESSAGE: "WARNING_MESSAGE",
-        ALERT_MESSAGE: "ALERT_MESSAGE",
-        RECORD_MESSAGE: "RECORD_MESSAGE"
-    },
-    RecordAction: {
-        RECORD_START: "RECORD_START",
-        RECORD_UPDATE: "RECORD_UPDATE",
-        RECORD_STOP: "RECORD_STOP"
-    }
-}
-
-/***/ }),
-
-/***/ 844:
-/***/ ((module) => {
-
-module.exports = Object.freeze({
-    USER_TIMEOUT: "USER_TIMEOUT",
-    T0_TIMEOUT: "T0_TIMEOUT",
-    T1_TIMEOUT: "T1_TIMEOUT",
-    UNKNOWN: "UNKNOWN"
-});
-
-/***/ }),
-
-/***/ 901:
+/***/ 44:
 /***/ ((module) => {
 
 // ../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/index.js
@@ -10245,7 +9450,309 @@ module.exports.extractPoints = require_extractPoints().extractPoints;
 
 /***/ }),
 
-/***/ 943:
+/***/ 45:
+/***/ ((module) => {
+
+function HealthStatus (totalConsumption,
+    maxTemperature,
+    minTemperature,
+    loraPowerConsumption,
+    blePowerConsumption,
+    gpsPowerConsumption,
+    wifiPowerConsumption,
+    batteryVoltage){
+        this.totalConsumption = totalConsumption;
+        this.maxTemperature = maxTemperature;
+        this.minTemperature = minTemperature;
+        this.loraPowerConsumption = loraPowerConsumption;
+        this.blePowerConsumption = blePowerConsumption;
+        this.gpsPowerConsumption = gpsPowerConsumption;
+        this.wifiPowerConsumption = wifiPowerConsumption;
+        this.batteryVoltage = batteryVoltage;
+}
+
+module.exports = {
+    HealthStatus: HealthStatus
+}
+
+/***/ }),
+
+/***/ 51:
+/***/ ((module) => {
+
+module.exports = Object.freeze({
+    BLE_NOT_RESPONDING: "BLE_NOT_RESPONDING",
+    INTERNAL_ERROR: "INTERNAL_ERROR",
+    SHARED_ANTENNA_NOT_AVAILABLE: "SHARED_ANTENNA_NOT_AVAILABLE",
+    SCAN_ALREADY_ON_GOING: "SCAN_ALREADY_ON_GOING",
+    NO_BEACON_DETECTED: "NO_BEACON_DETECTED",
+    HARDWARE_INCOMPATIBILITY: "HARDWARE_INCOMPATIBILITY",
+    UNKNOWN_BLE_FIRMWARE_VERSION: "UNKNOWN_BLE_FIRMWARE_VERSION"
+});
+
+/***/ }),
+
+/***/ 107:
+/***/ ((module) => {
+
+function MeasuredTemperature(state, max, min, highCounter, lowCounter){
+        this.state = state;
+        this.max = max;
+        this.min = min;
+        this.highCounter = highCounter;
+        this.lowCounter = lowCounter;
+}
+
+module.exports = {
+    MeasuredTemperature: MeasuredTemperature,
+    TemperatureState: {
+        NORMAL: "NORMAL",
+        HIGH: "HIGH",
+        LOW: "LOW",
+        FEATURE_NOT_ACTIVATED: "FEATURE_NOT_ACTIVATED"
+    }
+}
+
+/***/ }),
+
+/***/ 111:
+/***/ ((module) => {
+
+function AbeewayDownlinkPayload(downMessageType, 
+        ackToken,
+        modeValue,
+        debugCommandType,
+        listParameterID,
+        listParameterIDNames,
+        statusType,
+        setParameters,
+        resetAction,
+        optionalCommand,
+        txPowerIndex,
+        melodyId,
+        buzzerDuration,
+        proximityMessage,
+        angleDetectionControl,
+        bleAdvertisementDuration,
+        startupModes,
+        sms,
+        payload) {
+        this.downMessageType = downMessageType;
+        this.ackToken = ackToken;
+        this.modeValue = modeValue;
+        this.debugCommandType = debugCommandType;
+        this.listParameterID = listParameterID;
+        this.listParameterIDNames = listParameterIDNames;
+        this.statusType = statusType;
+        this.setParameters = setParameters;
+        this.resetAction = resetAction;
+        this.optionalCommand = optionalCommand;
+        this.txPowerIndex = txPowerIndex;
+        this.melodyId = melodyId;
+        this.buzzerDuration = buzzerDuration;
+        this.proximityMessage = proximityMessage;
+        this.angleDetectionControl = angleDetectionControl;
+        this.bleAdvertisementDuration = bleAdvertisementDuration;
+        this.startupModes = startupModes;
+        this.sms = sms;
+        this.payload = payload;
+}
+
+module.exports = {
+    AbeewayDownlinkPayload: AbeewayDownlinkPayload
+}
+
+/***/ }),
+
+/***/ 119:
+/***/ ((module) => {
+
+function ProximityWhiteListing (encrypted,
+        rollingProximityIdentifier,
+        list,
+        recordStatus,
+        solicited){
+            this.encrypted = encrypted;
+            this.rollingProximityIdentifier = rollingProximityIdentifier;
+            this.list = list;
+            this.recordStatus = recordStatus;
+            this.solicited = solicited;
+}
+
+module.exports = {
+    ProximityWhiteListing: ProximityWhiteListing,
+    List: {
+        PEER_LIST: "PEER_LIST",
+        WARNING_LIST: "WARNING_LIST",
+        ALERT_LIST: "ALERT_LIST"
+    },
+    RecordStatus: {
+        NOT_WHITE_LISTED: "NOT_WHITE_LISTED",
+        WHITE_LISTED: "WHITE_LISTED"
+    }
+}
+
+/***/ }),
+
+/***/ 186:
+/***/ ((module) => {
+
+function StartupModes(manufacturing,
+        shipping){
+            this.manufacturing = manufacturing;
+            this.shipping = shipping;
+}
+
+module.exports = {
+		StartupModes: StartupModes
+	}
+
+
+/***/ }),
+
+/***/ 200:
+/***/ ((module) => {
+
+module.exports = Object.freeze({
+    RESET_DEVICE: "RESET_DEVICE",
+    DELETE_CONFIG_RESET: "DELETE_CONFIG_RESET",
+    DELETE_CONFIG_BLE_BOND_RESET: "DELETE_CONFIG_BLE_BOND_RESET"
+});
+
+/***/ }),
+
+/***/ 231:
+/***/ ((module) => {
+
+/*export default class ProximityNotification{
+    constructor(notificationType,
+        encrypted,
+        recordAction,
+        rollingProximityIdentifier,
+        closestDistanceRecording,
+        distanceAverageRecorded,
+        cumulatedExposure,
+        metadata,
+        cumulatedContactDuration,
+        currentDailyExposure){
+            this.notificationType = notificationType;
+            this.encrypted = encrypted;
+            this.recordAction = recordAction;
+            this.rollingProximityIdentifier = rollingProximityIdentifier;
+            this.closestDistanceRecording = closestDistanceRecording;
+            this.distanceAverageRecorded = distanceAverageRecorded;
+            this.cumulatedExposure = cumulatedExposure;
+            this.metadata = metadata;
+            this.cumulatedContactDuration = cumulatedContactDuration;
+            this.currentDailyExposure = currentDailyExposure;
+    }
+}
+
+export const NotificationType = {
+    WARNING_MESSAGE: "WARNING_MESSAGE",
+    ALERT_MESSAGE: "ALERT_MESSAGE",
+    RECORD_MESSAGE: "RECORD_MESSAGE"
+};
+
+export const RecordAction = {
+    RECORD_START: "RECORD_START",
+    RECORD_UPDATE: "RECORD_UPDATE",
+    RECORD_STOP: "RECORD_STOP"
+};*/
+// constructor function for the ProximityNotification class
+function ProximityNotification(notificationType,
+    encrypted,
+    recordAction,
+    rollingProximityIdentifier,
+    closestDistanceRecording,
+    distanceAverageRecorded,
+    cumulatedExposure,
+    metadata,
+    cumulatedContactDuration,
+    currentDailyExposure){
+        this.notificationType = notificationType;
+        this.encrypted = encrypted;
+        this.recordAction = recordAction;
+        this.rollingProximityIdentifier = rollingProximityIdentifier;
+        this.closestDistanceRecording = closestDistanceRecording;
+        this.distanceAverageRecorded = distanceAverageRecorded;
+        this.cumulatedExposure = cumulatedExposure;
+        this.metadata = metadata;
+        this.cumulatedContactDuration = cumulatedContactDuration;
+        this.currentDailyExposure = currentDailyExposure;
+}
+
+module.exports = {
+    ProximityNotification: ProximityNotification,
+    NotificationType: {
+        WARNING_MESSAGE: "WARNING_MESSAGE",
+        ALERT_MESSAGE: "ALERT_MESSAGE",
+        RECORD_MESSAGE: "RECORD_MESSAGE"
+    },
+    RecordAction: {
+        RECORD_START: "RECORD_START",
+        RECORD_UPDATE: "RECORD_UPDATE",
+        RECORD_STOP: "RECORD_STOP"
+    }
+}
+
+/***/ }),
+
+/***/ 281:
+/***/ ((module) => {
+
+module.exports = Object.freeze({
+    DEBUG_CRASH_INFORMATION: "DEBUG_CRASH_INFORMATION",
+    TX_POWER_INDEX_VALUE: "TX_POWER_INDEX_VALUE",
+    UPLINK_LENGTH_ERR: "UPLINK_LENGTH_ERR",
+    GENERIC_ERROR: "GENERIC_ERROR",
+    SPECIFIC_FIRMWARE_PARAMETERS: "SPECIFIC_FIRMWARE_PARAMETERS",
+    UNKNOWN: "UNKNOWN"
+});
+
+/***/ }),
+
+/***/ 336:
+/***/ ((module) => {
+
+module.exports = Object.freeze({
+    GPS: "GPS",
+    GPS_TIMEOUT: "GPS_TIMEOUT",
+    ENCRYPTED_WIFI_BSSIDS: "ENCRYPTED_WIFI_BSSIDS",
+    WIFI_TIMEOUT: "WIFI_TIMEOUT",
+    WIFI_FAILURE: "WIFI_FAILURE",
+    XGPS_DATA: "XGPS_DATA",
+    XGPS_DATA_WITH_GPS_SW_TIME: "XGPS_DATA_WITH_GPS_SW_TIME",
+    BLE_BEACON_SCAN: "BLE_BEACON_SCAN",
+    BLE_BEACON_FAILURE: "BLE_BEACON_FAILURE",
+    WIFI_BSSIDS_WITH_NO_CYPHER: "WIFI_BSSIDS_WITH_NO_CYPHER",
+    BLE_BEACON_SCAN_SHORT_ID: "BLE_BEACON_SCAN_SHORT_ID",
+    BLE_BEACON_SCAN_LONG_ID: "BLE_BEACON_SCAN_LONG_ID",
+    UNKNOWN: "UNKNOWN"
+});
+
+/***/ }),
+
+/***/ 384:
+/***/ ((module) => {
+
+function ProximityDailyResponse(dayIdentifier,
+        dailyAlert,
+        dailyWarning,
+        dailyExposure){
+            this.dayIdentifier = dayIdentifier;
+            this.dailyAlert = dailyAlert;
+            this.dailyWarning = dailyWarning;
+            this.dailyExposure = dailyExposure;
+}
+
+module.exports = {
+    ProximityDailyResponse: ProximityDailyResponse
+}
+
+/***/ }),
+
+/***/ 408:
 /***/ ((module) => {
 
 module.exports = Object.freeze({
@@ -10268,20 +9775,103 @@ module.exports = Object.freeze({
 
 /***/ }),
 
-/***/ 944:
+/***/ 412:
 /***/ ((module) => {
 
-module.exports = Object.freeze({
-    ACTIVITY_COUNTER: "ACTIVITY_COUNTER",
-    DEVICE_CONFIGURATION: "DEVICE_CONFIGURATION",
-    SHOCK_DETECTION: "SHOCK_DETECTION",
-    PERIODIC_ACTIVITY: "PERIODIC_ACTIVITY",
-    BLE_MAC: "BLE_MAC"
-});
+function ScanCollection(scanType,
+        again,
+        dataFormat,
+        fragmentIdentification,
+        collectionIdentifier,
+        hash,
+        beaconIdData,
+        macAddressData){
+            this.scanType = scanType;
+            this.again = again;
+            this.dataFormat = dataFormat;
+            this.fragmentIdentification = fragmentIdentification;
+            this.collectionIdentifier = collectionIdentifier;
+            this.hash = hash;
+            this.beaconIdData = beaconIdData;
+            this.macAddressData = macAddressData;
+}
+
+module.exports = {
+    ScanCollection: ScanCollection,
+    ScanType: {
+        BLE_BEACONS: "BLE_BEACONS",
+        WIFI_BSSID: "WIFI_BSSID",
+        BLE_BEACONS_COLLECTION: "BLE_BEACONS_COLLECTION"
+    },
+    DataFormat: {
+        BEACON_ID: "BEACON_ID",
+        MAC_ADDRESS: "MAC_ADDRESS"
+    }
+}
 
 /***/ }),
 
-/***/ 965:
+/***/ 420:
+/***/ ((module) => {
+
+function BeaconIdInfo(beaconId,rssi){
+    this.beaconId = beaconId;
+    this.rssi = rssi;
+}
+
+module.exports = {
+    BeaconIdInfo: BeaconIdInfo
+}
+
+/***/ }),
+
+/***/ 432:
+/***/ ((module) => {
+
+function Sms(destinationId,
+		senderId,
+        message){
+            this.destinationId = destinationId;
+            this.senderId = senderId;
+            this.message = message;
+}
+
+module.exports = {
+    Sms: Sms
+}
+
+/***/ }),
+
+/***/ 465:
+/***/ ((module) => {
+
+function ProximityDailyReport(dailyAlertDay0,
+        dailyWarningDay0,
+        dailyExposureDay0,
+        dailyAlertDay1,
+        dailyWarningDay1,
+        dailyExposureDay1,
+        dailyAlertDay2,
+        dailyWarningDay2,
+        dailyExposureDay2){
+            this.dailyAlertDay0 = dailyAlertDay0;
+            this.dailyWarningDay0 = dailyWarningDay0;
+            this.dailyExposureDay0 = dailyExposureDay0;
+            this.dailyAlertDay1 = dailyAlertDay1;
+            this.dailyWarningDay1 = dailyWarningDay1;
+            this.dailyExposureDay1 = dailyExposureDay1;
+            this.dailyAlertDay2 = dailyAlertDay2;
+            this.dailyWarningDay2 = dailyWarningDay2;
+            this.dailyExposureDay2 = dailyExposureDay2;
+}
+
+module.exports = {
+    ProximityDailyReport: ProximityDailyReport
+}
+
+/***/ }),
+
+/***/ 508:
 /***/ ((module) => {
 
 module.exports = Object.freeze({
@@ -10292,7 +9882,285 @@ module.exports = Object.freeze({
 
 /***/ }),
 
-/***/ 992:
+/***/ 552:
+/***/ ((module) => {
+
+module.exports = Object.freeze({
+    FIX_2D: "FIX_2D",
+    FIX_3D: "FIX_3D",
+});
+
+/***/ }),
+
+/***/ 644:
+/***/ ((module) => {
+
+function BssidInfo (bssid,rssi){
+        this.bssid = bssid;
+        this.rssi = rssi;
+}
+
+module.exports = {
+    BssidInfo: BssidInfo
+}
+
+/***/ }),
+
+/***/ 666:
+/***/ ((module) => {
+
+module.exports = Object.freeze({
+    CHARGING: "CHARGING",
+    OPERATING: "OPERATING",
+    UNKNOWN: "UNKNOWN"
+});
+
+/***/ }),
+
+/***/ 678:
+/***/ ((module) => {
+
+module.exports = Object.freeze({
+    POS_ON_DEMAND: "POS_ON_DEMAND",
+    SET_MODE: "SET_MODE",
+    REQUEST_CONFIG: "REQUEST_CONFIG",
+    START_SOS: "START_SOS",
+    STOP_SOS: "STOP_SOS",
+    REQUEST_TEMPERATURE_STATUS: "REQUEST_TEMPERATURE_STATUS",
+    PROXIMITY: "PROXIMITY",
+    ANGLE_DETECTION :"ANGLE_DETECTION",
+    REQUEST_STATUS: "REQUEST_STATUS",
+    SET_PARAM: "SET_PARAM",
+    CLEAR_MOTION_PERCENTAGE: "CLEAR_MOTION_PERCENTAGE",
+    SMS: "SMS",
+    DEBUG_COMMAND: "DEBUG_COMMAND"
+});
+
+/***/ }),
+
+/***/ 698:
+/***/ ((module) => {
+
+module.exports = Object.freeze({
+	STOP_ANGLE_DETECTION: "STOP_ANGLE_DETECTION",
+	START_ANGLE_DETECTION: "START_ANGLE_DETECTION"
+
+});
+
+/***/ }),
+
+/***/ 751:
+/***/ ((module) => {
+
+function AngleDetection (flags, age, referenceGravityVector, criticalGravityVector, angle){
+        this.flags = flags;
+        this.age = age;
+        this.referenceVector = referenceGravityVector;
+        this.criticalVector = criticalGravityVector;
+        this.angle =angle;
+}
+
+module.exports = {
+  AngleDetection: AngleDetection
+ 	
+}
+
+
+/***/ }),
+
+/***/ 760:
+/***/ ((module) => {
+
+function AbeewayUplinkPayload(gpsLatitude, 
+    gpsLongitude,
+    horizontalAccuracy,
+    messageType,
+    age,
+    trackingMode,
+    batteryVoltage,
+    batteryLevel,
+    batteryStatus,
+    ackToken,
+    firmwareVersion,
+    bleFirmwareVersion,
+    bleMac,
+    resetCause,
+    rawPositionType,
+    periodicPosition,
+    gpsOnRuntime,
+    gpsStandbyRuntime,
+    wifiScanCount,
+    timeoutCause,
+    bestSatellitesCOverN,
+    temperatureMeasure,
+    miscDataTag,
+    sosFlag,
+    appState,
+    dynamicMotionState,
+    onDemand,
+    batteryVoltageMeasures,
+    errorCode,
+    debugErrorCode,
+    genericErrorCode,
+    shutdownCause,
+    currentAckTokenValue,
+    payload,
+    debugCrashInfo,
+    activityCount,
+    deviceConfiguration,
+    wifiBssids,
+    bleBssids,
+    bleBeaconIds,
+    bleBeaconFailure,
+    eventType,
+    debugCommandTag,
+    txPowerIndex,
+    nbOfshock,
+    accelerometerShockData,
+    trackerOrientation,
+    activityReportingWindow,
+    measuredTemperature,
+    lengthErrCounter,
+    dataScanCollection,
+    proximityNotification,
+    proximityDailyReport,
+    proximityWhiteListing,
+    proximityDailyResponse,
+    angleDetection, 
+    geofencingNotification,
+    specificFirmwareParameters,
+    gpsAltitude,
+    gpsCourseOverGround,
+    gpsSpeedOverGround,
+    gpsFixStatus,
+    gpsPayloadType,
+    gpsPrevious,
+    healthStatus,
+    motionDutyCycle,
+    gaddIndex,
+    sms) {
+    this.gpsLatitude = gpsLatitude;
+    this.gpsLongitude = gpsLongitude;
+    this.gpsAltitude = gpsAltitude;
+    this.gpsCourseOverGround = gpsCourseOverGround;
+    this.gpsSpeedOverGround = gpsSpeedOverGround;
+    this.gpsFixStatus = gpsFixStatus;
+    this.gpsPayloadType = gpsPayloadType;
+    this.horizontalAccuracy = horizontalAccuracy;
+    this.gpsPrevious = gpsPrevious;
+    this.messageType = messageType;
+    this.age = age;
+    this.trackingMode = trackingMode;
+    this.batteryVoltage = batteryVoltage;
+    this.batteryLevel = batteryLevel;
+    this.batteryStatus = batteryStatus;
+    this.ackToken = ackToken;
+    this.firmwareVersion = firmwareVersion;
+    this.bleFirmwareVersion = bleFirmwareVersion;
+    this.bleMac = bleMac;
+    this.resetCause = resetCause;
+    this.rawPositionType = rawPositionType;
+    this.periodicPosition = periodicPosition;
+    this.gpsOnRuntime = gpsOnRuntime;
+    this.gpsStandbyRuntime = gpsStandbyRuntime;
+    this.wifiScanCount = wifiScanCount;
+    this.timeoutCause = timeoutCause;
+    this.bestSatellitesCOverN = bestSatellitesCOverN;
+    this.temperatureMeasure = temperatureMeasure;
+    this.miscDataTag = miscDataTag;
+    this.sosFlag = sosFlag;
+    this.appState = appState;
+    this.dynamicMotionState = dynamicMotionState;
+    this.onDemand = onDemand;
+    this.batteryVoltageMeasures = batteryVoltageMeasures;
+    this.errorCode = errorCode;
+    this.debugErrorCode = debugErrorCode;
+    this.genericErrorCode = genericErrorCode;
+    this.shutdownCause = shutdownCause;
+    this.currentAckTokenValue = currentAckTokenValue;
+    this.payload = payload;
+    this.debugCrashInfo = debugCrashInfo;
+    this.activityCount = activityCount;
+    this.deviceConfiguration = deviceConfiguration;
+    this.wifiBssids = wifiBssids;
+    this.bleBssids = bleBssids;
+    this.bleBeaconIds = bleBeaconIds;
+    this.bleBeaconFailure = bleBeaconFailure;
+    this.eventType = eventType;
+    this.debugCommandTag = debugCommandTag;
+    this.txPowerIndex = txPowerIndex;
+    this.nbOfshock = nbOfshock;
+    this.accelerometerShockData = accelerometerShockData;
+    this.trackerOrientation = trackerOrientation;
+    this.activityReportingWindow = activityReportingWindow;
+    this.measuredTemperature = measuredTemperature;
+    this.lengthErrCounter = lengthErrCounter;
+    this.dataScanCollection = dataScanCollection;
+    this.proximityNotification = proximityNotification;
+    this.proximityDailyReport = proximityDailyReport;
+    this.proximityWhiteListing = proximityWhiteListing;
+    this.proximityDailyResponse = proximityDailyResponse;
+    this.angleDetection =angleDetection;
+    this.geofencingNotification = geofencingNotification;
+    this.specificFirmwareParameters = specificFirmwareParameters;
+    this.healthStatus = healthStatus;
+    this.motionDutyCycle = motionDutyCycle;
+    this.gaddIndex = gaddIndex;
+    this.sms = sms;
+}
+
+module.exports = {
+    AbeewayUplinkPayload: AbeewayUplinkPayload
+}
+
+/***/ }),
+
+/***/ 766:
+/***/ ((module) => {
+
+module.exports = Object.freeze({
+    INVALID_GEOLOC_SENSOR: "INVALID_GEOLOC_SENSOR",
+    INVALID_GEOLOC_CONFIG: "INVALID_GEOLOC_CONFIG"
+});
+
+/***/ }),
+
+/***/ 768:
+/***/ ((module) => {
+
+module.exports = Object.freeze({
+    USER_ACTION: "USER_ACTION",
+    LOW_BATTERY: "LOW_BATTERY",
+    DOWNLINK_REQUEST: "DOWNLINK_REQUEST",
+    BLE_REQUEST: "BLE_REQUEST",
+    BLE_CONNECTED: "BLE_CONNECTED"
+});
+
+/***/ }),
+
+/***/ 781:
+/***/ ((module) => {
+
+module.exports = Object.freeze({
+    STATIC: "STATIC",
+    MOVING: "MOVING"
+});
+
+/***/ }),
+
+/***/ 787:
+/***/ ((module) => {
+
+module.exports = Object.freeze({
+    USER_TIMEOUT: "USER_TIMEOUT",
+    T0_TIMEOUT: "T0_TIMEOUT",
+    T1_TIMEOUT: "T1_TIMEOUT",
+    UNKNOWN: "UNKNOWN"
+});
+
+/***/ }),
+
+/***/ 821:
 /***/ ((module) => {
 
 module.exports = Object.freeze({
@@ -10308,6 +10176,138 @@ module.exports = Object.freeze({
     ANGLE_DETECTION: "ANGLE_DETECTION",
     GEOFENCING: "GEOFENCING"
 });
+
+/***/ }),
+
+/***/ 838:
+/***/ ((module) => {
+
+module.exports = Object.freeze({
+    STAND_BY: "STAND_BY",
+    MOTION_TRACKING: "MOTION_TRACKING",
+    PERMANENT_TRACKING: "PERMANENT_TRACKING",
+    MOTION_START_END_TRACKING: "MOTION_START_END_TRACKING",
+    ACTIVITY_TRACKING: "ACTIVITY_TRACKING",
+    OFF: "OFF",
+    UNKNOWN: "UNKNOWN"
+});
+
+/***/ }),
+
+/***/ 841:
+/***/ ((module) => {
+
+function ProximityMessage (type,rollingProximityIdentifier,recordStatus,dayIdentifier){
+        this.type = type;
+        this.rollingProximityIdentifier = rollingProximityIdentifier;
+        this.recordStatus = recordStatus;
+        this.dayIdentifier = dayIdentifier;
+}
+
+module.exports = {
+    ProximityMessage: ProximityMessage,
+    Type: {
+        GET_RECORD_STATUS: "GET_RECORD_STATUS",
+        SET_WHITE_LIST_STATUS: "SET_WHITE_LIST_STATUS",
+        GET_DAILY_INFORMATION: "GET_DAILY_INFORMATION",
+        CLEAR_DAILY_INFORMATION: "CLEAR_DAILY_INFORMATION"
+    },
+    SetRecordStatus: {
+        RESET_WHITE_LISTING: "RESET_WHITE_LISTING",
+        SET_WHITE_LISTING: "SET_WHITE_LISTING"
+    }
+}
+
+/***/ }),
+
+/***/ 889:
+/***/ ((module) => {
+
+module.exports = Object.freeze({
+    RESET: "RESET",
+    READ_CURRENT_ERROR_AND_SEND_IT: "READ_CURRENT_ERROR_AND_SEND_IT",
+    MAKE_TRACKER_RING: "MAKE_TRACKER_RING",
+    TRIGGER_AN_ERROR: "TRIGGER_AN_ERROR",
+    RESET_BLE_PAIRING: "RESET_BLE_PAIRING",
+    TRIGGER_HEARTBEAT_MESSAGE: "TRIGGER_HEARTBEAT_MESSAGE",
+    READ_TX_POWER_INDEX: "READ_TX_POWER_INDEX",
+    WRITE_TX_POWER_INDEX: "WRITE_TX_POWER_INDEX",
+    TRIGGER_BLE_BOOTLOADER: "TRIGGER_BLE_BOOTLOADER",
+    SPECIFIC_FIRMWARE_PARAMETERS_REQUEST: "SPECIFIC_FIRMWARE_PARAMETERS_REQUEST",
+    CONFIGURE_STARTUP_MODES: "CONFIGURE_STARTUP_MODES",
+    START_AND_STOP_BLE_ADVERTISEMENT:"START_AND_STOP_BLE_ADVERTISEMENT"
+});
+
+/***/ }),
+
+/***/ 918:
+/***/ ((module) => {
+
+module.exports = Object.freeze({
+    POSITION_MESSAGE: "POSITION_MESSAGE",
+    EXTENDED_POSITION_MESSAGE: "EXTENDED_POSITION_MESSAGE",
+    HEARTBEAT: "HEARTBEAT",
+    ENERGY_STATUS: "ENERGY_STATUS",
+    HEALTH_STATUS: "HEALTH_STATUS",
+    SHUTDOWN: "SHUTDOWN",
+    FRAME_PENDING: "FRAME_PENDING",
+    DEBUG: "DEBUG",
+    ACTIVITY_STATUS: "ACTIVITY_STATUS",
+    CONFIGURATION: "CONFIGURATION",
+    SHOCK_DETECTION: "SHOCK_DETECTION",
+    BLE_MAC: "BLE_MAC",
+    EVENT: "EVENT",
+    DATA_SCAN_COLLECTION: "DATA_SCAN_COLLECTION",
+    PROXIMITY_DETECTION: "PROXIMITY_DETECTION",
+    SMS: "SMS",
+    UNKNOWN: "UNKNOWN"
+});
+
+
+
+/***/ }),
+
+/***/ 923:
+/***/ ((module) => {
+
+module.exports = Object.freeze({
+    NOT_BONDED: "NOT_BONDED",
+    BONDED: "BONDED",
+    UNKNOWN: "UNKNOWN"
+});
+
+/***/ }),
+
+/***/ 976:
+/***/ ((module) => {
+
+module.exports = Object.freeze({
+    NO_COLLECTION_SCAN: "NO_COLLECTION_SCAN",
+    BLE_BEACONS: "BLE_BEACONS",
+    WIFI_BSSID: "WIFI_BSSID"
+});
+
+/***/ }),
+
+/***/ 991:
+/***/ ((module) => {
+
+function GeofencingNotification(geofencingFormat, geofencingType, id)
+  {
+            this.geofencingFormat = geofencingFormat;
+            this.geofencingType = geofencingType;
+            this.id = id;
+  }
+
+module.exports = {
+	GeofencingNotification: GeofencingNotification,
+	GeofencingType: {
+        SAFE_AREA: "SAFE_AREA",
+        ENTRY: "ENTRY",
+        EXIT: "EXIT",
+        HAZARD: "HAZARD"
+    }
+}
 
 /***/ })
 
@@ -10425,83 +10425,83 @@ var __webpack_exports__ = {};
 /* harmony export */   y6: () => (/* binding */ GeofencingType),
 /* harmony export */   zd: () => (/* binding */ ProximityMessage)
 /* harmony export */ });
-/* harmony import */ var _index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(901);
+/* harmony import */ var _index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(44);
 /* harmony import */ var _index_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_index_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _messages_abeewayDownlinkPayload_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(378);
+/* harmony import */ var _messages_abeewayDownlinkPayload_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(111);
 /* harmony import */ var _messages_abeewayDownlinkPayload_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_messages_abeewayDownlinkPayload_js__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _messages_abeewayUplinkPayload_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(553);
+/* harmony import */ var _messages_abeewayUplinkPayload_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(760);
 /* harmony import */ var _messages_abeewayUplinkPayload_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_messages_abeewayUplinkPayload_js__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _messages_angleDetection_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(786);
+/* harmony import */ var _messages_angleDetection_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(751);
 /* harmony import */ var _messages_angleDetection_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_messages_angleDetection_js__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _messages_angleDetectionFlags_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(783);
+/* harmony import */ var _messages_angleDetectionFlags_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(32);
 /* harmony import */ var _messages_angleDetectionFlags_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_messages_angleDetectionFlags_js__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _messages_beaconIdInfo_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(137);
+/* harmony import */ var _messages_beaconIdInfo_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(420);
 /* harmony import */ var _messages_beaconIdInfo_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_messages_beaconIdInfo_js__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _messages_bssidInfo_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(523);
+/* harmony import */ var _messages_bssidInfo_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(644);
 /* harmony import */ var _messages_bssidInfo_js__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_messages_bssidInfo_js__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _messages_geofencingNotification_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(682);
+/* harmony import */ var _messages_geofencingNotification_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(991);
 /* harmony import */ var _messages_geofencingNotification_js__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_messages_geofencingNotification_js__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _messages_healthStatus_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(304);
+/* harmony import */ var _messages_healthStatus_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(45);
 /* harmony import */ var _messages_healthStatus_js__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_messages_healthStatus_js__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var _messages_measuredTemperature_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(284);
+/* harmony import */ var _messages_measuredTemperature_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(107);
 /* harmony import */ var _messages_measuredTemperature_js__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_messages_measuredTemperature_js__WEBPACK_IMPORTED_MODULE_9__);
-/* harmony import */ var _messages_proximityDailyReport_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(244);
+/* harmony import */ var _messages_proximityDailyReport_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(465);
 /* harmony import */ var _messages_proximityDailyReport_js__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_messages_proximityDailyReport_js__WEBPACK_IMPORTED_MODULE_10__);
-/* harmony import */ var _messages_proximityDailyResponse_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(613);
+/* harmony import */ var _messages_proximityDailyResponse_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(384);
 /* harmony import */ var _messages_proximityDailyResponse_js__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_messages_proximityDailyResponse_js__WEBPACK_IMPORTED_MODULE_11__);
-/* harmony import */ var _messages_proximityMessage_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(764);
+/* harmony import */ var _messages_proximityMessage_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(841);
 /* harmony import */ var _messages_proximityMessage_js__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(_messages_proximityMessage_js__WEBPACK_IMPORTED_MODULE_12__);
-/* harmony import */ var _messages_proximityNotification_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(788);
+/* harmony import */ var _messages_proximityNotification_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(231);
 /* harmony import */ var _messages_proximityNotification_js__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(_messages_proximityNotification_js__WEBPACK_IMPORTED_MODULE_13__);
-/* harmony import */ var _messages_proximityWhiteListing_js__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(636);
+/* harmony import */ var _messages_proximityWhiteListing_js__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(119);
 /* harmony import */ var _messages_proximityWhiteListing_js__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(_messages_proximityWhiteListing_js__WEBPACK_IMPORTED_MODULE_14__);
-/* harmony import */ var _messages_scanCollection_js__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(81);
+/* harmony import */ var _messages_scanCollection_js__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(412);
 /* harmony import */ var _messages_scanCollection_js__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(_messages_scanCollection_js__WEBPACK_IMPORTED_MODULE_15__);
-/* harmony import */ var _messages_sms_js__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(423);
+/* harmony import */ var _messages_sms_js__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(432);
 /* harmony import */ var _messages_sms_js__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(_messages_sms_js__WEBPACK_IMPORTED_MODULE_16__);
-/* harmony import */ var _messages_startupModes_js__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(559);
+/* harmony import */ var _messages_startupModes_js__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(186);
 /* harmony import */ var _messages_startupModes_js__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(_messages_startupModes_js__WEBPACK_IMPORTED_MODULE_17__);
-/* harmony import */ var _enums_angleDetectionControl_js__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(679);
+/* harmony import */ var _enums_angleDetectionControl_js__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(698);
 /* harmony import */ var _enums_angleDetectionControl_js__WEBPACK_IMPORTED_MODULE_18___default = /*#__PURE__*/__webpack_require__.n(_enums_angleDetectionControl_js__WEBPACK_IMPORTED_MODULE_18__);
-/* harmony import */ var _enums_batteryStatus_js__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(355);
+/* harmony import */ var _enums_batteryStatus_js__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(666);
 /* harmony import */ var _enums_batteryStatus_js__WEBPACK_IMPORTED_MODULE_19___default = /*#__PURE__*/__webpack_require__.n(_enums_batteryStatus_js__WEBPACK_IMPORTED_MODULE_19__);
-/* harmony import */ var _enums_bleBeaconFailure_js__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(167);
+/* harmony import */ var _enums_bleBeaconFailure_js__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(51);
 /* harmony import */ var _enums_bleBeaconFailure_js__WEBPACK_IMPORTED_MODULE_20___default = /*#__PURE__*/__webpack_require__.n(_enums_bleBeaconFailure_js__WEBPACK_IMPORTED_MODULE_20__);
-/* harmony import */ var _enums_bleBondStatus_js__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(214);
+/* harmony import */ var _enums_bleBondStatus_js__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(923);
 /* harmony import */ var _enums_bleBondStatus_js__WEBPACK_IMPORTED_MODULE_21___default = /*#__PURE__*/__webpack_require__.n(_enums_bleBondStatus_js__WEBPACK_IMPORTED_MODULE_21__);
-/* harmony import */ var _enums_collectionScanType_js__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(135);
+/* harmony import */ var _enums_collectionScanType_js__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(976);
 /* harmony import */ var _enums_collectionScanType_js__WEBPACK_IMPORTED_MODULE_22___default = /*#__PURE__*/__webpack_require__.n(_enums_collectionScanType_js__WEBPACK_IMPORTED_MODULE_22__);
-/* harmony import */ var _enums_debugCommandTag_js__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(144);
+/* harmony import */ var _enums_debugCommandTag_js__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(281);
 /* harmony import */ var _enums_debugCommandTag_js__WEBPACK_IMPORTED_MODULE_23___default = /*#__PURE__*/__webpack_require__.n(_enums_debugCommandTag_js__WEBPACK_IMPORTED_MODULE_23__);
-/* harmony import */ var _enums_debugCommandType_js__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(158);
+/* harmony import */ var _enums_debugCommandType_js__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(889);
 /* harmony import */ var _enums_debugCommandType_js__WEBPACK_IMPORTED_MODULE_24___default = /*#__PURE__*/__webpack_require__.n(_enums_debugCommandType_js__WEBPACK_IMPORTED_MODULE_24__);
-/* harmony import */ var _enums_downMessageType_js__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(151);
+/* harmony import */ var _enums_downMessageType_js__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(678);
 /* harmony import */ var _enums_downMessageType_js__WEBPACK_IMPORTED_MODULE_25___default = /*#__PURE__*/__webpack_require__.n(_enums_downMessageType_js__WEBPACK_IMPORTED_MODULE_25__);
-/* harmony import */ var _enums_dynamicMotionState_js__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(462);
+/* harmony import */ var _enums_dynamicMotionState_js__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(781);
 /* harmony import */ var _enums_dynamicMotionState_js__WEBPACK_IMPORTED_MODULE_26___default = /*#__PURE__*/__webpack_require__.n(_enums_dynamicMotionState_js__WEBPACK_IMPORTED_MODULE_26__);
-/* harmony import */ var _enums_errorCode_js__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(699);
+/* harmony import */ var _enums_errorCode_js__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(766);
 /* harmony import */ var _enums_errorCode_js__WEBPACK_IMPORTED_MODULE_27___default = /*#__PURE__*/__webpack_require__.n(_enums_errorCode_js__WEBPACK_IMPORTED_MODULE_27__);
-/* harmony import */ var _enums_eventType_js__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(992);
+/* harmony import */ var _enums_eventType_js__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(821);
 /* harmony import */ var _enums_eventType_js__WEBPACK_IMPORTED_MODULE_28___default = /*#__PURE__*/__webpack_require__.n(_enums_eventType_js__WEBPACK_IMPORTED_MODULE_28__);
-/* harmony import */ var _enums_gpsFixStatus_js__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(243);
+/* harmony import */ var _enums_gpsFixStatus_js__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(552);
 /* harmony import */ var _enums_gpsFixStatus_js__WEBPACK_IMPORTED_MODULE_29___default = /*#__PURE__*/__webpack_require__.n(_enums_gpsFixStatus_js__WEBPACK_IMPORTED_MODULE_29__);
-/* harmony import */ var _enums_melodyId_js__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(943);
+/* harmony import */ var _enums_melodyId_js__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(408);
 /* harmony import */ var _enums_melodyId_js__WEBPACK_IMPORTED_MODULE_30___default = /*#__PURE__*/__webpack_require__.n(_enums_melodyId_js__WEBPACK_IMPORTED_MODULE_30__);
-/* harmony import */ var _enums_messageType_js__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(47);
+/* harmony import */ var _enums_messageType_js__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(918);
 /* harmony import */ var _enums_messageType_js__WEBPACK_IMPORTED_MODULE_31___default = /*#__PURE__*/__webpack_require__.n(_enums_messageType_js__WEBPACK_IMPORTED_MODULE_31__);
-/* harmony import */ var _enums_miscDataTag_js__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(944);
+/* harmony import */ var _enums_miscDataTag_js__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(25);
 /* harmony import */ var _enums_miscDataTag_js__WEBPACK_IMPORTED_MODULE_32___default = /*#__PURE__*/__webpack_require__.n(_enums_miscDataTag_js__WEBPACK_IMPORTED_MODULE_32__);
-/* harmony import */ var _enums_mode_js__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(505);
+/* harmony import */ var _enums_mode_js__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(838);
 /* harmony import */ var _enums_mode_js__WEBPACK_IMPORTED_MODULE_33___default = /*#__PURE__*/__webpack_require__.n(_enums_mode_js__WEBPACK_IMPORTED_MODULE_33__);
-/* harmony import */ var _enums_optionalCommand_js__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(965);
+/* harmony import */ var _enums_optionalCommand_js__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(508);
 /* harmony import */ var _enums_optionalCommand_js__WEBPACK_IMPORTED_MODULE_34___default = /*#__PURE__*/__webpack_require__.n(_enums_optionalCommand_js__WEBPACK_IMPORTED_MODULE_34__);
-/* harmony import */ var _enums_rawPositionType_js__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(333);
+/* harmony import */ var _enums_rawPositionType_js__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(336);
 /* harmony import */ var _enums_rawPositionType_js__WEBPACK_IMPORTED_MODULE_35___default = /*#__PURE__*/__webpack_require__.n(_enums_rawPositionType_js__WEBPACK_IMPORTED_MODULE_35__);
-/* harmony import */ var _enums_resetAction_js__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(761);
+/* harmony import */ var _enums_resetAction_js__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(200);
 /* harmony import */ var _enums_resetAction_js__WEBPACK_IMPORTED_MODULE_36___default = /*#__PURE__*/__webpack_require__.n(_enums_resetAction_js__WEBPACK_IMPORTED_MODULE_36__);
-/* harmony import */ var _enums_shutdownCause_js__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(769);
+/* harmony import */ var _enums_shutdownCause_js__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(768);
 /* harmony import */ var _enums_shutdownCause_js__WEBPACK_IMPORTED_MODULE_37___default = /*#__PURE__*/__webpack_require__.n(_enums_shutdownCause_js__WEBPACK_IMPORTED_MODULE_37__);
-/* harmony import */ var _enums_timeoutCause_js__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(844);
+/* harmony import */ var _enums_timeoutCause_js__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(787);
 /* harmony import */ var _enums_timeoutCause_js__WEBPACK_IMPORTED_MODULE_38___default = /*#__PURE__*/__webpack_require__.n(_enums_timeoutCause_js__WEBPACK_IMPORTED_MODULE_38__);
 
 
