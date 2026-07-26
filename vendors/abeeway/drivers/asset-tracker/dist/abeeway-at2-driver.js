@@ -11,8 +11,8 @@
 return /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 44:
-/***/ ((module) => {
+/***/ 901
+(module) {
 
 // ../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/index.js
 var __getOwnPropNames = Object.getOwnPropertyNames;
@@ -9412,7 +9412,7 @@ module.exports = {
 module.exports.extractPoints = require_extractPoints().extractPoints;
 
 
-/***/ })
+/***/ }
 
 /******/ 	});
 /************************************************************************/
@@ -9445,7 +9445,7 @@ module.exports.extractPoints = require_extractPoints().extractPoints;
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module is referenced by other modules so it can't be inlined
-/******/ 	var __webpack_exports__ = __webpack_require__(44);
+/******/ 	var __webpack_exports__ = __webpack_require__(901);
 /******/ 	
 /******/ 	return __webpack_exports__;
 /******/ })()

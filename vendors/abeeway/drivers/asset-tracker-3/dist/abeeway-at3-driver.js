@@ -11,8 +11,8 @@
 return /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 44:
-/***/ ((module) => {
+/***/ 33
+(module) {
 
 var __getOwnPropNames = Object.getOwnPropertyNames;
 var __commonJS = (cb, mod) => function __require() {
@@ -10207,7 +10207,8 @@ var require_telemetry2 = __commonJS({
           if (!isDelta) {
             if (i < 1) {
               throw new Error("Invalid buffer: not enough bytes for 16-bit value");
-              break;
+              // removed by dead control flow
+
             }
             const lsb = buffer[i - 1];
             const msb = buffer[i];
@@ -10293,9 +10294,9 @@ var require_telemetry2 = __commonJS({
   }
 });
 
-// ../../device-catalog/vendors/abeeway/drivers/asset-tracker-3/extractPoints.js
+// ../vendors/abeeway/drivers/asset-tracker-3/extractPoints.js
 var require_extractPoints = __commonJS({
-  "../../device-catalog/vendors/abeeway/drivers/asset-tracker-3/extractPoints.js"(exports2) {
+  "../vendors/abeeway/drivers/asset-tracker-3/extractPoints.js"(exports2) {
     function extractPoints(input) {
       var _a, _b, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m, _n, _o, _p, _q, _r, _s, _t, _u, _v, _w;
       let result = {};
@@ -10489,7 +10490,7 @@ module.exports = {
 module.exports.extractPoints = require_extractPoints().extractPoints;
 
 
-/***/ })
+/***/ }
 
 /******/ 	});
 /************************************************************************/
@@ -10522,7 +10523,7 @@ module.exports.extractPoints = require_extractPoints().extractPoints;
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module is referenced by other modules so it can't be inlined
-/******/ 	var __webpack_exports__ = __webpack_require__(44);
+/******/ 	var __webpack_exports__ = __webpack_require__(33);
 /******/ 	
 /******/ 	return __webpack_exports__;
 /******/ })()
