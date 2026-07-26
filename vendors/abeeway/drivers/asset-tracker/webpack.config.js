@@ -5,7 +5,10 @@ var commonConfig = {
   mode: 'production',
   optimization: {
     minimize: false,
-  }
+  },
+  output: {
+    path: path.resolve(__dirname, './dist'),
+  },
 };
 
 module.exports = [
@@ -22,7 +25,7 @@ module.exports = [
     ...commonConfig,
     entry: './src/index.js',
     output: {
-      path: path.resolve(__dirname, './'),
+      ...commonConfig.output,
       library: 'driver',
       filename: 'abeeway-at2-driver.js',
       libraryTarget: 'umd',
@@ -46,7 +49,7 @@ module.exports = [
       },
     },
     output: {
-      path: path.resolve(__dirname, './'),
+      ...commonConfig.output,
       filename: 'abeeway-at2-driver.mjs',
       module: true,
       library: {
