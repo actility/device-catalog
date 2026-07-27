@@ -264,6 +264,66 @@
     }
   },
   {
+    "description": "Extended header frameNumber decoding for a value >= 8 (4-bit field, regression test)",
+    "type": "uplink",
+    "input": {
+      "bytes": "a5609ff1790106bd4726010004000d000700",
+      "recvTime": "2025-02-28T14:05:00.000+02:00",
+      "fPort": 19
+    },
+    "output": {
+      "data": {
+        "header": {
+          "sos": false,
+          "type": "RESPONSE",
+          "ackToken": 5,
+          "multiFrame": true,
+          "batteryLevel": 96,
+          "timestamp": "2025-02-28T11:22:25.000Z"
+        },
+        "extendedHeader": {
+          "groupId": 3,
+          "last": 1,
+          "frameNumber": 9
+        },
+        "response": {
+          "responseType": "PARAM_CLASS_CONFIGURATION_SET",
+          "parameterClassConfigurationSet": {
+            "group": "BLE_SCAN2",
+            "parameters": [
+              {
+                "parameterName": "bleScanWindow",
+                "status": "SUCCESS"
+              },
+              {
+                "parameterName": "bleScanMinRssi",
+                "status": "SUCCESS"
+              },
+              {
+                "parameterName": "bleScanReportType",
+                "status": "SUCCESS"
+              },
+              {
+                "parameterName": "bleScanFilter1Value",
+                "status": "SUCCESS"
+              }
+            ]
+          },
+          "localCrc": "bd4726"
+        },
+        "payload": "a5609ff1790106bd4726010004000d000700"
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "batteryLevel": {
+        "unitId": "%",
+        "record": 96
+      }
+    }
+  },
+  {
     "description": "Response of a parameter ble class configuration get request part1",
     "type": "uplink",
     "input": {
