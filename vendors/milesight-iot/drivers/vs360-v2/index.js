@@ -1354,4 +1354,4 @@ if (typeof encodeDownlink === "function") moduleExports.encodeDownlink = encodeD
 if (typeof decodeUplink === "function") exports.decodeUplink = decodeUplink;
 
 
-exports.encodeDownlink = encodeDownlink;
+if (typeof encodeDownlink === "function") exports.encodeDownlink = encodeDownlink;
