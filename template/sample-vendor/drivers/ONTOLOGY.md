@@ -67,7 +67,7 @@ This is the ontology supported by Actility. You can define a sensor inside your 
 | meter per square second | m/s2 | double | m/s&#178; | acceleration, vibration |
 | micro-gravity | ugravity | double | &#181;g | acceleration, vibration |
 | microgram | ug | double | &#181;g | mass, weight |
-| microgram per cubic meter | ug/m3 | double | &#181;g/m&#179; | concentration |
+| microgram per cubic meter | ug/m3 | double | &#181;g/m&#179; | concentration, pm1, pm2_5, pm4, pm10, tvoc, ch2o, o3, no2, co, nh3, h2s, ch4, c2h4, benzene |
 | micrometer | um | double | &#181;m | distance, accuracy, range, altitude, height |
 | micromole per second and square meter | umol/m2.s | double | &#181;mol/m&#178;.s | fluxDensity, intensity |
 | microsiemens per centimeter | uS/cm | double | &#181;S/cm | conductivity |
@@ -90,11 +90,11 @@ This is the ontology supported by Actility. You can define a sensor inside your 
 | newton | N | double | N | force |
 | ohm | Ohm | double | &#8486; | resistance |
 | okta | okta | int64 | okta | cloudCover, cover |
-| parts per billion | ppb | double | ppb | amount, quantity, concentration, co2Level |
-| parts per million | ppm | double | ppm | amount, quantity, concentration, co2Level |
+| parts per billion | ppb | double | ppb | amount, quantity, concentration, co2Level, tvoc, ch2o, o3, no2, co, nh3, h2s, ch4, c2h4, benzene |
+| parts per million | ppm | double | ppm | amount, quantity, concentration, co2Level, tvoc, ch2o, o3, no2, co, nh3, h2s, ch4, c2h4, benzene |
 | pascal | Pa | double | Pa | pressure |
 | per cubic centimeter | #/cm3 | double | #/cm3 | density |
-| percentage | % | double | % | batteryLevel, percentage, per, currentUnbalance, luminosityLevel, occupancyLevel, leakLevel, fillLevel |
+| percentage | % | double | % | batteryLevel, percentage, per, currentUnbalance, luminosityLevel, occupancyLevel, leakLevel, fillLevel, pressureLevel |
 | percentage relative humidity | %RH | double | %RH | humidity |
 | pH | pH | double | pH | acidity |
 | pulse per hour | pulse/h | double | pulse/h | frequency, sound |

@@ -20,7 +20,10 @@ function encodeDownlink(input) {
     warnings: []
   };
   try {
-    result.bytes = InbiotDeviceDecodeDownlink(input);
+    // LoRa Alliance passes the command wrapped as { data: { … } }, while
+    // InbiotDeviceDecodeDownlink tests for its keys directly ("ledStatus" in
+    // payload). Handing it the wrapper matched nothing and returned no bytes.
+    result.bytes = InbiotDeviceDecodeDownlink(input.data);
   } catch (e) {
     result.errors.push(e.message);
   }
