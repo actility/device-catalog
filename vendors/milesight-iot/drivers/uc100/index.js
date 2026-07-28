@@ -1079,10 +1079,14 @@ Buffer.prototype.toBytes = function () {
     return this.buffer;
 };
 
+    // These three names are not defined inside this IIFE: written bare, they
+    // resolved to the hoisted outer functions, which call back into this object.
+    // encodeDownlink recursed until the stack blew. Bind them to the codec's own
+    // encoder instead.
     return {
-        encodeDownlink: encodeDownlink,
-        Encode: Encode,
-        Encoder: Encoder,
+        encodeDownlink: function (input) { return { bytes: milesightDeviceEncode(input.data) }; },
+        Encode: function (fPort, obj) { return milesightDeviceEncode(obj); },
+        Encoder: function (obj, port) { return milesightDeviceEncode(obj); },
     };
 })();
 

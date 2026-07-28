@@ -9,34 +9,10 @@
         },
         "output": {
             "data": {
-                "gas_status": "normal",
-                "valve_status": "on",
-                "relay_output_status": "on",
-                "life_remain": 60
+                "device_status": "on"
             }
         },
-        "points": {
-            "duration": {
-                "unitId": "s",
-                "record": 60,
-                "nature": "battery life"
-            },
-            "status:1": {
-                "unitId": "state",
-                "record": false,
-                "nature": "gas alarm"
-            },
-            "status:2": {
-                "unitId": "state",
-                "record": true,
-                "nature": "valve"
-            },
-            "status:3": {
-                "unitId": "state",
-                "record": true,
-                "nature": "relay"
-            }
-        },
+        "points": null,
         "BACnet": {
             "gas_status": "normal",
             "life_remain": 60,
@@ -49,14 +25,15 @@
         "type": "downlink-encode",
         "input": {
             "data": {
-                "reboot": 1
+                "reboot": "yes"
             },
             "fPort": 85
         },
         "output": {
             "bytes": [
-                190,
-                1
+                255,
+                16,
+                255
             ],
             "fPort": 85
         },
