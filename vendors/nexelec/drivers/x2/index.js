@@ -253,7 +253,7 @@ function decodeUplink(input) {
 
     function active(octetActive) {
         if (octetActive === 0) { return "off" }
-        else if (octetActive === 1) { return "on " };
+        else if (octetActive === 1) { return "on" };
     }
 
     function notificationByLEDandBuzzer(octetNotification) {
