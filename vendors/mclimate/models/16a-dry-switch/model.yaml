@@ -47,23 +47,23 @@ sensors:
 # A list of examples description that are compatible with this model
 examples:
   mclimate:16a-dry-switch:1:
-    - internal temperature positive, relay ON
-    - internal temperature positive, relay OFF
-    - internal temperature negative (sign bit set), relay ON
-    - device versions (0x04) + keepalive trailer
-    - keepAliveTime (0x12) + keepalive trailer
-    - joinRetryPeriod (0x19) where 0x3C -> 5 minutes + keepalive trailer
-    - watchdog params (0x1d) + keepalive trailer
-    - overheating thresholds (0x1f) + keepalive trailer
-    - FUOTA address (0xa0) + region (0xa4) + keepalive trailer
-    - too short payload -> decoder throws 'Unhandled data'
-    - setKeepAlive (0x02)
-    - getDeviceVersions (0x04)
-    - getKeepAliveTime (0x12)
-    - setJoinRetryPeriod (minutes -> 5sec steps) for 5 minutes => 0x3C
-    - setRelayState (0xC1)
-    - setRelayTimerMiliseconds (0x55) state=1 time=500ms => 0x01F4
-    - passthrough bytes (as per MClimate decodeDownlink)
+    - "keepalive: internal temperature positive, relay ON"
+    - "keepalive: internal temperature positive, relay OFF"
+    - "keepalive: internal temperature negative (sign bit set), relay ON"
+    - "response: device versions (0x04) + keepalive trailer"
+    - "response: keepAliveTime (0x12) + keepalive trailer"
+    - "response: joinRetryPeriod (0x19) where 0x3C -> 5 minutes + keepalive trailer"
+    - "response: watchdog params (0x1d) + keepalive trailer"
+    - "response: overheating thresholds (0x1f) + keepalive trailer"
+    - "response: FUOTA address (0xa0) + region (0xa4) + keepalive trailer"
+    - "fail: too short payload -> decoder throws 'Unhandled data'"
+    - "encode: setKeepAlive (0x02)"
+    - "encode: getDeviceVersions (0x04)"
+    - "encode: getKeepAliveTime (0x12)"
+    - "encode: setJoinRetryPeriod (minutes -> 5sec steps) for 5 minutes => 0x3C"
+    - "encode: setRelayState (0xC1)"
+    - "encode: setRelayTimerMiliseconds (0x55) state=1 time=500ms => 0x01F4"
+    - "decode: passthrough bytes (as per MClimate decodeDownlink)"
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false

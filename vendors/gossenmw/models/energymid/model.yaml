@@ -42,15 +42,12 @@ specificationURL:
 userGuideURL:
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
-  - energy:MWh
+  - energy:kWh
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
-  gossenmw:energymid:1
-    - uplink timestamp
-    - uplink energy in
-    - uplink energy out
-    - uplink error status  
+  gossenmw:energymid:1:
+    - "Uplink with timestamp, import/export energy and error flags"
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false

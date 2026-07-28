@@ -49,13 +49,15 @@ sensors:
 # A list of examples description that are compatible with this model
 examples:
   msight:ts201:2:
-    - "Example 1"
+    - "Uplink example for TS201-V2"
+    - "Downlink encode: report_interval"
   msight:ts201:1:
     - "uplink containing only temperature"
     - "uplink containing temperature, event of temperature and temperature alarm"
     - "uplink containing temperature, event of temperature, temperature alarm and temperature mutation"
     - "uplink containing only event of temperature error"
     - "uplink containing history of event type, read status, temperature and timestamp"
+    - "Downlink encode: report_interval"
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false

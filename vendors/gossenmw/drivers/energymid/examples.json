@@ -4,7 +4,7 @@
         "type": "uplink",
         "input": {
             "fPort": 2,
-            "bytes": "2400320a1b01ea072533333333330cac40269a9999993d95405429"
+            "bytes": "2400320a1b01ea072533333333330cac40269a999999993d95405409"
         },
         "output": {
             "data": {
@@ -17,8 +17,8 @@
                     "year": 2026,
                     "timestamp_iso": "2026-01-27 10:50:00"
                 },
-                "import_active_energy": 3.5901,
-                "export_active_energy": 1.3594,
+                "import_active_energy": 3.59,
+                "export_active_energy": 1.359,
                 "error_status": {
                     "phase_voltage_too_low": true,
                     "phase_voltage_too_high": false,
@@ -28,6 +28,18 @@
                     "internal_communication_problem": false,
                     "dc_offset_too_high": false
                 }
+            }
+        },
+        "points": {
+            "energy:1": {
+                "unitId": "kWh",
+                "record": 3.59,
+                "nature": "import"
+            },
+            "energy:2": {
+                "unitId": "kWh",
+                "record": 1.359,
+                "nature": "export"
             }
         }
     }

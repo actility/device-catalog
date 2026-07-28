@@ -48,6 +48,28 @@ examples:
   zenner:co2-ind-ID-A:1:
     - "uplink containing data - 1"
     - "uplink containing data - 2"
+    - "downlink setSystemTime (sample from doc)"
+    - "uplink setSystemTime answer - 1"
+    - "downlink getSystemTime"
+    - "uplink getSystemTime answer - 2"
+    - "downlink setAlarmThreshold, only lower (sample from doc)"
+    - "downlink setAlarmThreshold, only upper"
+    - "downlink setAlarmThreshold, lower and upper"
+    - "uplink setAlarmThreshold answer"
+    - "downlink getAlarmThreshold"
+    - "uplink getAlarmThreshold answer"
+    - "downlink timeShift positive (sample from doc)"
+    - "uplink timeShift answer"
+    - "downlink timeShift negative (sample from doc)"
+    - "uplink upper threshold reached"
+    - "uplink lower threshold reached"
+    - "uplink battery alert"
+    - "uplink hardware failure"
+    - "uplink containing info"
+    - "uplink nak setAlarmThresholdNack"
+    - "uplink nak unknown EFC function of a knwon FC"
+    - "uplink nak unknown function FC command"
+    - "uplink containing time"
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false
