@@ -33,7 +33,7 @@ function determineDownlinkHeader(payload){
 
 function determineMessageType(payload){
     var messageType = payload[0]>>3 & 0x07;
-    
+
     switch (messageType){
         case 1:
             return MessageType.COMMAND;
@@ -44,9 +44,27 @@ function determineMessageType(payload){
     }
 }
 
+function determineAnswerType(payload){
+    if (payload.length < 2)
+        throw new Error("The payload is not valid to determine answer type");
+    switch (payload[1]){
+        case 0:
+            return AnswerType.AIDING_POSITION;
+        case 1:
+            return AnswerType.ECHO_REPLY;
+        case 2:
+            return AnswerType.UPDATE_GPS_ALMANAC;
+        case 3:
+            return AnswerType.UPDATE_BEIDOU_ALMANAC;
+        default:
+            throw new Error("Unknown answer type");
+    }
+}
+
 module.exports = {
     AbeewayDownlinkPayload: AbeewayDownlinkPayload,
     MessageType: MessageType,
     AnswerType: AnswerType,
-    determineDownlinkHeader: determineDownlinkHeader
+    determineDownlinkHeader: determineDownlinkHeader,
+    determineAnswerType: determineAnswerType
 }

@@ -327,8 +327,8 @@ function determinePage1(payload, decodedStatus){
 }
 function determinePage2(payload, decodedStatus){
     decodedStatus.cellVersion = {"branch": payload[7].toString(),"mode": payload[8].toString(), "image":payload[9].toString(), "delivery": payload[10].toString(), "release": parseInt(util.convertBytesToString(payload.slice(11,13)),16).toString() }
-    decodedStatus.ICCID = buildAscciString(payload.slice(13,33))
-    decodedStatus.IMSI = buildAscciString(payload.slice(33))
+    decodedStatus.ICCID = buildAscciString(payload.slice(13,34))
+    decodedStatus.IMSI = buildAscciString(payload.slice(34))
 }
 function determinePage3(payload, decodedStatus){
     decodedStatus.EUICCID = buildAscciString(payload.slice(7,40))

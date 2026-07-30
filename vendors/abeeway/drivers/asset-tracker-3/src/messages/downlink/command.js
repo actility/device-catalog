@@ -1,4 +1,18 @@
-let eventClass = require("../uplink/notifications/notification")
+const SystemEventClass = Object.freeze({
+    BUTTON_1: "BUTTON_1",
+    BUTTON_2: "BUTTON_2",
+    BUZZER: "BUZZER",
+    ACCELEROMETER: "ACCELEROMETER",
+    POWER: "POWER",
+    TEMPERATURE: "TEMPERATURE",
+    GEOLOCATION: "GEOLOCATION",
+    CONFIGURATION: "CONFIGURATION",
+    NETWORK: "NETWORK",
+    CORE: "CORE",
+    BLE: "BLE",
+    USER: "USER",
+    FUOTA: "FUOTA"
+});
 const CommandType = Object.freeze({
     CLEAR_AND_RESET: "CLEAR_AND_RESET",
     RESET: "RESET",
@@ -133,12 +147,19 @@ function decodeCommand(bytes) {
 // Convert classId to integer
 function getClassId(className) {
     const classes = {
-        [eventClass.Class.SYSTEM]: 0,
-        [eventClass.Class.SOS]: 1,
-        [eventClass.Class.TEMPERATURE]: 2,
-        [eventClass.Class.ACCELEROMETER]: 3,
-        [eventClass.Class.NETWORK]: 4,
-        [eventClass.Class.GEOZONING]: 5
+        [SystemEventClass.BUTTON_1]: 0,
+        [SystemEventClass.BUTTON_2]: 1,
+        [SystemEventClass.BUZZER]: 2,
+        [SystemEventClass.ACCELEROMETER]: 3,
+        [SystemEventClass.POWER]: 4,
+        [SystemEventClass.TEMPERATURE]: 5,
+        [SystemEventClass.GEOLOCATION]: 6,
+        [SystemEventClass.CONFIGURATION]: 7,
+        [SystemEventClass.NETWORK]: 8,
+        [SystemEventClass.CORE]: 9,
+        [SystemEventClass.BLE]: 10,
+        [SystemEventClass.USER]: 11,
+        [SystemEventClass.FUOTA]: 12
     };
     if (className in classes) {
         return classes[className];
@@ -149,12 +170,19 @@ function getClassId(className) {
 //  Convert classId integer to class name
 function getClassName(classId) {
     const classMap = {
-        0: eventClass.Class.SYSTEM,
-        1: eventClass.Class.SOS,
-        2: eventClass.Class.TEMPERATURE,
-        3: eventClass.Class.ACCELEROMETER,
-        4: eventClass.Class.NETWORK,
-        5: eventClass.Class.GEOZONING
+        0: SystemEventClass.BUTTON_1,
+        1: SystemEventClass.BUTTON_2,
+        2: SystemEventClass.BUZZER,
+        3: SystemEventClass.ACCELEROMETER,
+        4: SystemEventClass.POWER,
+        5: SystemEventClass.TEMPERATURE,
+        6: SystemEventClass.GEOLOCATION,
+        7: SystemEventClass.CONFIGURATION,
+        8: SystemEventClass.NETWORK,
+        9: SystemEventClass.CORE,
+        10: SystemEventClass.BLE,
+        11: SystemEventClass.USER,
+        12: SystemEventClass.FUOTA
     };
     return classMap[classId] || "UNKNOWN_CLASS";
 }

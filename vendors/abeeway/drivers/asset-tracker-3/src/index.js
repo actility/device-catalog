@@ -105,7 +105,7 @@ function decodeDownlink(input){
                 decodedData.request = requestClass.decodeRequest(payload)
                 break;
             case abeewayDownlinkPayloadClass.MessageType.ANSWER:
-                decodedData.response = responseClass.determineResponse(payload, multiFrame);
+                decodedData.answerType = abeewayDownlinkPayloadClass.determineAnswerType(payload);
                 break;
         }
         decodedData = removeEmpty(decodedData);

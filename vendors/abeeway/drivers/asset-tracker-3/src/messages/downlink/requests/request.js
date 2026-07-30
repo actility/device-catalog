@@ -65,6 +65,9 @@ function encodeRequest(data){
         case 3:
             encData = encodeRequestParameterClassConfigurationGet(data.getParameterClass, encData)
             break;
+        case 4:
+            // no data
+            break;
         case 5:
             encData = encodeCrc(data.crc, encData)
             break;

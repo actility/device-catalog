@@ -108,7 +108,7 @@ function determineFixQuality(payload){
             qualityInfo.fixQuality = fixQuality.FIX_3D
             break
     }
-    qualityInfo.numberSatellitesUsed = payload[15] & 0x0F
+    qualityInfo.numberSatellitesUsed = payload[15] & 0x1F
     return qualityInfo
     
 
