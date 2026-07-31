@@ -9,6 +9,7 @@ logo: multipurpose-button.png
 # lorawanDeviceProfileID: as defined by LoRa Alliance in https://lora-alliance.org/wp-content/uploads/2020/10/LoRa_Alliance_Vendor_ID_for_QR_Code_02142022.pdf.
 # The lorawanDeviceProfileID consists of 8 upper-case hexadecimal characters, 4 characters for VendorID + 4 characters for VendorProfileID. Please consider using single (') or double (") quotation.
 deviceProfileIds:
+  - id: mclimate_RFGroup1_1.0.3a_classA
   - id: mclimate_RFGroup2_1.0.3a_classA
   - id: mclimate_RFGroup4_1.0.3a_classA
 
@@ -51,7 +52,13 @@ sensors:
 examples:
   mclimate:multipurpose-btn:1:
     - "Periodic uplink (keepalive)"
+    - "Response: single press event counter (0xb1) with keepalive trailer"
+    - "Response: send event later (0x1f) with keepalive trailer"
     - "Downlink decode: passthrough bytes"
+    - "Downlink: set keepalive interval to 10 minutes"
+    - "Downlink: set send event later"
+    - "Downlink: clear the press event counter"
+    - "Downlink: read the single press event counter"
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false

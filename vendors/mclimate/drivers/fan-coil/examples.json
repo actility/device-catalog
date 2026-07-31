@@ -37,5 +37,227 @@
         "nature": "target"
       }
     }
+  },
+  {
+    "description": "Response: manual target temperature update (0x30, two bytes) with keepalive trailer",
+    "type": "uplink",
+    "input": {
+      "bytes": "3000d701028875013B0100060101",
+      "fPort": 1
+    },
+    "output": {
+      "data": {
+        "manualTargetTemperatureUpdate": 21.5,
+        "sensorTemperature": 24.8,
+        "relativeHumidity": 45.7,
+        "targetTemperature": 31.5,
+        "operationalMode": 1,
+        "displayedFanSpeed": 0,
+        "actualFanSpeed": 6,
+        "valveStatus": 1,
+        "deviceStatus": 1
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "description": "Response: external sensor temperature (0x3e) with keepalive trailer",
+    "type": "uplink",
+    "input": {
+      "bytes": "3e00fa01028875013B0100060101",
+      "fPort": 1
+    },
+    "output": {
+      "data": {
+        "extSensorTemperature": 25,
+        "sensorTemperature": 24.8,
+        "relativeHumidity": 45.7,
+        "targetTemperature": 31.5,
+        "operationalMode": 1,
+        "displayedFanSpeed": 0,
+        "actualFanSpeed": 6,
+        "valveStatus": 1,
+        "deviceStatus": 1
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "description": "Response: FCT operational mode (0x53) with keepalive trailer",
+    "type": "uplink",
+    "input": {
+      "bytes": "530201028875013B0100060101",
+      "fPort": 1
+    },
+    "output": {
+      "data": {
+        "fctOperationalMode": 2,
+        "sensorTemperature": 24.8,
+        "relativeHumidity": 45.7,
+        "targetTemperature": 31.5,
+        "operationalMode": 1,
+        "displayedFanSpeed": 0,
+        "actualFanSpeed": 6,
+        "valveStatus": 1,
+        "deviceStatus": 1
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "description": "Response: temperature sensor compensation (0x5b) with keepalive trailer",
+    "type": "uplink",
+    "input": {
+      "bytes": "5b01aa01028875013B0100060101",
+      "fPort": 1
+    },
+    "output": {
+      "data": {
+        "tempSensorCompensation": {
+          "compensation": 1,
+          "temperature": 17
+        },
+        "sensorTemperature": 24.8,
+        "relativeHumidity": 45.7,
+        "targetTemperature": 31.5,
+        "operationalMode": 1,
+        "displayedFanSpeed": 0,
+        "actualFanSpeed": 6,
+        "valveStatus": 1,
+        "deviceStatus": 1
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "description": "Response: delta temperature 2 and 3 (0x6d) with keepalive trailer",
+    "type": "uplink",
+    "input": {
+      "bytes": "6d1e2801028875013B0100060101",
+      "fPort": 1
+    },
+    "output": {
+      "data": {
+        "deltaTemperature2and3": {
+          "deltaTemperature2": 3,
+          "deltaTemperature3": 4
+        },
+        "sensorTemperature": 24.8,
+        "relativeHumidity": 45.7,
+        "targetTemperature": 31.5,
+        "operationalMode": 1,
+        "displayedFanSpeed": 0,
+        "actualFanSpeed": 6,
+        "valveStatus": 1,
+        "deviceStatus": 1
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "description": "Response: region (0xa4) with keepalive trailer",
+    "type": "uplink",
+    "input": {
+      "bytes": "a40101028875013B0100060101",
+      "fPort": 1
+    },
+    "output": {
+      "data": {
+        "region": 1,
+        "sensorTemperature": 24.8,
+        "relativeHumidity": 45.7,
+        "targetTemperature": 31.5,
+        "operationalMode": 1,
+        "displayedFanSpeed": 0,
+        "actualFanSpeed": 6,
+        "valveStatus": 1,
+        "deviceStatus": 1
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "description": "Downlink: enable frost protection (0x4e)",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setFrostProtection": 1
+      }
+    },
+    "output": {
+      "bytes": "4E01",
+      "fPort": 1,
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "description": "Downlink: read frost protection (0x4f)",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "getFrostProtection": true
+      }
+    },
+    "output": {
+      "bytes": "4F",
+      "fPort": 1,
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "description": "Downlink: set target temperature step to 0.5C",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setTargetTemperatureStep": 0.5
+      }
+    },
+    "output": {
+      "bytes": "0305",
+      "fPort": 1,
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "description": "Downlink: set delta temperature 1 to 3C",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setDeltaTemperature1": 3
+      }
+    },
+    "output": {
+      "bytes": "6A1E",
+      "fPort": 1,
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "description": "Downlink: set watchdog parameters",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setWatchDogParams": {
+          "confirmedUplinks": 2,
+          "unconfirmedUplinks": 5
+        }
+      }
+    },
+    "output": {
+      "bytes": "1C0205",
+      "fPort": 1,
+      "errors": [],
+      "warnings": []
+    }
   }
 ]

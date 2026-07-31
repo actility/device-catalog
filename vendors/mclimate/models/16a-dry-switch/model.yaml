@@ -10,6 +10,8 @@ logo: 16adryswitch.png
 # The lorawanDeviceProfileID consists of 8 upper-case hexadecimal characters, 4 characters for VendorID + 4 characters for VendorProfileID. Please consider using single (') or double (") quotation.
 deviceProfileIds:
   - id: mclimate_RFGroup1_1.0.3a_classC
+  - id: mclimate_RFGroup2_1.0.3a_classC
+  - id: mclimate_RFGroup4_1.0.3a_classC
 
 # You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings.
 # Maximum device TX Conducted output power in dBm.
@@ -56,6 +58,8 @@ examples:
     - "response: watchdog params (0x1d) + keepalive trailer"
     - "response: overheating thresholds (0x1f) + keepalive trailer"
     - "response: FUOTA address (0xa0) + region (0xa4) + keepalive trailer"
+    - "response: relay state change reason (0x54) + keepalive trailer"
+    - "response: relay timer in milliseconds (0x56) + keepalive trailer"
     - "fail: too short payload -> decoder throws 'Unhandled data'"
     - "encode: setKeepAlive (0x02)"
     - "encode: getDeviceVersions (0x04)"

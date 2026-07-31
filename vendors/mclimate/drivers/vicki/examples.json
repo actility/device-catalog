@@ -24,6 +24,8 @@
         "attachedBackplate": false,
         "perceiveAsOnline": false,
         "antiFreezeProtection": false,
+        "d2dCommunicationReliable": false,
+        "batteryTooLow": false,
         "valveOpenness": 17,
         "targetTemperatureFloat": 29
       }
@@ -76,6 +78,123 @@
     }
   },
   {
+    "description": "Periodic uplink (keepalive type 0x81, precise temperature sensor)",
+    "type": "uplink",
+    "input": {
+      "bytes": "811d5a78fa2c01f080",
+      "fPort": 1
+    },
+    "output": {
+      "data": {
+        "reason": 129,
+        "targetTemperature": 29,
+        "sensorTemperature": 10.88,
+        "relativeHumidity": 46.88,
+        "motorRange": 300,
+        "motorPosition": 250,
+        "batteryVoltage": 3.5,
+        "openWindow": false,
+        "highMotorConsumption": false,
+        "lowMotorConsumption": false,
+        "brokenSensor": false,
+        "childLock": true,
+        "calibrationFailed": false,
+        "attachedBackplate": false,
+        "perceiveAsOnline": false,
+        "antiFreezeProtection": false,
+        "d2dCommunicationReliable": false,
+        "batteryTooLow": false,
+        "valveOpenness": 17,
+        "targetTemperatureFloat": 29
+      }
+    }
+  },
+  {
+    "description": "Response: temperature hysteresis (0x42) with keepalive trailer",
+    "type": "uplink",
+    "input": {
+      "bytes": "4205011d5a78fa2c01f080",
+      "fPort": 1
+    },
+    "output": {
+      "data": {
+        "tempHysteresis": 0.5,
+        "reason": 1,
+        "targetTemperature": 29,
+        "sensorTemperature": 18.01,
+        "relativeHumidity": 46.88,
+        "motorRange": 300,
+        "motorPosition": 250,
+        "batteryVoltage": 3.5,
+        "openWindow": false,
+        "highMotorConsumption": false,
+        "lowMotorConsumption": false,
+        "brokenSensor": false,
+        "childLock": true,
+        "calibrationFailed": false,
+        "attachedBackplate": false,
+        "perceiveAsOnline": false,
+        "antiFreezeProtection": false,
+        "d2dCommunicationReliable": false,
+        "batteryTooLow": false,
+        "valveOpenness": 17,
+        "targetTemperatureFloat": 29
+      }
+    }
+  },
+  {
+    "description": "Response: open window parameters (0x13) with delta 10 and keepalive trailer",
+    "type": "uplink",
+    "input": {
+      "bytes": "130106202a011d5a78fa2c01f080",
+      "fPort": 1
+    },
+    "output": {
+      "data": {
+        "openWindowParams": {
+          "enabled": true,
+          "duration": 30,
+          "motorPosition": 544,
+          "delta": 10
+        },
+        "reason": 1,
+        "targetTemperature": 29,
+        "sensorTemperature": 18.01,
+        "relativeHumidity": 46.88,
+        "motorRange": 300,
+        "motorPosition": 250,
+        "batteryVoltage": 3.5,
+        "openWindow": false,
+        "highMotorConsumption": false,
+        "lowMotorConsumption": false,
+        "brokenSensor": false,
+        "childLock": true,
+        "calibrationFailed": false,
+        "attachedBackplate": false,
+        "perceiveAsOnline": false,
+        "antiFreezeProtection": false,
+        "d2dCommunicationReliable": false,
+        "batteryTooLow": false,
+        "valveOpenness": 17,
+        "targetTemperatureFloat": 29
+      }
+    }
+  },
+  {
+    "description": "fail: empty payload returns an error",
+    "type": "uplink",
+    "input": {
+      "bytes": "",
+      "fPort": 1
+    },
+    "output": {
+      "errors": [
+        "Invalid uplink payload: Empty payload"
+      ],
+      "warnings": []
+    }
+  },
+  {
     "description": "Downlink: Setting target temperature and open window parameters",
     "type": "downlink-encode",
     "input": {
@@ -91,6 +210,40 @@
     },
     "output": {
       "bytes": "0E140601041C23",
+      "errors": [],
+      "fPort": 1,
+      "warnings": []
+    }
+  },
+  {
+    "description": "Downlink: Set precise (float) target temperature to 21.5C",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setTargetTemperature": 21.5
+      }
+    },
+    "output": {
+      "bytes": "5100D7",
+      "errors": [],
+      "fPort": 1,
+      "warnings": []
+    }
+  },
+  {
+    "description": "Downlink: Set internal algorithm parameters",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setInternalAlgoParams": {
+          "period": 5,
+          "pFirstLast": 10,
+          "pNext": 20
+        }
+      }
+    },
+    "output": {
+      "bytes": "0C050A14",
       "errors": [],
       "fPort": 1,
       "warnings": []

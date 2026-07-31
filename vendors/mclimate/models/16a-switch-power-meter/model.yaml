@@ -10,6 +10,8 @@ logo: 16a-switch-power-meter.png
 # The lorawanDeviceProfileID consists of 8 upper-case hexadecimal characters, 4 characters for VendorID + 4 characters for VendorProfileID. Please consider using single (') or double (") quotation.
 deviceProfileIds:
   - id: mclimate_RFGroup1_1.0.3a_classC
+  - id: mclimate_RFGroup2_1.0.3a_classC
+  - id: mclimate_RFGroup4_1.0.3a_classC
 
 # You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings.
 # Maximum device TX Conducted output power in dBm.
@@ -51,8 +53,16 @@ sensors:
 examples:
   mclimate:16a-spm:1:
     - "Periodic uplink (keepalive)"
+    - "Periodic uplink with negative internal temperature (sign bit set)"
+    - "Response: relay state change reason (0x54) with keepalive trailer"
+    - "Response: relay timer in milliseconds (0x56) with keepalive trailer"
+    - "Response: region (0xa4) with keepalive trailer"
     - "Downlink: set relay state ON"
     - "Downlink decode: passthrough bytes"
+    - "Downlink: set overvoltage thresholds (two byte trigger)"
+    - "Downlink: set overpower threshold (two bytes)"
+    - "Downlink: set relay timer in milliseconds"
+    - "fail: payload shorter than a keepalive returns an error"
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false

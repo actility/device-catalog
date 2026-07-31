@@ -9,6 +9,7 @@ logo: ht-pir-lite.png
 # lorawanDeviceProfileID: as defined by LoRa Alliance in https://lora-alliance.org/wp-content/uploads/2020/10/LoRa_Alliance_Vendor_ID_for_QR_Code_02142022.pdf.
 # The lorawanDeviceProfileID consists of 8 upper-case hexadecimal characters, 4 characters for VendorID + 4 characters for VendorProfileID. Please consider using single (') or double (") quotation.
 deviceProfileIds:
+  - id: mclimate_RFGroup1_1.0.3a_classA
   - id: mclimate_RFGroup2_1.0.3a_classA
   - id: mclimate_RFGroup4_1.0.3a_classA
 
@@ -51,8 +52,13 @@ sensors:
 examples:
   mclimate:ht-pir-lite:1:
     - "Periodic uplink (keepalive)"
-    - "Downlink: set PIR blind period"
+    - "Response: occupancy timeout (0x39) and keepAliveTime (0x12) with keepalive trailer"
     - "Downlink decode: passthrough bytes"
+    - "Downlink: enable the PIR sensor"
+    - "Downlink: set occupancy timeout to 300 seconds"
+    - "Downlink: read occupancy timeout"
+    - "Downlink: set PIR sensor sensitivity"
+    - "Downlink: restart the device"
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false

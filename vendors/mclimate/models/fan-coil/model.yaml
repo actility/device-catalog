@@ -34,7 +34,6 @@ modelId: mclimate:fan-coil:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId:
   - mclimate:fan-coil:1
-  - os1-mcli:fan-coil:1
 # DataSheet URL (optional)
 specificationURL: https://3940008670-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F-McDr-jr9h3qA888r1Yp%2Fuploads%2FxVLLS2zmBIebkHJ2pnzo%2FMClimate-FCT-Datasheet.pdf?alt=media&token=bd51a623-fc3e-44a6-9abc-12b2a1d4d254
 # User Guide URL (optional) 
@@ -46,10 +45,19 @@ sensors:
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
-  os1-mcli:fan-coil:1:
-    - "Periodic uplink"
   mclimate:fan-coil:1:
     - "Periodic uplink"
+    - "Response: manual target temperature update (0x30, two bytes) with keepalive trailer"
+    - "Response: external sensor temperature (0x3e) with keepalive trailer"
+    - "Response: FCT operational mode (0x53) with keepalive trailer"
+    - "Response: temperature sensor compensation (0x5b) with keepalive trailer"
+    - "Response: delta temperature 2 and 3 (0x6d) with keepalive trailer"
+    - "Response: region (0xa4) with keepalive trailer"
+    - "Downlink: enable frost protection (0x4e)"
+    - "Downlink: read frost protection (0x4f)"
+    - "Downlink: set target temperature step to 0.5C"
+    - "Downlink: set delta temperature 1 to 3C"
+    - "Downlink: set watchdog parameters"
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false

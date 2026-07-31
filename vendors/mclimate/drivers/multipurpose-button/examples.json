@@ -38,6 +38,44 @@
     }
   },
   {
+    "description": "Response: single press event counter (0xb1) with keepalive trailer",
+    "type": "uplink",
+    "input": {
+      "bytes": "b100010201A0012C02",
+      "fPort": 2
+    },
+    "output": {
+      "data": {
+        "singlePressEventCounter": 258,
+        "batteryVoltage": 2.9,
+        "thermistorProperlyConnected": true,
+        "sensorTemperature": 30,
+        "pressEvent": 2
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "description": "Response: send event later (0x1f) with keepalive trailer",
+    "type": "uplink",
+    "input": {
+      "bytes": "1f0501A0012C02",
+      "fPort": 2
+    },
+    "output": {
+      "data": {
+        "sendEventLater": 5,
+        "batteryVoltage": 2.9,
+        "thermistorProperlyConnected": true,
+        "sensorTemperature": 30,
+        "pressEvent": 2
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
     "description": "Downlink decode: passthrough bytes",
     "type": "downlink-decode",
     "input": {
@@ -54,6 +92,66 @@
       },
       "errors": [],
       "warnings": []
+    }
+  },
+  {
+    "description": "Downlink: set keepalive interval to 10 minutes",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setKeepAlive": 10
+      }
+    },
+    "output": {
+      "bytes": "020A",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "description": "Downlink: set send event later",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setSendEventLater": 5
+      }
+    },
+    "output": {
+      "bytes": "1E05",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "description": "Downlink: clear the press event counter",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "clearPressEventCounter": 1
+      }
+    },
+    "output": {
+      "bytes": "2001",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "description": "Downlink: read the single press event counter",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "getSinglePressEventCounter": true
+      }
+    },
+    "output": {
+      "bytes": "B1",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
     }
   }
 ]

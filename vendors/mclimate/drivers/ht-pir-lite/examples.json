@@ -45,18 +45,26 @@
     }
   },
   {
-    "description": "Downlink: set PIR blind period",
-    "type": "downlink-encode",
+    "description": "Response: occupancy timeout (0x39) and keepAliveTime (0x12) with keepalive trailer",
+    "type": "uplink",
     "input": {
-      "data": {
-        "setPIRBlindPeriod": 20
-      }
+      "bytes": "39003C120A8102797DE201",
+      "fPort": 2
     },
     "output": {
-      "bytes": "4C0014",
-      "fPort": 1,
-      "warnings": [],
-      "errors": []
+      "data": {
+        "occupancyTimeout": 60,
+        "keepAliveTime": 10,
+        "occupied": false,
+        "sensorTemperature": 23.3,
+        "relativeHumidity": 48.83,
+        "batteryVoltage": 3.55,
+        "pirTriggerCount": 1,
+        "pirSensorStatus": "No motion detected",
+        "pirSensorValue": 0
+      },
+      "errors": [],
+      "warnings": []
     }
   },
   {
@@ -75,6 +83,81 @@
           20
         ]
       },
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "description": "Downlink: enable the PIR sensor",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setPIRSensorState": 1
+      }
+    },
+    "output": {
+      "bytes": "3601",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "description": "Downlink: set occupancy timeout to 300 seconds",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setOccupancyTimeout": 300
+      }
+    },
+    "output": {
+      "bytes": "38012C",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "description": "Downlink: read occupancy timeout",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "getOccupancyTimeout": true
+      }
+    },
+    "output": {
+      "bytes": "39",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "description": "Downlink: set PIR sensor sensitivity",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setPIRSensorSensitivity": 2
+      }
+    },
+    "output": {
+      "bytes": "3E02",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "description": "Downlink: restart the device",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "restartDevice": true
+      }
+    },
+    "output": {
+      "bytes": "A5",
+      "fPort": 1,
       "warnings": [],
       "errors": []
     }
