@@ -1,4 +1,7 @@
-# Commercial name of the model 
+# End of life: MClimate has discontinued this product. It is no longer sold or
+# supported, so it must no longer be offered for onboarding.
+deprecated: true
+# Commercial name of the model
 name: Air Quality Sensor & Notifier (AQI)
 # Functional description of the product. Maximum 500 characters. 
 description: "The MClimate AQI Sensor and Notifier is a LoRaWAN® indoor Air Quality Index Sensor and Notifier featuring gas, humidity, pressure, and temperature sensors. These sensors measure AQI, VOC (ppm), temperature, humidity, and barometric pressure. It also has a configurable buzzer and RGB LED to notify tenants if the Air Quality Index is below a configurable threshold."
@@ -36,18 +39,26 @@ modelId: mclimate:aqi-sensor:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId:
   - mclimate:aqi-sensor:1
-  - os1-mcli:aqi-sensor:1
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 
 userGuideURL: 
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
+  - temperature:Cel
+  - humidity:%RH
+  - pressure:hPa
+  - co2Level:ppm
+  - batteryVoltage:V
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
-  os1-mcli:aqi-sensor:1:
+  mclimate:aqi-sensor:1:
     - "Periodic uplink"
+    - "Response: keepAliveTime (0x12) with keepalive trailer"
+    - "fail: payload shorter than a keepalive returns an error"
+    - "Downlink: configure the AQI notification LED"
+    - "Downlink decode: passthrough bytes"
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false

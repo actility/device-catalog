@@ -1,41 +1,36 @@
-// DataCake
-function Decoder(bytes, port){
-    var decoded = decodeUplink({ bytes: bytes, fPort: port }).data;
-    return decoded;
-}
+var KEEPALIVE_BYTE_LEN = 12;
 
-// Milesight
-function Decode(port, bytes){
-    var decoded = decodeUplink({ bytes: bytes, fPort: port }).data;
-    return decoded;
-}
-
-// The Things Industries / Main
 function decodeUplink(input) {
     try {
         var bytes = input.bytes;
         var data = {};
 
+        if (!bytes || bytes.length < KEEPALIVE_BYTE_LEN) {
+            throw new Error('payload must be at least ' + KEEPALIVE_BYTE_LEN + ' bytes long');
+        }
+
         function handleKeepalive(bytes, data) {
-            data.internalTemperature = bytes[1];
+            // Temperature sign and internal temperature
+            var isNegative = (bytes[1] & 0x80) !== 0; // Check the 7th bit for the sign
+            var temperature = bytes[1] & 0x7F; // Mask out the 7th bit to get the temperature value
+            data.internalTemperature = isNegative ? -temperature : temperature;
 
-        // Energy data
-        var energy = (bytes[2] << 24) | (bytes[3] << 16) | (bytes[4] << 8) | bytes[5];
-        data.energy_kWh = energy / 1000;
+            // Energy data
+            var energy = (bytes[2] << 24) | (bytes[3] << 16) | (bytes[4] << 8) | bytes[5];
+            data.energy = energy / 1000;
 
-        // Power data
-        var power = (bytes[6] << 8) | bytes[7];
-        data.power_W = power;
+            // Power data
+            data.power = (bytes[6] << 8) | bytes[7];
 
-        // AC voltage
-        data.acVoltage_V = bytes[8];
+            // AC voltage
+            data.acVoltage = bytes[8];
 
-        // AC current data
-        var acCurrent = (bytes[9] << 8) | bytes[10];
-        data.acCurrent_mA = acCurrent;
-        
-        // Relay state
-        data.relayState = bytes[11] === 0x01 ? "ON" : "OFF";
+            // AC current data
+            data.acCurrent = (bytes[9] << 8) | bytes[10];
+
+            // Relay state
+            data.relayState = bytes[11] === 0x01;
+
             return data;
         }
 
@@ -43,7 +38,7 @@ function decodeUplink(input) {
             var commands = bytes.map(function(byte){
                 return ("0" + byte.toString(16)).substr(-2); 
             });
-            commands = commands.slice(0,-12);
+            commands = commands.slice(0,-KEEPALIVE_BYTE_LEN);
             var command_len = 0;
         
             commands.map(function (command, i) {
@@ -93,7 +88,7 @@ function decodeUplink(input) {
                     case '21':
                         {
                             command_len = 3;
-                            data.overvoltageThreshold = {trigger: (parseInt(commands[i + 1], 16) << 8) | parseInt(commands[i + 2], 16), recovery: parseInt(commands[i + 3], 16)};
+                            data.overvoltageThresholds = {trigger: (parseInt(commands[i + 1], 16) << 8) | parseInt(commands[i + 2], 16), recovery: parseInt(commands[i + 3], 16)};
                         }
                     break;
                     case '23':
@@ -180,6 +175,36 @@ function decodeUplink(input) {
                             data.overpowerRecoveryTemp = parseInt(commands[i + 1], 16);
                         }
                     break;
+                    case '54':
+                        {
+                            command_len = 1;
+                            data.relayStateChangeReason = parseInt(commands[i + 1], 16);
+                        }
+                    break;
+                    case '56':
+                        {
+                            command_len = 3;
+                            data.relayTimerInMilliseconds = {
+                                state: parseInt(commands[i + 1], 16),
+                                time: (parseInt(commands[i + 2], 16) << 8) | parseInt(commands[i + 3], 16)
+                            };
+                        }
+                    break;
+                    case '58':
+                        {
+                            command_len = 3;
+                            data.relayTimerInSeconds = {
+                                state: parseInt(commands[i + 1], 16),
+                                time: (parseInt(commands[i + 2], 16) << 8) | parseInt(commands[i + 3], 16)
+                            };
+                        }
+                    break;
+                    case 'a4':
+                        {
+                            command_len = 1;
+                            data.region = parseInt(commands[i + 1], 16);
+                        }
+                    break;
                     case 'b1':
                         {
                             command_len = 1;
@@ -199,6 +224,7 @@ function decodeUplink(input) {
                         break;
                     }
                     default:
+                        command_len = 0;
                         break;
                 }
                 commands.splice(i,command_len);
@@ -211,13 +237,11 @@ function decodeUplink(input) {
         } else {
             data = handleResponse(bytes, data);
             // Handle the remaining keepalive data if required after response
-            bytes = bytes.slice(-12);
-            data = handleKeepalive(bytes, data);
+            data = handleKeepalive(bytes.slice(-KEEPALIVE_BYTE_LEN), data);
         }
         return { data: data };
     } catch (e) {
-        // console.log(e);
-        throw new Error('Unhandled data');
+        return { errors: ['Invalid uplink payload: ' + e.message], warnings: [] };
     }
 }
 
@@ -269,8 +293,11 @@ function encodeDownlink(input) {
                     bytes.push(0x1f);
                     break;
                 case "setOvervoltageThresholds":
+                    // The trigger voltage is transmitted as two bytes.
+                    var overvoltageTrigger = input.data.setOvervoltageThresholds.trigger;
                     bytes.push(0x20);
-                    bytes.push(input.data.setOvervoltageThresholds.trigger);
+                    bytes.push((overvoltageTrigger >> 8) & 0xff);
+                    bytes.push(overvoltageTrigger & 0xff);
                     bytes.push(input.data.setOvervoltageThresholds.recovery);
                     break;
                 case "getOvervoltageThresholds":
@@ -284,11 +311,39 @@ function encodeDownlink(input) {
                     bytes.push(0x23);
                     break;
                 case "setOverpowerThreshold":
+                    // The power threshold is transmitted as two bytes.
+                    var overpowerThreshold = input.data.setOverpowerThreshold;
                     bytes.push(0x24);
-                    bytes.push(input.data.setOverpowerThreshold);
+                    bytes.push((overpowerThreshold >> 8) & 0xff);
+                    bytes.push(overpowerThreshold & 0xff);
                     break;
                 case "getOverpowerThreshold":
                     bytes.push(0x25);
+                    break;
+                case "getRelayStateChangeReason":
+                    bytes.push(0x54);
+                    break;
+                case "setRelayTimerMiliseconds":
+                    var msState = input.data.setRelayTimerMiliseconds.state;
+                    var msTime = input.data.setRelayTimerMiliseconds.time;
+                    bytes.push(0x55);
+                    bytes.push(msState);
+                    bytes.push((msTime >> 8) & 0xff);
+                    bytes.push(msTime & 0xff);
+                    break;
+                case "getRelayTimerMiliseconds":
+                    bytes.push(0x56);
+                    break;
+                case "setRelayTimerSeconds":
+                    var sState = input.data.setRelayTimerSeconds.state;
+                    var sTime = input.data.setRelayTimerSeconds.time;
+                    bytes.push(0x57);
+                    bytes.push(sState);
+                    bytes.push((sTime >> 8) & 0xff);
+                    bytes.push(sTime & 0xff);
+                    break;
+                case "getRelayTimerSeconds":
+                    bytes.push(0x58);
                     break;
                 case "setAfterOverheatingProtectionRecovery":
                     bytes.push(0x59);
@@ -296,6 +351,9 @@ function encodeDownlink(input) {
                     break;
                 case "getAfterOverheatingProtectionRecovery":
                     bytes.push(0x5a);
+                    break;
+                case "getRegion":
+                    bytes.push(0xa4);
                     break;
 
                 case "setLedIndicationMode":

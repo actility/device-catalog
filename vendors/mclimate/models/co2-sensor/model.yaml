@@ -38,18 +38,29 @@ modelId: mclimate:co2-sensor:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId:
   - mclimate:co2-sensor:1
-  - os1-mcli:co2-sensor:1
 # DataSheet URL (optional) 
-specificationURL: 
+specificationURL: https://3940008670-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F-McDr-jr9h3qA888r1Yp%2Fuploads%2FU1Kxj5vl0nwBuxR11LX4%2FMClimate-CO2-Sensor-LoRaWAN-Batteries-Datasheet-en.pdf?alt=media&token=8edfe392-b23e-4781-b9c4-194af381440a
 # User Guide URL (optional) 
-userGuideURL: 
+userGuideURL: https://3940008670-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F-McDr-jr9h3qA888r1Yp%2Fuploads%2FdApiyihAWl5D7XlZr7oj%2FCO2-LoRaWAN-User-Manual.pdf?alt=media&token=9027010f-5e88-4eec-b165-db26fe533d4c
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
+  - co2Level:ppm
+  - temperature:Cel
+  - humidity:%RH
+  - batteryVoltage:V
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
-  os1-mcli:co2-sensor:1:
+  mclimate:co2-sensor:1:
     - "Short periodic uplink"
+    - "Response boundary levels (0x1f) with keepalive trailer"
+    - "Response measurement period (0x25) with keepalive trailer"
+    - "Response auto zero period (0x2b) with keepalive trailer"
+    - "fail: payload shorter than a keepalive returns an error"
+    - "Downlink: set CO2 measurement period"
+    - "Downlink: set CO2 auto zero period to 24 hours"
+    - "Downlink: read device versions"
+    - "Downlink decode: passthrough bytes"
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false

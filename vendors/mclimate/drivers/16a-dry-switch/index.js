@@ -1,9 +1,18 @@
+var KEEPALIVE_BYTE_LEN = 3;
+
 function decodeUplink(input) {
     try {
         var bytes = input.bytes;
         var data = {};
-        if (!bytes || bytes.length < 3) {
+        if (!bytes || bytes.length < KEEPALIVE_BYTE_LEN) {
             throw new Error("Unhandled data");
+        }
+
+        // A command answer only carries a keepalive when the trailing bytes
+        // start with the keepalive marker.
+        function hasKeepaliveTrailer(bytes) {
+            return bytes.length > KEEPALIVE_BYTE_LEN &&
+                bytes[bytes.length - KEEPALIVE_BYTE_LEN] === 1;
         }
 
         function handleKeepalive(bytes, data) {
@@ -14,7 +23,7 @@ function decodeUplink(input) {
             data.internalTemperature = isNegative ? -temperature : temperature;
 
             // Relay state
-            data.relayState = bytes[2] === 0x01 ? "ON" : "OFF";
+            data.relayState = bytes[2] === 0x01;
 
             return data;
         }
@@ -23,6 +32,10 @@ function decodeUplink(input) {
             var commands = bytes.map(function (byte) {
                 return ("0" + byte.toString(16)).substr(-2);
             });
+            // Drop the trailing keepalive so its bytes are not read as commands.
+            if (hasKeepaliveTrailer(bytes)) {
+                commands = commands.slice(0, -KEEPALIVE_BYTE_LEN);
+            }
             var command_len = 0;
 
             commands.forEach(function (command, i) {
@@ -102,6 +115,27 @@ function decodeUplink(input) {
                         data.overheatingRecoveryTime = (parseInt(commands[i + 1], 16) << 8) | parseInt(commands[i + 2], 16);
                         break;
                     }
+                    case '54': {
+                        command_len = 1;
+                        data.relayStateChangeReason = parseInt(commands[i + 1], 16);
+                        break;
+                    }
+                    case '56': {
+                        command_len = 3;
+                        data.relayTimerInMilliseconds = {
+                            state: parseInt(commands[i + 1], 16),
+                            time: (parseInt(commands[i + 2], 16) << 8) | parseInt(commands[i + 3], 16)
+                        };
+                        break;
+                    }
+                    case '58': {
+                        command_len = 3;
+                        data.relayTimerInSeconds = {
+                            state: parseInt(commands[i + 1], 16),
+                            time: (parseInt(commands[i + 2], 16) << 8) | parseInt(commands[i + 3], 16)
+                        };
+                        break;
+                    }
                     case 'b1': {
                         command_len = 1;
                         data.relayState = parseInt(commands[i + 1], 16) === 0x01;
@@ -125,6 +159,7 @@ function decodeUplink(input) {
                         break;
                     }
                     default:
+                        command_len = 0;
                         break;
                 }
                 commands.splice(i, command_len);
@@ -136,9 +171,11 @@ function decodeUplink(input) {
         if (bytes[0] === 1) {
             data = handleKeepalive(bytes, data);
         } else {
+            var decodeKeepalive = hasKeepaliveTrailer(bytes);
             data = handleResponse(bytes, data);
-            bytes = bytes.slice(-3);
-            data = handleKeepalive(bytes, data);
+            if (decodeKeepalive) {
+                data = handleKeepalive(bytes.slice(-KEEPALIVE_BYTE_LEN), data);
+            }
         }
 
         return { 
@@ -148,8 +185,7 @@ function decodeUplink(input) {
         };
 
     } catch (e) {
-        console.log(e);
-        return { 
+        return {
             warnings: [],
             errors: ["Unhandled data"],
         };

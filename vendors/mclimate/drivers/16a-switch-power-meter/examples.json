@@ -9,11 +9,11 @@
     "output": {
       "data": {
         "internalTemperature": 25,
-        "energy_kWh": 10,
-        "power_W": 500,
-        "acVoltage_V": 230,
-        "acCurrent_mA": 200,
-        "relayState": "ON"
+        "energy": 10,
+        "power": 500,
+        "acVoltage": 230,
+        "acCurrent": 200,
+        "relayState": true
       }
     },
     "points": {
@@ -41,6 +41,84 @@
         "unitId": "state",
         "record": true,
         "nature": "relay"
+      }
+    }
+  },
+  {
+    "description": "Periodic uplink with negative internal temperature (sign bit set)",
+    "type": "uplink",
+    "input": {
+      "bytes": "01850000271001F4E600C801",
+      "fPort": 1
+    },
+    "output": {
+      "data": {
+        "internalTemperature": -5,
+        "energy": 10,
+        "power": 500,
+        "acVoltage": 230,
+        "acCurrent": 200,
+        "relayState": true
+      }
+    }
+  },
+  {
+    "description": "Response: relay state change reason (0x54) with keepalive trailer",
+    "type": "uplink",
+    "input": {
+      "bytes": "540301190000271001F4E600C801",
+      "fPort": 1
+    },
+    "output": {
+      "data": {
+        "relayStateChangeReason": 3,
+        "internalTemperature": 25,
+        "energy": 10,
+        "power": 500,
+        "acVoltage": 230,
+        "acCurrent": 200,
+        "relayState": true
+      }
+    }
+  },
+  {
+    "description": "Response: relay timer in milliseconds (0x56) with keepalive trailer",
+    "type": "uplink",
+    "input": {
+      "bytes": "560101F401190000271001F4E600C801",
+      "fPort": 1
+    },
+    "output": {
+      "data": {
+        "relayTimerInMilliseconds": {
+          "state": 1,
+          "time": 500
+        },
+        "internalTemperature": 25,
+        "energy": 10,
+        "power": 500,
+        "acVoltage": 230,
+        "acCurrent": 200,
+        "relayState": true
+      }
+    }
+  },
+  {
+    "description": "Response: region (0xa4) with keepalive trailer",
+    "type": "uplink",
+    "input": {
+      "bytes": "a40101190000271001F4E600C801",
+      "fPort": 1
+    },
+    "output": {
+      "data": {
+        "region": 1,
+        "internalTemperature": 25,
+        "energy": 10,
+        "power": 500,
+        "acVoltage": 230,
+        "acCurrent": 200,
+        "relayState": true
       }
     }
   },
@@ -76,6 +154,71 @@
       },
       "warnings": [],
       "errors": []
+    }
+  },
+  {
+    "description": "Downlink: set overvoltage thresholds (two byte trigger)",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setOvervoltageThresholds": {
+          "trigger": 253,
+          "recovery": 230
+        }
+      }
+    },
+    "output": {
+      "bytes": "2000FDE6",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "description": "Downlink: set overpower threshold (two bytes)",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setOverpowerThreshold": 3680
+      }
+    },
+    "output": {
+      "bytes": "240E60",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "description": "Downlink: set relay timer in milliseconds",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setRelayTimerMiliseconds": {
+          "state": 1,
+          "time": 500
+        }
+      }
+    },
+    "output": {
+      "bytes": "550101F4",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "description": "fail: payload shorter than a keepalive returns an error",
+    "type": "uplink",
+    "input": {
+      "bytes": "0119",
+      "fPort": 1
+    },
+    "output": {
+      "errors": [
+        "Invalid uplink payload: payload must be at least 12 bytes long"
+      ],
+      "warnings": []
     }
   }
 ]
