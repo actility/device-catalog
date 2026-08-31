@@ -25,8 +25,16 @@
             }
         },
         "BACnet": {
-            "battery": 100,
-            "temperature": 28.1
+            "battery": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 100,
+                "units": "PERCENT"
+            },
+            "temperature": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 28.1,
+                "units": "DEGREES_CELSIUS"
+            }
         }
     },
     {
@@ -46,9 +54,6 @@
                 2
             ],
             "fPort": 100
-        },
-        "BACnet": {
-            "report_interval": 600
         }
     }
 ]

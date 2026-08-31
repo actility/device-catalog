@@ -40,11 +40,21 @@
             }
         },
         "BACnet": {
-            "battery": 92,
-            "freq_weight": "Z",
-            "la": 102.4,
-            "laeq": 76.8,
-            "time_weight": "impulse"
+            "battery": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 92,
+                "units": "PERCENT"
+            },
+            "freq_weight": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "time_weight": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
         }
     },
     {
@@ -63,9 +73,6 @@
                 255
             ],
             "fPort": 100
-        },
-        "BACnet": {
-            "reboot": "yes"
         }
     },
     {
@@ -106,6 +113,23 @@
                 "unitId": "dB",
                 "record": 61.8,
                 "nature": "A-weighted max"
+            }
+        },
+        "BACnet": {
+            "battery": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 100,
+                "units": "PERCENT"
+            },
+            "freq_weight": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "time_weight": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 0,
+                "units": "NO_UNITS"
             }
         }
     }

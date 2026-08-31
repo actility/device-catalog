@@ -36,10 +36,24 @@
             }
         },
         "BACnet": {
-            "occupancy": "occupied",
-            "battery": 98,
-            "calibration_status": "success",
-            "distance": 15
+            "battery": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 98,
+                "units": "PERCENT"
+            },
+            "distance": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 15,
+                "units": "METERS"
+            },
+            "occupancy": {
+                "object": "BINARY_VALUE",
+                "presentValue": 1
+            },
+            "calibration_status": {
+                "object": "BINARY_VALUE",
+                "presentValue": 1
+            }
         }
     },
     {
@@ -59,9 +73,6 @@
                 2
             ],
             "fPort": 100
-        },
-        "BACnet": {
-            "report_interval": 600
         }
     }
 ]

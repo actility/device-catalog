@@ -19,9 +19,31 @@
         },
         "points": null,
         "BACnet": {
-            "hardware_version": "v1.1",
-            "ipso_version": "v0.1",
-            "sn": "ac18ff3fb4445cee"
+            "ipso_version": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "v0.1"
+            },
+            "hardware_version": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "v1.1"
+            },
+            "firmware_version": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "v1.1f"
+            },
+            "sn": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "ac18ff3fb4445cee"
+            },
+            "device_status": {
+                "object": "BINARY_VALUE",
+                "presentValue": 1
+            },
+            "modbus_chn_2": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 1,
+                "units": "NO_UNITS"
+            }
         }
     },
     {
@@ -41,9 +63,6 @@
                 2
             ],
             "fPort": 100
-        },
-        "BACnet": {
-            "report_interval": 600
         }
     }
 ]

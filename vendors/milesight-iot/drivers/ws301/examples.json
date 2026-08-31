@@ -21,7 +21,11 @@
             }
         },
         "BACnet": {
-            "battery": 100
+            "battery": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 100,
+                "units": "PERCENT"
+            }
         }
     },
     {
@@ -41,9 +45,6 @@
                 2
             ],
             "fPort": 100
-        },
-        "BACnet": {
-            "report_interval": 600
         }
     },
     {
@@ -66,6 +67,13 @@
             "batteryLevel": {
                 "unitId": "%",
                 "record": 93
+            }
+        },
+        "BACnet": {
+            "battery": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 93,
+                "units": "PERCENT"
             }
         }
     }

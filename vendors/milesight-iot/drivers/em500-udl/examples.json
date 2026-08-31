@@ -24,8 +24,16 @@
             }
         },
         "BACnet": {
-            "battery": 100,
-            "distance": 1
+            "battery": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 100,
+                "units": "PERCENT"
+            },
+            "distance": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 1,
+                "units": "MILLIMETERS"
+            }
         }
     },
     {
@@ -45,9 +53,6 @@
                 2
             ],
             "fPort": 100
-        },
-        "BACnet": {
-            "report_interval": 600
         }
     }
 ]

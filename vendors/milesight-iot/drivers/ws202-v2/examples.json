@@ -30,9 +30,19 @@
             }
         },
         "BACnet": {
-            "battery": 16,
-            "pir": true,
-            "daylight": "dim"
+            "battery": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 16,
+                "units": "PERCENT"
+            },
+            "pir": {
+                "object": "BINARY_VALUE",
+                "presentValue": 1
+            },
+            "daylight": {
+                "object": "BINARY_VALUE",
+                "presentValue": 0
+            }
         }
     },
     {

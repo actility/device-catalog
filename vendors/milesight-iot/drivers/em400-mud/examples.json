@@ -47,10 +47,25 @@
             }
         },
         "BACnet": {
-            "battery": 92,
-            "distance": 1601,
-            "position": "tilt",
-            "temperature": 23.2
+            "battery": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 92,
+                "units": "PERCENT"
+            },
+            "temperature": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 23.2,
+                "units": "DEGREES_CELSIUS"
+            },
+            "distance": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 1601,
+                "units": "MILLIMETERS"
+            },
+            "position": {
+                "object": "BINARY_VALUE",
+                "presentValue": 1
+            }
         }
     },
     {
@@ -70,9 +85,6 @@
                 2
             ],
             "fPort": 100
-        },
-        "BACnet": {
-            "report_interval": 600
         }
     }
 ]

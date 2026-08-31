@@ -31,9 +31,21 @@
             }
         },
         "BACnet": {
-            "battery": 100,
-            "distance": 62,
-            "remaining": 69
+            "battery": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 100,
+                "units": "PERCENT"
+            },
+            "distance": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 62,
+                "units": "MILLIMETERS"
+            },
+            "remaining": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 69,
+                "units": "PERCENT"
+            }
         }
     },
     {
@@ -53,9 +65,6 @@
                 2
             ],
             "fPort": 100
-        },
-        "BACnet": {
-            "report_interval": 600
         }
     },
     {
@@ -88,6 +97,23 @@
                 "unitId": "mm",
                 "record": 69,
                 "nature": "remaining"
+            }
+        },
+        "BACnet": {
+            "battery": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 100,
+                "units": "PERCENT"
+            },
+            "distance": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 62,
+                "units": "MILLIMETERS"
+            },
+            "remaining": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 69,
+                "units": "PERCENT"
             }
         }
     }

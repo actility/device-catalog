@@ -25,8 +25,15 @@
             }
         },
         "BACnet": {
-            "battery": 100,
-            "leakage_status": "leak"
+            "battery": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 100,
+                "units": "PERCENT"
+            },
+            "leakage_status": {
+                "object": "BINARY_VALUE",
+                "presentValue": 1
+            }
         }
     },
     {
@@ -46,9 +53,6 @@
                 2
             ],
             "fPort": 100
-        },
-        "BACnet": {
-            "report_interval": 600
         }
     },
     {
@@ -75,6 +79,17 @@
                 "unitId": "state",
                 "record": true,
                 "nature": "leak"
+            }
+        },
+        "BACnet": {
+            "battery": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 100,
+                "units": "PERCENT"
+            },
+            "leakage_status": {
+                "object": "BINARY_VALUE",
+                "presentValue": 1
             }
         }
     }

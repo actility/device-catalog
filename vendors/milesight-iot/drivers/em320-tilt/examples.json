@@ -40,10 +40,26 @@
             }
         },
         "BACnet": {
-            "battery": 100,
-            "angle_x": 0,
-            "angle_y": 0,
-            "angle_z": 90
+            "battery": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 100,
+                "units": "PERCENT"
+            },
+            "angle_x": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "angle_y": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "angle_z": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 90,
+                "units": "NO_UNITS"
+            }
         }
     },
     {
@@ -63,9 +79,6 @@
                 2
             ],
             "fPort": 100
-        },
-        "BACnet": {
-            "report_interval": 600
         }
     }
 ]

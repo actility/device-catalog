@@ -64,10 +64,42 @@
             }
         },
         "BACnet": {
-            "current_chn1": 250,
-            "current_chn1_max": 300,
-            "current_chn1_min": 200,
-            "current_chn1_total": 100
+            "current_chn1_total": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 100,
+                "units": "NO_UNITS"
+            },
+            "current_chn1": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 250,
+                "units": "AMPERES"
+            },
+            "current_chn1_max": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 300,
+                "units": "AMPERES"
+            },
+            "current_chn1_min": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 200,
+                "units": "AMPERES"
+            },
+            "current_chn1_alarm:current_threshold_alarm": {
+                "object": "BINARY_VALUE",
+                "presentValue": 1
+            },
+            "current_chn1_alarm:current_threshold_alarm_release": {
+                "object": "BINARY_VALUE",
+                "presentValue": 0
+            },
+            "current_chn1_alarm:current_over_range_alarm": {
+                "object": "BINARY_VALUE",
+                "presentValue": 1
+            },
+            "current_chn1_alarm:current_over_range_alarm_release": {
+                "object": "BINARY_VALUE",
+                "presentValue": 0
+            }
         }
     },
     {
@@ -88,9 +120,6 @@
                 2
             ],
             "fPort": 100
-        },
-        "BACnet": {
-            "report_interval": 600
         }
     }
 ]

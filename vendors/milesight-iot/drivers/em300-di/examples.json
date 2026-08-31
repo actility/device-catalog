@@ -37,9 +37,21 @@
             }
         },
         "BACnet": {
-            "battery": 92,
-            "humidity": 50.5,
-            "temperature": 30.8
+            "battery": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 92,
+                "units": "PERCENT"
+            },
+            "temperature": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 30.8,
+                "units": "DEGREES_CELSIUS"
+            },
+            "humidity": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 50.5,
+                "units": "PERCENT_RELATIVE_HUMIDITY"
+            }
         }
     },
     {
@@ -54,9 +66,6 @@
         "output": {
             "bytes": "FF035802",
             "fPort": 100
-        },
-        "BACnet": {
-            "report_interval": 600
         }
     }
 ]

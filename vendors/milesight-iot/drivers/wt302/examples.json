@@ -30,7 +30,14 @@
                 "fan_speed": "unknown"
             }
         },
-        "points": null
+        "points": null,
+        "BACnet": {
+            "fan_speed": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        }
     },
     {
         "description": "Temperature",
@@ -46,7 +53,9 @@
                 "command": "control",
                 "data_length": 1,
                 "type": "temperature_target",
-                "raw": [52],
+                "raw": [
+                    52
+                ],
                 "temperature": 26
             }
         },
@@ -54,6 +63,13 @@
             "temperature": {
                 "unitId": "Cel",
                 "record": 26
+            }
+        },
+        "BACnet": {
+            "temperature": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 26,
+                "units": "DEGREES_CELSIUS"
             }
         }
     },
@@ -71,7 +87,9 @@
                 "command": "control",
                 "data_length": 1,
                 "type": "btn_lock_enable",
-                "raw": [1],
+                "raw": [
+                    1
+                ],
                 "thermostat_status": "on"
             }
         },
@@ -80,6 +98,12 @@
                 "unitId": "state",
                 "record": true,
                 "nature": "thermostat status"
+            }
+        },
+        "BACnet": {
+            "thermostat_status": {
+                "object": "BINARY_VALUE",
+                "presentValue": 1
             }
         }
     }

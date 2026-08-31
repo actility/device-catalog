@@ -47,9 +47,36 @@
             }
         },
         "BACnet": {
-            "fan_mode": "auto",
-            "temperature_control_mode": "fan",
-            "temperature_control_status": "heating"
+            "humidity": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 3661,
+                "units": "PERCENT_RELATIVE_HUMIDITY"
+            },
+            "system_status": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 1,
+                "units": "NO_UNITS"
+            },
+            "target_temperature": {
+                "object": "ANALOG_VALUE",
+                "presentValue": -92.16,
+                "units": "DEGREES_CELSIUS"
+            },
+            "temperature": {
+                "object": "ANALOG_VALUE",
+                "presentValue": -53.76,
+                "units": "DEGREES_CELSIUS"
+            },
+            "temperature_alarm:type": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "temperature_control_mode": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
         }
     },
     {
@@ -66,9 +93,6 @@
                 190
             ],
             "fPort": 100
-        },
-        "BACnet": {
-            "reboot": "yes"
         }
     }
 ]

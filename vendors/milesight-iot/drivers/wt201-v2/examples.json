@@ -29,6 +29,43 @@
         "record": 16.6,
         "nature": "target"
       }
+    },
+    "BACnet": {
+      "temperature": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 25.8,
+        "units": "DEGREES_CELSIUS"
+      },
+      "target_temperature": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 16.6,
+        "units": "DEGREES_CELSIUS"
+      },
+      "temperature_control_mode": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 0,
+        "units": "NO_UNITS"
+      },
+      "temperature_control_status": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 0,
+        "units": "NO_UNITS"
+      },
+      "fan_mode": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 0,
+        "units": "NO_UNITS"
+      },
+      "fan_status": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 0,
+        "units": "NO_UNITS"
+      },
+      "plan_type": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 255,
+        "units": "NO_UNITS"
+      }
     }
   },
   {
@@ -50,6 +87,18 @@
         "unitId": "Cel",
         "record": 25.1,
         "nature": "ambient"
+      }
+    },
+    "BACnet": {
+      "temperature": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 25.1,
+        "units": "DEGREES_CELSIUS"
+      },
+      "temperature_alarm": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 9,
+        "units": "NO_UNITS"
       }
     }
   },
@@ -79,7 +128,8 @@
         ]
       }
     },
-    "points": null
+    "points": null,
+    "BACnet": {}
   },
   {
     "type": "uplink",
@@ -122,7 +172,98 @@
         }
       }
     },
-    "points": null
+    "points": null,
+    "BACnet": {
+      "temperature_control_support_mode:heat": {
+        "object": "BINARY_VALUE",
+        "presentValue": 1
+      },
+      "temperature_control_support_mode:em_heat": {
+        "object": "BINARY_VALUE",
+        "presentValue": 0
+      },
+      "temperature_control_support_mode:cool": {
+        "object": "BINARY_VALUE",
+        "presentValue": 1
+      },
+      "temperature_control_support_mode:auto": {
+        "object": "BINARY_VALUE",
+        "presentValue": 1
+      },
+      "temperature_control_support_status:stage_1_heat": {
+        "object": "BINARY_VALUE",
+        "presentValue": 1
+      },
+      "temperature_control_support_status:stage_2_heat": {
+        "object": "BINARY_VALUE",
+        "presentValue": 0
+      },
+      "temperature_control_support_status:stage_3_heat": {
+        "object": "BINARY_VALUE",
+        "presentValue": 0
+      },
+      "temperature_control_support_status:stage_4_heat": {
+        "object": "BINARY_VALUE",
+        "presentValue": 0
+      },
+      "temperature_control_support_status:stage_1_cool": {
+        "object": "BINARY_VALUE",
+        "presentValue": 1
+      },
+      "temperature_control_support_status:stage_2_cool": {
+        "object": "BINARY_VALUE",
+        "presentValue": 0
+      },
+      "wires:y1": {
+        "object": "BINARY_VALUE",
+        "presentValue": 1
+      },
+      "wires:gh": {
+        "object": "BINARY_VALUE",
+        "presentValue": 1
+      },
+      "wires:ob": {
+        "object": "BINARY_VALUE",
+        "presentValue": 1
+      },
+      "wires:w1": {
+        "object": "BINARY_VALUE",
+        "presentValue": 0
+      },
+      "wires:e": {
+        "object": "BINARY_VALUE",
+        "presentValue": 0
+      },
+      "wires:di": {
+        "object": "BINARY_VALUE",
+        "presentValue": 0
+      },
+      "wires:pek": {
+        "object": "BINARY_VALUE",
+        "presentValue": 0
+      },
+      "wires:w2": {
+        "object": "BINARY_VALUE",
+        "presentValue": 0
+      },
+      "wires:aux": {
+        "object": "BINARY_VALUE",
+        "presentValue": 1
+      },
+      "wires:y2": {
+        "object": "BINARY_VALUE",
+        "presentValue": 0
+      },
+      "wires:gl": {
+        "object": "BINARY_VALUE",
+        "presentValue": 0
+      },
+      "ob_mode": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 1,
+        "units": "NO_UNITS"
+      }
+    }
   },
   {
     "type": "uplink",
@@ -168,7 +309,8 @@
         ]
       }
     },
-    "points": null
+    "points": null,
+    "BACnet": {}
   },
   {
     "description": "Downlink encode: report_interval",

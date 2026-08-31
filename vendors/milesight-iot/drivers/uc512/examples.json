@@ -19,6 +19,22 @@
                 "unitId": "%",
                 "record": 92
             }
+        },
+        "BACnet": {
+            "battery": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 92,
+                "units": "PERCENT"
+            },
+            "valve_1": {
+                "object": "BINARY_VALUE",
+                "presentValue": 0
+            },
+            "valve_1_pulse": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 5,
+                "units": "NO_UNITS"
+            }
         }
     },
     {
@@ -43,10 +59,27 @@
     {
         "description": "Device status",
         "type": "uplink",
-        "input": { "bytes": "FF0BFF", "fPort": 85 },
-        "output": { "data": { "device_status": "on" } },
+        "input": {
+            "bytes": "FF0BFF",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "device_status": "on"
+            }
+        },
         "points": {
-            "status": { "unitId": "state", "record": true, "nature": "device status" }
+            "status": {
+                "unitId": "state",
+                "record": true,
+                "nature": "device status"
+            }
+        },
+        "BACnet": {
+            "device_status": {
+                "object": "BINARY_VALUE",
+                "presentValue": 1
+            }
         }
     }
 ]

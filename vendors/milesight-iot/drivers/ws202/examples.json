@@ -21,9 +21,19 @@
             }
         },
         "BACnet": {
-            "battery": 16,
-            "pir": "trigger",
-            "daylight": "dark"
+            "battery": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 16,
+                "units": "PERCENT"
+            },
+            "pir": {
+                "object": "BINARY_VALUE",
+                "presentValue": 1
+            },
+            "daylight": {
+                "object": "BINARY_VALUE",
+                "presentValue": 0
+            }
         }
     },
     {
@@ -43,9 +53,6 @@
                 2
             ],
             "fPort": 100
-        },
-        "BACnet": {
-            "report_interval": 600
         }
     },
     {
@@ -70,9 +77,19 @@
             }
         },
         "BACnet": {
-            "battery": 98,
-            "pir": "trigger",
-            "daylight": "dim"
+            "battery": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 98,
+                "units": "PERCENT"
+            },
+            "pir": {
+                "object": "BINARY_VALUE",
+                "presentValue": 1
+            },
+            "daylight": {
+                "object": "BINARY_VALUE",
+                "presentValue": 0
+            }
         }
     },
     {
@@ -97,9 +114,19 @@
             }
         },
         "BACnet": {
-            "battery": 98,
-            "pir": "normal",
-            "daylight": "dim"
+            "battery": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 98,
+                "units": "PERCENT"
+            },
+            "pir": {
+                "object": "BINARY_VALUE",
+                "presentValue": 0
+            },
+            "daylight": {
+                "object": "BINARY_VALUE",
+                "presentValue": 0
+            }
         }
     },
     {
@@ -122,6 +149,21 @@
             "batteryLevel": {
                 "unitId": "%",
                 "record": 92
+            }
+        },
+        "BACnet": {
+            "battery": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 92,
+                "units": "PERCENT"
+            },
+            "pir": {
+                "object": "BINARY_VALUE",
+                "presentValue": 1
+            },
+            "daylight": {
+                "object": "BINARY_VALUE",
+                "presentValue": 0
             }
         }
     }

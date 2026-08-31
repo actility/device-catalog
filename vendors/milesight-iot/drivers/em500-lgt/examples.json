@@ -24,8 +24,16 @@
             }
         },
         "BACnet": {
-            "battery": 100,
-            "illumination": 80
+            "battery": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 100,
+                "units": "PERCENT"
+            },
+            "illumination": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 80,
+                "units": "LUXES"
+            }
         }
     },
     {
@@ -45,9 +53,6 @@
                 2
             ],
             "fPort": 100
-        },
-        "BACnet": {
-            "report_interval": 600
         }
     }
 ]

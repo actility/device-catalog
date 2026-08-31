@@ -31,15 +31,31 @@
             }
         },
         "BACnet": {
-            "fan_mode": "auto",
-            "temperature_control_mode": "heat",
-            "temperature_control_status": "standby",
-            "fan_status": "standby",
-            "plan_type": "not executed",
-            "target_temperature": 16.6,
-            "temperature": 25.8,
-            "temperature_alarm": "threshold alarm",
-            "ob_mode": "on heat"
+            "temperature": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 25.8,
+                "units": "DEGREES_CELSIUS"
+            },
+            "temperature_control_status": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "fan_mode": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "fan_status": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "plan_type": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 255,
+                "units": "NO_UNITS"
+            }
         }
     },
     {
@@ -64,8 +80,16 @@
             }
         },
         "BACnet": {
-            "temperature_alarm": "threshold alarm",
-            "temperature": 25.1
+            "temperature": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 25.1,
+                "units": "DEGREES_CELSIUS"
+            },
+            "temperature_alarm": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 9,
+                "units": "NO_UNITS"
+            }
         }
     },
     {
@@ -94,7 +118,8 @@
                 ]
             }
         },
-        "points": {}
+        "points": {},
+        "BACnet": {}
     },
     {
         "type": "uplink",
@@ -139,7 +164,51 @@
         },
         "points": {},
         "BACnet": {
-            "ob_mode": "on heat"
+            "temperature_control_support_mode:heat": {
+                "object": "BINARY_VALUE",
+                "presentValue": 1
+            },
+            "temperature_control_support_mode:em_heat": {
+                "object": "BINARY_VALUE",
+                "presentValue": 0
+            },
+            "temperature_control_support_mode:cool": {
+                "object": "BINARY_VALUE",
+                "presentValue": 1
+            },
+            "temperature_control_support_mode:auto": {
+                "object": "BINARY_VALUE",
+                "presentValue": 1
+            },
+            "temperature_control_support_status:stage_1_heat": {
+                "object": "BINARY_VALUE",
+                "presentValue": 1
+            },
+            "temperature_control_support_status:stage_2_heat": {
+                "object": "BINARY_VALUE",
+                "presentValue": 0
+            },
+            "temperature_control_support_status:stage_3_heat": {
+                "object": "BINARY_VALUE",
+                "presentValue": 0
+            },
+            "temperature_control_support_status:stage_4_heat": {
+                "object": "BINARY_VALUE",
+                "presentValue": 0
+            },
+            "temperature_control_support_status:stage_1_cool": {
+                "object": "BINARY_VALUE",
+                "presentValue": 1
+            },
+            "temperature_control_support_status:stage_2_cool": {
+                "object": "BINARY_VALUE",
+                "presentValue": 0
+            },
+            "ob_mode": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 1,
+                "units": "NO_UNITS"
+            }
         }
     },
     {
@@ -186,7 +255,8 @@
                 ]
             }
         },
-        "points": {}
+        "points": {},
+        "BACnet": {}
     },
     {
         "description": "Downlink encode: report_interval",
@@ -200,9 +270,6 @@
         "output": {
             "bytes": "FF8E005802",
             "fPort": 1
-        },
-        "BACnet": {
-            "report_interval": 600
         }
     },
     {

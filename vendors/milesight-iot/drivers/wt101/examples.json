@@ -39,16 +39,36 @@
             }
         },
         "BACnet": {
-            "battery": 97,
-            "motor_position": 0,
-            "motor_stroke": 0,
-            "target_temperature": 30,
-            "temperature": 26.6,
-            "valve_opening": 100,
-            "freeze_protection": "triggered",
-            "motor_calibration_result": "success",
-            "tamper_status": "installed",
-            "window_detection": "open"
+            "battery": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 97,
+                "units": "PERCENT"
+            },
+            "temperature": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 26.6,
+                "units": "DEGREES_CELSIUS"
+            },
+            "target_temperature": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 30,
+                "units": "DEGREES_CELSIUS"
+            },
+            "valve_opening": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 100,
+                "units": "PERCENT"
+            },
+            "motor_stroke": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "motor_position": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
         }
     },
     {
@@ -67,8 +87,16 @@
         },
         "points": {},
         "BACnet": {
-            "motor_calibration_result": "success",
-            "motor_stroke": 520
+            "motor_calibration_result": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "motor_stroke": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 520,
+                "units": "NO_UNITS"
+            }
         }
     },
     {
@@ -86,7 +114,10 @@
         },
         "points": {},
         "BACnet": {
-            "tamper_status": "installed"
+            "tamper_status": {
+                "object": "BINARY_VALUE",
+                "presentValue": 0
+            }
         }
     },
     {
@@ -110,7 +141,10 @@
             }
         },
         "BACnet": {
-            "window_detection": "open"
+            "window_detection": {
+                "object": "BINARY_VALUE",
+                "presentValue": 1
+            }
         }
     },
     {
@@ -128,7 +162,11 @@
         },
         "points": {},
         "BACnet": {
-            "motor_calibration_result": "fail: out of range"
+            "motor_calibration_result": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 1,
+                "units": "NO_UNITS"
+            }
         }
     },
     {
@@ -152,7 +190,10 @@
             }
         },
         "BACnet": {
-            "freeze_protection": "triggered"
+            "freeze_protection": {
+                "object": "BINARY_VALUE",
+                "presentValue": 1
+            }
         }
     },
     {
@@ -167,9 +208,6 @@
         "output": {
             "bytes": "FF8E005802",
             "fPort": 1
-        },
-        "BACnet": {
-            "report_interval": 600
         }
     },
     {

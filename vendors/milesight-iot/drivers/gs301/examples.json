@@ -41,11 +41,31 @@
             }
         },
         "BACnet": {
-            "battery": 100,
-            "h2s": 0.01,
-            "humidity": 50,
-            "nh3": 0,
-            "temperature": 28.4
+            "battery": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 100,
+                "units": "PERCENT"
+            },
+            "temperature": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 28.4,
+                "units": "DEGREES_CELSIUS"
+            },
+            "humidity": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 50,
+                "units": "PERCENT_RELATIVE_HUMIDITY"
+            },
+            "nh3": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 0,
+                "units": "PARTS_PER_MILLION"
+            },
+            "h2s": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 0.01,
+                "units": "PARTS_PER_MILLION"
+            }
         }
     },
     {
@@ -65,9 +85,6 @@
                 2
             ],
             "fPort": 100
-        },
-        "BACnet": {
-            "report_interval": 600
         }
     }
 ]

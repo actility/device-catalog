@@ -35,10 +35,25 @@
             }
         },
         "BACnet": {
-            "battery": 100,
-            "humidity": 50.5,
-            "temperature": 30.8,
-            "occupancy": "vacant"
+            "battery": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 100,
+                "units": "PERCENT"
+            },
+            "temperature": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 30.8,
+                "units": "DEGREES_CELSIUS"
+            },
+            "humidity": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 50.5,
+                "units": "PERCENT_RELATIVE_HUMIDITY"
+            },
+            "occupancy": {
+                "object": "BINARY_VALUE",
+                "presentValue": 0
+            }
         }
     },
     {
@@ -59,9 +74,6 @@
                 2
             ],
             "fPort": 100
-        },
-        "BACnet": {
-            "report_interval": 600
         }
     },
     {
@@ -98,6 +110,27 @@
                 "unitId": "state",
                 "record": false,
                 "nature": "occupied"
+            }
+        },
+        "BACnet": {
+            "battery": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 100,
+                "units": "PERCENT"
+            },
+            "temperature": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 30.8,
+                "units": "DEGREES_CELSIUS"
+            },
+            "humidity": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 50.5,
+                "units": "PERCENT_RELATIVE_HUMIDITY"
+            },
+            "occupancy": {
+                "object": "BINARY_VALUE",
+                "presentValue": 0
             }
         }
     }

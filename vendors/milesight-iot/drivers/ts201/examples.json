@@ -19,7 +19,11 @@
             }
         },
         "BACnet": {
-            "temperature": 30.8
+            "temperature": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 30.8,
+                "units": "DEGREES_CELSIUS"
+            }
         }
     },
     {
@@ -48,7 +52,11 @@
             }
         },
         "BACnet": {
-            "temperature": 30.8
+            "temperature": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 30.8,
+                "units": "DEGREES_CELSIUS"
+            }
         }
     },
     {
@@ -78,7 +86,11 @@
             }
         },
         "BACnet": {
-            "temperature": 30.8
+            "temperature": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 30.8,
+                "units": "DEGREES_CELSIUS"
+            }
         }
     },
     {
@@ -98,7 +110,8 @@
                 ]
             }
         },
-        "points": {}
+        "points": {},
+        "BACnet": {}
     },
     {
         "type": "uplink",
@@ -120,7 +133,8 @@
                 ]
             }
         },
-        "points": {}
+        "points": {},
+        "BACnet": {}
     },
     {
         "description": "Downlink encode: report_interval",
@@ -134,9 +148,6 @@
         "output": {
             "bytes": "FF8E005802",
             "fPort": 85
-        },
-        "BACnet": {
-            "report_interval": 600
         }
     }
 ]

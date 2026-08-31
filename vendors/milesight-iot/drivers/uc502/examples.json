@@ -21,10 +21,27 @@
   {
     "description": "Device status",
     "type": "uplink",
-    "input": { "bytes": "FF0BFF", "fPort": 85 },
-    "output": { "data": { "device_status": "on" } },
+    "input": {
+      "bytes": "FF0BFF",
+      "fPort": 85
+    },
+    "output": {
+      "data": {
+        "device_status": "on"
+      }
+    },
     "points": {
-      "status": { "unitId": "state", "record": true, "nature": "device status" }
+      "status": {
+        "unitId": "state",
+        "record": true,
+        "nature": "device status"
+      }
+    },
+    "BACnet": {
+      "device_status": {
+        "object": "BINARY_VALUE",
+        "presentValue": 1
+      }
     }
   }
 ]
