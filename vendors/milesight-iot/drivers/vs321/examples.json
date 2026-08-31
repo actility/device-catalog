@@ -49,143 +49,233 @@
                 "unitId": "Cel",
                 "record": 26
             },
-            "status:21": {
+            "status:1": {
                 "unitId": "state",
                 "record": true,
                 "nature": "dim"
             },
-            "status:22": {
+            "status:2": {
                 "unitId": "state",
                 "record": false,
                 "nature": "detection available"
             },
-            "status:1": {
-                "unitId": "state",
-                "record": false,
-                "nature": "region_1 occupied"
-            },
-            "status:2": {
-                "unitId": "state",
-                "record": false,
-                "nature": "region_10 occupied"
-            },
-            "status:3": {
-                "unitId": "state",
-                "record": false,
-                "nature": "region_10 enabled"
-            },
-            "status:4": {
+            "enabled:1": {
                 "unitId": "state",
                 "record": true,
                 "nature": "region_1 enabled"
             },
-            "status:5": {
+            "presence:1": {
                 "unitId": "state",
-                "record": true,
-                "nature": "region_2 occupied"
+                "record": false,
+                "nature": "region_1 occupied"
             },
-            "status:6": {
+            "enabled:2": {
                 "unitId": "state",
                 "record": true,
                 "nature": "region_2 enabled"
             },
-            "status:7": {
+            "presence:2": {
                 "unitId": "state",
                 "record": true,
-                "nature": "region_3 occupied"
+                "nature": "region_2 occupied"
             },
-            "status:8": {
+            "enabled:3": {
                 "unitId": "state",
                 "record": true,
                 "nature": "region_3 enabled"
             },
-            "status:9": {
+            "presence:3": {
                 "unitId": "state",
-                "record": false,
-                "nature": "region_4 occupied"
+                "record": true,
+                "nature": "region_3 occupied"
             },
-            "status:10": {
+            "enabled:4": {
                 "unitId": "state",
                 "record": true,
                 "nature": "region_4 enabled"
             },
-            "status:11": {
+            "presence:4": {
                 "unitId": "state",
                 "record": false,
-                "nature": "region_5 occupied"
+                "nature": "region_4 occupied"
             },
-            "status:12": {
+            "enabled:5": {
                 "unitId": "state",
                 "record": false,
                 "nature": "region_5 enabled"
             },
-            "status:13": {
+            "presence:5": {
                 "unitId": "state",
                 "record": false,
-                "nature": "region_6 occupied"
+                "nature": "region_5 occupied"
             },
-            "status:14": {
+            "enabled:6": {
                 "unitId": "state",
                 "record": false,
                 "nature": "region_6 enabled"
             },
-            "status:15": {
+            "presence:6": {
                 "unitId": "state",
                 "record": false,
-                "nature": "region_7 occupied"
+                "nature": "region_6 occupied"
             },
-            "status:16": {
+            "enabled:7": {
                 "unitId": "state",
                 "record": false,
                 "nature": "region_7 enabled"
             },
-            "status:17": {
+            "presence:7": {
                 "unitId": "state",
                 "record": false,
-                "nature": "region_8 occupied"
+                "nature": "region_7 occupied"
             },
-            "status:18": {
+            "enabled:8": {
                 "unitId": "state",
                 "record": false,
                 "nature": "region_8 enabled"
             },
-            "status:19": {
+            "presence:8": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_8 occupied"
+            },
+            "enabled:9": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_9 enabled"
+            },
+            "presence:9": {
                 "unitId": "state",
                 "record": false,
                 "nature": "region_9 occupied"
             },
-            "status:20": {
+            "enabled:10": {
                 "unitId": "state",
                 "record": false,
-                "nature": "region_9 enabled"
+                "nature": "region_10 enabled"
+            },
+            "presence:10": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_10 occupied"
             }
         },
         "BACnet": {
-            "battery": 100,
-            "detection_status": "unavailable",
-            "humidity": 53.5,
-            "illuminance_status": "dim",
-            "region_1": "vacant",
-            "region_1_enable": "enable",
-            "region_10": "vacant",
-            "region_10_enable": "disable",
-            "region_2": "occupied",
-            "region_2_enable": "enable",
-            "region_3": "occupied",
-            "region_3_enable": "enable",
-            "region_4": "vacant",
-            "region_4_enable": "enable",
-            "region_5": "vacant",
-            "region_5_enable": "disable",
-            "region_6": "vacant",
-            "region_6_enable": "disable",
-            "region_7": "vacant",
-            "region_7_enable": "disable",
-            "region_8": "vacant",
-            "region_8_enable": "disable",
-            "region_9": "vacant",
-            "region_9_enable": "disable",
-            "temperature": 26
+            "battery": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 100,
+                "units": "PERCENT"
+            },
+            "temperature": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 26,
+                "units": "DEGREES_CELSIUS"
+            },
+            "humidity": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 53.5,
+                "units": "PERCENT_RELATIVE_HUMIDITY"
+            },
+            "region_1_enable": {
+                "object": "BINARY_VALUE",
+                "presentValue": 1
+            },
+            "region_1": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "region_2_enable": {
+                "object": "BINARY_VALUE",
+                "presentValue": 1
+            },
+            "region_2": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 1,
+                "units": "NO_UNITS"
+            },
+            "region_3_enable": {
+                "object": "BINARY_VALUE",
+                "presentValue": 1
+            },
+            "region_3": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 1,
+                "units": "NO_UNITS"
+            },
+            "region_4_enable": {
+                "object": "BINARY_VALUE",
+                "presentValue": 1
+            },
+            "region_4": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "region_5_enable": {
+                "object": "BINARY_VALUE",
+                "presentValue": 0
+            },
+            "region_5": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "region_6_enable": {
+                "object": "BINARY_VALUE",
+                "presentValue": 0
+            },
+            "region_6": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "region_7_enable": {
+                "object": "BINARY_VALUE",
+                "presentValue": 0
+            },
+            "region_7": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "region_8_enable": {
+                "object": "BINARY_VALUE",
+                "presentValue": 0
+            },
+            "region_8": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "region_9_enable": {
+                "object": "BINARY_VALUE",
+                "presentValue": 0
+            },
+            "region_9": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "region_10_enable": {
+                "object": "BINARY_VALUE",
+                "presentValue": 0
+            },
+            "region_10": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "illuminance_status": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "detection_status": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 1,
+                "units": "NO_UNITS"
+            }
         }
     },
     {
@@ -206,9 +296,6 @@
                 2
             ],
             "fPort": 100
-        },
-        "BACnet": {
-            "report_interval": 600
         }
     }
 ]

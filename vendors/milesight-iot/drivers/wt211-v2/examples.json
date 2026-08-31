@@ -1,15 +1,57 @@
 [
     {
-        "description": "Example 1",
+        "description": "Example 1 (synthetic payload — built from the Milesight channel table, not a device capture)",
         "type": "uplink",
         "input": {
-            "bytes": "",
+            "bytes": "036702010467A60005E70006E80007BC00088E01096866",
             "fPort": 85,
             "time": "2026-07-16T00:00:00.000Z"
         },
         "output": {
-            "data": {}
+            "data": {
+                "ambient_temperature": 25.8,
+                "target_temperature": 16.6,
+                "current_temperature_control_mode": {
+                    "mode": "heat",
+                    "status": "standby"
+                },
+                "fan_mode_setting": {
+                    "mode": "auto",
+                    "status": "standby"
+                },
+                "plan_type": "not executed",
+                "system_status": "on",
+                "humidity": 51,
+                "fahrenheit_ambient_temperature": 78.4,
+                "celsius_ambient_temperature": 25.8
+            }
         },
-        "points": null
+        "points": {
+            "humidity": {
+                "unitId": "%RH",
+                "record": 51
+            }
+        },
+        "BACnet": {
+            "system_status": {
+                "object": "BINARY_VALUE",
+                "presentValue": 1
+            },
+            "celsius_ambient_temperature": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 25.8,
+                "units": "DEGREES_CELSIUS"
+            },
+            "fahrenheit_ambient_temperature": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 78.4,
+                "units": "DEGREES_FAHRENHEIT"
+            },
+            "humidity": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 51,
+                "units": "PERCENT_RELATIVE_HUMIDITY"
+            }
+        }
     }
 ]
