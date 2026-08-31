@@ -53,5 +53,25 @@
                 2
             ]
         }
+    },
+    {
+        "description": "Downlink encode: buzzer_enable",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "buzzer_enable": 1
+        },
+        "input": {
+            "data": {
+                "buzzer_enable": "enable"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                62,
+                1
+            ]
+        }
     }
 ]

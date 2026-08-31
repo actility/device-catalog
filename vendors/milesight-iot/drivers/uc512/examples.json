@@ -81,5 +81,25 @@
                 "presentValue": 1
             }
         }
+    },
+    {
+        "description": "Downlink encode: retransmit_enable",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "retransmit_enable": 1
+        },
+        "input": {
+            "data": {
+                "retransmit_enable": "enable"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                105,
+                1
+            ]
+        }
     }
 ]

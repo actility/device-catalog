@@ -121,5 +121,25 @@
             ],
             "fPort": 100
         }
+    },
+    {
+        "description": "Downlink encode: reset_cumulative_enable",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "reset_cumulative_enable": 1
+        },
+        "input": {
+            "data": {
+                "reset_cumulative_enable": "enable"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                166,
+                1
+            ]
+        }
     }
 ]

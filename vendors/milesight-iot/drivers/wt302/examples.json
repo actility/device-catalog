@@ -106,5 +106,29 @@
                 "presentValue": 1
             }
         }
+    },
+    {
+        "description": "Downlink encode: btn_lock_enable",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "btn_lock_enable": 1
+        },
+        "input": {
+            "data": {
+                "btn_lock_enable": "enable"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                85,
+                1,
+                0,
+                2,
+                2,
+                1,
+                91
+            ]
+        }
     }
 ]

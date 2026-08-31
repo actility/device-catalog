@@ -70,5 +70,26 @@
             ],
             "fPort": 85
         }
+    },
+    {
+        "description": "Downlink encode: sensor_all_enable",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "sensor_all_enable": 1
+        },
+        "input": {
+            "data": {
+                "sensor_all_enable": "enable"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                24,
+                0,
+                1
+            ]
+        }
     }
 ]

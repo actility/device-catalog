@@ -59,5 +59,25 @@
             ],
             "fPort": 100
         }
+    },
+    {
+        "description": "Downlink encode: history_enable",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "history_enable": 1
+        },
+        "input": {
+            "data": {
+                "history_enable": "enable"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                104,
+                1
+            ]
+        }
     }
 ]

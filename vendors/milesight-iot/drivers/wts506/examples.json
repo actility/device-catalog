@@ -118,5 +118,25 @@
             ],
             "fPort": 85
         }
+    },
+    {
+        "description": "Downlink encode: reboot",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "reboot": 1
+        },
+        "input": {
+            "data": {
+                "reboot": "yes"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                16,
+                255
+            ]
+        }
     }
 ]

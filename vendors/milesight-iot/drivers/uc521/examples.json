@@ -71,5 +71,25 @@
                 "presentValue": 1
             }
         }
+    },
+    {
+        "description": "Downlink encode: wiring_switch_enable",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "wiring_switch_enable": 1
+        },
+        "input": {
+            "data": {
+                "wiring_switch_enable": "enable"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                249,
+                110,
+                1
+            ]
+        }
     }
 ]

@@ -195,5 +195,25 @@
                 2
             ]
         }
+    },
+    {
+        "description": "Downlink encode: tamper_detection_enable",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "tamper_detection_enable": 1
+        },
+        "input": {
+            "data": {
+                "tamper_detection_enable": "enable"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                135,
+                1
+            ]
+        }
     }
 ]

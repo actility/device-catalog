@@ -132,5 +132,25 @@
                 "units": "PARTS_PER_MILLION"
             }
         }
+    },
+    {
+        "description": "Downlink encode: time_sync_enable",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "time_sync_enable": 1
+        },
+        "input": {
+            "data": {
+                "time_sync_enable": "enable"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                59,
+                2
+            ]
+        }
     }
 ]

@@ -55,5 +55,25 @@
             ],
             "fPort": 100
         }
+    },
+    {
+        "description": "Downlink encode: led_indicator_enable",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "led_indicator_enable": 1
+        },
+        "input": {
+            "data": {
+                "led_indicator_enable": "enable"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                47,
+                1
+            ]
+        }
     }
 ]

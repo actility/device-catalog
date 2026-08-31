@@ -115,5 +115,25 @@
             ],
             "fPort": 100
         }
+    },
+    {
+        "description": "Downlink encode: blind_detection_enable",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "blind_detection_enable": 1
+        },
+        "input": {
+            "data": {
+                "blind_detection_enable": "enable"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                249,
+                19,
+                1
+            ]
+        }
     }
 ]

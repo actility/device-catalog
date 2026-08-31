@@ -1,86 +1,106 @@
 [
-  {
-    "description": "Uplink example for WS501-CN",
-    "type": "uplink",
-    "input": {
-      "bytes": "082911",
-      "fPort": 85,
-      "time": "2025-01-01T00:00:00.000+00:00"
+    {
+        "description": "Uplink example for WS501-CN",
+        "type": "uplink",
+        "input": {
+            "bytes": "082911",
+            "fPort": 85,
+            "time": "2025-01-01T00:00:00.000+00:00"
+        },
+        "output": {
+            "data": {
+                "switch_1": "on",
+                "switch_1_change": "yes"
+            }
+        },
+        "points": {
+            "status:1": {
+                "unitId": "state",
+                "record": true,
+                "nature": "switch 1"
+            }
+        },
+        "BACnet": {
+            "switch_1": {
+                "object": "BINARY_VALUE",
+                "presentValue": 1
+            },
+            "switch_1_change": {
+                "object": "BINARY_VALUE",
+                "presentValue": 1
+            }
+        }
     },
-    "output": {
-      "data": {
-        "switch_1": "on",
-        "switch_1_change": "yes"
-      }
+    {
+        "description": "Downlink encode: report_interval",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "report_interval": 600
+            },
+            "fPort": 85
+        },
+        "output": {
+            "bytes": [
+                255,
+                3,
+                88,
+                2
+            ],
+            "fPort": 85
+        }
     },
-    "points": {
-      "status:1": {
-        "unitId": "state",
-        "record": true,
-        "nature": "switch 1"
-      }
+    {
+        "description": "BACnet example",
+        "type": "uplink",
+        "input": {
+            "bytes": "082911",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "switch_1": "on",
+                "switch_1_change": "yes"
+            },
+            "errors": [],
+            "warnings": []
+        },
+        "points": {
+            "status:1": {
+                "unitId": "state",
+                "record": true,
+                "nature": "switch 1"
+            }
+        },
+        "BACnet": {
+            "switch_1": {
+                "object": "BINARY_VALUE",
+                "presentValue": 1
+            },
+            "switch_1_change": {
+                "object": "BINARY_VALUE",
+                "presentValue": 1
+            }
+        }
     },
-    "BACnet": {
-      "switch_1": {
-        "object": "BINARY_VALUE",
-        "presentValue": 1
-      },
-      "switch_1_change": {
-        "object": "BINARY_VALUE",
-        "presentValue": 1
-      }
+    {
+        "description": "Downlink encode: reset_button_enable",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "reset_button_enable": 1
+        },
+        "input": {
+            "data": {
+                "reset_button_enable": "enable"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                94,
+                1
+            ]
+        }
     }
-  },
-  {
-    "description": "Downlink encode: report_interval",
-    "type": "downlink-encode",
-    "input": {
-      "data": {
-        "report_interval": 600
-      },
-      "fPort": 85
-    },
-    "output": {
-      "bytes": [
-        255,
-        3,
-        88,
-        2
-      ],
-      "fPort": 85
-    }
-  },
-  {
-    "description": "BACnet example",
-    "type": "uplink",
-    "input": {
-      "bytes": "082911",
-      "fPort": 85
-    },
-    "output": {
-      "data": {
-        "switch_1": "on",
-        "switch_1_change": "yes"
-      },
-      "errors": [],
-      "warnings": []
-    },
-    "points": {
-      "status:1": {
-        "unitId": "state",
-        "record": true,
-        "nature": "switch 1"
-      }
-    },
-    "BACnet": {
-      "switch_1": {
-        "object": "BINARY_VALUE",
-        "presentValue": 1
-      },
-      "switch_1_change": {
-        "object": "BINARY_VALUE",
-        "presentValue": 1
-      }
-    }
-  }
 ]

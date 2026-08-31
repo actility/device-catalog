@@ -149,5 +149,25 @@
             "bytes": "FF8E005802",
             "fPort": 85
         }
+    },
+    {
+        "description": "Downlink encode: alarm_release_enable",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "alarm_release_enable": 1
+        },
+        "input": {
+            "data": {
+                "alarm_release_enable": "enable"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                245,
+                1
+            ]
+        }
     }
 ]

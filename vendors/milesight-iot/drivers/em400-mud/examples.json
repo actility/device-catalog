@@ -86,5 +86,25 @@
             ],
             "fPort": 100
         }
+    },
+    {
+        "description": "Downlink encode: install_height_enable",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "install_height_enable": 1
+        },
+        "input": {
+            "data": {
+                "install_height_enable": "enable"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                19,
+                1
+            ]
+        }
     }
 ]

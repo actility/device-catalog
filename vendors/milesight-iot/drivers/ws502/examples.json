@@ -1,116 +1,136 @@
 [
-  {
-    "description": "Uplink example for WS502",
-    "type": "uplink",
-    "input": {
-      "bytes": "FF2903",
-      "fPort": 85,
-      "time": "2025-01-01T00:00:00.000+00:00"
+    {
+        "description": "Uplink example for WS502",
+        "type": "uplink",
+        "input": {
+            "bytes": "FF2903",
+            "fPort": 85,
+            "time": "2025-01-01T00:00:00.000+00:00"
+        },
+        "output": {
+            "data": {
+                "switch_1": "on",
+                "switch_1_change": "no",
+                "switch_2": "on",
+                "switch_2_change": "no"
+            }
+        },
+        "points": {
+            "status:1": {
+                "unitId": "state",
+                "record": true,
+                "nature": "switch 1"
+            },
+            "status:2": {
+                "unitId": "state",
+                "record": true,
+                "nature": "switch 2"
+            }
+        },
+        "BACnet": {
+            "switch_1": {
+                "object": "BINARY_VALUE",
+                "presentValue": 1
+            },
+            "switch_1_change": {
+                "object": "BINARY_VALUE",
+                "presentValue": 0
+            },
+            "switch_2": {
+                "object": "BINARY_VALUE",
+                "presentValue": 1
+            },
+            "switch_2_change": {
+                "object": "BINARY_VALUE",
+                "presentValue": 0
+            }
+        }
     },
-    "output": {
-      "data": {
-        "switch_1": "on",
-        "switch_1_change": "no",
-        "switch_2": "on",
-        "switch_2_change": "no"
-      }
+    {
+        "description": "Downlink encode: report_interval",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "report_interval": 600
+            },
+            "fPort": 85
+        },
+        "output": {
+            "bytes": [
+                255,
+                3,
+                88,
+                2
+            ],
+            "fPort": 85
+        }
     },
-    "points": {
-      "status:1": {
-        "unitId": "state",
-        "record": true,
-        "nature": "switch 1"
-      },
-      "status:2": {
-        "unitId": "state",
-        "record": true,
-        "nature": "switch 2"
-      }
+    {
+        "description": "BACnet example",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff2903",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "switch_1": "on",
+                "switch_1_change": "no",
+                "switch_2": "on",
+                "switch_2_change": "no"
+            },
+            "errors": [],
+            "warnings": []
+        },
+        "points": {
+            "status:1": {
+                "unitId": "state",
+                "record": true,
+                "nature": "switch 1"
+            },
+            "status:2": {
+                "unitId": "state",
+                "record": true,
+                "nature": "switch 2"
+            }
+        },
+        "BACnet": {
+            "switch_1": {
+                "object": "BINARY_VALUE",
+                "presentValue": 1
+            },
+            "switch_1_change": {
+                "object": "BINARY_VALUE",
+                "presentValue": 0
+            },
+            "switch_2": {
+                "object": "BINARY_VALUE",
+                "presentValue": 1
+            },
+            "switch_2_change": {
+                "object": "BINARY_VALUE",
+                "presentValue": 0
+            }
+        }
     },
-    "BACnet": {
-      "switch_1": {
-        "object": "BINARY_VALUE",
-        "presentValue": 1
-      },
-      "switch_1_change": {
-        "object": "BINARY_VALUE",
-        "presentValue": 0
-      },
-      "switch_2": {
-        "object": "BINARY_VALUE",
-        "presentValue": 1
-      },
-      "switch_2_change": {
-        "object": "BINARY_VALUE",
-        "presentValue": 0
-      }
+    {
+        "description": "Downlink encode: reboot",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "reboot": 1
+        },
+        "input": {
+            "data": {
+                "reboot": "yes"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                16,
+                255
+            ]
+        }
     }
-  },
-  {
-    "description": "Downlink encode: report_interval",
-    "type": "downlink-encode",
-    "input": {
-      "data": {
-        "report_interval": 600
-      },
-      "fPort": 85
-    },
-    "output": {
-      "bytes": [
-        255,
-        3,
-        88,
-        2
-      ],
-      "fPort": 85
-    }
-  },
-  {
-    "description": "BACnet example",
-    "type": "uplink",
-    "input": {
-      "bytes": "ff2903",
-      "fPort": 85
-    },
-    "output": {
-      "data": {
-        "switch_1": "on",
-        "switch_1_change": "no",
-        "switch_2": "on",
-        "switch_2_change": "no"
-      },
-      "errors": [],
-      "warnings": []
-    },
-    "points": {
-      "status:1": {
-        "unitId": "state",
-        "record": true,
-        "nature": "switch 1"
-      },
-      "status:2": {
-        "unitId": "state",
-        "record": true,
-        "nature": "switch 2"
-      }
-    },
-    "BACnet": {
-      "switch_1": {
-        "object": "BINARY_VALUE",
-        "presentValue": 1
-      },
-      "switch_1_change": {
-        "object": "BINARY_VALUE",
-        "presentValue": 0
-      },
-      "switch_2": {
-        "object": "BINARY_VALUE",
-        "presentValue": 1
-      },
-      "switch_2_change": {
-        "object": "BINARY_VALUE",
-        "presentValue": 0
-      }
-    }
-  }
 ]

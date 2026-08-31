@@ -66,5 +66,25 @@
             ],
             "fPort": 100
         }
+    },
+    {
+        "description": "Downlink encode: bluetooth_enable",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "bluetooth_enable": 1
+        },
+        "input": {
+            "data": {
+                "bluetooth_enable": "enable"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                143,
+                1
+            ]
+        }
     }
 ]

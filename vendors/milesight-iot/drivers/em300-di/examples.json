@@ -67,5 +67,26 @@
             "bytes": "FF035802",
             "fPort": 100
         }
+    },
+    {
+        "description": "Downlink encode: pulse_filter_enable",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "pulse_filter_enable": 1
+        },
+        "input": {
+            "data": {
+                "pulse_filter_enable": "enable"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                163,
+                1,
+                1
+            ]
+        }
     }
 ]

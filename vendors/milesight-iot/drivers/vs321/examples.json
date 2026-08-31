@@ -297,5 +297,25 @@
             ],
             "fPort": 100
         }
+    },
+    {
+        "description": "Downlink encode: adr_enable",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "adr_enable": 1
+        },
+        "input": {
+            "data": {
+                "adr_enable": "enable"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                64,
+                1
+            ]
+        }
     }
 ]
