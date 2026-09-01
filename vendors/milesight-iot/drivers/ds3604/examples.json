@@ -36,6 +36,23 @@
                 "object": "CHARACTERSTRING_VALUE",
                 "presentValue": "hello"
             }
+        },
+        "Modbus": {
+            "battery": {
+                "table": "inputRegister",
+                "value": 100,
+                "value_type": "UINT8"
+            },
+            "template_1:text_1": {
+                "table": "holdingRegister",
+                "value": "Miles",
+                "value_type": "STRING"
+            },
+            "template_1:qrcode": {
+                "table": "holdingRegister",
+                "value": "hello",
+                "value_type": "STRING"
+            }
         }
     },
     {
@@ -64,6 +81,13 @@
             "buzzer_enable": {
                 "object": "BINARY_VALUE",
                 "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "buzzer_enable": {
+                "table": "coil",
+                "operation": "setCoil",
                 "value": 1
             }
         },

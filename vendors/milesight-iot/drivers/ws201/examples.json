@@ -46,6 +46,23 @@
                 "presentValue": 69,
                 "units": "PERCENT"
             }
+        },
+        "Modbus": {
+            "battery": {
+                "table": "inputRegister",
+                "value": 100,
+                "value_type": "UINT8"
+            },
+            "distance": {
+                "table": "inputRegister",
+                "value": 62,
+                "value_type": "UINT16"
+            },
+            "remaining": {
+                "table": "inputRegister",
+                "value": 69,
+                "value_type": "UINT8"
+            }
         }
     },
     {
@@ -115,6 +132,23 @@
                 "presentValue": 69,
                 "units": "PERCENT"
             }
+        },
+        "Modbus": {
+            "battery": {
+                "table": "inputRegister",
+                "value": 100,
+                "value_type": "UINT8"
+            },
+            "distance": {
+                "table": "inputRegister",
+                "value": 62,
+                "value_type": "UINT16"
+            },
+            "remaining": {
+                "table": "inputRegister",
+                "value": 69,
+                "value_type": "UINT8"
+            }
         }
     },
     {
@@ -124,6 +158,13 @@
             "reboot": {
                 "object": "BINARY_VALUE",
                 "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "reboot": {
+                "table": "coil",
+                "operation": "setCoil",
                 "value": 1
             }
         },

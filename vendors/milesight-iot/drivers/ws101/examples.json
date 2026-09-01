@@ -25,6 +25,13 @@
                 "presentValue": 16,
                 "units": "PERCENT"
             }
+        },
+        "Modbus": {
+            "battery": {
+                "table": "inputRegister",
+                "value": 16,
+                "value_type": "UINT8"
+            }
         }
     },
     {
@@ -72,6 +79,13 @@
                 "presentValue": 92,
                 "units": "PERCENT"
             }
+        },
+        "Modbus": {
+            "battery": {
+                "table": "inputRegister",
+                "value": 92,
+                "value_type": "UINT8"
+            }
         }
     },
     {
@@ -81,6 +95,13 @@
             "led_indicator_enable": {
                 "object": "BINARY_VALUE",
                 "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "led_indicator_enable": {
+                "table": "coil",
+                "operation": "setCoil",
                 "value": 1
             }
         },

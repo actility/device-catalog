@@ -52,6 +52,23 @@
                 "presentValue": 50.5,
                 "units": "PERCENT_RELATIVE_HUMIDITY"
             }
+        },
+        "Modbus": {
+            "battery": {
+                "table": "inputRegister",
+                "value": 92,
+                "value_type": "UINT8"
+            },
+            "temperature": {
+                "table": "inputRegister",
+                "value": 30.8,
+                "value_type": "FLOAT"
+            },
+            "humidity": {
+                "table": "inputRegister",
+                "value": 50.5,
+                "value_type": "FLOAT"
+            }
         }
     },
     {
@@ -75,6 +92,13 @@
             "pulse_filter_enable": {
                 "object": "BINARY_VALUE",
                 "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "pulse_filter_enable": {
+                "table": "coil",
+                "operation": "setCoil",
                 "value": 1
             }
         },

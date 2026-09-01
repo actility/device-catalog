@@ -69,6 +69,38 @@
                 "presentValue": 0,
                 "units": "NO_UNITS"
             }
+        },
+        "Modbus": {
+            "battery": {
+                "table": "inputRegister",
+                "value": 97,
+                "value_type": "UINT8"
+            },
+            "temperature": {
+                "table": "inputRegister",
+                "value": 26.6,
+                "value_type": "FLOAT"
+            },
+            "target_temperature": {
+                "table": "holdingRegister",
+                "value": 30,
+                "value_type": "FLOAT"
+            },
+            "valve_opening": {
+                "table": "holdingRegister",
+                "value": 100,
+                "value_type": "UINT8"
+            },
+            "motor_stroke": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            },
+            "motor_position": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            }
         }
     },
     {
@@ -97,6 +129,18 @@
                 "presentValue": 520,
                 "units": "NO_UNITS"
             }
+        },
+        "Modbus": {
+            "motor_calibration_result": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "motor_stroke": {
+                "table": "inputRegister",
+                "value": 520,
+                "value_type": "UINT16"
+            }
         }
     },
     {
@@ -117,6 +161,13 @@
             "tamper_status": {
                 "object": "BINARY_VALUE",
                 "presentValue": 0
+            }
+        },
+        "Modbus": {
+            "tamper_status": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
             }
         }
     },
@@ -145,6 +196,13 @@
                 "object": "BINARY_VALUE",
                 "presentValue": 1
             }
+        },
+        "Modbus": {
+            "window_detection": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            }
         }
     },
     {
@@ -166,6 +224,13 @@
                 "object": "ANALOG_VALUE",
                 "presentValue": 1,
                 "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "motor_calibration_result": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT8"
             }
         }
     },
@@ -193,6 +258,13 @@
             "freeze_protection": {
                 "object": "BINARY_VALUE",
                 "presentValue": 1
+            }
+        },
+        "Modbus": {
+            "freeze_protection": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
             }
         }
     },
@@ -230,6 +302,13 @@
             "time_sync_enable": {
                 "object": "BINARY_VALUE",
                 "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "time_sync_enable": {
+                "table": "coil",
+                "operation": "setCoil",
                 "value": 1
             }
         },

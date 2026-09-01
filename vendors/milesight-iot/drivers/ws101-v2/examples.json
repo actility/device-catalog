@@ -39,6 +39,23 @@
                 "presentValue": 853437,
                 "units": "NO_UNITS"
             }
+        },
+        "Modbus": {
+            "battery": {
+                "table": "inputRegister",
+                "value": 16,
+                "value_type": "UINT8"
+            },
+            "button_event:status": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "button_event:msgid": {
+                "table": "inputRegister",
+                "value": 853437,
+                "value_type": "UINT16"
+            }
         }
     },
     {
@@ -66,6 +83,13 @@
             "led_indicator_enable": {
                 "object": "BINARY_VALUE",
                 "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "led_indicator_enable": {
+                "table": "coil",
+                "operation": "setCoil",
                 "value": 1
             }
         },

@@ -114,6 +114,78 @@
                 "presentValue": 2,
                 "units": "NO_UNITS"
             }
+        },
+        "Modbus": {
+            "gpio_input_3": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "gpio_input_4": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "gpio_output_1": {
+                "table": "coil",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "gpio_output_2": {
+                "table": "coil",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "gpio_counter_1": {
+                "table": "inputRegister",
+                "value": 10,
+                "value_type": "UINT32"
+            },
+            "gpio_counter_2": {
+                "table": "inputRegister",
+                "value": 20,
+                "value_type": "UINT32"
+            },
+            "pt100_1": {
+                "table": "inputRegister",
+                "value": 25.8,
+                "value_type": "FLOAT"
+            },
+            "pt100_2": {
+                "table": "inputRegister",
+                "value": 25.8,
+                "value_type": "FLOAT"
+            },
+            "adc_1": {
+                "table": "inputRegister",
+                "value": 4,
+                "value_type": "FLOAT"
+            },
+            "adc_2": {
+                "table": "inputRegister",
+                "value": 4,
+                "value_type": "FLOAT"
+            },
+            "adv_1": {
+                "table": "inputRegister",
+                "value": 3.28,
+                "value_type": "FLOAT"
+            },
+            "adv_2": {
+                "table": "inputRegister",
+                "value": 3.29,
+                "value_type": "FLOAT"
+            },
+            "modbus_chn_1": {
+                "table": "holdingRegister",
+                "value": 11,
+                "value_type": "FLOAT"
+            },
+            "modbus_chn_2": {
+                "table": "holdingRegister",
+                "value": 2,
+                "value_type": "FLOAT"
+            }
         }
     },
     {
@@ -142,6 +214,13 @@
             "reboot": {
                 "object": "BINARY_VALUE",
                 "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "reboot": {
+                "table": "coil",
+                "operation": "setCoil",
                 "value": 1
             }
         },

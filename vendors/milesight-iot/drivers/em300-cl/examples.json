@@ -30,6 +30,18 @@
                 "presentValue": 1,
                 "units": "NO_UNITS"
             }
+        },
+        "Modbus": {
+            "battery": {
+                "table": "inputRegister",
+                "value": 100,
+                "value_type": "UINT8"
+            },
+            "liquid": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT8"
+            }
         }
     },
     {
@@ -59,6 +71,13 @@
             "reboot": {
                 "object": "BINARY_VALUE",
                 "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "reboot": {
+                "table": "coil",
+                "operation": "setCoil",
                 "value": 1
             }
         },

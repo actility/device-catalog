@@ -98,6 +98,48 @@
                 "presentValue": 1006.3,
                 "units": "HECTOPASCALS"
             }
+        },
+        "Modbus": {
+            "battery": {
+                "table": "inputRegister",
+                "value": 100,
+                "value_type": "UINT8"
+            },
+            "temperature": {
+                "table": "inputRegister",
+                "value": 25.5,
+                "value_type": "FLOAT"
+            },
+            "humidity": {
+                "table": "inputRegister",
+                "value": 60.5,
+                "value_type": "FLOAT"
+            },
+            "wind_direction": {
+                "table": "inputRegister",
+                "value": 121,
+                "value_type": "FLOAT"
+            },
+            "wind_speed": {
+                "table": "inputRegister",
+                "value": 0.1,
+                "value_type": "FLOAT"
+            },
+            "rainfall_total": {
+                "table": "inputRegister",
+                "value": 1.23,
+                "value_type": "FLOAT"
+            },
+            "rainfall_counter": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "pressure": {
+                "table": "inputRegister",
+                "value": 1006.3,
+                "value_type": "FLOAT"
+            }
         }
     },
     {
@@ -126,6 +168,13 @@
             "reboot": {
                 "object": "BINARY_VALUE",
                 "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "reboot": {
+                "table": "coil",
+                "operation": "setCoil",
                 "value": 1
             }
         },

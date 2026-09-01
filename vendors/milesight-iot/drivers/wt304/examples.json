@@ -77,6 +77,40 @@
                 "presentValue": 0,
                 "units": "NO_UNITS"
             }
+        },
+        "Modbus": {
+            "humidity": {
+                "table": "inputRegister",
+                "value": 3661,
+                "value_type": "FLOAT"
+            },
+            "system_status": {
+                "table": "holdingRegister",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "target_temperature": {
+                "table": "inputRegister",
+                "value": -92.16,
+                "value_type": "FLOAT"
+            },
+            "temperature": {
+                "table": "inputRegister",
+                "value": -53.76,
+                "value_type": "FLOAT"
+            },
+            "temperature_alarm:type": {
+                "table": "inputRegister",
+                "value": "lower range error",
+                "value_type": "UINT8",
+                "_notNumeric": "lower range error"
+            },
+            "temperature_control_mode": {
+                "table": "holdingRegister",
+                "value": "fan",
+                "value_type": "UINT8",
+                "_notNumeric": "fan"
+            }
         }
     },
     {
@@ -102,6 +136,13 @@
             "d2d_master_enable": {
                 "object": "BINARY_VALUE",
                 "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "d2d_master_enable": {
+                "table": "coil",
+                "operation": "setCoil",
                 "value": 1
             }
         },

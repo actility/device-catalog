@@ -43,6 +43,23 @@
                 "object": "BINARY_VALUE",
                 "presentValue": 0
             }
+        },
+        "Modbus": {
+            "battery": {
+                "table": "inputRegister",
+                "value": 16,
+                "value_type": "UINT8"
+            },
+            "pir": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "daylight": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            }
         }
     },
     {
@@ -100,6 +117,13 @@
             "reboot": {
                 "object": "BINARY_VALUE",
                 "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "reboot": {
+                "table": "coil",
+                "operation": "setCoil",
                 "value": 1
             }
         },

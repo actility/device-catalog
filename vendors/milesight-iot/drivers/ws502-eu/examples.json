@@ -90,6 +90,53 @@
                 "presentValue": 2,
                 "units": "MILLIAMPERES"
             }
+        },
+        "Modbus": {
+            "switch_1": {
+                "table": "coil",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "switch_1_change": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "switch_2": {
+                "table": "coil",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "switch_2_change": {
+                "table": "coil",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "voltage": {
+                "table": "inputRegister",
+                "value": 222.6,
+                "value_type": "FLOAT"
+            },
+            "active_power": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT32"
+            },
+            "power_factor": {
+                "table": "inputRegister",
+                "value": 100,
+                "value_type": "UINT8"
+            },
+            "power_consumption": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT32"
+            },
+            "current": {
+                "table": "inputRegister",
+                "value": 2,
+                "value_type": "UINT16"
+            }
         }
     },
     {
@@ -203,6 +250,53 @@
                 "presentValue": 2,
                 "units": "MILLIAMPERES"
             }
+        },
+        "Modbus": {
+            "switch_1": {
+                "table": "coil",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "switch_1_change": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "switch_2": {
+                "table": "coil",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "switch_2_change": {
+                "table": "coil",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "voltage": {
+                "table": "inputRegister",
+                "value": 222.6,
+                "value_type": "FLOAT"
+            },
+            "active_power": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT32"
+            },
+            "power_factor": {
+                "table": "inputRegister",
+                "value": 100,
+                "value_type": "UINT8"
+            },
+            "power_consumption": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT32"
+            },
+            "current": {
+                "table": "inputRegister",
+                "value": 2,
+                "value_type": "UINT16"
+            }
         }
     },
     {
@@ -212,6 +306,13 @@
             "power_consumption_enable": {
                 "object": "BINARY_VALUE",
                 "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "power_consumption_enable": {
+                "table": "coil",
+                "operation": "setCoil",
                 "value": 1
             }
         },

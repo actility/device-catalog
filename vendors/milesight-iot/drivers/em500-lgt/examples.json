@@ -34,6 +34,18 @@
                 "presentValue": 80,
                 "units": "LUXES"
             }
+        },
+        "Modbus": {
+            "battery": {
+                "table": "inputRegister",
+                "value": 100,
+                "value_type": "UINT8"
+            },
+            "illumination": {
+                "table": "inputRegister",
+                "value": 80,
+                "value_type": "UINT32"
+            }
         }
     },
     {
@@ -62,6 +74,13 @@
             "time_sync_enable": {
                 "object": "BINARY_VALUE",
                 "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "time_sync_enable": {
+                "table": "coil",
+                "operation": "setCoil",
                 "value": 1
             }
         },

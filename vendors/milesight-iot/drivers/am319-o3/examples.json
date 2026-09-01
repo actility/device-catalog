@@ -112,6 +112,58 @@
                 "presentValue": 8,
                 "units": "MICROGRAMS_PER_CUBIC_METER"
             }
+        },
+        "Modbus": {
+            "battery": {
+                "table": "inputRegister",
+                "value": 98,
+                "value_type": "UINT8"
+            },
+            "temperature": {
+                "table": "inputRegister",
+                "value": 26.6,
+                "value_type": "FLOAT"
+            },
+            "humidity": {
+                "table": "inputRegister",
+                "value": 44,
+                "value_type": "FLOAT"
+            },
+            "pir": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "light_level": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "co2": {
+                "table": "inputRegister",
+                "value": 767,
+                "value_type": "UINT16"
+            },
+            "tvoc": {
+                "table": "inputRegister",
+                "value": 2.27,
+                "value_type": "FLOAT"
+            },
+            "pressure": {
+                "table": "inputRegister",
+                "value": 1023.8,
+                "value_type": "FLOAT"
+            },
+            "pm2_5": {
+                "table": "inputRegister",
+                "value": 7,
+                "value_type": "UINT16"
+            },
+            "pm10": {
+                "table": "inputRegister",
+                "value": 8,
+                "value_type": "UINT16"
+            }
         }
     },
     {
@@ -247,6 +299,58 @@
                 "presentValue": 8,
                 "units": "MICROGRAMS_PER_CUBIC_METER"
             }
+        },
+        "Modbus": {
+            "battery": {
+                "table": "inputRegister",
+                "value": 98,
+                "value_type": "UINT8"
+            },
+            "temperature": {
+                "table": "inputRegister",
+                "value": 26.6,
+                "value_type": "FLOAT"
+            },
+            "humidity": {
+                "table": "inputRegister",
+                "value": 44,
+                "value_type": "FLOAT"
+            },
+            "pir": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "light_level": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "co2": {
+                "table": "inputRegister",
+                "value": 767,
+                "value_type": "UINT16"
+            },
+            "tvoc": {
+                "table": "inputRegister",
+                "value": 2.27,
+                "value_type": "FLOAT"
+            },
+            "pressure": {
+                "table": "inputRegister",
+                "value": 1023.8,
+                "value_type": "FLOAT"
+            },
+            "pm2_5": {
+                "table": "inputRegister",
+                "value": 7,
+                "value_type": "UINT16"
+            },
+            "pm10": {
+                "table": "inputRegister",
+                "value": 8,
+                "value_type": "UINT16"
+            }
         }
     },
     {
@@ -256,6 +360,13 @@
             "time_sync_enable": {
                 "object": "ANALOG_VALUE",
                 "property": "PRESENT_VALUE",
+                "value": 2
+            }
+        },
+        "inputModbus": {
+            "time_sync_enable": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
                 "value": 2
             }
         },

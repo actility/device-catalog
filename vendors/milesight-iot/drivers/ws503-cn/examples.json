@@ -59,6 +59,38 @@
                 "object": "BINARY_VALUE",
                 "presentValue": 0
             }
+        },
+        "Modbus": {
+            "switch_1": {
+                "table": "coil",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "switch_1_change": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "switch_2": {
+                "table": "coil",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "switch_2_change": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "switch_3": {
+                "table": "coil",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "switch_3_change": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            }
         }
     },
     {
@@ -141,6 +173,38 @@
                 "object": "BINARY_VALUE",
                 "presentValue": 0
             }
+        },
+        "Modbus": {
+            "switch_1": {
+                "table": "coil",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "switch_1_change": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "switch_2": {
+                "table": "coil",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "switch_2_change": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "switch_3": {
+                "table": "coil",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "switch_3_change": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            }
         }
     },
     {
@@ -150,6 +214,13 @@
             "report_status": {
                 "object": "BINARY_VALUE",
                 "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "report_status": {
+                "table": "coil",
+                "operation": "setCoil",
                 "value": 1
             }
         },

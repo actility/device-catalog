@@ -24,6 +24,13 @@
                 "presentValue": 92,
                 "units": "PERCENT"
             }
+        },
+        "Modbus": {
+            "battery": {
+                "table": "inputRegister",
+                "value": 92,
+                "value_type": "UINT8"
+            }
         }
     },
     {
@@ -70,6 +77,13 @@
                 "object": "BINARY_VALUE",
                 "presentValue": 1
             }
+        },
+        "Modbus": {
+            "device_status": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            }
         }
     },
     {
@@ -79,6 +93,13 @@
             "wiring_switch_enable": {
                 "object": "BINARY_VALUE",
                 "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "wiring_switch_enable": {
+                "table": "coil",
+                "operation": "setCoil",
                 "value": 1
             }
         },

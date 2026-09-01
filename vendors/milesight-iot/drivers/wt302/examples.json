@@ -37,6 +37,14 @@
                 "presentValue": 0,
                 "units": "NO_UNITS"
             }
+        },
+        "Modbus": {
+            "fan_speed": {
+                "table": "holdingRegister",
+                "value": "unknown",
+                "value_type": "UINT8",
+                "_notNumeric": "unknown"
+            }
         }
     },
     {
@@ -70,6 +78,13 @@
                 "object": "ANALOG_VALUE",
                 "presentValue": 26,
                 "units": "DEGREES_CELSIUS"
+            }
+        },
+        "Modbus": {
+            "temperature": {
+                "table": "inputRegister",
+                "value": 26,
+                "value_type": "FLOAT"
             }
         }
     },
@@ -105,6 +120,13 @@
                 "object": "BINARY_VALUE",
                 "presentValue": 1
             }
+        },
+        "Modbus": {
+            "thermostat_status": {
+                "table": "coil",
+                "value": 1,
+                "value_type": "UINT8"
+            }
         }
     },
     {
@@ -114,6 +136,13 @@
             "btn_lock_enable": {
                 "object": "BINARY_VALUE",
                 "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "btn_lock_enable": {
+                "table": "coil",
+                "operation": "setCoil",
                 "value": 1
             }
         },

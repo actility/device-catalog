@@ -76,6 +76,38 @@
                 "presentValue": 1,
                 "units": "NO_UNITS"
             }
+        },
+        "Modbus": {
+            "battery": {
+                "table": "inputRegister",
+                "value": 92,
+                "value_type": "UINT8"
+            },
+            "temperature": {
+                "table": "inputRegister",
+                "value": 23.2,
+                "value_type": "FLOAT"
+            },
+            "distance": {
+                "table": "inputRegister",
+                "value": 1601,
+                "value_type": "FLOAT"
+            },
+            "position": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "temperature_alarm": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "distance_alarm": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT8"
+            }
         }
     },
     {
@@ -103,6 +135,13 @@
             "install_height_enable": {
                 "object": "BINARY_VALUE",
                 "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "install_height_enable": {
+                "table": "coil",
+                "operation": "setCoil",
                 "value": 1
             }
         },

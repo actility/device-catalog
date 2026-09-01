@@ -44,6 +44,23 @@
                 "presentValue": 54.5,
                 "units": "PERCENT_RELATIVE_HUMIDITY"
             }
+        },
+        "Modbus": {
+            "battery": {
+                "table": "inputRegister",
+                "value": 100,
+                "value_type": "UINT8"
+            },
+            "temperature": {
+                "table": "inputRegister",
+                "value": 28,
+                "value_type": "FLOAT"
+            },
+            "humidity": {
+                "table": "inputRegister",
+                "value": 54.5,
+                "value_type": "FLOAT"
+            }
         }
     },
     {
@@ -91,6 +108,23 @@
                 "presentValue": 61.5,
                 "units": "PERCENT_RELATIVE_HUMIDITY"
             }
+        },
+        "Modbus": {
+            "battery": {
+                "table": "inputRegister",
+                "value": 100,
+                "value_type": "UINT8"
+            },
+            "temperature": {
+                "table": "inputRegister",
+                "value": 26,
+                "value_type": "FLOAT"
+            },
+            "humidity": {
+                "table": "inputRegister",
+                "value": 61.5,
+                "value_type": "FLOAT"
+            }
         }
     },
     {
@@ -121,6 +155,13 @@
                 "value": 1
             }
         },
+        "inputModbus": {
+            "screen_display_enable": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            }
+        },
         "input": {
             "data": {
                 "screen_display_enable": "enable"
@@ -142,6 +183,13 @@
             "time_sync_enable": {
                 "object": "ANALOG_VALUE",
                 "property": "PRESENT_VALUE",
+                "value": 2
+            }
+        },
+        "inputModbus": {
+            "time_sync_enable": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
                 "value": 2
             }
         },

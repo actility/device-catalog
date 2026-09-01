@@ -34,6 +34,18 @@
                 "object": "BINARY_VALUE",
                 "presentValue": 0
             }
+        },
+        "Modbus": {
+            "battery": {
+                "table": "inputRegister",
+                "value": 100,
+                "value_type": "UINT8"
+            },
+            "occupancy": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            }
         }
     },
     {
@@ -63,6 +75,13 @@
             "led_indicator_enable": {
                 "object": "BINARY_VALUE",
                 "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "led_indicator_enable": {
+                "table": "coil",
+                "operation": "setCoil",
                 "value": 1
             }
         },

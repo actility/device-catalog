@@ -44,6 +44,28 @@
                 "object": "BINARY_VALUE",
                 "presentValue": 0
             }
+        },
+        "Modbus": {
+            "switch_1": {
+                "table": "coil",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "switch_1_change": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "switch_2": {
+                "table": "coil",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "switch_2_change": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            }
         }
     },
     {
@@ -111,6 +133,28 @@
                 "object": "BINARY_VALUE",
                 "presentValue": 0
             }
+        },
+        "Modbus": {
+            "switch_1": {
+                "table": "coil",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "switch_1_change": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "switch_2": {
+                "table": "coil",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "switch_2_change": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            }
         }
     },
     {
@@ -120,6 +164,13 @@
             "reset_button_enable": {
                 "object": "BINARY_VALUE",
                 "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "reset_button_enable": {
+                "table": "coil",
+                "operation": "setCoil",
                 "value": 1
             }
         },

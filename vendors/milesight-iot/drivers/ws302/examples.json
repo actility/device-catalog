@@ -55,6 +55,25 @@
                 "presentValue": 0,
                 "units": "NO_UNITS"
             }
+        },
+        "Modbus": {
+            "battery": {
+                "table": "inputRegister",
+                "value": 92,
+                "value_type": "UINT8"
+            },
+            "freq_weight": {
+                "table": "inputRegister",
+                "value": "Z",
+                "value_type": "UINT8",
+                "_notNumeric": "Z"
+            },
+            "time_weight": {
+                "table": "inputRegister",
+                "value": "impulse",
+                "value_type": "UINT8",
+                "_notNumeric": "impulse"
+            }
         }
     },
     {
@@ -131,6 +150,25 @@
                 "presentValue": 0,
                 "units": "NO_UNITS"
             }
+        },
+        "Modbus": {
+            "battery": {
+                "table": "inputRegister",
+                "value": 100,
+                "value_type": "UINT8"
+            },
+            "freq_weight": {
+                "table": "inputRegister",
+                "value": "A",
+                "value_type": "UINT8",
+                "_notNumeric": "A"
+            },
+            "time_weight": {
+                "table": "inputRegister",
+                "value": "impulse",
+                "value_type": "UINT8",
+                "_notNumeric": "impulse"
+            }
         }
     },
     {
@@ -140,6 +178,13 @@
             "time_sync_enable": {
                 "object": "ANALOG_VALUE",
                 "property": "PRESENT_VALUE",
+                "value": 2
+            }
+        },
+        "inputModbus": {
+            "time_sync_enable": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
                 "value": 2
             }
         },

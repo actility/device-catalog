@@ -35,6 +35,18 @@
                 "presentValue": 943,
                 "units": "HECTOPASCALS"
             }
+        },
+        "Modbus": {
+            "battery": {
+                "table": "inputRegister",
+                "value": 100,
+                "value_type": "UINT8"
+            },
+            "pressure": {
+                "table": "inputRegister",
+                "value": 943,
+                "value_type": "INT16"
+            }
         }
     },
     {
@@ -63,6 +75,13 @@
             "time_sync_enable": {
                 "object": "BINARY_VALUE",
                 "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "time_sync_enable": {
+                "table": "coil",
+                "operation": "setCoil",
                 "value": 1
             }
         },

@@ -66,6 +66,44 @@
                 "presentValue": 255,
                 "units": "NO_UNITS"
             }
+        },
+        "Modbus": {
+            "temperature": {
+                "table": "inputRegister",
+                "value": 25.8,
+                "value_type": "FLOAT"
+            },
+            "target_temperature": {
+                "table": "holdingRegister",
+                "value": 16.6,
+                "value_type": "FLOAT"
+            },
+            "temperature_control_mode": {
+                "table": "holdingRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "temperature_control_status": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "fan_mode": {
+                "table": "holdingRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "fan_status": {
+                "table": "inputRegister",
+                "value": "standby",
+                "value_type": "UINT8",
+                "_notNumeric": "standby"
+            },
+            "plan_type": {
+                "table": "holdingRegister",
+                "value": 255,
+                "value_type": "UINT8"
+            }
         }
     },
     {
@@ -100,6 +138,18 @@
                 "presentValue": 9,
                 "units": "NO_UNITS"
             }
+        },
+        "Modbus": {
+            "temperature": {
+                "table": "inputRegister",
+                "value": 25.1,
+                "value_type": "FLOAT"
+            },
+            "temperature_alarm": {
+                "table": "inputRegister",
+                "value": 9,
+                "value_type": "UINT8"
+            }
         }
     },
     {
@@ -129,7 +179,8 @@
             }
         },
         "points": null,
-        "BACnet": {}
+        "BACnet": {},
+        "Modbus": {}
     },
     {
         "type": "uplink",
@@ -263,6 +314,118 @@
                 "presentValue": 1,
                 "units": "NO_UNITS"
             }
+        },
+        "Modbus": {
+            "temperature_control_support_mode:heat": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "temperature_control_support_mode:em_heat": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "temperature_control_support_mode:cool": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "temperature_control_support_mode:auto": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "temperature_control_support_status:stage_1_heat": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "temperature_control_support_status:stage_2_heat": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "temperature_control_support_status:stage_3_heat": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "temperature_control_support_status:stage_4_heat": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "temperature_control_support_status:stage_1_cool": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "temperature_control_support_status:stage_2_cool": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "wires:y1": {
+                "table": "coil",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "wires:gh": {
+                "table": "coil",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "wires:ob": {
+                "table": "coil",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "wires:w1": {
+                "table": "coil",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "wires:e": {
+                "table": "coil",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "wires:di": {
+                "table": "coil",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "wires:pek": {
+                "table": "coil",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "wires:w2": {
+                "table": "coil",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "wires:aux": {
+                "table": "coil",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "wires:y2": {
+                "table": "coil",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "wires:gl": {
+                "table": "coil",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "ob_mode": {
+                "table": "holdingRegister",
+                "value": 1,
+                "value_type": "UINT8"
+            }
         }
     },
     {
@@ -310,7 +473,8 @@
             }
         },
         "points": null,
-        "BACnet": {}
+        "BACnet": {},
+        "Modbus": {}
     },
     {
         "description": "Downlink encode: report_interval",
@@ -339,6 +503,13 @@
             "d2d_master_enable": {
                 "object": "BINARY_VALUE",
                 "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "d2d_master_enable": {
+                "table": "coil",
+                "operation": "setCoil",
                 "value": 1
             }
         },

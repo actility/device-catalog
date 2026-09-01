@@ -24,6 +24,13 @@
                 "presentValue": 100,
                 "units": "PERCENT"
             }
+        },
+        "Modbus": {
+            "battery": {
+                "table": "inputRegister",
+                "value": 100,
+                "value_type": "UINT8"
+            }
         }
     },
     {
@@ -52,6 +59,13 @@
             "pulse_filter_enable": {
                 "object": "BINARY_VALUE",
                 "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "pulse_filter_enable": {
+                "table": "coil",
+                "operation": "setCoil",
                 "value": 1
             }
         },

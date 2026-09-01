@@ -26,6 +26,13 @@
                 "presentValue": 100,
                 "units": "PERCENT"
             }
+        },
+        "Modbus": {
+            "battery": {
+                "table": "inputRegister",
+                "value": 100,
+                "value_type": "UINT8"
+            }
         }
     },
     {
@@ -75,6 +82,13 @@
                 "presentValue": 93,
                 "units": "PERCENT"
             }
+        },
+        "Modbus": {
+            "battery": {
+                "table": "inputRegister",
+                "value": 93,
+                "value_type": "UINT8"
+            }
         }
     },
     {
@@ -84,6 +98,13 @@
             "reboot": {
                 "object": "BINARY_VALUE",
                 "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "reboot": {
+                "table": "coil",
+                "operation": "setCoil",
                 "value": 1
             }
         },

@@ -52,6 +52,28 @@
                 "presentValue": 51,
                 "units": "PERCENT_RELATIVE_HUMIDITY"
             }
+        },
+        "Modbus": {
+            "system_status": {
+                "table": "coil",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "celsius_ambient_temperature": {
+                "table": "inputRegister",
+                "value": 25.8,
+                "value_type": "FLOAT"
+            },
+            "fahrenheit_ambient_temperature": {
+                "table": "inputRegister",
+                "value": 78.4,
+                "value_type": "FLOAT"
+            },
+            "humidity": {
+                "table": "inputRegister",
+                "value": 51,
+                "value_type": "FLOAT"
+            }
         }
     },
     {
@@ -61,6 +83,13 @@
             "fan_delay_config_enable": {
                 "object": "BINARY_VALUE",
                 "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "fan_delay_config_enable": {
+                "table": "coil",
+                "operation": "setCoil",
                 "value": 1
             }
         },

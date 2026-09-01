@@ -54,6 +54,28 @@
                 "object": "BINARY_VALUE",
                 "presentValue": 1
             }
+        },
+        "Modbus": {
+            "battery": {
+                "table": "inputRegister",
+                "value": 98,
+                "value_type": "UINT8"
+            },
+            "distance": {
+                "table": "inputRegister",
+                "value": 15,
+                "value_type": "UINT16"
+            },
+            "occupancy": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "calibration_status": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            }
         }
     },
     {
@@ -82,6 +104,13 @@
             "test_enable": {
                 "object": "BINARY_VALUE",
                 "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "test_enable": {
+                "table": "coil",
+                "operation": "setCoil",
                 "value": 1
             }
         },

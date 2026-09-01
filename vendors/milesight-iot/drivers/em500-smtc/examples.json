@@ -50,6 +50,28 @@
                 "presentValue": 240,
                 "units": "NO_UNITS"
             }
+        },
+        "Modbus": {
+            "battery": {
+                "table": "inputRegister",
+                "value": 100,
+                "value_type": "UINT8"
+            },
+            "temperature": {
+                "table": "inputRegister",
+                "value": 28.1,
+                "value_type": "FLOAT"
+            },
+            "moisture": {
+                "table": "inputRegister",
+                "value": 57.5,
+                "value_type": "FLOAT"
+            },
+            "electricity": {
+                "table": "inputRegister",
+                "value": 240,
+                "value_type": "UINT16"
+            }
         }
     },
     {
@@ -78,6 +100,13 @@
             "sensor_all_enable": {
                 "object": "BINARY_VALUE",
                 "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "sensor_all_enable": {
+                "table": "coil",
+                "operation": "setCoil",
                 "value": 1
             }
         },

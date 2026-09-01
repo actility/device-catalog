@@ -94,6 +94,33 @@
                 "object": "BINARY_VALUE",
                 "presentValue": 1
             }
+        },
+        "Modbus": {
+            "reset_event": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "battery": {
+                "table": "inputRegister",
+                "value": 90,
+                "value_type": "UINT8"
+            },
+            "temperature": {
+                "table": "inputRegister",
+                "value": 30,
+                "value_type": "FLOAT"
+            },
+            "distance": {
+                "table": "inputRegister",
+                "value": 500,
+                "value_type": "FLOAT"
+            },
+            "position": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            }
         }
     },
     {
@@ -123,6 +150,13 @@
             "blind_detection_enable": {
                 "object": "BINARY_VALUE",
                 "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "blind_detection_enable": {
+                "table": "coil",
+                "operation": "setCoil",
                 "value": 1
             }
         },

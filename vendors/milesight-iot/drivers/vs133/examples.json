@@ -97,6 +97,43 @@
                 "presentValue": 6797,
                 "units": "NO_UNITS"
             }
+        },
+        "Modbus": {
+            "line_1_total_in": {
+                "table": "inputRegister",
+                "value": 72,
+                "value_type": "UINT32"
+            },
+            "line_1_total_out": {
+                "table": "inputRegister",
+                "value": 200,
+                "value_type": "UINT32"
+            },
+            "line_2_total_in": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT32"
+            },
+            "line_2_total_out": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT32"
+            },
+            "line_3_total_in": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT32"
+            },
+            "line_3_total_out": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT32"
+            },
+            "line_4_total_out": {
+                "table": "inputRegister",
+                "value": 6797,
+                "value_type": "UINT32"
+            }
         }
     },
     {
@@ -125,6 +162,13 @@
             "confirm_mode_enable": {
                 "object": "BINARY_VALUE",
                 "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "confirm_mode_enable": {
+                "table": "coil",
+                "operation": "setCoil",
                 "value": 1
             }
         },

@@ -44,6 +44,38 @@
                 "presentValue": 1,
                 "units": "NO_UNITS"
             }
+        },
+        "Modbus": {
+            "ipso_version": {
+                "table": "inputRegister",
+                "value": "v0.1",
+                "value_type": "STRING"
+            },
+            "hardware_version": {
+                "table": "inputRegister",
+                "value": "v1.1",
+                "value_type": "STRING"
+            },
+            "firmware_version": {
+                "table": "inputRegister",
+                "value": "v1.1f",
+                "value_type": "STRING"
+            },
+            "sn": {
+                "table": "inputRegister",
+                "value": "ac18ff3fb4445cee",
+                "value_type": "STRING"
+            },
+            "device_status": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "modbus_chn_2": {
+                "table": "holdingRegister",
+                "value": 1,
+                "value_type": "FLOAT"
+            }
         }
     },
     {
@@ -72,6 +104,13 @@
             "history_enable": {
                 "object": "BINARY_VALUE",
                 "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "history_enable": {
+                "table": "coil",
+                "operation": "setCoil",
                 "value": 1
             }
         },

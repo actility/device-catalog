@@ -24,6 +24,13 @@
                 "presentValue": 30.8,
                 "units": "DEGREES_CELSIUS"
             }
+        },
+        "Modbus": {
+            "temperature": {
+                "table": "inputRegister",
+                "value": 30.8,
+                "value_type": "FLOAT"
+            }
         }
     },
     {
@@ -56,6 +63,13 @@
                 "object": "ANALOG_VALUE",
                 "presentValue": 30.8,
                 "units": "DEGREES_CELSIUS"
+            }
+        },
+        "Modbus": {
+            "temperature": {
+                "table": "inputRegister",
+                "value": 30.8,
+                "value_type": "FLOAT"
             }
         }
     },
@@ -91,6 +105,13 @@
                 "presentValue": 30.8,
                 "units": "DEGREES_CELSIUS"
             }
+        },
+        "Modbus": {
+            "temperature": {
+                "table": "inputRegister",
+                "value": 30.8,
+                "value_type": "FLOAT"
+            }
         }
     },
     {
@@ -111,7 +132,8 @@
             }
         },
         "points": {},
-        "BACnet": {}
+        "BACnet": {},
+        "Modbus": {}
     },
     {
         "type": "uplink",
@@ -134,7 +156,8 @@
             }
         },
         "points": {},
-        "BACnet": {}
+        "BACnet": {},
+        "Modbus": {}
     },
     {
         "description": "Downlink encode: report_interval",
@@ -157,6 +180,13 @@
             "alarm_release_enable": {
                 "object": "BINARY_VALUE",
                 "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "alarm_release_enable": {
+                "table": "coil",
+                "operation": "setCoil",
                 "value": 1
             }
         },

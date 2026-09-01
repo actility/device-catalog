@@ -70,6 +70,38 @@
                 "presentValue": 1,
                 "units": "NO_UNITS"
             }
+        },
+        "Modbus": {
+            "total_in": {
+                "table": "inputRegister",
+                "value": 4353,
+                "value_type": "UINT16"
+            },
+            "total_out": {
+                "table": "inputRegister",
+                "value": 4360,
+                "value_type": "UINT16"
+            },
+            "period_in": {
+                "table": "inputRegister",
+                "value": 1000,
+                "value_type": "UINT16"
+            },
+            "period_out": {
+                "table": "inputRegister",
+                "value": 1001,
+                "value_type": "UINT16"
+            },
+            "total_count_alarm": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "period_count_alarm": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT8"
+            }
         }
     },
     {
@@ -98,6 +130,13 @@
             "reset_cumulative_enable": {
                 "object": "BINARY_VALUE",
                 "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "reset_cumulative_enable": {
+                "table": "coil",
+                "operation": "setCoil",
                 "value": 1
             }
         },

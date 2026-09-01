@@ -24,6 +24,13 @@
                 "object": "BINARY_VALUE",
                 "presentValue": 1
             }
+        },
+        "Modbus": {
+            "device_status": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            }
         }
     },
     {
@@ -62,6 +69,18 @@
                 "presentValue": 30,
                 "units": "AMPERES"
             }
+        },
+        "Modbus": {
+            "total_current": {
+                "table": "inputRegister",
+                "value": 100,
+                "value_type": "FLOAT"
+            },
+            "current": {
+                "table": "inputRegister",
+                "value": 30,
+                "value_type": "UINT16"
+            }
         }
     },
     {
@@ -71,6 +90,13 @@
             "reboot": {
                 "object": "BINARY_VALUE",
                 "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "reboot": {
+                "table": "coil",
+                "operation": "setCoil",
                 "value": 1
             }
         },

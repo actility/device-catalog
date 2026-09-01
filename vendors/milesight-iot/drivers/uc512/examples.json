@@ -35,6 +35,23 @@
                 "presentValue": 5,
                 "units": "NO_UNITS"
             }
+        },
+        "Modbus": {
+            "battery": {
+                "table": "inputRegister",
+                "value": 92,
+                "value_type": "UINT8"
+            },
+            "valve_1": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "valve_1_pulse": {
+                "table": "holdingRegister",
+                "value": 5,
+                "value_type": "UINT32"
+            }
         }
     },
     {
@@ -80,6 +97,13 @@
                 "object": "BINARY_VALUE",
                 "presentValue": 1
             }
+        },
+        "Modbus": {
+            "device_status": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            }
         }
     },
     {
@@ -89,6 +113,13 @@
             "retransmit_enable": {
                 "object": "BINARY_VALUE",
                 "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "retransmit_enable": {
+                "table": "coil",
+                "operation": "setCoil",
                 "value": 1
             }
         },

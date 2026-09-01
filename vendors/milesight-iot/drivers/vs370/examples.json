@@ -45,6 +45,23 @@
                 "presentValue": 0,
                 "units": "NO_UNITS"
             }
+        },
+        "Modbus": {
+            "battery": {
+                "table": "inputRegister",
+                "value": 100,
+                "value_type": "UINT8"
+            },
+            "occupancy": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "illuminance": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            }
         }
     },
     {
@@ -74,6 +91,13 @@
             "bluetooth_enable": {
                 "object": "BINARY_VALUE",
                 "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "bluetooth_enable": {
+                "table": "coil",
+                "operation": "setCoil",
                 "value": 1
             }
         },

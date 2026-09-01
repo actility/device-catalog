@@ -102,6 +102,50 @@
                 "presentValue": 0,
                 "units": "NO_UNITS"
             }
+        },
+        "Modbus": {
+            "battery_main": {
+                "table": "inputRegister",
+                "value": 100,
+                "value_type": "UINT8"
+            },
+            "battery_node": {
+                "table": "inputRegister",
+                "value": 100,
+                "value_type": "UINT8"
+            },
+            "total_in": {
+                "table": "inputRegister",
+                "value": 4353,
+                "value_type": "UINT16"
+            },
+            "total_out": {
+                "table": "inputRegister",
+                "value": 4360,
+                "value_type": "UINT16"
+            },
+            "total_count_alarm": {
+                "table": "inputRegister",
+                "value": "threshold_alarm",
+                "value_type": "UINT8",
+                "_notNumeric": "threshold_alarm"
+            },
+            "period_in": {
+                "table": "inputRegister",
+                "value": 1000,
+                "value_type": "UINT16"
+            },
+            "period_out": {
+                "table": "inputRegister",
+                "value": 1001,
+                "value_type": "UINT16"
+            },
+            "period_count_alarm": {
+                "table": "inputRegister",
+                "value": "threshold_alarm",
+                "value_type": "UINT8",
+                "_notNumeric": "threshold_alarm"
+            }
         }
     },
     {
@@ -131,6 +175,13 @@
             "report_cumulative_enable": {
                 "object": "BINARY_VALUE",
                 "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "report_cumulative_enable": {
+                "table": "coil",
+                "operation": "setCoil",
                 "value": 1
             }
         },

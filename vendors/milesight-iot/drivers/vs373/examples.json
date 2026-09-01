@@ -93,6 +93,49 @@
                 "object": "BINARY_VALUE",
                 "presentValue": 0
             }
+        },
+        "Modbus": {
+            "detection_status": {
+                "table": "inputRegister",
+                "value": 2,
+                "value_type": "UINT8"
+            },
+            "target_status": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "use_time_now": {
+                "table": "inputRegister",
+                "value": 10,
+                "value_type": "UINT32"
+            },
+            "use_time_today": {
+                "table": "inputRegister",
+                "value": 15,
+                "value_type": "UINT32"
+            },
+            "region_1_occupancy": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "region_2_occupancy": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "region_3_occupancy": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "region_4_occupancy": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8",
+                "_unmappedLabel": "unknown"
+            }
         }
     },
     {
@@ -122,6 +165,13 @@
             "ai_fall_detection_enable": {
                 "object": "BINARY_VALUE",
                 "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "ai_fall_detection_enable": {
+                "table": "coil",
+                "operation": "setCoil",
                 "value": 1
             }
         },
