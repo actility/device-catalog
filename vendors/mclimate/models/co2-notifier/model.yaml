@@ -36,6 +36,9 @@ modelId: mclimate:co2-notifier:1
 # Be careful: Once you chose a protocolId, it cannot be changed later
 protocolId:
   - mclimate:co2-notifier:1
+  # Same physical product as the retired co2-sensor model, whose OS1 driver
+  # keeps its original name. The mismatch is deliberate.
+  - os1-mcli:co2-sensor:1
 # DataSheet URL (optional)
 specificationURL: https://3940008670-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F-McDr-jr9h3qA888r1Yp%2Fuploads%2FU1Kxj5vl0nwBuxR11LX4%2FMClimate-CO2-Sensor-LoRaWAN-Batteries-Datasheet-en.pdf?alt=media&token=8edfe392-b23e-4781-b9c4-194af381440a
 # User Guide URL (optional)
@@ -62,6 +65,8 @@ examples:
     - "Downlink: set buzzer notification"
     - "Downlink: read CO2 boundary levels"
     - "Downlink decode: passthrough bytes"
+  os1-mcli:co2-sensor:1:
+    - "Short periodic uplink"
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false
