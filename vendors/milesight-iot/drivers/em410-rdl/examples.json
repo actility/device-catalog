@@ -71,11 +71,56 @@
             }
         },
         "BACnet": {
-            "reset_event": "reset",
-            "battery": 90,
-            "distance": 500,
-            "position": "tilt",
-            "temperature": 30
+            "reset_event": {
+                "object": "BINARY_VALUE",
+                "presentValue": 1
+            },
+            "battery": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 90,
+                "units": "PERCENT"
+            },
+            "temperature": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 30,
+                "units": "DEGREES_CELSIUS"
+            },
+            "distance": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 500,
+                "units": "MILLIMETERS"
+            },
+            "position": {
+                "object": "BINARY_VALUE",
+                "presentValue": 1
+            }
+        },
+        "Modbus": {
+            "reset_event": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "battery": {
+                "table": "inputRegister",
+                "value": 90,
+                "value_type": "UINT8"
+            },
+            "temperature": {
+                "table": "inputRegister",
+                "value": 30,
+                "value_type": "FLOAT"
+            },
+            "distance": {
+                "table": "inputRegister",
+                "value": 500,
+                "value_type": "FLOAT"
+            },
+            "position": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            }
         }
     },
     {
@@ -96,9 +141,37 @@
                 2
             ],
             "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink encode: blind_detection_enable",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "blind_detection_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
         },
-        "BACnet": {
-            "report_interval": 600
+        "inputModbus": {
+            "blind_detection_enable": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "blind_detection_enable": "enable"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                249,
+                19,
+                1
+            ]
         }
     }
 ]

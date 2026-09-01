@@ -24,7 +24,38 @@
             }
         },
         "BACnet": {
-            "battery": 16
+            "battery": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 16,
+                "units": "PERCENT"
+            },
+            "button_event:status": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 1,
+                "units": "NO_UNITS"
+            },
+            "button_event:msgid": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 853437,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "battery": {
+                "table": "inputRegister",
+                "value": 16,
+                "value_type": "UINT8"
+            },
+            "button_event:status": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "button_event:msgid": {
+                "table": "inputRegister",
+                "value": 853437,
+                "value_type": "UINT16"
+            }
         }
     },
     {
@@ -43,6 +74,37 @@
                 255
             ],
             "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink encode: led_indicator_enable",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "led_indicator_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "led_indicator_enable": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "led_indicator_enable": "enable"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                47,
+                1
+            ]
         }
     }
 ]

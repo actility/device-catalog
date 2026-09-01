@@ -41,6 +41,60 @@
         "record": 60,
         "nature": "target valve opening"
       }
+    },
+    "BACnet": {
+      "battery": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 100,
+        "units": "PERCENT"
+      },
+      "target_temperature": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 19,
+        "units": "DEGREES_CELSIUS"
+      },
+      "target_valve_opening_degree": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 60,
+        "units": "PERCENT"
+      },
+      "temperature": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 22.1,
+        "units": "DEGREES_CELSIUS"
+      },
+      "valve_opening_degree": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 50,
+        "units": "PERCENT"
+      }
+    },
+    "Modbus": {
+      "battery": {
+        "table": "inputRegister",
+        "value": 100,
+        "value_type": "UINT8"
+      },
+      "target_temperature": {
+        "table": "inputRegister",
+        "value": 19,
+        "value_type": "FLOAT"
+      },
+      "target_valve_opening_degree": {
+        "table": "inputRegister",
+        "value": 60,
+        "value_type": "UINT8"
+      },
+      "temperature": {
+        "table": "inputRegister",
+        "value": 22.1,
+        "value_type": "FLOAT"
+      },
+      "valve_opening_degree": {
+        "table": "inputRegister",
+        "value": 50,
+        "value_type": "UINT8"
+      }
     }
   },
   {

@@ -40,10 +40,75 @@
             }
         },
         "BACnet": {
-            "battery": 92,
-            "angle_x": 16.56,
-            "angle_y": 297.13,
-            "angle_z": 0.51
+            "battery": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 92,
+                "units": "PERCENT"
+            },
+            "angle_x": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 16.56,
+                "units": "NO_UNITS"
+            },
+            "angle_y": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 297.13,
+                "units": "NO_UNITS"
+            },
+            "angle_z": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 0.51,
+                "units": "NO_UNITS"
+            },
+            "threshold_x": {
+                "object": "BINARY_VALUE",
+                "presentValue": 0
+            },
+            "threshold_y": {
+                "object": "BINARY_VALUE",
+                "presentValue": 0
+            },
+            "threshold_z": {
+                "object": "BINARY_VALUE",
+                "presentValue": 0
+            }
+        },
+        "Modbus": {
+            "battery": {
+                "table": "inputRegister",
+                "value": 92,
+                "value_type": "UINT8"
+            },
+            "angle_x": {
+                "table": "inputRegister",
+                "value": 16.56,
+                "value_type": "FLOAT"
+            },
+            "angle_y": {
+                "table": "inputRegister",
+                "value": 297.13,
+                "value_type": "FLOAT"
+            },
+            "angle_z": {
+                "table": "inputRegister",
+                "value": 0.51,
+                "value_type": "FLOAT"
+            },
+            "threshold_x": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "threshold_y": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "threshold_z": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            }
         }
     },
     {
@@ -63,6 +128,37 @@
                 2
             ],
             "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink encode: reboot",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "reboot": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "reboot": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "reboot": "yes"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                16,
+                255
+            ]
         }
     }
 ]

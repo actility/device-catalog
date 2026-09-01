@@ -47,9 +47,70 @@
             }
         },
         "BACnet": {
-            "fan_mode": "auto",
-            "temperature_control_mode": "fan",
-            "temperature_control_status": "heating"
+            "humidity": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 3661,
+                "units": "PERCENT_RELATIVE_HUMIDITY"
+            },
+            "system_status": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 1,
+                "units": "NO_UNITS"
+            },
+            "target_temperature": {
+                "object": "ANALOG_VALUE",
+                "presentValue": -92.16,
+                "units": "DEGREES_CELSIUS"
+            },
+            "temperature": {
+                "object": "ANALOG_VALUE",
+                "presentValue": -53.76,
+                "units": "DEGREES_CELSIUS"
+            },
+            "temperature_alarm:type": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "temperature_control_mode": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "humidity": {
+                "table": "inputRegister",
+                "value": 3661,
+                "value_type": "FLOAT"
+            },
+            "system_status": {
+                "table": "holdingRegister",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "target_temperature": {
+                "table": "inputRegister",
+                "value": -92.16,
+                "value_type": "FLOAT"
+            },
+            "temperature": {
+                "table": "inputRegister",
+                "value": -53.76,
+                "value_type": "FLOAT"
+            },
+            "temperature_alarm:type": {
+                "table": "inputRegister",
+                "value": "lower range error",
+                "value_type": "UINT8",
+                "_notNumeric": "lower range error"
+            },
+            "temperature_control_mode": {
+                "table": "holdingRegister",
+                "value": "fan",
+                "value_type": "UINT8",
+                "_notNumeric": "fan"
+            }
         }
     },
     {
@@ -66,9 +127,36 @@
                 190
             ],
             "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink encode: d2d_master_enable",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "d2d_master_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
         },
-        "BACnet": {
-            "reboot": "yes"
+        "inputModbus": {
+            "d2d_master_enable": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "d2d_master_enable": "enable"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                136,
+                1
+            ]
         }
     }
 ]

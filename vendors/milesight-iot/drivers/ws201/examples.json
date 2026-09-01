@@ -31,9 +31,38 @@
             }
         },
         "BACnet": {
-            "battery": 100,
-            "distance": 62,
-            "remaining": 69
+            "battery": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 100,
+                "units": "PERCENT"
+            },
+            "distance": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 62,
+                "units": "MILLIMETERS"
+            },
+            "remaining": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 69,
+                "units": "PERCENT"
+            }
+        },
+        "Modbus": {
+            "battery": {
+                "table": "inputRegister",
+                "value": 100,
+                "value_type": "UINT8"
+            },
+            "distance": {
+                "table": "inputRegister",
+                "value": 62,
+                "value_type": "UINT16"
+            },
+            "remaining": {
+                "table": "inputRegister",
+                "value": 69,
+                "value_type": "UINT8"
+            }
         }
     },
     {
@@ -53,9 +82,6 @@
                 2
             ],
             "fPort": 100
-        },
-        "BACnet": {
-            "report_interval": 600
         }
     },
     {
@@ -89,6 +115,71 @@
                 "record": 69,
                 "nature": "remaining"
             }
+        },
+        "BACnet": {
+            "battery": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 100,
+                "units": "PERCENT"
+            },
+            "distance": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 62,
+                "units": "MILLIMETERS"
+            },
+            "remaining": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 69,
+                "units": "PERCENT"
+            }
+        },
+        "Modbus": {
+            "battery": {
+                "table": "inputRegister",
+                "value": 100,
+                "value_type": "UINT8"
+            },
+            "distance": {
+                "table": "inputRegister",
+                "value": 62,
+                "value_type": "UINT16"
+            },
+            "remaining": {
+                "table": "inputRegister",
+                "value": 69,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Downlink encode: reboot",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "reboot": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "reboot": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "reboot": "yes"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                16,
+                255
+            ]
         }
     }
 ]

@@ -21,9 +21,37 @@
             }
         },
         "BACnet": {
-            "battery": 16,
-            "pir": "trigger",
-            "daylight": "dark"
+            "battery": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 16,
+                "units": "PERCENT"
+            },
+            "pir": {
+                "object": "BINARY_VALUE",
+                "presentValue": 1
+            },
+            "daylight": {
+                "object": "BINARY_VALUE",
+                "presentValue": 0
+            }
+        },
+        "Modbus": {
+            "battery": {
+                "table": "inputRegister",
+                "value": 16,
+                "value_type": "UINT8"
+            },
+            "pir": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "daylight": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8",
+                "_unmappedLabel": "dark"
+            }
         }
     },
     {
@@ -43,9 +71,6 @@
                 2
             ],
             "fPort": 100
-        },
-        "BACnet": {
-            "report_interval": 600
         }
     },
     {
@@ -70,9 +95,37 @@
             }
         },
         "BACnet": {
-            "battery": 98,
-            "pir": "trigger",
-            "daylight": "dim"
+            "battery": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 98,
+                "units": "PERCENT"
+            },
+            "pir": {
+                "object": "BINARY_VALUE",
+                "presentValue": 1
+            },
+            "daylight": {
+                "object": "BINARY_VALUE",
+                "presentValue": 0
+            }
+        },
+        "Modbus": {
+            "battery": {
+                "table": "inputRegister",
+                "value": 98,
+                "value_type": "UINT8"
+            },
+            "pir": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "daylight": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8",
+                "_unmappedLabel": "dark"
+            }
         }
     },
     {
@@ -97,9 +150,37 @@
             }
         },
         "BACnet": {
-            "battery": 98,
-            "pir": "normal",
-            "daylight": "dim"
+            "battery": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 98,
+                "units": "PERCENT"
+            },
+            "pir": {
+                "object": "BINARY_VALUE",
+                "presentValue": 0
+            },
+            "daylight": {
+                "object": "BINARY_VALUE",
+                "presentValue": 0
+            }
+        },
+        "Modbus": {
+            "battery": {
+                "table": "inputRegister",
+                "value": 98,
+                "value_type": "UINT8"
+            },
+            "pir": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "daylight": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8",
+                "_unmappedLabel": "dark"
+            }
         }
     },
     {
@@ -123,6 +204,70 @@
                 "unitId": "%",
                 "record": 92
             }
+        },
+        "BACnet": {
+            "battery": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 92,
+                "units": "PERCENT"
+            },
+            "pir": {
+                "object": "BINARY_VALUE",
+                "presentValue": 1
+            },
+            "daylight": {
+                "object": "BINARY_VALUE",
+                "presentValue": 0
+            }
+        },
+        "Modbus": {
+            "battery": {
+                "table": "inputRegister",
+                "value": 92,
+                "value_type": "UINT8"
+            },
+            "pir": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "daylight": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8",
+                "_unmappedLabel": "dark"
+            }
+        }
+    },
+    {
+        "description": "Downlink encode: reboot",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "reboot": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "reboot": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "reboot": "yes"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                16,
+                255
+            ]
         }
     }
 ]

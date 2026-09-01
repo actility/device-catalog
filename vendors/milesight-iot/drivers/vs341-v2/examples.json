@@ -23,6 +23,29 @@
                 "record": false,
                 "nature": "occupied"
             }
+        },
+        "BACnet": {
+            "battery": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 100,
+                "units": "PERCENT"
+            },
+            "occupancy": {
+                "object": "BINARY_VALUE",
+                "presentValue": 0
+            }
+        },
+        "Modbus": {
+            "battery": {
+                "table": "inputRegister",
+                "value": 100,
+                "value_type": "UINT8"
+            },
+            "occupancy": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            }
         }
     },
     {
@@ -42,9 +65,37 @@
                 88,
                 2
             ]
+        }
+    },
+    {
+        "description": "Downlink encode: led_indicator_enable",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "led_indicator_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
         },
-        "BACnet": {
-            "report_interval": 600
+        "inputModbus": {
+            "led_indicator_enable": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "led_indicator_enable": "enable"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                47,
+                1
+            ]
         }
     }
 ]

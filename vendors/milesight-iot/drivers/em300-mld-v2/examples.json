@@ -23,6 +23,29 @@
                 "record": false,
                 "nature": "leakage"
             }
+        },
+        "BACnet": {
+            "battery": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 92,
+                "units": "PERCENT"
+            },
+            "leakage_status": {
+                "object": "BINARY_VALUE",
+                "presentValue": 0
+            }
+        },
+        "Modbus": {
+            "battery": {
+                "table": "inputRegister",
+                "value": 92,
+                "value_type": "UINT8"
+            },
+            "leakage_status": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            }
         }
     },
     {
@@ -41,9 +64,37 @@
                 88,
                 2
             ]
+        }
+    },
+    {
+        "description": "Downlink encode: history_enable",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "history_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
         },
-        "BACnet": {
-            "report_interval": 600
+        "inputModbus": {
+            "history_enable": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "history_enable": "enable"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                104,
+                1
+            ]
         }
     }
 ]

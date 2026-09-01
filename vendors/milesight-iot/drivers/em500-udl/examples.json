@@ -24,8 +24,28 @@
             }
         },
         "BACnet": {
-            "battery": 100,
-            "distance": 1
+            "battery": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 100,
+                "units": "PERCENT"
+            },
+            "distance": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 1,
+                "units": "MILLIMETERS"
+            }
+        },
+        "Modbus": {
+            "battery": {
+                "table": "inputRegister",
+                "value": 100,
+                "value_type": "UINT8"
+            },
+            "distance": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT16"
+            }
         }
     },
     {
@@ -45,9 +65,37 @@
                 2
             ],
             "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink encode: time_sync_enable",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "time_sync_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
         },
-        "BACnet": {
-            "report_interval": 600
+        "inputModbus": {
+            "time_sync_enable": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "time_sync_enable": "enable"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                59,
+                1
+            ]
         }
     }
 ]

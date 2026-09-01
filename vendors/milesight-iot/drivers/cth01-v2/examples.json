@@ -1,15 +1,58 @@
 [
     {
-        "description": "Example 1",
+        "description": "Example 1 (synthetic payload — built from the Milesight channel table, not a device capture)",
         "type": "uplink",
         "input": {
-            "bytes": "",
+            "bytes": "01290902960006D859D859D859",
             "fPort": 85,
             "time": "2026-07-16T00:00:00.000Z"
         },
         "output": {
-            "data": {}
+            "data": {
+                "temperature": 23.45,
+                "voltage_three_phase_imbalcance": 1.5,
+                "voltage": [
+                    {
+                        "value": 230
+                    },
+                    {
+                        "value": 230
+                    },
+                    {
+                        "value": 230
+                    }
+                ]
+            }
         },
-        "points": null
+        "points": {
+            "temperature": {
+                "unitId": "Cel",
+                "record": 23.45
+            }
+        },
+        "BACnet": {
+            "temperature": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 23.45,
+                "units": "DEGREES_CELSIUS"
+            },
+            "voltage_three_phase_imbalcance": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 1.5,
+                "units": "PERCENT"
+            }
+        },
+        "Modbus": {
+            "temperature": {
+                "table": "inputRegister",
+                "value": 23.45,
+                "value_type": "FLOAT"
+            },
+            "voltage_three_phase_imbalcance": {
+                "table": "inputRegister",
+                "value": 1.5,
+                "value_type": "FLOAT"
+            }
+        }
     }
 ]

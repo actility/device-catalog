@@ -19,7 +19,18 @@
             }
         },
         "BACnet": {
-            "temperature": 30.8
+            "temperature": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 30.8,
+                "units": "DEGREES_CELSIUS"
+            }
+        },
+        "Modbus": {
+            "temperature": {
+                "table": "inputRegister",
+                "value": 30.8,
+                "value_type": "FLOAT"
+            }
         }
     },
     {
@@ -48,7 +59,18 @@
             }
         },
         "BACnet": {
-            "temperature": 30.8
+            "temperature": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 30.8,
+                "units": "DEGREES_CELSIUS"
+            }
+        },
+        "Modbus": {
+            "temperature": {
+                "table": "inputRegister",
+                "value": 30.8,
+                "value_type": "FLOAT"
+            }
         }
     },
     {
@@ -78,7 +100,18 @@
             }
         },
         "BACnet": {
-            "temperature": 30.8
+            "temperature": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 30.8,
+                "units": "DEGREES_CELSIUS"
+            }
+        },
+        "Modbus": {
+            "temperature": {
+                "table": "inputRegister",
+                "value": 30.8,
+                "value_type": "FLOAT"
+            }
         }
     },
     {
@@ -98,7 +131,9 @@
                 ]
             }
         },
-        "points": {}
+        "points": {},
+        "BACnet": {},
+        "Modbus": {}
     },
     {
         "type": "uplink",
@@ -120,7 +155,9 @@
                 ]
             }
         },
-        "points": {}
+        "points": {},
+        "BACnet": {},
+        "Modbus": {}
     },
     {
         "description": "Downlink encode: report_interval",
@@ -134,9 +171,37 @@
         "output": {
             "bytes": "FF8E005802",
             "fPort": 85
+        }
+    },
+    {
+        "description": "Downlink encode: alarm_release_enable",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "alarm_release_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
         },
-        "BACnet": {
-            "report_interval": 600
+        "inputModbus": {
+            "alarm_release_enable": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "alarm_release_enable": "enable"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                245,
+                1
+            ]
         }
     }
 ]

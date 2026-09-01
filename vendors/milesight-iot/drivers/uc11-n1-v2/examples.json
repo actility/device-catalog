@@ -27,6 +27,70 @@
                 "record": true,
                 "nature": "gpio1"
             }
+        },
+        "BACnet": {
+            "battery": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 92,
+                "units": "PERCENT"
+            },
+            "gpio_1": {
+                "object": "BINARY_VALUE",
+                "presentValue": 0
+            },
+            "adc_1": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 90.7,
+                "units": "NO_UNITS"
+            },
+            "adc_1_max": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 45.13,
+                "units": "NO_UNITS"
+            },
+            "adc_1_min": {
+                "object": "ANALOG_VALUE",
+                "presentValue": -212.66,
+                "units": "NO_UNITS"
+            },
+            "adc_1_avg": {
+                "object": "ANALOG_VALUE",
+                "presentValue": -2.55,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "battery": {
+                "table": "inputRegister",
+                "value": 92,
+                "value_type": "UINT8"
+            },
+            "gpio_1": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8",
+                "_unmappedLabel": "unknown"
+            },
+            "adc_1": {
+                "table": "inputRegister",
+                "value": 90.7,
+                "value_type": "FLOAT"
+            },
+            "adc_1_max": {
+                "table": "inputRegister",
+                "value": 45.13,
+                "value_type": "FLOAT"
+            },
+            "adc_1_min": {
+                "table": "inputRegister",
+                "value": -212.66,
+                "value_type": "FLOAT"
+            },
+            "adc_1_avg": {
+                "table": "inputRegister",
+                "value": -2.55,
+                "value_type": "FLOAT"
+            }
         }
     },
     {

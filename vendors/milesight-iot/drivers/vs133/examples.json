@@ -62,13 +62,78 @@
             }
         },
         "BACnet": {
-            "line_1_total_in": 72,
-            "line_1_total_out": 200,
-            "line_2_total_in": 0,
-            "line_2_total_out": 0,
-            "line_3_total_in": 0,
-            "line_3_total_out": 0,
-            "line_4_total_out": 6797
+            "line_1_total_in": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 72,
+                "units": "NO_UNITS"
+            },
+            "line_1_total_out": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 200,
+                "units": "NO_UNITS"
+            },
+            "line_2_total_in": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "line_2_total_out": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "line_3_total_in": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "line_3_total_out": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "line_4_total_out": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 6797,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "line_1_total_in": {
+                "table": "inputRegister",
+                "value": 72,
+                "value_type": "UINT32"
+            },
+            "line_1_total_out": {
+                "table": "inputRegister",
+                "value": 200,
+                "value_type": "UINT32"
+            },
+            "line_2_total_in": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT32"
+            },
+            "line_2_total_out": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT32"
+            },
+            "line_3_total_in": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT32"
+            },
+            "line_3_total_out": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT32"
+            },
+            "line_4_total_out": {
+                "table": "inputRegister",
+                "value": 6797,
+                "value_type": "UINT32"
+            }
         }
     },
     {
@@ -88,9 +153,37 @@
                 2
             ],
             "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink encode: confirm_mode_enable",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "confirm_mode_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
         },
-        "BACnet": {
-            "report_interval": 600
+        "inputModbus": {
+            "confirm_mode_enable": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "confirm_mode_enable": "enable"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                4,
+                1
+            ]
         }
     }
 ]

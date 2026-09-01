@@ -35,10 +35,47 @@
             }
         },
         "BACnet": {
-            "battery": 100,
-            "humidity": 50.5,
-            "temperature": 30.8,
-            "occupancy": "vacant"
+            "battery": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 100,
+                "units": "PERCENT"
+            },
+            "temperature": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 30.8,
+                "units": "DEGREES_CELSIUS"
+            },
+            "humidity": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 50.5,
+                "units": "PERCENT_RELATIVE_HUMIDITY"
+            },
+            "occupancy": {
+                "object": "BINARY_VALUE",
+                "presentValue": 0
+            }
+        },
+        "Modbus": {
+            "battery": {
+                "table": "inputRegister",
+                "value": 100,
+                "value_type": "UINT8"
+            },
+            "temperature": {
+                "table": "inputRegister",
+                "value": 30.8,
+                "value_type": "FLOAT"
+            },
+            "humidity": {
+                "table": "inputRegister",
+                "value": 50.5,
+                "value_type": "FLOAT"
+            },
+            "occupancy": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            }
         }
     },
     {
@@ -59,9 +96,6 @@
                 2
             ],
             "fPort": 100
-        },
-        "BACnet": {
-            "report_interval": 600
         }
     },
     {
@@ -99,6 +133,80 @@
                 "record": false,
                 "nature": "occupied"
             }
+        },
+        "BACnet": {
+            "battery": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 100,
+                "units": "PERCENT"
+            },
+            "temperature": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 30.8,
+                "units": "DEGREES_CELSIUS"
+            },
+            "humidity": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 50.5,
+                "units": "PERCENT_RELATIVE_HUMIDITY"
+            },
+            "occupancy": {
+                "object": "BINARY_VALUE",
+                "presentValue": 0
+            }
+        },
+        "Modbus": {
+            "battery": {
+                "table": "inputRegister",
+                "value": 100,
+                "value_type": "UINT8"
+            },
+            "temperature": {
+                "table": "inputRegister",
+                "value": 30.8,
+                "value_type": "FLOAT"
+            },
+            "humidity": {
+                "table": "inputRegister",
+                "value": 50.5,
+                "value_type": "FLOAT"
+            },
+            "occupancy": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Downlink encode: led_indicator_enable",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "led_indicator_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "led_indicator_enable": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "led_indicator_enable": "enable"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                47,
+                1
+            ]
         }
     }
 ]

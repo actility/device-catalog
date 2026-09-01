@@ -30,7 +30,22 @@
                 "fan_speed": "unknown"
             }
         },
-        "points": null
+        "points": null,
+        "BACnet": {
+            "fan_speed": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "fan_speed": {
+                "table": "holdingRegister",
+                "value": "unknown",
+                "value_type": "UINT8",
+                "_notNumeric": "unknown"
+            }
+        }
     },
     {
         "description": "Temperature",
@@ -46,7 +61,9 @@
                 "command": "control",
                 "data_length": 1,
                 "type": "temperature_target",
-                "raw": [52],
+                "raw": [
+                    52
+                ],
                 "temperature": 26
             }
         },
@@ -54,6 +71,20 @@
             "temperature": {
                 "unitId": "Cel",
                 "record": 26
+            }
+        },
+        "BACnet": {
+            "temperature": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 26,
+                "units": "DEGREES_CELSIUS"
+            }
+        },
+        "Modbus": {
+            "temperature": {
+                "table": "inputRegister",
+                "value": 26,
+                "value_type": "FLOAT"
             }
         }
     },
@@ -71,7 +102,9 @@
                 "command": "control",
                 "data_length": 1,
                 "type": "btn_lock_enable",
-                "raw": [1],
+                "raw": [
+                    1
+                ],
                 "thermostat_status": "on"
             }
         },
@@ -81,6 +114,54 @@
                 "record": true,
                 "nature": "thermostat status"
             }
+        },
+        "BACnet": {
+            "thermostat_status": {
+                "object": "BINARY_VALUE",
+                "presentValue": 1
+            }
+        },
+        "Modbus": {
+            "thermostat_status": {
+                "table": "coil",
+                "value": 1,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Downlink encode: btn_lock_enable",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "btn_lock_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "btn_lock_enable": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "btn_lock_enable": "enable"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                85,
+                1,
+                0,
+                2,
+                2,
+                1,
+                91
+            ]
         }
     }
 ]

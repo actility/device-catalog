@@ -27,6 +27,40 @@
                 "unitId": "%RH",
                 "record": 54.5
             }
+        },
+        "BACnet": {
+            "battery": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 100,
+                "units": "PERCENT"
+            },
+            "temperature": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 28,
+                "units": "DEGREES_CELSIUS"
+            },
+            "humidity": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 54.5,
+                "units": "PERCENT_RELATIVE_HUMIDITY"
+            }
+        },
+        "Modbus": {
+            "battery": {
+                "table": "inputRegister",
+                "value": 100,
+                "value_type": "UINT8"
+            },
+            "temperature": {
+                "table": "inputRegister",
+                "value": 28,
+                "value_type": "FLOAT"
+            },
+            "humidity": {
+                "table": "inputRegister",
+                "value": 54.5,
+                "value_type": "FLOAT"
+            }
         }
     },
     {
@@ -57,6 +91,40 @@
                 "unitId": "%RH",
                 "record": 61.5
             }
+        },
+        "BACnet": {
+            "battery": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 100,
+                "units": "PERCENT"
+            },
+            "temperature": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 26,
+                "units": "DEGREES_CELSIUS"
+            },
+            "humidity": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 61.5,
+                "units": "PERCENT_RELATIVE_HUMIDITY"
+            }
+        },
+        "Modbus": {
+            "battery": {
+                "table": "inputRegister",
+                "value": 100,
+                "value_type": "UINT8"
+            },
+            "temperature": {
+                "table": "inputRegister",
+                "value": 26,
+                "value_type": "FLOAT"
+            },
+            "humidity": {
+                "table": "inputRegister",
+                "value": 61.5,
+                "value_type": "FLOAT"
+            }
         }
     },
     {
@@ -75,9 +143,68 @@
                 88,
                 2
             ]
+        }
+    },
+    {
+        "description": "Downlink encode: screen_display_enable",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "screen_display_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
         },
-        "BACnet": {
-            "report_interval": 600
+        "inputModbus": {
+            "screen_display_enable": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "screen_display_enable": "enable"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                45,
+                1
+            ]
+        }
+    },
+    {
+        "description": "Downlink encode: time_sync_enable",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "time_sync_enable": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 2
+            }
+        },
+        "inputModbus": {
+            "time_sync_enable": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 2
+            }
+        },
+        "input": {
+            "data": {
+                "time_sync_enable": "enable"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                59,
+                2
+            ]
         }
     }
 ]

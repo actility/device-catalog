@@ -31,9 +31,37 @@
             }
         },
         "BACnet": {
-            "battery": 100,
-            "illuminance": "dim",
-            "occupancy": "occupied"
+            "battery": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 100,
+                "units": "PERCENT"
+            },
+            "occupancy": {
+                "object": "BINARY_VALUE",
+                "presentValue": 1
+            },
+            "illuminance": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "battery": {
+                "table": "inputRegister",
+                "value": 100,
+                "value_type": "UINT8"
+            },
+            "occupancy": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "illuminance": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            }
         }
     },
     {
@@ -54,9 +82,37 @@
                 2
             ],
             "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink encode: bluetooth_enable",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "bluetooth_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
         },
-        "BACnet": {
-            "report_interval": 600
+        "inputModbus": {
+            "bluetooth_enable": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "bluetooth_enable": "enable"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                143,
+                1
+            ]
         }
     }
 ]

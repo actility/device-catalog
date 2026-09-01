@@ -14,10 +14,17 @@
         },
         "points": null,
         "BACnet": {
-            "gas_status": "normal",
-            "life_remain": 60,
-            "relay_output_status": "on",
-            "valve_status": "on"
+            "device_status": {
+                "object": "BINARY_VALUE",
+                "presentValue": 1
+            }
+        },
+        "Modbus": {
+            "device_status": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            }
         }
     },
     {
@@ -36,9 +43,38 @@
                 255
             ],
             "fPort": 85
+        }
+    },
+    {
+        "description": "Downlink encode: time_sync_enable",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "time_sync_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
         },
-        "BACnet": {
-            "reboot": 1
+        "inputModbus": {
+            "time_sync_enable": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "time_sync_enable": "enable"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                59,
+                1,
+                0
+            ]
         }
     }
 ]

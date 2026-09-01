@@ -41,11 +41,58 @@
             }
         },
         "BACnet": {
-            "battery": 100,
-            "h2s": 0.01,
-            "humidity": 50,
-            "nh3": 0,
-            "temperature": 28.4
+            "battery": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 100,
+                "units": "PERCENT"
+            },
+            "temperature": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 28.4,
+                "units": "DEGREES_CELSIUS"
+            },
+            "humidity": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 50,
+                "units": "PERCENT_RELATIVE_HUMIDITY"
+            },
+            "nh3": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 0,
+                "units": "PARTS_PER_MILLION"
+            },
+            "h2s": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 0.01,
+                "units": "PARTS_PER_MILLION"
+            }
+        },
+        "Modbus": {
+            "battery": {
+                "table": "inputRegister",
+                "value": 100,
+                "value_type": "UINT8"
+            },
+            "temperature": {
+                "table": "inputRegister",
+                "value": 28.4,
+                "value_type": "FLOAT"
+            },
+            "humidity": {
+                "table": "inputRegister",
+                "value": 50,
+                "value_type": "FLOAT"
+            },
+            "nh3": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "FLOAT"
+            },
+            "h2s": {
+                "table": "inputRegister",
+                "value": 0.01,
+                "value_type": "FLOAT"
+            }
         }
     },
     {
@@ -65,9 +112,37 @@
                 2
             ],
             "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink encode: led_indicator_enable",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "led_indicator_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
         },
-        "BACnet": {
-            "report_interval": 600
+        "inputModbus": {
+            "led_indicator_enable": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "led_indicator_enable": "enable"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                47,
+                1
+            ]
         }
     }
 ]

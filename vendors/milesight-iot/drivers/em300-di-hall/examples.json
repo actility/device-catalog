@@ -17,6 +17,20 @@
                 "unitId": "%",
                 "record": 100
             }
+        },
+        "BACnet": {
+            "battery": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 100,
+                "units": "PERCENT"
+            }
+        },
+        "Modbus": {
+            "battery": {
+                "table": "inputRegister",
+                "value": 100,
+                "value_type": "UINT8"
+            }
         }
     },
     {
@@ -36,6 +50,38 @@
                 2
             ],
             "fPort": 85
+        }
+    },
+    {
+        "description": "Downlink encode: pulse_filter_enable",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "pulse_filter_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "pulse_filter_enable": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "pulse_filter_enable": "enable"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                163,
+                1,
+                1
+            ]
         }
     }
 ]

@@ -57,14 +57,85 @@
             }
         },
         "BACnet": {
-            "detection_status": "in_bed",
-            "region_1_occupancy": "occupied",
-            "region_2_occupancy": "vacant",
-            "region_3_occupancy": "occupied",
-            "region_4_occupancy": "unknown",
-            "target_status": "motionless",
-            "use_time_now": 10,
-            "use_time_today": 15
+            "detection_status": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 2,
+                "units": "NO_UNITS"
+            },
+            "target_status": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 1,
+                "units": "NO_UNITS"
+            },
+            "use_time_now": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 10,
+                "units": "SECONDS"
+            },
+            "use_time_today": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 15,
+                "units": "SECONDS"
+            },
+            "region_1_occupancy": {
+                "object": "BINARY_VALUE",
+                "presentValue": 1
+            },
+            "region_2_occupancy": {
+                "object": "BINARY_VALUE",
+                "presentValue": 0
+            },
+            "region_3_occupancy": {
+                "object": "BINARY_VALUE",
+                "presentValue": 1
+            },
+            "region_4_occupancy": {
+                "object": "BINARY_VALUE",
+                "presentValue": 0
+            }
+        },
+        "Modbus": {
+            "detection_status": {
+                "table": "inputRegister",
+                "value": 2,
+                "value_type": "UINT8"
+            },
+            "target_status": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "use_time_now": {
+                "table": "inputRegister",
+                "value": 10,
+                "value_type": "UINT32"
+            },
+            "use_time_today": {
+                "table": "inputRegister",
+                "value": 15,
+                "value_type": "UINT32"
+            },
+            "region_1_occupancy": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "region_2_occupancy": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "region_3_occupancy": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "region_4_occupancy": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8",
+                "_unmappedLabel": "unknown"
+            }
         }
     },
     {
@@ -85,9 +156,37 @@
                 2
             ],
             "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink encode: ai_fall_detection_enable",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "ai_fall_detection_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
         },
-        "BACnet": {
-            "report_interval": 600
+        "inputModbus": {
+            "ai_fall_detection_enable": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "ai_fall_detection_enable": "enable"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                249,
+                179,
+                1
+            ]
         }
     }
 ]

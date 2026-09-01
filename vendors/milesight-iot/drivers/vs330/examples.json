@@ -36,10 +36,46 @@
             }
         },
         "BACnet": {
-            "occupancy": "occupied",
-            "battery": 98,
-            "calibration_status": "success",
-            "distance": 15
+            "battery": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 98,
+                "units": "PERCENT"
+            },
+            "distance": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 15,
+                "units": "METERS"
+            },
+            "occupancy": {
+                "object": "BINARY_VALUE",
+                "presentValue": 1
+            },
+            "calibration_status": {
+                "object": "BINARY_VALUE",
+                "presentValue": 1
+            }
+        },
+        "Modbus": {
+            "battery": {
+                "table": "inputRegister",
+                "value": 98,
+                "value_type": "UINT8"
+            },
+            "distance": {
+                "table": "inputRegister",
+                "value": 15,
+                "value_type": "UINT16"
+            },
+            "occupancy": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "calibration_status": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            }
         }
     },
     {
@@ -59,9 +95,37 @@
                 2
             ],
             "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink encode: test_enable",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "test_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
         },
-        "BACnet": {
-            "report_interval": 600
+        "inputModbus": {
+            "test_enable": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "test_enable": "enable"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                113,
+                1
+            ]
         }
     }
 ]

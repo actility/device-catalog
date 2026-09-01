@@ -21,6 +21,38 @@
                 "unitId": "%",
                 "record": 100
             }
+        },
+        "BACnet": {
+            "battery": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 100,
+                "units": "PERCENT"
+            },
+            "template_1:text_1": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "Miles"
+            },
+            "template_1:qrcode": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "hello"
+            }
+        },
+        "Modbus": {
+            "battery": {
+                "table": "inputRegister",
+                "value": 100,
+                "value_type": "UINT8"
+            },
+            "template_1:text_1": {
+                "table": "holdingRegister",
+                "value": "Miles",
+                "value_type": "STRING"
+            },
+            "template_1:qrcode": {
+                "table": "holdingRegister",
+                "value": "hello",
+                "value_type": "STRING"
+            }
         }
     },
     {
@@ -40,6 +72,37 @@
                 2
             ],
             "fPort": 85
+        }
+    },
+    {
+        "description": "Downlink encode: buzzer_enable",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "buzzer_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "buzzer_enable": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "buzzer_enable": "enable"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                62,
+                1
+            ]
         }
     }
 ]

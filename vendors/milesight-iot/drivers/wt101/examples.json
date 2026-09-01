@@ -39,16 +39,68 @@
             }
         },
         "BACnet": {
-            "battery": 97,
-            "motor_position": 0,
-            "motor_stroke": 0,
-            "target_temperature": 30,
-            "temperature": 26.6,
-            "valve_opening": 100,
-            "freeze_protection": "triggered",
-            "motor_calibration_result": "success",
-            "tamper_status": "installed",
-            "window_detection": "open"
+            "battery": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 97,
+                "units": "PERCENT"
+            },
+            "temperature": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 26.6,
+                "units": "DEGREES_CELSIUS"
+            },
+            "target_temperature": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 30,
+                "units": "DEGREES_CELSIUS"
+            },
+            "valve_opening": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 100,
+                "units": "PERCENT"
+            },
+            "motor_stroke": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "motor_position": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "battery": {
+                "table": "inputRegister",
+                "value": 97,
+                "value_type": "UINT8"
+            },
+            "temperature": {
+                "table": "inputRegister",
+                "value": 26.6,
+                "value_type": "FLOAT"
+            },
+            "target_temperature": {
+                "table": "holdingRegister",
+                "value": 30,
+                "value_type": "FLOAT"
+            },
+            "valve_opening": {
+                "table": "holdingRegister",
+                "value": 100,
+                "value_type": "UINT8"
+            },
+            "motor_stroke": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            },
+            "motor_position": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            }
         }
     },
     {
@@ -67,8 +119,28 @@
         },
         "points": {},
         "BACnet": {
-            "motor_calibration_result": "success",
-            "motor_stroke": 520
+            "motor_calibration_result": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "motor_stroke": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 520,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "motor_calibration_result": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "motor_stroke": {
+                "table": "inputRegister",
+                "value": 520,
+                "value_type": "UINT16"
+            }
         }
     },
     {
@@ -86,7 +158,17 @@
         },
         "points": {},
         "BACnet": {
-            "tamper_status": "installed"
+            "tamper_status": {
+                "object": "BINARY_VALUE",
+                "presentValue": 0
+            }
+        },
+        "Modbus": {
+            "tamper_status": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            }
         }
     },
     {
@@ -110,7 +192,17 @@
             }
         },
         "BACnet": {
-            "window_detection": "open"
+            "window_detection": {
+                "object": "BINARY_VALUE",
+                "presentValue": 1
+            }
+        },
+        "Modbus": {
+            "window_detection": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            }
         }
     },
     {
@@ -128,7 +220,18 @@
         },
         "points": {},
         "BACnet": {
-            "motor_calibration_result": "fail: out of range"
+            "motor_calibration_result": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 1,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "motor_calibration_result": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT8"
+            }
         }
     },
     {
@@ -152,7 +255,17 @@
             }
         },
         "BACnet": {
-            "freeze_protection": "triggered"
+            "freeze_protection": {
+                "object": "BINARY_VALUE",
+                "presentValue": 1
+            }
+        },
+        "Modbus": {
+            "freeze_protection": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            }
         }
     },
     {
@@ -167,9 +280,6 @@
         "output": {
             "bytes": "FF8E005802",
             "fPort": 1
-        },
-        "BACnet": {
-            "report_interval": 600
         }
     },
     {
@@ -183,6 +293,37 @@
             "data": {
                 "report_interval": 600
             }
+        }
+    },
+    {
+        "description": "Downlink encode: time_sync_enable",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "time_sync_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "time_sync_enable": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "time_sync_enable": "enable"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                59,
+                2
+            ]
         }
     }
 ]

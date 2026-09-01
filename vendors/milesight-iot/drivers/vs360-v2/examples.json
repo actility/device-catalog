@@ -60,6 +60,92 @@
                 "record": 4360,
                 "nature": "total_out"
             }
+        },
+        "BACnet": {
+            "battery_main": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 100,
+                "units": "PERCENT"
+            },
+            "battery_node": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 100,
+                "units": "PERCENT"
+            },
+            "total_in": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 4353,
+                "units": "NO_UNITS"
+            },
+            "total_out": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 4360,
+                "units": "NO_UNITS"
+            },
+            "total_count_alarm": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "period_in": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 1000,
+                "units": "NO_UNITS"
+            },
+            "period_out": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 1001,
+                "units": "NO_UNITS"
+            },
+            "period_count_alarm": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "battery_main": {
+                "table": "inputRegister",
+                "value": 100,
+                "value_type": "UINT8"
+            },
+            "battery_node": {
+                "table": "inputRegister",
+                "value": 100,
+                "value_type": "UINT8"
+            },
+            "total_in": {
+                "table": "inputRegister",
+                "value": 4353,
+                "value_type": "UINT16"
+            },
+            "total_out": {
+                "table": "inputRegister",
+                "value": 4360,
+                "value_type": "UINT16"
+            },
+            "total_count_alarm": {
+                "table": "inputRegister",
+                "value": "threshold_alarm",
+                "value_type": "UINT8",
+                "_notNumeric": "threshold_alarm"
+            },
+            "period_in": {
+                "table": "inputRegister",
+                "value": 1000,
+                "value_type": "UINT16"
+            },
+            "period_out": {
+                "table": "inputRegister",
+                "value": 1001,
+                "value_type": "UINT16"
+            },
+            "period_count_alarm": {
+                "table": "inputRegister",
+                "value": "threshold_alarm",
+                "value_type": "UINT8",
+                "_notNumeric": "threshold_alarm"
+            }
         }
     },
     {
@@ -79,9 +165,37 @@
                 88,
                 2
             ]
+        }
+    },
+    {
+        "description": "Downlink encode: report_cumulative_enable",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "report_cumulative_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
         },
-        "BACnet": {
-            "report_interval": 600
+        "inputModbus": {
+            "report_cumulative_enable": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "report_cumulative_enable": "enable"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                169,
+                1
+            ]
         }
     }
 ]

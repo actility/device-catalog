@@ -47,10 +47,47 @@
             }
         },
         "BACnet": {
-            "battery": 92,
-            "distance": 1601,
-            "position": "tilt",
-            "temperature": 23.2
+            "battery": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 92,
+                "units": "PERCENT"
+            },
+            "temperature": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 23.2,
+                "units": "DEGREES_CELSIUS"
+            },
+            "distance": {
+                "object": "ANALOG_VALUE",
+                "presentValue": 1601,
+                "units": "MILLIMETERS"
+            },
+            "position": {
+                "object": "BINARY_VALUE",
+                "presentValue": 1
+            }
+        },
+        "Modbus": {
+            "battery": {
+                "table": "inputRegister",
+                "value": 92,
+                "value_type": "UINT8"
+            },
+            "temperature": {
+                "table": "inputRegister",
+                "value": 23.2,
+                "value_type": "FLOAT"
+            },
+            "distance": {
+                "table": "inputRegister",
+                "value": 1601,
+                "value_type": "FLOAT"
+            },
+            "position": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            }
         }
     },
     {
@@ -70,9 +107,37 @@
                 2
             ],
             "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink encode: install_height_enable",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "install_height_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
         },
-        "BACnet": {
-            "report_interval": 600
+        "inputModbus": {
+            "install_height_enable": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "install_height_enable": "enable"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                19,
+                1
+            ]
         }
     }
 ]
