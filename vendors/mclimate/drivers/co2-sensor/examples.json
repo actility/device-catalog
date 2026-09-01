@@ -8,29 +8,150 @@
     },
     "output": {
       "data": {
-        "battery": 3.5,
-        "co2": 625,
-        "humidity": 51.56,
-        "temperature": 22.7
+        "CO2": 625,
+        "sensorTemperature": 22.7,
+        "relativeHumidity": 51.56,
+        "batteryVoltage": 3.5
+      }
+    }
+  },
+  {
+    "description": "Response boundary levels (0x1f) with keepalive trailer",
+    "type": "uplink",
+    "input": {
+      "bytes": "1f01900320010271027384ed",
+      "fPort": 2
+    },
+    "output": {
+      "data": {
+        "boundaryLevels": {
+          "good_medium": 400,
+          "medium_bad": 800
+        },
+        "CO2": 625,
+        "sensorTemperature": 22.7,
+        "relativeHumidity": 51.56,
+        "batteryVoltage": 3.5
+      }
+    }
+  },
+  {
+    "description": "Response measurement period (0x25) with keepalive trailer",
+    "type": "uplink",
+    "input": {
+      "bytes": "25050a14010271027384ed",
+      "fPort": 2
+    },
+    "output": {
+      "data": {
+        "measurementPeriod": {
+          "good_zone": 5,
+          "medium_zone": 10,
+          "bad_zone": 20
+        },
+        "CO2": 625,
+        "sensorTemperature": 22.7,
+        "relativeHumidity": 51.56,
+        "batteryVoltage": 3.5
+      }
+    }
+  },
+  {
+    "description": "Response auto zero period (0x2b) with keepalive trailer",
+    "type": "uplink",
+    "input": {
+      "bytes": "2b18010271027384ed",
+      "fPort": 2
+    },
+    "output": {
+      "data": {
+        "autoZeroPeriod": 24,
+        "CO2": 625,
+        "sensorTemperature": 22.7,
+        "relativeHumidity": 51.56,
+        "batteryVoltage": 3.5
+      }
+    }
+  },
+  {
+    "description": "fail: payload shorter than a keepalive returns an error",
+    "type": "uplink",
+    "input": {
+      "bytes": "0102",
+      "fPort": 2
+    },
+    "output": {
+      "errors": [
+        "Invalid uplink payload: payload must be at least 7 bytes long"
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "description": "Downlink: set CO2 measurement period",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setCo2MeasurementPeriod": {
+          "good_zone": 5,
+          "medium_zone": 10,
+          "bad_zone": 20
+        }
       }
     },
-    "points": {
-      "co2Level": {
-        "unitId": "ppm",
-        "record": 625
-      },
-      "temperature": {
-        "unitId": "Cel",
-        "record": 22.7
-      },
-      "humidity": {
-        "unitId": "%RH",
-        "record": 51.56
-      },
-      "batteryVoltage": {
-        "unitId": "V",
-        "record": 3.5
+    "output": {
+      "bytes": "24050A14",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "description": "Downlink: set CO2 auto zero period to 24 hours",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setCo2AutoZeroPeriod": 24
       }
+    },
+    "output": {
+      "bytes": "2A18",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "description": "Downlink: read device versions",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "getDeviceVersions": true
+      }
+    },
+    "output": {
+      "bytes": "04",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "description": "Downlink decode: passthrough bytes",
+    "type": "downlink-decode",
+    "input": {
+      "bytes": "2A18",
+      "fPort": 1
+    },
+    "output": {
+      "data": {
+        "bytes": [
+          42,
+          24
+        ]
+      },
+      "warnings": [],
+      "errors": []
     }
   }
 ]

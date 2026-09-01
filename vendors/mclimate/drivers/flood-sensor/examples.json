@@ -30,5 +30,184 @@
         "nature": "box tamper"
       }
     }
+  },
+  {
+    "description": "Long periodic uplink with temperature",
+    "type": "uplink",
+    "input": {
+      "bytes": "08c916",
+      "fPort": 2
+    },
+    "output": {
+      "data": {
+        "reason": "keepalive",
+        "boxTamper": true,
+        "flood": false,
+        "battery": 3.216,
+        "temperature": 22
+      }
+    }
+  },
+  {
+    "description": "Flood detected event",
+    "type": "uplink",
+    "input": {
+      "bytes": "42c916",
+      "fPort": 2
+    },
+    "output": {
+      "data": {
+        "reason": "floodDetected",
+        "boxTamper": false,
+        "flood": true,
+        "battery": 3.216,
+        "temperature": 22
+      }
+    }
+  },
+  {
+    "description": "Fraud detected event (reason bits 100)",
+    "type": "uplink",
+    "input": {
+      "bytes": "80c916",
+      "fPort": 2
+    },
+    "output": {
+      "data": {
+        "reason": "fraudDetected",
+        "boxTamper": false,
+        "flood": false,
+        "battery": 3.216,
+        "temperature": 22
+      }
+    }
+  },
+  {
+    "description": "Response: keepAliveTime (0x12, two bytes) with keepalive trailer",
+    "type": "uplink",
+    "input": {
+      "bytes": "12003c08c916",
+      "fPort": 2
+    },
+    "output": {
+      "data": {
+        "keepAliveTime": 60,
+        "reason": "keepalive",
+        "boxTamper": true,
+        "flood": false,
+        "battery": 3.216,
+        "temperature": 22
+      }
+    }
+  },
+  {
+    "description": "Response: flood alarm duration (0x06) with keepalive trailer",
+    "type": "uplink",
+    "input": {
+      "bytes": "061e08c916",
+      "fPort": 2
+    },
+    "output": {
+      "data": {
+        "alarmDuration": 30,
+        "reason": "keepalive",
+        "boxTamper": true,
+        "flood": false,
+        "battery": 3.216,
+        "temperature": 22
+      }
+    }
+  },
+  {
+    "description": "fail: payload shorter than 2 bytes returns an error",
+    "type": "uplink",
+    "input": {
+      "bytes": "08",
+      "fPort": 2
+    },
+    "output": {
+      "errors": [
+        "Invalid uplink payload: payload must be at least 2 bytes long"
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "description": "Downlink: set keepalive interval to 60 minutes",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setKeepAlive": 60
+      }
+    },
+    "output": {
+      "bytes": "05003C",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "description": "Downlink: set flood alarm time to 30",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setFloodAlarmTime": 30
+      }
+    },
+    "output": {
+      "bytes": "041E",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "description": "Downlink: set flood event send time",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setFloodEventSendTime": 10
+      }
+    },
+    "output": {
+      "bytes": "080A",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "description": "Downlink: read flood alarm time",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "getFloodAlarmTime": true
+      }
+    },
+    "output": {
+      "bytes": "06",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "description": "Downlink decode: passthrough bytes",
+    "type": "downlink-decode",
+    "input": {
+      "bytes": "041E",
+      "fPort": 1
+    },
+    "output": {
+      "data": {
+        "bytes": [
+          4,
+          30
+        ]
+      },
+      "warnings": [],
+      "errors": []
+    }
   }
 ]

@@ -8,10 +8,9 @@
     },
     "output": {
       "data": {
-        "batteryVoltage": 3,
-        "humidity": 50,
-        "reason": "keepalive",
-        "temperature": 24.8
+        "sensorTemperature": 24.8,
+        "relativeHumidity": 50,
+        "batteryVoltage": 2.97
       }
     },
     "points": {
@@ -25,8 +24,194 @@
       },
       "batteryVoltage": {
         "unitId": "V",
-        "record": 3
+        "record": 2.97
       }
+    }
+  },
+  {
+    "description": "Periodic uplink with external thermistor readings",
+    "type": "uplink",
+    "input": {
+      "bytes": "01027428f20400",
+      "fPort": 2
+    },
+    "output": {
+      "data": {
+        "sensorTemperature": 22.8,
+        "relativeHumidity": 15.63,
+        "batteryVoltage": 3.54,
+        "thermistorProperlyConnected": false,
+        "extThermistorTemperature": 0
+      }
+    }
+  },
+  {
+    "description": "Periodic uplink where the temperature low byte is below 0x10",
+    "type": "uplink",
+    "input": {
+      "bytes": "01020880ab0000",
+      "fPort": 2
+    },
+    "output": {
+      "data": {
+        "sensorTemperature": 12,
+        "relativeHumidity": 50,
+        "batteryVoltage": 2.97,
+        "thermistorProperlyConnected": true,
+        "extThermistorTemperature": 0
+      }
+    }
+  },
+  {
+    "description": "Response: keepAliveTime (0x12) with keepalive trailer",
+    "type": "uplink",
+    "input": {
+      "bytes": "120a01027428f20400",
+      "fPort": 2
+    },
+    "output": {
+      "data": {
+        "keepAliveTime": 10,
+        "sensorTemperature": 22.8,
+        "relativeHumidity": 15.63,
+        "batteryVoltage": 3.54,
+        "thermistorProperlyConnected": false,
+        "extThermistorTemperature": 0
+      }
+    }
+  },
+  {
+    "description": "Response: temperature compensation (0x32) with keepalive trailer",
+    "type": "uplink",
+    "input": {
+      "bytes": "32010f01027428f20400",
+      "fPort": 2
+    },
+    "output": {
+      "data": {
+        "temperatureCompensation": {
+          "negativeCompensation": true,
+          "compensation": 1.5
+        },
+        "sensorTemperature": 22.8,
+        "relativeHumidity": 15.63,
+        "batteryVoltage": 3.54,
+        "thermistorProperlyConnected": false,
+        "extThermistorTemperature": 0
+      }
+    }
+  },
+  {
+    "description": "fail: payload shorter than a keepalive returns an error",
+    "type": "uplink",
+    "input": {
+      "bytes": "0102",
+      "fPort": 2
+    },
+    "output": {
+      "errors": [
+        "Invalid uplink payload: payload must be at least 5 bytes long"
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "description": "Downlink: set keepalive interval to 10 minutes",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setKeepAlive": 10
+      }
+    },
+    "output": {
+      "bytes": "020A",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "description": "Downlink: set negative temperature compensation of 1.5C",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setTemperatureCompensation": {
+          "negativeCompensation": true,
+          "compensation": 1.5
+        }
+      }
+    },
+    "output": {
+      "bytes": "31010F",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "description": "Downlink: set humidity compensation of 5%",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setHumidityCompensation": {
+          "negativeCompensation": false,
+          "compensation": 5
+        }
+      }
+    },
+    "output": {
+      "bytes": "330005",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "description": "Downlink: set device to device communication period",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setD2dCommunicationPeriod": 30
+      }
+    },
+    "output": {
+      "bytes": "AB1E",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "description": "Downlink: read temperature compensation",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "getTemperatureCompensation": true
+      }
+    },
+    "output": {
+      "bytes": "32",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "description": "Downlink decode: passthrough bytes",
+    "type": "downlink-decode",
+    "input": {
+      "bytes": "020A",
+      "fPort": 1
+    },
+    "output": {
+      "data": {
+        "bytes": [
+          2,
+          10
+        ]
+      },
+      "warnings": [],
+      "errors": []
     }
   }
 ]

@@ -38,7 +38,6 @@ modelId: mclimate:vicki:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId:
   - mclimate:vicki:1
-  - os1-mcli:vicki:1
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 
@@ -53,9 +52,19 @@ sensors:
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
-  os1-mcli:vicki:1:
+  mclimate:vicki:1:
     - "Periodic uplink"
+    - "Periodic uplink (keepalive type 0x81, precise temperature sensor)"
+    - "Response: temperature hysteresis (0x42) with keepalive trailer"
+    - "Response: open window parameters (0x13) with delta 10 and keepalive trailer"
+    - "fail: empty payload returns an error"
     - "Downlink: Setting target temperature and open window parameters"
+    - "Downlink: Set precise (float) target temperature to 21.5C"
+    - "Downlink: Set internal algorithm parameters"
+    - "Downlink: Set valve openness"
+    - "Downlink: Set target temperature and motor position"
+    - "Downlink: Set motor position only"
+    - "Downlink decode: passthrough bytes"
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false

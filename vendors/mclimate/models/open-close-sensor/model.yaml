@@ -52,6 +52,14 @@ sensors:
 examples:
   mclimate:open-close:1:
     - "Keep Alive"
+    - "Open/close event reported by the reed switch"
+    - "Response: notification blind time (0x1f) with keepalive trailer"
+    - "Response: notification blind time (0x1f) without keepalive trailer"
+    - "fail: empty payload returns an error"
+    - "Downlink: set notification blind time to 5"
+    - "Downlink: set keepalive interval to 10 minutes"
+    - "Downlink: read notification blind time"
+    - "Downlink decode: passthrough bytes"
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false

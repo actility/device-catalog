@@ -1,0 +1,282 @@
+[
+  {
+    "description": "Periodic uplink (keepalive)",
+    "type": "uplink",
+    "input": {
+      "bytes": "0102809903E1CC010012",
+      "fPort": 2
+    },
+    "output": {
+      "data": {
+        "sensorTemperature": 24,
+        "relativeHumidity": 59.77,
+        "lux": 993,
+        "luxStatus": "ok",
+        "batteryVoltage": 3.36,
+        "occupied": true,
+        "pirTriggerCount": 18
+      }
+    }
+  },
+  {
+    "description": "Periodic uplink with the light sensor disabled",
+    "type": "uplink",
+    "input": {
+      "bytes": "01028099FFFFCC010012",
+      "fPort": 2
+    },
+    "output": {
+      "data": {
+        "sensorTemperature": 24,
+        "relativeHumidity": 59.77,
+        "lux": 0,
+        "luxStatus": "disabled",
+        "batteryVoltage": 3.36,
+        "occupied": true,
+        "pirTriggerCount": 18
+      }
+    }
+  },
+  {
+    "description": "Periodic uplink with a light sensor error",
+    "type": "uplink",
+    "input": {
+      "bytes": "01028099FFFCCC010012",
+      "fPort": 2
+    },
+    "output": {
+      "data": {
+        "sensorTemperature": 24,
+        "relativeHumidity": 59.77,
+        "lux": 0,
+        "luxStatus": "sensor_error",
+        "batteryVoltage": 3.36,
+        "occupied": true,
+        "pirTriggerCount": 18
+      }
+    }
+  },
+  {
+    "description": "Occupancy event (0x3a) with keepalive trailer",
+    "type": "uplink",
+    "input": {
+      "bytes": "3a0102809903E1CC010012",
+      "fPort": 2
+    },
+    "output": {
+      "data": {
+        "event": "occupied",
+        "sensorTemperature": 24,
+        "relativeHumidity": 59.77,
+        "lux": 993,
+        "luxStatus": "ok",
+        "batteryVoltage": 3.36,
+        "occupied": true,
+        "pirTriggerCount": 18
+      }
+    }
+  },
+  {
+    "description": "Unoccupied event (0x3b) with keepalive trailer",
+    "type": "uplink",
+    "input": {
+      "bytes": "3b0102809903E1CC010012",
+      "fPort": 2
+    },
+    "output": {
+      "data": {
+        "event": "unoccupied",
+        "sensorTemperature": 24,
+        "relativeHumidity": 59.77,
+        "lux": 993,
+        "luxStatus": "ok",
+        "batteryVoltage": 3.36,
+        "occupied": true,
+        "pirTriggerCount": 18
+      }
+    }
+  },
+  {
+    "description": "PIR trigger event (0x40) with keepalive trailer",
+    "type": "uplink",
+    "input": {
+      "bytes": "400102809903E1CC010012",
+      "fPort": 2
+    },
+    "output": {
+      "data": {
+        "event": "pirTrigger",
+        "sensorTemperature": 24,
+        "relativeHumidity": 59.77,
+        "lux": 993,
+        "luxStatus": "ok",
+        "batteryVoltage": 3.36,
+        "occupied": true,
+        "pirTriggerCount": 18
+      }
+    }
+  },
+  {
+    "description": "Response: LED brightness (0x22) and PIR sensor state (0x37) with keepalive trailer",
+    "type": "uplink",
+    "input": {
+      "bytes": "222937010102809903E1CC010012",
+      "fPort": 2
+    },
+    "output": {
+      "data": {
+        "ledBrightness": 41,
+        "pirSensorState": 1,
+        "sensorTemperature": 24,
+        "relativeHumidity": 59.77,
+        "lux": 993,
+        "luxStatus": "ok",
+        "batteryVoltage": 3.36,
+        "occupied": true,
+        "pirTriggerCount": 18
+      }
+    }
+  },
+  {
+    "description": "Response: PIR blind time (0x42, two bytes) with keepalive trailer",
+    "type": "uplink",
+    "input": {
+      "bytes": "42003c0102809903E1CC010012",
+      "fPort": 2
+    },
+    "output": {
+      "data": {
+        "pirBlindTime": 60,
+        "sensorTemperature": 24,
+        "relativeHumidity": 59.77,
+        "lux": 993,
+        "luxStatus": "ok",
+        "batteryVoltage": 3.36,
+        "occupied": true,
+        "pirTriggerCount": 18
+      }
+    }
+  },
+  {
+    "description": "fail: payload shorter than a keepalive returns an error",
+    "type": "uplink",
+    "input": {
+      "bytes": "0102",
+      "fPort": 2
+    },
+    "output": {
+      "errors": [
+        "Invalid uplink payload: payload must be at least 10 bytes long"
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "description": "Downlink: set keepalive interval to 10 minutes",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setKeepAlive": 10
+      }
+    },
+    "output": {
+      "bytes": "020A",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "description": "Downlink: enable the PIR sensor",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setPIRSensorState": 1
+      }
+    },
+    "output": {
+      "bytes": "3601",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "description": "Downlink: set occupancy timeout to 300 seconds",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setOccupancyTimeout": 300
+      }
+    },
+    "output": {
+      "bytes": "38012C",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "description": "Downlink: set PIR blind time to 60 seconds",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setPIRBlindTime": 60
+      }
+    },
+    "output": {
+      "bytes": "41003C",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "description": "Downlink: set LED brightness",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setLedBrightness": 41
+      }
+    },
+    "output": {
+      "bytes": "2129",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "description": "Downlink: restart the device",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "restartDevice": true
+      }
+    },
+    "output": {
+      "bytes": "A5",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "description": "Downlink decode: passthrough bytes",
+    "type": "downlink-decode",
+    "input": {
+      "bytes": "3601",
+      "fPort": 1
+    },
+    "output": {
+      "data": {
+        "bytes": [
+          54,
+          1
+        ]
+      },
+      "warnings": [],
+      "errors": []
+    }
+  }
+]

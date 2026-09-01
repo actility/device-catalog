@@ -9,7 +9,7 @@
     },
     "output": {
       "data": {
-        "batteryVoltage": 3,
+        "batteryVoltage": 2.97,
         "counter": 1793198,
         "event": "keepalive",
         "status": 1,
@@ -20,7 +20,7 @@
     "points": {
       "batteryVoltage": {
         "unitId": "V",
-        "record": 3
+        "record": 2.97
       },
       "counter": {
         "unitId": "count",
@@ -35,6 +35,133 @@
         "record": true,
         "nature": "thermistor connected"
       }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Open/close event reported by the reed switch",
+    "input": {
+      "bytes": "20AB00D91B5CAE00",
+      "fPort": 1
+    },
+    "output": {
+      "data": {
+        "batteryVoltage": 2.97,
+        "counter": 1793198,
+        "event": "reed switch",
+        "status": 0,
+        "temperature": 21.7,
+        "thermistorProperlyConnected": true
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Response: notification blind time (0x1f) with keepalive trailer",
+    "input": {
+      "bytes": "1F0501AB00D91B5CAE01",
+      "fPort": 1
+    },
+    "output": {
+      "data": {
+        "notificationBlindTime": 5,
+        "batteryVoltage": 2.97,
+        "counter": 1793198,
+        "event": "keepalive",
+        "status": 1,
+        "temperature": 21.7,
+        "thermistorProperlyConnected": true
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Response: notification blind time (0x1f) without keepalive trailer",
+    "input": {
+      "bytes": "1F05",
+      "fPort": 1
+    },
+    "output": {
+      "data": {
+        "notificationBlindTime": 5
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "fail: empty payload returns an error",
+    "input": {
+      "bytes": "",
+      "fPort": 1
+    },
+    "output": {
+      "errors": [
+        "Invalid uplink payload: Empty payload"
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "description": "Downlink: set notification blind time to 5",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setNotificationBlindTime": 5
+      }
+    },
+    "output": {
+      "bytes": "1E05",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "description": "Downlink: set keepalive interval to 10 minutes",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setKeepAlive": 10
+      }
+    },
+    "output": {
+      "bytes": "020A",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "description": "Downlink: read notification blind time",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "getNotificationBlindTime": true
+      }
+    },
+    "output": {
+      "bytes": "1F",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "description": "Downlink decode: passthrough bytes",
+    "type": "downlink-decode",
+    "input": {
+      "bytes": "1E05",
+      "fPort": 1
+    },
+    "output": {
+      "data": {
+        "bytes": [
+          30,
+          5
+        ]
+      },
+      "warnings": [],
+      "errors": []
     }
   }
 ]

@@ -42,15 +42,17 @@ function decodeUplink(input) {
         var attachedBackplate = byte8Bin[2];
         var perceiveAsOnline = byte8Bin[3];
         var antiFreezeProtection = byte8Bin[4];
+        var d2dCommunicationReliable = byte8Bin[5];
+        var batteryTooLow = byte8Bin[6];
 
         var sensorTemp = 0;
-        if (Number(bytes[0].toString(16))  == 1) {
+        if (bytes[0] == 1) {
             sensorTemp = (bytes[2] * 165) / 256 - 40;
         }
-        if (Number(bytes[0].toString(16)) == 81) {
+        if (bytes[0] == 129) {
             sensorTemp = (bytes[2] - 28.33333) / 5.66666;
         }
-        data.reason = Number(bytes[0].toString(16));
+        data.reason = bytes[0];
         data.targetTemperature = Number(bytes[1]);
         data.sensorTemperature = Number(sensorTemp.toFixed(2));
         data.relativeHumidity = Number(((bytes[3] * 100) / 256).toFixed(2));
@@ -66,6 +68,8 @@ function decodeUplink(input) {
         data.attachedBackplate = toBool(attachedBackplate);
         data.perceiveAsOnline = toBool(perceiveAsOnline);
         data.antiFreezeProtection = toBool(antiFreezeProtection);
+        data.d2dCommunicationReliable = toBool(d2dCommunicationReliable);
+        data.batteryTooLow = toBool(batteryTooLow);
         data.valveOpenness = motorRange != 0 ? Math.round((1-(motorPosition/motorRange))*100) : 0;
         if(!data.hasOwnProperty('targetTemperatureFloat')){
             data.targetTemperatureFloat = parseFloat(bytes[1]);
@@ -120,7 +124,7 @@ function decodeUplink(input) {
                         var motorPos2 = ("0" + commands[i + 3].toString(16)).substr(-2);
                         var motorPos1 = tmp[0];
                         var motorPosition = (parseInt(motorPos1, 16) << 8) | parseInt(motorPos2, 16);
-                        var delta = Number(tmp[1]);
+                        var delta = parseInt(commands[i + 4], 16) & 0x0f;
 
                         var dataD = { 'openWindowParams': { 'enabled': enabled, 'duration': duration, 'motorPosition': motorPosition, 'delta': delta } };
                         resultToPass = merge_obj(resultToPass, dataD);
@@ -216,6 +220,32 @@ function decodeUplink(input) {
                         resultToPass = merge_obj(resultToPass, data);
                     }
                 break;
+                case '25':
+                    {
+                        command_len = 31;
+                        var read3 = function (offset) {
+                            return (parseInt(commands[i + offset], 16) << 16) | (parseInt(commands[i + offset + 1], 16) << 8) | parseInt(commands[i + offset + 2], 16);
+                        };
+                        var data = {'debug': {
+                            'batterySubrange': parseInt(commands[i + 1], 16),
+                            'motorCurrentConsumption': parseInt(commands[i + 2], 16) * 4,
+                            'powerSupplyVoltageMeasured': parseInt(commands[i + 3], 16) * 16,
+                            'daysSinceLastDeviceReset': parseInt(commands[i + 4], 16),
+                            'detectedMotorOverVoltages': parseInt(commands[i + 5], 16),
+                            'motorHardwareDriverType': (parseInt(commands[i + 6], 16) >> 4) & 0x0f,
+                            'temperatureSensorModel': parseInt(commands[i + 6], 16) & 0x0f,
+                            'motorTotalTravelSteps': (parseInt(commands[i + 7], 16) << 24) | (parseInt(commands[i + 8], 16) << 16) | (parseInt(commands[i + 9], 16) << 8) | parseInt(commands[i + 10], 16),
+                            'packetsSentOnSF7': read3(11),
+                            'packetsSentOnSF8': read3(14),
+                            'packetsSentOnSF9': read3(17),
+                            'packetsSentOnSF10': read3(20),
+                            'packetsSentOnSF11': read3(23),
+                            'packetsSentOnSF12': read3(26),
+                            'totalSentPackets': read3(29)
+                        }};
+                        resultToPass = merge_obj(resultToPass, data);
+                    }
+                break;
                 case '27':
                     {
                         command_len = 1;
@@ -234,7 +264,7 @@ function decodeUplink(input) {
                 case '29':
                     {
                         command_len = 2;
-                        var data = { 'proportionalAlgoParams': { 'coefficient': parseInt(commands[i + 1], 16), 'period': parseInt(commands[i + 2], 16) } };
+                        var data = { 'proportionalAlgorithmParameters': { 'coefficient': parseInt(commands[i + 1], 16), 'period': parseInt(commands[i + 2], 16) } };
                         resultToPass = merge_obj(resultToPass, data);
 
                     }
@@ -242,7 +272,21 @@ function decodeUplink(input) {
                 case '2b':
                     {
                         command_len = 1;
-                        var data = { 'algoType': commands[i + 1] };
+                        var algo = 'equal';
+                        switch (parseInt(commands[i + 1], 16)) {
+                            case 0:
+                                algo = 'proportional';
+                                break;
+                            case 1:
+                                algo = 'equal';
+                                break;
+                            case 2:
+                                algo = 'proportionalIntegral';
+                                break;
+                            default:
+                                break;
+                        }
+                        var data = { 'temperatureControlAlgorithm': algo };
                         resultToPass = merge_obj(resultToPass, data);
                     }
                 break;
@@ -296,7 +340,7 @@ function decodeUplink(input) {
                 case '42':
                     {
                         command_len = 1;
-                        var data = { 'tempHysteresis' : parseInt(commands[i + 1], 16) };
+                        var data = { 'tempHysteresis' : parseInt(commands[i + 1], 16) / 10 };
                         resultToPass = merge_obj(resultToPass, data);
                     }
                 break;
@@ -314,7 +358,7 @@ function decodeUplink(input) {
                         var duration = parseInt(commands[i + 2], 16) * 5;
                         var delta = parseInt(commands[i + 3], 16) /10;
 
-                        var data = { 'openWindowParams': { 'enabled': enabled, 'duration': duration, 'delta': delta } };
+                        var data = { 'openWindowPrecisely': { 'enabled': enabled, 'duration': duration, 'delta': delta } };
                         resultToPass = merge_obj(resultToPass, data);
                     }
                 break;
@@ -346,14 +390,14 @@ function decodeUplink(input) {
                 case '4d':
                     {
                         command_len = 2;
-                        var data = { 'piMaxIntegratedError' : ((parseInt(commands[i + 1], 16) << 8) | parseInt(commands[i + 2], 16))/10 };
+                        var data = { 'maxAllowedIntegralValue' : ((parseInt(commands[i + 1], 16) << 8) | parseInt(commands[i + 2], 16))/10 };
                         resultToPass = merge_obj(resultToPass, data);
                     }
                 break;
                 case '50':
                     {
                         command_len = 2;
-                        var data = { 'effectiveMotorRange': { 'minValveOpenness': 100 - parseInt(commands[i + 2], 16), 'maxValveOpenness': 100 - parseInt(commands[i + 1], 16) } };
+                        var data = { 'valveOpennessRangeInPercentage': { 'max': 100 - parseInt(commands[i + 1], 16), 'min': 100 - parseInt(commands[i + 2], 16) } };
                         resultToPass = merge_obj(resultToPass, data);
                     }
                 break;
@@ -369,6 +413,13 @@ function decodeUplink(input) {
                         command_len = 1;
                         var offset =  (parseInt(commands[i + 1], 16) - 28) * 0.176;
                         var data = { 'temperatureOffset' : offset };
+                        resultToPass = merge_obj(resultToPass, data);
+                    }
+                break;
+                case '56':
+                    {
+                        command_len = 1;
+                        var data = { 'ledDisplayTempUnits': parseInt(commands[i + 1], 16) };
                         resultToPass = merge_obj(resultToPass, data);
                     }
                 break;
@@ -535,7 +586,7 @@ function decodeUplink(input) {
                 }
                 case '68': {
                     command_len = 1;
-                    var data = { internalAlgoTempState: parseInt(commands[i + 1], 16) };
+                    var data = { internalAlgoTemporaryState: parseInt(commands[i + 1], 16) === 0 };
                     resultToPass = merge_obj(resultToPass, data);
                     break;
                 }
@@ -603,9 +654,34 @@ function decodeUplink(input) {
                     resultToPass = merge_obj(resultToPass, data);
                     break;
                 }
+                case '70': {
+                    command_len = 16;
+                    var appKey = '';
+                    for (var k = 1; k <= 16; k++) {
+                        appKey += commands[i + k];
+                    }
+                    resultToPass = merge_obj(resultToPass, { d2dNotificationDeviceAppKey: appKey.toUpperCase() });
+                    break;
+                }
+                case '72': {
+                    command_len = 2;
+                    var htTemp = ((parseInt(commands[i + 1], 16) << 8) | parseInt(commands[i + 2], 16)) / 10;
+                    resultToPass = merge_obj(resultToPass, { htSensorTemperature: htTemp });
+                    break;
+                }
+                case 'a4': {
+                    command_len = 1;
+                    resultToPass = merge_obj(resultToPass, { region: parseInt(commands[i + 1], 16) });
+                    break;
+                }
+                case 'a6': {
+                    command_len = 1;
+                    resultToPass = merge_obj(resultToPass, { crystalOscillatorError: true });
+                    break;
+                }
                 case 'a0': {
                     command_len = 4;
-                    var fuota_address = (parseInt(commands[i + 1], 16) << 24) | 
+                    var fuota_address = (parseInt(commands[i + 1], 16) << 24) |
                                       (parseInt(commands[i + 2], 16) << 16) | 
                                       (parseInt(commands[i + 3], 16) << 8) | 
                                       parseInt(commands[i + 4], 16);
@@ -615,26 +691,38 @@ function decodeUplink(input) {
                     break;
                 }
                 default:
+                    command_len = 0;
                     break;
             }
             commands.splice(i,command_len);
         });
         return resultToPass;
     }
-    
-    if (bytes[0].toString(16) == 1 || bytes[0].toString(16) == 81) {
-        data = merge_obj(data, handleKeepalive(bytes, data));
-    } else {
-        data = merge_obj(data, handleResponse(bytes, data));
-        var shouldKeepAlive = data.hasOwnProperty('decodeKeepalive') ? true : false;
 
-        if ('decodeKeepalive' in data) {
-            delete data.decodeKeepalive;
+    try {
+        if (!bytes || bytes.length === 0) {
+            throw new Error('Empty payload');
         }
-        if (shouldKeepAlive) {
-            bytes = bytes.slice(-9);
+
+        if (bytes[0] == 1 || bytes[0] == 129) {
             data = merge_obj(data, handleKeepalive(bytes, data));
+        } else {
+            data = merge_obj(data, handleResponse(bytes, data));
+            var shouldKeepAlive = data.hasOwnProperty('decodeKeepalive') ? true : false;
+
+            if ('decodeKeepalive' in data) {
+                delete data.decodeKeepalive;
+            }
+            if (shouldKeepAlive) {
+                bytes = bytes.slice(-9);
+                data = merge_obj(data, handleKeepalive(bytes, data));
+            }
         }
+    } catch (error) {
+        return {
+            errors: ['Invalid uplink payload: ' + error.message],
+            warnings: []
+        };
     }
 
     return {
@@ -666,8 +754,8 @@ function encodeDownlink(input) {
                     break;
                 case "setOpenWindow":
                     var enabled = Number(input.data.setOpenWindow.enabled);
-                    var closeTime = parseInt(input.data.setOpenWindow.closeTime / 5, 10);
-                    var delta = parseInt(input.data.setOpenWindow.delta, 8);
+                    var closeTime = Math.floor(input.data.setOpenWindow.closeTime / 5);
+                    var delta = Number(input.data.setOpenWindow.delta) & 0x0f;
                     var motorPosition = input.data.setOpenWindow.motorPosition;
                     var motorPositionFirstPart = motorPosition & 0xff;
                     var motorPositionSecondPart = (motorPosition >> 8) & 0xff;
@@ -700,6 +788,7 @@ function encodeDownlink(input) {
                     break;
                 case "setInternalAlgoParams":
                     bytes.push(0x0c);
+                    bytes.push(input.data.setInternalAlgoParams.period);
                     bytes.push(input.data.setInternalAlgoParams.pFirstLast);
                     bytes.push(input.data.setInternalAlgoParams.pNext);
                     break;
@@ -722,8 +811,18 @@ function encodeDownlink(input) {
                     bytes.push(0x18);
                     break;
                 case "setTargetTemperature":
-                    bytes.push(0x0e);
-                    bytes.push(input.data.setTargetTemperature);
+                    // Integer target temperature -> 0x0e + 1 raw byte.
+                    // Float target temperature -> 0x51 + 2 bytes of value * 10 (setTargetTemperaturePrecisely).
+                    var targetTemperature = Number(input.data.setTargetTemperature);
+                    if (targetTemperature % 1 !== 0) {
+                        var targetTemperatureScaled = Math.round(targetTemperature * 10);
+                        bytes.push(0x51);
+                        bytes.push((targetTemperatureScaled >> 8) & 0xff);
+                        bytes.push(targetTemperatureScaled & 0xff);
+                    } else {
+                        bytes.push(0x0e);
+                        bytes.push(targetTemperature);
+                    }
                     break;
                 case "setExternalTemperature":
                     bytes.push(0x0f);
@@ -852,7 +951,7 @@ function encodeDownlink(input) {
                     break;
                 case "setOpenWindowPrecisely":
                     var enabledValue = input.data.setOpenWindowPrecisely.enabled ? 1 : 0;
-                    var duration = parseInt(input.data.setOpenWindowPrecisely.duration, 10) / 5;
+                    var duration = Math.floor(parseInt(input.data.setOpenWindowPrecisely.duration, 10) / 5);
                     var delta = Math.round(input.data.setOpenWindowPrecisely.delta * 10);
                     bytes.push(0x45);
                     bytes.push(enabledValue);
@@ -907,3 +1006,4 @@ function decodeDownlink(input) {
 
 exports.encodeDownlink = encodeDownlink;
 exports.decodeUplink = decodeUplink;
+exports.decodeDownlink = decodeDownlink;

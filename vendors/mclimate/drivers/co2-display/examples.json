@@ -11,7 +11,7 @@
         "sensorTemperature": 20,
         "relativeHumidity": 50,
         "batteryVoltage": 3.3,
-        "ppm": 1168,
+        "CO2": 1168,
         "powerSourceStatus": 0,
         "lux": 300,
         "pir": true
@@ -48,17 +48,68 @@
     }
   },
   {
-    "description": "Downlink encode: unsupported in public docs",
-    "type": "downlink-encode",
+    "description": "Response: keepAliveTime (0x12) with keepalive trailer",
+    "type": "uplink",
     "input": {
-      "data": {
-        "setKeepAlive": 10
-      }
+      "bytes": "1205010258800CE49020012C01",
+      "fPort": 2
     },
     "output": {
-      "errors": [
-        "Downlink encoder is not provided on the public MClimate docs page for this device"
-      ],
+      "data": {
+        "keepAliveTime": 5,
+        "sensorTemperature": 20,
+        "relativeHumidity": 50,
+        "batteryVoltage": 3.3,
+        "CO2": 1168,
+        "powerSourceStatus": 0,
+        "lux": 300,
+        "pir": true
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "description": "Response: PIR check period (0x4b, two bytes) with keepalive trailer",
+    "type": "uplink",
+    "input": {
+      "bytes": "4b003c010258800CE49020012C01",
+      "fPort": 2
+    },
+    "output": {
+      "data": {
+        "pirCheckPeriod": 60,
+        "sensorTemperature": 20,
+        "relativeHumidity": 50,
+        "batteryVoltage": 3.3,
+        "CO2": 1168,
+        "powerSourceStatus": 0,
+        "lux": 300,
+        "pir": true
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "description": "Response: region (0xa4) with keepalive trailer",
+    "type": "uplink",
+    "input": {
+      "bytes": "a401010258800CE49020012C01",
+      "fPort": 2
+    },
+    "output": {
+      "data": {
+        "region": 1,
+        "sensorTemperature": 20,
+        "relativeHumidity": 50,
+        "batteryVoltage": 3.3,
+        "CO2": 1168,
+        "powerSourceStatus": 0,
+        "lux": 300,
+        "pir": true
+      },
+      "errors": [],
       "warnings": []
     }
   },
@@ -79,6 +130,88 @@
       },
       "errors": [],
       "warnings": []
+    }
+  },
+  {
+    "description": "Downlink: set keepalive interval to 10 minutes",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setKeepAlive": 10
+      }
+    },
+    "output": {
+      "bytes": "020A",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "description": "Downlink: set CO2 boundary levels",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setCo2BoundaryLevels": {
+          "good_medium": 600,
+          "medium_bad": 1000
+        }
+      }
+    },
+    "output": {
+      "bytes": "1E025803E8",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "description": "Downlink: set PIR check period to 60",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setPIRCheckPeriod": 60
+      }
+    },
+    "output": {
+      "bytes": "4A003C",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "description": "Downlink: show chart and digital value on the display",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setCo2ImagesVisibility": {
+          "chart": true,
+          "digital_value": true,
+          "emoji": false
+        }
+      }
+    },
+    "output": {
+      "bytes": "8206",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "description": "Downlink: enable the child lock",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setChildLock": true
+      }
+    },
+    "output": {
+      "bytes": "0701",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
     }
   }
 ]

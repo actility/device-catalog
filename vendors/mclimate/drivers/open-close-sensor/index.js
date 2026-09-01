@@ -1,16 +1,6 @@
-// DataCake
-function Decoder(bytes, port){
-    var decoded = decodeUplink({ bytes: bytes, fPort: port }).data;
-    return decoded;
-}
+var KEEPALIVE_BYTE_LEN = 8;
+var KEEPALIVE_MARKERS = [1, 32, 33];
 
-// Milesight
-function Decode(port, bytes){
-    var decoded = decodeUplink({ bytes: bytes, fPort: port }).data;
-    return decoded;
-}
-
-// The Things Industries / Main
 function decodeUplink(input) {
     var bytes = input.bytes;
 
@@ -25,7 +15,7 @@ function decodeUplink(input) {
     function handleKeepalive(bytes, data) {
         // Byte 1: Device battery voltage
         var batteryVoltage = calculateBatteryVoltage(bytes[1]) / 1000;
-        data.batteryVoltage = Number(batteryVoltage.toFixed(1));
+        data.batteryVoltage = Number(batteryVoltage.toFixed(2));
 
         // Byte 2: Thermistor operational status and temperature data (bits 9:8)
         var thermistorConnected = (bytes[2] & 0x04) === 0; // Bit 2
@@ -43,13 +33,11 @@ function decodeUplink(input) {
         data.counter = counter;
 
         // Byte 7: Status and event code
-        const status = bytes[7]
-        const events = { '01': 'keepalive', '32': 'reed switch', '33': 'push button' }
-        const eventKey = bytes[0].toString().padStart(2, '0')
-        const event = events[eventKey]
+        var events = { '01': 'keepalive', '32': 'reed switch', '33': 'push button' };
+        var eventKey = ("0" + bytes[0].toString()).substr(-2);
 
-        data.status = status ?? null;
-        data.event = event ?? null;
+        data.status = bytes[7] === undefined ? null : bytes[7];
+        data.event = events[eventKey] === undefined ? null : events[eventKey];
 
         return data;
     }
@@ -59,7 +47,9 @@ function decodeUplink(input) {
             return ("0" + byte.toString(16)).substr(-2);
         });
 
-        commands = commands.slice(0, -8); 
+        if (hasKeepaliveTrailer(bytes)) {
+            commands = commands.slice(0, -KEEPALIVE_BYTE_LEN);
+        }
         var command_len = 0;
 
         commands.forEach(function (command, i) {
@@ -92,9 +82,14 @@ function decodeUplink(input) {
                     break;
                 case '1f':
                     command_len = 1;
-                    data.sendEventLater = parseInt(commands[i + 1], 16);
+                    data.notificationBlindTime = parseInt(commands[i + 1], 16);
+                    break;
+                case 'a4':
+                    command_len = 1;
+                    data.region = parseInt(commands[i + 1], 16);
                     break;
                 default:
+                    command_len = 0;
                     break;
             }
             commands.splice(i, command_len);
@@ -102,18 +97,129 @@ function decodeUplink(input) {
         return data;
     }
 
+    // A command answer only carries a keepalive when the trailing 8 bytes
+    // start with one of the keepalive markers.
+    function hasKeepaliveTrailer(bytes) {
+        if (bytes.length <= KEEPALIVE_BYTE_LEN) {
+            return false;
+        }
+        var trailer = bytes.slice(-KEEPALIVE_BYTE_LEN);
+        return KEEPALIVE_MARKERS.indexOf(trailer[0]) !== -1;
+    }
+
     var data = {};
 
-    if (bytes[0] === 1 || bytes[0] === 32 || bytes[0] === 33) {
-        data = handleKeepalive(bytes, data);
-    } else {
-        data = handleResponse(bytes, data);
-        // Handle the remaining keepalive data if required after response
-        bytes = bytes.slice(-8);
-        data = handleKeepalive(bytes, data);
+    try {
+        if (!bytes || bytes.length === 0) {
+            throw new Error('Empty payload');
+        }
+
+        if (KEEPALIVE_MARKERS.indexOf(bytes[0]) !== -1) {
+            if (bytes.length < KEEPALIVE_BYTE_LEN) {
+                throw new Error('keepalive must be ' + KEEPALIVE_BYTE_LEN + ' bytes long');
+            }
+            data = handleKeepalive(bytes, data);
+        } else {
+            var decodeKeepalive = hasKeepaliveTrailer(bytes);
+            data = handleResponse(bytes, data);
+            if (decodeKeepalive) {
+                data = handleKeepalive(bytes.slice(-KEEPALIVE_BYTE_LEN), data);
+            }
+        }
+    } catch (error) {
+        return {
+            errors: ['Invalid uplink payload: ' + error.message],
+            warnings: []
+        };
     }
 
     return { data: data };
 }
 
+function encodeDownlink(input) {
+    var bytes = [];
+    var data = (input && input.data) ? input.data : {};
+    var key, i;
+
+    for (key in data) {
+        if (data.hasOwnProperty(key)) {
+            switch (key) {
+                // ---- open/close sensor commands ----
+                case "setNotificationBlindTime":
+                    bytes.push(0x1e);
+                    bytes.push(data.setNotificationBlindTime);
+                    break;
+                case "getNotificationBlindTime":
+                    bytes.push(0x1f);
+                    break;
+                // ---- general commands ----
+                case "setKeepAlive":
+                    bytes.push(0x02);
+                    bytes.push(data.setKeepAlive);
+                    break;
+                case "getKeepAliveTime":
+                    bytes.push(0x12);
+                    break;
+                case "getDeviceVersions":
+                    bytes.push(0x04);
+                    break;
+                case "setJoinRetryPeriod":
+                    bytes.push(0x10);
+                    bytes.push(Math.floor((data.setJoinRetryPeriod * 60) / 5));
+                    break;
+                case "getJoinRetryPeriod":
+                    bytes.push(0x19);
+                    break;
+                case "setUplinkType":
+                    bytes.push(0x11);
+                    bytes.push(data.setUplinkType);
+                    break;
+                case "getUplinkType":
+                    bytes.push(0x1b);
+                    break;
+                case "setWatchDogParams":
+                    bytes.push(0x1c);
+                    bytes.push(data.setWatchDogParams.confirmedUplinks);
+                    bytes.push(data.setWatchDogParams.unconfirmedUplinks);
+                    break;
+                case "getWatchDogParams":
+                    bytes.push(0x1d);
+                    break;
+                case "getRegion":
+                    bytes.push(0xa4);
+                    break;
+                case "sendCustomHexCommand":
+                    for (i = 0; i < data.sendCustomHexCommand.length; i += 2) {
+                        bytes.push(parseInt(data.sendCustomHexCommand.substr(i, 2), 16));
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+    return {
+        bytes: bytes,
+        fPort: 1,
+        warnings: [],
+        errors: []
+    };
+}
+
+function decodeDownlink(input) {
+    return {
+        data: { bytes: input.bytes },
+        warnings: [],
+        errors: []
+    };
+}
+
+// Example downlink commands
+// {"setKeepAlive":10} --> 020A
+// {"setNotificationBlindTime":5} --> 1E05
+// {"getNotificationBlindTime":true} --> 1F
+
 exports.decodeUplink = decodeUplink;
+exports.encodeDownlink = encodeDownlink;
+exports.decodeDownlink = decodeDownlink;

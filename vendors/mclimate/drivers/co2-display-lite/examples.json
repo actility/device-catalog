@@ -42,17 +42,72 @@
     }
   },
   {
-    "description": "Downlink encode: unsupported in public docs",
-    "type": "downlink-encode",
+    "description": "Response: watchdog parameters (0x1d) with keepalive trailer",
+    "type": "uplink",
     "input": {
-      "data": {
-        "setKeepAlive": 10
-      }
+      "bytes": "1d0304010258800CE49020012C",
+      "fPort": 2
     },
     "output": {
-      "errors": [
-        "Downlink encoder is not provided on the public MClimate docs page for this device"
-      ],
+      "data": {
+        "watchDogParams": {
+          "wdpC": 3,
+          "wdpUc": 4
+        },
+        "sensorTemperature": 20,
+        "relativeHumidity": 50,
+        "batteryVoltage": 3.3,
+        "CO2": 1168,
+        "powerSourceStatus": 0,
+        "lux": 300
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "description": "Response: images visibility (0x83) with keepalive trailer",
+    "type": "uplink",
+    "input": {
+      "bytes": "8307010258800CE49020012C",
+      "fPort": 2
+    },
+    "output": {
+      "data": {
+        "imagesVisibility": {
+          "chart": 1,
+          "digital_value": 1,
+          "emoji": 1
+        },
+        "sensorTemperature": 20,
+        "relativeHumidity": 50,
+        "batteryVoltage": 3.3,
+        "CO2": 1168,
+        "powerSourceStatus": 0,
+        "lux": 300
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "description": "Response: uplink sending on button press (0x2f) with keepalive trailer",
+    "type": "uplink",
+    "input": {
+      "bytes": "2f01010258800CE49020012C",
+      "fPort": 2
+    },
+    "output": {
+      "data": {
+        "uplinkSendingOnButtonPress": 1,
+        "sensorTemperature": 20,
+        "relativeHumidity": 50,
+        "batteryVoltage": 3.3,
+        "CO2": 1168,
+        "powerSourceStatus": 0,
+        "lux": 300
+      },
+      "errors": [],
       "warnings": []
     }
   },
@@ -73,6 +128,87 @@
       },
       "errors": [],
       "warnings": []
+    }
+  },
+  {
+    "description": "Downlink: set keepalive interval to 10 minutes",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setKeepAlive": 10
+      }
+    },
+    "output": {
+      "bytes": "020A",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "description": "Downlink: set CO2 boundary levels",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setCo2BoundaryLevels": {
+          "good_medium": 600,
+          "medium_bad": 1000
+        }
+      }
+    },
+    "output": {
+      "bytes": "1E025803E8",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "description": "Downlink: send an uplink on button press",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setUplinkSendingOnButtonPress": 1
+      }
+    },
+    "output": {
+      "bytes": "2E01",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "description": "Downlink: show the digital value on the display",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setCo2ImagesVisibility": {
+          "digital_value": true,
+          "emoji": false
+        }
+      }
+    },
+    "output": {
+      "bytes": "8202",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "description": "Downlink: restart the device",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "restartDevice": true
+      }
+    },
+    "output": {
+      "bytes": "A5",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
     }
   }
 ]

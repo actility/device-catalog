@@ -61,5 +61,83 @@
         "record": 3.312
       }
     }
+  },
+  {
+    "description": "Response: keepAliveTime (0x12) with keepalive trailer",
+    "type": "uplink",
+    "input": {
+      "bytes": "120a0107a04d034bc8aa2bd6",
+      "fPort": 2
+    },
+    "output": {
+      "data": {
+        "keepAliveTime": 10,
+        "sAQI": 240,
+        "AQI": 128,
+        "CO2eq": 2464,
+        "VOC": 12,
+        "relative_humidity": 30,
+        "pressure": 942,
+        "temperature": 25,
+        "accuracy_aqi": 3,
+        "voltage": 3.312
+      }
+    }
+  },
+  {
+    "description": "fail: payload shorter than a keepalive returns an error",
+    "type": "uplink",
+    "input": {
+      "bytes": "0102",
+      "fPort": 2
+    },
+    "output": {
+      "errors": [
+        "Invalid uplink payload: payload must be at least 10 bytes long"
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "description": "Downlink: configure the AQI notification LED",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setAqiLed": {
+          "redBehavior": 1,
+          "redDuration": 10,
+          "greenBehavior": 2,
+          "greenDuration": 20,
+          "blueBehavior": 3,
+          "blueDuration": 30
+        }
+      }
+    },
+    "output": {
+      "bytes": "05214263",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "description": "Downlink decode: passthrough bytes",
+    "type": "downlink-decode",
+    "input": {
+      "bytes": "05214263",
+      "fPort": 1
+    },
+    "output": {
+      "data": {
+        "bytes": [
+          5,
+          33,
+          66,
+          99
+        ]
+      },
+      "warnings": [],
+      "errors": []
+    }
   }
 ]

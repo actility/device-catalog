@@ -31,5 +31,222 @@
         "nature": "valve"
       }
     }
+  },
+  {
+    "description": "Long periodic uplink with valve status and battery",
+    "type": "uplink",
+    "input": {
+      "bytes": "0041141ec9",
+      "fPort": 2
+    },
+    "output": {
+      "data": {
+        "reason": "keepalive",
+        "boxTamper": false,
+        "floodDetectionWireState": false,
+        "flood": false,
+        "magnet": false,
+        "alarmValidated": false,
+        "manualOpenIndicator": true,
+        "manualCloseIndicator": false,
+        "manualControl": {
+          "enableOpen": true,
+          "enableClose": false
+        },
+        "deviceVersions": {
+          "software": 1,
+          "hardware": 0
+        },
+        "closeTime": 20,
+        "openTime": 30,
+        "openCloseTime": {
+          "openingTime": 30,
+          "closingTime": 20
+        },
+        "battery": 3.208
+      }
+    }
+  },
+  {
+    "description": "Long periodic uplink followed by keepAliveTime answer (0x12)",
+    "type": "uplink",
+    "input": {
+      "bytes": "0041141ec9121c",
+      "fPort": 2
+    },
+    "output": {
+      "data": {
+        "reason": "keepalive",
+        "boxTamper": false,
+        "floodDetectionWireState": false,
+        "flood": false,
+        "magnet": false,
+        "alarmValidated": false,
+        "manualOpenIndicator": true,
+        "manualCloseIndicator": false,
+        "manualControl": {
+          "enableOpen": true,
+          "enableClose": false
+        },
+        "deviceVersions": {
+          "software": 1,
+          "hardware": 0
+        },
+        "closeTime": 20,
+        "openTime": 30,
+        "openCloseTime": {
+          "openingTime": 30,
+          "closingTime": 20
+        },
+        "battery": 3.208,
+        "keepAliveTime": 28
+      }
+    }
+  },
+  {
+    "description": "fail: payload shorter than 2 bytes returns an error",
+    "type": "uplink",
+    "input": {
+      "bytes": "2c",
+      "fPort": 2
+    },
+    "output": {
+      "errors": [
+        "Invalid uplink payload: payload must be at least 2 bytes long"
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "description": "Downlink: open the valve",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setValveState": true
+      }
+    },
+    "output": {
+      "bytes": "0C01",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "description": "Downlink: set valve opening and closing time",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setOpenCloseTime": {
+          "openingTime": 10,
+          "closingTime": 20
+        }
+      }
+    },
+    "output": {
+      "bytes": "010A14",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "description": "Downlink: open the valve for a single period of 300 seconds",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setSingleTimeValveState": {
+          "state": true,
+          "time": 300
+        }
+      }
+    },
+    "output": {
+      "bytes": "1401012C",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "description": "Downlink: set working voltage to 3600 mV",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setWorkingVoltage": 3600
+      }
+    },
+    "output": {
+      "bytes": "09FA",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "description": "Downlink: allow manual open only",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setManualControl": {
+          "enableOpen": true,
+          "enableClose": false
+        }
+      }
+    },
+    "output": {
+      "bytes": "0501",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "description": "Downlink: set join retry period to 5 minutes",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setJoinRetryPeriod": 5
+      }
+    },
+    "output": {
+      "bytes": "153C",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "description": "Downlink: read keepalive time",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "getKeepAliveTime": true
+      }
+    },
+    "output": {
+      "bytes": "12",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "description": "Downlink decode: passthrough bytes",
+    "type": "downlink-decode",
+    "input": {
+      "bytes": "0C01",
+      "fPort": 1
+    },
+    "output": {
+      "data": {
+        "bytes": [
+          12,
+          1
+        ]
+      },
+      "warnings": [],
+      "errors": []
+    }
   }
 ]

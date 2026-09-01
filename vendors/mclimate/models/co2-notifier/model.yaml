@@ -10,6 +10,8 @@ logo: co2-notifier.png
 # The lorawanDeviceProfileID consists of 8 upper-case hexadecimal characters, 4 characters for VendorID + 4 characters for VendorProfileID. Please consider using single (') or double (") quotation.
 deviceProfileIds:
   - id: MCLI/CO2NOTIFIER.1.0.3a_ETSI
+  - id: mclimate_RFGroup2_1.0.3a_classA
+  - id: mclimate_RFGroup4_1.0.3a_classA
 
 # You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings.
 # Maximum device TX Conducted output power in dBm.
@@ -48,9 +50,18 @@ sensors:
 # A list of examples description that are compatible with this model
 examples:
   mclimate:co2-notifier:1:
-    - Periodic uplink keepalive
-    - Response keepAliveTime with keepalive trailer
-    - Response boundary levels with keepalive trailer
+    - "Periodic uplink keepalive"
+    - "Response keepAliveTime with keepalive trailer"
+    - "Response boundary levels with keepalive trailer"
+    - "Response notify period (0x23) with keepalive trailer"
+    - "Response region (0xa4) with keepalive trailer"
+    - "fail: payload shorter than a keepalive returns an error"
+    - "Downlink: set keepalive interval to 10 minutes"
+    - "Downlink: set CO2 boundary levels"
+    - "Downlink: set CO2 LED notification"
+    - "Downlink: set buzzer notification"
+    - "Downlink: read CO2 boundary levels"
+    - "Downlink decode: passthrough bytes"
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false

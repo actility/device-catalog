@@ -38,18 +38,31 @@ modelId: mclimate:flood-sensor:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId:
   - mclimate:flood-sensor:1
-  - os1-mcli:flood-sensor:1
 # DataSheet URL (optional) 
 specificationURL: https://3940008670-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F-McDr-jr9h3qA888r1Yp%2Fuploads%2FhmhYjSgOs3qV94Lf0icb%2FMClimate-Flood-Sensor-LoRaWAN-Datasheet-en.pdf?alt=media&token=1ef57a6a-625e-4b96-a6ce-dea8c02bcffc
 # User Guide URL (optional) 
 userGuideURL: https://3940008670-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F-McDr-jr9h3qA888r1Yp%2Fuploads%2FHW90UHqXgj2qB9dEDcXc%2FFlood-Sensor-LoRaWAN-Installation-Manual.pdf?alt=media&token=5658736a-6451-4787-ae27-a000624c0b6e
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
+  - temperature:Cel
+  - batteryVoltage:V
+  - status:state
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
-  os1-mcli:flood-sensor:1:
+  mclimate:flood-sensor:1:
     - "Short periodic uplink"
+    - "Long periodic uplink with temperature"
+    - "Flood detected event"
+    - "Fraud detected event (reason bits 100)"
+    - "Response: keepAliveTime (0x12, two bytes) with keepalive trailer"
+    - "Response: flood alarm duration (0x06) with keepalive trailer"
+    - "fail: payload shorter than 2 bytes returns an error"
+    - "Downlink: set keepalive interval to 60 minutes"
+    - "Downlink: set flood alarm time to 30"
+    - "Downlink: set flood event send time"
+    - "Downlink: read flood alarm time"
+    - "Downlink decode: passthrough bytes"
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false

@@ -38,7 +38,6 @@ modelId: mclimate:t-valve:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId:
   - mclimate:t-valve:1
-  - os1-mcli:t-valve:1
 # DataSheet URL (optional) 
 specificationURL: https://3940008670-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F-McDr-jr9h3qA888r1Yp%2Fuploads%2FWeJw1EnbTCBUsdtkRLwK%2FMClimate-T-Valve-LoRaWAN-Datasheet-en%20.pdf?alt=media&token=41f27bf7-265a-45ce-938d-6be6f4b537a3
 # User Guide URL (optional) 
@@ -52,8 +51,17 @@ sensors:
 examples:
   mclimate:t-valve:1:
     - "Short periodic uplink"
-  os1-mcli:t-valve:1:
-    - "Short periodic uplink"
+    - "Long periodic uplink with valve status and battery"
+    - "Long periodic uplink followed by keepAliveTime answer (0x12)"
+    - "fail: payload shorter than 2 bytes returns an error"
+    - "Downlink: open the valve"
+    - "Downlink: set valve opening and closing time"
+    - "Downlink: open the valve for a single period of 300 seconds"
+    - "Downlink: set working voltage to 3600 mV"
+    - "Downlink: allow manual open only"
+    - "Downlink: set join retry period to 5 minutes"
+    - "Downlink: read keepalive time"
+    - "Downlink decode: passthrough bytes"
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false

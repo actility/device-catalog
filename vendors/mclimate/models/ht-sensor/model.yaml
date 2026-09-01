@@ -38,7 +38,6 @@ modelId: mclimate:ht-sensor:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId:
   - mclimate:ht-sensor:1
-  - os1-mcli:ht-sensor:1
 # DataSheet URL (optional) 
 specificationURL: https://3940008670-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F-McDr-jr9h3qA888r1Yp%2Fuploads%2FuWtULrkAnkdqgLeWDsIu%2FMClimate-HT-Sensor-LoRaWAN-Batteries-Datasheet-en.pdf?alt=media&token=efb23d15-d43d-490b-b82a-c205131feb5c
 # User Guide URL (optional) 
@@ -51,10 +50,19 @@ sensors:
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
-  os1-mcli:ht-sensor:1:
-    - "Short periodic uplink"
   mclimate:ht-sensor:1:
     - "Short periodic uplink"
+    - "Periodic uplink with external thermistor readings"
+    - "Periodic uplink where the temperature low byte is below 0x10"
+    - "Response: keepAliveTime (0x12) with keepalive trailer"
+    - "Response: temperature compensation (0x32) with keepalive trailer"
+    - "fail: payload shorter than a keepalive returns an error"
+    - "Downlink: set keepalive interval to 10 minutes"
+    - "Downlink: set negative temperature compensation of 1.5C"
+    - "Downlink: set humidity compensation of 5%"
+    - "Downlink: set device to device communication period"
+    - "Downlink: read temperature compensation"
+    - "Downlink decode: passthrough bytes"
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false

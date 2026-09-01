@@ -1,16 +1,3 @@
-// DataCake
-function Decoder(bytes, port){
-    var decoded = decodeUplink({ bytes: bytes, fPort: port }).data;
-    return decoded;
-}
-
-// Milesight
-function Decode(port, bytes){
-    var decoded = decodeUplink({ bytes: bytes, fPort: port }).data;
-    return decoded;
-}
-
-// The Things Industries / Main
 function decodeUplink(input) {
     try {
         var bytes = input.bytes;
@@ -162,5 +149,99 @@ function decodeDownlink(input) {
     };
 }
 
+function encodeDownlink(input) {
+    var bytes = [];
+    var data = (input && input.data) ? input.data : {};
+    var key, i;
+
+    for (key in data) {
+        if (data.hasOwnProperty(key)) {
+            switch (key) {
+                // ---- button commands ----
+                case "setSendEventLater":
+                    bytes.push(0x1e);
+                    bytes.push(data.setSendEventLater);
+                    break;
+                case "getSendEventLater":
+                    bytes.push(0x1f);
+                    break;
+                case "clearPressEventCounter":
+                    bytes.push(0x20);
+                    bytes.push(data.clearPressEventCounter);
+                    break;
+                case "getSinglePressEventCounter":
+                    bytes.push(0xb1);
+                    break;
+                case "getDoublePressEventCounter":
+                    bytes.push(0xb2);
+                    break;
+                case "getTriplePressEventCounter":
+                    bytes.push(0xb3);
+                    break;
+                case "restartDevice":
+                    bytes.push(0xa5);
+                    break;
+                // ---- general commands ----
+                case "setKeepAlive":
+                    bytes.push(0x02);
+                    bytes.push(data.setKeepAlive);
+                    break;
+                case "getKeepAliveTime":
+                    bytes.push(0x12);
+                    break;
+                case "getDeviceVersions":
+                    bytes.push(0x04);
+                    break;
+                case "setJoinRetryPeriod":
+                    bytes.push(0x10);
+                    bytes.push(Math.floor((data.setJoinRetryPeriod * 60) / 5));
+                    break;
+                case "getJoinRetryPeriod":
+                    bytes.push(0x19);
+                    break;
+                case "setUplinkType":
+                    bytes.push(0x11);
+                    bytes.push(data.setUplinkType);
+                    break;
+                case "getUplinkType":
+                    bytes.push(0x1b);
+                    break;
+                case "setWatchDogParams":
+                    bytes.push(0x1c);
+                    bytes.push(data.setWatchDogParams.confirmedUplinks);
+                    bytes.push(data.setWatchDogParams.unconfirmedUplinks);
+                    break;
+                case "getWatchDogParams":
+                    bytes.push(0x1d);
+                    break;
+                case "getRegion":
+                    bytes.push(0xa4);
+                    break;
+                case "sendCustomHexCommand":
+                    for (i = 0; i < data.sendCustomHexCommand.length; i += 2) {
+                        bytes.push(parseInt(data.sendCustomHexCommand.substr(i, 2), 16));
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+    return {
+        bytes: bytes,
+        fPort: 1,
+        warnings: [],
+        errors: []
+    };
+}
+
+// Example downlink commands
+// {"setKeepAlive":10} --> 020A
+// {"setSendEventLater":5} --> 1E05
+// {"clearPressEventCounter":1} --> 2001
+// {"getSinglePressEventCounter":true} --> B1
+
 exports.decodeUplink = decodeUplink;
+exports.encodeDownlink = encodeDownlink;
 exports.decodeDownlink = decodeDownlink;

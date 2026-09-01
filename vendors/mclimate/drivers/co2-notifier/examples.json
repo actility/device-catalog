@@ -1,112 +1,283 @@
 [
-    {
-        "description": "Periodic uplink keepalive",
-        "type": "uplink",
-        "input": {
-            "bytes": "010271027384ed",
-            "fPort": 1,
-            "recvTime": "2024-04-04T12:00:00.000+02:00"
-        },
-        "output": {
-            "data": {
-                "CO2": 625,
-                "sensorTemperature": 22.7,
-                "relativeHumidity": 51.56,
-                "batteryVoltage": 3.5
-            }
-        },
-        "points": {
-            "co2Level": {
-                "unitId": "ppm",
-                "record": 625
-            },
-            "temperature": {
-                "unitId": "Cel",
-                "record": 22.7
-            },
-            "humidity": {
-                "unitId": "%RH",
-                "record": 51.56
-            },
-            "batteryVoltage": {
-                "unitId": "V",
-                "record": 3.5
-            }
-        }
+  {
+    "description": "Periodic uplink keepalive",
+    "type": "uplink",
+    "input": {
+      "bytes": "010271027384ed",
+      "fPort": 1,
+      "recvTime": "2024-04-04T12:00:00.000+02:00"
     },
-    {
-        "description": "Response keepAliveTime with keepalive trailer",
-        "type": "uplink",
-        "input": {
-            "bytes": "120a010271027384ed",
-            "fPort": 1,
-            "recvTime": "2024-04-04T12:01:00.000+02:00"
-        },
-        "output": {
-            "data": {
-                "keepAliveTime": 10,
-                "CO2": 625,
-                "sensorTemperature": 22.7,
-                "relativeHumidity": 51.56,
-                "batteryVoltage": 3.5
-            }
-        },
-        "points": {
-            "co2Level": {
-                "unitId": "ppm",
-                "record": 625
-            },
-            "temperature": {
-                "unitId": "Cel",
-                "record": 22.7
-            },
-            "humidity": {
-                "unitId": "%RH",
-                "record": 51.56
-            },
-            "batteryVoltage": {
-                "unitId": "V",
-                "record": 3.5
-            }
-        }
+    "output": {
+      "data": {
+        "CO2": 625,
+        "sensorTemperature": 22.7,
+        "relativeHumidity": 51.56,
+        "batteryVoltage": 3.5
+      }
     },
-    {
-        "description": "Response boundary levels with keepalive trailer",
-        "type": "uplink",
-        "input": {
-            "bytes": "1f01900320010271027384ed",
-            "fPort": 1,
-            "recvTime": "2024-04-04T12:02:00.000+02:00"
-        },
-        "output": {
-            "data": {
-                "boundaryLevels": {
-                    "good_medium": 400,
-                    "medium_bad": 800
-                },
-                "CO2": 625,
-                "sensorTemperature": 22.7,
-                "relativeHumidity": 51.56,
-                "batteryVoltage": 3.5
-            }
-        },
-        "points": {
-            "co2Level": {
-                "unitId": "ppm",
-                "record": 625
-            },
-            "temperature": {
-                "unitId": "Cel",
-                "record": 22.7
-            },
-            "humidity": {
-                "unitId": "%RH",
-                "record": 51.56
-            },
-            "batteryVoltage": {
-                "unitId": "V",
-                "record": 3.5
-            }
-        }
+    "points": {
+      "co2Level": {
+        "unitId": "ppm",
+        "record": 625
+      },
+      "temperature": {
+        "unitId": "Cel",
+        "record": 22.7
+      },
+      "humidity": {
+        "unitId": "%RH",
+        "record": 51.56
+      },
+      "batteryVoltage": {
+        "unitId": "V",
+        "record": 3.5
+      }
     }
+  },
+  {
+    "description": "Response keepAliveTime with keepalive trailer",
+    "type": "uplink",
+    "input": {
+      "bytes": "120a010271027384ed",
+      "fPort": 1,
+      "recvTime": "2024-04-04T12:01:00.000+02:00"
+    },
+    "output": {
+      "data": {
+        "keepAliveTime": 10,
+        "CO2": 625,
+        "sensorTemperature": 22.7,
+        "relativeHumidity": 51.56,
+        "batteryVoltage": 3.5
+      }
+    },
+    "points": {
+      "co2Level": {
+        "unitId": "ppm",
+        "record": 625
+      },
+      "temperature": {
+        "unitId": "Cel",
+        "record": 22.7
+      },
+      "humidity": {
+        "unitId": "%RH",
+        "record": 51.56
+      },
+      "batteryVoltage": {
+        "unitId": "V",
+        "record": 3.5
+      }
+    }
+  },
+  {
+    "description": "Response boundary levels with keepalive trailer",
+    "type": "uplink",
+    "input": {
+      "bytes": "1f01900320010271027384ed",
+      "fPort": 1,
+      "recvTime": "2024-04-04T12:02:00.000+02:00"
+    },
+    "output": {
+      "data": {
+        "boundaryLevels": {
+          "good_medium": 400,
+          "medium_bad": 800
+        },
+        "CO2": 625,
+        "sensorTemperature": 22.7,
+        "relativeHumidity": 51.56,
+        "batteryVoltage": 3.5
+      }
+    },
+    "points": {
+      "co2Level": {
+        "unitId": "ppm",
+        "record": 625
+      },
+      "temperature": {
+        "unitId": "Cel",
+        "record": 22.7
+      },
+      "humidity": {
+        "unitId": "%RH",
+        "record": 51.56
+      },
+      "batteryVoltage": {
+        "unitId": "V",
+        "record": 3.5
+      }
+    }
+  },
+  {
+    "description": "Response notify period (0x23) with keepalive trailer",
+    "type": "uplink",
+    "input": {
+      "bytes": "23050a14010271027384ed",
+      "fPort": 2
+    },
+    "output": {
+      "data": {
+        "notifyPeriod": {
+          "good_zone": 5,
+          "medium_zone": 10,
+          "bad_zone": 20
+        },
+        "CO2": 625,
+        "sensorTemperature": 22.7,
+        "relativeHumidity": 51.56,
+        "batteryVoltage": 3.5
+      }
+    }
+  },
+  {
+    "description": "Response region (0xa4) with keepalive trailer",
+    "type": "uplink",
+    "input": {
+      "bytes": "a401010271027384ed",
+      "fPort": 2
+    },
+    "output": {
+      "data": {
+        "region": 1,
+        "CO2": 625,
+        "sensorTemperature": 22.7,
+        "relativeHumidity": 51.56,
+        "batteryVoltage": 3.5
+      }
+    }
+  },
+  {
+    "description": "fail: payload shorter than a keepalive returns an error",
+    "type": "uplink",
+    "input": {
+      "bytes": "0102",
+      "fPort": 2
+    },
+    "output": {
+      "errors": [
+        "Invalid uplink payload: payload must be at least 7 bytes long"
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "description": "Downlink: set keepalive interval to 10 minutes",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setKeepAlive": 10
+      }
+    },
+    "output": {
+      "bytes": "020A",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "description": "Downlink: set CO2 boundary levels",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setCo2BoundaryLevels": {
+          "good_medium": 600,
+          "medium_bad": 1000
+        }
+      }
+    },
+    "output": {
+      "bytes": "1E025803E8",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "description": "Downlink: set CO2 LED notification",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setCo2Led": {
+          "red_good": 0,
+          "green_good": 255,
+          "blue_good": 0,
+          "duration_good": 100,
+          "red_medium": 255,
+          "green_medium": 255,
+          "blue_medium": 0,
+          "duration_medium": 200,
+          "red_bad": 255,
+          "green_bad": 0,
+          "blue_bad": 0,
+          "duration_bad": 300
+        }
+      }
+    },
+    "output": {
+      "bytes": "2800FF00000AFFFF000014FF0000001E",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "description": "Downlink: set buzzer notification",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setBuzzerNotification": {
+          "duration_good_beeping": 1,
+          "duration_good_loud": 100,
+          "duration_good_silent": 200,
+          "duration_medium_beeping": 2,
+          "duration_medium_loud": 100,
+          "duration_medium_silent": 200,
+          "duration_bad_beeping": 3,
+          "duration_bad_loud": 100,
+          "duration_bad_silent": 200
+        }
+      }
+    },
+    "output": {
+      "bytes": "26010A14020A14030A14",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "description": "Downlink: read CO2 boundary levels",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "getCo2BoundaryLevels": true
+      }
+    },
+    "output": {
+      "bytes": "1F",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "description": "Downlink decode: passthrough bytes",
+    "type": "downlink-decode",
+    "input": {
+      "bytes": "020A",
+      "fPort": 1
+    },
+    "output": {
+      "data": {
+        "bytes": [
+          2,
+          10
+        ]
+      },
+      "warnings": [],
+      "errors": []
+    }
+  }
 ]

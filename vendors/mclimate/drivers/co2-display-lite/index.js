@@ -1,16 +1,3 @@
-// DataCake
-function Decoder(bytes, port){
-    var decoded = decodeUplink({ bytes: bytes, fPort: port }).data;
-    return decoded;
-}
-
-// Milesight
-function Decode(port, bytes){
-    var decoded = decodeUplink({ bytes: bytes, fPort: port }).data;
-    return decoded;
-}
-
-// The Things Industries / Main
 function decodeUplink(input) {
     try{
         var bytes = input.bytes;
@@ -55,7 +42,8 @@ function decodeUplink(input) {
         var commands = bytes.map(function(byte){
             return ("0" + byte.toString(16)).substr(-2); 
         });
-        commands = commands.slice(0,-8);
+        // The CO2 Display Lite keepalive is 10 bytes long.
+        commands = commands.slice(0,-10);
         var command_len = 0;
     
         commands.map(function (command, i) {
@@ -108,8 +96,7 @@ function decodeUplink(input) {
                 case '1d':
                     {
                         command_len = 2;
-                        var deviceKeepAlive = 5;
-                        var wdpC = commands[i + 1] == '00' ? false : commands[i + 1] * deviceKeepAlive + 7;
+                        var wdpC = commands[i + 1] == '00' ? false : parseInt(commands[i + 1], 16);
                         var wdpUc = commands[i + 2] == '00' ? false : parseInt(commands[i + 2], 16);
                         data.watchDogParams= { wdpC: wdpC, wdpUc: wdpUc } ;
                     }
@@ -161,10 +148,33 @@ function decodeUplink(input) {
                         data.lightIntensityVisibility = parseInt(commands[i + 1], 16) ;
                     }
                 break;
+                case '2f':
+                    {
+                        command_len = 1;
+                        data.uplinkSendingOnButtonPress = parseInt(commands[i + 1], 16) ;
+                    }
+                break;
                 case '80':
                     {
                         command_len = 1;
                         data.measurementBlindTime = parseInt(commands[i + 1], 16) ;
+                    }
+                break;
+                case '83':
+                    {
+                        command_len = 1;
+                        var visibilityByte = parseInt(commands[i + 1], 16);
+                        data.imagesVisibility = {
+                            chart: (visibilityByte >> 2) & 0x01,
+                            digital_value: (visibilityByte >> 1) & 0x01,
+                            emoji: visibilityByte & 0x01
+                        };
+                    }
+                break;
+                case 'a4':
+                    {
+                        command_len = 1;
+                        data.region = parseInt(commands[i + 1], 16) ;
                     }
                 break;
                 case 'a0': {
@@ -200,9 +210,163 @@ function decodeUplink(input) {
 }
 
 function encodeDownlink(input) {
+    var bytes = [];
+    var data = (input && input.data) ? input.data : {};
+    var key, i;
+
+    function pushUInt16(value) {
+        bytes.push((value >> 8) & 0xff);
+        bytes.push(value & 0xff);
+    }
+
+    for (key in data) {
+        if (data.hasOwnProperty(key)) {
+            switch (key) {
+                // ---- general commands ----
+                case "setKeepAlive":
+                    bytes.push(0x02);
+                    bytes.push(data.setKeepAlive);
+                    break;
+                case "getKeepAliveTime":
+                    bytes.push(0x12);
+                    break;
+                case "getDeviceVersions":
+                    bytes.push(0x04);
+                    break;
+                case "setJoinRetryPeriod":
+                    bytes.push(0x10);
+                    bytes.push(Math.floor((data.setJoinRetryPeriod * 60) / 5));
+                    break;
+                case "getJoinRetryPeriod":
+                    bytes.push(0x19);
+                    break;
+                case "setUplinkType":
+                    bytes.push(0x11);
+                    bytes.push(data.setUplinkType);
+                    break;
+                case "getUplinkType":
+                    bytes.push(0x1b);
+                    break;
+                case "setWatchDogParams":
+                    bytes.push(0x1c);
+                    bytes.push(data.setWatchDogParams.confirmedUplinks);
+                    bytes.push(data.setWatchDogParams.unconfirmedUplinks);
+                    break;
+                case "getWatchDogParams":
+                    bytes.push(0x1d);
+                    break;
+                case "getRegion":
+                    bytes.push(0xa4);
+                    break;
+                // ---- child lock ----
+                case "setChildLock":
+                    bytes.push(0x07);
+                    bytes.push(data.setChildLock ? 0x01 : 0x00);
+                    break;
+                case "getChildLock":
+                    bytes.push(0x14);
+                    break;
+                // ---- CO2 sensor commands (notify period, buzzer and LED are not
+                // available on the display variants) ----
+                case "setCo2BoundaryLevels":
+                    bytes.push(0x1e);
+                    pushUInt16(data.setCo2BoundaryLevels.good_medium);
+                    pushUInt16(data.setCo2BoundaryLevels.medium_bad);
+                    break;
+                case "getCo2BoundaryLevels":
+                    bytes.push(0x1f);
+                    break;
+                case "setCo2AutoZeroValue":
+                    bytes.push(0x20);
+                    pushUInt16(data.setCo2AutoZeroValue);
+                    break;
+                case "getCo2AutoZeroValue":
+                    bytes.push(0x21);
+                    break;
+                case "setCo2MeasurementPeriod":
+                    bytes.push(0x24);
+                    bytes.push(data.setCo2MeasurementPeriod.good_zone);
+                    bytes.push(data.setCo2MeasurementPeriod.medium_zone);
+                    bytes.push(data.setCo2MeasurementPeriod.bad_zone);
+                    break;
+                case "getCo2MeasurementPeriod":
+                    bytes.push(0x25);
+                    break;
+                case "setCo2AutoZeroPeriod":
+                    bytes.push(0x2a);
+                    bytes.push(data.setCo2AutoZeroPeriod);
+                    break;
+                case "getCo2AutoZeroPeriod":
+                    bytes.push(0x2b);
+                    break;
+                // ---- display commands ----
+                case "setDisplayRefreshPeriod":
+                    bytes.push(0x33);
+                    bytes.push(data.setDisplayRefreshPeriod);
+                    break;
+                case "getDisplayRefreshPeriod":
+                    bytes.push(0x34);
+                    break;
+                case "setDeepSleepMode":
+                    bytes.push(0x3b);
+                    bytes.push(data.setDeepSleepMode);
+                    break;
+                case "setCurrentTemperatureVisibility":
+                    bytes.push(0x40);
+                    bytes.push(data.setCurrentTemperatureVisibility);
+                    break;
+                case "getCurrentTemperatureVisibility":
+                    bytes.push(0x41);
+                    break;
+                case "setHumidityVisibility":
+                    bytes.push(0x42);
+                    bytes.push(data.setHumidityVisibility);
+                    break;
+                case "getHumidityVisibility":
+                    bytes.push(0x43);
+                    break;
+                case "setLightIntensityVisibility":
+                    bytes.push(0x44);
+                    bytes.push(data.setLightIntensityVisibility);
+                    break;
+                case "getLightIntensityVisibility":
+                    bytes.push(0x45);
+                    break;
+                case "getCo2ImagesVisibility":
+                    bytes.push(0x83);
+                    break;
+                case "setCo2ImagesVisibility":
+                    // bit 1 digital value, bit 0 emoji
+                    bytes.push(0x82);
+                    bytes.push((data.setCo2ImagesVisibility.digital_value ? 0x02 : 0x00) |
+                        (data.setCo2ImagesVisibility.emoji ? 0x01 : 0x00));
+                    break;
+                case "setUplinkSendingOnButtonPress":
+                    bytes.push(0x2e);
+                    bytes.push(data.setUplinkSendingOnButtonPress);
+                    break;
+                case "getUplinkSendingOnButtonPress":
+                    bytes.push(0x2f);
+                    break;
+                case "restartDevice":
+                    bytes.push(0xa5);
+                    break;
+                case "sendCustomHexCommand":
+                    for (i = 0; i < data.sendCustomHexCommand.length; i += 2) {
+                        bytes.push(parseInt(data.sendCustomHexCommand.substr(i, 2), 16));
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
     return {
-        errors: ["Downlink encoder is not provided on the public MClimate docs page for this device"],
-        warnings: []
+        bytes: bytes,
+        fPort: 1,
+        warnings: [],
+        errors: []
     };
 }
 
@@ -213,6 +377,13 @@ function decodeDownlink(input) {
         warnings: []
     };
 }
+
+// Example downlink commands
+// {"setKeepAlive":10} --> 020A
+// {"setCo2BoundaryLevels":{"good_medium":600,"medium_bad":1000}} --> 1E025803E8
+// {"setUplinkSendingOnButtonPress":1} --> 2E01
+// {"setCo2ImagesVisibility":{"digital_value":true,"emoji":false}} --> 8202
+// {"restartDevice":true} --> A5
 
 exports.decodeUplink = decodeUplink;
 exports.encodeDownlink = encodeDownlink;

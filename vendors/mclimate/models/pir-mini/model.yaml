@@ -1,9 +1,9 @@
 # Commercial name of the model
-name: CO2 Display LoRaWAN
+name: PIR Mini LoRaWAN
 # Functional description of the product. Maximum 500 characters.
-description: MClimate CO2 Display is a LoRaWAN indoor air quality device with CO2, temperature, humidity, light and PIR presence sensing.
+description: MClimate PIR Mini is a compact LoRaWAN occupancy sensor combining PIR presence detection with temperature, humidity and light intensity measurement. It reports occupancy events and a PIR trigger counter, and its occupancy timeout, blind time and LED brightness are configurable over the air.
 # Logo of the device
-logo: co2-display.png
+logo: pir-mini.png
 # ID(s) of the profile that defines the LoRaWAN characteristics of this model.
 # id: as defined under /profiles.
 # lorawanDeviceProfileID: as defined by LoRa Alliance in https://lora-alliance.org/wp-content/uploads/2020/10/LoRa_Alliance_Vendor_ID_for_QR_Code_02142022.pdf.
@@ -24,44 +24,51 @@ maxTxEIRP:
 minTxEIRP:
 # Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'
 # or 'random' (not known, changes over time).
-motionIndicator:
+motionIndicator: near_static
 
 # Is your device certified by the LoRa Alliance? Possible values: true, false.
 LoRaWANCertified: false
+# Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
 # Format: `<8 characters max>:<16 characters max>:<digits only>`
 # Be careful: Once you chose a model, it cannot be changed later
-modelId: mclimate:co2-display:1
+modelId: mclimate:pir-mini:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 # Format: `<8 characters max>:<16 characters max>:<digits only>`
 # Be careful: Once you chose a protocolId, it cannot be changed later
 protocolId:
-  - mclimate:co2-display:1
+  - mclimate:pir-mini:1
 # DataSheet URL (optional)
-specificationURL: https://3940008670-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F-McDr-jr9h3qA888r1Yp%2Fuploads%2FayhC2LiSECIybZVCubgn%2FMClimate-CO2-Display-Datasheet.pdf?alt=media&token=94ce5f00-de21-4049-9209-0ffde58f4975
+specificationURL: https://docs.mclimate.eu/mclimate-lorawan-devices/devices/mclimate-pir-mini
 # User Guide URL (optional)
-userGuideURL: https://3940008670-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F-McDr-jr9h3qA888r1Yp%2Fuploads%2FC1UrUQVxxCTKnxsQHF3B%2FCO2-Display-LoRaWAN-User-Manual.pdf?alt=media&token=3b9d0be7-817d-495a-9585-0d100416098a
+userGuideURL:
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
   - temperature:Cel
   - humidity:%RH
-  - co2Level:ppm
   - illuminance:lx
   - presence:state
+  - counter:count
   - batteryVoltage:V
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
-  mclimate:co2-display:1:
+  mclimate:pir-mini:1:
     - "Periodic uplink (keepalive)"
-    - "Response: keepAliveTime (0x12) with keepalive trailer"
-    - "Response: PIR check period (0x4b, two bytes) with keepalive trailer"
-    - "Response: region (0xa4) with keepalive trailer"
-    - "Downlink decode: passthrough bytes"
+    - "Periodic uplink with the light sensor disabled"
+    - "Periodic uplink with a light sensor error"
+    - "Occupancy event (0x3a) with keepalive trailer"
+    - "Unoccupied event (0x3b) with keepalive trailer"
+    - "PIR trigger event (0x40) with keepalive trailer"
+    - "Response: LED brightness (0x22) and PIR sensor state (0x37) with keepalive trailer"
+    - "Response: PIR blind time (0x42, two bytes) with keepalive trailer"
+    - "fail: payload shorter than a keepalive returns an error"
     - "Downlink: set keepalive interval to 10 minutes"
-    - "Downlink: set CO2 boundary levels"
-    - "Downlink: set PIR check period to 60"
-    - "Downlink: show chart and digital value on the display"
-    - "Downlink: enable the child lock"
+    - "Downlink: enable the PIR sensor"
+    - "Downlink: set occupancy timeout to 300 seconds"
+    - "Downlink: set PIR blind time to 60 seconds"
+    - "Downlink: set LED brightness"
+    - "Downlink: restart the device"
+    - "Downlink decode: passthrough bytes"
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false

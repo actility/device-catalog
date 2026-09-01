@@ -116,8 +116,8 @@ function decodeUplink(input) {
                         break;
                     case '30':
                     {
-                        command_len = 1;
-                        data.manualTargetTemperatureUpdate = parseInt(commands[i + 1], 16);
+                        command_len = 2;
+                        data.manualTargetTemperatureUpdate = ((parseInt(commands[i + 1], 16) << 8) | parseInt(commands[i + 2], 16)) / 10;
                     }
                         break;
                     case '32':
@@ -141,7 +141,7 @@ function decodeUplink(input) {
                     case '3e':
                     {
                         command_len = 2;
-                        data.extSensorTemperature = (parseInt(commands[i + 1], 16) << 8) | parseInt(commands[i + 2], 16);
+                        data.extSensorTemperature = ((parseInt(commands[i + 1], 16) << 8) | parseInt(commands[i + 2], 16)) / 10;
                     }
                         break;
                     case '41':
@@ -201,7 +201,7 @@ function decodeUplink(input) {
                     case '53':
                     {
                         command_len = 1;
-                        data.operationalMode = parseInt(commands[i + 1], 16);
+                        data.fctOperationalMode = parseInt(commands[i + 1], 16);
                     }
                         break;
                     case '55':
@@ -225,7 +225,7 @@ function decodeUplink(input) {
                     case '5b':
                     {
                         command_len = 2;
-                        data.tempSensorCompensation = { compensation: parseInt(commands[i + 1], 16), temperature: parseInt(commands[i + 2], 16) };
+                        data.tempSensorCompensation = { compensation: parseInt(commands[i + 1], 16), temperature: parseInt(commands[i + 2], 16) / 10 };
                     }
                         break;
                     case '5d':
@@ -279,7 +279,7 @@ function decodeUplink(input) {
                     case '6d':
                     {
                         command_len = 2;
-                        data.deltaTemperature2and3 = { deltaTemperature2: parseInt(commands[i + 1], 16) * 10, deltaTemperature3: parseInt(commands[i + 2], 16) * 10 };
+                        data.deltaTemperature2and3 = { deltaTemperature2: parseInt(commands[i + 1], 16) / 10, deltaTemperature3: parseInt(commands[i + 2], 16) / 10 };
                     }
                         break;
                     case '6e':
@@ -316,6 +316,12 @@ function decodeUplink(input) {
                     {
                         command_len = 2;
                         data.automaticChangeoverMode = { ntcTemperature: parseInt(commands[i + 1], 16), automaticChangeover: parseInt(commands[i + 2], 16) };
+                    }
+                        break;
+                    case 'a4':
+                    {
+                        command_len = 1;
+                        data.region = parseInt(commands[i + 1], 16);
                     }
                         break;
                     case '75':
@@ -396,7 +402,7 @@ function decodeUplink(input) {
 // The Things Industries / Main
 function encodeDownlink(input) {
     var bytes = [];
-    for (let key in input.data) {
+    for (var key in input.data) {
         switch (key) {
             case "setKeepAlive": {
                 bytes.push(0x02);
@@ -422,7 +428,7 @@ function encodeDownlink(input) {
             }
             case "setTargetTemperatureStep": {
                 bytes.push(0x03);
-                bytes.push(input.data.setTargetTemperatureStep);
+                bytes.push(Math.round(input.data.setTargetTemperatureStep * 10));
                 break;
             }
             case "getTargetTemperatureStep": {
@@ -472,8 +478,8 @@ function encodeDownlink(input) {
             }
             case "setWatchDogParams": {
                 bytes.push(0x1C);
-                bytes.push(input.data.SetWatchDogParams.confirmedUplinks);
-                bytes.push(input.data.SetWatchDogParams.unconfirmedUplinks);
+                bytes.push(input.data.setWatchDogParams.confirmedUplinks);
+                bytes.push(input.data.setWatchDogParams.unconfirmedUplinks);
                 break;
             }
             case "getWatchDogParams": {
@@ -540,7 +546,7 @@ function encodeDownlink(input) {
                 bytes.push(input.data.setEcmVoltageRange.max * 10);
                 break;
             }
-            case "setEcmVoltageRange": {
+            case "getEcmVoltageRange": {
                 bytes.push(0x49);
                 break;
             }
@@ -549,7 +555,7 @@ function encodeDownlink(input) {
                 bytes.push(input.data.setEcmStartUpTime);
                 break;
             }
-            case "setEcmStartUpTime": {
+            case "getEcmStartUpTime": {
                 bytes.push(0x4B);
                 break;
             }
@@ -563,12 +569,12 @@ function encodeDownlink(input) {
                 break;
             }
             case "setFrostProtection": {
-                bytes.push(0x4F);
+                bytes.push(0x4E);
                 bytes.push(input.data.setFrostProtection);
                 break;
             }
             case "getFrostProtection": {
-                bytes.push(0x4D);
+                bytes.push(0x4F);
                 break;
             }
             case "setFrostProtectionSettings": {
@@ -693,7 +699,7 @@ function encodeDownlink(input) {
             }
             case "setDeltaTemperature1": {
                 bytes.push(0x6A);
-                bytes.push(input.data.setDeltaTemperature1);
+                bytes.push(Math.round(input.data.setDeltaTemperature1 * 10));
                 break;
             }
             case "getDeltaTemperature1": {
@@ -730,12 +736,8 @@ function encodeDownlink(input) {
                 bytes.push(0x73);
                 break;
             }
-            case "getDewPointSensorStatus": {
-                bytes.push(0x72);
-                break;
-            }
-            case "getFilterAlarm": {
-                bytes.push(0x73);
+            case "getRegion": {
+                bytes.push(0xA4);
                 break;
             }
             case "sendCustomHexCommand": {
