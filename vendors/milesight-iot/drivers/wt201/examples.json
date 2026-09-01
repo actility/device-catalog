@@ -289,7 +289,11 @@
         "description": "Downlink encode: temperature_control_enable",
         "type": "downlink-encode",
         "inputBACnet": {
-            "temperature_control_enable": 1
+            "temperature_control_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
         },
         "input": {
             "data": {

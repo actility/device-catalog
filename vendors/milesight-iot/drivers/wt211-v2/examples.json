@@ -58,7 +58,11 @@
         "description": "Downlink encode: fan_delay_config_enable",
         "type": "downlink-encode",
         "inputBACnet": {
-            "fan_delay_config_enable": 1
+            "fan_delay_config_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
         },
         "input": {
             "data": {

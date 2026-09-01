@@ -120,7 +120,11 @@
         "description": "Downlink encode: blind_detection_enable",
         "type": "downlink-encode",
         "inputBACnet": {
-            "blind_detection_enable": 1
+            "blind_detection_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
         },
         "input": {
             "data": {

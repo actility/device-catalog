@@ -79,7 +79,11 @@
         "description": "Downlink encode: led_indicator_enable",
         "type": "downlink-encode",
         "inputBACnet": {
-            "led_indicator_enable": 1
+            "led_indicator_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
         },
         "input": {
             "data": {

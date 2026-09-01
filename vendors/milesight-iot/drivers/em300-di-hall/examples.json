@@ -49,7 +49,11 @@
         "description": "Downlink encode: pulse_filter_enable",
         "type": "downlink-encode",
         "inputBACnet": {
-            "pulse_filter_enable": 1
+            "pulse_filter_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
         },
         "input": {
             "data": {

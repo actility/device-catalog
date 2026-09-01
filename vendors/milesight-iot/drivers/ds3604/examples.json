@@ -61,7 +61,11 @@
         "description": "Downlink encode: buzzer_enable",
         "type": "downlink-encode",
         "inputBACnet": {
-            "buzzer_enable": 1
+            "buzzer_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
         },
         "input": {
             "data": {

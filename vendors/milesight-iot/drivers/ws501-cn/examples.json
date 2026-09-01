@@ -87,7 +87,11 @@
         "description": "Downlink encode: reset_button_enable",
         "type": "downlink-encode",
         "inputBACnet": {
-            "reset_button_enable": 1
+            "reset_button_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
         },
         "input": {
             "data": {

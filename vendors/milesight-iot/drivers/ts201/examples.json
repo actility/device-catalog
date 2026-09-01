@@ -154,7 +154,11 @@
         "description": "Downlink encode: alarm_release_enable",
         "type": "downlink-encode",
         "inputBACnet": {
-            "alarm_release_enable": 1
+            "alarm_release_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
         },
         "input": {
             "data": {

@@ -200,7 +200,11 @@
         "description": "Downlink encode: tamper_detection_enable",
         "type": "downlink-encode",
         "inputBACnet": {
-            "tamper_detection_enable": 1
+            "tamper_detection_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
         },
         "input": {
             "data": {

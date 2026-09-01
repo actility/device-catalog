@@ -116,7 +116,11 @@
         "description": "Downlink encode: alarm_deactivation_enable",
         "type": "downlink-encode",
         "inputBACnet": {
-            "alarm_deactivation_enable": 1
+            "alarm_deactivation_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
         },
         "input": {
             "data": {

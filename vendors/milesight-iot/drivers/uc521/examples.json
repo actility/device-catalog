@@ -76,7 +76,11 @@
         "description": "Downlink encode: wiring_switch_enable",
         "type": "downlink-encode",
         "inputBACnet": {
-            "wiring_switch_enable": 1
+            "wiring_switch_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
         },
         "input": {
             "data": {

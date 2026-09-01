@@ -99,7 +99,11 @@
         "description": "Downlink encode: d2d_master_enable",
         "type": "downlink-encode",
         "inputBACnet": {
-            "d2d_master_enable": 1
+            "d2d_master_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
         },
         "input": {
             "data": {

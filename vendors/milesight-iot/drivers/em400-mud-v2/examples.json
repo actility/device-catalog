@@ -100,7 +100,11 @@
         "description": "Downlink encode: install_height_enable",
         "type": "downlink-encode",
         "inputBACnet": {
-            "install_height_enable": 1
+            "install_height_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
         },
         "input": {
             "data": {

@@ -302,7 +302,11 @@
         "description": "Downlink encode: adr_enable",
         "type": "downlink-encode",
         "inputBACnet": {
-            "adr_enable": 1
+            "adr_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
         },
         "input": {
             "data": {

@@ -60,7 +60,11 @@
         "description": "Downlink encode: time_sync_enable",
         "type": "downlink-encode",
         "inputBACnet": {
-            "time_sync_enable": 1
+            "time_sync_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
         },
         "input": {
             "data": {

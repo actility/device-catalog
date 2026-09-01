@@ -69,7 +69,11 @@
         "description": "Downlink encode: history_enable",
         "type": "downlink-encode",
         "inputBACnet": {
-            "history_enable": 1
+            "history_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
         },
         "input": {
             "data": {

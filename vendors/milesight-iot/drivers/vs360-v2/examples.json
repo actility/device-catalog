@@ -127,7 +127,11 @@
         "description": "Downlink encode: report_cumulative_enable",
         "type": "downlink-encode",
         "inputBACnet": {
-            "report_cumulative_enable": 1
+            "report_cumulative_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
         },
         "input": {
             "data": {

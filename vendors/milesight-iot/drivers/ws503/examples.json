@@ -147,7 +147,11 @@
         "description": "Downlink encode: reboot",
         "type": "downlink-encode",
         "inputBACnet": {
-            "reboot": 1
+            "reboot": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
         },
         "input": {
             "data": {

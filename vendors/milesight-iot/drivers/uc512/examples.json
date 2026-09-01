@@ -86,7 +86,11 @@
         "description": "Downlink encode: retransmit_enable",
         "type": "downlink-encode",
         "inputBACnet": {
-            "retransmit_enable": 1
+            "retransmit_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
         },
         "input": {
             "data": {

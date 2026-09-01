@@ -147,7 +147,11 @@
         "description": "Downlink encode: report_status",
         "type": "downlink-encode",
         "inputBACnet": {
-            "report_status": 1
+            "report_status": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
         },
         "input": {
             "data": {

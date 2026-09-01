@@ -79,7 +79,11 @@
         "description": "Downlink encode: test_enable",
         "type": "downlink-encode",
         "inputBACnet": {
-            "test_enable": 1
+            "test_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
         },
         "input": {
             "data": {

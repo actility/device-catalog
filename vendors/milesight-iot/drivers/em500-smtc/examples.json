@@ -75,7 +75,11 @@
         "description": "Downlink encode: sensor_all_enable",
         "type": "downlink-encode",
         "inputBACnet": {
-            "sensor_all_enable": 1
+            "sensor_all_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
         },
         "input": {
             "data": {
