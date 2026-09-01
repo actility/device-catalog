@@ -35,6 +35,7 @@ modelId: mclimate:16a-spm:1
 # Format: `<8 characters max>:<16 characters max>:<digits only>`
 # Be careful: Once you chose a protocolId, it cannot be changed later
 protocolId:
+  - mclimate:16a-spm:2
   - mclimate:16a-spm:1
 # DataSheet URL (optional)
 specificationURL: https://docs.mclimate.eu/mclimate-lorawan-devices/devices/mclimate-16a-switch-and-power-meter-lorawan-16aspm
@@ -51,7 +52,7 @@ sensors:
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
-  mclimate:16a-spm:1:
+  mclimate:16a-spm:2:
     - "Periodic uplink (keepalive)"
     - "Periodic uplink with negative internal temperature (sign bit set)"
     - "Response: relay state change reason (0x54) with keepalive trailer"
@@ -63,6 +64,10 @@ examples:
     - "Downlink: set overpower threshold (two bytes)"
     - "Downlink: set relay timer in milliseconds"
     - "fail: payload shorter than a keepalive returns an error"
+  mclimate:16a-spm:1:
+    - "Periodic uplink (keepalive)"
+    - "Downlink: set relay state ON"
+    - "Downlink decode: passthrough bytes"
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false

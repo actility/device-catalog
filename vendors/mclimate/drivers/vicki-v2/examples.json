@@ -1,0 +1,457 @@
+[
+  {
+    "description": "Periodic uplink",
+    "type": "uplink",
+    "input": {
+      "bytes": "011d5a78fa2c01f080",
+      "fPort": 1
+    },
+    "output": {
+      "data": {
+        "reason": 1,
+        "targetTemperature": 29,
+        "sensorTemperature": 18.01,
+        "relativeHumidity": 46.88,
+        "motorRange": 300,
+        "motorPosition": 250,
+        "batteryVoltage": 3.5,
+        "openWindow": false,
+        "highMotorConsumption": false,
+        "lowMotorConsumption": false,
+        "brokenSensor": false,
+        "childLock": true,
+        "calibrationFailed": false,
+        "attachedBackplate": false,
+        "perceiveAsOnline": false,
+        "antiFreezeProtection": false,
+        "d2dCommunicationReliable": false,
+        "batteryTooLow": false,
+        "valveOpenness": 17,
+        "targetTemperatureFloat": 29
+      }
+    },
+    "points": {
+      "temperature:1": {
+        "unitId": "Cel",
+        "record": 29
+      },
+      "temperature:2": {
+        "unitId": "Cel",
+        "record": 18.01
+      },
+      "humidity": {
+        "unitId": "%RH",
+        "record": 46.88
+      },
+      "batteryVoltage": {
+        "unitId": "V",
+        "record": 3.5
+      },
+      "angle:1": {
+        "unitId": "deg",
+        "record": 300
+      },
+      "angle:2": {
+        "unitId": "deg",
+        "record": 250
+      },
+      "status:1": {
+        "unitId": "state",
+        "record": false
+      },
+      "status:2": {
+        "unitId": "state",
+        "record": true
+      },
+      "status:3": {
+        "unitId": "state",
+        "record": false
+      },
+      "status:4": {
+        "unitId": "state",
+        "record": false
+      },
+      "status:5": {
+        "unitId": "state",
+        "record": false
+      }
+    }
+  },
+  {
+    "description": "Periodic uplink (keepalive type 0x81, precise temperature sensor)",
+    "type": "uplink",
+    "input": {
+      "bytes": "811d5a78fa2c01f080",
+      "fPort": 1
+    },
+    "output": {
+      "data": {
+        "reason": 129,
+        "targetTemperature": 29,
+        "sensorTemperature": 10.88,
+        "relativeHumidity": 46.88,
+        "motorRange": 300,
+        "motorPosition": 250,
+        "batteryVoltage": 3.5,
+        "openWindow": false,
+        "highMotorConsumption": false,
+        "lowMotorConsumption": false,
+        "brokenSensor": false,
+        "childLock": true,
+        "calibrationFailed": false,
+        "attachedBackplate": false,
+        "perceiveAsOnline": false,
+        "antiFreezeProtection": false,
+        "d2dCommunicationReliable": false,
+        "batteryTooLow": false,
+        "valveOpenness": 17,
+        "targetTemperatureFloat": 29
+      }
+    },
+    "points": {
+      "temperature:1": {
+        "unitId": "Cel",
+        "record": 29
+      },
+      "temperature:2": {
+        "unitId": "Cel",
+        "record": 10.88
+      },
+      "humidity": {
+        "unitId": "%RH",
+        "record": 46.88
+      },
+      "batteryVoltage": {
+        "unitId": "V",
+        "record": 3.5
+      },
+      "angle:1": {
+        "unitId": "deg",
+        "record": 300
+      },
+      "angle:2": {
+        "unitId": "deg",
+        "record": 250
+      },
+      "status:1": {
+        "unitId": "state",
+        "record": false
+      },
+      "status:2": {
+        "unitId": "state",
+        "record": true
+      },
+      "status:3": {
+        "unitId": "state",
+        "record": false
+      },
+      "status:4": {
+        "unitId": "state",
+        "record": false
+      },
+      "status:5": {
+        "unitId": "state",
+        "record": false
+      }
+    }
+  },
+  {
+    "description": "Response: temperature hysteresis (0x42) with keepalive trailer",
+    "type": "uplink",
+    "input": {
+      "bytes": "4205011d5a78fa2c01f080",
+      "fPort": 1
+    },
+    "output": {
+      "data": {
+        "tempHysteresis": 0.5,
+        "reason": 1,
+        "targetTemperature": 29,
+        "sensorTemperature": 18.01,
+        "relativeHumidity": 46.88,
+        "motorRange": 300,
+        "motorPosition": 250,
+        "batteryVoltage": 3.5,
+        "openWindow": false,
+        "highMotorConsumption": false,
+        "lowMotorConsumption": false,
+        "brokenSensor": false,
+        "childLock": true,
+        "calibrationFailed": false,
+        "attachedBackplate": false,
+        "perceiveAsOnline": false,
+        "antiFreezeProtection": false,
+        "d2dCommunicationReliable": false,
+        "batteryTooLow": false,
+        "valveOpenness": 17,
+        "targetTemperatureFloat": 29
+      }
+    },
+    "points": {
+      "temperature:1": {
+        "unitId": "Cel",
+        "record": 29
+      },
+      "temperature:2": {
+        "unitId": "Cel",
+        "record": 18.01
+      },
+      "humidity": {
+        "unitId": "%RH",
+        "record": 46.88
+      },
+      "batteryVoltage": {
+        "unitId": "V",
+        "record": 3.5
+      },
+      "angle:1": {
+        "unitId": "deg",
+        "record": 300
+      },
+      "angle:2": {
+        "unitId": "deg",
+        "record": 250
+      },
+      "status:1": {
+        "unitId": "state",
+        "record": false
+      },
+      "status:2": {
+        "unitId": "state",
+        "record": true
+      },
+      "status:3": {
+        "unitId": "state",
+        "record": false
+      },
+      "status:4": {
+        "unitId": "state",
+        "record": false
+      },
+      "status:5": {
+        "unitId": "state",
+        "record": false
+      }
+    }
+  },
+  {
+    "description": "Response: open window parameters (0x13) with delta 10 and keepalive trailer",
+    "type": "uplink",
+    "input": {
+      "bytes": "130106202a011d5a78fa2c01f080",
+      "fPort": 1
+    },
+    "output": {
+      "data": {
+        "openWindowParams": {
+          "enabled": true,
+          "duration": 30,
+          "motorPosition": 544,
+          "delta": 10
+        },
+        "reason": 1,
+        "targetTemperature": 29,
+        "sensorTemperature": 18.01,
+        "relativeHumidity": 46.88,
+        "motorRange": 300,
+        "motorPosition": 250,
+        "batteryVoltage": 3.5,
+        "openWindow": false,
+        "highMotorConsumption": false,
+        "lowMotorConsumption": false,
+        "brokenSensor": false,
+        "childLock": true,
+        "calibrationFailed": false,
+        "attachedBackplate": false,
+        "perceiveAsOnline": false,
+        "antiFreezeProtection": false,
+        "d2dCommunicationReliable": false,
+        "batteryTooLow": false,
+        "valveOpenness": 17,
+        "targetTemperatureFloat": 29
+      }
+    },
+    "points": {
+      "temperature:1": {
+        "unitId": "Cel",
+        "record": 29
+      },
+      "temperature:2": {
+        "unitId": "Cel",
+        "record": 18.01
+      },
+      "humidity": {
+        "unitId": "%RH",
+        "record": 46.88
+      },
+      "batteryVoltage": {
+        "unitId": "V",
+        "record": 3.5
+      },
+      "angle:1": {
+        "unitId": "deg",
+        "record": 300
+      },
+      "angle:2": {
+        "unitId": "deg",
+        "record": 250
+      },
+      "status:1": {
+        "unitId": "state",
+        "record": false
+      },
+      "status:2": {
+        "unitId": "state",
+        "record": true
+      },
+      "status:3": {
+        "unitId": "state",
+        "record": false
+      },
+      "status:4": {
+        "unitId": "state",
+        "record": false
+      },
+      "status:5": {
+        "unitId": "state",
+        "record": false
+      }
+    }
+  },
+  {
+    "description": "fail: empty payload returns an error",
+    "type": "uplink",
+    "input": {
+      "bytes": "",
+      "fPort": 1
+    },
+    "output": {
+      "errors": [
+        "Invalid uplink payload: Empty payload"
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "description": "Downlink: Setting target temperature and open window parameters",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setTargetTemperature": 20,
+        "setOpenWindow": {
+          "enabled": true,
+          "closeTime": 20,
+          "delta": 3,
+          "motorPosition": 540
+        }
+      }
+    },
+    "output": {
+      "bytes": "0E140601041C23",
+      "errors": [],
+      "fPort": 1,
+      "warnings": []
+    }
+  },
+  {
+    "description": "Downlink: Set precise (float) target temperature to 21.5C",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setTargetTemperature": 21.5
+      }
+    },
+    "output": {
+      "bytes": "5100D7",
+      "errors": [],
+      "fPort": 1,
+      "warnings": []
+    }
+  },
+  {
+    "description": "Downlink: Set internal algorithm parameters",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setInternalAlgoParams": {
+          "period": 5,
+          "pFirstLast": 10,
+          "pNext": 20
+        }
+      }
+    },
+    "output": {
+      "bytes": "0C050A14",
+      "errors": [],
+      "fPort": 1,
+      "warnings": []
+    }
+  },
+  {
+    "description": "Downlink: Set valve openness",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setValveOpenness": 50
+      }
+    },
+    "output": {
+      "bytes": "4E32",
+      "errors": [],
+      "fPort": 1,
+      "warnings": []
+    }
+  },
+  {
+    "description": "Downlink: Set target temperature and motor position",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setTargetTemperatureAndMotorPosition": {
+          "motorPosition": 50,
+          "targetTemperature": 22
+        }
+      }
+    },
+    "output": {
+      "bytes": "31003216",
+      "errors": [],
+      "fPort": 1,
+      "warnings": []
+    }
+  },
+  {
+    "description": "Downlink: Set motor position only",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setMotorPositionOnly": 50
+      }
+    },
+    "output": {
+      "bytes": "2D0032",
+      "errors": [],
+      "fPort": 1,
+      "warnings": []
+    }
+  },
+  {
+    "description": "Downlink decode: passthrough bytes",
+    "type": "downlink-decode",
+    "input": {
+      "bytes": "4E32",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "bytes": [
+          78,
+          50
+        ]
+      },
+      "errors": [],
+      "warnings": []
+    }
+  }
+]

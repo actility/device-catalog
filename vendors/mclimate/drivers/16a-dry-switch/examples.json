@@ -1,7 +1,7 @@
 [
   {
-    "type": "uplink",
     "description": "keepalive: internal temperature positive, relay ON",
+    "type": "uplink",
     "input": {
       "bytes": "011e01",
       "fPort": 1,
@@ -28,8 +28,8 @@
     }
   },
   {
-    "type": "uplink",
     "description": "keepalive: internal temperature positive, relay OFF",
+    "type": "uplink",
     "input": {
       "bytes": "011600",
       "fPort": 1,
@@ -56,8 +56,8 @@
     }
   },
   {
-    "type": "uplink",
     "description": "keepalive: internal temperature negative (sign bit set), relay ON",
+    "type": "uplink",
     "input": {
       "bytes": "018501",
       "fPort": 1,
@@ -84,8 +84,8 @@
     }
   },
   {
-    "type": "uplink",
     "description": "response: device versions (0x04) + keepalive trailer",
+    "type": "uplink",
     "input": {
       "bytes": "040205011e01",
       "fPort": 1,
@@ -116,8 +116,8 @@
     }
   },
   {
-    "type": "uplink",
     "description": "response: keepAliveTime (0x12) + keepalive trailer",
+    "type": "uplink",
     "input": {
       "bytes": "120a011400",
       "fPort": 1,
@@ -145,8 +145,8 @@
     }
   },
   {
-    "type": "uplink",
     "description": "response: joinRetryPeriod (0x19) where 0x3C -> 5 minutes + keepalive trailer",
+    "type": "uplink",
     "input": {
       "bytes": "193c011901",
       "fPort": 1,
@@ -174,8 +174,8 @@
     }
   },
   {
-    "type": "uplink",
     "description": "response: watchdog params (0x1d) + keepalive trailer",
+    "type": "uplink",
     "input": {
       "bytes": "1d0304010a00",
       "fPort": 1,
@@ -206,8 +206,8 @@
     }
   },
   {
-    "type": "uplink",
     "description": "response: overheating thresholds (0x1f) + keepalive trailer",
+    "type": "uplink",
     "input": {
       "bytes": "1f5045012d01",
       "fPort": 1,
@@ -238,8 +238,8 @@
     }
   },
   {
-    "type": "uplink",
     "description": "response: FUOTA address (0xa0) + region (0xa4) + keepalive trailer",
+    "type": "uplink",
     "input": {
       "bytes": "a001020304a401011e00",
       "fPort": 1,
@@ -285,6 +285,17 @@
       },
       "warnings": [],
       "errors": []
+    },
+    "points": {
+      "temperature": {
+        "unitId": "Cel",
+        "record": 25
+      },
+      "status": {
+        "unitId": "state",
+        "record": true,
+        "nature": "relay"
+      }
     }
   },
   {
@@ -305,11 +316,22 @@
       },
       "warnings": [],
       "errors": []
+    },
+    "points": {
+      "temperature": {
+        "unitId": "Cel",
+        "record": 25
+      },
+      "status": {
+        "unitId": "state",
+        "record": true,
+        "nature": "relay"
+      }
     }
   },
   {
-    "type": "uplink",
     "description": "fail: too short payload -> decoder throws 'Unhandled data'",
+    "type": "uplink",
     "input": {
       "bytes": "01",
       "fPort": 1,

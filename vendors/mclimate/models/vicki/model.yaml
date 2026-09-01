@@ -37,7 +37,9 @@ LoRaWANCertified: false
 modelId: mclimate:vicki:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId:
+  - mclimate:vicki:2
   - mclimate:vicki:1
+  - os1-mcli:vicki:1
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 
@@ -52,7 +54,7 @@ sensors:
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
-  mclimate:vicki:1:
+  mclimate:vicki:2:
     - "Periodic uplink"
     - "Periodic uplink (keepalive type 0x81, precise temperature sensor)"
     - "Response: temperature hysteresis (0x42) with keepalive trailer"
@@ -65,6 +67,9 @@ examples:
     - "Downlink: Set target temperature and motor position"
     - "Downlink: Set motor position only"
     - "Downlink decode: passthrough bytes"
+  os1-mcli:vicki:1:
+    - "Periodic uplink"
+    - "Downlink: Setting target temperature and open window parameters"
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false

@@ -1,11 +1,10 @@
 [
   {
-    "description": "Periodic uplink keepalive",
+    "description": "Short periodic uplink",
     "type": "uplink",
     "input": {
       "bytes": "010271027384ed",
-      "fPort": 1,
-      "recvTime": "2024-04-04T12:00:00.000+02:00"
+      "fPort": 2
     },
     "output": {
       "data": {
@@ -35,48 +34,11 @@
     }
   },
   {
-    "description": "Response keepAliveTime with keepalive trailer",
-    "type": "uplink",
-    "input": {
-      "bytes": "120a010271027384ed",
-      "fPort": 1,
-      "recvTime": "2024-04-04T12:01:00.000+02:00"
-    },
-    "output": {
-      "data": {
-        "keepAliveTime": 10,
-        "CO2": 625,
-        "sensorTemperature": 22.7,
-        "relativeHumidity": 51.56,
-        "batteryVoltage": 3.5
-      }
-    },
-    "points": {
-      "co2Level": {
-        "unitId": "ppm",
-        "record": 625
-      },
-      "temperature": {
-        "unitId": "Cel",
-        "record": 22.7
-      },
-      "humidity": {
-        "unitId": "%RH",
-        "record": 51.56
-      },
-      "batteryVoltage": {
-        "unitId": "V",
-        "record": 3.5
-      }
-    }
-  },
-  {
-    "description": "Response boundary levels with keepalive trailer",
+    "description": "Response boundary levels (0x1f) with keepalive trailer",
     "type": "uplink",
     "input": {
       "bytes": "1f01900320010271027384ed",
-      "fPort": 1,
-      "recvTime": "2024-04-04T12:02:00.000+02:00"
+      "fPort": 2
     },
     "output": {
       "data": {
@@ -110,15 +72,15 @@
     }
   },
   {
-    "description": "Response notify period (0x23) with keepalive trailer",
+    "description": "Response measurement period (0x25) with keepalive trailer",
     "type": "uplink",
     "input": {
-      "bytes": "23050a14010271027384ed",
+      "bytes": "25050a14010271027384ed",
       "fPort": 2
     },
     "output": {
       "data": {
-        "notifyPeriod": {
+        "measurementPeriod": {
           "good_zone": 5,
           "medium_zone": 10,
           "bad_zone": 20
@@ -149,15 +111,15 @@
     }
   },
   {
-    "description": "Response region (0xa4) with keepalive trailer",
+    "description": "Response auto zero period (0x2b) with keepalive trailer",
     "type": "uplink",
     "input": {
-      "bytes": "a401010271027384ed",
+      "bytes": "2b18010271027384ed",
       "fPort": 2
     },
     "output": {
       "data": {
-        "region": 1,
+        "autoZeroPeriod": 24,
         "CO2": 625,
         "sensorTemperature": 22.7,
         "relativeHumidity": 51.56,
@@ -198,101 +160,49 @@
     }
   },
   {
-    "description": "Downlink: set keepalive interval to 10 minutes",
+    "description": "Downlink: set CO2 measurement period",
     "type": "downlink-encode",
     "input": {
       "data": {
-        "setKeepAlive": 10
-      }
-    },
-    "output": {
-      "bytes": "020A",
-      "fPort": 1,
-      "warnings": [],
-      "errors": []
-    }
-  },
-  {
-    "description": "Downlink: set CO2 boundary levels",
-    "type": "downlink-encode",
-    "input": {
-      "data": {
-        "setCo2BoundaryLevels": {
-          "good_medium": 600,
-          "medium_bad": 1000
+        "setCo2MeasurementPeriod": {
+          "good_zone": 5,
+          "medium_zone": 10,
+          "bad_zone": 20
         }
       }
     },
     "output": {
-      "bytes": "1E025803E8",
+      "bytes": "24050A14",
       "fPort": 1,
       "warnings": [],
       "errors": []
     }
   },
   {
-    "description": "Downlink: set CO2 LED notification",
+    "description": "Downlink: set CO2 auto zero period to 24 hours",
     "type": "downlink-encode",
     "input": {
       "data": {
-        "setCo2Led": {
-          "red_good": 0,
-          "green_good": 255,
-          "blue_good": 0,
-          "duration_good": 100,
-          "red_medium": 255,
-          "green_medium": 255,
-          "blue_medium": 0,
-          "duration_medium": 200,
-          "red_bad": 255,
-          "green_bad": 0,
-          "blue_bad": 0,
-          "duration_bad": 300
-        }
+        "setCo2AutoZeroPeriod": 24
       }
     },
     "output": {
-      "bytes": "2800FF00000AFFFF000014FF0000001E",
+      "bytes": "2A18",
       "fPort": 1,
       "warnings": [],
       "errors": []
     }
   },
   {
-    "description": "Downlink: set buzzer notification",
+    "description": "Downlink: read device versions",
     "type": "downlink-encode",
     "input": {
       "data": {
-        "setBuzzerNotification": {
-          "duration_good_beeping": 1,
-          "duration_good_loud": 100,
-          "duration_good_silent": 200,
-          "duration_medium_beeping": 2,
-          "duration_medium_loud": 100,
-          "duration_medium_silent": 200,
-          "duration_bad_beeping": 3,
-          "duration_bad_loud": 100,
-          "duration_bad_silent": 200
-        }
+        "getDeviceVersions": true
       }
     },
     "output": {
-      "bytes": "26010A14020A14030A14",
-      "fPort": 1,
-      "warnings": [],
-      "errors": []
-    }
-  },
-  {
-    "description": "Downlink: read CO2 boundary levels",
-    "type": "downlink-encode",
-    "input": {
-      "data": {
-        "getCo2BoundaryLevels": true
-      }
-    },
-    "output": {
-      "bytes": "1F",
+      "bytes": "04",
       "fPort": 1,
       "warnings": [],
       "errors": []
@@ -302,14 +212,14 @@
     "description": "Downlink decode: passthrough bytes",
     "type": "downlink-decode",
     "input": {
-      "bytes": "020A",
+      "bytes": "2A18",
       "fPort": 1
     },
     "output": {
       "data": {
         "bytes": [
-          2,
-          10
+          42,
+          24
         ]
       },
       "warnings": [],

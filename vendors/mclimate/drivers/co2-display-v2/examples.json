@@ -3,7 +3,7 @@
     "description": "Periodic uplink (keepalive)",
     "type": "uplink",
     "input": {
-      "bytes": "010258800CE49020012C",
+      "bytes": "010258800CE49020012C01",
       "fPort": 1
     },
     "output": {
@@ -13,7 +13,8 @@
         "batteryVoltage": 3.3,
         "CO2": 1168,
         "powerSourceStatus": 0,
-        "lux": 300
+        "lux": 300,
+        "pir": true
       },
       "errors": [],
       "warnings": []
@@ -34,6 +35,11 @@
       "illuminance": {
         "unitId": "lx",
         "record": 300
+      },
+      "presence": {
+        "unitId": "state",
+        "record": true,
+        "nature": "pir"
       },
       "batteryVoltage": {
         "unitId": "V",
@@ -42,24 +48,22 @@
     }
   },
   {
-    "description": "Response: watchdog parameters (0x1d) with keepalive trailer",
+    "description": "Response: keepAliveTime (0x12) with keepalive trailer",
     "type": "uplink",
     "input": {
-      "bytes": "1d0304010258800CE49020012C",
+      "bytes": "1205010258800CE49020012C01",
       "fPort": 2
     },
     "output": {
       "data": {
-        "watchDogParams": {
-          "wdpC": 3,
-          "wdpUc": 4
-        },
+        "keepAliveTime": 5,
         "sensorTemperature": 20,
         "relativeHumidity": 50,
         "batteryVoltage": 3.3,
         "CO2": 1168,
         "powerSourceStatus": 0,
-        "lux": 300
+        "lux": 300,
+        "pir": true
       },
       "errors": [],
       "warnings": []
@@ -80,6 +84,11 @@
       "illuminance": {
         "unitId": "lx",
         "record": 300
+      },
+      "presence": {
+        "unitId": "state",
+        "record": true,
+        "nature": "pir"
       },
       "batteryVoltage": {
         "unitId": "V",
@@ -88,25 +97,22 @@
     }
   },
   {
-    "description": "Response: images visibility (0x83) with keepalive trailer",
+    "description": "Response: PIR check period (0x4b, two bytes) with keepalive trailer",
     "type": "uplink",
     "input": {
-      "bytes": "8307010258800CE49020012C",
+      "bytes": "4b003c010258800CE49020012C01",
       "fPort": 2
     },
     "output": {
       "data": {
-        "imagesVisibility": {
-          "chart": 1,
-          "digital_value": 1,
-          "emoji": 1
-        },
+        "pirCheckPeriod": 60,
         "sensorTemperature": 20,
         "relativeHumidity": 50,
         "batteryVoltage": 3.3,
         "CO2": 1168,
         "powerSourceStatus": 0,
-        "lux": 300
+        "lux": 300,
+        "pir": true
       },
       "errors": [],
       "warnings": []
@@ -127,6 +133,11 @@
       "illuminance": {
         "unitId": "lx",
         "record": 300
+      },
+      "presence": {
+        "unitId": "state",
+        "record": true,
+        "nature": "pir"
       },
       "batteryVoltage": {
         "unitId": "V",
@@ -135,21 +146,22 @@
     }
   },
   {
-    "description": "Response: uplink sending on button press (0x2f) with keepalive trailer",
+    "description": "Response: region (0xa4) with keepalive trailer",
     "type": "uplink",
     "input": {
-      "bytes": "2f01010258800CE49020012C",
+      "bytes": "a401010258800CE49020012C01",
       "fPort": 2
     },
     "output": {
       "data": {
-        "uplinkSendingOnButtonPress": 1,
+        "region": 1,
         "sensorTemperature": 20,
         "relativeHumidity": 50,
         "batteryVoltage": 3.3,
         "CO2": 1168,
         "powerSourceStatus": 0,
-        "lux": 300
+        "lux": 300,
+        "pir": true
       },
       "errors": [],
       "warnings": []
@@ -170,6 +182,11 @@
       "illuminance": {
         "unitId": "lx",
         "record": 300
+      },
+      "presence": {
+        "unitId": "state",
+        "record": true,
+        "nature": "pir"
       },
       "batteryVoltage": {
         "unitId": "V",
@@ -230,48 +247,49 @@
     }
   },
   {
-    "description": "Downlink: send an uplink on button press",
+    "description": "Downlink: set PIR check period to 60",
     "type": "downlink-encode",
     "input": {
       "data": {
-        "setUplinkSendingOnButtonPress": 1
+        "setPIRCheckPeriod": 60
       }
     },
     "output": {
-      "bytes": "2E01",
+      "bytes": "4A003C",
       "fPort": 1,
       "warnings": [],
       "errors": []
     }
   },
   {
-    "description": "Downlink: show the digital value on the display",
+    "description": "Downlink: show chart and digital value on the display",
     "type": "downlink-encode",
     "input": {
       "data": {
         "setCo2ImagesVisibility": {
+          "chart": true,
           "digital_value": true,
           "emoji": false
         }
       }
     },
     "output": {
-      "bytes": "8202",
+      "bytes": "8206",
       "fPort": 1,
       "warnings": [],
       "errors": []
     }
   },
   {
-    "description": "Downlink: restart the device",
+    "description": "Downlink: enable the child lock",
     "type": "downlink-encode",
     "input": {
       "data": {
-        "restartDevice": true
+        "setChildLock": true
       }
     },
     "output": {
-      "bytes": "A5",
+      "bytes": "0701",
       "fPort": 1,
       "warnings": [],
       "errors": []
