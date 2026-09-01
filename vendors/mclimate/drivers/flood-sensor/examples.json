@@ -29,6 +29,47 @@
         "record": true,
         "nature": "box tamper"
       }
+    },
+    "BACnet": {
+      "battery": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 3.216,
+        "units": "VOLTS"
+      },
+      "boxTamper": {
+        "object": "BINARY_VALUE",
+        "presentValue": 1
+      },
+      "flood": {
+        "object": "BINARY_VALUE",
+        "presentValue": 0
+      },
+      "reason": {
+        "object": "CHARACTERSTRING_VALUE",
+        "presentValue": "keepalive"
+      }
+    },
+    "Modbus": {
+      "battery": {
+        "table": "inputRegister",
+        "value": 3.22,
+        "value_type": "FLOAT"
+      },
+      "boxTamper": {
+        "table": "discreteInput",
+        "value": 1,
+        "value_type": "BOOL"
+      },
+      "flood": {
+        "table": "discreteInput",
+        "value": 0,
+        "value_type": "BOOL"
+      },
+      "reason": {
+        "table": "inputRegister",
+        "value": "keepalive",
+        "value_type": "STRING"
+      }
     }
   },
   {
@@ -65,6 +106,57 @@
         "unitId": "state",
         "record": true,
         "nature": "box tamper"
+      }
+    },
+    "BACnet": {
+      "battery": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 3.216,
+        "units": "VOLTS"
+      },
+      "boxTamper": {
+        "object": "BINARY_VALUE",
+        "presentValue": 1
+      },
+      "flood": {
+        "object": "BINARY_VALUE",
+        "presentValue": 0
+      },
+      "reason": {
+        "object": "CHARACTERSTRING_VALUE",
+        "presentValue": "keepalive"
+      },
+      "temperature": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 22,
+        "units": "DEGREES_CELSIUS"
+      }
+    },
+    "Modbus": {
+      "battery": {
+        "table": "inputRegister",
+        "value": 3.22,
+        "value_type": "FLOAT"
+      },
+      "boxTamper": {
+        "table": "discreteInput",
+        "value": 1,
+        "value_type": "BOOL"
+      },
+      "flood": {
+        "table": "discreteInput",
+        "value": 0,
+        "value_type": "BOOL"
+      },
+      "reason": {
+        "table": "inputRegister",
+        "value": "keepalive",
+        "value_type": "STRING"
+      },
+      "temperature": {
+        "table": "inputRegister",
+        "value": 22,
+        "value_type": "INT16"
       }
     }
   },
@@ -103,6 +195,57 @@
         "record": false,
         "nature": "box tamper"
       }
+    },
+    "BACnet": {
+      "battery": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 3.216,
+        "units": "VOLTS"
+      },
+      "boxTamper": {
+        "object": "BINARY_VALUE",
+        "presentValue": 0
+      },
+      "flood": {
+        "object": "BINARY_VALUE",
+        "presentValue": 1
+      },
+      "reason": {
+        "object": "CHARACTERSTRING_VALUE",
+        "presentValue": "floodDetected"
+      },
+      "temperature": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 22,
+        "units": "DEGREES_CELSIUS"
+      }
+    },
+    "Modbus": {
+      "battery": {
+        "table": "inputRegister",
+        "value": 3.22,
+        "value_type": "FLOAT"
+      },
+      "boxTamper": {
+        "table": "discreteInput",
+        "value": 0,
+        "value_type": "BOOL"
+      },
+      "flood": {
+        "table": "discreteInput",
+        "value": 1,
+        "value_type": "BOOL"
+      },
+      "reason": {
+        "table": "inputRegister",
+        "value": "floodDetected",
+        "value_type": "STRING"
+      },
+      "temperature": {
+        "table": "inputRegister",
+        "value": 22,
+        "value_type": "INT16"
+      }
     }
   },
   {
@@ -139,6 +282,57 @@
         "unitId": "state",
         "record": false,
         "nature": "box tamper"
+      }
+    },
+    "BACnet": {
+      "battery": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 3.216,
+        "units": "VOLTS"
+      },
+      "boxTamper": {
+        "object": "BINARY_VALUE",
+        "presentValue": 0
+      },
+      "flood": {
+        "object": "BINARY_VALUE",
+        "presentValue": 0
+      },
+      "reason": {
+        "object": "CHARACTERSTRING_VALUE",
+        "presentValue": "fraudDetected"
+      },
+      "temperature": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 22,
+        "units": "DEGREES_CELSIUS"
+      }
+    },
+    "Modbus": {
+      "battery": {
+        "table": "inputRegister",
+        "value": 3.22,
+        "value_type": "FLOAT"
+      },
+      "boxTamper": {
+        "table": "discreteInput",
+        "value": 0,
+        "value_type": "BOOL"
+      },
+      "flood": {
+        "table": "discreteInput",
+        "value": 0,
+        "value_type": "BOOL"
+      },
+      "reason": {
+        "table": "inputRegister",
+        "value": "fraudDetected",
+        "value_type": "STRING"
+      },
+      "temperature": {
+        "table": "inputRegister",
+        "value": 22,
+        "value_type": "INT16"
       }
     }
   },
@@ -178,6 +372,67 @@
         "record": true,
         "nature": "box tamper"
       }
+    },
+    "BACnet": {
+      "battery": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 3.216,
+        "units": "VOLTS"
+      },
+      "boxTamper": {
+        "object": "BINARY_VALUE",
+        "presentValue": 1
+      },
+      "flood": {
+        "object": "BINARY_VALUE",
+        "presentValue": 0
+      },
+      "keepAliveTime": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 60,
+        "units": "MINUTES"
+      },
+      "reason": {
+        "object": "CHARACTERSTRING_VALUE",
+        "presentValue": "keepalive"
+      },
+      "temperature": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 22,
+        "units": "DEGREES_CELSIUS"
+      }
+    },
+    "Modbus": {
+      "battery": {
+        "table": "inputRegister",
+        "value": 3.22,
+        "value_type": "FLOAT"
+      },
+      "boxTamper": {
+        "table": "discreteInput",
+        "value": 1,
+        "value_type": "BOOL"
+      },
+      "flood": {
+        "table": "discreteInput",
+        "value": 0,
+        "value_type": "BOOL"
+      },
+      "keepAliveTime": {
+        "table": "inputRegister",
+        "value": 60,
+        "value_type": "UINT16"
+      },
+      "reason": {
+        "table": "inputRegister",
+        "value": "keepalive",
+        "value_type": "STRING"
+      },
+      "temperature": {
+        "table": "inputRegister",
+        "value": 22,
+        "value_type": "INT16"
+      }
     }
   },
   {
@@ -216,6 +471,67 @@
         "record": true,
         "nature": "box tamper"
       }
+    },
+    "BACnet": {
+      "alarmDuration": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 30,
+        "units": "MINUTES"
+      },
+      "battery": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 3.216,
+        "units": "VOLTS"
+      },
+      "boxTamper": {
+        "object": "BINARY_VALUE",
+        "presentValue": 1
+      },
+      "flood": {
+        "object": "BINARY_VALUE",
+        "presentValue": 0
+      },
+      "reason": {
+        "object": "CHARACTERSTRING_VALUE",
+        "presentValue": "keepalive"
+      },
+      "temperature": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 22,
+        "units": "DEGREES_CELSIUS"
+      }
+    },
+    "Modbus": {
+      "alarmDuration": {
+        "table": "inputRegister",
+        "value": 30,
+        "value_type": "UINT8"
+      },
+      "battery": {
+        "table": "inputRegister",
+        "value": 3.22,
+        "value_type": "FLOAT"
+      },
+      "boxTamper": {
+        "table": "discreteInput",
+        "value": 1,
+        "value_type": "BOOL"
+      },
+      "flood": {
+        "table": "discreteInput",
+        "value": 0,
+        "value_type": "BOOL"
+      },
+      "reason": {
+        "table": "inputRegister",
+        "value": "keepalive",
+        "value_type": "STRING"
+      },
+      "temperature": {
+        "table": "inputRegister",
+        "value": 22,
+        "value_type": "INT16"
+      }
     }
   },
   {
@@ -230,7 +546,9 @@
         "Invalid uplink payload: payload must be at least 2 bytes long"
       ],
       "warnings": []
-    }
+    },
+    "BACnet": {},
+    "Modbus": {}
   },
   {
     "description": "Downlink: set keepalive interval to 60 minutes",

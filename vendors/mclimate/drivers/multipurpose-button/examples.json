@@ -35,6 +35,49 @@
         "record": true,
         "nature": "thermistor connected"
       }
+    },
+    "BACnet": {
+      "batteryVoltage": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 2.9,
+        "units": "VOLTS"
+      },
+      "pressEvent": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 2,
+        "units": "NO_UNITS"
+      },
+      "sensorTemperature": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 30,
+        "units": "DEGREES_CELSIUS"
+      },
+      "thermistorProperlyConnected": {
+        "object": "BINARY_VALUE",
+        "presentValue": 1
+      }
+    },
+    "Modbus": {
+      "batteryVoltage": {
+        "table": "inputRegister",
+        "value": 2.9,
+        "value_type": "FLOAT"
+      },
+      "pressEvent": {
+        "table": "inputRegister",
+        "value": 2,
+        "value_type": "UINT8"
+      },
+      "sensorTemperature": {
+        "table": "inputRegister",
+        "value": 30,
+        "value_type": "FLOAT"
+      },
+      "thermistorProperlyConnected": {
+        "table": "discreteInput",
+        "value": 1,
+        "value_type": "BOOL"
+      }
     }
   },
   {
@@ -79,6 +122,59 @@
         "record": true,
         "nature": "thermistor connected"
       }
+    },
+    "BACnet": {
+      "batteryVoltage": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 2.9,
+        "units": "VOLTS"
+      },
+      "pressEvent": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 2,
+        "units": "NO_UNITS"
+      },
+      "sensorTemperature": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 30,
+        "units": "DEGREES_CELSIUS"
+      },
+      "singlePressEventCounter": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 258,
+        "units": "NO_UNITS"
+      },
+      "thermistorProperlyConnected": {
+        "object": "BINARY_VALUE",
+        "presentValue": 1
+      }
+    },
+    "Modbus": {
+      "batteryVoltage": {
+        "table": "inputRegister",
+        "value": 2.9,
+        "value_type": "FLOAT"
+      },
+      "pressEvent": {
+        "table": "inputRegister",
+        "value": 2,
+        "value_type": "UINT8"
+      },
+      "sensorTemperature": {
+        "table": "inputRegister",
+        "value": 30,
+        "value_type": "FLOAT"
+      },
+      "singlePressEventCounter": {
+        "table": "inputRegister",
+        "value": 258,
+        "value_type": "UINT16"
+      },
+      "thermistorProperlyConnected": {
+        "table": "discreteInput",
+        "value": 1,
+        "value_type": "BOOL"
+      }
     }
   },
   {
@@ -117,6 +213,59 @@
         "unitId": "state",
         "record": true,
         "nature": "thermistor connected"
+      }
+    },
+    "BACnet": {
+      "batteryVoltage": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 2.9,
+        "units": "VOLTS"
+      },
+      "pressEvent": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 2,
+        "units": "NO_UNITS"
+      },
+      "sendEventLater": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 5,
+        "units": "NO_UNITS"
+      },
+      "sensorTemperature": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 30,
+        "units": "DEGREES_CELSIUS"
+      },
+      "thermistorProperlyConnected": {
+        "object": "BINARY_VALUE",
+        "presentValue": 1
+      }
+    },
+    "Modbus": {
+      "batteryVoltage": {
+        "table": "inputRegister",
+        "value": 2.9,
+        "value_type": "FLOAT"
+      },
+      "pressEvent": {
+        "table": "inputRegister",
+        "value": 2,
+        "value_type": "UINT8"
+      },
+      "sendEventLater": {
+        "table": "inputRegister",
+        "value": 5,
+        "value_type": "UINT8"
+      },
+      "sensorTemperature": {
+        "table": "inputRegister",
+        "value": 30,
+        "value_type": "FLOAT"
+      },
+      "thermistorProperlyConnected": {
+        "table": "discreteInput",
+        "value": 1,
+        "value_type": "BOOL"
       }
     }
   },

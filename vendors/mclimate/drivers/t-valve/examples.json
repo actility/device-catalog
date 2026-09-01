@@ -30,6 +30,48 @@
         "record": true,
         "nature": "valve"
       }
+    },
+    "BACnet": {
+      "ambientTemp": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 22,
+        "units": "DEGREES_CELSIUS"
+      },
+      "reason": {
+        "object": "CHARACTERSTRING_VALUE",
+        "presentValue": "keepalive"
+      },
+      "valveState": {
+        "object": "BINARY_VALUE",
+        "presentValue": 1
+      },
+      "waterTemp": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 22,
+        "units": "DEGREES_CELSIUS"
+      }
+    },
+    "Modbus": {
+      "ambientTemp": {
+        "table": "inputRegister",
+        "value": 22,
+        "value_type": "FLOAT"
+      },
+      "reason": {
+        "table": "inputRegister",
+        "value": "keepalive",
+        "value_type": "STRING"
+      },
+      "valveState": {
+        "table": "discreteInput",
+        "value": 1,
+        "value_type": "BOOL"
+      },
+      "waterTemp": {
+        "table": "inputRegister",
+        "value": 22,
+        "value_type": "FLOAT"
+      }
     }
   },
   {
@@ -70,6 +112,170 @@
       "batteryVoltage": {
         "unitId": "V",
         "record": 3.208
+      }
+    },
+    "BACnet": {
+      "alarmValidated": {
+        "object": "BINARY_VALUE",
+        "presentValue": 0
+      },
+      "battery": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 3.208,
+        "units": "VOLTS"
+      },
+      "boxTamper": {
+        "object": "BINARY_VALUE",
+        "presentValue": 0
+      },
+      "closeTime": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 20,
+        "units": "MINUTES"
+      },
+      "deviceVersions:hardware": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 0,
+        "units": "NO_UNITS"
+      },
+      "deviceVersions:software": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 1,
+        "units": "NO_UNITS"
+      },
+      "flood": {
+        "object": "BINARY_VALUE",
+        "presentValue": 0
+      },
+      "floodDetectionWireState": {
+        "object": "BINARY_VALUE",
+        "presentValue": 0
+      },
+      "magnet": {
+        "object": "BINARY_VALUE",
+        "presentValue": 0
+      },
+      "manualCloseIndicator": {
+        "object": "BINARY_VALUE",
+        "presentValue": 0
+      },
+      "manualControl:enableClose": {
+        "object": "BINARY_VALUE",
+        "presentValue": 0
+      },
+      "manualControl:enableOpen": {
+        "object": "BINARY_VALUE",
+        "presentValue": 1
+      },
+      "manualOpenIndicator": {
+        "object": "BINARY_VALUE",
+        "presentValue": 1
+      },
+      "openCloseTime:closingTime": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 20,
+        "units": "MINUTES"
+      },
+      "openCloseTime:openingTime": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 30,
+        "units": "MINUTES"
+      },
+      "openTime": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 30,
+        "units": "MINUTES"
+      },
+      "reason": {
+        "object": "CHARACTERSTRING_VALUE",
+        "presentValue": "keepalive"
+      }
+    },
+    "Modbus": {
+      "alarmValidated": {
+        "table": "discreteInput",
+        "value": 0,
+        "value_type": "BOOL"
+      },
+      "battery": {
+        "table": "inputRegister",
+        "value": 3.21,
+        "value_type": "FLOAT"
+      },
+      "boxTamper": {
+        "table": "discreteInput",
+        "value": 0,
+        "value_type": "BOOL"
+      },
+      "closeTime": {
+        "table": "inputRegister",
+        "value": 20,
+        "value_type": "UINT8"
+      },
+      "deviceVersions:hardware": {
+        "table": "inputRegister",
+        "value": 0,
+        "value_type": "FLOAT"
+      },
+      "deviceVersions:software": {
+        "table": "inputRegister",
+        "value": 1,
+        "value_type": "FLOAT"
+      },
+      "flood": {
+        "table": "discreteInput",
+        "value": 0,
+        "value_type": "BOOL"
+      },
+      "floodDetectionWireState": {
+        "table": "discreteInput",
+        "value": 0,
+        "value_type": "BOOL"
+      },
+      "magnet": {
+        "table": "discreteInput",
+        "value": 0,
+        "value_type": "BOOL"
+      },
+      "manualCloseIndicator": {
+        "table": "discreteInput",
+        "value": 0,
+        "value_type": "BOOL"
+      },
+      "manualControl:enableClose": {
+        "table": "discreteInput",
+        "value": 0,
+        "value_type": "BOOL"
+      },
+      "manualControl:enableOpen": {
+        "table": "discreteInput",
+        "value": 1,
+        "value_type": "BOOL"
+      },
+      "manualOpenIndicator": {
+        "table": "discreteInput",
+        "value": 1,
+        "value_type": "BOOL"
+      },
+      "openCloseTime:closingTime": {
+        "table": "inputRegister",
+        "value": 20,
+        "value_type": "UINT8"
+      },
+      "openCloseTime:openingTime": {
+        "table": "inputRegister",
+        "value": 30,
+        "value_type": "UINT8"
+      },
+      "openTime": {
+        "table": "inputRegister",
+        "value": 30,
+        "value_type": "UINT8"
+      },
+      "reason": {
+        "table": "inputRegister",
+        "value": "keepalive",
+        "value_type": "STRING"
       }
     }
   },
@@ -113,6 +319,180 @@
         "unitId": "V",
         "record": 3.208
       }
+    },
+    "BACnet": {
+      "alarmValidated": {
+        "object": "BINARY_VALUE",
+        "presentValue": 0
+      },
+      "battery": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 3.208,
+        "units": "VOLTS"
+      },
+      "boxTamper": {
+        "object": "BINARY_VALUE",
+        "presentValue": 0
+      },
+      "closeTime": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 20,
+        "units": "MINUTES"
+      },
+      "deviceVersions:hardware": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 0,
+        "units": "NO_UNITS"
+      },
+      "deviceVersions:software": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 1,
+        "units": "NO_UNITS"
+      },
+      "flood": {
+        "object": "BINARY_VALUE",
+        "presentValue": 0
+      },
+      "floodDetectionWireState": {
+        "object": "BINARY_VALUE",
+        "presentValue": 0
+      },
+      "keepAliveTime": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 28,
+        "units": "MINUTES"
+      },
+      "magnet": {
+        "object": "BINARY_VALUE",
+        "presentValue": 0
+      },
+      "manualCloseIndicator": {
+        "object": "BINARY_VALUE",
+        "presentValue": 0
+      },
+      "manualControl:enableClose": {
+        "object": "BINARY_VALUE",
+        "presentValue": 0
+      },
+      "manualControl:enableOpen": {
+        "object": "BINARY_VALUE",
+        "presentValue": 1
+      },
+      "manualOpenIndicator": {
+        "object": "BINARY_VALUE",
+        "presentValue": 1
+      },
+      "openCloseTime:closingTime": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 20,
+        "units": "MINUTES"
+      },
+      "openCloseTime:openingTime": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 30,
+        "units": "MINUTES"
+      },
+      "openTime": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 30,
+        "units": "MINUTES"
+      },
+      "reason": {
+        "object": "CHARACTERSTRING_VALUE",
+        "presentValue": "keepalive"
+      }
+    },
+    "Modbus": {
+      "alarmValidated": {
+        "table": "discreteInput",
+        "value": 0,
+        "value_type": "BOOL"
+      },
+      "battery": {
+        "table": "inputRegister",
+        "value": 3.21,
+        "value_type": "FLOAT"
+      },
+      "boxTamper": {
+        "table": "discreteInput",
+        "value": 0,
+        "value_type": "BOOL"
+      },
+      "closeTime": {
+        "table": "inputRegister",
+        "value": 20,
+        "value_type": "UINT8"
+      },
+      "deviceVersions:hardware": {
+        "table": "inputRegister",
+        "value": 0,
+        "value_type": "FLOAT"
+      },
+      "deviceVersions:software": {
+        "table": "inputRegister",
+        "value": 1,
+        "value_type": "FLOAT"
+      },
+      "flood": {
+        "table": "discreteInput",
+        "value": 0,
+        "value_type": "BOOL"
+      },
+      "floodDetectionWireState": {
+        "table": "discreteInput",
+        "value": 0,
+        "value_type": "BOOL"
+      },
+      "keepAliveTime": {
+        "table": "inputRegister",
+        "value": 28,
+        "value_type": "FLOAT"
+      },
+      "magnet": {
+        "table": "discreteInput",
+        "value": 0,
+        "value_type": "BOOL"
+      },
+      "manualCloseIndicator": {
+        "table": "discreteInput",
+        "value": 0,
+        "value_type": "BOOL"
+      },
+      "manualControl:enableClose": {
+        "table": "discreteInput",
+        "value": 0,
+        "value_type": "BOOL"
+      },
+      "manualControl:enableOpen": {
+        "table": "discreteInput",
+        "value": 1,
+        "value_type": "BOOL"
+      },
+      "manualOpenIndicator": {
+        "table": "discreteInput",
+        "value": 1,
+        "value_type": "BOOL"
+      },
+      "openCloseTime:closingTime": {
+        "table": "inputRegister",
+        "value": 20,
+        "value_type": "UINT8"
+      },
+      "openCloseTime:openingTime": {
+        "table": "inputRegister",
+        "value": 30,
+        "value_type": "UINT8"
+      },
+      "openTime": {
+        "table": "inputRegister",
+        "value": 30,
+        "value_type": "UINT8"
+      },
+      "reason": {
+        "table": "inputRegister",
+        "value": "keepalive",
+        "value_type": "STRING"
+      }
     }
   },
   {
@@ -127,7 +507,9 @@
         "Invalid uplink payload: payload must be at least 2 bytes long"
       ],
       "warnings": []
-    }
+    },
+    "BACnet": {},
+    "Modbus": {}
   },
   {
     "description": "Downlink: open the valve",

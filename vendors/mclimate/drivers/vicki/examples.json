@@ -73,6 +73,125 @@
         "unitId": "state",
         "record": false
       }
+    },
+    "BACnet": {
+      "reason": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 1,
+        "units": "NO_UNITS"
+      },
+      "targetTemperature": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 29,
+        "units": "DEGREES_CELSIUS"
+      },
+      "sensorTemperature": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 18.01,
+        "units": "DEGREES_CELSIUS"
+      },
+      "relativeHumidity": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 46.88,
+        "units": "PERCENT_RELATIVE_HUMIDITY"
+      },
+      "motorPosition": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 250,
+        "units": "NO_UNITS"
+      },
+      "motorRange": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 300,
+        "units": "NO_UNITS"
+      },
+      "batteryVoltage": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 3.5,
+        "units": "VOLTS"
+      },
+      "openWindow": {
+        "object": "BINARY_VALUE",
+        "presentValue": 0
+      },
+      "childLock": {
+        "object": "BINARY_VALUE",
+        "presentValue": 1
+      },
+      "highMotorConsumption": {
+        "object": "BINARY_VALUE",
+        "presentValue": 0
+      },
+      "lowMotorConsumption": {
+        "object": "BINARY_VALUE",
+        "presentValue": 0
+      },
+      "brokenSensor": {
+        "object": "BINARY_VALUE",
+        "presentValue": 0
+      }
+    },
+    "Modbus": {
+      "reason": {
+        "table": "inputRegister",
+        "value": 1,
+        "value_type": "UINT8"
+      },
+      "targetTemperature": {
+        "table": "inputRegister",
+        "value": 29,
+        "value_type": "FLOAT"
+      },
+      "sensorTemperature": {
+        "table": "inputRegister",
+        "value": 18.01,
+        "value_type": "FLOAT"
+      },
+      "relativeHumidity": {
+        "table": "inputRegister",
+        "value": 46.88,
+        "value_type": "FLOAT"
+      },
+      "motorPosition": {
+        "table": "inputRegister",
+        "value": 250,
+        "value_type": "FLOAT"
+      },
+      "motorRange": {
+        "table": "inputRegister",
+        "value": 300,
+        "value_type": "FLOAT"
+      },
+      "batteryVoltage": {
+        "table": "inputRegister",
+        "value": 3.5,
+        "value_type": "FLOAT"
+      },
+      "openWindow": {
+        "table": "discreteInput",
+        "value": 0,
+        "value_type": "BOOL"
+      },
+      "childLock": {
+        "table": "discreteInput",
+        "value": 1,
+        "value_type": "BOOL"
+      },
+      "highMotorConsumption": {
+        "table": "discreteInput",
+        "value": 0,
+        "value_type": "BOOL"
+      },
+      "lowMotorConsumption": {
+        "table": "discreteInput",
+        "value": 0,
+        "value_type": "BOOL"
+      },
+      "brokenSensor": {
+        "table": "discreteInput",
+        "value": 0,
+        "value_type": "BOOL"
+      }
     }
   },
   {

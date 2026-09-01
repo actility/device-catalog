@@ -42,6 +42,69 @@
         "record": true,
         "nature": "relay"
       }
+    },
+    "BACnet": {
+      "acCurrent": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 200,
+        "units": "MILLIAMPERES"
+      },
+      "acVoltage": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 230,
+        "units": "VOLTS"
+      },
+      "energy": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 10,
+        "units": "KILOWATT_HOURS"
+      },
+      "internalTemperature": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 25,
+        "units": "DEGREES_CELSIUS"
+      },
+      "power": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 500,
+        "units": "WATTS"
+      },
+      "relayState": {
+        "object": "BINARY_VALUE",
+        "presentValue": 1
+      }
+    },
+    "Modbus": {
+      "acCurrent": {
+        "table": "inputRegister",
+        "value": 200,
+        "value_type": "UINT16"
+      },
+      "acVoltage": {
+        "table": "inputRegister",
+        "value": 230,
+        "value_type": "UINT8"
+      },
+      "energy": {
+        "table": "inputRegister",
+        "value": 10,
+        "value_type": "FLOAT"
+      },
+      "internalTemperature": {
+        "table": "inputRegister",
+        "value": 25,
+        "value_type": "INT16"
+      },
+      "power": {
+        "table": "inputRegister",
+        "value": 500,
+        "value_type": "UINT16"
+      },
+      "relayState": {
+        "table": "discreteInput",
+        "value": 1,
+        "value_type": "BOOL"
+      }
     }
   },
   {
@@ -86,6 +149,69 @@
         "unitId": "state",
         "record": true,
         "nature": "relay"
+      }
+    },
+    "BACnet": {
+      "acCurrent": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 200,
+        "units": "MILLIAMPERES"
+      },
+      "acVoltage": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 230,
+        "units": "VOLTS"
+      },
+      "energy": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 10,
+        "units": "KILOWATT_HOURS"
+      },
+      "internalTemperature": {
+        "object": "ANALOG_VALUE",
+        "presentValue": -5,
+        "units": "DEGREES_CELSIUS"
+      },
+      "power": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 500,
+        "units": "WATTS"
+      },
+      "relayState": {
+        "object": "BINARY_VALUE",
+        "presentValue": 1
+      }
+    },
+    "Modbus": {
+      "acCurrent": {
+        "table": "inputRegister",
+        "value": 200,
+        "value_type": "UINT16"
+      },
+      "acVoltage": {
+        "table": "inputRegister",
+        "value": 230,
+        "value_type": "UINT8"
+      },
+      "energy": {
+        "table": "inputRegister",
+        "value": 10,
+        "value_type": "FLOAT"
+      },
+      "internalTemperature": {
+        "table": "inputRegister",
+        "value": -5,
+        "value_type": "INT16"
+      },
+      "power": {
+        "table": "inputRegister",
+        "value": 500,
+        "value_type": "UINT16"
+      },
+      "relayState": {
+        "table": "discreteInput",
+        "value": 1,
+        "value_type": "BOOL"
       }
     }
   },
@@ -132,6 +258,79 @@
         "unitId": "state",
         "record": true,
         "nature": "relay"
+      }
+    },
+    "BACnet": {
+      "acCurrent": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 200,
+        "units": "MILLIAMPERES"
+      },
+      "acVoltage": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 230,
+        "units": "VOLTS"
+      },
+      "energy": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 10,
+        "units": "KILOWATT_HOURS"
+      },
+      "internalTemperature": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 25,
+        "units": "DEGREES_CELSIUS"
+      },
+      "power": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 500,
+        "units": "WATTS"
+      },
+      "relayState": {
+        "object": "BINARY_VALUE",
+        "presentValue": 1
+      },
+      "relayStateChangeReason": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 3,
+        "units": "NO_UNITS"
+      }
+    },
+    "Modbus": {
+      "acCurrent": {
+        "table": "inputRegister",
+        "value": 200,
+        "value_type": "UINT16"
+      },
+      "acVoltage": {
+        "table": "inputRegister",
+        "value": 230,
+        "value_type": "UINT8"
+      },
+      "energy": {
+        "table": "inputRegister",
+        "value": 10,
+        "value_type": "FLOAT"
+      },
+      "internalTemperature": {
+        "table": "inputRegister",
+        "value": 25,
+        "value_type": "INT16"
+      },
+      "power": {
+        "table": "inputRegister",
+        "value": 500,
+        "value_type": "UINT16"
+      },
+      "relayState": {
+        "table": "discreteInput",
+        "value": 1,
+        "value_type": "BOOL"
+      },
+      "relayStateChangeReason": {
+        "table": "inputRegister",
+        "value": 3,
+        "value_type": "UINT8"
       }
     }
   },
@@ -182,6 +381,89 @@
         "record": true,
         "nature": "relay"
       }
+    },
+    "BACnet": {
+      "acCurrent": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 200,
+        "units": "MILLIAMPERES"
+      },
+      "acVoltage": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 230,
+        "units": "VOLTS"
+      },
+      "energy": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 10,
+        "units": "KILOWATT_HOURS"
+      },
+      "internalTemperature": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 25,
+        "units": "DEGREES_CELSIUS"
+      },
+      "power": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 500,
+        "units": "WATTS"
+      },
+      "relayState": {
+        "object": "BINARY_VALUE",
+        "presentValue": 1
+      },
+      "relayTimerInMilliseconds:state": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 1,
+        "units": "NO_UNITS"
+      },
+      "relayTimerInMilliseconds:time": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 500,
+        "units": "MINUTES"
+      }
+    },
+    "Modbus": {
+      "acCurrent": {
+        "table": "inputRegister",
+        "value": 200,
+        "value_type": "UINT16"
+      },
+      "acVoltage": {
+        "table": "inputRegister",
+        "value": 230,
+        "value_type": "UINT8"
+      },
+      "energy": {
+        "table": "inputRegister",
+        "value": 10,
+        "value_type": "FLOAT"
+      },
+      "internalTemperature": {
+        "table": "inputRegister",
+        "value": 25,
+        "value_type": "INT16"
+      },
+      "power": {
+        "table": "inputRegister",
+        "value": 500,
+        "value_type": "UINT16"
+      },
+      "relayState": {
+        "table": "discreteInput",
+        "value": 1,
+        "value_type": "BOOL"
+      },
+      "relayTimerInMilliseconds:state": {
+        "table": "inputRegister",
+        "value": 1,
+        "value_type": "UINT8"
+      },
+      "relayTimerInMilliseconds:time": {
+        "table": "inputRegister",
+        "value": 500,
+        "value_type": "UINT16"
+      }
     }
   },
   {
@@ -227,6 +509,79 @@
         "unitId": "state",
         "record": true,
         "nature": "relay"
+      }
+    },
+    "BACnet": {
+      "acCurrent": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 200,
+        "units": "MILLIAMPERES"
+      },
+      "acVoltage": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 230,
+        "units": "VOLTS"
+      },
+      "energy": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 10,
+        "units": "KILOWATT_HOURS"
+      },
+      "internalTemperature": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 25,
+        "units": "DEGREES_CELSIUS"
+      },
+      "power": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 500,
+        "units": "WATTS"
+      },
+      "region": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 1,
+        "units": "NO_UNITS"
+      },
+      "relayState": {
+        "object": "BINARY_VALUE",
+        "presentValue": 1
+      }
+    },
+    "Modbus": {
+      "acCurrent": {
+        "table": "inputRegister",
+        "value": 200,
+        "value_type": "UINT16"
+      },
+      "acVoltage": {
+        "table": "inputRegister",
+        "value": 230,
+        "value_type": "UINT8"
+      },
+      "energy": {
+        "table": "inputRegister",
+        "value": 10,
+        "value_type": "FLOAT"
+      },
+      "internalTemperature": {
+        "table": "inputRegister",
+        "value": 25,
+        "value_type": "INT16"
+      },
+      "power": {
+        "table": "inputRegister",
+        "value": 500,
+        "value_type": "UINT16"
+      },
+      "region": {
+        "table": "inputRegister",
+        "value": 1,
+        "value_type": "UINT8"
+      },
+      "relayState": {
+        "table": "discreteInput",
+        "value": 1,
+        "value_type": "BOOL"
       }
     }
   },
@@ -327,6 +682,8 @@
         "Invalid uplink payload: payload must be at least 12 bytes long"
       ],
       "warnings": []
-    }
+    },
+    "BACnet": {},
+    "Modbus": {}
   }
 ]

@@ -35,6 +35,58 @@
         "record": true,
         "nature": "thermistor connected"
       }
+    },
+    "BACnet": {
+      "batteryVoltage": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 2.97,
+        "units": "VOLTS"
+      },
+      "counter": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 1793198,
+        "units": "NO_UNITS"
+      },
+      "event": {
+        "object": "CHARACTERSTRING_VALUE",
+        "presentValue": "keepalive"
+      },
+      "temperature": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 21.7,
+        "units": "DEGREES_CELSIUS"
+      },
+      "thermistorProperlyConnected": {
+        "object": "BINARY_VALUE",
+        "presentValue": 1
+      }
+    },
+    "Modbus": {
+      "batteryVoltage": {
+        "table": "inputRegister",
+        "value": 2.97,
+        "value_type": "FLOAT"
+      },
+      "counter": {
+        "table": "inputRegister",
+        "value": 1793198,
+        "value_type": "UINT16"
+      },
+      "event": {
+        "table": "inputRegister",
+        "value": "keepalive",
+        "value_type": "STRING"
+      },
+      "temperature": {
+        "table": "inputRegister",
+        "value": 21.7,
+        "value_type": "FLOAT"
+      },
+      "thermistorProperlyConnected": {
+        "table": "discreteInput",
+        "value": 1,
+        "value_type": "BOOL"
+      }
     }
   },
   {
@@ -71,6 +123,58 @@
         "unitId": "state",
         "record": true,
         "nature": "thermistor connected"
+      }
+    },
+    "BACnet": {
+      "batteryVoltage": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 2.97,
+        "units": "VOLTS"
+      },
+      "counter": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 1793198,
+        "units": "NO_UNITS"
+      },
+      "event": {
+        "object": "CHARACTERSTRING_VALUE",
+        "presentValue": "reed switch"
+      },
+      "temperature": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 21.7,
+        "units": "DEGREES_CELSIUS"
+      },
+      "thermistorProperlyConnected": {
+        "object": "BINARY_VALUE",
+        "presentValue": 1
+      }
+    },
+    "Modbus": {
+      "batteryVoltage": {
+        "table": "inputRegister",
+        "value": 2.97,
+        "value_type": "FLOAT"
+      },
+      "counter": {
+        "table": "inputRegister",
+        "value": 1793198,
+        "value_type": "UINT16"
+      },
+      "event": {
+        "table": "inputRegister",
+        "value": "reed switch",
+        "value_type": "STRING"
+      },
+      "temperature": {
+        "table": "inputRegister",
+        "value": 21.7,
+        "value_type": "FLOAT"
+      },
+      "thermistorProperlyConnected": {
+        "table": "discreteInput",
+        "value": 1,
+        "value_type": "BOOL"
       }
     }
   },
@@ -110,6 +214,68 @@
         "record": true,
         "nature": "thermistor connected"
       }
+    },
+    "BACnet": {
+      "batteryVoltage": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 2.97,
+        "units": "VOLTS"
+      },
+      "counter": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 1793198,
+        "units": "NO_UNITS"
+      },
+      "event": {
+        "object": "CHARACTERSTRING_VALUE",
+        "presentValue": "keepalive"
+      },
+      "notificationBlindTime": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 5,
+        "units": "MINUTES"
+      },
+      "temperature": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 21.7,
+        "units": "DEGREES_CELSIUS"
+      },
+      "thermistorProperlyConnected": {
+        "object": "BINARY_VALUE",
+        "presentValue": 1
+      }
+    },
+    "Modbus": {
+      "batteryVoltage": {
+        "table": "inputRegister",
+        "value": 2.97,
+        "value_type": "FLOAT"
+      },
+      "counter": {
+        "table": "inputRegister",
+        "value": 1793198,
+        "value_type": "UINT16"
+      },
+      "event": {
+        "table": "inputRegister",
+        "value": "keepalive",
+        "value_type": "STRING"
+      },
+      "notificationBlindTime": {
+        "table": "inputRegister",
+        "value": 5,
+        "value_type": "FLOAT"
+      },
+      "temperature": {
+        "table": "inputRegister",
+        "value": 21.7,
+        "value_type": "FLOAT"
+      },
+      "thermistorProperlyConnected": {
+        "table": "discreteInput",
+        "value": 1,
+        "value_type": "BOOL"
+      }
     }
   },
   {
@@ -122,6 +288,20 @@
     "output": {
       "data": {
         "notificationBlindTime": 5
+      }
+    },
+    "BACnet": {
+      "notificationBlindTime": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 5,
+        "units": "MINUTES"
+      }
+    },
+    "Modbus": {
+      "notificationBlindTime": {
+        "table": "inputRegister",
+        "value": 5,
+        "value_type": "FLOAT"
       }
     }
   },
@@ -137,7 +317,9 @@
         "Invalid uplink payload: Empty payload"
       ],
       "warnings": []
-    }
+    },
+    "BACnet": {},
+    "Modbus": {}
   },
   {
     "description": "Downlink: set notification blind time to 5",

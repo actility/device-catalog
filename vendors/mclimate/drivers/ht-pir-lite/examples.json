@@ -42,6 +42,78 @@
         "unitId": "V",
         "record": 2.98
       }
+    },
+    "BACnet": {
+      "batteryVoltage": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 2.98,
+        "units": "VOLTS"
+      },
+      "occupied": {
+        "object": "BINARY_VALUE",
+        "presentValue": 1
+      },
+      "pirSensorStatus": {
+        "object": "CHARACTERSTRING_VALUE",
+        "presentValue": "Motion detected"
+      },
+      "pirSensorValue": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 1,
+        "units": "NO_UNITS"
+      },
+      "pirTriggerCount": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 7,
+        "units": null
+      },
+      "relativeHumidity": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 50,
+        "units": "PERCENT_RELATIVE_HUMIDITY"
+      },
+      "sensorTemperature": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 10,
+        "units": "DEGREES_CELSIUS"
+      }
+    },
+    "Modbus": {
+      "batteryVoltage": {
+        "table": "inputRegister",
+        "value": 2.98,
+        "value_type": "FLOAT"
+      },
+      "occupied": {
+        "table": "discreteInput",
+        "value": 1,
+        "value_type": "BOOL"
+      },
+      "pirSensorStatus": {
+        "table": "inputRegister",
+        "value": "Motion detected",
+        "value_type": "STRING"
+      },
+      "pirSensorValue": {
+        "table": "inputRegister",
+        "value": 1,
+        "value_type": "UINT8"
+      },
+      "pirTriggerCount": {
+        "table": "inputRegister",
+        "value": 7,
+        "value_type": "UINT8"
+      },
+      "relativeHumidity": {
+        "table": "inputRegister",
+        "value": 50,
+        "value_type": "FLOAT"
+      },
+      "sensorTemperature": {
+        "table": "inputRegister",
+        "value": 10,
+        "value_type": "FLOAT"
+      }
     }
   },
   {
@@ -88,6 +160,98 @@
       "batteryVoltage": {
         "unitId": "V",
         "record": 3.55
+      }
+    },
+    "BACnet": {
+      "batteryVoltage": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 3.55,
+        "units": "VOLTS"
+      },
+      "keepAliveTime": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 10,
+        "units": "MINUTES"
+      },
+      "occupancyTimeout": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 60,
+        "units": "MINUTES"
+      },
+      "occupied": {
+        "object": "BINARY_VALUE",
+        "presentValue": 0
+      },
+      "pirSensorStatus": {
+        "object": "CHARACTERSTRING_VALUE",
+        "presentValue": "No motion detected"
+      },
+      "pirSensorValue": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 0,
+        "units": "NO_UNITS"
+      },
+      "pirTriggerCount": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 1,
+        "units": null
+      },
+      "relativeHumidity": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 48.83,
+        "units": "PERCENT_RELATIVE_HUMIDITY"
+      },
+      "sensorTemperature": {
+        "object": "ANALOG_VALUE",
+        "presentValue": 23.3,
+        "units": "DEGREES_CELSIUS"
+      }
+    },
+    "Modbus": {
+      "batteryVoltage": {
+        "table": "inputRegister",
+        "value": 3.55,
+        "value_type": "FLOAT"
+      },
+      "keepAliveTime": {
+        "table": "inputRegister",
+        "value": 10,
+        "value_type": "UINT8"
+      },
+      "occupancyTimeout": {
+        "table": "inputRegister",
+        "value": 60,
+        "value_type": "UINT16"
+      },
+      "occupied": {
+        "table": "discreteInput",
+        "value": 0,
+        "value_type": "BOOL"
+      },
+      "pirSensorStatus": {
+        "table": "inputRegister",
+        "value": "No motion detected",
+        "value_type": "STRING"
+      },
+      "pirSensorValue": {
+        "table": "inputRegister",
+        "value": 0,
+        "value_type": "UINT8"
+      },
+      "pirTriggerCount": {
+        "table": "inputRegister",
+        "value": 1,
+        "value_type": "UINT8"
+      },
+      "relativeHumidity": {
+        "table": "inputRegister",
+        "value": 48.83,
+        "value_type": "FLOAT"
+      },
+      "sensorTemperature": {
+        "table": "inputRegister",
+        "value": 23.3,
+        "value_type": "FLOAT"
       }
     }
   },
