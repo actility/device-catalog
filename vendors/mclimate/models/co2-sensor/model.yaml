@@ -42,7 +42,6 @@ LoRaWANCertified: false
 modelId: mclimate:co2-sensor:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId:
-  - mclimate:co2-sensor:2
   - mclimate:co2-sensor:1
   - os1-mcli:co2-sensor:1
 # DataSheet URL (optional) 
@@ -58,16 +57,6 @@ sensors:
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
-  mclimate:co2-sensor:2:
-    - "Short periodic uplink"
-    - "Response boundary levels (0x1f) with keepalive trailer"
-    - "Response measurement period (0x25) with keepalive trailer"
-    - "Response auto zero period (0x2b) with keepalive trailer"
-    - "fail: payload shorter than a keepalive returns an error"
-    - "Downlink: set CO2 measurement period"
-    - "Downlink: set CO2 auto zero period to 24 hours"
-    - "Downlink: read device versions"
-    - "Downlink decode: passthrough bytes"
   os1-mcli:co2-sensor:1:
     - "Short periodic uplink"
 LoRaWANRelay:
