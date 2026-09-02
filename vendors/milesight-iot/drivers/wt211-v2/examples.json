@@ -33,29 +33,35 @@
             }
         },
         "BACnet": {
-            "system_status": {
-                "object": "BINARY_VALUE",
-                "presentValue": 1
-            },
+            "system_status": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
             "celsius_ambient_temperature": {
-                "object": "ANALOG_VALUE",
+                "object": "ANALOG_INPUT",
                 "presentValue": 25.8,
                 "units": "DEGREES_CELSIUS"
             },
             "fahrenheit_ambient_temperature": {
-                "object": "ANALOG_VALUE",
+                "object": "ANALOG_INPUT",
                 "presentValue": 78.4,
                 "units": "DEGREES_FAHRENHEIT"
             },
             "humidity": {
-                "object": "ANALOG_VALUE",
+                "object": "ANALOG_INPUT",
                 "presentValue": 51,
                 "units": "PERCENT_RELATIVE_HUMIDITY"
             }
         },
         "Modbus": {
             "system_status": {
-                "table": "coil",
+                "table": "discreteInput",
                 "value": 1,
                 "value_type": "UINT8"
             },

@@ -14,8 +14,27 @@
         },
         "points": {},
         "BACnet": {
-            "REED0_STATE": 1,
-            "REED0_CNT": 1
+            "REED0_STATE": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            },
+            "REED0_CNT": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 1,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "REED0_STATE": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "BOOL"
+            },
+            "REED0_CNT": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT8"
+            }
         }
     },
     {
@@ -38,12 +57,65 @@
         },
         "points": {},
         "BACnet": {
-            "OCCU0_STATE": 0,
-            "OCCU0_CNT": 0,
-            "REED0_STATE": 0,
-            "REED0_CNT": 0,
-            "REED1_STATE": 0,
-            "REED1_CNT": 0
+            "OCCU0_STATE": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "OCCU0_CNT": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "REED0_STATE": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "REED0_CNT": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "REED1_STATE": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "REED1_CNT": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "OCCU0_STATE": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "BOOL"
+            },
+            "OCCU0_CNT": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "REED0_STATE": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "BOOL"
+            },
+            "REED0_CNT": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "REED1_STATE": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "BOOL"
+            },
+            "REED1_CNT": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            }
         }
     },
     {
@@ -76,13 +148,78 @@
             }
         },
         "BACnet": {
-            "temperature:1": 23.8,
-            "VBAT": 1560,
-            "batteryVoltage": 1560,
-            "TEMP": 23.8,
-            "RHUM": 46,
-            "humidity": 46,
-            "VISIBLE_LIGHT": 43
+            "TEMP": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 23.8,
+                "units": "DEGREES_CELSIUS"
+            },
+            "temperature:1": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 23.8,
+                "units": "DEGREES_CELSIUS"
+            },
+            "RHUM": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 46,
+                "units": "PERCENT_RELATIVE_HUMIDITY"
+            },
+            "humidity": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 46,
+                "units": "PERCENT_RELATIVE_HUMIDITY"
+            },
+            "VISIBLE_LIGHT": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 43,
+                "units": "LUXES"
+            },
+            "VBAT": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 1560,
+                "units": "MILLIVOLTS"
+            },
+            "batteryVoltage": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 1560,
+                "units": "VOLTS"
+            }
+        },
+        "Modbus": {
+            "TEMP": {
+                "table": "inputRegister",
+                "value": 23.8,
+                "value_type": "FLOAT"
+            },
+            "temperature:1": {
+                "table": "inputRegister",
+                "value": 23.8,
+                "value_type": "FLOAT"
+            },
+            "RHUM": {
+                "table": "inputRegister",
+                "value": 46,
+                "value_type": "UINT8"
+            },
+            "humidity": {
+                "table": "inputRegister",
+                "value": 46,
+                "value_type": "UINT8"
+            },
+            "VISIBLE_LIGHT": {
+                "table": "inputRegister",
+                "value": 43,
+                "value_type": "UINT16"
+            },
+            "VBAT": {
+                "table": "inputRegister",
+                "value": 1560,
+                "value_type": "UINT16"
+            },
+            "batteryVoltage": {
+                "table": "inputRegister",
+                "value": 1560,
+                "value_type": "UINT16"
+            }
         }
     },
     {
@@ -101,9 +238,36 @@
         },
         "points": {},
         "BACnet": {
-            "BUTTON_2_PRESSED": 1,
-            "BUTTON_2_CNT": 1,
-            "BUTTON_2_LAST_TYPE": "Short Press"
+            "BUTTON_2_PRESSED": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            },
+            "BUTTON_2_CNT": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 1,
+                "units": "NO_UNITS"
+            },
+            "BUTTON_2_LAST_TYPE": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "Short Press"
+            }
+        },
+        "Modbus": {
+            "BUTTON_2_PRESSED": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "BOOL"
+            },
+            "BUTTON_2_CNT": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "BUTTON_2_LAST_TYPE": {
+                "table": "inputRegister",
+                "value": "Short Press",
+                "value_type": "STRING"
+            }
         }
     },
     {
@@ -121,8 +285,27 @@
         },
         "points": {},
         "BACnet": {
-            "OCCU0_STATE": 0,
-            "OCCU0_CNT": 1
+            "OCCU0_STATE": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "OCCU0_CNT": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 1,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "OCCU0_STATE": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "BOOL"
+            },
+            "OCCU0_CNT": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT8"
+            }
         }
     },
     {
@@ -139,7 +322,25 @@
         },
         "points": {},
         "BACnet": {
-            "SETPOINT_2": 21.5
+            "SETPOINT_2": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 21.5,
+                    "units": "PERCENT"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "PERCENT"
+                }
+            ]
+        },
+        "Modbus": {
+            "SETPOINT_2": {
+                "table": "inputRegister",
+                "value": 21.5,
+                "value_type": "FLOAT"
+            }
         }
     },
     {
@@ -166,10 +367,48 @@
             }
         },
         "BACnet": {
-            "temperature:1": 22.2,
-            "TEMP": 22.2,
-            "RHUM": 38,
-            "humidity": 38
+            "TEMP": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 22.2,
+                "units": "DEGREES_CELSIUS"
+            },
+            "temperature:1": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 22.2,
+                "units": "DEGREES_CELSIUS"
+            },
+            "RHUM": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 38,
+                "units": "PERCENT_RELATIVE_HUMIDITY"
+            },
+            "humidity": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 38,
+                "units": "PERCENT_RELATIVE_HUMIDITY"
+            }
+        },
+        "Modbus": {
+            "TEMP": {
+                "table": "inputRegister",
+                "value": 22.2,
+                "value_type": "FLOAT"
+            },
+            "temperature:1": {
+                "table": "inputRegister",
+                "value": 22.2,
+                "value_type": "FLOAT"
+            },
+            "RHUM": {
+                "table": "inputRegister",
+                "value": 38,
+                "value_type": "UINT8"
+            },
+            "humidity": {
+                "table": "inputRegister",
+                "value": 38,
+                "value_type": "UINT8"
+            }
         }
     },
     {
@@ -215,11 +454,6 @@
             ],
             "errors": [],
             "warnings": []
-        },
-        "BACnet": {
-            "HEARTBEAT_INTERVAL": 5,
-            "MEAS_INTERVAL": 15,
-            "CNT_MEAS": 100
         }
     },
     {
@@ -237,9 +471,6 @@
             "bytes": "c1000001c134000ac1060014",
             "errors": [],
             "warnings": []
-        },
-        "BACnet": {
-            "HEARTBEAT_INTERVAL": 20
         }
     }
 ]

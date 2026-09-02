@@ -30,6 +30,20 @@
           }
         ]
       }
+    },
+    "BACnet": {
+      "output_value": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 1,
+        "units": "NO_UNITS"
+      }
+    },
+    "Modbus": {
+      "output_value": {
+        "table": "inputRegister",
+        "value": 1,
+        "value_type": "UINT8"
+      }
     }
   },
   {
@@ -63,6 +77,20 @@
           }
         ]
       }
+    },
+    "BACnet": {
+      "output_value": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 2,
+        "units": "NO_UNITS"
+      }
+    },
+    "Modbus": {
+      "output_value": {
+        "table": "inputRegister",
+        "value": 2,
+        "value_type": "UINT8"
+      }
     }
   },
   {
@@ -86,7 +114,20 @@
       },
       "warnings": []
     },
-    "points": {}
+    "points": {},
+    "BACnet": {
+      "firmware": {
+        "object": "CHARACTERSTRING_VALUE",
+        "presentValue": "3.5.2.5602"
+      }
+    },
+    "Modbus": {
+      "firmware": {
+        "table": "inputRegister",
+        "value": "3.5.2.5602",
+        "value_type": "STRING"
+      }
+    }
   },
   {
     "type": "uplink",
@@ -109,7 +150,20 @@
       },
       "warnings": []
     },
-    "points": {}
+    "points": {},
+    "BACnet": {
+      "message_type": {
+        "object": "CHARACTERSTRING_VALUE",
+        "presentValue": "unconfirmed"
+      }
+    },
+    "Modbus": {
+      "message_type": {
+        "table": "inputRegister",
+        "value": "unconfirmed",
+        "value_type": "STRING"
+      }
+    }
   },
   {
     "type": "downlink-encode",

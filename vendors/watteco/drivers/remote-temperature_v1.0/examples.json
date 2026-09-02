@@ -24,7 +24,18 @@
             }
         },
         "BACnet": {
-            "temperature": 29.53
+            "temperature": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 29.53,
+                "units": "DEGREES_CELSIUS"
+            }
+        },
+        "Modbus": {
+            "temperature": {
+                "table": "inputRegister",
+                "value": 29.53,
+                "value_type": "FLOAT"
+            }
         }
     },
     {
@@ -45,7 +56,9 @@
             ],
             "warnings": []
         },
-        "points": {}
+        "points": {},
+        "BACnet": {},
+        "Modbus": {}
     },
     {
         "type": "uplink",
@@ -70,7 +83,9 @@
                 "unitId": "V",
                 "record": 3.688
             }
-        }
+        },
+        "BACnet": {},
+        "Modbus": {}
     },
     {
         "type": "uplink",
@@ -90,7 +105,9 @@
             ],
             "warnings": []
         },
-        "points": {}
+        "points": {},
+        "BACnet": {},
+        "Modbus": {}
     },
     {
         "type": "uplink",
@@ -165,6 +182,8 @@
                     }
                 ]
             }
-        }
+        },
+        "BACnet": {},
+        "Modbus": {}
     }
 ]

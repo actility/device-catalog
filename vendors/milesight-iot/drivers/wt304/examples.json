@@ -48,35 +48,49 @@
         },
         "BACnet": {
             "humidity": {
-                "object": "ANALOG_VALUE",
+                "object": "ANALOG_INPUT",
                 "presentValue": 3661,
                 "units": "PERCENT_RELATIVE_HUMIDITY"
             },
-            "system_status": {
-                "object": "ANALOG_VALUE",
-                "presentValue": 1,
-                "units": "NO_UNITS"
-            },
+            "system_status": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 1,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
             "target_temperature": {
-                "object": "ANALOG_VALUE",
+                "object": "ANALOG_INPUT",
                 "presentValue": -92.16,
                 "units": "DEGREES_CELSIUS"
             },
             "temperature": {
-                "object": "ANALOG_VALUE",
+                "object": "ANALOG_INPUT",
                 "presentValue": -53.76,
                 "units": "DEGREES_CELSIUS"
             },
             "temperature_alarm:type": {
-                "object": "ANALOG_VALUE",
+                "object": "ANALOG_INPUT",
                 "presentValue": 0,
                 "units": "NO_UNITS"
             },
-            "temperature_control_mode": {
-                "object": "ANALOG_VALUE",
-                "presentValue": 0,
-                "units": "NO_UNITS"
-            }
+            "temperature_control_mode": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 1,
+                    "units": "NO_UNITS"
+                }
+            ]
         },
         "Modbus": {
             "humidity": {
@@ -85,7 +99,7 @@
                 "value_type": "FLOAT"
             },
             "system_status": {
-                "table": "holdingRegister",
+                "table": "inputRegister",
                 "value": 1,
                 "value_type": "UINT8"
             },
@@ -106,7 +120,7 @@
                 "_notNumeric": "lower range error"
             },
             "temperature_control_mode": {
-                "table": "holdingRegister",
+                "table": "inputRegister",
                 "value": "fan",
                 "value_type": "UINT8",
                 "_notNumeric": "fan"

@@ -31,6 +31,19 @@
         ],
         "nature": "pin state"
       }
+    },
+    "BACnet": {
+      "pin_state_1": {
+        "object": "BINARY_INPUT",
+        "presentValue": 1
+      }
+    },
+    "Modbus": {
+      "pin_state_1": {
+        "table": "discreteInput",
+        "value": 1,
+        "value_type": "BOOL"
+      }
     }
   },
   {
@@ -63,6 +76,20 @@
             "eventTime": "2023-07-19T07:51:25.508306410Z"
           }
         ]
+      }
+    },
+    "BACnet": {
+      "index_1": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 0,
+        "units": "NO_UNITS"
+      }
+    },
+    "Modbus": {
+      "index_1": {
+        "table": "inputRegister",
+        "value": 0,
+        "value_type": "UINT32"
       }
     }
   },
@@ -166,6 +193,37 @@
         ],
         "nature": "pin state"
       }
+    },
+    "BACnet": {
+      "pin_state_1": {
+        "object": "BINARY_INPUT",
+        "presentValue": 1
+      },
+      "pin_state_2": {
+        "object": "BINARY_INPUT",
+        "presentValue": 0
+      },
+      "pin_state_3": {
+        "object": "BINARY_INPUT",
+        "presentValue": 0
+      }
+    },
+    "Modbus": {
+      "pin_state_1": {
+        "table": "discreteInput",
+        "value": 1,
+        "value_type": "BOOL"
+      },
+      "pin_state_2": {
+        "table": "discreteInput",
+        "value": 0,
+        "value_type": "BOOL"
+      },
+      "pin_state_3": {
+        "table": "discreteInput",
+        "value": 0,
+        "value_type": "BOOL"
+      }
     }
   },
   {
@@ -189,7 +247,20 @@
       },
       "warnings": []
     },
-    "points": {}
+    "points": {},
+    "BACnet": {
+      "firmware": {
+        "object": "CHARACTERSTRING_VALUE",
+        "presentValue": "3.5.2.5602"
+      }
+    },
+    "Modbus": {
+      "firmware": {
+        "table": "inputRegister",
+        "value": "3.5.2.5602",
+        "value_type": "STRING"
+      }
+    }
   },
   {
     "type": "uplink",
@@ -224,6 +295,20 @@
           }
         ]
       }
+    },
+    "BACnet": {
+      "disposable_battery_voltage": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 3.688,
+        "units": "VOLTS"
+      }
+    },
+    "Modbus": {
+      "disposable_battery_voltage": {
+        "table": "inputRegister",
+        "value": 3.688,
+        "value_type": "FLOAT"
+      }
     }
   },
   {
@@ -247,7 +332,20 @@
       },
       "warnings": []
     },
-    "points": {}
+    "points": {},
+    "BACnet": {
+      "message_type": {
+        "object": "CHARACTERSTRING_VALUE",
+        "presentValue": "unconfirmed"
+      }
+    },
+    "Modbus": {
+      "message_type": {
+        "table": "inputRegister",
+        "value": "unconfirmed",
+        "value_type": "STRING"
+      }
+    }
   },
   {
     "type": "uplink",
@@ -391,6 +489,40 @@
             "eventTime": "2023-07-19T07:51:25.508Z"
           }
         ]
+      }
+    },
+    "BACnet": {
+      "index_1": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 0,
+        "units": "NO_UNITS"
+      },
+      "index_2": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 67108864,
+        "units": "NO_UNITS"
+      },
+      "index_3": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 4194560,
+        "units": "NO_UNITS"
+      }
+    },
+    "Modbus": {
+      "index_1": {
+        "table": "inputRegister",
+        "value": 0,
+        "value_type": "UINT32"
+      },
+      "index_2": {
+        "table": "inputRegister",
+        "value": 67108864,
+        "value_type": "UINT32"
+      },
+      "index_3": {
+        "table": "inputRegister",
+        "value": 4194560,
+        "value_type": "UINT32"
       }
     }
   },

@@ -36,14 +36,21 @@
                 "presentValue": "ac18ff3fb4445cee"
             },
             "device_status": {
-                "object": "BINARY_VALUE",
+                "object": "BINARY_INPUT",
                 "presentValue": 1
             },
-            "modbus_chn_2": {
-                "object": "ANALOG_VALUE",
-                "presentValue": 1,
-                "units": "NO_UNITS"
-            }
+            "modbus_chn_2": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 1,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ]
         },
         "Modbus": {
             "ipso_version": {
@@ -72,7 +79,7 @@
                 "value_type": "UINT8"
             },
             "modbus_chn_2": {
-                "table": "holdingRegister",
+                "table": "inputRegister",
                 "value": 1,
                 "value_type": "FLOAT"
             }

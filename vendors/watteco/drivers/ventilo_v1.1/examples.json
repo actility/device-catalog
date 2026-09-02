@@ -32,6 +32,20 @@
           }
         ]
       }
+    },
+    "BACnet": {
+      "temperature": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 29.53,
+        "units": "DEGREES_CELSIUS"
+      }
+    },
+    "Modbus": {
+      "temperature": {
+        "table": "inputRegister",
+        "value": 29.53,
+        "value_type": "FLOAT"
+      }
     }
   },
   {
@@ -65,7 +79,9 @@
           }
         ]
       }
-    }
+    },
+    "BACnet": {},
+    "Modbus": {}
   },
   {
     "type": "uplink",
@@ -98,7 +114,9 @@
           }
         ]
       }
-    }
+    },
+    "BACnet": {},
+    "Modbus": {}
   },
   {
     "type": "uplink",
@@ -133,6 +151,20 @@
           }
         ]
       }
+    },
+    "BACnet": {
+      "differential_pressure": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 24,
+        "units": "PASCALS"
+      }
+    },
+    "Modbus": {
+      "differential_pressure": {
+        "table": "inputRegister",
+        "value": 24,
+        "value_type": "INT16"
+      }
     }
   },
   {
@@ -156,7 +188,9 @@
       },
       "warnings": []
     },
-    "points": {}
+    "points": {},
+    "BACnet": {},
+    "Modbus": {}
   },
   {
     "type": "uplink",
@@ -189,7 +223,9 @@
           }
         ]
       }
-    }
+    },
+    "BACnet": {},
+    "Modbus": {}
   },
   {
     "type": "uplink",
@@ -212,7 +248,20 @@
       },
       "warnings": []
     },
-    "points": {}
+    "points": {},
+    "BACnet": {
+      "message_type": {
+        "object": "CHARACTERSTRING_VALUE",
+        "presentValue": "unconfirmed"
+      }
+    },
+    "Modbus": {
+      "message_type": {
+        "table": "inputRegister",
+        "value": "unconfirmed",
+        "value_type": "STRING"
+      }
+    }
   },
   {
     "type": "uplink",
@@ -279,6 +328,30 @@
             "eventTime": "2023-07-19T07:50:25.508Z"
           }
         ]
+      }
+    },
+    "BACnet": {
+      "differential_pressure": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 6,
+        "units": "PASCALS"
+      },
+      "temperature": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 33.5,
+        "units": "DEGREES_CELSIUS"
+      }
+    },
+    "Modbus": {
+      "differential_pressure": {
+        "table": "inputRegister",
+        "value": 6,
+        "value_type": "INT16"
+      },
+      "temperature": {
+        "table": "inputRegister",
+        "value": 33.5,
+        "value_type": "FLOAT"
       }
     }
   },

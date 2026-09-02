@@ -30,6 +30,19 @@
           }
         ]
       }
+    },
+    "BACnet": {
+      "pin_state": {
+        "object": "BINARY_INPUT",
+        "presentValue": 1
+      }
+    },
+    "Modbus": {
+      "pin_state": {
+        "table": "discreteInput",
+        "value": 1,
+        "value_type": "BOOL"
+      }
     }
   },
   {
@@ -63,6 +76,20 @@
           }
         ]
       }
+    },
+    "BACnet": {
+      "index": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 0,
+        "units": "NO_UNITS"
+      }
+    },
+    "Modbus": {
+      "index": {
+        "table": "inputRegister",
+        "value": 0,
+        "value_type": "UINT32"
+      }
     }
   },
   {
@@ -86,7 +113,20 @@
       },
       "warnings": []
     },
-    "points": {}
+    "points": {},
+    "BACnet": {
+      "firmware": {
+        "object": "CHARACTERSTRING_VALUE",
+        "presentValue": "3.5.2.5602"
+      }
+    },
+    "Modbus": {
+      "firmware": {
+        "table": "inputRegister",
+        "value": "3.5.2.5602",
+        "value_type": "STRING"
+      }
+    }
   },
   {
     "type": "uplink",
@@ -121,6 +161,20 @@
           }
         ]
       }
+    },
+    "BACnet": {
+      "disposable_battery_voltage": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 3.688,
+        "units": "VOLTS"
+      }
+    },
+    "Modbus": {
+      "disposable_battery_voltage": {
+        "table": "inputRegister",
+        "value": 3.688,
+        "value_type": "FLOAT"
+      }
     }
   },
   {
@@ -144,7 +198,20 @@
       },
       "warnings": []
     },
-    "points": {}
+    "points": {},
+    "BACnet": {
+      "message_type": {
+        "object": "CHARACTERSTRING_VALUE",
+        "presentValue": "unconfirmed"
+      }
+    },
+    "Modbus": {
+      "message_type": {
+        "table": "inputRegister",
+        "value": "unconfirmed",
+        "value_type": "STRING"
+      }
+    }
   },
   {
     "type": "uplink",
@@ -203,6 +270,30 @@
             "eventTime": "2023-07-19T07:49:49.508Z"
           }
         ]
+      }
+    },
+    "BACnet": {
+      "battery_voltage": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 3.6,
+        "units": "VOLTS"
+      },
+      "index": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 0,
+        "units": "NO_UNITS"
+      }
+    },
+    "Modbus": {
+      "battery_voltage": {
+        "table": "inputRegister",
+        "value": 3.6,
+        "value_type": "FLOAT"
+      },
+      "index": {
+        "table": "inputRegister",
+        "value": 0,
+        "value_type": "UINT32"
       }
     }
   },

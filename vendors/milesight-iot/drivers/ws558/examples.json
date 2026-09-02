@@ -89,62 +89,110 @@
         },
         "BACnet": {
             "voltage": {
-                "object": "ANALOG_VALUE",
+                "object": "ANALOG_INPUT",
                 "presentValue": 222.6,
                 "units": "VOLTS"
             },
             "active_power": {
-                "object": "ANALOG_VALUE",
+                "object": "ANALOG_INPUT",
                 "presentValue": 1,
                 "units": "WATTS"
             },
             "power_factor": {
-                "object": "ANALOG_VALUE",
+                "object": "ANALOG_INPUT",
                 "presentValue": 100,
                 "units": "NO_UNITS"
             },
             "power_consumption": {
-                "object": "ANALOG_VALUE",
+                "object": "ANALOG_INPUT",
                 "presentValue": 1,
                 "units": "WATT_HOURS"
             },
             "current": {
-                "object": "ANALOG_VALUE",
+                "object": "ANALOG_INPUT",
                 "presentValue": 2,
                 "units": "MILLIAMPERES"
             },
-            "switch_1": {
-                "object": "BINARY_VALUE",
-                "presentValue": 1
-            },
-            "switch_2": {
-                "object": "BINARY_VALUE",
-                "presentValue": 0
-            },
-            "switch_3": {
-                "object": "BINARY_VALUE",
-                "presentValue": 0
-            },
-            "switch_4": {
-                "object": "BINARY_VALUE",
-                "presentValue": 0
-            },
-            "switch_5": {
-                "object": "BINARY_VALUE",
-                "presentValue": 0
-            },
-            "switch_6": {
-                "object": "BINARY_VALUE",
-                "presentValue": 0
-            },
-            "switch_7": {
-                "object": "BINARY_VALUE",
-                "presentValue": 0
-            },
-            "switch_8": {
-                "object": "BINARY_VALUE",
-                "presentValue": 0
-            }
+            "switch_1": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 1
+                }
+            ],
+            "switch_2": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "switch_3": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "switch_4": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "switch_5": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "switch_6": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "switch_7": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "switch_8": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ]
         },
         "Modbus": {
             "voltage": {
@@ -173,42 +221,42 @@
                 "value_type": "UINT16"
             },
             "switch_1": {
-                "table": "coil",
+                "table": "discreteInput",
                 "value": 1,
                 "value_type": "UINT8"
             },
             "switch_2": {
-                "table": "coil",
+                "table": "discreteInput",
                 "value": 0,
                 "value_type": "UINT8"
             },
             "switch_3": {
-                "table": "coil",
+                "table": "discreteInput",
                 "value": 0,
                 "value_type": "UINT8"
             },
             "switch_4": {
-                "table": "coil",
+                "table": "discreteInput",
                 "value": 0,
                 "value_type": "UINT8"
             },
             "switch_5": {
-                "table": "coil",
+                "table": "discreteInput",
                 "value": 0,
                 "value_type": "UINT8"
             },
             "switch_6": {
-                "table": "coil",
+                "table": "discreteInput",
                 "value": 0,
                 "value_type": "UINT8"
             },
             "switch_7": {
-                "table": "coil",
+                "table": "discreteInput",
                 "value": 0,
                 "value_type": "UINT8"
             },
             "switch_8": {
-                "table": "coil",
+                "table": "discreteInput",
                 "value": 0,
                 "value_type": "UINT8"
             }
@@ -324,62 +372,110 @@
         },
         "BACnet": {
             "voltage": {
-                "object": "ANALOG_VALUE",
+                "object": "ANALOG_INPUT",
                 "presentValue": 222.6,
                 "units": "VOLTS"
             },
             "active_power": {
-                "object": "ANALOG_VALUE",
+                "object": "ANALOG_INPUT",
                 "presentValue": 1,
                 "units": "WATTS"
             },
             "power_factor": {
-                "object": "ANALOG_VALUE",
+                "object": "ANALOG_INPUT",
                 "presentValue": 100,
                 "units": "NO_UNITS"
             },
             "power_consumption": {
-                "object": "ANALOG_VALUE",
+                "object": "ANALOG_INPUT",
                 "presentValue": 1,
                 "units": "WATT_HOURS"
             },
             "current": {
-                "object": "ANALOG_VALUE",
+                "object": "ANALOG_INPUT",
                 "presentValue": 2,
                 "units": "MILLIAMPERES"
             },
-            "switch_1": {
-                "object": "BINARY_VALUE",
-                "presentValue": 1
-            },
-            "switch_2": {
-                "object": "BINARY_VALUE",
-                "presentValue": 0
-            },
-            "switch_3": {
-                "object": "BINARY_VALUE",
-                "presentValue": 0
-            },
-            "switch_4": {
-                "object": "BINARY_VALUE",
-                "presentValue": 0
-            },
-            "switch_5": {
-                "object": "BINARY_VALUE",
-                "presentValue": 0
-            },
-            "switch_6": {
-                "object": "BINARY_VALUE",
-                "presentValue": 0
-            },
-            "switch_7": {
-                "object": "BINARY_VALUE",
-                "presentValue": 0
-            },
-            "switch_8": {
-                "object": "BINARY_VALUE",
-                "presentValue": 0
-            }
+            "switch_1": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 1
+                }
+            ],
+            "switch_2": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "switch_3": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "switch_4": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "switch_5": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "switch_6": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "switch_7": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "switch_8": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ]
         },
         "Modbus": {
             "voltage": {
@@ -408,42 +504,42 @@
                 "value_type": "UINT16"
             },
             "switch_1": {
-                "table": "coil",
+                "table": "discreteInput",
                 "value": 1,
                 "value_type": "UINT8"
             },
             "switch_2": {
-                "table": "coil",
+                "table": "discreteInput",
                 "value": 0,
                 "value_type": "UINT8"
             },
             "switch_3": {
-                "table": "coil",
+                "table": "discreteInput",
                 "value": 0,
                 "value_type": "UINT8"
             },
             "switch_4": {
-                "table": "coil",
+                "table": "discreteInput",
                 "value": 0,
                 "value_type": "UINT8"
             },
             "switch_5": {
-                "table": "coil",
+                "table": "discreteInput",
                 "value": 0,
                 "value_type": "UINT8"
             },
             "switch_6": {
-                "table": "coil",
+                "table": "discreteInput",
                 "value": 0,
                 "value_type": "UINT8"
             },
             "switch_7": {
-                "table": "coil",
+                "table": "discreteInput",
                 "value": 0,
                 "value_type": "UINT8"
             },
             "switch_8": {
-                "table": "coil",
+                "table": "discreteInput",
                 "value": 0,
                 "value_type": "UINT8"
             }
