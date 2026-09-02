@@ -906,6 +906,7 @@ function readTemperatureControlSupportStatus(heat_mode_value, cool_mode_value) {
     enable.stage_5_heat = readEnableStatus((heat_mode_value >>> 4) & 0x01);
     enable.stage_1_cool = readEnableStatus((cool_mode_value >>> 0) & 0x01);
     enable.stage_2_cool = readEnableStatus((cool_mode_value >>> 1) & 0x01);
+    enable.stage_3_cool = readEnableStatus((cool_mode_value >>> 2) & 0x01);
     return enable;
 }
 

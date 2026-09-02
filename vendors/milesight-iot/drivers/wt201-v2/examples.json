@@ -32,40 +32,68 @@
         },
         "BACnet": {
             "temperature": {
-                "object": "ANALOG_VALUE",
+                "object": "ANALOG_INPUT",
                 "presentValue": 25.8,
                 "units": "DEGREES_CELSIUS"
             },
-            "target_temperature": {
-                "object": "ANALOG_VALUE",
-                "presentValue": 16.6,
-                "units": "DEGREES_CELSIUS"
-            },
-            "temperature_control_mode": {
-                "object": "ANALOG_VALUE",
-                "presentValue": 0,
-                "units": "NO_UNITS"
-            },
+            "target_temperature": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 16.6,
+                    "units": "DEGREES_CELSIUS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 25,
+                    "units": "DEGREES_CELSIUS"
+                }
+            ],
+            "temperature_control_mode": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 2,
+                    "units": "NO_UNITS"
+                }
+            ],
             "temperature_control_status": {
-                "object": "ANALOG_VALUE",
+                "object": "ANALOG_INPUT",
                 "presentValue": 0,
                 "units": "NO_UNITS"
             },
-            "fan_mode": {
-                "object": "ANALOG_VALUE",
-                "presentValue": 0,
-                "units": "NO_UNITS"
-            },
+            "fan_mode": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
             "fan_status": {
-                "object": "ANALOG_VALUE",
+                "object": "ANALOG_INPUT",
                 "presentValue": 0,
                 "units": "NO_UNITS"
             },
-            "plan_type": {
-                "object": "ANALOG_VALUE",
-                "presentValue": 255,
-                "units": "NO_UNITS"
-            }
+            "plan_type": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 255,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ]
         },
         "Modbus": {
             "temperature": {
@@ -74,12 +102,12 @@
                 "value_type": "FLOAT"
             },
             "target_temperature": {
-                "table": "holdingRegister",
+                "table": "inputRegister",
                 "value": 16.6,
                 "value_type": "FLOAT"
             },
             "temperature_control_mode": {
-                "table": "holdingRegister",
+                "table": "inputRegister",
                 "value": 0,
                 "value_type": "UINT8"
             },
@@ -89,7 +117,7 @@
                 "value_type": "UINT8"
             },
             "fan_mode": {
-                "table": "holdingRegister",
+                "table": "inputRegister",
                 "value": 0,
                 "value_type": "UINT8"
             },
@@ -100,7 +128,7 @@
                 "_notNumeric": "standby"
             },
             "plan_type": {
-                "table": "holdingRegister",
+                "table": "inputRegister",
                 "value": 255,
                 "value_type": "UINT8"
             }
@@ -129,12 +157,12 @@
         },
         "BACnet": {
             "temperature": {
-                "object": "ANALOG_VALUE",
+                "object": "ANALOG_INPUT",
                 "presentValue": 25.1,
                 "units": "DEGREES_CELSIUS"
             },
             "temperature_alarm": {
-                "object": "ANALOG_VALUE",
+                "object": "ANALOG_INPUT",
                 "presentValue": 9,
                 "units": "NO_UNITS"
             }
@@ -204,6 +232,7 @@
                     "stage_1_heat": "enable",
                     "stage_2_cool": "disable",
                     "stage_2_heat": "disable",
+                    "stage_3_cool": "disable",
                     "stage_3_heat": "disable",
                     "stage_4_heat": "disable",
                     "stage_5_heat": "enable"
@@ -226,94 +255,171 @@
         "points": null,
         "BACnet": {
             "temperature_control_support_mode:heat": {
-                "object": "BINARY_VALUE",
+                "object": "BINARY_INPUT",
                 "presentValue": 1
             },
             "temperature_control_support_mode:em_heat": {
-                "object": "BINARY_VALUE",
+                "object": "BINARY_INPUT",
                 "presentValue": 0
             },
             "temperature_control_support_mode:cool": {
-                "object": "BINARY_VALUE",
+                "object": "BINARY_INPUT",
                 "presentValue": 1
             },
             "temperature_control_support_mode:auto": {
-                "object": "BINARY_VALUE",
+                "object": "BINARY_INPUT",
                 "presentValue": 1
             },
             "temperature_control_support_status:stage_1_heat": {
-                "object": "BINARY_VALUE",
+                "object": "BINARY_INPUT",
                 "presentValue": 1
             },
             "temperature_control_support_status:stage_2_heat": {
-                "object": "BINARY_VALUE",
+                "object": "BINARY_INPUT",
                 "presentValue": 0
             },
             "temperature_control_support_status:stage_3_heat": {
-                "object": "BINARY_VALUE",
+                "object": "BINARY_INPUT",
                 "presentValue": 0
             },
             "temperature_control_support_status:stage_4_heat": {
-                "object": "BINARY_VALUE",
+                "object": "BINARY_INPUT",
                 "presentValue": 0
             },
             "temperature_control_support_status:stage_1_cool": {
-                "object": "BINARY_VALUE",
+                "object": "BINARY_INPUT",
                 "presentValue": 1
             },
             "temperature_control_support_status:stage_2_cool": {
-                "object": "BINARY_VALUE",
+                "object": "BINARY_INPUT",
                 "presentValue": 0
             },
-            "wires:y1": {
-                "object": "BINARY_VALUE",
-                "presentValue": 1
-            },
-            "wires:gh": {
-                "object": "BINARY_VALUE",
-                "presentValue": 1
-            },
-            "wires:ob": {
-                "object": "BINARY_VALUE",
-                "presentValue": 1
-            },
-            "wires:w1": {
-                "object": "BINARY_VALUE",
+            "temperature_control_support_status:stage_3_cool": {
+                "object": "BINARY_INPUT",
                 "presentValue": 0
             },
-            "wires:e": {
-                "object": "BINARY_VALUE",
-                "presentValue": 0
-            },
-            "wires:di": {
-                "object": "BINARY_VALUE",
-                "presentValue": 0
-            },
-            "wires:pek": {
-                "object": "BINARY_VALUE",
-                "presentValue": 0
-            },
-            "wires:w2": {
-                "object": "BINARY_VALUE",
-                "presentValue": 0
-            },
-            "wires:aux": {
-                "object": "BINARY_VALUE",
-                "presentValue": 1
-            },
-            "wires:y2": {
-                "object": "BINARY_VALUE",
-                "presentValue": 0
-            },
-            "wires:gl": {
-                "object": "BINARY_VALUE",
-                "presentValue": 0
-            },
-            "ob_mode": {
-                "object": "ANALOG_VALUE",
-                "presentValue": 1,
-                "units": "NO_UNITS"
-            }
+            "wires:y1": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 1
+                }
+            ],
+            "wires:gh": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "wires:ob": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 1
+                }
+            ],
+            "wires:w1": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 1
+                }
+            ],
+            "wires:e": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 1
+                }
+            ],
+            "wires:di": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "wires:pek": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 1
+                }
+            ],
+            "wires:w2": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "wires:aux": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "wires:y2": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 1
+                }
+            ],
+            "wires:gl": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "ob_mode": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 1,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ]
         },
         "Modbus": {
             "temperature_control_support_mode:heat": {
@@ -366,63 +472,68 @@
                 "value": 0,
                 "value_type": "UINT8"
             },
+            "temperature_control_support_status:stage_3_cool": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
             "wires:y1": {
-                "table": "coil",
+                "table": "discreteInput",
                 "value": 1,
                 "value_type": "UINT8"
             },
             "wires:gh": {
-                "table": "coil",
+                "table": "discreteInput",
                 "value": 1,
                 "value_type": "UINT8"
             },
             "wires:ob": {
-                "table": "coil",
+                "table": "discreteInput",
                 "value": 1,
                 "value_type": "UINT8"
             },
             "wires:w1": {
-                "table": "coil",
+                "table": "discreteInput",
                 "value": 0,
                 "value_type": "UINT8"
             },
             "wires:e": {
-                "table": "coil",
+                "table": "discreteInput",
                 "value": 0,
                 "value_type": "UINT8"
             },
             "wires:di": {
-                "table": "coil",
+                "table": "discreteInput",
                 "value": 0,
                 "value_type": "UINT8"
             },
             "wires:pek": {
-                "table": "coil",
+                "table": "discreteInput",
                 "value": 0,
                 "value_type": "UINT8"
             },
             "wires:w2": {
-                "table": "coil",
+                "table": "discreteInput",
                 "value": 0,
                 "value_type": "UINT8"
             },
             "wires:aux": {
-                "table": "coil",
+                "table": "discreteInput",
                 "value": 1,
                 "value_type": "UINT8"
             },
             "wires:y2": {
-                "table": "coil",
+                "table": "discreteInput",
                 "value": 0,
                 "value_type": "UINT8"
             },
             "wires:gl": {
-                "table": "coil",
+                "table": "discreteInput",
                 "value": 0,
                 "value_type": "UINT8"
             },
             "ob_mode": {
-                "table": "holdingRegister",
+                "table": "inputRegister",
                 "value": 1,
                 "value_type": "UINT8"
             }
