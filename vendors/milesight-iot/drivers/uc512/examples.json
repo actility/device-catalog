@@ -22,19 +22,26 @@
         },
         "BACnet": {
             "battery": {
-                "object": "ANALOG_VALUE",
+                "object": "ANALOG_INPUT",
                 "presentValue": 92,
                 "units": "PERCENT"
             },
             "valve_1": {
-                "object": "BINARY_VALUE",
+                "object": "BINARY_INPUT",
                 "presentValue": 0
             },
-            "valve_1_pulse": {
-                "object": "ANALOG_VALUE",
-                "presentValue": 5,
-                "units": "NO_UNITS"
-            }
+            "valve_1_pulse": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 5,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 5,
+                    "units": "NO_UNITS"
+                }
+            ]
         },
         "Modbus": {
             "battery": {
@@ -48,7 +55,7 @@
                 "value_type": "UINT8"
             },
             "valve_1_pulse": {
-                "table": "holdingRegister",
+                "table": "inputRegister",
                 "value": 5,
                 "value_type": "UINT32"
             }
@@ -94,7 +101,7 @@
         },
         "BACnet": {
             "device_status": {
-                "object": "BINARY_VALUE",
+                "object": "BINARY_INPUT",
                 "presentValue": 1
             }
         },

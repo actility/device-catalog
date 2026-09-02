@@ -22,6 +22,20 @@
                 "unitId": "Cel",
                 "record": 29.53
             }
+        },
+        "BACnet": {
+            "temperature": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 29.53,
+                "units": "DEGREES_CELSIUS"
+            }
+        },
+        "Modbus": {
+            "temperature": {
+                "table": "inputRegister",
+                "value": 29.53,
+                "value_type": "FLOAT"
+            }
         }
     },
     {
@@ -46,6 +60,20 @@
             "humidity": {
                 "unitId": "%RH",
                 "record": 37.21
+            }
+        },
+        "BACnet": {
+            "humidity": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 37.21,
+                "units": "PERCENT_RELATIVE_HUMIDITY"
+            }
+        },
+        "Modbus": {
+            "humidity": {
+                "table": "inputRegister",
+                "value": 37.21,
+                "value_type": "FLOAT"
             }
         }
     },
@@ -73,7 +101,9 @@
                 "record": true,
                 "nature": "violation_detection"
             }
-        }
+        },
+        "BACnet": {},
+        "Modbus": {}
     },
     {
         "type": "uplink",
@@ -97,6 +127,20 @@
             "illuminance": {
                 "unitId": "lx",
                 "record": 1861
+            }
+        },
+        "BACnet": {
+            "illuminance": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 1861,
+                "units": "LUXES"
+            }
+        },
+        "Modbus": {
+            "illuminance": {
+                "table": "inputRegister",
+                "value": 1861,
+                "value_type": "UINT16"
             }
         }
     },
@@ -123,7 +167,9 @@
                 "unitId": "state",
                 "record": true
             }
-        }
+        },
+        "BACnet": {},
+        "Modbus": {}
     },
     {
         "type": "uplink",
@@ -143,7 +189,9 @@
             ],
             "warnings": []
         },
-        "points": {}
+        "points": {},
+        "BACnet": {},
+        "Modbus": {}
     },
     {
         "type": "uplink",
@@ -168,7 +216,9 @@
                 "unitId": "V",
                 "record": 3.688
             }
-        }
+        },
+        "BACnet": {},
+        "Modbus": {}
     },
     {
         "type": "uplink",
@@ -188,6 +238,8 @@
             ],
             "warnings": []
         },
-        "points": {}
+        "points": {},
+        "BACnet": {},
+        "Modbus": {}
     }
 ]

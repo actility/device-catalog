@@ -32,7 +32,9 @@
           }
         ]
       }
-    }
+    },
+    "BACnet": {},
+    "Modbus": {}
   },
   {
     "type": "uplink",
@@ -55,7 +57,20 @@
       },
       "warnings": []
     },
-    "points": {}
+    "points": {},
+    "BACnet": {
+      "firmware": {
+        "object": "CHARACTERSTRING_VALUE",
+        "presentValue": "3.5.2.5602"
+      }
+    },
+    "Modbus": {
+      "firmware": {
+        "table": "inputRegister",
+        "value": "3.5.2.5602",
+        "value_type": "STRING"
+      }
+    }
   },
   {
     "type": "uplink",
@@ -90,6 +105,20 @@
           }
         ]
       }
+    },
+    "BACnet": {
+      "disposable_battery_voltage": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 3.688,
+        "units": "VOLTS"
+      }
+    },
+    "Modbus": {
+      "disposable_battery_voltage": {
+        "table": "inputRegister",
+        "value": 3.688,
+        "value_type": "FLOAT"
+      }
     }
   },
   {
@@ -113,7 +142,20 @@
       },
       "warnings": []
     },
-    "points": {}
+    "points": {},
+    "BACnet": {
+      "message_type": {
+        "object": "CHARACTERSTRING_VALUE",
+        "presentValue": "unconfirmed"
+      }
+    },
+    "Modbus": {
+      "message_type": {
+        "table": "inputRegister",
+        "value": "unconfirmed",
+        "value_type": "STRING"
+      }
+    }
   },
   {
     "type": "uplink",
@@ -185,6 +227,20 @@
             "eventTime": "2023-07-19T07:51:25.508Z"
           }
         ]
+      }
+    },
+    "BACnet": {
+      "battery_voltage": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 3.7,
+        "units": "VOLTS"
+      }
+    },
+    "Modbus": {
+      "battery_voltage": {
+        "table": "inputRegister",
+        "value": 3.7,
+        "value_type": "FLOAT"
       }
     }
   },

@@ -167,6 +167,10 @@ function handle_downlink_response(channel_type, bytes, offset) {
             decoded.wifi_enable = readEnableStatus(bytes[offset]);
             offset += 1;
             break;
+        case 0x64:
+            decoded.release_alarm = readYesNoStatus(1);
+            offset += 1;
+            break;
         case 0x69:
             decoded.retransmit_enable = readEnableStatus(bytes[offset]);
             offset += 1;
@@ -319,14 +323,14 @@ function readProtocolVersion(bytes) {
 }
 
 function readHardwareVersion(bytes) {
-    var major = bytes[0] & 0xff;
+    var major = (bytes[0] & 0xff).toString(16);
     var minor = (bytes[1] & 0xff) >> 4;
     return "v" + major + "." + minor;
 }
 
 function readFirmwareVersion(bytes) {
-    var major = bytes[0] & 0xff;
-    var minor = bytes[1] & 0xff;
+    var major = (bytes[0] & 0xff).toString(16);
+    var minor = (bytes[1] & 0xff).toString(16);
     return "v" + major + "." + minor;
 }
 
@@ -375,6 +379,7 @@ function readTargetStatus(status) {
         0: "normal",
         1: "motionless",
         2: "abnormal",
+        3: "lying_down",
     };
     return getValue(target_status_map, status);
 }
@@ -395,6 +400,9 @@ function readAlarmType(type) {
         3: "out_of_bed",
         4: "occupied",
         5: "vacant",
+        6: "bradynea",
+        7: "tachypnea",
+        8: "lying_down",
     };
     return getValue(alarm_type_map, type);
 }
@@ -404,6 +412,7 @@ function readAlarmStatus(status) {
         1: "alarm_triggered",
         2: "alarm_deactivated",
         3: "alarm_ignored",
+        4: "respiratory_status",
     };
     return getValue(alarm_status_map, status);
 }

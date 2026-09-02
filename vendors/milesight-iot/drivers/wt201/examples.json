@@ -32,30 +32,44 @@
         },
         "BACnet": {
             "temperature": {
-                "object": "ANALOG_VALUE",
+                "object": "ANALOG_INPUT",
                 "presentValue": 25.8,
                 "units": "DEGREES_CELSIUS"
             },
             "temperature_control_status": {
-                "object": "ANALOG_VALUE",
+                "object": "ANALOG_INPUT",
                 "presentValue": 0,
                 "units": "NO_UNITS"
             },
-            "fan_mode": {
-                "object": "ANALOG_VALUE",
-                "presentValue": 0,
-                "units": "NO_UNITS"
-            },
+            "fan_mode": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
             "fan_status": {
-                "object": "ANALOG_VALUE",
+                "object": "ANALOG_INPUT",
                 "presentValue": 0,
                 "units": "NO_UNITS"
             },
-            "plan_type": {
-                "object": "ANALOG_VALUE",
-                "presentValue": 255,
-                "units": "NO_UNITS"
-            }
+            "plan_type": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 255,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ]
         },
         "Modbus": {
             "temperature": {
@@ -69,7 +83,7 @@
                 "value_type": "UINT8"
             },
             "fan_mode": {
-                "table": "holdingRegister",
+                "table": "inputRegister",
                 "value": 0,
                 "value_type": "UINT8"
             },
@@ -80,7 +94,7 @@
                 "_notNumeric": "standby"
             },
             "plan_type": {
-                "table": "holdingRegister",
+                "table": "inputRegister",
                 "value": 255,
                 "value_type": "UINT8"
             }
@@ -109,12 +123,12 @@
         },
         "BACnet": {
             "temperature": {
-                "object": "ANALOG_VALUE",
+                "object": "ANALOG_INPUT",
                 "presentValue": 25.1,
                 "units": "DEGREES_CELSIUS"
             },
             "temperature_alarm": {
-                "object": "ANALOG_VALUE",
+                "object": "ANALOG_INPUT",
                 "presentValue": 9,
                 "units": "NO_UNITS"
             }
@@ -206,50 +220,57 @@
         "points": {},
         "BACnet": {
             "temperature_control_support_mode:heat": {
-                "object": "BINARY_VALUE",
+                "object": "BINARY_INPUT",
                 "presentValue": 1
             },
             "temperature_control_support_mode:em_heat": {
-                "object": "BINARY_VALUE",
+                "object": "BINARY_INPUT",
                 "presentValue": 0
             },
             "temperature_control_support_mode:cool": {
-                "object": "BINARY_VALUE",
+                "object": "BINARY_INPUT",
                 "presentValue": 1
             },
             "temperature_control_support_mode:auto": {
-                "object": "BINARY_VALUE",
+                "object": "BINARY_INPUT",
                 "presentValue": 1
             },
             "temperature_control_support_status:stage_1_heat": {
-                "object": "BINARY_VALUE",
+                "object": "BINARY_INPUT",
                 "presentValue": 1
             },
             "temperature_control_support_status:stage_2_heat": {
-                "object": "BINARY_VALUE",
+                "object": "BINARY_INPUT",
                 "presentValue": 0
             },
             "temperature_control_support_status:stage_3_heat": {
-                "object": "BINARY_VALUE",
+                "object": "BINARY_INPUT",
                 "presentValue": 0
             },
             "temperature_control_support_status:stage_4_heat": {
-                "object": "BINARY_VALUE",
+                "object": "BINARY_INPUT",
                 "presentValue": 0
             },
             "temperature_control_support_status:stage_1_cool": {
-                "object": "BINARY_VALUE",
+                "object": "BINARY_INPUT",
                 "presentValue": 1
             },
             "temperature_control_support_status:stage_2_cool": {
-                "object": "BINARY_VALUE",
+                "object": "BINARY_INPUT",
                 "presentValue": 0
             },
-            "ob_mode": {
-                "object": "ANALOG_VALUE",
-                "presentValue": 1,
-                "units": "NO_UNITS"
-            }
+            "ob_mode": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 1,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ]
         },
         "Modbus": {
             "temperature_control_support_mode:heat": {
@@ -303,7 +324,7 @@
                 "value_type": "UINT8"
             },
             "ob_mode": {
-                "table": "holdingRegister",
+                "table": "inputRegister",
                 "value": 1,
                 "value_type": "UINT8"
             }

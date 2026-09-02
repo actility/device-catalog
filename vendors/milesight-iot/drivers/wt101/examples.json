@@ -40,32 +40,46 @@
         },
         "BACnet": {
             "battery": {
-                "object": "ANALOG_VALUE",
+                "object": "ANALOG_INPUT",
                 "presentValue": 97,
                 "units": "PERCENT"
             },
             "temperature": {
-                "object": "ANALOG_VALUE",
+                "object": "ANALOG_INPUT",
                 "presentValue": 26.6,
                 "units": "DEGREES_CELSIUS"
             },
-            "target_temperature": {
-                "object": "ANALOG_VALUE",
-                "presentValue": 30,
-                "units": "DEGREES_CELSIUS"
-            },
-            "valve_opening": {
-                "object": "ANALOG_VALUE",
-                "presentValue": 100,
-                "units": "PERCENT"
-            },
+            "target_temperature": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 30,
+                    "units": "DEGREES_CELSIUS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 30,
+                    "units": "DEGREES_CELSIUS"
+                }
+            ],
+            "valve_opening": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 100,
+                    "units": "PERCENT"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 100,
+                    "units": "PERCENT"
+                }
+            ],
             "motor_stroke": {
-                "object": "ANALOG_VALUE",
+                "object": "ANALOG_INPUT",
                 "presentValue": 0,
                 "units": "NO_UNITS"
             },
             "motor_position": {
-                "object": "ANALOG_VALUE",
+                "object": "ANALOG_INPUT",
                 "presentValue": 0,
                 "units": "NO_UNITS"
             }
@@ -82,12 +96,12 @@
                 "value_type": "FLOAT"
             },
             "target_temperature": {
-                "table": "holdingRegister",
+                "table": "inputRegister",
                 "value": 30,
                 "value_type": "FLOAT"
             },
             "valve_opening": {
-                "table": "holdingRegister",
+                "table": "inputRegister",
                 "value": 100,
                 "value_type": "UINT8"
             },
@@ -120,12 +134,12 @@
         "points": {},
         "BACnet": {
             "motor_calibration_result": {
-                "object": "ANALOG_VALUE",
+                "object": "ANALOG_INPUT",
                 "presentValue": 0,
                 "units": "NO_UNITS"
             },
             "motor_stroke": {
-                "object": "ANALOG_VALUE",
+                "object": "ANALOG_INPUT",
                 "presentValue": 520,
                 "units": "NO_UNITS"
             }
@@ -159,7 +173,7 @@
         "points": {},
         "BACnet": {
             "tamper_status": {
-                "object": "BINARY_VALUE",
+                "object": "BINARY_INPUT",
                 "presentValue": 0
             }
         },
@@ -193,7 +207,7 @@
         },
         "BACnet": {
             "window_detection": {
-                "object": "BINARY_VALUE",
+                "object": "BINARY_INPUT",
                 "presentValue": 1
             }
         },
@@ -221,7 +235,7 @@
         "points": {},
         "BACnet": {
             "motor_calibration_result": {
-                "object": "ANALOG_VALUE",
+                "object": "ANALOG_INPUT",
                 "presentValue": 1,
                 "units": "NO_UNITS"
             }
@@ -256,7 +270,7 @@
         },
         "BACnet": {
             "freeze_protection": {
-                "object": "BINARY_VALUE",
+                "object": "BINARY_INPUT",
                 "presentValue": 1
             }
         },

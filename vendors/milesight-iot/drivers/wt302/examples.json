@@ -32,15 +32,22 @@
         },
         "points": null,
         "BACnet": {
-            "fan_speed": {
-                "object": "ANALOG_VALUE",
-                "presentValue": 0,
-                "units": "NO_UNITS"
-            }
+            "fan_speed": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ]
         },
         "Modbus": {
             "fan_speed": {
-                "table": "holdingRegister",
+                "table": "inputRegister",
                 "value": "unknown",
                 "value_type": "UINT8",
                 "_notNumeric": "unknown"
@@ -75,7 +82,7 @@
         },
         "BACnet": {
             "temperature": {
-                "object": "ANALOG_VALUE",
+                "object": "ANALOG_INPUT",
                 "presentValue": 26,
                 "units": "DEGREES_CELSIUS"
             }
@@ -116,14 +123,20 @@
             }
         },
         "BACnet": {
-            "thermostat_status": {
-                "object": "BINARY_VALUE",
-                "presentValue": 1
-            }
+            "thermostat_status": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 1
+                }
+            ]
         },
         "Modbus": {
             "thermostat_status": {
-                "table": "coil",
+                "table": "discreteInput",
                 "value": 1,
                 "value_type": "UINT8"
             }

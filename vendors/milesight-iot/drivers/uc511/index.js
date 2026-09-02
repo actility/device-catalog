@@ -292,6 +292,12 @@ function readValveIndex(index) {
     var index_map = {
         0: "valve 1",
         1: "valve 2",
+        2: "valve 3",
+        3: "valve 4",
+        4: "valve 5",
+        5: "valve 6",
+        6: "valve 7",
+        7: "all valves"
     };
     return getValue(index_map, index);
 }

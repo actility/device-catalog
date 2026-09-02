@@ -30,6 +30,19 @@
           }
         ]
       }
+    },
+    "BACnet": {
+      "pin_state": {
+        "object": "BINARY_INPUT",
+        "presentValue": 1
+      }
+    },
+    "Modbus": {
+      "pin_state": {
+        "table": "discreteInput",
+        "value": 1,
+        "value_type": "BOOL"
+      }
     }
   },
   {
@@ -62,6 +75,20 @@
             "eventTime": "2023-07-19T07:51:25.508306410Z"
           }
         ]
+      }
+    },
+    "BACnet": {
+      "index": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 0,
+        "units": "NO_UNITS"
+      }
+    },
+    "Modbus": {
+      "index": {
+        "table": "inputRegister",
+        "value": 0,
+        "value_type": "UINT32"
       }
     }
   },
@@ -96,6 +123,19 @@
           }
         ]
       }
+    },
+    "BACnet": {
+      "output": {
+        "object": "CHARACTERSTRING_VALUE",
+        "presentValue": "ON"
+      }
+    },
+    "Modbus": {
+      "output": {
+        "table": "inputRegister",
+        "value": "ON",
+        "value_type": "STRING"
+      }
     }
   },
   {
@@ -128,6 +168,19 @@
             "eventTime": "2023-07-19T07:51:25.508306410Z"
           }
         ]
+      }
+    },
+    "BACnet": {
+      "output": {
+        "object": "CHARACTERSTRING_VALUE",
+        "presentValue": "OFF"
+      }
+    },
+    "Modbus": {
+      "output": {
+        "table": "inputRegister",
+        "value": "OFF",
+        "value_type": "STRING"
       }
     }
   },
@@ -290,6 +343,90 @@
           }
         ],
         "nature": "Negative reactive power"
+      }
+    },
+    "BACnet": {
+      "negative_active_energy_abc": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 0,
+        "units": "WATT_HOURS"
+      },
+      "negative_active_power_abc": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 0,
+        "units": "WATTS"
+      },
+      "negative_reactive_energy_abc": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 28752,
+        "units": "VOLT_AMPERE_HOURS_REACTIVE"
+      },
+      "negative_reactive_power_abc": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 3951,
+        "units": "VOLT_AMPERES_REACTIVE"
+      },
+      "positive_active_energy_abc": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 239978,
+        "units": "WATT_HOURS"
+      },
+      "positive_active_power_abc": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 31871,
+        "units": "WATTS"
+      },
+      "positive_reactive_energy_abc": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 37529,
+        "units": "VOLT_AMPERE_HOURS_REACTIVE"
+      },
+      "positive_reactive_power_abc": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 192,
+        "units": "VOLT_AMPERES_REACTIVE"
+      }
+    },
+    "Modbus": {
+      "negative_active_energy_abc": {
+        "table": "inputRegister",
+        "value": 0,
+        "value_type": "UINT32"
+      },
+      "negative_active_power_abc": {
+        "table": "inputRegister",
+        "value": 0,
+        "value_type": "UINT32"
+      },
+      "negative_reactive_energy_abc": {
+        "table": "inputRegister",
+        "value": 28752,
+        "value_type": "UINT32"
+      },
+      "negative_reactive_power_abc": {
+        "table": "inputRegister",
+        "value": 3951,
+        "value_type": "UINT32"
+      },
+      "positive_active_energy_abc": {
+        "table": "inputRegister",
+        "value": 239978,
+        "value_type": "UINT32"
+      },
+      "positive_active_power_abc": {
+        "table": "inputRegister",
+        "value": 31871,
+        "value_type": "UINT32"
+      },
+      "positive_reactive_energy_abc": {
+        "table": "inputRegister",
+        "value": 37529,
+        "value_type": "UINT32"
+      },
+      "positive_reactive_power_abc": {
+        "table": "inputRegister",
+        "value": 192,
+        "value_type": "UINT32"
       }
     }
   },
@@ -456,6 +593,90 @@
         ],
         "nature": "Negative reactive power"
       }
+    },
+    "BACnet": {
+      "negative_active_energy_a": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 516,
+        "units": "WATT_HOURS"
+      },
+      "negative_active_power_a": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 0,
+        "units": "WATTS"
+      },
+      "negative_reactive_energy_a": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 663821,
+        "units": "VOLT_AMPERE_HOURS_REACTIVE"
+      },
+      "negative_reactive_power_a": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 934,
+        "units": "VOLT_AMPERES_REACTIVE"
+      },
+      "positive_active_energy_a": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 1078794,
+        "units": "WATT_HOURS"
+      },
+      "positive_active_power_a": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 6306,
+        "units": "WATTS"
+      },
+      "positive_reactive_energy_a": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 23150,
+        "units": "VOLT_AMPERE_HOURS_REACTIVE"
+      },
+      "positive_reactive_power_a": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 0,
+        "units": "VOLT_AMPERES_REACTIVE"
+      }
+    },
+    "Modbus": {
+      "negative_active_energy_a": {
+        "table": "inputRegister",
+        "value": 516,
+        "value_type": "UINT32"
+      },
+      "negative_active_power_a": {
+        "table": "inputRegister",
+        "value": 0,
+        "value_type": "UINT32"
+      },
+      "negative_reactive_energy_a": {
+        "table": "inputRegister",
+        "value": 663821,
+        "value_type": "UINT32"
+      },
+      "negative_reactive_power_a": {
+        "table": "inputRegister",
+        "value": 934,
+        "value_type": "UINT32"
+      },
+      "positive_active_energy_a": {
+        "table": "inputRegister",
+        "value": 1078794,
+        "value_type": "UINT32"
+      },
+      "positive_active_power_a": {
+        "table": "inputRegister",
+        "value": 6306,
+        "value_type": "UINT32"
+      },
+      "positive_reactive_energy_a": {
+        "table": "inputRegister",
+        "value": 23150,
+        "value_type": "UINT32"
+      },
+      "positive_reactive_power_a": {
+        "table": "inputRegister",
+        "value": 0,
+        "value_type": "UINT32"
+      }
     }
   },
   {
@@ -525,6 +746,40 @@
             "eventTime": "2023-07-19T07:51:25.508306410Z"
           }
         ]
+      }
+    },
+    "BACnet": {
+      "angle_a": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 355,
+        "units": "DEGREES_ANGULAR"
+      },
+      "Irms_a": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 78.2,
+        "units": "AMPERES"
+      },
+      "Vrms_a": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 238,
+        "units": "VOLTS"
+      }
+    },
+    "Modbus": {
+      "angle_a": {
+        "table": "inputRegister",
+        "value": 355,
+        "value_type": "INT16"
+      },
+      "Irms_a": {
+        "table": "inputRegister",
+        "value": 78.2,
+        "value_type": "FLOAT"
+      },
+      "Vrms_a": {
+        "table": "inputRegister",
+        "value": 238,
+        "value_type": "FLOAT"
       }
     }
   },
@@ -597,6 +852,40 @@
             "eventTime": "2023-07-19T07:51:25.508306410Z"
           }
         ]
+      }
+    },
+    "BACnet": {
+      "angle_b": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 354,
+        "units": "DEGREES_ANGULAR"
+      },
+      "Irms_b": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 26.9,
+        "units": "AMPERES"
+      },
+      "Vrms_b": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 241.9,
+        "units": "VOLTS"
+      }
+    },
+    "Modbus": {
+      "angle_b": {
+        "table": "inputRegister",
+        "value": 354,
+        "value_type": "INT16"
+      },
+      "Irms_b": {
+        "table": "inputRegister",
+        "value": 26.9,
+        "value_type": "FLOAT"
+      },
+      "Vrms_b": {
+        "table": "inputRegister",
+        "value": 241.9,
+        "value_type": "FLOAT"
       }
     }
   },
@@ -671,6 +960,40 @@
             "eventTime": "2023-07-19T07:51:25.508306410Z"
           }
         ]
+      }
+    },
+    "BACnet": {
+      "angle_a": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 354,
+        "units": "DEGREES_ANGULAR"
+      },
+      "Irms_a": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 27.7,
+        "units": "AMPERES"
+      },
+      "Vrms_a": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 242.4,
+        "units": "VOLTS"
+      }
+    },
+    "Modbus": {
+      "angle_a": {
+        "table": "inputRegister",
+        "value": 354,
+        "value_type": "INT16"
+      },
+      "Irms_a": {
+        "table": "inputRegister",
+        "value": 27.7,
+        "value_type": "FLOAT"
+      },
+      "Vrms_a": {
+        "table": "inputRegister",
+        "value": 242.4,
+        "value_type": "FLOAT"
       }
     }
   },
@@ -833,6 +1156,90 @@
           }
         ],
         "nature": "Positive reactive energy"
+      }
+    },
+    "BACnet": {
+      "active_energy_a": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 256,
+        "units": "WATT_HOURS"
+      },
+      "active_energy_abc": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 1792,
+        "units": "WATT_HOURS"
+      },
+      "active_energy_b": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 768,
+        "units": "WATT_HOURS"
+      },
+      "active_energy_c": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 1280,
+        "units": "WATT_HOURS"
+      },
+      "reactive_energy_a": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 512,
+        "units": "VOLT_AMPERE_HOURS_REACTIVE"
+      },
+      "reactive_energy_abc": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 2048,
+        "units": "VOLT_AMPERE_HOURS_REACTIVE"
+      },
+      "reactive_energy_b": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 1024,
+        "units": "VOLT_AMPERE_HOURS_REACTIVE"
+      },
+      "reactive_energy_c": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 1536,
+        "units": "VOLT_AMPERE_HOURS_REACTIVE"
+      }
+    },
+    "Modbus": {
+      "active_energy_a": {
+        "table": "inputRegister",
+        "value": 256,
+        "value_type": "INT32"
+      },
+      "active_energy_abc": {
+        "table": "inputRegister",
+        "value": 1792,
+        "value_type": "INT32"
+      },
+      "active_energy_b": {
+        "table": "inputRegister",
+        "value": 768,
+        "value_type": "INT32"
+      },
+      "active_energy_c": {
+        "table": "inputRegister",
+        "value": 1280,
+        "value_type": "INT32"
+      },
+      "reactive_energy_a": {
+        "table": "inputRegister",
+        "value": 512,
+        "value_type": "INT32"
+      },
+      "reactive_energy_abc": {
+        "table": "inputRegister",
+        "value": 2048,
+        "value_type": "INT32"
+      },
+      "reactive_energy_b": {
+        "table": "inputRegister",
+        "value": 1024,
+        "value_type": "INT32"
+      },
+      "reactive_energy_c": {
+        "table": "inputRegister",
+        "value": 1536,
+        "value_type": "INT32"
       }
     }
   },
@@ -998,6 +1405,90 @@
           }
         ],
         "nature": "Positive reactive power"
+      }
+    },
+    "BACnet": {
+      "active_power_a": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 6211,
+        "units": "WATTS"
+      },
+      "active_power_abc": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 23618,
+        "units": "WATTS"
+      },
+      "active_power_b": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 9418,
+        "units": "WATTS"
+      },
+      "active_power_c": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 7989,
+        "units": "WATTS"
+      },
+      "reactive_power_a": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 4294966304,
+        "units": "VOLT_AMPERES_REACTIVE"
+      },
+      "reactive_power_abc": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 4294960473,
+        "units": "VOLT_AMPERES_REACTIVE"
+      },
+      "reactive_power_b": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 4294964495,
+        "units": "VOLT_AMPERES_REACTIVE"
+      },
+      "reactive_power_c": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 4294964266,
+        "units": "VOLT_AMPERES_REACTIVE"
+      }
+    },
+    "Modbus": {
+      "active_power_a": {
+        "table": "inputRegister",
+        "value": 6211,
+        "value_type": "INT32"
+      },
+      "active_power_abc": {
+        "table": "inputRegister",
+        "value": 23618,
+        "value_type": "INT32"
+      },
+      "active_power_b": {
+        "table": "inputRegister",
+        "value": 9418,
+        "value_type": "INT32"
+      },
+      "active_power_c": {
+        "table": "inputRegister",
+        "value": 7989,
+        "value_type": "INT32"
+      },
+      "reactive_power_a": {
+        "table": "inputRegister",
+        "value": 4294966304,
+        "value_type": "INT32"
+      },
+      "reactive_power_abc": {
+        "table": "inputRegister",
+        "value": 4294960473,
+        "value_type": "INT32"
+      },
+      "reactive_power_b": {
+        "table": "inputRegister",
+        "value": 4294964495,
+        "value_type": "INT32"
+      },
+      "reactive_power_c": {
+        "table": "inputRegister",
+        "value": 4294964266,
+        "value_type": "INT32"
       }
     }
   },
@@ -1172,6 +1663,100 @@
             "eventTime": "2023-07-19T07:51:25.508306410Z"
           }
         ]
+      }
+    },
+    "BACnet": {
+      "angle_a": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 3,
+        "units": "DEGREES_ANGULAR"
+      },
+      "angle_b": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 64,
+        "units": "DEGREES_ANGULAR"
+      },
+      "angle_c": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 48,
+        "units": "DEGREES_ANGULAR"
+      },
+      "Irms_a": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 8.2,
+        "units": "AMPERES"
+      },
+      "Irms_b": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 6.6,
+        "units": "AMPERES"
+      },
+      "Irms_c": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 5,
+        "units": "AMPERES"
+      },
+      "Vrms_a": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 220.9,
+        "units": "VOLTS"
+      },
+      "Vrms_b": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 221,
+        "units": "VOLTS"
+      },
+      "Vrms_c": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 221.1,
+        "units": "VOLTS"
+      }
+    },
+    "Modbus": {
+      "angle_a": {
+        "table": "inputRegister",
+        "value": 3,
+        "value_type": "INT16"
+      },
+      "angle_b": {
+        "table": "inputRegister",
+        "value": 64,
+        "value_type": "INT16"
+      },
+      "angle_c": {
+        "table": "inputRegister",
+        "value": 48,
+        "value_type": "INT16"
+      },
+      "Irms_a": {
+        "table": "inputRegister",
+        "value": 8.2,
+        "value_type": "FLOAT"
+      },
+      "Irms_b": {
+        "table": "inputRegister",
+        "value": 6.6,
+        "value_type": "FLOAT"
+      },
+      "Irms_c": {
+        "table": "inputRegister",
+        "value": 5,
+        "value_type": "FLOAT"
+      },
+      "Vrms_a": {
+        "table": "inputRegister",
+        "value": 220.9,
+        "value_type": "FLOAT"
+      },
+      "Vrms_b": {
+        "table": "inputRegister",
+        "value": 221,
+        "value_type": "FLOAT"
+      },
+      "Vrms_c": {
+        "table": "inputRegister",
+        "value": 221.1,
+        "value_type": "FLOAT"
       }
     }
   },
@@ -1352,6 +1937,100 @@
           }
         ]
       }
+    },
+    "BACnet": {
+      "angle_a": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 353,
+        "units": "DEGREES_ANGULAR"
+      },
+      "angle_b": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 339,
+        "units": "DEGREES_ANGULAR"
+      },
+      "angle_c": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 336,
+        "units": "DEGREES_ANGULAR"
+      },
+      "Irms_a": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 26.8,
+        "units": "AMPERES"
+      },
+      "Irms_b": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 35,
+        "units": "AMPERES"
+      },
+      "Irms_c": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 35.3,
+        "units": "AMPERES"
+      },
+      "Vrms_a": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 242.1,
+        "units": "VOLTS"
+      },
+      "Vrms_b": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 242,
+        "units": "VOLTS"
+      },
+      "Vrms_c": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 243.5,
+        "units": "VOLTS"
+      }
+    },
+    "Modbus": {
+      "angle_a": {
+        "table": "inputRegister",
+        "value": 353,
+        "value_type": "INT16"
+      },
+      "angle_b": {
+        "table": "inputRegister",
+        "value": 339,
+        "value_type": "INT16"
+      },
+      "angle_c": {
+        "table": "inputRegister",
+        "value": 336,
+        "value_type": "INT16"
+      },
+      "Irms_a": {
+        "table": "inputRegister",
+        "value": 26.8,
+        "value_type": "FLOAT"
+      },
+      "Irms_b": {
+        "table": "inputRegister",
+        "value": 35,
+        "value_type": "FLOAT"
+      },
+      "Irms_c": {
+        "table": "inputRegister",
+        "value": 35.3,
+        "value_type": "FLOAT"
+      },
+      "Vrms_a": {
+        "table": "inputRegister",
+        "value": 242.1,
+        "value_type": "FLOAT"
+      },
+      "Vrms_b": {
+        "table": "inputRegister",
+        "value": 242,
+        "value_type": "FLOAT"
+      },
+      "Vrms_c": {
+        "table": "inputRegister",
+        "value": 243.5,
+        "value_type": "FLOAT"
+      }
     }
   },
   {
@@ -1375,7 +2054,20 @@
       },
       "warnings": []
     },
-    "points": {}
+    "points": {},
+    "BACnet": {
+      "firmware": {
+        "object": "CHARACTERSTRING_VALUE",
+        "presentValue": "3.5.2.5602"
+      }
+    },
+    "Modbus": {
+      "firmware": {
+        "table": "inputRegister",
+        "value": "3.5.2.5602",
+        "value_type": "STRING"
+      }
+    }
   },
   {
     "type": "uplink",
@@ -1408,6 +2100,20 @@
           }
         ]
       }
+    },
+    "BACnet": {
+      "disposable_battery_voltage": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 3.688,
+        "units": "VOLTS"
+      }
+    },
+    "Modbus": {
+      "disposable_battery_voltage": {
+        "table": "inputRegister",
+        "value": 3.688,
+        "value_type": "FLOAT"
+      }
     }
   },
   {
@@ -1431,7 +2137,20 @@
       },
       "warnings": []
     },
-    "points": {}
+    "points": {},
+    "BACnet": {
+      "message_type": {
+        "object": "CHARACTERSTRING_VALUE",
+        "presentValue": "unconfirmed"
+      }
+    },
+    "Modbus": {
+      "message_type": {
+        "table": "inputRegister",
+        "value": "unconfirmed",
+        "value_type": "STRING"
+      }
+    }
   },
   {
     "type": "downlink-encode",

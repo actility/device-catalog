@@ -98,6 +98,60 @@
           }
         ]
       }
+    },
+    "BACnet": {
+      "active_energy": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 71,
+        "units": "WATT_HOURS"
+      },
+      "active_power": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 47,
+        "units": "WATTS"
+      },
+      "nb_samples": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 99,
+        "units": "NO_UNITS"
+      },
+      "reactive_energy": {
+        "object": "ANALOG_INPUT",
+        "presentValue": -66,
+        "units": "VOLT_AMPERE_HOURS_REACTIVE"
+      },
+      "reactive_power": {
+        "object": "ANALOG_INPUT",
+        "presentValue": -42,
+        "units": "VOLT_AMPERES_REACTIVE"
+      }
+    },
+    "Modbus": {
+      "active_energy": {
+        "table": "inputRegister",
+        "value": 71,
+        "value_type": "INT32"
+      },
+      "active_power": {
+        "table": "inputRegister",
+        "value": 47,
+        "value_type": "INT16"
+      },
+      "nb_samples": {
+        "table": "inputRegister",
+        "value": 99,
+        "value_type": "UINT16"
+      },
+      "reactive_energy": {
+        "table": "inputRegister",
+        "value": -66,
+        "value_type": "INT32"
+      },
+      "reactive_power": {
+        "table": "inputRegister",
+        "value": -42,
+        "value_type": "INT16"
+      }
     }
   },
   {
@@ -165,7 +219,9 @@
       },
       "warnings": []
     },
-    "points": {}
+    "points": {},
+    "BACnet": {},
+    "Modbus": {}
   },
   {
     "type": "uplink",
@@ -210,7 +266,9 @@
       },
       "warnings": []
     },
-    "points": {}
+    "points": {},
+    "BACnet": {},
+    "Modbus": {}
   },
   {
     "type": "uplink",
@@ -279,7 +337,9 @@
       },
       "warnings": []
     },
-    "points": {}
+    "points": {},
+    "BACnet": {},
+    "Modbus": {}
   },
   {
     "type": "uplink",
@@ -354,7 +414,9 @@
       },
       "warnings": []
     },
-    "points": {}
+    "points": {},
+    "BACnet": {},
+    "Modbus": {}
   },
   {
     "type": "uplink",
@@ -421,7 +483,9 @@
       },
       "warnings": []
     },
-    "points": {}
+    "points": {},
+    "BACnet": {},
+    "Modbus": {}
   },
   {
     "type": "uplink",
@@ -444,7 +508,20 @@
       },
       "warnings": []
     },
-    "points": {}
+    "points": {},
+    "BACnet": {
+      "firmware": {
+        "object": "CHARACTERSTRING_VALUE",
+        "presentValue": "3.5.2.5602"
+      }
+    },
+    "Modbus": {
+      "firmware": {
+        "table": "inputRegister",
+        "value": "3.5.2.5602",
+        "value_type": "STRING"
+      }
+    }
   },
   {
     "type": "uplink",
@@ -477,6 +554,20 @@
           }
         ]
       }
+    },
+    "BACnet": {
+      "disposable_battery_voltage": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 3.688,
+        "units": "VOLTS"
+      }
+    },
+    "Modbus": {
+      "disposable_battery_voltage": {
+        "table": "inputRegister",
+        "value": 3.688,
+        "value_type": "FLOAT"
+      }
     }
   },
   {
@@ -500,7 +591,20 @@
       },
       "warnings": []
     },
-    "points": {}
+    "points": {},
+    "BACnet": {
+      "message_type": {
+        "object": "CHARACTERSTRING_VALUE",
+        "presentValue": "unconfirmed"
+      }
+    },
+    "Modbus": {
+      "message_type": {
+        "table": "inputRegister",
+        "value": "unconfirmed",
+        "value_type": "STRING"
+      }
+    }
   },
   {
     "type": "uplink",
@@ -617,7 +721,9 @@
       },
       "warnings": []
     },
-    "points": {}
+    "points": {},
+    "BACnet": {},
+    "Modbus": {}
   },
   {
     "type": "downlink-encode",

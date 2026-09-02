@@ -24,18 +24,30 @@
         },
         "BACnet": {
             "battery": {
-                "object": "ANALOG_VALUE",
+                "object": "ANALOG_INPUT",
                 "presentValue": 100,
                 "units": "PERCENT"
             },
-            "template_1:text_1": {
-                "object": "CHARACTERSTRING_VALUE",
-                "presentValue": "Miles"
-            },
-            "template_1:qrcode": {
-                "object": "CHARACTERSTRING_VALUE",
-                "presentValue": "hello"
-            }
+            "template_1:text_1": [
+                {
+                    "object": "CHARACTERSTRING_VALUE",
+                    "presentValue": "Miles"
+                },
+                {
+                    "object": "CHARACTERSTRING_VALUE",
+                    "presentValue": "Miles"
+                }
+            ],
+            "template_1:qrcode": [
+                {
+                    "object": "CHARACTERSTRING_VALUE",
+                    "presentValue": "hello"
+                },
+                {
+                    "object": "CHARACTERSTRING_VALUE",
+                    "presentValue": "hello"
+                }
+            ]
         },
         "Modbus": {
             "battery": {
@@ -44,12 +56,12 @@
                 "value_type": "UINT8"
             },
             "template_1:text_1": {
-                "table": "holdingRegister",
+                "table": "inputRegister",
                 "value": "Miles",
                 "value_type": "STRING"
             },
             "template_1:qrcode": {
-                "table": "holdingRegister",
+                "table": "inputRegister",
                 "value": "hello",
                 "value_type": "STRING"
             }

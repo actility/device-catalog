@@ -34,7 +34,18 @@
             }
         },
         "BACnet": {
-            "temperature": 29.53
+            "temperature": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 29.53,
+                "units": "DEGREES_CELSIUS"
+            }
+        },
+        "Modbus": {
+            "temperature": {
+                "table": "inputRegister",
+                "value": 29.53,
+                "value_type": "FLOAT"
+            }
         }
     },
     {
@@ -76,7 +87,18 @@
             }
         },
         "BACnet": {
-            "temperature": 18.77
+            "temperature": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 18.77,
+                "units": "DEGREES_CELSIUS"
+            }
+        },
+        "Modbus": {
+            "temperature": {
+                "table": "inputRegister",
+                "value": 18.77,
+                "value_type": "FLOAT"
+            }
         }
     },
     {
@@ -119,7 +141,18 @@
             }
         },
         "BACnet": {
-            "temperature": 2.7
+            "temperature": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 2.7,
+                "units": "DEGREES_CELSIUS"
+            }
+        },
+        "Modbus": {
+            "temperature": {
+                "table": "inputRegister",
+                "value": 2.7,
+                "value_type": "FLOAT"
+            }
         }
     },
     {
@@ -160,7 +193,18 @@
             }
         },
         "BACnet": {
-            "temperature": 28.69
+            "temperature": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 28.69,
+                "units": "DEGREES_CELSIUS"
+            }
+        },
+        "Modbus": {
+            "temperature": {
+                "table": "inputRegister",
+                "value": 28.69,
+                "value_type": "FLOAT"
+            }
         }
     },
     {
@@ -190,7 +234,9 @@
             },
             "warnings": []
         },
-        "points": {}
+        "points": {},
+        "BACnet": {},
+        "Modbus": {}
     },
     {
         "type": "uplink",
@@ -227,7 +273,18 @@
             }
         },
         "BACnet": {
-            "temperature": 24.5
+            "temperature": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 24.5,
+                "units": "DEGREES_CELSIUS"
+            }
+        },
+        "Modbus": {
+            "temperature": {
+                "table": "inputRegister",
+                "value": 24.5,
+                "value_type": "FLOAT"
+            }
         }
     },
     {
@@ -250,10 +307,7 @@
             "fPort": 125,
             "warnings": []
         },
-        "points": {},
-        "BACnet": {
-            "sendHexFrame": "110000000002"
-        }
+        "points": {}
     },
     {
         "type": "downlink-encode",
@@ -275,10 +329,7 @@
             "fPort": 100,
             "warnings": []
         },
-        "points": {},
-        "BACnet": {
-            "sendHexFrame": "110000000002:100"
-        }
+        "points": {}
     },
     {
         "type": "downlink-encode",
@@ -302,10 +353,7 @@
             "fPort": 125,
             "warnings": []
         },
-        "points": {},
-        "BACnet": {
-            "sendConfirmedMode": 1
-        }
+        "points": {}
     },
     {
         "type": "downlink-encode",
@@ -326,10 +374,7 @@
             "fPort": 125,
             "warnings": []
         },
-        "points": {},
-        "BACnet": {
-            "sendReboot": true
-        }
+        "points": {}
     },
     {
         "type": "downlink-encode",
@@ -350,10 +395,7 @@
             "fPort": 125,
             "warnings": []
         },
-        "points": {},
-        "BACnet": {
-            "sendFactoryReset": true
-        }
+        "points": {}
     },
     {
         "type": "downlink-encode",
@@ -377,10 +419,7 @@
             "fPort": 125,
             "warnings": []
         },
-        "points": {},
-        "BACnet": {
-            "sendLoraRetries": 3
-        }
+        "points": {}
     },
     {
         "type": "downlink-encode",
@@ -403,9 +442,6 @@
             "fPort": 125,
             "warnings": []
         },
-        "points": {},
-        "BACnet": {
-            "sendLoraRejoin": 60
-        }
+        "points": {}
     }
 ]
