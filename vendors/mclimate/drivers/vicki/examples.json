@@ -138,6 +138,32 @@
       "brokenSensor": {
         "object": "BINARY_INPUT",
         "presentValue": 0
+      },
+      "calibrationFailed": {
+        "object": "BINARY_INPUT",
+        "presentValue": 0
+      },
+      "attachedBackplate": {
+        "object": "BINARY_INPUT",
+        "presentValue": 0
+      },
+      "perceiveAsOnline": {
+        "object": "BINARY_INPUT",
+        "presentValue": 0
+      },
+      "antiFreezeProtection": {
+        "object": "BINARY_INPUT",
+        "presentValue": 0
+      },
+      "valveOpenness": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 17,
+        "units": "PERCENT"
+      },
+      "targetTemperatureFloat": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 29,
+        "units": "DEGREES_CELSIUS"
       }
     },
     "Modbus": {
@@ -200,6 +226,36 @@
         "table": "discreteInput",
         "value": 0,
         "value_type": "BOOL"
+      },
+      "calibrationFailed": {
+        "table": "discreteInput",
+        "value": 0,
+        "value_type": "BOOL"
+      },
+      "attachedBackplate": {
+        "table": "discreteInput",
+        "value": 0,
+        "value_type": "BOOL"
+      },
+      "perceiveAsOnline": {
+        "table": "discreteInput",
+        "value": 0,
+        "value_type": "BOOL"
+      },
+      "antiFreezeProtection": {
+        "table": "discreteInput",
+        "value": 0,
+        "value_type": "BOOL"
+      },
+      "valveOpenness": {
+        "table": "inputRegister",
+        "value": 17,
+        "value_type": "UINT8"
+      },
+      "targetTemperatureFloat": {
+        "table": "inputRegister",
+        "value": 29,
+        "value_type": "FLOAT"
       }
     }
   },

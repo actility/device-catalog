@@ -398,6 +398,16 @@
       "relayState": {
         "object": "BINARY_INPUT",
         "presentValue": 0
+      },
+      "watchDogParams:wdpC": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 3,
+        "units": "NO_UNITS"
+      },
+      "watchDogParams:wdpUc": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 4,
+        "units": "NO_UNITS"
       }
     },
     "Modbus": {
@@ -410,6 +420,16 @@
         "table": "discreteInput",
         "value": 0,
         "value_type": "BOOL"
+      },
+      "watchDogParams:wdpC": {
+        "table": "inputRegister",
+        "value": 3,
+        "value_type": "UINT8"
+      },
+      "watchDogParams:wdpUc": {
+        "table": "inputRegister",
+        "value": 4,
+        "value_type": "FLOAT"
       }
     }
   },
@@ -454,12 +474,12 @@
       "overheatingThresholds:recovery": {
         "object": "ANALOG_INPUT",
         "presentValue": 69,
-        "units": "NO_UNITS"
+        "units": "DEGREES_CELSIUS"
       },
       "overheatingThresholds:trigger": {
         "object": "ANALOG_INPUT",
         "presentValue": 80,
-        "units": "NO_UNITS"
+        "units": "DEGREES_CELSIUS"
       },
       "relayState": {
         "object": "BINARY_INPUT",
@@ -541,6 +561,10 @@
       "relayState": {
         "object": "BINARY_INPUT",
         "presentValue": 0
+      },
+      "fuota:fuota_address_raw": {
+        "object": "CHARACTERSTRING_VALUE",
+        "presentValue": "01020304"
       }
     },
     "Modbus": {
@@ -563,6 +587,11 @@
         "table": "discreteInput",
         "value": 0,
         "value_type": "BOOL"
+      },
+      "fuota:fuota_address_raw": {
+        "table": "inputRegister",
+        "value": "01020304",
+        "value_type": "STRING"
       }
     }
   },
@@ -677,7 +706,7 @@
       "relayTimerInMilliseconds:time": {
         "object": "ANALOG_INPUT",
         "presentValue": 500,
-        "units": "MINUTES"
+        "units": "MILLISECONDS"
       }
     },
     "Modbus": {
