@@ -1,0 +1,69 @@
+[
+    {
+        "description": "Battery, temperature, humidity and target temperature uplink",
+        "type": "uplink",
+        "input": {
+            "bytes": "005A01660802C201069808",
+            "fPort": 85,
+            "time": "2025-01-01T00:00:00.000+00:00"
+        },
+        "output": {
+            "data": {
+                "battery": 90,
+                "temperature": 21.5,
+                "humidity": 45,
+                "target_temperature_1": 22
+            }
+        },
+        "points": {
+            "temperature": {
+                "unitId": "Cel",
+                "records": [
+                    {
+                        "value": 21.5,
+                        "eventTime": null
+                    },
+                    {
+                        "value": 22,
+                        "eventTime": null
+                    }
+                ],
+                "nature": "target 1"
+            }
+        },
+        "BACnet": {
+            "battery": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 90,
+                "units": "PERCENT"
+            },
+            "humidity": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 45,
+                "units": "PERCENT"
+            },
+            "temperature": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 21.5,
+                "units": "DEGREES_CELSIUS"
+            }
+        },
+        "Modbus": {
+            "battery": {
+                "table": "inputRegister",
+                "value": 90,
+                "value_type": "UINT8"
+            },
+            "humidity": {
+                "table": "inputRegister",
+                "value": 45,
+                "value_type": "FLOAT"
+            },
+            "temperature": {
+                "table": "inputRegister",
+                "value": 21.5,
+                "value_type": "FLOAT"
+            }
+        }
+    }
+]

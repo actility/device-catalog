@@ -1,0 +1,96 @@
+[
+    {
+        "description": "Power metering uplink",
+        "type": "uplink",
+        "input": {
+            "bytes": "0374DC000480DC05000005815F06833930000007C9A802",
+            "fPort": 85,
+            "time": "2025-01-01T00:00:00.000+00:00"
+        },
+        "output": {
+            "data": {
+                "voltage": 220,
+                "electric_power": 1500,
+                "power_factor": 95,
+                "power_consumption": 12345,
+                "current_rating": 680
+            }
+        },
+        "points": {
+            "voltage": {
+                "unitId": "V",
+                "record": 220
+            },
+            "power": {
+                "unitId": "W",
+                "record": 1500
+            },
+            "energy": {
+                "unitId": "kWh",
+                "record": 12345
+            },
+            "current": {
+                "unitId": "mA",
+                "record": 680
+            },
+            "powerFactor": {
+                "unitId": "/",
+                "record": 95
+            }
+        },
+        "BACnet": {
+            "voltage": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 220,
+                "units": "VOLTS"
+            },
+            "electric_power": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 1500,
+                "units": "WATTS"
+            },
+            "power_factor": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 95,
+                "units": "PERCENT"
+            },
+            "power_consumption": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 12345,
+                "units": "KILOWATT_HOURS"
+            },
+            "current_rating": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 680,
+                "units": "AMPERES"
+            }
+        },
+        "Modbus": {
+            "voltage": {
+                "table": "inputRegister",
+                "value": 220,
+                "value_type": "UINT8"
+            },
+            "electric_power": {
+                "table": "inputRegister",
+                "value": 1500,
+                "value_type": "UINT8"
+            },
+            "power_factor": {
+                "table": "inputRegister",
+                "value": 95,
+                "value_type": "UINT8"
+            },
+            "power_consumption": {
+                "table": "inputRegister",
+                "value": 12345,
+                "value_type": "FLOAT"
+            },
+            "current_rating": {
+                "table": "inputRegister",
+                "value": 680,
+                "value_type": "FLOAT"
+            }
+        }
+    }
+]
