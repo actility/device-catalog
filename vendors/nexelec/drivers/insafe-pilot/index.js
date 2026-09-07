@@ -25,7 +25,7 @@ function decodeUplink(input) {
             decodeRealTime(bytes, data);
             break;
         case 0x02:
-            decodeDatalog(bytes, data);
+            decodeDatalog(bytes, data, input.recvTime);
             break;
         case 0x03:
             decodeConfiguration(bytes, data);
@@ -93,7 +93,7 @@ function decodeRealTime(bytes, data) {
     data.frameIndex = (b5 >> 3) & 0x07;
 }
 
-function decodeDatalog(bytes, data) {
+function decodeDatalog(bytes, data, recvTime) {
     if (bytes.length < 12) {
         return;
     }
@@ -125,6 +125,16 @@ function decodeDatalog(bytes, data) {
         value: ((bytes[11] >> 4) & 0x0f) * 10
     };
     data.frameIndex = (bytes[11] >> 1) & 0x07;
+
+    // 5 readings, oldest→newest, spaced by timeBetweenMeasurements, ending at recvTime
+    const recvDate = new Date(recvTime);
+    if (!Number.isNaN(recvDate.getTime())) {
+        const stepMs = data.timeBetweenMeasurements.value * 60 * 1000;
+        const count = data.temperature.value.length;
+        data.datalogEventTimes = Array.from({ length: count }, (_, i) =>
+            new Date(recvDate.getTime() - (count - 1 - i) * stepMs).toISOString()
+        );
+    }
 }
 
 function decodeConfiguration(bytes, data) {
