@@ -1,0 +1,174 @@
+[
+    {
+        "description": "Example 1",
+        "type": "uplink",
+        "input": {
+            "bytes": "0100EB02028F0300DC040168010501060272000703080009016701",
+            "fPort": 100,
+            "time": "2022-11-03T17:00:00.000+02:00"
+        },
+        "output": {
+            "data": {
+                "fan_mode": "auto",
+                "fan_status": "high",
+                "humidity": 3661,
+                "plan_id": "plan_1",
+                "system_status": "on",
+                "target_temperature": -92.16,
+                "temperature": -53.76,
+                "temperature_alarm": {
+                    "type": "lower range error"
+                },
+                "temperature_control_mode": "fan",
+                "temperature_control_status": "heating",
+                "temperature_data_source": "ntc",
+                "valve_status": 2
+            }
+        },
+        "points": {
+            "humidity": {
+                "unitId": "%RH",
+                "record": 3661
+            },
+            "temperature:1": {
+                "unitId": "Cel",
+                "record": -53.76,
+                "nature": "room"
+            },
+            "temperature:2": {
+                "unitId": "Cel",
+                "record": -92.16,
+                "nature": "target"
+            },
+            "status": {
+                "unitId": "state",
+                "record": true,
+                "nature": "thermostat on"
+            }
+        },
+        "BACnet": {
+            "humidity": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 3661,
+                "units": "PERCENT_RELATIVE_HUMIDITY"
+            },
+            "system_status": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 1,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "target_temperature": {
+                "object": "ANALOG_INPUT",
+                "presentValue": -92.16,
+                "units": "DEGREES_CELSIUS"
+            },
+            "temperature": {
+                "object": "ANALOG_INPUT",
+                "presentValue": -53.76,
+                "units": "DEGREES_CELSIUS"
+            },
+            "temperature_alarm:type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 1,
+                "units": "NO_UNITS"
+            },
+            "temperature_control_mode": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 1,
+                    "units": "NO_UNITS"
+                }
+            ]
+        },
+        "Modbus": {
+            "humidity": {
+                "table": "inputRegister",
+                "value": 3661,
+                "value_type": "FLOAT"
+            },
+            "system_status": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "target_temperature": {
+                "table": "inputRegister",
+                "value": -92.16,
+                "value_type": "FLOAT"
+            },
+            "temperature": {
+                "table": "inputRegister",
+                "value": -53.76,
+                "value_type": "FLOAT"
+            },
+            "temperature_alarm:type": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "temperature_control_mode": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Downlink encode: reboot",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "reboot": 1
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                190
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink encode: d2d_master_enable",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "d2d_master_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "d2d_master_enable": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "d2d_master_enable": 1
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                136,
+                1
+            ]
+        }
+    }
+]
