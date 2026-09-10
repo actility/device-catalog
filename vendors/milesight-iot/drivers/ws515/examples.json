@@ -1,275 +1,130 @@
 [
-    {
-        "description": "Uplink example for WS515",
-        "type": "uplink",
-        "input": {
-            "bytes": "08700105816407c9020003742e0906834a000000048000000000",
-            "fPort": 85,
-            "time": "2025-01-01T00:00:00.000+00:00"
-        },
-        "output": {
-            "data": {
-                "socket_status": "on",
-                "power_factor": 100,
-                "current": 2,
-                "voltage": 235,
-                "power_consumption": 74,
-                "active_power": 0
-            }
-        },
-        "points": {
-            "powerFactor": {
-                "unitId": "/",
-                "record": 100
-            },
-            "current": {
-                "unitId": "mA",
-                "record": 2
-            },
-            "voltage": {
-                "unitId": "V",
-                "record": 235
-            },
-            "power": {
-                "unitId": "W",
-                "record": 74,
-                "nature": "consumption"
-            },
-            "activePower": {
-                "unitId": "W",
-                "record": 0
-            }
-        },
-        "BACnet": {
-            "voltage": {
-                "object": "ANALOG_INPUT",
-                "presentValue": 235,
-                "units": "VOLTS"
-            },
-            "active_power": {
-                "object": "ANALOG_INPUT",
-                "presentValue": 0,
-                "units": "WATTS"
-            },
-            "power_factor": {
-                "object": "ANALOG_INPUT",
-                "presentValue": 100,
-                "units": "NO_UNITS"
-            },
-            "power_consumption": {
-                "object": "ANALOG_INPUT",
-                "presentValue": 74,
-                "units": "WATT_HOURS"
-            },
-            "current": {
-                "object": "ANALOG_INPUT",
-                "presentValue": 2,
-                "units": "MILLIAMPERES"
-            },
-            "socket_status": [
-                {
-                    "object": "BINARY_INPUT",
-                    "presentValue": 1
-                },
-                {
-                    "object": "BINARY_VALUE",
-                    "presentValue": 1
-                }
-            ]
-        },
-        "Modbus": {
-            "voltage": {
-                "table": "inputRegister",
-                "value": 235,
-                "value_type": "FLOAT"
-            },
-            "active_power": {
-                "table": "inputRegister",
-                "value": 0,
-                "value_type": "UINT32"
-            },
-            "power_factor": {
-                "table": "inputRegister",
-                "value": 100,
-                "value_type": "UINT8"
-            },
-            "power_consumption": {
-                "table": "inputRegister",
-                "value": 74,
-                "value_type": "UINT32"
-            },
-            "current": {
-                "table": "inputRegister",
-                "value": 2,
-                "value_type": "UINT16"
-            },
-            "socket_status": {
-                "table": "discreteInput",
-                "value": 1,
-                "value_type": "UINT8"
-            }
-        }
+  {
+    "description": "Uplink example for WS515 v3",
+    "type": "uplink",
+    "input": {
+      "bytes": "03742e0904800000000005816406838088710007c9d007087001",
+      "fPort": 85
     },
-    {
-        "description": "Downlink encode: report_interval",
-        "type": "downlink-encode",
-        "input": {
-            "data": {
-                "report_interval": 600
-            },
-            "fPort": 85
-        },
-        "output": {
-            "bytes": [
-                255,
-                3,
-                88,
-                2
-            ],
-            "fPort": 85
+    "output": {
+      "data": {
+        "voltage": 2350,
+        "electric_power": 0,
+        "power_factor": 100,
+        "power_consumption": 74.40512,
+        "current_rating": 2,
+        "socket_status": {
+          "switch_status_1": 1
         }
+      }
     },
-    {
-        "description": "BACnet example",
-        "type": "uplink",
-        "input": {
-            "bytes": "08700105816407c9020003742e0906834a000000048000000000",
-            "fPort": 85
-        },
-        "output": {
-            "data": {
-                "socket_status": "on",
-                "power_factor": 100,
-                "current": 2,
-                "voltage": 235,
-                "power_consumption": 74,
-                "active_power": 0
-            },
-            "errors": [],
-            "warnings": []
-        },
-        "points": {
-            "powerFactor": {
-                "unitId": "/",
-                "record": 100
-            },
-            "current": {
-                "unitId": "mA",
-                "record": 2
-            },
-            "voltage": {
-                "unitId": "V",
-                "record": 235
-            },
-            "power": {
-                "unitId": "W",
-                "record": 74,
-                "nature": "consumption"
-            },
-            "activePower": {
-                "unitId": "W",
-                "record": 0
-            }
-        },
-        "BACnet": {
-            "voltage": {
-                "object": "ANALOG_INPUT",
-                "presentValue": 235,
-                "units": "VOLTS"
-            },
-            "active_power": {
-                "object": "ANALOG_INPUT",
-                "presentValue": 0,
-                "units": "WATTS"
-            },
-            "power_factor": {
-                "object": "ANALOG_INPUT",
-                "presentValue": 100,
-                "units": "NO_UNITS"
-            },
-            "power_consumption": {
-                "object": "ANALOG_INPUT",
-                "presentValue": 74,
-                "units": "WATT_HOURS"
-            },
-            "current": {
-                "object": "ANALOG_INPUT",
-                "presentValue": 2,
-                "units": "MILLIAMPERES"
-            },
-            "socket_status": [
-                {
-                    "object": "BINARY_INPUT",
-                    "presentValue": 1
-                },
-                {
-                    "object": "BINARY_VALUE",
-                    "presentValue": 1
-                }
-            ]
-        },
-        "Modbus": {
-            "voltage": {
-                "table": "inputRegister",
-                "value": 235,
-                "value_type": "FLOAT"
-            },
-            "active_power": {
-                "table": "inputRegister",
-                "value": 0,
-                "value_type": "UINT32"
-            },
-            "power_factor": {
-                "table": "inputRegister",
-                "value": 100,
-                "value_type": "UINT8"
-            },
-            "power_consumption": {
-                "table": "inputRegister",
-                "value": 74,
-                "value_type": "UINT32"
-            },
-            "current": {
-                "table": "inputRegister",
-                "value": 2,
-                "value_type": "UINT16"
-            },
-            "socket_status": {
-                "table": "discreteInput",
-                "value": 1,
-                "value_type": "UINT8"
-            }
-        }
+    "points": {
+      "voltage": {
+        "unitId": "V",
+        "record": 2350
+      },
+      "activePower": {
+        "unitId": "W",
+        "record": 0
+      },
+      "powerFactor": {
+        "unitId": "/",
+        "record": 1
+      },
+      "energy": {
+        "unitId": "kWh",
+        "record": 74.40512
+      },
+      "current": {
+        "unitId": "A",
+        "record": 2
+      },
+      "status": {
+        "unitId": "state",
+        "record": true,
+        "nature": "socket status"
+      }
     },
-    {
-        "description": "Downlink encode: power_consumption_enable",
-        "type": "downlink-encode",
-        "inputBACnet": {
-            "power_consumption_enable": {
-                "object": "BINARY_VALUE",
-                "property": "PRESENT_VALUE",
-                "value": 1
-            }
-        },
-        "inputModbus": {
-            "power_consumption_enable": {
-                "table": "coil",
-                "operation": "setCoil",
-                "value": 1
-            }
-        },
-        "input": {
-            "data": {
-                "power_consumption_enable": "enable"
-            },
-            "fPort": 100
-        },
-        "output": {
-            "bytes": [
-                255,
-                38,
-                1
-            ]
-        }
+    "BACnet": {
+      "current_rating": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 2,
+        "units": "YEARS"
+      },
+      "electric_power": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 0,
+        "units": "WATTS"
+      },
+      "power_consumption": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 74.40512,
+        "units": "KILOWATT_HOURS"
+      },
+      "power_factor": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 100,
+        "units": "PERCENT"
+      },
+      "socket_status:switch_status_1": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 1,
+        "units": "NO_UNITS"
+      },
+      "voltage": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 2350,
+        "units": "VOLTS"
+      }
+    },
+    "Modbus": {
+      "current_rating": {
+        "table": "inputRegister",
+        "value": 2,
+        "value_type": "FLOAT"
+      },
+      "electric_power": {
+        "table": "inputRegister",
+        "value": 0,
+        "value_type": "UINT8"
+      },
+      "power_consumption": {
+        "table": "inputRegister",
+        "value": 74.40512,
+        "value_type": "FLOAT"
+      },
+      "power_factor": {
+        "table": "inputRegister",
+        "value": 100,
+        "value_type": "UINT8"
+      },
+      "socket_status:switch_status_1": {
+        "table": "inputRegister",
+        "value": 1,
+        "value_type": "UINT8"
+      },
+      "voltage": {
+        "table": "inputRegister",
+        "value": 2350,
+        "value_type": "UINT8"
+      }
     }
+  },
+  {
+    "description": "Downlink encode: power_consumption_enable",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "power_consumption_enable": 1
+      },
+      "fPort": 85
+    },
+    "output": {
+      "bytes": [
+        255,
+        38,
+        1
+      ]
+    }
+  }
 ]

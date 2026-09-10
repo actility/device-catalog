@@ -1,5 +1,5 @@
 name: WS513 Smart Wall Socket
-description: "Milesight WS513 smart wall socket."
+description: Milesight WS513 smart wall socket.
 logo: ws513-eu.png
 deviceProfileIds:
   - id: msight_RFGroup1_1.0.3a_classA
@@ -13,21 +13,19 @@ LoRaWANCertified: false
 modelId: msight:ws513:1
 protocolId:
   - msight:ws513:1
-specificationURL: https://resource.milesight.com/milesight/iot/document/ws51x-datasheet-en.pdf
+specificationURL: https://www.milesight.com/iot/product/lorawan-sensor/ws513
 userGuideURL: https://resource.milesight.com/milesight/iot/document/ws51x-user-guide-en.pdf
 sensors:
   - voltage:V
   - activePower:W
   - powerFactor:/
-  - energy:Wh
-  - current:mA
+  - energy:kWh
+  - current:A
   - status:state
 examples:
   msight:ws513:1:
+    - Uplink example for WS513 v3
     - "Downlink encode: power_consumption_enable"
-    - "Uplink example for WS513"
-    - "Downlink encode: report_interval"
-    - "BACnet example"
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false

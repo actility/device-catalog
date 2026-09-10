@@ -1,215 +1,96 @@
 [
     {
-        "description": "Uplink example for WS502",
+        "description": "Power metering uplink",
         "type": "uplink",
         "input": {
-            "bytes": "FF2903",
+            "bytes": "0374DC000480DC05000005815F06833930000007C9A802",
             "fPort": 85,
             "time": "2025-01-01T00:00:00.000+00:00"
         },
         "output": {
             "data": {
-                "switch_1": "on",
-                "switch_1_change": "no",
-                "switch_2": "on",
-                "switch_2_change": "no"
+                "voltage": 220,
+                "electric_power": 1500,
+                "power_factor": 95,
+                "power_consumption": 12345,
+                "current_rating": 680
             }
         },
         "points": {
-            "status:1": {
-                "unitId": "state",
-                "record": true,
-                "nature": "switch 1"
+            "voltage": {
+                "unitId": "V",
+                "record": 220
             },
-            "status:2": {
-                "unitId": "state",
-                "record": true,
-                "nature": "switch 2"
+            "power": {
+                "unitId": "W",
+                "record": 1500
+            },
+            "energy": {
+                "unitId": "kWh",
+                "record": 12345
+            },
+            "current": {
+                "unitId": "mA",
+                "record": 680
+            },
+            "powerFactor": {
+                "unitId": "/",
+                "record": 95
             }
         },
         "BACnet": {
-            "switch_1": [
-                {
-                    "object": "BINARY_INPUT",
-                    "presentValue": 1
-                },
-                {
-                    "object": "BINARY_VALUE",
-                    "presentValue": 1
-                }
-            ],
-            "switch_1_change": {
-                "object": "BINARY_INPUT",
-                "presentValue": 0
+            "voltage": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 220,
+                "units": "VOLTS"
             },
-            "switch_2": [
-                {
-                    "object": "BINARY_INPUT",
-                    "presentValue": 1
-                },
-                {
-                    "object": "BINARY_VALUE",
-                    "presentValue": 1
-                }
-            ],
-            "switch_2_change": {
-                "object": "BINARY_INPUT",
-                "presentValue": 0
+            "electric_power": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 1500,
+                "units": "WATTS"
+            },
+            "power_factor": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 95,
+                "units": "PERCENT"
+            },
+            "power_consumption": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 12345,
+                "units": "KILOWATT_HOURS"
+            },
+            "current_rating": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 680,
+                "units": "AMPERES"
             }
         },
         "Modbus": {
-            "switch_1": {
-                "table": "discreteInput",
-                "value": 1,
+            "voltage": {
+                "table": "inputRegister",
+                "value": 220,
                 "value_type": "UINT8"
             },
-            "switch_1_change": {
-                "table": "discreteInput",
-                "value": 0,
+            "electric_power": {
+                "table": "inputRegister",
+                "value": 1500,
                 "value_type": "UINT8"
             },
-            "switch_2": {
-                "table": "discreteInput",
-                "value": 1,
+            "power_factor": {
+                "table": "inputRegister",
+                "value": 95,
                 "value_type": "UINT8"
             },
-            "switch_2_change": {
-                "table": "discreteInput",
-                "value": 0,
-                "value_type": "UINT8"
+            "power_consumption": {
+                "table": "inputRegister",
+                "value": 12345,
+                "value_type": "FLOAT"
+            },
+            "current_rating": {
+                "table": "inputRegister",
+                "value": 680,
+                "value_type": "FLOAT"
             }
-        }
-    },
-    {
-        "description": "Downlink encode: report_interval",
-        "type": "downlink-encode",
-        "input": {
-            "data": {
-                "report_interval": 600
-            },
-            "fPort": 85
-        },
-        "output": {
-            "bytes": [
-                255,
-                3,
-                88,
-                2
-            ],
-            "fPort": 85
-        }
-    },
-    {
-        "description": "BACnet example",
-        "type": "uplink",
-        "input": {
-            "bytes": "ff2903",
-            "fPort": 85
-        },
-        "output": {
-            "data": {
-                "switch_1": "on",
-                "switch_1_change": "no",
-                "switch_2": "on",
-                "switch_2_change": "no"
-            },
-            "errors": [],
-            "warnings": []
-        },
-        "points": {
-            "status:1": {
-                "unitId": "state",
-                "record": true,
-                "nature": "switch 1"
-            },
-            "status:2": {
-                "unitId": "state",
-                "record": true,
-                "nature": "switch 2"
-            }
-        },
-        "BACnet": {
-            "switch_1": [
-                {
-                    "object": "BINARY_INPUT",
-                    "presentValue": 1
-                },
-                {
-                    "object": "BINARY_VALUE",
-                    "presentValue": 1
-                }
-            ],
-            "switch_1_change": {
-                "object": "BINARY_INPUT",
-                "presentValue": 0
-            },
-            "switch_2": [
-                {
-                    "object": "BINARY_INPUT",
-                    "presentValue": 1
-                },
-                {
-                    "object": "BINARY_VALUE",
-                    "presentValue": 1
-                }
-            ],
-            "switch_2_change": {
-                "object": "BINARY_INPUT",
-                "presentValue": 0
-            }
-        },
-        "Modbus": {
-            "switch_1": {
-                "table": "discreteInput",
-                "value": 1,
-                "value_type": "UINT8"
-            },
-            "switch_1_change": {
-                "table": "discreteInput",
-                "value": 0,
-                "value_type": "UINT8"
-            },
-            "switch_2": {
-                "table": "discreteInput",
-                "value": 1,
-                "value_type": "UINT8"
-            },
-            "switch_2_change": {
-                "table": "discreteInput",
-                "value": 0,
-                "value_type": "UINT8"
-            }
-        }
-    },
-    {
-        "description": "Downlink encode: reboot",
-        "type": "downlink-encode",
-        "inputBACnet": {
-            "reboot": {
-                "object": "BINARY_VALUE",
-                "property": "PRESENT_VALUE",
-                "value": 1
-            }
-        },
-        "inputModbus": {
-            "reboot": {
-                "table": "coil",
-                "operation": "setCoil",
-                "value": 1
-            }
-        },
-        "input": {
-            "data": {
-                "reboot": "yes"
-            },
-            "fPort": 100
-        },
-        "output": {
-            "bytes": [
-                255,
-                16,
-                255
-            ]
         }
     }
 ]
