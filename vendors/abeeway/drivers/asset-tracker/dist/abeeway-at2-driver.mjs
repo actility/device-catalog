@@ -312,11 +312,12 @@ module.exports = Object.freeze({
 /***/ 166
 (module) {
 
-// ../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/index.js
 var __getOwnPropNames = Object.getOwnPropertyNames;
 var __commonJS = (cb, mod) => function __require() {
   return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
 };
+
+// ../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/messages/abeewayUplinkPayload.js
 var require_abeewayUplinkPayload = __commonJS({
   "../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/messages/abeewayUplinkPayload.js"(exports2, module2) {
     function AbeewayUplinkPayload(gpsLatitude, gpsLongitude, horizontalAccuracy, messageType, age, trackingMode, batteryVoltage, batteryLevel, batteryStatus, ackToken, firmwareVersion, bleFirmwareVersion, bleMac, resetCause, rawPositionType, periodicPosition, gpsOnRuntime, gpsStandbyRuntime, wifiScanCount, timeoutCause, bestSatellitesCOverN, temperatureMeasure, miscDataTag, sosFlag, appState, dynamicMotionState, onDemand, batteryVoltageMeasures, errorCode, debugErrorCode, genericErrorCode, shutdownCause, currentAckTokenValue, payload, debugCrashInfo, activityCount, deviceConfiguration, wifiBssids, bleBssids, bleBeaconIds, bleBeaconFailure, eventType, debugCommandTag, txPowerIndex, nbOfshock, accelerometerShockData, trackerOrientation, activityReportingWindow, measuredTemperature, lengthErrCounter, dataScanCollection, proximityNotification, proximityDailyReport, proximityWhiteListing, proximityDailyResponse, angleDetection, geofencingNotification, specificFirmwareParameters, gpsAltitude, gpsCourseOverGround, gpsSpeedOverGround, gpsFixStatus, gpsPayloadType, gpsPrevious, healthStatus, motionDutyCycle, gaddIndex, sms) {
@@ -394,6 +395,8 @@ var require_abeewayUplinkPayload = __commonJS({
     };
   }
 });
+
+// ../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/messages/abeewayDownlinkPayload.js
 var require_abeewayDownlinkPayload = __commonJS({
   "../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/messages/abeewayDownlinkPayload.js"(exports2, module2) {
     function AbeewayDownlinkPayload(downMessageType, ackToken, modeValue, debugCommandType, listParameterID, listParameterIDNames, statusType, setParameters, resetAction, optionalCommand, txPowerIndex, melodyId, buzzerDuration, proximityMessage, angleDetectionControl, bleAdvertisementDuration, startupModes, sms, payload) {
@@ -422,6 +425,8 @@ var require_abeewayDownlinkPayload = __commonJS({
     };
   }
 });
+
+// ../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/messages/bssidInfo.js
 var require_bssidInfo = __commonJS({
   "../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/messages/bssidInfo.js"(exports2, module2) {
     function BssidInfo(bssid, rssi) {
@@ -433,6 +438,8 @@ var require_bssidInfo = __commonJS({
     };
   }
 });
+
+// ../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/messages/beaconIdInfo.js
 var require_beaconIdInfo = __commonJS({
   "../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/messages/beaconIdInfo.js"(exports2, module2) {
     function BeaconIdInfo(beaconId, rssi) {
@@ -444,6 +451,8 @@ var require_beaconIdInfo = __commonJS({
     };
   }
 });
+
+// ../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/messages/healthStatus.js
 var require_healthStatus = __commonJS({
   "../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/messages/healthStatus.js"(exports2, module2) {
     function HealthStatus(totalConsumption, maxTemperature, minTemperature, loraPowerConsumption, blePowerConsumption, gpsPowerConsumption, wifiPowerConsumption, batteryVoltage) {
@@ -461,6 +470,8 @@ var require_healthStatus = __commonJS({
     };
   }
 });
+
+// ../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/messages/measuredTemperature.js
 var require_measuredTemperature = __commonJS({
   "../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/messages/measuredTemperature.js"(exports2, module2) {
     function MeasuredTemperature(state, max, min, highCounter, lowCounter) {
@@ -481,6 +492,8 @@ var require_measuredTemperature = __commonJS({
     };
   }
 });
+
+// ../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/messages/scanCollection.js
 var require_scanCollection = __commonJS({
   "../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/messages/scanCollection.js"(exports2, module2) {
     function ScanCollection(scanType, again, dataFormat, fragmentIdentification, collectionIdentifier, hash, beaconIdData, macAddressData) {
@@ -507,6 +520,8 @@ var require_scanCollection = __commonJS({
     };
   }
 });
+
+// ../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/messages/proximityNotification.js
 var require_proximityNotification = __commonJS({
   "../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/messages/proximityNotification.js"(exports2, module2) {
     function ProximityNotification(notificationType, encrypted, recordAction, rollingProximityIdentifier, closestDistanceRecording, distanceAverageRecorded, cumulatedExposure, metadata, cumulatedContactDuration, currentDailyExposure) {
@@ -536,6 +551,8 @@ var require_proximityNotification = __commonJS({
     };
   }
 });
+
+// ../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/messages/proximityDailyReport.js
 var require_proximityDailyReport = __commonJS({
   "../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/messages/proximityDailyReport.js"(exports2, module2) {
     function ProximityDailyReport(dailyAlertDay0, dailyWarningDay0, dailyExposureDay0, dailyAlertDay1, dailyWarningDay1, dailyExposureDay1, dailyAlertDay2, dailyWarningDay2, dailyExposureDay2) {
@@ -554,6 +571,8 @@ var require_proximityDailyReport = __commonJS({
     };
   }
 });
+
+// ../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/messages/proximityDailyResponse.js
 var require_proximityDailyResponse = __commonJS({
   "../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/messages/proximityDailyResponse.js"(exports2, module2) {
     function ProximityDailyResponse(dayIdentifier, dailyAlert, dailyWarning, dailyExposure) {
@@ -567,6 +586,8 @@ var require_proximityDailyResponse = __commonJS({
     };
   }
 });
+
+// ../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/messages/proximityWhiteListing.js
 var require_proximityWhiteListing = __commonJS({
   "../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/messages/proximityWhiteListing.js"(exports2, module2) {
     function ProximityWhiteListing(encrypted, rollingProximityIdentifier, list, recordStatus, solicited) {
@@ -590,6 +611,8 @@ var require_proximityWhiteListing = __commonJS({
     };
   }
 });
+
+// ../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/messages/proximityMessage.js
 var require_proximityMessage = __commonJS({
   "../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/messages/proximityMessage.js"(exports2, module2) {
     function ProximityMessage(type, rollingProximityIdentifier, recordStatus, dayIdentifier) {
@@ -613,6 +636,8 @@ var require_proximityMessage = __commonJS({
     };
   }
 });
+
+// ../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/messages/angleDetectionFlags.js
 var require_angleDetectionFlags = __commonJS({
   "../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/messages/angleDetectionFlags.js"(exports2, module2) {
     function AngleDetectionFlags(transition, triggerType, notificationIdentifier) {
@@ -638,6 +663,8 @@ var require_angleDetectionFlags = __commonJS({
     };
   }
 });
+
+// ../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/messages/angleDetection.js
 var require_angleDetection = __commonJS({
   "../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/messages/angleDetection.js"(exports2, module2) {
     function AngleDetection(flags, age, referenceGravityVector, criticalGravityVector, angle) {
@@ -652,6 +679,8 @@ var require_angleDetection = __commonJS({
     };
   }
 });
+
+// ../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/messages/geofencingNotification.js
 var require_geofencingNotification = __commonJS({
   "../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/messages/geofencingNotification.js"(exports2, module2) {
     function GeofencingNotification(geofencingFormat, geofencingType, id) {
@@ -670,6 +699,8 @@ var require_geofencingNotification = __commonJS({
     };
   }
 });
+
+// ../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/messages/startupModes.js
 var require_startupModes = __commonJS({
   "../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/messages/startupModes.js"(exports2, module2) {
     function StartupModes(manufacturing, shipping) {
@@ -681,6 +712,8 @@ var require_startupModes = __commonJS({
     };
   }
 });
+
+// ../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/messages/sms.js
 var require_sms = __commonJS({
   "../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/messages/sms.js"(exports2, module2) {
     function Sms(destinationId, senderId, message) {
@@ -693,6 +726,8 @@ var require_sms = __commonJS({
     };
   }
 });
+
+// ../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/resources/profiles.json
 var require_profiles = __commonJS({
   "../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/resources/profiles.json"(exports2, module2) {
     module2.exports = [
@@ -757,6 +792,8 @@ var require_profiles = __commonJS({
     ];
   }
 });
+
+// ../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/resources/parameters.json
 var require_parameters = __commonJS({
   "../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/resources/parameters.json"(exports2, module2) {
     module2.exports = [
@@ -6743,6 +6780,8 @@ var require_parameters = __commonJS({
     ];
   }
 });
+
+// ../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/enums/messageType.js
 var require_messageType = __commonJS({
   "../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/enums/messageType.js"(exports2, module2) {
     module2.exports = Object.freeze({
@@ -6766,6 +6805,8 @@ var require_messageType = __commonJS({
     });
   }
 });
+
+// ../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/enums/miscDataTag.js
 var require_miscDataTag = __commonJS({
   "../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/enums/miscDataTag.js"(exports2, module2) {
     module2.exports = Object.freeze({
@@ -6777,6 +6818,8 @@ var require_miscDataTag = __commonJS({
     });
   }
 });
+
+// ../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/enums/mode.js
 var require_mode = __commonJS({
   "../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/enums/mode.js"(exports2, module2) {
     module2.exports = Object.freeze({
@@ -6790,6 +6833,8 @@ var require_mode = __commonJS({
     });
   }
 });
+
+// ../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/enums/dynamicMotionState.js
 var require_dynamicMotionState = __commonJS({
   "../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/enums/dynamicMotionState.js"(exports2, module2) {
     module2.exports = Object.freeze({
@@ -6798,6 +6843,8 @@ var require_dynamicMotionState = __commonJS({
     });
   }
 });
+
+// ../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/enums/batteryStatus.js
 var require_batteryStatus = __commonJS({
   "../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/enums/batteryStatus.js"(exports2, module2) {
     module2.exports = Object.freeze({
@@ -6807,6 +6854,8 @@ var require_batteryStatus = __commonJS({
     });
   }
 });
+
+// ../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/enums/rawPositionType.js
 var require_rawPositionType = __commonJS({
   "../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/enums/rawPositionType.js"(exports2, module2) {
     module2.exports = Object.freeze({
@@ -6826,6 +6875,8 @@ var require_rawPositionType = __commonJS({
     });
   }
 });
+
+// ../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/enums/timeoutCause.js
 var require_timeoutCause = __commonJS({
   "../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/enums/timeoutCause.js"(exports2, module2) {
     module2.exports = Object.freeze({
@@ -6836,6 +6887,8 @@ var require_timeoutCause = __commonJS({
     });
   }
 });
+
+// ../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/enums/bleBeaconFailure.js
 var require_bleBeaconFailure = __commonJS({
   "../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/enums/bleBeaconFailure.js"(exports2, module2) {
     module2.exports = Object.freeze({
@@ -6849,6 +6902,8 @@ var require_bleBeaconFailure = __commonJS({
     });
   }
 });
+
+// ../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/enums/debugCommandTag.js
 var require_debugCommandTag = __commonJS({
   "../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/enums/debugCommandTag.js"(exports2, module2) {
     module2.exports = Object.freeze({
@@ -6861,6 +6916,8 @@ var require_debugCommandTag = __commonJS({
     });
   }
 });
+
+// ../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/enums/shutdownCause.js
 var require_shutdownCause = __commonJS({
   "../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/enums/shutdownCause.js"(exports2, module2) {
     module2.exports = Object.freeze({
@@ -6872,6 +6929,8 @@ var require_shutdownCause = __commonJS({
     });
   }
 });
+
+// ../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/enums/eventType.js
 var require_eventType = __commonJS({
   "../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/enums/eventType.js"(exports2, module2) {
     module2.exports = Object.freeze({
@@ -6889,6 +6948,8 @@ var require_eventType = __commonJS({
     });
   }
 });
+
+// ../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/enums/downMessageType.js
 var require_downMessageType = __commonJS({
   "../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/enums/downMessageType.js"(exports2, module2) {
     module2.exports = Object.freeze({
@@ -6908,6 +6969,8 @@ var require_downMessageType = __commonJS({
     });
   }
 });
+
+// ../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/enums/debugCommandType.js
 var require_debugCommandType = __commonJS({
   "../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/enums/debugCommandType.js"(exports2, module2) {
     module2.exports = Object.freeze({
@@ -6926,6 +6989,8 @@ var require_debugCommandType = __commonJS({
     });
   }
 });
+
+// ../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/enums/optionalCommand.js
 var require_optionalCommand = __commonJS({
   "../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/enums/optionalCommand.js"(exports2, module2) {
     module2.exports = Object.freeze({
@@ -6935,6 +7000,8 @@ var require_optionalCommand = __commonJS({
     });
   }
 });
+
+// ../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/enums/resetAction.js
 var require_resetAction = __commonJS({
   "../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/enums/resetAction.js"(exports2, module2) {
     module2.exports = Object.freeze({
@@ -6944,6 +7011,8 @@ var require_resetAction = __commonJS({
     });
   }
 });
+
+// ../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/enums/melodyId.js
 var require_melodyId = __commonJS({
   "../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/enums/melodyId.js"(exports2, module2) {
     module2.exports = Object.freeze({
@@ -6965,6 +7034,8 @@ var require_melodyId = __commonJS({
     });
   }
 });
+
+// ../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/enums/errorCode.js
 var require_errorCode = __commonJS({
   "../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/enums/errorCode.js"(exports2, module2) {
     module2.exports = Object.freeze({
@@ -6973,6 +7044,8 @@ var require_errorCode = __commonJS({
     });
   }
 });
+
+// ../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/enums/angleDetectionControl.js
 var require_angleDetectionControl = __commonJS({
   "../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/enums/angleDetectionControl.js"(exports2, module2) {
     module2.exports = Object.freeze({
@@ -6981,6 +7054,8 @@ var require_angleDetectionControl = __commonJS({
     });
   }
 });
+
+// ../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/enums/gpsFixStatus.js
 var require_gpsFixStatus = __commonJS({
   "../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/enums/gpsFixStatus.js"(exports2, module2) {
     module2.exports = Object.freeze({
@@ -6989,6 +7064,8 @@ var require_gpsFixStatus = __commonJS({
     });
   }
 });
+
+// ../vendors/abeeway/drivers/asset-tracker/extractPoints.js
 var require_extractPoints = __commonJS({
   "../vendors/abeeway/drivers/asset-tracker/extractPoints.js"(exports2) {
     function extractPoints(input) {
@@ -7028,6 +7105,8 @@ var require_extractPoints = __commonJS({
     exports2.extractPoints = extractPoints;
   }
 });
+
+// ../../device-catalog/vendors/abeeway/drivers/asset-tracker/src/index.js
 var abeewayUplinkPayloadClass = require_abeewayUplinkPayload();
 var abeewayDownlinkPayloadClass = require_abeewayDownlinkPayload();
 var bssidInfoClass = require_bssidInfo();
