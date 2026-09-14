@@ -1,0 +1,13 @@
+# Every text file is checked out with LF, on every platform. The catalog is built and
+# published on Linux from LF files; a Windows checkout with core.autocrlf=true turns them
+# into CRLF, and a local build then packages different bytes than the release build.
+# Binary files are detected by git and left alone.
+* text=auto eol=lf
+
+# Stored with CRLF in the repository, and shipped that way by every release build: kept
+# byte for byte, so declaring the rule above changes no published driver.
+vendors/milesight-iot/drivers/am100-series/index.js -text
+vendors/milesight-iot/drivers/uc500-series/index.js -text
+vendors/watteco/drivers/hygrotempo-remote_v1.1/main.js -text
+vendors/watteco/drivers/tempo_v1.1/main.js -text
+vendors/watteco/drivers/ticso_v1.1/main.js -text
