@@ -1,0 +1,82 @@
+# Commercial name of the model
+name: DC110-L
+# Functional description of the product. Maximum 500 characters.
+description: DC110-L is a LoRaWAN ultrasonic corrosion sensor from the Theta DC Series, reporting Temperature, Thickness, Short-Term Corrosion Rate, Long-Term Corrosion Rate, Time of Flight (ToF), Ultrasonic Signal Strength and Ultrasonic Signal Quality.
+# Logo of the device
+logo: dc110-l.png
+
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
+# id: as defined under /profiles.
+# lorawanDeviceProfileID: as defined by LoRa Alliance in https://read.uberflip.com/i/1507778-lora-alliance-vendor-id-apr2026/.
+# The lorawanDeviceProfileID consists of 8 upper-case hexadecimal characters, 4 characters for VendorID + 4 characters for VendorProfileID. Please consider using single (') or double (") quotation.
+deviceProfileIds:
+  - id: theta_RFGroup2_1.0.3a_classA
+    lorawanDeviceProfileID: ''
+
+# You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings.
+# Maximum device TX Conducted output power in dBm.
+maxTxPower:
+# Minimum device TX Conducted output power in dBm.
+minTxPower:
+# Maximum device TX Radiated output power in dBm.
+maxTxEIRP:
+# Minimum device TX Radiated output power in dBm.
+minTxEIRP:
+# Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'
+# or 'random' (not known, changes over time).
+motionIndicator: near_static
+
+# Is your device certified by the LoRa Alliance? Possible values: true, false.
+LoRaWANCertified: false
+# Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
+# Format: `<8 characters max>:<16 characters max>:<digits only>`
+# Be careful: Once you chose a model, it cannot be changed later
+modelId: theta:dc110-l:1
+# <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
+# Format: `<8 characters max>:<16 characters max>:<digits only>`
+# Be careful: Once you chose a protocolId, it cannot be changed later
+protocolId:
+  - theta:dc-series:1
+# DataSheet URL (optional)
+specificationURL:
+# User Guide URL (optional)
+userGuideURL:
+
+# <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
+sensors:
+  - batteryVoltage:mV
+  - temperature:Cel
+  - distance:mm
+  - intensity:dB
+
+# Driver examples
+# A list of examples description that are compatible with this model
+examples:
+  theta:dc-series:1:
+    - sensor data with qos uplink
+    - heartbeat uplink
+    - system info uplink
+    - reboot response uplink
+    - uplink with an unsupported message type
+    - fragmented data uplink, continuation packet 8
+    - event uplink, ultrasonicSignalTooSmall (important)
+    - fragmented data uplink, first packet
+    - sensor data uplink
+    - reboot response uplink with a failure response code
+    - test response uplink with a success response code
+    - sensor data uplink with device timestamp
+    - heartbeat uplink with battery, signal level and chip temperature
+    - event uplink with an unknown event type and an unknown priority
+    - uplink with an escaped extended TLV type
+    - uplink with zero length unknown TLVs
+    - uplink with a one byte unknown TLV
+    - uplink with a twelve byte unknown TLV
+    - uplink with a two byte length unknown TLV
+    - fail decode uplink with truncated timestamp TLV
+    - fail decode uplink with a dangling escape byte
+    - fail decode uplink on unsupported fPort
+    - fail decode uplink with empty payload
+
+LoRaWANRelay:
+  canOperateAsARelay: false
+  defaultRelayActivation: false

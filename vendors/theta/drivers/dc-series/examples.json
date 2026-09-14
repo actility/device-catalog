@@ -1,0 +1,923 @@
+[
+  {
+    "type": "uplink",
+    "description": "sensor data with qos uplink",
+    "input": {
+      "bytes": [
+        5,
+        100,
+        1,
+        0,
+        0,
+        0,
+        104,
+        163,
+        7,
+        240,
+        65,
+        106,
+        0,
+        0,
+        0,
+        0,
+        110,
+        11,
+        141,
+        182,
+        65,
+        43,
+        0,
+        0,
+        44,
+        0,
+        0,
+        109,
+        251,
+        49,
+        65,
+        70,
+        37,
+        208,
+        5,
+        38,
+        250,
+        0
+      ],
+      "fPort": 1,
+      "recvTime": "2026-09-14T08:40:46.000Z"
+    },
+    "output": {
+      "data": {
+        "protocolVersion": 0,
+        "msgType": 5,
+        "msgTypeName": "sensorDataQos",
+        "payloadLength": 38,
+        "sessionId": 1,
+        "temperature": 30.00372886657715,
+        "auxTemperature": 0,
+        "thickness": 22.81886863708496,
+        "corrosionRateShort": 0,
+        "corrosionRateLong": 0,
+        "flightTime": 12364.4951171875,
+        "ultrasonicSignalStrength": 148.8,
+        "ultrasonicSignalQuality": 25
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "heartbeat uplink",
+    "input": {
+      "bytes": [
+        2,
+        33,
+        12,
+        14,
+        35,
+        46,
+        1
+      ],
+      "fPort": 1,
+      "recvTime": "2026-09-14T08:35:47.000Z"
+    },
+    "output": {
+      "data": {
+        "protocolVersion": 0,
+        "msgType": 2,
+        "msgTypeName": "heartbeat",
+        "payloadLength": 7,
+        "batteryVoltageMv": 3596,
+        "chipTemp": 30.2
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "system info uplink",
+    "input": {
+      "bytes": [
+        1,
+        160,
+        210,
+        228,
+        252,
+        129,
+        101,
+        101,
+        97,
+        235,
+        17,
+        1,
+        0,
+        98,
+        2,
+        0,
+        0,
+        0,
+        99,
+        55,
+        114,
+        54,
+        106,
+        225,
+        14,
+        67,
+        111,
+        114,
+        114,
+        111,
+        115,
+        105,
+        111,
+        110,
+        32,
+        83,
+        101,
+        110,
+        115
+      ],
+      "fPort": 1,
+      "recvTime": "2026-09-14T08:31:09.000Z"
+    },
+    "output": {
+      "data": {
+        "protocolVersion": 0,
+        "msgType": 1,
+        "msgTypeName": "systemInfo",
+        "payloadLength": 39,
+        "macAddress": "D2E4FC816565",
+        "hardwareId": 70123,
+        "firmwareVersion": "2.0.0.0",
+        "buildTime": 1781953079,
+        "buildTimeStr": "2026-06-20 10:57:59",
+        "deviceName": "Corrosion Sens"
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "reboot response uplink",
+    "input": {
+      "bytes": [
+        33
+      ],
+      "fPort": 1,
+      "recvTime": "2026-09-14T08:30:20.000Z"
+    },
+    "output": {
+      "data": {
+        "protocolVersion": 0,
+        "msgType": 33,
+        "msgTypeName": "rebootResponse",
+        "payloadLength": 1
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink with an unsupported message type",
+    "input": {
+      "bytes": [
+        158,
+        134,
+        158,
+        134,
+        158,
+        134
+      ],
+      "fPort": 1,
+      "recvTime": "2026-09-14T08:25:29.000Z"
+    },
+    "output": {
+      "data": {
+        "protocolVersion": 2,
+        "msgType": 30,
+        "msgTypeName": "unknown",
+        "payloadLength": 6,
+        "unknownTypes": [
+          {
+            "type": "0x86",
+            "offset": 1,
+            "payloadOffset": 2,
+            "payloadLength": 4,
+            "rawHex": "9E869E86",
+            "rawBytes": [
+              158,
+              134,
+              158,
+              134
+            ]
+          }
+        ]
+      },
+      "errors": [],
+      "warnings": [
+        "Unknown TLV type(s) ignored: 1"
+      ]
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "fragmented data uplink, continuation packet 8",
+    "input": {
+      "bytes": [
+        6,
+        100,
+        65,
+        0,
+        0,
+        0,
+        158,
+        9,
+        0,
+        0,
+        0,
+        159,
+        8,
+        0,
+        0,
+        0,
+        226,
+        36,
+        112,
+        58,
+        223,
+        194,
+        184,
+        143,
+        78,
+        70,
+        160,
+        209,
+        148,
+        66,
+        81,
+        232,
+        80,
+        70,
+        112,
+        58,
+        95,
+        194,
+        234,
+        64,
+        83,
+        70,
+        160,
+        209,
+        20,
+        66,
+        234,
+        52,
+        85,
+        70,
+        0,
+        0,
+        0,
+        0
+      ],
+      "fPort": 1,
+      "recvTime": "2026-09-14T08:15:42.000Z"
+    },
+    "output": {
+      "data": {
+        "protocolVersion": 0,
+        "msgType": 6,
+        "msgTypeName": "fragmentedData",
+        "payloadLength": 54,
+        "sessionId": 65,
+        "packetTotal": 9,
+        "packetIndex": 8,
+        "fragmentDataHex": "703ADFC2B88F4E46A0D1944251E85046703A5FC2EA405346A0D11442EA34554600000000",
+        "fragmentDataLength": 36
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "event uplink, ultrasonicSignalTooSmall (important)",
+    "input": {
+      "bytes": [
+        3,
+        32,
+        69,
+        64
+      ],
+      "fPort": 1,
+      "recvTime": "2026-09-11T07:05:36.000Z"
+    },
+    "output": {
+      "data": {
+        "protocolVersion": 0,
+        "msgType": 3,
+        "msgTypeName": "event",
+        "payloadLength": 4,
+        "eventPriority": 2,
+        "eventPriorityName": "important",
+        "eventType": 69,
+        "eventTypeName": "ultrasonicSignalTooSmall"
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "fragmented data uplink, first packet",
+    "input": {
+      "bytes": [
+        6,
+        100,
+        2,
+        0,
+        0,
+        0,
+        158,
+        9,
+        0,
+        0,
+        0,
+        159,
+        0,
+        0,
+        0,
+        0,
+        226,
+        63,
+        76,
+        84,
+        18,
+        0,
+        0,
+        0,
+        0,
+        0,
+        7,
+        0,
+        2,
+        64,
+        4,
+        2,
+        0,
+        16,
+        40,
+        216,
+        1,
+        0,
+        220,
+        0,
+        8,
+        0,
+        89,
+        237,
+        31,
+        65,
+        117,
+        150,
+        246,
+        69,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        110,
+        77,
+        233,
+        65,
+        0,
+        0,
+        0,
+        0,
+        103,
+        181,
+        162,
+        65,
+        0,
+        0,
+        144,
+        65,
+        0,
+        0,
+        0,
+        0,
+        221,
+        10,
+        57
+      ],
+      "fPort": 1,
+      "recvTime": "2026-09-11T06:55:40.000Z"
+    },
+    "output": {
+      "data": {
+        "protocolVersion": 0,
+        "msgType": 6,
+        "msgTypeName": "fragmentedData",
+        "payloadLength": 81,
+        "sessionId": 2,
+        "packetTotal": 9,
+        "packetIndex": 0,
+        "fragmentDataHex": "4C54120000000000070002400402001028D80100DC00080059ED1F417596F64500000000000000006E4DE9410000000067B5A2410000904100000000DD0A39",
+        "fragmentDataLength": 63
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "sensor data uplink",
+    "input": {
+      "bytes": [
+        4,
+        104,
+        110,
+        77,
+        233,
+        65,
+        106,
+        0,
+        0,
+        0,
+        0,
+        110,
+        89,
+        237,
+        31,
+        65,
+        43,
+        0,
+        0,
+        44,
+        0,
+        0,
+        109,
+        117,
+        150,
+        246,
+        69,
+        37,
+        203,
+        0,
+        38,
+        180,
+        0
+      ],
+      "fPort": 1,
+      "recvTime": "2026-09-11T06:55:36.000Z"
+    },
+    "output": {
+      "data": {
+        "protocolVersion": 0,
+        "msgType": 4,
+        "msgTypeName": "sensorData",
+        "payloadLength": 33,
+        "temperature": 29.16280746459961,
+        "auxTemperature": 0,
+        "thickness": 9.99544620513916,
+        "corrosionRateShort": 0,
+        "corrosionRateLong": 0,
+        "flightTime": 7890.80712890625,
+        "ultrasonicSignalStrength": 20.3,
+        "ultrasonicSignalQuality": 18
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "reboot response uplink with a failure response code",
+    "input": {
+      "bytes": [
+        33,
+        2,
+        254
+      ],
+      "fPort": 1,
+      "recvTime": "2024-01-01T00:00:00.000Z"
+    },
+    "output": {
+      "data": {
+        "protocolVersion": 0,
+        "msgType": 33,
+        "msgTypeName": "rebootResponse",
+        "payloadLength": 3,
+        "responseCode": -2
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "test response uplink with a success response code",
+    "input": {
+      "bytes": [
+        34,
+        2,
+        0
+      ],
+      "fPort": 1,
+      "recvTime": "2024-01-01T00:00:00.000Z"
+    },
+    "output": {
+      "data": {
+        "protocolVersion": 0,
+        "msgType": 34,
+        "msgTypeName": "testResponse",
+        "payloadLength": 3,
+        "responseCode": 0
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "sensor data uplink with device timestamp",
+    "input": {
+      "bytes": [
+        4,
+        96,
+        128,
+        168,
+        184,
+        101
+      ],
+      "fPort": 1,
+      "recvTime": "2024-01-01T00:00:00.000Z"
+    },
+    "output": {
+      "data": {
+        "protocolVersion": 0,
+        "msgType": 4,
+        "msgTypeName": "sensorData",
+        "payloadLength": 6,
+        "timestamp": 1706600576,
+        "timestampStr": "2024-01-30 07:42:56"
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "heartbeat uplink with battery, signal level and chip temperature",
+    "input": {
+      "bytes": [
+        2,
+        33,
+        12,
+        14,
+        34,
+        164,
+        255,
+        35,
+        36,
+        1
+      ],
+      "fPort": 1,
+      "recvTime": "2024-01-01T00:00:00.000Z"
+    },
+    "output": {
+      "data": {
+        "protocolVersion": 0,
+        "msgType": 2,
+        "msgTypeName": "heartbeat",
+        "payloadLength": 10,
+        "batteryVoltageMv": 3596,
+        "signal": -92,
+        "chipTemp": 29.2
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "event uplink with an unknown event type and an unknown priority",
+    "input": {
+      "bytes": [
+        3,
+        32,
+        255,
+        239
+      ],
+      "fPort": 1,
+      "recvTime": "2024-01-01T00:00:00.000Z"
+    },
+    "output": {
+      "data": {
+        "protocolVersion": 0,
+        "msgType": 3,
+        "msgTypeName": "event",
+        "payloadLength": 4,
+        "eventPriority": 7,
+        "eventPriorityName": "",
+        "eventType": 4095,
+        "eventTypeName": ""
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink with an escaped extended TLV type",
+    "input": {
+      "bytes": [
+        4,
+        255,
+        104,
+        0,
+        0,
+        188,
+        65
+      ],
+      "fPort": 1,
+      "recvTime": "2024-01-01T00:00:00.000Z"
+    },
+    "output": {
+      "data": {
+        "protocolVersion": 0,
+        "msgType": 4,
+        "msgTypeName": "sensorData",
+        "payloadLength": 7,
+        "temperature": 23.5
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink with zero length unknown TLVs",
+    "input": {
+      "bytes": [
+        4,
+        0,
+        1
+      ],
+      "fPort": 1,
+      "recvTime": "2024-01-01T00:00:00.000Z"
+    },
+    "output": {
+      "data": {
+        "protocolVersion": 0,
+        "msgType": 4,
+        "msgTypeName": "sensorData",
+        "payloadLength": 3,
+        "unknownTypes": [
+          {
+            "type": "0x0",
+            "offset": 1,
+            "payloadOffset": 2,
+            "payloadLength": 0,
+            "rawHex": "",
+            "rawBytes": []
+          },
+          {
+            "type": "0x1",
+            "offset": 2,
+            "payloadOffset": 3,
+            "payloadLength": 0,
+            "rawHex": "",
+            "rawBytes": []
+          }
+        ]
+      },
+      "errors": [],
+      "warnings": [
+        "Unknown TLV type(s) ignored: 2"
+      ]
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink with a one byte unknown TLV",
+    "input": {
+      "bytes": [
+        4,
+        5,
+        127
+      ],
+      "fPort": 1,
+      "recvTime": "2024-01-01T00:00:00.000Z"
+    },
+    "output": {
+      "data": {
+        "protocolVersion": 0,
+        "msgType": 4,
+        "msgTypeName": "sensorData",
+        "payloadLength": 3,
+        "unknownTypes": [
+          {
+            "type": "0x5",
+            "offset": 1,
+            "payloadOffset": 2,
+            "payloadLength": 1,
+            "rawHex": "7F",
+            "rawBytes": [
+              127
+            ]
+          }
+        ]
+      },
+      "errors": [],
+      "warnings": [
+        "Unknown TLV type(s) ignored: 1"
+      ]
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink with a twelve byte unknown TLV",
+    "input": {
+      "bytes": [
+        4,
+        192,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "fPort": 1,
+      "recvTime": "2024-01-01T00:00:00.000Z"
+    },
+    "output": {
+      "data": {
+        "protocolVersion": 0,
+        "msgType": 4,
+        "msgTypeName": "sensorData",
+        "payloadLength": 14,
+        "unknownTypes": [
+          {
+            "type": "0xC0",
+            "offset": 1,
+            "payloadOffset": 2,
+            "payloadLength": 12,
+            "rawHex": "000000000000000000000000",
+            "rawBytes": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ]
+      },
+      "errors": [],
+      "warnings": [
+        "Unknown TLV type(s) ignored: 1"
+      ]
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink with a two byte length unknown TLV",
+    "input": {
+      "bytes": [
+        4,
+        245,
+        3,
+        0,
+        170,
+        187,
+        204
+      ],
+      "fPort": 1,
+      "recvTime": "2024-01-01T00:00:00.000Z"
+    },
+    "output": {
+      "data": {
+        "protocolVersion": 0,
+        "msgType": 4,
+        "msgTypeName": "sensorData",
+        "payloadLength": 7,
+        "unknownTypes": [
+          {
+            "type": "0xF5",
+            "offset": 1,
+            "payloadOffset": 2,
+            "payloadLength": 5,
+            "rawHex": "0300AABBCC",
+            "rawBytes": [
+              3,
+              0,
+              170,
+              187,
+              204
+            ]
+          }
+        ]
+      },
+      "errors": [],
+      "warnings": [
+        "Unknown TLV type(s) ignored: 1"
+      ]
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "fail decode uplink with truncated timestamp TLV",
+    "input": {
+      "bytes": [
+        4,
+        96,
+        128,
+        168
+      ],
+      "fPort": 1,
+      "recvTime": "2024-01-01T00:00:00.000Z"
+    },
+    "output": {
+      "errors": [
+        "Truncated payload: incomplete TLV at offset 1"
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "fail decode uplink with a dangling escape byte",
+    "input": {
+      "bytes": [
+        4,
+        255
+      ],
+      "fPort": 1,
+      "recvTime": "2024-01-01T00:00:00.000Z"
+    },
+    "output": {
+      "errors": [
+        "Truncated payload: incomplete TLV at offset 1"
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "fail decode uplink on unsupported fPort",
+    "input": {
+      "bytes": [
+        2,
+        33,
+        12,
+        14
+      ],
+      "fPort": 2,
+      "recvTime": "2024-01-01T00:00:00.000Z"
+    },
+    "output": {
+      "errors": [
+        "Unsupported fPort: 2 (expected 1)"
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "fail decode uplink with empty payload",
+    "input": {
+      "bytes": [],
+      "fPort": 1,
+      "recvTime": "2024-01-01T00:00:00.000Z"
+    },
+    "output": {
+      "errors": [
+        "Invalid uplink payload: empty payload"
+      ],
+      "warnings": []
+    }
+  }
+]
