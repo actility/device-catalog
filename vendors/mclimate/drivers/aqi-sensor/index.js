@@ -107,7 +107,8 @@ function decodeUplink(input) {
 
 function encodeDownlink(input) {
     var bytes = [];
-    var data = (input && input.data) ? input.data : {};
+    // The engine hands a thingpark-x-js (actility) driver the message itself, a LoRa Alliance one { data: message }: accept both.
+    var data = (input && input.data !== undefined) ? input.data : (input || {});
     var key, i;
 
     // Each colour is packed as 3 bits of behaviour and 5 bits of duration

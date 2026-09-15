@@ -119,7 +119,8 @@ function decodeUplink(input) {
 
 function encodeDownlink(input) {
 	var bytes = [];
-	var data = (input && input.data) ? input.data : {};
+	// The engine hands a thingpark-x-js (actility) driver the message itself, a LoRa Alliance one { data: message }: accept both.
+	var data = (input && input.data !== undefined) ? input.data : (input || {});
 	var key, i;
 
 	for (key in data) {
