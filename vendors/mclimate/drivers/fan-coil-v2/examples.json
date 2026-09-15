@@ -1,0 +1,1032 @@
+[
+  {
+    "description": "Periodic uplink",
+    "type": "uplink",
+    "input": {
+      "bytes": "01028875013B0100060101",
+      "fPort": 1,
+      "recvTime": "2024-04-04T12:00:00.000+02:00"
+    },
+    "output": {
+      "data": {
+        "actualFanSpeed": 6,
+        "deviceStatus": 1,
+        "displayedFanSpeed": 0,
+        "operationalMode": 1,
+        "relativeHumidity": 45.7,
+        "sensorTemperature": 24.8,
+        "targetTemperature": 31.5,
+        "valveStatus": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "humidity": {
+        "unitId": "%RH",
+        "record": 45.7
+      },
+      "temperature:1": {
+        "unitId": "Cel",
+        "record": 24.8,
+        "nature": "sensor"
+      },
+      "temperature:2": {
+        "unitId": "Cel",
+        "record": 31.5,
+        "nature": "target"
+      }
+    },
+    "BACnet": {
+      "actualFanSpeed": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 6,
+        "units": "NO_UNITS"
+      },
+      "deviceStatus": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 1,
+        "units": "NO_UNITS"
+      },
+      "displayedFanSpeed": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 0,
+        "units": "NO_UNITS"
+      },
+      "operationalMode": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 1,
+        "units": "NO_UNITS"
+      },
+      "relativeHumidity": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 45.7,
+        "units": "PERCENT_RELATIVE_HUMIDITY"
+      },
+      "sensorTemperature": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 24.8,
+        "units": "DEGREES_CELSIUS"
+      },
+      "targetTemperature": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 31.5,
+        "units": "DEGREES_CELSIUS"
+      },
+      "valveStatus": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 1,
+        "units": "NO_UNITS"
+      }
+    },
+    "Modbus": {
+      "actualFanSpeed": {
+        "table": "inputRegister",
+        "value": 6,
+        "value_type": "UINT8"
+      },
+      "deviceStatus": {
+        "table": "inputRegister",
+        "value": 1,
+        "value_type": "UINT8"
+      },
+      "displayedFanSpeed": {
+        "table": "inputRegister",
+        "value": 0,
+        "value_type": "UINT8"
+      },
+      "operationalMode": {
+        "table": "inputRegister",
+        "value": 1,
+        "value_type": "UINT8"
+      },
+      "relativeHumidity": {
+        "table": "inputRegister",
+        "value": 45.7,
+        "value_type": "FLOAT"
+      },
+      "sensorTemperature": {
+        "table": "inputRegister",
+        "value": 24.8,
+        "value_type": "FLOAT"
+      },
+      "targetTemperature": {
+        "table": "inputRegister",
+        "value": 31.5,
+        "value_type": "FLOAT"
+      },
+      "valveStatus": {
+        "table": "inputRegister",
+        "value": 1,
+        "value_type": "UINT8"
+      }
+    }
+  },
+  {
+    "description": "Response: manual target temperature update (0x30, two bytes) with keepalive trailer",
+    "type": "uplink",
+    "input": {
+      "bytes": "3000d701028875013B0100060101",
+      "fPort": 1
+    },
+    "output": {
+      "data": {
+        "manualTargetTemperatureUpdate": 21.5,
+        "sensorTemperature": 24.8,
+        "relativeHumidity": 45.7,
+        "targetTemperature": 31.5,
+        "operationalMode": 1,
+        "displayedFanSpeed": 0,
+        "actualFanSpeed": 6,
+        "valveStatus": 1,
+        "deviceStatus": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "humidity": {
+        "unitId": "%RH",
+        "record": 45.7
+      },
+      "temperature:1": {
+        "unitId": "Cel",
+        "record": 24.8,
+        "nature": "sensor"
+      },
+      "temperature:2": {
+        "unitId": "Cel",
+        "record": 31.5,
+        "nature": "target"
+      }
+    },
+    "BACnet": {
+      "actualFanSpeed": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 6,
+        "units": "NO_UNITS"
+      },
+      "deviceStatus": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 1,
+        "units": "NO_UNITS"
+      },
+      "displayedFanSpeed": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 0,
+        "units": "NO_UNITS"
+      },
+      "manualTargetTemperatureUpdate": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 21.5,
+        "units": "DEGREES_CELSIUS"
+      },
+      "operationalMode": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 1,
+        "units": "NO_UNITS"
+      },
+      "relativeHumidity": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 45.7,
+        "units": "PERCENT_RELATIVE_HUMIDITY"
+      },
+      "sensorTemperature": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 24.8,
+        "units": "DEGREES_CELSIUS"
+      },
+      "targetTemperature": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 31.5,
+        "units": "DEGREES_CELSIUS"
+      },
+      "valveStatus": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 1,
+        "units": "NO_UNITS"
+      }
+    },
+    "Modbus": {
+      "actualFanSpeed": {
+        "table": "inputRegister",
+        "value": 6,
+        "value_type": "UINT8"
+      },
+      "deviceStatus": {
+        "table": "inputRegister",
+        "value": 1,
+        "value_type": "UINT8"
+      },
+      "displayedFanSpeed": {
+        "table": "inputRegister",
+        "value": 0,
+        "value_type": "UINT8"
+      },
+      "manualTargetTemperatureUpdate": {
+        "table": "inputRegister",
+        "value": 21.5,
+        "value_type": "FLOAT"
+      },
+      "operationalMode": {
+        "table": "inputRegister",
+        "value": 1,
+        "value_type": "UINT8"
+      },
+      "relativeHumidity": {
+        "table": "inputRegister",
+        "value": 45.7,
+        "value_type": "FLOAT"
+      },
+      "sensorTemperature": {
+        "table": "inputRegister",
+        "value": 24.8,
+        "value_type": "FLOAT"
+      },
+      "targetTemperature": {
+        "table": "inputRegister",
+        "value": 31.5,
+        "value_type": "FLOAT"
+      },
+      "valveStatus": {
+        "table": "inputRegister",
+        "value": 1,
+        "value_type": "UINT8"
+      }
+    }
+  },
+  {
+    "description": "Response: external sensor temperature (0x3e) with keepalive trailer",
+    "type": "uplink",
+    "input": {
+      "bytes": "3e00fa01028875013B0100060101",
+      "fPort": 1
+    },
+    "output": {
+      "data": {
+        "extSensorTemperature": 25,
+        "sensorTemperature": 24.8,
+        "relativeHumidity": 45.7,
+        "targetTemperature": 31.5,
+        "operationalMode": 1,
+        "displayedFanSpeed": 0,
+        "actualFanSpeed": 6,
+        "valveStatus": 1,
+        "deviceStatus": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "humidity": {
+        "unitId": "%RH",
+        "record": 45.7
+      },
+      "temperature:1": {
+        "unitId": "Cel",
+        "record": 24.8,
+        "nature": "sensor"
+      },
+      "temperature:2": {
+        "unitId": "Cel",
+        "record": 31.5,
+        "nature": "target"
+      },
+      "temperature:3": {
+        "unitId": "Cel",
+        "record": 25,
+        "nature": "external sensor"
+      }
+    },
+    "BACnet": {
+      "actualFanSpeed": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 6,
+        "units": "NO_UNITS"
+      },
+      "deviceStatus": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 1,
+        "units": "NO_UNITS"
+      },
+      "displayedFanSpeed": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 0,
+        "units": "NO_UNITS"
+      },
+      "extSensorTemperature": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 25,
+        "units": "DEGREES_CELSIUS"
+      },
+      "operationalMode": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 1,
+        "units": "NO_UNITS"
+      },
+      "relativeHumidity": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 45.7,
+        "units": "PERCENT_RELATIVE_HUMIDITY"
+      },
+      "sensorTemperature": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 24.8,
+        "units": "DEGREES_CELSIUS"
+      },
+      "targetTemperature": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 31.5,
+        "units": "DEGREES_CELSIUS"
+      },
+      "valveStatus": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 1,
+        "units": "NO_UNITS"
+      }
+    },
+    "Modbus": {
+      "actualFanSpeed": {
+        "table": "inputRegister",
+        "value": 6,
+        "value_type": "UINT8"
+      },
+      "deviceStatus": {
+        "table": "inputRegister",
+        "value": 1,
+        "value_type": "UINT8"
+      },
+      "displayedFanSpeed": {
+        "table": "inputRegister",
+        "value": 0,
+        "value_type": "UINT8"
+      },
+      "extSensorTemperature": {
+        "table": "inputRegister",
+        "value": 25,
+        "value_type": "FLOAT"
+      },
+      "operationalMode": {
+        "table": "inputRegister",
+        "value": 1,
+        "value_type": "UINT8"
+      },
+      "relativeHumidity": {
+        "table": "inputRegister",
+        "value": 45.7,
+        "value_type": "FLOAT"
+      },
+      "sensorTemperature": {
+        "table": "inputRegister",
+        "value": 24.8,
+        "value_type": "FLOAT"
+      },
+      "targetTemperature": {
+        "table": "inputRegister",
+        "value": 31.5,
+        "value_type": "FLOAT"
+      },
+      "valveStatus": {
+        "table": "inputRegister",
+        "value": 1,
+        "value_type": "UINT8"
+      }
+    }
+  },
+  {
+    "description": "Response: FCT operational mode (0x53) with keepalive trailer",
+    "type": "uplink",
+    "input": {
+      "bytes": "530201028875013B0100060101",
+      "fPort": 1
+    },
+    "output": {
+      "data": {
+        "fctOperationalMode": 2,
+        "sensorTemperature": 24.8,
+        "relativeHumidity": 45.7,
+        "targetTemperature": 31.5,
+        "operationalMode": 1,
+        "displayedFanSpeed": 0,
+        "actualFanSpeed": 6,
+        "valveStatus": 1,
+        "deviceStatus": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "humidity": {
+        "unitId": "%RH",
+        "record": 45.7
+      },
+      "temperature:1": {
+        "unitId": "Cel",
+        "record": 24.8,
+        "nature": "sensor"
+      },
+      "temperature:2": {
+        "unitId": "Cel",
+        "record": 31.5,
+        "nature": "target"
+      }
+    },
+    "BACnet": {
+      "actualFanSpeed": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 6,
+        "units": "NO_UNITS"
+      },
+      "deviceStatus": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 1,
+        "units": "NO_UNITS"
+      },
+      "displayedFanSpeed": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 0,
+        "units": "NO_UNITS"
+      },
+      "fctOperationalMode": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 2,
+        "units": "NO_UNITS"
+      },
+      "operationalMode": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 1,
+        "units": "NO_UNITS"
+      },
+      "relativeHumidity": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 45.7,
+        "units": "PERCENT_RELATIVE_HUMIDITY"
+      },
+      "sensorTemperature": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 24.8,
+        "units": "DEGREES_CELSIUS"
+      },
+      "targetTemperature": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 31.5,
+        "units": "DEGREES_CELSIUS"
+      },
+      "valveStatus": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 1,
+        "units": "NO_UNITS"
+      }
+    },
+    "Modbus": {
+      "actualFanSpeed": {
+        "table": "inputRegister",
+        "value": 6,
+        "value_type": "UINT8"
+      },
+      "deviceStatus": {
+        "table": "inputRegister",
+        "value": 1,
+        "value_type": "UINT8"
+      },
+      "displayedFanSpeed": {
+        "table": "inputRegister",
+        "value": 0,
+        "value_type": "UINT8"
+      },
+      "fctOperationalMode": {
+        "table": "inputRegister",
+        "value": 2,
+        "value_type": "UINT8"
+      },
+      "operationalMode": {
+        "table": "inputRegister",
+        "value": 1,
+        "value_type": "UINT8"
+      },
+      "relativeHumidity": {
+        "table": "inputRegister",
+        "value": 45.7,
+        "value_type": "FLOAT"
+      },
+      "sensorTemperature": {
+        "table": "inputRegister",
+        "value": 24.8,
+        "value_type": "FLOAT"
+      },
+      "targetTemperature": {
+        "table": "inputRegister",
+        "value": 31.5,
+        "value_type": "FLOAT"
+      },
+      "valveStatus": {
+        "table": "inputRegister",
+        "value": 1,
+        "value_type": "UINT8"
+      }
+    }
+  },
+  {
+    "description": "Response: temperature sensor compensation (0x5b) with keepalive trailer",
+    "type": "uplink",
+    "input": {
+      "bytes": "5b01aa01028875013B0100060101",
+      "fPort": 1
+    },
+    "output": {
+      "data": {
+        "tempSensorCompensation": {
+          "compensation": 1,
+          "temperature": 17
+        },
+        "sensorTemperature": 24.8,
+        "relativeHumidity": 45.7,
+        "targetTemperature": 31.5,
+        "operationalMode": 1,
+        "displayedFanSpeed": 0,
+        "actualFanSpeed": 6,
+        "valveStatus": 1,
+        "deviceStatus": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "humidity": {
+        "unitId": "%RH",
+        "record": 45.7
+      },
+      "temperature:1": {
+        "unitId": "Cel",
+        "record": 24.8,
+        "nature": "sensor"
+      },
+      "temperature:2": {
+        "unitId": "Cel",
+        "record": 31.5,
+        "nature": "target"
+      }
+    },
+    "BACnet": {
+      "actualFanSpeed": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 6,
+        "units": "NO_UNITS"
+      },
+      "deviceStatus": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 1,
+        "units": "NO_UNITS"
+      },
+      "displayedFanSpeed": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 0,
+        "units": "NO_UNITS"
+      },
+      "operationalMode": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 1,
+        "units": "NO_UNITS"
+      },
+      "relativeHumidity": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 45.7,
+        "units": "PERCENT_RELATIVE_HUMIDITY"
+      },
+      "sensorTemperature": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 24.8,
+        "units": "DEGREES_CELSIUS"
+      },
+      "targetTemperature": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 31.5,
+        "units": "DEGREES_CELSIUS"
+      },
+      "tempSensorCompensation:compensation": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 1,
+        "units": "NO_UNITS"
+      },
+      "tempSensorCompensation:temperature": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 17,
+        "units": "DEGREES_CELSIUS"
+      },
+      "valveStatus": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 1,
+        "units": "NO_UNITS"
+      }
+    },
+    "Modbus": {
+      "actualFanSpeed": {
+        "table": "inputRegister",
+        "value": 6,
+        "value_type": "UINT8"
+      },
+      "deviceStatus": {
+        "table": "inputRegister",
+        "value": 1,
+        "value_type": "UINT8"
+      },
+      "displayedFanSpeed": {
+        "table": "inputRegister",
+        "value": 0,
+        "value_type": "UINT8"
+      },
+      "operationalMode": {
+        "table": "inputRegister",
+        "value": 1,
+        "value_type": "UINT8"
+      },
+      "relativeHumidity": {
+        "table": "inputRegister",
+        "value": 45.7,
+        "value_type": "FLOAT"
+      },
+      "sensorTemperature": {
+        "table": "inputRegister",
+        "value": 24.8,
+        "value_type": "FLOAT"
+      },
+      "targetTemperature": {
+        "table": "inputRegister",
+        "value": 31.5,
+        "value_type": "FLOAT"
+      },
+      "tempSensorCompensation:compensation": {
+        "table": "inputRegister",
+        "value": 1,
+        "value_type": "UINT8"
+      },
+      "tempSensorCompensation:temperature": {
+        "table": "inputRegister",
+        "value": 17,
+        "value_type": "FLOAT"
+      },
+      "valveStatus": {
+        "table": "inputRegister",
+        "value": 1,
+        "value_type": "UINT8"
+      }
+    }
+  },
+  {
+    "description": "Response: delta temperature 2 and 3 (0x6d) with keepalive trailer",
+    "type": "uplink",
+    "input": {
+      "bytes": "6d1e2801028875013B0100060101",
+      "fPort": 1
+    },
+    "output": {
+      "data": {
+        "deltaTemperature2and3": {
+          "deltaTemperature2": 3,
+          "deltaTemperature3": 4
+        },
+        "sensorTemperature": 24.8,
+        "relativeHumidity": 45.7,
+        "targetTemperature": 31.5,
+        "operationalMode": 1,
+        "displayedFanSpeed": 0,
+        "actualFanSpeed": 6,
+        "valveStatus": 1,
+        "deviceStatus": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "humidity": {
+        "unitId": "%RH",
+        "record": 45.7
+      },
+      "temperature:1": {
+        "unitId": "Cel",
+        "record": 24.8,
+        "nature": "sensor"
+      },
+      "temperature:2": {
+        "unitId": "Cel",
+        "record": 31.5,
+        "nature": "target"
+      }
+    },
+    "BACnet": {
+      "actualFanSpeed": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 6,
+        "units": "NO_UNITS"
+      },
+      "deltaTemperature2and3:deltaTemperature2": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 3,
+        "units": "DEGREES_CELSIUS"
+      },
+      "deltaTemperature2and3:deltaTemperature3": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 4,
+        "units": "DEGREES_CELSIUS"
+      },
+      "deviceStatus": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 1,
+        "units": "NO_UNITS"
+      },
+      "displayedFanSpeed": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 0,
+        "units": "NO_UNITS"
+      },
+      "operationalMode": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 1,
+        "units": "NO_UNITS"
+      },
+      "relativeHumidity": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 45.7,
+        "units": "PERCENT_RELATIVE_HUMIDITY"
+      },
+      "sensorTemperature": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 24.8,
+        "units": "DEGREES_CELSIUS"
+      },
+      "targetTemperature": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 31.5,
+        "units": "DEGREES_CELSIUS"
+      },
+      "valveStatus": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 1,
+        "units": "NO_UNITS"
+      }
+    },
+    "Modbus": {
+      "actualFanSpeed": {
+        "table": "inputRegister",
+        "value": 6,
+        "value_type": "UINT8"
+      },
+      "deltaTemperature2and3:deltaTemperature2": {
+        "table": "inputRegister",
+        "value": 3,
+        "value_type": "FLOAT"
+      },
+      "deltaTemperature2and3:deltaTemperature3": {
+        "table": "inputRegister",
+        "value": 4,
+        "value_type": "FLOAT"
+      },
+      "deviceStatus": {
+        "table": "inputRegister",
+        "value": 1,
+        "value_type": "UINT8"
+      },
+      "displayedFanSpeed": {
+        "table": "inputRegister",
+        "value": 0,
+        "value_type": "UINT8"
+      },
+      "operationalMode": {
+        "table": "inputRegister",
+        "value": 1,
+        "value_type": "UINT8"
+      },
+      "relativeHumidity": {
+        "table": "inputRegister",
+        "value": 45.7,
+        "value_type": "FLOAT"
+      },
+      "sensorTemperature": {
+        "table": "inputRegister",
+        "value": 24.8,
+        "value_type": "FLOAT"
+      },
+      "targetTemperature": {
+        "table": "inputRegister",
+        "value": 31.5,
+        "value_type": "FLOAT"
+      },
+      "valveStatus": {
+        "table": "inputRegister",
+        "value": 1,
+        "value_type": "UINT8"
+      }
+    }
+  },
+  {
+    "description": "Response: region (0xa4) with keepalive trailer",
+    "type": "uplink",
+    "input": {
+      "bytes": "a40101028875013B0100060101",
+      "fPort": 1
+    },
+    "output": {
+      "data": {
+        "region": 1,
+        "sensorTemperature": 24.8,
+        "relativeHumidity": 45.7,
+        "targetTemperature": 31.5,
+        "operationalMode": 1,
+        "displayedFanSpeed": 0,
+        "actualFanSpeed": 6,
+        "valveStatus": 1,
+        "deviceStatus": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "humidity": {
+        "unitId": "%RH",
+        "record": 45.7
+      },
+      "temperature:1": {
+        "unitId": "Cel",
+        "record": 24.8,
+        "nature": "sensor"
+      },
+      "temperature:2": {
+        "unitId": "Cel",
+        "record": 31.5,
+        "nature": "target"
+      }
+    },
+    "BACnet": {
+      "actualFanSpeed": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 6,
+        "units": "NO_UNITS"
+      },
+      "deviceStatus": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 1,
+        "units": "NO_UNITS"
+      },
+      "displayedFanSpeed": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 0,
+        "units": "NO_UNITS"
+      },
+      "operationalMode": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 1,
+        "units": "NO_UNITS"
+      },
+      "region": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 1,
+        "units": "NO_UNITS"
+      },
+      "relativeHumidity": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 45.7,
+        "units": "PERCENT_RELATIVE_HUMIDITY"
+      },
+      "sensorTemperature": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 24.8,
+        "units": "DEGREES_CELSIUS"
+      },
+      "targetTemperature": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 31.5,
+        "units": "DEGREES_CELSIUS"
+      },
+      "valveStatus": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 1,
+        "units": "NO_UNITS"
+      }
+    },
+    "Modbus": {
+      "actualFanSpeed": {
+        "table": "inputRegister",
+        "value": 6,
+        "value_type": "UINT8"
+      },
+      "deviceStatus": {
+        "table": "inputRegister",
+        "value": 1,
+        "value_type": "UINT8"
+      },
+      "displayedFanSpeed": {
+        "table": "inputRegister",
+        "value": 0,
+        "value_type": "UINT8"
+      },
+      "operationalMode": {
+        "table": "inputRegister",
+        "value": 1,
+        "value_type": "UINT8"
+      },
+      "region": {
+        "table": "inputRegister",
+        "value": 1,
+        "value_type": "UINT8"
+      },
+      "relativeHumidity": {
+        "table": "inputRegister",
+        "value": 45.7,
+        "value_type": "FLOAT"
+      },
+      "sensorTemperature": {
+        "table": "inputRegister",
+        "value": 24.8,
+        "value_type": "FLOAT"
+      },
+      "targetTemperature": {
+        "table": "inputRegister",
+        "value": 31.5,
+        "value_type": "FLOAT"
+      },
+      "valveStatus": {
+        "table": "inputRegister",
+        "value": 1,
+        "value_type": "UINT8"
+      }
+    }
+  },
+  {
+    "description": "Downlink: enable frost protection (0x4e)",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setFrostProtection": 1
+      }
+    },
+    "output": {
+      "bytes": "4E01",
+      "fPort": 1,
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "description": "Downlink: read frost protection (0x4f)",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "getFrostProtection": true
+      }
+    },
+    "output": {
+      "bytes": "4F",
+      "fPort": 1,
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "description": "Downlink: set target temperature step to 0.5C",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setTargetTemperatureStep": 0.5
+      }
+    },
+    "output": {
+      "bytes": "0305",
+      "fPort": 1,
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "description": "Downlink: set delta temperature 1 to 3C",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setDeltaTemperature1": 3
+      }
+    },
+    "output": {
+      "bytes": "6A1E",
+      "fPort": 1,
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "description": "Downlink: set watchdog parameters",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setWatchDogParams": {
+          "confirmedUplinks": 2,
+          "unconfirmedUplinks": 5
+        }
+      }
+    },
+    "output": {
+      "bytes": "1C0205",
+      "fPort": 1,
+      "errors": [],
+      "warnings": []
+    }
+  }
+]

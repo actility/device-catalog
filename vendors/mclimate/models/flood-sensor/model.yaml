@@ -37,6 +37,7 @@ LoRaWANCertified: false
 modelId: mclimate:flood-sensor:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId:
+  - mclimate:flood-sensor:2
   - mclimate:flood-sensor:1
 # DataSheet URL (optional) 
 specificationURL: https://3940008670-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F-McDr-jr9h3qA888r1Yp%2Fuploads%2FhmhYjSgOs3qV94Lf0icb%2FMClimate-Flood-Sensor-LoRaWAN-Datasheet-en.pdf?alt=media&token=1ef57a6a-625e-4b96-a6ce-dea8c02bcffc
@@ -50,7 +51,7 @@ sensors:
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
-  mclimate:flood-sensor:1:
+  mclimate:flood-sensor:2:
     - "Short periodic uplink"
     - "Long periodic uplink with temperature"
     - "Flood detected event"

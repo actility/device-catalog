@@ -1,0 +1,596 @@
+[
+  {
+    "description": "Periodic uplink (keepalive)",
+    "type": "uplink",
+    "input": {
+      "bytes": "010258800CE49020012C",
+      "fPort": 1
+    },
+    "output": {
+      "data": {
+        "sensorTemperature": 20,
+        "relativeHumidity": 50,
+        "batteryVoltage": 3.3,
+        "CO2": 1168,
+        "powerSourceStatus": 0,
+        "lux": 300
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "temperature": {
+        "unitId": "Cel",
+        "record": 20
+      },
+      "humidity": {
+        "unitId": "%RH",
+        "record": 50
+      },
+      "co2Level": {
+        "unitId": "ppm",
+        "record": 1168
+      },
+      "illuminance": {
+        "unitId": "lx",
+        "record": 300
+      },
+      "batteryVoltage": {
+        "unitId": "V",
+        "record": 3.3
+      }
+    },
+    "BACnet": {
+      "CO2": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 1168,
+        "units": "PARTS_PER_MILLION"
+      },
+      "batteryVoltage": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 3.3,
+        "units": "VOLTS"
+      },
+      "lux": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 300,
+        "units": "LUXES"
+      },
+      "powerSourceStatus": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 0,
+        "units": "NO_UNITS"
+      },
+      "relativeHumidity": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 50,
+        "units": "PERCENT_RELATIVE_HUMIDITY"
+      },
+      "sensorTemperature": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 20,
+        "units": "DEGREES_CELSIUS"
+      }
+    },
+    "Modbus": {
+      "CO2": {
+        "table": "inputRegister",
+        "value": 1168,
+        "value_type": "UINT16"
+      },
+      "batteryVoltage": {
+        "table": "inputRegister",
+        "value": 3.3,
+        "value_type": "FLOAT"
+      },
+      "lux": {
+        "table": "inputRegister",
+        "value": 300,
+        "value_type": "UINT16"
+      },
+      "powerSourceStatus": {
+        "table": "inputRegister",
+        "value": 0,
+        "value_type": "UINT8"
+      },
+      "relativeHumidity": {
+        "table": "inputRegister",
+        "value": 50,
+        "value_type": "FLOAT"
+      },
+      "sensorTemperature": {
+        "table": "inputRegister",
+        "value": 20,
+        "value_type": "FLOAT"
+      }
+    }
+  },
+  {
+    "description": "Response: watchdog parameters (0x1d) with keepalive trailer",
+    "type": "uplink",
+    "input": {
+      "bytes": "1d0304010258800CE49020012C",
+      "fPort": 2
+    },
+    "output": {
+      "data": {
+        "watchDogParams": {
+          "wdpC": 3,
+          "wdpUc": 4
+        },
+        "sensorTemperature": 20,
+        "relativeHumidity": 50,
+        "batteryVoltage": 3.3,
+        "CO2": 1168,
+        "powerSourceStatus": 0,
+        "lux": 300
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "temperature": {
+        "unitId": "Cel",
+        "record": 20
+      },
+      "humidity": {
+        "unitId": "%RH",
+        "record": 50
+      },
+      "co2Level": {
+        "unitId": "ppm",
+        "record": 1168
+      },
+      "illuminance": {
+        "unitId": "lx",
+        "record": 300
+      },
+      "batteryVoltage": {
+        "unitId": "V",
+        "record": 3.3
+      }
+    },
+    "BACnet": {
+      "CO2": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 1168,
+        "units": "PARTS_PER_MILLION"
+      },
+      "batteryVoltage": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 3.3,
+        "units": "VOLTS"
+      },
+      "lux": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 300,
+        "units": "LUXES"
+      },
+      "powerSourceStatus": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 0,
+        "units": "NO_UNITS"
+      },
+      "relativeHumidity": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 50,
+        "units": "PERCENT_RELATIVE_HUMIDITY"
+      },
+      "sensorTemperature": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 20,
+        "units": "DEGREES_CELSIUS"
+      },
+      "watchDogParams:wdpC": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 3,
+        "units": "NO_UNITS"
+      },
+      "watchDogParams:wdpUc": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 4,
+        "units": "NO_UNITS"
+      }
+    },
+    "Modbus": {
+      "CO2": {
+        "table": "inputRegister",
+        "value": 1168,
+        "value_type": "UINT16"
+      },
+      "batteryVoltage": {
+        "table": "inputRegister",
+        "value": 3.3,
+        "value_type": "FLOAT"
+      },
+      "lux": {
+        "table": "inputRegister",
+        "value": 300,
+        "value_type": "UINT16"
+      },
+      "powerSourceStatus": {
+        "table": "inputRegister",
+        "value": 0,
+        "value_type": "UINT8"
+      },
+      "relativeHumidity": {
+        "table": "inputRegister",
+        "value": 50,
+        "value_type": "FLOAT"
+      },
+      "sensorTemperature": {
+        "table": "inputRegister",
+        "value": 20,
+        "value_type": "FLOAT"
+      },
+      "watchDogParams:wdpC": {
+        "table": "inputRegister",
+        "value": 3,
+        "value_type": "UINT8"
+      },
+      "watchDogParams:wdpUc": {
+        "table": "inputRegister",
+        "value": 4,
+        "value_type": "FLOAT"
+      }
+    }
+  },
+  {
+    "description": "Response: images visibility (0x83) with keepalive trailer",
+    "type": "uplink",
+    "input": {
+      "bytes": "8307010258800CE49020012C",
+      "fPort": 2
+    },
+    "output": {
+      "data": {
+        "imagesVisibility": {
+          "chart": 1,
+          "digital_value": 1,
+          "emoji": 1
+        },
+        "sensorTemperature": 20,
+        "relativeHumidity": 50,
+        "batteryVoltage": 3.3,
+        "CO2": 1168,
+        "powerSourceStatus": 0,
+        "lux": 300
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "temperature": {
+        "unitId": "Cel",
+        "record": 20
+      },
+      "humidity": {
+        "unitId": "%RH",
+        "record": 50
+      },
+      "co2Level": {
+        "unitId": "ppm",
+        "record": 1168
+      },
+      "illuminance": {
+        "unitId": "lx",
+        "record": 300
+      },
+      "batteryVoltage": {
+        "unitId": "V",
+        "record": 3.3
+      }
+    },
+    "BACnet": {
+      "CO2": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 1168,
+        "units": "PARTS_PER_MILLION"
+      },
+      "batteryVoltage": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 3.3,
+        "units": "VOLTS"
+      },
+      "imagesVisibility:chart": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 1,
+        "units": "NO_UNITS"
+      },
+      "imagesVisibility:digital_value": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 1,
+        "units": "NO_UNITS"
+      },
+      "imagesVisibility:emoji": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 1,
+        "units": "NO_UNITS"
+      },
+      "lux": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 300,
+        "units": "LUXES"
+      },
+      "powerSourceStatus": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 0,
+        "units": "NO_UNITS"
+      },
+      "relativeHumidity": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 50,
+        "units": "PERCENT_RELATIVE_HUMIDITY"
+      },
+      "sensorTemperature": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 20,
+        "units": "DEGREES_CELSIUS"
+      }
+    },
+    "Modbus": {
+      "CO2": {
+        "table": "inputRegister",
+        "value": 1168,
+        "value_type": "UINT16"
+      },
+      "batteryVoltage": {
+        "table": "inputRegister",
+        "value": 3.3,
+        "value_type": "FLOAT"
+      },
+      "imagesVisibility:chart": {
+        "table": "inputRegister",
+        "value": 1,
+        "value_type": "UINT8"
+      },
+      "imagesVisibility:digital_value": {
+        "table": "inputRegister",
+        "value": 1,
+        "value_type": "UINT8"
+      },
+      "imagesVisibility:emoji": {
+        "table": "inputRegister",
+        "value": 1,
+        "value_type": "UINT8"
+      },
+      "lux": {
+        "table": "inputRegister",
+        "value": 300,
+        "value_type": "UINT16"
+      },
+      "powerSourceStatus": {
+        "table": "inputRegister",
+        "value": 0,
+        "value_type": "UINT8"
+      },
+      "relativeHumidity": {
+        "table": "inputRegister",
+        "value": 50,
+        "value_type": "FLOAT"
+      },
+      "sensorTemperature": {
+        "table": "inputRegister",
+        "value": 20,
+        "value_type": "FLOAT"
+      }
+    }
+  },
+  {
+    "description": "Response: uplink sending on button press (0x2f) with keepalive trailer",
+    "type": "uplink",
+    "input": {
+      "bytes": "2f01010258800CE49020012C",
+      "fPort": 2
+    },
+    "output": {
+      "data": {
+        "uplinkSendingOnButtonPress": 1,
+        "sensorTemperature": 20,
+        "relativeHumidity": 50,
+        "batteryVoltage": 3.3,
+        "CO2": 1168,
+        "powerSourceStatus": 0,
+        "lux": 300
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "temperature": {
+        "unitId": "Cel",
+        "record": 20
+      },
+      "humidity": {
+        "unitId": "%RH",
+        "record": 50
+      },
+      "co2Level": {
+        "unitId": "ppm",
+        "record": 1168
+      },
+      "illuminance": {
+        "unitId": "lx",
+        "record": 300
+      },
+      "batteryVoltage": {
+        "unitId": "V",
+        "record": 3.3
+      }
+    },
+    "BACnet": {
+      "CO2": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 1168,
+        "units": "PARTS_PER_MILLION"
+      },
+      "batteryVoltage": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 3.3,
+        "units": "VOLTS"
+      },
+      "lux": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 300,
+        "units": "LUXES"
+      },
+      "powerSourceStatus": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 0,
+        "units": "NO_UNITS"
+      },
+      "relativeHumidity": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 50,
+        "units": "PERCENT_RELATIVE_HUMIDITY"
+      },
+      "sensorTemperature": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 20,
+        "units": "DEGREES_CELSIUS"
+      },
+      "uplinkSendingOnButtonPress": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 1,
+        "units": "NO_UNITS"
+      }
+    },
+    "Modbus": {
+      "CO2": {
+        "table": "inputRegister",
+        "value": 1168,
+        "value_type": "UINT16"
+      },
+      "batteryVoltage": {
+        "table": "inputRegister",
+        "value": 3.3,
+        "value_type": "FLOAT"
+      },
+      "lux": {
+        "table": "inputRegister",
+        "value": 300,
+        "value_type": "UINT16"
+      },
+      "powerSourceStatus": {
+        "table": "inputRegister",
+        "value": 0,
+        "value_type": "UINT8"
+      },
+      "relativeHumidity": {
+        "table": "inputRegister",
+        "value": 50,
+        "value_type": "FLOAT"
+      },
+      "sensorTemperature": {
+        "table": "inputRegister",
+        "value": 20,
+        "value_type": "FLOAT"
+      },
+      "uplinkSendingOnButtonPress": {
+        "table": "inputRegister",
+        "value": 1,
+        "value_type": "UINT8"
+      }
+    }
+  },
+  {
+    "description": "Downlink decode: passthrough bytes",
+    "type": "downlink-decode",
+    "input": {
+      "bytes": "4E32",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "bytes": [
+          78,
+          50
+        ]
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "description": "Downlink: set keepalive interval to 10 minutes",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setKeepAlive": 10
+      }
+    },
+    "output": {
+      "bytes": "020A",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "description": "Downlink: set CO2 boundary levels",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setCo2BoundaryLevels": {
+          "good_medium": 600,
+          "medium_bad": 1000
+        }
+      }
+    },
+    "output": {
+      "bytes": "1E025803E8",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "description": "Downlink: send an uplink on button press",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setUplinkSendingOnButtonPress": 1
+      }
+    },
+    "output": {
+      "bytes": "2E01",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "description": "Downlink: show the digital value on the display",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setCo2ImagesVisibility": {
+          "digital_value": true,
+          "emoji": false
+        }
+      }
+    },
+    "output": {
+      "bytes": "8202",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "description": "Downlink: restart the device",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "restartDevice": true
+      }
+    },
+    "output": {
+      "bytes": "A5",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
+    }
+  }
+]

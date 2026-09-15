@@ -32,6 +32,7 @@ LoRaWANCertified: false
 modelId: mclimate:w-thermostat:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId:
+  - mclimate:w-thermostat:2
   - mclimate:w-thermostat:1
 # DataSheet URL (optional)
 specificationURL: https://3940008670-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F-McDr-jr9h3qA888r1Yp%2Fuploads%2FtAhSZWkH4nsYDx8UVIpf%2FMClimate-Wireless-Thermostat-Datasheet.pdf?alt=media&token=9a9eea05-ccb8-4f13-ad4b-14a579640965
@@ -47,7 +48,7 @@ sensors:
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
-  mclimate:w-thermostat:1:
+  mclimate:w-thermostat:2:
     - "Periodic uplink keepalive type 0x01"
     - "Periodic uplink keepalive type 0x81 with decimal target temperature"
     - "Response keepAliveTime with keepalive trailer"

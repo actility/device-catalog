@@ -33,6 +33,7 @@ LoRaWANCertified: false
 modelId: mclimate:fan-coil:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId:
+  - mclimate:fan-coil:2
   - mclimate:fan-coil:1
 # DataSheet URL (optional)
 specificationURL: https://3940008670-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F-McDr-jr9h3qA888r1Yp%2Fuploads%2FxVLLS2zmBIebkHJ2pnzo%2FMClimate-FCT-Datasheet.pdf?alt=media&token=bd51a623-fc3e-44a6-9abc-12b2a1d4d254
@@ -45,7 +46,7 @@ sensors:
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
-  mclimate:fan-coil:1:
+  mclimate:fan-coil:2:
     - "Periodic uplink"
     - "Response: manual target temperature update (0x30, two bytes) with keepalive trailer"
     - "Response: external sensor temperature (0x3e) with keepalive trailer"

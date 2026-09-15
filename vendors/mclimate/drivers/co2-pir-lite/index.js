@@ -1,3 +1,16 @@
+// DataCake
+function Decoder(bytes, port){
+    var decoded = decodeUplink({ bytes: bytes, fPort: port }).data;
+    return decoded;
+}
+
+// Milesight
+function Decode(port, bytes){
+    var decoded = decodeUplink({ bytes: bytes, fPort: port }).data;
+    return decoded;
+}
+
+// The Things Industries / Main
 function decodeUplink(input) {
     try {
         var bytes = input.bytes;
@@ -130,10 +143,28 @@ function decodeUplink(input) {
                             data.uplinkSendingOnButtonPress = parseInt(commands[i + 1], 16) ;
                         }
                     break;
+                    case '3d':
+                        {
+                            command_len = 1;
+                            data.pirSensorStatus = parseInt(commands[i + 1], 16);
+                        }
+                        break;
                     case '3f':
                         {
                             command_len = 1;
                             data.pirSensorSensitivity = parseInt(commands[i + 1], 16);
+                        }
+                        break;
+                    case '49':
+                        {
+                            command_len = 1;
+                            data.pirMeasurementPeriod = parseInt(commands[i + 1], 16);
+                        }
+                        break;
+                    case '4b':
+                        {
+                            command_len = 1;
+                            data.pirCheckPeriod = parseInt(commands[i + 1], 16);
                         }
                         break;
                     case '37':
@@ -146,6 +177,12 @@ function decodeUplink(input) {
                         {
                             command_len = 2;
                             data.occupancyTimeout = (parseInt(commands[i + 1], 16) << 8) | parseInt(commands[i + 2], 16);
+                        }
+                        break;
+                    case '4d':
+                        {
+                            command_len = 1;
+                            data.pirBlindPeriod = parseInt(commands[i + 1], 16);
                         }
                         break;
                     case 'a4': {
@@ -162,7 +199,7 @@ function decodeUplink(input) {
         }
 
         // Route the message based on the command byte
-        if (bytes[0] == 0x81) {
+        if (bytes[0] == 81) {
             // This is a keepalive message
             data = handleKeepalive(bytes, data);
         } else {
@@ -184,6 +221,18 @@ function decodeUplink(input) {
         };
     }
 }
+
+// Milesight
+function Encode(port, obj) {
+    var encoded = encodeDownlink({ fPort: port, data: obj }).bytes;
+    return encoded;
+  }
+  
+  function Encoder(port, obj) {
+    var encoded = encodeDownlink({ fPort: port, data: obj }).bytes;
+    return encoded;
+  }
+  // The Things Industries / Main
   function encodeDownlink(input) {
     var bytes = [];
     for (var key in input.data) {
@@ -224,8 +273,8 @@ function decodeUplink(input) {
         }
         case "setWatchDogParams": {
           bytes.push(0x1C);
-          bytes.push(input.data.setWatchDogParams.confirmedUplinks);
-          bytes.push(input.data.setWatchDogParams.unconfirmedUplinks);
+          bytes.push(input.data.SetWatchDogParams.confirmedUplinks);
+          bytes.push(input.data.SetWatchDogParams.unconfirmedUplinks);
           break;
         }
         case "getWatchDogParams": {
@@ -296,13 +345,13 @@ function decodeUplink(input) {
             bytes.push(0x2F);
             break;
         }
-        case "setPIRSensorState": {
-            bytes.push(0x36);
-            bytes.push(input.data.setPIRSensorState);
+        case "setPIRSensorStatus": {
+            bytes.push(0x3C);
+            bytes.push(input.data.setPIRSensorStatus);
             break;
         }
-        case "getPIRSensorState": {
-            bytes.push(0x37);
+        case "getPIRSensorStatus": {
+            bytes.push(0x3D);
             break;
         }
         case "setPIRSensorSensitivity": {
@@ -314,24 +363,41 @@ function decodeUplink(input) {
             bytes.push(0x3F);
             break;
         }
-        case "setOccupancyTimeout": {
-            // Transmitted as two bytes.
-            var timeout = input.data.setOccupancyTimeout;
-            bytes.push(0x38);
-            bytes.push((timeout >> 8) & 0xff);
-            bytes.push(timeout & 0xff);
+        case "setPIRMeasurementPeriod": {
+            bytes.push(0x48);
+            bytes.push(input.data.setPIRMeasurementPeriod);
             break;
         }
-        case "getOccupancyTimeout": {
-            bytes.push(0x39);
+        case "getPIRMeasurementPeriod": {
+            bytes.push(0x49);
             break;
         }
-        case "restartDevice": {
-            bytes.push(0xA5);
+
+        case "setPIRCheckPeriod": {
+            var time = input.data.setPIRCheckPeriod;
+            var timeFirstPart = time & 0xff;
+            var timeSecondPart = (time >> 8) & 0xff;
+            bytes.push(0x4A);
+            bytes.push(timeSecondPart);
+            bytes.push(timeFirstPart);
             break;
         }
-        case "getRegion": {
-            bytes.push(0xA4);
+        case "getPIRCheckPeriod": {
+            bytes.push(0x4B);
+            break;
+        }
+
+        case "setPIRBlindPeriod": {
+            var time = input.data.setPIRBlindPeriod;
+            var timeFirstPart = time & 0xff;
+            var timeSecondPart = (time >> 8) & 0xff;
+            bytes.push(0x4C);
+            bytes.push(timeSecondPart);
+            bytes.push(timeFirstPart);
+            break;
+        }
+        case "getPIRBlindPeriod": {
+            bytes.push(0x4D);
             break;
         }
         case "sendCustomHexCommand": {

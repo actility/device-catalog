@@ -1,16 +1,3 @@
-// DataCake
-function Decoder(bytes, port){
-    var decoded = decodeUplink({ bytes: bytes, fPort: port }).data;
-    return decoded;
-}
-
-// Milesight
-function Decode(port, bytes){
-    var decoded = decodeUplink({ bytes: bytes, fPort: port }).data;
-    return decoded;
-}
-
-// The Things Industries / Main
 function decodeUplink(input) {
     try{
         var bytes = input.bytes;
@@ -199,14 +186,14 @@ function decodeUplink(input) {
                 break;
                 case '4b':
                     {
-                        command_len = 1;
-                        data.pirCheckPeriod = parseInt(commands[i + 1], 16) ;
+                        command_len = 2;
+                        data.pirCheckPeriod = (parseInt(commands[i + 1], 16) << 8) | parseInt(commands[i + 2], 16) ;
                     }
                 break;
                 case '4d':
                     {
-                        command_len = 1;
-                        data.pirBlindPeriod = parseInt(commands[i + 1], 16) ;
+                        command_len = 2;
+                        data.pirBlindPeriod = (parseInt(commands[i + 1], 16) << 8) | parseInt(commands[i + 2], 16) ;
                     }
                 break;
                 case '4f':
@@ -233,9 +220,15 @@ function decodeUplink(input) {
                         data.manualTargetTemperatureUpdate = ((parseInt(commands[i + 1], 16) << 8) | parseInt(commands[i + 2], 16))/10;
                     }
                 break;
+                case 'a4':
+                    {
+                        command_len = 1;
+                        data.region = parseInt(commands[i + 1], 16) ;
+                    }
+                break;
                 case 'a0': {
                     command_len = 4;
-                    var fuota_address = (parseInt(commands[i + 1], 16) << 24) | 
+                    var fuota_address = (parseInt(commands[i + 1], 16) << 24) |
                                         (parseInt(commands[i + 2], 16) << 16) | 
                                         (parseInt(commands[i + 3], 16) << 8) | 
                                         parseInt(commands[i + 4], 16);
@@ -264,21 +257,10 @@ function decodeUplink(input) {
         }
         return { data: data, errors: [], warnings: [] };
     } catch (e) {
-        console.log(e)
-        return { data: {}, errors: ['Unhandled data'], warnings: [] };
+        return { errors: ['Invalid uplink payload: ' + e.message], warnings: [] };
     }
 }
 
-// Milesight
-function Encode(port, obj) {
-  return encodeDownlink({ fPort: port, data: obj }).bytes;
-}
-
-function Encoder(port, obj) {
-  return Encode(port, obj);
-}
-
-// The Things Industries / Main
 function encodeDownlink(input) {
   var bytes = [];
   var data = (input && input.data) ? input.data : {};
@@ -302,12 +284,18 @@ function encodeDownlink(input) {
       }
 
       case "setTargetTemperature": {
-        var t = data.setTargetTemperature;     // e.g. 20
-        var v = Math.round(t * 10) & 0xFFFF;   // 20.0 -> 200 (0x00C8)
-
-        bytes.push(0x2E);
-        bytes.push((v >> 8) & 0xFF);           // high byte
-        bytes.push(v & 0xFF);                  // low byte
+        // Integer target temperature -> 0x2e + 1 raw byte.
+        // Float target temperature -> 0x50 + 2 bytes of value * 10.
+        var t = Number(data.setTargetTemperature);
+        if (t % 1 !== 0) {
+          var v = Math.round(t * 10) & 0xFFFF;
+          bytes.push(0x50);
+          bytes.push((v >> 8) & 0xFF);         // high byte
+          bytes.push(v & 0xFF);                // low byte
+        } else {
+          bytes.push(0x2E);
+          bytes.push(t);
+        }
         break;
       }
 
@@ -364,6 +352,9 @@ function encodeDownlink(input) {
 
       case "setWatchDogParams": {
         bytes.push(0x1C);
+        bytes.push(data.setWatchDogParams.confirmedUplinks);
+        bytes.push(data.setWatchDogParams.unconfirmedUplinks);
+        break;
       }
       case "getWatchDogParams": {
         bytes.push(0x1D);
@@ -407,8 +398,10 @@ function decodeDownlink(input) {
 }
 
 // Example downlink commands
-// {"setTargetTemperature":20} --> 2E00C8
+// {"setTargetTemperature":20} --> 2E14
+// {"setTargetTemperature":21.5} --> 5000D7
 // {"setTemperatureRange":{"min":15,"max":21}} --> 080F15
+// {"setWatchDogParams":{"confirmedUplinks":2,"unconfirmedUplinks":5}} --> 1C0205
 // {"sendCustomHexCommand":"080F15"} --> 080F15
 
 exports.decodeUplink = decodeUplink;
