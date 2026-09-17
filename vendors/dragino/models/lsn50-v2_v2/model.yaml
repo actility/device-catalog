@@ -37,6 +37,7 @@ LoRaWANCertified: false
 modelId: dragino:lsn50-v2:2
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId: 
+  - dragino:lsn50-v2:1
   - os1-drag:lsn50-v2:2
 # DataSheet URL (optional) 
 specificationURL: 
@@ -47,6 +48,8 @@ sensors:
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
+  dragino:lsn50-v2:1:
+    - "LSN50-v2 IIC mode with SHT temperature and humidity"
   os1-drag:lsn50-v2:2:
     - "Moisture & EC Sensor"
 LoRaWANRelay:

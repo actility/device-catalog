@@ -37,6 +37,7 @@ LoRaWANCertified: false
 modelId: dragino:ltc2:2
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId: 
+  - dragino:ltc2:1
   - os1-drag:ltc2:2
 # DataSheet URL (optional) 
 specificationURL: 
@@ -47,6 +48,8 @@ sensors:
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
+  dragino:ltc2:1:
+    - "LTC2 two PT100 temperature channels"
   os1-drag:ltc2:2:
     - "Industrial LoRaWAN Temperature Transmitter"
 LoRaWANRelay:

@@ -37,6 +37,7 @@ LoRaWANCertified: false
 modelId: dragino:lsn50v2-d20-d22:2
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId: 
+  - dragino:lsn50v2-d20:1
   - os1-drag:lsn50v2-d20-d22:2
 # DataSheet URL (optional) 
 specificationURL: 
@@ -47,6 +48,8 @@ sensors:
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
+  dragino:lsn50v2-d20:1:
+    - "LSN50v2-D23 three DS18B20 probes"
   os1-drag:lsn50v2-d20-d22:2:
     - "Temperature Sensor"
 LoRaWANRelay:

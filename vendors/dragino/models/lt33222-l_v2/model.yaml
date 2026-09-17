@@ -41,6 +41,7 @@ LoRaWANCertified: false
 modelId: dragino:lt33222-l:2
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId: 
+  - dragino:lt22222-l:1
   - os1-drag:lt33222-l:2
 # DataSheet URL (optional) 
 specificationURL: 
@@ -48,6 +49,11 @@ specificationURL:
 userGuideURL: 
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
+# Driver examples
+# A list of examples description that are compatible with this model
+examples:
+  dragino:lt22222-l:1:
+    - "LT I/O controller 2ACI+2AVI mode"
 
 LoRaWANRelay:
   canOperateAsARelay: false
