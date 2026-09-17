@@ -71,7 +71,12 @@
             ],
             "warnings": []
         },
-        "points": null,
+        "points": {
+            "tvocLevel": {
+                "unitId": "ppb",
+                "record": 25
+            }
+        },
         "BACnet": {},
         "Modbus": {}
     },
@@ -193,7 +198,12 @@
             ],
             "warnings": []
         },
-        "points": null,
+        "points": {
+            "presence": {
+                "unitId": "state",
+                "record": true
+            }
+        },
         "BACnet": {},
         "Modbus": {}
     },
@@ -337,6 +347,10 @@
             "warnings": []
         },
         "points": {
+            "presence": {
+                "unitId": "state",
+                "record": false
+            },
             "temperature:1": {
                 "unitId": "Cel",
                 "records": [
@@ -364,6 +378,19 @@
                     {
                         "eventTime": "2023-07-19T07:41:24.508Z",
                         "value": 470
+                    }
+                ]
+            },
+            "tvocLevel": {
+                "unitId": "ppb",
+                "records": [
+                    {
+                        "eventTime": "2023-07-19T07:34:51.508Z",
+                        "value": 240
+                    },
+                    {
+                        "eventTime": "2023-07-19T07:44:51.508Z",
+                        "value": 250
                     }
                 ]
             },
