@@ -12,7 +12,18 @@
                 "REED0_STATE": 1
             }
         },
-        "points": {},
+        "points": {
+            "status:1": {
+                "unitId": "state",
+                "record": true,
+                "nature": "Contact 0"
+            },
+            "counter:3": {
+                "unitId": "count",
+                "record": 1,
+                "nature": "Contact 0"
+            }
+        },
         "BACnet": {
             "REED0_STATE": {
                 "object": "BINARY_INPUT",
@@ -55,7 +66,38 @@
                 "REED1_STATE": 0
             }
         },
-        "points": {},
+        "points": {
+            "presence:1": {
+                "unitId": "state",
+                "record": false,
+                "nature": "Occupancy 0"
+            },
+            "status:1": {
+                "unitId": "state",
+                "record": false,
+                "nature": "Contact 0"
+            },
+            "status:2": {
+                "unitId": "state",
+                "record": false,
+                "nature": "Contact 1"
+            },
+            "counter:1": {
+                "unitId": "count",
+                "record": 0,
+                "nature": "Occupancy 0"
+            },
+            "counter:3": {
+                "unitId": "count",
+                "record": 0,
+                "nature": "Contact 0"
+            },
+            "counter:4": {
+                "unitId": "count",
+                "record": 0,
+                "nature": "Contact 1"
+            }
+        },
         "BACnet": {
             "OCCU0_STATE": {
                 "object": "BINARY_INPUT",
@@ -145,6 +187,10 @@
             "humidity": {
                 "unitId": "%RH",
                 "record": 46
+            },
+            "illuminance": {
+                "unitId": "lx",
+                "record": 43
             }
         },
         "BACnet": {
@@ -283,7 +329,18 @@
                 "OCCU0_STATE": 0
             }
         },
-        "points": {},
+        "points": {
+            "presence:1": {
+                "unitId": "state",
+                "record": false,
+                "nature": "Occupancy 0"
+            },
+            "counter:1": {
+                "unitId": "count",
+                "record": 1,
+                "nature": "Occupancy 0"
+            }
+        },
         "BACnet": {
             "OCCU0_STATE": {
                 "object": "BINARY_INPUT",
