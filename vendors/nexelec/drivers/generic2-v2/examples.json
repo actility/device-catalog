@@ -1,0 +1,901 @@
+[
+  {
+    "description": "FEEL CO2, 2 measurements",
+    "type": "uplink",
+    "input": {
+      "bytes": "A902083C450140",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "co2": {
+          "unit": "ppm",
+          "value": [
+            1600,
+            1600
+          ]
+        },
+        "numberOfRecord": 2,
+        "periodBetweenRecord": {
+          "unit": "minutes",
+          "value": 150
+        },
+        "redundancyOfRecord": 4,
+        "typeOfMessage": "CO2 Historical Data",
+        "typeOfProduct": "Feel LoRa"
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "co2Level:1": {
+        "unitId": "ppm",
+        "record": 1600
+      },
+      "co2Level:2": {
+        "unitId": "ppm",
+        "record": 1600
+      },
+      "interval:1": {
+        "unitId": "minute",
+        "record": 150
+      }
+    }
+  },
+  {
+    "description": "RISE CO2, 4 measurements",
+    "type": "uplink",
+    "input": {
+      "bytes": "AA02102800A82B0B42C0",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "co2": {
+          "unit": "ppm",
+          "value": [
+            210,
+            215,
+            225,
+            220
+          ]
+        },
+        "numberOfRecord": 4,
+        "periodBetweenRecord": {
+          "unit": "minutes",
+          "value": 100
+        },
+        "redundancyOfRecord": 0,
+        "typeOfMessage": "CO2 Historical Data",
+        "typeOfProduct": "Rise LoRa"
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "co2Level:1": {
+        "unitId": "ppm",
+        "record": 210
+      },
+      "co2Level:2": {
+        "unitId": "ppm",
+        "record": 215
+      },
+      "co2Level:3": {
+        "unitId": "ppm",
+        "record": 225
+      },
+      "co2Level:4": {
+        "unitId": "ppm",
+        "record": 220
+      },
+      "interval:1": {
+        "unitId": "minute",
+        "record": 100
+      }
+    }
+  },
+  {
+    "description": "MOVE Temperature, 2 measurements",
+    "type": "uplink",
+    "input": {
+      "bytes": "AB03087800DC32",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "numberOfRecord": 2,
+        "periodBetweenRecord": {
+          "unit": "minutes",
+          "value": 300
+        },
+        "redundancyOfRecord": 0,
+        "temperature": {
+          "unit": "°C",
+          "value": [
+            -24.5,
+            -25
+          ]
+        },
+        "typeOfMessage": "Temperature Historical Data",
+        "typeOfProduct": "Move LoRa"
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "temperature:1": {
+        "unitId": "Cel",
+        "record": -24.5
+      },
+      "temperature:2": {
+        "unitId": "Cel",
+        "record": -25
+      },
+      "interval:1": {
+        "unitId": "minute",
+        "record": 300
+      }
+    }
+  },
+  {
+    "description": "SIGN Temperature, 4 measurements",
+    "type": "uplink",
+    "input": {
+      "bytes": "AD03105000DC320C8330",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "numberOfRecord": 4,
+        "periodBetweenRecord": {
+          "unit": "minutes",
+          "value": 200
+        },
+        "redundancyOfRecord": 0,
+        "temperature": {
+          "unit": "°C",
+          "value": [
+            -24.5,
+            -25,
+            -25,
+            -24.9
+          ]
+        },
+        "typeOfMessage": "Temperature Historical Data",
+        "typeOfProduct": "Sign LoRa"
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "temperature:1": {
+        "unitId": "Cel",
+        "record": -24.5
+      },
+      "temperature:2": {
+        "unitId": "Cel",
+        "record": -25
+      },
+      "temperature:3": {
+        "unitId": "Cel",
+        "record": -25
+      },
+      "temperature:4": {
+        "unitId": "Cel",
+        "record": -24.9
+      },
+      "interval:1": {
+        "unitId": "minute",
+        "record": 200
+      }
+    }
+  },
+  {
+    "description": "RISE, Periodic",
+    "type": "uplink",
+    "input": {
+      "bytes": "AA018529B1787FFEFF9E11FE4AB8",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "averageNoise": {
+          "unit": "dB",
+          "value": 120
+        },
+        "buttonPress": "Button not pressed",
+        "co2": {
+          "unit": "ppm",
+          "value": 1505
+        },
+        "covt": "Deconnected sensor",
+        "humidity": {
+          "unit": "%RH",
+          "value": 66.7
+        },
+        "iziairCo2": "Fair",
+        "iziairCov": "Error",
+        "iziairGlobal": "Fair",
+        "iziairSrc": "CO2",
+        "luminosity": "Deconnected sensor",
+        "occupancyRate": "Deconnected sensor",
+        "peakNoise": {
+          "unit": "dB",
+          "value": 35
+        },
+        "temperature": {
+          "unit": "°C",
+          "value": 23.200000000000003
+        },
+        "typeOfMessage": "Periodic Data",
+        "typeOfProduct": "Rise LoRa"
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "temperature:1": {
+        "unitId": "Cel",
+        "record": 23.200000000000003
+      },
+      "humidity:1": {
+        "unitId": "%RH",
+        "record": 66.7
+      },
+      "co2Level:1": {
+        "unitId": "ppm",
+        "record": 1505
+      },
+      "intensity:1": {
+        "unitId": "dB",
+        "record": 120
+      },
+      "intensity:2": {
+        "unitId": "dB",
+        "record": 35
+      }
+    }
+  },
+  {
+    "description": "SIGN, Periodic",
+    "type": "uplink",
+    "input": {
+      "bytes": "AD0186266706C4828A48D1808B10",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "averageNoise": {
+          "unit": "dB",
+          "value": 35
+        },
+        "buttonPress": "Button not pressed",
+        "co2": {
+          "unit": "ppm",
+          "value": 7195
+        },
+        "covt": {
+          "unit": "ug/m3",
+          "value": 1154
+        },
+        "humidity": {
+          "unit": "%RH",
+          "value": 61.4
+        },
+        "iziairCo2": "Bad",
+        "iziairCov": "Fair",
+        "iziairGlobal": "Bad",
+        "iziairSrc": "CO2",
+        "luminosity": {
+          "unit": "lux",
+          "value": 2765
+        },
+        "occupancyRate": {
+          "unit": "%",
+          "value": 0
+        },
+        "peakNoise": {
+          "unit": "dB",
+          "value": 35
+        },
+        "temperature": {
+          "unit": "°C",
+          "value": 23.6
+        },
+        "typeOfMessage": "Periodic Data",
+        "typeOfProduct": "Sign LoRa"
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "temperature:1": {
+        "unitId": "Cel",
+        "record": 23.6
+      },
+      "humidity:1": {
+        "unitId": "%RH",
+        "record": 61.4
+      },
+      "co2Level:1": {
+        "unitId": "ppm",
+        "record": 7195
+      },
+      "concentration:1": {
+        "unitId": "ug/m3",
+        "record": 1154
+      },
+      "illuminance:1": {
+        "unitId": "lx",
+        "record": 2765
+      },
+      "intensity:1": {
+        "unitId": "dB",
+        "record": 35
+      },
+      "intensity:2": {
+        "unitId": "dB",
+        "record": 35
+      },
+      "percentage:1": {
+        "unitId": "%",
+        "record": 0
+      }
+    }
+  },
+  {
+    "description": "FEEL, Periodic",
+    "type": "uplink",
+    "input": {
+      "bytes": "A90186266706C4828A48D1808B10",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "averageNoise": {
+          "unit": "dB",
+          "value": 35
+        },
+        "buttonPress": "Button not pressed",
+        "co2": {
+          "unit": "ppm",
+          "value": 7195
+        },
+        "covt": {
+          "unit": "ug/m3",
+          "value": 1154
+        },
+        "humidity": {
+          "unit": "%RH",
+          "value": 61.4
+        },
+        "iziairCo2": "Bad",
+        "iziairCov": "Fair",
+        "iziairGlobal": "Bad",
+        "iziairSrc": "CO2",
+        "luminosity": {
+          "unit": "lux",
+          "value": 2765
+        },
+        "occupancyRate": {
+          "unit": "%",
+          "value": 0
+        },
+        "peakNoise": {
+          "unit": "dB",
+          "value": 35
+        },
+        "temperature": {
+          "unit": "°C",
+          "value": 23.6
+        },
+        "typeOfMessage": "Periodic Data",
+        "typeOfProduct": "Feel LoRa"
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "temperature:1": {
+        "unitId": "Cel",
+        "record": 23.6
+      },
+      "humidity:1": {
+        "unitId": "%RH",
+        "record": 61.4
+      },
+      "co2Level:1": {
+        "unitId": "ppm",
+        "record": 7195
+      },
+      "concentration:1": {
+        "unitId": "ug/m3",
+        "record": 1154
+      },
+      "illuminance:1": {
+        "unitId": "lx",
+        "record": 2765
+      },
+      "intensity:1": {
+        "unitId": "dB",
+        "record": 35
+      },
+      "intensity:2": {
+        "unitId": "dB",
+        "record": 35
+      },
+      "percentage:1": {
+        "unitId": "%",
+        "record": 0
+      }
+    }
+  },
+  {
+    "description": "MOVE, Periodic",
+    "type": "uplink",
+    "input": {
+      "bytes": "AB0186266706C4828A48D1808B10",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "averageNoise": {
+          "unit": "dB",
+          "value": 35
+        },
+        "buttonPress": "Button not pressed",
+        "co2": {
+          "unit": "ppm",
+          "value": 7195
+        },
+        "covt": {
+          "unit": "ug/m3",
+          "value": 1154
+        },
+        "humidity": {
+          "unit": "%RH",
+          "value": 61.4
+        },
+        "iziairCo2": "Bad",
+        "iziairCov": "Fair",
+        "iziairGlobal": "Bad",
+        "iziairSrc": "CO2",
+        "luminosity": {
+          "unit": "lux",
+          "value": 2765
+        },
+        "occupancyRate": {
+          "unit": "%",
+          "value": 0
+        },
+        "peakNoise": {
+          "unit": "dB",
+          "value": 35
+        },
+        "temperature": {
+          "unit": "°C",
+          "value": 23.6
+        },
+        "typeOfMessage": "Periodic Data",
+        "typeOfProduct": "Move LoRa"
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "temperature:1": {
+        "unitId": "Cel",
+        "record": 23.6
+      },
+      "humidity:1": {
+        "unitId": "%RH",
+        "record": 61.4
+      },
+      "co2Level:1": {
+        "unitId": "ppm",
+        "record": 7195
+      },
+      "concentration:1": {
+        "unitId": "ug/m3",
+        "record": 1154
+      },
+      "illuminance:1": {
+        "unitId": "lx",
+        "record": 2765
+      },
+      "intensity:1": {
+        "unitId": "dB",
+        "record": 35
+      },
+      "intensity:2": {
+        "unitId": "dB",
+        "record": 35
+      },
+      "percentage:1": {
+        "unitId": "%",
+        "record": 0
+      }
+    }
+  },
+  {
+    "description": "WAVE, Periodic 1",
+    "type": "uplink",
+    "input": {
+      "bytes": "AC017365E06D3FFE001FBF000038",
+      "fPort": 56,
+      "recvTime": "2026-05-17T20:26:04.226+00:00"
+    },
+    "output": {
+      "data": {
+        "averageNoise": "Deconnected sensor",
+        "buttonPress": "Button not pressed",
+        "co2": {
+          "unit": "ppm",
+          "value": 436
+        },
+        "covt": "Deconnected sensor",
+        "humidity": {
+          "unit": "%RH",
+          "value": 60.6
+        },
+        "iziairCo2": "Excellent",
+        "iziairCov": "Error",
+        "iziairGlobal": "Excellent",
+        "iziairSrc": "None",
+        "luminosity": {
+          "unit": "lux",
+          "value": 0
+        },
+        "occupancyRate": {
+          "unit": "%",
+          "value": 0
+        },
+        "peakNoise": "Deconnected sensor",
+        "temperature": {
+          "unit": "°C",
+          "value": 16.1
+        },
+        "typeOfMessage": "Periodic Data",
+        "typeOfProduct": "Wave LoRa"
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "temperature:1": {
+        "unitId": "Cel",
+        "record": 16.1
+      },
+      "humidity:1": {
+        "unitId": "%RH",
+        "record": 60.6
+      },
+      "co2Level:1": {
+        "unitId": "ppm",
+        "record": 436
+      },
+      "illuminance:1": {
+        "unitId": "lx",
+        "record": 0
+      },
+      "percentage:1": {
+        "unitId": "%",
+        "record": 0
+      }
+    }
+  },
+  {
+    "description": "WAVE, Product Status 1",
+    "type": "uplink",
+    "input": {
+      "bytes": "AC05091F2C7101045002069C40",
+      "fPort": 56,
+      "recvTime": "2026-05-18T12:52:52.508+00:00"
+    },
+    "output": {
+      "data": {
+        "antiTearSensorStatus": "Product detected",
+        "batteryLevel": "High",
+        "batteryVoltage": {
+          "unit": "mV",
+          "value": 3555
+        },
+        "co2SensorStatus": "Sensor Ok",
+        "covtSensorStatus": "Sensor not present",
+        "cumulativeProductActivationTime": {
+          "unit": "month",
+          "value": 1
+        },
+        "hardwareStatus": "Hardware fault detected",
+        "hardwareVersion": 9,
+        "lowBatterieThreshold": {
+          "unit": "mV",
+          "value": 2780
+        },
+        "luminositySensorStatus": "Sensor default",
+        "microphoneStatus": "Sensor not present",
+        "pirSensorStatus": "Sensor Ok",
+        "powerSource": "Battery",
+        "sdStatus": "Card missing",
+        "softwareVersion": 31,
+        "temperatureSensorStatus": "Sensor Ok",
+        "timeSinceLastManualCalibration": {
+          "unit": "days",
+          "value": 16
+        },
+        "typeOfMessage": "Product Status",
+        "typeOfProduct": "Wave LoRa"
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "batteryVoltage:1": {
+        "unitId": "mV",
+        "record": 3555
+      },
+      "age:1": {
+        "unitId": "h",
+        "record": 720
+      },
+      "age:2": {
+        "unitId": "h",
+        "record": 384
+      },
+      "batteryVoltage:2": {
+        "unitId": "mV",
+        "record": 2780
+      }
+    }
+  },
+  {
+    "description": "WAVE, Periodic 2",
+    "type": "uplink",
+    "input": {
+      "bytes": "AC016F29E07E7FFE10DFBF000038",
+      "fPort": 56,
+      "recvTime": "2026-05-19T08:17:19.342+00:00"
+    },
+    "output": {
+      "data": {
+        "averageNoise": "Deconnected sensor",
+        "buttonPress": "Button not pressed",
+        "co2": {
+          "unit": "ppm",
+          "value": 505
+        },
+        "covt": "Deconnected sensor",
+        "humidity": {
+          "unit": "%RH",
+          "value": 67
+        },
+        "iziairCo2": "Excellent",
+        "iziairCov": "Error",
+        "iziairGlobal": "Excellent",
+        "iziairSrc": "None",
+        "luminosity": {
+          "unit": "lux",
+          "value": 335
+        },
+        "occupancyRate": {
+          "unit": "%",
+          "value": 0
+        },
+        "peakNoise": "Deconnected sensor",
+        "temperature": {
+          "unit": "°C",
+          "value": 14.399999999999999
+        },
+        "typeOfMessage": "Periodic Data",
+        "typeOfProduct": "Wave LoRa"
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "temperature:1": {
+        "unitId": "Cel",
+        "record": 14.399999999999999
+      },
+      "humidity:1": {
+        "unitId": "%RH",
+        "record": 67
+      },
+      "co2Level:1": {
+        "unitId": "ppm",
+        "record": 505
+      },
+      "illuminance:1": {
+        "unitId": "lx",
+        "record": 335
+      },
+      "percentage:1": {
+        "unitId": "%",
+        "record": 0
+      }
+    }
+  },
+  {
+    "description": "WAVE, Product Configuration 1",
+    "type": "uplink",
+    "input": {
+      "bytes": "AC0642A92812CC6378942830C4834B366A0000",
+      "fPort": 56,
+      "recvTime": "2026-05-19T12:52:50.319+00:00"
+    },
+    "output": {
+      "data": {
+        "automaticCalibrationActivation": "Automatic calibration activated",
+        "buttonNotification": "Active ",
+        "buzzerActivation": "Non-active",
+        "buzzerConfirmationActivation": "Non-active",
+        "co2SensorActivation": "Sensor activated",
+        "configurationSource": "Product Start up",
+        "configurationStatus": "Total Succes",
+        "covSensorActivation": "Sensor desactivated",
+        "dataTransmissionPeriod": {
+          "unit": "minutes",
+          "value": 30
+        },
+        "deltaCO2": {
+          "unit": "ppm",
+          "value": 148
+        },
+        "deltaTemperature": {
+          "unit": "°C",
+          "value": 0.5
+        },
+        "highCO2Threshold": {
+          "unit": "ppm",
+          "value": 1500
+        },
+        "historicalCO2DataActivation": "Non-active",
+        "historicalHumidityDataActivation": "Non-active",
+        "historicalTemperatureDataActivation": "Non-active",
+        "ledActivation": "Active ",
+        "ledSourceActivation": "IziAir",
+        "localStorageActivation": "SD desactivated",
+        "loraRegion": "EU868",
+        "mediumCO2Threshold": {
+          "unit": "ppm",
+          "value": 800
+        },
+        "microphoneSensorActivation": "Sensor desactivated",
+        "networkJoinStatus": "No join request",
+        "nfcStatus": "Discoverable",
+        "numberOfMessagesFor1Record": 3,
+        "numberOfRecordsInADatalogMessage": 6,
+        "orangeLEDActivation": "Active ",
+        "periodBetween2measures": {
+          "unit": "minutes",
+          "value": 10
+        },
+        "periodicalDataActivation": "Active ",
+        "pirSensorActivation": "Sensor activated",
+        "productDateDay": {
+          "unit": "day",
+          "value": 19
+        },
+        "productDateHours": {
+          "unit": "hours",
+          "value": 12
+        },
+        "productDateMinutes": {
+          "unit": "minutes",
+          "value": 53
+        },
+        "productDateMonth": {
+          "unit": "month",
+          "value": 5
+        },
+        "productDateYear": {
+          "unit": "year",
+          "value": 26
+        },
+        "transmissionPeriodOfHistoricalMessage": {
+          "unit": "minute",
+          "value": 180
+        },
+        "typeOfMessage": "Product Configuration",
+        "typeOfProduct": "Wave LoRa"
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "interval:1": {
+        "unitId": "minute",
+        "record": 10
+      },
+      "co2Level:1": {
+        "unitId": "ppm",
+        "record": 800
+      },
+      "interval:2": {
+        "unitId": "minute",
+        "record": 30
+      },
+      "co2Level:2": {
+        "unitId": "ppm",
+        "record": 148
+      },
+      "temperature:1": {
+        "unitId": "Cel",
+        "record": 0.5
+      }
+    }
+  },
+  {
+    "description": "WAVE, Product Status 2",
+    "type": "uplink",
+    "input": {
+      "bytes": "AC05091F2C5001041002089C40",
+      "fPort": 56,
+      "recvTime": "2026-05-19T12:52:56.601+00:00"
+    },
+    "output": {
+      "data": {
+        "antiTearSensorStatus": "Product detected",
+        "batteryLevel": "High",
+        "batteryVoltage": {
+          "unit": "mV",
+          "value": 3545
+        },
+        "co2SensorStatus": "Sensor Ok",
+        "covtSensorStatus": "Sensor not present",
+        "cumulativeProductActivationTime": {
+          "unit": "month",
+          "value": 1
+        },
+        "hardwareStatus": "Hardware working correctly",
+        "hardwareVersion": 9,
+        "lowBatterieThreshold": {
+          "unit": "mV",
+          "value": 2780
+        },
+        "luminositySensorStatus": "Sensor Ok",
+        "microphoneStatus": "Sensor not present",
+        "pirSensorStatus": "Sensor Ok",
+        "powerSource": "Battery",
+        "sdStatus": "Card missing",
+        "softwareVersion": 31,
+        "temperatureSensorStatus": "Sensor Ok",
+        "timeSinceLastManualCalibration": {
+          "unit": "days",
+          "value": 16
+        },
+        "typeOfMessage": "Product Status",
+        "typeOfProduct": "Wave LoRa"
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "batteryVoltage:1": {
+        "unitId": "mV",
+        "record": 3545
+      },
+      "age:1": {
+        "unitId": "h",
+        "record": 720
+      },
+      "age:2": {
+        "unitId": "h",
+        "record": 384
+      },
+      "batteryVoltage:2": {
+        "unitId": "mV",
+        "record": 2780
+      }
+    }
+  }
+]
