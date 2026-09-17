@@ -1,7 +1,7 @@
 # Formal driver name
 name: DC Series Driver
 # Simple description of the driver functionalities
-description: Decoder for Theta DC series LoRaWAN uplinks, covering system info, heartbeat, event, sensor data, sensor data with QoS, fragmented data and command responses.
+description: "Decoder for Theta Sensors DC series corrosion sensor uplinks: system info, heartbeat, events, sensor data (thickness, temperatures, corrosion rates, time of flight, ultrasonic signal strength and quality), fragmented data and command responses. Fragmented data uplinks carry pieces of the ultrasonic A-scan waveform and no measurement: the application reassembles and decodes the waveform."
 # Mandatory - id of the company that developed the driver
 # This id will be used to construct the id of the driver (Should be in lowercase, no special characters, maximum 8 characters)
 producerId: theta
@@ -15,7 +15,10 @@ developerEmail: support@thetasensors.com
 protocolId: theta:dc-series:1
 # This is to specify the type of functions signature used in this driver. Possible values: actility, lora-alliance, ttn, chirpstack.
 # Keep it empty if you followed the lora-alliance payload codec api
-signature:
+signature: lora-alliance
+packageName: theta-dc-series
+# Overall package version (packaging/build changes included), not just the manufacturer's codec version
+packageVersion: 1.0.0
 # Optional, managed by Actility only after security code review.
 # If present and valid, it marks the driver as trusted and allows execution outside sandbox.
 # trustedCRC: 01234567
