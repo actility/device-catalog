@@ -6,6 +6,7 @@ This is the ontology supported by Actility. You can define a sensor inside your 
 
 | Unit | unitId | type | symbol | fields |
 |------|--------|------|--------|--------|
+| A-weighted decibel | dBA | double | dBA | sound |
 | acceleration compared to earth gravity | gravity | double | g | acceleration, vibration |
 | ampere | A | double | A | current |
 | ampere-hour | Ah | double | Ah | charge |
@@ -36,6 +37,8 @@ This is the ontology supported by Actility. You can define a sensor inside your 
 | euro per watt-hour | euro/Wh | double | &#8364;/Wh | energyPrice |
 | fahrenheit | Far | double | &#176;F | temperature |
 | farad | F | double | F | capacitance |
+| formazin attenuation unit | FAU | double | FAU | turbidity |
+| formazin nephelometric unit | FNU | double | FNU | turbidity |
 | gigawatt | GW | double | GW | power, activePower |
 | GPS | GPS | object | GPS | location |
 | gram | g | double | g | mass, weight |
@@ -44,7 +47,7 @@ This is the ontology supported by Actility. You can define a sensor inside your 
 | henry | H | double | H | inductance |
 | hertz | hertz | double | Hz | frequency, sound |
 | hour | h | double | h | time, duration, interval, age, period |
-| index | index | int64 | index | uv |
+| index | index | int64 | index | uv, index |
 | joule | J | double | J | energy |
 | katal | kat | double | kat | catalyticActivity |
 | kelvin | K | double | K | temperature |
@@ -52,9 +55,14 @@ This is the ontology supported by Actility. You can define a sensor inside your 
 | kilometer | km | double | km | distance, accuracy, range, altitude, height |
 | kilometer per hour | km/h | double | km/h | velocity, speed |
 | kilopascal | kPa | double | kPa | pressure |
+| kilovolt-ampere | kVA | double | kVA | apparentPower |
+| kilovolt-ampere hour | kVAh | double | kVAh | apparentEnergy |
+| kilovolt-ampere reactive | kVAr | double | kVAr | reactivePower |
+| kilovolt-ampere reactive hour | kVArh | double | kVArh | reactiveEnergy |
 | kilowatt | kW | double | kW | power, activePower |
 | kilowatt-hour | kWh | double | kWh | energy |
 | liter | l | double | l | volume, capacity |
+| liter per minute | l/min | double | l/min | flowRate |
 | liter per second | l/s | double | l/s | flowRate |
 | lumen | lm | double | lm | flux, light |
 | lux | lx | double | lx | flux, light, illuminance |
@@ -66,20 +74,25 @@ This is the ontology supported by Actility. You can define a sensor inside your 
 | meter per second | m/s | double | m/s | velocity, speed |
 | meter per square second | m/s2 | double | m/s&#178; | acceleration, vibration |
 | micro-gravity | ugravity | double | &#181;g | acceleration, vibration |
+| microampere | uA | double | &#181;A | current |
 | microgram | ug | double | &#181;g | mass, weight |
 | microgram per cubic meter | ug/m3 | double | &#181;g/m&#179; | concentration, pm1, pm2_5, pm4, pm10, tvoc, ch2o, o3, no2, co, nh3, h2s, ch4, c2h4, benzene |
 | micrometer | um | double | &#181;m | distance, accuracy, range, altitude, height |
 | micromole per second and square meter | umol/m2.s | double | &#181;mol/m&#178;.s | fluxDensity, intensity |
 | microsiemens per centimeter | uS/cm | double | &#181;S/cm | conductivity |
+| microstrain | um/m | double | &#181;m/m | strain |
 | microvolt | uV | double | &#181;V | batteryVoltage, rmsVoltage, voltage |
 | milli-gravity | mgravity | double | mg | acceleration, vibration |
 | milliampere | mA | double | mA | current |
 | milliampere-hour | mAh | double | mAh | charge |
 | millibar | mbar | double | mbar | pressure |
+| milligram per cubic meter | mg/m3 | double | mg/m&#179; | concentration, pm1, pm2_5, pm4, pm10, tvoc, ch2o, o3, no2, co, nh3, h2s, ch4, c2h4, benzene |
+| milligram per liter | mg/l | double | mg/l | concentration |
 | millileter | ml | double | ml | volume, capacity |
 | millimeter | mm | double | mm | distance, accuracy, range, altitude, height |
 | millimeter per hour | mm/h | double | mm/h | velocity, speed |
 | millimeter per second | mm/s | double | mm/s | velocity, speed |
+| millimeter per year | mm/year | double | mm/year | corrosion, erosion |
 | millisecond | ms | double | ms | time, duration, interval, age, period |
 | millisiemens per centimeter | mS/cm | double | mS/cm | conductivity |
 | millivolt | mV | double | mV | batteryVoltage, rmsVoltage, voltage |
@@ -90,23 +103,24 @@ This is the ontology supported by Actility. You can define a sensor inside your 
 | newton | N | double | N | force |
 | ohm | Ohm | double | &#8486; | resistance |
 | okta | okta | int64 | okta | cloudCover, cover |
-| parts per billion | ppb | double | ppb | amount, quantity, concentration, co2Level, tvoc, ch2o, o3, no2, co, nh3, h2s, ch4, c2h4, benzene |
-| parts per million | ppm | double | ppm | amount, quantity, concentration, co2Level, tvoc, ch2o, o3, no2, co, nh3, h2s, ch4, c2h4, benzene |
+| parts per billion | ppb | double | ppb | amount, quantity, concentration, co2Level, tvocLevel, ch2oLevel, o3Level, no2Level, coLevel, nh3Level, h2sLevel, ch4Level, c2h4Level, benzeneLevel, so2Level, noLevel |
+| parts per million | ppm | double | ppm | amount, quantity, concentration, co2Level, tvocLevel, ch2oLevel, o3Level, no2Level, coLevel, nh3Level, h2sLevel, ch4Level, c2h4Level, benzeneLevel, so2Level, noLevel |
 | pascal | Pa | double | Pa | pressure |
 | per cubic centimeter | #/cm3 | double | #/cm3 | density |
-| percentage | % | double | % | batteryLevel, percentage, per, currentUnbalance, luminosityLevel, occupancyLevel, leakLevel, fillLevel, pressureLevel |
+| percentage | % | double | % | batteryLevel, percentage, per, currentUnbalance, luminosityLevel, occupancyLevel, leakLevel, fillLevel, pressureLevel, o2Level, voltageUnbalance |
 | percentage relative humidity | %RH | double | %RH | humidity |
 | pH | pH | double | pH | acidity |
+| pound per square inch | psi | double | psi | pressure |
 | pulse per hour | pulse/h | double | pulse/h | frequency, sound |
 | radian | rad | double | rad | angle |
-| rate | / | double | rate | rate, powerFactor |
+| rate | / | double | rate | rate, powerFactor, ratio |
 | rotations per minute | rpm | double | rpm | angularVelocity |
 | second | s | double | s | time, duration, interval, age, period |
 | siemens | S | double | S | conductance |
 | siemens per meter | S/m | double | S/m | conductivity |
 | sievert | Sv | double | Sv | radiationEffect |
 | square meter | m2 | double | m&#178; | area |
-| state | state | boolean | bool | leak, presence, status |
+| state | state | boolean | bool | enabled, leak, presence, status |
 | steradian | sr | double | sr | solidAngle |
 | tesla | T | double | T | magneticDensity |
 | volt | V | double | V | batteryVoltage, rmsVoltage, voltage |
