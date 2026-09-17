@@ -1,0 +1,259 @@
+[
+  {
+    "type": "uplink",
+    "description": "Measurement: current and voltage, 1 sample",
+    "input": {
+      "bytes": "A00B03A80A1038",
+      "fPort": 5,
+      "recvTime": "2024-06-12T08:00:00.000Z"
+    },
+    "output": {
+      "data": {
+        "frameType": "measurement",
+        "historyDepth": 1,
+        "numberOfSamples": 1,
+        "current": 9.36,
+        "voltage": 4.152
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "current": {
+        "unitId": "A",
+        "record": 9.36
+      },
+      "voltage": {
+        "unitId": "V",
+        "record": 4.152,
+        "nature": "supercapacitor"
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Measurement: current and voltage, 2 samples",
+    "input": {
+      "bytes": "A1000A0B07F0078C0A0F1310A7",
+      "fPort": 5,
+      "recvTime": "2024-06-12T08:00:00.000Z"
+    },
+    "output": {
+      "data": {
+        "frameType": "measurement",
+        "historyDepth": 1,
+        "numberOfSamples": 2,
+        "transmissionPeriod": 10,
+        "current": [
+          20.32,
+          19.32
+        ],
+        "voltage": [
+          3.859,
+          4.263
+        ],
+        "sampleTimes": [
+          "2024-06-12T08:00:00.000Z",
+          "2024-06-12T07:55:00.000Z"
+        ]
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "current": {
+        "unitId": "A",
+        "records": [
+          {
+            "value": 20.32,
+            "eventTime": "2024-06-12T08:00:00.000Z"
+          },
+          {
+            "value": 19.32,
+            "eventTime": "2024-06-12T07:55:00.000Z"
+          }
+        ]
+      },
+      "voltage": {
+        "unitId": "V",
+        "records": [
+          {
+            "value": 3.859,
+            "eventTime": "2024-06-12T08:00:00.000Z"
+          },
+          {
+            "value": 4.263,
+            "eventTime": "2024-06-12T07:55:00.000Z"
+          }
+        ],
+        "nature": "supercapacitor"
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Measurement: temperature, current and voltage, 1 sample",
+    "input": {
+      "bytes": "A00809E80B03A80A1038",
+      "fPort": 5,
+      "recvTime": "2024-06-12T08:00:00.000Z"
+    },
+    "output": {
+      "data": {
+        "frameType": "measurement",
+        "historyDepth": 1,
+        "numberOfSamples": 1,
+        "temperature": 25.36,
+        "current": 9.36,
+        "voltage": 4.152
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "current": {
+        "unitId": "A",
+        "record": 9.36
+      },
+      "voltage": {
+        "unitId": "V",
+        "record": 4.152,
+        "nature": "supercapacitor"
+      },
+      "temperature": {
+        "unitId": "Cel",
+        "record": 25.36,
+        "nature": "thermocouple"
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Measurement: temperature, current and voltage, 2 samples",
+    "input": {
+      "bytes": "A1000A08093409790B07F0078C0A0F1310A7",
+      "fPort": 5,
+      "recvTime": "2024-06-12T08:00:00.000Z"
+    },
+    "output": {
+      "data": {
+        "frameType": "measurement",
+        "historyDepth": 1,
+        "numberOfSamples": 2,
+        "transmissionPeriod": 10,
+        "temperature": [
+          23.56,
+          24.25
+        ],
+        "current": [
+          20.32,
+          19.32
+        ],
+        "voltage": [
+          3.859,
+          4.263
+        ],
+        "sampleTimes": [
+          "2024-06-12T08:00:00.000Z",
+          "2024-06-12T07:55:00.000Z"
+        ]
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "current": {
+        "unitId": "A",
+        "records": [
+          {
+            "value": 20.32,
+            "eventTime": "2024-06-12T08:00:00.000Z"
+          },
+          {
+            "value": 19.32,
+            "eventTime": "2024-06-12T07:55:00.000Z"
+          }
+        ]
+      },
+      "voltage": {
+        "unitId": "V",
+        "records": [
+          {
+            "value": 3.859,
+            "eventTime": "2024-06-12T08:00:00.000Z"
+          },
+          {
+            "value": 4.263,
+            "eventTime": "2024-06-12T07:55:00.000Z"
+          }
+        ],
+        "nature": "supercapacitor"
+      },
+      "temperature": {
+        "unitId": "Cel",
+        "records": [
+          {
+            "value": 23.56,
+            "eventTime": "2024-06-12T08:00:00.000Z"
+          },
+          {
+            "value": 24.25,
+            "eventTime": "2024-06-12T07:55:00.000Z"
+          }
+        ],
+        "nature": "thermocouple"
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Alert: voltage below the low threshold",
+    "input": {
+      "bytes": "8D8A0E89",
+      "fPort": 5,
+      "recvTime": "2024-06-12T08:00:00.000Z"
+    },
+    "output": {
+      "data": {
+        "frameType": "alert",
+        "alerts": [
+          {
+            "channel": 0,
+            "measurement": "voltage",
+            "alertType": "lowThresholdExceeded",
+            "value": 3.721
+          }
+        ],
+        "voltage": 3.721
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "voltage": {
+        "unitId": "V",
+        "record": 3.721,
+        "nature": "supercapacitor"
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Configuration acknowledgment: all parameters applied",
+    "input": {
+      "bytes": "0600",
+      "fPort": 5,
+      "recvTime": "2024-06-12T08:00:00.000Z"
+    },
+    "output": {
+      "data": {
+        "frameType": "configurationAck",
+        "failedParameters": [],
+        "configurationSuccess": true
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": null
+  }
+]
