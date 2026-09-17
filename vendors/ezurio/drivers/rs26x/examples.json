@@ -1,0 +1,1875 @@
+[
+  {
+    "type": "uplink",
+    "description": "Decode Positive 8-Bit Temperature - RS261 (internal sensor)",
+    "input": {
+      "bytes": "00C0001480",
+      "fPort": 1,
+      "recvTime": "2025-07-21T16:46:05.000Z"
+    },
+    "output": {
+      "data": {
+        "Temperature": 20.5,
+        "Device Status": {
+          "Unsupported API Version": "No",
+          "Backlog Wraparound": "No",
+          "Backlogs Available": "No",
+          "Bandwidth Limitation": "No",
+          "Sensor Fault": "No"
+        },
+        "Battery Status": "Good"
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "temperature": {
+        "unitId": "Cel",
+        "record": 20.5
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Decode Negative 8-Bit Temperature - RS261 (internal sensor)",
+    "input": {
+      "bytes": "00C000875A",
+      "fPort": 1,
+      "recvTime": "2025-07-21T16:46:05.000Z"
+    },
+    "output": {
+      "data": {
+        "Temperature": -120.65,
+        "Device Status": {
+          "Unsupported API Version": "No",
+          "Backlog Wraparound": "No",
+          "Backlogs Available": "No",
+          "Bandwidth Limitation": "No",
+          "Sensor Fault": "No"
+        },
+        "Battery Status": "Good"
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "temperature": {
+        "unitId": "Cel",
+        "record": -120.65
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Decode Aggregated 8-Bit Temperature - RS261 (internal sensor)",
+    "input": {
+      "bytes": "00C0020A687E3537140015191633174C186619801A991BB31CCC1DE6",
+      "fPort": 1,
+      "recvTime": "2025-07-21T16:46:05.000Z"
+    },
+    "output": {
+      "data": {
+        "Aggregate Temperature": {
+          "Aggregate Temperatures": {
+            "Temperature 10": 29.9,
+            "Temperature 9": 28.8,
+            "Temperature 8": 27.7,
+            "Temperature 7": 26.6,
+            "Temperature 6": 25.5,
+            "Temperature 5": 24.4,
+            "Temperature 4": 23.3,
+            "Temperature 3": 22.2,
+            "Temperature 2": 21.1,
+            "Temperature 1": 20
+          },
+          "Timestamp": "Mon, 21 Jul 2025 12:40:23 GMT",
+          "Aggregate Count": 10
+        },
+        "Device Status": {
+          "Unsupported API Version": "No",
+          "Backlog Wraparound": "No",
+          "Backlogs Available": "No",
+          "Bandwidth Limitation": "No",
+          "Sensor Fault": "No"
+        },
+        "Battery Status": "Good"
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "temperature": {
+        "unitId": "Cel",
+        "records": [
+          {
+            "value": 20,
+            "eventTime": "2025-07-21T12:40:23.000Z"
+          },
+          {
+            "value": 21.1,
+            "eventTime": null
+          },
+          {
+            "value": 22.2,
+            "eventTime": null
+          },
+          {
+            "value": 23.3,
+            "eventTime": null
+          },
+          {
+            "value": 24.4,
+            "eventTime": null
+          },
+          {
+            "value": 25.5,
+            "eventTime": null
+          },
+          {
+            "value": 26.6,
+            "eventTime": null
+          },
+          {
+            "value": 27.7,
+            "eventTime": null
+          },
+          {
+            "value": 28.8,
+            "eventTime": null
+          },
+          {
+            "value": 29.9,
+            "eventTime": null
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Decode 8-Bit Temperature Backlogs - RS261 (internal sensor)",
+    "input": {
+      "bytes": "00C001687E48B6051901687E48D4040001687E48F202E601687E491001CC01687E492E00B301687E494CFF9A01687E496AFE8001687E4988FD6701687E49A6FC4D01687E49C4FB34",
+      "fPort": 1,
+      "recvTime": "2025-07-21T16:46:05.000Z"
+    },
+    "output": {
+      "data": {
+        "Temperature Backlog 10": {
+          "Temperature": -4.8,
+          "Timestamp": "Mon, 21 Jul 2025 14:08:04 GMT"
+        },
+        "Temperature Backlog 9": {
+          "Temperature": -3.7,
+          "Timestamp": "Mon, 21 Jul 2025 14:07:34 GMT"
+        },
+        "Temperature Backlog 8": {
+          "Temperature": -2.6,
+          "Timestamp": "Mon, 21 Jul 2025 14:07:04 GMT"
+        },
+        "Temperature Backlog 7": {
+          "Temperature": -1.5,
+          "Timestamp": "Mon, 21 Jul 2025 14:06:34 GMT"
+        },
+        "Temperature Backlog 6": {
+          "Temperature": -0.4,
+          "Timestamp": "Mon, 21 Jul 2025 14:06:04 GMT"
+        },
+        "Temperature Backlog 5": {
+          "Temperature": 0.7,
+          "Timestamp": "Mon, 21 Jul 2025 14:05:34 GMT"
+        },
+        "Temperature Backlog 4": {
+          "Temperature": 1.8,
+          "Timestamp": "Mon, 21 Jul 2025 14:05:04 GMT"
+        },
+        "Temperature Backlog 3": {
+          "Temperature": 2.9,
+          "Timestamp": "Mon, 21 Jul 2025 14:04:34 GMT"
+        },
+        "Temperature Backlog 2": {
+          "Temperature": 4,
+          "Timestamp": "Mon, 21 Jul 2025 14:04:04 GMT"
+        },
+        "Temperature Backlog 1": {
+          "Temperature": 5.1,
+          "Timestamp": "Mon, 21 Jul 2025 14:03:34 GMT"
+        },
+        "Device Status": {
+          "Unsupported API Version": "No",
+          "Backlog Wraparound": "No",
+          "Backlogs Available": "No",
+          "Bandwidth Limitation": "No",
+          "Sensor Fault": "No"
+        },
+        "Battery Status": "Good"
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "temperature": {
+        "unitId": "Cel",
+        "records": [
+          {
+            "value": 5.1,
+            "eventTime": "2025-07-21T14:03:34.000Z"
+          },
+          {
+            "value": 4,
+            "eventTime": "2025-07-21T14:04:04.000Z"
+          },
+          {
+            "value": 2.9,
+            "eventTime": "2025-07-21T14:04:34.000Z"
+          },
+          {
+            "value": 1.8,
+            "eventTime": "2025-07-21T14:05:04.000Z"
+          },
+          {
+            "value": 0.7,
+            "eventTime": "2025-07-21T14:05:34.000Z"
+          },
+          {
+            "value": -0.4,
+            "eventTime": "2025-07-21T14:06:04.000Z"
+          },
+          {
+            "value": -1.5,
+            "eventTime": "2025-07-21T14:06:34.000Z"
+          },
+          {
+            "value": -2.6,
+            "eventTime": "2025-07-21T14:07:04.000Z"
+          },
+          {
+            "value": -3.7,
+            "eventTime": "2025-07-21T14:07:34.000Z"
+          },
+          {
+            "value": -4.8,
+            "eventTime": "2025-07-21T14:08:04.000Z"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Decode 8-Bit Temperature and Temperature Backlogs - RS261 (internal sensor)",
+    "input": {
+      "bytes": "00C000148001687E48B6051901687E48D4040001687E48F202E601687E491001CC01687E492E00B301687E494CFF9A01687E496AFE8001687E4988FD6701687E49A6FC4D01687E49C4FB34",
+      "fPort": 1,
+      "recvTime": "2025-07-21T16:46:05.000Z"
+    },
+    "output": {
+      "data": {
+        "Temperature Backlog 10": {
+          "Temperature": -4.8,
+          "Timestamp": "Mon, 21 Jul 2025 14:08:04 GMT"
+        },
+        "Temperature Backlog 9": {
+          "Temperature": -3.7,
+          "Timestamp": "Mon, 21 Jul 2025 14:07:34 GMT"
+        },
+        "Temperature Backlog 8": {
+          "Temperature": -2.6,
+          "Timestamp": "Mon, 21 Jul 2025 14:07:04 GMT"
+        },
+        "Temperature Backlog 7": {
+          "Temperature": -1.5,
+          "Timestamp": "Mon, 21 Jul 2025 14:06:34 GMT"
+        },
+        "Temperature Backlog 6": {
+          "Temperature": -0.4,
+          "Timestamp": "Mon, 21 Jul 2025 14:06:04 GMT"
+        },
+        "Temperature Backlog 5": {
+          "Temperature": 0.7,
+          "Timestamp": "Mon, 21 Jul 2025 14:05:34 GMT"
+        },
+        "Temperature Backlog 4": {
+          "Temperature": 1.8,
+          "Timestamp": "Mon, 21 Jul 2025 14:05:04 GMT"
+        },
+        "Temperature Backlog 3": {
+          "Temperature": 2.9,
+          "Timestamp": "Mon, 21 Jul 2025 14:04:34 GMT"
+        },
+        "Temperature Backlog 2": {
+          "Temperature": 4,
+          "Timestamp": "Mon, 21 Jul 2025 14:04:04 GMT"
+        },
+        "Temperature Backlog 1": {
+          "Temperature": 5.1,
+          "Timestamp": "Mon, 21 Jul 2025 14:03:34 GMT"
+        },
+        "Temperature": 20.5,
+        "Device Status": {
+          "Unsupported API Version": "No",
+          "Backlog Wraparound": "No",
+          "Backlogs Available": "No",
+          "Bandwidth Limitation": "No",
+          "Sensor Fault": "No"
+        },
+        "Battery Status": "Good"
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "temperature": {
+        "unitId": "Cel",
+        "records": [
+          {
+            "value": 5.1,
+            "eventTime": "2025-07-21T14:03:34.000Z"
+          },
+          {
+            "value": 4,
+            "eventTime": "2025-07-21T14:04:04.000Z"
+          },
+          {
+            "value": 2.9,
+            "eventTime": "2025-07-21T14:04:34.000Z"
+          },
+          {
+            "value": 1.8,
+            "eventTime": "2025-07-21T14:05:04.000Z"
+          },
+          {
+            "value": 0.7,
+            "eventTime": "2025-07-21T14:05:34.000Z"
+          },
+          {
+            "value": -0.4,
+            "eventTime": "2025-07-21T14:06:04.000Z"
+          },
+          {
+            "value": -1.5,
+            "eventTime": "2025-07-21T14:06:34.000Z"
+          },
+          {
+            "value": -2.6,
+            "eventTime": "2025-07-21T14:07:04.000Z"
+          },
+          {
+            "value": -3.7,
+            "eventTime": "2025-07-21T14:07:34.000Z"
+          },
+          {
+            "value": -4.8,
+            "eventTime": "2025-07-21T14:08:04.000Z"
+          },
+          {
+            "value": 20.5,
+            "eventTime": null
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Decode Read Friendly Name - RS261 (internal sensor)",
+    "input": {
+      "bytes": "01C00053656E747269757320525332367800",
+      "fPort": 1,
+      "recvTime": "2025-07-21T16:46:05.000Z"
+    },
+    "output": {
+      "data": {
+        "Friendly Name": "Sentrius RS26x",
+        "Device Status": {
+          "Unsupported API Version": "No",
+          "Backlog Wraparound": "No",
+          "Backlogs Available": "No",
+          "Bandwidth Limitation": "No",
+          "Sensor Fault": "No"
+        },
+        "Battery Status": "Good"
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": null
+  },
+  {
+    "type": "uplink",
+    "description": "Decode Read Sensor Type - RS261 (internal sensor)",
+    "input": {
+      "bytes": "01C00101",
+      "fPort": 1,
+      "recvTime": "2025-07-21T16:46:05.000Z"
+    },
+    "output": {
+      "data": {
+        "Sensor Type": "Internal Temperature Sensor",
+        "Device Status": {
+          "Unsupported API Version": "No",
+          "Backlog Wraparound": "No",
+          "Backlogs Available": "No",
+          "Bandwidth Limitation": "No",
+          "Sensor Fault": "No"
+        },
+        "Battery Status": "Good"
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": null
+  },
+  {
+    "type": "uplink",
+    "description": "Decode Read Read Period - RS261 (internal sensor)",
+    "input": {
+      "bytes": "01C002012C",
+      "fPort": 1,
+      "recvTime": "2025-07-21T16:46:05.000Z"
+    },
+    "output": {
+      "data": {
+        "Read Period": 300,
+        "Device Status": {
+          "Unsupported API Version": "No",
+          "Backlog Wraparound": "No",
+          "Backlogs Available": "No",
+          "Bandwidth Limitation": "No",
+          "Sensor Fault": "No"
+        },
+        "Battery Status": "Good"
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": null
+  },
+  {
+    "type": "uplink",
+    "description": "Decode Read BLE Address - RS261 (internal sensor)",
+    "input": {
+      "bytes": "01C0034141424243434444454546463030",
+      "fPort": 1,
+      "recvTime": "2025-07-21T16:46:05.000Z"
+    },
+    "output": {
+      "data": {
+        "BLE Address": "0xAABBCCDDEEFF00",
+        "Device Status": {
+          "Unsupported API Version": "No",
+          "Backlog Wraparound": "No",
+          "Backlogs Available": "No",
+          "Bandwidth Limitation": "No",
+          "Sensor Fault": "No"
+        },
+        "Battery Status": "Good"
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": null
+  },
+  {
+    "type": "uplink",
+    "description": "Decode Read Confirmed Packet Retries - RS261 (internal sensor)",
+    "input": {
+      "bytes": "01C00705",
+      "fPort": 1,
+      "recvTime": "2025-07-21T16:46:05.000Z"
+    },
+    "output": {
+      "data": {
+        "Confirmed Packets Retries": 5,
+        "Device Status": {
+          "Unsupported API Version": "No",
+          "Backlog Wraparound": "No",
+          "Backlogs Available": "No",
+          "Bandwidth Limitation": "No",
+          "Sensor Fault": "No"
+        },
+        "Battery Status": "Good"
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": null
+  },
+  {
+    "type": "uplink",
+    "description": "Decode Read LoRa RF Power - RS261 (internal sensor)",
+    "input": {
+      "bytes": "01C00816",
+      "fPort": 1,
+      "recvTime": "2025-07-21T16:46:05.000Z"
+    },
+    "output": {
+      "data": {
+        "LoRa RF Power": 22,
+        "Device Status": {
+          "Unsupported API Version": "No",
+          "Backlog Wraparound": "No",
+          "Backlogs Available": "No",
+          "Bandwidth Limitation": "No",
+          "Sensor Fault": "No"
+        },
+        "Battery Status": "Good"
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": null
+  },
+  {
+    "type": "uplink",
+    "description": "Decode Read Downlink Packet Count - RS261 (internal sensor)",
+    "input": {
+      "bytes": "01C00C01000000",
+      "fPort": 1,
+      "recvTime": "2025-07-21T16:46:05.000Z"
+    },
+    "output": {
+      "data": {
+        "Downlink Packet Count": 16777216,
+        "Device Status": {
+          "Unsupported API Version": "No",
+          "Backlog Wraparound": "No",
+          "Backlogs Available": "No",
+          "Bandwidth Limitation": "No",
+          "Sensor Fault": "No"
+        },
+        "Battery Status": "Good"
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": null
+  },
+  {
+    "type": "uplink",
+    "description": "Decode Read LoRa SNR - RS261 (internal sensor)",
+    "input": {
+      "bytes": "01C00DFF",
+      "fPort": 1,
+      "recvTime": "2025-07-21T16:46:05.000Z"
+    },
+    "output": {
+      "data": {
+        "LoRa SNR": -1,
+        "Device Status": {
+          "Unsupported API Version": "No",
+          "Backlog Wraparound": "No",
+          "Backlogs Available": "No",
+          "Bandwidth Limitation": "No",
+          "Sensor Fault": "No"
+        },
+        "Battery Status": "Good"
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "snr": {
+        "unitId": "dB",
+        "record": -1
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Decode Read RTC Time - RS261 (internal sensor)",
+    "input": {
+      "bytes": "01C01F687E6EC8",
+      "fPort": 1,
+      "recvTime": "2025-07-21T16:46:05.000Z"
+    },
+    "output": {
+      "data": {
+        "RTC Time": "Mon, 21 Jul 2025 16:46:00 GMT",
+        "Device Status": {
+          "Unsupported API Version": "No",
+          "Backlog Wraparound": "No",
+          "Backlogs Available": "No",
+          "Bandwidth Limitation": "No",
+          "Sensor Fault": "No"
+        },
+        "Battery Status": "Good"
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": null
+  },
+  {
+    "type": "uplink",
+    "description": "Decode Read Group Internal Temperature - RS261 (internal sensor)",
+    "input": {
+      "bytes": "01C00053656E747269757320525332367800010102012C034141424243434444454546463030070508160C010000000DFF1F687E6EC8",
+      "fPort": 1,
+      "recvTime": "2025-07-21T16:46:05.000Z"
+    },
+    "output": {
+      "data": {
+        "RTC Time": "Mon, 21 Jul 2025 16:46:00 GMT",
+        "LoRa SNR": -1,
+        "Downlink Packet Count": 16777216,
+        "LoRa RF Power": 22,
+        "Confirmed Packets Retries": 5,
+        "BLE Address": "0xAABBCCDDEEFF00",
+        "Read Period": 300,
+        "Sensor Type": "Internal Temperature Sensor",
+        "Friendly Name": "Sentrius RS26x",
+        "Device Status": {
+          "Unsupported API Version": "No",
+          "Backlog Wraparound": "No",
+          "Backlogs Available": "No",
+          "Bandwidth Limitation": "No",
+          "Sensor Fault": "No"
+        },
+        "Battery Status": "Good"
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "snr": {
+        "unitId": "dB",
+        "record": -1
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Decode Positive 8-Bit Temperature with Sensor Fault status - RS261 (internal sensor)",
+    "input": {
+      "bytes": "00C1001900",
+      "fPort": 1,
+      "recvTime": "2025-07-21T16:46:05.000Z"
+    },
+    "output": {
+      "data": {
+        "Temperature": 25,
+        "Device Status": {
+          "Unsupported API Version": "No",
+          "Backlog Wraparound": "No",
+          "Backlogs Available": "No",
+          "Bandwidth Limitation": "No",
+          "Sensor Fault": "Yes"
+        },
+        "Battery Status": "Good"
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "temperature": {
+        "unitId": "Cel",
+        "record": 25
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Decode Positive 8-Bit Temperature with Bandwidth Limitation status - RS261 (internal sensor)",
+    "input": {
+      "bytes": "00C2001900",
+      "fPort": 1,
+      "recvTime": "2025-07-21T16:46:05.000Z"
+    },
+    "output": {
+      "data": {
+        "Temperature": 25,
+        "Device Status": {
+          "Unsupported API Version": "No",
+          "Backlog Wraparound": "No",
+          "Backlogs Available": "No",
+          "Bandwidth Limitation": "Yes",
+          "Sensor Fault": "No"
+        },
+        "Battery Status": "Good"
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "temperature": {
+        "unitId": "Cel",
+        "record": 25
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Decode Positive 8-Bit Temperature with Backlogs Available status - RS261 (internal sensor)",
+    "input": {
+      "bytes": "00C4001900",
+      "fPort": 1,
+      "recvTime": "2025-07-21T16:46:05.000Z"
+    },
+    "output": {
+      "data": {
+        "Temperature": 25,
+        "Device Status": {
+          "Unsupported API Version": "No",
+          "Backlog Wraparound": "No",
+          "Backlogs Available": "Yes",
+          "Bandwidth Limitation": "No",
+          "Sensor Fault": "No"
+        },
+        "Battery Status": "Good"
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "temperature": {
+        "unitId": "Cel",
+        "record": 25
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Decode Positive 8-Bit Temperature with Backlog Wraparound status - RS261 (internal sensor)",
+    "input": {
+      "bytes": "00C8001900",
+      "fPort": 1,
+      "recvTime": "2025-07-21T16:46:05.000Z"
+    },
+    "output": {
+      "data": {
+        "Temperature": 25,
+        "Device Status": {
+          "Unsupported API Version": "No",
+          "Backlog Wraparound": "Yes",
+          "Backlogs Available": "No",
+          "Bandwidth Limitation": "No",
+          "Sensor Fault": "No"
+        },
+        "Battery Status": "Good"
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "temperature": {
+        "unitId": "Cel",
+        "record": 25
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Decode Positive 8-Bit Temperature with Unsupported API Version status - RS261 (internal sensor)",
+    "input": {
+      "bytes": "00D0001900",
+      "fPort": 1,
+      "recvTime": "2025-07-21T16:46:05.000Z"
+    },
+    "output": {
+      "data": {
+        "Temperature": 25,
+        "Device Status": {
+          "Unsupported API Version": "Yes",
+          "Backlog Wraparound": "No",
+          "Backlogs Available": "No",
+          "Bandwidth Limitation": "No",
+          "Sensor Fault": "No"
+        },
+        "Battery Status": "Good"
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "temperature": {
+        "unitId": "Cel",
+        "record": 25
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Decode Positive 8-Bit Temperature with all status bits set - RS261 (internal sensor)",
+    "input": {
+      "bytes": "00DF001900",
+      "fPort": 1,
+      "recvTime": "2025-07-21T16:46:05.000Z"
+    },
+    "output": {
+      "data": {
+        "Temperature": 25,
+        "Device Status": {
+          "Unsupported API Version": "Yes",
+          "Backlog Wraparound": "Yes",
+          "Backlogs Available": "Yes",
+          "Bandwidth Limitation": "Yes",
+          "Sensor Fault": "Yes"
+        },
+        "Battery Status": "Good"
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "temperature": {
+        "unitId": "Cel",
+        "record": 25
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Decode Read Sensor Type with Critical Battery status - RS261 (internal sensor)",
+    "input": {
+      "bytes": "01000101",
+      "fPort": 1,
+      "recvTime": "2025-07-21T16:46:05.000Z"
+    },
+    "output": {
+      "data": {
+        "Sensor Type": "Internal Temperature Sensor",
+        "Device Status": {
+          "Unsupported API Version": "No",
+          "Backlog Wraparound": "No",
+          "Backlogs Available": "No",
+          "Bandwidth Limitation": "No",
+          "Sensor Fault": "No"
+        },
+        "Battery Status": "Critical"
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": null
+  },
+  {
+    "type": "uplink",
+    "description": "Decode Read Sensor Type with Replace Battery status - RS261 (internal sensor)",
+    "input": {
+      "bytes": "01400101",
+      "fPort": 1,
+      "recvTime": "2025-07-21T16:46:05.000Z"
+    },
+    "output": {
+      "data": {
+        "Sensor Type": "Internal Temperature Sensor",
+        "Device Status": {
+          "Unsupported API Version": "No",
+          "Backlog Wraparound": "No",
+          "Backlogs Available": "No",
+          "Bandwidth Limitation": "No",
+          "Sensor Fault": "No"
+        },
+        "Battery Status": "Replace"
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": null
+  },
+  {
+    "type": "uplink",
+    "description": "Decode Read Sensor Type with OK Battery status - RS261 (internal sensor)",
+    "input": {
+      "bytes": "01800101",
+      "fPort": 1,
+      "recvTime": "2025-07-21T16:46:05.000Z"
+    },
+    "output": {
+      "data": {
+        "Sensor Type": "Internal Temperature Sensor",
+        "Device Status": {
+          "Unsupported API Version": "No",
+          "Backlog Wraparound": "No",
+          "Backlogs Available": "No",
+          "Bandwidth Limitation": "No",
+          "Sensor Fault": "No"
+        },
+        "Battery Status": "OK"
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": null
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Downlink Encode Write Friendly Name - RS26x",
+    "input": {
+      "data": {
+        "Message Type": "Configuration Set",
+        "Friendly Name": "Sentrius RS26x"
+      }
+    },
+    "output": {
+      "bytes": "010053656E747269757320525332367800",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Downlink Encode Write Read Period - RS26x",
+    "input": {
+      "data": {
+        "Message Type": "Configuration Set",
+        "Read Period": 300
+      }
+    },
+    "output": {
+      "bytes": "0102012C",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Downlink Encode Write Confirmed Packet Retries - RS26x",
+    "input": {
+      "data": {
+        "Message Type": "Configuration Set",
+        "Confirmed Packets Retries": 5
+      }
+    },
+    "output": {
+      "bytes": "010705",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Downlink Encode Write RTC Time - RS26x",
+    "input": {
+      "data": {
+        "Message Type": "Configuration Set",
+        "RTC Time": "Mon, 21 Jul 2025 16:46:00 GMT"
+      }
+    },
+    "output": {
+      "bytes": "011F687E6EC8",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Downlink Encode Write AU Region - RS26x",
+    "input": {
+      "data": {
+        "Message Type": "Configuration Set",
+        "AU Region": "AU923"
+      }
+    },
+    "output": {
+      "bytes": "010501",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Downlink Encode Write Clear Backlog - RS26x",
+    "input": {
+      "data": {
+        "Message Type": "Configuration Set",
+        "Clear Backlog": 0
+      }
+    },
+    "output": {
+      "bytes": "0116",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Downlink Encode Write Group Internal Temperature - RS26x",
+    "input": {
+      "data": {
+        "Message Type": "Configuration Set",
+        "Friendly Name": "Sentrius RS26x",
+        "Read Period": 300,
+        "Confirmed Packets Retries": 5,
+        "RTC Time": "Mon, 21 Jul 2025 16:46:00 GMT",
+        "AU Region": "AU923",
+        "Clear Backlog": 0
+      }
+    },
+    "output": {
+      "bytes": "0105011607050053656E74726975732052533236780002012C1F687E6EC8",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Downlink Encode Read Friendly Name - RS26x",
+    "input": {
+      "data": {
+        "Message Type": "Configuration Get",
+        "Parameters": [
+          "Friendly Name"
+        ]
+      }
+    },
+    "output": {
+      "bytes": "0000",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Downlink Encode Read Read Period - RS26x",
+    "input": {
+      "data": {
+        "Message Type": "Configuration Get",
+        "Parameters": [
+          "Read Period"
+        ]
+      }
+    },
+    "output": {
+      "bytes": "0002",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Downlink Encode Read Confirmed Packet Retries - RS26x",
+    "input": {
+      "data": {
+        "Message Type": "Configuration Get",
+        "Parameters": [
+          "Confirmed Packets Retries"
+        ]
+      }
+    },
+    "output": {
+      "bytes": "0007",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Downlink Encode Read RTC Time - RS26x",
+    "input": {
+      "data": {
+        "Message Type": "Configuration Get",
+        "Parameters": [
+          "RTC Time"
+        ]
+      }
+    },
+    "output": {
+      "bytes": "001F",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Downlink Encode Read AU Region - RS26x",
+    "input": {
+      "data": {
+        "Message Type": "Configuration Get",
+        "Parameters": [
+          "AU Region"
+        ]
+      }
+    },
+    "output": {
+      "bytes": "0005",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Downlink Encode Read Group Internal Temperature - RS26x",
+    "input": {
+      "data": {
+        "Message Type": "Configuration Get",
+        "Parameters": [
+          "Friendly Name",
+          "Read Period",
+          "Confirmed Packets Retries",
+          "RTC Time",
+          "AU Region"
+        ]
+      }
+    },
+    "output": {
+      "bytes": "000002071F05",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "Downlink Decode Write Friendly Name - RS26x",
+    "input": {
+      "bytes": "010053656E747269757320525332367800",
+      "fPort": 1,
+      "recvTime": "2025-07-21T16:46:05.000Z"
+    },
+    "output": {
+      "data": {
+        "Friendly Name": "Sentrius RS26x",
+        "Message Type": "Configuration Set"
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "Downlink Decode Write Read Period - RS26x",
+    "input": {
+      "bytes": "0102012C",
+      "fPort": 1,
+      "recvTime": "2025-07-21T16:46:05.000Z"
+    },
+    "output": {
+      "data": {
+        "Read Period": 300,
+        "Message Type": "Configuration Set"
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "Downlink Decode Write Confirmed Packet Retries - RS26x",
+    "input": {
+      "bytes": "010705",
+      "fPort": 1,
+      "recvTime": "2025-07-21T16:46:05.000Z"
+    },
+    "output": {
+      "data": {
+        "Confirmed Packets Retries": 5,
+        "Message Type": "Configuration Set"
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "Downlink Decode Write RTC Time - RS26x",
+    "input": {
+      "bytes": "011F687E6EC8",
+      "fPort": 1,
+      "recvTime": "2025-07-21T16:46:05.000Z"
+    },
+    "output": {
+      "data": {
+        "RTC Time": "Mon, 21 Jul 2025 16:46:00 GMT",
+        "Message Type": "Configuration Set"
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "Downlink Decode Write AU Region - RS26x",
+    "input": {
+      "bytes": "010501",
+      "fPort": 1,
+      "recvTime": "2025-07-21T16:46:05.000Z"
+    },
+    "output": {
+      "data": {
+        "AU Region": "AU923",
+        "Message Type": "Configuration Set"
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "Downlink Decode Write Clear Backlog - RS26x",
+    "input": {
+      "bytes": "0116",
+      "fPort": 1,
+      "recvTime": "2025-07-21T16:46:05.000Z"
+    },
+    "output": {
+      "data": {
+        "Clear Backlog": 0,
+        "Message Type": "Configuration Set"
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "Downlink Decode Write Group Internal Temperature - RS26x",
+    "input": {
+      "bytes": "0105011607050053656E74726975732052533236780002012C1F687E6EC8",
+      "fPort": 1,
+      "recvTime": "2025-07-21T16:46:05.000Z"
+    },
+    "output": {
+      "data": {
+        "RTC Time": "Mon, 21 Jul 2025 16:46:00 GMT",
+        "Read Period": 300,
+        "Friendly Name": "Sentrius RS26x",
+        "Confirmed Packets Retries": 5,
+        "Clear Backlog": 0,
+        "AU Region": "AU923",
+        "Message Type": "Configuration Set"
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "Downlink Decode Read Friendly Name - RS26x",
+    "input": {
+      "bytes": "0000",
+      "fPort": 1,
+      "recvTime": "2025-07-21T16:46:05.000Z"
+    },
+    "output": {
+      "data": {
+        "Message Type": "Configuration Get",
+        "Parameters": [
+          "Friendly Name"
+        ]
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "Downlink Decode Read Read Period - RS26x",
+    "input": {
+      "bytes": "0002",
+      "fPort": 1,
+      "recvTime": "2025-07-21T16:46:05.000Z"
+    },
+    "output": {
+      "data": {
+        "Message Type": "Configuration Get",
+        "Parameters": [
+          "Read Period"
+        ]
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "Downlink Decode Read Confirmed Packet Retries - RS26x",
+    "input": {
+      "bytes": "0007",
+      "fPort": 1,
+      "recvTime": "2025-07-21T16:46:05.000Z"
+    },
+    "output": {
+      "data": {
+        "Message Type": "Configuration Get",
+        "Parameters": [
+          "Confirmed Packets Retries"
+        ]
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "Downlink Decode Read RTC Time - RS26x",
+    "input": {
+      "bytes": "001F",
+      "fPort": 1,
+      "recvTime": "2025-07-21T16:46:05.000Z"
+    },
+    "output": {
+      "data": {
+        "Message Type": "Configuration Get",
+        "Parameters": [
+          "RTC Time"
+        ]
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "Downlink Decode Read AU Region - RS26x",
+    "input": {
+      "bytes": "0005",
+      "fPort": 1,
+      "recvTime": "2025-07-21T16:46:05.000Z"
+    },
+    "output": {
+      "data": {
+        "Message Type": "Configuration Get",
+        "Parameters": [
+          "AU Region"
+        ]
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "Downlink Decode Read Group Internal Temperature - RS26x",
+    "input": {
+      "bytes": "000002071F05",
+      "fPort": 1,
+      "recvTime": "2025-07-21T16:46:05.000Z"
+    },
+    "output": {
+      "data": {
+        "Message Type": "Configuration Get",
+        "Parameters": [
+          "Friendly Name",
+          "Read Period",
+          "Confirmed Packets Retries",
+          "RTC Time",
+          "AU Region"
+        ]
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Decode Positive 16-Bit Temperature - RS262 (external RTD probe)",
+    "input": {
+      "bytes": "00C003030D3AE1",
+      "fPort": 1,
+      "recvTime": "2025-07-21T16:46:05.000Z"
+    },
+    "output": {
+      "data": {
+        "Temperature": 781.23,
+        "Device Status": {
+          "Unsupported API Version": "No",
+          "Backlog Wraparound": "No",
+          "Backlogs Available": "No",
+          "Bandwidth Limitation": "No",
+          "Sensor Fault": "No"
+        },
+        "Battery Status": "Good"
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "temperature": {
+        "unitId": "Cel",
+        "record": 781.23
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Decode Negative 16-Bit Temperature - RS262 (external RTD probe)",
+    "input": {
+      "bytes": "00C003FF7E3334",
+      "fPort": 1,
+      "recvTime": "2025-07-21T16:46:05.000Z"
+    },
+    "output": {
+      "data": {
+        "Temperature": -129.8,
+        "Device Status": {
+          "Unsupported API Version": "No",
+          "Backlog Wraparound": "No",
+          "Backlogs Available": "No",
+          "Bandwidth Limitation": "No",
+          "Sensor Fault": "No"
+        },
+        "Battery Status": "Good"
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "temperature": {
+        "unitId": "Cel",
+        "record": -129.8
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Decode Aggregated 16-Bit Temperature - RS262 (external RTD probe)",
+    "input": {
+      "bytes": "00C0050A687E393CFE0C0000FE6FE667FED3CCCDFF37B334FF9B999A000080000064999900C8B333012CCCCC0190E666",
+      "fPort": 1,
+      "recvTime": "2025-07-21T16:46:05.000Z"
+    },
+    "output": {
+      "data": {
+        "Aggregate Temperature": {
+          "Aggregate Temperatures": {
+            "Temperature 10": 400.9,
+            "Temperature 9": 300.8,
+            "Temperature 8": 200.7,
+            "Temperature 7": 100.6,
+            "Temperature 6": 0.5,
+            "Temperature 5": -100.4,
+            "Temperature 4": -200.3,
+            "Temperature 3": -300.2,
+            "Temperature 2": -400.1,
+            "Temperature 1": -500
+          },
+          "Timestamp": "Mon, 21 Jul 2025 12:57:32 GMT",
+          "Aggregate Count": 10
+        },
+        "Device Status": {
+          "Unsupported API Version": "No",
+          "Backlog Wraparound": "No",
+          "Backlogs Available": "No",
+          "Bandwidth Limitation": "No",
+          "Sensor Fault": "No"
+        },
+        "Battery Status": "Good"
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "temperature": {
+        "unitId": "Cel",
+        "records": [
+          {
+            "value": -500,
+            "eventTime": "2025-07-21T12:57:32.000Z"
+          },
+          {
+            "value": -400.1,
+            "eventTime": null
+          },
+          {
+            "value": -300.2,
+            "eventTime": null
+          },
+          {
+            "value": -200.3,
+            "eventTime": null
+          },
+          {
+            "value": -100.4,
+            "eventTime": null
+          },
+          {
+            "value": 0.5,
+            "eventTime": null
+          },
+          {
+            "value": 100.6,
+            "eventTime": null
+          },
+          {
+            "value": 200.7,
+            "eventTime": null
+          },
+          {
+            "value": 300.8,
+            "eventTime": null
+          },
+          {
+            "value": 400.9,
+            "eventTime": null
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Decode 16-Bit Temperature Backlogs - RS262 (external RTD probe)",
+    "input": {
+      "bytes": "00C004687E48B601F4199904687E48D40190000004687E48F2012BE66604687E491000C7CCCC04687E492E0063B33304687E494CFFFF999A04687E496AFF9B800004687E4988FF37666704687E49A6FED34CCD04687E49C4FE6F3334",
+      "fPort": 1,
+      "recvTime": "2025-07-21T16:46:05.000Z"
+    },
+    "output": {
+      "data": {
+        "Temperature Backlog 10": {
+          "Temperature": -400.8,
+          "Timestamp": "Mon, 21 Jul 2025 14:08:04 GMT"
+        },
+        "Temperature Backlog 9": {
+          "Temperature": -300.7,
+          "Timestamp": "Mon, 21 Jul 2025 14:07:34 GMT"
+        },
+        "Temperature Backlog 8": {
+          "Temperature": -200.6,
+          "Timestamp": "Mon, 21 Jul 2025 14:07:04 GMT"
+        },
+        "Temperature Backlog 7": {
+          "Temperature": -100.5,
+          "Timestamp": "Mon, 21 Jul 2025 14:06:34 GMT"
+        },
+        "Temperature Backlog 6": {
+          "Temperature": -0.4,
+          "Timestamp": "Mon, 21 Jul 2025 14:06:04 GMT"
+        },
+        "Temperature Backlog 5": {
+          "Temperature": 99.7,
+          "Timestamp": "Mon, 21 Jul 2025 14:05:34 GMT"
+        },
+        "Temperature Backlog 4": {
+          "Temperature": 199.8,
+          "Timestamp": "Mon, 21 Jul 2025 14:05:04 GMT"
+        },
+        "Temperature Backlog 3": {
+          "Temperature": 299.9,
+          "Timestamp": "Mon, 21 Jul 2025 14:04:34 GMT"
+        },
+        "Temperature Backlog 2": {
+          "Temperature": 400,
+          "Timestamp": "Mon, 21 Jul 2025 14:04:04 GMT"
+        },
+        "Temperature Backlog 1": {
+          "Temperature": 500.1,
+          "Timestamp": "Mon, 21 Jul 2025 14:03:34 GMT"
+        },
+        "Device Status": {
+          "Unsupported API Version": "No",
+          "Backlog Wraparound": "No",
+          "Backlogs Available": "No",
+          "Bandwidth Limitation": "No",
+          "Sensor Fault": "No"
+        },
+        "Battery Status": "Good"
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "temperature": {
+        "unitId": "Cel",
+        "records": [
+          {
+            "value": 500.1,
+            "eventTime": "2025-07-21T14:03:34.000Z"
+          },
+          {
+            "value": 400,
+            "eventTime": "2025-07-21T14:04:04.000Z"
+          },
+          {
+            "value": 299.9,
+            "eventTime": "2025-07-21T14:04:34.000Z"
+          },
+          {
+            "value": 199.8,
+            "eventTime": "2025-07-21T14:05:04.000Z"
+          },
+          {
+            "value": 99.7,
+            "eventTime": "2025-07-21T14:05:34.000Z"
+          },
+          {
+            "value": -0.4,
+            "eventTime": "2025-07-21T14:06:04.000Z"
+          },
+          {
+            "value": -100.5,
+            "eventTime": "2025-07-21T14:06:34.000Z"
+          },
+          {
+            "value": -200.6,
+            "eventTime": "2025-07-21T14:07:04.000Z"
+          },
+          {
+            "value": -300.7,
+            "eventTime": "2025-07-21T14:07:34.000Z"
+          },
+          {
+            "value": -400.8,
+            "eventTime": "2025-07-21T14:08:04.000Z"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Decode 16-Bit Temperature and Temperature Backlogs - RS262 (external RTD probe)",
+    "input": {
+      "bytes": "00C003FF7E333404687E48B601F4199904687E48D40190000004687E48F2012BE66604687E491000C7CCCC04687E492E0063B33304687E494CFFFF999A04687E496AFF9B800004687E4988FF37666704687E49A6FED34CCD04687E49C4FE6F3334",
+      "fPort": 1,
+      "recvTime": "2025-07-21T16:46:05.000Z"
+    },
+    "output": {
+      "data": {
+        "Temperature Backlog 10": {
+          "Temperature": -400.8,
+          "Timestamp": "Mon, 21 Jul 2025 14:08:04 GMT"
+        },
+        "Temperature Backlog 9": {
+          "Temperature": -300.7,
+          "Timestamp": "Mon, 21 Jul 2025 14:07:34 GMT"
+        },
+        "Temperature Backlog 8": {
+          "Temperature": -200.6,
+          "Timestamp": "Mon, 21 Jul 2025 14:07:04 GMT"
+        },
+        "Temperature Backlog 7": {
+          "Temperature": -100.5,
+          "Timestamp": "Mon, 21 Jul 2025 14:06:34 GMT"
+        },
+        "Temperature Backlog 6": {
+          "Temperature": -0.4,
+          "Timestamp": "Mon, 21 Jul 2025 14:06:04 GMT"
+        },
+        "Temperature Backlog 5": {
+          "Temperature": 99.7,
+          "Timestamp": "Mon, 21 Jul 2025 14:05:34 GMT"
+        },
+        "Temperature Backlog 4": {
+          "Temperature": 199.8,
+          "Timestamp": "Mon, 21 Jul 2025 14:05:04 GMT"
+        },
+        "Temperature Backlog 3": {
+          "Temperature": 299.9,
+          "Timestamp": "Mon, 21 Jul 2025 14:04:34 GMT"
+        },
+        "Temperature Backlog 2": {
+          "Temperature": 400,
+          "Timestamp": "Mon, 21 Jul 2025 14:04:04 GMT"
+        },
+        "Temperature Backlog 1": {
+          "Temperature": 500.1,
+          "Timestamp": "Mon, 21 Jul 2025 14:03:34 GMT"
+        },
+        "Temperature": -129.8,
+        "Device Status": {
+          "Unsupported API Version": "No",
+          "Backlog Wraparound": "No",
+          "Backlogs Available": "No",
+          "Bandwidth Limitation": "No",
+          "Sensor Fault": "No"
+        },
+        "Battery Status": "Good"
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "temperature": {
+        "unitId": "Cel",
+        "records": [
+          {
+            "value": 500.1,
+            "eventTime": "2025-07-21T14:03:34.000Z"
+          },
+          {
+            "value": 400,
+            "eventTime": "2025-07-21T14:04:04.000Z"
+          },
+          {
+            "value": 299.9,
+            "eventTime": "2025-07-21T14:04:34.000Z"
+          },
+          {
+            "value": 199.8,
+            "eventTime": "2025-07-21T14:05:04.000Z"
+          },
+          {
+            "value": 99.7,
+            "eventTime": "2025-07-21T14:05:34.000Z"
+          },
+          {
+            "value": -0.4,
+            "eventTime": "2025-07-21T14:06:04.000Z"
+          },
+          {
+            "value": -100.5,
+            "eventTime": "2025-07-21T14:06:34.000Z"
+          },
+          {
+            "value": -200.6,
+            "eventTime": "2025-07-21T14:07:04.000Z"
+          },
+          {
+            "value": -300.7,
+            "eventTime": "2025-07-21T14:07:34.000Z"
+          },
+          {
+            "value": -400.8,
+            "eventTime": "2025-07-21T14:08:04.000Z"
+          },
+          {
+            "value": -129.8,
+            "eventTime": null
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Decode Read Thermistor 560 Cal Actual - RS262 (external thermistor probe)",
+    "input": {
+      "bytes": "01C02142F6E666C2F6E666",
+      "fPort": 1,
+      "recvTime": "2025-07-21T16:46:05.000Z"
+    },
+    "output": {
+      "data": {
+        "Thermistor 560 Cal Actual": {
+          "Value 1": 123.44999694824219,
+          "Value 2": -123.44999694824219
+        },
+        "Device Status": {
+          "Unsupported API Version": "No",
+          "Backlog Wraparound": "No",
+          "Backlogs Available": "No",
+          "Bandwidth Limitation": "No",
+          "Sensor Fault": "No"
+        },
+        "Battery Status": "Good"
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": null
+  },
+  {
+    "type": "uplink",
+    "description": "Decode Read Thermistor S-H Coefficient A - RS262 (external thermistor probe)",
+    "input": {
+      "bytes": "01C030C489799A",
+      "fPort": 1,
+      "recvTime": "2025-07-21T16:46:05.000Z"
+    },
+    "output": {
+      "data": {
+        "Thermistor S-H Coefficient A": -1099.800048828125,
+        "Device Status": {
+          "Unsupported API Version": "No",
+          "Backlog Wraparound": "No",
+          "Backlogs Available": "No",
+          "Bandwidth Limitation": "No",
+          "Sensor Fault": "No"
+        },
+        "Battery Status": "Good"
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": null
+  },
+  {
+    "type": "uplink",
+    "description": "Decode Read Group External Thermistor - RS262 (external thermistor probe)",
+    "input": {
+      "bytes": "01C02142F6E666C2F6E66630C489799A",
+      "fPort": 1,
+      "recvTime": "2025-07-21T16:46:05.000Z"
+    },
+    "output": {
+      "data": {
+        "Thermistor S-H Coefficient A": -1099.800048828125,
+        "Thermistor 560 Cal Actual": {
+          "Value 1": 123.44999694824219,
+          "Value 2": -123.44999694824219
+        },
+        "Device Status": {
+          "Unsupported API Version": "No",
+          "Backlog Wraparound": "No",
+          "Backlogs Available": "No",
+          "Bandwidth Limitation": "No",
+          "Sensor Fault": "No"
+        },
+        "Battery Status": "Good"
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": null
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Downlink Encode Write Thermistor S-H Coefficient A - RS262 (external thermistor probe)",
+    "input": {
+      "data": {
+        "Message Type": "Configuration Set",
+        "Thermistor S-H Coefficient A": -1099.800048828125
+      }
+    },
+    "output": {
+      "bytes": "0130C489799A",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Downlink Encode Write Group External Thermistor - RS262 (external thermistor probe)",
+    "input": {
+      "data": {
+        "Message Type": "Configuration Set",
+        "AU Region": "AU923",
+        "Clear Backlog": 0,
+        "Confirmed Packets Retries": 5,
+        "Friendly Name": "Sentrius RS26x",
+        "Read Period": 300,
+        "RTC Time": "Mon, 21 Jul 2025 16:46:00 GMT",
+        "Thermistor S-H Coefficient A": -1099.800048828125
+      }
+    },
+    "output": {
+      "bytes": "0105011607050053656E74726975732052533236780002012C1F687E6EC830C489799A",
+      "fPort": 1,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "Downlink Decode Write Thermistor S-H Coefficient A - RS262 (external thermistor probe)",
+    "input": {
+      "bytes": "0130C489799A",
+      "fPort": 1,
+      "recvTime": "2025-07-21T16:46:05.000Z"
+    },
+    "output": {
+      "data": {
+        "Thermistor S-H Coefficient A": -1099.800048828125,
+        "Message Type": "Configuration Set"
+      },
+      "errors": [],
+      "warnings": []
+    }
+  }
+]
