@@ -615,7 +615,8 @@ function decodeUplink(input) {
         var data_sensor_on_off_pm = (parseInt(stringHex.substring(38, 39), 16) >> 3) & 0x01;
         var data_sensor_on_off_formaldehyde = (parseInt(stringHex.substring(38, 39), 16) >> 2) & 0x01;
         var data_presence_alerte_on_off = (parseInt(stringHex.substring(38, 39), 16) >> 1) & 0x01;
-        var data_period_without_presence_alerte = (parseInt(stringHex.substring(38, 40), 16)) & 0x3F;
+        // 6 bits from bit 155: the 5 low bits of byte 19 and the MSB of byte 20 (guide D1016A)
+        var data_period_without_presence_alerte = (((parseInt(stringHex.substring(38, 40), 16) & 0x1F) << 1) | (parseInt(stringHex.substring(40, 42), 16) >> 7)) & 0x3F;
 
 
         data = {
