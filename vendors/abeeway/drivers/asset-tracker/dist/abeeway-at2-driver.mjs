@@ -7100,6 +7100,37 @@ var require_extractPoints = __commonJS({
       if (input.message.gpsSpeedOverGround != null) {
         points.speed = { unitId: "m/s", record: Number((input.message.gpsSpeedOverGround / 100).toFixed(2)) };
       }
+      if (input.message.measuredTemperature != null && typeof input.message.measuredTemperature.max === "number") {
+        points["temperature:1"] = { unitId: "Cel", record: input.message.measuredTemperature.max, nature: "Maximum" };
+      }
+      if (input.message.healthStatus != null && typeof input.message.healthStatus.minTemperature === "number") {
+        points["temperature:2"] = { unitId: "Cel", record: input.message.healthStatus.minTemperature, nature: "Minimum" };
+      }
+      if (input.message.dynamicMotionState === "MOVING" || input.message.dynamicMotionState === "STATIC") {
+        points.status = { unitId: "state", record: input.message.dynamicMotionState === "MOVING", nature: "Motion" };
+      }
+      if (typeof input.message.activityCount === "number") {
+        points["counter:1"] = { unitId: "count", record: input.message.activityCount, nature: "Activity" };
+      }
+      if (typeof input.message.nbOfshock === "number") {
+        points["counter:2"] = { unitId: "count", record: input.message.nbOfshock, nature: "Shocks" };
+      }
+      if (Array.isArray(input.message.accelerometerShockData) && input.message.accelerometerShockData.length === 3) {
+        points["acceleration:1"] = { unitId: "mgravity", record: input.message.accelerometerShockData[0], nature: "Shock (X axis)" };
+        points["acceleration:2"] = { unitId: "mgravity", record: input.message.accelerometerShockData[1], nature: "Shock (Y axis)" };
+        points["acceleration:3"] = { unitId: "mgravity", record: input.message.accelerometerShockData[2], nature: "Shock (Z axis)" };
+      }
+      if (typeof input.message.gpsCourseOverGround === "number") {
+        points["angle:1"] = { unitId: "deg", record: Number((input.message.gpsCourseOverGround / 100).toFixed(2)), nature: "Heading" };
+      }
+      if (Array.isArray(input.message.batteryVoltageMeasures) && input.message.batteryVoltageMeasures.length > 0) {
+        points["batteryVoltage:1"] = { unitId: "V", records: input.message.batteryVoltageMeasures.map(function(value) {
+          return { value };
+        }), nature: "Measures" };
+      }
+      if (input.message.healthStatus != null && typeof input.message.healthStatus.batteryVoltage === "number") {
+        points["batteryVoltage:2"] = { unitId: "mV", record: input.message.healthStatus.batteryVoltage, nature: "Health status" };
+      }
       return points;
     }
     exports2.extractPoints = extractPoints;

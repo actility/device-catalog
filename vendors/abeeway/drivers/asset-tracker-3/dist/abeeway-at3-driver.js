@@ -10367,7 +10367,7 @@ var require_telemetry2 = __commonJS({
 var require_extractPoints = __commonJS({
   "../vendors/abeeway/drivers/asset-tracker-3/extractPoints.js"(exports2) {
     function extractPoints(input) {
-      var _a, _b, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m, _n, _o, _p, _q, _r, _s, _t, _u, _v, _w;
+      var _a, _b, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m, _n, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y, _z, _A, _B, _C, _D, _E, _F, _G, _H, _I, _J, _K, _L, _M, _N, _O, _P, _Q, _R, _S;
       let result = {};
       if (!input.message) {
         return result;
@@ -10376,28 +10376,49 @@ var require_extractPoints = __commonJS({
       if (((_a = data.header) == null ? void 0 : _a.batteryLevel) != null && typeof data.header.batteryLevel != "string") {
         result.batteryLevel = { unitId: "%", record: data.header.batteryLevel };
       }
-      if (((_e = (_d = (_c = (_b = data.header) == null ? void 0 : _b.notification) == null ? void 0 : _c.system) == null ? void 0 : _d.status) == null ? void 0 : _e.batteryVoltage) != null) {
-        result.batteryVoltage = { unitId: "V", record: data.header.notification.system.status.batteryVoltage };
+      let batteryVoltage = (_h = (_d = (_c = (_b = data.notification) == null ? void 0 : _b.system) == null ? void 0 : _c.status) == null ? void 0 : _d.batteryVoltage) != null ? _h : (_g = (_f = (_e = data.notification) == null ? void 0 : _e.system) == null ? void 0 : _f.lowBattery) == null ? void 0 : _g.batteryVoltage;
+      if (typeof batteryVoltage === "number") {
+        result.batteryVoltage = { unitId: "mV", record: batteryVoltage };
       }
-      if (((_i = (_h = (_g = (_f = data.header) == null ? void 0 : _f.notification) == null ? void 0 : _g.system) == null ? void 0 : _h.status) == null ? void 0 : _i.currentTemperature) != null) {
-        result["temperature:1"] = { unitId: "Cel", record: data.header.notification.system.status.currentTemperature, nature: "current" };
+      let currentTemperature = (_q = (_o = (_k = (_j = (_i = data.notification) == null ? void 0 : _i.system) == null ? void 0 : _j.status) == null ? void 0 : _k.currentTemperature) != null ? _o : (_n = (_m = (_l = data.notification) == null ? void 0 : _l.system) == null ? void 0 : _m.heartbeat) == null ? void 0 : _n.currentTemperature) != null ? _q : (_p = data.notification) == null ? void 0 : _p.temperature;
+      if (typeof currentTemperature === "number") {
+        result["temperature:1"] = { unitId: "Cel", record: currentTemperature, nature: "Current" };
       }
-      if (((_m = (_l = (_k = (_j = data.header) == null ? void 0 : _j.notification) == null ? void 0 : _k.system) == null ? void 0 : _l.status) == null ? void 0 : _m.maxTemperature) != null) {
-        result["temperature:2"] = { unitId: "Cel", record: data.header.notification.system.status.maxTemperature, nature: "max" };
+      if (typeof ((_t = (_s = (_r = data.notification) == null ? void 0 : _r.system) == null ? void 0 : _s.status) == null ? void 0 : _t.maxTemperature) === "number") {
+        result["temperature:2"] = { unitId: "Cel", record: data.notification.system.status.maxTemperature, nature: "Maximum" };
       }
-      if (((_o = (_n = data.notification) == null ? void 0 : _n.accelerometer) == null ? void 0 : _o.accelerationVector) != null) {
+      if (((_v = (_u = data.notification) == null ? void 0 : _u.accelerometer) == null ? void 0 : _v.accelerationVector) != null) {
         result["acceleration:1"] = { unitId: "mgravity", record: data.notification.accelerometer.accelerationVector[0], nature: "Acceleration X" };
         result["acceleration:2"] = { unitId: "mgravity", record: data.notification.accelerometer.accelerationVector[1], nature: "Acceleration Y" };
         result["acceleration:3"] = { unitId: "mgravity", record: data.notification.accelerometer.accelerationVector[2], nature: "Acceleration Z" };
       }
-      if (((_s = (_r = (_q = (_p = data.header) == null ? void 0 : _p.notification) == null ? void 0 : _q.system) == null ? void 0 : _r.status) == null ? void 0 : _s.minTemperature) != null) {
-        result["temperature:3"] = { unitId: "Cel", record: data.header.notification.system.status.minTemperature, nature: "min" };
+      if (typeof ((_y = (_x = (_w = data.notification) == null ? void 0 : _w.system) == null ? void 0 : _x.status) == null ? void 0 : _y.minTemperature) === "number") {
+        result["temperature:3"] = { unitId: "Cel", record: data.notification.system.status.minTemperature, nature: "Minimum" };
       }
-      if (((_u = (_t = data.position) == null ? void 0 : _t.gnssFix) == null ? void 0 : _u.longitude) != null) {
+      if (((_A = (_z = data.position) == null ? void 0 : _z.gnssFix) == null ? void 0 : _A.longitude) != null) {
         result.location = { unitId: "GPS", record: [data.position.gnssFix.longitude, data.position.gnssFix.latitude] };
       }
-      if (((_w = (_v = data.position) == null ? void 0 : _v.gnssFix) == null ? void 0 : _w.altitude) != null) {
+      if (((_C = (_B = data.position) == null ? void 0 : _B.gnssFix) == null ? void 0 : _C.altitude) != null) {
         result.altitude = { unitId: "m", record: data.position.gnssFix.altitude };
+      }
+      if (((_D = data.position) == null ? void 0 : _D.motion) === 0 || ((_E = data.position) == null ? void 0 : _E.motion) === 1) {
+        result.status = { unitId: "state", record: data.position.motion === 1, nature: "Motion" };
+      }
+      if (typeof ((_G = (_F = data.position) == null ? void 0 : _F.gnssFix) == null ? void 0 : _G.EHPE) === "number") {
+        result.accuracy = { unitId: "m", record: data.position.gnssFix.EHPE };
+      }
+      if (typeof ((_I = (_H = data.position) == null ? void 0 : _H.gnssFix) == null ? void 0 : _I.SOG) === "number") {
+        result.speed = { unitId: "m/s", record: Number((data.position.gnssFix.SOG / 100).toFixed(2)) };
+      }
+      if (typeof ((_K = (_J = data.position) == null ? void 0 : _J.gnssFix) == null ? void 0 : _K.COG) === "number") {
+        result.angle = { unitId: "deg", record: Number((data.position.gnssFix.COG / 100).toFixed(2)), nature: "Heading" };
+      }
+      let motionPercent = (_Q = (_M = (_L = data.notification) == null ? void 0 : _L.accelerometer) == null ? void 0 : _M.motionPercent) != null ? _Q : (_P = (_O = (_N = data.notification) == null ? void 0 : _N.system) == null ? void 0 : _O.status) == null ? void 0 : _P.motionPercent;
+      if (typeof motionPercent === "number") {
+        result.percentage = { unitId: "%", record: motionPercent, nature: "Motion" };
+      }
+      if (typeof ((_S = (_R = data.notification) == null ? void 0 : _R.accelerometer) == null ? void 0 : _S.numberShocks) === "number") {
+        result.counter = { unitId: "count", record: data.notification.accelerometer.numberShocks, nature: "Shocks" };
       }
       return result;
     }
