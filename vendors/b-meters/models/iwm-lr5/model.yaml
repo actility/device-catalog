@@ -1,0 +1,62 @@
+# Commercial name of the model
+name: IWM-LR5
+# Functional description of the product. Maximum 500 characters.
+description: "IWM-LR5 is a wireless M-Bus and LoRaWAN radio module for B Meters GSD8-I single jet water meters. It reports the consumed volume, the total reverse flow volume, monthly historical values, alarms and datalogger data, and detects module removal, magnetic and NFC fraud attempts, reverse flow, water leakage, Qmax overflow, burst, reverse installation and no consumption. LoRaWAN 1.0.4 class A, EU863-870, IP68, non-replaceable lithium battery with up to 10 years of lifetime."
+# Logo of the device
+logo: b-meters-iwm-lr5.png
+# Product name & Version
+product:
+    name: B-ME/IWLR5
+    version: 1
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
+# id: as defined under /profiles.
+# lorawanDeviceProfileID: as defined by LoRa Alliance in https://lora-alliance.org/wp-content/uploads/2020/10/LoRa_Alliance_Vendor_ID_for_QR_Code_02142022.pdf.
+# The lorawanDeviceProfileID consists of 8 upper-case hexadecimal characters, 4 characters for VendorID + 4 characters for VendorProfileID. Please consider using single (') or double (") quotation.
+deviceProfileIds:
+    - id: b-meters_RFGroup1_1.0.4_classA
+
+# You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings.
+# Maximum device TX Conducted output power in dBm.
+maxTxPower:
+# Minimum device TX Conducted output power in dBm.
+minTxPower:
+# Maximum device TX Radiated output power in dBm.
+maxTxEIRP:
+# Minimum device TX Radiated output power in dBm.
+minTxEIRP:
+# Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'
+# or 'random' (not known, changes over time).
+motionIndicator:
+
+# Is your device certified by the LoRa Alliance? Possible values: true, false.
+LoRaWANCertified: true
+# Format: `<8 characters max>:<16 characters max>:<digits only>`
+modelId: b-meters:iwm-lr5:1
+# <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
+protocolId:
+    - b-meters:iwm-lr5:1
+# DataSheet URL (optional)
+specificationURL: https://www.bmeters.com/wp-content/uploads/2023/07/v1.3_IWM-LR5_DS_EN.pdf
+# User Guide URL (optional)
+userGuideURL: https://www.bmeters.com/wp-content/uploads/2023/07/v1.2_IWM-LR5_868MHz_QUG_IT-EN.pdf
+# <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
+sensors:
+    - volume:l
+    - temperature:Cel
+    - batteryLevel:%
+# Driver examples
+# A list of examples description that are compatible with this model
+examples:
+    b-meters:iwm-lr5:1:
+        - "Extended uplink (worked example of the specification)"
+        - "READ_LITRES uplink answer"
+        - "WRITE_LITRES uplink answer"
+        - "RESET_ALARMS uplink answer"
+        - "DEVICE_SERIAL uplink answer"
+        - "READ_METER_SERIAL uplink answer"
+        - "WRITE_METER_SERIAL uplink answer"
+        - "FW_VERSION uplink answer"
+        - "PKT_TABLE write, FORCE_TIME_UPDATE or RESET_RADIO uplink answer"
+LoRaWANRelay:
+  canOperateAsARelay: false
+  defaultRelayActivation: false
