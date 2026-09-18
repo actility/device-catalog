@@ -35,18 +35,37 @@ LoRaWANCertified: false
 # Format: `<8 characters max>:<16 characters max>:<digits only>`
 modelId: atim:motion-detector:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
-protocolId: atim:generic:1
+protocolId:
+  - atim:pir:1
+  - atim:generic:1
 # Informative, maintained by Netmore: true when the driver of the first protocolId above ships a
 # BACnet/Modbus mapping (mapping.json, in Netmore's private catalog), so that the device can be
 # exposed through the BACnet and Modbus gateways. Checked: true requires that mapping.
-supportedBACnetModbus: false
+supportedBACnetModbus: true
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 
 userGuideURL: 
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
+  - temperature:Cel
+  - humidity:%RH
+  - illuminance:lx
+  - counter:count
+  - voltage:mV
+  - period:minute
+  - batteryVoltage:V
 
+examples:
+  atim:pir:1:
+    - "Temperature, humidity and detection counter"
+    - "Historised temperature, humidity and detection counter"
+    - "Keep alive frame"
+    - "Illuminance"
+    - "PIR product frame (enclosure opening, detection counter)"
+    - "Set the keep alive period to once a day"
+    - "Set the datalogging period to 300 minutes"
+    - "Enable the timestamp in uplinks"
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false

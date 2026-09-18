@@ -1,63 +1,59 @@
-# Commercial name of the model 
-name: ACW-CTS
-# Functional description of the product. Maximum 500 characters. 
-description: "L’e-green sensor est un capteur autonome auto-alimenté qui permet de mesurer le courant dans un câble électrique ainsi que la température d’un équipement. Ce capteur participe au développement durable grâce à son récupérateur d’énergie. Il ne contient ni batterie, ni pile."
+# Commercial name of the model
+name: ACW-MR4-OPTO
+# Functional description of the product. Maximum 500 characters.
+description: "Lecture optique d'index pour les compteurs a LED, sur base ACW-MR4."
 # Logo of the device
-logo: atim_cts.png
+logo: atim_mr4-opto.png
 # ID(s) of the profile that defines the LoRaWAN characteristics of this model.
 # id: as defined under /profiles.
 # lorawanDeviceProfileID: as defined by LoRa Alliance in https://lora-alliance.org/wp-content/uploads/2020/10/LoRa_Alliance_Vendor_ID_for_QR_Code_02142022.pdf.
 # The lorawanDeviceProfileID consists of 8 upper-case hexadecimal characters, 4 characters for VendorID + 4 characters for VendorProfileID. Please consider using single (') or double (") quotation.
-deviceProfileIds: 
+deviceProfileIds:
     - id: atim_RFGroup1_1.0.4a_classA
- 
-# You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
-# Maximum device TX Conducted output power in dBm. 
+
+# You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings.
+# Maximum device TX Conducted output power in dBm.
 maxTxPower:
-# Minimum device TX Conducted output power in dBm. 
+# Minimum device TX Conducted output power in dBm.
 minTxPower:
-# Maximum device TX Radiated output power in dBm.  
+# Maximum device TX Radiated output power in dBm.
 maxTxEIRP:
-# Minimum device TX Radiated output power in dBm.  
+# Minimum device TX Radiated output power in dBm.
 minTxEIRP:
-# Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'  
-# or 'random' (not known, changes over time). 
-motionIndicator:
- 
-# Is your device certified by the LoRa Alliance? Possible values: true, false. 
+# Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'
+# or 'random' (not known, changes over time).
+motionIndicator: near_static
+
+# Is your device certified by the LoRa Alliance? Possible values: true, false.
 LoRaWANCertified: false
 # Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
 # Format: `<8 characters max>:<16 characters max>:<digits only>`
-modelId: atim:acw-cts:1
+modelId: atim:acw-mr4-opto:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId:
-  - atim:cts:1
+  - atim:mr4-opto:1
   - atim:generic:1
 # Informative, maintained by Netmore: true when the driver of the first protocolId above ships a
 # BACnet/Modbus mapping (mapping.json, in Netmore's private catalog), so that the device can be
 # exposed through the BACnet and Modbus gateways. Checked: true requires that mapping.
 supportedBACnetModbus: true
-# DataSheet URL (optional) 
-specificationURL: https://www.atim.com/wp-content/uploads/documentation/ACW/ACW-CTS/ATIM_ACW-CTS_DS_FR.pdf
-# User Guide URL (optional) 
-userGuideURL: https://www.atim.com/wp-content/uploads/documentation/ACW/ACW-CTS/ATIM_CTS_UG_FR.pdf
+# DataSheet URL (optional)
+specificationURL:
+# User Guide URL (optional)
+userGuideURL:
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
-  - current:A
-  - voltage:mV
-  - temperature:Cel
   - period:minute
   - batteryVoltage:V
+  - counter:count
 examples:
-  atim:cts:1:
-    - "Historised current and voltage"
+  atim:mr4-opto:1:
+    - "Meter index"
     - "Keep alive frame"
-    - "Temperature and current"
+    - "Historised meter index"
     - "Set the keep alive period to once a day"
     - "Set the datalogging period to 300 minutes"
     - "Enable the timestamp in uplinks"
-  atim:generic:1:
-    - "Example Trame de vie"
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false
