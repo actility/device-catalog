@@ -548,11 +548,24 @@ _**PS:** If your driver outputs values as ISO string dates or instances of class
 
 > A pre-implemented [spec file](sample-driver/driver-examples.spec.js) for testing can be copied from the template in order to test the driver with all the provided examples.
 
-## BACnet Integration
+## BACnet and Modbus integration
 
-As you may wish your devices and drivers to include a BACnet integration, our catalogs allow you to do so.
-Along with all the driver and device profiles, you can deploy a BACnet mapping inside [this folder](../../../mappings/).
-Please refer to [this markdown file for further instructions](../../../mappings/template/how-to.md).
+Devices of this catalog can be exposed as BACnet and Modbus objects through the Netmore gateways.
+For each driver concerned, a BACnet/Modbus mapping describes which decoded fields become objects,
+with their type, unit and read/write access.
+
+**These mappings are written and maintained by Netmore, in its private catalog: a driver
+contribution does not include one.** If your device is meant for building management systems,
+say so in your contribution and help us with:
+
+- the meaning and unit of every field your `decodeUplink` returns;
+- which settings `encodeDownlink` accepts, and which of them the device expects to receive
+  together in a single downlink;
+- the numeric code of every enumerated value (`0 = normal`, `1 = alarm`…), when your decoder
+  returns labels.
+
+Keep field names stable between versions of your driver: a renamed or retyped field changes what
+existing BACnet and Modbus integrations read.
 
 ##
 # Sample driver developer guide
@@ -883,152 +896,15 @@ and `coverage` directories for example. (This can be done by adding a `.npmignor
 
 #### Points extraction
 
-Points can be extracted once an uplink has been decoded. In order to extract points, a driver must provide the following function:
+Once an uplink is decoded, IoT Flow extracts **points**: the measurements of the payload expressed
+with the Actility [ontology](ONTOLOGY.md) (a field name such as `temperature` and a unit id such as
+`Cel`), so that every device reports the same quantity the same way.
 
-```javascript
-function extractPoints(input) {...}
-```
-
-The `input` is an object provided by the IoT Flow framework that is represented by the following json-schema:
-
-```json
-{
-    "message": {
-        "description": "the object message as returned by the decodeUplink function",
-        "type": "object",
-        "required": true
-    },
-    "time": {
-        "description": "the datetime of the uplink message, it is a real javascript Date object",
-        "type": "string",
-        "format": "date-time",
-        "required": true
-    }
-}
-```
-
-The returned object must be:
-- The wrapped object from the decoded one in case all the event are done at the same time, respecting the ontology.
-  Here's an example:
-```json
-{
-  "temperature": {
-      "record": 31.4,
-      "unitId": "Cel"
-    },
-    "location": {
-      "unitId": "GPS",
-      "records": [
-        {
-          "value": [48.875158, 2.333822],
-          "eventTime": "2019-01-01T10:00:00+01:00"
-        }
-      ]
-    },
-    "power:1": {
-        "record": 0.32,
-        "unitId": "GW"
-    },
-    "power:2": {
-        "record": 0.33,
-        "unitId": "GW"
-    },
-    "power:3": {
-        "record": 0.4523,
-        "unitId": "GW"
-    }, 
-    "power:4": {
-      "record": 0.4456,
-      "unitId": "GW"
-    },
-    "power:5": {
-      "record": 0.4356,
-      "unitId": "GW"
-    }
-}
-```
-- OR, it is defined by the following json-schema in case the point has several values in different timestamp.
-
-```json
-{
-  "type": "object",
-  "additionalProperties": {
-    "type": "array",
-    "items": {
-      "type": "object",
-      "properties": {
-        "eventTime": {
-          "type": "string",
-          "format": "date-time",
-          "required": true
-        },
-        "value": {
-          "type": [
-            "string",
-            "number",
-            "boolean"
-          ],
-          "required": true
-        }
-      }
-    }
-  }
-}
-```
-Here are a few examples:
-
-Simple :
-```json
-{
-  "temperature": 
-    {
-      "record": 31.4,
-      "unitId": "Cel"
-    }
-}
-```
-
-Multiple measurements with different measurement time :
-```json
-{
-  "temperature": {
-    "unitId": "Cel",
-    "records": [
-      {
-        "eventTime": "2019-01-01T10:00:00+01:00",
-        "value": 31.4
-      },
-      {
-        "eventTime": "2019-01-01T11:00:00+01:00",
-        "value": 31.2
-      },
-      {
-        "eventTime": "2019-01-01T12:00:00+01:00",
-        "value": 32
-      }
-    ]
-  }
-}
-```
-
-Multiple of the same sensor type : \
-(In case of mutiple sensors of the same type, the ID should start at 0)
-```json
-{
-  "temperature:1": {
-    "record": 31.4,
-    "unitId": "Cel"
-  },
-  "temperature:2": {
-    "record": 31.2,
-    "unitId": "Cel"
-  },
-  "temperature:3": {
-    "record": 32,
-    "unitId": "Cel"
-  }
-}
-```
+**Points extraction is written and maintained by Netmore, in its private catalog: a driver
+contribution does not provide an `extractPoints` function.** What helps us write it is a decoder
+that returns numbers (not strings such as `"21.5"`), states the unit of each measurement (in the
+field name or in your documentation) and returns one value per field rather than a list, and the
+`sensors` of your device model declared with the ontology.
 
 ----------------------------------------------------------------
 
