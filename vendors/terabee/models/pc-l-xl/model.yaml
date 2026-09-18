@@ -41,6 +41,10 @@ modelId: terabee:pc-l-xl:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 # Be careful: Once you chose a protocolId, it cannot be changed later
 protocolId: terabee:pc-l-xl:1
+# Informative, maintained by Netmore: true when the driver of the first protocolId above ships a
+# BACnet/Modbus mapping (mapping.json, in Netmore's private catalog), so that the device can be
+# exposed through the BACnet and Modbus gateways. Checked: true requires that mapping.
+supportedBACnetModbus: false
 # DataSheet URL (optional)
 specificationURL: https://terabee.b-cdn.net/wp-content/uploads/2022/06/Terabee-People-Counting-L-XL-Specification-sheet.pdf
 # User Guide URL (optional)

@@ -31,6 +31,10 @@ LoRaWANCertified: false
 modelId: enless-w:tx-amb-600-051:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId: enless-w:600-051:1
+# Informative, maintained by Netmore: true when the driver of the first protocolId above ships a
+# BACnet/Modbus mapping (mapping.json, in Netmore's private catalog), so that the device can be
+# exposed through the BACnet and Modbus gateways. Checked: true requires that mapping.
+supportedBACnetModbus: true
 # DataSheet URL (optional) 
 specificationURL: https://enless-wireless.com/wp-content/uploads/2025/05/Fiches-produits-EU868-EN-3.pdf
 # User Guide URL (optional) 

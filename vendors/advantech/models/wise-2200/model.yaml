@@ -39,6 +39,10 @@ LoRaWANCertified: false
 modelId: advantec:wise-2200:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId: advantec:wise:1
+# Informative, maintained by Netmore: true when the driver of the first protocolId above ships a
+# BACnet/Modbus mapping (mapping.json, in Netmore's private catalog), so that the device can be
+# exposed through the BACnet and Modbus gateways. Checked: true requires that mapping.
+supportedBACnetModbus: false
 # DataSheet URL (optional) 
 specificationURL: https://downloadt.advantech.com/download/downloadsr.aspx?File_Id=1-2L9NG0D
 # User Guide URL (optional) 

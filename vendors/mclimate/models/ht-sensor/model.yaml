@@ -40,6 +40,10 @@ protocolId:
   - mclimate:ht-sensor:2
   - mclimate:ht-sensor:1
   - os1-mcli:ht-sensor:1
+# Informative, maintained by Netmore: true when the driver of the first protocolId above ships a
+# BACnet/Modbus mapping (mapping.json, in Netmore's private catalog), so that the device can be
+# exposed through the BACnet and Modbus gateways. Checked: true requires that mapping.
+supportedBACnetModbus: true
 # DataSheet URL (optional) 
 specificationURL: https://3940008670-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F-McDr-jr9h3qA888r1Yp%2Fuploads%2FuWtULrkAnkdqgLeWDsIu%2FMClimate-HT-Sensor-LoRaWAN-Batteries-Datasheet-en.pdf?alt=media&token=efb23d15-d43d-490b-b82a-c205131feb5c
 # User Guide URL (optional) 

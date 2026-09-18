@@ -33,6 +33,10 @@ modelId: nexelec:move:1
 protocolId:
   - nexelec:generic2:2
   - nexelec:generic2:1
+# Informative, maintained by Netmore: true when the driver of the first protocolId above ships a
+# BACnet/Modbus mapping (mapping.json, in Netmore's private catalog), so that the device can be
+# exposed through the BACnet and Modbus gateways. Checked: true requires that mapping.
+supportedBACnetModbus: false
 # DataSheet URL (optional) 
 specificationURL: https://nexelec.eu/wp-content/uploads/2023/08/D849A_FR-Datasheet-MOVE.pdf
 # User Guide URL (optional) 

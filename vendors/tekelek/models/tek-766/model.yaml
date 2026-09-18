@@ -13,6 +13,10 @@ LoRaWANCertified: false
 
 modelId: tekelek:tek-766:1
 protocolId: spt-teke:tek-766-inc:1
+# Informative, maintained by Netmore: true when the driver of the first protocolId above ships a
+# BACnet/Modbus mapping (mapping.json, in Netmore's private catalog), so that the device can be
+# exposed through the BACnet and Modbus gateways. Checked: true requires that mapping.
+supportedBACnetModbus: false
 
 specificationURL: https://www.tek-asia.com/en/list_32/196.html
 userGuideURL: https://github.com/yreiser/tek766-ttn-decoder/blob/main/tek766_manual.pdf

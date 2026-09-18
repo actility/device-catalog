@@ -37,6 +37,10 @@ modelId: advantec:eva-2310:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId:
   - advantec:eva:1
+# Informative, maintained by Netmore: true when the driver of the first protocolId above ships a
+# BACnet/Modbus mapping (mapping.json, in Netmore's private catalog), so that the device can be
+# exposed through the BACnet and Modbus gateways. Checked: true requires that mapping.
+supportedBACnetModbus: false
 # DataSheet URL (optional)
 specificationURL: https://advdownload.advantech.com/productfile/PIS/EVA-2310/file/EVA-2310_DS(041924)20240419110425.pdf?_gl=1*1jktuu4*_ga*NDk4Njk0OTIuMTcyMjQxNzAxOQ..*_ga_CFPK80LF7Y*MTczOTg2ODM3NS4yMzAuMS4xNzM5ODY5Njg5LjU4LjAuMTg1MTM2MjE0Mg..
 # User Guide URL (optional)

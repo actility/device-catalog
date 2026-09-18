@@ -38,6 +38,10 @@ modelId: ellenex:pls2-l:1
 protocolId: 
   - ellenex:pls2-l:1
   - os1-elle:pls2-l:1
+# Informative, maintained by Netmore: true when the driver of the first protocolId above ships a
+# BACnet/Modbus mapping (mapping.json, in Netmore's private catalog), so that the device can be
+# exposed through the BACnet and Modbus gateways. Checked: true requires that mapping.
+supportedBACnetModbus: false
 # DataSheet URL (optional) 
 specificationURL: https://www.ellenex.com/_files/ugd/dc15ca_7c6a1b65a558410684319c8947bbe935.pdf
 # User Guide URL (optional) 

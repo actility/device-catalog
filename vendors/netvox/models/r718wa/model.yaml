@@ -38,6 +38,10 @@ modelId: netvox:r718wa:1
 protocolId: 
   - netvox:lorawan:1
   - os1-netv:r718wa:10
+# Informative, maintained by Netmore: true when the driver of the first protocolId above ships a
+# BACnet/Modbus mapping (mapping.json, in Netmore's private catalog), so that the device can be
+# exposed through the BACnet and Modbus gateways. Checked: true requires that mapping.
+supportedBACnetModbus: false
 # DataSheet URL (optional) 
 specificationURL: http://www.netvox.com.tw/download/Netvox%20LoRa%20Catalog.pdf
 # User Guide URL (optional) 

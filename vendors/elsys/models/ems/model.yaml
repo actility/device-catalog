@@ -39,6 +39,10 @@ modelId: elsys:ems:1
 protocolId: 
   - elsys:generic:1
   - os1-elsy:ems:1
+# Informative, maintained by Netmore: true when the driver of the first protocolId above ships a
+# BACnet/Modbus mapping (mapping.json, in Netmore's private catalog), so that the device can be
+# exposed through the BACnet and Modbus gateways. Checked: true requires that mapping.
+supportedBACnetModbus: false
 # DataSheet URL (optional) 
 specificationURL: https://elsys.se/public/datasheets/EMS_Series_LoRa_Datasheet.pdf
 # User Guide URL (optional) 

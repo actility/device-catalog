@@ -24,6 +24,10 @@ LoRaWANCertified: false
 modelId: senlab:svc-lab-13ns:1
 protocolId:
   - senlab:v:1
+# Informative, maintained by Netmore: true when the driver of the first protocolId above ships a
+# BACnet/Modbus mapping (mapping.json, in Netmore's private catalog), so that the device can be
+# exposed through the BACnet and Modbus gateways. Checked: true requires that mapping.
+supportedBACnetModbus: false
 specificationURL: https://sensing-labs.com/senlab-v-outdoor-dc-latch-solenoid-driver/
 userGuideURL: https://sensing-labs.com/wp-content/uploads/2021/04/SVC-LAB-13NSwebvf.pdf
 sensors:

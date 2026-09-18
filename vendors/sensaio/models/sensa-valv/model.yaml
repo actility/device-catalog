@@ -38,6 +38,10 @@ LoRaWANCertified: true
 modelId: sensaio:sensaio-valv:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId: sensaio:generic:1
+# Informative, maintained by Netmore: true when the driver of the first protocolId above ships a
+# BACnet/Modbus mapping (mapping.json, in Netmore's private catalog), so that the device can be
+# exposed through the BACnet and Modbus gateways. Checked: true requires that mapping.
+supportedBACnetModbus: false
 # DataSheet URL (optional) 
 specificationURL: https://sensa.io/wp-content/uploads/2022/07/valve-upd-ds-v3.pdf
 # User Guide URL (optional) 

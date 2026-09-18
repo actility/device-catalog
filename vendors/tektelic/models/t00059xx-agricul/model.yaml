@@ -37,6 +37,10 @@ modelId: tektelic:t00059xx-agricul:1
 protocolId:
   - tektelic:agro:1
   - os1-tekt:t00059xx-agricul:1
+# Informative, maintained by Netmore: true when the driver of the first protocolId above ships a
+# BACnet/Modbus mapping (mapping.json, in Netmore's private catalog), so that the device can be
+# exposed through the BACnet and Modbus gateways. Checked: true requires that mapping.
+supportedBACnetModbus: false
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 

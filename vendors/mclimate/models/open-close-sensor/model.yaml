@@ -38,6 +38,10 @@ modelId: mclimate:open-close:1
 protocolId:
   - mclimate:open-close:2
   - mclimate:open-close:1
+# Informative, maintained by Netmore: true when the driver of the first protocolId above ships a
+# BACnet/Modbus mapping (mapping.json, in Netmore's private catalog), so that the device can be
+# exposed through the BACnet and Modbus gateways. Checked: true requires that mapping.
+supportedBACnetModbus: true
 # DataSheet URL (optional)
 specificationURL: https://3940008670-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F-McDr-jr9h3qA888r1Yp%2Fuploads%2F7hmYi0hNrcCkkK0C1Faw%2FMClimate-Open-Close-Sensor-Datasheet-LoRaWAN-en.pdf?alt=media&token=311b102f-d6cd-47d3-84c2-61b280aa11d5
 # User Guide URL (optional)

@@ -32,6 +32,10 @@ modelId: thrmkn:lk-co2-temp:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 # Be careful: Once you chose a protocolId, it cannot be changed later
 protocolId: thrmkn:generic:1
+# Informative, maintained by Netmore: true when the driver of the first protocolId above ships a
+# BACnet/Modbus mapping (mapping.json, in Netmore's private catalog), so that the device can be
+# exposed through the BACnet and Modbus gateways. Checked: true requires that mapping.
+supportedBACnetModbus: true
 # DataSheet URL (optional)
 specificationURL: https://www.thermokon.de/direct/alterra-base/mimes/get/37746050786ea2535
 # User Guide URL (optional)

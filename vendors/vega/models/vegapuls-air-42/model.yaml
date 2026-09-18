@@ -18,6 +18,10 @@ LoRaWANCertified: true
 modelId: vega:vegapuls-air-42:1
 protocolId:
   - vega:vegapuls-air:1
+# Informative, maintained by Netmore: true when the driver of the first protocolId above ships a
+# BACnet/Modbus mapping (mapping.json, in Netmore's private catalog), so that the device can be
+# exposed through the BACnet and Modbus gateways. Checked: true requires that mapping.
+supportedBACnetModbus: false
 
 specificationURL: https://www.vega.com/fr-fr/produits/catalogue-produits/mesure-de-niveau/radar/vegapuls-air-42
 userGuideURL: https://www.m2mgermany.de/shop/media/webshop_dl/Other/7399_64579-DE-Betriebsanleitung-VEGAPULS-Air-42.pdf

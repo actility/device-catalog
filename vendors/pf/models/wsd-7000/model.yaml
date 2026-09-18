@@ -34,6 +34,10 @@ modelId: pf:wsd-7000:1
 # <vendorId>:<modelId>:<modelVersion> Needed for linking the model with a specific driver (you can have several ones)
 protocolId:
   - pf:wilsen:1
+# Informative, maintained by Netmore: true when the driver of the first protocolId above ships a
+# BACnet/Modbus mapping (mapping.json, in Netmore's private catalog), so that the device can be
+# exposed through the BACnet and Modbus gateways. Checked: true requires that mapping.
+supportedBACnetModbus: false
 # DataSheet URL (optional) 
 specificationURL: https://files.pepperl-fuchs.com/webcat/navi/productInfo/pds/70124843_fra.pdf?v=20221012111825
 # User Guide URL (optional) 

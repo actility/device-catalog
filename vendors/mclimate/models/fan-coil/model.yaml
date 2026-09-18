@@ -35,6 +35,10 @@ modelId: mclimate:fan-coil:1
 protocolId:
   - mclimate:fan-coil:2
   - mclimate:fan-coil:1
+# Informative, maintained by Netmore: true when the driver of the first protocolId above ships a
+# BACnet/Modbus mapping (mapping.json, in Netmore's private catalog), so that the device can be
+# exposed through the BACnet and Modbus gateways. Checked: true requires that mapping.
+supportedBACnetModbus: true
 # DataSheet URL (optional)
 specificationURL: https://3940008670-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F-McDr-jr9h3qA888r1Yp%2Fuploads%2FxVLLS2zmBIebkHJ2pnzo%2FMClimate-FCT-Datasheet.pdf?alt=media&token=bd51a623-fc3e-44a6-9abc-12b2a1d4d254
 # User Guide URL (optional) 

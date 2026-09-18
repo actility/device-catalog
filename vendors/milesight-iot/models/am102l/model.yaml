@@ -39,6 +39,10 @@ modelId: msight:am102l:1
 protocolId: 
   - msight:am102l:2
   - msight:am102l:1
+# Informative, maintained by Netmore: true when the driver of the first protocolId above ships a
+# BACnet/Modbus mapping (mapping.json, in Netmore's private catalog), so that the device can be
+# exposed through the BACnet and Modbus gateways. Checked: true requires that mapping.
+supportedBACnetModbus: true
 # DataSheet URL (optional)
 specificationURL: https://resource.milesight.com/milesight/iot/document/am102-and-am102l-datasheet-en.pdf
 # User Guide URL (optional)

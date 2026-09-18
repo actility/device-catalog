@@ -33,6 +33,10 @@ LoRaWANCertified: false
 modelId: adfweb:hd67d03-b2:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver
 protocolId:
+# Informative, maintained by Netmore: true when the driver of the first protocolId above ships a
+# BACnet/Modbus mapping (mapping.json, in Netmore's private catalog), so that the device can be
+# exposed through the BACnet and Modbus gateways. Checked: true requires that mapping.
+supportedBACnetModbus: false
 # DataSheet URL (optional)
 specificationURL: https://www.adfweb.com/Home/products/LoRaWAN_ModbusTCP.asp?frompg=nav36_3
 # User Guide URL (optional)

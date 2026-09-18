@@ -36,6 +36,10 @@ modelId: watteco:temp-remte-2-prb:4
 protocolId:
   - watteco:temp-remte-2-prb:5
   - watteco:remote-temp2:4
+# Informative, maintained by Netmore: true when the driver of the first protocolId above ships a
+# BACnet/Modbus mapping (mapping.json, in Netmore's private catalog), so that the device can be
+# exposed through the BACnet and Modbus gateways. Checked: true requires that mapping.
+supportedBACnetModbus: true
 # DataSheet URL (optional)
 specificationURL: https://www.watteco.com/product/remote-temperature-2x-probes/
 # User Guide URL (optional)

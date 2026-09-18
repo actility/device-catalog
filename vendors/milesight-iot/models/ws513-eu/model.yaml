@@ -43,6 +43,10 @@ modelId: msight:ws513-eu:1
 protocolId: 
     - msight:ws513:1
     - msight:ws51x:1
+# Informative, maintained by Netmore: true when the driver of the first protocolId above ships a
+# BACnet/Modbus mapping (mapping.json, in Netmore's private catalog), so that the device can be
+# exposed through the BACnet and Modbus gateways. Checked: true requires that mapping.
+supportedBACnetModbus: true
 # DataSheet URL (optional) 
 specificationURL: https://resource.milesight.com/milesight/iot/document/ws51x-datasheet-en.pdf
 # User Guide URL (optional) 

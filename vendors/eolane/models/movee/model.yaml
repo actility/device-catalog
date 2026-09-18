@@ -35,6 +35,10 @@ modelId: eolane:movee:1
 # Be careful: Once you chose a protocolId, it cannot be changed later
 protocolId:
   - eolane:movee:1
+# Informative, maintained by Netmore: true when the driver of the first protocolId above ships a
+# BACnet/Modbus mapping (mapping.json, in Netmore's private catalog), so that the device can be
+# exposed through the BACnet and Modbus gateways. Checked: true requires that mapping.
+supportedBACnetModbus: false
 # DataSheet URL (optional)
 specificationURL: https://www.watteco.fr/wp-content/uploads/2021/11/WATTECO_FT_50-80-002_MOVEE_v03.00.pdf
 # User Guide URL (optional)

@@ -35,6 +35,10 @@ modelId: b-meters:hydrodigit-s1:1
 # Format: `<8 characters max>:<16 characters max>:<digits only>`
 # Be careful: Once you chose a protocolId, it cannot be changed later
 protocolId: b-meters:hydrodigit:1
+# Informative, maintained by Netmore: true when the driver of the first protocolId above ships a
+# BACnet/Modbus mapping (mapping.json, in Netmore's private catalog), so that the device can be
+# exposed through the BACnet and Modbus gateways. Checked: true requires that mapping.
+supportedBACnetModbus: false
 # DataSheet URL (optional)
 specificationURL: https://www.bmeters.com/wp-content/uploads/2023/07/v25.1_HYDRODIGIT-S1_DS.pdf
 # User Guide URL (optional)

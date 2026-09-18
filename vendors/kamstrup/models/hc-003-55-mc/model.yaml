@@ -35,6 +35,10 @@ modelId: kamstrup:hc-003-55-mc:1
 # Be careful: Once you chose a protocolId, it cannot be changed later
 protocolId:
   - kamstrup:generic:1
+# Informative, maintained by Netmore: true when the driver of the first protocolId above ships a
+# BACnet/Modbus mapping (mapping.json, in Netmore's private catalog), so that the device can be
+# exposed through the BACnet and Modbus gateways. Checked: true requires that mapping.
+supportedBACnetModbus: false
 # DataSheet URL (optional)
 specificationURL: https://www.kamstrup.com/da-dk/product-centre/hc-003-55-lorawan/
 # User Guide URL (optional)

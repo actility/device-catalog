@@ -34,6 +34,10 @@ modelId: zenner:srmiu:1
 # Be careful: Once you chose a protocolId, it cannot be changed later
 protocolId:
   - zenner:srmiu:1
+# Informative, maintained by Netmore: true when the driver of the first protocolId above ships a
+# BACnet/Modbus mapping (mapping.json, in Netmore's private catalog), so that the device can be
+# exposed through the BACnet and Modbus gateways. Checked: true requires that mapping.
+supportedBACnetModbus: false
 # DataSheet URL (optional)
 specificationURL: https://www.margatefl.com/DocumentCenter/View/3702/Zenner-Stealth-Reader-MIU
 # User Guide URL (optional)

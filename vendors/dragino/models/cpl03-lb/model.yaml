@@ -26,6 +26,10 @@ LoRaWANCertified: false
 modelId: dragino:cpl03-lb:1
 protocolId:
   - dragino:cpl03-lb:1
+# Informative, maintained by Netmore: true when the driver of the first protocolId above ships a
+# BACnet/Modbus mapping (mapping.json, in Netmore's private catalog), so that the device can be
+# exposed through the BACnet and Modbus gateways. Checked: true requires that mapping.
+supportedBACnetModbus: false
 specificationURL: https://www.dragino.com/products/lorawan-nb-iot-door-sensor-water-leak/item/278-cpl03-lb-ls.html
 userGuideURL: https://www.dragino.com/downloads/index.php?dir=LoRa_End_Node/CPL03-LB/
 sensors:

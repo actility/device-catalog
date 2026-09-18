@@ -17,6 +17,10 @@ LoRaWANCertified: false
 modelId: msight:wt301:1
 protocolId:
   - msight:wt301:1
+# Informative, maintained by Netmore: true when the driver of the first protocolId above ships a
+# BACnet/Modbus mapping (mapping.json, in Netmore's private catalog), so that the device can be
+# exposed through the BACnet and Modbus gateways. Checked: true requires that mapping.
+supportedBACnetModbus: true
 specificationURL: https://www.milesight.com/iot/product/lorawan-sensor/wt30x
 userGuideURL:
 sensors:

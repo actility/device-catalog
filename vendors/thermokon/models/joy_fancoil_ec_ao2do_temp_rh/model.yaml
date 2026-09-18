@@ -33,6 +33,10 @@ modelId: thrmkn:jfcecao2dotemprh:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 # Be careful: Once you chose a protocolId, it cannot be changed later
 protocolId: thrmkn:joylrw:1
+# Informative, maintained by Netmore: true when the driver of the first protocolId above ships a
+# BACnet/Modbus mapping (mapping.json, in Netmore's private catalog), so that the device can be
+# exposed through the BACnet and Modbus gateways. Checked: true requires that mapping.
+supportedBACnetModbus: false
 # DataSheet URL (optional)
 specificationURL: https://www.thermokon.de/direct/fr-fr/categories/g-joy-fc-lorawan?filter_show=1&limit=18&sbscf%3Asbscf1%2Fattr%2F8470%5B0%5D=thermokon%3A%2F%2F%7Br%3D0%2Cb%3D0%2Cl%3Dfr_FR%7D%2F1%2F7%2F8%2F338%2F339%2F8470%2F10570
 # User Guide URL (optional)

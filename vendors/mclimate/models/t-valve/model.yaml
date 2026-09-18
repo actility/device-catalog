@@ -38,6 +38,10 @@ modelId: mclimate:t-valve:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId:
   - mclimate:t-valve:1
+# Informative, maintained by Netmore: true when the driver of the first protocolId above ships a
+# BACnet/Modbus mapping (mapping.json, in Netmore's private catalog), so that the device can be
+# exposed through the BACnet and Modbus gateways. Checked: true requires that mapping.
+supportedBACnetModbus: true
 # DataSheet URL (optional) 
 specificationURL: https://3940008670-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F-McDr-jr9h3qA888r1Yp%2Fuploads%2FWeJw1EnbTCBUsdtkRLwK%2FMClimate-T-Valve-LoRaWAN-Datasheet-en%20.pdf?alt=media&token=41f27bf7-265a-45ce-938d-6be6f4b537a3
 # User Guide URL (optional) 

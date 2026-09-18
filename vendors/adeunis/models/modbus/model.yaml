@@ -37,6 +37,10 @@ modelId: adeunis:modbus:1
 protocolId:
   - adeunis:modbus:1
   - adeunis:modbus:2
+# Informative, maintained by Netmore: true when the driver of the first protocolId above ships a
+# BACnet/Modbus mapping (mapping.json, in Netmore's private catalog), so that the device can be
+# exposed through the BACnet and Modbus gateways. Checked: true requires that mapping.
+supportedBACnetModbus: false
 # DataSheet URL (optional) 
 specificationURL: https://adeunis.freshdesk.com/helpdesk/attachments/22047543672
 # User Guide URL (optional) 

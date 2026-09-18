@@ -17,6 +17,10 @@ LoRaWANCertified: true
 modelId: inbiot:mica:1
 protocolId:
   - inbiot:inbiot-decoder:1
+# Informative, maintained by Netmore: true when the driver of the first protocolId above ships a
+# BACnet/Modbus mapping (mapping.json, in Netmore's private catalog), so that the device can be
+# exposed through the BACnet and Modbus gateways. Checked: true requires that mapping.
+supportedBACnetModbus: false
 specificationURL: https://cdn.prod.website-files.com/62cd3926b5783244d0a104e3/6790df56c42bff75f1f3a22d_a5d3244282390ed8a8d5a7e36d0d66ee_MICA_EN.pdf
 userGuideURL: https://cdn.prod.website-files.com/62cd3926b5783244d0a104e3/662b648f55ec7acd2696b922_3ed4a58768dcc3088bfc93cb03ed2b71_APP_EN.pdf
 

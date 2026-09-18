@@ -33,6 +33,10 @@ modelId: honey-w:HVT-R110:1
 # Be careful: Once you chose a protocolId, it cannot be changed later
 protocolId:
   - honey-w:HVT-R110:1
+# Informative, maintained by Netmore: true when the driver of the first protocolId above ships a
+# BACnet/Modbus mapping (mapping.json, in Netmore's private catalog), so that the device can be
+# exposed through the BACnet and Modbus gateways. Checked: true requires that mapping.
+supportedBACnetModbus: false
 # DataSheet URL (optional)
 specificationURL: https://manuals.plus/m/21224e5913777fe658bd81192eb4c911442660520316a56d11a86616cc0f31de
 # User Guide URL (optional)
