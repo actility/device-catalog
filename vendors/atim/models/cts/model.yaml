@@ -30,15 +30,28 @@ LoRaWANCertified: false
 # Format: `<8 characters max>:<16 characters max>:<digits only>`
 modelId: atim:acw-cts:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
-protocolId: atim:generic:1
+protocolId:
+  - atim:cts:1
+  - atim:generic:1
 # DataSheet URL (optional) 
 specificationURL: https://www.atim.com/wp-content/uploads/documentation/ACW/ACW-CTS/ATIM_ACW-CTS_DS_FR.pdf
 # User Guide URL (optional) 
 userGuideURL: https://www.atim.com/wp-content/uploads/documentation/ACW/ACW-CTS/ATIM_CTS_UG_FR.pdf
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
-    - batteryVoltage:V
+  - current:A
+  - voltage:mV
+  - temperature:Cel
+  - period:minute
+  - batteryVoltage:V
 examples:
+  atim:cts:1:
+    - "Historised current and voltage"
+    - "Keep alive frame"
+    - "Temperature and current"
+    - "Set the keep alive period to once a day"
+    - "Set the datalogging period to 300 minutes"
+    - "Enable the timestamp in uplinks"
   atim:generic:1:
     - "Example Trame de vie"
 LoRaWANRelay:

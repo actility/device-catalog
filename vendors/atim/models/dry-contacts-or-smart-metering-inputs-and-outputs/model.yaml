@@ -38,14 +38,40 @@ LoRaWANCertified: false
 # Format: `<8 characters max>:<16 characters max>:<digits only>`
 modelId: atim:dry-contact-io:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
-protocolId: atim:generic:1
+protocolId:
+  - atim:dind21:1
+  - atim:dind88:1
+  - atim:generic:1
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 
 userGuideURL: 
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
+  - temperature:Cel
+  - batteryVoltage:V
+  - counter:count
+  - status:state
+  - enabled:state
 
+examples:
+  atim:dind21:1:
+    - "Digital inputs, outputs, temperature and counter"
+    - "Keep alive frame"
+    - "Digital inputs, negative temperature and counter"
+    - "Temperature measurement frame"
+    - "Set the keep alive period to once a day"
+    - "Set the datalogging period to 300 minutes"
+    - "Enable the timestamp in uplinks"
+  atim:dind88:1:
+    - "Digital inputs, outputs and two counters"
+    - "Digital inputs, temperature and counter"
+    - "Keep alive frame"
+    - "0-10 V analogue input"
+    - "4-20 mA analogue input"
+    - "Set the keep alive period to once a day"
+    - "Set the datalogging period to 300 minutes"
+    - "Enable the timestamp in uplinks"
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false

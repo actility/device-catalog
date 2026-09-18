@@ -35,15 +35,31 @@ LoRaWANCertified: false
 # Format: `<8 characters max>:<16 characters max>:<digits only>`
 modelId: atim:pt1000-temp:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
-protocolId: atim:generic:1
+protocolId:
+  - atim:tmxp:1
+  - atim:generic:1
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 
 userGuideURL: 
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
+  - temperature:Cel
+  - counter:count
+  - status:state
+  - period:minute
+  - batteryVoltage:V
 
-
+examples:
+  atim:tmxp:1:
+    - "Two temperature probes"
+    - "Historised temperature probes"
+    - "Counter and two temperature probes"
+    - "Keep alive frame"
+    - "Digital input change of state"
+    - "Set the keep alive period to once a day"
+    - "Set the datalogging period to 300 minutes"
+    - "Enable the timestamp in uplinks"
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false

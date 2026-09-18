@@ -36,13 +36,27 @@ LoRaWANCertified: false
 modelId: atim:outdoor-temp-hum:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId:
+  - atim:thx:1
+  - atim:generic:1
 # DataSheet URL (optional) 
 specificationURL: 
 # User Guide URL (optional) 
 userGuideURL: 
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
+  - temperature:Cel
+  - humidity:%RH
+  - period:minute
+  - batteryVoltage:V
 
+examples:
+  atim:thx:1:
+    - "Temperature and humidity"
+    - "Historised temperature and humidity"
+    - "Keep alive frame"
+    - "Set the keep alive period to once a day"
+    - "Set the datalogging period to 300 minutes"
+    - "Enable the timestamp in uplinks"
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false

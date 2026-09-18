@@ -36,15 +36,29 @@ LoRaWANCertified: false
 # Format: `<8 characters max>:<16 characters max>:<digits only>`
 modelId: atim:atex-smart:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
-protocolId: atim:generic:1
+protocolId:
+  - atim:mr2-ex:1
+  - atim:generic:1
 # DataSheet URL (optional) 
 specificationURL: https://www.atim.com/wp-content/uploads/documentation/ACW/ACW-MR2-EX/ENGLISH/ATIM_ACW-MR2-EX_UG_EN.pdf
 # User Guide URL (optional) 
 userGuideURL: https://www.atim.com/wp-content/uploads/documentation/ACW/ACW-MR4/ENGLISH/ATIM_ACW-MRx_DS_EN.pdf
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
-    - batteryVoltage:V
+  - status:state
+  - counter:count
+  - period:minute
+  - batteryVoltage:V
 examples:
+  atim:mr2-ex:1:
+    - "Digital input change of state"
+    - "ECO counter frame (LoRaWAN, 32 bit deltas)"
+    - "ECO counter frame (12 bit deltas)"
+    - "Keep alive frame"
+    - "Historised measurement frame"
+    - "Set the keep alive period to once a day"
+    - "Set the datalogging period to 300 minutes"
+    - "Enable the timestamp in uplinks"
   atim:generic:1:
     - "Example MR2 Trame de vie"
     - "Example MR2 Trame de compteur standard"
