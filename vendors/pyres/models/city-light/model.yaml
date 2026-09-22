@@ -1,0 +1,60 @@
+# Commercial name of the model 
+name: EPnrj City Light
+# Functional description of the product. Maximum 500 characters. 
+description: "Zhaga Book 18 connected luminaire node for street lighting: astronomical clock, DALI ballast control (up to 64 addresses), GNSS positioning, lighting calendars/programs and FUOTA."
+# Logo of the device
+logo: city-light.png
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
+# id: as defined under /profiles.
+# lorawanDeviceProfileID: as defined by LoRa Alliance in https://lora-alliance.org/wp-content/uploads/2020/10/LoRa_Alliance_Vendor_ID_for_QR_Code_02142022.pdf.
+# The lorawanDeviceProfileID consists of 8 upper-case hexadecimal characters, 4 characters for VendorID + 4 characters for VendorProfileID. Please consider using single (') or double (") quotation.
+deviceProfileIds:
+    - id: pyrescom_RFGroup1_1.0.4a_classC
+ 
+# You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
+# Maximum device TX Conducted output power in dBm. 
+maxTxPower:
+# Minimum device TX Conducted output power in dBm. 
+minTxPower:
+# Maximum device TX Radiated output power in dBm.  
+maxTxEIRP:
+# Minimum device TX Radiated output power in dBm.  
+minTxEIRP:
+# Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'  
+# or 'random' (not known, changes over time). 
+motionIndicator:
+ 
+# Is your device certified by the LoRa Alliance? Possible values: true, false. 
+LoRaWANCertified: false
+# Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
+# Format: `<8 characters max>:<16 characters max>:<digits only>`
+modelId: pyrescom:city-light:1
+# <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
+protocolId:
+    - pyrescom:city-light:1
+# Informative, maintained by Netmore: true when the driver of the first protocolId above ships a
+# BACnet/Modbus mapping (mapping.json, in Netmore's private catalog), so that the device can be
+# exposed through the BACnet and Modbus gateways. Checked: true requires that mapping.
+supportedBACnetModbus: false
+# DataSheet URL (optional) 
+specificationURL: https://pyres.com/wp-content/uploads/2025/10/EPnrj-Fiche-technique-City-Light.pdf
+# User Guide URL (optional) 
+userGuideURL:
+# <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
+sensors:
+    - location:GPS
+    - temperature:Cel
+    - voltage:V
+    - current:mA
+
+# Driver examples
+# A list of examples description that are compatible with this model
+examples:
+  pyrescom:city-light:1:
+    - uplink decode 01_association 0101e66ca6e78254
+    - uplink decode 0B_mesure 0B015AEB28671900
+    - uplink decode 14_dali_maintenance 1400000000000000
+
+LoRaWANRelay:
+  canOperateAsARelay: false
+  defaultRelayActivation: false
