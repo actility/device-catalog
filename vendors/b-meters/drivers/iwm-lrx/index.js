@@ -1,10 +1,11 @@
-function readUInt32LE(bytes, startIndex) {
-  return (
-    bytes[startIndex] +
-    (bytes[startIndex + 1] << 8) +
-    (bytes[startIndex + 2] << 16) +
-    (bytes[startIndex + 3] * 0x1000000)
-  ) >>> 0;
+// Counters are 4-byte BCD values, byte order reversed (least significant byte first).
+function readBCD32LE(bytes, startIndex) {
+  var digits = '';
+  for (var i = 3; i >= 0; i--) {
+    var b = bytes[startIndex + i];
+    digits += ((b >> 4) & 0x0f).toString() + (b & 0x0f).toString();
+  }
+  return parseInt(digits, 10);
 }
 
 function decodeTemperatureSigned16(firstByte, secondByte) {
@@ -33,9 +34,9 @@ function decodeUplink(input) {
 
   data.application = bytes[0];
 
-  // Payload description from the user manual: two 4-byte counters, little-endian.
-  data.valueCounter = readUInt32LE(bytes, 1);
-  data.reverseFlowCounter = readUInt32LE(bytes, 5);
+  // Payload description from the user manual: two 4-byte BCD counters.
+  data.valueCounter = readBCD32LE(bytes, 1);
+  data.reverseFlowCounter = readBCD32LE(bytes, 5);
 
   data.indexK = bytes[9];
   if (data.indexK === 0) {

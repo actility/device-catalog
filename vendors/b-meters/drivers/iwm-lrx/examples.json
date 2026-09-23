@@ -1,0 +1,89 @@
+[
+  {
+    "type": "uplink",
+    "description": "Nominal frame from the official user manual: absolute and reverse-flow BCD counters, no temperature block",
+    "input": {
+      "bytes": [
+        68,
+        151,
+        81,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        19,
+        0
+      ],
+      "fPort": 1,
+      "recvTime": "2026-09-22T19:00:00.000+02:00"
+    },
+    "output": {
+      "data": {
+        "application": 68,
+        "valueCounter": 15197,
+        "reverseFlowCounter": 0,
+        "indexK": 0,
+        "kValue": 1,
+        "medium": 0,
+        "vif": 19,
+        "counterUnit": "l",
+        "counterScale": 1,
+        "alarmFlags": 0,
+        "alarms": {
+          "magnetic": false,
+          "removal": false,
+          "sensorFraud": false,
+          "leakage": false,
+          "reverseFlow": false,
+          "lowBattery": false
+        }
+      }
+    },
+    "points": {
+      "volume:1": {
+        "unitId": "l",
+        "record": 15197,
+        "nature": "absolute"
+      },
+      "volume:2": {
+        "unitId": "l",
+        "record": 0,
+        "nature": "reverse"
+      },
+      "status:1": {
+        "unitId": "state",
+        "record": false,
+        "nature": "magnetic alarm"
+      },
+      "status:2": {
+        "unitId": "state",
+        "record": false,
+        "nature": "removal alarm"
+      },
+      "status:3": {
+        "unitId": "state",
+        "record": false,
+        "nature": "sensor fraud alarm"
+      },
+      "status:4": {
+        "unitId": "state",
+        "record": false,
+        "nature": "leakage alarm"
+      },
+      "status:5": {
+        "unitId": "state",
+        "record": false,
+        "nature": "reverse flow alarm"
+      },
+      "status:6": {
+        "unitId": "state",
+        "record": false,
+        "nature": "low battery alarm"
+      }
+    }
+  }
+]
