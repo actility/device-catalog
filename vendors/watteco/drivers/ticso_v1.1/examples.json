@@ -703,6 +703,50 @@
   },
   {
     "type": "uplink",
+    "description": "uplink standard report containing General (TGPHI only) data | payload:110a00530000410c00000800000000003f147ae1",
+    "input": {
+      "bytes": "110a00530000410c00000800000000003f147ae1",
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508Z"
+    },
+    "output": {
+      "data": {
+        "samples": [
+          {
+            "variable": "_TICFrameType",
+            "value": "ICE Generale",
+            "date": "2023-07-19T07:51:25.508Z"
+          },
+          {
+            "variable": "_Descriptor",
+            "value": {
+              "Bytes": "0000080000000000",
+              "Indexes": [
+                43
+              ]
+            },
+            "date": "2023-07-19T07:51:25.508Z"
+          },
+          {
+            "variable": "TGPHI",
+            "value": 0.5799999833106995,
+            "date": "2023-07-19T07:51:25.508Z"
+          }
+        ],
+        "_TICFrameType": "ICE Generale",
+        "_Descriptor": {
+          "Bytes": "0000080000000000",
+          "Indexes": [
+            43
+          ]
+        },
+        "TGPHI": 0.5799999833106995
+      },
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
     "description": "uplink standard report containing ICEp data | payload:110a00530001412c0000000000007ad90106190200001306190a30050f67974ca1ed37bd430000000000008550a55280e5000000",
     "input": {
       "bytes": "110a00530001412c0000000000007ad90106190200001306190a30050f67974ca1ed37bd430000000000008550a55280e5000000",

@@ -1,9 +1,16 @@
 let watteco = require("../../codec_v1.1/decode_uplink.js")
 let units = require("./units.auto.js")
-let batch_param=[3, [{ taglbl: 0, resol: 1, sampletype: 6,lblname: "ACCmg", divide: 1},
-    { taglbl: 1, resol: 0.1, sampletype: 12,lblname: "Tilt", divide: 1000}]]
+
+let batch_param =[3,[
+        {taglbl: 0,resol: 1, sampletype: 6,lblname: "ACCmg", divide: 1},
+        { taglbl: 1, resol: 0.1, sampletype: 12,lblname: "Tilt", divide: 1},
+        { taglbl: 2, resol: 0.001, sampletype: 12,lblname: "distance", divide: 1},
+        { taglbl: 3, resol: 1, sampletype: 6,lblname: "magnitude", divide: 1},
+        { taglbl: 4, resol: 0.1, sampletype: 6,lblname: "battery_voltage", divide: 1000},
+        { taglbl: 5, resol: 0.1, sampletype: 7,lblname: "acc_temperature", divide: 100}]];
 let endpointCorresponder={
-    analog:["Tilt"]
+    analog:["Tilt", "distance"],
+    number:["ACCmg", "magnitude"]
 }
 function decodeUplink(input, optBatchParams = null, optEndpointCorresponder = null, optUnits = null) {
 	if (optBatchParams) { batch_param = optBatchParams;}
