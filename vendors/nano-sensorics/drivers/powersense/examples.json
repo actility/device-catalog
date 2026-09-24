@@ -1,0 +1,693 @@
+[
+  {
+    "type": "uplink",
+    "description": "uplink decode measurement, vendor sample of 2025-07-08",
+    "input": {
+      "bytes": "10190708162D00000772EB0006A49B0001E9D900006CD9000E816C400959E540F79C24404E658C43F2898643B9640144B9FE94",
+      "fPort": 10,
+      "recvTime": "2025-07-08T20:45:05.000Z"
+    },
+    "output": {
+      "data": {
+        "deviceTime": "2025-07-08T22:45:00",
+        "activeEnergyImport": 4881.71,
+        "activeEnergyExport": 4353.55,
+        "reactiveEnergyImport": 1254.01,
+        "reactiveEnergyExport": 278.65,
+        "apparentEnergyExport": 9506.36,
+        "currentDemandL1": 2.14611,
+        "currentDemandL2": 7.73781,
+        "currentDemandL3": 3.22495,
+        "activePowerDemand": 485.0744,
+        "reactivePowerDemand": 370.78128,
+        "apparentPowerDemand": 1487.95557
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "energy:1": {
+        "unitId": "kWh",
+        "nature": "Import",
+        "record": 4881.71
+      },
+      "energy:2": {
+        "unitId": "kWh",
+        "nature": "Export",
+        "record": 4353.55
+      },
+      "reactiveEnergy:1": {
+        "unitId": "kVArh",
+        "nature": "Import",
+        "record": 1254.01
+      },
+      "reactiveEnergy:2": {
+        "unitId": "kVArh",
+        "nature": "Export",
+        "record": 278.65
+      },
+      "apparentEnergy": {
+        "unitId": "kVAh",
+        "nature": "Export",
+        "record": 9506.36
+      },
+      "current:1": {
+        "unitId": "A",
+        "nature": "Phase 1 demand",
+        "record": 2.14611
+      },
+      "current:2": {
+        "unitId": "A",
+        "nature": "Phase 2 demand",
+        "record": 7.73781
+      },
+      "current:3": {
+        "unitId": "A",
+        "nature": "Phase 3 demand",
+        "record": 3.22495
+      },
+      "activePower": {
+        "unitId": "W",
+        "nature": "Demand",
+        "record": 485.0744
+      },
+      "reactivePower": {
+        "unitId": "VAr",
+        "nature": "Demand",
+        "record": 370.78128
+      },
+      "apparentPower": {
+        "unitId": "VA",
+        "nature": "Demand",
+        "record": 1487.95557
+      }
+    },
+    "BACnet": {
+      "deviceTime": {
+        "object": "CHARACTERSTRING_VALUE",
+        "presentValue": "2025-07-08T22:45:00"
+      },
+      "activeEnergyImport": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 4881.71,
+        "units": "KILOWATT_HOURS"
+      },
+      "activeEnergyExport": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 4353.55,
+        "units": "KILOWATT_HOURS"
+      },
+      "reactiveEnergyImport": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 1254.01,
+        "units": "KILOVOLT_AMPERE_HOURS_REACTIVE"
+      },
+      "reactiveEnergyExport": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 278.65,
+        "units": "KILOVOLT_AMPERE_HOURS_REACTIVE"
+      },
+      "apparentEnergyExport": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 9506.36,
+        "units": "KILOVOLT_AMPERE_HOURS"
+      },
+      "currentDemandL1": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 2.14611,
+        "units": "AMPERES"
+      },
+      "currentDemandL2": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 7.73781,
+        "units": "AMPERES"
+      },
+      "currentDemandL3": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 3.22495,
+        "units": "AMPERES"
+      },
+      "activePowerDemand": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 485.0744,
+        "units": "WATTS"
+      },
+      "reactivePowerDemand": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 370.78128,
+        "units": "VOLT_AMPERES_REACTIVE"
+      },
+      "apparentPowerDemand": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 1487.95557,
+        "units": "VOLT_AMPERES"
+      }
+    },
+    "Modbus": {
+      "deviceTime": {
+        "table": "inputRegister",
+        "value": "2025-07-08T22:45:00",
+        "value_type": "STRING"
+      },
+      "activeEnergyImport": {
+        "table": "inputRegister",
+        "value": 4881.71,
+        "value_type": "FLOAT"
+      },
+      "activeEnergyExport": {
+        "table": "inputRegister",
+        "value": 4353.55,
+        "value_type": "FLOAT"
+      },
+      "reactiveEnergyImport": {
+        "table": "inputRegister",
+        "value": 1254.01,
+        "value_type": "FLOAT"
+      },
+      "reactiveEnergyExport": {
+        "table": "inputRegister",
+        "value": 278.65,
+        "value_type": "FLOAT"
+      },
+      "apparentEnergyExport": {
+        "table": "inputRegister",
+        "value": 9506.36,
+        "value_type": "FLOAT"
+      },
+      "currentDemandL1": {
+        "table": "inputRegister",
+        "value": 2.146,
+        "value_type": "FLOAT"
+      },
+      "currentDemandL2": {
+        "table": "inputRegister",
+        "value": 7.738,
+        "value_type": "FLOAT"
+      },
+      "currentDemandL3": {
+        "table": "inputRegister",
+        "value": 3.225,
+        "value_type": "FLOAT"
+      },
+      "activePowerDemand": {
+        "table": "inputRegister",
+        "value": 485.1,
+        "value_type": "FLOAT"
+      },
+      "reactivePowerDemand": {
+        "table": "inputRegister",
+        "value": 370.8,
+        "value_type": "FLOAT"
+      },
+      "apparentPowerDemand": {
+        "table": "inputRegister",
+        "value": 1488,
+        "value_type": "FLOAT"
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink decode measurement, zero active power demand",
+    "input": {
+      "bytes": "10180A0F031E000000589B00003EDE000018A00000041B00009D313FAE0CD13ECA127F408535E800000000437DFFDE44924A49",
+      "fPort": 10,
+      "recvTime": "2024-10-15T01:30:05.000Z"
+    },
+    "output": {
+      "data": {
+        "deviceTime": "2024-10-15T03:30:00",
+        "activeEnergyImport": 226.83,
+        "activeEnergyExport": 160.94,
+        "reactiveEnergyImport": 63.04,
+        "reactiveEnergyExport": 10.51,
+        "apparentEnergyExport": 402.41,
+        "currentDemandL1": 1.35977,
+        "currentDemandL2": 0.39467,
+        "currentDemandL3": 4.16283,
+        "activePowerDemand": 0,
+        "reactivePowerDemand": 253.99948,
+        "apparentPowerDemand": 1170.32141
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "energy:1": {
+        "unitId": "kWh",
+        "nature": "Import",
+        "record": 226.83
+      },
+      "energy:2": {
+        "unitId": "kWh",
+        "nature": "Export",
+        "record": 160.94
+      },
+      "reactiveEnergy:1": {
+        "unitId": "kVArh",
+        "nature": "Import",
+        "record": 63.04
+      },
+      "reactiveEnergy:2": {
+        "unitId": "kVArh",
+        "nature": "Export",
+        "record": 10.51
+      },
+      "apparentEnergy": {
+        "unitId": "kVAh",
+        "nature": "Export",
+        "record": 402.41
+      },
+      "current:1": {
+        "unitId": "A",
+        "nature": "Phase 1 demand",
+        "record": 1.35977
+      },
+      "current:2": {
+        "unitId": "A",
+        "nature": "Phase 2 demand",
+        "record": 0.39467
+      },
+      "current:3": {
+        "unitId": "A",
+        "nature": "Phase 3 demand",
+        "record": 4.16283
+      },
+      "activePower": {
+        "unitId": "W",
+        "nature": "Demand",
+        "record": 0
+      },
+      "reactivePower": {
+        "unitId": "VAr",
+        "nature": "Demand",
+        "record": 253.99948
+      },
+      "apparentPower": {
+        "unitId": "VA",
+        "nature": "Demand",
+        "record": 1170.32141
+      }
+    },
+    "BACnet": {
+      "deviceTime": {
+        "object": "CHARACTERSTRING_VALUE",
+        "presentValue": "2024-10-15T03:30:00"
+      },
+      "activeEnergyImport": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 226.83,
+        "units": "KILOWATT_HOURS"
+      },
+      "activeEnergyExport": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 160.94,
+        "units": "KILOWATT_HOURS"
+      },
+      "reactiveEnergyImport": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 63.04,
+        "units": "KILOVOLT_AMPERE_HOURS_REACTIVE"
+      },
+      "reactiveEnergyExport": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 10.51,
+        "units": "KILOVOLT_AMPERE_HOURS_REACTIVE"
+      },
+      "apparentEnergyExport": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 402.41,
+        "units": "KILOVOLT_AMPERE_HOURS"
+      },
+      "currentDemandL1": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 1.35977,
+        "units": "AMPERES"
+      },
+      "currentDemandL2": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 0.39467,
+        "units": "AMPERES"
+      },
+      "currentDemandL3": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 4.16283,
+        "units": "AMPERES"
+      },
+      "activePowerDemand": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 0,
+        "units": "WATTS"
+      },
+      "reactivePowerDemand": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 253.99948,
+        "units": "VOLT_AMPERES_REACTIVE"
+      },
+      "apparentPowerDemand": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 1170.32141,
+        "units": "VOLT_AMPERES"
+      }
+    },
+    "Modbus": {
+      "deviceTime": {
+        "table": "inputRegister",
+        "value": "2024-10-15T03:30:00",
+        "value_type": "STRING"
+      },
+      "activeEnergyImport": {
+        "table": "inputRegister",
+        "value": 226.83,
+        "value_type": "FLOAT"
+      },
+      "activeEnergyExport": {
+        "table": "inputRegister",
+        "value": 160.94,
+        "value_type": "FLOAT"
+      },
+      "reactiveEnergyImport": {
+        "table": "inputRegister",
+        "value": 63.04,
+        "value_type": "FLOAT"
+      },
+      "reactiveEnergyExport": {
+        "table": "inputRegister",
+        "value": 10.51,
+        "value_type": "FLOAT"
+      },
+      "apparentEnergyExport": {
+        "table": "inputRegister",
+        "value": 402.41,
+        "value_type": "FLOAT"
+      },
+      "currentDemandL1": {
+        "table": "inputRegister",
+        "value": 1.36,
+        "value_type": "FLOAT"
+      },
+      "currentDemandL2": {
+        "table": "inputRegister",
+        "value": 0.395,
+        "value_type": "FLOAT"
+      },
+      "currentDemandL3": {
+        "table": "inputRegister",
+        "value": 4.163,
+        "value_type": "FLOAT"
+      },
+      "activePowerDemand": {
+        "table": "inputRegister",
+        "value": 0,
+        "value_type": "FLOAT"
+      },
+      "reactivePowerDemand": {
+        "table": "inputRegister",
+        "value": 254,
+        "value_type": "FLOAT"
+      },
+      "apparentPowerDemand": {
+        "table": "inputRegister",
+        "value": 1170.3,
+        "value_type": "FLOAT"
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink decode error, frame shorter than 51 bytes",
+    "input": {
+      "bytes": "10190708162D00000772EB0006A49B",
+      "fPort": 10,
+      "recvTime": "2025-07-08T20:45:05.000Z"
+    },
+    "output": {
+      "errors": [
+        "Invalid payload length 15: expected 51 bytes"
+      ],
+      "warnings": []
+    },
+    "points": null,
+    "BACnet": {},
+    "Modbus": {}
+  },
+  {
+    "type": "uplink",
+    "description": "uplink decode error, unsupported fPort",
+    "input": {
+      "bytes": "10190708162D00000772EB0006A49B0001E9D900006CD9000E816C400959E540F79C24404E658C43F2898643B9640144B9FE94",
+      "fPort": 2,
+      "recvTime": "2025-07-08T20:45:05.000Z"
+    },
+    "output": {
+      "errors": [
+        "Unsupported fPort 2: the PowerSense sends its measurements on fPort 10"
+      ],
+      "warnings": []
+    },
+    "points": null,
+    "BACnet": {},
+    "Modbus": {}
+  },
+  {
+    "type": "downlink-encode",
+    "description": "downlink encode uplink interval 1 minute",
+    "input": {
+      "data": {
+        "uplinkInterval": 1
+      }
+    },
+    "output": {
+      "bytes": "07F81018D00003060001000100016C71",
+      "fPort": 10,
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "downlink encode uplink interval 2 minutes",
+    "input": {
+      "data": {
+        "uplinkInterval": 2
+      }
+    },
+    "output": {
+      "bytes": "08F81018D00003060002000200029870",
+      "fPort": 10,
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "downlink encode uplink interval 3 minutes",
+    "input": {
+      "data": {
+        "uplinkInterval": 3
+      }
+    },
+    "output": {
+      "bytes": "09F81018D000030600030003000335B0",
+      "fPort": 10,
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "downlink encode uplink interval 4 minutes",
+    "input": {
+      "data": {
+        "uplinkInterval": 4
+      }
+    },
+    "output": {
+      "bytes": "0AF81018D00003060004000400047073",
+      "fPort": 10,
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "downlink encode uplink interval 5 minutes",
+    "input": {
+      "data": {
+        "uplinkInterval": 5
+      }
+    },
+    "output": {
+      "bytes": "01F81018D0000306000500050005DDB3",
+      "fPort": 10,
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "downlink encode uplink interval 6 minutes",
+    "input": {
+      "data": {
+        "uplinkInterval": 6
+      }
+    },
+    "output": {
+      "bytes": "02F81018D000030600060006000629B2",
+      "fPort": 10,
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "downlink encode uplink interval 7 minutes",
+    "input": {
+      "data": {
+        "uplinkInterval": 7
+      }
+    },
+    "output": {
+      "bytes": "03F81018D00003060007000700078472",
+      "fPort": 10,
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "downlink encode uplink interval 8 minutes",
+    "input": {
+      "data": {
+        "uplinkInterval": 8
+      }
+    },
+    "output": {
+      "bytes": "04F81018D0000306000800080008A074",
+      "fPort": 10,
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "downlink encode uplink interval 9 minutes",
+    "input": {
+      "data": {
+        "uplinkInterval": 9
+      }
+    },
+    "output": {
+      "bytes": "05F81018D00003060009000900090DB4",
+      "fPort": 10,
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "downlink encode uplink interval 10 minutes",
+    "input": {
+      "data": {
+        "uplinkInterval": 10
+      }
+    },
+    "output": {
+      "bytes": "06F81018D0000306000A000A000AF9B5",
+      "fPort": 10,
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "downlink encode uplink interval 15 minutes (default)",
+    "inputBACnet": {
+      "uplinkInterval": {
+        "object": "ANALOG_VALUE",
+        "property": "PRESENT_VALUE",
+        "value": 15
+      }
+    },
+    "inputModbus": {
+      "uplinkInterval": {
+        "table": "holdingRegister",
+        "operation": "setRegister",
+        "value": 15
+      }
+    },
+    "input": {
+      "data": {
+        "uplinkInterval": 15
+      }
+    },
+    "output": {
+      "bytes": "0BF81018D0000306000F000F000FE5B7",
+      "fPort": 10,
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "downlink encode error, unsupported uplink interval 12 minutes",
+    "input": {
+      "data": {
+        "uplinkInterval": 12
+      }
+    },
+    "output": {
+      "errors": [
+        "Unsupported uplinkInterval 12: supported values are 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15 minutes"
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "downlink decode uplink interval 0B...E5B7",
+    "input": {
+      "bytes": "0BF81018D0000306000F000F000FE5B7",
+      "fPort": 10,
+      "recvTime": "2025-07-08T20:46:00.000Z"
+    },
+    "output": {
+      "data": {
+        "uplinkInterval": 15
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "downlink decode uplink interval 07...6C71",
+    "input": {
+      "bytes": "07F81018D00003060001000100016C71",
+      "fPort": 10,
+      "recvTime": "2025-07-08T20:46:00.000Z"
+    },
+    "output": {
+      "data": {
+        "uplinkInterval": 1
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "downlink decode error, bad CRC",
+    "input": {
+      "bytes": "0BF81018D0000306000F000F000FE5B8",
+      "fPort": 10,
+      "recvTime": "2025-07-08T20:46:00.000Z"
+    },
+    "output": {
+      "errors": [
+        "Unknown downlink: not an uplink interval request with a valid CRC"
+      ],
+      "warnings": []
+    }
+  }
+]
