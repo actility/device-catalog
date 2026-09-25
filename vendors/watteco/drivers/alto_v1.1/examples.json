@@ -21,6 +21,52 @@
         "Tilt_unit": "deg"
       },
       "warnings": []
+    },
+    "points": {
+      "angle": {
+        "unitId": "deg",
+        "records": [
+          {
+            "value": 13,
+            "eventTime": "2023-07-19T07:51:25.508Z"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing distance value | payload:310A000C00553940160000",
+    "input": {
+      "bytes": "310a000c00553940160000",
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508Z"
+    },
+    "output": {
+      "data": {
+        "samples": [
+          {
+            "variable": "distance",
+            "value": 2.34375,
+            "date": "2023-07-19T07:51:25.508Z",
+            "unit": "m"
+          }
+        ],
+        "distance": 2.34375,
+        "distance_unit": "m"
+      },
+      "warnings": []
+    },
+    "points": {
+      "distance": {
+        "unitId": "m",
+        "records": [
+          {
+            "value": 2.34375,
+            "eventTime": "2023-07-19T07:51:25.508Z"
+          }
+        ]
+      }
     }
   },
   {
@@ -43,7 +89,8 @@
         "firmware": "3.5.2.5602"
       },
       "warnings": []
-    }
+    },
+    "points": null
   },
   {
     "type": "uplink",
@@ -67,6 +114,17 @@
         "disposable_battery_voltage_unit": "V"
       },
       "warnings": []
+    },
+    "points": {
+      "batteryVoltage": {
+        "unitId": "V",
+        "records": [
+          {
+            "value": 3.688,
+            "eventTime": "2023-07-19T07:51:25.508Z"
+          }
+        ]
+      }
     }
   },
   {
@@ -89,7 +147,8 @@
         "message_type": "unconfirmed"
       },
       "warnings": []
-    }
+    },
+    "points": null
   },
   {
     "type": "uplink",
@@ -154,6 +213,47 @@
         "acc_temperature_unit": "Cel"
       },
       "warnings": []
+    },
+    "points": {
+      "angle": {
+        "unitId": "deg",
+        "records": [
+          {
+            "value": 0,
+            "eventTime": "2023-07-19T07:46:42.508Z"
+          }
+        ]
+      },
+      "distance": {
+        "unitId": "m",
+        "records": [
+          {
+            "value": 2.3440001010894775,
+            "eventTime": "2023-07-19T07:51:21.508Z"
+          }
+        ]
+      },
+      "temperature": {
+        "unitId": "Cel",
+        "records": [
+          {
+            "value": 36,
+            "eventTime": "2023-07-19T07:46:42.508Z"
+          },
+          {
+            "value": 36.005,
+            "eventTime": "2023-07-19T07:47:42.508Z"
+          },
+          {
+            "value": 36,
+            "eventTime": "2023-07-19T07:48:43.508Z"
+          },
+          {
+            "value": 36.005,
+            "eventTime": "2023-07-19T07:50:43.508Z"
+          }
+        ]
+      }
     }
   },
   {
@@ -165,7 +265,14 @@
       }
     },
     "output": {
-      "bytes": [17, 0, 0, 0, 0, 2],
+      "bytes": [
+        17,
+        0,
+        0,
+        0,
+        0,
+        2
+      ],
       "fPort": 125,
       "warnings": []
     }
@@ -179,7 +286,14 @@
       }
     },
     "output": {
-      "bytes": [17, 0, 0, 0, 0, 2],
+      "bytes": [
+        17,
+        0,
+        0,
+        0,
+        0,
+        2
+      ],
       "fPort": 100,
       "warnings": []
     }
@@ -193,7 +307,16 @@
       }
     },
     "output": {
-      "bytes": [17, 5, 128, 4, 0, 0, 8, 1],
+      "bytes": [
+        17,
+        5,
+        128,
+        4,
+        0,
+        0,
+        8,
+        1
+      ],
       "fPort": 125,
       "warnings": []
     }
@@ -207,7 +330,13 @@
       }
     },
     "output": {
-      "bytes": [17, 80, 0, 80, 0],
+      "bytes": [
+        17,
+        80,
+        0,
+        80,
+        0
+      ],
       "fPort": 125,
       "warnings": []
     }
@@ -221,7 +350,13 @@
       }
     },
     "output": {
-      "bytes": [17, 80, 0, 80, 7],
+      "bytes": [
+        17,
+        80,
+        0,
+        80,
+        7
+      ],
       "fPort": 125,
       "warnings": []
     }
@@ -235,7 +370,16 @@
       }
     },
     "output": {
-      "bytes": [17, 5, 128, 4, 0, 1, 32, 3],
+      "bytes": [
+        17,
+        5,
+        128,
+        4,
+        0,
+        1,
+        32,
+        3
+      ],
       "fPort": 125,
       "warnings": []
     }
@@ -249,7 +393,15 @@
       }
     },
     "output": {
-      "bytes": [17, 80, 128, 4, 0, 0, 60],
+      "bytes": [
+        17,
+        80,
+        128,
+        4,
+        0,
+        0,
+        60
+      ],
       "fPort": 125,
       "warnings": []
     }
