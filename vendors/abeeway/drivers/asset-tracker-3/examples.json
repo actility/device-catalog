@@ -1921,7 +1921,7 @@
     }
   },
   {
-    "description": "Response of a parameter class configuration set request (BLE_SCAN1 – errors)",
+    "description": "Response of a parameter class configuration set request (BLE_SCAN1 \u2013 errors)",
     "type": "uplink",
     "input": {
       "bytes": "a1620e795001058d10e9080500050b05",
@@ -7716,17 +7716,35 @@
             {
               "group": "LR11xx",
               "parameters": [
-                { "parameterName": "lrRbeaconType",          "parameterValue": "LONG_ID" },
-                { "parameterName": "lrRbeaconSosPeriod",     "parameterValue": 0 },
-                { "parameterName": "lrRbeaconMotionPeriod",  "parameterValue": 0 },
-                { "parameterName": "lrRbeaconStaticPeriod",  "parameterValue": 0 },
-                { "parameterName": "lrRbeaconRangingTimeout","parameterValue": 120 }
+                {
+                  "parameterName": "lrRbeaconType",
+                  "parameterValue": "LONG_ID"
+                },
+                {
+                  "parameterName": "lrRbeaconSosPeriod",
+                  "parameterValue": 0
+                },
+                {
+                  "parameterName": "lrRbeaconMotionPeriod",
+                  "parameterValue": 0
+                },
+                {
+                  "parameterName": "lrRbeaconStaticPeriod",
+                  "parameterValue": 0
+                },
+                {
+                  "parameterName": "lrRbeaconRangingTimeout",
+                  "parameterValue": 120
+                }
               ]
             },
             {
               "group": "CELLULAR",
               "parameters": [
-                { "parameterName": "cellRestrictedPlmns", "parameterValue": "" }
+                {
+                  "parameterName": "cellRestrictedPlmns",
+                  "parameterValue": ""
+                }
               ]
             }
           ]
@@ -7753,10 +7771,22 @@
         "setParameterClass": {
           "group": "LR11xx",
           "parameters": [
-            { "parameterName": "lrRbeaconSosPeriod",     "parameterValue": 5   },
-            { "parameterName": "lrRbeaconMotionPeriod",  "parameterValue": 3   },
-            { "parameterName": "lrRbeaconStaticPeriod",  "parameterValue": 2   },
-            { "parameterName": "lrRbeaconRangingTimeout","parameterValue": 120 }
+            {
+              "parameterName": "lrRbeaconSosPeriod",
+              "parameterValue": 5
+            },
+            {
+              "parameterName": "lrRbeaconMotionPeriod",
+              "parameterValue": 3
+            },
+            {
+              "parameterName": "lrRbeaconStaticPeriod",
+              "parameterValue": 2
+            },
+            {
+              "parameterName": "lrRbeaconRangingTimeout",
+              "parameterValue": 120
+            }
           ]
         }
       }
@@ -7780,7 +7810,10 @@
         "setParameterClass": {
           "group": "CELLULAR",
           "parameters": [
-            { "parameterName": "cellRestrictedPlmns", "parameterValue": "hello" }
+            {
+              "parameterName": "cellRestrictedPlmns",
+              "parameterValue": "hello"
+            }
           ]
         }
       }
@@ -7823,10 +7856,22 @@
           "parameterClassConfigurationSet": {
             "group": "LR11xx",
             "parameters": [
-              { "parameterName": "lrRbeaconSosPeriod",     "status": "SUCCESS" },
-              { "parameterName": "lrRbeaconMotionPeriod",  "status": "SUCCESS" },
-              { "parameterName": "lrRbeaconStaticPeriod",  "status": "SUCCESS" },
-              { "parameterName": "lrRbeaconRangingTimeout","status": "SUCCESS" }
+              {
+                "parameterName": "lrRbeaconSosPeriod",
+                "status": "SUCCESS"
+              },
+              {
+                "parameterName": "lrRbeaconMotionPeriod",
+                "status": "SUCCESS"
+              },
+              {
+                "parameterName": "lrRbeaconStaticPeriod",
+                "status": "SUCCESS"
+              },
+              {
+                "parameterName": "lrRbeaconRangingTimeout",
+                "status": "SUCCESS"
+              }
             ]
           }
         }
@@ -7871,7 +7916,10 @@
           "parameterClassConfigurationSet": {
             "group": "CELLULAR",
             "parameters": [
-              { "parameterName": "cellRestrictedPlmns", "status": "BAD_VALUE" }
+              {
+                "parameterName": "cellRestrictedPlmns",
+                "status": "BAD_VALUE"
+              }
             ]
           }
         }
@@ -7979,5 +8027,313 @@
       "errors": [],
       "warnings": []
     }
+  },
+  {
+    "description": "Notification shock uplink (fw v1.6 format: 4-byte GADD, gaddIndex=0, nbShocks=0)",
+    "type": "uplink",
+    "input": {
+      "bytes": "0900875432ff68001d04010000000000",
+      "recvTime": "2024-06-10T08:22:44.2260+02:00",
+      "fPort": 19
+    },
+    "output": {
+      "data": {
+        "header": {
+          "ackToken": 1,
+          "multiFrame": false,
+          "batteryLevel": "CHARGING",
+          "sos": false,
+          "timestamp": "2024-06-09T21:37:24.000Z",
+          "type": "NOTIFICATION"
+        },
+        "payload": "0900875432ff68001d04010000000000",
+        "notification": {
+          "notificationClass": "ACCELEROMETER",
+          "accelerometer": {
+            "accelerationVector": [
+              -152,
+              29,
+              1025
+            ],
+            "gaddIndex": 0,
+            "numberShocks": 0
+          },
+          "notificationType": "SHOCK"
+        }
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "acceleration:1": {
+        "unitId": "mgravity",
+        "record": -152,
+        "nature": "Acceleration X"
+      },
+      "acceleration:2": {
+        "unitId": "mgravity",
+        "record": 29,
+        "nature": "Acceleration Y"
+      },
+      "acceleration:3": {
+        "unitId": "mgravity",
+        "record": 1025,
+        "nature": "Acceleration Z"
+      },
+      "counter": {
+        "unitId": "count",
+        "record": 0,
+        "nature": "Shocks"
+      }
+    }
+  },
+  {
+    "description": "notification system status resetCause=AOS_ERROR_HW_SWDOG (regression test - inserted at value 8 in fw v1.6)",
+    "type": "uplink",
+    "input": {
+      "bytes": "0900070c001d400100c20100000022010800000000241a000d840029000000000000000000000029e1173ed6",
+      "recvTime": "2024-06-10T09:42:13.733+02:00",
+      "fPort": 3
+    },
+    "output": {
+      "data": {
+        "header": {
+          "sos": false,
+          "type": "NOTIFICATION",
+          "ackToken": 1,
+          "multiFrame": false,
+          "batteryLevel": "CHARGING",
+          "timestamp": "2024-06-10T00:30:04.000Z"
+        },
+        "notification": {
+          "notificationClass": "SYSTEM",
+          "notificationType": "STATUS",
+          "system": {
+            "status": {
+              "currentTemperature": 29,
+              "resetCause": "AOS_ERROR_HW_SWDOG",
+              "pageId": 0,
+              "AT3Version": "1.0.194",
+              "configurationVersion": "1.0.0.0",
+              "lrHwVersion": {
+                "hardwareVersion": "34",
+                "hardwareType": "1",
+                "firmwareVersion": "8"
+              },
+              "hwBatchId": 0,
+              "hwBomId": 0,
+              "maxTemperature": 36,
+              "minTemperature": 26,
+              "motionPercent": 0,
+              "batteryVoltage": 3460,
+              "totalConsumption": 41,
+              "cellularConsumption": 0,
+              "gnssConsumption": 0,
+              "wifiConsumption": 0,
+              "lrGnssConsumption": 0,
+              "bleConsumption": 0,
+              "mcuConsumption": 41,
+              "globalCrc": "e1173ed6"
+            }
+          }
+        },
+        "payload": "0900070c001d400100c20100000022010800000000241a000d840029000000000000000000000029e1173ed6"
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "batteryVoltage": {
+        "unitId": "mV",
+        "record": 3460
+      },
+      "temperature:1": {
+        "unitId": "Cel",
+        "record": 29,
+        "nature": "Current"
+      },
+      "temperature:2": {
+        "unitId": "Cel",
+        "record": 36,
+        "nature": "Maximum"
+      },
+      "temperature:3": {
+        "unitId": "Cel",
+        "record": 26,
+        "nature": "Minimum"
+      },
+      "percentage": {
+        "unitId": "%",
+        "record": 0,
+        "nature": "Motion"
+      }
+    }
+  },
+  {
+    "description": "notification shock uplink with non-zero 4-byte GADD (fw v1.6 regression test: gaddIndex=120000, nbShocks=3)",
+    "type": "uplink",
+    "input": {
+      "bytes": "0900875432ff68001d04010001d4c003",
+      "recvTime": "2024-06-10T08:22:44.2260+02:00",
+      "fPort": 19
+    },
+    "output": {
+      "data": {
+        "header": {
+          "ackToken": 1,
+          "multiFrame": false,
+          "batteryLevel": "CHARGING",
+          "sos": false,
+          "timestamp": "2024-06-09T21:37:24.000Z",
+          "type": "NOTIFICATION"
+        },
+        "payload": "0900875432ff68001d04010001d4c003",
+        "notification": {
+          "notificationClass": "ACCELEROMETER",
+          "notificationType": "SHOCK",
+          "accelerometer": {
+            "accelerationVector": [
+              -152,
+              29,
+              1025
+            ],
+            "gaddIndex": 120000,
+            "numberShocks": 3
+          }
+        }
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "acceleration:1": {
+        "unitId": "mgravity",
+        "record": -152,
+        "nature": "Acceleration X"
+      },
+      "acceleration:2": {
+        "unitId": "mgravity",
+        "record": 29,
+        "nature": "Acceleration Y"
+      },
+      "acceleration:3": {
+        "unitId": "mgravity",
+        "record": 1025,
+        "nature": "Acceleration Z"
+      },
+      "counter": {
+        "unitId": "count",
+        "record": 3,
+        "nature": "Shocks"
+      }
+    }
+  },
+  {
+    "description": "request set cellLpmRecoveryTimeout=3600 (fw v1.6 new parameter)",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "downMessageType": "REQUEST",
+        "requestType": "PARAM_CLASS_CONFIGURATION_SET",
+        "ackToken": 1,
+        "setParameterClass": {
+          "group": "CELLULAR",
+          "parameters": [
+            {
+              "parameterName": "cellLpmRecoveryTimeout",
+              "parameterValue": 3600
+            }
+          ]
+        }
+      }
+    },
+    "output": {
+      "fPort": 3,
+      "bytes": "11010a1c2100000e10",
+      "errors": [],
+      "warnings": []
+    },
+    "points": {}
+  },
+  {
+    "description": "request set bleScanPresencePeriod=60 (fw v1.6 new parameter)",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "downMessageType": "REQUEST",
+        "requestType": "PARAM_CLASS_CONFIGURATION_SET",
+        "ackToken": 2,
+        "setParameterClass": {
+          "group": "BLE",
+          "parameters": [
+            {
+              "parameterName": "bleScanPresencePeriod",
+              "parameterValue": 60
+            }
+          ]
+        }
+      }
+    },
+    "output": {
+      "fPort": 3,
+      "bytes": "12010b08210000003c",
+      "errors": [],
+      "warnings": []
+    },
+    "points": {}
+  },
+  {
+    "description": "request set bleScanPresenceMaxTime=300 (fw v1.6 new parameter)",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "downMessageType": "REQUEST",
+        "requestType": "PARAM_CLASS_CONFIGURATION_SET",
+        "ackToken": 3,
+        "setParameterClass": {
+          "group": "BLE",
+          "parameters": [
+            {
+              "parameterName": "bleScanPresenceMaxTime",
+              "parameterValue": 300
+            }
+          ]
+        }
+      }
+    },
+    "output": {
+      "fPort": 3,
+      "bytes": "13010b09210000012c",
+      "errors": [],
+      "warnings": []
+    },
+    "points": {}
+  },
+  {
+    "description": "request set bleScanNbBeacons=50 BLE_SCAN1 (fw v1.6: max raised from 20 to 100)",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "downMessageType": "REQUEST",
+        "requestType": "PARAM_CLASS_CONFIGURATION_SET",
+        "ackToken": 4,
+        "setParameterClass": {
+          "group": "BLE_SCAN1",
+          "parameters": [
+            {
+              "parameterName": "bleScanNbBeacons",
+              "parameterValue": 50
+            }
+          ]
+        }
+      }
+    },
+    "output": {
+      "fPort": 3,
+      "bytes": "1401050c2100000032",
+      "errors": [],
+      "warnings": []
+    },
+    "points": {}
   }
 ]
