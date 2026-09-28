@@ -30,6 +30,7 @@ const ResetCause = Object.freeze({
     AOS_ERROR_HW_USAGE: "AOS_ERROR_HW_USAGE",
     AOS_ERROR_HW_IRQ: "AOS_ERROR_HW_IRQ",
     AOS_ERROR_HW_WDOG: "AOS_ERROR_HW_WDOG",
+    AOS_ERROR_HW_SWDOG: "AOS_ERROR_HW_SWDOG",
     AOS_ERROR_HW_BOR: "AOS_ERROR_HW_BOR",
     AOS_ERROR_SW_ST_HAL_ERROR: "AOS_ERROR_SW_ST_HAL_ERROR",
     AOS_ERROR_SW_FREERTOS_ASSERT: "AOS_ERROR_SW_FREERTOS_ASSERT",
@@ -375,22 +376,24 @@ function determineResetCause(value){
         case 7:
             return ResetCause.AOS_ERROR_HW_WDOG;
         case 8:
-            return ResetCause.AOS_ERROR_HW_BOR;
+            return ResetCause.AOS_ERROR_HW_SWDOG;
         case 9:
-            return ResetCause.AOS_ERROR_SW_ST_HAL_ERROR;
+            return ResetCause.AOS_ERROR_HW_BOR;
         case 10:
-            return ResetCause.AOS_ERROR_SW_FREERTOS_ASSERT;
+            return ResetCause.AOS_ERROR_SW_ST_HAL_ERROR;
         case 11:
-            return ResetCause.AOS_ERROR_SW_FREERTOS_TASK_OVF;
+            return ResetCause.AOS_ERROR_SW_FREERTOS_ASSERT;
         case 12:
-            return ResetCause.AOS_ERROR_SW_BLE_ASSERT;
+            return ResetCause.AOS_ERROR_SW_FREERTOS_TASK_OVF;
         case 13:
-            return ResetCause.AOS_ERROR_SW_RTC_FAIL;
+            return ResetCause.AOS_ERROR_SW_BLE_ASSERT;
         case 14:
-            return ResetCause.AOS_ERROR_SW_LORA_FAIL;
+            return ResetCause.AOS_ERROR_SW_RTC_FAIL;
         case 15:
-            return ResetCause.AOS_ERROR_SW_DEBUG;
+            return ResetCause.AOS_ERROR_SW_LORA_FAIL;
         case 16:
+            return ResetCause.AOS_ERROR_SW_DEBUG;
+        case 17:
             return ResetCause.AOS_ERROR_SW_APP_START;
         default:
             throw new Error("Unknown Reset Cause");

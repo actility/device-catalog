@@ -4,6 +4,8 @@ name: Ellenex PLS2-L driver
 description: A driver that is able to decode/encode data from LoRaWAN Operated Low Power Level Transmitter for Liquid Media
 # Mandatory - id of the company that developed the driver
 # This id will be used to construct the id of the driver (Should be in lowercase, no special characters, maximum 8 characters)
+# This driver was written by the manufacturer (Ellenex), not by Actility. producerId stays "actility" on purpose:
+# changing it would give the deployed driver a new identity on every platform, a large impact for a minor benefit (TXIF-4325).
 producerId: actility
 # Email of the developer
 developerEmail:

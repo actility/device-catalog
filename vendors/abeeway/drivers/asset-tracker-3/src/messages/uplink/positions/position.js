@@ -81,7 +81,7 @@ function determinePositionHeader(payload, startingByte){
             break;
     }
 
-    var typeValue = payload[startingByte] & 0x0F;
+    var typeValue = payload[startingByte] & 0x1F;
     switch (typeValue){
         case 0:
             positionMessage.positionType = PositionType.LR11xx_A_GNSS;

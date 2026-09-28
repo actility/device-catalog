@@ -24,23 +24,31 @@ function determineAccelerationVector(payload, xOffset, yOffset, zOffset){
     return [x,y,z];
 }
 function determineGaddIndex(payload){
-    if (payload.length < 11){
-        throw new Error("The payload is not valid to determine GADD index");
+    if (payload.length >= 16) {
+        // fw v1.6+: 4-byte GADD index at offset 11-14
+        return ((payload[11] << 24) | (payload[12] << 16) | (payload[13] << 8) | payload[14]) >>> 0;
+    } else if (payload.length >= 13) {
+        // fw v1.5: 1-byte GADD index at offset 11
+        return payload[11];
     }
-return payload[11]
-}  
+    throw new Error("The payload is not valid to determine GADD index");
+}
 function determineMotion(payload){
     if (payload.length < 11){
         throw new Error("The payload is not valid to determine Motion");
     }
 return payload[11]
-}  
+}
 function determineNumberShocks(payload){
-    if (payload.length < 12){
-        throw new Error("The payload is not valid to determine number of shocks");
+    if (payload.length >= 16) {
+        // fw v1.6+: number of shocks at offset 15
+        return payload[15];
+    } else if (payload.length >= 13) {
+        // fw v1.5: number of shocks at offset 12
+        return payload[12];
     }
-return payload[12]
-}   
+    throw new Error("The payload is not valid to determine number of shocks");
+}
 
 const AcceleroType = Object.freeze({
     MOTION_START: "MOTION_START",
@@ -53,6 +61,6 @@ module.exports = {
     determineAccelerationVector: determineAccelerationVector,
     determineGaddIndex : determineGaddIndex,
     determineNumberShocks : determineNumberShocks,
-    determineMotion: determineMotion, 
+    determineMotion: determineMotion,
     AcceleroType: AcceleroType,
 }
