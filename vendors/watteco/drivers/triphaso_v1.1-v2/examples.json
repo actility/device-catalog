@@ -1,0 +1,2304 @@
+[
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing state of pin 1 | payload:110A000F00551001",
+    "input": {
+      "bytes": "110a000f00551001",
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": {
+        "samples": [
+          {
+            "variable": "pin_state",
+            "value": true,
+            "date": "2023-07-19T07:51:25.508306410Z"
+          }
+        ],
+        "pin_state": true
+      },
+      "warnings": []
+    },
+    "points": {
+      "status": {
+        "unitId": "state",
+        "records": [
+          {
+            "value": true,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ]
+      }
+    },
+    "BACnet": {
+      "pin_state": {
+        "object": "BINARY_INPUT",
+        "presentValue": 1
+      }
+    },
+    "Modbus": {
+      "pin_state": {
+        "table": "discreteInput",
+        "value": 1,
+        "value_type": "BOOL"
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing number of pulse detection on input 1 | payload:110A000F04022300000000",
+    "input": {
+      "bytes": "110a000f04022300000000",
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": {
+        "samples": [
+          {
+            "variable": "index",
+            "value": 0,
+            "date": "2023-07-19T07:51:25.508306410Z"
+          }
+        ],
+        "index": 0
+      },
+      "warnings": []
+    },
+    "points": {
+      "counter": {
+        "unitId": "count",
+        "records": [
+          {
+            "value": 0,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ]
+      }
+    },
+    "BACnet": {
+      "index": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 0,
+        "units": "NO_UNITS"
+      }
+    },
+    "Modbus": {
+      "index": {
+        "table": "inputRegister",
+        "value": 0,
+        "value_type": "UINT32"
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing state value | payload:110A000600001001",
+    "input": {
+      "bytes": "110a000600001001",
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": {
+        "samples": [
+          {
+            "variable": "output",
+            "value": "ON",
+            "date": "2023-07-19T07:51:25.508306410Z"
+          }
+        ],
+        "output": "ON"
+      },
+      "warnings": []
+    },
+    "points": {
+      "status": {
+        "unitId": "state",
+        "records": [
+          {
+            "value": true,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ]
+      }
+    },
+    "BACnet": {
+      "output": {
+        "object": "CHARACTERSTRING_VALUE",
+        "presentValue": "ON"
+      }
+    },
+    "Modbus": {
+      "output": {
+        "table": "inputRegister",
+        "value": "ON",
+        "value_type": "STRING"
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing state value | payload:110A000600001000",
+    "input": {
+      "bytes": "110a000600001000",
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": {
+        "samples": [
+          {
+            "variable": "output",
+            "value": "OFF",
+            "date": "2023-07-19T07:51:25.508306410Z"
+          }
+        ],
+        "output": "OFF"
+      },
+      "warnings": []
+    },
+    "points": {
+      "status": {
+        "unitId": "state",
+        "records": [
+          {
+            "value": false,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ]
+      }
+    },
+    "BACnet": {
+      "output": {
+        "object": "CHARACTERSTRING_VALUE",
+        "presentValue": "OFF"
+      }
+    },
+    "Modbus": {
+      "output": {
+        "table": "inputRegister",
+        "value": "OFF",
+        "value_type": "STRING"
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing energy/power value | payload:710A800A000041200003A96A00000000000092990000705000007C7F00000000000000C000000F6F",
+    "input": {
+      "bytes": "710a800a000041200003a96a00000000000092990000705000007c7f00000000000000c000000f6f",
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": {
+        "samples": [
+          {
+            "variable": "positive_active_energy_abc",
+            "value": 239978,
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "Wh"
+          },
+          {
+            "variable": "negative_active_energy_abc",
+            "value": 0,
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "Wh"
+          },
+          {
+            "variable": "positive_reactive_energy_abc",
+            "value": 37529,
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "VArh"
+          },
+          {
+            "variable": "negative_reactive_energy_abc",
+            "value": 28752,
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "VArh"
+          },
+          {
+            "variable": "positive_active_power_abc",
+            "value": 31871,
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "W"
+          },
+          {
+            "variable": "negative_active_power_abc",
+            "value": 0,
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "W"
+          },
+          {
+            "variable": "positive_reactive_power_abc",
+            "value": 192,
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "VAr"
+          },
+          {
+            "variable": "negative_reactive_power_abc",
+            "value": 3951,
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "VAr"
+          }
+        ],
+        "positive_active_energy_abc": 239978,
+        "negative_active_energy_abc": 0,
+        "positive_reactive_energy_abc": 37529,
+        "negative_reactive_energy_abc": 28752,
+        "positive_active_power_abc": 31871,
+        "negative_active_power_abc": 0,
+        "positive_reactive_power_abc": 192,
+        "negative_reactive_power_abc": 3951,
+        "positive_active_energy_abc_unit": "Wh",
+        "negative_active_energy_abc_unit": "Wh",
+        "positive_reactive_energy_abc_unit": "VArh",
+        "negative_reactive_energy_abc_unit": "VArh",
+        "positive_active_power_abc_unit": "W",
+        "negative_active_power_abc_unit": "W",
+        "positive_reactive_power_abc_unit": "VAr",
+        "negative_reactive_power_abc_unit": "VAr"
+      },
+      "warnings": []
+    },
+    "points": {
+      "energy:4": {
+        "unitId": "Wh",
+        "records": [
+          {
+            "value": 239978,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ],
+        "nature": "Positive active energy"
+      },
+      "energy:8": {
+        "unitId": "Wh",
+        "records": [
+          {
+            "value": 0,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ],
+        "nature": "Negative active energy"
+      },
+      "reactiveEnergy:4": {
+        "unitId": "VArh",
+        "records": [
+          {
+            "value": 37529,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ],
+        "nature": "Positive reactive energy"
+      },
+      "reactiveEnergy:8": {
+        "unitId": "VArh",
+        "records": [
+          {
+            "value": 28752,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ],
+        "nature": "Negative reactive energy"
+      },
+      "activePower:4": {
+        "unitId": "W",
+        "records": [
+          {
+            "value": 31871,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ],
+        "nature": "Positive active power"
+      },
+      "activePower:8": {
+        "unitId": "W",
+        "records": [
+          {
+            "value": 0,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ],
+        "nature": "Negative active power"
+      },
+      "reactivePower:4": {
+        "unitId": "VAr",
+        "records": [
+          {
+            "value": 192,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ],
+        "nature": "Positive reactive power"
+      },
+      "reactivePower:8": {
+        "unitId": "VAr",
+        "records": [
+          {
+            "value": 3951,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ],
+        "nature": "Negative reactive power"
+      }
+    },
+    "BACnet": {
+      "negative_active_energy_abc": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 0,
+        "units": "WATT_HOURS"
+      },
+      "negative_active_power_abc": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 0,
+        "units": "WATTS"
+      },
+      "negative_reactive_energy_abc": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 28752,
+        "units": "VOLT_AMPERE_HOURS_REACTIVE"
+      },
+      "negative_reactive_power_abc": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 3951,
+        "units": "VOLT_AMPERES_REACTIVE"
+      },
+      "positive_active_energy_abc": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 239978,
+        "units": "WATT_HOURS"
+      },
+      "positive_active_power_abc": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 31871,
+        "units": "WATTS"
+      },
+      "positive_reactive_energy_abc": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 37529,
+        "units": "VOLT_AMPERE_HOURS_REACTIVE"
+      },
+      "positive_reactive_power_abc": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 192,
+        "units": "VOLT_AMPERES_REACTIVE"
+      }
+    },
+    "Modbus": {
+      "negative_active_energy_abc": {
+        "table": "inputRegister",
+        "value": 0,
+        "value_type": "UINT32"
+      },
+      "negative_active_power_abc": {
+        "table": "inputRegister",
+        "value": 0,
+        "value_type": "UINT32"
+      },
+      "negative_reactive_energy_abc": {
+        "table": "inputRegister",
+        "value": 28752,
+        "value_type": "UINT32"
+      },
+      "negative_reactive_power_abc": {
+        "table": "inputRegister",
+        "value": 3951,
+        "value_type": "UINT32"
+      },
+      "positive_active_energy_abc": {
+        "table": "inputRegister",
+        "value": 239978,
+        "value_type": "UINT32"
+      },
+      "positive_active_power_abc": {
+        "table": "inputRegister",
+        "value": 31871,
+        "value_type": "UINT32"
+      },
+      "positive_reactive_energy_abc": {
+        "table": "inputRegister",
+        "value": 37529,
+        "value_type": "UINT32"
+      },
+      "positive_reactive_power_abc": {
+        "table": "inputRegister",
+        "value": 192,
+        "value_type": "UINT32"
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing energy/power long threshold alarm | payload:118A800A000041200010760A0000020400005A6E000A210D000018A20000000000000000000003A6A0B1060000000F0000000002",
+    "input": {
+      "bytes": "118a800a000041200010760a0000020400005a6e000a210d000018a20000000000000000000003a6a0b1060000000f0000000002",
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": {
+        "samples": [
+          {
+            "variable": "positive_active_energy_a",
+            "value": 1078794,
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "Wh"
+          },
+          {
+            "variable": "negative_active_energy_a",
+            "value": 516,
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "Wh"
+          },
+          {
+            "variable": "positive_reactive_energy_a",
+            "value": 23150,
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "VArh"
+          },
+          {
+            "variable": "negative_reactive_energy_a",
+            "value": 663821,
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "VArh"
+          },
+          {
+            "variable": "positive_active_power_a",
+            "value": 6306,
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "W"
+          },
+          {
+            "variable": "negative_active_power_a",
+            "value": 0,
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "W"
+          },
+          {
+            "variable": "positive_reactive_power_a",
+            "value": 0,
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "VAr"
+          },
+          {
+            "variable": "negative_reactive_power_a",
+            "value": 934,
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "VAr"
+          }
+        ],
+        "positive_active_energy_a": 1078794,
+        "negative_active_energy_a": 516,
+        "positive_reactive_energy_a": 23150,
+        "negative_reactive_energy_a": 663821,
+        "positive_active_power_a": 6306,
+        "negative_active_power_a": 0,
+        "positive_reactive_power_a": 0,
+        "negative_reactive_power_a": 934,
+        "positive_active_energy_a_unit": "Wh",
+        "negative_active_energy_a_unit": "Wh",
+        "positive_reactive_energy_a_unit": "VArh",
+        "negative_reactive_energy_a_unit": "VArh",
+        "positive_active_power_a_unit": "W",
+        "negative_active_power_a_unit": "W",
+        "positive_reactive_power_a_unit": "VAr",
+        "negative_reactive_power_a_unit": "VAr"
+      },
+      "warnings": [
+        "alarm triggered",
+        "cause:{alarm:true, criterion_index: 1, mode: threshold, crossing: fall, value: 15, gap: 0, occurences: 2, field: positive_reactive_power}"
+      ]
+    },
+    "points": {
+      "energy:1": {
+        "unitId": "Wh",
+        "records": [
+          {
+            "value": 1078794,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ],
+        "nature": "Positive active energy"
+      },
+      "energy:5": {
+        "unitId": "Wh",
+        "records": [
+          {
+            "value": 516,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ],
+        "nature": "Negative active energy"
+      },
+      "reactiveEnergy:1": {
+        "unitId": "VArh",
+        "records": [
+          {
+            "value": 23150,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ],
+        "nature": "Positive reactive energy"
+      },
+      "reactiveEnergy:5": {
+        "unitId": "VArh",
+        "records": [
+          {
+            "value": 663821,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ],
+        "nature": "Negative reactive energy"
+      },
+      "activePower:1": {
+        "unitId": "W",
+        "records": [
+          {
+            "value": 6306,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ],
+        "nature": "Positive active power"
+      },
+      "activePower:5": {
+        "unitId": "W",
+        "records": [
+          {
+            "value": 0,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ],
+        "nature": "Negative active power"
+      },
+      "reactivePower:1": {
+        "unitId": "VAr",
+        "records": [
+          {
+            "value": 0,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ],
+        "nature": "Positive reactive power"
+      },
+      "reactivePower:5": {
+        "unitId": "VAr",
+        "records": [
+          {
+            "value": 934,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ],
+        "nature": "Negative reactive power"
+      }
+    },
+    "BACnet": {
+      "negative_active_energy_a": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 516,
+        "units": "WATT_HOURS"
+      },
+      "negative_active_power_a": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 0,
+        "units": "WATTS"
+      },
+      "negative_reactive_energy_a": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 663821,
+        "units": "VOLT_AMPERE_HOURS_REACTIVE"
+      },
+      "negative_reactive_power_a": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 934,
+        "units": "VOLT_AMPERES_REACTIVE"
+      },
+      "positive_active_energy_a": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 1078794,
+        "units": "WATT_HOURS"
+      },
+      "positive_active_power_a": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 6306,
+        "units": "WATTS"
+      },
+      "positive_reactive_energy_a": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 23150,
+        "units": "VOLT_AMPERE_HOURS_REACTIVE"
+      },
+      "positive_reactive_power_a": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 0,
+        "units": "VOLT_AMPERES_REACTIVE"
+      }
+    },
+    "Modbus": {
+      "negative_active_energy_a": {
+        "table": "inputRegister",
+        "value": 516,
+        "value_type": "UINT32"
+      },
+      "negative_active_power_a": {
+        "table": "inputRegister",
+        "value": 0,
+        "value_type": "UINT32"
+      },
+      "negative_reactive_energy_a": {
+        "table": "inputRegister",
+        "value": 663821,
+        "value_type": "UINT32"
+      },
+      "negative_reactive_power_a": {
+        "table": "inputRegister",
+        "value": 934,
+        "value_type": "UINT32"
+      },
+      "positive_active_energy_a": {
+        "table": "inputRegister",
+        "value": 1078794,
+        "value_type": "UINT32"
+      },
+      "positive_active_power_a": {
+        "table": "inputRegister",
+        "value": 6306,
+        "value_type": "UINT32"
+      },
+      "positive_reactive_energy_a": {
+        "table": "inputRegister",
+        "value": 23150,
+        "value_type": "UINT32"
+      },
+      "positive_reactive_power_a": {
+        "table": "inputRegister",
+        "value": 0,
+        "value_type": "UINT32"
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing volt, amp, and phase value | payload:110A800B00004106094C030E0163",
+    "input": {
+      "bytes": "110a800b00004106094c030e0163",
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": {
+        "samples": [
+          {
+            "variable": "Vrms_a",
+            "value": 238,
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "V"
+          },
+          {
+            "variable": "Irms_a",
+            "value": 78.2,
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "A"
+          },
+          {
+            "variable": "angle_a",
+            "value": 355,
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "deg"
+          }
+        ],
+        "Vrms_a": 238,
+        "Irms_a": 78.2,
+        "angle_a": 355,
+        "Vrms_a_unit": "V",
+        "Irms_a_unit": "A",
+        "angle_a_unit": "deg"
+      },
+      "warnings": []
+    },
+    "points": {
+      "rmsVoltage:1": {
+        "unitId": "V",
+        "records": [
+          {
+            "value": 238,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ]
+      },
+      "current:1": {
+        "unitId": "A",
+        "records": [
+          {
+            "value": 78.2,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ],
+        "nature": "Irms A"
+      },
+      "angle:1": {
+        "unitId": "deg",
+        "records": [
+          {
+            "value": 355,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ]
+      }
+    },
+    "BACnet": {
+      "angle_a": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 355,
+        "units": "DEGREES_ANGULAR"
+      },
+      "Irms_a": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 78.2,
+        "units": "AMPERES"
+      },
+      "Vrms_a": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 238,
+        "units": "VOLTS"
+      }
+    },
+    "Modbus": {
+      "angle_a": {
+        "table": "inputRegister",
+        "value": 355,
+        "value_type": "INT16"
+      },
+      "Irms_a": {
+        "table": "inputRegister",
+        "value": 78.2,
+        "value_type": "FLOAT"
+      },
+      "Vrms_a": {
+        "table": "inputRegister",
+        "value": 238,
+        "value_type": "FLOAT"
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing short threshold alarm | payload:310a800b000041060973010d01629050",
+    "input": {
+      "bytes": "310a800b000041060973010d01629050",
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": {
+        "samples": [
+          {
+            "variable": "Vrms_b",
+            "value": 241.9,
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "V"
+          },
+          {
+            "variable": "Irms_b",
+            "value": 26.9,
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "A"
+          },
+          {
+            "variable": "angle_b",
+            "value": 354,
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "deg"
+          }
+        ],
+        "Vrms_b": 241.9,
+        "Irms_b": 26.9,
+        "angle_b": 354,
+        "Vrms_b_unit": "V",
+        "Irms_b_unit": "A",
+        "angle_b_unit": "deg"
+      },
+      "warnings": [
+        "cause:{alarm:false, criterion_index: 0, mode: threshold, crossing: exceed}"
+      ]
+    },
+    "points": {
+      "rmsVoltage:2": {
+        "unitId": "V",
+        "records": [
+          {
+            "value": 241.9,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ]
+      },
+      "current:2": {
+        "unitId": "A",
+        "records": [
+          {
+            "value": 26.9,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ],
+        "nature": "Irms B"
+      },
+      "angle:2": {
+        "unitId": "deg",
+        "records": [
+          {
+            "value": 354,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ]
+      }
+    },
+    "BACnet": {
+      "angle_b": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 354,
+        "units": "DEGREES_ANGULAR"
+      },
+      "Irms_b": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 26.9,
+        "units": "AMPERES"
+      },
+      "Vrms_b": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 241.9,
+        "units": "VOLTS"
+      }
+    },
+    "Modbus": {
+      "angle_b": {
+        "table": "inputRegister",
+        "value": 354,
+        "value_type": "INT16"
+      },
+      "Irms_b": {
+        "table": "inputRegister",
+        "value": 26.9,
+        "value_type": "FLOAT"
+      },
+      "Vrms_b": {
+        "table": "inputRegister",
+        "value": 241.9,
+        "value_type": "FLOAT"
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing long threshold alarm | payload:118A800B00004106097801150162A0500003E8000001D1010032000001",
+    "input": {
+      "bytes": "118a800b00004106097801150162a0500003e8000001d1010032000001",
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": {
+        "samples": [
+          {
+            "variable": "Vrms_a",
+            "value": 242.4,
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "V"
+          },
+          {
+            "variable": "Irms_a",
+            "value": 27.7,
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "A"
+          },
+          {
+            "variable": "angle_a",
+            "value": 354,
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "deg"
+          }
+        ],
+        "Vrms_a": 242.4,
+        "Irms_a": 27.7,
+        "angle_a": 354,
+        "Vrms_a_unit": "V",
+        "Irms_a_unit": "A",
+        "angle_a_unit": "deg"
+      },
+      "warnings": [
+        "alarm triggered",
+        "cause:{alarm:false, criterion_index: 0, mode: threshold, crossing: exceed, value: 100, gap: 0, occurences: 1, field: Vrms}",
+        "cause:{alarm:true, criterion_index: 1, mode: threshold, crossing: exceed, value: 5, gap: 0, occurences: 1, field: Irms}"
+      ]
+    },
+    "points": {
+      "rmsVoltage:1": {
+        "unitId": "V",
+        "records": [
+          {
+            "value": 242.4,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ]
+      },
+      "current:1": {
+        "unitId": "A",
+        "records": [
+          {
+            "value": 27.7,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ],
+        "nature": "Irms A"
+      },
+      "angle:1": {
+        "unitId": "deg",
+        "records": [
+          {
+            "value": 354,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ]
+      }
+    },
+    "BACnet": {
+      "angle_a": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 354,
+        "units": "DEGREES_ANGULAR"
+      },
+      "Irms_a": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 27.7,
+        "units": "AMPERES"
+      },
+      "Vrms_a": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 242.4,
+        "units": "VOLTS"
+      }
+    },
+    "Modbus": {
+      "angle_a": {
+        "table": "inputRegister",
+        "value": 354,
+        "value_type": "INT16"
+      },
+      "Irms_a": {
+        "table": "inputRegister",
+        "value": 27.7,
+        "value_type": "FLOAT"
+      },
+      "Vrms_a": {
+        "table": "inputRegister",
+        "value": 242.4,
+        "value_type": "FLOAT"
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing report of the 3 phases | payload:110a8010000041200000010000000200000003000000040000000500000006000000070000000800",
+    "input": {
+      "bytes": "110a8010000041200000010000000200000003000000040000000500000006000000070000000800",
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": {
+        "samples": [
+          {
+            "variable": "active_energy_a",
+            "value": 256,
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "Wh"
+          },
+          {
+            "variable": "reactive_energy_a",
+            "value": 512,
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "VArh"
+          },
+          {
+            "variable": "active_energy_b",
+            "value": 768,
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "Wh"
+          },
+          {
+            "variable": "reactive_energy_b",
+            "value": 1024,
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "VArh"
+          },
+          {
+            "variable": "active_energy_c",
+            "value": 1280,
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "Wh"
+          },
+          {
+            "variable": "reactive_energy_c",
+            "value": 1536,
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "VArh"
+          },
+          {
+            "variable": "active_energy_abc",
+            "value": 1792,
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "Wh"
+          },
+          {
+            "variable": "reactive_energy_abc",
+            "value": 2048,
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "VArh"
+          }
+        ],
+        "active_energy_a": 256,
+        "reactive_energy_a": 512,
+        "active_energy_b": 768,
+        "reactive_energy_b": 1024,
+        "active_energy_c": 1280,
+        "reactive_energy_c": 1536,
+        "active_energy_abc": 1792,
+        "reactive_energy_abc": 2048,
+        "active_energy_a_unit": "Wh",
+        "reactive_energy_a_unit": "VArh",
+        "active_energy_b_unit": "Wh",
+        "reactive_energy_b_unit": "VArh",
+        "active_energy_c_unit": "Wh",
+        "reactive_energy_c_unit": "VArh",
+        "active_energy_abc_unit": "Wh",
+        "reactive_energy_abc_unit": "VArh"
+      },
+      "warnings": []
+    },
+    "points": {
+      "energy:1": {
+        "unitId": "Wh",
+        "records": [
+          {
+            "value": 256,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ],
+        "nature": "Positive active energy"
+      },
+      "reactiveEnergy:1": {
+        "unitId": "VArh",
+        "records": [
+          {
+            "value": 512,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ],
+        "nature": "Positive reactive energy"
+      },
+      "energy:2": {
+        "unitId": "Wh",
+        "records": [
+          {
+            "value": 768,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ],
+        "nature": "Positive active energy"
+      },
+      "reactiveEnergy:2": {
+        "unitId": "VArh",
+        "records": [
+          {
+            "value": 1024,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ],
+        "nature": "Positive reactive energy"
+      },
+      "energy:3": {
+        "unitId": "Wh",
+        "records": [
+          {
+            "value": 1280,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ],
+        "nature": "Positive active energy"
+      },
+      "reactiveEnergy:3": {
+        "unitId": "VArh",
+        "records": [
+          {
+            "value": 1536,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ],
+        "nature": "Positive reactive energy"
+      },
+      "energy:4": {
+        "unitId": "Wh",
+        "records": [
+          {
+            "value": 1792,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ],
+        "nature": "Positive active energy"
+      },
+      "reactiveEnergy:4": {
+        "unitId": "VArh",
+        "records": [
+          {
+            "value": 2048,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ],
+        "nature": "Positive reactive energy"
+      }
+    },
+    "BACnet": {
+      "active_energy_a": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 256,
+        "units": "WATT_HOURS"
+      },
+      "active_energy_abc": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 1792,
+        "units": "WATT_HOURS"
+      },
+      "active_energy_b": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 768,
+        "units": "WATT_HOURS"
+      },
+      "active_energy_c": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 1280,
+        "units": "WATT_HOURS"
+      },
+      "reactive_energy_a": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 512,
+        "units": "VOLT_AMPERE_HOURS_REACTIVE"
+      },
+      "reactive_energy_abc": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 2048,
+        "units": "VOLT_AMPERE_HOURS_REACTIVE"
+      },
+      "reactive_energy_b": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 1024,
+        "units": "VOLT_AMPERE_HOURS_REACTIVE"
+      },
+      "reactive_energy_c": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 1536,
+        "units": "VOLT_AMPERE_HOURS_REACTIVE"
+      }
+    },
+    "Modbus": {
+      "active_energy_a": {
+        "table": "inputRegister",
+        "value": 256,
+        "value_type": "INT32"
+      },
+      "active_energy_abc": {
+        "table": "inputRegister",
+        "value": 1792,
+        "value_type": "INT32"
+      },
+      "active_energy_b": {
+        "table": "inputRegister",
+        "value": 768,
+        "value_type": "INT32"
+      },
+      "active_energy_c": {
+        "table": "inputRegister",
+        "value": 1280,
+        "value_type": "INT32"
+      },
+      "reactive_energy_a": {
+        "table": "inputRegister",
+        "value": 512,
+        "value_type": "INT32"
+      },
+      "reactive_energy_abc": {
+        "table": "inputRegister",
+        "value": 2048,
+        "value_type": "INT32"
+      },
+      "reactive_energy_b": {
+        "table": "inputRegister",
+        "value": 1024,
+        "value_type": "INT32"
+      },
+      "reactive_energy_c": {
+        "table": "inputRegister",
+        "value": 1536,
+        "value_type": "INT32"
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing report of the 3 phases | payload:110A80100001412000001843FFFFFC20000024CAFFFFF50F00001F35FFFFF42A00005C42FFFFE559A050000000003200000001015100000000140000000001",
+    "input": {
+      "bytes": "110a80100001412000001843fffffc20000024cafffff50f00001f35fffff42a00005c42ffffe559a050000000003200000001015100000000140000000001",
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508Z"
+    },
+    "output": {
+      "data": {
+        "samples": [
+          {
+            "variable": "active_power_a",
+            "value": 6211,
+            "date": "2023-07-19T07:51:25.508Z",
+            "unit": "W"
+          },
+          {
+            "variable": "reactive_power_a",
+            "value": -992,
+            "date": "2023-07-19T07:51:25.508Z",
+            "unit": "VAr"
+          },
+          {
+            "variable": "active_power_b",
+            "value": 9418,
+            "date": "2023-07-19T07:51:25.508Z",
+            "unit": "W"
+          },
+          {
+            "variable": "reactive_power_b",
+            "value": -2801,
+            "date": "2023-07-19T07:51:25.508Z",
+            "unit": "VAr"
+          },
+          {
+            "variable": "active_power_c",
+            "value": 7989,
+            "date": "2023-07-19T07:51:25.508Z",
+            "unit": "W"
+          },
+          {
+            "variable": "reactive_power_c",
+            "value": -3030,
+            "date": "2023-07-19T07:51:25.508Z",
+            "unit": "VAr"
+          },
+          {
+            "variable": "active_power_abc",
+            "value": 23618,
+            "date": "2023-07-19T07:51:25.508Z",
+            "unit": "W"
+          },
+          {
+            "variable": "reactive_power_abc",
+            "value": -6823,
+            "date": "2023-07-19T07:51:25.508Z",
+            "unit": "VAr"
+          }
+        ],
+        "active_power_a": 6211,
+        "reactive_power_a": -992,
+        "active_power_b": 9418,
+        "reactive_power_b": -2801,
+        "active_power_c": 7989,
+        "reactive_power_c": -3030,
+        "active_power_abc": 23618,
+        "reactive_power_abc": -6823,
+        "active_power_a_unit": "W",
+        "reactive_power_a_unit": "VAr",
+        "active_power_b_unit": "W",
+        "reactive_power_b_unit": "VAr",
+        "active_power_c_unit": "W",
+        "reactive_power_c_unit": "VAr",
+        "active_power_abc_unit": "W",
+        "reactive_power_abc_unit": "VAr"
+      },
+      "warnings": [
+        "cause:{alarm:false, criterion_index: 0, mode: threshold, crossing: exceed, value: 50, gap: 1, occurences: 1, field: active_power_a}",
+        "cause:{alarm:false, criterion_index: 1, mode: threshold, crossing: exceed, value: 20, gap: 0, occurences: 1, field: active_power_a}"
+      ]
+    },
+    "points": {
+      "activePower:1": {
+        "unitId": "W",
+        "records": [
+          {
+            "value": 6211,
+            "eventTime": "2023-07-19T07:51:25.508Z"
+          }
+        ]
+      },
+      "reactivePower:1": {
+        "unitId": "VAr",
+        "records": [
+          {
+            "value": -992,
+            "eventTime": "2023-07-19T07:51:25.508Z"
+          }
+        ]
+      },
+      "activePower:2": {
+        "unitId": "W",
+        "records": [
+          {
+            "value": 9418,
+            "eventTime": "2023-07-19T07:51:25.508Z"
+          }
+        ]
+      },
+      "reactivePower:2": {
+        "unitId": "VAr",
+        "records": [
+          {
+            "value": -2801,
+            "eventTime": "2023-07-19T07:51:25.508Z"
+          }
+        ]
+      },
+      "activePower:3": {
+        "unitId": "W",
+        "records": [
+          {
+            "value": 7989,
+            "eventTime": "2023-07-19T07:51:25.508Z"
+          }
+        ]
+      },
+      "reactivePower:3": {
+        "unitId": "VAr",
+        "records": [
+          {
+            "value": -3030,
+            "eventTime": "2023-07-19T07:51:25.508Z"
+          }
+        ]
+      },
+      "activePower:4": {
+        "unitId": "W",
+        "records": [
+          {
+            "value": 23618,
+            "eventTime": "2023-07-19T07:51:25.508Z"
+          }
+        ]
+      },
+      "reactivePower:4": {
+        "unitId": "VAr",
+        "records": [
+          {
+            "value": -6823,
+            "eventTime": "2023-07-19T07:51:25.508Z"
+          }
+        ]
+      }
+    },
+    "BACnet": {
+      "active_power_a": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 6211,
+        "units": "WATTS"
+      },
+      "active_power_abc": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 23618,
+        "units": "WATTS"
+      },
+      "active_power_b": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 9418,
+        "units": "WATTS"
+      },
+      "active_power_c": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 7989,
+        "units": "WATTS"
+      },
+      "reactive_power_a": {
+        "object": "ANALOG_INPUT",
+        "presentValue": -992,
+        "units": "VOLT_AMPERES_REACTIVE"
+      },
+      "reactive_power_abc": {
+        "object": "ANALOG_INPUT",
+        "presentValue": -6823,
+        "units": "VOLT_AMPERES_REACTIVE"
+      },
+      "reactive_power_b": {
+        "object": "ANALOG_INPUT",
+        "presentValue": -2801,
+        "units": "VOLT_AMPERES_REACTIVE"
+      },
+      "reactive_power_c": {
+        "object": "ANALOG_INPUT",
+        "presentValue": -3030,
+        "units": "VOLT_AMPERES_REACTIVE"
+      }
+    },
+    "Modbus": {
+      "active_power_a": {
+        "table": "inputRegister",
+        "value": 6211,
+        "value_type": "INT32"
+      },
+      "active_power_abc": {
+        "table": "inputRegister",
+        "value": 23618,
+        "value_type": "INT32"
+      },
+      "active_power_b": {
+        "table": "inputRegister",
+        "value": 9418,
+        "value_type": "INT32"
+      },
+      "active_power_c": {
+        "table": "inputRegister",
+        "value": 7989,
+        "value_type": "INT32"
+      },
+      "reactive_power_a": {
+        "table": "inputRegister",
+        "value": -992,
+        "value_type": "INT32"
+      },
+      "reactive_power_abc": {
+        "table": "inputRegister",
+        "value": -6823,
+        "value_type": "INT32"
+      },
+      "reactive_power_b": {
+        "table": "inputRegister",
+        "value": -2801,
+        "value_type": "INT32"
+      },
+      "reactive_power_c": {
+        "table": "inputRegister",
+        "value": -3030,
+        "value_type": "INT32"
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing report of the 3 phases | payload:110A800D0000411208A10052000308A20042004008A300320030",
+    "input": {
+      "bytes": "110a800d0000411208a10052000308a20042004008a300320030",
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": {
+        "samples": [
+          {
+            "variable": "Vrms_a",
+            "value": 220.9,
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "V"
+          },
+          {
+            "variable": "Irms_a",
+            "value": 8.2,
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "A"
+          },
+          {
+            "variable": "angle_a",
+            "value": 3,
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "deg"
+          },
+          {
+            "variable": "Vrms_b",
+            "value": 221,
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "V"
+          },
+          {
+            "variable": "Irms_b",
+            "value": 6.6,
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "A"
+          },
+          {
+            "variable": "angle_b",
+            "value": 64,
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "deg"
+          },
+          {
+            "variable": "Vrms_c",
+            "value": 221.1,
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "V"
+          },
+          {
+            "variable": "Irms_c",
+            "value": 5,
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "A"
+          },
+          {
+            "variable": "angle_c",
+            "value": 48,
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "deg"
+          }
+        ],
+        "Vrms_a": 220.9,
+        "Irms_a": 8.2,
+        "angle_a": 3,
+        "Vrms_b": 221,
+        "Irms_b": 6.6,
+        "angle_b": 64,
+        "Vrms_c": 221.1,
+        "Irms_c": 5,
+        "angle_c": 48,
+        "Vrms_a_unit": "V",
+        "Vrms_b_unit": "V",
+        "Vrms_c_unit": "V",
+        "Irms_a_unit": "A",
+        "Irms_b_unit": "A",
+        "Irms_c_unit": "A",
+        "angle_a_unit": "deg",
+        "angle_b_unit": "deg",
+        "angle_c_unit": "deg"
+      },
+      "warnings": []
+    },
+    "points": {
+      "rmsVoltage:1": {
+        "unitId": "V",
+        "records": [
+          {
+            "value": 220.9,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ]
+      },
+      "current:1": {
+        "unitId": "A",
+        "records": [
+          {
+            "value": 8.2,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ],
+        "nature": "Irms A"
+      },
+      "angle:1": {
+        "unitId": "deg",
+        "records": [
+          {
+            "value": 3,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ]
+      },
+      "rmsVoltage:2": {
+        "unitId": "V",
+        "records": [
+          {
+            "value": 221,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ]
+      },
+      "current:2": {
+        "unitId": "A",
+        "records": [
+          {
+            "value": 6.6,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ],
+        "nature": "Irms B"
+      },
+      "angle:2": {
+        "unitId": "deg",
+        "records": [
+          {
+            "value": 64,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ]
+      },
+      "rmsVoltage:3": {
+        "unitId": "V",
+        "records": [
+          {
+            "value": 221.1,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ]
+      },
+      "current:3": {
+        "unitId": "A",
+        "records": [
+          {
+            "value": 5,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ],
+        "nature": "Irms C"
+      },
+      "angle:3": {
+        "unitId": "deg",
+        "records": [
+          {
+            "value": 48,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ]
+      }
+    },
+    "BACnet": {
+      "angle_a": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 3,
+        "units": "DEGREES_ANGULAR"
+      },
+      "angle_b": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 64,
+        "units": "DEGREES_ANGULAR"
+      },
+      "angle_c": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 48,
+        "units": "DEGREES_ANGULAR"
+      },
+      "Irms_a": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 8.2,
+        "units": "AMPERES"
+      },
+      "Irms_b": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 6.6,
+        "units": "AMPERES"
+      },
+      "Irms_c": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 5,
+        "units": "AMPERES"
+      },
+      "Vrms_a": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 220.9,
+        "units": "VOLTS"
+      },
+      "Vrms_b": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 221,
+        "units": "VOLTS"
+      },
+      "Vrms_c": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 221.1,
+        "units": "VOLTS"
+      }
+    },
+    "Modbus": {
+      "angle_a": {
+        "table": "inputRegister",
+        "value": 3,
+        "value_type": "INT16"
+      },
+      "angle_b": {
+        "table": "inputRegister",
+        "value": 64,
+        "value_type": "INT16"
+      },
+      "angle_c": {
+        "table": "inputRegister",
+        "value": 48,
+        "value_type": "INT16"
+      },
+      "Irms_a": {
+        "table": "inputRegister",
+        "value": 8.2,
+        "value_type": "FLOAT"
+      },
+      "Irms_b": {
+        "table": "inputRegister",
+        "value": 6.6,
+        "value_type": "FLOAT"
+      },
+      "Irms_c": {
+        "table": "inputRegister",
+        "value": 5,
+        "value_type": "FLOAT"
+      },
+      "Vrms_a": {
+        "table": "inputRegister",
+        "value": 220.9,
+        "value_type": "FLOAT"
+      },
+      "Vrms_b": {
+        "table": "inputRegister",
+        "value": 221,
+        "value_type": "FLOAT"
+      },
+      "Vrms_c": {
+        "table": "inputRegister",
+        "value": 221.1,
+        "value_type": "FLOAT"
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing long threshold alarm | payload:118A800D000041120975010C01610974015E0153098301610150A0D0000032000001D1010005000001B208015E000001",
+    "input": {
+      "bytes": "118a800d000041120975010c01610974015e0153098301610150a0d0000032000001d1010005000001b208015e000001",
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": {
+        "samples": [
+          {
+            "variable": "Vrms_a",
+            "value": 242.1,
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "V"
+          },
+          {
+            "variable": "Irms_a",
+            "value": 26.8,
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "A"
+          },
+          {
+            "variable": "angle_a",
+            "value": 353,
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "deg"
+          },
+          {
+            "variable": "Vrms_b",
+            "value": 242,
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "V"
+          },
+          {
+            "variable": "Irms_b",
+            "value": 35,
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "A"
+          },
+          {
+            "variable": "angle_b",
+            "value": 339,
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "deg"
+          },
+          {
+            "variable": "Vrms_c",
+            "value": 243.5,
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "V"
+          },
+          {
+            "variable": "Irms_c",
+            "value": 35.3,
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "A"
+          },
+          {
+            "variable": "angle_c",
+            "value": 336,
+            "date": "2023-07-19T07:51:25.508306410Z",
+            "unit": "deg"
+          }
+        ],
+        "Vrms_a": 242.1,
+        "Irms_a": 26.8,
+        "angle_a": 353,
+        "Vrms_b": 242,
+        "Irms_b": 35,
+        "angle_b": 339,
+        "Vrms_c": 243.5,
+        "Irms_c": 35.3,
+        "angle_c": 336,
+        "Vrms_a_unit": "V",
+        "Vrms_b_unit": "V",
+        "Vrms_c_unit": "V",
+        "Irms_a_unit": "A",
+        "Irms_b_unit": "A",
+        "Irms_c_unit": "A",
+        "angle_a_unit": "deg",
+        "angle_b_unit": "deg",
+        "angle_c_unit": "deg"
+      },
+      "warnings": [
+        "alarm triggered",
+        "cause:{alarm:true, criterion_index: 0, mode: threshold, crossing: exceed, value: 5, gap: 0, occurences: 1, field: Vrms_a}",
+        "cause:{alarm:true, criterion_index: 1, mode: threshold, crossing: exceed, value: 0.5, gap: 0, occurences: 1, field: Irms_a}",
+        "cause:{alarm:true, criterion_index: 2, mode: threshold, crossing: fall, value: 350, gap: 0, occurences: 1, field: angle_c}"
+      ]
+    },
+    "points": {
+      "rmsVoltage:1": {
+        "unitId": "V",
+        "records": [
+          {
+            "value": 242.1,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ]
+      },
+      "current:1": {
+        "unitId": "A",
+        "records": [
+          {
+            "value": 26.8,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ],
+        "nature": "Irms A"
+      },
+      "angle:1": {
+        "unitId": "deg",
+        "records": [
+          {
+            "value": 353,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ]
+      },
+      "rmsVoltage:2": {
+        "unitId": "V",
+        "records": [
+          {
+            "value": 242,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ]
+      },
+      "current:2": {
+        "unitId": "A",
+        "records": [
+          {
+            "value": 35,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ],
+        "nature": "Irms B"
+      },
+      "angle:2": {
+        "unitId": "deg",
+        "records": [
+          {
+            "value": 339,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ]
+      },
+      "rmsVoltage:3": {
+        "unitId": "V",
+        "records": [
+          {
+            "value": 243.5,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ]
+      },
+      "current:3": {
+        "unitId": "A",
+        "records": [
+          {
+            "value": 35.3,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ],
+        "nature": "Irms C"
+      },
+      "angle:3": {
+        "unitId": "deg",
+        "records": [
+          {
+            "value": 336,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ]
+      }
+    },
+    "BACnet": {
+      "angle_a": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 353,
+        "units": "DEGREES_ANGULAR"
+      },
+      "angle_b": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 339,
+        "units": "DEGREES_ANGULAR"
+      },
+      "angle_c": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 336,
+        "units": "DEGREES_ANGULAR"
+      },
+      "Irms_a": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 26.8,
+        "units": "AMPERES"
+      },
+      "Irms_b": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 35,
+        "units": "AMPERES"
+      },
+      "Irms_c": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 35.3,
+        "units": "AMPERES"
+      },
+      "Vrms_a": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 242.1,
+        "units": "VOLTS"
+      },
+      "Vrms_b": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 242,
+        "units": "VOLTS"
+      },
+      "Vrms_c": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 243.5,
+        "units": "VOLTS"
+      }
+    },
+    "Modbus": {
+      "angle_a": {
+        "table": "inputRegister",
+        "value": 353,
+        "value_type": "INT16"
+      },
+      "angle_b": {
+        "table": "inputRegister",
+        "value": 339,
+        "value_type": "INT16"
+      },
+      "angle_c": {
+        "table": "inputRegister",
+        "value": 336,
+        "value_type": "INT16"
+      },
+      "Irms_a": {
+        "table": "inputRegister",
+        "value": 26.8,
+        "value_type": "FLOAT"
+      },
+      "Irms_b": {
+        "table": "inputRegister",
+        "value": 35,
+        "value_type": "FLOAT"
+      },
+      "Irms_c": {
+        "table": "inputRegister",
+        "value": 35.3,
+        "value_type": "FLOAT"
+      },
+      "Vrms_a": {
+        "table": "inputRegister",
+        "value": 242.1,
+        "value_type": "FLOAT"
+      },
+      "Vrms_b": {
+        "table": "inputRegister",
+        "value": 242,
+        "value_type": "FLOAT"
+      },
+      "Vrms_c": {
+        "table": "inputRegister",
+        "value": 243.5,
+        "value_type": "FLOAT"
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing firmware version | payload:110100000002000D0305020015E2",
+    "input": {
+      "bytes": "110100000002000d0305020015e2",
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": {
+        "samples": [
+          {
+            "variable": "firmware",
+            "value": "3.5.2.5602",
+            "date": "2023-07-19T07:51:25.508306410Z"
+          }
+        ],
+        "firmware": "3.5.2.5602"
+      },
+      "warnings": []
+    },
+    "points": {},
+    "BACnet": {
+      "firmware": {
+        "object": "CHARACTERSTRING_VALUE",
+        "presentValue": "3.5.2.5602"
+      }
+    },
+    "Modbus": {
+      "firmware": {
+        "table": "inputRegister",
+        "value": "3.5.2.5602",
+        "value_type": "STRING"
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report  containing battery charge | payload:110A00500006410503040E6804",
+    "input": {
+      "bytes": "110a00500006410503040e6804",
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": {
+        "samples": [
+          {
+            "variable": "disposable_battery_voltage",
+            "value": 3.688,
+            "date": "2023-07-19T07:51:25.508306410Z"
+          }
+        ],
+        "disposable_battery_voltage": 3.688
+      },
+      "warnings": []
+    },
+    "points": {
+      "batteryVoltage": {
+        "unitId": "V",
+        "records": [
+          {
+            "value": 3.688,
+            "eventTime": "2023-07-19T07:51:25.508306410Z"
+          }
+        ]
+      }
+    },
+    "BACnet": {
+      "disposable_battery_voltage": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 3.688,
+        "units": "VOLTS"
+      }
+    },
+    "Modbus": {
+      "disposable_battery_voltage": {
+        "table": "inputRegister",
+        "value": 3.688,
+        "value_type": "FLOAT"
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink standard report containing dataup info | payload:110180040000000800",
+    "input": {
+      "bytes": "110180040000000800",
+      "fPort": 125,
+      "recvTime": "2023-07-19T07:51:25.508306410Z"
+    },
+    "output": {
+      "data": {
+        "samples": [
+          {
+            "variable": "message_type",
+            "value": "unconfirmed",
+            "date": "2023-07-19T07:51:25.508306410Z"
+          }
+        ],
+        "message_type": "unconfirmed"
+      },
+      "warnings": []
+    },
+    "points": {},
+    "BACnet": {
+      "message_type": {
+        "object": "CHARACTERSTRING_VALUE",
+        "presentValue": "unconfirmed"
+      }
+    },
+    "Modbus": {
+      "message_type": {
+        "table": "inputRegister",
+        "value": "unconfirmed",
+        "value_type": "STRING"
+      }
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Send a custom hex frame (here: read firmware version)",
+    "input": {
+      "data": {
+        "sendHexFrame": "110000000002"
+      }
+    },
+    "output": {
+      "bytes": [
+        17,
+        0,
+        0,
+        0,
+        0,
+        2
+      ],
+      "fPort": 125,
+      "warnings": []
+    },
+    "points": {}
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Send a custom hex frame with specific port",
+    "input": {
+      "data": {
+        "sendHexFrame": "110000000002:100"
+      }
+    },
+    "output": {
+      "bytes": [
+        17,
+        0,
+        0,
+        0,
+        0,
+        2
+      ],
+      "fPort": 100,
+      "warnings": []
+    },
+    "points": {}
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Set confirmed transmission mode (1=confirmed, 0=unconfirmed)",
+    "input": {
+      "data": {
+        "sendConfirmedMode": 1
+      }
+    },
+    "output": {
+      "bytes": [
+        17,
+        5,
+        128,
+        4,
+        0,
+        0,
+        8,
+        1
+      ],
+      "fPort": 125,
+      "warnings": []
+    },
+    "points": {}
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Reboot device",
+    "input": {
+      "data": {
+        "sendReboot": true
+      }
+    },
+    "output": {
+      "bytes": [
+        17,
+        80,
+        0,
+        80,
+        0
+      ],
+      "fPort": 125,
+      "warnings": []
+    },
+    "points": {}
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Factory reset device",
+    "input": {
+      "data": {
+        "sendFactoryReset": true
+      }
+    },
+    "output": {
+      "bytes": [
+        17,
+        80,
+        0,
+        80,
+        7
+      ],
+      "fPort": 125,
+      "warnings": []
+    },
+    "points": {}
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Set LoRa retries to 3",
+    "input": {
+      "data": {
+        "sendLoraRetries": 3
+      }
+    },
+    "output": {
+      "bytes": [
+        17,
+        5,
+        128,
+        4,
+        0,
+        1,
+        32,
+        3
+      ],
+      "fPort": 125,
+      "warnings": []
+    },
+    "points": {}
+  },
+  {
+    "type": "downlink-encode",
+    "description": "LoRa Rejoin with 60 minutes interval",
+    "input": {
+      "data": {
+        "sendLoraRejoin": 60
+      }
+    },
+    "output": {
+      "bytes": [
+        17,
+        80,
+        128,
+        4,
+        0,
+        0,
+        60
+      ],
+      "fPort": 125,
+      "warnings": []
+    },
+    "points": {}
+  }
+]
