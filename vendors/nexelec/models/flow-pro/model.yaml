@@ -1,0 +1,52 @@
+name: FLOW PRO
+description: "Connected thermostatic radiator valve head. FLOW PRO regulates the room temperature on its own sensor or on a paired NODE One remote probe, with comfort, eco, away and frost protection setpoints, weekly heating schedules and open window detection. Powered by 4 AA lithium batteries, supplied with a reinforced RUG base."
+logo: flow-pro.png
+deviceProfileIds:
+    - id: nexelec_RFGroup1_1.0.4-RP2-1.0.4_classA
+maxTxPower:
+minTxPower:
+maxTxEIRP:
+minTxEIRP:
+motionIndicator: near_static
+LoRaWANCertified: false
+modelId: nexelec:flow-pro:1
+protocolId: nexelec:flow:1
+# Informative, maintained by Netmore: true when the driver of the first protocolId above ships a
+# BACnet/Modbus mapping (mapping.json, in Netmore's private catalog), so that the device can be
+# exposed through the BACnet and Modbus gateways. Checked: true requires that mapping.
+supportedBACnetModbus: false
+specificationURL:
+userGuideURL:
+sensors:
+- batteryVoltage:mV
+- percentage:%
+- rssi:dBm
+- status:state
+- temperature:Cel
+examples:
+  nexelec:flow:1:
+    - "FLOW Periodic v1 — FLOW PRO, regulating on a NODE One probe, eco mode, setpoint changed with the wheel"
+    - "FLOW Periodic v1 — FLOW PRO, BOOST triggered by downlink (valve fully open)"
+    - "FLOW Periodic v0 — FLOW PRO, older firmware, open window flag set"
+    - "FLOW Product status — FLOW PRO, low battery, head just removed from its base (calibration cleared)"
+    - "FLOW Configuration v1 — FLOW PRO, after an application downlink (FCnt 57)"
+    - "FLOW Configuration v3 — FLOW PRO, start-up, vertical setpoint display, FUOTA off"
+    - "FLOW encode downlink: set child lock"
+    - "FLOW encode downlink: set target temperature 20 °C"
+    - "FLOW encode downlink: set target temperature 19.5 °C"
+    - "FLOW encode downlink: set minimum and maximum temperatures"
+    - "FLOW encode downlink: set temperature offset -1.5 °C"
+    - "FLOW encode downlink: set open window detection"
+    - "FLOW encode downlink: set uplink period with regulation on"
+    - "FLOW encode downlink: set delayed network join"
+    - "FLOW encode downlink: recalibrate motor"
+    - "FLOW encode downlink: set time zone UTC+1"
+    - "FLOW encode downlink: set weekly schedule"
+    - "FLOW encode downlink: set setpoint display orientation"
+    - "FLOW fail encode downlink: target temperature out of range"
+    - "FLOW decode downlink: set child lock"
+    - "FLOW decode downlink: set minimum and maximum temperatures"
+    - "FLOW decode downlink: set weekly schedule"
+LoRaWANRelay:
+  canOperateAsARelay: false
+  defaultRelayActivation: false

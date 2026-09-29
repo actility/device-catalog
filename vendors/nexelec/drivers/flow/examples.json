@@ -1,0 +1,1687 @@
+[
+  {
+    "description": "FLOW Periodic v1 — FLOW CORE, comfort mode on schedule, 21.3 °C for a 21 °C setpoint",
+    "type": "uplink",
+    "input": {
+      "bytes": "D211806A2032992464",
+      "fPort": 56,
+      "recvTime": "2026-09-29T08:30:00.000Z"
+    },
+    "output": {
+      "data": {
+        "typeOfProduct": "FLOW CORE",
+        "typeOfMessage": "Periodic",
+        "versionOfMessage": 1,
+        "temperature": {
+          "value": 21.3,
+          "unit": "°C"
+        },
+        "regulationTemperature": {
+          "value": 21,
+          "unit": "°C"
+        },
+        "sourceRegulationTemperature": "internal",
+        "internalTemperature": {
+          "value": 21.5,
+          "unit": "°C"
+        },
+        "sourceTemperatureSetPointChange": "planning",
+        "motorDistance": {
+          "value": 2450,
+          "unit": "µm"
+        },
+        "valveOpeningPercentage": {
+          "value": 35,
+          "unit": "%"
+        },
+        "regulationMode": "confort"
+      }
+    },
+    "points": {
+      "temperature:1": {
+        "unitId": "Cel",
+        "record": 21.3,
+        "nature": "Ambient"
+      },
+      "temperature:2": {
+        "unitId": "Cel",
+        "record": 21,
+        "nature": "Setpoint"
+      },
+      "temperature:3": {
+        "unitId": "Cel",
+        "record": 21.5,
+        "nature": "Internal"
+      },
+      "percentage": {
+        "unitId": "%",
+        "record": 35,
+        "nature": "Valve opening"
+      },
+      "status:1": {
+        "unitId": "state",
+        "record": false,
+        "nature": "Open window"
+      },
+      "status:2": {
+        "unitId": "state",
+        "record": false,
+        "nature": "Frost protection"
+      }
+    }
+  },
+  {
+    "description": "FLOW Periodic v1 — FLOW PRO, regulating on a NODE One probe, eco mode, setpoint changed with the wheel",
+    "type": "uplink",
+    "input": {
+      "bytes": "D6117CA65F844B0246",
+      "fPort": 56,
+      "recvTime": "2026-09-29T08:30:00.000Z"
+    },
+    "output": {
+      "data": {
+        "typeOfProduct": "FLOW PRO",
+        "typeOfMessage": "Periodic",
+        "versionOfMessage": 1,
+        "temperature": {
+          "value": 19.8,
+          "unit": "°C"
+        },
+        "regulationTemperature": {
+          "value": 19,
+          "unit": "°C"
+        },
+        "sourceRegulationTemperature": "external node",
+        "internalTemperature": {
+          "value": 20.4,
+          "unit": "°C"
+        },
+        "sourceTemperatureSetPointChange": "scroll wheel",
+        "motorDistance": {
+          "value": 1200,
+          "unit": "µm"
+        },
+        "valveOpeningPercentage": {
+          "value": 18,
+          "unit": "%"
+        },
+        "regulationMode": "eco"
+      }
+    },
+    "points": {
+      "temperature:1": {
+        "unitId": "Cel",
+        "record": 19.8,
+        "nature": "Ambient"
+      },
+      "temperature:2": {
+        "unitId": "Cel",
+        "record": 19,
+        "nature": "Setpoint"
+      },
+      "temperature:3": {
+        "unitId": "Cel",
+        "record": 20.4,
+        "nature": "Internal"
+      },
+      "percentage": {
+        "unitId": "%",
+        "record": 18,
+        "nature": "Valve opening"
+      },
+      "status:1": {
+        "unitId": "state",
+        "record": false,
+        "nature": "Open window"
+      },
+      "status:2": {
+        "unitId": "state",
+        "record": false,
+        "nature": "Frost protection"
+      }
+    }
+  },
+  {
+    "description": "FLOW Periodic v1 — FLOW CORE, open window detected (regulation paused, valve closed)",
+    "type": "uplink",
+    "input": {
+      "bytes": "D21173AA1CC200000E",
+      "fPort": 56,
+      "recvTime": "2026-09-29T08:30:00.000Z"
+    },
+    "output": {
+      "data": {
+        "typeOfProduct": "FLOW CORE",
+        "typeOfMessage": "Periodic",
+        "versionOfMessage": 1,
+        "temperature": {
+          "value": 16.2,
+          "unit": "°C"
+        },
+        "regulationTemperature": {
+          "value": 21,
+          "unit": "°C"
+        },
+        "sourceRegulationTemperature": "internal",
+        "internalTemperature": {
+          "value": 16,
+          "unit": "°C"
+        },
+        "sourceTemperatureSetPointChange": "planning",
+        "motorDistance": {
+          "value": 0,
+          "unit": "µm"
+        },
+        "valveOpeningPercentage": {
+          "value": 0,
+          "unit": "%"
+        },
+        "regulationMode": "open window"
+      }
+    },
+    "points": {
+      "temperature:1": {
+        "unitId": "Cel",
+        "record": 16.2,
+        "nature": "Ambient"
+      },
+      "temperature:2": {
+        "unitId": "Cel",
+        "record": 21,
+        "nature": "Setpoint"
+      },
+      "temperature:3": {
+        "unitId": "Cel",
+        "record": 16,
+        "nature": "Internal"
+      },
+      "percentage": {
+        "unitId": "%",
+        "record": 0,
+        "nature": "Valve opening"
+      },
+      "status:1": {
+        "unitId": "state",
+        "record": true,
+        "nature": "Open window"
+      },
+      "status:2": {
+        "unitId": "state",
+        "record": false,
+        "nature": "Frost protection"
+      }
+    }
+  },
+  {
+    "description": "FLOW Periodic v1 — FLOW PRO, BOOST triggered by downlink (valve fully open)",
+    "type": "uplink",
+    "input": {
+      "bytes": "D611796A1E59450C8C",
+      "fPort": 56,
+      "recvTime": "2026-09-29T08:30:00.000Z"
+    },
+    "output": {
+      "data": {
+        "typeOfProduct": "FLOW PRO",
+        "typeOfMessage": "Periodic",
+        "versionOfMessage": 1,
+        "temperature": {
+          "value": 18.5,
+          "unit": "°C"
+        },
+        "regulationTemperature": {
+          "value": 21,
+          "unit": "°C"
+        },
+        "sourceRegulationTemperature": "internal",
+        "internalTemperature": {
+          "value": 18.5,
+          "unit": "°C"
+        },
+        "sourceTemperatureSetPointChange": "downlink",
+        "motorDistance": {
+          "value": 5200,
+          "unit": "µm"
+        },
+        "valveOpeningPercentage": {
+          "value": 100,
+          "unit": "%"
+        },
+        "regulationMode": "boost"
+      }
+    },
+    "points": {
+      "temperature:1": {
+        "unitId": "Cel",
+        "record": 18.5,
+        "nature": "Ambient"
+      },
+      "temperature:2": {
+        "unitId": "Cel",
+        "record": 21,
+        "nature": "Setpoint"
+      },
+      "temperature:3": {
+        "unitId": "Cel",
+        "record": 18.5,
+        "nature": "Internal"
+      },
+      "percentage": {
+        "unitId": "%",
+        "record": 100,
+        "nature": "Valve opening"
+      },
+      "status:1": {
+        "unitId": "state",
+        "record": false,
+        "nature": "Open window"
+      },
+      "status:2": {
+        "unitId": "state",
+        "record": false,
+        "nature": "Frost protection"
+      }
+    }
+  },
+  {
+    "description": "FLOW Periodic v1 — FLOW CORE, clock not set: degraded mode, setpoint forced to 19.5 °C",
+    "type": "uplink",
+    "input": {
+      "bytes": "D2117AE71EBA834382",
+      "fPort": 56,
+      "recvTime": "2026-09-29T08:30:00.000Z"
+    },
+    "output": {
+      "data": {
+        "typeOfProduct": "FLOW CORE",
+        "typeOfMessage": "Periodic",
+        "versionOfMessage": 1,
+        "temperature": {
+          "value": 19.1,
+          "unit": "°C"
+        },
+        "regulationTemperature": {
+          "value": 19.5,
+          "unit": "°C"
+        },
+        "sourceRegulationTemperature": "internal",
+        "internalTemperature": {
+          "value": 19.1,
+          "unit": "°C"
+        },
+        "sourceTemperatureSetPointChange": "product time not up to date, degraded mode",
+        "motorDistance": {
+          "value": 2100,
+          "unit": "µm"
+        },
+        "valveOpeningPercentage": {
+          "value": 28,
+          "unit": "%"
+        },
+        "regulationMode": "regulation on"
+      }
+    },
+    "points": {
+      "temperature:1": {
+        "unitId": "Cel",
+        "record": 19.1,
+        "nature": "Ambient"
+      },
+      "temperature:2": {
+        "unitId": "Cel",
+        "record": 19.5,
+        "nature": "Setpoint"
+      },
+      "temperature:3": {
+        "unitId": "Cel",
+        "record": 19.1,
+        "nature": "Internal"
+      },
+      "percentage": {
+        "unitId": "%",
+        "record": 28,
+        "nature": "Valve opening"
+      },
+      "status:1": {
+        "unitId": "state",
+        "record": false,
+        "nature": "Open window"
+      },
+      "status:2": {
+        "unitId": "state",
+        "record": false,
+        "nature": "Frost protection"
+      }
+    }
+  },
+  {
+    "description": "FLOW Periodic v1 — FLOW CORE, temperature sensor error (1023), regulation off",
+    "type": "uplink",
+    "input": {
+      "bytes": "D211FFE83FF0000000",
+      "fPort": 56,
+      "recvTime": "2026-09-29T08:30:00.000Z"
+    },
+    "output": {
+      "data": {
+        "typeOfProduct": "FLOW CORE",
+        "typeOfMessage": "Periodic",
+        "versionOfMessage": 1,
+        "temperature": "Error",
+        "regulationTemperature": {
+          "value": 20,
+          "unit": "°C"
+        },
+        "sourceRegulationTemperature": "internal",
+        "internalTemperature": "Error",
+        "sourceTemperatureSetPointChange": "none",
+        "motorDistance": {
+          "value": 0,
+          "unit": "µm"
+        },
+        "valveOpeningPercentage": {
+          "value": 0,
+          "unit": "%"
+        },
+        "regulationMode": "regulation off"
+      }
+    },
+    "points": {
+      "temperature:2": {
+        "unitId": "Cel",
+        "record": 20,
+        "nature": "Setpoint"
+      },
+      "percentage": {
+        "unitId": "%",
+        "record": 0,
+        "nature": "Valve opening"
+      },
+      "status:1": {
+        "unitId": "state",
+        "record": false,
+        "nature": "Open window"
+      },
+      "status:2": {
+        "unitId": "state",
+        "record": false,
+        "nature": "Frost protection"
+      }
+    }
+  },
+  {
+    "description": "FLOW Periodic v0 — FLOW CORE, older firmware, normal regulation",
+    "type": "uplink",
+    "input": {
+      "bytes": "D2107D681F522EE150",
+      "fPort": 56,
+      "recvTime": "2026-09-29T08:30:00.000Z"
+    },
+    "output": {
+      "data": {
+        "typeOfProduct": "FLOW CORE",
+        "typeOfMessage": "Periodic",
+        "versionOfMessage": 0,
+        "temperature": {
+          "value": 20.1,
+          "unit": "°C"
+        },
+        "regulationTemperature": {
+          "value": 20,
+          "unit": "°C"
+        },
+        "sourceRegulationTemperature": "internal",
+        "internalTemperature": {
+          "value": 20.1,
+          "unit": "°C"
+        },
+        "sourceTemperatureSetPointChange": "planning",
+        "isWindowOpenActive": "false",
+        "isFrostProtectActive": "false",
+        "motorDistance": {
+          "value": 3000,
+          "unit": "µm"
+        },
+        "valveOpeningPercentage": {
+          "value": 42,
+          "unit": "%"
+        }
+      }
+    },
+    "points": {
+      "temperature:1": {
+        "unitId": "Cel",
+        "record": 20.1,
+        "nature": "Ambient"
+      },
+      "temperature:2": {
+        "unitId": "Cel",
+        "record": 20,
+        "nature": "Setpoint"
+      },
+      "temperature:3": {
+        "unitId": "Cel",
+        "record": 20.1,
+        "nature": "Internal"
+      },
+      "percentage": {
+        "unitId": "%",
+        "record": 42,
+        "nature": "Valve opening"
+      },
+      "status:1": {
+        "unitId": "state",
+        "record": false,
+        "nature": "Open window"
+      },
+      "status:2": {
+        "unitId": "state",
+        "record": false,
+        "nature": "Frost protection"
+      }
+    }
+  },
+  {
+    "description": "FLOW Periodic v0 — FLOW PRO, older firmware, open window flag set",
+    "type": "uplink",
+    "input": {
+      "bytes": "D61071AA1C63000000",
+      "fPort": 56,
+      "recvTime": "2026-09-29T08:30:00.000Z"
+    },
+    "output": {
+      "data": {
+        "typeOfProduct": "FLOW PRO",
+        "typeOfMessage": "Periodic",
+        "versionOfMessage": 0,
+        "temperature": {
+          "value": 15.4,
+          "unit": "°C"
+        },
+        "regulationTemperature": {
+          "value": 21,
+          "unit": "°C"
+        },
+        "sourceRegulationTemperature": "internal",
+        "internalTemperature": {
+          "value": 15.4,
+          "unit": "°C"
+        },
+        "sourceTemperatureSetPointChange": "planning",
+        "isWindowOpenActive": "true",
+        "isFrostProtectActive": "false",
+        "motorDistance": {
+          "value": 0,
+          "unit": "µm"
+        },
+        "valveOpeningPercentage": {
+          "value": 0,
+          "unit": "%"
+        }
+      }
+    },
+    "points": {
+      "temperature:1": {
+        "unitId": "Cel",
+        "record": 15.4,
+        "nature": "Ambient"
+      },
+      "temperature:2": {
+        "unitId": "Cel",
+        "record": 21,
+        "nature": "Setpoint"
+      },
+      "temperature:3": {
+        "unitId": "Cel",
+        "record": 15.4,
+        "nature": "Internal"
+      },
+      "percentage": {
+        "unitId": "%",
+        "record": 0,
+        "nature": "Valve opening"
+      },
+      "status:1": {
+        "unitId": "state",
+        "record": true,
+        "nature": "Open window"
+      },
+      "status:2": {
+        "unitId": "state",
+        "record": false,
+        "nature": "Frost protection"
+      }
+    }
+  },
+  {
+    "description": "FLOW Product status — FLOW CORE, batteries OK, head on its base, calibrated, NODE One paired",
+    "type": "uplink",
+    "input": {
+      "bytes": "D220030C9DA7408A8C00E0BECBD0",
+      "fPort": 56,
+      "recvTime": "2026-09-29T08:30:00.000Z"
+    },
+    "output": {
+      "data": {
+        "typeOfProduct": "FLOW CORE",
+        "typeOfMessage": "Product Status",
+        "versionOfMessage": 0,
+        "hardwareVersion": 3,
+        "softwareVersion": 12,
+        "batteryVoltageSlot1": {
+          "value": 3150,
+          "unit": "mV"
+        },
+        "batteryVoltageSlot2": {
+          "value": 3140,
+          "unit": "mV"
+        },
+        "batteryLevel": "high",
+        "statusProduct": "ok",
+        "statusAntiTear": "detected",
+        "statusMotorCalibration": "calibration done",
+        "motorStrokeDistance": {
+          "value": 5400,
+          "unit": "µm"
+        },
+        "timeActivation": {
+          "value": 7,
+          "unit": "month"
+        },
+        "productDate": "29/09/2026 08:30",
+        "isD2Dactive": 1
+      }
+    },
+    "points": {
+      "batteryVoltage:1": {
+        "unitId": "mV",
+        "record": 3150
+      },
+      "batteryVoltage:2": {
+        "unitId": "mV",
+        "record": 3140
+      }
+    }
+  },
+  {
+    "description": "FLOW Product status — FLOW PRO, low battery, head just removed from its base (calibration cleared)",
+    "type": "uplink",
+    "input": {
+      "bytes": "D620030C93A4C93A8C01C0E001A0",
+      "fPort": 56,
+      "recvTime": "2026-09-29T08:30:00.000Z"
+    },
+    "output": {
+      "data": {
+        "typeOfProduct": "FLOW PRO",
+        "typeOfMessage": "Product Status",
+        "versionOfMessage": 0,
+        "hardwareVersion": 3,
+        "softwareVersion": 12,
+        "batteryVoltageSlot1": {
+          "value": 2950,
+          "unit": "mV"
+        },
+        "batteryVoltageSlot2": {
+          "value": 2940,
+          "unit": "mV"
+        },
+        "batteryLevel": "low",
+        "statusProduct": "ok",
+        "statusAntiTear": "just removed from the base",
+        "statusMotorCalibration": "calibration erase, product remove from the base",
+        "motorStrokeDistance": {
+          "value": 5400,
+          "unit": "µm"
+        },
+        "timeActivation": {
+          "value": 14,
+          "unit": "month"
+        },
+        "productDate": "15/11/2026 14:05",
+        "isD2Dactive": 0
+      }
+    },
+    "points": {
+      "batteryVoltage:1": {
+        "unitId": "mV",
+        "record": 2950
+      },
+      "batteryVoltage:2": {
+        "unitId": "mV",
+        "record": 2940
+      }
+    }
+  },
+  {
+    "description": "FLOW Product status — FLOW CORE, no battery in slot 2 (1021)",
+    "type": "uplink",
+    "input": {
+      "bytes": "D220030C9C3FD08A8C00402A7380",
+      "fPort": 56,
+      "recvTime": "2026-09-29T08:30:00.000Z"
+    },
+    "output": {
+      "data": {
+        "typeOfProduct": "FLOW CORE",
+        "typeOfMessage": "Product Status",
+        "versionOfMessage": 0,
+        "hardwareVersion": 3,
+        "softwareVersion": 12,
+        "batteryVoltageSlot1": {
+          "value": 3120,
+          "unit": "mV"
+        },
+        "batteryVoltageSlot2": "No battery",
+        "batteryLevel": "high",
+        "statusProduct": "ok",
+        "statusAntiTear": "detected",
+        "statusMotorCalibration": "calibration done",
+        "motorStrokeDistance": {
+          "value": 5400,
+          "unit": "µm"
+        },
+        "timeActivation": {
+          "value": 2,
+          "unit": "month"
+        },
+        "productDate": "02/03/2026 09:00",
+        "isD2Dactive": 0
+      }
+    },
+    "points": {
+      "batteryVoltage:1": {
+        "unitId": "mV",
+        "record": 3120
+      }
+    }
+  },
+  {
+    "description": "FLOW NODE One status — FLOW CORE with a paired NODE One probe, good radio link",
+    "type": "uplink",
+    "input": {
+      "bytes": "D23001E24044B11C9C",
+      "fPort": 56,
+      "recvTime": "2026-09-29T08:30:00.000Z"
+    },
+    "output": {
+      "data": {
+        "typeOfProduct": "FLOW CORE",
+        "typeOfMessage": "External Probe Status",
+        "versionOfMessage": 0,
+        "euiExternalProbe": 123456,
+        "statusExternalProbeAntiTear": "detected",
+        "statusExternalProbeTemperature": "ok",
+        "statusExternalProbeBatteryLevel": "high",
+        "statusExternalProbeBatteryVoltage": {
+          "value": 3000,
+          "unit": "mV"
+        },
+        "ExternalProbeMessageReceived": 142,
+        "ExternalProbeNetworkLevel": {
+          "value": -78,
+          "unit": "dBm"
+        }
+      }
+    },
+    "points": {
+      "batteryVoltage": {
+        "unitId": "mV",
+        "record": 3000,
+        "nature": "External probe"
+      },
+      "rssi": {
+        "unitId": "dBm",
+        "record": -78,
+        "nature": "External probe"
+      }
+    }
+  },
+  {
+    "description": "FLOW Configuration v0 — FLOW CORE, older firmware, sent at start-up",
+    "type": "uplink",
+    "input": {
+      "bytes": "D24041062F693AA79955140C85A0000D053D00140000",
+      "fPort": 56,
+      "recvTime": "2026-09-29T08:30:00.000Z"
+    },
+    "output": {
+      "data": {
+        "typeOfProduct": "FLOW CORE",
+        "typeOfMessage": "Product Configuration",
+        "versionOfMessage": 0,
+        "sourceReconfiguration": "start-up",
+        "statusReconfiguration": "total success",
+        "periodPeriodicTransmissionRegulationOn": {
+          "value": 10,
+          "unit": "min"
+        },
+        "periodPeriodicTransmissionRegulationOff": {
+          "value": 60,
+          "unit": "min"
+        },
+        "enableChildLock": "off",
+        "childLockOfflineBehavior": "unchanged when offline",
+        "enableRegulation": "on",
+        "minimumRegulationTemperature": {
+          "value": 15,
+          "unit": "°C"
+        },
+        "maximumRegulationTemperature": {
+          "value": 26,
+          "unit": "°C"
+        },
+        "enableFrostProtect": "on",
+        "frostProtectActivationThreshold": {
+          "value": 7,
+          "unit": "°C"
+        },
+        "enableOpenWindowDetection": "on",
+        "openWindowDetectionTemperatureDrop": {
+          "value": 1,
+          "unit": "°C/min"
+        },
+        "openWindowDetectionPauseDuration": 30,
+        "temperatureInternalOffset": {
+          "value": 0,
+          "unit": "°C"
+        },
+        "temperatureModeConfort": {
+          "value": 21,
+          "unit": "°C"
+        },
+        "temperatureModeEco": {
+          "value": 17,
+          "unit": "°C"
+        },
+        "temperatureModeAbsent": {
+          "value": 16,
+          "unit": "°C"
+        },
+        "lowBatteryValveOpeningPercent": {
+          "value": 50,
+          "unit": "%"
+        },
+        "protocolAndRegion": "LR-EU868",
+        "timeZone": "UTC +1",
+        "isJoinPending": "false",
+        "enableNfcDiscover": "on",
+        "kp": 0,
+        "ki": 0,
+        "enableHeatingPeriod": "on",
+        "heatingStartMonth": 10,
+        "heatingStartDay": 1,
+        "heatingEndMonth": 4,
+        "heatingEndDay": 30,
+        "enablePlanningMode": "on",
+        "dailyPlanning": {
+          "monday": "profil 1",
+          "tuesday": "profil 1",
+          "wednesday": "profil 1",
+          "thursday": "profil 1",
+          "friday": "profil 1",
+          "saturday": "profil 2",
+          "sunday": "profil 2"
+        },
+        "downlinkFcnt": 0
+      }
+    },
+    "points": null
+  },
+  {
+    "description": "FLOW Configuration v1 — FLOW PRO, after an application downlink (FCnt 57)",
+    "type": "uplink",
+    "input": {
+      "bytes": "D64121062F693AA79905AA28190B40001A0A7A00280072",
+      "fPort": 56,
+      "recvTime": "2026-09-29T08:30:00.000Z"
+    },
+    "output": {
+      "data": {
+        "typeOfProduct": "FLOW PRO",
+        "typeOfMessage": "Product Configuration",
+        "versionOfMessage": 1,
+        "sourceReconfiguration": "downlink",
+        "statusReconfiguration": "total success",
+        "periodPeriodicTransmissionRegulationOn": {
+          "value": 10,
+          "unit": "min"
+        },
+        "periodPeriodicTransmissionRegulationOff": {
+          "value": 60,
+          "unit": "min"
+        },
+        "enableChildLock": "off",
+        "childLockOfflineBehavior": "unchanged when offline",
+        "enableRegulation": "on",
+        "minimumRegulationTemperature": {
+          "value": 15,
+          "unit": "°C"
+        },
+        "maximumRegulationTemperature": {
+          "value": 26,
+          "unit": "°C"
+        },
+        "enableFrostProtect": "on",
+        "frostProtectActivationThreshold": {
+          "value": 7,
+          "unit": "°C"
+        },
+        "enableOpenWindowDetection": "on",
+        "openWindowDetectionTemperatureDrop": {
+          "value": 1,
+          "unit": "°C/min"
+        },
+        "openWindowDetectionPauseDuration": 30,
+        "temperatureInternalOffset": {
+          "value": 0,
+          "unit": "°C"
+        },
+        "regulationTolerance": {
+          "value": 0.5,
+          "unit": "°C/min"
+        },
+        "temperatureModeConfort": {
+          "value": 21,
+          "unit": "°C"
+        },
+        "temperatureModeEco": {
+          "value": 17,
+          "unit": "°C"
+        },
+        "temperatureModeAbsent": {
+          "value": 16,
+          "unit": "°C"
+        },
+        "lowBatteryValveOpeningPercent": {
+          "value": 50,
+          "unit": "%"
+        },
+        "protocolAndRegion": "LR-EU868",
+        "timeZone": "UTC +1",
+        "isJoinPending": "false",
+        "enableNfcDiscover": "off",
+        "kp": 0,
+        "ki": 0,
+        "enableHeatingPeriod": "on",
+        "heatingStartMonth": 10,
+        "heatingStartDay": 0,
+        "heatingEndMonth": 4,
+        "heatingEndDay": 30,
+        "enablePlanningMode": "on",
+        "dailyPlanning": {
+          "monday": "profil 2",
+          "tuesday": "profil 1",
+          "wednesday": "profil 1",
+          "thursday": "profil 1",
+          "friday": "profil 1",
+          "saturday": "profil 2",
+          "sunday": "profil 2"
+        },
+        "downlinkFcnt": 57
+      }
+    },
+    "points": null
+  },
+  {
+    "description": "FLOW Configuration v2 — FLOW CORE, weekly periodic resend, BOOST 30 min",
+    "type": "uplink",
+    "input": {
+      "bytes": "D242A1062F693AA79905AA28190B40001A0A7A002800013C00",
+      "fPort": 56,
+      "recvTime": "2026-09-29T08:30:00.000Z"
+    },
+    "output": {
+      "data": {
+        "typeOfProduct": "FLOW CORE",
+        "typeOfMessage": "Product Configuration",
+        "versionOfMessage": 2,
+        "sourceReconfiguration": "local",
+        "statusReconfiguration": "total success",
+        "periodPeriodicTransmissionRegulationOn": {
+          "value": 10,
+          "unit": "min"
+        },
+        "periodPeriodicTransmissionRegulationOff": {
+          "value": 60,
+          "unit": "min"
+        },
+        "enableChildLock": "off",
+        "childLockOfflineBehavior": "unchanged when offline",
+        "enableRegulation": "on",
+        "minimumRegulationTemperature": {
+          "value": 15,
+          "unit": "°C"
+        },
+        "maximumRegulationTemperature": {
+          "value": 26,
+          "unit": "°C"
+        },
+        "enableFrostProtect": "on",
+        "frostProtectActivationThreshold": {
+          "value": 7,
+          "unit": "°C"
+        },
+        "enableOpenWindowDetection": "on",
+        "openWindowDetectionTemperatureDrop": {
+          "value": 1,
+          "unit": "°C/min"
+        },
+        "openWindowDetectionPauseDuration": {
+          "value": 30,
+          "unit": "min"
+        },
+        "temperatureInternalOffset": {
+          "value": 0,
+          "unit": "°C"
+        },
+        "regulationTolerance": {
+          "value": 0.5,
+          "unit": "°C/min"
+        },
+        "temperatureModeConfort": {
+          "value": 21,
+          "unit": "°C"
+        },
+        "temperatureModeEco": {
+          "value": 17,
+          "unit": "°C"
+        },
+        "temperatureModeAbsent": {
+          "value": 16,
+          "unit": "°C"
+        },
+        "lowBatteryValveOpeningPercent": {
+          "value": 50,
+          "unit": "%"
+        },
+        "protocolAndRegion": "LR-EU868",
+        "timeZone": "UTC +1",
+        "isJoinPending": "false",
+        "enableNfcDiscover": "off",
+        "kp": 0,
+        "ki": 0,
+        "enableHeatingPeriod": "on",
+        "heatingStartMonth": {
+          "value": 10,
+          "unit": "month"
+        },
+        "heatingStartDay": {
+          "value": 1,
+          "unit": "day"
+        },
+        "heatingEndMonth": {
+          "value": 4,
+          "unit": "month"
+        },
+        "heatingEndDay": {
+          "value": 30,
+          "unit": "day"
+        },
+        "enablePlanningMode": "on",
+        "dailyPlanning": {
+          "monday": "profil 1",
+          "tuesday": "profil 1",
+          "wednesday": "profil 1",
+          "thursday": "profil 1",
+          "friday": "profil 1",
+          "saturday": "profil 2",
+          "sunday": "profil 2"
+        },
+        "downlinkFcnt": 0,
+        "enableBoost": "on",
+        "boostActivationDuration": {
+          "value": 30,
+          "unit": "min"
+        },
+        "valveOpeningPercentControlDisabled": {
+          "value": 0,
+          "unit": "%"
+        }
+      }
+    },
+    "points": null
+  },
+  {
+    "description": "FLOW Configuration v3 — FLOW PRO, start-up, vertical setpoint display, FUOTA off",
+    "type": "uplink",
+    "input": {
+      "bytes": "D64341062F693AA79905AA28190B40001A0A7A002800013C01",
+      "fPort": 56,
+      "recvTime": "2026-09-29T08:30:00.000Z"
+    },
+    "output": {
+      "data": {
+        "typeOfProduct": "FLOW PRO",
+        "typeOfMessage": "Product Configuration",
+        "versionOfMessage": 3,
+        "sourceReconfiguration": "start-up",
+        "statusReconfiguration": "total success",
+        "periodPeriodicTransmissionRegulationOn": {
+          "value": 10,
+          "unit": "min"
+        },
+        "periodPeriodicTransmissionRegulationOff": {
+          "value": 60,
+          "unit": "min"
+        },
+        "enableChildLock": "off",
+        "childLockOfflineBehavior": "unchanged when offline",
+        "enableRegulation": "on",
+        "minimumRegulationTemperature": {
+          "value": 15,
+          "unit": "°C"
+        },
+        "maximumRegulationTemperature": {
+          "value": 26,
+          "unit": "°C"
+        },
+        "enableFrostProtect": "on",
+        "frostProtectActivationThreshold": {
+          "value": 7,
+          "unit": "°C"
+        },
+        "enableOpenWindowDetection": "on",
+        "openWindowDetectionTemperatureDrop": {
+          "value": 1,
+          "unit": "°C/min"
+        },
+        "openWindowDetectionPauseDuration": {
+          "value": 30,
+          "unit": "min"
+        },
+        "temperatureInternalOffset": {
+          "value": 0,
+          "unit": "°C"
+        },
+        "regulationTolerance": {
+          "value": 0.5,
+          "unit": "°C/min"
+        },
+        "temperatureModeConfort": {
+          "value": 21,
+          "unit": "°C"
+        },
+        "temperatureModeEco": {
+          "value": 17,
+          "unit": "°C"
+        },
+        "temperatureModeAbsent": {
+          "value": 16,
+          "unit": "°C"
+        },
+        "lowBatteryValveOpeningPercent": {
+          "value": 50,
+          "unit": "%"
+        },
+        "protocolAndRegion": "LR-EU868",
+        "timeZone": "UTC +1",
+        "isJoinPending": "false",
+        "enableNfcDiscover": "off",
+        "kp": 0,
+        "ki": 0,
+        "enableHeatingPeriod": "on",
+        "heatingStartMonth": {
+          "value": 10,
+          "unit": "month"
+        },
+        "heatingStartDay": {
+          "value": 1,
+          "unit": "day"
+        },
+        "heatingEndMonth": {
+          "value": 4,
+          "unit": "month"
+        },
+        "heatingEndDay": {
+          "value": 30,
+          "unit": "day"
+        },
+        "enablePlanningMode": "on",
+        "dailyPlanning": {
+          "monday": "profil 1",
+          "tuesday": "profil 1",
+          "wednesday": "profil 1",
+          "thursday": "profil 1",
+          "friday": "profil 1",
+          "saturday": "profil 2",
+          "sunday": "profil 2"
+        },
+        "downlinkFcnt": 0,
+        "enableBoost": "on",
+        "boostActivationDuration": {
+          "value": 30,
+          "unit": "min"
+        },
+        "valveOpeningPercentControlDisabled": {
+          "value": 0,
+          "unit": "%"
+        },
+        "enableFuota": "off",
+        "setpointDisplayOrientation": "vertical"
+      }
+    },
+    "points": null
+  },
+  {
+    "description": "FLOW Daily profile 1 — weekday: comfort 06:30-08:30 and 17:00-22:30, eco otherwise",
+    "type": "uplink",
+    "input": {
+      "bytes": "D25045555554AB555555552AAAAB50",
+      "fPort": 56,
+      "recvTime": "2026-09-29T08:30:00.000Z"
+    },
+    "output": {
+      "data": {
+        "typeOfProduct": "FLOW CORE",
+        "typeOfMessage": "Daily profil n°1",
+        "versionOfMessage": 0,
+        "sourceReconfiguration": "start-up",
+        "statusReconfiguration": "total success",
+        "temperatureSlot00h00_00h30": "eco temperature",
+        "temperatureSlot00h30_01h00": "eco temperature",
+        "temperatureSlot01h00_01h30": "eco temperature",
+        "temperatureSlot01h30_02h00": "eco temperature",
+        "temperatureSlot02h00_02h30": "eco temperature",
+        "temperatureSlot02h30_03h00": "eco temperature",
+        "temperatureSlot03h00_03h30": "eco temperature",
+        "temperatureSlot03h30_04h00": "eco temperature",
+        "temperatureSlot04h00_04h30": "eco temperature",
+        "temperatureSlot04h30_05h00": "eco temperature",
+        "temperatureSlot05h00_05h30": "eco temperature",
+        "temperatureSlot05h30_06h00": "eco temperature",
+        "temperatureSlot06h00_06h30": "eco temperature",
+        "temperatureSlot06h30_07h00": "confort temperature",
+        "temperatureSlot07h00_07h30": "confort temperature",
+        "temperatureSlot07h30_08h00": "confort temperature",
+        "temperatureSlot08h00_08h30": "confort temperature",
+        "temperatureSlot08h30_09h00": "eco temperature",
+        "temperatureSlot09h00_09h30": "eco temperature",
+        "temperatureSlot09h30_10h00": "eco temperature",
+        "temperatureSlot10h00_10h30": "eco temperature",
+        "temperatureSlot10h30_11h00": "eco temperature",
+        "temperatureSlot11h00_11h30": "eco temperature",
+        "temperatureSlot11h30_12h00": "eco temperature",
+        "temperatureSlot12h00_12h30": "eco temperature",
+        "temperatureSlot12h30_13h00": "eco temperature",
+        "temperatureSlot13h00_13h30": "eco temperature",
+        "temperatureSlot13h30_14h00": "eco temperature",
+        "temperatureSlot14h00_14h30": "eco temperature",
+        "temperatureSlot14h30_15h00": "eco temperature",
+        "temperatureSlot15h00_15h30": "eco temperature",
+        "temperatureSlot15h30_16h00": "eco temperature",
+        "temperatureSlot16h00_16h30": "eco temperature",
+        "temperatureSlot16h30_17h00": "eco temperature",
+        "temperatureSlot17h00_17h30": "confort temperature",
+        "temperatureSlot17h30_18h00": "confort temperature",
+        "temperatureSlot18h00_18h30": "confort temperature",
+        "temperatureSlot18h30_19h00": "confort temperature",
+        "temperatureSlot19h00_19h30": "confort temperature",
+        "temperatureSlot19h30_20h00": "confort temperature",
+        "temperatureSlot20h00_20h30": "confort temperature",
+        "temperatureSlot20h30_21h00": "confort temperature",
+        "temperatureSlot21h00_21h30": "confort temperature",
+        "temperatureSlot21h30_22h00": "confort temperature",
+        "temperatureSlot22h00_22h30": "confort temperature",
+        "temperatureSlot22h30_23h00": "eco temperature",
+        "temperatureSlot23h00_23h30": "eco temperature",
+        "temperatureSlot23h30_00h00": "eco temperature"
+      }
+    },
+    "points": null
+  },
+  {
+    "description": "FLOW Daily profile 2 — weekend: comfort 08:00-23:00, eco otherwise",
+    "type": "uplink",
+    "input": {
+      "bytes": "D2604555555552AAAAAAAAAAAAAAD0",
+      "fPort": 56,
+      "recvTime": "2026-09-29T08:30:00.000Z"
+    },
+    "output": {
+      "data": {
+        "typeOfProduct": "FLOW CORE",
+        "typeOfMessage": "Daily profil n°2",
+        "versionOfMessage": 0,
+        "sourceReconfiguration": "start-up",
+        "statusReconfiguration": "total success",
+        "temperatureSlot00h00_00h30": "eco temperature",
+        "temperatureSlot00h30_01h00": "eco temperature",
+        "temperatureSlot01h00_01h30": "eco temperature",
+        "temperatureSlot01h30_02h00": "eco temperature",
+        "temperatureSlot02h00_02h30": "eco temperature",
+        "temperatureSlot02h30_03h00": "eco temperature",
+        "temperatureSlot03h00_03h30": "eco temperature",
+        "temperatureSlot03h30_04h00": "eco temperature",
+        "temperatureSlot04h00_04h30": "eco temperature",
+        "temperatureSlot04h30_05h00": "eco temperature",
+        "temperatureSlot05h00_05h30": "eco temperature",
+        "temperatureSlot05h30_06h00": "eco temperature",
+        "temperatureSlot06h00_06h30": "eco temperature",
+        "temperatureSlot06h30_07h00": "eco temperature",
+        "temperatureSlot07h00_07h30": "eco temperature",
+        "temperatureSlot07h30_08h00": "eco temperature",
+        "temperatureSlot08h00_08h30": "confort temperature",
+        "temperatureSlot08h30_09h00": "confort temperature",
+        "temperatureSlot09h00_09h30": "confort temperature",
+        "temperatureSlot09h30_10h00": "confort temperature",
+        "temperatureSlot10h00_10h30": "confort temperature",
+        "temperatureSlot10h30_11h00": "confort temperature",
+        "temperatureSlot11h00_11h30": "confort temperature",
+        "temperatureSlot11h30_12h00": "confort temperature",
+        "temperatureSlot12h00_12h30": "confort temperature",
+        "temperatureSlot12h30_13h00": "confort temperature",
+        "temperatureSlot13h00_13h30": "confort temperature",
+        "temperatureSlot13h30_14h00": "confort temperature",
+        "temperatureSlot14h00_14h30": "confort temperature",
+        "temperatureSlot14h30_15h00": "confort temperature",
+        "temperatureSlot15h00_15h30": "confort temperature",
+        "temperatureSlot15h30_16h00": "confort temperature",
+        "temperatureSlot16h00_16h30": "confort temperature",
+        "temperatureSlot16h30_17h00": "confort temperature",
+        "temperatureSlot17h00_17h30": "confort temperature",
+        "temperatureSlot17h30_18h00": "confort temperature",
+        "temperatureSlot18h00_18h30": "confort temperature",
+        "temperatureSlot18h30_19h00": "confort temperature",
+        "temperatureSlot19h00_19h30": "confort temperature",
+        "temperatureSlot19h30_20h00": "confort temperature",
+        "temperatureSlot20h00_20h30": "confort temperature",
+        "temperatureSlot20h30_21h00": "confort temperature",
+        "temperatureSlot21h00_21h30": "confort temperature",
+        "temperatureSlot21h30_22h00": "confort temperature",
+        "temperatureSlot22h00_22h30": "confort temperature",
+        "temperatureSlot22h30_23h00": "confort temperature",
+        "temperatureSlot23h00_23h30": "eco temperature",
+        "temperatureSlot23h30_00h00": "eco temperature"
+      }
+    },
+    "points": null
+  },
+  {
+    "description": "FLOW Daily profile 3 — extended absence all day",
+    "type": "uplink",
+    "input": {
+      "bytes": "D27027FFFFFFFFFFFFFFFFFFFFFFF8",
+      "fPort": 56,
+      "recvTime": "2026-09-29T08:30:00.000Z"
+    },
+    "output": {
+      "data": {
+        "typeOfProduct": "FLOW CORE",
+        "typeOfMessage": "Daily profil n°3",
+        "versionOfMessage": 0,
+        "sourceReconfiguration": "downlink",
+        "statusReconfiguration": "total success",
+        "temperatureSlot00h00_00h30": "absent temperature",
+        "temperatureSlot00h30_01h00": "absent temperature",
+        "temperatureSlot01h00_01h30": "absent temperature",
+        "temperatureSlot01h30_02h00": "absent temperature",
+        "temperatureSlot02h00_02h30": "absent temperature",
+        "temperatureSlot02h30_03h00": "absent temperature",
+        "temperatureSlot03h00_03h30": "absent temperature",
+        "temperatureSlot03h30_04h00": "absent temperature",
+        "temperatureSlot04h00_04h30": "absent temperature",
+        "temperatureSlot04h30_05h00": "absent temperature",
+        "temperatureSlot05h00_05h30": "absent temperature",
+        "temperatureSlot05h30_06h00": "absent temperature",
+        "temperatureSlot06h00_06h30": "absent temperature",
+        "temperatureSlot06h30_07h00": "absent temperature",
+        "temperatureSlot07h00_07h30": "absent temperature",
+        "temperatureSlot07h30_08h00": "absent temperature",
+        "temperatureSlot08h00_08h30": "absent temperature",
+        "temperatureSlot08h30_09h00": "absent temperature",
+        "temperatureSlot09h00_09h30": "absent temperature",
+        "temperatureSlot09h30_10h00": "absent temperature",
+        "temperatureSlot10h00_10h30": "absent temperature",
+        "temperatureSlot10h30_11h00": "absent temperature",
+        "temperatureSlot11h00_11h30": "absent temperature",
+        "temperatureSlot11h30_12h00": "absent temperature",
+        "temperatureSlot12h00_12h30": "absent temperature",
+        "temperatureSlot12h30_13h00": "absent temperature",
+        "temperatureSlot13h00_13h30": "absent temperature",
+        "temperatureSlot13h30_14h00": "absent temperature",
+        "temperatureSlot14h00_14h30": "absent temperature",
+        "temperatureSlot14h30_15h00": "absent temperature",
+        "temperatureSlot15h00_15h30": "absent temperature",
+        "temperatureSlot15h30_16h00": "absent temperature",
+        "temperatureSlot16h00_16h30": "absent temperature",
+        "temperatureSlot16h30_17h00": "absent temperature",
+        "temperatureSlot17h00_17h30": "absent temperature",
+        "temperatureSlot17h30_18h00": "absent temperature",
+        "temperatureSlot18h00_18h30": "absent temperature",
+        "temperatureSlot18h30_19h00": "absent temperature",
+        "temperatureSlot19h00_19h30": "absent temperature",
+        "temperatureSlot19h30_20h00": "absent temperature",
+        "temperatureSlot20h00_20h30": "absent temperature",
+        "temperatureSlot20h30_21h00": "absent temperature",
+        "temperatureSlot21h00_21h30": "absent temperature",
+        "temperatureSlot21h30_22h00": "absent temperature",
+        "temperatureSlot22h00_22h30": "absent temperature",
+        "temperatureSlot22h30_23h00": "absent temperature",
+        "temperatureSlot23h00_23h30": "absent temperature",
+        "temperatureSlot23h30_00h00": "absent temperature"
+      }
+    },
+    "points": null
+  },
+  {
+    "description": "FLOW encode downlink: set child lock",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setChildLock": true
+      }
+    },
+    "output": {
+      "bytes": [
+        85,
+        118,
+        1
+      ],
+      "fPort": 56,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "description": "FLOW encode downlink: set target temperature 20 °C",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setTargetTemperature": 20
+      }
+    },
+    "output": {
+      "bytes": [
+        85,
+        138,
+        40
+      ],
+      "fPort": 56,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "description": "FLOW encode downlink: set target temperature 19.5 °C",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setTargetTemperature": 19.5
+      }
+    },
+    "output": {
+      "bytes": [
+        85,
+        138,
+        39
+      ],
+      "fPort": 56,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "description": "FLOW encode downlink: set minimum and maximum temperatures",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setMinTemperature": 16,
+        "setMaxTemperature": 24
+      }
+    },
+    "output": {
+      "bytes": [
+        85,
+        119,
+        32,
+        120,
+        48
+      ],
+      "fPort": 56,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "description": "FLOW encode downlink: set temperature offset -1.5 °C",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setTemperatureOffset": -1.5
+      }
+    },
+    "output": {
+      "bytes": [
+        85,
+        114,
+        35
+      ],
+      "fPort": 56,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "description": "FLOW encode downlink: set open window detection",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setOpenWindowDetection": true,
+        "setOpenWindowDelta": 1.5,
+        "setOpenWindowPauseDuration": 15
+      }
+    },
+    "output": {
+      "bytes": [
+        85,
+        115,
+        1,
+        116,
+        15,
+        117,
+        15
+      ],
+      "fPort": 56,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "description": "FLOW encode downlink: set uplink period with regulation on",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setUplinkPeriodRegulationOn": 30
+      }
+    },
+    "output": {
+      "bytes": [
+        85,
+        134,
+        3
+      ],
+      "fPort": 56,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "description": "FLOW encode downlink: set delayed network join",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setDelayedNetworkJoin": 1440
+      }
+    },
+    "output": {
+      "bytes": [
+        85,
+        28,
+        0,
+        144
+      ],
+      "fPort": 56,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "description": "FLOW encode downlink: recalibrate motor",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "recalibrateMotor": ""
+      }
+    },
+    "output": {
+      "bytes": [
+        85,
+        140
+      ],
+      "fPort": 56,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "description": "FLOW encode downlink: set time zone UTC+1",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setTimeZone": 1
+      }
+    },
+    "output": {
+      "bytes": [
+        85,
+        99,
+        13
+      ],
+      "fPort": 56,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "description": "FLOW encode downlink: set weekly schedule",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setWeeklySchedule": {
+          "monday": 1,
+          "tuesday": 1,
+          "wednesday": 2,
+          "thursday": 1,
+          "friday": 1,
+          "saturday": 3,
+          "sunday": 3
+        }
+      }
+    },
+    "output": {
+      "bytes": [
+        85,
+        130,
+        4,
+        40
+      ],
+      "fPort": 56,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "description": "FLOW encode downlink: set setpoint display orientation",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setSetpointDisplayOrientation": "vertical"
+      }
+    },
+    "output": {
+      "bytes": [
+        85,
+        154,
+        1
+      ],
+      "fPort": 56,
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "description": "FLOW fail encode downlink: target temperature out of range",
+    "type": "downlink-encode",
+    "input": {
+      "data": {
+        "setTargetTemperature": 40
+      }
+    },
+    "output": {
+      "bytes": [],
+      "fPort": 56,
+      "warnings": [],
+      "errors": [
+        "setTargetTemperature: out of range (0C..31C), got 40C"
+      ]
+    }
+  },
+  {
+    "description": "FLOW decode downlink: set child lock",
+    "type": "downlink-decode",
+    "input": {
+      "bytes": "557601",
+      "fPort": 56,
+      "recvTime": "2026-09-29T08:30:00.000Z"
+    },
+    "output": {
+      "data": {
+        "setChildLock": true
+      },
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "description": "FLOW decode downlink: set minimum and maximum temperatures",
+    "type": "downlink-decode",
+    "input": {
+      "bytes": "5577207830",
+      "fPort": 56,
+      "recvTime": "2026-09-29T08:30:00.000Z"
+    },
+    "output": {
+      "data": {
+        "setMinTemperature": 16,
+        "setMaxTemperature": 24
+      },
+      "warnings": [],
+      "errors": []
+    }
+  },
+  {
+    "description": "FLOW decode downlink: set weekly schedule",
+    "type": "downlink-decode",
+    "input": {
+      "bytes": "55820428",
+      "fPort": 56,
+      "recvTime": "2026-09-29T08:30:00.000Z"
+    },
+    "output": {
+      "data": {
+        "setWeeklySchedule": {
+          "monday": 1,
+          "tuesday": 1,
+          "wednesday": 2,
+          "thursday": 1,
+          "friday": 1,
+          "saturday": 3,
+          "sunday": 3
+        }
+      },
+      "warnings": [],
+      "errors": []
+    }
+  }
+]
