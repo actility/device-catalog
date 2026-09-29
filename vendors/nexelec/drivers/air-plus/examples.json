@@ -11,19 +11,30 @@
       "data": {
         "typeOfProduct": "Air+ LoRa",
         "typeOfMessage": "CO Alarm Status",
-        "coConcentration": { "value": 800, "unit": "ppm" },
+        "coConcentration": {
+          "value": 800,
+          "unit": "ppm"
+        },
         "preAlarm": "Active",
         "localAlarm": "Active",
         "coAlarmHush": "Active",
         "productTest": "Product test is running",
-        "timeSinceLastTest": { "value": 120, "unit": "week" }
-      },
-      "errors": [],
-      "warnings": []
+        "timeSinceLastTest": {
+          "value": 120,
+          "unit": "week"
+        }
+      }
     },
     "points": {
-      "amount:1": { "unitId": "ppm", "record": 800 },
-      "status": { "unitId": "state", "record": true, "nature": "CO alarm" }
+      "amount:1": {
+        "unitId": "ppm",
+        "record": 800
+      },
+      "status": {
+        "unitId": "state",
+        "record": true,
+        "nature": "CO alarm"
+      }
     }
   },
   {
@@ -40,22 +51,19 @@
         "typeOfMessage": "Product Status",
         "hwRevision": "V003",
         "swRevision": "V1.0",
-        "remainingProductLifetime": { "Value": 120, "unit": "month" },
+        "remainingProductLifetime": {
+          "value": 120,
+          "unit": "month"
+        },
         "coSensorStatus": "Hardware fault detected",
         "tempHumSensorStatus": "Hardware fault detected",
         "memoryFault": "Hardware fault detected",
-        "hushStatus": "Hardware fault detected",
+        "hushStatus": "Active",
         "energyStatus": "Critical",
-        "batteryVoltage": { "value": 3250, "unit": "mV" },
-        "batteryResistanceThreshold": { "value": null, "unit": "mOhm" },
-        "batteryLowVoltageThreshold": { "value": null, "unit": "mV" }
-      },
-      "errors": [],
-      "warnings": []
+        "magnetDetection": "Magnetic base detected"
+      }
     },
-    "points": {
-      "batteryVoltage:1": { "unitId": "mV", "record": 3250 }
-    }
+    "points": null
   },
   {
     "description": "AIR+ Real Time",
@@ -69,19 +77,35 @@
       "data": {
         "typeOfProduct": "Air+ LoRa",
         "typeOfMessage": "Real Time",
-        "coConcentration": { "value": 600, "unit": "ppm" },
-        "temperature": { "value": 55, "unit": "°C" },
-        "relativeHumidity": { "value": 62.5, "unit": "%RH" },
+        "coConcentration": {
+          "value": 600,
+          "unit": "ppm"
+        },
+        "temperature": {
+          "value": 55,
+          "unit": "°C"
+        },
+        "relativeHumidity": {
+          "value": 62.5,
+          "unit": "%RH"
+        },
         "iaqGlobal": "Poor",
         "iaqSource": "Reserved"
-      },
-      "errors": [],
-      "warnings": []
+      }
     },
     "points": {
-      "amount:1": { "unitId": "ppm", "record": 600 },
-      "temperature:1": { "unitId": "Cel", "record": 55 },
-      "humidity:1": { "unitId": "%RH", "record": 62.5 }
+      "amount:1": {
+        "unitId": "ppm",
+        "record": 600
+      },
+      "temperature:1": {
+        "unitId": "Cel",
+        "record": 55
+      },
+      "humidity:1": {
+        "unitId": "%RH",
+        "record": 62.5
+      }
     }
   },
   {
@@ -101,16 +125,75 @@
         "realtimeStatus": "Active",
         "nfcStatus": "RFU",
         "regionSelection": "RFU",
-        "realtimePeriod": { "value": 50, "unit": "min" },
-        "deltaTemperature": { "value": 17.5, "unit": "°C" },
-        "deltaCO": { "value": 470, "unit": "ppm" },
+        "realtimePeriod": {
+          "value": 50,
+          "unit": "min"
+        },
+        "deltaTemperature": {
+          "value": 17.5,
+          "unit": "°C"
+        },
+        "deltaCO": {
+          "value": 470,
+          "unit": "ppm"
+        },
         "d2dID": 12000,
         "d2dPing": "Compatible",
         "pendingJoin": "Join request scheduled",
-        "downlinkCounter": 2500
+        "downlinkCounter": 5000
+      }
+    },
+    "points": null
+  },
+  {
+    "description": "AIR+ Real Time, temperature sensor in error",
+    "type": "uplink",
+    "input": {
+      "bytes": "AE0200BFF8C880",
+      "fPort": 1,
+      "recvTime": "2024-01-15T10:00:00.000Z"
+    },
+    "output": {
+      "data": {
+        "typeOfProduct": "Air+ LoRa",
+        "typeOfMessage": "Real Time",
+        "coConcentration": {
+          "value": 2,
+          "unit": "ppm"
+        },
+        "temperature": "Error",
+        "relativeHumidity": {
+          "value": 70,
+          "unit": "%RH"
+        },
+        "iaqGlobal": "Bad",
+        "iaqSource": "CO"
+      }
+    },
+    "points": {
+      "amount:1": {
+        "unitId": "ppm",
+        "record": 2
       },
-      "errors": [],
-      "warnings": []
+      "humidity:1": {
+        "unitId": "%RH",
+        "record": 70
+      }
+    }
+  },
+  {
+    "description": "AIR+ SAV Information",
+    "type": "uplink",
+    "input": {
+      "bytes": "AE04",
+      "fPort": 1,
+      "recvTime": "2024-01-15T10:00:00.000Z"
+    },
+    "output": {
+      "data": {
+        "typeOfProduct": "Air+ LoRa",
+        "typeOfMessage": "SAV Information"
+      }
     },
     "points": null
   }
