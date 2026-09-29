@@ -943,7 +943,7 @@ function normalize(number, resolution) {
  * @param {Date} input.recvTime - The uplink message time recorded by the LoRaWAN network server
  * @returns {DecodedUplink} - The decoded object
  */
-function decodeUplink(input) {
+function decodeKamstrupUplink(input) {
     var result = {
         data: {},
         errors: [],
@@ -1327,6 +1327,17 @@ function isContextUsedInPayload(input) {
     }
     const configfield = raw[offset] | (raw[offset + 1] << 8);
     return configfield === 0xAAFF || configfield === 0x2AFF;
+}
+
+// The driver is lora-alliance so that the engine keeps its context between uplinks
+// (TXIF-4336). A lora-alliance driver delivers output.data to the connections, where an
+// actility one delivered its whole output: the decoded { data, errors, warnings } therefore
+// goes under data, so that connections keep the payload they had (TXIF-4285). Its errors and
+// warnings are repeated at the top level: with errors the engine fails the decoding, as it
+// did before.
+function decodeUplink(input) {
+    var result = decodeKamstrupUplink(input);
+    return { data: result, errors: result.errors, warnings: result.warnings };
 }
 
 exports.decodeUplink = decodeUplink;
