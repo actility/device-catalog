@@ -79,6 +79,7 @@ This is the ontology supported by Actility. You can define a sensor inside your 
 | microgram per cubic meter | ug/m3 | double | &#181;g/m&#179; | concentration, pm1, pm2_5, pm4, pm10, tvoc, ch2o, o3, no2, co, nh3, h2s, ch4, c2h4, benzene |
 | micrometer | um | double | &#181;m | distance, accuracy, range, altitude, height |
 | micromole per second and square meter | umol/m2.s | double | &#181;mol/m&#178;.s | fluxDensity, intensity |
+| microsecond | us | double | &#181;s | time, duration, interval, age, period |
 | microsiemens per centimeter | uS/cm | double | &#181;S/cm | conductivity |
 | microstrain | um/m | double | &#181;m/m | strain |
 | microvolt | uV | double | &#181;V | batteryVoltage, rmsVoltage, voltage |
