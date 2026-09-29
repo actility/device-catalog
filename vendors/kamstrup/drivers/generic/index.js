@@ -163,11 +163,12 @@
 
             // Clear context
             context.length = 0
+            // Plain arrays: Buffers do not survive the engine's context storage
             context.push({
-                serialNumber: rawBuffer.subarray(1, 5),
-                manufacturerId: rawBuffer.subarray(5, 7),
-                version: rawBuffer.subarray(7, 8),
-                deviceType: rawBuffer.subarray(8, 9)
+                serialNumber: Array.from(rawBuffer.subarray(1, 5)),
+                manufacturerId: Array.from(rawBuffer.subarray(5, 7)),
+                version: Array.from(rawBuffer.subarray(7, 8)),
+                deviceType: Array.from(rawBuffer.subarray(8, 9))
             });
         }
         else if(configfield == 0x2AFF) {
@@ -1317,4 +1318,16 @@ function decodeUplink(input) {
     return result;
 }
 
+// Encrypted long (0xAAFF) and short (0x2AFF) header frames need the stored context
+function isContextUsedInPayload(input) {
+    const raw = Buffer.from(input.payload || "", "hex");
+    const offset = raw[0] === 0x7A ? 3 : raw[0] === 0x72 ? 11 : -1;
+    if (offset < 0 || raw.length < offset + 2) {
+        return false;
+    }
+    const configfield = raw[offset] | (raw[offset + 1] << 8);
+    return configfield === 0xAAFF || configfield === 0x2AFF;
+}
+
 exports.decodeUplink = decodeUplink;
+exports.isContextUsedInPayload = isContextUsedInPayload;
