@@ -6,25 +6,25 @@ description: "The ELSYS ERS CO2 is a LoRaWAN® device that has internal sensors 
 logo: elsys-ers-co2.png
 # Product name & Version
 product:
-    name: ELSY/ERCO2
+    name: ELSYS/ERSCO2
     version: 1
 # ID(s) of the profile that defines the LoRaWAN characteristics of this model.
 # id: as defined under /profiles.
 # lorawanDeviceProfileID: as defined by LoRa Alliance in https://lora-alliance.org/wp-content/uploads/2020/10/LoRa_Alliance_Vendor_ID_for_QR_Code_02142022.pdf.
 # The lorawanDeviceProfileID consists of 8 upper-case hexadecimal characters, 4 characters for VendorID + 4 characters for VendorProfileID. Please consider using single (') or double (") quotation.
-deviceProfileIds: 
-    - id: ELSY/ERCO2A.1.0.3a_AS923
-    - id: ELSY/ERCO2A.1.0.3a_AU
-    - id: ELSY/ERCO2A.1.0.3a_ETSI
-    - id: ELSY/ERCO2A.1.0.3a_FCC
+deviceProfileIds:
+    - id: elsys_RFGroup1_1.0.3a_classA
+    - id: elsys_RFGroup2_1.0.3a_classA
+    - id: elsys_RFGroup3_1.0.3a_classA
+    - id: elsys_RFGroup4_1.0.3a_classA
  
 # You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
 # Maximum device TX Conducted output power in dBm. 
-maxTxPower:
+maxTxPower: 14
 # Minimum device TX Conducted output power in dBm. 
 minTxPower:
 # Maximum device TX Radiated output power in dBm.  
-maxTxEIRP:
+maxTxEIRP: 14
 # Minimum device TX Radiated output power in dBm.  
 minTxEIRP:
 # Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'  
@@ -54,12 +54,6 @@ sensors:
     - humidity:%RH
     - light:lx
     - co2Level:ppm
-examples:
-  elsys:generic:1:
-    - "uplink message that contains only temperature"
-    - "uplink message that contains only humidity"
-    - "uplink message that contains only light"
-    - "uplink message that contains only co2"
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false
