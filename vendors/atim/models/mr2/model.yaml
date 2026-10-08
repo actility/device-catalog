@@ -33,6 +33,7 @@ LoRaWANCertified: false
 modelId: atim:acw-mr2:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId:
+  - atim:mr2-ex:2
   - atim:mr2-ex:1
   - atim:generic:1
 # Informative, maintained by Netmore: true when the driver of the first protocolId above ships a
@@ -50,6 +51,15 @@ sensors:
   - period:minute
   - batteryVoltage:V
 examples:
+  atim:mr2-ex:2:
+    - "Digital input change of state"
+    - "ECO counter frame (LoRaWAN, six 32-bit indexes)"
+    - "ECO counter frame (Sigfox, five 12-bit deltas)"
+    - "Keep alive frame"
+    - "Historised measurement frame"
+    - "Set the keep alive period to once a day"
+    - "Set the datalogging period to 300 minutes"
+    - "Enable the timestamp in uplinks"
   atim:mr2-ex:1:
     - "Digital input change of state"
     - "ECO counter frame (LoRaWAN, 32 bit deltas)"
