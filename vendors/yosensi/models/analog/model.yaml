@@ -1,7 +1,7 @@
 # Commercial name of the model 
 name: YO Analog
 # Functional description of the product. Maximum 500 characters. 
-description: "YO Analog makes it possible to monitor devices and processes in automation."
+description: "YO Analog makes it possible to monitor devices and processes in automation. It has six configurable measurement inputs, each working either as a current input (4-20 mA) or a voltage input (0-10 V). The device is mounted on a 35 mm DIN rail and powered from 6-30 V DC or 5-21 V AC."
 # Logo of the device
 logo: analog.png
 # ID(s) of the profile that defines the LoRaWAN characteristics of this model.
@@ -43,6 +43,8 @@ specificationURL: https://www.yosensi.io/support/datasheets/YO_Analog_datasheet.
 userGuideURL: https://yosensi.io/support/user-guides/YO_Analog_user_guide.pdf
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
+    - current:mA
+    - voltage:V
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
