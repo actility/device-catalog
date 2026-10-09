@@ -1,7 +1,7 @@
 # Commercial name of the model 
 name: YO Meter Reader 2.0
 # Functional description of the product. Maximum 500 characters. 
-description: "YO Meter Reader 2.0 is a battery-powered LoRaWAN device enabling data reading from LED pulse detector. Additionally, the device has built-in temperature and humidity sensors. It provides data transmission, eliminating the need for manual readings and potential errors. Its versatile applications include smart metering, energy consumption monitoring, and billing systems."
+description: "YO Meter Reader 2.0 is a battery-powered LoRaWAN device for reading utility meters. It can be equipped with one of three external sensors: an LED Pulse Sensor counting LED pulses from electricity or water meters, a Pulse Input Sensor for meters with a pulse output (water, gas, heat), or an IEC 62056-21 optical interface reading OBIS registers (energy in kWh) from electricity meters.\nAdditionally, the device has built-in temperature and humidity sensors."
 # Logo of the device
 logo: meter-reader_v2.png
 # ID(s) of the profile that defines the LoRaWAN characteristics of this model.
@@ -43,11 +43,17 @@ specificationURL: https://www.yosensi.io/support/datasheets/YO_Meter_Reader_2.0_
 userGuideURL: https://www.yosensi.io/support/user-guides/YO_Meter_Reader_2.0_User_Guide.pdf
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
+    - batteryVoltage:mV
+    - temperature:Cel
+    - humidity:%RH
+    - energy:kWh
+    - counter:count
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
   yosensi:generic:1:
     - "Example Meter Reader 2.0 OI"
+    - "Example Meter Reader 2.0 LD"
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false

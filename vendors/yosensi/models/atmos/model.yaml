@@ -1,9 +1,9 @@
 # Commercial name of the model 
-name: YO 360
+name: YO Atmos
 # Functional description of the product. Maximum 500 characters. 
-description: "YO 360 measures temperature and humidity, and it sends its own position on the x, y, and z axes (via a built-in accelerometer). Its small size, battery power supply, and wide data transmission range allow the device to be used virtually anywhere. The device is equipped with a lithium battery with a very low level of self-discharge."
+description: "YO Atmos measures atmospheric pressure.\nAdditionally, the device contains internal sensors measuring temperature and humidity. YO Atmos features an IP67 protected enclosure and battery power supply."
 # Logo of the device
-logo: yo-360.png
+logo: atmos.png
 # ID(s) of the profile that defines the LoRaWAN characteristics of this model.
 # id: as defined under /profiles.
 # lorawanDeviceProfileID: as defined by LoRa Alliance in https://lora-alliance.org/wp-content/uploads/2020/10/LoRa_Alliance_Vendor_ID_for_QR_Code_02142022.pdf.
@@ -30,7 +30,7 @@ motionIndicator:
 LoRaWANCertified: false
 # Always mandatory: `<vendorId>:<modelName>:<modelVersion>` (You should have only one per model)
 # Format: `<8 characters max>:<16 characters max>:<digits only>`
-modelId: yosensi:yo-360:1
+modelId: yosensi:atmos:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 protocolId: yosensi:generic:1
 # Informative, maintained by Netmore: true when the driver of the first protocolId above ships a
@@ -38,20 +38,18 @@ protocolId: yosensi:generic:1
 # exposed through the BACnet and Modbus gateways. Checked: true requires that mapping.
 supportedBACnetModbus: false
 # DataSheet URL (optional) 
-specificationURL: https://www.yosensi.io/support/datasheets/YO_360_datasheet.pdf
+specificationURL: https://yosensi.io/products/yo_atmos/
 # User Guide URL (optional) 
-userGuideURL: https://www.yosensi.io/support/user-guides/YO_360_user_guide.pdf
+userGuideURL: https://support.yosensi.io/lorawan/nodes/yo-atmos/
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
     - batteryVoltage:mV
     - temperature:Cel
     - humidity:%RH
-    - angle:deg
+    - pressure:hPa
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
-  yosensi:generic:1:
-    - "Example 360"
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false
