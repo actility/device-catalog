@@ -2110,8 +2110,8 @@
             "address": "",
             "dateTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
             "type": 40,
-            "typeName": "undefined",
-            "typeUnits": "undefined",
+            "typeName": "Velocity",
+            "typeUnits": "m/s",
             "value": 4.18
           }
         ]
@@ -2227,5 +2227,49 @@
         "record": 36
       }
     }
+  },
+  {
+    "description": "Example V1 startup frame without RTC",
+    "type": "uplink",
+    "input": {
+      "bytes": "01004c4e5043010201",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "payloadVersion": 1,
+        "payloadType": "Device time, date and general information",
+        "payloadDateTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+        "deviceName": "YO 360",
+        "firmwareVersion": "1.2.1",
+        "devTimeDate": null
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {}
+  },
+  {
+    "description": "Example V1 startup frame with RTC",
+    "type": "uplink",
+    "input": {
+      "bytes": "01004c4e415401000100095523",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "payloadVersion": 1,
+        "payloadType": "Device time, date and general information",
+        "payloadDateTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+        "deviceName": "YO Atmos",
+        "firmwareVersion": "1.0.1",
+        "devTimeDate": "1970-01-08T01:53:39.000Z"
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {}
   }
 ]
