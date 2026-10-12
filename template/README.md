@@ -100,7 +100,7 @@ Each model represents a specific product and a particular product version of a d
 
 Inside each model directory, there is `model.yaml` that describes the model, and a photo of the device.
 
-You can find template(s) of `model.yaml` under `models` directory. It is highly recommended to start by copying one and customize it following your model specifications.
+You can find template(s) of `model.yaml` under `models` directory. It is highly recommended to start by copying one and customize it following your model specifications. The `sensors` and `supportedBACnetModbus` fields are maintained by Netmore from its private points extraction: leave them as in the template.
 
 The file `<Model Name>.png` presents the image of the device, it should be:
 - named the same as mentioned in `model.yaml`

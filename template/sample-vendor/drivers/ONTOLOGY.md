@@ -1,6 +1,6 @@
 # Ontology
 
-This is the ontology supported by Actility. You can define a sensor inside your model depending on this table.
+This is the ontology supported by Actility. The points extracted from the uplinks, and so the `sensors` of a model, are expressed with this table. Both are maintained by Netmore (see *Points extraction* in the [driver README](README.md)): a contribution does not have to define them.
 
 > Our ontology is based on [oBIX protocol](http://docs.oasis-open.org/obix/obix/v1.1/csprd01/obix-v1.1-csprd01.pdf) which provides an extensive database of predefined units that are represented in seven main dimensions. These seven dimensions are represented in SI respectively as kilogram (kg), meter (m), second (sec), Kelvin (K), ampere (A), mole (mol), and candela (cd).
 

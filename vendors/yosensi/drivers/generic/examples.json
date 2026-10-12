@@ -1883,5 +1883,349 @@
       "warnings": []
     },
     "points": {}
+  },
+  {
+    "description": "Example Atmos",
+    "type": "uplink",
+    "input": {
+      "bytes": "029200000800012aeb0d000100ee10000024150001271f",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "payloadVersion": 2,
+        "payloadCounter": 146,
+        "payloadCreationDateTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+        "measurements": [
+          {
+            "address": "",
+            "dateTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+            "type": 2,
+            "typeName": "battery voltage",
+            "typeUnits": "[mV]",
+            "value": 10987
+          },
+          {
+            "address": "",
+            "dateTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+            "type": 3,
+            "typeName": "temperature",
+            "typeUnits": "[°C]",
+            "value": 23.8
+          },
+          {
+            "address": "",
+            "dateTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+            "type": 4,
+            "typeName": "relative humidity",
+            "typeUnits": "[%]",
+            "value": 36
+          },
+          {
+            "address": "",
+            "dateTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+            "type": 5,
+            "typeName": "pressure",
+            "typeUnits": "[hPa]",
+            "value": 1001.5
+          }
+        ]
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "batteryVoltage:1": {
+        "unitId": "mV",
+        "record": 10987
+      },
+      "temperature:1": {
+        "unitId": "Cel",
+        "record": 23.8
+      },
+      "humidity:1": {
+        "unitId": "%RH",
+        "record": 36
+      },
+      "pressure:1": {
+        "unitId": "hPa",
+        "record": 1001.5
+      }
+    }
+  },
+  {
+    "description": "Example Agri Pro",
+    "type": "uplink",
+    "input": {
+      "bytes": "0216000008000129ac0d000100ec1000002366001100000966001101000b0d00110000eb0d00110100e8",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "payloadVersion": 2,
+        "payloadCounter": 22,
+        "payloadCreationDateTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+        "measurements": [
+          {
+            "address": "",
+            "dateTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+            "type": 2,
+            "typeName": "battery voltage",
+            "typeUnits": "[mV]",
+            "value": 10668
+          },
+          {
+            "address": "",
+            "dateTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+            "type": 3,
+            "typeName": "temperature",
+            "typeUnits": "[°C]",
+            "value": 23.6
+          },
+          {
+            "address": "",
+            "dateTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+            "type": 4,
+            "typeName": "relative humidity",
+            "typeUnits": "[%]",
+            "value": 35
+          },
+          {
+            "address": "00",
+            "dateTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+            "type": 25,
+            "typeName": "custom",
+            "typeUnits": "",
+            "value": 0.09
+          },
+          {
+            "address": "01",
+            "dateTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+            "type": 25,
+            "typeName": "custom",
+            "typeUnits": "",
+            "value": 0.11
+          },
+          {
+            "address": "00",
+            "dateTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+            "type": 3,
+            "typeName": "temperature",
+            "typeUnits": "[°C]",
+            "value": 23.5
+          },
+          {
+            "address": "01",
+            "dateTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+            "type": 3,
+            "typeName": "temperature",
+            "typeUnits": "[°C]",
+            "value": 23.2
+          }
+        ]
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "batteryVoltage:1": {
+        "unitId": "mV",
+        "record": 10668
+      },
+      "temperature:1": {
+        "unitId": "Cel",
+        "record": 23.6
+      },
+      "humidity:1": {
+        "unitId": "%RH",
+        "record": 35
+      },
+      "temperature:2": {
+        "unitId": "Cel",
+        "record": 23.5
+      },
+      "temperature:3": {
+        "unitId": "Cel",
+        "record": 23.2
+      }
+    }
+  },
+  {
+    "description": "Example Air Pressure Monitor",
+    "type": "uplink",
+    "input": {
+      "bytes": "022000000800011ca00d000100ef10000030150001008e0d00112800e1a2000101a2",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "payloadVersion": 2,
+        "payloadCounter": 32,
+        "payloadCreationDateTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+        "measurements": [
+          {
+            "address": "",
+            "dateTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+            "type": 2,
+            "typeName": "battery voltage",
+            "typeUnits": "[mV]",
+            "value": 7328
+          },
+          {
+            "address": "",
+            "dateTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+            "type": 3,
+            "typeName": "temperature",
+            "typeUnits": "[°C]",
+            "value": 23.9
+          },
+          {
+            "address": "",
+            "dateTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+            "type": 4,
+            "typeName": "relative humidity",
+            "typeUnits": "[%]",
+            "value": 48
+          },
+          {
+            "address": "",
+            "dateTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+            "type": 5,
+            "typeName": "pressure",
+            "typeUnits": "[hPa]",
+            "value": 14.2
+          },
+          {
+            "address": "28",
+            "dateTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+            "type": 3,
+            "typeName": "temperature",
+            "typeUnits": "[°C]",
+            "value": 22.5
+          },
+          {
+            "address": "",
+            "dateTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+            "type": 40,
+            "typeName": "undefined",
+            "typeUnits": "undefined",
+            "value": 4.18
+          }
+        ]
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "batteryVoltage:1": {
+        "unitId": "mV",
+        "record": 7328
+      },
+      "temperature:1": {
+        "unitId": "Cel",
+        "record": 23.9
+      },
+      "humidity:1": {
+        "unitId": "%RH",
+        "record": 48
+      },
+      "pressure:1": {
+        "unitId": "hPa",
+        "record": 14.2
+      },
+      "temperature:2": {
+        "unitId": "Cel",
+        "record": 22.5
+      },
+      "velocity:1": {
+        "unitId": "m/s",
+        "record": 4.18
+      }
+    }
+  },
+  {
+    "description": "Example Particulate Matter",
+    "type": "uplink",
+    "input": {
+      "bytes": "020200000800011c6e0d000100f010000024410005fff700210000",
+      "fPort": 1,
+      "recvTime": "2020-08-02T20:00:00.000+05:00"
+    },
+    "output": {
+      "data": {
+        "payloadVersion": 2,
+        "payloadCounter": 2,
+        "payloadCreationDateTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+        "measurements": [
+          {
+            "address": "",
+            "dateTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+            "type": 2,
+            "typeName": "battery voltage",
+            "typeUnits": "[mV]",
+            "value": 7278
+          },
+          {
+            "address": "",
+            "dateTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+            "type": 3,
+            "typeName": "temperature",
+            "typeUnits": "[°C]",
+            "value": 24
+          },
+          {
+            "address": "",
+            "dateTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+            "type": 4,
+            "typeName": "relative humidity",
+            "typeUnits": "[%]",
+            "value": 36
+          },
+          {
+            "address": "00",
+            "dateTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+            "type": 16,
+            "typeName": "three-value custom",
+            "typeUnits": "",
+            "value": -0.9
+          },
+          {
+            "address": "01",
+            "dateTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+            "type": 16,
+            "typeName": "three-value custom",
+            "typeUnits": "",
+            "value": 3.3
+          },
+          {
+            "address": "02",
+            "dateTime": "XXXX-XX-XXTXX:XX:XX.XXXZ",
+            "type": 16,
+            "typeName": "three-value custom",
+            "typeUnits": "",
+            "value": 0
+          }
+        ]
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "batteryVoltage:1": {
+        "unitId": "mV",
+        "record": 7278
+      },
+      "temperature:1": {
+        "unitId": "Cel",
+        "record": 24
+      },
+      "humidity:1": {
+        "unitId": "%RH",
+        "record": 36
+      }
+    }
   }
 ]

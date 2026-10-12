@@ -903,8 +903,14 @@ with the Actility [ontology](ONTOLOGY.md) (a field name such as `temperature` an
 **Points extraction is written and maintained by Netmore, in its private catalog: a driver
 contribution does not provide an `extractPoints` function.** What helps us write it is a decoder
 that returns numbers (not strings such as `"21.5"`), states the unit of each measurement (in the
-field name or in your documentation) and returns one value per field rather than a list, and the
-`sensors` of your device model declared with the ontology.
+field name or in your documentation) and returns one value per field rather than a list, and a
+real payload for each message format with what it contains.
+
+**The `sensors` list of a `model.yaml` is derived from these points and maintained by Netmore too:
+leave it empty in a contribution.** It is checked against what the `extractPoints` emits, and a
+sensor that is never emitted is removed. What helps instead is your documentation of what each
+measurement means, in particular when one payload type carries different quantities depending on
+the device or the address (custom or "n-value" types).
 
 ----------------------------------------------------------------
 

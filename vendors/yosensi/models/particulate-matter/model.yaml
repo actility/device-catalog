@@ -46,15 +46,12 @@ sensors:
     - batteryVoltage:mV
     - temperature:Cel
     - humidity:%RH
-    - pm1:ug/m3
-    - pm2_5:ug/m3
-    - pm4:ug/m3
-    - pm10:ug/m3
-    - density:#/cm3
-    - angle:deg
+    - concentration:ug/m3
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
+  yosensi:generic:1:
+    - "Example Particulate Matter"
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false

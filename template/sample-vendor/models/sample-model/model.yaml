@@ -46,10 +46,11 @@ supportedBACnetModbus: false
 specificationURL:
 # User Guide URL (optional)
 userGuideURL:
-# <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
+# Informative, maintained by Netmore: the points that the private extractPoints of the driver of the first
+# protocolId above emits for this model, as <sensor>:<unitId> (ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md).
+# Leave it empty in a contribution: it is checked against the extractPoints output and a sensor that
+# is never emitted is removed.
 sensors:
-  - temperature:Cel
-  - humidity:%RH
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
