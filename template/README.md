@@ -125,6 +125,17 @@ Example: `vendor_RFGroup1_1.0.2revB_classA.yaml`
 
 You can find several generic templates under [here](Generic Profiles Templates). It is highly recommended to start by copying one/several of them according to the characteristics of your models and then customize.
 
+### Profile identifier of a model
+By default, the catalog derives the identifier of each device profile from the profile ID and the model name. To choose it yourself, add `deviceProfileId` (1 to 40 characters) next to the `id` in `deviceProfileIds` of the `model.yaml`: it is then used as is. This is useful when a profile file is shared by several models, when a profile file is renamed, or when the derived identifier would be too long.
+
+```yaml
+deviceProfileIds:
+  - id: vendor_RFGroup1_1.0.3a_classA
+    deviceProfileId: vendor_mymodel_RFGroup1_1.0.3a_A
+```
+
+The identifier of a profile that has already been published must never change.
+
 ### Deprecation
 To deprecate a device profile, you will need to add `distinction: (deprecated)` under your device profile, in order to inform the users of the coming deprecation\
 Then wait 3 months\
