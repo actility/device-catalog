@@ -15,7 +15,7 @@ maxTxEIRP:
 minTxEIRP:
 motionIndicator:
 
-LoRaWANCertified:
+LoRaWANCertified: false
 modelId: watteco:fissuro:4
 protocolId:
   - watteco:fissuro:5
@@ -33,3 +33,9 @@ LoRaWANRelay:
   defaultRelayActivation: false
 
 examples:
+  watteco:fissuro:5:
+    - "uplink standard report containing Tilt angle value (AnalogInput EP0) | payload:110A000C00553941500000"
+    - "uplink standard report containing distance value (AnalogInput EP1) | payload:310A000C00553941500000"
+    - "uplink standard report containing temperature value (Temperature EP1) | payload:310A040200002909C4"
+    - "uplink standard report containing battery charge | payload:110A00500006410503040E6804"
+    - "uplink batch report containing Tilt, distance, temperature and battery_voltage | payload:4630000040030339fb1e66e6e6f600000000ee110813"

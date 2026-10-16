@@ -13,3 +13,5 @@ function decodeUplink(input) {
 
 driver.decodeUplink = decodeUplink;
 (typeof globalThis !== "undefined" ? globalThis : this).decodeUplink = decodeUplink;
+exports.decodeUplink = decodeUplink;
+exports.encodeDownlink = driver.encodeDownlink;
