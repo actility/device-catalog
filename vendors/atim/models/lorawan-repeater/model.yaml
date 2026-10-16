@@ -29,8 +29,8 @@ LoRaWANCertified: false
 # Format: `<8 characters max>:<16 characters max>:<digits only>`
 modelId: atim:acw-lw8-rpt-o:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
-# No driver: the relay function is handled by the network (MAC level), ATIM has not documented any payload.
-protocolId:
+# No dedicated driver: the generic ATIM driver decodes the periodic life frame (battery voltages).
+protocolId: atim:generic:1
 # Informative, maintained by Netmore: true when the driver of the first protocolId above ships a
 # BACnet/Modbus mapping (mapping.json, in Netmore's private catalog), so that the device can be
 # exposed through the BACnet and Modbus gateways. Checked: true requires that mapping.
@@ -41,7 +41,11 @@ specificationURL:
 userGuideURL: 
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
 sensors:
+  - batteryVoltage:V
+examples:
+  atim:generic:1:
+    - "Example Trame de vie"
 
 LoRaWANRelay:
   canOperateAsARelay: true
-  defaultRelayActivation: false
+  defaultRelayActivation: true
