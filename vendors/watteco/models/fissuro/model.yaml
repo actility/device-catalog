@@ -1,0 +1,35 @@
+# Commercial name of the model
+name: "Fissur'O"
+# Functional description of the product. Maximum 500 characters.
+description: "The WATTECO Fissur'O sensor monitors crack displacement and inclination. It also measures temperature and transmits data over a public or private LoRaWAN network."
+# Temporary vendor logo; replace it with the product image when available.
+logo: watteco-logo.png
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
+deviceProfileIds:
+  - id: watteco_RFGroup1_1.0.2b_classA
+    lorawanDeviceProfileID: '01280001'
+
+maxTxPower:
+minTxPower:
+maxTxEIRP:
+minTxEIRP:
+motionIndicator:
+
+LoRaWANCertified:
+modelId: watteco:fissuro:4
+protocolId:
+  - watteco:fissuro:5
+supportedBACnetModbus: false
+specificationURL:
+userGuideURL:
+sensors:
+  - distance:m
+  - angle:deg
+  - temperature:Cel
+  - batteryVoltage:V
+
+LoRaWANRelay:
+  canOperateAsARelay: false
+  defaultRelayActivation: false
+
+examples:
