@@ -207,5 +207,207 @@
                 2
             ]
         }
+    },
+    {
+        "description": "Synthetic downlink regression: BACnet provisioning temperature_alarm_config",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "temperature_alarm_config": {
+                    "condition": "disable",
+                    "threshold_min": 10,
+                    "threshold_max": 30
+                }
+            },
+            "fPort": 85
+        },
+        "output": {
+            "bytes": [
+                255,
+                6,
+                8,
+                100,
+                0,
+                44,
+                1,
+                0,
+                0,
+                0,
+                0
+            ],
+            "fPort": 85
+        }
+    },
+    {
+        "description": "Synthetic downlink regression: BACnet provisioning co2_alarm_config",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "co2_alarm_config": {
+                    "enable": "disable",
+                    "threshold_1": 1000,
+                    "threshold_2": 1500
+                }
+            },
+            "fPort": 85
+        },
+        "output": {
+            "bytes": [
+                255,
+                84,
+                0,
+                232,
+                3,
+                220,
+                5
+            ],
+            "fPort": 85
+        }
+    },
+    {
+        "description": "Synthetic downlink regression: BACnet provisioning co2_abc_calibration_settings",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "co2_abc_calibration_settings": {
+                    "enable": "disable",
+                    "period": 168,
+                    "calibration_value": 400
+                }
+            },
+            "fPort": 85
+        },
+        "output": {
+            "bytes": [
+                255,
+                57,
+                0,
+                168,
+                0,
+                144,
+                1
+            ],
+            "fPort": 85
+        }
+    },
+    {
+        "description": "Synthetic downlink regression: BACnet provisioning altitude_calibration_settings",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "altitude_calibration_settings": {
+                    "enable": "disable",
+                    "calibration_value": 0
+                }
+            },
+            "fPort": 85
+        },
+        "output": {
+            "bytes": [
+                255,
+                135,
+                0,
+                0,
+                0
+            ],
+            "fPort": 85
+        }
+    },
+    {
+        "description": "Synthetic downlink regression: BACnet provisioning time_zone",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "time_zone": "UTC+1"
+            },
+            "fPort": 85
+        },
+        "output": {
+            "bytes": [
+                255,
+                23,
+                10,
+                0
+            ],
+            "fPort": 85
+        },
+        "inputBACnet": {
+            "time_zone": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 10
+            }
+        },
+        "inputModbus": {
+            "time_zone": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 10
+            }
+        }
+    },
+    {
+        "description": "Synthetic downlink regression: BACnet provisioning led_indicator_mode 0",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "led_indicator_mode": "off"
+            },
+            "fPort": 85
+        },
+        "output": {
+            "bytes": [
+                255,
+                47,
+                0
+            ],
+            "fPort": 85
+        },
+        "inputBACnet": {
+            "led_indicator_mode": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            }
+        },
+        "inputModbus": {
+            "led_indicator_mode": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 0
+            }
+        }
+    },
+    {
+        "description": "Synthetic downlink regression: BACnet provisioning led_indicator_mode 2",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "led_indicator_mode": "blink"
+            },
+            "fPort": 85
+        },
+        "output": {
+            "bytes": [
+                255,
+                47,
+                2
+            ],
+            "fPort": 85
+        },
+        "inputBACnet": {
+            "led_indicator_mode": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 2
+            }
+        },
+        "inputModbus": {
+            "led_indicator_mode": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 2
+            }
+        }
     }
 ]
