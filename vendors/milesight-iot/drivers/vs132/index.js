@@ -1,13 +1,6 @@
 /**
  * Payload Decoder
  *
- * Copyright 2025 Milesight IoT
- *
- * @product VS132
- */
-/**
- * Payload Decoder
- *
  * Copyright 2024 Milesight IoT
  *
  * @product VS132
@@ -210,17 +203,37 @@ function getValue(map, key) {
     });
 //}
 
-
 exports.decodeUplink = decodeUplink;
 
 var __milesightDownlinkCodec = (function () {
 /**
  * Payload Encoder
  *
- * Copyright 2025 Milesight IoT
+ * Copyright 2024 Milesight IoT
  *
  * @product VS132
  */
+var RAW_VALUE = 0x00;
+
+/* eslint no-redeclare: "off" */
+/* eslint-disable */
+// Chirpstack v4
+function encodeDownlink(input) {
+    var encoded = milesightDeviceEncode(input.data);
+    return { bytes: encoded };
+}
+
+// Chirpstack v3
+function Encode(fPort, obj) {
+    return milesightDeviceEncode(obj);
+}
+
+// The Things Network
+function Encoder(obj, port) {
+    return milesightDeviceEncode(obj);
+}
+/* eslint-enable */
+
 function milesightDeviceEncode(payload) {
     var encoded = [];
 
@@ -458,7 +471,6 @@ Buffer.prototype.writeInt32LE = function (value) {
 Buffer.prototype.toBytes = function () {
     return this.buffer;
 };
-
     // These three names are not defined inside this IIFE: written bare, they
     // resolved to the hoisted outer functions, which call back into this object.
     // encodeDownlink recursed until the stack blew. Bind them to the codec's own

@@ -7,19 +7,31 @@
  */
 var RAW_VALUE = 0x00;
 
+/* eslint no-redeclare: "off" */
+/* eslint-disable */
+// Chirpstack v4
+function decodeUplink(input) {
+    var decoded = milesightDeviceDecode(input.bytes);
+    return { data: decoded };
+}
+
+// Chirpstack v3
+function Decode(fPort, bytes) {
+    return milesightDeviceDecode(bytes);
+}
 
 // The Things Network
 function Decoder(bytes, port) {
     return milesightDeviceDecode(bytes);
 }
+/* eslint-enable */
 
 function milesightDeviceDecode(bytes) {
     var decoded = {};
 
-    for (var i = 0; i < bytes.length;) {
+    for (var i = 0; i < bytes.length; ) {
         var channel_id = bytes[i++];
         var channel_type = bytes[i++];
-
 
         // IPSO VERSION
         if (channel_id === 0xff && channel_type === 0x01) {
@@ -63,7 +75,7 @@ function milesightDeviceDecode(bytes) {
         }
         // BATTERY
         else if (channel_id === 0x01 && channel_type === 0x75) {
-            decoded.battery = bytes[i];
+            decoded.battery = readUInt8(bytes[i]);
             i += 1;
         }
         // DISTANCE
@@ -83,7 +95,7 @@ function milesightDeviceDecode(bytes) {
         } // DOWNLINK RESPONSE
         else if (channel_id === 0xfe || channel_id === 0xff) {
             var result = handle_downlink_response(channel_type, bytes, i);
-            decoded = mergeObjects(decoded, result.data);
+            decoded = Object.assign(decoded, result.data);
             i = result.offset;
         } else {
             break;
@@ -147,9 +159,19 @@ function readHardwareVersion(bytes) {
 }
 
 function readFirmwareVersion(bytes) {
-    var major = (bytes[0] & 0xff).toString(16);
-    var minor = (bytes[1] & 0xff).toString(16);
-    return "v" + major + "." + minor;
+	var major = (bytes[0] & 0xff).toString(16);
+	var minor = (bytes[1] & 0xff).toString(16);
+	var release = (bytes[2] & 0xff).toString(16);
+	var alpha = (bytes[3] & 0xff).toString(16);
+	var unit_test = (bytes[4] & 0xff).toString(16);
+	var test = (bytes[5] & 0xff).toString(16);
+
+	var version = 'v' + major + '.' + minor;
+	if (release !== '0') version += '-r' + release;
+	if (alpha !== '0') version += '-a' + alpha;
+	if (unit_test !== '0') version += '-u' + unit_test;
+	if (test !== '0') version += '-t' + test;
+	return version;
 }
 
 function readTslVersion(bytes) {
@@ -206,6 +228,7 @@ function readCalibrationStatus(status) {
     return getValue(status_map, status);
 }
 
+/* eslint-disable */
 function readUInt8(bytes) {
     return bytes & 0xff;
 }
@@ -233,40 +256,43 @@ function getValue(map, key) {
     return value;
 }
 
-function mergeObjects(target) {
-    "use strict";
-    if (target == null) {
-        throw new TypeError("Cannot convert first argument to object");
-    }
+//if (!Object.assign) {
+    Object.defineProperty(Object, "assign", {
+        enumerable: false,
+        configurable: true,
+        writable: true,
+        value: function (target) {
+            "use strict";
+            if (target == null) {
+                throw new TypeError("Cannot convert first argument to object");
+            }
 
-    var to = Object(target);
-    for (var i = 1; i < arguments.length; i++) {
-        var nextSource = arguments[i];
-        if (nextSource == null) {
-            continue;
-        }
-        nextSource = Object(nextSource);
+            var to = Object(target);
+            for (var i = 1; i < arguments.length; i++) {
+                var nextSource = arguments[i];
+                if (nextSource == null) {
+                    continue;
+                }
+                nextSource = Object(nextSource);
 
-        var keysArray = Object.keys(Object(nextSource));
-        for (var nextIndex = 0, len = keysArray.length; nextIndex < len; nextIndex++) {
-            var nextKey = keysArray[nextIndex];
-            var desc = Object.getOwnPropertyDescriptor(nextSource, nextKey);
-            if (desc !== undefined && desc.enumerable) {
-                if (Array.isArray(to[nextKey]) && Array.isArray(nextSource[nextKey])) {
-                    to[nextKey] = to[nextKey].concat(nextSource[nextKey]);
-                } else {
-                    to[nextKey] = nextSource[nextKey];
+                var keysArray = Object.keys(Object(nextSource));
+                for (var nextIndex = 0, len = keysArray.length; nextIndex < len; nextIndex++) {
+                    var nextKey = keysArray[nextIndex];
+                    var desc = Object.getOwnPropertyDescriptor(nextSource, nextKey);
+                    if (desc !== undefined && desc.enumerable) {
+                        // concat array
+                        if (Array.isArray(to[nextKey]) && Array.isArray(nextSource[nextKey])) {
+                            to[nextKey] = to[nextKey].concat(nextSource[nextKey]);
+                        } else {
+                            to[nextKey] = nextSource[nextKey];
+                        }
+                    }
                 }
             }
-        }
-    }
-    return to;
-}
-
-function decodeUplink(input) {
-    var decoded = milesightDeviceDecode(input.bytes);
-    return { data: decoded };
-}
+            return to;
+        },
+    });
+//}
 
 function decodeDownlink(input) {
     var decoded = milesightDeviceDecode(input.bytes);
@@ -534,8 +560,7 @@ Buffer.prototype.writeInt16LE = function (value) {
 
 Buffer.prototype.toBytes = function () {
     return this.buffer;
-};
-    return {
+};    return {
         encodeDownlink: encodeDownlink,
         Encode: Encode,
         Encoder: Encoder,

@@ -7,10 +7,24 @@
  */
 var RAW_VALUE = 0x00;
 
+/* eslint no-redeclare: "off" */
+/* eslint-disable */
+// Chirpstack v4
+function decodeUplink(input) {
+    var decoded = milesightDeviceDecode(input.bytes);
+    return { data: decoded };
+}
+
+// Chirpstack v3
+function Decode(fPort, bytes) {
+    return milesightDeviceDecode(bytes);
+}
+
 // The Things Network
 function Decoder(bytes, port) {
     return milesightDeviceDecode(bytes);
 }
+/* eslint-enable */
 
 function milesightDeviceDecode(bytes) {
     var decoded = {};
@@ -77,11 +91,11 @@ function milesightDeviceDecode(bytes) {
         // DOWNLINK RESPONSE
         else if (channel_id === 0xfe || channel_id === 0xff) {
             var result = handle_downlink_response(channel_type, bytes, i);
-            decoded = mergeObjects(decoded, result.data);
+            decoded = Object.assign(decoded, result.data);
             i = result.offset;
         } else if (channel_id === 0xf8 || channel_id === 0xf9) {
             var result = handle_downlink_response_ext(channel_id, channel_type, bytes, i);
-            decoded = mergeObjects(decoded, result.data);
+            decoded = Object.assign(decoded, result.data);
             i = result.offset;
         } else {
             break;
@@ -225,9 +239,19 @@ function readHardwareVersion(bytes) {
 }
 
 function readFirmwareVersion(bytes) {
-    var major = (bytes[0] & 0xff).toString(16);
-    var minor = (bytes[1] & 0xff).toString(16);
-    return "v" + major + "." + minor;
+	var major = (bytes[0] & 0xff).toString(16);
+	var minor = (bytes[1] & 0xff).toString(16);
+	var release = (bytes[2] & 0xff).toString(16);
+	var alpha = (bytes[3] & 0xff).toString(16);
+	var unit_test = (bytes[4] & 0xff).toString(16);
+	var test = (bytes[5] & 0xff).toString(16);
+
+	var version = 'v' + major + '.' + minor;
+	if (release !== '0') version += '-r' + release;
+	if (alpha !== '0') version += '-a' + alpha;
+	if (unit_test !== '0') version += '-u' + unit_test;
+	if (test !== '0') version += '-t' + test;
+	return version;
 }
 
 function readTslVersion(bytes) {
@@ -343,9 +367,9 @@ function readWeek(week) {
     return getValue(week_map, week);
 }
 
-function readTimeZone(time) {
-    var time_zone_map = { "-720": "UTC-12", "-660": "UTC-11", "-600": "UTC-10", "-570": "UTC-9:30", "-540": "UTC-9", "-480": "UTC-8", "-420": "UTC-7", "-360": "UTC-6", "-300": "UTC-5", "-240": "UTC-4", "-210": "UTC-3:30", "-180": "UTC-3", "-120": "UTC-2", "-60": "UTC-1", 0: "UTC", 60: "UTC+1", 120: "UTC+2", 180: "UTC+3", 210: "UTC+3:30", 240: "UTC+4", 270: "UTC+4:30", 300: "UTC+5", 330: "UTC+5:30", 345: "UTC+5:45", 360: "UTC+6", 390: "UTC+6:30", 420: "UTC+7", 480: "UTC+8", 540: "UTC+9", 570: "UTC+9:30", 600: "UTC+10", 630: "UTC+10:30", 660: "UTC+11", 720: "UTC+12", 750: "UTC+12:45", 780: "UTC+13", 840: "UTC+14" };
-    return getValue(time_zone_map, time);
+function readTimeZone(time_zone) {
+    var timezone_map = { "-720": "UTC-12", "-660": "UTC-11", "-600": "UTC-10", "-570": "UTC-9:30", "-540": "UTC-9", "-480": "UTC-8", "-420": "UTC-7", "-360": "UTC-6", "-300": "UTC-5", "-240": "UTC-4", "-210": "UTC-3:30", "-180": "UTC-3", "-120": "UTC-2", "-60": "UTC-1", 0: "UTC", 60: "UTC+1", 120: "UTC+2", 180: "UTC+3", 210: "UTC+3:30", 240: "UTC+4", 270: "UTC+4:30", 300: "UTC+5", 330: "UTC+5:30", 345: "UTC+5:45", 360: "UTC+6", 390: "UTC+6:30", 420: "UTC+7", 480: "UTC+8", 540: "UTC+9", 570: "UTC+9:30", 600: "UTC+10", 630: "UTC+10:30", 660: "UTC+11", 720: "UTC+12", 765: "UTC+12:45", 780: "UTC+13", 840: "UTC+14" };
+    return getValue(timezone_map, time_zone);
 }
 
 function readD2DMasterConfig(bytes) {
@@ -378,6 +402,8 @@ function readHibernateConfig(bytes) {
     config.end_time = readUInt16LE(bytes.slice(offset + 4, offset + 6));
     return config;
 }
+
+/* eslint-disable */
 function readUInt8(bytes) {
     return bytes & 0xff;
 }
@@ -423,40 +449,43 @@ function getValue(map, key) {
     return value;
 }
 
-function mergeObjects(target) {
-    "use strict";
-    if (target == null) {
-        throw new TypeError("Cannot convert first argument to object");
-    }
+//if (!Object.assign) {
+    Object.defineProperty(Object, "assign", {
+        enumerable: false,
+        configurable: true,
+        writable: true,
+        value: function (target) {
+            "use strict";
+            if (target == null) {
+                throw new TypeError("Cannot convert first argument to object");
+            }
 
-    var to = Object(target);
-    for (var i = 1; i < arguments.length; i++) {
-        var nextSource = arguments[i];
-        if (nextSource == null) {
-            continue;
-        }
-        nextSource = Object(nextSource);
+            var to = Object(target);
+            for (var i = 1; i < arguments.length; i++) {
+                var nextSource = arguments[i];
+                if (nextSource == null) {
+                    continue;
+                }
+                nextSource = Object(nextSource);
 
-        var keysArray = Object.keys(Object(nextSource));
-        for (var nextIndex = 0, len = keysArray.length; nextIndex < len; nextIndex++) {
-            var nextKey = keysArray[nextIndex];
-            var desc = Object.getOwnPropertyDescriptor(nextSource, nextKey);
-            if (desc !== undefined && desc.enumerable) {
-                if (Array.isArray(to[nextKey]) && Array.isArray(nextSource[nextKey])) {
-                    to[nextKey] = to[nextKey].concat(nextSource[nextKey]);
-                } else {
-                    to[nextKey] = nextSource[nextKey];
+                var keysArray = Object.keys(Object(nextSource));
+                for (var nextIndex = 0, len = keysArray.length; nextIndex < len; nextIndex++) {
+                    var nextKey = keysArray[nextIndex];
+                    var desc = Object.getOwnPropertyDescriptor(nextSource, nextKey);
+                    if (desc !== undefined && desc.enumerable) {
+                        // concat array
+                        if (Array.isArray(to[nextKey]) && Array.isArray(nextSource[nextKey])) {
+                            to[nextKey] = to[nextKey].concat(nextSource[nextKey]);
+                        } else {
+                            to[nextKey] = nextSource[nextKey];
+                        }
+                    }
                 }
             }
-        }
-    }
-    return to;
-}
-
-function decodeUplink(input) {
-    var decoded = milesightDeviceDecode(input.bytes);
-    return { data: decoded };
-}
+            return to;
+        },
+    });
+//}
 
 function decodeDownlink(input) {
     var decoded = milesightDeviceDecode(input.bytes);
@@ -1078,8 +1107,7 @@ function hexStringToBytes(hex) {
         bytes.push(parseInt(hex.substr(c, 2), 16));
     }
     return bytes;
-}
-    return {
+}    return {
         encodeDownlink: encodeDownlink,
         Encode: Encode,
         Encoder: Encoder,

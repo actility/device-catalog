@@ -213,7 +213,7 @@ function milesightDeviceDecode(bytes) {
         // DOWNLINK RESPONSE
         else if (channel_id === 0xfe || channel_id === 0xff) {
             var result = handle_downlink_response(channel_type, bytes, i);
-            decoded = mergeObjects(decoded, result.data);
+            decoded = Object.assign(decoded, result.data);
             i = result.offset;
         } else {
             throw new Error("unknown channel id: " + channel_id);
@@ -313,9 +313,19 @@ function readHardwareVersion(bytes) {
 }
 
 function readFirmwareVersion(bytes) {
-    var major = (bytes[0] & 0xff).toString(16);
-    var minor = (bytes[1] & 0xff).toString(16);
-    return "v" + major + "." + minor;
+	var major = (bytes[0] & 0xff).toString(16);
+	var minor = (bytes[1] & 0xff).toString(16);
+	var release = (bytes[2] & 0xff).toString(16);
+	var alpha = (bytes[3] & 0xff).toString(16);
+	var unit_test = (bytes[4] & 0xff).toString(16);
+	var test = (bytes[5] & 0xff).toString(16);
+
+	var version = 'v' + major + '.' + minor;
+	if (release !== '0') version += '-r' + release;
+	if (alpha !== '0') version += '-a' + alpha;
+	if (unit_test !== '0') version += '-u' + unit_test;
+	if (test !== '0') version += '-t' + test;
+	return version;
 }
 
 function readTslVersion(bytes) {
@@ -426,6 +436,12 @@ function getValue(map, key) {
     var value = map[key];
     if (!value) value = "unknown";
     return value;
+}
+
+function readProtocolVersion(bytes) {
+    var major = (bytes & 0xf0) >> 4;
+    var minor = bytes & 0x0f;
+    return "v" + major + "." + minor;
 }
 
 function readBlockConfig(block_id, bytes) {
@@ -546,35 +562,43 @@ function decodeUtf8(bytes) {
     return str;
 }
 
-function mergeObjects(target) {
-    "use strict";
-    if (target == null) {
-        throw new TypeError("Cannot convert first argument to object");
-    }
+//if (!Object.assign) {
+    Object.defineProperty(Object, "assign", {
+        enumerable: false,
+        configurable: true,
+        writable: true,
+        value: function (target) {
+            "use strict";
+            if (target == null) {
+                throw new TypeError("Cannot convert first argument to object");
+            }
 
-    var to = Object(target);
-    for (var i = 1; i < arguments.length; i++) {
-        var nextSource = arguments[i];
-        if (nextSource == null) {
-            continue;
-        }
-        nextSource = Object(nextSource);
+            var to = Object(target);
+            for (var i = 1; i < arguments.length; i++) {
+                var nextSource = arguments[i];
+                if (nextSource == null) {
+                    continue;
+                }
+                nextSource = Object(nextSource);
 
-        var keysArray = Object.keys(Object(nextSource));
-        for (var nextIndex = 0, len = keysArray.length; nextIndex < len; nextIndex++) {
-            var nextKey = keysArray[nextIndex];
-            var desc = Object.getOwnPropertyDescriptor(nextSource, nextKey);
-            if (desc !== undefined && desc.enumerable) {
-                if (Array.isArray(to[nextKey]) && Array.isArray(nextSource[nextKey])) {
-                    to[nextKey] = to[nextKey].concat(nextSource[nextKey]);
-                } else {
-                    to[nextKey] = nextSource[nextKey];
+                var keysArray = Object.keys(Object(nextSource));
+                for (var nextIndex = 0, len = keysArray.length; nextIndex < len; nextIndex++) {
+                    var nextKey = keysArray[nextIndex];
+                    var desc = Object.getOwnPropertyDescriptor(nextSource, nextKey);
+                    if (desc !== undefined && desc.enumerable) {
+                        // concat array
+                        if (Array.isArray(to[nextKey]) && Array.isArray(nextSource[nextKey])) {
+                            to[nextKey] = to[nextKey].concat(nextSource[nextKey]);
+                        } else {
+                            to[nextKey] = nextSource[nextKey];
+                        }
+                    }
                 }
             }
-        }
-    }
-    return to;
-}
+            return to;
+        },
+    });
+//}
 
 exports.decodeUplink = decodeUplink;
 
@@ -1347,7 +1371,6 @@ Buffer.prototype.writeBytes = function (bytes) {
 Buffer.prototype.toBytes = function () {
     return this.buffer;
 };
-
     return {
         encodeDownlink: encodeDownlink,
         Encode: Encode,

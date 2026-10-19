@@ -5,13 +5,6 @@
  *
  * @product EM300-SLD / EM300-ZLD
  */
-/**
- * Payload Decoder
- *
- * Copyright 2025 Milesight IoT
- *
- * @product EM300-SLD / EM300-ZLD
- */
 var RAW_VALUE = 0x00;
 
 /* eslint no-redeclare: "off" */
@@ -235,9 +228,19 @@ function readHardwareVersion(bytes) {
 }
 
 function readFirmwareVersion(bytes) {
-    var major = (bytes[0] & 0xff).toString(16);
-    var minor = (bytes[1] & 0xff).toString(16);
-    return "v" + major + "." + minor;
+	var major = (bytes[0] & 0xff).toString(16);
+	var minor = (bytes[1] & 0xff).toString(16);
+	var release = (bytes[2] & 0xff).toString(16);
+	var alpha = (bytes[3] & 0xff).toString(16);
+	var unit_test = (bytes[4] & 0xff).toString(16);
+	var test = (bytes[5] & 0xff).toString(16);
+
+	var version = 'v' + major + '.' + minor;
+	if (release !== '0') version += '-r' + release;
+	if (alpha !== '0') version += '-a' + alpha;
+	if (unit_test !== '0') version += '-u' + unit_test;
+	if (test !== '0') version += '-t' + test;
+	return version;
 }
 
 function readTslVersion(bytes) {
@@ -384,7 +387,6 @@ function getValue(map, key) {
     });
 //}
 
-
 exports.decodeUplink = decodeUplink;
 
 var __milesightDownlinkCodec = (function () {
@@ -395,6 +397,27 @@ var __milesightDownlinkCodec = (function () {
  *
  * @product EM300-SLD / EM300-ZLD
  */
+var RAW_VALUE = 0x00;
+
+/* eslint no-redeclare: "off" */
+/* eslint-disable */
+// Chirpstack v4
+function encodeDownlink(input) {
+    var encoded = milesightDeviceEncode(input.data);
+    return { bytes: encoded };
+}
+
+// Chirpstack v3
+function Encode(fPort, obj) {
+    return milesightDeviceEncode(obj);
+}
+
+// The Things Network
+function Encoder(obj, port) {
+    return milesightDeviceEncode(obj);
+}
+/* eslint-enable */
+
 function milesightDeviceEncode(payload) {
     var encoded = [];
 
@@ -911,7 +934,6 @@ Buffer.prototype.writeD2DCommand = function (value, defaultValue) {
 Buffer.prototype.toBytes = function () {
     return this.buffer;
 };
-
     // These three names are not defined inside this IIFE: written bare, they
     // resolved to the hoisted outer functions, which call back into this object.
     // encodeDownlink recursed until the stack blew. Bind them to the codec's own
