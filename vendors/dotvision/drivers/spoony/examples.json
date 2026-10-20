@@ -1,0 +1,328 @@
+[
+  {
+    "type": "uplink",
+    "description": "Manufacturer specification sample: default ET/E1/E2/E3 tags. R&D confirmed uplink fPort 1; this remains a documentation sample, not a field capture.",
+    "input": {
+      "bytes": "02455480b6a6470245310046de46024532004ade46024533004ade46",
+      "fPort": 1
+    },
+    "output": {
+      "data": {
+        "measurements": [
+          { "tag": "ET", "value": 85357 },
+          { "tag": "E1", "value": 28451 },
+          { "tag": "E2", "value": 28453 },
+          { "tag": "E3", "value": 28453 }
+        ]
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "energy:4": { "unitId": "Wh", "record": 85357 },
+      "energy:1": { "unitId": "Wh", "record": 28451 },
+      "energy:2": { "unitId": "Wh", "record": 28453 },
+      "energy:3": { "unitId": "Wh", "record": 28453 }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Synthetic custom tag with a negative float32 value; no unit assumption.",
+    "input": { "bytes": "0158000048c1", "fPort": 1 },
+    "output": {
+      "data": { "measurements": [{ "tag": "X", "value": -12.5 }] },
+      "errors": [],
+      "warnings": []
+    },
+    "points": null
+  },
+  {
+    "type": "uplink",
+    "description": "Synthetic repeated tag: retain both samples in payload order.",
+    "input": { "bytes": "02455480b6a64702455480b6a647", "fPort": 1 },
+    "output": {
+      "data": { "measurements": [{ "tag": "ET", "value": 85357 }, { "tag": "ET", "value": 85357 }] },
+      "errors": [],
+      "warnings": []
+    },
+    "points": { "energy:4": { "unitId": "Wh", "record": 85357 } }
+  },
+  {
+    "type": "uplink",
+    "description": "Synthetic reordered manufacturer samples.",
+    "input": { "bytes": "0245310046de4602455480b6a647", "fPort": 1 },
+    "output": {
+      "data": { "measurements": [{ "tag": "E1", "value": 28451 }, { "tag": "ET", "value": 85357 }] },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "energy:1": { "unitId": "Wh", "record": 28451 },
+      "energy:4": { "unitId": "Wh", "record": 85357 }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "fail: synthetic truncated sample after a valid measurement; reject partial output.",
+    "input": { "bytes": "02455480b6a6470245", "fPort": 1 },
+    "output": { "errors": ["Truncated sample at offset 7."] },
+    "points": null
+  },
+  {
+    "type": "uplink",
+    "description": "fail: synthetic non-ASCII tag.",
+    "input": { "bytes": "01ff00000000", "fPort": 1 },
+    "output": { "errors": ["Non-ASCII tag at offset 1."] },
+    "points": null
+  },
+  {
+    "type": "uplink",
+    "description": "fail: synthetic infinity is not a JSON measurement.",
+    "input": { "bytes": "01580000807f", "fPort": 1 },
+    "output": { "errors": ["Non-finite measurement for tag X."] },
+    "points": null
+  },
+  {
+    "type": "uplink",
+    "description": "Synthetic documented active-power tags; values are fixtures, not device readings.",
+    "input": { "bytes": "02505400807a430250310080c8420250320000974202503300809542", "fPort": 1 },
+    "output": {
+      "data": { "measurements": [{ "tag": "PT", "value": 250.5 }, { "tag": "P1", "value": 100.25 }, { "tag": "P2", "value": 75.5 }, { "tag": "P3", "value": 74.75 }] },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "activePower:4": { "unitId": "W", "record": 250.5 },
+      "activePower:1": { "unitId": "W", "record": 100.25 },
+      "activePower:2": { "unitId": "W", "record": 75.5 },
+      "activePower:3": { "unitId": "W", "record": 74.75 }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Synthetic documented reactive-power tags with negative measurements.",
+    "input": { "bytes": "025254000048c1025231000080c0025232000090c0025233000080c0", "fPort": 1 },
+    "output": {
+      "data": { "measurements": [{ "tag": "RT", "value": -12.5 }, { "tag": "R1", "value": -4 }, { "tag": "R2", "value": -4.5 }, { "tag": "R3", "value": -4 }] },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "reactivePower:4": { "unitId": "VAr", "record": -12.5 },
+      "reactivePower:1": { "unitId": "VAr", "record": -4 },
+      "reactivePower:2": { "unitId": "VAr", "record": -4.5 },
+      "reactivePower:3": { "unitId": "VAr", "record": -4 }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Synthetic documented apparent-power tags.",
+    "input": { "bytes": "024154000096430241310000f0420241320000b4420241330000b442", "fPort": 1 },
+    "output": {
+      "data": { "measurements": [{ "tag": "AT", "value": 300 }, { "tag": "A1", "value": 120 }, { "tag": "A2", "value": 90 }, { "tag": "A3", "value": 90 }] },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "apparentPower:4": { "unitId": "VA", "record": 300 },
+      "apparentPower:1": { "unitId": "VA", "record": 120 },
+      "apparentPower:2": { "unitId": "VA", "record": 90 },
+      "apparentPower:3": { "unitId": "VA", "record": 90 }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Synthetic documented reactive-energy tags with negative measurements.",
+    "input": { "bytes": "0258540000c8c20258310000f0c102583200000cc202583300000cc2", "fPort": 1 },
+    "output": {
+      "data": { "measurements": [{ "tag": "XT", "value": -100 }, { "tag": "X1", "value": -30 }, { "tag": "X2", "value": -35 }, { "tag": "X3", "value": -35 }] },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "reactiveEnergy:4": { "unitId": "VArh", "record": -100 },
+      "reactiveEnergy:1": { "unitId": "VArh", "record": -30 },
+      "reactiveEnergy:2": { "unitId": "VArh", "record": -35 },
+      "reactiveEnergy:3": { "unitId": "VArh", "record": -35 }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Synthetic documented apparent-energy tags.",
+    "input": { "bytes": "02435400007a440243310000c8430243320000964302433300009643", "fPort": 1 },
+    "output": {
+      "data": { "measurements": [{ "tag": "CT", "value": 1000 }, { "tag": "C1", "value": 400 }, { "tag": "C2", "value": 300 }, { "tag": "C3", "value": 300 }] },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "apparentEnergy:4": { "unitId": "VAh", "record": 1000 },
+      "apparentEnergy:1": { "unitId": "VAh", "record": 400 },
+      "apparentEnergy:2": { "unitId": "VAh", "record": 300 },
+      "apparentEnergy:3": { "unitId": "VAh", "record": 300 }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Synthetic documented phase-current tags.",
+    "input": { "bytes": "0249310000803f0249320000003f02493300002040", "fPort": 1 },
+    "output": {
+      "data": { "measurements": [{ "tag": "I1", "value": 1 }, { "tag": "I2", "value": 0.5 }, { "tag": "I3", "value": 2.5 }] },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "current:1": { "unitId": "A", "record": 1 },
+      "current:2": { "unitId": "A", "record": 0.5 },
+      "current:3": { "unitId": "A", "record": 2.5 }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Synthetic documented phase-voltage tags.",
+    "input": { "bytes": "025531000066430255320080674302553300806543", "fPort": 1 },
+    "output": {
+      "data": { "measurements": [{ "tag": "U1", "value": 230 }, { "tag": "U2", "value": 231.5 }, { "tag": "U3", "value": 229.5 }] },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "rmsVoltage:1": { "unitId": "V", "record": 230 },
+      "rmsVoltage:2": { "unitId": "V", "record": 231.5 },
+      "rmsVoltage:3": { "unitId": "V", "record": 229.5 }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Synthetic documented frequency tag: a single-sample payload.",
+    "input": { "bytes": "014600004842", "fPort": 1 },
+    "output": {
+      "data": { "measurements": [{ "tag": "F", "value": 50 }] },
+      "errors": [],
+      "warnings": []
+    },
+    "points": { "frequency": { "unitId": "hertz", "record": 50 } }
+  },
+  {
+    "type": "uplink",
+    "description": "Synthetic documented phase power-factor tags.",
+    "input": { "bytes": "0248310000003f0248320000403f0248330000803f", "fPort": 1 },
+    "output": {
+      "data": { "measurements": [{ "tag": "H1", "value": 0.5 }, { "tag": "H2", "value": 0.75 }, { "tag": "H3", "value": 1 }] },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "powerFactor:1": { "unitId": "/", "record": 0.5 },
+      "powerFactor:2": { "unitId": "/", "record": 0.75 },
+      "powerFactor:3": { "unitId": "/", "record": 1 }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Synthetic positive and negative IEEE754 zero; JSON represents both as zero.",
+    "input": { "bytes": "045a45524f00000000074e45475a45524f00000080", "fPort": 1 },
+    "output": {
+      "data": { "measurements": [{ "tag": "ZERO", "value": 0 }, { "tag": "NEGZERO", "value": 0 }] },
+      "errors": [],
+      "warnings": []
+    },
+    "points": null
+  },
+  {
+    "type": "uplink",
+    "description": "Synthetic float32 boundaries: smallest positive subnormal, largest finite values, and smallest positive normal.",
+    "input": { "bytes": "034d494e01000000034d4158ffff7f7f064e45474d4158ffff7fff094d494e4e4f524d414c00008000", "fPort": 1 },
+    "output": {
+      "data": { "measurements": [{ "tag": "MIN", "value": 1.401298464324817e-45 }, { "tag": "MAX", "value": 3.4028234663852886e+38 }, { "tag": "NEGMAX", "value": -3.4028234663852886e+38 }, { "tag": "MINNORMAL", "value": 1.1754943508222875e-38 }] },
+      "errors": [],
+      "warnings": []
+    },
+    "points": null
+  },
+  {
+    "type": "uplink",
+    "description": "Synthetic decoder tag boundaries: empty tag, object-property names, and ASCII controls; not documented device configurations.",
+    "input": { "bytes": "000000803f095f5f70726f746f5f5f000000400b636f6e7374727563746f72000040400341007f00008040", "fPort": 1 },
+    "output": {
+      "data": { "measurements": [{ "tag": "", "value": 1 }, { "tag": "__proto__", "value": 2 }, { "tag": "constructor", "value": 3 }, { "tag": "A\u0000\u007f", "value": 4 }] },
+      "errors": [],
+      "warnings": []
+    },
+    "points": null
+  },
+  {
+    "type": "uplink",
+    "description": "Synthetic repeated tag with distinct values: retain both raw samples; the scalar point uses the last value in payload order.",
+    "input": { "bytes": "0245540000803f02455400000040", "fPort": 1 },
+    "output": {
+      "data": { "measurements": [{ "tag": "ET", "value": 1 }, { "tag": "ET", "value": 2 }] },
+      "errors": [],
+      "warnings": []
+    },
+    "points": { "energy:4": { "unitId": "Wh", "record": 2 } }
+  },
+  {
+    "type": "uplink",
+    "description": "fail: synthetic truncated tag at the beginning of a payload.",
+    "input": { "bytes": "0250", "fPort": 1 },
+    "output": { "errors": ["Truncated sample at offset 0."] },
+    "points": null
+  },
+  {
+    "type": "uplink",
+    "description": "fail: synthetic complete tag followed by an incomplete float32 value.",
+    "input": { "bytes": "01580000", "fPort": 1 },
+    "output": { "errors": ["Truncated sample at offset 0."] },
+    "points": null
+  },
+  {
+    "type": "uplink",
+    "description": "fail: synthetic negative infinity is not a JSON measurement.",
+    "input": { "bytes": "0158000080ff", "fPort": 1 },
+    "output": { "errors": ["Non-finite measurement for tag X."] },
+    "points": null
+  },
+  {
+    "type": "uplink",
+    "description": "fail: synthetic IEEE754 NaN is not a JSON measurement.",
+    "input": { "bytes": "01580000c07f", "fPort": 1 },
+    "output": { "errors": ["Non-finite measurement for tag X."] },
+    "points": null
+  },
+  {
+    "type": "uplink",
+    "description": "fail: synthetic non-ASCII tag after a valid measurement; reject partial output.",
+    "input": { "bytes": "02455480b6a64701ff00000000", "fPort": 1 },
+    "output": { "errors": ["Non-ASCII tag at offset 8."] },
+    "points": null
+  },
+  {
+    "type": "uplink",
+    "description": "fail: synthetic non-finite value after a valid measurement; reject partial output.",
+    "input": { "bytes": "02455480b6a64701580000807f", "fPort": 1 },
+    "output": { "errors": ["Non-finite measurement for tag X."] },
+    "points": null
+  },
+  {
+    "type": "uplink",
+    "description": "Synthetic zero readings for documented tags: retain zero-valued scalar points.",
+    "input": { "bytes": "024931000000000255320000000001460000000002483300000000", "fPort": 1 },
+    "output": {
+      "data": {
+        "measurements": [
+          { "tag": "I1", "value": 0 }, { "tag": "U2", "value": 0 },
+          { "tag": "F", "value": 0 }, { "tag": "H3", "value": 0 }
+        ]
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "current:1": { "unitId": "A", "record": 0 },
+      "rmsVoltage:2": { "unitId": "V", "record": 0 },
+      "frequency": { "unitId": "hertz", "record": 0 },
+      "powerFactor:3": { "unitId": "/", "record": 0 }
+    }
+  }
+]

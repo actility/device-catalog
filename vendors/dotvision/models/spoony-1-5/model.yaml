@@ -1,0 +1,64 @@
+name: Spoony 1.5
+description: DIN-rail single-phase or three-phase electrical submeter with an optional EU868 LoRaWAN module. Reports energy, power, RMS current and voltage, frequency, and power factor.
+logo: spoony-1-5.png
+product:
+  name: DOTV/SPOONY-1-5
+  version: 1
+deviceProfileIds:
+  - id: dotvis_RFGroup1_1.0.0-1.0.1_classA
+    lorawanDeviceProfileID:
+maxTxPower:
+minTxPower:
+maxTxEIRP:
+minTxEIRP:
+motionIndicator:
+LoRaWANCertified: false
+modelId: dotvis:spoony-1-5:1
+protocolId:
+  - actility:spoony:1
+supportedBACnetModbus: false
+specificationURL:
+userGuideURL: https://help-energy.dotvision.com/hc/fr/articles/4409708335506-4-Fonctionnalit%C3%A9s-et-Configuration-Spoony-1-5
+sensors:
+  - energy:Wh
+  - activePower:W
+  - reactivePower:VAr
+  - apparentPower:VA
+  - reactiveEnergy:VArh
+  - apparentEnergy:VAh
+  - current:A
+  - rmsVoltage:V
+  - frequency:hertz
+  - powerFactor:/
+examples:
+  actility:spoony:1:
+    - "Manufacturer specification sample: default ET/E1/E2/E3 tags. R&D confirmed uplink fPort 1; this remains a documentation sample, not a field capture."
+    - "Synthetic documented active-power tags; values are fixtures, not device readings."
+    - "Synthetic documented reactive-power tags with negative measurements."
+    - "Synthetic documented apparent-power tags."
+    - "Synthetic documented reactive-energy tags with negative measurements."
+    - "Synthetic documented apparent-energy tags."
+    - "Synthetic documented phase-current tags."
+    - "Synthetic documented phase-voltage tags."
+    - "Synthetic documented frequency tag: a single-sample payload."
+    - "Synthetic documented phase power-factor tags."
+    - "Synthetic zero readings for documented tags: retain zero-valued scalar points."
+    - "Synthetic custom tag with a negative float32 value; no unit assumption."
+    - "Synthetic repeated tag: retain both samples in payload order."
+    - "Synthetic reordered manufacturer samples."
+    - "fail: synthetic truncated sample after a valid measurement; reject partial output."
+    - "fail: synthetic non-ASCII tag."
+    - "fail: synthetic infinity is not a JSON measurement."
+    - "Synthetic positive and negative IEEE754 zero; JSON represents both as zero."
+    - "Synthetic float32 boundaries: smallest positive subnormal, largest finite values, and smallest positive normal."
+    - "Synthetic decoder tag boundaries: empty tag, object-property names, and ASCII controls; not documented device configurations."
+    - "Synthetic repeated tag with distinct values: retain both raw samples; the scalar point uses the last value in payload order."
+    - "fail: synthetic truncated tag at the beginning of a payload."
+    - "fail: synthetic complete tag followed by an incomplete float32 value."
+    - "fail: synthetic negative infinity is not a JSON measurement."
+    - "fail: synthetic IEEE754 NaN is not a JSON measurement."
+    - "fail: synthetic non-ASCII tag after a valid measurement; reject partial output."
+    - "fail: synthetic non-finite value after a valid measurement; reject partial output."
+LoRaWANRelay:
+  canOperateAsARelay: false
+  defaultRelayActivation: false
