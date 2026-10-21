@@ -39,7 +39,7 @@ protocolId:
 # Informative, maintained by Netmore: true when the driver of the first protocolId above ships a
 # BACnet/Modbus mapping (mapping.json, in Netmore's private catalog), so that the device can be
 # exposed through the BACnet and Modbus gateways. Checked: true requires that mapping.
-supportedBACnetModbus: false
+supportedBACnetModbus: true
 # DataSheet URL (optional)
 specificationURL:
 # User Guide URL (optional)
@@ -65,6 +65,12 @@ examples:
     - "downlink containing configuration"
     - "fail decode uplink due to invalid port"
     - "encode downlink containing configuration"
+    - "uplink containing configuration response (default configuration, synthetic frame)"
+    - "uplink containing configuration response (all message flags set, synthetic frame)"
+    - "uplink containing configuration response with an installation error (synthetic frame)"
+    - "uplink containing standard report (sub-zero temperatures, synthetic frame)"
+    - "encode downlink containing the default configuration of two sensors (synthetic command)"
+    - "encode downlink writing the scalar settings (synthetic command)"
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false

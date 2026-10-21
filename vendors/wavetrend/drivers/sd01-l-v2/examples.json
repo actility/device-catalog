@@ -8,7 +8,7 @@
       "recvTime": "2020-08-02T20:00:00.000+00:00"
     },
     "output": {
-      "data":     {
+      "data": {
         "error_code": 0,
         "downlink_hours": 0,
         "reporting_period": 0,
@@ -45,7 +45,230 @@
       "errors": [],
       "warnings": []
     },
-    "points": {}
+    "points": {},
+    "BACnet": {
+      "error_code": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 0,
+        "units": "NO_UNITS"
+      },
+      "downlink_hours": [
+        {
+          "object": "ANALOG_INPUT",
+          "presentValue": 0,
+          "units": "HOURS"
+        },
+        {
+          "object": "ANALOG_VALUE",
+          "presentValue": 24,
+          "units": "HOURS"
+        }
+      ],
+      "reporting_period": [
+        {
+          "object": "ANALOG_INPUT",
+          "presentValue": 0,
+          "units": "MINUTES"
+        },
+        {
+          "object": "ANALOG_VALUE",
+          "presentValue": 60,
+          "units": "MINUTES"
+        }
+      ],
+      "message_flags:scald": [
+        {
+          "object": "BINARY_INPUT",
+          "presentValue": 0
+        },
+        {
+          "object": "BINARY_VALUE",
+          "presentValue": 0
+        }
+      ],
+      "message_flags:freeze": [
+        {
+          "object": "BINARY_INPUT",
+          "presentValue": 0
+        },
+        {
+          "object": "BINARY_VALUE",
+          "presentValue": 0
+        }
+      ],
+      "message_flags:debug": [
+        {
+          "object": "BINARY_INPUT",
+          "presentValue": 0
+        },
+        {
+          "object": "BINARY_VALUE",
+          "presentValue": 0
+        }
+      ],
+      "message_flags:history_count": [
+        {
+          "object": "ANALOG_INPUT",
+          "presentValue": 0,
+          "units": "NO_UNITS"
+        },
+        {
+          "object": "ANALOG_VALUE",
+          "presentValue": 0,
+          "units": "NO_UNITS"
+        }
+      ],
+      "message_flags:simple": [
+        {
+          "object": "BINARY_INPUT",
+          "presentValue": 0
+        },
+        {
+          "object": "BINARY_VALUE",
+          "presentValue": 0
+        }
+      ],
+      "message_flags:act_poll": [
+        {
+          "object": "BINARY_INPUT",
+          "presentValue": 0
+        },
+        {
+          "object": "BINARY_VALUE",
+          "presentValue": 1
+        }
+      ],
+      "message_flags:stat_poll": [
+        {
+          "object": "BINARY_INPUT",
+          "presentValue": 0
+        },
+        {
+          "object": "BINARY_VALUE",
+          "presentValue": 1
+        }
+      ],
+      "scald_threshold": [
+        {
+          "object": "ANALOG_INPUT",
+          "presentValue": 0,
+          "units": "DEGREES_CELSIUS"
+        },
+        {
+          "object": "ANALOG_VALUE",
+          "presentValue": 60,
+          "units": "DEGREES_CELSIUS"
+        }
+      ],
+      "freeze_threshold": [
+        {
+          "object": "ANALOG_INPUT",
+          "presentValue": 0,
+          "units": "DEGREES_CELSIUS"
+        },
+        {
+          "object": "ANALOG_VALUE",
+          "presentValue": 4,
+          "units": "DEGREES_CELSIUS"
+        }
+      ],
+      "flow_delta:cold": [
+        {
+          "object": "ANALOG_INPUT",
+          "presentValue": 4,
+          "units": "NO_UNITS"
+        },
+        {
+          "object": "ANALOG_VALUE",
+          "presentValue": 4,
+          "units": "NO_UNITS"
+        }
+      ],
+      "flow_delta:hot": [
+        {
+          "object": "ANALOG_INPUT",
+          "presentValue": 10,
+          "units": "NO_UNITS"
+        },
+        {
+          "object": "ANALOG_VALUE",
+          "presentValue": 10,
+          "units": "NO_UNITS"
+        }
+      ]
+    },
+    "Modbus": {
+      "error_code": {
+        "table": "inputRegister",
+        "value": 0,
+        "value_type": "UINT16"
+      },
+      "downlink_hours": {
+        "table": "inputRegister",
+        "value": 0,
+        "value_type": "UINT8"
+      },
+      "reporting_period": {
+        "table": "inputRegister",
+        "value": 0,
+        "value_type": "UINT16"
+      },
+      "message_flags:scald": {
+        "table": "discreteInput",
+        "value": 0,
+        "value_type": "BOOL"
+      },
+      "message_flags:freeze": {
+        "table": "discreteInput",
+        "value": 0,
+        "value_type": "BOOL"
+      },
+      "message_flags:debug": {
+        "table": "discreteInput",
+        "value": 0,
+        "value_type": "BOOL"
+      },
+      "message_flags:history_count": {
+        "table": "inputRegister",
+        "value": 0,
+        "value_type": "UINT8"
+      },
+      "message_flags:simple": {
+        "table": "discreteInput",
+        "value": 0,
+        "value_type": "BOOL"
+      },
+      "message_flags:act_poll": {
+        "table": "discreteInput",
+        "value": 0,
+        "value_type": "BOOL"
+      },
+      "message_flags:stat_poll": {
+        "table": "discreteInput",
+        "value": 0,
+        "value_type": "BOOL"
+      },
+      "scald_threshold": {
+        "table": "inputRegister",
+        "value": 0,
+        "value_type": "INT8"
+      },
+      "freeze_threshold": {
+        "table": "inputRegister",
+        "value": 0,
+        "value_type": "INT8"
+      },
+      "flow_delta:cold": {
+        "table": "inputRegister",
+        "value": 4,
+        "value_type": "UINT8"
+      },
+      "flow_delta:hot": {
+        "table": "inputRegister",
+        "value": 10,
+        "value_type": "UINT8"
+      }
+    }
   },
   {
     "type": "uplink",
@@ -59,7 +282,9 @@
       "data": {
         "pvd_level": 6,
         "sensor": [
-          true, false, false
+          true,
+          false,
+          false
         ],
         "firmware_version": {
           "major": 2,
@@ -70,7 +295,51 @@
       "errors": [],
       "warnings": []
     },
-    "points": {}
+    "points": {},
+    "BACnet": {
+      "pvd_level": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 6,
+        "units": "NO_UNITS"
+      },
+      "firmware_version:major": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 2,
+        "units": "NO_UNITS"
+      },
+      "firmware_version:minor": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 1,
+        "units": "NO_UNITS"
+      },
+      "reset_reason": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 0,
+        "units": "NO_UNITS"
+      }
+    },
+    "Modbus": {
+      "pvd_level": {
+        "table": "inputRegister",
+        "value": 6,
+        "value_type": "UINT8"
+      },
+      "firmware_version:major": {
+        "table": "inputRegister",
+        "value": 2,
+        "value_type": "UINT8"
+      },
+      "firmware_version:minor": {
+        "table": "inputRegister",
+        "value": 1,
+        "value_type": "UINT8"
+      },
+      "reset_reason": {
+        "table": "inputRegister",
+        "value": 0,
+        "value_type": "UINT16"
+      }
+    }
   },
   {
     "type": "uplink",
@@ -106,6 +375,70 @@
       "counter": {
         "unitId": "count",
         "record": 1
+      }
+    },
+    "BACnet": {
+      "timestamp": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 1596398400,
+        "units": "NO_UNITS"
+      },
+      "sensor_id": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 0,
+        "units": "NO_UNITS"
+      },
+      "minC": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 19,
+        "units": "DEGREES_CELSIUS"
+      },
+      "maxC": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 21,
+        "units": "DEGREES_CELSIUS"
+      },
+      "events": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 1,
+        "units": "NO_UNITS"
+      },
+      "reports": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 1,
+        "units": "NO_UNITS"
+      }
+    },
+    "Modbus": {
+      "timestamp": {
+        "table": "inputRegister",
+        "value": 1596398400,
+        "value_type": "UINT32"
+      },
+      "sensor_id": {
+        "table": "inputRegister",
+        "value": 0,
+        "value_type": "UINT8"
+      },
+      "minC": {
+        "table": "inputRegister",
+        "value": 19,
+        "value_type": "INT8"
+      },
+      "maxC": {
+        "table": "inputRegister",
+        "value": 21,
+        "value_type": "INT8"
+      },
+      "events": {
+        "table": "inputRegister",
+        "value": 1,
+        "value_type": "UINT8"
+      },
+      "reports": {
+        "table": "inputRegister",
+        "value": 1,
+        "value_type": "UINT8"
       }
     }
   },
@@ -161,6 +494,80 @@
         "record": 21,
         "nature": "s3MaxC"
       }
+    },
+    "BACnet": {
+      "timestamp": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 1596398400,
+        "units": "NO_UNITS"
+      },
+      "s1MinC": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 19,
+        "units": "DEGREES_CELSIUS"
+      },
+      "s1MaxC": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 21,
+        "units": "DEGREES_CELSIUS"
+      },
+      "s2MinC": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 19,
+        "units": "DEGREES_CELSIUS"
+      },
+      "s2MaxC": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 21,
+        "units": "DEGREES_CELSIUS"
+      },
+      "s3MinC": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 19,
+        "units": "DEGREES_CELSIUS"
+      },
+      "s3MaxC": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 21,
+        "units": "DEGREES_CELSIUS"
+      }
+    },
+    "Modbus": {
+      "timestamp": {
+        "table": "inputRegister",
+        "value": 1596398400,
+        "value_type": "UINT32"
+      },
+      "s1MinC": {
+        "table": "inputRegister",
+        "value": 19,
+        "value_type": "INT8"
+      },
+      "s1MaxC": {
+        "table": "inputRegister",
+        "value": 21,
+        "value_type": "INT8"
+      },
+      "s2MinC": {
+        "table": "inputRegister",
+        "value": 19,
+        "value_type": "INT8"
+      },
+      "s2MaxC": {
+        "table": "inputRegister",
+        "value": 21,
+        "value_type": "INT8"
+      },
+      "s3MinC": {
+        "table": "inputRegister",
+        "value": 19,
+        "value_type": "INT8"
+      },
+      "s3MaxC": {
+        "table": "inputRegister",
+        "value": 21,
+        "value_type": "INT8"
+      }
     }
   },
   {
@@ -178,7 +585,21 @@
       "errors": [],
       "warnings": []
     },
-    "points": {}
+    "points": {},
+    "BACnet": {
+      "sensor_id": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 0,
+        "units": "NO_UNITS"
+      }
+    },
+    "Modbus": {
+      "sensor_id": {
+        "table": "inputRegister",
+        "value": 0,
+        "value_type": "UINT8"
+      }
+    }
   },
   {
     "type": "uplink",
@@ -197,7 +618,41 @@
       "errors": [],
       "warnings": []
     },
-    "points": {}
+    "points": {},
+    "BACnet": {
+      "error_code": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 0,
+        "units": "NO_UNITS"
+      },
+      "file_hash": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 0,
+        "units": "NO_UNITS"
+      },
+      "line": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 0,
+        "units": "NO_UNITS"
+      }
+    },
+    "Modbus": {
+      "error_code": {
+        "table": "inputRegister",
+        "value": 0,
+        "value_type": "UINT16"
+      },
+      "file_hash": {
+        "table": "inputRegister",
+        "value": 0,
+        "value_type": "UINT16"
+      },
+      "line": {
+        "table": "inputRegister",
+        "value": 0,
+        "value_type": "UINT16"
+      }
+    }
   },
   {
     "type": "uplink",
@@ -220,6 +675,30 @@
         "unitId": "Cel",
         "record": 0,
         "nature": "temperature"
+      }
+    },
+    "BACnet": {
+      "sensor_id": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 0,
+        "units": "NO_UNITS"
+      },
+      "temperature": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 0,
+        "units": "DEGREES_CELSIUS"
+      }
+    },
+    "Modbus": {
+      "sensor_id": {
+        "table": "inputRegister",
+        "value": 0,
+        "value_type": "UINT8"
+      },
+      "temperature": {
+        "table": "inputRegister",
+        "value": 0,
+        "value_type": "INT8"
       }
     }
   },
@@ -244,6 +723,30 @@
         "unitId": "Cel",
         "record": 0,
         "nature": "temperature"
+      }
+    },
+    "BACnet": {
+      "sensor_id": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 0,
+        "units": "NO_UNITS"
+      },
+      "temperature": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 0,
+        "units": "DEGREES_CELSIUS"
+      }
+    },
+    "Modbus": {
+      "sensor_id": {
+        "table": "inputRegister",
+        "value": 0,
+        "value_type": "UINT8"
+      },
+      "temperature": {
+        "table": "inputRegister",
+        "value": 0,
+        "value_type": "INT8"
       }
     }
   },
@@ -340,6 +843,30 @@
         ],
         "nature": "tempC"
       }
+    },
+    "BACnet": {
+      "pvd_level": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 6,
+        "units": "NO_UNITS"
+      },
+      "timestamp": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 1596398400,
+        "units": "NO_UNITS"
+      }
+    },
+    "Modbus": {
+      "pvd_level": {
+        "table": "inputRegister",
+        "value": 6,
+        "value_type": "UINT8"
+      },
+      "timestamp": {
+        "table": "inputRegister",
+        "value": 1596398400,
+        "value_type": "UINT32"
+      }
     }
   },
   {
@@ -356,7 +883,9 @@
       ],
       "warnings": []
     },
-    "points": {}
+    "points": {},
+    "BACnet": {},
+    "Modbus": {}
   },
   {
     "type": "uplink",
@@ -372,7 +901,9 @@
       ],
       "warnings": []
     },
-    "points": {}
+    "points": {},
+    "BACnet": {},
+    "Modbus": {}
   },
   {
     "type": "downlink-decode",
@@ -484,5 +1015,1038 @@
       "warnings": []
     },
     "points": {}
+  },
+  {
+    "type": "uplink",
+    "description": "uplink containing configuration response (default configuration, synthetic frame)",
+    "input": {
+      "bytes": "0018003CC03C040103004A",
+      "fPort": 4,
+      "recvTime": "2020-08-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "warnings": [],
+      "errors": [],
+      "data": {
+        "error_code": 0,
+        "downlink_hours": 24,
+        "reporting_period": 60,
+        "message_flags": {
+          "scald": false,
+          "freeze": false,
+          "debug": false,
+          "history_count": 0,
+          "simple": false,
+          "act_poll": true,
+          "stat_poll": true
+        },
+        "scald_threshold": 60,
+        "freeze_threshold": 4,
+        "config_type": [
+          {
+            "flow_settling_count": 0,
+            "config": 1
+          },
+          {
+            "flow_settling_count": 0,
+            "config": 3
+          },
+          {
+            "flow_settling_count": 0,
+            "config": 0
+          }
+        ],
+        "flow_delta": {
+          "cold": 4,
+          "hot": 10
+        }
+      }
+    },
+    "points": {},
+    "BACnet": {
+      "error_code": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 0,
+        "units": "NO_UNITS"
+      },
+      "downlink_hours": [
+        {
+          "object": "ANALOG_INPUT",
+          "presentValue": 24,
+          "units": "HOURS"
+        },
+        {
+          "object": "ANALOG_VALUE",
+          "presentValue": 24,
+          "units": "HOURS"
+        }
+      ],
+      "reporting_period": [
+        {
+          "object": "ANALOG_INPUT",
+          "presentValue": 60,
+          "units": "MINUTES"
+        },
+        {
+          "object": "ANALOG_VALUE",
+          "presentValue": 60,
+          "units": "MINUTES"
+        }
+      ],
+      "message_flags:scald": [
+        {
+          "object": "BINARY_INPUT",
+          "presentValue": 0
+        },
+        {
+          "object": "BINARY_VALUE",
+          "presentValue": 0
+        }
+      ],
+      "message_flags:freeze": [
+        {
+          "object": "BINARY_INPUT",
+          "presentValue": 0
+        },
+        {
+          "object": "BINARY_VALUE",
+          "presentValue": 0
+        }
+      ],
+      "message_flags:debug": [
+        {
+          "object": "BINARY_INPUT",
+          "presentValue": 0
+        },
+        {
+          "object": "BINARY_VALUE",
+          "presentValue": 0
+        }
+      ],
+      "message_flags:history_count": [
+        {
+          "object": "ANALOG_INPUT",
+          "presentValue": 0,
+          "units": "NO_UNITS"
+        },
+        {
+          "object": "ANALOG_VALUE",
+          "presentValue": 0,
+          "units": "NO_UNITS"
+        }
+      ],
+      "message_flags:simple": [
+        {
+          "object": "BINARY_INPUT",
+          "presentValue": 0
+        },
+        {
+          "object": "BINARY_VALUE",
+          "presentValue": 0
+        }
+      ],
+      "message_flags:act_poll": [
+        {
+          "object": "BINARY_INPUT",
+          "presentValue": 1
+        },
+        {
+          "object": "BINARY_VALUE",
+          "presentValue": 1
+        }
+      ],
+      "message_flags:stat_poll": [
+        {
+          "object": "BINARY_INPUT",
+          "presentValue": 1
+        },
+        {
+          "object": "BINARY_VALUE",
+          "presentValue": 1
+        }
+      ],
+      "scald_threshold": [
+        {
+          "object": "ANALOG_INPUT",
+          "presentValue": 60,
+          "units": "DEGREES_CELSIUS"
+        },
+        {
+          "object": "ANALOG_VALUE",
+          "presentValue": 60,
+          "units": "DEGREES_CELSIUS"
+        }
+      ],
+      "freeze_threshold": [
+        {
+          "object": "ANALOG_INPUT",
+          "presentValue": 4,
+          "units": "DEGREES_CELSIUS"
+        },
+        {
+          "object": "ANALOG_VALUE",
+          "presentValue": 4,
+          "units": "DEGREES_CELSIUS"
+        }
+      ],
+      "flow_delta:cold": [
+        {
+          "object": "ANALOG_INPUT",
+          "presentValue": 4,
+          "units": "NO_UNITS"
+        },
+        {
+          "object": "ANALOG_VALUE",
+          "presentValue": 4,
+          "units": "NO_UNITS"
+        }
+      ],
+      "flow_delta:hot": [
+        {
+          "object": "ANALOG_INPUT",
+          "presentValue": 10,
+          "units": "NO_UNITS"
+        },
+        {
+          "object": "ANALOG_VALUE",
+          "presentValue": 10,
+          "units": "NO_UNITS"
+        }
+      ]
+    },
+    "Modbus": {
+      "error_code": {
+        "table": "inputRegister",
+        "value": 0,
+        "value_type": "UINT16"
+      },
+      "downlink_hours": {
+        "table": "inputRegister",
+        "value": 24,
+        "value_type": "UINT8"
+      },
+      "reporting_period": {
+        "table": "inputRegister",
+        "value": 60,
+        "value_type": "UINT16"
+      },
+      "message_flags:scald": {
+        "table": "discreteInput",
+        "value": 0,
+        "value_type": "BOOL"
+      },
+      "message_flags:freeze": {
+        "table": "discreteInput",
+        "value": 0,
+        "value_type": "BOOL"
+      },
+      "message_flags:debug": {
+        "table": "discreteInput",
+        "value": 0,
+        "value_type": "BOOL"
+      },
+      "message_flags:history_count": {
+        "table": "inputRegister",
+        "value": 0,
+        "value_type": "UINT8"
+      },
+      "message_flags:simple": {
+        "table": "discreteInput",
+        "value": 0,
+        "value_type": "BOOL"
+      },
+      "message_flags:act_poll": {
+        "table": "discreteInput",
+        "value": 1,
+        "value_type": "BOOL"
+      },
+      "message_flags:stat_poll": {
+        "table": "discreteInput",
+        "value": 1,
+        "value_type": "BOOL"
+      },
+      "scald_threshold": {
+        "table": "inputRegister",
+        "value": 60,
+        "value_type": "INT8"
+      },
+      "freeze_threshold": {
+        "table": "inputRegister",
+        "value": 4,
+        "value_type": "INT8"
+      },
+      "flow_delta:cold": {
+        "table": "inputRegister",
+        "value": 4,
+        "value_type": "UINT8"
+      },
+      "flow_delta:hot": {
+        "table": "inputRegister",
+        "value": 10,
+        "value_type": "UINT8"
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink containing configuration response (all message flags set, synthetic frame)",
+    "input": {
+      "bytes": "000C000FF737032113082F",
+      "fPort": 4,
+      "recvTime": "2020-08-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "warnings": [],
+      "errors": [],
+      "data": {
+        "error_code": 0,
+        "downlink_hours": 12,
+        "reporting_period": 15,
+        "message_flags": {
+          "scald": true,
+          "freeze": true,
+          "debug": true,
+          "history_count": 2,
+          "simple": true,
+          "act_poll": true,
+          "stat_poll": true
+        },
+        "scald_threshold": 55,
+        "freeze_threshold": 3,
+        "config_type": [
+          {
+            "flow_settling_count": 2,
+            "config": 1
+          },
+          {
+            "flow_settling_count": 1,
+            "config": 3
+          },
+          {
+            "flow_settling_count": 0,
+            "config": 8
+          }
+        ],
+        "flow_delta": {
+          "cold": 2,
+          "hot": 15
+        }
+      }
+    },
+    "points": {},
+    "BACnet": {
+      "error_code": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 0,
+        "units": "NO_UNITS"
+      },
+      "downlink_hours": [
+        {
+          "object": "ANALOG_INPUT",
+          "presentValue": 12,
+          "units": "HOURS"
+        },
+        {
+          "object": "ANALOG_VALUE",
+          "presentValue": 24,
+          "units": "HOURS"
+        }
+      ],
+      "reporting_period": [
+        {
+          "object": "ANALOG_INPUT",
+          "presentValue": 15,
+          "units": "MINUTES"
+        },
+        {
+          "object": "ANALOG_VALUE",
+          "presentValue": 60,
+          "units": "MINUTES"
+        }
+      ],
+      "message_flags:scald": [
+        {
+          "object": "BINARY_INPUT",
+          "presentValue": 1
+        },
+        {
+          "object": "BINARY_VALUE",
+          "presentValue": 0
+        }
+      ],
+      "message_flags:freeze": [
+        {
+          "object": "BINARY_INPUT",
+          "presentValue": 1
+        },
+        {
+          "object": "BINARY_VALUE",
+          "presentValue": 0
+        }
+      ],
+      "message_flags:debug": [
+        {
+          "object": "BINARY_INPUT",
+          "presentValue": 1
+        },
+        {
+          "object": "BINARY_VALUE",
+          "presentValue": 0
+        }
+      ],
+      "message_flags:history_count": [
+        {
+          "object": "ANALOG_INPUT",
+          "presentValue": 2,
+          "units": "NO_UNITS"
+        },
+        {
+          "object": "ANALOG_VALUE",
+          "presentValue": 0,
+          "units": "NO_UNITS"
+        }
+      ],
+      "message_flags:simple": [
+        {
+          "object": "BINARY_INPUT",
+          "presentValue": 1
+        },
+        {
+          "object": "BINARY_VALUE",
+          "presentValue": 0
+        }
+      ],
+      "message_flags:act_poll": [
+        {
+          "object": "BINARY_INPUT",
+          "presentValue": 1
+        },
+        {
+          "object": "BINARY_VALUE",
+          "presentValue": 1
+        }
+      ],
+      "message_flags:stat_poll": [
+        {
+          "object": "BINARY_INPUT",
+          "presentValue": 1
+        },
+        {
+          "object": "BINARY_VALUE",
+          "presentValue": 1
+        }
+      ],
+      "scald_threshold": [
+        {
+          "object": "ANALOG_INPUT",
+          "presentValue": 55,
+          "units": "DEGREES_CELSIUS"
+        },
+        {
+          "object": "ANALOG_VALUE",
+          "presentValue": 60,
+          "units": "DEGREES_CELSIUS"
+        }
+      ],
+      "freeze_threshold": [
+        {
+          "object": "ANALOG_INPUT",
+          "presentValue": 3,
+          "units": "DEGREES_CELSIUS"
+        },
+        {
+          "object": "ANALOG_VALUE",
+          "presentValue": 4,
+          "units": "DEGREES_CELSIUS"
+        }
+      ],
+      "flow_delta:cold": [
+        {
+          "object": "ANALOG_INPUT",
+          "presentValue": 2,
+          "units": "NO_UNITS"
+        },
+        {
+          "object": "ANALOG_VALUE",
+          "presentValue": 4,
+          "units": "NO_UNITS"
+        }
+      ],
+      "flow_delta:hot": [
+        {
+          "object": "ANALOG_INPUT",
+          "presentValue": 15,
+          "units": "NO_UNITS"
+        },
+        {
+          "object": "ANALOG_VALUE",
+          "presentValue": 10,
+          "units": "NO_UNITS"
+        }
+      ]
+    },
+    "Modbus": {
+      "error_code": {
+        "table": "inputRegister",
+        "value": 0,
+        "value_type": "UINT16"
+      },
+      "downlink_hours": {
+        "table": "inputRegister",
+        "value": 12,
+        "value_type": "UINT8"
+      },
+      "reporting_period": {
+        "table": "inputRegister",
+        "value": 15,
+        "value_type": "UINT16"
+      },
+      "message_flags:scald": {
+        "table": "discreteInput",
+        "value": 1,
+        "value_type": "BOOL"
+      },
+      "message_flags:freeze": {
+        "table": "discreteInput",
+        "value": 1,
+        "value_type": "BOOL"
+      },
+      "message_flags:debug": {
+        "table": "discreteInput",
+        "value": 1,
+        "value_type": "BOOL"
+      },
+      "message_flags:history_count": {
+        "table": "inputRegister",
+        "value": 2,
+        "value_type": "UINT8"
+      },
+      "message_flags:simple": {
+        "table": "discreteInput",
+        "value": 1,
+        "value_type": "BOOL"
+      },
+      "message_flags:act_poll": {
+        "table": "discreteInput",
+        "value": 1,
+        "value_type": "BOOL"
+      },
+      "message_flags:stat_poll": {
+        "table": "discreteInput",
+        "value": 1,
+        "value_type": "BOOL"
+      },
+      "scald_threshold": {
+        "table": "inputRegister",
+        "value": 55,
+        "value_type": "INT8"
+      },
+      "freeze_threshold": {
+        "table": "inputRegister",
+        "value": 3,
+        "value_type": "INT8"
+      },
+      "flow_delta:cold": {
+        "table": "inputRegister",
+        "value": 2,
+        "value_type": "UINT8"
+      },
+      "flow_delta:hot": {
+        "table": "inputRegister",
+        "value": 15,
+        "value_type": "UINT8"
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink containing configuration response with an installation error (synthetic frame)",
+    "input": {
+      "bytes": "07180000C03C040000004A",
+      "fPort": 4,
+      "recvTime": "2020-08-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "warnings": [],
+      "errors": [],
+      "data": {
+        "error_code": 7,
+        "downlink_hours": 24,
+        "reporting_period": 0,
+        "message_flags": {
+          "scald": false,
+          "freeze": false,
+          "debug": false,
+          "history_count": 0,
+          "simple": false,
+          "act_poll": true,
+          "stat_poll": true
+        },
+        "scald_threshold": 60,
+        "freeze_threshold": 4,
+        "config_type": [
+          {
+            "flow_settling_count": 0,
+            "config": 0
+          },
+          {
+            "flow_settling_count": 0,
+            "config": 0
+          },
+          {
+            "flow_settling_count": 0,
+            "config": 0
+          }
+        ],
+        "flow_delta": {
+          "cold": 4,
+          "hot": 10
+        }
+      }
+    },
+    "points": {},
+    "BACnet": {
+      "error_code": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 7,
+        "units": "NO_UNITS"
+      },
+      "downlink_hours": [
+        {
+          "object": "ANALOG_INPUT",
+          "presentValue": 24,
+          "units": "HOURS"
+        },
+        {
+          "object": "ANALOG_VALUE",
+          "presentValue": 24,
+          "units": "HOURS"
+        }
+      ],
+      "reporting_period": [
+        {
+          "object": "ANALOG_INPUT",
+          "presentValue": 0,
+          "units": "MINUTES"
+        },
+        {
+          "object": "ANALOG_VALUE",
+          "presentValue": 60,
+          "units": "MINUTES"
+        }
+      ],
+      "message_flags:scald": [
+        {
+          "object": "BINARY_INPUT",
+          "presentValue": 0
+        },
+        {
+          "object": "BINARY_VALUE",
+          "presentValue": 0
+        }
+      ],
+      "message_flags:freeze": [
+        {
+          "object": "BINARY_INPUT",
+          "presentValue": 0
+        },
+        {
+          "object": "BINARY_VALUE",
+          "presentValue": 0
+        }
+      ],
+      "message_flags:debug": [
+        {
+          "object": "BINARY_INPUT",
+          "presentValue": 0
+        },
+        {
+          "object": "BINARY_VALUE",
+          "presentValue": 0
+        }
+      ],
+      "message_flags:history_count": [
+        {
+          "object": "ANALOG_INPUT",
+          "presentValue": 0,
+          "units": "NO_UNITS"
+        },
+        {
+          "object": "ANALOG_VALUE",
+          "presentValue": 0,
+          "units": "NO_UNITS"
+        }
+      ],
+      "message_flags:simple": [
+        {
+          "object": "BINARY_INPUT",
+          "presentValue": 0
+        },
+        {
+          "object": "BINARY_VALUE",
+          "presentValue": 0
+        }
+      ],
+      "message_flags:act_poll": [
+        {
+          "object": "BINARY_INPUT",
+          "presentValue": 1
+        },
+        {
+          "object": "BINARY_VALUE",
+          "presentValue": 1
+        }
+      ],
+      "message_flags:stat_poll": [
+        {
+          "object": "BINARY_INPUT",
+          "presentValue": 1
+        },
+        {
+          "object": "BINARY_VALUE",
+          "presentValue": 1
+        }
+      ],
+      "scald_threshold": [
+        {
+          "object": "ANALOG_INPUT",
+          "presentValue": 60,
+          "units": "DEGREES_CELSIUS"
+        },
+        {
+          "object": "ANALOG_VALUE",
+          "presentValue": 60,
+          "units": "DEGREES_CELSIUS"
+        }
+      ],
+      "freeze_threshold": [
+        {
+          "object": "ANALOG_INPUT",
+          "presentValue": 4,
+          "units": "DEGREES_CELSIUS"
+        },
+        {
+          "object": "ANALOG_VALUE",
+          "presentValue": 4,
+          "units": "DEGREES_CELSIUS"
+        }
+      ],
+      "flow_delta:cold": [
+        {
+          "object": "ANALOG_INPUT",
+          "presentValue": 4,
+          "units": "NO_UNITS"
+        },
+        {
+          "object": "ANALOG_VALUE",
+          "presentValue": 4,
+          "units": "NO_UNITS"
+        }
+      ],
+      "flow_delta:hot": [
+        {
+          "object": "ANALOG_INPUT",
+          "presentValue": 10,
+          "units": "NO_UNITS"
+        },
+        {
+          "object": "ANALOG_VALUE",
+          "presentValue": 10,
+          "units": "NO_UNITS"
+        }
+      ]
+    },
+    "Modbus": {
+      "error_code": {
+        "table": "inputRegister",
+        "value": 7,
+        "value_type": "UINT16"
+      },
+      "downlink_hours": {
+        "table": "inputRegister",
+        "value": 24,
+        "value_type": "UINT8"
+      },
+      "reporting_period": {
+        "table": "inputRegister",
+        "value": 0,
+        "value_type": "UINT16"
+      },
+      "message_flags:scald": {
+        "table": "discreteInput",
+        "value": 0,
+        "value_type": "BOOL"
+      },
+      "message_flags:freeze": {
+        "table": "discreteInput",
+        "value": 0,
+        "value_type": "BOOL"
+      },
+      "message_flags:debug": {
+        "table": "discreteInput",
+        "value": 0,
+        "value_type": "BOOL"
+      },
+      "message_flags:history_count": {
+        "table": "inputRegister",
+        "value": 0,
+        "value_type": "UINT8"
+      },
+      "message_flags:simple": {
+        "table": "discreteInput",
+        "value": 0,
+        "value_type": "BOOL"
+      },
+      "message_flags:act_poll": {
+        "table": "discreteInput",
+        "value": 1,
+        "value_type": "BOOL"
+      },
+      "message_flags:stat_poll": {
+        "table": "discreteInput",
+        "value": 1,
+        "value_type": "BOOL"
+      },
+      "scald_threshold": {
+        "table": "inputRegister",
+        "value": 60,
+        "value_type": "INT8"
+      },
+      "freeze_threshold": {
+        "table": "inputRegister",
+        "value": 4,
+        "value_type": "INT8"
+      },
+      "flow_delta:cold": {
+        "table": "inputRegister",
+        "value": 4,
+        "value_type": "UINT8"
+      },
+      "flow_delta:hot": {
+        "table": "inputRegister",
+        "value": 10,
+        "value_type": "UINT8"
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "uplink containing standard report (sub-zero temperatures, synthetic frame)",
+    "input": {
+      "bytes": "5F271B4001FD020303",
+      "fPort": 3,
+      "recvTime": "2020-08-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "warnings": [],
+      "errors": [],
+      "data": {
+        "timestamp": 1596398400,
+        "sensor_id": 1,
+        "minC": -3,
+        "maxC": 2,
+        "events": 3,
+        "reports": 3
+      }
+    },
+    "points": {
+      "temperature:1": {
+        "unitId": "Cel",
+        "record": -3,
+        "nature": "minC"
+      },
+      "temperature:2": {
+        "unitId": "Cel",
+        "record": 2,
+        "nature": "maxC"
+      },
+      "counter": {
+        "unitId": "count",
+        "record": 3
+      }
+    },
+    "BACnet": {
+      "timestamp": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 1596398400,
+        "units": "NO_UNITS"
+      },
+      "sensor_id": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 1,
+        "units": "NO_UNITS"
+      },
+      "minC": {
+        "object": "ANALOG_INPUT",
+        "presentValue": -3,
+        "units": "DEGREES_CELSIUS"
+      },
+      "maxC": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 2,
+        "units": "DEGREES_CELSIUS"
+      },
+      "events": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 3,
+        "units": "NO_UNITS"
+      },
+      "reports": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 3,
+        "units": "NO_UNITS"
+      }
+    },
+    "Modbus": {
+      "timestamp": {
+        "table": "inputRegister",
+        "value": 1596398400,
+        "value_type": "UINT32"
+      },
+      "sensor_id": {
+        "table": "inputRegister",
+        "value": 1,
+        "value_type": "UINT8"
+      },
+      "minC": {
+        "table": "inputRegister",
+        "value": -3,
+        "value_type": "INT8"
+      },
+      "maxC": {
+        "table": "inputRegister",
+        "value": 2,
+        "value_type": "INT8"
+      },
+      "events": {
+        "table": "inputRegister",
+        "value": 3,
+        "value_type": "UINT8"
+      },
+      "reports": {
+        "table": "inputRegister",
+        "value": 3,
+        "value_type": "UINT8"
+      }
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "encode downlink containing the default configuration of two sensors (synthetic command)",
+    "input": {
+      "data": {
+        "type": 2,
+        "downlink_hours": 24,
+        "reporting_period": 60,
+        "message_flags": {
+          "scald": false,
+          "freeze": false,
+          "debug": false,
+          "history_count": 0,
+          "simple": false,
+          "act_poll": true,
+          "stat_poll": true
+        },
+        "scald_threshold": 60,
+        "freeze_threshold": 4,
+        "config_type": [
+          {
+            "flow_settling_count": 0,
+            "config": 1
+          },
+          {
+            "flow_settling_count": 0,
+            "config": 3
+          },
+          {
+            "flow_settling_count": 0,
+            "config": 0
+          }
+        ],
+        "flow_delta": {
+          "cold": 4,
+          "hot": 10
+        }
+      }
+    },
+    "output": {
+      "bytes": "18003CC03C040103004A",
+      "fPort": 2,
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "encode downlink writing the scalar settings (synthetic command)",
+    "inputBACnet": {
+      "type": {
+        "object": "ANALOG_VALUE",
+        "property": "PRESENT_VALUE",
+        "value": 2
+      },
+      "downlink_hours": {
+        "object": "ANALOG_VALUE",
+        "property": "PRESENT_VALUE",
+        "value": 24
+      },
+      "reporting_period": {
+        "object": "ANALOG_VALUE",
+        "property": "PRESENT_VALUE",
+        "value": 120
+      },
+      "scald_threshold": {
+        "object": "ANALOG_VALUE",
+        "property": "PRESENT_VALUE",
+        "value": 55
+      },
+      "freeze_threshold": {
+        "object": "ANALOG_VALUE",
+        "property": "PRESENT_VALUE",
+        "value": 3
+      }
+    },
+    "inputModbus": {
+      "type": {
+        "table": "holdingRegister",
+        "operation": "setRegister",
+        "value": 2
+      },
+      "downlink_hours": {
+        "table": "holdingRegister",
+        "operation": "setRegister",
+        "value": 24
+      },
+      "reporting_period": {
+        "table": "holdingRegister",
+        "operation": "setRegister",
+        "value": 120
+      },
+      "scald_threshold": {
+        "table": "holdingRegister",
+        "operation": "setRegister",
+        "value": 55
+      },
+      "freeze_threshold": {
+        "table": "holdingRegister",
+        "operation": "setRegister",
+        "value": 3
+      }
+    },
+    "input": {
+      "data": {
+        "type": 2,
+        "downlink_hours": 24,
+        "reporting_period": 120,
+        "scald_threshold": 55,
+        "freeze_threshold": 3
+      }
+    },
+    "output": {
+      "bytes": "180078C037030000004A",
+      "fPort": 2,
+      "errors": [],
+      "warnings": []
+    }
   }
 ]
