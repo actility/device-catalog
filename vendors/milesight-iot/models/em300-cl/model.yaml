@@ -50,7 +50,34 @@ userGuideURL: https://resource.milesight.com/milesight/iot/document/em300-series
 sensors: 
 # Driver examples
 # A list of examples description that are compatible with this model
-examples: 
+examples:
+  msight:em300-cl:1:
+    - "Uplink example for EM300-CL"
+    - "Downlink encode: report_interval"
+    - "Downlink encode: reboot"
+    - "Uplink coverage: alarm_config:alarm_interval, alarm_config:enable, alarm_config:alarm_release_enable and 1 more"
+    - "Uplink coverage: capacitor_judge_config:c1, capacitor_judge_config:c2, capacitor_judge_config:delta"
+    - "Uplink coverage: capacitor_config:c1, capacitor_config:c2, capacitor_config:delta and 1 more"
+    - "Uplink coverage: collection_interval"
+    - "Uplink coverage: calibrate_delay_time"
+    - "Uplink coverage: ipso_version"
+    - "Uplink coverage: hardware_version"
+    - "Uplink coverage: firmware_version"
+    - "Uplink coverage: device_status"
+    - "Uplink coverage: sn"
+    - "Uplink coverage: reset_event"
+    - "Uplink coverage: tsl_version"
+    - "Uplink coverage: reboot, report_status, query_capacitor_calibration_value and 5 more"
+    - "Downlink encode: linked group alarm_config (4 points)"
+    - "Downlink encode: linked group capacitor_config (3 points)"
+    - "Downlink encode: linked group capacitor_judge_config (3 points)"
+    - "Downlink write: report_interval"
+    - "Downlink write: report_status"
+    - "Downlink write: query_capacitor_calibration_value"
+    - "Downlink write: query_capacitor_value"
+    - "Downlink write: query_capacitor_judge_value"
+    - "Downlink write: collection_interval and 1 more"
+    - "Downlink write: calibrate"
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false

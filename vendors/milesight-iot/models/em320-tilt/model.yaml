@@ -53,7 +53,27 @@ sensors:
     - angle:deg
 # Driver examples
 # A list of examples description that are compatible with this model
-examples: 
+examples:
+  msight:em320-tilt:2:
+    - "Example 1"
+    - "Downlink encode: report_interval"
+    - "Downlink encode: reboot"
+    - "Uplink coverage: angle_x_alarm_config:condition, angle_x_alarm_config:threshold_min, angle_x_alarm_config:threshold_max and 13 more"
+    - "Uplink coverage: angle_alarm_condition"
+    - "Uplink coverage: ipso_version"
+    - "Uplink coverage: hardware_version"
+    - "Uplink coverage: firmware_version"
+    - "Uplink coverage: device_status"
+    - "Uplink coverage: sn"
+    - "Uplink coverage: reset_event"
+    - "Uplink coverage: tsl_version"
+    - "Uplink coverage: reboot, query_device_status, sync_time and 2 more"
+    - "Downlink encode: linked group angle_x_alarm_config (5 points)"
+    - "Downlink encode: linked group angle_y_alarm_config (5 points)"
+    - "Downlink encode: linked group angle_z_alarm_config (5 points)"
+    - "Downlink write: report_interval"
+    - "Downlink write: query_device_status"
+    - "Downlink write: sync_time"
   msight:em320-tilt:1:
     - "Downlink encode: reboot"
     - "Example 1"
