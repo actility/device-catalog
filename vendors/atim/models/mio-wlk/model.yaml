@@ -1,0 +1,91 @@
+# Commercial name of the model 
+name: ACW-MIO-WLK
+# Functional description of the product. Maximum 500 characters. 
+description: "ACW/MIO-WLK water or fuel leak detector: a sensing cable (its voltage is read on analog channel 0) with internal temperature and humidity sensors."
+# Logo of the device
+logo: atim_mio-wlk.png
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
+# id: as defined under /profiles.
+# lorawanDeviceProfileID: as defined by LoRa Alliance in https://lora-alliance.org/wp-content/uploads/2020/10/LoRa_Alliance_Vendor_ID_for_QR_Code_02142022.pdf.
+# The lorawanDeviceProfileID consists of 8 upper-case hexadecimal characters, 4 characters for VendorID + 4 characters for VendorProfileID. Please consider using single (') or double (") quotation.
+deviceProfileIds: 
+    - id: atim_RFGroup1_1.0.4a_classA
+ 
+# You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
+# Maximum device TX Conducted output power in dBm. 
+maxTxPower:
+# Minimum device TX Conducted output power in dBm. 
+minTxPower:
+# Maximum device TX Radiated output power in dBm.  
+maxTxEIRP:
+# Minimum device TX Radiated output power in dBm.  
+minTxEIRP:
+# Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'  
+# or 'random' (not known, changes over time). 
+motionIndicator: near_static
+ 
+# Is your device certified by the LoRa Alliance? Possible values: true, false. 
+LoRaWANCertified: false
+# Format: `<8 characters max>:<16 characters max>:<digits only>`
+modelId: atim:acw-mio-wlk:1
+# <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
+protocolId: atim:mio:1
+# Informative, maintained by Netmore: true when the driver of the first protocolId above ships a
+# BACnet/Modbus mapping (mapping.json, in Netmore's private catalog), so that the device can be
+# exposed through the BACnet and Modbus gateways. Checked: true requires that mapping.
+supportedBACnetModbus: true
+# DataSheet URL (optional) 
+specificationURL: https://www.atim.com/wp-content/uploads/documentation/ACW/ACW-WLK/FRANCAIS/ATIM_ACW-WLK_DS_FR.pdf
+# User Guide URL (optional) 
+userGuideURL: https://www.atim.com/wp-content/uploads/documentation/ACW/ACW-WLK/FRANCAIS/ATIM_ACW-WLK_UG_FR.pdf
+# <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
+sensors:
+  - voltage:V
+  - temperature:Cel
+  - humidity:%RH
+  - period:minute
+  - batteryVoltage:V
+examples:
+  atim:mio:1:
+    - "4-20 mA current on input 1"
+    - "Historised current and voltage, 2 samples"
+    - "Internal sensor temperature and humidity"
+    - "Digital inputs and counter of input 1"
+    - "Input 1 change of state"
+    - "Percentage on input 1"
+    - "Extended measurement frame (LTE-M / NB-IoT)"
+    - "Timestamped extended measurement frame, history of 2 samples"
+    - "Alert: high threshold exceeded, current of input 1"
+    - "End of alert: voltage of input 2 back within the thresholds"
+    - "WLK: detection cable voltage, temperature and humidity"
+    - "WLK: leak detected (cable voltage above the high threshold)"
+    - "WLK: end of leak alert"
+    - "Cable cut detected"
+    - "Cable restored"
+    - "Keep alive frame"
+    - "Keep alive frame with GPS position (LTE-M / NB-IoT)"
+    - "Configuration accepted"
+    - "Input configuration read-back"
+    - "Downlink error: unknown parameter"
+    - "Second analog input: current and percentage"
+    - "External temperature and humidity (channel 1)"
+    - "Counters 2 to 4"
+    - "Error frame: EEPROM is corrupted"
+    - "Set the keep alive period to once a day"
+    - "Set the datalogging period to 300 minutes"
+    - "Enable the timestamp in uplinks"
+    - "Set input 1 to 4-20 mA"
+    - "Set input 3 to 0-10 V"
+    - "Set input 2 to digital input, pull-up, rising and falling edges"
+    - "Set input 2 to counter"
+    - "Disable input 4"
+    - "Analog input 1 threshold: 4-10 mA, 0.5 mA hysteresis"
+    - "Analog input 2 threshold: 0-5 V, transmission every 5 min during an alert"
+    - "Analog input 1 calibration: 0.1 mA offset, coefficient 1"
+    - "Internal temperature sensor calibration: 0.40 °C offset"
+    - "Set counter 2 to 3728"
+    - "Read the configuration back"
+    - "Keep alive period set once a day, value given in French"
+LoRaWANRelay:
+  canOperateAsARelay: false
+  defaultRelayActivation: false

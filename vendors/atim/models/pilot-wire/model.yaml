@@ -1,0 +1,80 @@
+# Commercial name of the model 
+name: ACW-PW
+# Functional description of the product. Maximum 500 characters. 
+description: "LoRaWAN module that controls electric radiators through the pilot wire. It applies a fixed mode or a calendar of 7 weekly programs, and reports the ambient temperature and humidity. Also sold as ACW/LW8-PW."
+# Logo of the device
+logo: atim_pw.png
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
+# id: as defined under /profiles.
+# lorawanDeviceProfileID: as defined by LoRa Alliance in https://lora-alliance.org/wp-content/uploads/2020/10/LoRa_Alliance_Vendor_ID_for_QR_Code_02142022.pdf.
+# The lorawanDeviceProfileID consists of 8 upper-case hexadecimal characters, 4 characters for VendorID + 4 characters for VendorProfileID. Please consider using single (') or double (") quotation.
+deviceProfileIds: 
+    - id: atim_RFGroup1_1.0.4a_classA
+ 
+# You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
+# Maximum device TX Conducted output power in dBm. 
+maxTxPower:
+# Minimum device TX Conducted output power in dBm. 
+minTxPower:
+# Maximum device TX Radiated output power in dBm.  
+maxTxEIRP:
+# Minimum device TX Radiated output power in dBm.  
+minTxEIRP:
+# Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'  
+# or 'random' (not known, changes over time). 
+motionIndicator: near_static
+ 
+# Is your device certified by the LoRa Alliance? Possible values: true, false. 
+LoRaWANCertified: false
+# Format: `<8 characters max>:<16 characters max>:<digits only>`
+modelId: atim:acw-pw:1
+# <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
+protocolId: atim:pw:1
+# Informative, maintained by Netmore: true when the driver of the first protocolId above ships a
+# BACnet/Modbus mapping (mapping.json, in Netmore's private catalog), so that the device can be
+# exposed through the BACnet and Modbus gateways. Checked: true requires that mapping.
+supportedBACnetModbus: true
+# DataSheet URL (optional) 
+specificationURL: https://atim.com/wp-content/uploads/documentation/ACW/ACW-PW/ATIM_ACW-PW_DS_FR.pdf
+# User Guide URL (optional) 
+userGuideURL: https://atim.com/wp-content/uploads/documentation/ACW/ACW-PW/ATIM_ACW-PW_UG_FR.pdf
+# <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
+sensors:
+  - temperature:Cel
+  - humidity:%RH
+  - period:minute
+  - batteryVoltage:V
+examples:
+  atim:pw:1:
+    - "Temperature and humidity"
+    - "Historised temperature and humidity"
+    - "Keep alive frame"
+    - "Threshold alert"
+    - "Configuration accepted"
+    - "Configuration rejected for parameters 1 and 3"
+    - "Pilot wire modes read-back"
+    - "Program 1 read-back"
+    - "Program 2 read-back (disabled)"
+    - "Timestamped command response"
+    - "Downlink error: unknown parameter"
+    - "Program 3 read-back"
+    - "Program 4 read-back"
+    - "Program 5 read-back"
+    - "Program 6 read-back"
+    - "Program 7 read-back"
+    - "Error frame: EEPROM is corrupted"
+    - "Set the keep alive period to once a day"
+    - "Set the datalogging period to 300 minutes"
+    - "Enable the timestamp in uplinks"
+    - "Keep alive period set once a day, value given in French"
+    - "Pilot wire mode: comfort"
+    - "Pilot wire mode: calendar"
+    - "Calendar default mode: frost protection"
+    - "Program 1: every day, 08:00-18:00 UTC, comfort"
+    - "Program 1: every day, 09:15-20:00 UTC, comfort"
+    - "Program 2 disabled"
+    - "Program 1 as an object, 08:01-18:00 UTC"
+    - "Read the pilot wire configuration"
+LoRaWANRelay:
+  canOperateAsARelay: false
+  defaultRelayActivation: false
