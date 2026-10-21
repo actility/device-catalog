@@ -244,6 +244,20 @@
     {
         "description": "Downlink encode: report_interval",
         "type": "downlink-encode",
+        "inputBACnet": {
+            "report_interval": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 600
+            }
+        },
+        "inputModbus": {
+            "report_interval": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 600
+            }
+        },
         "input": {
             "data": {
                 "report_interval": 600
@@ -288,6 +302,1336 @@
                 255,
                 135,
                 1
+            ]
+        }
+    },
+    {
+        "description": "Uplink coverage: wifi_positioning_config:mode, wifi_positioning_config:num_of_bssid, wifi_positioning_config:timeout",
+        "type": "uplink",
+        "input": {
+            "bytes": "fe2d",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "wifi_positioning_config": {
+                    "mode": "low_power",
+                    "num_of_bssid": 0,
+                    "timeout": 0
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "wifi_positioning_config:mode": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "wifi_positioning_config:num_of_bssid": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "wifi_positioning_config:timeout": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "SECONDS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "SECONDS"
+                }
+            ]
+        },
+        "Modbus": {
+            "wifi_positioning_config:mode": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "wifi_positioning_config:num_of_bssid": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "wifi_positioning_config:timeout": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: geofence_alarm_config:enable, geofence_alarm_config:interval, geofence_alarm_config:counts",
+        "type": "uplink",
+        "input": {
+            "bytes": "fe7e",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "geofence_alarm_config": {
+                    "enable": "disable",
+                    "interval": 0,
+                    "counts": 0
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "geofence_alarm_config:enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "geofence_alarm_config:interval": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "MINUTES"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 1,
+                    "units": "MINUTES"
+                }
+            ],
+            "geofence_alarm_config:counts": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 1,
+                    "units": "NO_UNITS"
+                }
+            ]
+        },
+        "Modbus": {
+            "geofence_alarm_config:enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "geofence_alarm_config:interval": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            },
+            "geofence_alarm_config:counts": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: motion_report_config:enable, motion_report_config:interval",
+        "type": "uplink",
+        "input": {
+            "bytes": "fe13",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "motion_report_config": {
+                    "enable": "disable",
+                    "interval": 0
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "motion_report_config:enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "motion_report_config:interval": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "MINUTES"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 1,
+                    "units": "MINUTES"
+                }
+            ]
+        },
+        "Modbus": {
+            "motion_report_config:enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "motion_report_config:interval": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: motion_detection_config:delta_g, motion_detection_config:duration",
+        "type": "uplink",
+        "input": {
+            "bytes": "fe58",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "motion_detection_config": {
+                    "delta_g": 0,
+                    "duration": 0
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "motion_detection_config:delta_g": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "motion_detection_config:duration": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "SECONDS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 1,
+                    "units": "SECONDS"
+                }
+            ]
+        },
+        "Modbus": {
+            "motion_detection_config:delta_g": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "motion_detection_config:duration": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: geofence_center_config:latitude, geofence_center_config:longitude",
+        "type": "uplink",
+        "input": {
+            "bytes": "fe88",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "geofence_center_config": {
+                    "latitude": 0,
+                    "longitude": 0
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "geofence_center_config:latitude": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "geofence_center_config:longitude": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ]
+        },
+        "Modbus": {
+            "geofence_center_config:latitude": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "FLOAT"
+            },
+            "geofence_center_config:longitude": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "FLOAT"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: static_detection_config:delta_g, static_detection_config:duration",
+        "type": "uplink",
+        "input": {
+            "bytes": "fe5801",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "static_detection_config": {
+                    "delta_g": 0,
+                    "duration": 0
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "static_detection_config:delta_g": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "static_detection_config:duration": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "SECONDS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 1,
+                    "units": "SECONDS"
+                }
+            ]
+        },
+        "Modbus": {
+            "static_detection_config:delta_g": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "static_detection_config:duration": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: time_zone",
+        "type": "uplink",
+        "input": {
+            "bytes": "fe17",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "time_zone": "UTC"
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "time_zone": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ]
+        },
+        "Modbus": {
+            "time_zone": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT16"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: gnss_positioning_timeout",
+        "type": "uplink",
+        "input": {
+            "bytes": "fe3c",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "gnss_positioning_timeout": 0
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "gnss_positioning_timeout": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "MINUTES"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "MINUTES"
+                }
+            ]
+        },
+        "Modbus": {
+            "gnss_positioning_timeout": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: geofence_center_config:radius",
+        "type": "uplink",
+        "input": {
+            "bytes": "fe89",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "geofence_center_config": {
+                    "radius": 0
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "geofence_center_config:radius": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "METERS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "METERS"
+                }
+            ]
+        },
+        "Modbus": {
+            "geofence_center_config:radius": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT32"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: report_interval",
+        "type": "uplink",
+        "input": {
+            "bytes": "fe8e",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "report_interval": 0
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "report_interval": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "MINUTES"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "MINUTES"
+                }
+            ]
+        },
+        "Modbus": {
+            "report_interval": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: ipso_version",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff01",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "ipso_version": "v0.0"
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "ipso_version": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "v0.0"
+            }
+        },
+        "Modbus": {
+            "ipso_version": {
+                "table": "inputRegister",
+                "value": "v0.0",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: hardware_version",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff09",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "hardware_version": "v0.0"
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "hardware_version": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "v0.0"
+            }
+        },
+        "Modbus": {
+            "hardware_version": {
+                "table": "inputRegister",
+                "value": "v0.0",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: firmware_version",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff0a",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "firmware_version": "v0.0"
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "firmware_version": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "v0.0"
+            }
+        },
+        "Modbus": {
+            "firmware_version": {
+                "table": "inputRegister",
+                "value": "v0.0",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: device_status",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff0b",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "device_status": "on"
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "device_status": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            }
+        },
+        "Modbus": {
+            "device_status": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: sn",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff16",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "sn": ""
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "sn": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": ""
+            }
+        },
+        "Modbus": {
+            "sn": {
+                "table": "inputRegister",
+                "value": "",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: reset_event",
+        "type": "uplink",
+        "input": {
+            "bytes": "fffe",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "reset_event": "reset"
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "reset_event": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            }
+        },
+        "Modbus": {
+            "reset_event": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: tsl_version",
+        "type": "uplink",
+        "input": {
+            "bytes": "ffff",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "tsl_version": "v0.0"
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "tsl_version": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "v0.0"
+            }
+        },
+        "Modbus": {
+            "tsl_version": {
+                "table": "inputRegister",
+                "value": "v0.0",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: reboot, report_status, sync_time and 7 more",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff10ffff28ffff4a00ff6600ff7100ff8700ff8f00ff3b00070001fe8e01",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "reboot": "yes",
+                "report_status": "yes",
+                "sync_time": "yes",
+                "report_strategy": "periodic",
+                "positioning_strategy": "gnss",
+                "tamper_detection_enable": "disable",
+                "bluetooth_enable": "disable",
+                "time_sync_enable": "disable",
+                "tamper_status": "uninstall",
+                "motion_report_interval": 0
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "tamper_status": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            },
+            "reboot": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "report_status": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "sync_time": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "motion_report_interval": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "MINUTES"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "MINUTES"
+                }
+            ],
+            "report_strategy": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "positioning_strategy": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "tamper_detection_enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "bluetooth_enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "time_sync_enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ]
+        },
+        "Modbus": {
+            "tamper_status": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "reboot": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "report_status": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "sync_time": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "motion_report_interval": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            },
+            "report_strategy": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "positioning_strategy": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "tamper_detection_enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "bluetooth_enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "time_sync_enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage (synthetic frame): lorawan_class, temperature_alarm",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff0f018367000000",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "lorawan_class": "Class B",
+                "temperature": 0,
+                "temperature_alarm": "normal"
+            }
+        },
+        "points": {
+            "temperature": {
+                "unitId": "Cel",
+                "record": 0
+            },
+            "status:3": {
+                "unitId": "state",
+                "record": false,
+                "nature": "temperature_abnormal"
+            }
+        },
+        "BACnet": {
+            "lorawan_class": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 1,
+                "units": "NO_UNITS"
+            },
+            "temperature": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "DEGREES_CELSIUS"
+            },
+            "temperature_alarm": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            }
+        },
+        "Modbus": {
+            "lorawan_class": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "temperature": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "FLOAT"
+            },
+            "temperature_alarm": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Downlink encode: linked group wifi_positioning_config (3 points)",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "wifi_positioning_config": {
+                    "mode": "low_power",
+                    "num_of_bssid": 0,
+                    "timeout": 0
+                }
+            },
+            "fPort": 1
+        },
+        "output": {
+            "bytes": [
+                255,
+                45,
+                0,
+                0,
+                0
+            ]
+        }
+    },
+    {
+        "description": "Downlink encode: linked group motion_detection_config (2 points)",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "motion_detection_config": {
+                    "delta_g": 0,
+                    "duration": 1
+                }
+            },
+            "fPort": 1
+        },
+        "output": {
+            "bytes": [
+                255,
+                88,
+                0,
+                0,
+                1,
+                0
+            ]
+        }
+    },
+    {
+        "description": "Downlink encode: linked group static_detection_config (2 points)",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "static_detection_config": {
+                    "delta_g": 0,
+                    "duration": 1
+                }
+            },
+            "fPort": 1
+        },
+        "output": {
+            "bytes": [
+                255,
+                88,
+                1,
+                0,
+                1,
+                0
+            ]
+        }
+    },
+    {
+        "description": "Downlink encode: linked group motion_report_config (2 points)",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "motion_report_config": {
+                    "enable": "disable",
+                    "interval": 1
+                }
+            },
+            "fPort": 1
+        },
+        "output": {
+            "bytes": [
+                255,
+                19,
+                0,
+                1,
+                0
+            ]
+        }
+    },
+    {
+        "description": "Downlink encode: linked group geofence_center_config (3 points)",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "geofence_center_config": {
+                    "latitude": 0,
+                    "longitude": 0,
+                    "radius": 0
+                }
+            },
+            "fPort": 1
+        },
+        "output": {
+            "bytes": [
+                255,
+                136,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                255,
+                137,
+                0,
+                0,
+                0,
+                0
+            ]
+        }
+    },
+    {
+        "description": "Downlink encode: linked group geofence_alarm_config (3 points)",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "geofence_alarm_config": {
+                    "enable": "disable",
+                    "interval": 1,
+                    "counts": 1
+                }
+            },
+            "fPort": 1
+        },
+        "output": {
+            "bytes": [
+                255,
+                126,
+                0,
+                1,
+                0,
+                1
+            ]
+        }
+    },
+    {
+        "description": "Downlink write: reboot",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "reboot": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "reboot": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "reboot": "yes"
+            },
+            "fPort": 1
+        },
+        "output": {
+            "bytes": [
+                255,
+                16,
+                255
+            ]
+        }
+    },
+    {
+        "description": "Downlink write: report_status",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "report_status": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "report_status": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "report_status": "yes"
+            },
+            "fPort": 1
+        },
+        "output": {
+            "bytes": [
+                255,
+                40,
+                255
+            ]
+        }
+    },
+    {
+        "description": "Downlink write: sync_time",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "sync_time": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "sync_time": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "sync_time": "yes"
+            },
+            "fPort": 1
+        },
+        "output": {
+            "bytes": [
+                255,
+                74,
+                0
+            ]
+        }
+    },
+    {
+        "description": "Downlink write: report_interval",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "report_interval": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "report_interval": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "report_interval": 1
+            },
+            "fPort": 1
+        },
+        "output": {
+            "bytes": [
+                255,
+                142,
+                0,
+                1,
+                0
+            ]
+        }
+    },
+    {
+        "description": "Downlink write: motion_report_interval",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "motion_report_interval": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "motion_report_interval": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "motion_report_interval": 1
+            },
+            "fPort": 1
+        },
+        "output": {
+            "bytes": [
+                255,
+                142,
+                1,
+                1,
+                0
+            ]
+        }
+    },
+    {
+        "description": "Downlink write: gnss_positioning_timeout",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "gnss_positioning_timeout": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "gnss_positioning_timeout": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "gnss_positioning_timeout": 1
+            },
+            "fPort": 1
+        },
+        "output": {
+            "bytes": [
+                255,
+                60,
+                1
+            ]
+        }
+    },
+    {
+        "description": "Downlink write: bluetooth_enable",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "bluetooth_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            }
+        },
+        "inputModbus": {
+            "bluetooth_enable": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 0
+            }
+        },
+        "input": {
+            "data": {
+                "bluetooth_enable": "disable"
+            },
+            "fPort": 1
+        },
+        "output": {
+            "bytes": [
+                255,
+                143,
+                0
+            ]
+        }
+    },
+    {
+        "description": "Downlink write: time_sync_enable",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "time_sync_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            }
+        },
+        "inputModbus": {
+            "time_sync_enable": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 0
+            }
+        },
+        "input": {
+            "data": {
+                "time_sync_enable": "disable"
+            },
+            "fPort": 1
+        },
+        "output": {
+            "bytes": [
+                255,
+                59,
+                0
             ]
         }
     }

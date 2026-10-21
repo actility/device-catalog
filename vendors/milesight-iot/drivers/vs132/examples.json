@@ -73,6 +73,11 @@
         "object": "ANALOG_INPUT",
         "presentValue": 0,
         "units": "NO_UNITS"
+      },
+      "protocol_version": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 1,
+        "units": "NO_UNITS"
       }
     },
     "Modbus": {
@@ -110,6 +115,11 @@
         "table": "inputRegister",
         "value": 0,
         "value_type": "UINT16"
+      },
+      "protocol_version": {
+        "table": "inputRegister",
+        "value": 1,
+        "value_type": "INT32"
       }
     }
   },
@@ -129,6 +139,88 @@
         88
       ],
       "fPort": 100
+    }
+  },
+  {
+    "description": "Uplink coverage: report_interval",
+    "type": "uplink",
+    "input": {
+      "bytes": "fe03",
+      "fPort": 85
+    },
+    "output": {
+      "data": {
+        "report_interval": 0
+      }
+    },
+    "points": {},
+    "BACnet": {
+      "report_interval": {
+        "object": "ANALOG_INPUT",
+        "presentValue": 0,
+        "units": "NO_UNITS"
+      }
+    },
+    "Modbus": {
+      "report_interval": {
+        "table": "inputRegister",
+        "value": 0,
+        "value_type": "INT32"
+      }
+    }
+  },
+  {
+    "description": "Uplink coverage: reboot",
+    "type": "uplink",
+    "input": {
+      "bytes": "fe10",
+      "fPort": 85
+    },
+    "output": {
+      "data": {
+        "reboot": "yes"
+      }
+    },
+    "points": {},
+    "BACnet": {
+      "reboot": {
+        "object": "BINARY_INPUT",
+        "presentValue": 1
+      }
+    },
+    "Modbus": {
+      "reboot": {
+        "table": "discreteInput",
+        "value": 1,
+        "value_type": "BOOL"
+      }
+    }
+  },
+  {
+    "description": "Uplink coverage: clear_total_count",
+    "type": "uplink",
+    "input": {
+      "bytes": "fe51",
+      "fPort": 85
+    },
+    "output": {
+      "data": {
+        "clear_total_count": "yes"
+      }
+    },
+    "points": {},
+    "BACnet": {
+      "clear_total_count": {
+        "object": "BINARY_INPUT",
+        "presentValue": 1
+      }
+    },
+    "Modbus": {
+      "clear_total_count": {
+        "table": "discreteInput",
+        "value": 1,
+        "value_type": "BOOL"
+      }
     }
   }
 ]

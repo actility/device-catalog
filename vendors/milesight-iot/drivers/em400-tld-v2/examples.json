@@ -81,6 +81,20 @@
     {
         "description": "Downlink encode: report_interval",
         "type": "downlink-encode",
+        "inputBACnet": {
+            "report_interval": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 600
+            }
+        },
+        "inputModbus": {
+            "report_interval": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 600
+            }
+        },
         "input": {
             "data": {
                 "report_interval": 600
@@ -124,6 +138,925 @@
                 255,
                 19,
                 1
+            ]
+        }
+    },
+    {
+        "description": "Uplink coverage: recollection_config:counts, recollection_config:interval, collection_interval",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff1c0101fe02",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "recollection_config": {
+                    "counts": 1,
+                    "interval": 1
+                },
+                "collection_interval": 0
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "collection_interval": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "SECONDS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "SECONDS"
+                }
+            ],
+            "recollection_config:counts": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 1,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "recollection_config:interval": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 1,
+                    "units": "SECONDS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "SECONDS"
+                }
+            ]
+        },
+        "Modbus": {
+            "collection_interval": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            },
+            "recollection_config:counts": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "recollection_config:interval": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: report_interval",
+        "type": "uplink",
+        "input": {
+            "bytes": "fe03",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "report_interval": 0
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "report_interval": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "SECONDS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "SECONDS"
+                }
+            ]
+        },
+        "Modbus": {
+            "report_interval": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: people_existing_height",
+        "type": "uplink",
+        "input": {
+            "bytes": "fe70",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "people_existing_height": 0
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "people_existing_height": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "MILLIMETERS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "MILLIMETERS"
+                }
+            ]
+        },
+        "Modbus": {
+            "people_existing_height": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: install_height",
+        "type": "uplink",
+        "input": {
+            "bytes": "fe77",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "install_height": 0
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "install_height": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "MILLIMETERS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "MILLIMETERS"
+                }
+            ]
+        },
+        "Modbus": {
+            "install_height": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: ipso_version",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff01",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "ipso_version": "v0.0"
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "ipso_version": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "v0.0"
+            }
+        },
+        "Modbus": {
+            "ipso_version": {
+                "table": "inputRegister",
+                "value": "v0.0",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: hardware_version",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff09",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "hardware_version": "v0.0"
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "hardware_version": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "v0.0"
+            }
+        },
+        "Modbus": {
+            "hardware_version": {
+                "table": "inputRegister",
+                "value": "v0.0",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: firmware_version",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff0a",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "firmware_version": "v0.0"
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "firmware_version": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "v0.0"
+            }
+        },
+        "Modbus": {
+            "firmware_version": {
+                "table": "inputRegister",
+                "value": "v0.0",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: device_status",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff0b",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "device_status": "on"
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "device_status": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            }
+        },
+        "Modbus": {
+            "device_status": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: sn",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff16",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "sn": ""
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "sn": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": ""
+            }
+        },
+        "Modbus": {
+            "sn": {
+                "table": "inputRegister",
+                "value": "",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: reset_event",
+        "type": "uplink",
+        "input": {
+            "bytes": "fffe",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "reset_event": "reset"
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "reset_event": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            }
+        },
+        "Modbus": {
+            "reset_event": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: tsl_version",
+        "type": "uplink",
+        "input": {
+            "bytes": "ffff",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "tsl_version": "v0.0"
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "tsl_version": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "v0.0"
+            }
+        },
+        "Modbus": {
+            "tsl_version": {
+                "table": "inputRegister",
+                "value": "v0.0",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage (synthetic frame): reboot, sync_time, query_device_status and 7 more",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff10ffff4a00ff28ffff1300ff7100ff3e00ff5600ff0f0183670000008482000000",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "reboot": "yes",
+                "sync_time": "yes",
+                "query_device_status": "yes",
+                "install_height_enable": "disable",
+                "working_mode": "standard",
+                "tilt_linkage_distance_enable": "disable",
+                "tof_detection_enable": "disable",
+                "lorawan_class": "Class B",
+                "temperature": 0,
+                "temperature_alarm": "threshold_alarm_release",
+                "distance": 0,
+                "distance_alarm": "threshold_alarm_release"
+            }
+        },
+        "points": {
+            "temperature": {
+                "unitId": "Cel",
+                "record": 0
+            },
+            "distance": {
+                "unitId": "mm",
+                "record": 0
+            },
+            "status:3": {
+                "unitId": "state",
+                "record": true,
+                "nature": "temperature_abnormal"
+            },
+            "status:1": {
+                "unitId": "state",
+                "record": true,
+                "nature": "distance_alarming"
+            }
+        },
+        "BACnet": {
+            "lorawan_class": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 1,
+                "units": "NO_UNITS"
+            },
+            "temperature": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "DEGREES_CELSIUS"
+            },
+            "distance": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "MILLIMETERS"
+            },
+            "temperature_alarm": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "distance_alarm": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "reboot": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "sync_time": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "query_device_status": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "install_height_enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "working_mode": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "tilt_linkage_distance_enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "tof_detection_enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ]
+        },
+        "Modbus": {
+            "lorawan_class": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "temperature": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "FLOAT"
+            },
+            "distance": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "FLOAT"
+            },
+            "temperature_alarm": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "distance_alarm": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "reboot": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "sync_time": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "query_device_status": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "install_height_enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "working_mode": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "tilt_linkage_distance_enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "tof_detection_enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Downlink encode: linked group standard_mode_alarm_config (4 points)",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "standard_mode_alarm_config": {
+                    "condition": "disable",
+                    "alarm_release_enable": "disable",
+                    "threshold_min": 20,
+                    "threshold_max": 20
+                }
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                6,
+                8,
+                20,
+                0,
+                20,
+                0,
+                0,
+                0,
+                0,
+                0
+            ]
+        }
+    },
+    {
+        "description": "Downlink encode: linked group bin_mode_alarm_config (4 points)",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "bin_mode_alarm_config": {
+                    "condition": "disable",
+                    "alarm_release_enable": "disable",
+                    "threshold_min": 20,
+                    "threshold_max": 20
+                }
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                6,
+                16,
+                20,
+                0,
+                20,
+                0,
+                0,
+                0,
+                0,
+                0
+            ]
+        }
+    },
+    {
+        "description": "Downlink encode: linked group recollection_config (2 points)",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "recollection_config": {
+                    "counts": 0,
+                    "interval": 0
+                }
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                28,
+                0,
+                0
+            ]
+        }
+    },
+    {
+        "description": "Downlink write: collection_interval and 1 more",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "collection_interval": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 60
+            },
+            "report_interval": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 60
+            }
+        },
+        "inputModbus": {
+            "collection_interval": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 60
+            },
+            "report_interval": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 60
+            }
+        },
+        "input": {
+            "data": {
+                "collection_interval": 60,
+                "report_interval": 60
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                2,
+                60,
+                0,
+                255,
+                3,
+                60,
+                0
+            ]
+        }
+    },
+    {
+        "description": "Downlink write: reboot",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "reboot": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "reboot": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "reboot": "yes"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                16,
+                255
+            ]
+        }
+    },
+    {
+        "description": "Downlink write: sync_time",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "sync_time": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "sync_time": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "sync_time": "yes"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                74,
+                0
+            ]
+        }
+    },
+    {
+        "description": "Downlink write: query_device_status",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "query_device_status": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "query_device_status": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "query_device_status": "yes"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                40,
+                255
+            ]
+        }
+    },
+    {
+        "description": "Downlink write: people_existing_height",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "people_existing_height": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            }
+        },
+        "inputModbus": {
+            "people_existing_height": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 0
+            }
+        },
+        "input": {
+            "data": {
+                "people_existing_height": 0
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                112,
+                0,
+                0
+            ]
+        }
+    },
+    {
+        "description": "Downlink write: install_height",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "install_height": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 20
+            }
+        },
+        "inputModbus": {
+            "install_height": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 20
+            }
+        },
+        "input": {
+            "data": {
+                "install_height": 20
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                119,
+                20,
+                0
+            ]
+        }
+    },
+    {
+        "description": "Downlink write: tilt_linkage_distance_enable",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "tilt_linkage_distance_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            }
+        },
+        "inputModbus": {
+            "tilt_linkage_distance_enable": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 0
+            }
+        },
+        "input": {
+            "data": {
+                "tilt_linkage_distance_enable": "disable"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                62,
+                0
+            ]
+        }
+    },
+    {
+        "description": "Downlink write: tof_detection_enable",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "tof_detection_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            }
+        },
+        "inputModbus": {
+            "tof_detection_enable": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 0
+            }
+        },
+        "input": {
+            "data": {
+                "tof_detection_enable": "disable"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                86,
+                0
             ]
         }
     }

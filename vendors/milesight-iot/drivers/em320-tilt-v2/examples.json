@@ -114,6 +114,20 @@
     {
         "description": "Downlink encode: report_interval",
         "type": "downlink-encode",
+        "inputBACnet": {
+            "report_interval": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 600
+            }
+        },
+        "inputModbus": {
+            "report_interval": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 600
+            }
+        },
         "input": {
             "data": {
                 "report_interval": 600
@@ -159,6 +173,826 @@
                 16,
                 255
             ]
+        }
+    },
+    {
+        "description": "Uplink coverage: angle_x_alarm_config:condition, angle_x_alarm_config:threshold_min, angle_x_alarm_config:threshold_max and 13 more",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff06089600960001000100ff06109600960000000000ff06189600960000000000fe03",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "angle_x_alarm_config": {
+                    "condition": "disable",
+                    "threshold_min": 1.5,
+                    "threshold_max": 1.5,
+                    "report_interval": 1,
+                    "report_times": 1
+                },
+                "angle_y_alarm_config": {
+                    "condition": "disable",
+                    "threshold_min": 1.5,
+                    "threshold_max": 1.5,
+                    "report_interval": 0,
+                    "report_times": 0
+                },
+                "angle_z_alarm_config": {
+                    "condition": "disable",
+                    "threshold_min": 1.5,
+                    "threshold_max": 1.5,
+                    "report_interval": 0,
+                    "report_times": 0
+                },
+                "report_interval": 0
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "report_interval": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "SECONDS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "SECONDS"
+                }
+            ],
+            "angle_x_alarm_config:condition": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "angle_x_alarm_config:threshold_min": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 1.5,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "angle_x_alarm_config:threshold_max": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 1.5,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "angle_x_alarm_config:report_interval": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 1,
+                    "units": "SECONDS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "SECONDS"
+                }
+            ],
+            "angle_x_alarm_config:report_times": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 1,
+                    "units": "SECONDS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "SECONDS"
+                }
+            ],
+            "angle_y_alarm_config:condition": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "angle_y_alarm_config:threshold_min": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 1.5,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "angle_y_alarm_config:threshold_max": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 1.5,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "angle_y_alarm_config:report_interval": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "SECONDS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "SECONDS"
+                }
+            ],
+            "angle_y_alarm_config:report_times": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "SECONDS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "SECONDS"
+                }
+            ],
+            "angle_z_alarm_config:condition": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "angle_z_alarm_config:threshold_min": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 1.5,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "angle_z_alarm_config:threshold_max": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 1.5,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "angle_z_alarm_config:report_interval": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "SECONDS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "SECONDS"
+                }
+            ],
+            "angle_z_alarm_config:report_times": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "SECONDS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "SECONDS"
+                }
+            ]
+        },
+        "Modbus": {
+            "report_interval": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            },
+            "angle_x_alarm_config:condition": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "angle_x_alarm_config:threshold_min": {
+                "table": "inputRegister",
+                "value": 1.5,
+                "value_type": "FLOAT"
+            },
+            "angle_x_alarm_config:threshold_max": {
+                "table": "inputRegister",
+                "value": 1.5,
+                "value_type": "FLOAT"
+            },
+            "angle_x_alarm_config:report_interval": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT16"
+            },
+            "angle_x_alarm_config:report_times": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT16"
+            },
+            "angle_y_alarm_config:condition": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "angle_y_alarm_config:threshold_min": {
+                "table": "inputRegister",
+                "value": 1.5,
+                "value_type": "FLOAT"
+            },
+            "angle_y_alarm_config:threshold_max": {
+                "table": "inputRegister",
+                "value": 1.5,
+                "value_type": "FLOAT"
+            },
+            "angle_y_alarm_config:report_interval": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            },
+            "angle_y_alarm_config:report_times": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            },
+            "angle_z_alarm_config:condition": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "angle_z_alarm_config:threshold_min": {
+                "table": "inputRegister",
+                "value": 1.5,
+                "value_type": "FLOAT"
+            },
+            "angle_z_alarm_config:threshold_max": {
+                "table": "inputRegister",
+                "value": 1.5,
+                "value_type": "FLOAT"
+            },
+            "angle_z_alarm_config:report_interval": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            },
+            "angle_z_alarm_config:report_times": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: angle_alarm_condition",
+        "type": "uplink",
+        "input": {
+            "bytes": "fe63",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "angle_alarm_condition": ""
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "angle_alarm_condition": [
+                {
+                    "object": "CHARACTERSTRING_VALUE",
+                    "presentValue": ""
+                },
+                {
+                    "object": "CHARACTERSTRING_VALUE",
+                    "presentValue": ""
+                }
+            ]
+        },
+        "Modbus": {
+            "angle_alarm_condition": {
+                "table": "inputRegister",
+                "value": "",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: ipso_version",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff01",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "ipso_version": "v0.0"
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "ipso_version": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "v0.0"
+            }
+        },
+        "Modbus": {
+            "ipso_version": {
+                "table": "inputRegister",
+                "value": "v0.0",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: hardware_version",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff09",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "hardware_version": "v0.0"
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "hardware_version": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "v0.0"
+            }
+        },
+        "Modbus": {
+            "hardware_version": {
+                "table": "inputRegister",
+                "value": "v0.0",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: firmware_version",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff0a",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "firmware_version": "v0.0"
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "firmware_version": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "v0.0"
+            }
+        },
+        "Modbus": {
+            "firmware_version": {
+                "table": "inputRegister",
+                "value": "v0.0",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: device_status",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff0b",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "device_status": "on"
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "device_status": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            }
+        },
+        "Modbus": {
+            "device_status": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: sn",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff16",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "sn": ""
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "sn": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": ""
+            }
+        },
+        "Modbus": {
+            "sn": {
+                "table": "inputRegister",
+                "value": "",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: reset_event",
+        "type": "uplink",
+        "input": {
+            "bytes": "fffe",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "reset_event": "reset"
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "reset_event": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            }
+        },
+        "Modbus": {
+            "reset_event": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: tsl_version",
+        "type": "uplink",
+        "input": {
+            "bytes": "ffff",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "tsl_version": "v0.0"
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "tsl_version": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "v0.0"
+            }
+        },
+        "Modbus": {
+            "tsl_version": {
+                "table": "inputRegister",
+                "value": "v0.0",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: reboot, query_device_status, sync_time and 2 more",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff10ffff28ffff4a00ff62ffff0f01",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "reboot": "yes",
+                "query_device_status": "yes",
+                "sync_time": "yes",
+                "initial_surface": "current_plane",
+                "lorawan_class": "Class B"
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "lorawan_class": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 1,
+                "units": "NO_UNITS"
+            },
+            "reboot": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "query_device_status": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "sync_time": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "initial_surface": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 255,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ]
+        },
+        "Modbus": {
+            "lorawan_class": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "reboot": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "query_device_status": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "sync_time": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "initial_surface": {
+                "table": "inputRegister",
+                "value": 255,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Downlink encode: linked group angle_x_alarm_config (5 points)",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "angle_x_alarm_config": {
+                    "condition": "disable",
+                    "threshold_min": 0,
+                    "threshold_max": 0,
+                    "report_interval": 0,
+                    "report_times": 0
+                }
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                6,
+                8,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink encode: linked group angle_y_alarm_config (5 points)",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "angle_y_alarm_config": {
+                    "condition": "disable",
+                    "threshold_min": 0,
+                    "threshold_max": 0,
+                    "report_interval": 0,
+                    "report_times": 0
+                }
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                6,
+                16,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink encode: linked group angle_z_alarm_config (5 points)",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "angle_z_alarm_config": {
+                    "condition": "disable",
+                    "threshold_min": 0,
+                    "threshold_max": 0,
+                    "report_interval": 0,
+                    "report_times": 0
+                }
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                6,
+                24,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink write: report_interval",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "report_interval": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "report_interval": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "report_interval": 1
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                3,
+                1,
+                0
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink write: query_device_status",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "query_device_status": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "query_device_status": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "query_device_status": "yes"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                40,
+                255
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink write: sync_time",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "sync_time": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "sync_time": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "sync_time": "yes"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                74,
+                0
+            ],
+            "fPort": 100
         }
     }
 ]

@@ -1,0 +1,432 @@
+[
+    {
+        "description": "Uplink example for WS156",
+        "type": "uplink",
+        "input": {
+            "bytes": "01755CFF34030300FF34060600",
+            "fPort": 85,
+            "time": "2025-01-01T00:00:00.000+00:00"
+        },
+        "output": {
+            "data": {
+                "battery": 92,
+                "button_3": 1,
+                "button_3_mode": "short_press+double_press+long_press",
+                "button_3_event": "short_press",
+                "button_3_msgid": "SKIP_NUMBER",
+                "button_6": 1,
+                "button_6_mode": "unknown",
+                "button_6_event": "short_press",
+                "button_6_msgid": "SKIP_NUMBER"
+            }
+        },
+        "points": {
+            "batteryLevel": {
+                "unitId": "%",
+                "record": 92
+            }
+        },
+        "BACnet": {
+            "battery": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 92,
+                "units": "PERCENT"
+            },
+            "button_3": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            },
+            "button_6": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            },
+            "button_3_mode": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 3,
+                "units": "NO_UNITS"
+            },
+            "button_3_event": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "button_6_event": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "battery": {
+                "table": "inputRegister",
+                "value": 92,
+                "value_type": "UINT8"
+            },
+            "button_3": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "button_6": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "button_3_mode": {
+                "table": "inputRegister",
+                "value": 3,
+                "value_type": "UINT8"
+            },
+            "button_3_event": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "button_6_event": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "BACnet example",
+        "type": "uplink",
+        "input": {
+            "bytes": "01755cff34030300ff34060600",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "battery": 92,
+                "button_3": 1,
+                "button_3_mode": "short_press+double_press+long_press",
+                "button_3_event": "short_press",
+                "button_3_msgid": "SKIP_NUMBER",
+                "button_6": 1,
+                "button_6_mode": "unknown",
+                "button_6_event": "short_press",
+                "button_6_msgid": "SKIP_NUMBER"
+            },
+            "errors": [],
+            "warnings": []
+        },
+        "points": {
+            "batteryLevel": {
+                "unitId": "%",
+                "record": 92
+            }
+        },
+        "BACnet": {
+            "battery": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 92,
+                "units": "PERCENT"
+            },
+            "button_3": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            },
+            "button_6": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            },
+            "button_3_mode": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 3,
+                "units": "NO_UNITS"
+            },
+            "button_3_event": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "button_6_event": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "battery": {
+                "table": "inputRegister",
+                "value": 92,
+                "value_type": "UINT8"
+            },
+            "button_3": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "button_6": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "button_3_mode": {
+                "table": "inputRegister",
+                "value": 3,
+                "value_type": "UINT8"
+            },
+            "button_3_event": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "button_6_event": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: ipso_version",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff01",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "ipso_version": "v0.0"
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "ipso_version": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "v0.0"
+            }
+        },
+        "Modbus": {
+            "ipso_version": {
+                "table": "inputRegister",
+                "value": "v0.0",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: hardware_version",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff09",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "hardware_version": "v0.0"
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "hardware_version": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "v0.0"
+            }
+        },
+        "Modbus": {
+            "hardware_version": {
+                "table": "inputRegister",
+                "value": "v0.0",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: firmware_version",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff0a",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "firmware_version": "v0.0"
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "firmware_version": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "v0.0"
+            }
+        },
+        "Modbus": {
+            "firmware_version": {
+                "table": "inputRegister",
+                "value": "v0.0",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: sn",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff16",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "sn": ""
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "sn": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": ""
+            }
+        },
+        "Modbus": {
+            "sn": {
+                "table": "inputRegister",
+                "value": "",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: tsl_version",
+        "type": "uplink",
+        "input": {
+            "bytes": "ffff",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "tsl_version": "v0.0"
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "tsl_version": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "v0.0"
+            }
+        },
+        "Modbus": {
+            "tsl_version": {
+                "table": "inputRegister",
+                "value": "v0.0",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage (synthetic frame): device_status, lorawan_class, reset_event and 8 more",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff0b01ff0f01fffe01ff34010101ff34020202",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "device_status": "on",
+                "lorawan_class": "Class B",
+                "reset_event": "reset",
+                "button_1": 1,
+                "button_1_mode": "short_press+double_press",
+                "button_1_event": "double_press",
+                "button_1_msgid": "SKIP_NUMBER",
+                "button_2": 1,
+                "button_2_mode": "short_press+long_press",
+                "button_2_event": "long_press",
+                "button_2_msgid": "SKIP_NUMBER"
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "lorawan_class": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 1,
+                "units": "NO_UNITS"
+            },
+            "reset_event": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            },
+            "device_status": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            },
+            "button_1": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            },
+            "button_2": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            },
+            "button_1_mode": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 1,
+                "units": "NO_UNITS"
+            },
+            "button_1_event": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 1,
+                "units": "NO_UNITS"
+            },
+            "button_2_mode": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 2,
+                "units": "NO_UNITS"
+            },
+            "button_2_event": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 2,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "lorawan_class": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "reset_event": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "device_status": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "button_1": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "button_2": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "button_1_mode": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "button_1_event": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "button_2_mode": {
+                "table": "inputRegister",
+                "value": 2,
+                "value_type": "UINT8"
+            },
+            "button_2_event": {
+                "table": "inputRegister",
+                "value": 2,
+                "value_type": "UINT8"
+            }
+        }
+    }
+]

@@ -37,6 +37,7 @@ modelId: msight:gs601:1
 # Format: `<8 characters max>:<16 characters max>:<digits only>`
 # Be careful: Once you chose a protocolId, it cannot be changed later
 protocolId:
+  - msight:gs601:3
   - msight:gs601:2
   - msight:gs601:1
 # Informative, maintained by Netmore: true when the driver of the first protocolId above ships a
@@ -54,6 +55,65 @@ sensors:
 # Driver examples
 # A list of examples description that are compatible with this model
 examples: 
+  msight:gs601:3:
+    - "Example 1"
+    - "Downlink encode: reboot"
+    - "Downlink encode: alarm_deactivation_enable"
+    - "Uplink coverage: daylight_saving_time:daylight_saving_time_offset, daylight_saving_time:enable, daylight_saving_time:end_hour_min and 35 more"
+    - "Uplink coverage: tvoc_alarm_settings:enable, tvoc_alarm_settings:threshold_condition, tvoc_alarm_settings:threshold_max and 4 more"
+    - "Uplink coverage: buzzer_sleep:item_1:enable, buzzer_sleep:item_1:end_time, buzzer_sleep:item_1:start_time and 20 more"
+    - "Uplink coverage: led_status, tamper_alarm_enable, temperature_unit and 7 more"
+    - "Downlink encode: linked group buzzer_sleep (4 points)"
+    - "Downlink encode: linked group pm1_0_alarm_settings (2 points)"
+    - "Downlink encode: linked group pm10_alarm_settings (2 points)"
+    - "Downlink encode: linked group pm2_5_alarm_settings (2 points)"
+    - "Downlink encode: linked group temperature_alarm_settings (2 points)"
+    - "Downlink encode: linked group tvoc_alarm_settings (2 points)"
+    - "Downlink encode: linked group vaping_index_alarm_settings (2 points)"
+    - "Downlink write: alarm_reporting_times and 4 more"
+    - "Downlink write: led_status and 4 more"
+    - "Downlink write: synchronize_time and 4 more"
+    - "Downlink encode: daylight_saving_time:daylight_saving_time_offset and 4 more"
+    - "Downlink encode: pm2_5_calibration_settings:calibration_value and 3 more"
+    - "Downlink encode: linked group buzzer_sleep (4 points)"
+    - "Downlink encode: linked group pm1_0_alarm_settings (2 points)"
+    - "Downlink encode: linked group pm10_alarm_settings (2 points)"
+    - "Downlink encode: linked group pm2_5_alarm_settings (2 points)"
+    - "Downlink encode: linked group temperature_alarm_settings (2 points)"
+    - "Downlink encode: linked group tvoc_alarm_settings (2 points)"
+    - "Downlink encode: linked group vaping_index_alarm_settings (2 points)"
+    - "Downlink encode: daylight_saving_time:daylight_saving_time_offset and 4 more"
+    - "Downlink encode: pm2_5_calibration_settings:calibration_value and 3 more"
+    - "Downlink encode: linked group buzzer_sleep (4 points)"
+    - "Downlink encode: linked group pm1_0_alarm_settings (2 points)"
+    - "Downlink encode: linked group pm10_alarm_settings (2 points)"
+    - "Downlink encode: linked group pm2_5_alarm_settings (2 points)"
+    - "Downlink encode: linked group temperature_alarm_settings (2 points)"
+    - "Downlink encode: linked group tvoc_alarm_settings (2 points)"
+    - "Downlink encode: linked group vaping_index_alarm_settings (2 points)"
+    - "Downlink encode: daylight_saving_time:daylight_saving_time_offset and 4 more"
+    - "Downlink encode: pm2_5_calibration_settings:calibration_value and 3 more"
+    - "Uplink coverage: execute_tvoc_self_clean, query_device_status, reboot and 5 more"
+    - "Uplink coverage: vaping_index_alarm:alarm_trigger:vaping_index"
+    - "Uplink coverage: celsius_temperature, fahrenheit_temperature, temperature and 2 more"
+    - "Uplink coverage: tvoc_raw_data_2:rmox_2, tvoc_raw_data_2:rmox_3"
+    - "Uplink coverage: tvoc_raw_data_3:rmox_4, tvoc_raw_data_3:rmox_5"
+    - "Uplink coverage: tvoc_raw_data_5:rmox_8, tvoc_raw_data_5:rmox_9"
+    - "Uplink coverage: tvoc_raw_data_6:rmox_10, tvoc_raw_data_6:rmox_11"
+    - "Uplink coverage: tvoc_raw_data_7:rmox_12, tvoc_raw_data_7:zmod4510_rmox_3"
+    - "Uplink coverage: tvoc_raw_data_8:log_rcda, tvoc_raw_data_8:rhtr"
+    - "Uplink coverage: tvoc_raw_data_9:iaq, tvoc_raw_data_9:temperature"
+    - "Uplink coverage: tvoc_raw_data_10:etoh, tvoc_raw_data_10:tvoc"
+    - "Uplink coverage: tvoc_raw_data_11:eco2, tvoc_raw_data_11:rel_iaq"
+    - "Uplink coverage: version:firmware_version, version:hardware_version"
+    - "Uplink coverage: pm2_5_alarm:type, device_status, product_sn"
+    - "Uplink coverage: pm10_alarm:type, tsl_version"
+    - "Uplink coverage: pm1_0_alarm:type"
+    - "Uplink coverage: humidity_alarm:type"
+    - "Uplink coverage: tvoc_alarm:type"
+    - "Uplink coverage: tamper_status_alarm:type"
+    - "Uplink coverage: occupancy_status"
+    - "Uplink coverage: pm_sensor_working_time"
   msight:gs601:2:
     - "Example 1"
     - "Downlink encode: reboot"

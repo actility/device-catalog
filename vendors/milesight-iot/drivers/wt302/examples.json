@@ -138,7 +138,25 @@
                     "presentValue": 26.6,
                     "units": "DEGREES_CELSIUS"
                 }
-            ]
+            ],
+            "head": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 85,
+                "units": "NO_UNITS"
+            },
+            "command": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "control"
+            },
+            "data_length": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 10,
+                "units": "NO_UNITS"
+            },
+            "type": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            }
         },
         "Modbus": {
             "thermostat_status": {
@@ -185,6 +203,26 @@
                 "table": "inputRegister",
                 "value": 22.5,
                 "value_type": "FLOAT"
+            },
+            "head": {
+                "table": "inputRegister",
+                "value": 85,
+                "value_type": "INT32"
+            },
+            "command": {
+                "table": "inputRegister",
+                "value": "control",
+                "value_type": "STRING"
+            },
+            "data_length": {
+                "table": "inputRegister",
+                "value": 10,
+                "value_type": "INT32"
+            },
+            "type": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
             }
         }
     },
@@ -220,6 +258,24 @@
                 "object": "ANALOG_INPUT",
                 "presentValue": 26,
                 "units": "DEGREES_CELSIUS"
+            },
+            "head": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 1,
+                "units": "NO_UNITS"
+            },
+            "command": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "control"
+            },
+            "data_length": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 1,
+                "units": "NO_UNITS"
+            },
+            "type": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "temperature_target"
             }
         },
         "Modbus": {
@@ -227,6 +283,26 @@
                 "table": "inputRegister",
                 "value": 26,
                 "value_type": "FLOAT"
+            },
+            "head": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "INT32"
+            },
+            "command": {
+                "table": "inputRegister",
+                "value": "control",
+                "value_type": "STRING"
+            },
+            "data_length": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "INT32"
+            },
+            "type": {
+                "table": "inputRegister",
+                "value": "temperature_target",
+                "value_type": "STRING"
             }
         }
     },
@@ -268,13 +344,51 @@
                     "object": "BINARY_VALUE",
                     "presentValue": 1
                 }
-            ]
+            ],
+            "head": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 1,
+                "units": "NO_UNITS"
+            },
+            "command": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "control"
+            },
+            "data_length": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 1,
+                "units": "NO_UNITS"
+            },
+            "type": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "btn_lock_enable"
+            }
         },
         "Modbus": {
             "thermostat_status": {
                 "table": "discreteInput",
                 "value": 1,
                 "value_type": "UINT8"
+            },
+            "head": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "INT32"
+            },
+            "command": {
+                "table": "inputRegister",
+                "value": "control",
+                "value_type": "STRING"
+            },
+            "data_length": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "INT32"
+            },
+            "type": {
+                "table": "inputRegister",
+                "value": "btn_lock_enable",
+                "value_type": "STRING"
             }
         }
     },
@@ -311,6 +425,321 @@
                 1,
                 91
             ]
+        }
+    },
+    {
+        "description": "Downlink write: target_temperature",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "target_temperature": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 30
+            }
+        },
+        "inputModbus": {
+            "target_temperature": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 30
+            }
+        },
+        "input": {
+            "data": {
+                "target_temperature": 30
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                85,
+                1,
+                0,
+                2,
+                5,
+                60,
+                153
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink write: server_temperature",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "server_temperature": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 26.6
+            }
+        },
+        "inputModbus": {
+            "server_temperature": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 26.6
+            }
+        },
+        "input": {
+            "data": {
+                "server_temperature": 26.6
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                85,
+                1,
+                0,
+                2,
+                7,
+                53,
+                148
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink write: query_thermostat_status",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "query_thermostat_status": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "query_thermostat_status": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "query_thermostat_status": "yes"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                85,
+                2,
+                0,
+                1,
+                1,
+                89
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink write: query_mode",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "query_mode": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "query_mode": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "query_mode": "yes"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                85,
+                2,
+                0,
+                1,
+                3,
+                91
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink write: query_fan_speed",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "query_fan_speed": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "query_fan_speed": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "query_fan_speed": "yes"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                85,
+                2,
+                0,
+                1,
+                4,
+                92
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink write: query_temperature and 4 more",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "query_temperature": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            },
+            "query_target_temperature": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            },
+            "query_card_mode": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            },
+            "query_control_mode": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            },
+            "query_server_temperature": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "query_temperature": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            },
+            "query_target_temperature": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            },
+            "query_card_mode": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            },
+            "query_control_mode": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            },
+            "query_server_temperature": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "query_temperature": "yes",
+                "query_target_temperature": "yes",
+                "query_card_mode": "yes",
+                "query_control_mode": "yes",
+                "query_server_temperature": "yes"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                85,
+                2,
+                0,
+                1,
+                5,
+                93,
+                85,
+                2,
+                0,
+                1,
+                6,
+                94,
+                85,
+                2,
+                0,
+                1,
+                7,
+                95,
+                85,
+                2,
+                0,
+                1,
+                8,
+                96,
+                85,
+                2,
+                0,
+                1,
+                9,
+                97
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink write: query_all",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "query_all": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "query_all": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "query_all": "yes"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                85,
+                2,
+                0,
+                1,
+                15,
+                103
+            ],
+            "fPort": 100
         }
     }
 ]

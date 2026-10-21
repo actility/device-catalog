@@ -37,6 +37,7 @@ modelId: msight:wt303:1
 # Format: `<8 characters max>:<16 characters max>:<digits only>`
 # Be careful: Once you chose a protocolId, it cannot be changed later
 protocolId:
+  - msight:wt303:3
   - msight:wt303:2
   - msight:wt303:1
 # Informative, maintained by Netmore: true when the driver of the first protocolId above ships a
@@ -55,6 +56,61 @@ sensors:
 # Driver examples
 # A list of examples description that are compatible with this model
 examples: 
+  msight:wt303:3:
+    - "Example 1"
+    - "Downlink encode: reboot"
+    - "Downlink encode: d2d_master_enable"
+    - "Uplink coverage: daylight_saving_time:daylight_saving_time_offset, daylight_saving_time:enable, daylight_saving_time:end_hour_min and 59 more"
+    - "Uplink coverage: high_temperature_alarm_settings:celsius_difference_in_temperature, high_temperature_alarm_settings:difference_in_temperature, high_temperature_alarm_settings:duration and 22 more"
+    - "Uplink coverage: interface_settings:object, interface_settings:valve_4_pipe_2_wire:cooling, interface_settings:valve_4_pipe_2_wire:heating"
+    - "Uplink coverage: celsius_cooling_target_temperature, cooling_target_temperature, fahrenheit_cooling_target_temperature and 25 more"
+    - "Uplink coverage (synthetic frame): temperature_source:type, temperature_unit, window_opening_detection_enable and 8 more"
+    - "Downlink encode: linked group cooling_target_temperature_range (2 points)"
+    - "Downlink encode: linked group fan_auto_mode_temperature_range (2 points)"
+    - "Downlink encode: linked group heating_target_temperature_range (2 points)"
+    - "Downlink encode: linked group high_temperature_alarm_settings (2 points)"
+    - "Downlink encode: linked group low_temperature_alarm_settings (2 points)"
+    - "Downlink encode: linked group target_humidity_range (2 points)"
+    - "Downlink encode: linked group temperature_alarm_settings (2 points)"
+    - "Downlink write: celsius_heating_target_temperature and 2 more"
+    - "Downlink write: celsius_cooling_target_temperature"
+    - "Downlink write: cooling_target_temperature"
+    - "Downlink write: di_enable and 4 more"
+    - "Downlink write: heating_target_temperature and 4 more"
+    - "Downlink write: reconnect and 4 more"
+    - "Downlink write: target_temperature_resolution and 4 more"
+    - "Downlink write: window_opening_detection_enable"
+    - "Downlink encode: daylight_saving_time:daylight_saving_time_offset and 4 more"
+    - "Downlink encode: insert_schedule:type and 4 more"
+    - "Downlink encode: temperature_control_dehumidification:temperature_tolerance and 4 more"
+    - "Downlink encode: linked group cooling_target_temperature_range (2 points)"
+    - "Downlink encode: linked group fan_auto_mode_temperature_range (2 points)"
+    - "Downlink encode: linked group heating_target_temperature_range (2 points)"
+    - "Downlink encode: linked group high_temperature_alarm_settings (2 points)"
+    - "Downlink encode: linked group low_temperature_alarm_settings (2 points)"
+    - "Downlink encode: linked group target_humidity_range (2 points)"
+    - "Downlink encode: linked group temperature_alarm_settings (2 points)"
+    - "Downlink encode: daylight_saving_time:daylight_saving_time_offset and 4 more"
+    - "Downlink encode: insert_schedule:type and 4 more"
+    - "Downlink encode: temperature_control_dehumidification:temperature_tolerance and 4 more"
+    - "Downlink encode: linked group cooling_target_temperature_range (2 points)"
+    - "Downlink encode: linked group fan_auto_mode_temperature_range (2 points)"
+    - "Downlink encode: linked group heating_target_temperature_range (2 points)"
+    - "Downlink encode: linked group high_temperature_alarm_settings (2 points)"
+    - "Downlink encode: linked group low_temperature_alarm_settings (2 points)"
+    - "Downlink encode: linked group target_humidity_range (2 points)"
+    - "Downlink encode: linked group temperature_alarm_settings (2 points)"
+    - "Downlink encode: daylight_saving_time:daylight_saving_time_offset and 4 more"
+    - "Downlink encode: insert_schedule:type and 4 more"
+    - "Downlink encode: temperature_control_dehumidification:temperature_tolerance and 4 more"
+    - "Uplink coverage: send_temperature:temperature, send_temperature:fahrenheit_temperature, send_temperature:celsius_temperature and 9 more"
+    - "Uplink coverage: relay_status:high_status, relay_status:low_status, relay_status:mid_status and 3 more"
+    - "Uplink coverage: interface_settings:valve_2_pipe_3_wire:nc, interface_settings:valve_2_pipe_3_wire:no, version:firmware_version and 1 more"
+    - "Uplink coverage: temperature_source:lorawan_reception:timeout, temperature_source:lorawan_reception:timeout_response, device_status and 1 more"
+    - "Uplink coverage: temperature_source:d2d_reception:timeout, temperature_source:d2d_reception:timeout_response, tsl_version"
+    - "Uplink coverage: humidity_alarm:type"
+    - "Uplink coverage: target_temperature_alarm:type"
+    - "Uplink coverage: interface_settings:valve_2_pipe_2_wire:control, di_settings:magnet_detection:magnet_type, window_opening_detection_settings:magnet_detection:duration"
   msight:wt303:2:
     - "Example 1"
     - "Downlink encode: reboot"

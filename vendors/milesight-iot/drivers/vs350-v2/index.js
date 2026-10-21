@@ -1,0 +1,1467 @@
+/**
+ * Payload Decoder
+ *
+ * Copyright 2025 Milesight IoT
+ *
+ * @product VS350
+ */
+var RAW_VALUE = 0x00;
+
+/* eslint no-redeclare: "off" */
+/* eslint-disable */
+// Chirpstack v4
+function decodeUplink(input) {
+    var decoded = milesightDeviceDecode(input.bytes);
+    return { data: decoded };
+}
+
+// Chirpstack v3
+function Decode(fPort, bytes) {
+    return milesightDeviceDecode(bytes);
+}
+
+// The Things Network
+function Decoder(bytes, port) {
+    return milesightDeviceDecode(bytes);
+}
+/* eslint-enable */
+
+function milesightDeviceDecode(bytes) {
+    var decoded = {};
+
+    for (var i = 0; i < bytes.length; ) {
+        var channel_id = bytes[i++];
+        var channel_type = bytes[i++];
+
+        // IPSO VERSION
+        if (channel_id === 0xff && channel_type === 0x01) {
+            decoded.ipso_version = readProtocolVersion(bytes[i]);
+            i += 1;
+        }
+        // HARDWARE VERSION
+        else if (channel_id === 0xff && channel_type === 0x09) {
+            decoded.hardware_version = readHardwareVersion(bytes.slice(i, i + 2));
+            i += 2;
+        }
+        // FIRMWARE VERSION
+        else if (channel_id === 0xff && channel_type === 0x0a) {
+            decoded.firmware_version = readFirmwareVersion(bytes.slice(i, i + 2));
+            i += 2;
+        }
+        // TSL VERSION
+        else if (channel_id === 0xff && channel_type === 0xff) {
+            decoded.tsl_version = readTslVersion(bytes.slice(i, i + 2));
+            i += 2;
+        }
+        // SERIAL NUMBER
+        else if (channel_id === 0xff && channel_type === 0x16) {
+            decoded.sn = readSerialNumber(bytes.slice(i, i + 8));
+            i += 8;
+        }
+        // LORAWAN CLASS TYPE
+        else if (channel_id === 0xff && channel_type === 0x0f) {
+            decoded.lorawan_class = readLoRaWANClass(bytes[i]);
+            i += 1;
+        }
+        // RESET EVENT
+        else if (channel_id === 0xff && channel_type === 0xfe) {
+            decoded.reset_event = readResetEvent(1);
+            i += 1;
+        }
+        // DEVICE STATUS
+        else if (channel_id === 0xff && channel_type === 0x0b) {
+            decoded.device_status = readDeviceStatus(1);
+            i += 1;
+        }
+        // BATTERY
+        else if (channel_id === 0x01 && channel_type === 0x75) {
+            decoded.battery = readUInt8(bytes[i]);
+            i += 1;
+        }
+        // TEMPERATURE
+        else if (channel_id === 0x03 && channel_type === 0x67) {
+            // °C
+            decoded.temperature = readInt16LE(bytes.slice(i, i + 2)) / 10;
+            i += 2;
+        }
+        // TOTAL IN / OUT
+        else if (channel_id === 0x04 && channel_type === 0xcc) {
+            decoded.total_in = readUInt16LE(bytes.slice(i, i + 2));
+            decoded.total_out = readUInt16LE(bytes.slice(i + 2, i + 4));
+            i += 4;
+        }
+        // PERIOD IN / OUT
+        else if (channel_id === 0x05 && channel_type === 0xcc) {
+            decoded.period_in = readUInt16LE(bytes.slice(i, i + 2));
+            decoded.period_out = readUInt16LE(bytes.slice(i + 2, i + 4));
+            i += 4;
+        }
+        // TIMESTAMP
+        else if (channel_id === 0x0a && channel_type === 0xef) {
+            decoded.timestamp = readUInt32LE(bytes.slice(i, i + 4));
+            i += 4;
+        }
+        // INSTALL CONFIG (DOWNLINK RESPONSE)
+        // Note: when manual_gain != 0, compensation is ineffective (device uses manual_gain instead)
+        else if (channel_id === 0xff && channel_type === 0xac) {
+            decoded.install_config = {};
+            decoded.install_config.install_method = readInstallMethod(bytes[i]);
+            decoded.install_config.install_height = readUInt8(bytes[i + 1]) / 10; // unit: m, precision: 0.1m
+            decoded.install_config.compensation = readInt8(bytes[i + 2]); // range: -2 ~ 2
+            decoded.install_config.sensitivity_report_enable = readEnableStatus(bytes[i + 3]);
+            decoded.install_config.manual_gain = readUInt8(bytes[i + 4]); // 0: not applied, 60-75: manual gain in db
+            i += 5;
+        }
+        // PEOPLE THRESHOLD TRIGGER MODE (DOWNLINK RESPONSE)
+        else if (channel_id === 0xff && channel_type === 0xad) {
+            decoded.people_threshold_trigger_mode = readPeopleTriggerMode(bytes[i]);
+            i += 1;
+        }
+        // CURRENT SENSITIVITY (V3 version)
+        else if (channel_id === 0x81 && channel_type === 0xee) {
+            decoded.current_sensitivity = readUInt8(bytes[i]);
+            i += 1;
+        }
+        // TEMPERATURE ALARM
+        else if (channel_id === 0x83 && channel_type === 0x67) {
+            decoded.temperature = readInt16LE(bytes.slice(i, i + 2)) / 10;
+            decoded.temperature_alarm = readAlarmType(bytes[i + 2]);
+            i += 3;
+        }
+        // TOTAL IN / OUT ALARM
+        else if (channel_id === 0x84 && channel_type === 0xcc) {
+            decoded.total_in = readUInt16LE(bytes.slice(i, i + 2));
+            decoded.total_out = readUInt16LE(bytes.slice(i + 2, i + 4));
+            decoded.total_count_alarm = readAlarmType(bytes[i + 4]);
+            i += 5;
+        }
+        // PERIOD IN / OUT ALARM
+        else if (channel_id === 0x85 && channel_type === 0xcc) {
+            decoded.period_in = readUInt16LE(bytes.slice(i, i + 2));
+            decoded.period_out = readUInt16LE(bytes.slice(i + 2, i + 4));
+            decoded.period_count_alarm = readAlarmType(bytes[i + 4]);
+            i += 5;
+        }
+        // HISTORICAL DATA
+        else if (channel_id === 0x20 && channel_type === 0xce) {
+            var data = {};
+            var timestamp = readUInt32LE(bytes.slice(i, i + 4));
+            var type = bytes[i + 4];
+            // historical data without total in/out
+            if (type === 0) {
+                data.timestamp = timestamp;
+                data.period_in = readUInt16LE(bytes.slice(i + 5, i + 7));
+                data.period_out = readUInt16LE(bytes.slice(i + 7, i + 9));
+                i += 9;
+            }
+            // historical data with total in/out
+            else if (type === 1) {
+                data.timestamp = timestamp;
+                data.period_in = readUInt16LE(bytes.slice(i + 5, i + 7));
+                data.period_out = readUInt16LE(bytes.slice(i + 7, i + 9));
+                data.total_in = readUInt16LE(bytes.slice(i + 9, i + 11));
+                data.total_out = readUInt16LE(bytes.slice(i + 11, i + 13));
+                i += 13;
+            }
+            decoded.history = decoded.history || [];
+            decoded.history.push(data);
+        }
+        // DOWNLINK RESPONSE
+        else if (channel_id === 0xfe || channel_id === 0xff) {
+            var result = handle_downlink_response(channel_type, bytes, i);
+            decoded = Object.assign(decoded, result.data);
+            i = result.offset;
+        } else if (channel_id === 0xf8 || channel_id === 0xf9) {
+            var result = handle_downlink_response_ext(channel_id, channel_type, bytes, i);
+            decoded = Object.assign(decoded, result.data);
+            i = result.offset;
+        } else {
+            break;
+        }
+    }
+
+    return decoded;
+}
+
+function handle_downlink_response(channel_type, bytes, offset) {
+    var decoded = {};
+
+    switch (channel_type) {
+        case 0x06:
+            var data = readUInt8(bytes[offset]);
+            var trigger_source = (data >>> 3) & 0x07;
+            if (trigger_source === 1) {
+                decoded.people_period_alarm_config = {};
+                decoded.people_period_alarm_config.condition = readConditionType(data & 0x07);
+                decoded.people_period_alarm_config.threshold_out = readUInt16LE(bytes.slice(offset + 1, offset + 3));
+                decoded.people_period_alarm_config.threshold_in = readUInt16LE(bytes.slice(offset + 3, offset + 5));
+            } else if (trigger_source === 2) {
+                decoded.people_cumulative_alarm_config = {};
+                decoded.people_cumulative_alarm_config.condition = readConditionType(data & 0x07);
+                decoded.people_cumulative_alarm_config.threshold_out = readUInt16LE(bytes.slice(offset + 1, offset + 3));
+                decoded.people_cumulative_alarm_config.threshold_in = readUInt16LE(bytes.slice(offset + 3, offset + 5));
+            } else if (trigger_source === 3) {
+                decoded.temperature_alarm_config = {};
+                decoded.temperature_alarm_config.condition = readConditionType(data & 0x07);
+                decoded.temperature_alarm_config.threshold_min = readUInt16LE(bytes.slice(offset + 1, offset + 3)) / 10;
+                decoded.temperature_alarm_config.threshold_max = readUInt16LE(bytes.slice(offset + 3, offset + 5)) / 10;
+            }
+            offset += 9;
+            break;
+        case 0x10:
+            decoded.reboot = readYesNoStatus(1);
+            offset += 1;
+            break;
+        case 0x28:
+            decoded.report_status = readYesNoStatus(1);
+            offset += 1;
+            break;
+        case 0x35:
+            decoded.d2d_key = readHexString(bytes.slice(offset, offset + 8));
+            offset += 8;
+            break;
+        case 0x4a:
+            decoded.sync_time = readYesNoStatus(1);
+            offset += 1;
+            break;
+        case 0x68:
+            decoded.history_enable = readEnableStatus(bytes[offset]);
+            offset += 1;
+            break;
+        case 0x69:
+            decoded.retransmit_enable = readEnableStatus(bytes[offset]);
+            offset += 1;
+            break;
+        case 0x6a:
+            var data = readUInt8(bytes[offset]);
+            if (data === 0x00) {
+                decoded.retransmit_interval = readUInt16LE(bytes.slice(offset + 1, offset + 3));
+            } else if (data === 0x01) {
+                decoded.resend_interval = readUInt16LE(bytes.slice(offset + 1, offset + 3));
+            }
+            offset += 3;
+            break;
+        case 0x6b:
+            decoded.stop_transmit = readYesNoStatus(1);
+            offset += 1;
+            break;
+        case 0x6d:
+            decoded.stop_transmit = readYesNoStatus(1);
+            offset += 1;
+            break;
+        case 0x84:
+            decoded.d2d_enable = readEnableStatus(bytes[offset]);
+            offset += 1;
+            break;
+        case 0x8e:
+            // skip the first byte
+            decoded.report_interval = readUInt16LE(bytes.slice(offset + 1, offset + 3));
+            offset += 3;
+            break;
+        case 0x96:
+            var d2d_master_config = {};
+            d2d_master_config.mode = readD2DMode(readUInt8(bytes[offset]));
+            d2d_master_config.enable = readEnableStatus(bytes[offset + 1]);
+            d2d_master_config.lora_uplink_enable = readEnableStatus(bytes[offset + 2]);
+            d2d_master_config.d2d_cmd = readD2DCommand(bytes.slice(offset + 3, offset + 5));
+            d2d_master_config.time = readUInt16LE(bytes.slice(offset + 5, offset + 7));
+            d2d_master_config.time_enable = readEnableStatus(bytes[offset + 7]);
+            offset += 8;
+            decoded.d2d_master_config = decoded.d2d_master_config || [];
+            decoded.d2d_master_config.push(d2d_master_config);
+            break;
+        case 0xa6:
+            decoded.reset_cumulative_enable = readEnableStatus(bytes[offset]);
+            offset += 1;
+            break;
+        case 0xa7:
+            decoded.reset_cumulative_interval = readUInt16LE(bytes.slice(offset, offset + 2));
+            offset += 2;
+            break;
+        case 0xa8:
+            var data = readUInt8(bytes[offset]);
+            if (data === 0x01) {
+                decoded.reset_cumulative_in = readYesNoStatus(1);
+            } else if (data === 0x02) {
+                decoded.reset_cumulative_out = readYesNoStatus(1);
+            }
+            offset += 1;
+            break;
+        case 0xa9:
+            decoded.report_cumulative_enable = readEnableStatus(bytes[offset]);
+            offset += 1;
+            break;
+        case 0xaa:
+            decoded.report_temperature_enable = readEnableStatus(bytes[offset]);
+            offset += 1;
+            break;
+        case 0xab:
+            decoded.temperature_calibration_settings = {};
+            decoded.temperature_calibration_settings.enable = readEnableStatus(bytes[offset]);
+            decoded.temperature_calibration_settings.calibration_value = readInt16LE(bytes.slice(offset + 1, offset + 3)) / 10;
+            offset += 3;
+            break;
+        case 0xbd:
+            decoded.time_zone = readTimeZone(readInt16LE(bytes.slice(offset, offset + 2)));
+            offset += 2;
+            break;
+        case 0xef:
+            decoded.reset_cumulative_config = {};
+            decoded.reset_cumulative_config.enable = readEnableStatus(bytes[offset]);
+            decoded.reset_cumulative_config.hour = readUInt8(bytes.slice(offset + 1, offset + 2));
+            decoded.reset_cumulative_config.minute = readUInt8(bytes.slice(offset + 2, offset + 3));
+            offset += 3;
+            break;
+        default:
+            throw new Error("unknown downlink response");
+    }
+
+    return { data: decoded, offset: offset };
+}
+
+function handle_downlink_response_ext(code, channel_type, bytes, offset) {
+    var decoded = {};
+
+    switch (channel_type) {
+        case 0x10:
+            decoded.report_type = readReportType(bytes[offset]);
+            offset += 1;
+            break;
+        default:
+            throw new Error("unknown downlink response");
+    }
+
+    if (hasResultFlag(code)) {
+        var result_value = readUInt8(bytes[offset]);
+        offset += 1;
+
+        if (result_value !== 0) {
+            var request = decoded;
+            decoded = {};
+            decoded.device_response_result = {};
+            decoded.device_response_result.channel_type = channel_type;
+            decoded.device_response_result.result = readResultStatus(result_value);
+            decoded.device_response_result.request = request;
+        }
+    }
+
+    return { data: decoded, offset: offset };
+}
+
+function hasResultFlag(code) {
+    return code === 0xf8;
+}
+
+function readResultStatus(status) {
+    var status_map = { 0: "success", 1: "forbidden", 2: "invalid parameter" };
+    return getValue(status_map, status);
+}
+
+function readProtocolVersion(bytes) {
+    var major = (bytes & 0xf0) >> 4;
+    var minor = bytes & 0x0f;
+    return "v" + major + "." + minor;
+}
+
+function readHardwareVersion(bytes) {
+    var major = (bytes[0] & 0xff).toString(16);
+    var minor = (bytes[1] & 0xff) >> 4;
+    return "v" + major + "." + minor;
+}
+
+function readFirmwareVersion(bytes) {
+	var major = (bytes[0] & 0xff).toString(16);
+	var minor = (bytes[1] & 0xff).toString(16);
+	var release = (bytes[2] & 0xff).toString(16);
+	var alpha = (bytes[3] & 0xff).toString(16);
+	var unit_test = (bytes[4] & 0xff).toString(16);
+	var test = (bytes[5] & 0xff).toString(16);
+
+	var version = 'v' + major + '.' + minor;
+	if (release !== '0') version += '-r' + release;
+	if (alpha !== '0') version += '-a' + alpha;
+	if (unit_test !== '0') version += '-u' + unit_test;
+	if (test !== '0') version += '-t' + test;
+	return version;
+}
+
+function readTslVersion(bytes) {
+    var major = bytes[0] & 0xff;
+    var minor = bytes[1] & 0xff;
+    return "v" + major + "." + minor;
+}
+
+function readSerialNumber(bytes) {
+    var temp = [];
+    for (var idx = 0; idx < bytes.length; idx++) {
+        temp.push(("0" + (bytes[idx] & 0xff).toString(16)).slice(-2));
+    }
+    return temp.join("");
+}
+
+function readLoRaWANClass(type) {
+    var class_map = {
+        0: "Class A",
+        1: "Class B",
+        2: "Class C",
+        3: "Class CtoB",
+    };
+    return getValue(class_map, type);
+}
+
+function readResetEvent(status) {
+    var status_map = { 0: "normal", 1: "reset" };
+    return getValue(status_map, status);
+}
+
+function readDeviceStatus(status) {
+    var status_map = { 0: "off", 1: "on" };
+    return getValue(status_map, status);
+}
+
+function readEnableStatus(status) {
+    var status_map = { 0: "disable", 1: "enable" };
+    return getValue(status_map, status);
+}
+
+function readYesNoStatus(status) {
+    var yes_no_map = { 0: "no", 1: "yes" };
+    return getValue(yes_no_map, status);
+}
+
+function readAlarmType(type) {
+    var alarm_map = {
+        0: "threshold alarm release",
+        1: "threshold alarm",
+        3: "high temperature alarm",
+        4: "high temperature alarm release",
+    };
+    return getValue(alarm_map, type);
+}
+
+function readReportType(type) {
+    var report_type_map = { 0: "period", 1: "immediately" };
+    return getValue(report_type_map, type);
+}
+
+function readInstallMethod(type) {
+    var method_map = { 0: "side", 1: "top" };
+    return getValue(method_map, type);
+}
+
+function readPeopleTriggerMode(type) {
+    var mode_map = { 0: "threshold", 1: "multiple" };
+    return getValue(mode_map, type);
+}
+
+function readTimeZone(time_zone) {
+    var timezone_map = { "-720": "UTC-12", "-660": "UTC-11", "-600": "UTC-10", "-570": "UTC-9:30", "-540": "UTC-9", "-480": "UTC-8", "-420": "UTC-7", "-360": "UTC-6", "-300": "UTC-5", "-240": "UTC-4", "-210": "UTC-3:30", "-180": "UTC-3", "-120": "UTC-2", "-60": "UTC-1", 0: "UTC", 60: "UTC+1", 120: "UTC+2", 180: "UTC+3", 210: "UTC+3:30", 240: "UTC+4", 270: "UTC+4:30", 300: "UTC+5", 330: "UTC+5:30", 345: "UTC+5:45", 360: "UTC+6", 390: "UTC+6:30", 420: "UTC+7", 480: "UTC+8", 540: "UTC+9", 570: "UTC+9:30", 600: "UTC+10", 630: "UTC+10:30", 660: "UTC+11", 720: "UTC+12", 765: "UTC+12:45", 780: "UTC+13", 840: "UTC+14" };
+    return getValue(timezone_map, time_zone);
+}
+
+function readD2DMode(mode) {
+    var mode_map = { 1: "someone_enter", 2: "someone_leave", 3: "counting_threshold_alarm", 4: "temperature_threshold_alarm", 5: "temperature_threshold_alarm_release" };
+    return getValue(mode_map, mode);
+}
+
+function readConditionType(type) {
+    var condition_map = { 0: "disable", 1: "below", 2: "above", 3: "between", 4: "outside" };
+    return getValue(condition_map, type);
+}
+
+/* eslint-disable */
+function readUInt8(bytes) {
+    return bytes & 0xff;
+}
+
+function readInt8(bytes) {
+    var ref = readUInt8(bytes);
+    return ref > 0x7f ? ref - 0x100 : ref;
+}
+
+function readUInt16LE(bytes) {
+    var value = (bytes[1] << 8) + bytes[0];
+    return value & 0xffff;
+}
+
+function readInt16LE(bytes) {
+    var ref = readUInt16LE(bytes);
+    return ref > 0x7fff ? ref - 0x10000 : ref;
+}
+
+function readUInt32LE(bytes) {
+    var value = (bytes[3] << 24) + (bytes[2] << 16) + (bytes[1] << 8) + bytes[0];
+    return (value & 0xffffffff) >>> 0;
+}
+
+function readInt32LE(bytes) {
+    var ref = readUInt32LE(bytes);
+    return ref > 0x7fffffff ? ref - 0x100000000 : ref;
+}
+
+function readHexString(bytes) {
+    var temp = [];
+    for (var i = 0; i < bytes.length; i++) {
+        temp.push(("0" + (bytes[i] & 0xff).toString(16)).slice(-2));
+    }
+    return temp.join("");
+}
+
+function readD2DCommand(bytes) {
+    return ("0" + (bytes[1] & 0xff).toString(16)).slice(-2) + ("0" + (bytes[0] & 0xff).toString(16)).slice(-2);
+}
+
+function getValue(map, key) {
+    if (RAW_VALUE) return key;
+
+    var value = map[key];
+    if (!value) value = "unknown";
+    return value;
+}
+
+//if (!Object.assign) {
+    Object.defineProperty(Object, "assign", {
+        enumerable: false,
+        configurable: true,
+        writable: true,
+        value: function (target) {
+            "use strict";
+            if (target == null) {
+                throw new TypeError("Cannot convert first argument to object");
+            }
+
+            var to = Object(target);
+            for (var i = 1; i < arguments.length; i++) {
+                var nextSource = arguments[i];
+                if (nextSource == null) {
+                    continue;
+                }
+                nextSource = Object(nextSource);
+
+                var keysArray = Object.keys(Object(nextSource));
+                for (var nextIndex = 0, len = keysArray.length; nextIndex < len; nextIndex++) {
+                    var nextKey = keysArray[nextIndex];
+                    var desc = Object.getOwnPropertyDescriptor(nextSource, nextKey);
+                    if (desc !== undefined && desc.enumerable) {
+                        // concat array
+                        if (Array.isArray(to[nextKey]) && Array.isArray(nextSource[nextKey])) {
+                            to[nextKey] = to[nextKey].concat(nextSource[nextKey]);
+                        } else {
+                            to[nextKey] = nextSource[nextKey];
+                        }
+                    }
+                }
+            }
+            return to;
+        },
+    });
+//}
+
+function decodeDownlink(input) {
+    var decoded = milesightDeviceDecode(input.bytes);
+    return { data: decoded };
+}
+
+var __milesightDownlinkCodec = (function () {
+/**
+ * Payload Encoder
+ *
+ * Copyright 2025 Milesight IoT
+ *
+ * @product VS350
+ */
+var RAW_VALUE = 0x00;
+
+/* eslint no-redeclare: "off" */
+/* eslint-disable */
+// Chirpstack v4
+function encodeDownlink(input) {
+    var encoded = milesightDeviceEncode(input.data);
+    return { bytes: encoded };
+}
+
+// Chirpstack v3
+function Encode(fPort, obj) {
+    return milesightDeviceEncode(obj);
+}
+
+// The Things Network
+function Encoder(obj, port) {
+    return milesightDeviceEncode(obj);
+}
+/* eslint-enable */
+
+function milesightDeviceEncode(payload) {
+    var encoded = [];
+
+    if ("reboot" in payload) {
+        encoded = encoded.concat(reboot(payload.reboot));
+    }
+    if ("report_status" in payload) {
+        encoded = encoded.concat(reportStatus(payload.report_status));
+    }
+    if ("report_interval" in payload) {
+        encoded = encoded.concat(setReportInterval(payload.report_interval));
+    }
+    if ("report_type" in payload) {
+        encoded = encoded.concat(setReportType(payload.report_type));
+    }
+    if ("sync_time" in payload) {
+        encoded = encoded.concat(syncTime(payload.sync_time));
+    }
+    if ("time_zone" in payload) {
+        encoded = encoded.concat(setTimeZone(payload.time_zone));
+    }
+    if ("reset_cumulative_enable" in payload) {
+        encoded = encoded.concat(clearCumulative(payload.reset_cumulative_enable));
+    }
+    if ("report_cumulative_enable" in payload) {
+        encoded = encoded.concat(setCumulativeEnable(payload.report_cumulative_enable));
+    }
+    if ("reset_cumulative_interval" in payload) {
+        encoded = encoded.concat(setCumulativeResetInterval(payload.reset_cumulative_interval));
+    }
+    if ("reset_cumulative_in" in payload) {
+        encoded = encoded.concat(clearCumulativeIn(payload.reset_cumulative_in));
+    }
+    if ("reset_cumulative_out" in payload) {
+        encoded = encoded.concat(clearCumulativeOut(payload.reset_cumulative_out));
+    }
+    if ("report_temperature_enable" in payload) {
+        encoded = encoded.concat(setTemperatureEnable(payload.report_temperature_enable));
+    }
+    if ("temperature_calibration_settings" in payload) {
+        encoded = encoded.concat(setTemperatureCalibration(payload.temperature_calibration_settings));
+    }
+    if ("d2d_key" in payload) {
+        encoded = encoded.concat(setD2DKey(payload.d2d_key));
+    }
+    if ("d2d_enable" in payload) {
+        encoded = encoded.concat(setD2DEnable(payload.d2d_enable));
+    }
+    if ("d2d_master_config" in payload) {
+        for (var i = 0; i < payload.d2d_master_config.length; i++) {
+            var config = payload.d2d_master_config[i];
+            encoded = encoded.concat(setD2DMasterConfig(config));
+        }
+    }
+    if ("people_period_alarm_config" in payload) {
+        encoded = encoded.concat(setPeriodPeopleAlarmConfig(payload.people_period_alarm_config));
+    }
+    if ("people_cumulative_alarm_config" in payload) {
+        encoded = encoded.concat(setCumulativePeopleAlarmConfig(payload.people_cumulative_alarm_config));
+    }
+    if ("temperature_alarm_config" in payload) {
+        encoded = encoded.concat(setTemperatureAlarmConfig(payload.temperature_alarm_config));
+    }
+    if ("history_enable" in payload) {
+        encoded = encoded.concat(setHistoryEnable(payload.history_enable));
+    }
+    if ("retransmit_enable" in payload) {
+        encoded = encoded.concat(setRetransmitEnable(payload.retransmit_enable));
+    }
+    if ("retransmit_interval" in payload) {
+        encoded = encoded.concat(setRetransmitInterval(payload.retransmit_interval));
+    }
+    if ("resend_interval" in payload) {
+        encoded = encoded.concat(setResendInterval(payload.resend_interval));
+    }
+    if ("fetch_history" in payload) {
+        encoded = encoded.concat(fetchHistory(payload.fetch_history));
+    }
+    if ("stop_transmit" in payload) {
+        encoded = encoded.concat(stopTransmit(payload.stop_transmit));
+    }
+    if ("install_config" in payload) {
+        encoded = encoded.concat(setInstallConfig(payload.install_config));
+    }
+    if ("people_threshold_trigger_mode" in payload) {
+        encoded = encoded.concat(setPeopleThresholdTriggerMode(payload.people_threshold_trigger_mode));
+    }
+
+    return encoded;
+}
+
+/**
+ * reboot device
+ * @param {number} reboot values: (0: no, 1: yes)
+ * @example { "reboot": 1 }
+ */
+function reboot(reboot) {
+    var yes_no_map = { 0: "no", 1: "yes" };
+    var yes_no_values = getValues(yes_no_map);
+    if (yes_no_values.indexOf(reboot) === -1) {
+        throw new Error("reboot must be one of " + yes_no_values.join(", "));
+    }
+
+    if (getValue(yes_no_map, reboot) === 0) {
+        return [];
+    }
+    return [0xff, 0x10, 0xff];
+}
+
+/**
+ * report status
+ * @param {number} report_status values: (0: no, 1: yes)
+ * @example { "report_status": 1 }
+ */
+function reportStatus(report_status) {
+    var yes_no_map = { 0: "no", 1: "yes" };
+    var yes_no_values = getValues(yes_no_map);
+    if (yes_no_values.indexOf(report_status) === -1) {
+        throw new Error("report_status must be one of " + yes_no_values.join(", "));
+    }
+
+    if (getValue(yes_no_map, report_status) === 0) {
+        return [];
+    }
+    return [0xff, 0x28, 0xff];
+}
+
+/**
+ * set report interval
+ * @param {number} report_interval unit: minute, range: [1, 1440]
+ * @example { "report_interval": 20 }
+ */
+function setReportInterval(report_interval) {
+    if (typeof report_interval !== "number") {
+        throw new Error("report_interval must be a number");
+    }
+    if (report_interval < 1 || report_interval > 1440) {
+        throw new Error("report_interval must be in range [1, 1440]");
+    }
+
+    var buffer = new Buffer(5);
+    buffer.writeUInt8(0xff);
+    buffer.writeUInt8(0x8e);
+    buffer.writeUInt8(0x00);
+    buffer.writeUInt16LE(report_interval);
+    return buffer.toBytes();
+}
+
+/**
+ * set report type
+ * @param {number} report_type values: (0: period, 1: immediately)
+ * @example { "report_type": 0 }
+ */
+function setReportType(report_type) {
+    var report_type_map = { 0: "period", 1: "immediately" };
+    var report_type_values = getValues(report_type_map);
+    if (report_type_values.indexOf(report_type) === -1) {
+        throw new Error("report_type must be one of " + report_type_values.join(", "));
+    }
+
+    var buffer = new Buffer(3);
+    buffer.writeUInt8(0xf9);
+    buffer.writeUInt8(0x10);
+    buffer.writeUInt8(getValue(report_type_map, report_type));
+    return buffer.toBytes();
+}
+
+/**
+ * sync time
+ * @param {number} sync_time values：(0: no, 1: yes)
+ * @example { "sync_time": 1 }
+ */
+function syncTime(sync_time) {
+    var yes_no_map = { 0: "no", 1: "yes" };
+    var yes_no_values = getValues(yes_no_map);
+    if (yes_no_values.indexOf(sync_time) === -1) {
+        throw new Error("sync_time must be one of " + yes_no_values.join(", "));
+    }
+
+    if (getValue(yes_no_map, sync_time) === 0) {
+        return [];
+    }
+    return [0xff, 0x4a, 0xff];
+}
+
+/**
+ * set time zone
+ * @param {number} time_zone unit: minute, convert: "hh:mm" -> "hh * 60 + mm", values: ( -720: UTC-12, -660: UTC-11, -600: UTC-10, -570: UTC-9:30, -540: UTC-9, -480: UTC-8, -420: UTC-7, -360: UTC-6, -300: UTC-5, -240: UTC-4, -210: UTC-3:30, -180: UTC-3, -120: UTC-2, -60: UTC-1, 0: UTC, 60: UTC+1, 120: UTC+2, 180: UTC+3, 240: UTC+4, 300: UTC+5, 360: UTC+6, 420: UTC+7, 480: UTC+8, 540: UTC+9, 570: UTC+9:30, 600: UTC+10, 660: UTC+11, 720: UTC+12, 765: UTC+12:45, 780: UTC+13, 840: UTC+14 )
+ * @example { "time_zone": 480 }
+ * @example { "time_zone": -240 }
+ */
+function setTimeZone(time_zone) {
+    var timezone_map = { "-720": "UTC-12", "-660": "UTC-11", "-600": "UTC-10", "-570": "UTC-9:30", "-540": "UTC-9", "-480": "UTC-8", "-420": "UTC-7", "-360": "UTC-6", "-300": "UTC-5", "-240": "UTC-4", "-210": "UTC-3:30", "-180": "UTC-3", "-120": "UTC-2", "-60": "UTC-1", 0: "UTC", 60: "UTC+1", 120: "UTC+2", 180: "UTC+3", 210: "UTC+3:30", 240: "UTC+4", 270: "UTC+4:30", 300: "UTC+5", 330: "UTC+5:30", 345: "UTC+5:45", 360: "UTC+6", 390: "UTC+6:30", 420: "UTC+7", 480: "UTC+8", 540: "UTC+9", 570: "UTC+9:30", 600: "UTC+10", 630: "UTC+10:30", 660: "UTC+11", 720: "UTC+12", 765: "UTC+12:45", 780: "UTC+13", 840: "UTC+14" };
+    var timezone_values = getValues(timezone_map);
+    if (timezone_values.indexOf(time_zone) === -1) {
+        throw new Error("time_zone must be one of " + timezone_values.join(", "));
+    }
+
+    var buffer = new Buffer(4);
+    buffer.writeUInt8(0xff);
+    buffer.writeUInt8(0xbd);
+    buffer.writeInt16LE(getValue(timezone_map, time_zone));
+    return buffer.toBytes();
+}
+
+/**
+ * set reset cumulative enable
+ * @param {number} reset_cumulative_enable values: (0: disable, 1: enable)
+ * @example { "reset_cumulative_enable": 1 }
+ */
+function clearCumulative(reset_cumulative_enable) {
+    var enable_map = { 0: "disable", 1: "enable" };
+    var enable_values = getValues(enable_map);
+    if (enable_values.indexOf(reset_cumulative_enable) === -1) {
+        throw new Error("reset_cumulative_enable must be one of " + enable_values.join(", "));
+    }
+
+    var buffer = new Buffer(3);
+    buffer.writeUInt8(0xff);
+    buffer.writeUInt8(0xa6);
+    buffer.writeUInt8(getValue(enable_map, reset_cumulative_enable));
+    return buffer.toBytes();
+}
+
+/**
+ * set cumulative reset interval
+ * @param {number} reset_cumulative_interval unit: minute, range: [1, 65535]
+ * @example { "reset_cumulative_interval": 10 }
+ */
+function setCumulativeResetInterval(reset_cumulative_interval) {
+    if (typeof reset_cumulative_interval !== "number") {
+        throw new Error("reset_cumulative_interval must be a number");
+    }
+    if (reset_cumulative_interval < 1 || reset_cumulative_interval > 65535) {
+        throw new Error("reset_cumulative_interval must be in range [1, 65535]");
+    }
+
+    var buffer = new Buffer(4);
+    buffer.writeUInt8(0xff);
+    buffer.writeUInt8(0xa7);
+    buffer.writeUInt16LE(reset_cumulative_interval);
+    return buffer.toBytes();
+}
+
+/**
+ * clear cumulative in
+ * @param {number} reset_cumulative_in values: (0: no, 1: yes)
+ * @example { "reset_cumulative_in": 1 }
+ */
+function clearCumulativeIn(reset_cumulative_in) {
+    var yes_no_map = { 0: "no", 1: "yes" };
+    var yes_no_values = getValues(yes_no_map);
+    if (yes_no_values.indexOf(reset_cumulative_in) === -1) {
+        throw new Error("reset_cumulative_in must be one of " + yes_no_values.join(", "));
+    }
+
+    if (getValue(yes_no_map, reset_cumulative_in) === 0) {
+        return [];
+    }
+    return [0xff, 0xa8, 0x01];
+}
+
+/**
+ * clear cumulative out
+ * @param {number} reset_cumulative_out values: (0: no, 1: yes)
+ * @example { "reset_cumulative_out": 1 }
+ */
+function clearCumulativeOut(reset_cumulative_out) {
+    var yes_no_map = { 0: "no", 1: "yes" };
+    var yes_no_values = getValues(yes_no_map);
+    if (yes_no_values.indexOf(reset_cumulative_out) === -1) {
+        throw new Error("reset_cumulative_out must be one of " + yes_no_values.join(", "));
+    }
+
+    if (getValue(yes_no_map, reset_cumulative_out) === 0) {
+        return [];
+    }
+    return [0xff, 0xa8, 0x02];
+}
+
+/**
+ * set cumulative enable
+ * @param {number} report_cumulative_enable values: (0: no, 1: yes)
+ * @example { "report_cumulative_enable": 1 }
+ */
+function setCumulativeEnable(report_cumulative_enable) {
+    var enable_map = { 0: "disable", 1: "enable" };
+    var enable_values = getValues(enable_map);
+    if (enable_values.indexOf(report_cumulative_enable) === -1) {
+        throw new Error("report_cumulative_enable must be one of " + enable_values.join(", "));
+    }
+
+    var buffer = new Buffer(3);
+    buffer.writeUInt8(0xff);
+    buffer.writeUInt8(0xa9);
+    buffer.writeUInt8(getValue(enable_map, report_cumulative_enable));
+    return buffer.toBytes();
+}
+
+/**
+ * set temperature enable
+ * @param {number} report_temperature_enable values: (0: disable, 1: enable)
+ * @example { "report_temperature_enable": 1 }
+ */
+function setTemperatureEnable(report_temperature_enable) {
+    var enable_map = { 0: "disable", 1: "enable" };
+    var enable_values = getValues(enable_map);
+    if (enable_values.indexOf(report_temperature_enable) === -1) {
+        throw new Error("report_temperature_enable must be one of " + enable_values.join(", "));
+    }
+
+    var buffer = new Buffer(3);
+    buffer.writeUInt8(0xff);
+    buffer.writeUInt8(0xaa);
+    buffer.writeUInt8(getValue(enable_map, report_temperature_enable));
+    return buffer.toBytes();
+}
+
+/**
+ * set temperature calibration
+ * @param {object} temperature_calibration_settings
+ * @param {number} temperature_calibration_settings.enable values: (0: disable, 1: enable)
+ * @param {number} temperature_calibration_settings.calibration_value unit: °C
+ * @example { "temperature_calibration_settings": { "enable": 1, "calibration_value": 26 } }
+ */
+function setTemperatureCalibration(temperature_calibration_settings) {
+    var enable = temperature_calibration_settings.enable;
+    var calibration_value = temperature_calibration_settings.calibration_value;
+
+    var enable_map = { 0: "disable", 1: "enable" };
+    var enable_values = getValues(enable_map);
+    if (enable_values.indexOf(enable) === -1) {
+        throw new Error("temperature_calibration_settings.enable must be one of " + enable_values.join(", "));
+    }
+    if (typeof calibration_value !== "number") {
+        throw new Error("temperature_calibration_settings.calibration_value must be a number");
+    }
+
+    var buffer = new Buffer(5);
+    buffer.writeUInt8(0xff);
+    buffer.writeUInt8(0xab);
+    buffer.writeUInt8(getValue(enable_map, enable));
+    buffer.writeInt16LE(calibration_value * 10);
+    return buffer.toBytes();
+}
+
+/**
+ * set d2d key
+ * @param {string} d2d_key
+ * @example { "d2d_key": "0000000000000000" }
+ */
+function setD2DKey(d2d_key) {
+    if (typeof d2d_key !== "string") {
+        throw new Error("d2d_key must be a string");
+    }
+    if (d2d_key.length !== 16) {
+        throw new Error("d2d_key must be 16 characters");
+    }
+    if (!/^[0-9a-fA-F]+$/.test(d2d_key)) {
+        throw new Error("d2d_key must be hex string [0-9a-fA-F]");
+    }
+
+    var data = hexStringToBytes(d2d_key);
+    var buffer = new Buffer(10);
+    buffer.writeUInt8(0xff);
+    buffer.writeUInt8(0x35);
+    buffer.writeBytes(data);
+    return buffer.toBytes();
+}
+
+/**
+ * set d2d enable
+ * @param {number} d2d_enable values: (0: disable, 1: enable)
+ * @example { "d2d_enable": 1 }
+ */
+function setD2DEnable(d2d_enable) {
+    var enable_map = { 0: "disable", 1: "enable" };
+    var enable_values = getValues(enable_map);
+    if (enable_values.indexOf(d2d_enable) === -1) {
+        throw new Error("d2d_enable must be one of " + enable_values.join(", "));
+    }
+
+    var buffer = new Buffer(3);
+    buffer.writeUInt8(0xff);
+    buffer.writeUInt8(0x84);
+    buffer.writeUInt8(getValue(enable_map, d2d_enable));
+    return buffer.toBytes();
+}
+
+/**
+ * d2d master configuration
+ * @param {object} d2d_master_config
+ * @param {number} d2d_master_config.mode values: (1: someone_enter, 2: someone_leave, 3: counting_threshold_alarm, 4: temperature_threshold_alarm, 5: temperature_threshold_alarm_release)
+ * @param {number} d2d_master_config.enable values: (0: disable, 1: enable)
+ * @param {string} d2d_master_config.d2d_cmd
+ * @param {number} d2d_master_config.lora_uplink_enable values: (0: disable, 1: enable)
+ * @param {number} d2d_master_config.time_enable values: (0: disable, 1: enable)
+ * @param {number} d2d_master_config.time unit: minute
+ * @example { "d2d_master_config": [{ "mode": 0, "enable": 1, "d2d_cmd": "0000", "lora_uplink_enable": 1, "time_enable": 1, "time": 10 }] }
+ */
+function setD2DMasterConfig(d2d_master_config) {
+    var mode = d2d_master_config.mode;
+    var enable = d2d_master_config.enable;
+    var d2d_cmd = d2d_master_config.d2d_cmd;
+    var lora_uplink_enable = d2d_master_config.lora_uplink_enable;
+    var time_enable = d2d_master_config.time_enable;
+    var time = d2d_master_config.time;
+
+    var mode_map = { 1: "someone_enter", 2: "someone_leave", 3: "counting_threshold_alarm", 4: "temperature_threshold_alarm", 5: "temperature_threshold_alarm_release" };
+    var mode_values = getValues(mode_map);
+    if (mode_values.indexOf(mode) === -1) {
+        throw new Error("d2d_master_config._item.mode must be one of " + mode_values.join(", "));
+    }
+    var enable_map = { 0: "disable", 1: "enable" };
+    var enable_values = getValues(enable_map);
+    if (enable_values.indexOf(enable) === -1) {
+        throw new Error("d2d_master_config._item.enable must be one of " + enable_values.join(", "));
+    }
+    if ("enable" in d2d_master_config && enable_values.indexOf(lora_uplink_enable) === -1) {
+        throw new Error("d2d_master_config._item.lora_uplink_enable must be one of " + enable_values.join(", "));
+    }
+    if ("enable" in d2d_master_config && enable_values.indexOf(time_enable) === -1) {
+        throw new Error("d2d_master_config._item.time_enable must be one of " + enable_values.join(", "));
+    }
+
+    var buffer = new Buffer(10);
+    buffer.writeUInt8(0xff);
+    buffer.writeUInt8(0x96);
+    buffer.writeUInt8(getValue(mode_map, mode));
+    buffer.writeUInt8(getValue(enable_map, enable));
+    buffer.writeUInt8(getValue(enable_map, lora_uplink_enable));
+    buffer.writeD2DCommand(d2d_cmd, "0000");
+    buffer.writeUInt16LE(time);
+    buffer.writeUInt8(getValue(enable_map, time_enable));
+    return buffer.toBytes();
+}
+
+/**
+ * set period people alarm config
+ * @param {object} people_period_alarm_config
+ * @param {number} people_period_alarm_config.condition values: (0: disable, 1: below, 2: above, 3: between, 4: outside)
+ * @param {number} people_period_alarm_config.threshold_out
+ * @param {number} people_period_alarm_config.threshold_in
+ * @example { "people_period_alarm_config": { "condition": 1, "threshold_out": 10, "threshold_in": 20 } }
+ */
+function setPeriodPeopleAlarmConfig(people_period_alarm_config) {
+    var condition = people_period_alarm_config.condition;
+    var threshold_out = people_period_alarm_config.threshold_out;
+    var threshold_in = people_period_alarm_config.threshold_in;
+
+    var condition_map = { 0: "disable", 1: "below", 2: "above", 3: "between", 4: "outside" };
+    var condition_values = getValues(condition_map);
+    if (condition_values.indexOf(condition) === -1) {
+        throw new Error("people_period_alarm_config.condition must be one of " + condition_values.join(", "));
+    }
+
+    var data = 0x00;
+    data |= getValue(condition_map, condition);
+    data |= 0x01 << 3; // period count
+    data |= 0x01 << 6; // enable
+
+    var buffer = new Buffer(11);
+    buffer.writeUInt8(0xff);
+    buffer.writeUInt8(0x06);
+    buffer.writeUInt8(data);
+    buffer.writeUInt16LE(threshold_out);
+    buffer.writeUInt16LE(threshold_in);
+    buffer.writeUInt16LE(0x00);
+    buffer.writeUInt16LE(0x00);
+    return buffer.toBytes();
+}
+
+/**
+ * set period people alarm config
+ * @param {object} people_cumulative_alarm_config
+ * @param {number} people_cumulative_alarm_config.condition values: (0: disable, 1: below, 2: above, 3: between, 4: outside)
+ * @param {number} people_cumulative_alarm_config.threshold_out
+ * @param {number} people_cumulative_alarm_config.threshold_in
+ * @example { "people_cumulative_alarm_config": { "condition": 1, "threshold_out": 10, "threshold_in": 20 } }
+ */
+function setCumulativePeopleAlarmConfig(people_cumulative_alarm_config) {
+    var condition = people_cumulative_alarm_config.condition;
+    var threshold_out = people_cumulative_alarm_config.threshold_out;
+    var threshold_in = people_cumulative_alarm_config.threshold_in;
+
+    var condition_map = { 0: "disable", 1: "below", 2: "above", 3: "between", 4: "outside" };
+    var condition_values = getValues(condition_map);
+    if (condition_values.indexOf(condition) === -1) {
+        throw new Error("people_cumulative_alarm_config.condition must be one of " + condition_values.join(", "));
+    }
+
+    var data = 0x00;
+    data |= getValue(condition_map, condition);
+    data |= 0x02 << 3; // total count
+    data |= 0x01 << 6; // enable
+
+    var buffer = new Buffer(11);
+    buffer.writeUInt8(0xff);
+    buffer.writeUInt8(0x06);
+    buffer.writeUInt8(data);
+    buffer.writeUInt16LE(threshold_out);
+    buffer.writeUInt16LE(threshold_in);
+    buffer.writeUInt16LE(0x00);
+    buffer.writeUInt16LE(0x00);
+    return buffer.toBytes();
+}
+
+/**
+ * set temperature alarm config
+ * @param {object} temperature_alarm_config
+ * @param {number} temperature_alarm_config.condition values: (0: disable, 1: below, 2: above, 3: between, 4: outside)
+ * @param {number} temperature_alarm_config.threshold_min unit: °C
+ * @param {number} temperature_alarm_config.threshold_max unit: °C
+ * @example { "temperature_alarm_config": { "condition": 1, "threshold_min": 10, "threshold_max": 20 } }
+ */
+function setTemperatureAlarmConfig(temperature_alarm_config) {
+    var condition = temperature_alarm_config.condition;
+    var threshold_min = temperature_alarm_config.threshold_min;
+    var threshold_max = temperature_alarm_config.threshold_max;
+
+    var condition_map = { 0: "disable", 1: "below", 2: "above", 3: "between", 4: "outside" };
+    var condition_values = getValues(condition_map);
+    if (condition_values.indexOf(condition) === -1) {
+        throw new Error("temperature_alarm_config.condition must be one of " + condition_values.join(", "));
+    }
+
+    var data = 0x00;
+    data |= getValue(condition_map, condition);
+    data |= 0x03 << 3; // temperature
+    data |= 0x01 << 6; // enable
+
+    var buffer = new Buffer(11);
+    buffer.writeUInt8(0xff);
+    buffer.writeUInt8(0x06);
+    buffer.writeUInt8(data);
+    buffer.writeUInt16LE(threshold_min * 10);
+    buffer.writeUInt16LE(threshold_max * 10);
+    buffer.writeUInt16LE(0x00);
+    buffer.writeUInt16LE(0x00);
+    return buffer.toBytes();
+}
+
+/**
+ * set history enable
+ * @param {number} history_enable values: (0: disable, 1: enable)
+ * @example { "history_enable": 1 }
+ */
+function setHistoryEnable(history_enable) {
+    var enable_map = { 0: "disable", 1: "enable" };
+    var enable_values = getValues(enable_map);
+    if (enable_values.indexOf(history_enable) === -1) {
+        throw new Error("history_enable must be one of " + enable_values.join(", "));
+    }
+
+    var buffer = new Buffer(3);
+    buffer.writeUInt8(0xff);
+    buffer.writeUInt8(0x68);
+    buffer.writeUInt8(getValue(enable_map, history_enable));
+    return buffer.toBytes();
+}
+
+/**
+ * set retransmit enable
+ * @param {number} retransmit_enable values: (0: disable, 1: enable)
+ * @example { "retransmit_enable": 1 }
+ */
+function setRetransmitEnable(retransmit_enable) {
+    var enable_map = { 0: "disable", 1: "enable" };
+    var enable_values = getValues(enable_map);
+    if (enable_values.indexOf(retransmit_enable) === -1) {
+        throw new Error("retransmit_enable must be one of " + enable_values.join(", "));
+    }
+
+    var buffer = new Buffer(3);
+    buffer.writeUInt8(0xff);
+    buffer.writeUInt8(0x69);
+    buffer.writeUInt8(getValue(enable_map, retransmit_enable));
+    return buffer.toBytes();
+}
+
+/**
+ * set retransmit interval
+ * @param {number} retransmit_interval unit: second range: [30, 1200]
+ * @example { "retransmit_interval": 600 }
+ */
+function setRetransmitInterval(retransmit_interval) {
+    if (typeof retransmit_interval !== "number") {
+        throw new Error("retransmit_interval must be a number");
+    }
+    if (retransmit_interval < 30 || retransmit_interval > 1200) {
+        throw new Error("retransmit_interval must be between 30 and 1200");
+    }
+
+    var buffer = new Buffer(5);
+    buffer.writeUInt8(0xff);
+    buffer.writeUInt8(0x6a);
+    buffer.writeUInt8(0x00);
+    buffer.writeUInt16LE(retransmit_interval);
+    return buffer.toBytes();
+}
+/**
+ * set resend interval
+ * @param {number} resend_interval unit: second range: [30, 1200]
+ * @example { "resend_interval": 600 }
+ */
+function setResendInterval(resend_interval) {
+    if (typeof resend_interval !== "number") {
+        throw new Error("resend_interval must be a number");
+    }
+    if (resend_interval < 30 || resend_interval > 1200) {
+        throw new Error("resend_interval must be between 30 and 1200");
+    }
+
+    var buffer = new Buffer(5);
+    buffer.writeUInt8(0xff);
+    buffer.writeUInt8(0x6a);
+    buffer.writeUInt8(0x01);
+    buffer.writeUInt16LE(resend_interval);
+    return buffer.toBytes();
+}
+
+/**
+ * fetch history
+ * @param {object} fetch_history
+ * @param {number} fetch_history.start_time
+ * @param {number} fetch_history.end_time
+ */
+function fetchHistory(fetch_history) {
+    var start_time = fetch_history.start_time;
+    var end_time = fetch_history.end_time || 0;
+
+    if (typeof start_time !== "number") {
+        throw new Error("start_time must be a number");
+    }
+    if ("end_time" in fetch_history && typeof end_time !== "number") {
+        throw new Error("end_time must be a number");
+    }
+
+    if (end_time === 0) {
+        var buffer = new Buffer(6);
+        buffer.writeUInt8(0xfd);
+        buffer.writeUInt8(0x6b);
+        buffer.writeUInt32LE(start_time);
+    } else {
+        var buffer = new Buffer(10);
+        buffer.writeUInt8(0xfd);
+        buffer.writeUInt8(0x6c);
+        buffer.writeUInt32LE(start_time);
+        buffer.writeUInt32LE(end_time);
+    }
+    return buffer.toBytes();
+}
+
+/**
+ * stop transmit
+ * @param {number} stop_transmit values: (0: no, 1: yes)
+ * @example { "stop_transmit": 1 }
+ */
+function stopTransmit(stop_transmit) {
+    var yes_no_map = { 0: "no", 1: "yes" };
+    var yes_no_values = getValues(yes_no_map);
+    if (yes_no_values.indexOf(stop_transmit) === -1) {
+        throw new Error("stop_transmit must be one of " + yes_no_values.join(", "));
+    }
+
+    if (getValue(yes_no_map, stop_transmit) === 0) {
+        return [];
+    }
+    return [0xfd, 0x6d, 0xff];
+}
+
+/**
+ * set install config (0xac)
+ * Note: when manual_gain != 0, compensation is ineffective (device uses manual_gain instead)
+ * @param {object} install_config
+ * @param {number} install_config.install_method values: (0: side, 1: top)
+ * @param {number} install_config.install_height unit: m, precision: 0.1m, range: [2.0, 3.0]
+ * @param {number} install_config.compensation range: [-2, 2], ineffective when manual_gain != 0
+ * @param {number} install_config.sensitivity_report_enable values: (0: disable, 1: enable)
+ * @param {number} install_config.manual_gain unit: db, range: [0, 60-75], 0 means not applied
+ * @example { "install_config": { "install_method": 1, "install_height": 2.0, "compensation": 1, "sensitivity_report_enable": 1, "manual_gain": 0 } }
+ */
+function setInstallConfig(install_config) {
+    var install_method = install_config.install_method;
+    var install_height = install_config.install_height;
+    var compensation = install_config.compensation;
+    var sensitivity_report_enable = install_config.sensitivity_report_enable;
+    var manual_gain = install_config.manual_gain;
+
+    var method_map = { 0: "side", 1: "top" };
+    var method_values = getValues(method_map);
+    if (method_values.indexOf(install_method) === -1) {
+        throw new Error("install_config.install_method must be one of " + method_values.join(", "));
+    }
+
+    if (typeof install_height !== "number" || install_height < 2 || install_height > 3) {
+        throw new Error("install_config.install_height must be a number in [2, 3] (unit: m)");
+    }
+    if (typeof compensation !== "number" || compensation < -2 || compensation > 2) {
+        throw new Error("install_config.compensation must be a number in [-2, 2]");
+    }
+
+    var enable_map = { 0: "disable", 1: "enable" };
+    var enable_values = getValues(enable_map);
+    if (enable_values.indexOf(sensitivity_report_enable) === -1) {
+        throw new Error("install_config.sensitivity_report_enable must be one of " + enable_values.join(", "));
+    }
+
+    if (typeof manual_gain !== "number" || (manual_gain !== 0 && (manual_gain < 60 || manual_gain > 75))) {
+        throw new Error("install_config.manual_gain must be 0 (not applied) or in range [60, 75] (db)");
+    }
+
+    var buffer = new Buffer(7);
+    buffer.writeUInt8(0xff);
+    buffer.writeUInt8(0xac);
+    buffer.writeUInt8(getValue(method_map, install_method));
+    buffer.writeUInt8(Math.round(install_height * 10)); // precision: 0.1m
+    buffer.writeInt8(compensation);
+    buffer.writeUInt8(getValue(enable_map, sensitivity_report_enable));
+    buffer.writeUInt8(manual_gain);
+    return buffer.toBytes();
+}
+
+/**
+ * set people threshold trigger mode (0xad)
+ * @param {number|string} people_threshold_trigger_mode values: (0: threshold, 1: multiple)
+ * @example { "people_threshold_trigger_mode": 0 }
+ * @example { "people_threshold_trigger_mode": "threshold" }
+ */
+function setPeopleThresholdTriggerMode(people_threshold_trigger_mode) {
+    var mode_map = { 0: "threshold", 1: "multiple" };
+    var mode_values = getValues(mode_map);
+    if (mode_values.indexOf(people_threshold_trigger_mode) === -1 && !(people_threshold_trigger_mode in mode_map)) {
+        throw new Error("people_threshold_trigger_mode must be one of " + mode_values.join(", "));
+    }
+
+    var buffer = new Buffer(3);
+    buffer.writeUInt8(0xff);
+    buffer.writeUInt8(0xad);
+    // support both raw number or mapped string
+    var value = people_threshold_trigger_mode;
+    if (typeof value === "number") {
+        buffer.writeUInt8(value & 0xff);
+    } else {
+        buffer.writeUInt8(getValue(mode_map, value));
+    }
+    return buffer.toBytes();
+}
+
+function getValues(map) {
+    var values = [];
+    for (var key in map) {
+        values.push(RAW_VALUE ? parseInt(key) : map[key]);
+    }
+    return values;
+}
+
+function getValue(map, value) {
+    if (RAW_VALUE) return value;
+
+    for (var key in map) {
+        if (map[key] === value) {
+            return parseInt(key);
+        }
+    }
+
+    throw new Error("not match in " + JSON.stringify(map));
+}
+
+function Buffer(size) {
+    this.buffer = new Array(size);
+    this.offset = 0;
+
+    for (var i = 0; i < size; i++) {
+        this.buffer[i] = 0;
+    }
+}
+
+Buffer.prototype._write = function (value, byteLength, isLittleEndian) {
+    var offset = 0;
+    for (var index = 0; index < byteLength; index++) {
+        offset = isLittleEndian ? index << 3 : (byteLength - 1 - index) << 3;
+        this.buffer[this.offset + index] = (value >> offset) & 0xff;
+    }
+};
+
+Buffer.prototype.writeUInt8 = function (value) {
+    this._write(value, 1, true);
+    this.offset += 1;
+};
+
+Buffer.prototype.writeInt8 = function (value) {
+    this._write(value < 0 ? value + 0x100 : value, 1, true);
+    this.offset += 1;
+};
+
+Buffer.prototype.writeUInt16LE = function (value) {
+    this._write(value, 2, true);
+    this.offset += 2;
+};
+
+Buffer.prototype.writeInt16LE = function (value) {
+    this._write(value < 0 ? value + 0x10000 : value, 2, true);
+    this.offset += 2;
+};
+
+Buffer.prototype.writeUInt32LE = function (value) {
+    this._write(value, 4, true);
+    this.offset += 4;
+};
+
+Buffer.prototype.writeInt32LE = function (value) {
+    this._write(value < 0 ? value + 0x100000000 : value, 4, true);
+    this.offset += 4;
+};
+
+Buffer.prototype.writeD2DCommand = function (value, defaultValue) {
+    if (typeof value !== "string") {
+        value = defaultValue;
+    }
+    if (value.length !== 4) {
+        throw new Error("d2d_cmd length must be 4");
+    }
+    this.buffer[this.offset] = parseInt(value.substr(2, 2), 16);
+    this.buffer[this.offset + 1] = parseInt(value.substr(0, 2), 16);
+    this.offset += 2;
+};
+
+Buffer.prototype.writeBytes = function (bytes) {
+    for (var i = 0; i < bytes.length; i++) {
+        this.buffer[this.offset + i] = bytes[i];
+    }
+    this.offset += bytes.length;
+};
+
+Buffer.prototype.toBytes = function () {
+    return this.buffer;
+};
+
+function hexStringToBytes(hex) {
+    var bytes = [];
+    for (var c = 0; c < hex.length; c += 2) {
+        bytes.push(parseInt(hex.substr(c, 2), 16));
+    }
+    return bytes;
+}    return {
+        encodeDownlink: encodeDownlink,
+        Encode: Encode,
+        Encoder: Encoder,
+    };
+})();
+
+function encodeDownlink(input) {
+    var result = __milesightDownlinkCodec.encodeDownlink(input);
+    if (result && typeof input.fPort !== "undefined" && typeof result.fPort === "undefined") {
+        result.fPort = input.fPort;
+    } else if (result && typeof result.fPort === "undefined") {
+        result.fPort = 100;
+    }
+    return result;
+}
+
+function Encode(fPort, obj) {
+    return __milesightDownlinkCodec.Encode(fPort, obj);
+}
+
+function Encoder(obj, port) {
+    return __milesightDownlinkCodec.Encoder(obj, port);
+}
+
+exports.encodeDownlink = encodeDownlink;
+exports.decodeDownlink = decodeDownlink;
+
+exports.decodeUplink = decodeUplink;

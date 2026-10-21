@@ -1,0 +1,4692 @@
+[
+    {
+        "description": "Battery, temperature, humidity and target temperature uplink",
+        "type": "uplink",
+        "input": {
+            "bytes": "005A01660802C201069808",
+            "fPort": 85,
+            "time": "2025-01-01T00:00:00.000+00:00"
+        },
+        "output": {
+            "data": {
+                "battery": 90,
+                "humidity": 45,
+                "fahrenheit_temperature": 70.7,
+                "celsius_temperature": 21.5,
+                "fahrenheit_target_temperature1": 71.6,
+                "celsius_target_temperature1": 22
+            }
+        },
+        "points": {
+            "temperature": {
+                "unitId": "Cel",
+                "records": [
+                    {
+                        "value": 21.5,
+                        "eventTime": null
+                    },
+                    {
+                        "value": 22,
+                        "eventTime": null
+                    }
+                ],
+                "nature": "target 1"
+            },
+            "batteryLevel": {
+                "unitId": "%",
+                "record": 90
+            },
+            "humidity": {
+                "unitId": "%RH",
+                "record": 45
+            }
+        },
+        "BACnet": {
+            "battery": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 90,
+                "units": "PERCENT"
+            },
+            "celsius_target_temperature1": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 22,
+                "units": "DEGREES_CELSIUS"
+            },
+            "celsius_temperature": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 21.5,
+                "units": "DEGREES_CELSIUS"
+            },
+            "fahrenheit_target_temperature1": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 71.6,
+                "units": "DEGREES_FAHRENHEIT"
+            },
+            "fahrenheit_temperature": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 70.7,
+                "units": "DEGREES_FAHRENHEIT"
+            },
+            "humidity": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 45,
+                "units": "PERCENT_RELATIVE_HUMIDITY"
+            }
+        },
+        "Modbus": {
+            "battery": {
+                "table": "inputRegister",
+                "value": 90,
+                "value_type": "UINT8"
+            },
+            "celsius_target_temperature1": {
+                "table": "inputRegister",
+                "value": 22,
+                "value_type": "FLOAT"
+            },
+            "celsius_temperature": {
+                "table": "inputRegister",
+                "value": 21.5,
+                "value_type": "FLOAT"
+            },
+            "fahrenheit_target_temperature1": {
+                "table": "inputRegister",
+                "value": 71.6,
+                "value_type": "FLOAT"
+            },
+            "fahrenheit_temperature": {
+                "table": "inputRegister",
+                "value": 70.7,
+                "value_type": "FLOAT"
+            },
+            "humidity": {
+                "table": "inputRegister",
+                "value": 45,
+                "value_type": "FLOAT"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: children_lock_settings:button1_event, children_lock_settings:button2_event, children_lock_settings:button3_event and 60 more",
+        "type": "uplink",
+        "input": {
+            "bytes": "72000000c6003c0111000001110000883a8002750b6b03e803ac0d6b02fc08ac0d6b04e803ac0d6b01e8038c0a6a6400",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "children_lock_settings": {
+                    "enable": 0,
+                    "temp_up": 0,
+                    "temp_down": 0,
+                    "system_on_off": 0,
+                    "fan_mode": 0,
+                    "temperature_control_mode": 0,
+                    "reboot_reset": 0,
+                    "power_on_off": 0,
+                    "cancel_pair": 0,
+                    "plan_switch": 0,
+                    "status_report": 0,
+                    "filter_clean_alarm_release": 0,
+                    "button1_event": 0,
+                    "button2_event": 0,
+                    "button3_event": 0,
+                    "temperature_unit_switch": 0,
+                    "reserved": 0
+                },
+                "daylight_saving_time": {
+                    "enable": 0,
+                    "daylight_saving_time_offset": 60,
+                    "start_month": 1,
+                    "start_week_num": 1,
+                    "start_week_day": 1,
+                    "start_hour_min": 0,
+                    "end_month": 1,
+                    "end_week_num": 1,
+                    "end_week_day": 1,
+                    "end_hour_min": 0
+                },
+                "fan_enable": {
+                    "auto": 0,
+                    "circul": 1,
+                    "on": 0,
+                    "low": 1,
+                    "medium": 1,
+                    "high": 1,
+                    "reserved": 0
+                },
+                "unlock_combination_button_settings": {
+                    "button1": 0,
+                    "button2": 1,
+                    "button3": 0,
+                    "button4": 0,
+                    "button5": 0,
+                    "reserved": 0
+                },
+                "screen_display_settings": {
+                    "plan_name": 1,
+                    "ambient_temp": 1,
+                    "ambient_humi": 0,
+                    "target_temp": 1,
+                    "reserved": 0
+                },
+                "target_temperature_range": {
+                    "auto": {
+                        "fahrenheit_min": 50,
+                        "celsius_min": 10,
+                        "fahrenheit_max": 95,
+                        "celsius_max": 35
+                    },
+                    "cool": {
+                        "fahrenheit_min": 73.4,
+                        "celsius_min": 23,
+                        "fahrenheit_max": 95,
+                        "celsius_max": 35
+                    },
+                    "dehumidify": {
+                        "fahrenheit_min": 50,
+                        "celsius_min": 10,
+                        "fahrenheit_max": 95,
+                        "celsius_max": 35
+                    },
+                    "em_heat": {
+                        "fahrenheit_min": 50,
+                        "celsius_min": 10,
+                        "fahrenheit_max": 80.6,
+                        "celsius_max": 27
+                    }
+                },
+                "fahrenheit_minimum_dead_zone": 1.8,
+                "celsius_minimum_dead_zone": 1
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "celsius_minimum_dead_zone": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 1,
+                    "units": "DEGREES_KELVIN"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 1,
+                    "units": "DEGREES_KELVIN"
+                }
+            ],
+            "children_lock_settings:button1_event": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "children_lock_settings:button2_event": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "children_lock_settings:button3_event": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "children_lock_settings:cancel_pair": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "children_lock_settings:enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "children_lock_settings:fan_mode": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "children_lock_settings:filter_clean_alarm_release": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "children_lock_settings:plan_switch": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "children_lock_settings:power_on_off": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "children_lock_settings:reboot_reset": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "children_lock_settings:reserved": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "children_lock_settings:status_report": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "children_lock_settings:system_on_off": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "children_lock_settings:temp_down": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "children_lock_settings:temp_up": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "children_lock_settings:temperature_control_mode": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "children_lock_settings:temperature_unit_switch": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "daylight_saving_time:daylight_saving_time_offset": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 60,
+                    "units": "MINUTES"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 1,
+                    "units": "MINUTES"
+                }
+            ],
+            "daylight_saving_time:enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "daylight_saving_time:end_hour_min": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "MINUTES"
+            },
+            "daylight_saving_time:end_month": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 1,
+                "units": "NO_UNITS"
+            },
+            "daylight_saving_time:end_week_day": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 1,
+                "units": "NO_UNITS"
+            },
+            "daylight_saving_time:end_week_num": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 1,
+                "units": "NO_UNITS"
+            },
+            "daylight_saving_time:start_hour_min": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "MINUTES"
+            },
+            "daylight_saving_time:start_month": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 1,
+                "units": "NO_UNITS"
+            },
+            "daylight_saving_time:start_week_day": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 1,
+                "units": "NO_UNITS"
+            },
+            "daylight_saving_time:start_week_num": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 1,
+                "units": "NO_UNITS"
+            },
+            "fahrenheit_minimum_dead_zone": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 1.8,
+                    "units": null
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 1.8,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "fan_enable:auto": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "fan_enable:circul": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            },
+            "fan_enable:high": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            },
+            "fan_enable:low": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            },
+            "fan_enable:medium": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            },
+            "fan_enable:on": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "fan_enable:reserved": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "screen_display_settings:ambient_humi": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "screen_display_settings:ambient_temp": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            },
+            "screen_display_settings:plan_name": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            },
+            "screen_display_settings:reserved": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "screen_display_settings:target_temp": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            },
+            "target_temperature_range:auto:celsius_max": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 35,
+                    "units": "DEGREES_CELSIUS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 5,
+                    "units": "DEGREES_CELSIUS"
+                }
+            ],
+            "target_temperature_range:auto:celsius_min": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 10,
+                    "units": "DEGREES_CELSIUS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 5,
+                    "units": "DEGREES_CELSIUS"
+                }
+            ],
+            "target_temperature_range:auto:fahrenheit_max": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 95,
+                "units": "DEGREES_FAHRENHEIT"
+            },
+            "target_temperature_range:auto:fahrenheit_min": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 50,
+                "units": "DEGREES_FAHRENHEIT"
+            },
+            "target_temperature_range:cool:celsius_max": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 35,
+                    "units": "DEGREES_CELSIUS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 5,
+                    "units": "DEGREES_CELSIUS"
+                }
+            ],
+            "target_temperature_range:cool:celsius_min": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 23,
+                    "units": "DEGREES_CELSIUS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 5,
+                    "units": "DEGREES_CELSIUS"
+                }
+            ],
+            "target_temperature_range:cool:fahrenheit_max": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 95,
+                "units": "DEGREES_FAHRENHEIT"
+            },
+            "target_temperature_range:cool:fahrenheit_min": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 73.4,
+                "units": "DEGREES_FAHRENHEIT"
+            },
+            "target_temperature_range:dehumidify:celsius_max": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 35,
+                    "units": "DEGREES_CELSIUS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 5,
+                    "units": "DEGREES_CELSIUS"
+                }
+            ],
+            "target_temperature_range:dehumidify:celsius_min": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 10,
+                    "units": "DEGREES_CELSIUS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 5,
+                    "units": "DEGREES_CELSIUS"
+                }
+            ],
+            "target_temperature_range:dehumidify:fahrenheit_max": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 95,
+                "units": "DEGREES_FAHRENHEIT"
+            },
+            "target_temperature_range:dehumidify:fahrenheit_min": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 50,
+                "units": "DEGREES_FAHRENHEIT"
+            },
+            "target_temperature_range:em_heat:celsius_max": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 27,
+                    "units": "DEGREES_CELSIUS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 5,
+                    "units": "DEGREES_CELSIUS"
+                }
+            ],
+            "target_temperature_range:em_heat:celsius_min": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 10,
+                    "units": "DEGREES_CELSIUS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 5,
+                    "units": "DEGREES_CELSIUS"
+                }
+            ],
+            "target_temperature_range:em_heat:fahrenheit_max": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 80.6,
+                "units": "DEGREES_FAHRENHEIT"
+            },
+            "target_temperature_range:em_heat:fahrenheit_min": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 50,
+                "units": "DEGREES_FAHRENHEIT"
+            },
+            "unlock_combination_button_settings:button1": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "unlock_combination_button_settings:button2": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            },
+            "unlock_combination_button_settings:button3": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "unlock_combination_button_settings:button4": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "unlock_combination_button_settings:button5": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "unlock_combination_button_settings:reserved": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "celsius_minimum_dead_zone": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "FLOAT"
+            },
+            "children_lock_settings:button1_event": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "children_lock_settings:button2_event": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "children_lock_settings:button3_event": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "children_lock_settings:cancel_pair": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "children_lock_settings:enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "children_lock_settings:fan_mode": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "children_lock_settings:filter_clean_alarm_release": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "children_lock_settings:plan_switch": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "children_lock_settings:power_on_off": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "children_lock_settings:reboot_reset": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "children_lock_settings:reserved": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "children_lock_settings:status_report": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "children_lock_settings:system_on_off": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "children_lock_settings:temp_down": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "children_lock_settings:temp_up": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "children_lock_settings:temperature_control_mode": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "children_lock_settings:temperature_unit_switch": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "daylight_saving_time:daylight_saving_time_offset": {
+                "table": "inputRegister",
+                "value": 60,
+                "value_type": "UINT8"
+            },
+            "daylight_saving_time:enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "daylight_saving_time:end_hour_min": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            },
+            "daylight_saving_time:end_month": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "daylight_saving_time:end_week_day": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "daylight_saving_time:end_week_num": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "daylight_saving_time:start_hour_min": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            },
+            "daylight_saving_time:start_month": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "daylight_saving_time:start_week_day": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "daylight_saving_time:start_week_num": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "fahrenheit_minimum_dead_zone": {
+                "table": "inputRegister",
+                "value": 1.8,
+                "value_type": "FLOAT"
+            },
+            "fan_enable:auto": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "fan_enable:circul": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "fan_enable:high": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "fan_enable:low": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "fan_enable:medium": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "fan_enable:on": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "fan_enable:reserved": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "screen_display_settings:ambient_humi": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "screen_display_settings:ambient_temp": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "screen_display_settings:plan_name": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "screen_display_settings:reserved": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "screen_display_settings:target_temp": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "target_temperature_range:auto:celsius_max": {
+                "table": "inputRegister",
+                "value": 35,
+                "value_type": "FLOAT"
+            },
+            "target_temperature_range:auto:celsius_min": {
+                "table": "inputRegister",
+                "value": 10,
+                "value_type": "FLOAT"
+            },
+            "target_temperature_range:auto:fahrenheit_max": {
+                "table": "inputRegister",
+                "value": 95,
+                "value_type": "FLOAT"
+            },
+            "target_temperature_range:auto:fahrenheit_min": {
+                "table": "inputRegister",
+                "value": 50,
+                "value_type": "FLOAT"
+            },
+            "target_temperature_range:cool:celsius_max": {
+                "table": "inputRegister",
+                "value": 35,
+                "value_type": "FLOAT"
+            },
+            "target_temperature_range:cool:celsius_min": {
+                "table": "inputRegister",
+                "value": 23,
+                "value_type": "FLOAT"
+            },
+            "target_temperature_range:cool:fahrenheit_max": {
+                "table": "inputRegister",
+                "value": 95,
+                "value_type": "FLOAT"
+            },
+            "target_temperature_range:cool:fahrenheit_min": {
+                "table": "inputRegister",
+                "value": 73.4,
+                "value_type": "FLOAT"
+            },
+            "target_temperature_range:dehumidify:celsius_max": {
+                "table": "inputRegister",
+                "value": 35,
+                "value_type": "FLOAT"
+            },
+            "target_temperature_range:dehumidify:celsius_min": {
+                "table": "inputRegister",
+                "value": 10,
+                "value_type": "FLOAT"
+            },
+            "target_temperature_range:dehumidify:fahrenheit_max": {
+                "table": "inputRegister",
+                "value": 95,
+                "value_type": "FLOAT"
+            },
+            "target_temperature_range:dehumidify:fahrenheit_min": {
+                "table": "inputRegister",
+                "value": 50,
+                "value_type": "FLOAT"
+            },
+            "target_temperature_range:em_heat:celsius_max": {
+                "table": "inputRegister",
+                "value": 27,
+                "value_type": "FLOAT"
+            },
+            "target_temperature_range:em_heat:celsius_min": {
+                "table": "inputRegister",
+                "value": 10,
+                "value_type": "FLOAT"
+            },
+            "target_temperature_range:em_heat:fahrenheit_max": {
+                "table": "inputRegister",
+                "value": 80.6,
+                "value_type": "FLOAT"
+            },
+            "target_temperature_range:em_heat:fahrenheit_min": {
+                "table": "inputRegister",
+                "value": 50,
+                "value_type": "FLOAT"
+            },
+            "unlock_combination_button_settings:button1": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "unlock_combination_button_settings:button2": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "unlock_combination_button_settings:button3": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "unlock_combination_button_settings:button4": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "unlock_combination_button_settings:button5": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "unlock_combination_button_settings:reserved": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: target_temperature_range:heat:celsius_max, target_temperature_range:heat:celsius_min, target_temperature_range:heat:fahrenheit_max and 24 more",
+        "type": "uplink",
+        "input": {
+            "bytes": "6b00e8036c076b05e803ac0d76000000600000007700000082040532840305326903f4016905f4016904f4016902f401",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "target_temperature_range": {
+                    "heat": {
+                        "fahrenheit_min": 50,
+                        "celsius_min": 10,
+                        "fahrenheit_max": 66.2,
+                        "celsius_max": 19
+                    },
+                    "ventilation": {
+                        "fahrenheit_min": 50,
+                        "celsius_min": 10,
+                        "fahrenheit_max": 95,
+                        "celsius_max": 35
+                    }
+                },
+                "temperature_calibration_settings": {
+                    "enable": 0,
+                    "fahrenheit_calibration_value": 32,
+                    "celsius_calibration_value": 0
+                },
+                "collection_interval": {
+                    "unit": 0,
+                    "seconds_of_time": 0
+                },
+                "humidity_calibration_settings": {
+                    "enable": 0,
+                    "calibration_value": 0
+                },
+                "pir_common": {
+                    "check": {
+                        "period": 5,
+                        "rate": 50
+                    }
+                },
+                "pir_night": {
+                    "check": {
+                        "period": 5,
+                        "rate": 50
+                    }
+                },
+                "target_temperature_settings": {
+                    "fahrenheit_auto": 41,
+                    "celsius_auto": 5,
+                    "fahrenheit_auto_cool": 41,
+                    "celsius_auto_cool": 5,
+                    "fahrenheit_auto_heat": 41,
+                    "celsius_auto_heat": 5,
+                    "fahrenheit_cool": 41,
+                    "celsius_cool": 5
+                }
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "collection_interval:seconds_of_time": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "SECONDS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 1,
+                    "units": "SECONDS"
+                }
+            ],
+            "collection_interval:unit": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "humidity_calibration_settings:calibration_value": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "PERCENT"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "PERCENT"
+                }
+            ],
+            "humidity_calibration_settings:enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "pir_common:check:period": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 5,
+                    "units": "MINUTES"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 1,
+                    "units": "MINUTES"
+                }
+            ],
+            "pir_common:check:rate": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 50,
+                    "units": "PERCENT"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 1,
+                    "units": "PERCENT"
+                }
+            ],
+            "pir_night:check:period": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 5,
+                    "units": "MINUTES"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 1,
+                    "units": "MINUTES"
+                }
+            ],
+            "pir_night:check:rate": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 50,
+                    "units": "PERCENT"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 1,
+                    "units": "PERCENT"
+                }
+            ],
+            "target_temperature_range:heat:celsius_max": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 19,
+                    "units": "DEGREES_CELSIUS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 5,
+                    "units": "DEGREES_CELSIUS"
+                }
+            ],
+            "target_temperature_range:heat:celsius_min": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 10,
+                    "units": "DEGREES_CELSIUS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 5,
+                    "units": "DEGREES_CELSIUS"
+                }
+            ],
+            "target_temperature_range:heat:fahrenheit_max": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 66.2,
+                "units": "DEGREES_FAHRENHEIT"
+            },
+            "target_temperature_range:heat:fahrenheit_min": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 50,
+                "units": "DEGREES_FAHRENHEIT"
+            },
+            "target_temperature_range:ventilation:celsius_max": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 35,
+                    "units": "DEGREES_CELSIUS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 5,
+                    "units": "DEGREES_CELSIUS"
+                }
+            ],
+            "target_temperature_range:ventilation:celsius_min": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 10,
+                    "units": "DEGREES_CELSIUS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 5,
+                    "units": "DEGREES_CELSIUS"
+                }
+            ],
+            "target_temperature_range:ventilation:fahrenheit_max": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 95,
+                "units": "DEGREES_FAHRENHEIT"
+            },
+            "target_temperature_range:ventilation:fahrenheit_min": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 50,
+                "units": "DEGREES_FAHRENHEIT"
+            },
+            "target_temperature_settings:celsius_auto": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 5,
+                    "units": "DEGREES_CELSIUS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 5,
+                    "units": "DEGREES_CELSIUS"
+                }
+            ],
+            "target_temperature_settings:celsius_auto_cool": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 5,
+                    "units": "DEGREES_CELSIUS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 5,
+                    "units": "DEGREES_CELSIUS"
+                }
+            ],
+            "target_temperature_settings:celsius_auto_heat": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 5,
+                    "units": "DEGREES_CELSIUS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 5,
+                    "units": "DEGREES_CELSIUS"
+                }
+            ],
+            "target_temperature_settings:celsius_cool": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 5,
+                    "units": "DEGREES_CELSIUS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 5,
+                    "units": "DEGREES_CELSIUS"
+                }
+            ],
+            "target_temperature_settings:fahrenheit_auto": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 41,
+                "units": "DEGREES_FAHRENHEIT"
+            },
+            "target_temperature_settings:fahrenheit_auto_cool": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 41,
+                "units": "DEGREES_FAHRENHEIT"
+            },
+            "target_temperature_settings:fahrenheit_auto_heat": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 41,
+                "units": "DEGREES_FAHRENHEIT"
+            },
+            "target_temperature_settings:fahrenheit_cool": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 41,
+                "units": "DEGREES_FAHRENHEIT"
+            },
+            "temperature_calibration_settings:celsius_calibration_value": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "DEGREES_CELSIUS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "DEGREES_CELSIUS"
+                }
+            ],
+            "temperature_calibration_settings:enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "temperature_calibration_settings:fahrenheit_calibration_value": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 32,
+                "units": "DEGREES_FAHRENHEIT"
+            }
+        },
+        "Modbus": {
+            "collection_interval:seconds_of_time": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            },
+            "collection_interval:unit": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "humidity_calibration_settings:calibration_value": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "FLOAT"
+            },
+            "humidity_calibration_settings:enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "pir_common:check:period": {
+                "table": "inputRegister",
+                "value": 5,
+                "value_type": "UINT8"
+            },
+            "pir_common:check:rate": {
+                "table": "inputRegister",
+                "value": 50,
+                "value_type": "UINT8"
+            },
+            "pir_night:check:period": {
+                "table": "inputRegister",
+                "value": 5,
+                "value_type": "UINT8"
+            },
+            "pir_night:check:rate": {
+                "table": "inputRegister",
+                "value": 50,
+                "value_type": "UINT8"
+            },
+            "target_temperature_range:heat:celsius_max": {
+                "table": "inputRegister",
+                "value": 19,
+                "value_type": "FLOAT"
+            },
+            "target_temperature_range:heat:celsius_min": {
+                "table": "inputRegister",
+                "value": 10,
+                "value_type": "FLOAT"
+            },
+            "target_temperature_range:heat:fahrenheit_max": {
+                "table": "inputRegister",
+                "value": 66.2,
+                "value_type": "FLOAT"
+            },
+            "target_temperature_range:heat:fahrenheit_min": {
+                "table": "inputRegister",
+                "value": 50,
+                "value_type": "FLOAT"
+            },
+            "target_temperature_range:ventilation:celsius_max": {
+                "table": "inputRegister",
+                "value": 35,
+                "value_type": "FLOAT"
+            },
+            "target_temperature_range:ventilation:celsius_min": {
+                "table": "inputRegister",
+                "value": 10,
+                "value_type": "FLOAT"
+            },
+            "target_temperature_range:ventilation:fahrenheit_max": {
+                "table": "inputRegister",
+                "value": 95,
+                "value_type": "FLOAT"
+            },
+            "target_temperature_range:ventilation:fahrenheit_min": {
+                "table": "inputRegister",
+                "value": 50,
+                "value_type": "FLOAT"
+            },
+            "target_temperature_settings:celsius_auto": {
+                "table": "inputRegister",
+                "value": 5,
+                "value_type": "FLOAT"
+            },
+            "target_temperature_settings:celsius_auto_cool": {
+                "table": "inputRegister",
+                "value": 5,
+                "value_type": "FLOAT"
+            },
+            "target_temperature_settings:celsius_auto_heat": {
+                "table": "inputRegister",
+                "value": 5,
+                "value_type": "FLOAT"
+            },
+            "target_temperature_settings:celsius_cool": {
+                "table": "inputRegister",
+                "value": 5,
+                "value_type": "FLOAT"
+            },
+            "target_temperature_settings:fahrenheit_auto": {
+                "table": "inputRegister",
+                "value": 41,
+                "value_type": "FLOAT"
+            },
+            "target_temperature_settings:fahrenheit_auto_cool": {
+                "table": "inputRegister",
+                "value": 41,
+                "value_type": "FLOAT"
+            },
+            "target_temperature_settings:fahrenheit_auto_heat": {
+                "table": "inputRegister",
+                "value": 41,
+                "value_type": "FLOAT"
+            },
+            "target_temperature_settings:fahrenheit_cool": {
+                "table": "inputRegister",
+                "value": 41,
+                "value_type": "FLOAT"
+            },
+            "temperature_calibration_settings:celsius_calibration_value": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "FLOAT"
+            },
+            "temperature_calibration_settings:enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "temperature_calibration_settings:fahrenheit_calibration_value": {
+                "table": "inputRegister",
+                "value": 32,
+                "value_type": "FLOAT"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: target_temperature_settings:celsius_dehumidify, target_temperature_settings:fahrenheit_dehumidify, target_temperature_settings:celsius_em_heat and 18 more",
+        "type": "uplink",
+        "input": {
+            "bytes": "6906f4016901f4016900f4016907f40181001e006c020000006c000000006c010000006c0300000061020000008900",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "target_temperature_settings": {
+                    "fahrenheit_dehumidify": 41,
+                    "celsius_dehumidify": 5,
+                    "fahrenheit_em_heat": 41,
+                    "celsius_em_heat": 5,
+                    "fahrenheit_heat": 41,
+                    "celsius_heat": 5,
+                    "fahrenheit_ventilation": 41,
+                    "celsius_ventilation": 5
+                },
+                "unlock_button": {
+                    "enable": 0,
+                    "timeout": 30
+                },
+                "communicate_interval": {
+                    "ble_lora": {
+                        "unit": 0,
+                        "seconds_of_time": 0
+                    },
+                    "ble": {
+                        "unit": 0,
+                        "seconds_of_time": 0
+                    },
+                    "lora": {
+                        "unit": 0,
+                        "seconds_of_time": 0
+                    },
+                    "power_bus": {
+                        "unit": 0,
+                        "seconds_of_time": 0
+                    }
+                },
+                "reporting_interval": {
+                    "ble_lora": {
+                        "unit": 0,
+                        "seconds_of_time": 0
+                    }
+                },
+                "backlight_enable": 0
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "backlight_enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "communicate_interval:ble_lora:seconds_of_time": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "SECONDS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 10,
+                    "units": "SECONDS"
+                }
+            ],
+            "communicate_interval:ble_lora:unit": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "communicate_interval:ble:seconds_of_time": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "SECONDS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 10,
+                    "units": "SECONDS"
+                }
+            ],
+            "communicate_interval:ble:unit": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "communicate_interval:lora:seconds_of_time": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "SECONDS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 10,
+                    "units": "SECONDS"
+                }
+            ],
+            "communicate_interval:lora:unit": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "communicate_interval:power_bus:seconds_of_time": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "SECONDS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 10,
+                    "units": "SECONDS"
+                }
+            ],
+            "communicate_interval:power_bus:unit": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "reporting_interval:ble_lora:seconds_of_time": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "SECONDS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 10,
+                    "units": "SECONDS"
+                }
+            ],
+            "reporting_interval:ble_lora:unit": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "target_temperature_settings:celsius_dehumidify": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 5,
+                    "units": "DEGREES_CELSIUS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 5,
+                    "units": "DEGREES_CELSIUS"
+                }
+            ],
+            "target_temperature_settings:celsius_em_heat": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 5,
+                    "units": "DEGREES_CELSIUS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 5,
+                    "units": "DEGREES_CELSIUS"
+                }
+            ],
+            "target_temperature_settings:celsius_heat": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 5,
+                    "units": "DEGREES_CELSIUS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 5,
+                    "units": "DEGREES_CELSIUS"
+                }
+            ],
+            "target_temperature_settings:celsius_ventilation": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 5,
+                    "units": "DEGREES_CELSIUS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 5,
+                    "units": "DEGREES_CELSIUS"
+                }
+            ],
+            "target_temperature_settings:fahrenheit_dehumidify": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 41,
+                "units": "DEGREES_FAHRENHEIT"
+            },
+            "target_temperature_settings:fahrenheit_em_heat": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 41,
+                "units": "DEGREES_FAHRENHEIT"
+            },
+            "target_temperature_settings:fahrenheit_heat": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 41,
+                "units": "DEGREES_FAHRENHEIT"
+            },
+            "target_temperature_settings:fahrenheit_ventilation": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 41,
+                "units": "DEGREES_FAHRENHEIT"
+            },
+            "unlock_button:enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "unlock_button:timeout": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 30,
+                    "units": "SECONDS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 1,
+                    "units": "SECONDS"
+                }
+            ]
+        },
+        "Modbus": {
+            "backlight_enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "communicate_interval:ble_lora:seconds_of_time": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            },
+            "communicate_interval:ble_lora:unit": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "communicate_interval:ble:seconds_of_time": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            },
+            "communicate_interval:ble:unit": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "communicate_interval:lora:seconds_of_time": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            },
+            "communicate_interval:lora:unit": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "communicate_interval:power_bus:seconds_of_time": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            },
+            "communicate_interval:power_bus:unit": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "reporting_interval:ble_lora:seconds_of_time": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            },
+            "reporting_interval:ble_lora:unit": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "target_temperature_settings:celsius_dehumidify": {
+                "table": "inputRegister",
+                "value": 5,
+                "value_type": "FLOAT"
+            },
+            "target_temperature_settings:celsius_em_heat": {
+                "table": "inputRegister",
+                "value": 5,
+                "value_type": "FLOAT"
+            },
+            "target_temperature_settings:celsius_heat": {
+                "table": "inputRegister",
+                "value": 5,
+                "value_type": "FLOAT"
+            },
+            "target_temperature_settings:celsius_ventilation": {
+                "table": "inputRegister",
+                "value": 5,
+                "value_type": "FLOAT"
+            },
+            "target_temperature_settings:fahrenheit_dehumidify": {
+                "table": "inputRegister",
+                "value": 41,
+                "value_type": "FLOAT"
+            },
+            "target_temperature_settings:fahrenheit_em_heat": {
+                "table": "inputRegister",
+                "value": 41,
+                "value_type": "FLOAT"
+            },
+            "target_temperature_settings:fahrenheit_heat": {
+                "table": "inputRegister",
+                "value": 41,
+                "value_type": "FLOAT"
+            },
+            "target_temperature_settings:fahrenheit_ventilation": {
+                "table": "inputRegister",
+                "value": 41,
+                "value_type": "FLOAT"
+            },
+            "unlock_button:enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "unlock_button:timeout": {
+                "table": "inputRegister",
+                "value": 30,
+                "value_type": "UINT16"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: reporting_interval:ble:seconds_of_time, reporting_interval:ble:unit, reporting_interval:lora:seconds_of_time and 7 more",
+        "type": "uplink",
+        "input": {
+            "bytes": "6100000000610100000061030000008404ec04e001030001522374",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "reporting_interval": {
+                    "ble": {
+                        "unit": 0,
+                        "seconds_of_time": 0
+                    },
+                    "lora": {
+                        "unit": 0,
+                        "seconds_of_time": 0
+                    },
+                    "power_lora": {
+                        "unit": 0,
+                        "seconds_of_time": 0
+                    }
+                },
+                "pir_night": {
+                    "night_time": {
+                        "start": 1260,
+                        "stop": 480
+                    }
+                },
+                "temperature_mode": 0,
+                "fan_control_mode": 0,
+                "fahrenheit_temperature": 194.76,
+                "celsius_temperature": 90.42
+            }
+        },
+        "points": {
+            "temperature": {
+                "unitId": "Cel",
+                "record": 90.42
+            }
+        },
+        "BACnet": {
+            "celsius_temperature": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 90.42,
+                "units": "DEGREES_CELSIUS"
+            },
+            "fahrenheit_temperature": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 194.76,
+                "units": "DEGREES_FAHRENHEIT"
+            },
+            "fan_control_mode": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "pir_night:night_time:start": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 1260,
+                    "units": "MINUTES"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "MINUTES"
+                }
+            ],
+            "pir_night:night_time:stop": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 480,
+                    "units": "MINUTES"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "MINUTES"
+                }
+            ],
+            "reporting_interval:ble:seconds_of_time": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "SECONDS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 10,
+                    "units": "SECONDS"
+                }
+            ],
+            "reporting_interval:ble:unit": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "reporting_interval:lora:seconds_of_time": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "SECONDS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 10,
+                    "units": "SECONDS"
+                }
+            ],
+            "reporting_interval:lora:unit": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "reporting_interval:power_lora:seconds_of_time": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "SECONDS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 10,
+                    "units": "SECONDS"
+                }
+            ],
+            "reporting_interval:power_lora:unit": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "temperature_mode": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "celsius_temperature": {
+                "table": "inputRegister",
+                "value": 90.42,
+                "value_type": "FLOAT"
+            },
+            "fahrenheit_temperature": {
+                "table": "inputRegister",
+                "value": 194.76,
+                "value_type": "FLOAT"
+            },
+            "fan_control_mode": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "pir_night:night_time:start": {
+                "table": "inputRegister",
+                "value": 1260,
+                "value_type": "UINT16"
+            },
+            "pir_night:night_time:stop": {
+                "table": "inputRegister",
+                "value": 480,
+                "value_type": "UINT16"
+            },
+            "reporting_interval:ble:seconds_of_time": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            },
+            "reporting_interval:ble:unit": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "reporting_interval:lora:seconds_of_time": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            },
+            "reporting_interval:lora:unit": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "reporting_interval:power_lora:seconds_of_time": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            },
+            "reporting_interval:power_lora:unit": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "temperature_mode": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: ble_enable, data_sync_timeout, data_sync_to_peer and 17 more",
+        "type": "uplink",
+        "input": {
+            "bytes": "85007e0a7d00c80062008c008a0067006500660063000400cd0000cf0000d90000820100820300830100840100840200",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "ble_enable": 0,
+                "data_sync_timeout": 10,
+                "data_sync_to_peer": 0,
+                "device_status": 0,
+                "intelligent_display_enable": 0,
+                "screen_fan_mode_enable": 0,
+                "screen_temp_mode_enable": 0,
+                "system_status": 0,
+                "target_temperature_mode": 0,
+                "target_temperature_resolution": 0,
+                "temperature_unit": 0,
+                "fan_mode": 0,
+                "ble_configuration_settings": {
+                    "enable": 0
+                },
+                "lorawan_configuration_settings": {
+                    "mode": 0
+                },
+                "oem_id": "0000",
+                "pir_common": {
+                    "enable": 0,
+                    "mode": 0
+                },
+                "pir_energy": {
+                    "enable": 0
+                },
+                "pir_night": {
+                    "enable": 0,
+                    "mode": 0
+                }
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "ble_configuration_settings:enable": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "ble_enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "data_sync_timeout": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 10,
+                    "units": "MINUTES"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 1,
+                    "units": "MINUTES"
+                }
+            ],
+            "data_sync_to_peer": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "device_status": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "fan_mode": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "intelligent_display_enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "lorawan_configuration_settings:mode": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "oem_id": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "0000"
+            },
+            "pir_common:enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "pir_common:mode": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "pir_energy:enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "pir_night:enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "pir_night:mode": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "screen_fan_mode_enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "screen_temp_mode_enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "system_status": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "target_temperature_mode": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "target_temperature_resolution": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "temperature_unit": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ]
+        },
+        "Modbus": {
+            "ble_configuration_settings:enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "ble_enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "data_sync_timeout": {
+                "table": "inputRegister",
+                "value": 10,
+                "value_type": "UINT8"
+            },
+            "data_sync_to_peer": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "device_status": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "fan_mode": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "intelligent_display_enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "lorawan_configuration_settings:mode": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "oem_id": {
+                "table": "inputRegister",
+                "value": "0000",
+                "value_type": "STRING"
+            },
+            "pir_common:enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "pir_common:mode": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "pir_energy:enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "pir_night:enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "pir_night:mode": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "screen_fan_mode_enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "screen_temp_mode_enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "system_status": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "target_temperature_mode": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "target_temperature_resolution": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "temperature_unit": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: pir_night:occupied, temperature_control_mode:plan_mode_enable, time_zone and 8 more",
+        "type": "uplink",
+        "input": {
+            "bytes": "840500680100c730fd6001000082021e006c020100006c000100006c010100006c0301000061020100006100010000",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "pir_night": {
+                    "occupied": 0
+                },
+                "temperature_control_mode": {
+                    "plan_mode_enable": 0
+                },
+                "time_zone": -720,
+                "collection_interval": {
+                    "unit": 1,
+                    "minutes_of_time": 0
+                },
+                "pir_common": {
+                    "release_time": 30
+                },
+                "communicate_interval": {
+                    "ble_lora": {
+                        "unit": 1,
+                        "minutes_of_time": 0
+                    },
+                    "ble": {
+                        "unit": 1,
+                        "minutes_of_time": 0
+                    },
+                    "lora": {
+                        "unit": 1,
+                        "minutes_of_time": 0
+                    },
+                    "power_bus": {
+                        "unit": 1,
+                        "minutes_of_time": 0
+                    }
+                },
+                "reporting_interval": {
+                    "ble_lora": {
+                        "unit": 1,
+                        "minutes_of_time": 0
+                    },
+                    "ble": {
+                        "unit": 1,
+                        "minutes_of_time": 0
+                    }
+                }
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "collection_interval:minutes_of_time": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "MINUTES"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 1,
+                    "units": "MINUTES"
+                }
+            ],
+            "collection_interval:unit": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 1,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "communicate_interval:ble_lora:minutes_of_time": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "MINUTES"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 1,
+                    "units": "MINUTES"
+                }
+            ],
+            "communicate_interval:ble_lora:unit": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 1,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "communicate_interval:ble:minutes_of_time": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "MINUTES"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 1,
+                    "units": "MINUTES"
+                }
+            ],
+            "communicate_interval:ble:unit": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 1,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "communicate_interval:lora:minutes_of_time": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "MINUTES"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 1,
+                    "units": "MINUTES"
+                }
+            ],
+            "communicate_interval:lora:unit": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 1,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "communicate_interval:power_bus:minutes_of_time": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "MINUTES"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 1,
+                    "units": "MINUTES"
+                }
+            ],
+            "communicate_interval:power_bus:unit": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 1,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "pir_common:release_time": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 30,
+                    "units": "MINUTES"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 1,
+                    "units": "MINUTES"
+                }
+            ],
+            "pir_night:occupied": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "reporting_interval:ble_lora:minutes_of_time": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "MINUTES"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 1,
+                    "units": "MINUTES"
+                }
+            ],
+            "reporting_interval:ble_lora:unit": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 1,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "reporting_interval:ble:minutes_of_time": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "MINUTES"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 1,
+                    "units": "MINUTES"
+                }
+            ],
+            "reporting_interval:ble:unit": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 1,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "temperature_control_mode:plan_mode_enable": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "time_zone": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": -720,
+                    "units": "MINUTES"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": -720,
+                    "units": "MINUTES"
+                }
+            ]
+        },
+        "Modbus": {
+            "collection_interval:minutes_of_time": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            },
+            "collection_interval:unit": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "communicate_interval:ble_lora:minutes_of_time": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "communicate_interval:ble_lora:unit": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "communicate_interval:ble:minutes_of_time": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "communicate_interval:ble:unit": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "communicate_interval:lora:minutes_of_time": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "communicate_interval:lora:unit": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "communicate_interval:power_bus:minutes_of_time": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "communicate_interval:power_bus:unit": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "pir_common:release_time": {
+                "table": "inputRegister",
+                "value": 30,
+                "value_type": "UINT16"
+            },
+            "pir_night:occupied": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "reporting_interval:ble_lora:minutes_of_time": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            },
+            "reporting_interval:ble_lora:unit": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "reporting_interval:ble:minutes_of_time": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            },
+            "reporting_interval:ble:unit": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "temperature_control_mode:plan_mode_enable": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "time_zone": {
+                "table": "inputRegister",
+                "value": -720,
+                "value_type": "INT16"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: reporting_interval:lora:minutes_of_time, reporting_interval:power_lora:minutes_of_time, ble_configuration_settings:local_name_last and 1 more",
+        "type": "uplink",
+        "input": {
+            "bytes": "61010100006103010000cd067465737400cd057465737400000000",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "reporting_interval": {
+                    "lora": {
+                        "unit": 1,
+                        "minutes_of_time": 0
+                    },
+                    "power_lora": {
+                        "unit": 1,
+                        "minutes_of_time": 0
+                    }
+                },
+                "ble_configuration_settings": {
+                    "local_name_last": "test",
+                    "local_name_first": "test"
+                }
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "ble_configuration_settings:local_name_first": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "test"
+            },
+            "ble_configuration_settings:local_name_last": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "test"
+            },
+            "reporting_interval:lora:minutes_of_time": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "MINUTES"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 1,
+                    "units": "MINUTES"
+                }
+            ],
+            "reporting_interval:lora:unit": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 1,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "reporting_interval:power_lora:minutes_of_time": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "MINUTES"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 1,
+                    "units": "MINUTES"
+                }
+            ],
+            "reporting_interval:power_lora:unit": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 1,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ]
+        },
+        "Modbus": {
+            "ble_configuration_settings:local_name_first": {
+                "table": "inputRegister",
+                "value": "test",
+                "value_type": "STRING"
+            },
+            "ble_configuration_settings:local_name_last": {
+                "table": "inputRegister",
+                "value": "test",
+                "value_type": "STRING"
+            },
+            "reporting_interval:lora:minutes_of_time": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            },
+            "reporting_interval:lora:unit": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "reporting_interval:power_lora:minutes_of_time": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            },
+            "reporting_interval:power_lora:unit": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: ble_name",
+        "type": "uplink",
+        "input": {
+            "bytes": "8b7465737400000000000000000000000000000000000000000000000000000000",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "ble_name": "test"
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "ble_name": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "test"
+            }
+        },
+        "Modbus": {
+            "ble_name": {
+                "table": "inputRegister",
+                "value": "test",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Downlink encode: linked group collection_interval (3 points)",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "collection_interval": {
+                    "minutes_of_time": 1,
+                    "seconds_of_time": 1,
+                    "unit": 0
+                }
+            }
+        },
+        "output": {
+            "bytes": [
+                96,
+                0,
+                1,
+                0
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink encode: linked group communicate_interval (12 points)",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "communicate_interval": {
+                    "ble_lora": {
+                        "minutes_of_time": 1,
+                        "seconds_of_time": 10,
+                        "unit": 0
+                    },
+                    "ble": {
+                        "minutes_of_time": 1,
+                        "seconds_of_time": 10,
+                        "unit": 0
+                    },
+                    "lora": {
+                        "minutes_of_time": 1,
+                        "seconds_of_time": 10,
+                        "unit": 0
+                    },
+                    "power_bus": {
+                        "minutes_of_time": 1,
+                        "seconds_of_time": 10,
+                        "unit": 0
+                    }
+                }
+            }
+        },
+        "output": {
+            "bytes": [
+                108,
+                0,
+                0,
+                10,
+                0,
+                108,
+                1,
+                0,
+                10,
+                0,
+                108,
+                2,
+                0,
+                10,
+                0,
+                108,
+                3,
+                0,
+                10,
+                0
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink encode: linked group daylight_saving_time (2 points)",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "daylight_saving_time": {
+                    "daylight_saving_time_offset": 1,
+                    "enable": 0
+                }
+            }
+        },
+        "output": {
+            "bytes": [
+                198,
+                0,
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink encode: linked group humidity_calibration_settings (2 points)",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "humidity_calibration_settings": {
+                    "calibration_value": 0,
+                    "enable": 0
+                }
+            }
+        },
+        "output": {
+            "bytes": [
+                119,
+                0,
+                0,
+                0
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink encode: linked group pir_common (5 points)",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "pir_common": {
+                    "check": {
+                        "period": 1,
+                        "rate": 1
+                    },
+                    "enable": "disable",
+                    "mode": 0,
+                    "release_time": 1
+                }
+            }
+        },
+        "output": {
+            "bytes": [
+                130,
+                1,
+                0,
+                130,
+                2,
+                1,
+                0,
+                130,
+                3,
+                0,
+                130,
+                4,
+                1,
+                1
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink encode: linked group pir_energy (3 points)",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "pir_energy": {
+                    "enable": "disable",
+                    "plan": {
+                        "occupied": 0,
+                        "unoccupied": 0
+                    }
+                }
+            }
+        },
+        "output": {
+            "bytes": [
+                131,
+                1,
+                0,
+                131,
+                2,
+                0,
+                0
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink encode: linked group pir_night (7 points)",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "pir_night": {
+                    "check": {
+                        "period": 1,
+                        "rate": 1
+                    },
+                    "enable": "disable",
+                    "mode": 0,
+                    "night_time": {
+                        "start": 0,
+                        "stop": 0
+                    },
+                    "occupied": 0
+                }
+            }
+        },
+        "output": {
+            "bytes": [
+                132,
+                1,
+                0,
+                132,
+                2,
+                0,
+                132,
+                3,
+                1,
+                1,
+                132,
+                4,
+                0,
+                0,
+                0,
+                0,
+                132,
+                5,
+                0
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink encode: linked group reporting_interval (12 points)",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "reporting_interval": {
+                    "ble_lora": {
+                        "minutes_of_time": 1,
+                        "seconds_of_time": 10,
+                        "unit": 0
+                    },
+                    "ble": {
+                        "minutes_of_time": 1,
+                        "seconds_of_time": 10,
+                        "unit": 0
+                    },
+                    "lora": {
+                        "minutes_of_time": 1,
+                        "seconds_of_time": 10,
+                        "unit": 0
+                    },
+                    "power_lora": {
+                        "minutes_of_time": 1,
+                        "seconds_of_time": 10,
+                        "unit": 0
+                    }
+                }
+            }
+        },
+        "output": {
+            "bytes": [
+                97,
+                0,
+                0,
+                10,
+                0,
+                97,
+                1,
+                0,
+                10,
+                0,
+                97,
+                2,
+                0,
+                10,
+                0,
+                97,
+                3,
+                0,
+                10,
+                0
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink encode: linked group retrieve_historical_data_by_time_range (2 points)",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "retrieve_historical_data_by_time_range": {
+                    "end_time": 0,
+                    "start_time": 0
+                }
+            }
+        },
+        "output": {
+            "bytes": [
+                186,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink encode: linked group target_temperature_range (12 points)",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "target_temperature_range": {
+                    "auto": {
+                        "celsius_max": 5,
+                        "celsius_min": 5
+                    },
+                    "cool": {
+                        "celsius_max": 5,
+                        "celsius_min": 5
+                    },
+                    "dehumidify": {
+                        "celsius_max": 5,
+                        "celsius_min": 5
+                    },
+                    "em_heat": {
+                        "celsius_max": 5,
+                        "celsius_min": 5
+                    },
+                    "heat": {
+                        "celsius_max": 5,
+                        "celsius_min": 5
+                    },
+                    "ventilation": {
+                        "celsius_max": 5,
+                        "celsius_min": 5
+                    }
+                }
+            }
+        },
+        "output": {
+            "bytes": [
+                107,
+                0,
+                244,
+                1,
+                244,
+                1,
+                107,
+                1,
+                244,
+                1,
+                244,
+                1,
+                107,
+                2,
+                244,
+                1,
+                244,
+                1,
+                107,
+                3,
+                244,
+                1,
+                244,
+                1,
+                107,
+                4,
+                244,
+                1,
+                244,
+                1,
+                107,
+                5,
+                244,
+                1,
+                244,
+                1
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink encode: linked group target_temperature_settings (8 points)",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "target_temperature_settings": {
+                    "celsius_auto": 5,
+                    "celsius_auto_cool": 5,
+                    "celsius_auto_heat": 5,
+                    "celsius_cool": 5,
+                    "celsius_dehumidify": 5,
+                    "celsius_em_heat": 5,
+                    "celsius_heat": 5,
+                    "celsius_ventilation": 5
+                }
+            }
+        },
+        "output": {
+            "bytes": [
+                105,
+                0,
+                244,
+                1,
+                105,
+                1,
+                244,
+                1,
+                105,
+                2,
+                244,
+                1,
+                105,
+                3,
+                244,
+                1,
+                105,
+                4,
+                244,
+                1,
+                105,
+                5,
+                244,
+                1,
+                105,
+                6,
+                244,
+                1,
+                105,
+                7,
+                244,
+                1
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink encode: linked group temperature_calibration_settings (2 points)",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "temperature_calibration_settings": {
+                    "celsius_calibration_value": 0,
+                    "enable": 0
+                }
+            }
+        },
+        "output": {
+            "bytes": [
+                118,
+                0,
+                0,
+                0
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink encode: linked group unlock_button (2 points)",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "unlock_button": {
+                    "enable": 0,
+                    "timeout": 1
+                }
+            }
+        },
+        "output": {
+            "bytes": [
+                129,
+                0,
+                1,
+                0
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink write: backlight_enable and 4 more",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "backlight_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            },
+            "ble_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            },
+            "celsius_minimum_dead_zone": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            },
+            "data_sync_timeout": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            },
+            "data_sync_to_peer": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            }
+        },
+        "inputModbus": {
+            "backlight_enable": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 0
+            },
+            "ble_enable": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 0
+            },
+            "celsius_minimum_dead_zone": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 1
+            },
+            "data_sync_timeout": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 1
+            },
+            "data_sync_to_peer": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 0
+            }
+        },
+        "input": {
+            "data": {
+                "backlight_enable": 0,
+                "ble_enable": 0,
+                "celsius_minimum_dead_zone": 1,
+                "data_sync_timeout": 1,
+                "data_sync_to_peer": 0
+            }
+        },
+        "output": {
+            "bytes": [
+                125,
+                0,
+                126,
+                1,
+                133,
+                0,
+                106,
+                100,
+                0,
+                137,
+                0
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink write: device_status and 4 more",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "device_status": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            },
+            "fahrenheit_minimum_dead_zone": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1.8
+            },
+            "fan_control_mode": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            },
+            "intelligent_display_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            },
+            "origin_humidity": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            }
+        },
+        "inputModbus": {
+            "device_status": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 0
+            },
+            "fahrenheit_minimum_dead_zone": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 1.8
+            },
+            "fan_control_mode": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 0
+            },
+            "intelligent_display_enable": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 0
+            },
+            "origin_humidity": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 0
+            }
+        },
+        "input": {
+            "data": {
+                "device_status": 0,
+                "fahrenheit_minimum_dead_zone": 1.8,
+                "fan_control_mode": "auto",
+                "intelligent_display_enable": 0,
+                "origin_humidity": "no"
+            }
+        },
+        "output": {
+            "bytes": [
+                200,
+                0,
+                106,
+                100,
+                0,
+                116,
+                0,
+                98,
+                0,
+                135,
+                0,
+                0
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink write: origin_temperature and 4 more",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "origin_temperature": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            },
+            "reboot": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            },
+            "reconnect": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            },
+            "reset_ble_name": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            },
+            "screen_fan_mode_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            }
+        },
+        "inputModbus": {
+            "origin_temperature": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 0
+            },
+            "reboot": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 0
+            },
+            "reconnect": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 0
+            },
+            "reset_ble_name": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 0
+            },
+            "screen_fan_mode_enable": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 0
+            }
+        },
+        "input": {
+            "data": {
+                "origin_temperature": "no",
+                "reboot": "no",
+                "reconnect": "no",
+                "reset_ble_name": "no",
+                "screen_fan_mode_enable": 0
+            }
+        },
+        "output": {
+            "bytes": [
+                140,
+                0,
+                84,
+                134,
+                0,
+                0,
+                190,
+                182
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink write: screen_temp_mode_enable and 4 more",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "screen_temp_mode_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            },
+            "system_status": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            },
+            "target_temperature_mode": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            },
+            "target_temperature_resolution": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            },
+            "temperature_unit": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            }
+        },
+        "inputModbus": {
+            "screen_temp_mode_enable": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 0
+            },
+            "system_status": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 0
+            },
+            "target_temperature_mode": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 0
+            },
+            "target_temperature_resolution": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 0
+            },
+            "temperature_unit": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 0
+            }
+        },
+        "input": {
+            "data": {
+                "screen_temp_mode_enable": 0,
+                "system_status": 0,
+                "target_temperature_mode": 0,
+                "target_temperature_resolution": 0,
+                "temperature_unit": 0
+            }
+        },
+        "output": {
+            "bytes": [
+                99,
+                0,
+                103,
+                0,
+                101,
+                0,
+                102,
+                0,
+                138,
+                0
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink write: time_zone",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "time_zone": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": -720
+            }
+        },
+        "inputModbus": {
+            "time_zone": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": -720
+            }
+        },
+        "input": {
+            "data": {
+                "time_zone": "UTC-12(IDLW)"
+            }
+        },
+        "output": {
+            "bytes": [
+                199,
+                0,
+                0
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink encode: children_lock_settings:enable and 4 more",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "children_lock_settings": {
+                    "enable": 0
+                },
+                "delete_task_plan": {
+                    "type": 0
+                },
+                "fan_error_alarm": {
+                    "mode": 0
+                },
+                "filter_clean_alarm": {
+                    "mode": 0
+                },
+                "insert_temporary_plan": {
+                    "id": 0
+                }
+            }
+        },
+        "output": {
+            "bytes": [
+                114,
+                0,
+                0,
+                0,
+                92,
+                0,
+                85,
+                0,
+                91,
+                0,
+                95,
+                0
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink encode: lorawan_configuration_settings:mode and 1 more",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "lorawan_configuration_settings": {
+                    "mode": 0
+                },
+                "temperature_control_mode": {
+                    "plan_mode_enable": 0
+                }
+            }
+        },
+        "output": {
+            "bytes": [
+                207,
+                0,
+                0,
+                104,
+                1,
+                0
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Uplink coverage: fahrenheit_origin_temperature, celsius_origin_temperature, reboot and 7 more",
+        "type": "uplink",
+        "input": {
+            "bytes": "860000beb6545f0055005b005c00870000",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "reboot": 1,
+                "reconnect": 1,
+                "reset_ble_name": 1,
+                "delete_task_plan": {
+                    "type": 0
+                },
+                "fan_error_alarm": {
+                    "mode": 0
+                },
+                "filter_clean_alarm": {
+                    "mode": 0
+                },
+                "insert_temporary_plan": {
+                    "id": 0
+                },
+                "origin_humidity": 0,
+                "fahrenheit_origin_temperature": 32,
+                "celsius_origin_temperature": 0
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "delete_task_plan:type": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "fan_error_alarm:mode": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "filter_clean_alarm:mode": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "insert_temporary_plan:id": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "origin_humidity": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "fahrenheit_origin_temperature": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 32,
+                "units": "NO_UNITS"
+            },
+            "celsius_origin_temperature": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "reboot": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "reconnect": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "reset_ble_name": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ]
+        },
+        "Modbus": {
+            "delete_task_plan:type": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "fan_error_alarm:mode": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "filter_clean_alarm:mode": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "insert_temporary_plan:id": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "origin_humidity": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "fahrenheit_origin_temperature": {
+                "table": "inputRegister",
+                "value": 32,
+                "value_type": "FLOAT"
+            },
+            "celsius_origin_temperature": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT32"
+            },
+            "reboot": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "reconnect": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "reset_ble_name": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: ble_configuration_settings:pair_info:addr, ble_configuration_settings:pair_info:mac, ble_configuration_settings:pair_info:name and 2 more",
+        "type": "uplink",
+        "input": {
+            "bytes": "cd0701",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "ble_configuration_settings": {
+                    "pair_info": {
+                        "type": 1,
+                        "addr": "",
+                        "mac": "",
+                        "name_length": 0,
+                        "name": ""
+                    }
+                }
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "ble_configuration_settings:pair_info:addr": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": ""
+            },
+            "ble_configuration_settings:pair_info:mac": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": ""
+            },
+            "ble_configuration_settings:pair_info:name": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": ""
+            },
+            "ble_configuration_settings:pair_info:name_length": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "ble_configuration_settings:pair_info:type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 1,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "ble_configuration_settings:pair_info:addr": {
+                "table": "inputRegister",
+                "value": "",
+                "value_type": "STRING"
+            },
+            "ble_configuration_settings:pair_info:mac": {
+                "table": "inputRegister",
+                "value": "",
+                "value_type": "STRING"
+            },
+            "ble_configuration_settings:pair_info:name": {
+                "table": "inputRegister",
+                "value": "",
+                "value_type": "STRING"
+            },
+            "ble_configuration_settings:pair_info:name_length": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "ble_configuration_settings:pair_info:type": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: celsius_target_temperature2, fahrenheit_target_temperature2, ble_configuration_settings:local_id:address and 1 more",
+        "type": "uplink",
+        "input": {
+            "bytes": "07000154cd01",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "reset_ble_name": 1,
+                "ble_configuration_settings": {
+                    "local_id": {
+                        "type": 0,
+                        "address": ""
+                    }
+                },
+                "fahrenheit_target_temperature2": 36.61,
+                "celsius_target_temperature2": 2.56
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "ble_configuration_settings:local_id:address": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": ""
+            },
+            "ble_configuration_settings:local_id:type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "celsius_target_temperature2": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 2.56,
+                "units": "DEGREES_CELSIUS"
+            },
+            "fahrenheit_target_temperature2": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 36.61,
+                "units": "DEGREES_FAHRENHEIT"
+            },
+            "reset_ble_name": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ]
+        },
+        "Modbus": {
+            "ble_configuration_settings:local_id:address": {
+                "table": "inputRegister",
+                "value": "",
+                "value_type": "STRING"
+            },
+            "ble_configuration_settings:local_id:type": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "celsius_target_temperature2": {
+                "table": "inputRegister",
+                "value": 2.56,
+                "value_type": "FLOAT"
+            },
+            "fahrenheit_target_temperature2": {
+                "table": "inputRegister",
+                "value": 36.61,
+                "value_type": "FLOAT"
+            },
+            "reset_ble_name": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: version:firmware_version, version:hardware_version",
+        "type": "uplink",
+        "input": {
+            "bytes": "54da01",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "reset_ble_name": 1,
+                "version": {
+                    "hardware_version": "v1.0",
+                    "firmware_version": "v0.0"
+                }
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "version:firmware_version": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "v0.0"
+            },
+            "version:hardware_version": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "v1.0"
+            },
+            "reset_ble_name": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ]
+        },
+        "Modbus": {
+            "version:firmware_version": {
+                "table": "inputRegister",
+                "value": "v0.0",
+                "value_type": "STRING"
+            },
+            "version:hardware_version": {
+                "table": "inputRegister",
+                "value": "v1.0",
+                "value_type": "STRING"
+            },
+            "reset_ble_name": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: pir_energy:plan:occupied, pir_energy:plan:unoccupied, product_sn",
+        "type": "uplink",
+        "input": {
+            "bytes": "83020154db01",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "pir_energy": {
+                    "plan": {
+                        "occupied": 1,
+                        "unoccupied": 84
+                    }
+                },
+                "product_sn": "01"
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "pir_energy:plan:occupied": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 1,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "pir_energy:plan:unoccupied": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 84,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "product_sn": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "01"
+            }
+        },
+        "Modbus": {
+            "pir_energy:plan:occupied": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "pir_energy:plan:unoccupied": {
+                "table": "inputRegister",
+                "value": 84,
+                "value_type": "UINT8"
+            },
+            "product_sn": {
+                "table": "inputRegister",
+                "value": "01",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: ble_event:type",
+        "type": "uplink",
+        "input": {
+            "bytes": "090001",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "ble_event": {
+                    "type": 0,
+                    "none": {}
+                },
+                "fahrenheit_temperature": 32,
+                "celsius_temperature": 0
+            }
+        },
+        "points": {
+            "temperature": {
+                "unitId": "Cel",
+                "record": 0
+            }
+        },
+        "BACnet": {
+            "ble_event:type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "celsius_temperature": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "DEGREES_CELSIUS"
+            },
+            "fahrenheit_temperature": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 32,
+                "units": "DEGREES_FAHRENHEIT"
+            }
+        },
+        "Modbus": {
+            "ble_event:type": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "celsius_temperature": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "FLOAT"
+            },
+            "fahrenheit_temperature": {
+                "table": "inputRegister",
+                "value": 32,
+                "value_type": "FLOAT"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: execution_plan_id",
+        "type": "uplink",
+        "input": {
+            "bytes": "050001",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "execution_plan_id": 0,
+                "fahrenheit_temperature": 32,
+                "celsius_temperature": 0
+            }
+        },
+        "points": {
+            "temperature": {
+                "unitId": "Cel",
+                "record": 0
+            }
+        },
+        "BACnet": {
+            "celsius_temperature": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "DEGREES_CELSIUS"
+            },
+            "execution_plan_id": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "fahrenheit_temperature": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 32,
+                "units": "DEGREES_FAHRENHEIT"
+            }
+        },
+        "Modbus": {
+            "celsius_temperature": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "FLOAT"
+            },
+            "execution_plan_id": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "fahrenheit_temperature": {
+                "table": "inputRegister",
+                "value": 32,
+                "value_type": "FLOAT"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: power_bus_event:type",
+        "type": "uplink",
+        "input": {
+            "bytes": "0a0001",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "power_bus_event": {
+                    "type": 0,
+                    "none": {}
+                },
+                "fahrenheit_temperature": 32,
+                "celsius_temperature": 0
+            }
+        },
+        "points": {
+            "temperature": {
+                "unitId": "Cel",
+                "record": 0
+            }
+        },
+        "BACnet": {
+            "celsius_temperature": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "DEGREES_CELSIUS"
+            },
+            "fahrenheit_temperature": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 32,
+                "units": "DEGREES_FAHRENHEIT"
+            },
+            "power_bus_event:type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "celsius_temperature": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "FLOAT"
+            },
+            "fahrenheit_temperature": {
+                "table": "inputRegister",
+                "value": 32,
+                "value_type": "FLOAT"
+            },
+            "power_bus_event:type": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: pir_status",
+        "type": "uplink",
+        "input": {
+            "bytes": "080001",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "pir_status": 0,
+                "fahrenheit_temperature": 32,
+                "celsius_temperature": 0
+            }
+        },
+        "points": {
+            "temperature": {
+                "unitId": "Cel",
+                "record": 0
+            }
+        },
+        "BACnet": {
+            "celsius_temperature": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "DEGREES_CELSIUS"
+            },
+            "fahrenheit_temperature": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 32,
+                "units": "DEGREES_FAHRENHEIT"
+            },
+            "pir_status": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "celsius_temperature": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "FLOAT"
+            },
+            "fahrenheit_temperature": {
+                "table": "inputRegister",
+                "value": 32,
+                "value_type": "FLOAT"
+            },
+            "pir_status": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: temperature_alarm:type",
+        "type": "uplink",
+        "input": {
+            "bytes": "0b0001",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "temperature_alarm": {
+                    "type": 0,
+                    "collection_error": {}
+                },
+                "fahrenheit_temperature": 32,
+                "celsius_temperature": 0
+            }
+        },
+        "points": {
+            "temperature": {
+                "unitId": "Cel",
+                "record": 0
+            }
+        },
+        "BACnet": {
+            "celsius_temperature": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "DEGREES_CELSIUS"
+            },
+            "fahrenheit_temperature": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 32,
+                "units": "DEGREES_FAHRENHEIT"
+            },
+            "temperature_alarm:type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "celsius_temperature": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "FLOAT"
+            },
+            "fahrenheit_temperature": {
+                "table": "inputRegister",
+                "value": 32,
+                "value_type": "FLOAT"
+            },
+            "temperature_alarm:type": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: humidity_alarm:type",
+        "type": "uplink",
+        "input": {
+            "bytes": "0c0001",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "humidity_alarm": {
+                    "type": 0,
+                    "collection_error": {}
+                },
+                "fahrenheit_temperature": 32,
+                "celsius_temperature": 0
+            }
+        },
+        "points": {
+            "temperature": {
+                "unitId": "Cel",
+                "record": 0
+            }
+        },
+        "BACnet": {
+            "celsius_temperature": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "DEGREES_CELSIUS"
+            },
+            "fahrenheit_temperature": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 32,
+                "units": "DEGREES_FAHRENHEIT"
+            },
+            "humidity_alarm:type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "celsius_temperature": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "FLOAT"
+            },
+            "fahrenheit_temperature": {
+                "table": "inputRegister",
+                "value": 32,
+                "value_type": "FLOAT"
+            },
+            "humidity_alarm:type": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: key_event:type",
+        "type": "uplink",
+        "input": {
+            "bytes": "0d0001",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "key_event": {
+                    "type": 0,
+                    "f1": {}
+                },
+                "fahrenheit_temperature": 32,
+                "celsius_temperature": 0
+            }
+        },
+        "points": {
+            "temperature": {
+                "unitId": "Cel",
+                "record": 0
+            }
+        },
+        "BACnet": {
+            "celsius_temperature": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "DEGREES_CELSIUS"
+            },
+            "fahrenheit_temperature": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 32,
+                "units": "DEGREES_FAHRENHEIT"
+            },
+            "key_event:type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "celsius_temperature": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "FLOAT"
+            },
+            "fahrenheit_temperature": {
+                "table": "inputRegister",
+                "value": 32,
+                "value_type": "FLOAT"
+            },
+            "key_event:type": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: battery_event:type",
+        "type": "uplink",
+        "input": {
+            "bytes": "0f0001",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "battery_event": {
+                    "type": 0,
+                    "recover": {}
+                },
+                "fahrenheit_temperature": 32,
+                "celsius_temperature": 0
+            }
+        },
+        "points": {
+            "temperature": {
+                "unitId": "Cel",
+                "record": 0
+            }
+        },
+        "BACnet": {
+            "battery_event:type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "celsius_temperature": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "DEGREES_CELSIUS"
+            },
+            "fahrenheit_temperature": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 32,
+                "units": "DEGREES_FAHRENHEIT"
+            }
+        },
+        "Modbus": {
+            "battery_event:type": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "celsius_temperature": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "FLOAT"
+            },
+            "fahrenheit_temperature": {
+                "table": "inputRegister",
+                "value": 32,
+                "value_type": "FLOAT"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: tsl_version",
+        "type": "uplink",
+        "input": {
+            "bytes": "54df01",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "reset_ble_name": 1,
+                "tsl_version": "v1.0"
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "tsl_version": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "v1.0"
+            },
+            "reset_ble_name": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ]
+        },
+        "Modbus": {
+            "tsl_version": {
+                "table": "inputRegister",
+                "value": "v1.0",
+                "value_type": "STRING"
+            },
+            "reset_ble_name": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            }
+        }
+    }
+]

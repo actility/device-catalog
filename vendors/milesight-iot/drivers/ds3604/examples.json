@@ -70,6 +70,20 @@
     {
         "description": "Downlink encode: report_interval",
         "type": "downlink-encode",
+        "inputBACnet": {
+            "report_interval": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 600
+            }
+        },
+        "inputModbus": {
+            "report_interval": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 600
+            }
+        },
         "input": {
             "data": {
                 "report_interval": 600
@@ -115,6 +129,2118 @@
                 62,
                 1
             ]
+        }
+    },
+    {
+        "description": "Uplink coverage: clear_image:background_image, clear_image:logo_1, clear_image:logo_2",
+        "type": "uplink",
+        "input": {
+            "bytes": "fe27",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "clear_image": {
+                    "background_image": "no",
+                    "logo_1": "no",
+                    "logo_2": "no"
+                }
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "clear_image:background_image": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "clear_image:logo_1": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "clear_image:logo_2": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ]
+        },
+        "Modbus": {
+            "clear_image:background_image": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "clear_image:logo_1": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "clear_image:logo_2": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: report_interval",
+        "type": "uplink",
+        "input": {
+            "bytes": "fe03",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "report_interval": 0
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "report_interval": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "SECONDS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 600,
+                    "units": "SECONDS"
+                }
+            ]
+        },
+        "Modbus": {
+            "report_interval": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: ipso_version",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff01",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "ipso_version": "v0.0"
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "ipso_version": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "v0.0"
+            }
+        },
+        "Modbus": {
+            "ipso_version": {
+                "table": "inputRegister",
+                "value": "v0.0",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: hardware_version",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff09",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "hardware_version": "v0.0"
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "hardware_version": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "v0.0"
+            }
+        },
+        "Modbus": {
+            "hardware_version": {
+                "table": "inputRegister",
+                "value": "v0.0",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: firmware_version",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff0a",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "firmware_version": "v0.0"
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "firmware_version": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "v0.0"
+            }
+        },
+        "Modbus": {
+            "firmware_version": {
+                "table": "inputRegister",
+                "value": "v0.0",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: device_status",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff0b",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "device_status": "on"
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "device_status": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            }
+        },
+        "Modbus": {
+            "device_status": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: sn",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff16",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "sn": ""
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "sn": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": ""
+            }
+        },
+        "Modbus": {
+            "sn": {
+                "table": "inputRegister",
+                "value": "",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: reset_event",
+        "type": "uplink",
+        "input": {
+            "bytes": "fffe",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "reset_event": "reset"
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "reset_event": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            }
+        },
+        "Modbus": {
+            "reset_event": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: tsl_version",
+        "type": "uplink",
+        "input": {
+            "bytes": "ffff",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "tsl_version": "v0.0"
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "tsl_version": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "v0.0"
+            }
+        },
+        "Modbus": {
+            "tsl_version": {
+                "table": "inputRegister",
+                "value": "v0.0",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: current_template_id, reboot, beep and 10 more",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff7300ff10ffff3d01ff3d02ff2800ff2801ff2803ff3e00ff6600ff2500ff9000ff0f01ff2e01",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "current_template_id": 1,
+                "reboot": "yes",
+                "beep": "yes",
+                "refresh_display": "yes",
+                "report_battery": "yes",
+                "report_buzzer": "yes",
+                "report_current_display": "yes",
+                "buzzer_enable": "disable",
+                "button_visible": "hide",
+                "button_enable": "disable",
+                "switch_template_button_enable": "disable",
+                "lorawan_class": "Class B",
+                "button_status": "double_click"
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "lorawan_class": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 1,
+                "units": "NO_UNITS"
+            },
+            "button_status": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 1,
+                "units": "NO_UNITS"
+            },
+            "current_template_id": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 1,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 1,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "reboot": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "beep": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "refresh_display": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "report_battery": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "report_buzzer": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "report_current_display": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "buzzer_enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "button_visible": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "button_enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "switch_template_button_enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ]
+        },
+        "Modbus": {
+            "lorawan_class": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "button_status": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "current_template_id": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "reboot": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "beep": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "refresh_display": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "report_battery": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "report_buzzer": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "report_current_display": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "buzzer_enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "button_visible": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "button_enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "switch_template_button_enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Downlink write: current_template_id",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "current_template_id": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "current_template_id": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "current_template_id": 1
+            },
+            "fPort": 85
+        },
+        "output": {
+            "bytes": [
+                255,
+                115,
+                0
+            ],
+            "fPort": 85
+        }
+    },
+    {
+        "description": "Downlink encode: template_1:text_1",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "template_1": {
+                    "text_1": "Miles"
+                }
+            },
+            "fPort": 85
+        },
+        "output": {
+            "bytes": [
+                251,
+                1,
+                0,
+                5,
+                77,
+                105,
+                108,
+                101,
+                115
+            ],
+            "fPort": 85
+        }
+    },
+    {
+        "description": "Downlink encode: template_1:qrcode",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "template_1": {
+                    "qrcode": "hello"
+                }
+            },
+            "fPort": 85
+        },
+        "output": {
+            "bytes": [
+                251,
+                1,
+                10,
+                5,
+                104,
+                101,
+                108,
+                108,
+                111
+            ],
+            "fPort": 85
+        }
+    },
+    {
+        "description": "Downlink encode: template_2:text_1",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "template_2": {
+                    "text_1": "Miles"
+                }
+            },
+            "fPort": 85
+        },
+        "output": {
+            "bytes": [
+                251,
+                1,
+                64,
+                5,
+                77,
+                105,
+                108,
+                101,
+                115
+            ],
+            "fPort": 85
+        }
+    },
+    {
+        "description": "Downlink encode: template_2:qrcode",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "template_2": {
+                    "qrcode": "hello"
+                }
+            },
+            "fPort": 85
+        },
+        "output": {
+            "bytes": [
+                251,
+                1,
+                74,
+                5,
+                104,
+                101,
+                108,
+                108,
+                111
+            ],
+            "fPort": 85
+        }
+    },
+    {
+        "description": "Downlink write: report_interval",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "report_interval": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 600
+            }
+        },
+        "inputModbus": {
+            "report_interval": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 600
+            }
+        },
+        "input": {
+            "data": {
+                "report_interval": 600
+            },
+            "fPort": 85
+        },
+        "output": {
+            "bytes": [
+                255,
+                3,
+                88,
+                2
+            ],
+            "fPort": 85
+        }
+    },
+    {
+        "description": "Downlink write: reboot",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "reboot": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "reboot": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "reboot": "yes"
+            },
+            "fPort": 85
+        },
+        "output": {
+            "bytes": [
+                255,
+                16,
+                255
+            ],
+            "fPort": 85
+        }
+    },
+    {
+        "description": "Downlink write: beep",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "beep": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "beep": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "beep": "yes"
+            },
+            "fPort": 85
+        },
+        "output": {
+            "bytes": [
+                255,
+                61,
+                1
+            ],
+            "fPort": 85
+        }
+    },
+    {
+        "description": "Downlink write: refresh_display and 4 more",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "refresh_display": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            },
+            "report_battery": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            },
+            "report_buzzer": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            },
+            "report_current_template_id": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            },
+            "report_current_display": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "refresh_display": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            },
+            "report_battery": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            },
+            "report_buzzer": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            },
+            "report_current_template_id": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            },
+            "report_current_display": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "refresh_display": "yes",
+                "report_battery": "yes",
+                "report_buzzer": "yes",
+                "report_current_template_id": "yes",
+                "report_current_display": "yes"
+            },
+            "fPort": 85
+        },
+        "output": {
+            "bytes": [
+                255,
+                61,
+                2,
+                255,
+                40,
+                0,
+                255,
+                40,
+                1,
+                255,
+                40,
+                2,
+                255,
+                40,
+                3
+            ],
+            "fPort": 85
+        }
+    },
+    {
+        "description": "Downlink write: button_enable",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "button_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            }
+        },
+        "inputModbus": {
+            "button_enable": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 0
+            }
+        },
+        "input": {
+            "data": {
+                "button_enable": "disable"
+            },
+            "fPort": 85
+        },
+        "output": {
+            "bytes": [
+                255,
+                37,
+                0
+            ],
+            "fPort": 85
+        }
+    },
+    {
+        "description": "Downlink write: switch_template_button_enable",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "switch_template_button_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            }
+        },
+        "inputModbus": {
+            "switch_template_button_enable": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 0
+            }
+        },
+        "input": {
+            "data": {
+                "switch_template_button_enable": "disable"
+            },
+            "fPort": 85
+        },
+        "output": {
+            "bytes": [
+                255,
+                144,
+                0
+            ],
+            "fPort": 85
+        }
+    },
+    {
+        "description": "Uplink coverage: template_1_config:text_1:enable, template_1_config:text_1:type, template_1_config:text_1:start_x and 13 more",
+        "type": "uplink",
+        "input": {
+            "bytes": "fb03",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "template_1_config": {
+                    "text_1": {
+                        "enable": "unknown",
+                        "type": "unknown",
+                        "start_x": 0,
+                        "start_y": 0,
+                        "end_x": 0,
+                        "end_y": 0,
+                        "border": "unknown",
+                        "horizontal": "unknown",
+                        "vertical": "unknown",
+                        "background": "unknown",
+                        "foreground": "unknown",
+                        "layer": 0,
+                        "font_type": "unknown",
+                        "font_size": 0,
+                        "wrap": "unknown",
+                        "font_style": "unknown"
+                    }
+                }
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "template_1_config:text_1:enable": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "template_1_config:text_1:type": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "template_1_config:text_1:start_x": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "template_1_config:text_1:start_y": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "template_1_config:text_1:end_x": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "template_1_config:text_1:end_y": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "template_1_config:text_1:border": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "template_1_config:text_1:horizontal": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "template_1_config:text_1:vertical": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "template_1_config:text_1:background": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "template_1_config:text_1:foreground": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "template_1_config:text_1:layer": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "template_1_config:text_1:font_type": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "template_1_config:text_1:font_size": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "template_1_config:text_1:wrap": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "template_1_config:text_1:font_style": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            }
+        },
+        "Modbus": {
+            "template_1_config:text_1:enable": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "template_1_config:text_1:type": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "template_1_config:text_1:start_x": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT32"
+            },
+            "template_1_config:text_1:start_y": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT32"
+            },
+            "template_1_config:text_1:end_x": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT32"
+            },
+            "template_1_config:text_1:end_y": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT32"
+            },
+            "template_1_config:text_1:border": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "template_1_config:text_1:horizontal": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "template_1_config:text_1:vertical": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "template_1_config:text_1:background": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "template_1_config:text_1:foreground": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "template_1_config:text_1:layer": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT32"
+            },
+            "template_1_config:text_1:font_type": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "template_1_config:text_1:font_size": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT32"
+            },
+            "template_1_config:text_1:wrap": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "template_1_config:text_1:font_style": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: template_1_config:text_2:enable, template_1_config:text_2:type, template_1_config:text_2:start_x and 13 more",
+        "type": "uplink",
+        "input": {
+            "bytes": "fb0301",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "template_1_config": {
+                    "text_2": {
+                        "enable": "unknown",
+                        "type": "unknown",
+                        "start_x": 0,
+                        "start_y": 0,
+                        "end_x": 0,
+                        "end_y": 0,
+                        "border": "unknown",
+                        "horizontal": "unknown",
+                        "vertical": "unknown",
+                        "background": "unknown",
+                        "foreground": "unknown",
+                        "layer": 0,
+                        "font_type": "unknown",
+                        "font_size": 0,
+                        "wrap": "unknown",
+                        "font_style": "unknown"
+                    }
+                }
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "template_1_config:text_2:enable": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "template_1_config:text_2:type": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "template_1_config:text_2:start_x": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "template_1_config:text_2:start_y": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "template_1_config:text_2:end_x": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "template_1_config:text_2:end_y": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "template_1_config:text_2:border": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "template_1_config:text_2:horizontal": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "template_1_config:text_2:vertical": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "template_1_config:text_2:background": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "template_1_config:text_2:foreground": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "template_1_config:text_2:layer": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "template_1_config:text_2:font_type": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "template_1_config:text_2:font_size": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "template_1_config:text_2:wrap": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "template_1_config:text_2:font_style": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            }
+        },
+        "Modbus": {
+            "template_1_config:text_2:enable": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "template_1_config:text_2:type": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "template_1_config:text_2:start_x": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT32"
+            },
+            "template_1_config:text_2:start_y": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT32"
+            },
+            "template_1_config:text_2:end_x": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT32"
+            },
+            "template_1_config:text_2:end_y": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT32"
+            },
+            "template_1_config:text_2:border": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "template_1_config:text_2:horizontal": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "template_1_config:text_2:vertical": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "template_1_config:text_2:background": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "template_1_config:text_2:foreground": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "template_1_config:text_2:layer": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT32"
+            },
+            "template_1_config:text_2:font_type": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "template_1_config:text_2:font_size": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT32"
+            },
+            "template_1_config:text_2:wrap": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "template_1_config:text_2:font_style": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: block_visible:text_2, block_visible:text_5, block_visible:text_7 and 3 more",
+        "type": "uplink",
+        "input": {
+            "bytes": "fe89015223",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "block_visible": {
+                    "text_2": "hide",
+                    "text_5": "hide",
+                    "text_7": "hide",
+                    "text_9": "hide",
+                    "text_10": "hide",
+                    "battery_status": "hide"
+                }
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "block_visible:text_2": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "block_visible:text_5": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "block_visible:text_7": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "block_visible:text_9": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "block_visible:text_10": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "block_visible:battery_status": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ]
+        },
+        "Modbus": {
+            "block_visible:text_2": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "block_visible:text_5": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "block_visible:text_7": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "block_visible:text_9": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "block_visible:text_10": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "block_visible:battery_status": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: report_current_template, multicast_config:group_1, template_1:text_2",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff2802ff8210fb0101",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "report_current_template": "yes",
+                "multicast_config": {
+                    "group_1": "disable"
+                },
+                "template_1": {
+                    "text_2": ""
+                }
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "template_1:text_2": [
+                {
+                    "object": "CHARACTERSTRING_VALUE",
+                    "presentValue": ""
+                },
+                {
+                    "object": "CHARACTERSTRING_VALUE",
+                    "presentValue": ""
+                }
+            ],
+            "multicast_config:group_1": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "report_current_template": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            }
+        },
+        "Modbus": {
+            "template_1:text_2": {
+                "table": "inputRegister",
+                "value": "",
+                "value_type": "STRING"
+            },
+            "multicast_config:group_1": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "report_current_template": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "BOOL"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: multicast_config:group_2, block_visible:text_1, template_1:text_3 and 3 more",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff8220ff890201000000fb01020474657374fb01030474657374fb01040474657374fb01050474657374",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "multicast_config": {
+                    "group_2": "disable"
+                },
+                "block_visible": {
+                    "text_1": "hide"
+                },
+                "template_1": {
+                    "text_3": "test",
+                    "text_4": "test",
+                    "text_5": "test",
+                    "text_6": "test"
+                }
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "template_1:text_3": [
+                {
+                    "object": "CHARACTERSTRING_VALUE",
+                    "presentValue": ""
+                },
+                {
+                    "object": "CHARACTERSTRING_VALUE",
+                    "presentValue": "test"
+                }
+            ],
+            "template_1:text_4": [
+                {
+                    "object": "CHARACTERSTRING_VALUE",
+                    "presentValue": ""
+                },
+                {
+                    "object": "CHARACTERSTRING_VALUE",
+                    "presentValue": "test"
+                }
+            ],
+            "template_1:text_5": [
+                {
+                    "object": "CHARACTERSTRING_VALUE",
+                    "presentValue": ""
+                },
+                {
+                    "object": "CHARACTERSTRING_VALUE",
+                    "presentValue": "test"
+                }
+            ],
+            "template_1:text_6": [
+                {
+                    "object": "CHARACTERSTRING_VALUE",
+                    "presentValue": ""
+                },
+                {
+                    "object": "CHARACTERSTRING_VALUE",
+                    "presentValue": "test"
+                }
+            ],
+            "block_visible:text_1": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "multicast_config:group_2": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ]
+        },
+        "Modbus": {
+            "template_1:text_3": {
+                "table": "inputRegister",
+                "value": "test",
+                "value_type": "STRING"
+            },
+            "template_1:text_4": {
+                "table": "inputRegister",
+                "value": "test",
+                "value_type": "STRING"
+            },
+            "template_1:text_5": {
+                "table": "inputRegister",
+                "value": "test",
+                "value_type": "STRING"
+            },
+            "template_1:text_6": {
+                "table": "inputRegister",
+                "value": "test",
+                "value_type": "STRING"
+            },
+            "block_visible:text_1": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "multicast_config:group_2": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: multicast_config:group_3, block_visible:text_3, template_1:text_7 and 3 more",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff8240ff890204000000fb01060474657374fb01070474657374fb01080474657374fb01090474657374",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "multicast_config": {
+                    "group_3": "disable"
+                },
+                "block_visible": {
+                    "text_3": "hide"
+                },
+                "template_1": {
+                    "text_7": "test",
+                    "text_8": "test",
+                    "text_9": "test",
+                    "text_10": "test"
+                }
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "template_1:text_7": [
+                {
+                    "object": "CHARACTERSTRING_VALUE",
+                    "presentValue": ""
+                },
+                {
+                    "object": "CHARACTERSTRING_VALUE",
+                    "presentValue": "test"
+                }
+            ],
+            "template_1:text_8": [
+                {
+                    "object": "CHARACTERSTRING_VALUE",
+                    "presentValue": ""
+                },
+                {
+                    "object": "CHARACTERSTRING_VALUE",
+                    "presentValue": "test"
+                }
+            ],
+            "template_1:text_9": [
+                {
+                    "object": "CHARACTERSTRING_VALUE",
+                    "presentValue": ""
+                },
+                {
+                    "object": "CHARACTERSTRING_VALUE",
+                    "presentValue": "test"
+                }
+            ],
+            "template_1:text_10": [
+                {
+                    "object": "CHARACTERSTRING_VALUE",
+                    "presentValue": ""
+                },
+                {
+                    "object": "CHARACTERSTRING_VALUE",
+                    "presentValue": "test"
+                }
+            ],
+            "block_visible:text_3": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "multicast_config:group_3": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ]
+        },
+        "Modbus": {
+            "template_1:text_7": {
+                "table": "inputRegister",
+                "value": "test",
+                "value_type": "STRING"
+            },
+            "template_1:text_8": {
+                "table": "inputRegister",
+                "value": "test",
+                "value_type": "STRING"
+            },
+            "template_1:text_9": {
+                "table": "inputRegister",
+                "value": "test",
+                "value_type": "STRING"
+            },
+            "template_1:text_10": {
+                "table": "inputRegister",
+                "value": "test",
+                "value_type": "STRING"
+            },
+            "block_visible:text_3": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "multicast_config:group_3": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: multicast_config:group_4, block_visible:text_4, template_2:text_1 and 3 more",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff8280ff890208000000fb01400474657374fb01410474657374fb01420474657374fb01430474657374",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "multicast_config": {
+                    "group_4": "disable"
+                },
+                "block_visible": {
+                    "text_4": "hide"
+                },
+                "template_2": {
+                    "text_1": "test",
+                    "text_2": "test",
+                    "text_3": "test",
+                    "text_4": "test"
+                }
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "template_2:text_1": [
+                {
+                    "object": "CHARACTERSTRING_VALUE",
+                    "presentValue": ""
+                },
+                {
+                    "object": "CHARACTERSTRING_VALUE",
+                    "presentValue": "test"
+                }
+            ],
+            "template_2:text_2": [
+                {
+                    "object": "CHARACTERSTRING_VALUE",
+                    "presentValue": ""
+                },
+                {
+                    "object": "CHARACTERSTRING_VALUE",
+                    "presentValue": "test"
+                }
+            ],
+            "template_2:text_3": [
+                {
+                    "object": "CHARACTERSTRING_VALUE",
+                    "presentValue": ""
+                },
+                {
+                    "object": "CHARACTERSTRING_VALUE",
+                    "presentValue": "test"
+                }
+            ],
+            "template_2:text_4": [
+                {
+                    "object": "CHARACTERSTRING_VALUE",
+                    "presentValue": ""
+                },
+                {
+                    "object": "CHARACTERSTRING_VALUE",
+                    "presentValue": "test"
+                }
+            ],
+            "block_visible:text_4": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "multicast_config:group_4": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ]
+        },
+        "Modbus": {
+            "template_2:text_1": {
+                "table": "inputRegister",
+                "value": "test",
+                "value_type": "STRING"
+            },
+            "template_2:text_2": {
+                "table": "inputRegister",
+                "value": "test",
+                "value_type": "STRING"
+            },
+            "template_2:text_3": {
+                "table": "inputRegister",
+                "value": "test",
+                "value_type": "STRING"
+            },
+            "template_2:text_4": {
+                "table": "inputRegister",
+                "value": "test",
+                "value_type": "STRING"
+            },
+            "block_visible:text_4": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "multicast_config:group_4": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: block_visible:text_6, template_2:text_5, template_2:text_7 and 3 more",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff890220000000fb01440474657374fb01460474657374fb01470474657374fb01480474657374fb01490474657374",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "block_visible": {
+                    "text_6": "hide"
+                },
+                "template_2": {
+                    "text_5": "test",
+                    "text_7": "test",
+                    "text_8": "test",
+                    "text_9": "test",
+                    "text_10": "test"
+                }
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "template_2:text_5": [
+                {
+                    "object": "CHARACTERSTRING_VALUE",
+                    "presentValue": ""
+                },
+                {
+                    "object": "CHARACTERSTRING_VALUE",
+                    "presentValue": "test"
+                }
+            ],
+            "template_2:text_7": [
+                {
+                    "object": "CHARACTERSTRING_VALUE",
+                    "presentValue": ""
+                },
+                {
+                    "object": "CHARACTERSTRING_VALUE",
+                    "presentValue": "test"
+                }
+            ],
+            "template_2:text_8": [
+                {
+                    "object": "CHARACTERSTRING_VALUE",
+                    "presentValue": ""
+                },
+                {
+                    "object": "CHARACTERSTRING_VALUE",
+                    "presentValue": "test"
+                }
+            ],
+            "template_2:text_9": [
+                {
+                    "object": "CHARACTERSTRING_VALUE",
+                    "presentValue": ""
+                },
+                {
+                    "object": "CHARACTERSTRING_VALUE",
+                    "presentValue": "test"
+                }
+            ],
+            "template_2:text_10": [
+                {
+                    "object": "CHARACTERSTRING_VALUE",
+                    "presentValue": ""
+                },
+                {
+                    "object": "CHARACTERSTRING_VALUE",
+                    "presentValue": "test"
+                }
+            ],
+            "block_visible:text_6": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ]
+        },
+        "Modbus": {
+            "template_2:text_5": {
+                "table": "inputRegister",
+                "value": "test",
+                "value_type": "STRING"
+            },
+            "template_2:text_7": {
+                "table": "inputRegister",
+                "value": "test",
+                "value_type": "STRING"
+            },
+            "template_2:text_8": {
+                "table": "inputRegister",
+                "value": "test",
+                "value_type": "STRING"
+            },
+            "template_2:text_9": {
+                "table": "inputRegister",
+                "value": "test",
+                "value_type": "STRING"
+            },
+            "template_2:text_10": {
+                "table": "inputRegister",
+                "value": "test",
+                "value_type": "STRING"
+            },
+            "block_visible:text_6": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: block_visible:text_8, template_2:qrcode",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff890280000000fb014a0474657374",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "block_visible": {
+                    "text_8": "hide"
+                },
+                "template_2": {
+                    "qrcode": "test"
+                }
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "template_2:qrcode": [
+                {
+                    "object": "CHARACTERSTRING_VALUE",
+                    "presentValue": ""
+                },
+                {
+                    "object": "CHARACTERSTRING_VALUE",
+                    "presentValue": "test"
+                }
+            ],
+            "block_visible:text_8": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ]
+        },
+        "Modbus": {
+            "template_2:qrcode": {
+                "table": "inputRegister",
+                "value": "test",
+                "value_type": "STRING"
+            },
+            "block_visible:text_8": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: block_visible:qrcode",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff890200040000",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "block_visible": {
+                    "qrcode": "hide"
+                }
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "block_visible:qrcode": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ]
+        },
+        "Modbus": {
+            "block_visible:qrcode": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: block_visible:image_1",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff890200080000",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "block_visible": {
+                    "image_1": "hide"
+                }
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "block_visible:image_1": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ]
+        },
+        "Modbus": {
+            "block_visible:image_1": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: block_visible:image_2",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff890200100000",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "block_visible": {
+                    "image_2": "hide"
+                }
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "block_visible:image_2": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ]
+        },
+        "Modbus": {
+            "block_visible:image_2": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: block_visible:connect_status",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff890200400000",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "block_visible": {
+                    "connect_status": "hide"
+                }
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "block_visible:connect_status": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ]
+        },
+        "Modbus": {
+            "block_visible:connect_status": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            }
         }
     }
 ]

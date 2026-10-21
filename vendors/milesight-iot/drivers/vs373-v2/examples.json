@@ -1,0 +1,5129 @@
+[
+    {
+        "description": "Example 1",
+        "type": "uplink",
+        "input": {
+            "bytes": "03F802010A000F0004F900010002000305FA100000200000300000400006FB3412000301",
+            "fPort": 100,
+            "time": "2024-11-03T17:00:00.000+02:00"
+        },
+        "output": {
+            "data": {
+                "detection_status": "in_bed",
+                "target_status": "motionless",
+                "use_time_now": 10,
+                "use_time_today": 15,
+                "region_1_occupancy": "occupied",
+                "region_2_occupancy": "vacant",
+                "region_3_occupancy": "occupied",
+                "region_4_occupancy": "occupied"
+            }
+        },
+        "points": {
+            "duration:1": {
+                "unitId": "minute",
+                "record": 10,
+                "nature": "now"
+            },
+            "duration:2": {
+                "unitId": "minute",
+                "record": 15,
+                "nature": "today"
+            },
+            "status:5": {
+                "unitId": "state",
+                "record": true,
+                "nature": "in_bed"
+            },
+            "status:6": {
+                "unitId": "state",
+                "record": false,
+                "nature": "target moving"
+            },
+            "status:1": {
+                "unitId": "state",
+                "record": true,
+                "nature": "region_1 occupied"
+            },
+            "status:2": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_2 occupied"
+            },
+            "status:3": {
+                "unitId": "state",
+                "record": true,
+                "nature": "region_3 occupied"
+            },
+            "status:4": {
+                "unitId": "state",
+                "record": true,
+                "nature": "region_4 occupied"
+            }
+        },
+        "BACnet": {
+            "detection_status": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 2,
+                "units": "NO_UNITS"
+            },
+            "target_status": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 1,
+                "units": "NO_UNITS"
+            },
+            "use_time_now": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 10,
+                "units": "SECONDS"
+            },
+            "use_time_today": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 15,
+                "units": "SECONDS"
+            },
+            "region_1_occupancy": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            },
+            "region_2_occupancy": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "region_3_occupancy": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            },
+            "region_4_occupancy": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            }
+        },
+        "Modbus": {
+            "detection_status": {
+                "table": "inputRegister",
+                "value": 2,
+                "value_type": "UINT8"
+            },
+            "target_status": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "use_time_now": {
+                "table": "inputRegister",
+                "value": 10,
+                "value_type": "UINT32"
+            },
+            "use_time_today": {
+                "table": "inputRegister",
+                "value": 15,
+                "value_type": "UINT32"
+            },
+            "region_1_occupancy": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "region_2_occupancy": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "region_3_occupancy": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "region_4_occupancy": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Downlink encode: report_interval",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "report_interval": 600
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                142,
+                0,
+                88,
+                2
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink encode: ai_fall_detection_enable",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "ai_fall_detection_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "ai_fall_detection_enable": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "ai_fall_detection_enable": "enable"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                249,
+                179,
+                1
+            ]
+        }
+    },
+    {
+        "description": "Uplink coverage: detection_region_settings:x_min, detection_region_settings:x_max, detection_region_settings:y_min and 3 more",
+        "type": "uplink",
+        "input": {
+            "bytes": "f84f",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "detection_region_settings": {
+                    "x_min": 0,
+                    "x_max": 0,
+                    "y_min": 0,
+                    "y_max": 0,
+                    "z_max": 0,
+                    "install_height": 0
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "detection_region_settings:x_min": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "detection_region_settings:x_max": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "detection_region_settings:y_min": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "detection_region_settings:y_max": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "detection_region_settings:z_max": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "detection_region_settings:install_height": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "MILLIMETERS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "MILLIMETERS"
+                }
+            ]
+        },
+        "Modbus": {
+            "detection_region_settings:x_min": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT16"
+            },
+            "detection_region_settings:x_max": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT16"
+            },
+            "detection_region_settings:y_min": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT16"
+            },
+            "detection_region_settings:y_max": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT16"
+            },
+            "detection_region_settings:z_max": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            },
+            "detection_region_settings:install_height": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: region_1_out_of_bed_time, region_2_out_of_bed_time, region_3_out_of_bed_time and 1 more",
+        "type": "uplink",
+        "input": {
+            "bytes": "05fa",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "region_1_out_of_bed_time": 0,
+                "region_2_out_of_bed_time": 0,
+                "region_3_out_of_bed_time": 0,
+                "region_4_out_of_bed_time": 0
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "region_1_out_of_bed_time": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "region_2_out_of_bed_time": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "region_3_out_of_bed_time": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "region_4_out_of_bed_time": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "region_1_out_of_bed_time": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT32"
+            },
+            "region_2_out_of_bed_time": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT32"
+            },
+            "region_3_out_of_bed_time": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT32"
+            },
+            "region_4_out_of_bed_time": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT32"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: fall_detection_settings:confirm_time, fall_detection_settings:delay_report_time, fall_detection_settings:alarm_duration",
+        "type": "uplink",
+        "input": {
+            "bytes": "f851",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "fall_detection_settings": {
+                    "confirm_time": 0,
+                    "delay_report_time": 0,
+                    "alarm_duration": 0
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "fall_detection_settings:confirm_time": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "fall_detection_settings:delay_report_time": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "fall_detection_settings:alarm_duration": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ]
+        },
+        "Modbus": {
+            "fall_detection_settings:confirm_time": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            },
+            "fall_detection_settings:delay_report_time": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            },
+            "fall_detection_settings:alarm_duration": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: respiratory_detection_config:enable, respiratory_detection_config:min, respiratory_detection_config:max",
+        "type": "uplink",
+        "input": {
+            "bytes": "f8b201",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "respiratory_detection_config": {
+                    "enable": "enable",
+                    "min": 0,
+                    "max": 0
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "respiratory_detection_config:enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "respiratory_detection_config:min": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "respiratory_detection_config:max": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ]
+        },
+        "Modbus": {
+            "respiratory_detection_config:enable": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "respiratory_detection_config:min": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "respiratory_detection_config:max": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: region_5_out_of_bed_time, region_6_out_of_bed_time",
+        "type": "uplink",
+        "input": {
+            "bytes": "0cb4",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "region_4_out_of_bed_time": 0,
+                "region_5_out_of_bed_time": 0,
+                "region_6_out_of_bed_time": 0
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "region_4_out_of_bed_time": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "region_5_out_of_bed_time": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "region_6_out_of_bed_time": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "region_4_out_of_bed_time": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT32"
+            },
+            "region_5_out_of_bed_time": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT32"
+            },
+            "region_6_out_of_bed_time": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT32"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: existence_detection_settings:exist_confirm_time, existence_detection_settings:leaved_confirm_time",
+        "type": "uplink",
+        "input": {
+            "bytes": "f856",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "existence_detection_settings": {
+                    "exist_confirm_time": 0,
+                    "leaved_confirm_time": 0
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "existence_detection_settings:exist_confirm_time": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "existence_detection_settings:leaved_confirm_time": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ]
+        },
+        "Modbus": {
+            "existence_detection_settings:exist_confirm_time": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "existence_detection_settings:leaved_confirm_time": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: dwell_detection_settings:enable, dwell_detection_settings:dwell_time",
+        "type": "uplink",
+        "input": {
+            "bytes": "f85201",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "dwell_detection_settings": {
+                    "enable": "enable",
+                    "dwell_time": 0
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "dwell_detection_settings:enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "dwell_detection_settings:dwell_time": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "MINUTES"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "MINUTES"
+                }
+            ]
+        },
+        "Modbus": {
+            "dwell_detection_settings:enable": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "dwell_detection_settings:dwell_time": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: motion_detection_settings:enable, motion_detection_settings:motionless_time",
+        "type": "uplink",
+        "input": {
+            "bytes": "f85301",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "motion_detection_settings": {
+                    "enable": "enable",
+                    "motionless_time": 0
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "motion_detection_settings:enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "motion_detection_settings:motionless_time": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "MINUTES"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "MINUTES"
+                }
+            ]
+        },
+        "Modbus": {
+            "motion_detection_settings:enable": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "motion_detection_settings:motionless_time": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: rejoin_config:enable, rejoin_config:max_count",
+        "type": "uplink",
+        "input": {
+            "bytes": "f88501",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "rejoin_config": {
+                    "enable": "enable",
+                    "max_count": 0
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "rejoin_config:enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "rejoin_config:max_count": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ]
+        },
+        "Modbus": {
+            "rejoin_config:enable": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "rejoin_config:max_count": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: data_rate",
+        "type": "uplink",
+        "input": {
+            "bytes": "f886",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "data_rate": 0
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "data_rate": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ]
+        },
+        "Modbus": {
+            "data_rate": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: tx_power_level",
+        "type": "uplink",
+        "input": {
+            "bytes": "f887",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "tx_power_level": 0
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "tx_power_level": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ]
+        },
+        "Modbus": {
+            "tx_power_level": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: d2d_key",
+        "type": "uplink",
+        "input": {
+            "bytes": "fe35",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "d2d_key": ""
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "d2d_key": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": ""
+            }
+        },
+        "Modbus": {
+            "d2d_key": {
+                "table": "inputRegister",
+                "value": "",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: retransmit_interval",
+        "type": "uplink",
+        "input": {
+            "bytes": "fe6a",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "retransmit_interval": 0
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "retransmit_interval": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "SECONDS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 30,
+                    "units": "SECONDS"
+                }
+            ]
+        },
+        "Modbus": {
+            "retransmit_interval": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: report_interval",
+        "type": "uplink",
+        "input": {
+            "bytes": "fe8e",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "report_interval": 0
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "report_interval": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "MINUTES"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "MINUTES"
+                }
+            ]
+        },
+        "Modbus": {
+            "report_interval": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: ipso_version",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff01",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "ipso_version": "v0.0"
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "ipso_version": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "v0.0"
+            }
+        },
+        "Modbus": {
+            "ipso_version": {
+                "table": "inputRegister",
+                "value": "v0.0",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: hardware_version",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff09",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "hardware_version": "v0.0"
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "hardware_version": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "v0.0"
+            }
+        },
+        "Modbus": {
+            "hardware_version": {
+                "table": "inputRegister",
+                "value": "v0.0",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: firmware_version",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff0a",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "firmware_version": "v0.0"
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "firmware_version": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "v0.0"
+            }
+        },
+        "Modbus": {
+            "firmware_version": {
+                "table": "inputRegister",
+                "value": "v0.0",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: sn",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff16",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "sn": ""
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "sn": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": ""
+            }
+        },
+        "Modbus": {
+            "sn": {
+                "table": "inputRegister",
+                "value": "",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: tsl_version",
+        "type": "uplink",
+        "input": {
+            "bytes": "ffff",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "tsl_version": "v0.0"
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "tsl_version": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "v0.0"
+            }
+        },
+        "Modbus": {
+            "tsl_version": {
+                "table": "inputRegister",
+                "value": "v0.0",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage (synthetic frame): ai_fall_detection_enable, led_indicator_enable, buzzer_enable and 16 more",
+        "type": "uplink",
+        "input": {
+            "bytes": "f9b300ff2f00ff3e00ff6900ff0400ff4000ff8400ff4200f94d00ff0b01ff0f0109b20000000000000ab3ff",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "ai_fall_detection_enable": "disable",
+                "led_indicator_enable": "disable",
+                "buzzer_enable": "disable",
+                "retransmit_enable": "disable",
+                "confirm_mode_enable": "disable",
+                "adr_enable": "disable",
+                "d2d_enable": "disable",
+                "wifi_enable": "disable",
+                "wifi_ssid_hidden": "disable",
+                "device_status": "on",
+                "lorawan_class": "Class B",
+                "region_1_type": "custom",
+                "region_2_type": "custom",
+                "region_3_type": "custom",
+                "region_4_type": "custom",
+                "region_5_type": "custom",
+                "region_6_type": "custom",
+                "region_1_occupancy": "vacant",
+                "region_2_occupancy": "vacant",
+                "region_3_occupancy": "vacant",
+                "region_4_occupancy": "vacant",
+                "region_5_occupancy": "vacant",
+                "region_6_occupancy": "vacant",
+                "region_7_occupancy": "vacant",
+                "region_8_occupancy": "vacant",
+                "region_9_occupancy": "vacant",
+                "region_10_occupancy": "vacant",
+                "region_11_occupancy": "vacant",
+                "region_12_occupancy": "vacant",
+                "region_13_occupancy": "vacant",
+                "region_14_occupancy": "vacant",
+                "region_15_occupancy": "vacant",
+                "region_16_occupancy": "vacant",
+                "region_17_occupancy": "vacant",
+                "region_18_occupancy": "vacant",
+                "region_19_occupancy": "vacant",
+                "region_20_occupancy": "vacant",
+                "region_21_occupancy": "vacant",
+                "region_22_occupancy": "vacant",
+                "region_23_occupancy": "vacant",
+                "region_24_occupancy": "vacant",
+                "region_25_occupancy": "vacant",
+                "region_26_occupancy": "vacant",
+                "region_27_occupancy": "vacant",
+                "region_28_occupancy": "vacant",
+                "region_29_occupancy": "vacant",
+                "region_30_occupancy": "vacant",
+                "region_31_occupancy": "vacant",
+                "region_32_occupancy": "vacant",
+                "region_33_occupancy": "vacant",
+                "region_34_occupancy": "vacant",
+                "region_35_occupancy": "vacant",
+                "region_36_occupancy": "vacant",
+                "region_37_occupancy": "vacant",
+                "region_38_occupancy": "vacant",
+                "region_39_occupancy": "vacant",
+                "region_40_occupancy": "vacant",
+                "region_41_occupancy": "vacant",
+                "region_42_occupancy": "vacant",
+                "region_43_occupancy": "vacant",
+                "region_44_occupancy": "vacant",
+                "region_45_occupancy": "vacant",
+                "region_46_occupancy": "vacant",
+                "region_47_occupancy": "vacant",
+                "region_48_occupancy": "vacant",
+                "region_49_occupancy": "vacant",
+                "region_50_occupancy": "vacant",
+                "region_51_occupancy": "vacant",
+                "region_52_occupancy": "vacant",
+                "region_53_occupancy": "vacant",
+                "region_54_occupancy": "vacant",
+                "region_55_occupancy": "vacant",
+                "region_56_occupancy": "vacant",
+                "region_57_occupancy": "vacant",
+                "region_58_occupancy": "vacant",
+                "region_59_occupancy": "vacant",
+                "region_60_occupancy": "vacant",
+                "region_61_occupancy": "vacant",
+                "region_62_occupancy": "vacant",
+                "region_63_occupancy": "vacant",
+                "region_64_occupancy": "vacant",
+                "region_65_occupancy": "vacant",
+                "region_66_occupancy": "vacant",
+                "region_67_occupancy": "vacant",
+                "region_68_occupancy": "vacant",
+                "region_69_occupancy": "vacant",
+                "region_70_occupancy": "vacant",
+                "region_71_occupancy": "vacant",
+                "region_72_occupancy": "vacant",
+                "region_73_occupancy": "vacant",
+                "region_74_occupancy": "vacant",
+                "region_75_occupancy": "vacant",
+                "region_76_occupancy": "vacant",
+                "region_77_occupancy": "vacant",
+                "region_78_occupancy": "vacant",
+                "region_79_occupancy": "vacant",
+                "region_80_occupancy": "vacant",
+                "region_81_occupancy": "vacant",
+                "region_82_occupancy": "vacant",
+                "region_83_occupancy": "vacant",
+                "region_84_occupancy": "vacant",
+                "region_85_occupancy": "vacant",
+                "region_86_occupancy": "vacant",
+                "region_87_occupancy": "vacant",
+                "region_88_occupancy": "vacant",
+                "region_89_occupancy": "vacant",
+                "region_90_occupancy": "vacant",
+                "region_91_occupancy": "vacant",
+                "region_92_occupancy": "vacant",
+                "region_93_occupancy": "vacant",
+                "region_94_occupancy": "vacant",
+                "region_95_occupancy": "vacant",
+                "region_96_occupancy": "vacant",
+                "region_97_occupancy": "vacant",
+                "region_98_occupancy": "vacant",
+                "region_99_occupancy": "vacant",
+                "region_100_occupancy": "vacant",
+                "region_101_occupancy": "vacant",
+                "region_102_occupancy": "vacant",
+                "region_103_occupancy": "vacant",
+                "region_104_occupancy": "vacant",
+                "region_105_occupancy": "vacant",
+                "region_106_occupancy": "vacant",
+                "region_107_occupancy": "vacant",
+                "region_108_occupancy": "vacant",
+                "region_109_occupancy": "vacant",
+                "region_110_occupancy": "vacant",
+                "region_111_occupancy": "vacant",
+                "region_112_occupancy": "vacant",
+                "region_113_occupancy": "vacant",
+                "region_114_occupancy": "vacant",
+                "region_115_occupancy": "vacant",
+                "region_116_occupancy": "vacant",
+                "region_117_occupancy": "vacant",
+                "region_118_occupancy": "vacant",
+                "region_119_occupancy": "vacant",
+                "region_120_occupancy": "vacant",
+                "region_121_occupancy": "vacant",
+                "region_122_occupancy": "vacant",
+                "region_123_occupancy": "vacant",
+                "region_124_occupancy": "vacant",
+                "region_125_occupancy": "vacant",
+                "region_126_occupancy": "vacant",
+                "region_127_occupancy": "vacant",
+                "region_128_occupancy": "vacant",
+                "region_129_occupancy": "vacant",
+                "region_130_occupancy": "vacant",
+                "region_131_occupancy": "vacant",
+                "region_132_occupancy": "vacant",
+                "region_133_occupancy": "vacant",
+                "region_134_occupancy": "vacant",
+                "region_135_occupancy": "vacant",
+                "region_136_occupancy": "vacant",
+                "region_137_occupancy": "vacant",
+                "region_138_occupancy": "vacant",
+                "region_139_occupancy": "vacant",
+                "region_140_occupancy": "vacant",
+                "region_141_occupancy": "vacant",
+                "region_142_occupancy": "vacant",
+                "region_143_occupancy": "vacant",
+                "region_144_occupancy": "vacant",
+                "region_145_occupancy": "vacant",
+                "region_146_occupancy": "vacant",
+                "region_147_occupancy": "vacant",
+                "region_148_occupancy": "vacant",
+                "region_149_occupancy": "vacant",
+                "region_150_occupancy": "vacant",
+                "region_151_occupancy": "vacant",
+                "region_152_occupancy": "vacant",
+                "region_153_occupancy": "vacant",
+                "region_154_occupancy": "vacant",
+                "region_155_occupancy": "vacant",
+                "region_156_occupancy": "vacant",
+                "region_157_occupancy": "vacant",
+                "region_158_occupancy": "vacant",
+                "region_159_occupancy": "vacant",
+                "region_160_occupancy": "vacant",
+                "region_161_occupancy": "vacant",
+                "region_162_occupancy": "vacant",
+                "region_163_occupancy": "vacant",
+                "region_164_occupancy": "vacant",
+                "region_165_occupancy": "vacant",
+                "region_166_occupancy": "vacant",
+                "region_167_occupancy": "vacant",
+                "region_168_occupancy": "vacant",
+                "region_169_occupancy": "vacant",
+                "region_170_occupancy": "vacant",
+                "region_171_occupancy": "vacant",
+                "region_172_occupancy": "vacant",
+                "region_173_occupancy": "vacant",
+                "region_174_occupancy": "vacant",
+                "region_175_occupancy": "vacant",
+                "region_176_occupancy": "vacant",
+                "region_177_occupancy": "vacant",
+                "region_178_occupancy": "vacant",
+                "region_179_occupancy": "vacant",
+                "region_180_occupancy": "vacant",
+                "region_181_occupancy": "vacant",
+                "region_182_occupancy": "vacant",
+                "region_183_occupancy": "vacant",
+                "region_184_occupancy": "vacant",
+                "region_185_occupancy": "vacant",
+                "region_186_occupancy": "vacant",
+                "region_187_occupancy": "vacant",
+                "region_188_occupancy": "vacant",
+                "region_189_occupancy": "vacant",
+                "region_190_occupancy": "vacant",
+                "region_191_occupancy": "vacant",
+                "region_192_occupancy": "vacant",
+                "region_193_occupancy": "vacant",
+                "region_194_occupancy": "vacant",
+                "region_195_occupancy": "vacant",
+                "region_196_occupancy": "vacant",
+                "region_197_occupancy": "vacant",
+                "region_198_occupancy": "vacant",
+                "region_199_occupancy": "vacant",
+                "region_200_occupancy": "vacant",
+                "region_201_occupancy": "vacant",
+                "region_202_occupancy": "vacant",
+                "region_203_occupancy": "vacant",
+                "region_204_occupancy": "vacant",
+                "region_205_occupancy": "vacant",
+                "region_206_occupancy": "vacant",
+                "region_207_occupancy": "vacant",
+                "region_208_occupancy": "vacant",
+                "region_209_occupancy": "vacant",
+                "region_210_occupancy": "vacant",
+                "region_211_occupancy": "vacant",
+                "region_212_occupancy": "vacant",
+                "region_213_occupancy": "vacant",
+                "region_214_occupancy": "vacant",
+                "region_215_occupancy": "vacant",
+                "region_216_occupancy": "vacant",
+                "region_217_occupancy": "vacant",
+                "region_218_occupancy": "vacant",
+                "region_219_occupancy": "vacant",
+                "region_220_occupancy": "vacant",
+                "region_221_occupancy": "vacant",
+                "region_222_occupancy": "vacant",
+                "region_223_occupancy": "vacant",
+                "region_224_occupancy": "vacant",
+                "region_225_occupancy": "vacant",
+                "region_226_occupancy": "vacant",
+                "region_227_occupancy": "vacant",
+                "region_228_occupancy": "vacant",
+                "region_229_occupancy": "vacant",
+                "region_230_occupancy": "vacant",
+                "region_231_occupancy": "vacant",
+                "region_232_occupancy": "vacant",
+                "region_233_occupancy": "vacant",
+                "region_234_occupancy": "vacant",
+                "region_235_occupancy": "vacant",
+                "region_236_occupancy": "vacant",
+                "region_237_occupancy": "vacant",
+                "region_238_occupancy": "vacant",
+                "region_239_occupancy": "vacant",
+                "region_240_occupancy": "vacant",
+                "region_241_occupancy": "vacant",
+                "region_242_occupancy": "vacant",
+                "region_243_occupancy": "vacant",
+                "region_244_occupancy": "vacant",
+                "region_245_occupancy": "vacant",
+                "region_246_occupancy": "vacant",
+                "region_247_occupancy": "vacant",
+                "region_248_occupancy": "vacant",
+                "region_249_occupancy": "vacant",
+                "region_250_occupancy": "vacant",
+                "region_251_occupancy": "vacant",
+                "region_252_occupancy": "vacant",
+                "region_253_occupancy": "vacant",
+                "region_254_occupancy": "vacant",
+                "region_255_occupancy": "vacant"
+            }
+        },
+        "points": {
+            "status:1": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_1 occupied"
+            },
+            "status:2": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_2 occupied"
+            },
+            "status:3": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_3 occupied"
+            },
+            "status:4": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_4 occupied"
+            },
+            "status:5": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_5 occupied"
+            },
+            "status:6": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_6 occupied"
+            },
+            "status:7": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_7 occupied"
+            },
+            "status:8": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_8 occupied"
+            },
+            "status:9": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_9 occupied"
+            },
+            "status:10": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_10 occupied"
+            },
+            "status:11": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_11 occupied"
+            },
+            "status:12": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_12 occupied"
+            },
+            "status:13": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_13 occupied"
+            },
+            "status:14": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_14 occupied"
+            },
+            "status:15": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_15 occupied"
+            },
+            "status:16": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_16 occupied"
+            },
+            "status:17": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_17 occupied"
+            },
+            "status:18": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_18 occupied"
+            },
+            "status:19": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_19 occupied"
+            },
+            "status:20": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_20 occupied"
+            },
+            "status:21": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_21 occupied"
+            },
+            "status:22": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_22 occupied"
+            },
+            "status:23": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_23 occupied"
+            },
+            "status:24": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_24 occupied"
+            },
+            "status:25": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_25 occupied"
+            },
+            "status:26": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_26 occupied"
+            },
+            "status:27": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_27 occupied"
+            },
+            "status:28": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_28 occupied"
+            },
+            "status:29": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_29 occupied"
+            },
+            "status:30": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_30 occupied"
+            },
+            "status:31": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_31 occupied"
+            },
+            "status:32": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_32 occupied"
+            },
+            "status:33": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_33 occupied"
+            },
+            "status:34": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_34 occupied"
+            },
+            "status:35": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_35 occupied"
+            },
+            "status:36": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_36 occupied"
+            },
+            "status:37": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_37 occupied"
+            },
+            "status:38": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_38 occupied"
+            },
+            "status:39": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_39 occupied"
+            },
+            "status:40": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_40 occupied"
+            },
+            "status:41": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_41 occupied"
+            },
+            "status:42": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_42 occupied"
+            },
+            "status:43": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_43 occupied"
+            },
+            "status:44": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_44 occupied"
+            },
+            "status:45": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_45 occupied"
+            },
+            "status:46": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_46 occupied"
+            },
+            "status:47": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_47 occupied"
+            },
+            "status:48": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_48 occupied"
+            },
+            "status:49": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_49 occupied"
+            },
+            "status:50": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_50 occupied"
+            },
+            "status:51": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_51 occupied"
+            },
+            "status:52": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_52 occupied"
+            },
+            "status:53": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_53 occupied"
+            },
+            "status:54": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_54 occupied"
+            },
+            "status:55": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_55 occupied"
+            },
+            "status:56": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_56 occupied"
+            },
+            "status:57": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_57 occupied"
+            },
+            "status:58": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_58 occupied"
+            },
+            "status:59": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_59 occupied"
+            },
+            "status:60": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_60 occupied"
+            },
+            "status:61": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_61 occupied"
+            },
+            "status:62": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_62 occupied"
+            },
+            "status:63": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_63 occupied"
+            },
+            "status:64": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_64 occupied"
+            },
+            "status:65": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_65 occupied"
+            },
+            "status:66": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_66 occupied"
+            },
+            "status:67": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_67 occupied"
+            },
+            "status:68": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_68 occupied"
+            },
+            "status:69": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_69 occupied"
+            },
+            "status:70": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_70 occupied"
+            },
+            "status:71": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_71 occupied"
+            },
+            "status:72": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_72 occupied"
+            },
+            "status:73": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_73 occupied"
+            },
+            "status:74": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_74 occupied"
+            },
+            "status:75": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_75 occupied"
+            },
+            "status:76": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_76 occupied"
+            },
+            "status:77": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_77 occupied"
+            },
+            "status:78": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_78 occupied"
+            },
+            "status:79": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_79 occupied"
+            },
+            "status:80": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_80 occupied"
+            },
+            "status:81": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_81 occupied"
+            },
+            "status:82": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_82 occupied"
+            },
+            "status:83": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_83 occupied"
+            },
+            "status:84": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_84 occupied"
+            },
+            "status:85": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_85 occupied"
+            },
+            "status:86": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_86 occupied"
+            },
+            "status:87": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_87 occupied"
+            },
+            "status:88": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_88 occupied"
+            },
+            "status:89": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_89 occupied"
+            },
+            "status:90": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_90 occupied"
+            },
+            "status:91": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_91 occupied"
+            },
+            "status:92": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_92 occupied"
+            },
+            "status:93": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_93 occupied"
+            },
+            "status:94": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_94 occupied"
+            },
+            "status:95": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_95 occupied"
+            },
+            "status:96": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_96 occupied"
+            },
+            "status:97": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_97 occupied"
+            },
+            "status:98": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_98 occupied"
+            },
+            "status:99": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_99 occupied"
+            },
+            "status:100": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_100 occupied"
+            },
+            "status:101": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_101 occupied"
+            },
+            "status:102": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_102 occupied"
+            },
+            "status:103": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_103 occupied"
+            },
+            "status:104": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_104 occupied"
+            },
+            "status:105": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_105 occupied"
+            },
+            "status:106": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_106 occupied"
+            },
+            "status:107": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_107 occupied"
+            },
+            "status:108": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_108 occupied"
+            },
+            "status:109": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_109 occupied"
+            },
+            "status:110": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_110 occupied"
+            },
+            "status:111": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_111 occupied"
+            },
+            "status:112": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_112 occupied"
+            },
+            "status:113": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_113 occupied"
+            },
+            "status:114": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_114 occupied"
+            },
+            "status:115": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_115 occupied"
+            },
+            "status:116": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_116 occupied"
+            },
+            "status:117": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_117 occupied"
+            },
+            "status:118": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_118 occupied"
+            },
+            "status:119": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_119 occupied"
+            },
+            "status:120": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_120 occupied"
+            },
+            "status:121": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_121 occupied"
+            },
+            "status:122": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_122 occupied"
+            },
+            "status:123": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_123 occupied"
+            },
+            "status:124": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_124 occupied"
+            },
+            "status:125": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_125 occupied"
+            },
+            "status:126": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_126 occupied"
+            },
+            "status:127": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_127 occupied"
+            },
+            "status:128": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_128 occupied"
+            },
+            "status:129": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_129 occupied"
+            },
+            "status:130": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_130 occupied"
+            },
+            "status:131": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_131 occupied"
+            },
+            "status:132": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_132 occupied"
+            },
+            "status:133": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_133 occupied"
+            },
+            "status:134": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_134 occupied"
+            },
+            "status:135": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_135 occupied"
+            },
+            "status:136": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_136 occupied"
+            },
+            "status:137": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_137 occupied"
+            },
+            "status:138": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_138 occupied"
+            },
+            "status:139": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_139 occupied"
+            },
+            "status:140": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_140 occupied"
+            },
+            "status:141": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_141 occupied"
+            },
+            "status:142": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_142 occupied"
+            },
+            "status:143": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_143 occupied"
+            },
+            "status:144": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_144 occupied"
+            },
+            "status:145": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_145 occupied"
+            },
+            "status:146": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_146 occupied"
+            },
+            "status:147": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_147 occupied"
+            },
+            "status:148": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_148 occupied"
+            },
+            "status:149": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_149 occupied"
+            },
+            "status:150": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_150 occupied"
+            },
+            "status:151": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_151 occupied"
+            },
+            "status:152": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_152 occupied"
+            },
+            "status:153": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_153 occupied"
+            },
+            "status:154": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_154 occupied"
+            },
+            "status:155": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_155 occupied"
+            },
+            "status:156": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_156 occupied"
+            },
+            "status:157": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_157 occupied"
+            },
+            "status:158": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_158 occupied"
+            },
+            "status:159": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_159 occupied"
+            },
+            "status:160": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_160 occupied"
+            },
+            "status:161": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_161 occupied"
+            },
+            "status:162": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_162 occupied"
+            },
+            "status:163": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_163 occupied"
+            },
+            "status:164": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_164 occupied"
+            },
+            "status:165": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_165 occupied"
+            },
+            "status:166": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_166 occupied"
+            },
+            "status:167": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_167 occupied"
+            },
+            "status:168": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_168 occupied"
+            },
+            "status:169": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_169 occupied"
+            },
+            "status:170": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_170 occupied"
+            },
+            "status:171": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_171 occupied"
+            },
+            "status:172": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_172 occupied"
+            },
+            "status:173": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_173 occupied"
+            },
+            "status:174": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_174 occupied"
+            },
+            "status:175": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_175 occupied"
+            },
+            "status:176": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_176 occupied"
+            },
+            "status:177": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_177 occupied"
+            },
+            "status:178": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_178 occupied"
+            },
+            "status:179": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_179 occupied"
+            },
+            "status:180": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_180 occupied"
+            },
+            "status:181": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_181 occupied"
+            },
+            "status:182": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_182 occupied"
+            },
+            "status:183": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_183 occupied"
+            },
+            "status:184": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_184 occupied"
+            },
+            "status:185": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_185 occupied"
+            },
+            "status:186": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_186 occupied"
+            },
+            "status:187": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_187 occupied"
+            },
+            "status:188": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_188 occupied"
+            },
+            "status:189": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_189 occupied"
+            },
+            "status:190": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_190 occupied"
+            },
+            "status:191": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_191 occupied"
+            },
+            "status:192": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_192 occupied"
+            },
+            "status:193": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_193 occupied"
+            },
+            "status:194": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_194 occupied"
+            },
+            "status:195": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_195 occupied"
+            },
+            "status:196": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_196 occupied"
+            },
+            "status:197": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_197 occupied"
+            },
+            "status:198": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_198 occupied"
+            },
+            "status:199": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_199 occupied"
+            },
+            "status:200": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_200 occupied"
+            },
+            "status:201": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_201 occupied"
+            },
+            "status:202": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_202 occupied"
+            },
+            "status:203": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_203 occupied"
+            },
+            "status:204": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_204 occupied"
+            },
+            "status:205": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_205 occupied"
+            },
+            "status:206": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_206 occupied"
+            },
+            "status:207": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_207 occupied"
+            },
+            "status:208": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_208 occupied"
+            },
+            "status:209": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_209 occupied"
+            },
+            "status:210": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_210 occupied"
+            },
+            "status:211": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_211 occupied"
+            },
+            "status:212": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_212 occupied"
+            },
+            "status:213": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_213 occupied"
+            },
+            "status:214": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_214 occupied"
+            },
+            "status:215": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_215 occupied"
+            },
+            "status:216": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_216 occupied"
+            },
+            "status:217": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_217 occupied"
+            },
+            "status:218": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_218 occupied"
+            },
+            "status:219": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_219 occupied"
+            },
+            "status:220": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_220 occupied"
+            },
+            "status:221": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_221 occupied"
+            },
+            "status:222": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_222 occupied"
+            },
+            "status:223": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_223 occupied"
+            },
+            "status:224": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_224 occupied"
+            },
+            "status:225": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_225 occupied"
+            },
+            "status:226": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_226 occupied"
+            },
+            "status:227": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_227 occupied"
+            },
+            "status:228": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_228 occupied"
+            },
+            "status:229": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_229 occupied"
+            },
+            "status:230": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_230 occupied"
+            },
+            "status:231": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_231 occupied"
+            },
+            "status:232": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_232 occupied"
+            },
+            "status:233": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_233 occupied"
+            },
+            "status:234": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_234 occupied"
+            },
+            "status:235": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_235 occupied"
+            },
+            "status:236": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_236 occupied"
+            },
+            "status:237": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_237 occupied"
+            },
+            "status:238": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_238 occupied"
+            },
+            "status:239": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_239 occupied"
+            },
+            "status:240": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_240 occupied"
+            },
+            "status:241": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_241 occupied"
+            },
+            "status:242": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_242 occupied"
+            },
+            "status:243": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_243 occupied"
+            },
+            "status:244": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_244 occupied"
+            },
+            "status:245": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_245 occupied"
+            },
+            "status:246": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_246 occupied"
+            },
+            "status:247": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_247 occupied"
+            },
+            "status:248": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_248 occupied"
+            },
+            "status:249": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_249 occupied"
+            },
+            "status:250": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_250 occupied"
+            },
+            "status:251": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_251 occupied"
+            },
+            "status:252": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_252 occupied"
+            },
+            "status:253": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_253 occupied"
+            },
+            "status:254": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_254 occupied"
+            },
+            "status:255": {
+                "unitId": "state",
+                "record": false,
+                "nature": "region_255 occupied"
+            }
+        },
+        "BACnet": {
+            "lorawan_class": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 1,
+                "units": "NO_UNITS"
+            },
+            "device_status": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            },
+            "region_1_occupancy": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "region_2_occupancy": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "region_3_occupancy": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "region_4_occupancy": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "region_5_occupancy": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "region_6_occupancy": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "region_1_type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "region_2_type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "region_3_type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "region_4_type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "region_5_type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "region_6_type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "ai_fall_detection_enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "led_indicator_enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "buzzer_enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "retransmit_enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "confirm_mode_enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "adr_enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "d2d_enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "wifi_enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "wifi_ssid_hidden": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ]
+        },
+        "Modbus": {
+            "lorawan_class": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "device_status": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "region_1_occupancy": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "region_2_occupancy": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "region_3_occupancy": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "region_4_occupancy": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "region_5_occupancy": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "region_6_occupancy": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "region_1_type": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "region_2_type": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "region_3_type": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "region_4_type": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "region_5_type": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "region_6_type": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "ai_fall_detection_enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "led_indicator_enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "buzzer_enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "retransmit_enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "confirm_mode_enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "adr_enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "d2d_enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "wifi_enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "wifi_ssid_hidden": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage (synthetic frame): trigger_digital_output_config:enable, trigger_digital_output_config:fall, trigger_digital_output_config:lying and 3 more",
+        "type": "uplink",
+        "input": {
+            "bytes": "f8b5000000000000",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "trigger_digital_output_config": {
+                    "enable": "disable",
+                    "fall": "disable",
+                    "lying": "disable",
+                    "out_of_bed": "disable",
+                    "dwell": "disable",
+                    "motionless": "disable"
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "trigger_digital_output_config:enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "trigger_digital_output_config:fall": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "trigger_digital_output_config:lying": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "trigger_digital_output_config:out_of_bed": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "trigger_digital_output_config:dwell": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "trigger_digital_output_config:motionless": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ]
+        },
+        "Modbus": {
+            "trigger_digital_output_config:enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "trigger_digital_output_config:fall": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "trigger_digital_output_config:lying": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "trigger_digital_output_config:out_of_bed": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "trigger_digital_output_config:dwell": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "trigger_digital_output_config:motionless": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage (synthetic frame): sleep_detection_config:enable, sleep_detection_config:start_time, sleep_detection_config:end_time and 2 more",
+        "type": "uplink",
+        "input": {
+            "bytes": "f8b1000000000000",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "sleep_detection_config": {
+                    "enable": "disable",
+                    "start_time": 0,
+                    "end_time": 0,
+                    "out_of_bed_enable": "disable",
+                    "out_of_bed_time": 0
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "sleep_detection_config:enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "sleep_detection_config:start_time": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "MINUTES"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "MINUTES"
+                }
+            ],
+            "sleep_detection_config:end_time": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "MINUTES"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "MINUTES"
+                }
+            ],
+            "sleep_detection_config:out_of_bed_enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "sleep_detection_config:out_of_bed_time": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "MINUTES"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "MINUTES"
+                }
+            ]
+        },
+        "Modbus": {
+            "sleep_detection_config:enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "sleep_detection_config:start_time": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            },
+            "sleep_detection_config:end_time": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            },
+            "sleep_detection_config:out_of_bed_enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "sleep_detection_config:out_of_bed_time": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage (synthetic frame): detection_settings:mode, detection_settings:sensitivity",
+        "type": "uplink",
+        "input": {
+            "bytes": "f8500000",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "detection_settings": {
+                    "mode": "default",
+                    "sensitivity": "low"
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "detection_settings:mode": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "detection_settings:sensitivity": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ]
+        },
+        "Modbus": {
+            "detection_settings:mode": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "detection_settings:sensitivity": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Downlink encode: linked group detection_region_settings (6 points)",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "detection_region_settings": {
+                    "x_min": 0,
+                    "x_max": 0,
+                    "y_min": 0,
+                    "y_max": 0,
+                    "z_max": 0,
+                    "install_height": 0
+                }
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                249,
+                79,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink encode: linked group detection_settings (2 points)",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "detection_settings": {
+                    "mode": "default",
+                    "sensitivity": "low"
+                }
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                249,
+                80,
+                0,
+                0
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink encode: linked group fall_detection_settings (3 points)",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "fall_detection_settings": {
+                    "confirm_time": 0,
+                    "delay_report_time": 0,
+                    "alarm_duration": 0
+                }
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                249,
+                81,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink encode: linked group dwell_detection_settings (2 points)",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "dwell_detection_settings": {
+                    "enable": "disable",
+                    "dwell_time": 0
+                }
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                249,
+                82,
+                0,
+                0,
+                0
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink encode: linked group motion_detection_settings (2 points)",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "motion_detection_settings": {
+                    "enable": "disable",
+                    "motionless_time": 0
+                }
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                249,
+                83,
+                0,
+                0,
+                0
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink encode: linked group sleep_detection_config (5 points)",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "sleep_detection_config": {
+                    "enable": "disable",
+                    "start_time": 0,
+                    "end_time": 0,
+                    "out_of_bed_enable": "disable",
+                    "out_of_bed_time": 0
+                }
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                249,
+                177,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink encode: linked group respiratory_detection_config (3 points)",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "respiratory_detection_config": {
+                    "enable": "disable",
+                    "min": 0,
+                    "max": 0
+                }
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                249,
+                178,
+                0,
+                0,
+                0
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink encode: linked group confirm_fall_alarm (2 points)",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "confirm_fall_alarm": {
+                    "alarm_id": 0,
+                    "action": "dismiss"
+                }
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                249,
+                180,
+                0,
+                0,
+                2
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink encode: linked group existence_detection_settings (2 points)",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "existence_detection_settings": {
+                    "exist_confirm_time": 0,
+                    "leaved_confirm_time": 0
+                }
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                249,
+                86,
+                0,
+                0
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink encode: linked group time_sync_config (2 points)",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "time_sync_config": {
+                    "mode": "sync_from_gateway",
+                    "timestamp": 0
+                }
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                249,
+                145,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink encode: linked group rejoin_config (2 points)",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "rejoin_config": {
+                    "enable": "disable",
+                    "max_count": 0
+                }
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                249,
+                133,
+                0,
+                0
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink encode: linked group trigger_digital_output_config (6 points)",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "trigger_digital_output_config": {
+                    "enable": "disable",
+                    "fall": "disable",
+                    "lying": "disable",
+                    "out_of_bed": "disable",
+                    "dwell": "disable",
+                    "motionless": "disable"
+                }
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                249,
+                181,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink write: report_interval and 4 more",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "report_interval": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            },
+            "digital_output": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            },
+            "led_indicator_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            },
+            "buzzer_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            },
+            "retransmit_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            }
+        },
+        "inputModbus": {
+            "report_interval": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 0
+            },
+            "digital_output": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 0
+            },
+            "led_indicator_enable": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 0
+            },
+            "buzzer_enable": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 0
+            },
+            "retransmit_enable": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 0
+            }
+        },
+        "input": {
+            "data": {
+                "report_interval": 0,
+                "digital_output": "low",
+                "led_indicator_enable": "disable",
+                "buzzer_enable": "disable",
+                "retransmit_enable": "disable"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                142,
+                0,
+                0,
+                0,
+                249,
+                78,
+                0,
+                255,
+                47,
+                0,
+                255,
+                62,
+                0,
+                255,
+                105,
+                0
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink write: retransmit_interval and 4 more",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "retransmit_interval": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 30
+            },
+            "confirm_mode_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            },
+            "adr_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            },
+            "d2d_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            },
+            "wifi_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            }
+        },
+        "inputModbus": {
+            "retransmit_interval": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 30
+            },
+            "confirm_mode_enable": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 0
+            },
+            "adr_enable": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 0
+            },
+            "d2d_enable": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 0
+            },
+            "wifi_enable": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 0
+            }
+        },
+        "input": {
+            "data": {
+                "retransmit_interval": 30,
+                "confirm_mode_enable": "disable",
+                "adr_enable": "disable",
+                "d2d_enable": "disable",
+                "wifi_enable": "disable"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                106,
+                0,
+                30,
+                0,
+                255,
+                4,
+                0,
+                255,
+                64,
+                0,
+                255,
+                132,
+                0,
+                255,
+                66,
+                0
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink write: wifi_ssid_hidden and 3 more",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "wifi_ssid_hidden": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            },
+            "timestamp": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            },
+            "data_rate": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            },
+            "tx_power_level": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            }
+        },
+        "inputModbus": {
+            "wifi_ssid_hidden": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 0
+            },
+            "timestamp": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 0
+            },
+            "data_rate": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 0
+            },
+            "tx_power_level": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 0
+            }
+        },
+        "input": {
+            "data": {
+                "wifi_ssid_hidden": "disable",
+                "timestamp": 0,
+                "data_rate": 0,
+                "tx_power_level": 0
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                17,
+                0,
+                0,
+                0,
+                0,
+                249,
+                77,
+                0,
+                249,
+                134,
+                0,
+                249,
+                135,
+                0
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Uplink coverage: device_response_result:channel_type, device_response_result:result, device_response_result:request:trigger_digital_output_config:enable and 5 more",
+        "type": "uplink",
+        "input": {
+            "bytes": "f8b501522374459667b8",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "device_response_result": {
+                    "channel_type": 181,
+                    "result": "unknown",
+                    "request": {
+                        "trigger_digital_output_config": {
+                            "enable": "enable",
+                            "fall": "unknown",
+                            "lying": "unknown",
+                            "out_of_bed": "unknown",
+                            "dwell": "unknown",
+                            "motionless": "unknown"
+                        }
+                    }
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "device_response_result:channel_type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 181,
+                "units": "NO_UNITS"
+            },
+            "device_response_result:result": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "device_response_result:request:trigger_digital_output_config:enable": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            },
+            "device_response_result:request:trigger_digital_output_config:fall": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "device_response_result:request:trigger_digital_output_config:lying": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "device_response_result:request:trigger_digital_output_config:out_of_bed": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "device_response_result:request:trigger_digital_output_config:dwell": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "device_response_result:request:trigger_digital_output_config:motionless": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            }
+        },
+        "Modbus": {
+            "device_response_result:channel_type": {
+                "table": "inputRegister",
+                "value": 181,
+                "value_type": "INT32"
+            },
+            "device_response_result:result": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "device_response_result:request:trigger_digital_output_config:enable": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "BOOL"
+            },
+            "device_response_result:request:trigger_digital_output_config:fall": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "device_response_result:request:trigger_digital_output_config:lying": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "device_response_result:request:trigger_digital_output_config:out_of_bed": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "device_response_result:request:trigger_digital_output_config:dwell": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "device_response_result:request:trigger_digital_output_config:motionless": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: device_response_result:request:sleep_detection_config:enable, device_response_result:request:sleep_detection_config:start_time, device_response_result:request:sleep_detection_config:end_time and 4 more",
+        "type": "uplink",
+        "input": {
+            "bytes": "f8b101522374459667b8f8910152",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "device_response_result": {
+                    "channel_type": 177,
+                    "result": "unknown",
+                    "request": {
+                        "sleep_detection_config": {
+                            "enable": "enable",
+                            "start_time": 9042,
+                            "end_time": 17780,
+                            "out_of_bed_enable": "unknown",
+                            "out_of_bed_time": 103
+                        }
+                    }
+                },
+                "time_sync_config": {
+                    "mode": "manual_sync",
+                    "timestamp": 82
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "time_sync_config:mode": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 1,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "time_sync_config:timestamp": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 82,
+                    "units": "SECONDS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "SECONDS"
+                }
+            ],
+            "device_response_result:channel_type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 177,
+                "units": "NO_UNITS"
+            },
+            "device_response_result:result": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "device_response_result:request:sleep_detection_config:enable": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            },
+            "device_response_result:request:sleep_detection_config:start_time": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 9042,
+                "units": "NO_UNITS"
+            },
+            "device_response_result:request:sleep_detection_config:end_time": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 17780,
+                "units": "NO_UNITS"
+            },
+            "device_response_result:request:sleep_detection_config:out_of_bed_enable": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "device_response_result:request:sleep_detection_config:out_of_bed_time": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 103,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "time_sync_config:mode": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "time_sync_config:timestamp": {
+                "table": "inputRegister",
+                "value": 82,
+                "value_type": "UINT32"
+            },
+            "device_response_result:channel_type": {
+                "table": "inputRegister",
+                "value": 177,
+                "value_type": "INT32"
+            },
+            "device_response_result:result": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "device_response_result:request:sleep_detection_config:enable": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "BOOL"
+            },
+            "device_response_result:request:sleep_detection_config:start_time": {
+                "table": "inputRegister",
+                "value": 9042,
+                "value_type": "INT32"
+            },
+            "device_response_result:request:sleep_detection_config:end_time": {
+                "table": "inputRegister",
+                "value": 17780,
+                "value_type": "INT32"
+            },
+            "device_response_result:request:sleep_detection_config:out_of_bed_enable": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "device_response_result:request:sleep_detection_config:out_of_bed_time": {
+                "table": "inputRegister",
+                "value": 103,
+                "value_type": "INT32"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: device_response_result:request:respiratory_detection_config:enable, device_response_result:request:respiratory_detection_config:min, device_response_result:request:respiratory_detection_config:max and 3 more",
+        "type": "uplink",
+        "input": {
+            "bytes": "f8b201522374f9b4010002fe11",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "device_response_result": {
+                    "channel_type": 178,
+                    "result": "unknown",
+                    "request": {
+                        "respiratory_detection_config": {
+                            "enable": "enable",
+                            "min": 82,
+                            "max": 35
+                        }
+                    }
+                },
+                "confirm_fall_alarm": {
+                    "alarm_id": 1,
+                    "action": "dismiss"
+                },
+                "timestamp": 0
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "confirm_fall_alarm:alarm_id": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 1,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "confirm_fall_alarm:action": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 2,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 2,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "timestamp": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "SECONDS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "SECONDS"
+                }
+            ],
+            "device_response_result:channel_type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 178,
+                "units": "NO_UNITS"
+            },
+            "device_response_result:result": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "device_response_result:request:respiratory_detection_config:enable": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            },
+            "device_response_result:request:respiratory_detection_config:min": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 82,
+                "units": "NO_UNITS"
+            },
+            "device_response_result:request:respiratory_detection_config:max": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 35,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "confirm_fall_alarm:alarm_id": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT16"
+            },
+            "confirm_fall_alarm:action": {
+                "table": "inputRegister",
+                "value": 2,
+                "value_type": "UINT8"
+            },
+            "timestamp": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT32"
+            },
+            "device_response_result:channel_type": {
+                "table": "inputRegister",
+                "value": 178,
+                "value_type": "INT32"
+            },
+            "device_response_result:result": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "device_response_result:request:respiratory_detection_config:enable": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "BOOL"
+            },
+            "device_response_result:request:respiratory_detection_config:min": {
+                "table": "inputRegister",
+                "value": 82,
+                "value_type": "INT32"
+            },
+            "device_response_result:request:respiratory_detection_config:max": {
+                "table": "inputRegister",
+                "value": 35,
+                "value_type": "INT32"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: device_response_result:request:fall_detection_settings:confirm_time, device_response_result:request:fall_detection_settings:delay_report_time, device_response_result:request:fall_detection_settings:alarm_duration",
+        "type": "uplink",
+        "input": {
+            "bytes": "f85101522374459667b8",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "device_response_result": {
+                    "channel_type": 81,
+                    "result": "unknown",
+                    "request": {
+                        "fall_detection_settings": {
+                            "confirm_time": 20993,
+                            "delay_report_time": 29731,
+                            "alarm_duration": 38469
+                        }
+                    }
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "device_response_result:channel_type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 81,
+                "units": "NO_UNITS"
+            },
+            "device_response_result:result": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "device_response_result:request:fall_detection_settings:confirm_time": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 20993,
+                "units": "NO_UNITS"
+            },
+            "device_response_result:request:fall_detection_settings:delay_report_time": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 29731,
+                "units": "NO_UNITS"
+            },
+            "device_response_result:request:fall_detection_settings:alarm_duration": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 38469,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "device_response_result:channel_type": {
+                "table": "inputRegister",
+                "value": 81,
+                "value_type": "INT32"
+            },
+            "device_response_result:result": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "device_response_result:request:fall_detection_settings:confirm_time": {
+                "table": "inputRegister",
+                "value": 20993,
+                "value_type": "INT32"
+            },
+            "device_response_result:request:fall_detection_settings:delay_report_time": {
+                "table": "inputRegister",
+                "value": 29731,
+                "value_type": "INT32"
+            },
+            "device_response_result:request:fall_detection_settings:alarm_duration": {
+                "table": "inputRegister",
+                "value": 38469,
+                "value_type": "INT32"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: device_response_result:request:detection_settings:mode, device_response_result:request:detection_settings:sensitivity, reboot and 5 more",
+        "type": "uplink",
+        "input": {
+            "bytes": "f850015223ff10ffff28fff94e00ff64fff94800fe6a01",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "device_response_result": {
+                    "channel_type": 80,
+                    "result": "unknown",
+                    "request": {
+                        "detection_settings": {
+                            "mode": "bedroom",
+                            "sensitivity": "unknown"
+                        }
+                    }
+                },
+                "reboot": "yes",
+                "report_status": "yes",
+                "digital_output": "low",
+                "release_alarm": "yes",
+                "delete_region": {
+                    "region_1": "yes"
+                },
+                "resend_interval": 0
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "reboot": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            },
+            "report_status": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            },
+            "digital_output": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "release_alarm": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            },
+            "delete_region:region_1": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            },
+            "device_response_result:channel_type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 80,
+                "units": "NO_UNITS"
+            },
+            "device_response_result:result": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "device_response_result:request:detection_settings:mode": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "bedroom"
+            },
+            "device_response_result:request:detection_settings:sensitivity": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "resend_interval": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "reboot": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "report_status": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "digital_output": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "release_alarm": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "delete_region:region_1": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "device_response_result:channel_type": {
+                "table": "inputRegister",
+                "value": 80,
+                "value_type": "INT32"
+            },
+            "device_response_result:result": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "device_response_result:request:detection_settings:mode": {
+                "table": "inputRegister",
+                "value": "bedroom",
+                "value_type": "STRING"
+            },
+            "device_response_result:request:detection_settings:sensitivity": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "resend_interval": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT32"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: device_response_result:request:existence_detection_settings:exist_confirm_time, device_response_result:request:existence_detection_settings:leaved_confirm_time, delete_region:region_2",
+        "type": "uplink",
+        "input": {
+            "bytes": "f856015223f94801",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "device_response_result": {
+                    "channel_type": 86,
+                    "result": "unknown",
+                    "request": {
+                        "existence_detection_settings": {
+                            "exist_confirm_time": 1,
+                            "leaved_confirm_time": 82
+                        }
+                    }
+                },
+                "delete_region": {
+                    "region_2": "yes"
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "delete_region:region_2": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            },
+            "device_response_result:channel_type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 86,
+                "units": "NO_UNITS"
+            },
+            "device_response_result:result": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "device_response_result:request:existence_detection_settings:exist_confirm_time": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 1,
+                "units": "NO_UNITS"
+            },
+            "device_response_result:request:existence_detection_settings:leaved_confirm_time": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 82,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "delete_region:region_2": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "device_response_result:channel_type": {
+                "table": "inputRegister",
+                "value": 86,
+                "value_type": "INT32"
+            },
+            "device_response_result:result": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "device_response_result:request:existence_detection_settings:exist_confirm_time": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "INT32"
+            },
+            "device_response_result:request:existence_detection_settings:leaved_confirm_time": {
+                "table": "inputRegister",
+                "value": 82,
+                "value_type": "INT32"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: device_response_result:request:rejoin_config:enable, device_response_result:request:rejoin_config:max_count, delete_region:region_3",
+        "type": "uplink",
+        "input": {
+            "bytes": "f885015223f94802",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "device_response_result": {
+                    "channel_type": 133,
+                    "result": "unknown",
+                    "request": {
+                        "rejoin_config": {
+                            "enable": "enable",
+                            "max_count": 82
+                        }
+                    }
+                },
+                "delete_region": {
+                    "region_3": "yes"
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "delete_region:region_3": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            },
+            "device_response_result:channel_type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 133,
+                "units": "NO_UNITS"
+            },
+            "device_response_result:result": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "device_response_result:request:rejoin_config:enable": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            },
+            "device_response_result:request:rejoin_config:max_count": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 82,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "delete_region:region_3": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "device_response_result:channel_type": {
+                "table": "inputRegister",
+                "value": 133,
+                "value_type": "INT32"
+            },
+            "device_response_result:result": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "device_response_result:request:rejoin_config:enable": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "BOOL"
+            },
+            "device_response_result:request:rejoin_config:max_count": {
+                "table": "inputRegister",
+                "value": 82,
+                "value_type": "INT32"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: device_response_result:request:dwell_detection_settings:enable, device_response_result:request:dwell_detection_settings:dwell_time, delete_region:region_4",
+        "type": "uplink",
+        "input": {
+            "bytes": "f85201522374f94803",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "device_response_result": {
+                    "channel_type": 82,
+                    "result": "unknown",
+                    "request": {
+                        "dwell_detection_settings": {
+                            "enable": "enable",
+                            "dwell_time": 9042
+                        }
+                    }
+                },
+                "delete_region": {
+                    "region_4": "yes"
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "delete_region:region_4": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            },
+            "device_response_result:channel_type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 82,
+                "units": "NO_UNITS"
+            },
+            "device_response_result:result": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "device_response_result:request:dwell_detection_settings:enable": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            },
+            "device_response_result:request:dwell_detection_settings:dwell_time": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 9042,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "delete_region:region_4": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "device_response_result:channel_type": {
+                "table": "inputRegister",
+                "value": 82,
+                "value_type": "INT32"
+            },
+            "device_response_result:result": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "device_response_result:request:dwell_detection_settings:enable": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "BOOL"
+            },
+            "device_response_result:request:dwell_detection_settings:dwell_time": {
+                "table": "inputRegister",
+                "value": 9042,
+                "value_type": "INT32"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: device_response_result:request:motion_detection_settings:enable, device_response_result:request:motion_detection_settings:motionless_time",
+        "type": "uplink",
+        "input": {
+            "bytes": "f85301522374",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "device_response_result": {
+                    "channel_type": 83,
+                    "result": "unknown",
+                    "request": {
+                        "motion_detection_settings": {
+                            "enable": "enable",
+                            "motionless_time": 35
+                        }
+                    }
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "device_response_result:channel_type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 83,
+                "units": "NO_UNITS"
+            },
+            "device_response_result:result": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "device_response_result:request:motion_detection_settings:enable": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            },
+            "device_response_result:request:motion_detection_settings:motionless_time": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 35,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "device_response_result:channel_type": {
+                "table": "inputRegister",
+                "value": 83,
+                "value_type": "INT32"
+            },
+            "device_response_result:result": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "device_response_result:request:motion_detection_settings:enable": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "BOOL"
+            },
+            "device_response_result:request:motion_detection_settings:motionless_time": {
+                "table": "inputRegister",
+                "value": 35,
+                "value_type": "INT32"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: device_response_result:request:confirm_fall_alarm:alarm_id, device_response_result:request:confirm_fall_alarm:action",
+        "type": "uplink",
+        "input": {
+            "bytes": "f8b401522374",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "device_response_result": {
+                    "channel_type": 180,
+                    "result": "unknown",
+                    "request": {
+                        "confirm_fall_alarm": {
+                            "alarm_id": 20993,
+                            "action": "unknown"
+                        }
+                    }
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "device_response_result:channel_type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 180,
+                "units": "NO_UNITS"
+            },
+            "device_response_result:result": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "device_response_result:request:confirm_fall_alarm:alarm_id": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 20993,
+                "units": "NO_UNITS"
+            },
+            "device_response_result:request:confirm_fall_alarm:action": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            }
+        },
+        "Modbus": {
+            "device_response_result:channel_type": {
+                "table": "inputRegister",
+                "value": 180,
+                "value_type": "INT32"
+            },
+            "device_response_result:result": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "device_response_result:request:confirm_fall_alarm:alarm_id": {
+                "table": "inputRegister",
+                "value": 20993,
+                "value_type": "INT32"
+            },
+            "device_response_result:request:confirm_fall_alarm:action": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: device_response_result:request:time_sync_config:mode, device_response_result:request:time_sync_config:timestamp",
+        "type": "uplink",
+        "input": {
+            "bytes": "f891015223744596",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "device_response_result": {
+                    "channel_type": 145,
+                    "result": "unknown",
+                    "request": {
+                        "time_sync_config": {
+                            "mode": "manual_sync",
+                            "timestamp": 1165239122
+                        }
+                    }
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "device_response_result:channel_type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 145,
+                "units": "NO_UNITS"
+            },
+            "device_response_result:result": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "device_response_result:request:time_sync_config:mode": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "manual_sync"
+            },
+            "device_response_result:request:time_sync_config:timestamp": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 1165239122,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "device_response_result:channel_type": {
+                "table": "inputRegister",
+                "value": 145,
+                "value_type": "INT32"
+            },
+            "device_response_result:result": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "device_response_result:request:time_sync_config:mode": {
+                "table": "inputRegister",
+                "value": "manual_sync",
+                "value_type": "STRING"
+            },
+            "device_response_result:request:time_sync_config:timestamp": {
+                "table": "inputRegister",
+                "value": 1165239122,
+                "value_type": "INT32"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: device_response_result:request:delete_region:region_2",
+        "type": "uplink",
+        "input": {
+            "bytes": "f8480152",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "device_response_result": {
+                    "channel_type": 72,
+                    "result": "unknown",
+                    "request": {
+                        "delete_region": {
+                            "region_2": "yes"
+                        }
+                    }
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "device_response_result:channel_type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 72,
+                "units": "NO_UNITS"
+            },
+            "device_response_result:result": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "device_response_result:request:delete_region:region_2": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            }
+        },
+        "Modbus": {
+            "device_response_result:channel_type": {
+                "table": "inputRegister",
+                "value": 72,
+                "value_type": "INT32"
+            },
+            "device_response_result:result": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "device_response_result:request:delete_region:region_2": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "BOOL"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: device_response_result:request:wifi_ssid_hidden",
+        "type": "uplink",
+        "input": {
+            "bytes": "f84d0152",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "device_response_result": {
+                    "channel_type": 77,
+                    "result": "unknown",
+                    "request": {
+                        "wifi_ssid_hidden": "enable"
+                    }
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "device_response_result:channel_type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 77,
+                "units": "NO_UNITS"
+            },
+            "device_response_result:result": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "device_response_result:request:wifi_ssid_hidden": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            }
+        },
+        "Modbus": {
+            "device_response_result:channel_type": {
+                "table": "inputRegister",
+                "value": 77,
+                "value_type": "INT32"
+            },
+            "device_response_result:result": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "device_response_result:request:wifi_ssid_hidden": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "BOOL"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: device_response_result:request:digital_output",
+        "type": "uplink",
+        "input": {
+            "bytes": "f84e0152",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "device_response_result": {
+                    "channel_type": 78,
+                    "result": "unknown",
+                    "request": {
+                        "digital_output": "high"
+                    }
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "device_response_result:channel_type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 78,
+                "units": "NO_UNITS"
+            },
+            "device_response_result:result": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "device_response_result:request:digital_output": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "high"
+            }
+        },
+        "Modbus": {
+            "device_response_result:channel_type": {
+                "table": "inputRegister",
+                "value": 78,
+                "value_type": "INT32"
+            },
+            "device_response_result:result": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "device_response_result:request:digital_output": {
+                "table": "inputRegister",
+                "value": "high",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: device_response_result:request:data_rate",
+        "type": "uplink",
+        "input": {
+            "bytes": "f8860152",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "device_response_result": {
+                    "channel_type": 134,
+                    "result": "unknown",
+                    "request": {
+                        "data_rate": 1
+                    }
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "device_response_result:channel_type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 134,
+                "units": "NO_UNITS"
+            },
+            "device_response_result:result": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "device_response_result:request:data_rate": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 1,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "device_response_result:channel_type": {
+                "table": "inputRegister",
+                "value": 134,
+                "value_type": "INT32"
+            },
+            "device_response_result:result": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "device_response_result:request:data_rate": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "INT32"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: device_response_result:request:tx_power_level",
+        "type": "uplink",
+        "input": {
+            "bytes": "f8870152",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "device_response_result": {
+                    "channel_type": 135,
+                    "result": "unknown",
+                    "request": {
+                        "tx_power_level": 1
+                    }
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "device_response_result:channel_type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 135,
+                "units": "NO_UNITS"
+            },
+            "device_response_result:result": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "device_response_result:request:tx_power_level": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 1,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "device_response_result:channel_type": {
+                "table": "inputRegister",
+                "value": 135,
+                "value_type": "INT32"
+            },
+            "device_response_result:result": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "device_response_result:request:tx_power_level": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "INT32"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: device_response_result:request:ai_fall_detection_enable",
+        "type": "uplink",
+        "input": {
+            "bytes": "f8b30152",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "device_response_result": {
+                    "channel_type": 179,
+                    "result": "unknown",
+                    "request": {
+                        "ai_fall_detection_enable": "enable"
+                    }
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "device_response_result:channel_type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 179,
+                "units": "NO_UNITS"
+            },
+            "device_response_result:result": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "device_response_result:request:ai_fall_detection_enable": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            }
+        },
+        "Modbus": {
+            "device_response_result:channel_type": {
+                "table": "inputRegister",
+                "value": 179,
+                "value_type": "INT32"
+            },
+            "device_response_result:result": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "device_response_result:request:ai_fall_detection_enable": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "BOOL"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: respiratory_status, respiratory_rate",
+        "type": "uplink",
+        "input": {
+            "bytes": "08b101",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "respiratory_status": "no_data_input",
+                "respiratory_rate": 0
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "respiratory_status": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 1,
+                "units": "NO_UNITS"
+            },
+            "respiratory_rate": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "respiratory_status": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "respiratory_rate": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "FLOAT"
+            }
+        }
+    }
+]

@@ -61,6 +61,41 @@
                 "object": "ANALOG_INPUT",
                 "presentValue": 51,
                 "units": "PERCENT_RELATIVE_HUMIDITY"
+            },
+            "ambient_temperature": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 25.8,
+                "units": "NO_UNITS"
+            },
+            "target_temperature": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 16.6,
+                "units": "NO_UNITS"
+            },
+            "current_temperature_control_mode:mode": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "heat"
+            },
+            "current_temperature_control_mode:status": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "standby"
+            },
+            "fan_mode_setting:mode": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "auto"
+            },
+            "fan_mode_setting:status": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "standby"
+            },
+            "plan_type": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "not executed"
+            },
+            "temperature": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 25.8,
+                "units": "DEGREES_CELSIUS"
             }
         },
         "Modbus": {
@@ -82,6 +117,46 @@
             "humidity": {
                 "table": "inputRegister",
                 "value": 51,
+                "value_type": "FLOAT"
+            },
+            "ambient_temperature": {
+                "table": "inputRegister",
+                "value": 25.8,
+                "value_type": "FLOAT"
+            },
+            "target_temperature": {
+                "table": "inputRegister",
+                "value": 16.6,
+                "value_type": "FLOAT"
+            },
+            "current_temperature_control_mode:mode": {
+                "table": "inputRegister",
+                "value": "heat",
+                "value_type": "STRING"
+            },
+            "current_temperature_control_mode:status": {
+                "table": "inputRegister",
+                "value": "standby",
+                "value_type": "STRING"
+            },
+            "fan_mode_setting:mode": {
+                "table": "inputRegister",
+                "value": "auto",
+                "value_type": "STRING"
+            },
+            "fan_mode_setting:status": {
+                "table": "inputRegister",
+                "value": "standby",
+                "value_type": "STRING"
+            },
+            "plan_type": {
+                "table": "inputRegister",
+                "value": "not executed",
+                "value_type": "STRING"
+            },
+            "temperature": {
+                "table": "inputRegister",
+                "value": 25.8,
                 "value_type": "FLOAT"
             }
         }
@@ -115,6 +190,5322 @@
                 32,
                 1
             ]
+        }
+    },
+    {
+        "description": "Uplink coverage: reporting_interval_settings:time",
+        "type": "uplink",
+        "input": {
+            "bytes": "fe8e",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "reporting_interval_settings": {
+                    "time": 0
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "reporting_interval_settings:time": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "MINUTES"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 10,
+                    "units": "MINUTES"
+                }
+            ]
+        },
+        "Modbus": {
+            "reporting_interval_settings:time": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: ipso_version",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff01",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "ipso_version": "v0.0"
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "ipso_version": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "v0.0"
+            }
+        },
+        "Modbus": {
+            "ipso_version": {
+                "table": "inputRegister",
+                "value": "v0.0",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: hardware_version",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff09",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "hardware_version": "v0.0"
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "hardware_version": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "v0.0"
+            }
+        },
+        "Modbus": {
+            "hardware_version": {
+                "table": "inputRegister",
+                "value": "v0.0",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: firmware_version",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff0a",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "firmware_version": "v0.0"
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "firmware_version": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "v0.0"
+            }
+        },
+        "Modbus": {
+            "firmware_version": {
+                "table": "inputRegister",
+                "value": "v0.0",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: tsl_version",
+        "type": "uplink",
+        "input": {
+            "bytes": "ffff",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "tsl_version": "v0.0"
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "tsl_version": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "v0.0"
+            }
+        },
+        "Modbus": {
+            "tsl_version": {
+                "table": "inputRegister",
+                "value": "v0.0",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: synchronize_time, fan_delay_config_enable, heartbeat and 4 more",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff4a00f92000f92a00f931000a6e01f9210100f93060fa",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "synchronize_time": 0,
+                "fan_delay_config_enable": "disable",
+                "heartbeat": 0,
+                "children_locks_enable": "disable",
+                "enabled_relay": "Y1",
+                "fan_delay_config_delay_time": 1,
+                "timezone_offset": -1440
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "enabled_relay": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "Y1"
+            },
+            "synchronize_time": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "fan_delay_config_enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "fan_delay_config_delay_time": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 1,
+                    "units": "SECONDS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 60,
+                    "units": "SECONDS"
+                }
+            ],
+            "heartbeat": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "timezone_offset": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": -1440,
+                    "units": "MINUTES"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "MINUTES"
+                }
+            ],
+            "children_locks_enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ]
+        },
+        "Modbus": {
+            "enabled_relay": {
+                "table": "inputRegister",
+                "value": "Y1",
+                "value_type": "STRING"
+            },
+            "synchronize_time": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "fan_delay_config_enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "fan_delay_config_delay_time": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT16"
+            },
+            "heartbeat": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "timezone_offset": {
+                "table": "inputRegister",
+                "value": -1440,
+                "value_type": "INT16"
+            },
+            "children_locks_enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Downlink encode: reporting_interval_settings:time",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "reporting_interval_settings": {
+                    "time": 10
+                }
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                142,
+                0,
+                10,
+                0
+            ]
+        }
+    },
+    {
+        "description": "Downlink write: synchronize_time",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "synchronize_time": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            }
+        },
+        "inputModbus": {
+            "synchronize_time": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 0
+            }
+        },
+        "input": {
+            "data": {
+                "synchronize_time": 0
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                74,
+                0
+            ]
+        }
+    },
+    {
+        "description": "Downlink write: fan_delay_config_delay_time",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "fan_delay_config_delay_time": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 60
+            }
+        },
+        "inputModbus": {
+            "fan_delay_config_delay_time": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 60
+            }
+        },
+        "input": {
+            "data": {
+                "fan_delay_config_delay_time": 60
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                249,
+                33,
+                60,
+                0
+            ]
+        }
+    },
+    {
+        "description": "Downlink write: celsius_temperature_control_delta1",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "celsius_temperature_control_delta1": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 3
+            }
+        },
+        "inputModbus": {
+            "celsius_temperature_control_delta1": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 3
+            }
+        },
+        "input": {
+            "data": {
+                "celsius_temperature_control_delta1": 3
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                249,
+                35,
+                30
+            ]
+        }
+    },
+    {
+        "description": "Downlink write: fahrenheit_temperature_control_delta1",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "fahrenheit_temperature_control_delta1": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 5.4
+            }
+        },
+        "inputModbus": {
+            "fahrenheit_temperature_control_delta1": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 5.4
+            }
+        },
+        "input": {
+            "data": {
+                "fahrenheit_temperature_control_delta1": 5.4
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                249,
+                35,
+                30
+            ]
+        }
+    },
+    {
+        "description": "Downlink write: celsius_temperature_control_delta2",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "celsius_temperature_control_delta2": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 5
+            }
+        },
+        "inputModbus": {
+            "celsius_temperature_control_delta2": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 5
+            }
+        },
+        "input": {
+            "data": {
+                "celsius_temperature_control_delta2": 5
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                249,
+                36,
+                50
+            ]
+        }
+    },
+    {
+        "description": "Downlink write: fahrenheit_temperature_control_delta2",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "fahrenheit_temperature_control_delta2": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 9
+            }
+        },
+        "inputModbus": {
+            "fahrenheit_temperature_control_delta2": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 9
+            }
+        },
+        "input": {
+            "data": {
+                "fahrenheit_temperature_control_delta2": 9
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                249,
+                36,
+                50
+            ]
+        }
+    },
+    {
+        "description": "Downlink write: heartbeat",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "heartbeat": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            }
+        },
+        "inputModbus": {
+            "heartbeat": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 0
+            }
+        },
+        "input": {
+            "data": {
+                "heartbeat": 0
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                249,
+                42,
+                0
+            ]
+        }
+    },
+    {
+        "description": "Downlink write: timezone_offset",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "timezone_offset": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            }
+        },
+        "inputModbus": {
+            "timezone_offset": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 0
+            }
+        },
+        "input": {
+            "data": {
+                "timezone_offset": 0
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                249,
+                48,
+                0,
+                0
+            ]
+        }
+    },
+    {
+        "description": "Downlink write: children_locks_enable",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "children_locks_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            }
+        },
+        "inputModbus": {
+            "children_locks_enable": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 0
+            }
+        },
+        "input": {
+            "data": {
+                "children_locks_enable": "disable"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                249,
+                49,
+                0
+            ]
+        }
+    },
+    {
+        "description": "Downlink write: celsius_target_deadband",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "celsius_target_deadband": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 5
+            }
+        },
+        "inputModbus": {
+            "celsius_target_deadband": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 5
+            }
+        },
+        "input": {
+            "data": {
+                "celsius_target_deadband": 5
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                249,
+                50,
+                50
+            ]
+        }
+    },
+    {
+        "description": "Downlink write: fahrenheit_target_deadband",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "fahrenheit_target_deadband": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 9
+            }
+        },
+        "inputModbus": {
+            "fahrenheit_target_deadband": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 9
+            }
+        },
+        "input": {
+            "data": {
+                "fahrenheit_target_deadband": 9
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                249,
+                50,
+                50
+            ]
+        }
+    },
+    {
+        "description": "Downlink write: celsius_occupied_cooling_setpoint",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "celsius_occupied_cooling_setpoint": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 28
+            }
+        },
+        "inputModbus": {
+            "celsius_occupied_cooling_setpoint": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 28
+            }
+        },
+        "input": {
+            "data": {
+                "celsius_occupied_cooling_setpoint": 28
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                249,
+                100,
+                24,
+                1
+            ]
+        }
+    },
+    {
+        "description": "Downlink write: fahrenheit_occupied_cooling_setpoint",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "fahrenheit_occupied_cooling_setpoint": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 82
+            }
+        },
+        "inputModbus": {
+            "fahrenheit_occupied_cooling_setpoint": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 82
+            }
+        },
+        "input": {
+            "data": {
+                "fahrenheit_occupied_cooling_setpoint": 82
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                249,
+                100,
+                22,
+                1
+            ]
+        }
+    },
+    {
+        "description": "Downlink write: celsius_occupied_heating_setpoint",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "celsius_occupied_heating_setpoint": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 17
+            }
+        },
+        "inputModbus": {
+            "celsius_occupied_heating_setpoint": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 17
+            }
+        },
+        "input": {
+            "data": {
+                "celsius_occupied_heating_setpoint": 17
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                249,
+                101,
+                170,
+                0
+            ]
+        }
+    },
+    {
+        "description": "Downlink write: fahrenheit_occupied_heating_setpoint",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "fahrenheit_occupied_heating_setpoint": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 62
+            }
+        },
+        "inputModbus": {
+            "fahrenheit_occupied_heating_setpoint": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 62
+            }
+        },
+        "input": {
+            "data": {
+                "fahrenheit_occupied_heating_setpoint": 62
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                249,
+                101,
+                167,
+                0
+            ]
+        }
+    },
+    {
+        "description": "Downlink write: celsius_unoccupied_cooling_setpoint",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "celsius_unoccupied_cooling_setpoint": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 30
+            }
+        },
+        "inputModbus": {
+            "celsius_unoccupied_cooling_setpoint": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 30
+            }
+        },
+        "input": {
+            "data": {
+                "celsius_unoccupied_cooling_setpoint": 30
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                249,
+                102,
+                44,
+                1
+            ]
+        }
+    },
+    {
+        "description": "Downlink write: fahrenheit_unoccupied_cooling_setpoint",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "fahrenheit_unoccupied_cooling_setpoint": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 85
+            }
+        },
+        "inputModbus": {
+            "fahrenheit_unoccupied_cooling_setpoint": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 85
+            }
+        },
+        "input": {
+            "data": {
+                "fahrenheit_unoccupied_cooling_setpoint": 85
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                249,
+                102,
+                38,
+                1
+            ]
+        }
+    },
+    {
+        "description": "Downlink write: celsius_unoccupied_heating_setpoint",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "celsius_unoccupied_heating_setpoint": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 15
+            }
+        },
+        "inputModbus": {
+            "celsius_unoccupied_heating_setpoint": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 15
+            }
+        },
+        "input": {
+            "data": {
+                "celsius_unoccupied_heating_setpoint": 15
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                249,
+                103,
+                150,
+                0
+            ]
+        }
+    },
+    {
+        "description": "Downlink write: fahrenheit_unoccupied_heating_setpoint",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "fahrenheit_unoccupied_heating_setpoint": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 59
+            }
+        },
+        "inputModbus": {
+            "fahrenheit_unoccupied_heating_setpoint": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 59
+            }
+        },
+        "input": {
+            "data": {
+                "fahrenheit_unoccupied_heating_setpoint": 59
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                249,
+                103,
+                150,
+                0
+            ]
+        }
+    },
+    {
+        "description": "Downlink write: celsius_occupied_cooling_setpoint_tolerance",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "celsius_occupied_cooling_setpoint_tolerance": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "celsius_occupied_cooling_setpoint_tolerance": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "celsius_occupied_cooling_setpoint_tolerance": 1
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                249,
+                106,
+                10
+            ]
+        }
+    },
+    {
+        "description": "Downlink write: fahrenheit_occupied_cooling_setpoint_tolerance",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "fahrenheit_occupied_cooling_setpoint_tolerance": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1.8
+            }
+        },
+        "inputModbus": {
+            "fahrenheit_occupied_cooling_setpoint_tolerance": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 1.8
+            }
+        },
+        "input": {
+            "data": {
+                "fahrenheit_occupied_cooling_setpoint_tolerance": 1.8
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                249,
+                106,
+                10
+            ]
+        }
+    },
+    {
+        "description": "Downlink write: celsius_occupied_heating_setpoint_tolerance",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "celsius_occupied_heating_setpoint_tolerance": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "celsius_occupied_heating_setpoint_tolerance": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "celsius_occupied_heating_setpoint_tolerance": 1
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                249,
+                107,
+                10
+            ]
+        }
+    },
+    {
+        "description": "Downlink write: fahrenheit_occupied_heating_setpoint_tolerance",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "fahrenheit_occupied_heating_setpoint_tolerance": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1.8
+            }
+        },
+        "inputModbus": {
+            "fahrenheit_occupied_heating_setpoint_tolerance": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 1.8
+            }
+        },
+        "input": {
+            "data": {
+                "fahrenheit_occupied_heating_setpoint_tolerance": 1.8
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                249,
+                107,
+                10
+            ]
+        }
+    },
+    {
+        "description": "Downlink write: celsius_unoccupied_cooling_setpoint_tolerance",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "celsius_unoccupied_cooling_setpoint_tolerance": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 2
+            }
+        },
+        "inputModbus": {
+            "celsius_unoccupied_cooling_setpoint_tolerance": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 2
+            }
+        },
+        "input": {
+            "data": {
+                "celsius_unoccupied_cooling_setpoint_tolerance": 2
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                249,
+                108,
+                20
+            ]
+        }
+    },
+    {
+        "description": "Downlink write: fahrenheit_unoccupied_cooling_setpoint_tolerance",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "fahrenheit_unoccupied_cooling_setpoint_tolerance": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 3.6
+            }
+        },
+        "inputModbus": {
+            "fahrenheit_unoccupied_cooling_setpoint_tolerance": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 3.6
+            }
+        },
+        "input": {
+            "data": {
+                "fahrenheit_unoccupied_cooling_setpoint_tolerance": 3.6
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                249,
+                108,
+                20
+            ]
+        }
+    },
+    {
+        "description": "Downlink write: celsius_unoccupied_heating_setpoint_tolerance",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "celsius_unoccupied_heating_setpoint_tolerance": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 2
+            }
+        },
+        "inputModbus": {
+            "celsius_unoccupied_heating_setpoint_tolerance": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 2
+            }
+        },
+        "input": {
+            "data": {
+                "celsius_unoccupied_heating_setpoint_tolerance": 2
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                249,
+                109,
+                20
+            ]
+        }
+    },
+    {
+        "description": "Downlink write: fahrenheit_unoccupied_heating_setpoint_tolerance",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "fahrenheit_unoccupied_heating_setpoint_tolerance": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 3.6
+            }
+        },
+        "inputModbus": {
+            "fahrenheit_unoccupied_heating_setpoint_tolerance": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 3.6
+            }
+        },
+        "input": {
+            "data": {
+                "fahrenheit_unoccupied_heating_setpoint_tolerance": 3.6
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                249,
+                109,
+                20
+            ]
+        }
+    },
+    {
+        "description": "Downlink write: celsius_cooling_setpoint",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "celsius_cooling_setpoint": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 29
+            }
+        },
+        "inputModbus": {
+            "celsius_cooling_setpoint": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 29
+            }
+        },
+        "input": {
+            "data": {
+                "celsius_cooling_setpoint": 29
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                249,
+                104,
+                34,
+                1
+            ]
+        }
+    },
+    {
+        "description": "Downlink write: fahrenheit_cooling_setpoint",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "fahrenheit_cooling_setpoint": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 84.2
+            }
+        },
+        "inputModbus": {
+            "fahrenheit_cooling_setpoint": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 84.2
+            }
+        },
+        "input": {
+            "data": {
+                "fahrenheit_cooling_setpoint": 84.2
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                249,
+                104,
+                34,
+                1
+            ]
+        }
+    },
+    {
+        "description": "Downlink write: celsius_heating_setpoint",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "celsius_heating_setpoint": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 14.5
+            }
+        },
+        "inputModbus": {
+            "celsius_heating_setpoint": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 14.5
+            }
+        },
+        "input": {
+            "data": {
+                "celsius_heating_setpoint": 14.5
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                249,
+                105,
+                145,
+                0
+            ]
+        }
+    },
+    {
+        "description": "Downlink write: fahrenheit_heating_setpoint",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "fahrenheit_heating_setpoint": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 58
+            }
+        },
+        "inputModbus": {
+            "fahrenheit_heating_setpoint": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 58
+            }
+        },
+        "input": {
+            "data": {
+                "fahrenheit_heating_setpoint": 58
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                249,
+                105,
+                144,
+                0
+            ]
+        }
+    },
+    {
+        "description": "Downlink write: celsius_cooling_adjust_tolerance",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "celsius_cooling_adjust_tolerance": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 6
+            }
+        },
+        "inputModbus": {
+            "celsius_cooling_adjust_tolerance": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 6
+            }
+        },
+        "input": {
+            "data": {
+                "celsius_cooling_adjust_tolerance": 6
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                249,
+                116,
+                60,
+                0
+            ]
+        }
+    },
+    {
+        "description": "Downlink write: fahrenheit_cooling_adjust_tolerance",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "fahrenheit_cooling_adjust_tolerance": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 10.8
+            }
+        },
+        "inputModbus": {
+            "fahrenheit_cooling_adjust_tolerance": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 10.8
+            }
+        },
+        "input": {
+            "data": {
+                "fahrenheit_cooling_adjust_tolerance": 10.8
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                249,
+                116,
+                60,
+                0
+            ]
+        }
+    },
+    {
+        "description": "Downlink write: celsius_heating_adjust_tolerance",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "celsius_heating_adjust_tolerance": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 4.5
+            }
+        },
+        "inputModbus": {
+            "celsius_heating_adjust_tolerance": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 4.5
+            }
+        },
+        "input": {
+            "data": {
+                "celsius_heating_adjust_tolerance": 4.5
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                249,
+                117,
+                45,
+                0
+            ]
+        }
+    },
+    {
+        "description": "Downlink write: fahrenheit_heating_adjust_tolerance",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "fahrenheit_heating_adjust_tolerance": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 8
+            }
+        },
+        "inputModbus": {
+            "fahrenheit_heating_adjust_tolerance": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 8
+            }
+        },
+        "input": {
+            "data": {
+                "fahrenheit_heating_adjust_tolerance": 8
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                249,
+                117,
+                44,
+                0
+            ]
+        }
+    },
+    {
+        "description": "Downlink write: celsius_outside_temperature",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "celsius_outside_temperature": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            }
+        },
+        "inputModbus": {
+            "celsius_outside_temperature": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 0
+            }
+        },
+        "input": {
+            "data": {
+                "celsius_outside_temperature": 0
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                3,
+                0,
+                0,
+                255
+            ]
+        }
+    },
+    {
+        "description": "Downlink write: fahrenheit_outside_temperature",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "fahrenheit_outside_temperature": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            }
+        },
+        "inputModbus": {
+            "fahrenheit_outside_temperature": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 0
+            }
+        },
+        "input": {
+            "data": {
+                "fahrenheit_outside_temperature": 0
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                3,
+                78,
+                255,
+                255
+            ]
+        }
+    },
+    {
+        "description": "Uplink coverage: wires:y1, wires:gh, wires:ob and 7 more",
+        "type": "uplink",
+        "input": {
+            "bytes": "feca",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "wires": {
+                    "y1": "off",
+                    "gh": "off",
+                    "ob": "off",
+                    "w1": "off",
+                    "e": "off",
+                    "di": "off",
+                    "pek": "off",
+                    "w2": "off",
+                    "aux": "off",
+                    "y2": "off",
+                    "gl": "off"
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "wires:y1": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "wires:gh": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "wires:ob": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "wires:w1": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "wires:di": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "wires:pek": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "wires:w2": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "wires:aux": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "wires:y2": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "wires:gl": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            }
+        },
+        "Modbus": {
+            "wires:y1": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "BOOL"
+            },
+            "wires:gh": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "BOOL"
+            },
+            "wires:ob": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "BOOL"
+            },
+            "wires:w1": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "BOOL"
+            },
+            "wires:di": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "BOOL"
+            },
+            "wires:pek": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "BOOL"
+            },
+            "wires:w2": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "BOOL"
+            },
+            "wires:aux": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "BOOL"
+            },
+            "wires:y2": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "BOOL"
+            },
+            "wires:gl": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "BOOL"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: dst_config:offset, dst_config:start_month, dst_config:start_week_num and 6 more",
+        "type": "uplink",
+        "input": {
+            "bytes": "feba01",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "dst_config": {
+                    "enable": "enable",
+                    "offset": 0,
+                    "start_month": 0,
+                    "start_week_num": 0,
+                    "start_week_day": 0,
+                    "start_time": 0,
+                    "end_month": 0,
+                    "end_week_num": 0,
+                    "end_week_day": 0,
+                    "end_time": 0
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "dst_config:offset": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "dst_config:start_month": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "dst_config:start_week_num": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "dst_config:start_week_day": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "dst_config:start_time": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "dst_config:end_month": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "dst_config:end_week_num": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "dst_config:end_week_day": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "dst_config:end_time": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "dst_config:offset": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT32"
+            },
+            "dst_config:start_month": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT32"
+            },
+            "dst_config:start_week_num": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT32"
+            },
+            "dst_config:start_week_day": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT32"
+            },
+            "dst_config:start_time": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT32"
+            },
+            "dst_config:end_month": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT32"
+            },
+            "dst_config:end_week_num": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT32"
+            },
+            "dst_config:end_week_day": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT32"
+            },
+            "dst_config:end_time": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT32"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: temperature_alarm_config:alarm_type, temperature_alarm_config:lock_time, temperature_alarm_config:continue_time and 1 more",
+        "type": "uplink",
+        "input": {
+            "bytes": "fe0601",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "temperature_alarm_config": {
+                    "condition": "below",
+                    "alarm_type": "temperature threshold",
+                    "threshold_min": 0,
+                    "lock_time": 0,
+                    "continue_time": 0
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "temperature_alarm_config:alarm_type": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "temperature threshold"
+            },
+            "temperature_alarm_config:lock_time": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "temperature_alarm_config:continue_time": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "temperature_alarm_config:threshold_min": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "temperature_alarm_config:alarm_type": {
+                "table": "inputRegister",
+                "value": "temperature threshold",
+                "value_type": "STRING"
+            },
+            "temperature_alarm_config:lock_time": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT32"
+            },
+            "temperature_alarm_config:continue_time": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT32"
+            },
+            "temperature_alarm_config:threshold_min": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "FLOAT"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: device_response_result:channel_type, device_response_result:result, device_response_result:request:fan_delay:enable and 4 more",
+        "type": "uplink",
+        "input": {
+            "bytes": "f805015223f867",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "device_response_result": {
+                    "channel_type": 5,
+                    "result": "unknown",
+                    "request": {
+                        "fan_delay": {
+                            "enable": "enable",
+                            "time": 82
+                        }
+                    }
+                },
+                "unoccupied_heating_setpoint": 0,
+                "fahrenheit_unoccupied_heating_setpoint": 32,
+                "celsius_unoccupied_heating_setpoint": 0
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "celsius_unoccupied_heating_setpoint": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "DEGREES_CELSIUS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 15,
+                    "units": "DEGREES_CELSIUS"
+                }
+            ],
+            "fahrenheit_unoccupied_heating_setpoint": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 32,
+                    "units": "DEGREES_FAHRENHEIT"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 59,
+                    "units": "DEGREES_FAHRENHEIT"
+                }
+            ],
+            "unoccupied_heating_setpoint": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "device_response_result:channel_type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 5,
+                "units": "NO_UNITS"
+            },
+            "device_response_result:result": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "device_response_result:request:fan_delay:enable": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            },
+            "device_response_result:request:fan_delay:time": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 82,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "celsius_unoccupied_heating_setpoint": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "FLOAT"
+            },
+            "fahrenheit_unoccupied_heating_setpoint": {
+                "table": "inputRegister",
+                "value": 32,
+                "value_type": "FLOAT"
+            },
+            "unoccupied_heating_setpoint": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "FLOAT"
+            },
+            "device_response_result:channel_type": {
+                "table": "inputRegister",
+                "value": 5,
+                "value_type": "INT32"
+            },
+            "device_response_result:result": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "device_response_result:request:fan_delay:enable": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "BOOL"
+            },
+            "device_response_result:request:fan_delay:time": {
+                "table": "inputRegister",
+                "value": 82,
+                "value_type": "INT32"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: celsius_cooling_setpoint, fahrenheit_cooling_setpoint, cooling_setpoint",
+        "type": "uplink",
+        "input": {
+            "bytes": "f868",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "cooling_setpoint": 0,
+                "fahrenheit_cooling_setpoint": 32,
+                "celsius_cooling_setpoint": 0
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "celsius_cooling_setpoint": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "DEGREES_CELSIUS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 29,
+                    "units": "DEGREES_CELSIUS"
+                }
+            ],
+            "fahrenheit_cooling_setpoint": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 32,
+                    "units": "DEGREES_FAHRENHEIT"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 84.2,
+                    "units": "DEGREES_FAHRENHEIT"
+                }
+            ],
+            "cooling_setpoint": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "celsius_cooling_setpoint": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "FLOAT"
+            },
+            "fahrenheit_cooling_setpoint": {
+                "table": "inputRegister",
+                "value": 32,
+                "value_type": "FLOAT"
+            },
+            "cooling_setpoint": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "FLOAT"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: celsius_heating_setpoint, fahrenheit_heating_setpoint, heating_setpoint",
+        "type": "uplink",
+        "input": {
+            "bytes": "f869",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "heating_setpoint": 0,
+                "fahrenheit_heating_setpoint": 32,
+                "celsius_heating_setpoint": 0
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "celsius_heating_setpoint": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "DEGREES_CELSIUS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 14.5,
+                    "units": "DEGREES_CELSIUS"
+                }
+            ],
+            "fahrenheit_heating_setpoint": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 32,
+                    "units": "DEGREES_FAHRENHEIT"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 58,
+                    "units": "DEGREES_FAHRENHEIT"
+                }
+            ],
+            "heating_setpoint": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "celsius_heating_setpoint": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "FLOAT"
+            },
+            "fahrenheit_heating_setpoint": {
+                "table": "inputRegister",
+                "value": 32,
+                "value_type": "FLOAT"
+            },
+            "heating_setpoint": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "FLOAT"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: celsius_occupied_cooling_setpoint_tolerance, fahrenheit_occupied_cooling_setpoint_tolerance, occupied_cooling_setpoint_tolerance",
+        "type": "uplink",
+        "input": {
+            "bytes": "f86a",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "occupied_cooling_setpoint_tolerance": 0,
+                "fahrenheit_occupied_cooling_setpoint_tolerance": 0,
+                "celsius_occupied_cooling_setpoint_tolerance": 0
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "celsius_occupied_cooling_setpoint_tolerance": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "DEGREES_KELVIN"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 1,
+                    "units": "DEGREES_KELVIN"
+                }
+            ],
+            "fahrenheit_occupied_cooling_setpoint_tolerance": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": null
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 1.8,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "occupied_cooling_setpoint_tolerance": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "celsius_occupied_cooling_setpoint_tolerance": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "FLOAT"
+            },
+            "fahrenheit_occupied_cooling_setpoint_tolerance": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "FLOAT"
+            },
+            "occupied_cooling_setpoint_tolerance": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "FLOAT"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: cooling_setpoint_tolerance, fahrenheit_cooling_setpoint_tolerance, celsius_cooling_setpoint_tolerance",
+        "type": "uplink",
+        "input": {
+            "bytes": "f86e",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "cooling_setpoint_tolerance": 0,
+                "fahrenheit_cooling_setpoint_tolerance": 0,
+                "celsius_cooling_setpoint_tolerance": 0
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "cooling_setpoint_tolerance": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "fahrenheit_cooling_setpoint_tolerance": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "celsius_cooling_setpoint_tolerance": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "cooling_setpoint_tolerance": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "FLOAT"
+            },
+            "fahrenheit_cooling_setpoint_tolerance": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "FLOAT"
+            },
+            "celsius_cooling_setpoint_tolerance": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "FLOAT"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: temperature_control:mode, temperature_control:target, temperature_control:unit",
+        "type": "uplink",
+        "input": {
+            "bytes": "feb7",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "temperature_control": {
+                    "mode": "heat",
+                    "target": 0,
+                    "unit": "celsius"
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "temperature_control:mode": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "heat"
+            },
+            "temperature_control:target": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "temperature_control:unit": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "celsius"
+            }
+        },
+        "Modbus": {
+            "temperature_control:mode": {
+                "table": "inputRegister",
+                "value": "heat",
+                "value_type": "STRING"
+            },
+            "temperature_control:target": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT32"
+            },
+            "temperature_control:unit": {
+                "table": "inputRegister",
+                "value": "celsius",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: celsius_temperature_control_delta1, fahrenheit_temperature_control_delta1, temperature_control_delta1 and 32 more",
+        "type": "uplink",
+        "input": {
+            "bytes": "f9230af9240af9320af96b01f96c01f96d01f9643200f9653200f9663200f9740500f9750500f805",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "temperature_control_delta1": 1,
+                "temperature_control_delta2": 1,
+                "target_deadband": 1,
+                "occupied_heating_setpoint_tolerance": 0.1,
+                "unoccupied_cooling_setpoint_tolerance": 0.1,
+                "unoccupied_heating_setpoint_tolerance": 0.1,
+                "occupied_cooling_setpoint": 5,
+                "occupied_heating_setpoint": 5,
+                "unoccupied_cooling_setpoint": 5,
+                "cooling_adjust_tolerance": 0.5,
+                "heating_adjust_tolerance": 0.5,
+                "fan_delay": {
+                    "enable": "disable",
+                    "time": 0
+                },
+                "fahrenheit_temperature_control_delta1": 1.8,
+                "celsius_temperature_control_delta1": 1,
+                "fahrenheit_temperature_control_delta2": 1.8,
+                "celsius_temperature_control_delta2": 1,
+                "fahrenheit_target_deadband": 1.8,
+                "celsius_target_deadband": 1,
+                "fahrenheit_occupied_heating_setpoint_tolerance": 0.2,
+                "celsius_occupied_heating_setpoint_tolerance": 0.1,
+                "fahrenheit_unoccupied_cooling_setpoint_tolerance": 0.2,
+                "celsius_unoccupied_cooling_setpoint_tolerance": 0.1,
+                "fahrenheit_unoccupied_heating_setpoint_tolerance": 0.2,
+                "celsius_unoccupied_heating_setpoint_tolerance": 0.1,
+                "fahrenheit_occupied_cooling_setpoint": 41,
+                "celsius_occupied_cooling_setpoint": 5,
+                "fahrenheit_occupied_heating_setpoint": 41,
+                "celsius_occupied_heating_setpoint": 5,
+                "fahrenheit_unoccupied_cooling_setpoint": 41,
+                "celsius_unoccupied_cooling_setpoint": 5,
+                "fahrenheit_cooling_adjust_tolerance": 0.9,
+                "celsius_cooling_adjust_tolerance": 0.5,
+                "fahrenheit_heating_adjust_tolerance": 0.9,
+                "celsius_heating_adjust_tolerance": 0.5
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "celsius_temperature_control_delta1": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 1,
+                    "units": "DEGREES_CELSIUS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 3,
+                    "units": "DEGREES_CELSIUS"
+                }
+            ],
+            "fahrenheit_temperature_control_delta1": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 1.8,
+                    "units": "DEGREES_FAHRENHEIT"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 5.4,
+                    "units": "DEGREES_FAHRENHEIT"
+                }
+            ],
+            "celsius_temperature_control_delta2": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 1,
+                    "units": "DEGREES_CELSIUS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 5,
+                    "units": "DEGREES_CELSIUS"
+                }
+            ],
+            "fahrenheit_temperature_control_delta2": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 1.8,
+                    "units": "DEGREES_FAHRENHEIT"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 9,
+                    "units": "DEGREES_FAHRENHEIT"
+                }
+            ],
+            "celsius_target_deadband": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 1,
+                    "units": "DEGREES_CELSIUS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 5,
+                    "units": "DEGREES_CELSIUS"
+                }
+            ],
+            "fahrenheit_target_deadband": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 1.8,
+                    "units": "DEGREES_FAHRENHEIT"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 9,
+                    "units": "DEGREES_FAHRENHEIT"
+                }
+            ],
+            "celsius_occupied_cooling_setpoint": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 5,
+                    "units": "DEGREES_CELSIUS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 28,
+                    "units": "DEGREES_CELSIUS"
+                }
+            ],
+            "fahrenheit_occupied_cooling_setpoint": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 41,
+                    "units": "DEGREES_FAHRENHEIT"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 82,
+                    "units": "DEGREES_FAHRENHEIT"
+                }
+            ],
+            "celsius_occupied_heating_setpoint": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 5,
+                    "units": "DEGREES_CELSIUS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 17,
+                    "units": "DEGREES_CELSIUS"
+                }
+            ],
+            "fahrenheit_occupied_heating_setpoint": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 41,
+                    "units": "DEGREES_FAHRENHEIT"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 62,
+                    "units": "DEGREES_FAHRENHEIT"
+                }
+            ],
+            "celsius_unoccupied_cooling_setpoint": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 5,
+                    "units": "DEGREES_CELSIUS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 30,
+                    "units": "DEGREES_CELSIUS"
+                }
+            ],
+            "fahrenheit_unoccupied_cooling_setpoint": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 41,
+                    "units": "DEGREES_FAHRENHEIT"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 85,
+                    "units": "DEGREES_FAHRENHEIT"
+                }
+            ],
+            "celsius_occupied_heating_setpoint_tolerance": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0.1,
+                    "units": "DEGREES_KELVIN"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 1,
+                    "units": "DEGREES_KELVIN"
+                }
+            ],
+            "fahrenheit_occupied_heating_setpoint_tolerance": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0.2,
+                    "units": null
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 1.8,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "celsius_unoccupied_cooling_setpoint_tolerance": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0.1,
+                    "units": "DEGREES_KELVIN"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 2,
+                    "units": "DEGREES_KELVIN"
+                }
+            ],
+            "fahrenheit_unoccupied_cooling_setpoint_tolerance": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0.2,
+                    "units": null
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 3.6,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "celsius_unoccupied_heating_setpoint_tolerance": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0.1,
+                    "units": "DEGREES_KELVIN"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 2,
+                    "units": "DEGREES_KELVIN"
+                }
+            ],
+            "fahrenheit_unoccupied_heating_setpoint_tolerance": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0.2,
+                    "units": null
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 3.6,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "celsius_cooling_adjust_tolerance": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0.5,
+                    "units": "DEGREES_KELVIN"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 6,
+                    "units": "DEGREES_KELVIN"
+                }
+            ],
+            "fahrenheit_cooling_adjust_tolerance": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0.9,
+                    "units": null
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 10.8,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "celsius_heating_adjust_tolerance": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0.5,
+                    "units": "DEGREES_KELVIN"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 4.5,
+                    "units": "DEGREES_KELVIN"
+                }
+            ],
+            "fahrenheit_heating_adjust_tolerance": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0.9,
+                    "units": null
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 8,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "temperature_control_delta1": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 1,
+                "units": "NO_UNITS"
+            },
+            "temperature_control_delta2": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 1,
+                "units": "NO_UNITS"
+            },
+            "target_deadband": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 1,
+                "units": "NO_UNITS"
+            },
+            "occupied_cooling_setpoint": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 5,
+                "units": "NO_UNITS"
+            },
+            "occupied_heating_setpoint": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 5,
+                "units": "NO_UNITS"
+            },
+            "unoccupied_cooling_setpoint": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 5,
+                "units": "NO_UNITS"
+            },
+            "occupied_heating_setpoint_tolerance": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0.1,
+                "units": "NO_UNITS"
+            },
+            "unoccupied_cooling_setpoint_tolerance": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0.1,
+                "units": "NO_UNITS"
+            },
+            "unoccupied_heating_setpoint_tolerance": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0.1,
+                "units": "NO_UNITS"
+            },
+            "cooling_adjust_tolerance": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0.5,
+                "units": "NO_UNITS"
+            },
+            "heating_adjust_tolerance": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0.5,
+                "units": "NO_UNITS"
+            },
+            "fan_delay:enable": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "fan_delay:time": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "celsius_temperature_control_delta1": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "fahrenheit_temperature_control_delta1": {
+                "table": "inputRegister",
+                "value": 1.8,
+                "value_type": "UINT8"
+            },
+            "celsius_temperature_control_delta2": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "fahrenheit_temperature_control_delta2": {
+                "table": "inputRegister",
+                "value": 1.8,
+                "value_type": "UINT8"
+            },
+            "celsius_target_deadband": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "FLOAT"
+            },
+            "fahrenheit_target_deadband": {
+                "table": "inputRegister",
+                "value": 1.8,
+                "value_type": "FLOAT"
+            },
+            "celsius_occupied_cooling_setpoint": {
+                "table": "inputRegister",
+                "value": 5,
+                "value_type": "FLOAT"
+            },
+            "fahrenheit_occupied_cooling_setpoint": {
+                "table": "inputRegister",
+                "value": 41,
+                "value_type": "FLOAT"
+            },
+            "celsius_occupied_heating_setpoint": {
+                "table": "inputRegister",
+                "value": 5,
+                "value_type": "FLOAT"
+            },
+            "fahrenheit_occupied_heating_setpoint": {
+                "table": "inputRegister",
+                "value": 41,
+                "value_type": "FLOAT"
+            },
+            "celsius_unoccupied_cooling_setpoint": {
+                "table": "inputRegister",
+                "value": 5,
+                "value_type": "FLOAT"
+            },
+            "fahrenheit_unoccupied_cooling_setpoint": {
+                "table": "inputRegister",
+                "value": 41,
+                "value_type": "FLOAT"
+            },
+            "celsius_occupied_heating_setpoint_tolerance": {
+                "table": "inputRegister",
+                "value": 0.1,
+                "value_type": "FLOAT"
+            },
+            "fahrenheit_occupied_heating_setpoint_tolerance": {
+                "table": "inputRegister",
+                "value": 0.2,
+                "value_type": "FLOAT"
+            },
+            "celsius_unoccupied_cooling_setpoint_tolerance": {
+                "table": "inputRegister",
+                "value": 0.1,
+                "value_type": "FLOAT"
+            },
+            "fahrenheit_unoccupied_cooling_setpoint_tolerance": {
+                "table": "inputRegister",
+                "value": 0.2,
+                "value_type": "FLOAT"
+            },
+            "celsius_unoccupied_heating_setpoint_tolerance": {
+                "table": "inputRegister",
+                "value": 0.1,
+                "value_type": "FLOAT"
+            },
+            "fahrenheit_unoccupied_heating_setpoint_tolerance": {
+                "table": "inputRegister",
+                "value": 0.2,
+                "value_type": "FLOAT"
+            },
+            "celsius_cooling_adjust_tolerance": {
+                "table": "inputRegister",
+                "value": 0.5,
+                "value_type": "FLOAT"
+            },
+            "fahrenheit_cooling_adjust_tolerance": {
+                "table": "inputRegister",
+                "value": 0.9,
+                "value_type": "FLOAT"
+            },
+            "celsius_heating_adjust_tolerance": {
+                "table": "inputRegister",
+                "value": 0.5,
+                "value_type": "FLOAT"
+            },
+            "fahrenheit_heating_adjust_tolerance": {
+                "table": "inputRegister",
+                "value": 0.9,
+                "value_type": "FLOAT"
+            },
+            "temperature_control_delta1": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "FLOAT"
+            },
+            "temperature_control_delta2": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "FLOAT"
+            },
+            "target_deadband": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "FLOAT"
+            },
+            "occupied_cooling_setpoint": {
+                "table": "inputRegister",
+                "value": 5,
+                "value_type": "FLOAT"
+            },
+            "occupied_heating_setpoint": {
+                "table": "inputRegister",
+                "value": 5,
+                "value_type": "FLOAT"
+            },
+            "unoccupied_cooling_setpoint": {
+                "table": "inputRegister",
+                "value": 5,
+                "value_type": "FLOAT"
+            },
+            "occupied_heating_setpoint_tolerance": {
+                "table": "inputRegister",
+                "value": 0.1,
+                "value_type": "FLOAT"
+            },
+            "unoccupied_cooling_setpoint_tolerance": {
+                "table": "inputRegister",
+                "value": 0.1,
+                "value_type": "FLOAT"
+            },
+            "unoccupied_heating_setpoint_tolerance": {
+                "table": "inputRegister",
+                "value": 0.1,
+                "value_type": "FLOAT"
+            },
+            "cooling_adjust_tolerance": {
+                "table": "inputRegister",
+                "value": 0.5,
+                "value_type": "FLOAT"
+            },
+            "heating_adjust_tolerance": {
+                "table": "inputRegister",
+                "value": 0.5,
+                "value_type": "FLOAT"
+            },
+            "fan_delay:enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "BOOL"
+            },
+            "fan_delay:time": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT32"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: humidity_range:min, humidity_range:max",
+        "type": "uplink",
+        "input": {
+            "bytes": "f809",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "humidity_range": {
+                    "min": 0,
+                    "max": 0
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "humidity_range:min": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "humidity_range:max": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "humidity_range:min": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT32"
+            },
+            "humidity_range:max": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT32"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: temperature_dehumidify:enable, temperature_dehumidify:temperature_tolerance",
+        "type": "uplink",
+        "input": {
+            "bytes": "f80a",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "temperature_dehumidify": {
+                    "enable": "disable",
+                    "temperature_tolerance": 0
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "temperature_dehumidify:enable": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "temperature_dehumidify:temperature_tolerance": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "temperature_dehumidify:enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "BOOL"
+            },
+            "temperature_dehumidify:temperature_tolerance": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "FLOAT"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: temperature_calibration_settings:enable, temperature_calibration_settings:calibration_value",
+        "type": "uplink",
+        "input": {
+            "bytes": "feab",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "temperature_calibration_settings": {
+                    "enable": "disable",
+                    "calibration_value": 0
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "temperature_calibration_settings:enable": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "temperature_calibration_settings:calibration_value": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "temperature_calibration_settings:enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "BOOL"
+            },
+            "temperature_calibration_settings:calibration_value": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "FLOAT"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: freeze_protection_config:enable, freeze_protection_config:temperature",
+        "type": "uplink",
+        "input": {
+            "bytes": "feb0",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "freeze_protection_config": {
+                    "enable": "disable",
+                    "temperature": 0
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "freeze_protection_config:enable": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "freeze_protection_config:temperature": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "freeze_protection_config:enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "BOOL"
+            },
+            "freeze_protection_config:temperature": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "FLOAT"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: temperature_tolerance:target_temperature_tolerance, temperature_tolerance:auto_temperature_tolerance",
+        "type": "uplink",
+        "input": {
+            "bytes": "feb8",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "temperature_tolerance": {
+                    "target_temperature_tolerance": 0,
+                    "auto_temperature_tolerance": 0
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "temperature_tolerance:target_temperature_tolerance": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "temperature_tolerance:auto_temperature_tolerance": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "temperature_tolerance:target_temperature_tolerance": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "FLOAT"
+            },
+            "temperature_tolerance:auto_temperature_tolerance": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "FLOAT"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: card_config:action_type, card_config:invert",
+        "type": "uplink",
+        "input": {
+            "bytes": "fec1",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "card_config": {
+                    "enable": "unknown",
+                    "action_type": "power",
+                    "invert": "unknown"
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "card_config:action_type": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "power"
+            },
+            "card_config:invert": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            }
+        },
+        "Modbus": {
+            "card_config:action_type": {
+                "table": "inputRegister",
+                "value": "power",
+                "value_type": "STRING"
+            },
+            "card_config:invert": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: humidity_calibration_settings:enable, humidity_calibration_settings:calibration_value",
+        "type": "uplink",
+        "input": {
+            "bytes": "fef9",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "humidity_calibration_settings": {
+                    "enable": "disable",
+                    "calibration_value": 0
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "humidity_calibration_settings:enable": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "humidity_calibration_settings:calibration_value": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "humidity_calibration_settings:enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "BOOL"
+            },
+            "humidity_calibration_settings:calibration_value": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "FLOAT"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: fan_dehumidify:enable, fan_dehumidify:execute_time",
+        "type": "uplink",
+        "input": {
+            "bytes": "f80701",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "fan_dehumidify": {
+                    "enable": "enable",
+                    "execute_time": 0
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "fan_dehumidify:enable": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            },
+            "fan_dehumidify:execute_time": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "fan_dehumidify:enable": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "BOOL"
+            },
+            "fan_dehumidify:execute_time": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT32"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: device_response_result:request:fan_dehumidify:enable, device_response_result:request:fan_dehumidify:execute_time, curr_temperature_humidity_source",
+        "type": "uplink",
+        "input": {
+            "bytes": "f80701522307e9",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "device_response_result": {
+                    "channel_type": 7,
+                    "result": "unknown",
+                    "request": {
+                        "fan_dehumidify": {
+                            "enable": "enable",
+                            "execute_time": 82
+                        }
+                    }
+                },
+                "curr_temperature_humidity_source": "unknown"
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "curr_temperature_humidity_source": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "device_response_result:channel_type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 7,
+                "units": "NO_UNITS"
+            },
+            "device_response_result:result": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "device_response_result:request:fan_dehumidify:enable": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            },
+            "device_response_result:request:fan_dehumidify:execute_time": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 82,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "curr_temperature_humidity_source": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "device_response_result:channel_type": {
+                "table": "inputRegister",
+                "value": 7,
+                "value_type": "INT32"
+            },
+            "device_response_result:result": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "device_response_result:request:fan_dehumidify:enable": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "BOOL"
+            },
+            "device_response_result:request:fan_dehumidify:execute_time": {
+                "table": "inputRegister",
+                "value": 82,
+                "value_type": "INT32"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: device_response_result:request:humidity_range:min, device_response_result:request:humidity_range:max, target_temperature_2",
+        "type": "uplink",
+        "input": {
+            "bytes": "f8090152230b67",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "device_response_result": {
+                    "channel_type": 9,
+                    "result": "unknown",
+                    "request": {
+                        "humidity_range": {
+                            "min": 1,
+                            "max": 82
+                        }
+                    }
+                },
+                "target_temperature_2": 0
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "target_temperature_2": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "device_response_result:channel_type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 9,
+                "units": "NO_UNITS"
+            },
+            "device_response_result:result": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "device_response_result:request:humidity_range:min": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 1,
+                "units": "NO_UNITS"
+            },
+            "device_response_result:request:humidity_range:max": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 82,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "target_temperature_2": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "FLOAT"
+            },
+            "device_response_result:channel_type": {
+                "table": "inputRegister",
+                "value": 9,
+                "value_type": "INT32"
+            },
+            "device_response_result:result": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "device_response_result:request:humidity_range:min": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "INT32"
+            },
+            "device_response_result:request:humidity_range:max": {
+                "table": "inputRegister",
+                "value": 82,
+                "value_type": "INT32"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: device_response_result:request:temperature_dehumidify:enable, device_response_result:request:temperature_dehumidify:temperature_tolerance, temperature_alarm",
+        "type": "uplink",
+        "input": {
+            "bytes": "f80a0152238367",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "device_response_result": {
+                    "channel_type": 10,
+                    "result": "unknown",
+                    "request": {
+                        "temperature_dehumidify": {
+                            "enable": "enable",
+                            "temperature_tolerance": 8.2
+                        }
+                    }
+                },
+                "temperature": 0,
+                "temperature_alarm": "unknown"
+            }
+        },
+        "points": {
+            "temperature": {
+                "unitId": "Cel",
+                "record": 0
+            },
+            "status:3": {
+                "unitId": "state",
+                "record": true,
+                "nature": "temperature_abnormal"
+            }
+        },
+        "BACnet": {
+            "temperature": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "DEGREES_CELSIUS"
+            },
+            "temperature_alarm": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "device_response_result:channel_type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 10,
+                "units": "NO_UNITS"
+            },
+            "device_response_result:result": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "device_response_result:request:temperature_dehumidify:enable": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            },
+            "device_response_result:request:temperature_dehumidify:temperature_tolerance": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 8.2,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "temperature": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "FLOAT"
+            },
+            "temperature_alarm": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "device_response_result:channel_type": {
+                "table": "inputRegister",
+                "value": 10,
+                "value_type": "INT32"
+            },
+            "device_response_result:result": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "device_response_result:request:temperature_dehumidify:enable": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "BOOL"
+            },
+            "device_response_result:request:temperature_dehumidify:temperature_tolerance": {
+                "table": "inputRegister",
+                "value": 8.2,
+                "value_type": "FLOAT"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: humidity_sensor_status",
+        "type": "uplink",
+        "input": {
+            "bytes": "b968",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "humidity_sensor_status": "unknown"
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "humidity_sensor_status": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            }
+        },
+        "Modbus": {
+            "humidity_sensor_status": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: fan_execute_time",
+        "type": "uplink",
+        "input": {
+            "bytes": "f806",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "fan_execute_time": 0
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "fan_execute_time": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "fan_execute_time": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT32"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: occupied_delay:time",
+        "type": "uplink",
+        "input": {
+            "bytes": "f828",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "occupied_delay": {
+                    "time": 0
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "occupied_delay:time": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "occupied_delay:time": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT32"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: offline_timeout:time",
+        "type": "uplink",
+        "input": {
+            "bytes": "f829",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "offline_timeout": {
+                    "time": 0
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "offline_timeout:time": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "offline_timeout:time": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT32"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: screen_target_others_enable",
+        "type": "uplink",
+        "input": {
+            "bytes": "f896",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "screen_target_others_enable": "disable"
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "screen_target_others_enable": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            }
+        },
+        "Modbus": {
+            "screen_target_others_enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "BOOL"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: collection_interval",
+        "type": "uplink",
+        "input": {
+            "bytes": "fe02",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "collection_interval": 0
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "collection_interval": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "collection_interval": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT32"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: outside_temperature",
+        "type": "uplink",
+        "input": {
+            "bytes": "fe03",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "outside_temperature": 0
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "outside_temperature": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "outside_temperature": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "FLOAT"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: reboot",
+        "type": "uplink",
+        "input": {
+            "bytes": "fe10",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "reboot": "yes"
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "reboot": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            }
+        },
+        "Modbus": {
+            "reboot": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "BOOL"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: report_status",
+        "type": "uplink",
+        "input": {
+            "bytes": "fe28",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "report_status": "plan"
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "report_status": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "plan"
+            }
+        },
+        "Modbus": {
+            "report_status": {
+                "table": "inputRegister",
+                "value": "plan",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: retransmit_interval",
+        "type": "uplink",
+        "input": {
+            "bytes": "fe6a",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "retransmit_interval": 0
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "retransmit_interval": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "retransmit_interval": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT32"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: reversing_valve:mode",
+        "type": "uplink",
+        "input": {
+            "bytes": "feb5",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "reversing_valve": {
+                    "mode": "energize on heat"
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "reversing_valve:mode": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "energize on heat"
+            }
+        },
+        "Modbus": {
+            "reversing_valve:mode": {
+                "table": "inputRegister",
+                "value": "energize on heat",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: time_zone",
+        "type": "uplink",
+        "input": {
+            "bytes": "febd",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "time_zone": "UTC"
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "time_zone": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "UTC"
+            }
+        },
+        "Modbus": {
+            "time_zone": {
+                "table": "inputRegister",
+                "value": "UTC",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: temperature_source_config:timeout",
+        "type": "uplink",
+        "input": {
+            "bytes": "fec4",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "temperature_source_config": {
+                    "source": "disable",
+                    "timeout": 0
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "temperature_source_config:timeout": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "temperature_source_config:timeout": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT32"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: control_permission",
+        "type": "uplink",
+        "input": {
+            "bytes": "fef6",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "control_permission": "thermostat"
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "control_permission": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "thermostat"
+            }
+        },
+        "Modbus": {
+            "control_permission": {
+                "table": "inputRegister",
+                "value": "thermostat",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: offline_control_mode",
+        "type": "uplink",
+        "input": {
+            "bytes": "fef8",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "offline_control_mode": "keep"
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "offline_control_mode": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "keep"
+            }
+        },
+        "Modbus": {
+            "offline_control_mode": {
+                "table": "inputRegister",
+                "value": "keep",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: temperature_control_mode",
+        "type": "uplink",
+        "input": {
+            "bytes": "fefa",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "temperature_control_mode": "heat",
+                "target_temperature": 0
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "target_temperature": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "temperature_control_mode": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "heat"
+            }
+        },
+        "Modbus": {
+            "target_temperature": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "FLOAT"
+            },
+            "temperature_control_mode": {
+                "table": "inputRegister",
+                "value": "heat",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: device_status",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff0b",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "device_status": "on"
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "device_status": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            }
+        },
+        "Modbus": {
+            "device_status": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "BOOL"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: lorawan_class:type",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff0f",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "lorawan_class": {
+                    "type": "unknown"
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "lorawan_class:type": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            }
+        },
+        "Modbus": {
+            "lorawan_class:type": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: reset_event",
+        "type": "uplink",
+        "input": {
+            "bytes": "fffe",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "reset_event": "reset"
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "reset_event": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "reset"
+            }
+        },
+        "Modbus": {
+            "reset_event": {
+                "table": "inputRegister",
+                "value": "reset",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: temperature_up_down_enable:forward_enable",
+        "type": "uplink",
+        "input": {
+            "bytes": "f81b01",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "temperature_up_down_enable": {
+                    "forward_enable": "disable"
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "temperature_up_down_enable:forward_enable": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            }
+        },
+        "Modbus": {
+            "temperature_up_down_enable:forward_enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "BOOL"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: occupancy_mode:mode",
+        "type": "uplink",
+        "input": {
+            "bytes": "f82701",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "occupancy_mode": {
+                    "mode": "off"
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "occupancy_mode:mode": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            }
+        },
+        "Modbus": {
+            "occupancy_mode:mode": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "BOOL"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: time_format:mode",
+        "type": "uplink",
+        "input": {
+            "bytes": "f82c01",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "time_format": {
+                    "mode": "12 Hour (AM-PM)"
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "time_format:mode": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "12 Hour (AM-PM)"
+            }
+        },
+        "Modbus": {
+            "time_format:mode": {
+                "table": "inputRegister",
+                "value": "12 Hour (AM-PM)",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: wire_mode:mode",
+        "type": "uplink",
+        "input": {
+            "bytes": "f82d01",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "wire_mode": {
+                    "mode": "standard"
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "wire_mode:mode": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "standard"
+            }
+        },
+        "Modbus": {
+            "wire_mode:mode": {
+                "table": "inputRegister",
+                "value": "standard",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: temperature_humidity_source:mode",
+        "type": "uplink",
+        "input": {
+            "bytes": "f82e01",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "temperature_humidity_source": {
+                    "mode": "embedded"
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "temperature_humidity_source:mode": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "embedded"
+            }
+        },
+        "Modbus": {
+            "temperature_humidity_source:mode": {
+                "table": "inputRegister",
+                "value": "embedded",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: timezone_index:timezone",
+        "type": "uplink",
+        "input": {
+            "bytes": "f82f01",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "timezone_index": {
+                    "timezone": "UTC-12"
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "timezone_index:timezone": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "UTC-12"
+            }
+        },
+        "Modbus": {
+            "timezone_index:timezone": {
+                "table": "inputRegister",
+                "value": "UTC-12",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: child_lock_config:power_button",
+        "type": "uplink",
+        "input": {
+            "bytes": "fe2501",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "child_lock_config": {
+                    "power_button": "disable"
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "child_lock_config:power_button": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            }
+        },
+        "Modbus": {
+            "child_lock_config:power_button": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "BOOL"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: resend_interval",
+        "type": "uplink",
+        "input": {
+            "bytes": "fe6a01",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "resend_interval": 0
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "resend_interval": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "resend_interval": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT32"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: temperature_unit:unit, wires_relay_config:y1",
+        "type": "uplink",
+        "input": {
+            "bytes": "feeb01fef701",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "temperature_unit": {
+                    "unit": "fahrenheit"
+                },
+                "wires_relay_config": {
+                    "y1": "off"
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "temperature_unit:unit": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "fahrenheit"
+            },
+            "wires_relay_config:y1": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            }
+        },
+        "Modbus": {
+            "temperature_unit:unit": {
+                "table": "inputRegister",
+                "value": "fahrenheit",
+                "value_type": "STRING"
+            },
+            "wires_relay_config:y1": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "BOOL"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: device_response_result:request:fan_execute_time",
+        "type": "uplink",
+        "input": {
+            "bytes": "f8060152",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "device_response_result": {
+                    "channel_type": 6,
+                    "result": "unknown",
+                    "request": {
+                        "fan_execute_time": 1
+                    }
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "device_response_result:channel_type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 6,
+                "units": "NO_UNITS"
+            },
+            "device_response_result:result": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "device_response_result:request:fan_execute_time": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 1,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "device_response_result:channel_type": {
+                "table": "inputRegister",
+                "value": 6,
+                "value_type": "INT32"
+            },
+            "device_response_result:result": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "device_response_result:request:fan_execute_time": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "INT32"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: device_response_result:request:screen_display_mode",
+        "type": "uplink",
+        "input": {
+            "bytes": "f8080152",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "device_response_result": {
+                    "channel_type": 8,
+                    "result": "unknown",
+                    "request": {
+                        "screen_display_mode": "without plan show"
+                    }
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "device_response_result:channel_type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 8,
+                "units": "NO_UNITS"
+            },
+            "device_response_result:result": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "device_response_result:request:screen_display_mode": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "without plan show"
+            }
+        },
+        "Modbus": {
+            "device_response_result:channel_type": {
+                "table": "inputRegister",
+                "value": 8,
+                "value_type": "INT32"
+            },
+            "device_response_result:result": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "device_response_result:request:screen_display_mode": {
+                "table": "inputRegister",
+                "value": "without plan show",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: device_response_result:request:fan_delay_config_enable",
+        "type": "uplink",
+        "input": {
+            "bytes": "f8200152",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "device_response_result": {
+                    "channel_type": 32,
+                    "result": "unknown",
+                    "request": {
+                        "fan_delay_config_enable": "enable"
+                    }
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "device_response_result:channel_type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 32,
+                "units": "NO_UNITS"
+            },
+            "device_response_result:result": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "device_response_result:request:fan_delay_config_enable": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            }
+        },
+        "Modbus": {
+            "device_response_result:channel_type": {
+                "table": "inputRegister",
+                "value": 32,
+                "value_type": "INT32"
+            },
+            "device_response_result:result": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "device_response_result:request:fan_delay_config_enable": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "BOOL"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: device_response_result:request:temporary_unlock_settings:settings",
+        "type": "uplink",
+        "input": {
+            "bytes": "f8220152",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "device_response_result": {
+                    "channel_type": 34,
+                    "result": "unknown",
+                    "request": {
+                        "temporary_unlock_settings": {
+                            "settings": "System On/Off"
+                        }
+                    }
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "device_response_result:channel_type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 34,
+                "units": "NO_UNITS"
+            },
+            "device_response_result:result": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "device_response_result:request:temporary_unlock_settings:settings": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "System On/Off"
+            }
+        },
+        "Modbus": {
+            "device_response_result:channel_type": {
+                "table": "inputRegister",
+                "value": 34,
+                "value_type": "INT32"
+            },
+            "device_response_result:result": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "device_response_result:request:temporary_unlock_settings:settings": {
+                "table": "inputRegister",
+                "value": "System On/Off",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: device_response_result:request:occupancy_mode:mode",
+        "type": "uplink",
+        "input": {
+            "bytes": "f8270152",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "device_response_result": {
+                    "channel_type": 39,
+                    "result": "unknown",
+                    "request": {
+                        "occupancy_mode": {
+                            "mode": "off"
+                        }
+                    }
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "device_response_result:channel_type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 39,
+                "units": "NO_UNITS"
+            },
+            "device_response_result:result": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "device_response_result:request:occupancy_mode:mode": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            }
+        },
+        "Modbus": {
+            "device_response_result:channel_type": {
+                "table": "inputRegister",
+                "value": 39,
+                "value_type": "INT32"
+            },
+            "device_response_result:result": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "device_response_result:request:occupancy_mode:mode": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "BOOL"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: device_response_result:request:occupied_delay:time",
+        "type": "uplink",
+        "input": {
+            "bytes": "f8280152",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "device_response_result": {
+                    "channel_type": 40,
+                    "result": "unknown",
+                    "request": {
+                        "occupied_delay": {
+                            "time": 1
+                        }
+                    }
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "device_response_result:channel_type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 40,
+                "units": "NO_UNITS"
+            },
+            "device_response_result:result": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "device_response_result:request:occupied_delay:time": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 1,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "device_response_result:channel_type": {
+                "table": "inputRegister",
+                "value": 40,
+                "value_type": "INT32"
+            },
+            "device_response_result:result": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "device_response_result:request:occupied_delay:time": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "INT32"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: device_response_result:request:offline_timeout:time",
+        "type": "uplink",
+        "input": {
+            "bytes": "f8290152",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "device_response_result": {
+                    "channel_type": 41,
+                    "result": "unknown",
+                    "request": {
+                        "offline_timeout": {
+                            "time": 1
+                        }
+                    }
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "device_response_result:channel_type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 41,
+                "units": "NO_UNITS"
+            },
+            "device_response_result:result": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "device_response_result:request:offline_timeout:time": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 1,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "device_response_result:channel_type": {
+                "table": "inputRegister",
+                "value": 41,
+                "value_type": "INT32"
+            },
+            "device_response_result:result": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "device_response_result:request:offline_timeout:time": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "INT32"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: device_response_result:request:time_format:mode",
+        "type": "uplink",
+        "input": {
+            "bytes": "f82c0152",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "device_response_result": {
+                    "channel_type": 44,
+                    "result": "unknown",
+                    "request": {
+                        "time_format": {
+                            "mode": "12 Hour (AM-PM)"
+                        }
+                    }
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "device_response_result:channel_type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 44,
+                "units": "NO_UNITS"
+            },
+            "device_response_result:result": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "device_response_result:request:time_format:mode": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "12 Hour (AM-PM)"
+            }
+        },
+        "Modbus": {
+            "device_response_result:channel_type": {
+                "table": "inputRegister",
+                "value": 44,
+                "value_type": "INT32"
+            },
+            "device_response_result:result": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "device_response_result:request:time_format:mode": {
+                "table": "inputRegister",
+                "value": "12 Hour (AM-PM)",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: device_response_result:request:wire_mode:mode",
+        "type": "uplink",
+        "input": {
+            "bytes": "f82d0152",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "device_response_result": {
+                    "channel_type": 45,
+                    "result": "unknown",
+                    "request": {
+                        "wire_mode": {
+                            "mode": "standard"
+                        }
+                    }
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "device_response_result:channel_type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 45,
+                "units": "NO_UNITS"
+            },
+            "device_response_result:result": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "device_response_result:request:wire_mode:mode": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "standard"
+            }
+        },
+        "Modbus": {
+            "device_response_result:channel_type": {
+                "table": "inputRegister",
+                "value": 45,
+                "value_type": "INT32"
+            },
+            "device_response_result:result": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "device_response_result:request:wire_mode:mode": {
+                "table": "inputRegister",
+                "value": "standard",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: device_response_result:request:temperature_humidity_source:mode",
+        "type": "uplink",
+        "input": {
+            "bytes": "f82e0152",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "device_response_result": {
+                    "channel_type": 46,
+                    "result": "unknown",
+                    "request": {
+                        "temperature_humidity_source": {
+                            "mode": "embedded"
+                        }
+                    }
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "device_response_result:channel_type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 46,
+                "units": "NO_UNITS"
+            },
+            "device_response_result:result": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "device_response_result:request:temperature_humidity_source:mode": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "embedded"
+            }
+        },
+        "Modbus": {
+            "device_response_result:channel_type": {
+                "table": "inputRegister",
+                "value": 46,
+                "value_type": "INT32"
+            },
+            "device_response_result:result": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "device_response_result:request:temperature_humidity_source:mode": {
+                "table": "inputRegister",
+                "value": "embedded",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: device_response_result:request:timezone_index:timezone",
+        "type": "uplink",
+        "input": {
+            "bytes": "f82f0152",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "device_response_result": {
+                    "channel_type": 47,
+                    "result": "unknown",
+                    "request": {
+                        "timezone_index": {
+                            "timezone": "UTC-12"
+                        }
+                    }
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "device_response_result:channel_type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 47,
+                "units": "NO_UNITS"
+            },
+            "device_response_result:result": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "device_response_result:request:timezone_index:timezone": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "UTC-12"
+            }
+        },
+        "Modbus": {
+            "device_response_result:channel_type": {
+                "table": "inputRegister",
+                "value": 47,
+                "value_type": "INT32"
+            },
+            "device_response_result:result": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "device_response_result:request:timezone_index:timezone": {
+                "table": "inputRegister",
+                "value": "UTC-12",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: device_response_result:request:temperature_control_enable_setting:mode",
+        "type": "uplink",
+        "input": {
+            "bytes": "f85d0152",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "device_response_result": {
+                    "channel_type": 93,
+                    "result": "unknown",
+                    "request": {
+                        "temperature_control_enable_setting": {
+                            "mode": "heat"
+                        }
+                    }
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "device_response_result:channel_type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 93,
+                "units": "NO_UNITS"
+            },
+            "device_response_result:result": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "device_response_result:request:temperature_control_enable_setting:mode": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "heat"
+            }
+        },
+        "Modbus": {
+            "device_response_result:channel_type": {
+                "table": "inputRegister",
+                "value": 93,
+                "value_type": "INT32"
+            },
+            "device_response_result:result": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "device_response_result:request:temperature_control_enable_setting:mode": {
+                "table": "inputRegister",
+                "value": "heat",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: device_response_result:request:occupied_cooling_setpoint_tolerance",
+        "type": "uplink",
+        "input": {
+            "bytes": "f86a0152",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "device_response_result": {
+                    "channel_type": 106,
+                    "result": "unknown",
+                    "request": {
+                        "occupied_cooling_setpoint_tolerance": 0.1
+                    }
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "device_response_result:channel_type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 106,
+                "units": "NO_UNITS"
+            },
+            "device_response_result:result": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "device_response_result:request:occupied_cooling_setpoint_tolerance": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0.1,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "device_response_result:channel_type": {
+                "table": "inputRegister",
+                "value": 106,
+                "value_type": "INT32"
+            },
+            "device_response_result:result": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "device_response_result:request:occupied_cooling_setpoint_tolerance": {
+                "table": "inputRegister",
+                "value": 0.1,
+                "value_type": "FLOAT"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: device_response_result:request:cooling_setpoint_tolerance",
+        "type": "uplink",
+        "input": {
+            "bytes": "f86e0152",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "device_response_result": {
+                    "channel_type": 110,
+                    "result": "unknown",
+                    "request": {
+                        "cooling_setpoint_tolerance": 0.1
+                    }
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "device_response_result:channel_type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 110,
+                "units": "NO_UNITS"
+            },
+            "device_response_result:result": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "device_response_result:request:cooling_setpoint_tolerance": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0.1,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "device_response_result:channel_type": {
+                "table": "inputRegister",
+                "value": 110,
+                "value_type": "INT32"
+            },
+            "device_response_result:result": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "device_response_result:request:cooling_setpoint_tolerance": {
+                "table": "inputRegister",
+                "value": 0.1,
+                "value_type": "FLOAT"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: device_response_result:request:heating_stage2:wire",
+        "type": "uplink",
+        "input": {
+            "bytes": "f8820152",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "device_response_result": {
+                    "channel_type": 130,
+                    "result": "unknown",
+                    "request": {
+                        "heating_stage2": {
+                            "wire": "Y1"
+                        }
+                    }
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "device_response_result:channel_type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 130,
+                "units": "NO_UNITS"
+            },
+            "device_response_result:result": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "device_response_result:request:heating_stage2:wire": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "Y1"
+            }
+        },
+        "Modbus": {
+            "device_response_result:channel_type": {
+                "table": "inputRegister",
+                "value": 130,
+                "value_type": "INT32"
+            },
+            "device_response_result:result": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "device_response_result:request:heating_stage2:wire": {
+                "table": "inputRegister",
+                "value": "Y1",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: device_response_result:request:heating_stage3:wire",
+        "type": "uplink",
+        "input": {
+            "bytes": "f8830152",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "device_response_result": {
+                    "channel_type": 131,
+                    "result": "unknown",
+                    "request": {
+                        "heating_stage3": {
+                            "wire": "Y1"
+                        }
+                    }
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "device_response_result:channel_type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 131,
+                "units": "NO_UNITS"
+            },
+            "device_response_result:result": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "device_response_result:request:heating_stage3:wire": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "Y1"
+            }
+        },
+        "Modbus": {
+            "device_response_result:channel_type": {
+                "table": "inputRegister",
+                "value": 131,
+                "value_type": "INT32"
+            },
+            "device_response_result:result": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "device_response_result:request:heating_stage3:wire": {
+                "table": "inputRegister",
+                "value": "Y1",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: device_response_result:request:cooling_stage1:wire",
+        "type": "uplink",
+        "input": {
+            "bytes": "f8870152",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "device_response_result": {
+                    "channel_type": 135,
+                    "result": "unknown",
+                    "request": {
+                        "cooling_stage1": {
+                            "wire": "Y1"
+                        }
+                    }
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "device_response_result:channel_type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 135,
+                "units": "NO_UNITS"
+            },
+            "device_response_result:result": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "device_response_result:request:cooling_stage1:wire": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "Y1"
+            }
+        },
+        "Modbus": {
+            "device_response_result:channel_type": {
+                "table": "inputRegister",
+                "value": 135,
+                "value_type": "INT32"
+            },
+            "device_response_result:result": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "device_response_result:request:cooling_stage1:wire": {
+                "table": "inputRegister",
+                "value": "Y1",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: device_response_result:request:screen_target_others_enable",
+        "type": "uplink",
+        "input": {
+            "bytes": "f8960152",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "device_response_result": {
+                    "channel_type": 150,
+                    "result": "unknown",
+                    "request": {
+                        "screen_target_others_enable": "enable"
+                    }
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "device_response_result:channel_type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 150,
+                "units": "NO_UNITS"
+            },
+            "device_response_result:result": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "device_response_result:request:screen_target_others_enable": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            }
+        },
+        "Modbus": {
+            "device_response_result:channel_type": {
+                "table": "inputRegister",
+                "value": 150,
+                "value_type": "INT32"
+            },
+            "device_response_result:result": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "device_response_result:request:screen_target_others_enable": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "BOOL"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: device_response_result:request:temperature_up_down_enable:forward_enable",
+        "type": "uplink",
+        "input": {
+            "bytes": "f81b015223",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "device_response_result": {
+                    "channel_type": 27,
+                    "result": "unknown",
+                    "request": {
+                        "temperature_up_down_enable": {
+                            "forward_enable": "disable"
+                        }
+                    }
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "device_response_result:channel_type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 27,
+                "units": "NO_UNITS"
+            },
+            "device_response_result:result": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "device_response_result:request:temperature_up_down_enable:forward_enable": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            }
+        },
+        "Modbus": {
+            "device_response_result:channel_type": {
+                "table": "inputRegister",
+                "value": 27,
+                "value_type": "INT32"
+            },
+            "device_response_result:result": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "device_response_result:request:temperature_up_down_enable:forward_enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "BOOL"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: device_response_result:request:unoccupied_heating_setpoint",
+        "type": "uplink",
+        "input": {
+            "bytes": "f867015223",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "device_response_result": {
+                    "channel_type": 103,
+                    "result": "unknown",
+                    "request": {
+                        "unoccupied_heating_setpoint": 2099.3
+                    }
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "device_response_result:channel_type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 103,
+                "units": "NO_UNITS"
+            },
+            "device_response_result:result": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "device_response_result:request:unoccupied_heating_setpoint": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 2099.3,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "device_response_result:channel_type": {
+                "table": "inputRegister",
+                "value": 103,
+                "value_type": "INT32"
+            },
+            "device_response_result:result": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "device_response_result:request:unoccupied_heating_setpoint": {
+                "table": "inputRegister",
+                "value": 2099.3,
+                "value_type": "FLOAT"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: device_response_result:request:cooling_setpoint",
+        "type": "uplink",
+        "input": {
+            "bytes": "f868015223",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "device_response_result": {
+                    "channel_type": 104,
+                    "result": "unknown",
+                    "request": {
+                        "cooling_setpoint": 2099.3
+                    }
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "device_response_result:channel_type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 104,
+                "units": "NO_UNITS"
+            },
+            "device_response_result:result": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "device_response_result:request:cooling_setpoint": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 2099.3,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "device_response_result:channel_type": {
+                "table": "inputRegister",
+                "value": 104,
+                "value_type": "INT32"
+            },
+            "device_response_result:result": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "device_response_result:request:cooling_setpoint": {
+                "table": "inputRegister",
+                "value": 2099.3,
+                "value_type": "FLOAT"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: device_response_result:request:heating_setpoint",
+        "type": "uplink",
+        "input": {
+            "bytes": "f869015223",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "device_response_result": {
+                    "channel_type": 105,
+                    "result": "unknown",
+                    "request": {
+                        "heating_setpoint": 2099.3
+                    }
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "device_response_result:channel_type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 105,
+                "units": "NO_UNITS"
+            },
+            "device_response_result:result": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "device_response_result:request:heating_setpoint": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 2099.3,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "device_response_result:channel_type": {
+                "table": "inputRegister",
+                "value": 105,
+                "value_type": "INT32"
+            },
+            "device_response_result:result": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "device_response_result:request:heating_setpoint": {
+                "table": "inputRegister",
+                "value": 2099.3,
+                "value_type": "FLOAT"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: sn",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff1601",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "sn": "01"
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "sn": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "01"
+            }
+        },
+        "Modbus": {
+            "sn": {
+                "table": "inputRegister",
+                "value": "01",
+                "value_type": "STRING"
+            }
         }
     }
 ]

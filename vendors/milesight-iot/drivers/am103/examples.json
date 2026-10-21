@@ -81,6 +81,20 @@
     {
         "description": "Downlink encode: report_interval",
         "type": "downlink-encode",
+        "inputBACnet": {
+            "report_interval": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 600
+            }
+        },
+        "inputModbus": {
+            "report_interval": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 600
+            }
+        },
         "input": {
             "data": {
                 "report_interval": 600
@@ -380,6 +394,20 @@
     {
         "description": "Synthetic downlink regression: BACnet provisioning time_zone",
         "type": "downlink-encode",
+        "inputBACnet": {
+            "time_zone": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 10
+            }
+        },
+        "inputModbus": {
+            "time_zone": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 10
+            }
+        },
         "input": {
             "data": {
                 "time_zone": "UTC+1"
@@ -394,25 +422,25 @@
                 0
             ],
             "fPort": 85
-        },
-        "inputBACnet": {
-            "time_zone": {
-                "object": "ANALOG_VALUE",
-                "property": "PRESENT_VALUE",
-                "value": 10
-            }
-        },
-        "inputModbus": {
-            "time_zone": {
-                "table": "holdingRegister",
-                "operation": "setRegister",
-                "value": 10
-            }
         }
     },
     {
         "description": "Synthetic downlink regression: BACnet provisioning led_indicator_mode 0",
         "type": "downlink-encode",
+        "inputBACnet": {
+            "led_indicator_mode": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            }
+        },
+        "inputModbus": {
+            "led_indicator_mode": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 0
+            }
+        },
         "input": {
             "data": {
                 "led_indicator_mode": "off"
@@ -426,25 +454,25 @@
                 0
             ],
             "fPort": 85
-        },
+        }
+    },
+    {
+        "description": "Synthetic downlink regression: BACnet provisioning led_indicator_mode 2",
+        "type": "downlink-encode",
         "inputBACnet": {
             "led_indicator_mode": {
                 "object": "ANALOG_VALUE",
                 "property": "PRESENT_VALUE",
-                "value": 0
+                "value": 2
             }
         },
         "inputModbus": {
             "led_indicator_mode": {
                 "table": "holdingRegister",
                 "operation": "setRegister",
-                "value": 0
+                "value": 2
             }
-        }
-    },
-    {
-        "description": "Synthetic downlink regression: BACnet provisioning led_indicator_mode 2",
-        "type": "downlink-encode",
+        },
         "input": {
             "data": {
                 "led_indicator_mode": "blink"
@@ -458,20 +486,1804 @@
                 2
             ],
             "fPort": 85
+        }
+    },
+    {
+        "description": "Uplink coverage: hibernate_config:enable, hibernate_config:lora_uplink_enable, hibernate_config:start_time and 15 more",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff75000100006801fefff00f000f00fe06",
+            "fPort": 85
         },
-        "inputBACnet": {
+        "output": {
+            "data": {
+                "hibernate_config": {
+                    "enable": "disable",
+                    "lora_uplink_enable": "enable",
+                    "start_time": 0,
+                    "end_time": 360,
+                    "weekdays": {
+                        "monday": "enable",
+                        "tuesday": "enable",
+                        "wednesday": "enable",
+                        "thursday": "enable",
+                        "friday": "enable",
+                        "saturday": "enable",
+                        "sunday": "enable"
+                    }
+                },
+                "screen_display_element_settings": {
+                    "temperature": "enable",
+                    "humidity": "enable",
+                    "co2": "enable",
+                    "smile": "enable"
+                },
+                "temperature_alarm_config": {
+                    "condition": "disable",
+                    "threshold_min": 0,
+                    "threshold_max": 0
+                }
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "screen_display_element_settings:temperature": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 1
+                }
+            ],
+            "screen_display_element_settings:humidity": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 1
+                }
+            ],
+            "screen_display_element_settings:co2": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 1
+                }
+            ],
+            "screen_display_element_settings:smile": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 1
+                }
+            ],
+            "temperature_alarm_config:condition": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "temperature_alarm_config:threshold_min": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "DEGREES_CELSIUS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 10,
+                    "units": "DEGREES_CELSIUS"
+                }
+            ],
+            "temperature_alarm_config:threshold_max": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "DEGREES_CELSIUS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 30,
+                    "units": "DEGREES_CELSIUS"
+                }
+            ],
+            "hibernate_config:enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "hibernate_config:lora_uplink_enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 1
+                }
+            ],
+            "hibernate_config:start_time": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "MINUTES"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "MINUTES"
+                }
+            ],
+            "hibernate_config:end_time": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 360,
+                    "units": "MINUTES"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 360,
+                    "units": "MINUTES"
+                }
+            ],
+            "hibernate_config:weekdays:monday": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 1
+                }
+            ],
+            "hibernate_config:weekdays:tuesday": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 1
+                }
+            ],
+            "hibernate_config:weekdays:wednesday": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 1
+                }
+            ],
+            "hibernate_config:weekdays:thursday": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 1
+                }
+            ],
+            "hibernate_config:weekdays:friday": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 1
+                }
+            ],
+            "hibernate_config:weekdays:saturday": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 1
+                }
+            ],
+            "hibernate_config:weekdays:sunday": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 1
+                }
+            ]
+        },
+        "Modbus": {
+            "screen_display_element_settings:temperature": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "screen_display_element_settings:humidity": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "screen_display_element_settings:co2": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "screen_display_element_settings:smile": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "temperature_alarm_config:condition": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "temperature_alarm_config:threshold_min": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "FLOAT"
+            },
+            "temperature_alarm_config:threshold_max": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "FLOAT"
+            },
+            "hibernate_config:enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "hibernate_config:lora_uplink_enable": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "hibernate_config:start_time": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            },
+            "hibernate_config:end_time": {
+                "table": "inputRegister",
+                "value": 360,
+                "value_type": "UINT16"
+            },
+            "hibernate_config:weekdays:monday": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "hibernate_config:weekdays:tuesday": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "hibernate_config:weekdays:wednesday": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "hibernate_config:weekdays:thursday": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "hibernate_config:weekdays:friday": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "hibernate_config:weekdays:saturday": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "hibernate_config:weekdays:sunday": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: sensor_enable:temperature, sensor_enable:humidity, sensor_enable:co2",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff18",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "sensor_enable": {
+                    "temperature": "disable",
+                    "humidity": "disable",
+                    "co2": "disable"
+                }
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "sensor_enable:temperature": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "sensor_enable:humidity": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "sensor_enable:co2": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            }
+        },
+        "Modbus": {
+            "sensor_enable:temperature": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "sensor_enable:humidity": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "sensor_enable:co2": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: co2_abc_calibration_settings:enable, co2_abc_calibration_settings:period, co2_abc_calibration_settings:calibration_value",
+        "type": "uplink",
+        "input": {
+            "bytes": "fe3901",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "co2_abc_calibration_settings": {
+                    "enable": "enable",
+                    "period": 0,
+                    "calibration_value": 0
+                }
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "co2_abc_calibration_settings:enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "co2_abc_calibration_settings:period": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "HOURS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 168,
+                    "units": "HOURS"
+                }
+            ],
+            "co2_abc_calibration_settings:calibration_value": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "PARTS_PER_MILLION"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 400,
+                    "units": "PARTS_PER_MILLION"
+                }
+            ]
+        },
+        "Modbus": {
+            "co2_abc_calibration_settings:enable": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "co2_abc_calibration_settings:period": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            },
+            "co2_abc_calibration_settings:calibration_value": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: co2_alarm_config:enable, co2_alarm_config:threshold_1, co2_alarm_config:threshold_2",
+        "type": "uplink",
+        "input": {
+            "bytes": "fe540152",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "co2_alarm_config": {
+                    "enable": "enable",
+                    "threshold_1": 82,
+                    "threshold_2": 0
+                }
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "co2_alarm_config:enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "co2_alarm_config:threshold_1": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 82,
+                    "units": "PARTS_PER_MILLION"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 1000,
+                    "units": "PARTS_PER_MILLION"
+                }
+            ],
+            "co2_alarm_config:threshold_2": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "PARTS_PER_MILLION"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 1500,
+                    "units": "PARTS_PER_MILLION"
+                }
+            ]
+        },
+        "Modbus": {
+            "co2_alarm_config:enable": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "co2_alarm_config:threshold_1": {
+                "table": "inputRegister",
+                "value": 82,
+                "value_type": "UINT16"
+            },
+            "co2_alarm_config:threshold_2": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: retransmit_enable, retransmit_interval, resend_interval and 2 more",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff6900ff6a000100ff6a010100fe8701",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "retransmit_enable": "disable",
+                "retransmit_interval": 1,
+                "resend_interval": 1,
+                "altitude_calibration_settings": {
+                    "enable": "enable",
+                    "calibration_value": 0
+                }
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "altitude_calibration_settings:enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "altitude_calibration_settings:calibration_value": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "METERS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "METERS"
+                }
+            ],
+            "retransmit_enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "retransmit_interval": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 1,
+                    "units": "SECONDS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "SECONDS"
+                }
+            ],
+            "resend_interval": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 1,
+                    "units": "SECONDS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "SECONDS"
+                }
+            ]
+        },
+        "Modbus": {
+            "altitude_calibration_settings:enable": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "altitude_calibration_settings:calibration_value": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            },
+            "retransmit_enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "retransmit_interval": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT16"
+            },
+            "resend_interval": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT16"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: co2_calibration_settings:mode, co2_calibration_settings:calibration_value, report_interval",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff1a020100fe03",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "co2_calibration_settings": {
+                    "mode": "manual",
+                    "calibration_value": 1
+                },
+                "report_interval": 0
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "report_interval": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "SECONDS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "SECONDS"
+                }
+            ],
+            "co2_calibration_settings:mode": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 2,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "co2_calibration_settings:calibration_value": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 1,
+                    "units": "PARTS_PER_MILLION"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "PARTS_PER_MILLION"
+                }
+            ]
+        },
+        "Modbus": {
+            "report_interval": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            },
+            "co2_calibration_settings:mode": {
+                "table": "inputRegister",
+                "value": 2,
+                "value_type": "UINT8"
+            },
+            "co2_calibration_settings:calibration_value": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT16"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: timestamp",
+        "type": "uplink",
+        "input": {
+            "bytes": "fe11",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "timestamp": 0
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "timestamp": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "SECONDS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "SECONDS"
+                }
+            ]
+        },
+        "Modbus": {
+            "timestamp": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT32"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: time_zone",
+        "type": "uplink",
+        "input": {
+            "bytes": "fe17",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "time_zone": "UTC"
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "time_zone": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ]
+        },
+        "Modbus": {
+            "time_zone": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT16"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: screen_refresh_interval",
+        "type": "uplink",
+        "input": {
+            "bytes": "fe5a",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "screen_refresh_interval": 0
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "screen_refresh_interval": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "SECONDS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "SECONDS"
+                }
+            ]
+        },
+        "Modbus": {
+            "screen_refresh_interval": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: screen_last_refresh_interval",
+        "type": "uplink",
+        "input": {
+            "bytes": "fe86",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "screen_last_refresh_interval": 0
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "screen_last_refresh_interval": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "MINUTES"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "MINUTES"
+                }
+            ]
+        },
+        "Modbus": {
+            "screen_last_refresh_interval": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: ipso_version",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff01",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "ipso_version": "v0.0"
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "ipso_version": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "v0.0"
+            }
+        },
+        "Modbus": {
+            "ipso_version": {
+                "table": "inputRegister",
+                "value": "v0.0",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: hardware_version",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff09",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "hardware_version": "v0.0"
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "hardware_version": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "v0.0"
+            }
+        },
+        "Modbus": {
+            "hardware_version": {
+                "table": "inputRegister",
+                "value": "v0.0",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: firmware_version",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff0a",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "firmware_version": "v0.0"
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "firmware_version": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "v0.0"
+            }
+        },
+        "Modbus": {
+            "firmware_version": {
+                "table": "inputRegister",
+                "value": "v0.0",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: device_status",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff0b",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "device_status": "on"
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "device_status": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            }
+        },
+        "Modbus": {
+            "device_status": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: sn",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff16",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "sn": ""
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "sn": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": ""
+            }
+        },
+        "Modbus": {
+            "sn": {
+                "table": "inputRegister",
+                "value": "",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: reset_event",
+        "type": "uplink",
+        "input": {
+            "bytes": "fffe",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "reset_event": "reset"
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "reset_event": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            }
+        },
+        "Modbus": {
+            "reset_event": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: tsl_version",
+        "type": "uplink",
+        "input": {
+            "bytes": "ffff",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "tsl_version": "v0.0"
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "tsl_version": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "v0.0"
+            }
+        },
+        "Modbus": {
+            "tsl_version": {
+                "table": "inputRegister",
+                "value": "v0.0",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: reboot, time_sync_enable, clear_report_schedule and 8 more",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff10ffff3b00ff57ffff2d00ff8500ff5600ff2f00ff59ffff6800ff2701ff0f01",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "reboot": "yes",
+                "time_sync_enable": "disable",
+                "clear_report_schedule": "yes",
+                "screen_display_enable": "disable",
+                "screen_display_time_enable": "disable",
+                "screen_intelligent_enable": "disable",
+                "led_indicator_mode": "off",
+                "reset_battery": "yes",
+                "history_enable": "disable",
+                "clear_history": "yes",
+                "lorawan_class": "Class B"
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "lorawan_class": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 1,
+                "units": "NO_UNITS"
+            },
+            "reboot": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "time_sync_enable": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "clear_report_schedule": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "screen_display_enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "screen_display_time_enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "screen_intelligent_enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "led_indicator_mode": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "reset_battery": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "history_enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "clear_history": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ]
+        },
+        "Modbus": {
+            "lorawan_class": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "reboot": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "time_sync_enable": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "clear_report_schedule": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "screen_display_enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "screen_display_time_enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "screen_intelligent_enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
             "led_indicator_mode": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "reset_battery": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "history_enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "clear_history": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Downlink encode: linked group screen_display_element_settings (4 points)",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "screen_display_element_settings": {
+                    "temperature": "enable",
+                    "humidity": "enable",
+                    "co2": "enable",
+                    "smile": "enable"
+                }
+            },
+            "fPort": 85
+        },
+        "output": {
+            "bytes": [
+                255,
+                240,
+                15,
+                0,
+                15,
+                0
+            ],
+            "fPort": 85
+        }
+    },
+    {
+        "description": "Downlink encode: linked group temperature_alarm_config (3 points)",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "temperature_alarm_config": {
+                    "condition": "disable",
+                    "threshold_min": 10,
+                    "threshold_max": 30
+                }
+            },
+            "fPort": 85
+        },
+        "output": {
+            "bytes": [
+                255,
+                6,
+                8,
+                100,
+                0,
+                44,
+                1,
+                0,
+                0,
+                0,
+                0
+            ],
+            "fPort": 85
+        }
+    },
+    {
+        "description": "Downlink encode: linked group co2_alarm_config (3 points)",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "co2_alarm_config": {
+                    "enable": "disable",
+                    "threshold_1": 1000,
+                    "threshold_2": 1500
+                }
+            },
+            "fPort": 85
+        },
+        "output": {
+            "bytes": [
+                255,
+                84,
+                0,
+                232,
+                3,
+                220,
+                5
+            ],
+            "fPort": 85
+        }
+    },
+    {
+        "description": "Downlink encode: linked group co2_abc_calibration_settings (3 points)",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "co2_abc_calibration_settings": {
+                    "enable": "disable",
+                    "period": 168,
+                    "calibration_value": 400
+                }
+            },
+            "fPort": 85
+        },
+        "output": {
+            "bytes": [
+                255,
+                57,
+                0,
+                168,
+                0,
+                144,
+                1
+            ],
+            "fPort": 85
+        }
+    },
+    {
+        "description": "Downlink encode: linked group altitude_calibration_settings (2 points)",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "altitude_calibration_settings": {
+                    "enable": "disable",
+                    "calibration_value": 0
+                }
+            },
+            "fPort": 85
+        },
+        "output": {
+            "bytes": [
+                255,
+                135,
+                0,
+                0,
+                0
+            ],
+            "fPort": 85
+        }
+    },
+    {
+        "description": "Downlink encode: linked group hibernate_config (11 points)",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "hibernate_config": {
+                    "enable": "disable",
+                    "lora_uplink_enable": "enable",
+                    "start_time": 0,
+                    "end_time": 360,
+                    "weekdays": {
+                        "monday": "enable",
+                        "tuesday": "enable",
+                        "wednesday": "enable",
+                        "thursday": "enable",
+                        "friday": "enable",
+                        "saturday": "enable",
+                        "sunday": "enable"
+                    }
+                }
+            },
+            "fPort": 85
+        },
+        "output": {
+            "bytes": [
+                255,
+                117,
+                0,
+                1,
+                0,
+                0,
+                104,
+                1,
+                254
+            ],
+            "fPort": 85
+        }
+    },
+    {
+        "description": "Downlink encode: linked group co2_calibration_settings (2 points)",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "co2_calibration_settings": {
+                    "mode": "factory",
+                    "calibration_value": 0
+                }
+            },
+            "fPort": 85
+        },
+        "output": {
+            "bytes": [
+                255,
+                26,
+                0
+            ],
+            "fPort": 85
+        }
+    },
+    {
+        "description": "Downlink write: report_interval and 2 more",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "report_interval": {
                 "object": "ANALOG_VALUE",
                 "property": "PRESENT_VALUE",
-                "value": 2
+                "value": 0
+            },
+            "timestamp": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            },
+            "screen_display_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
             }
         },
         "inputModbus": {
-            "led_indicator_mode": {
+            "report_interval": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 0
+            },
+            "timestamp": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 0
+            },
+            "screen_display_enable": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 0
+            }
+        },
+        "input": {
+            "data": {
+                "report_interval": 0,
+                "timestamp": 0,
+                "screen_display_enable": "disable"
+            },
+            "fPort": 85
+        },
+        "output": {
+            "bytes": [
+                255,
+                3,
+                0,
+                0,
+                255,
+                17,
+                0,
+                0,
+                0,
+                0,
+                255,
+                45,
+                0
+            ],
+            "fPort": 85
+        }
+    },
+    {
+        "description": "Downlink write: reboot",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "reboot": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "reboot": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "reboot": "yes"
+            },
+            "fPort": 85
+        },
+        "output": {
+            "bytes": [
+                255,
+                16,
+                255
+            ],
+            "fPort": 85
+        }
+    },
+    {
+        "description": "Downlink write: clear_report_schedule",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "clear_report_schedule": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "clear_report_schedule": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "clear_report_schedule": "yes"
+            },
+            "fPort": 85
+        },
+        "output": {
+            "bytes": [
+                255,
+                87,
+                255
+            ],
+            "fPort": 85
+        }
+    },
+    {
+        "description": "Downlink write: screen_display_time_enable and 3 more",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "screen_display_time_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            },
+            "screen_intelligent_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            },
+            "screen_last_refresh_interval": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 2
+            },
+            "screen_refresh_interval": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "screen_display_time_enable": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 0
+            },
+            "screen_intelligent_enable": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 0
+            },
+            "screen_last_refresh_interval": {
                 "table": "holdingRegister",
                 "operation": "setRegister",
                 "value": 2
+            },
+            "screen_refresh_interval": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 1
             }
+        },
+        "input": {
+            "data": {
+                "screen_display_time_enable": "disable",
+                "screen_intelligent_enable": "disable",
+                "screen_last_refresh_interval": 2,
+                "screen_refresh_interval": 1
+            },
+            "fPort": 85
+        },
+        "output": {
+            "bytes": [
+                255,
+                133,
+                0,
+                255,
+                86,
+                0,
+                255,
+                134,
+                2,
+                255,
+                90,
+                1,
+                0
+            ],
+            "fPort": 85
+        }
+    },
+    {
+        "description": "Downlink write: reset_battery",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "reset_battery": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "reset_battery": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "reset_battery": "yes"
+            },
+            "fPort": 85
+        },
+        "output": {
+            "bytes": [
+                255,
+                89,
+                255
+            ],
+            "fPort": 85
+        }
+    },
+    {
+        "description": "Downlink write: history_enable and 2 more",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "history_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            },
+            "retransmit_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            },
+            "retransmit_interval": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "history_enable": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 0
+            },
+            "retransmit_enable": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 0
+            },
+            "retransmit_interval": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "history_enable": "disable",
+                "retransmit_enable": "disable",
+                "retransmit_interval": 1
+            },
+            "fPort": 85
+        },
+        "output": {
+            "bytes": [
+                255,
+                105,
+                0,
+                255,
+                106,
+                0,
+                1,
+                0,
+                255,
+                104,
+                0
+            ],
+            "fPort": 85
+        }
+    },
+    {
+        "description": "Downlink write: stop_transmit",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "stop_transmit": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "stop_transmit": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "stop_transmit": "yes"
+            },
+            "fPort": 85
+        },
+        "output": {
+            "bytes": [
+                253,
+                109,
+                255
+            ],
+            "fPort": 85
+        }
+    },
+    {
+        "description": "Downlink write: clear_history",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "clear_history": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "clear_history": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "clear_history": "yes"
+            },
+            "fPort": 85
+        },
+        "output": {
+            "bytes": [
+                255,
+                39,
+                1
+            ],
+            "fPort": 85
+        }
+    },
+    {
+        "description": "Downlink write: resend_interval",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "resend_interval": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "resend_interval": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "resend_interval": 1
+            },
+            "fPort": 85
+        },
+        "output": {
+            "bytes": [
+                255,
+                106,
+                1,
+                1,
+                0
+            ],
+            "fPort": 85
         }
     }
 ]

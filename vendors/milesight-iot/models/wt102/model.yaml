@@ -21,6 +21,7 @@ motionIndicator:
 LoRaWANCertified: false
 modelId: msight:wt102:1
 protocolId:
+  - msight:wt102:2
   - msight:wt102:1
 # Informative, maintained by Netmore: true when the driver of the first protocolId above ships a
 # BACnet/Modbus mapping (mapping.json, in Netmore's private catalog), so that the device can be
@@ -33,6 +34,64 @@ sensors:
   - percentage:%
   - temperature:Cel
 examples:
+  msight:wt102:2:
+    - "Basic report"
+    - "Downlink encode: reboot"
+    - "Uplink coverage: auto_away_settings:cycle_time_fri, auto_away_settings:cycle_time_mon, auto_away_settings:cycle_time_sat and 44 more"
+    - "Uplink coverage: anti_freeze_protection_setting:celsius_temperature_value, anti_freeze_protection_setting:enable, anti_freeze_protection_setting:fahrenheit_temperature_value and 30 more"
+    - "Uplink coverage: environment_temperature_display_enable, mandatory_heating_enable, motor_stroke_limit and 3 more"
+    - "Uplink coverage: motor_position"
+    - "Uplink coverage: motor_calibration_result_report:status, data_storage_settings:enable, data_storage_settings:retransmission_enable and 9 more"
+    - "Uplink coverage (synthetic frame): temp_control:mode_settings:valve_control:target_valve_status"
+    - "Downlink encode: linked group auto_away_settings (3 points)"
+    - "Downlink encode: linked group data_storage_settings (4 points)"
+    - "Downlink encode: linked group heating_period_settings (5 points)"
+    - "Downlink encode: linked group retrieve_historical_data_by_time_range (2 points)"
+    - "Downlink encode: linked group temp_control (7 points)"
+    - "Downlink encode: linked group temperature_alarm_settings (2 points)"
+    - "Downlink encode: linked group window_opening_detection_settings (2 points)"
+    - "Downlink write: calibrate_motor and 4 more"
+    - "Downlink write: environment_temperature_display_enable and 4 more"
+    - "Downlink write: reboot and 4 more"
+    - "Downlink write: temperature_unit and 1 more"
+    - "Downlink encode: anti_freeze_protection_setting:temperature_value and 4 more"
+    - "Downlink encode: set_opening_window:state and 4 more"
+    - "Downlink encode: temperature_calibration_settings:calibration_value"
+    - "Downlink encode: linked group auto_away_settings (3 points)"
+    - "Downlink encode: linked group data_storage_settings (4 points)"
+    - "Downlink encode: linked group heating_period_settings (5 points)"
+    - "Downlink encode: linked group retrieve_historical_data_by_time_range (2 points)"
+    - "Downlink encode: linked group temp_control (7 points)"
+    - "Downlink encode: linked group temperature_alarm_settings (2 points)"
+    - "Downlink encode: linked group window_opening_detection_settings (2 points)"
+    - "Downlink encode: anti_freeze_protection_setting:temperature_value and 4 more"
+    - "Downlink encode: set_opening_window:state and 4 more"
+    - "Downlink encode: temperature_calibration_settings:calibration_value"
+    - "Downlink encode: linked group auto_away_settings (3 points)"
+    - "Downlink encode: linked group data_storage_settings (4 points)"
+    - "Downlink encode: linked group heating_period_settings (5 points)"
+    - "Downlink encode: linked group retrieve_historical_data_by_time_range (2 points)"
+    - "Downlink encode: linked group temp_control (7 points)"
+    - "Downlink encode: linked group temperature_alarm_settings (2 points)"
+    - "Downlink encode: linked group window_opening_detection_settings (2 points)"
+    - "Downlink encode: anti_freeze_protection_setting:temperature_value and 4 more"
+    - "Downlink encode: set_opening_window:state and 4 more"
+    - "Downlink encode: temperature_calibration_settings:calibration_value"
+    - "Uplink coverage: set_target_temperature:value, set_target_temperature:fahrenheit_value, set_target_temperature:celsius_value and 21 more"
+    - "Uplink coverage: auto_away_report:active_by_target_temperature:celsius_target_temperature, auto_away_report:active_by_target_temperature:fahrenheit_target_temperature, auto_away_report:active_by_target_temperature:state and 2 more"
+    - "Uplink coverage: auto_away_report:active_by_target_valve_opening:state, auto_away_report:active_by_target_valve_opening:target_valve_opening"
+    - "Uplink coverage: window_opening_alarm:release:state, window_opening_alarm:type"
+    - "Uplink coverage: temperature_source_settings:external_ntc_reception:timeout, temperature_source_settings:external_ntc_reception:timeout_response"
+    - "Uplink coverage: version:firmware_version, version:hardware_version"
+    - "Uplink coverage: temperature_source_settings:lorawan_reception:timeout, temperature_source_settings:lorawan_reception:timeout_response"
+    - "Uplink coverage: temperature_alarm:type"
+    - "Uplink coverage: anti_freeze_protection_alarm:type"
+    - "Uplink coverage: mandatory_heating_alarm:type"
+    - "Uplink coverage: auto_away_report:inactive_by_target_temperature:state"
+    - "Uplink coverage: auto_away_report:inactive_by_target_valve_opening:state"
+    - "Uplink coverage: window_opening_alarm:trigger:state"
+    - "Uplink coverage: periodic_reporting:report_type, product_sn"
+    - "Uplink coverage: tsl_version"
   msight:wt102:1:
     - "Basic report"
     - "Downlink encode: reboot"

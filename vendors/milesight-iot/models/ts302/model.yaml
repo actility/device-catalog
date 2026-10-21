@@ -37,6 +37,7 @@ modelId: msight:ts302:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 # Be careful: Once you chose a protocolId, it cannot be changed later
 protocolId:
+  - msight:ts302:2
   - msight:ts302:1
   - msight:ts30x:1
 # Informative, maintained by Netmore: true when the driver of the first protocolId above ships a
@@ -55,6 +56,50 @@ sensors:
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
+  msight:ts302:2:
+    - "Uplink example for TS302-V2"
+    - "Downlink encode: report_interval"
+    - "Downlink encode: history_enable"
+    - "Uplink coverage: temperature_chn1_calibration_settings:enable, temperature_chn1_calibration_settings:calibration_value"
+    - "Uplink coverage: temperature_chn2_calibration_settings:enable, temperature_chn2_calibration_settings:calibration_value"
+    - "Uplink coverage: temperature_chn2"
+    - "Uplink coverage: collection_interval"
+    - "Uplink coverage: time_zone"
+    - "Uplink coverage: retransmit_interval"
+    - "Uplink coverage: report_interval"
+    - "Uplink coverage: magnet_throttle"
+    - "Uplink coverage: ipso_version"
+    - "Uplink coverage: hardware_version"
+    - "Uplink coverage: firmware_version"
+    - "Uplink coverage: device_status"
+    - "Uplink coverage: sn"
+    - "Uplink coverage: reset_event"
+    - "Uplink coverage: tsl_version"
+    - "Uplink coverage: time_display, temperature_unit_display, display_enable and 5 more"
+    - "Uplink coverage: lorawan_class, child_lock"
+    - "Downlink encode: linked group temperature_chn1_calibration_settings (2 points)"
+    - "Downlink encode: linked group temperature_chn2_calibration_settings (2 points)"
+    - "Downlink encode: linked group temperature_chn1_alarm_config (5 points)"
+    - "Downlink encode: linked group temperature_chn2_alarm_config (5 points)"
+    - "Downlink encode: linked group temperature_chn1_mutation_alarm_config (3 points)"
+    - "Downlink encode: linked group temperature_chn2_mutation_alarm_config (3 points)"
+    - "Downlink write: report_interval and 4 more"
+    - "Downlink write: display_enable and 4 more"
+    - "Downlink write: resend_interval"
+    - "Downlink encode: linked group temperature_chn1_calibration_settings (2 points)"
+    - "Downlink encode: linked group temperature_chn2_calibration_settings (2 points)"
+    - "Downlink encode: linked group temperature_chn1_alarm_config (5 points)"
+    - "Downlink encode: linked group temperature_chn2_alarm_config (5 points)"
+    - "Downlink encode: linked group temperature_chn1_mutation_alarm_config (3 points)"
+    - "Downlink encode: linked group temperature_chn2_mutation_alarm_config (3 points)"
+    - "Downlink encode: linked group temperature_chn1_calibration_settings (2 points)"
+    - "Downlink encode: linked group temperature_chn2_calibration_settings (2 points)"
+    - "Downlink encode: linked group temperature_chn1_alarm_config (5 points)"
+    - "Downlink encode: linked group temperature_chn2_alarm_config (5 points)"
+    - "Downlink encode: linked group temperature_chn1_mutation_alarm_config (3 points)"
+    - "Downlink encode: linked group temperature_chn2_mutation_alarm_config (3 points)"
+    - "Uplink coverage: stop_transmit"
+    - "Uplink coverage: reboot, report_status, sync_time and 1 more"
   msight:ts302:1:
     - "Downlink encode: history_enable"
     - "Uplink example for TS302-V2"

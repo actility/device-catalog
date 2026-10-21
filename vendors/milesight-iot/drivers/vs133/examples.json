@@ -96,6 +96,11 @@
                 "object": "ANALOG_INPUT",
                 "presentValue": 6797,
                 "units": "NO_UNITS"
+            },
+            "line_4_total_in": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 5300,
+                "units": "NO_UNITS"
             }
         },
         "Modbus": {
@@ -133,12 +138,31 @@
                 "table": "inputRegister",
                 "value": 6797,
                 "value_type": "UINT32"
+            },
+            "line_4_total_in": {
+                "table": "inputRegister",
+                "value": 5300,
+                "value_type": "INT32"
             }
         }
     },
     {
         "description": "Downlink encode: report_interval",
         "type": "downlink-encode",
+        "inputBACnet": {
+            "report_interval": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 600
+            }
+        },
+        "inputModbus": {
+            "report_interval": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 600
+            }
+        },
         "input": {
             "data": {
                 "report_interval": 600
@@ -184,6 +208,1623 @@
                 4,
                 1
             ]
+        }
+    },
+    {
+        "description": "Uplink coverage: line_1_period_in, line_1_period_out, region_1_count and 9 more",
+        "type": "uplink",
+        "input": {
+            "bytes": "0fe30000000010e4010000000005cc000000001de3",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "region_1_count": 0,
+                "region_2_count": 0,
+                "region_3_count": 0,
+                "region_4_count": 0,
+                "region_1_avg_dwell": 0,
+                "region_1_max_dwell": 0,
+                "line_1_period_in": 0,
+                "line_1_period_out": 0,
+                "region_1_child_count": 0,
+                "region_2_child_count": 0,
+                "region_3_child_count": 0,
+                "region_4_child_count": 0
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "line_1_period_in": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "line_1_period_out": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "region_1_count": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "region_2_count": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "region_3_count": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "region_4_count": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "region_1_child_count": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "region_2_child_count": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "region_3_child_count": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "region_4_child_count": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "region_1_avg_dwell": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "region_1_max_dwell": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "line_1_period_in": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            },
+            "line_1_period_out": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            },
+            "region_1_count": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "region_2_count": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "region_3_count": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "region_4_count": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "region_1_child_count": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "region_2_child_count": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "region_3_child_count": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "region_4_child_count": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "region_1_avg_dwell": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            },
+            "region_1_max_dwell": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: line_2_period_in, line_2_period_out",
+        "type": "uplink",
+        "input": {
+            "bytes": "08cc",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "line_2_period_in": 0,
+                "line_2_period_out": 0
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "line_2_period_in": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "line_2_period_out": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "line_2_period_in": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            },
+            "line_2_period_out": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: line_3_period_in, line_3_period_out",
+        "type": "uplink",
+        "input": {
+            "bytes": "0bcc",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "line_3_period_in": 0,
+                "line_3_period_out": 0
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "line_3_period_in": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "line_3_period_out": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "line_3_period_in": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            },
+            "line_3_period_out": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: line_4_period_in, line_4_period_out",
+        "type": "uplink",
+        "input": {
+            "bytes": "0ecc",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "line_4_period_in": 0,
+                "line_4_period_out": 0
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "line_4_period_in": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "line_4_period_out": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "line_4_period_in": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            },
+            "line_4_period_out": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: line_1_child_period_in, line_1_child_period_out",
+        "type": "uplink",
+        "input": {
+            "bytes": "13cc",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "line_1_child_period_in": 0,
+                "line_1_child_period_out": 0
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "line_1_child_period_in": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "line_1_child_period_out": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "line_1_child_period_in": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            },
+            "line_1_child_period_out": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: line_2_child_period_in, line_2_child_period_out",
+        "type": "uplink",
+        "input": {
+            "bytes": "16cc",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "line_2_child_period_in": 0,
+                "line_2_child_period_out": 0
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "line_2_child_period_in": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "line_2_child_period_out": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "line_2_child_period_in": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            },
+            "line_2_child_period_out": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: line_3_child_period_in, line_3_child_period_out",
+        "type": "uplink",
+        "input": {
+            "bytes": "19cc",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "line_3_child_period_in": 0,
+                "line_3_child_period_out": 0
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "line_3_child_period_in": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "line_3_child_period_out": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "line_3_child_period_in": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            },
+            "line_3_child_period_out": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: line_4_child_period_in, line_4_child_period_out",
+        "type": "uplink",
+        "input": {
+            "bytes": "1ccc",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "line_4_child_period_in": 0,
+                "line_4_child_period_out": 0
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "line_4_child_period_in": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "line_4_child_period_out": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "line_4_child_period_in": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            },
+            "line_4_child_period_out": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: region_1_child_avg_dwell, region_1_child_max_dwell",
+        "type": "uplink",
+        "input": {
+            "bytes": "1ee401",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "region_1_child_avg_dwell": 0,
+                "region_1_child_max_dwell": 0
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "region_1_child_avg_dwell": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "region_1_child_max_dwell": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "region_1_child_avg_dwell": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            },
+            "region_1_child_max_dwell": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: line_1_child_total_in",
+        "type": "uplink",
+        "input": {
+            "bytes": "11d2",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "line_1_child_total_in": 0
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "line_1_child_total_in": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "line_1_child_total_in": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT32"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: line_1_child_total_out",
+        "type": "uplink",
+        "input": {
+            "bytes": "12d2",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "line_1_child_total_out": 0
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "line_1_child_total_out": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "line_1_child_total_out": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT32"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: line_2_child_total_in",
+        "type": "uplink",
+        "input": {
+            "bytes": "14d2",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "line_2_child_total_in": 0
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "line_2_child_total_in": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "line_2_child_total_in": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT32"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: line_2_child_total_out",
+        "type": "uplink",
+        "input": {
+            "bytes": "15d2",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "line_2_child_total_out": 0
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "line_2_child_total_out": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "line_2_child_total_out": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT32"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: line_3_child_total_in",
+        "type": "uplink",
+        "input": {
+            "bytes": "17d2",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "line_3_child_total_in": 0
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "line_3_child_total_in": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "line_3_child_total_in": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT32"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: line_3_child_total_out",
+        "type": "uplink",
+        "input": {
+            "bytes": "18d2",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "line_3_child_total_out": 0
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "line_3_child_total_out": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "line_3_child_total_out": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT32"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: line_4_child_total_out",
+        "type": "uplink",
+        "input": {
+            "bytes": "1bd2",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "line_4_child_total_out": 0
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "line_4_child_total_out": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "line_4_child_total_out": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT32"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: report_interval",
+        "type": "uplink",
+        "input": {
+            "bytes": "fe03",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "report_interval": 0
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "report_interval": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "SECONDS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "SECONDS"
+                }
+            ]
+        },
+        "Modbus": {
+            "report_interval": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: ipso_version",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff01",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "ipso_version": "v0.0"
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "ipso_version": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "v0.0"
+            }
+        },
+        "Modbus": {
+            "ipso_version": {
+                "table": "inputRegister",
+                "value": "v0.0",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: hardware_version",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff09",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "hardware_version": "v0.0"
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "hardware_version": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "v0.0"
+            }
+        },
+        "Modbus": {
+            "hardware_version": {
+                "table": "inputRegister",
+                "value": "v0.0",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: sn",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff16",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "sn": ""
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "sn": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": ""
+            }
+        },
+        "Modbus": {
+            "sn": {
+                "table": "inputRegister",
+                "value": "",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: firmware_version",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff1f",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "firmware_version": "v0.0.0.0"
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "firmware_version": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "v0.0.0.0"
+            }
+        },
+        "Modbus": {
+            "firmware_version": {
+                "table": "inputRegister",
+                "value": "v0.0.0.0",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage (synthetic frame): reboot, confirm_mode_enable, adr_enable and 6 more",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff10ffff0400ff4000ff4200ff4300ff4400ff51ff10e402",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "reboot": "yes",
+                "confirm_mode_enable": "disable",
+                "adr_enable": "disable",
+                "wifi_enable": "disable",
+                "periodic_report_enable": "disable",
+                "trigger_report_enable": "disable",
+                "clear_total_count": "yes",
+                "region_2_avg_dwell": 0,
+                "region_2_max_dwell": 0
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "region_2_avg_dwell": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "region_2_max_dwell": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "reboot": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "confirm_mode_enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "adr_enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "wifi_enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "periodic_report_enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "trigger_report_enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "clear_total_count": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ]
+        },
+        "Modbus": {
+            "region_2_avg_dwell": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            },
+            "region_2_max_dwell": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            },
+            "reboot": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "confirm_mode_enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "adr_enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "wifi_enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "periodic_report_enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "trigger_report_enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "clear_total_count": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage (synthetic frame): region_3_avg_dwell, region_3_max_dwell",
+        "type": "uplink",
+        "input": {
+            "bytes": "10e403",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "region_3_avg_dwell": 0,
+                "region_3_max_dwell": 0
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "region_3_avg_dwell": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "region_3_max_dwell": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "region_3_avg_dwell": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            },
+            "region_3_max_dwell": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage (synthetic frame): region_2_child_avg_dwell, region_2_child_max_dwell",
+        "type": "uplink",
+        "input": {
+            "bytes": "1ee402",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "region_2_child_avg_dwell": 0,
+                "region_2_child_max_dwell": 0
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "region_2_child_avg_dwell": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "region_2_child_max_dwell": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "region_2_child_avg_dwell": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            },
+            "region_2_child_max_dwell": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage (synthetic frame): region_3_child_avg_dwell, region_3_child_max_dwell",
+        "type": "uplink",
+        "input": {
+            "bytes": "1ee403",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "region_3_child_avg_dwell": 0,
+                "region_3_child_max_dwell": 0
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "region_3_child_avg_dwell": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "region_3_child_max_dwell": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "region_3_child_avg_dwell": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            },
+            "region_3_child_max_dwell": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage (synthetic frame): master_occlusion_alarm",
+        "type": "uplink",
+        "input": {
+            "bytes": "50fc000000",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "master_occlusion_alarm": "alarm_released"
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "master_occlusion_alarm": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "master_occlusion_alarm": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Downlink write: report_interval and 3 more",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "report_interval": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            },
+            "adr_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            },
+            "wifi_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            },
+            "periodic_report_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            }
+        },
+        "inputModbus": {
+            "report_interval": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 1
+            },
+            "adr_enable": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 0
+            },
+            "wifi_enable": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 0
+            },
+            "periodic_report_enable": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 0
+            }
+        },
+        "input": {
+            "data": {
+                "report_interval": 1,
+                "adr_enable": "disable",
+                "wifi_enable": "disable",
+                "periodic_report_enable": "disable"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                3,
+                1,
+                0,
+                255,
+                64,
+                0,
+                255,
+                66,
+                0,
+                255,
+                67,
+                0
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink write: reboot",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "reboot": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "reboot": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "reboot": "yes"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                16,
+                255
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink write: trigger_report_enable",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "trigger_report_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            }
+        },
+        "inputModbus": {
+            "trigger_report_enable": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 0
+            }
+        },
+        "input": {
+            "data": {
+                "trigger_report_enable": "disable"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                68,
+                0
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink write: clear_total_count",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "clear_total_count": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "clear_total_count": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "clear_total_count": "yes"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                81,
+                255
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Uplink coverage: log_config:console_log_level, log_config:file_log_level",
+        "type": "uplink",
+        "input": {
+            "bytes": "f988",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "log_config": {
+                    "console_log_level": "unknown",
+                    "file_log_level": "unknown"
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "log_config:console_log_level": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "log_config:file_log_level": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            }
+        },
+        "Modbus": {
+            "log_config:console_log_level": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "log_config:file_log_level": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: line_4_child_total_in",
+        "type": "uplink",
+        "input": {
+            "bytes": "1ad2",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "line_4_child_total_in": 0
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "line_4_child_total_in": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "line_4_child_total_in": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT32"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: sync_time_from_gateway_config:period",
+        "type": "uplink",
+        "input": {
+            "bytes": "f984",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "sync_time_from_gateway_config": {
+                    "enable": "unknown",
+                    "period": 0
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "sync_time_from_gateway_config:period": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "sync_time_from_gateway_config:period": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT32"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: rejoin_config:max_count",
+        "type": "uplink",
+        "input": {
+            "bytes": "f985",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "rejoin_config": {
+                    "enable": "unknown",
+                    "max_count": 0
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "rejoin_config:max_count": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "rejoin_config:max_count": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT32"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: data_rate",
+        "type": "uplink",
+        "input": {
+            "bytes": "f986",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "data_rate": 0
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "data_rate": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "data_rate": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT32"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: tx_power_level",
+        "type": "uplink",
+        "input": {
+            "bytes": "f987",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "tx_power_level": 0
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "tx_power_level": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "tx_power_level": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT32"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: timestamp",
+        "type": "uplink",
+        "input": {
+            "bytes": "fe11",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "timestamp": 0
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "timestamp": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "timestamp": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT32"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: clear_history",
+        "type": "uplink",
+        "input": {
+            "bytes": "fe27",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "clear_history": "yes"
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "clear_history": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            }
+        },
+        "Modbus": {
+            "clear_history": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "BOOL"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: retransmit_interval",
+        "type": "uplink",
+        "input": {
+            "bytes": "fe6a",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "retransmit_interval": 0
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "retransmit_interval": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "retransmit_interval": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT32"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: stop_transmit",
+        "type": "uplink",
+        "input": {
+            "bytes": "fe6d",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "stop_transmit": "yes"
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "stop_transmit": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            }
+        },
+        "Modbus": {
+            "stop_transmit": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "BOOL"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: resend_interval",
+        "type": "uplink",
+        "input": {
+            "bytes": "fe6a01",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "resend_interval": 0
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "resend_interval": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "resend_interval": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT32"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: node_82_occlusion_alarm",
+        "type": "uplink",
+        "input": {
+            "bytes": "50fc0152",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "node_82_occlusion_alarm": "unknown"
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "node_82_occlusion_alarm": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            }
+        },
+        "Modbus": {
+            "node_82_occlusion_alarm": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            }
         }
     }
 ]

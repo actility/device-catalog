@@ -16,6 +16,7 @@ motionIndicator:
 LoRaWANCertified: false
 modelId: msight:am319-hcho-well:1
 protocolId:
+  - msight:am319-hcho-well:2
   - msight:am319-hcho-well:1
 # Informative, maintained by Netmore: true when the driver of the first protocolId above ships a
 # BACnet/Modbus mapping (mapping.json, in Netmore's private catalog), so that the device can be
@@ -33,6 +34,41 @@ sensors:
   - concentration:ppm
   - concentration:ug/m3
 examples:
+  msight:am319-hcho-well:2:
+    - "Uplink example for AM319-HCHO-WELL"
+    - "Downlink encode: report_interval"
+    - "Battery"
+    - "Downlink encode: time_sync_enable"
+    - "Uplink coverage: child_lock_settings:off_button, child_lock_settings:on_button, child_lock_settings:collection_button"
+    - "Uplink coverage: pm_self_clean_config:enable, pm_self_clean_config:period"
+    - "Uplink coverage: screen_display_element_settings:temperature, screen_display_element_settings:hcho"
+    - "Uplink coverage: co2_calibration_settings:mode, co2_calibration_settings:calibration_value, hcho"
+    - "Uplink coverage: report_interval"
+    - "Uplink coverage: time_zone"
+    - "Uplink coverage: pm2_5_collection_interval"
+    - "Uplink coverage: retransmit_interval"
+    - "Uplink coverage: ipso_version"
+    - "Uplink coverage: hardware_version"
+    - "Uplink coverage: firmware_version"
+    - "Uplink coverage: sn"
+    - "Uplink coverage: tsl_version"
+    - "Uplink coverage: tvoc_unit, co2_abc_calibration_enable, co2_calibration_enable and 9 more"
+    - "Uplink coverage (synthetic frame): lorawan_class, screen_display_element_settings:humidity, screen_display_element_settings:co2 and 6 more"
+    - "Downlink encode: linked group co2_calibration_settings (2 points)"
+    - "Downlink encode: linked group screen_display_element_settings (10 points)"
+    - "Downlink encode: linked group child_lock_settings (3 points)"
+    - "Downlink encode: linked group pm_self_clean_config (2 points)"
+    - "Downlink write: report_interval and 4 more"
+    - "Downlink write: co2_calibration_enable and 4 more"
+    - "Downlink write: screen_display_pattern and 4 more"
+    - "Downlink encode: linked group co2_calibration_settings (2 points)"
+    - "Downlink encode: linked group screen_display_element_settings (10 points)"
+    - "Downlink encode: linked group child_lock_settings (3 points)"
+    - "Downlink encode: linked group pm_self_clean_config (2 points)"
+    - "Uplink coverage: stop_transmit"
+    - "Uplink coverage: pm_self_clean"
+    - "Uplink coverage: reboot, stop_buzzer, query_status and 2 more"
+    - "BACnet example"
   msight:am319-hcho-well:1:
     - "Downlink encode: time_sync_enable"
     - "Uplink example for AM319-HCHO-WELL"

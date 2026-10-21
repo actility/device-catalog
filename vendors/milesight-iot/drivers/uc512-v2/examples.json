@@ -1,0 +1,2844 @@
+[
+    {
+        "description": "Uplink example for UC512",
+        "type": "uplink",
+        "input": {
+            "bytes": "01755C03010004C805000000",
+            "fPort": 85,
+            "time": "2025-01-01T00:00:00.000+00:00"
+        },
+        "output": {
+            "data": {
+                "battery": 92,
+                "valve_1": "close",
+                "valve_1_pulse": 5
+            }
+        },
+        "points": {
+            "batteryLevel": {
+                "unitId": "%",
+                "record": 92
+            },
+            "counter:1": {
+                "unitId": "count",
+                "record": 5,
+                "nature": "Valve 1 pulses"
+            }
+        },
+        "BACnet": {
+            "battery": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 92,
+                "units": "PERCENT"
+            },
+            "valve_1": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "valve_1_pulse": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 5,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ]
+        },
+        "Modbus": {
+            "battery": {
+                "table": "inputRegister",
+                "value": 92,
+                "value_type": "UINT8"
+            },
+            "valve_1": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "valve_1_pulse": {
+                "table": "inputRegister",
+                "value": 5,
+                "value_type": "UINT32"
+            }
+        }
+    },
+    {
+        "description": "Downlink encode: report_interval",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "report_interval": 600
+            },
+            "fPort": 85
+        },
+        "output": {
+            "bytes": [
+                255,
+                3,
+                88,
+                2
+            ],
+            "fPort": 85
+        }
+    },
+    {
+        "description": "Device status",
+        "type": "uplink",
+        "input": {
+            "bytes": "FF0BFF",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "device_status": "on"
+            }
+        },
+        "points": {
+            "status": {
+                "unitId": "state",
+                "record": true,
+                "nature": "device status"
+            }
+        },
+        "BACnet": {
+            "device_status": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            }
+        },
+        "Modbus": {
+            "device_status": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Downlink encode: retransmit_enable",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "retransmit_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "retransmit_enable": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "retransmit_enable": "enable"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                105,
+                1
+            ]
+        }
+    },
+    {
+        "description": "Uplink coverage: valve_task:valve_index, valve_task:sequence_id, valve_task:valve_status and 4 more",
+        "type": "uplink",
+        "input": {
+            "bytes": "fe1d",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "valve_task": {
+                    "valve_index": "valve 1",
+                    "valve_status": "close",
+                    "sequence_id": 0,
+                    "time_rule_enable": "disable",
+                    "duration": 0,
+                    "pulse_rule_enable": "disable",
+                    "valve_pulse": 0
+                }
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "valve_task:valve_index": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 1,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 1,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "valve_task:sequence_id": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "valve_task:valve_status": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "valve_task:time_rule_enable": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "valve_task:pulse_rule_enable": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "valve_task:duration": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "SECONDS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "SECONDS"
+                }
+            ],
+            "valve_task:valve_pulse": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "valve_task:valve_index": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "valve_task:sequence_id": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "valve_task:valve_status": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "valve_task:time_rule_enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "valve_task:pulse_rule_enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "valve_task:duration": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT32"
+            },
+            "valve_task:valve_pulse": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT32"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: valve_1_task_status:task_status, valve_1_task_status:real_status, valve_1_task_status:cmd_status",
+        "type": "uplink",
+        "input": {
+            "bytes": "0eaf",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "valve_1_task_status": {
+                    "task_status": "free task",
+                    "real_status": "valve is currently closed",
+                    "cmd_status": "valve is currently commanded to close"
+                }
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "valve_1_task_status:task_status": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "valve_1_task_status:real_status": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "valve_1_task_status:cmd_status": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "valve_1_task_status:task_status": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "valve_1_task_status:real_status": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "valve_1_task_status:cmd_status": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: valve_2_task_status:task_status, valve_2_task_status:real_status, valve_2_task_status:cmd_status",
+        "type": "uplink",
+        "input": {
+            "bytes": "0faf",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "valve_2_task_status": {
+                    "task_status": "free task",
+                    "real_status": "valve is currently closed",
+                    "cmd_status": "valve is currently commanded to close"
+                }
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "valve_2_task_status:task_status": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "valve_2_task_status:real_status": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "valve_2_task_status:cmd_status": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "valve_2_task_status:task_status": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "valve_2_task_status:real_status": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "valve_2_task_status:cmd_status": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: lorawan_class_switch_response:timestamp, lorawan_class_switch_response:continuous, lorawan_class_switch_response:class_type",
+        "type": "uplink",
+        "input": {
+            "bytes": "f8a4",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "lorawan_class_switch_response": {
+                    "timestamp": 0,
+                    "continuous": 0,
+                    "class_type": "Class A",
+                    "reserved": 0,
+                    "response_status": "success"
+                }
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "lorawan_class_switch_response:timestamp": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "SECONDS"
+            },
+            "lorawan_class_switch_response:continuous": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "MINUTES"
+            },
+            "lorawan_class_switch_response:class_type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "lorawan_class_switch_response:reserved": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "lorawan_class_switch_response:response_status": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "success"
+            }
+        },
+        "Modbus": {
+            "lorawan_class_switch_response:timestamp": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT32"
+            },
+            "lorawan_class_switch_response:continuous": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            },
+            "lorawan_class_switch_response:class_type": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "lorawan_class_switch_response:reserved": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT32"
+            },
+            "lorawan_class_switch_response:response_status": {
+                "table": "inputRegister",
+                "value": "success",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: read_schedule_config_response:id, read_schedule_config_response:type, read_schedule_config_response:code",
+        "type": "uplink",
+        "input": {
+            "bytes": "f8af",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "read_schedule_config_response": {
+                    "id": 0,
+                    "type": 0,
+                    "code": "success"
+                }
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "read_schedule_config_response:id": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "read_schedule_config_response:type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "read_schedule_config_response:code": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "read_schedule_config_response:id": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "read_schedule_config_response:type": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "read_schedule_config_response:code": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: schedule_device_config_response:id, schedule_device_config_response:type, schedule_device_config_response:code",
+        "type": "uplink",
+        "input": {
+            "bytes": "f9a7",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "schedule_device_config_response": {
+                    "id": 0,
+                    "type": 0,
+                    "code": "schedule command executed successfully"
+                }
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "schedule_device_config_response:id": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "schedule_device_config_response:type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "schedule_device_config_response:code": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "schedule_device_config_response:id": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "schedule_device_config_response:type": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "schedule_device_config_response:code": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: valve_power_supply_config:counts, valve_power_supply_config:control_pulse_time, valve_power_supply_config:power_time",
+        "type": "uplink",
+        "input": {
+            "bytes": "fe4f",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "valve_power_supply_config": {
+                    "counts": 0,
+                    "control_pulse_time": 0,
+                    "power_time": 0
+                }
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "valve_power_supply_config:counts": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 1,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "valve_power_supply_config:control_pulse_time": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "MILLISECONDS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 20,
+                    "units": "MILLISECONDS"
+                }
+            ],
+            "valve_power_supply_config:power_time": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "MILLISECONDS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 500,
+                    "units": "MILLISECONDS"
+                }
+            ]
+        },
+        "Modbus": {
+            "valve_power_supply_config:counts": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "valve_power_supply_config:control_pulse_time": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            },
+            "valve_power_supply_config:power_time": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: multicast_command_response:eui, multicast_command_response:code",
+        "type": "uplink",
+        "input": {
+            "bytes": "f000",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "multicast_command_response": {
+                    "eui": "",
+                    "code": "execute successfully"
+                }
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "multicast_command_response:eui": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": ""
+            },
+            "multicast_command_response:code": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "multicast_command_response:eui": {
+                "table": "inputRegister",
+                "value": "",
+                "value_type": "STRING"
+            },
+            "multicast_command_response:code": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: pressure_calibration_settings:enable, pressure_calibration_settings:calibration_value",
+        "type": "uplink",
+        "input": {
+            "bytes": "feab01",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "pressure_calibration_settings": {
+                    "enable": "enable",
+                    "calibration_value": 0
+                }
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "pressure_calibration_settings:enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "pressure_calibration_settings:calibration_value": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "KILOPASCALS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "KILOPASCALS"
+                }
+            ]
+        },
+        "Modbus": {
+            "pressure_calibration_settings:enable": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "pressure_calibration_settings:calibration_value": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: pulse_filter_config:mode, pulse_filter_config:time, valve_2",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff52000101000501",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "pulse_filter_config": {
+                    "mode": "hardware",
+                    "time": 1
+                },
+                "valve_2": "close"
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "valve_2": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "pulse_filter_config:mode": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 1,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 1,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "pulse_filter_config:time": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 1,
+                    "units": "SECONDS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "SECONDS"
+                }
+            ]
+        },
+        "Modbus": {
+            "valve_2": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "pulse_filter_config:mode": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "pulse_filter_config:time": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT16"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: valve_2_pulse",
+        "type": "uplink",
+        "input": {
+            "bytes": "06c8",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "valve_2_pulse": 0
+            }
+        },
+        "points": {
+            "counter:2": {
+                "unitId": "count",
+                "record": 0,
+                "nature": "Valve 2 pulses"
+            }
+        },
+        "BACnet": {
+            "valve_2_pulse": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ]
+        },
+        "Modbus": {
+            "valve_2_pulse": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT32"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: pressure",
+        "type": "uplink",
+        "input": {
+            "bytes": "097b",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "pressure": 0
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "pressure": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "KILOPASCALS"
+            }
+        },
+        "Modbus": {
+            "pressure": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT32"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: query_valve_task_status_response:code",
+        "type": "uplink",
+        "input": {
+            "bytes": "f8a5",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "query_valve_task_status_response": {
+                    "valve_index": 1,
+                    "code": "success"
+                }
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "query_valve_task_status_response:code": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "query_valve_task_status_response:valve_index": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 1,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "query_valve_task_status_response:code": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "query_valve_task_status_response:valve_index": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "INT32"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: collection_interval",
+        "type": "uplink",
+        "input": {
+            "bytes": "fe02",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "collection_interval": 0
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "collection_interval": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "SECONDS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 10,
+                    "units": "SECONDS"
+                }
+            ]
+        },
+        "Modbus": {
+            "collection_interval": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: report_interval",
+        "type": "uplink",
+        "input": {
+            "bytes": "fe03",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "report_interval": 0
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "report_interval": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "SECONDS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 10,
+                    "units": "SECONDS"
+                }
+            ]
+        },
+        "Modbus": {
+            "report_interval": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: time_zone",
+        "type": "uplink",
+        "input": {
+            "bytes": "fe17",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "time_zone": "UTC"
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "time_zone": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": -120,
+                    "units": "NO_UNITS"
+                }
+            ]
+        },
+        "Modbus": {
+            "time_zone": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT16"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: class_a_response_time",
+        "type": "uplink",
+        "input": {
+            "bytes": "fe1e",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "class_a_response_time": 0
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "class_a_response_time": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "SECONDS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "SECONDS"
+                }
+            ]
+        },
+        "Modbus": {
+            "class_a_response_time": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT32"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: d2d_key",
+        "type": "uplink",
+        "input": {
+            "bytes": "fe35",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "d2d_key": ""
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "d2d_key": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": ""
+            }
+        },
+        "Modbus": {
+            "d2d_key": {
+                "table": "inputRegister",
+                "value": "",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: gpio_jitter_time",
+        "type": "uplink",
+        "input": {
+            "bytes": "fe46",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "gpio_jitter_time": 0
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "gpio_jitter_time": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ]
+        },
+        "Modbus": {
+            "gpio_jitter_time": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: retransmit_interval",
+        "type": "uplink",
+        "input": {
+            "bytes": "fe6a",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "retransmit_interval": 0
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "retransmit_interval": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "SECONDS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 30,
+                    "units": "SECONDS"
+                }
+            ]
+        },
+        "Modbus": {
+            "retransmit_interval": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: ipso_version",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff01",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "ipso_version": "v0.0"
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "ipso_version": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "v0.0"
+            }
+        },
+        "Modbus": {
+            "ipso_version": {
+                "table": "inputRegister",
+                "value": "v0.0",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: hardware_version",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff09",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "hardware_version": "v0.0"
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "hardware_version": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "v0.0"
+            }
+        },
+        "Modbus": {
+            "hardware_version": {
+                "table": "inputRegister",
+                "value": "v0.0",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: firmware_version",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff0a",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "firmware_version": "v0.0"
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "firmware_version": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "v0.0"
+            }
+        },
+        "Modbus": {
+            "firmware_version": {
+                "table": "inputRegister",
+                "value": "v0.0",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: custom_message",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff12",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "custom_message": ""
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "custom_message": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": ""
+            }
+        },
+        "Modbus": {
+            "custom_message": {
+                "table": "inputRegister",
+                "value": "",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: sn",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff16",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "sn": ""
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "sn": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": ""
+            }
+        },
+        "Modbus": {
+            "sn": {
+                "table": "inputRegister",
+                "value": "",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: reset_event",
+        "type": "uplink",
+        "input": {
+            "bytes": "fffe",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "reset_event": "reset"
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "reset_event": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 1,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "reset_event": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: tsl_version",
+        "type": "uplink",
+        "input": {
+            "bytes": "ffff",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "tsl_version": "v0.0"
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "tsl_version": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "v0.0"
+            }
+        },
+        "Modbus": {
+            "tsl_version": {
+                "table": "inputRegister",
+                "value": "v0.0",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: retransmit_enable, sync_time_type, d2d_enable and 6 more",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff6900ff3b01ff8400fff300ff6800070101080101b97b01fe6a01",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "retransmit_enable": "disable",
+                "sync_time_type": "v1.0.2",
+                "d2d_enable": "disable",
+                "response_enable": "disable",
+                "history_enable": "disable",
+                "gpio_1": "on",
+                "gpio_2": "on",
+                "pressure_sensor_status": "sensor error",
+                "resend_interval": 0
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "gpio_1": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            },
+            "gpio_2": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            },
+            "pressure_sensor_status": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 1,
+                "units": "NO_UNITS"
+            },
+            "retransmit_enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "resend_interval": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "SECONDS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 30,
+                    "units": "SECONDS"
+                }
+            ],
+            "sync_time_type": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 1,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 1,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "d2d_enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "response_enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "history_enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ]
+        },
+        "Modbus": {
+            "gpio_1": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "gpio_2": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "pressure_sensor_status": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "retransmit_enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "resend_interval": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            },
+            "sync_time_type": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "d2d_enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "response_enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "history_enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage (synthetic frame): lorawan_class, pressure_threshold_alarm:threshold_type, pressure_threshold_alarm:threshold_min and 3 more",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff0f010bf50303",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "lorawan_class": "Class B",
+                "pressure_threshold_alarm": {
+                    "valve_strategy": "valve 1 open or valve 2 open",
+                    "threshold_type": "between",
+                    "threshold_min": 0,
+                    "threshold_max": 0,
+                    "current_pressure": 0,
+                    "alarm_status": "release alarm"
+                }
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "lorawan_class": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 1,
+                "units": "NO_UNITS"
+            },
+            "pressure_threshold_alarm:threshold_type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 2,
+                "units": "NO_UNITS"
+            },
+            "pressure_threshold_alarm:threshold_min": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "KILOPASCALS"
+            },
+            "pressure_threshold_alarm:threshold_max": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "KILOPASCALS"
+            },
+            "pressure_threshold_alarm:current_pressure": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "KILOPASCALS"
+            },
+            "pressure_threshold_alarm:alarm_status": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 1,
+                "units": "NO_UNITS"
+            },
+            "pressure_threshold_alarm:valve_strategy": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "valve 1 open or valve 2 open"
+            }
+        },
+        "Modbus": {
+            "lorawan_class": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "pressure_threshold_alarm:threshold_type": {
+                "table": "inputRegister",
+                "value": 2,
+                "value_type": "UINT8"
+            },
+            "pressure_threshold_alarm:threshold_min": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            },
+            "pressure_threshold_alarm:threshold_max": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            },
+            "pressure_threshold_alarm:current_pressure": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            },
+            "pressure_threshold_alarm:alarm_status": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "pressure_threshold_alarm:valve_strategy": {
+                "table": "inputRegister",
+                "value": "valve 1 open or valve 2 open",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage (synthetic frame): valve_task:rain_stop_plan, valve_task:start_time",
+        "type": "uplink",
+        "input": {
+            "bytes": "fe1d55",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "valve_task": {
+                    "valve_index": "valve 6",
+                    "valve_status": "close",
+                    "sequence_id": 0,
+                    "rain_stop_plan": "enable",
+                    "duration": 0,
+                    "start_time": 0
+                }
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "valve_task:valve_index": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 6,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 1,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "valve_task:sequence_id": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "valve_task:valve_status": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "valve_task:duration": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "SECONDS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "SECONDS"
+                }
+            ],
+            "valve_task:rain_stop_plan": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "valve_task:start_time": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ]
+        },
+        "Modbus": {
+            "valve_task:valve_index": {
+                "table": "inputRegister",
+                "value": 6,
+                "value_type": "UINT8"
+            },
+            "valve_task:sequence_id": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "valve_task:valve_status": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "valve_task:duration": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT32"
+            },
+            "valve_task:rain_stop_plan": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "valve_task:start_time": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT32"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage (synthetic frame): valve_1_result, valve_2_result",
+        "type": "uplink",
+        "input": {
+            "bytes": "0301ff0501ff",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "valve_1_result": "failed",
+                "valve_2_result": "failed"
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "valve_1_result": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            },
+            "valve_2_result": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            }
+        },
+        "Modbus": {
+            "valve_1_result": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "valve_2_result": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Downlink encode: linked group valve_task (6 points)",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "valve_task": {
+                    "valve_index": "valve 1",
+                    "sequence_id": 0,
+                    "valve_status": "close",
+                    "duration": 0,
+                    "rain_stop_plan": "disable",
+                    "start_time": 0
+                }
+            },
+            "fPort": 85
+        },
+        "output": {
+            "bytes": [
+                255,
+                29,
+                8,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "fPort": 85
+        }
+    },
+    {
+        "description": "Downlink encode: linked group pulse_filter_config (2 points)",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "pulse_filter_config": {
+                    "mode": "hardware",
+                    "time": 0
+                }
+            },
+            "fPort": 85
+        },
+        "output": {
+            "bytes": [
+                255,
+                82,
+                0,
+                1,
+                0,
+                0
+            ],
+            "fPort": 85
+        }
+    },
+    {
+        "description": "Downlink encode: linked group valve_power_supply_config (3 points)",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "valve_power_supply_config": {
+                    "counts": 1,
+                    "control_pulse_time": 20,
+                    "power_time": 500
+                }
+            },
+            "fPort": 85
+        },
+        "output": {
+            "bytes": [
+                255,
+                79,
+                1,
+                20,
+                0,
+                244,
+                1
+            ],
+            "fPort": 85
+        }
+    },
+    {
+        "description": "Downlink encode: linked group pressure_calibration_settings (2 points)",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "pressure_calibration_settings": {
+                    "enable": "disable",
+                    "calibration_value": 0
+                }
+            },
+            "fPort": 85
+        },
+        "output": {
+            "bytes": [
+                255,
+                171,
+                0,
+                0,
+                0
+            ],
+            "fPort": 85
+        }
+    },
+    {
+        "description": "Downlink encode: linked group lorawan_class_switch (3 points)",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "lorawan_class_switch": {
+                    "timestamp": 0,
+                    "continuous": 0,
+                    "class_type": "class A"
+                }
+            },
+            "fPort": 85
+        },
+        "output": {
+            "bytes": [
+                249,
+                164,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "fPort": 85
+        }
+    },
+    {
+        "description": "Downlink encode: linked group ai_collection_config (5 points)",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "ai_collection_config": {
+                    "id": 1,
+                    "enable": 0,
+                    "collect": 10,
+                    "collect_irrigation": 10,
+                    "open_delay_collect_time": 0
+                }
+            },
+            "fPort": 85
+        },
+        "output": {
+            "bytes": [
+                249,
+                168,
+                1,
+                0,
+                10,
+                0,
+                10,
+                0,
+                0
+            ],
+            "fPort": 85
+        }
+    },
+    {
+        "description": "Downlink encode: linked group read_schedule_config (2 points)",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "read_schedule_config": {
+                    "id": 0,
+                    "type": 0
+                }
+            },
+            "fPort": 85
+        },
+        "output": {
+            "bytes": [
+                249,
+                175,
+                0,
+                0
+            ],
+            "fPort": 85
+        }
+    },
+    {
+        "description": "Downlink write: valve_1_pulse and 4 more",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "valve_1_pulse": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            },
+            "valve_2_pulse": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            },
+            "collection_interval": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 10
+            },
+            "report_interval": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 10
+            },
+            "retransmit_interval": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 30
+            }
+        },
+        "inputModbus": {
+            "valve_1_pulse": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 0
+            },
+            "valve_2_pulse": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 0
+            },
+            "collection_interval": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 10
+            },
+            "report_interval": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 10
+            },
+            "retransmit_interval": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 30
+            }
+        },
+        "input": {
+            "data": {
+                "valve_1_pulse": 0,
+                "valve_2_pulse": 0,
+                "collection_interval": 10,
+                "report_interval": 10,
+                "retransmit_interval": 30
+            },
+            "fPort": 85
+        },
+        "output": {
+            "bytes": [
+                255,
+                2,
+                10,
+                0,
+                255,
+                3,
+                10,
+                0,
+                255,
+                106,
+                0,
+                30,
+                0,
+                255,
+                146,
+                1,
+                0,
+                0,
+                0,
+                0,
+                255,
+                146,
+                2,
+                0,
+                0,
+                0,
+                0
+            ],
+            "fPort": 85
+        }
+    },
+    {
+        "description": "Downlink write: resend_interval and 4 more",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "resend_interval": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 30
+            },
+            "time_zone": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": -120
+            },
+            "sync_time_type": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            },
+            "d2d_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            },
+            "response_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            }
+        },
+        "inputModbus": {
+            "resend_interval": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 30
+            },
+            "time_zone": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": -120
+            },
+            "sync_time_type": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 1
+            },
+            "d2d_enable": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 0
+            },
+            "response_enable": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 0
+            }
+        },
+        "input": {
+            "data": {
+                "resend_interval": 30,
+                "time_zone": "UTC-12",
+                "sync_time_type": "v1.0.2",
+                "d2d_enable": "disable",
+                "response_enable": "disable"
+            },
+            "fPort": 85
+        },
+        "output": {
+            "bytes": [
+                255,
+                106,
+                1,
+                30,
+                0,
+                255,
+                23,
+                136,
+                255,
+                255,
+                59,
+                1,
+                255,
+                132,
+                0,
+                255,
+                243,
+                0
+            ],
+            "fPort": 85
+        }
+    },
+    {
+        "description": "Downlink write: class_a_response_time and 2 more",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "class_a_response_time": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            },
+            "gpio_jitter_time": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            },
+            "history_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            }
+        },
+        "inputModbus": {
+            "class_a_response_time": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 0
+            },
+            "gpio_jitter_time": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 0
+            },
+            "history_enable": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 0
+            }
+        },
+        "input": {
+            "data": {
+                "class_a_response_time": 0,
+                "gpio_jitter_time": 0,
+                "history_enable": "disable"
+            },
+            "fPort": 85
+        },
+        "output": {
+            "bytes": [
+                255,
+                30,
+                0,
+                0,
+                0,
+                0,
+                255,
+                70,
+                0,
+                255,
+                104,
+                0
+            ],
+            "fPort": 85
+        }
+    },
+    {
+        "description": "Downlink encode: query_valve_task_status:index",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "query_valve_task_status": {
+                    "index": "valve 1"
+                }
+            },
+            "fPort": 85
+        },
+        "output": {
+            "bytes": [
+                249,
+                165,
+                0
+            ],
+            "fPort": 85
+        }
+    },
+    {
+        "description": "Uplink coverage: batch_read_rules:rule_1, batch_read_rules:rule_2, batch_read_rules:rule_3 and 13 more",
+        "type": "uplink",
+        "input": {
+            "bytes": "fe4b",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "batch_read_rules": {
+                    "rule_1": "no",
+                    "rule_2": "no",
+                    "rule_3": "no",
+                    "rule_4": "no",
+                    "rule_5": "no",
+                    "rule_6": "no",
+                    "rule_7": "no",
+                    "rule_8": "no",
+                    "rule_9": "no",
+                    "rule_10": "no",
+                    "rule_11": "no",
+                    "rule_12": "no",
+                    "rule_13": "no",
+                    "rule_14": "no",
+                    "rule_15": "no",
+                    "rule_16": "no"
+                }
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "batch_read_rules:rule_1": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "batch_read_rules:rule_2": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "batch_read_rules:rule_3": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "batch_read_rules:rule_4": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "batch_read_rules:rule_5": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "batch_read_rules:rule_6": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "batch_read_rules:rule_7": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "batch_read_rules:rule_8": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "batch_read_rules:rule_9": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "batch_read_rules:rule_10": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "batch_read_rules:rule_11": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "batch_read_rules:rule_12": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "batch_read_rules:rule_13": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "batch_read_rules:rule_14": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "batch_read_rules:rule_15": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "batch_read_rules:rule_16": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            }
+        },
+        "Modbus": {
+            "batch_read_rules:rule_1": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "BOOL"
+            },
+            "batch_read_rules:rule_2": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "BOOL"
+            },
+            "batch_read_rules:rule_3": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "BOOL"
+            },
+            "batch_read_rules:rule_4": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "BOOL"
+            },
+            "batch_read_rules:rule_5": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "BOOL"
+            },
+            "batch_read_rules:rule_6": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "BOOL"
+            },
+            "batch_read_rules:rule_7": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "BOOL"
+            },
+            "batch_read_rules:rule_8": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "BOOL"
+            },
+            "batch_read_rules:rule_9": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "BOOL"
+            },
+            "batch_read_rules:rule_10": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "BOOL"
+            },
+            "batch_read_rules:rule_11": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "BOOL"
+            },
+            "batch_read_rules:rule_12": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "BOOL"
+            },
+            "batch_read_rules:rule_13": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "BOOL"
+            },
+            "batch_read_rules:rule_14": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "BOOL"
+            },
+            "batch_read_rules:rule_15": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "BOOL"
+            },
+            "batch_read_rules:rule_16": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "BOOL"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: batch_enable_rules:rule_1, batch_enable_rules:rule_2, batch_enable_rules:rule_3 and 13 more",
+        "type": "uplink",
+        "input": {
+            "bytes": "fe4b01",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "batch_enable_rules": {
+                    "rule_1": "disable",
+                    "rule_2": "disable",
+                    "rule_3": "disable",
+                    "rule_4": "disable",
+                    "rule_5": "disable",
+                    "rule_6": "disable",
+                    "rule_7": "disable",
+                    "rule_8": "disable",
+                    "rule_9": "disable",
+                    "rule_10": "disable",
+                    "rule_11": "disable",
+                    "rule_12": "disable",
+                    "rule_13": "disable",
+                    "rule_14": "disable",
+                    "rule_15": "disable",
+                    "rule_16": "disable"
+                }
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "batch_enable_rules:rule_1": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "batch_enable_rules:rule_2": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "batch_enable_rules:rule_3": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "batch_enable_rules:rule_4": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "batch_enable_rules:rule_5": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "batch_enable_rules:rule_6": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "batch_enable_rules:rule_7": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "batch_enable_rules:rule_8": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "batch_enable_rules:rule_9": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "batch_enable_rules:rule_10": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "batch_enable_rules:rule_11": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "batch_enable_rules:rule_12": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "batch_enable_rules:rule_13": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "batch_enable_rules:rule_14": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "batch_enable_rules:rule_15": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "batch_enable_rules:rule_16": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            }
+        },
+        "Modbus": {
+            "batch_enable_rules:rule_1": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "BOOL"
+            },
+            "batch_enable_rules:rule_2": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "BOOL"
+            },
+            "batch_enable_rules:rule_3": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "BOOL"
+            },
+            "batch_enable_rules:rule_4": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "BOOL"
+            },
+            "batch_enable_rules:rule_5": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "BOOL"
+            },
+            "batch_enable_rules:rule_6": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "BOOL"
+            },
+            "batch_enable_rules:rule_7": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "BOOL"
+            },
+            "batch_enable_rules:rule_8": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "BOOL"
+            },
+            "batch_enable_rules:rule_9": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "BOOL"
+            },
+            "batch_enable_rules:rule_10": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "BOOL"
+            },
+            "batch_enable_rules:rule_11": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "BOOL"
+            },
+            "batch_enable_rules:rule_12": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "BOOL"
+            },
+            "batch_enable_rules:rule_13": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "BOOL"
+            },
+            "batch_enable_rules:rule_14": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "BOOL"
+            },
+            "batch_enable_rules:rule_15": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "BOOL"
+            },
+            "batch_enable_rules:rule_16": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "BOOL"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: set_ai_collection_config_response:id, set_ai_collection_config_response:collect_nonirrigation, set_ai_collection_config_response:collect_irrigation and 2 more",
+        "type": "uplink",
+        "input": {
+            "bytes": "f8a8",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "set_ai_collection_config_response": {
+                    "id": 0,
+                    "enable": "disable",
+                    "collect_nonirrigation": 0,
+                    "collect_irrigation": 0,
+                    "open_delay_collect_time": 0,
+                    "code": "success"
+                }
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "set_ai_collection_config_response:id": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "set_ai_collection_config_response:collect_nonirrigation": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "set_ai_collection_config_response:collect_irrigation": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "set_ai_collection_config_response:open_delay_collect_time": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "set_ai_collection_config_response:code": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "success"
+            }
+        },
+        "Modbus": {
+            "set_ai_collection_config_response:id": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT32"
+            },
+            "set_ai_collection_config_response:collect_nonirrigation": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT32"
+            },
+            "set_ai_collection_config_response:collect_irrigation": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT32"
+            },
+            "set_ai_collection_config_response:open_delay_collect_time": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT32"
+            },
+            "set_ai_collection_config_response:code": {
+                "table": "inputRegister",
+                "value": "success",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: set_ai_collection_config:id, set_ai_collection_config:collect_nonirrigation, set_ai_collection_config:collect_irrigation and 1 more",
+        "type": "uplink",
+        "input": {
+            "bytes": "f9a8",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "set_ai_collection_config": {
+                    "id": 0,
+                    "enable": "disable",
+                    "collect_nonirrigation": 0,
+                    "collect_irrigation": 0,
+                    "open_delay_collect_time": 0
+                }
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "set_ai_collection_config:id": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "set_ai_collection_config:collect_nonirrigation": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "set_ai_collection_config:collect_irrigation": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "set_ai_collection_config:open_delay_collect_time": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "set_ai_collection_config:id": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT32"
+            },
+            "set_ai_collection_config:collect_nonirrigation": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT32"
+            },
+            "set_ai_collection_config:collect_irrigation": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT32"
+            },
+            "set_ai_collection_config:open_delay_collect_time": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT32"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: query_rule_config:rule_0",
+        "type": "uplink",
+        "input": {
+            "bytes": "fe4c",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "query_rule_config": {
+                    "rule_0": "yes"
+                }
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "query_rule_config:rule_0": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            }
+        },
+        "Modbus": {
+            "query_rule_config:rule_0": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "BOOL"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: clear_valve_0_pulse",
+        "type": "uplink",
+        "input": {
+            "bytes": "fe4e",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "clear_valve_0_pulse": "yes"
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "clear_valve_0_pulse": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            }
+        },
+        "Modbus": {
+            "clear_valve_0_pulse": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "BOOL"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: valve_0_pulse",
+        "type": "uplink",
+        "input": {
+            "bytes": "fe92",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "valve_0_pulse": 0
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "valve_0_pulse": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "valve_0_pulse": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT32"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: report_status, sync_time, clear_history and 3 more",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff28ffff4a00ff27fffe4c01ff4e0100ff4e0200",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "report_status": "yes",
+                "sync_time": "yes",
+                "clear_history": "yes",
+                "query_rule_config": {
+                    "rule_1": "yes"
+                },
+                "clear_valve_1_pulse": "yes",
+                "clear_valve_2_pulse": "yes"
+            }
+        },
+        "points": null,
+        "BACnet": {
+            "report_status": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            },
+            "sync_time": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            },
+            "clear_valve_1_pulse": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            },
+            "clear_valve_2_pulse": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            },
+            "clear_history": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            },
+            "query_rule_config:rule_1": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            }
+        },
+        "Modbus": {
+            "report_status": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "sync_time": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "clear_valve_1_pulse": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "clear_valve_2_pulse": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "clear_history": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "query_rule_config:rule_1": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "BOOL"
+            }
+        }
+    }
+]

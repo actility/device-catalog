@@ -37,6 +37,7 @@ modelId: msight:gs301:1
 # Format: `<8 characters max>:<16 characters max>:<digits only>`
 # Be careful: Once you chose a protocolId, it cannot be changed later
 protocolId:
+  - msight:gs301:2
   - msight:gs301:1
 # Informative, maintained by Netmore: true when the driver of the first protocolId above ships a
 # BACnet/Modbus mapping (mapping.json, in Netmore's private catalog), so that the device can be
@@ -55,6 +56,33 @@ sensors:
 # Driver examples
 # A list of examples description that are compatible with this model
 examples: 
+  msight:gs301:2:
+    - "Example 1"
+    - "Downlink encode: report_interval"
+    - "Downlink encode: led_indicator_enable"
+    - "Uplink coverage: nh3_calibration_settings:mode, nh3_calibration_settings:calibration_value"
+    - "Uplink coverage: h2s_calibration_settings:mode, h2s_calibration_settings:calibration_value"
+    - "Uplink coverage: nh3_sensor_status, h2s_sensor_status, report_interval"
+    - "Uplink coverage: threshold_report_interval"
+    - "Uplink coverage: ipso_version"
+    - "Uplink coverage: hardware_version"
+    - "Uplink coverage: firmware_version"
+    - "Uplink coverage: device_status"
+    - "Uplink coverage: sn"
+    - "Uplink coverage: sensor_id"
+    - "Uplink coverage: tsl_version"
+    - "Uplink coverage (synthetic frame): led_indicator_enable, buzzer_enable, lorawan_class and 6 more"
+    - "Downlink encode: linked group nh3_calibration_settings (2 points)"
+    - "Downlink encode: linked group h2s_calibration_settings (2 points)"
+    - "Downlink encode: linked group alarm_config (7 points)"
+    - "Downlink write: report_interval and 2 more"
+    - "Downlink encode: linked group nh3_calibration_settings (2 points)"
+    - "Downlink encode: linked group h2s_calibration_settings (2 points)"
+    - "Downlink encode: linked group alarm_config (7 points)"
+    - "Downlink encode: linked group nh3_calibration_settings (2 points)"
+    - "Downlink encode: linked group h2s_calibration_settings (2 points)"
+    - "Downlink encode: linked group alarm_config (7 points)"
+    - "Uplink coverage: reboot, query_life_remain"
   msight:gs301:1:
     - "Downlink encode: led_indicator_enable"
     - "Example 1"

@@ -12,6 +12,7 @@ deviceProfileIds:
 LoRaWANCertified: false
 modelId: msight:ws513:1
 protocolId:
+  - msight:ws513:2
   - msight:ws513:1
 # Informative, maintained by Netmore: true when the driver of the first protocolId above ships a
 # BACnet/Modbus mapping (mapping.json, in Netmore's private catalog), so that the device can be
@@ -27,6 +28,49 @@ sensors:
   - current:A
   - status:state
 examples:
+  msight:ws513:2:
+    - "Uplink example for WS513 v3"
+    - "Uplink coverage: temperature_alarm_config:condition, temperature_alarm_config:threshold_min, temperature_alarm_config:threshold_max and 2 more"
+    - "Uplink coverage: child_lock_config:enable, child_lock_config:lock_time"
+    - "Uplink coverage: current_alarm_config:enable, current_alarm_config:threshold"
+    - "Uplink coverage: over_current_protection:enable, over_current_protection:trip_current"
+    - "Uplink coverage: temperature_calibration_settings:enable, temperature_calibration_settings:calibration_value"
+    - "Uplink coverage: temperature"
+    - "Uplink coverage: ipso_version"
+    - "Uplink coverage: hardware_version"
+    - "Uplink coverage: firmware_version"
+    - "Uplink coverage: device_status"
+    - "Uplink coverage: sn"
+    - "Uplink coverage: reset_event"
+    - "Uplink coverage: tsl_version"
+    - "Uplink coverage (synthetic frame): overload_current_protection:enable, power_consumption_enable, reset_power_consumption and 4 more"
+    - "Downlink encode: linked group delay_task (3 points)"
+    - "Downlink encode: linked group current_alarm_config (2 points)"
+    - "Downlink encode: linked group over_current_protection (2 points)"
+    - "Downlink encode: linked group child_lock_config (2 points)"
+    - "Downlink encode: linked group temperature_calibration_settings (2 points)"
+    - "Downlink encode: linked group temperature_alarm_config (5 points)"
+    - "Downlink write: socket_status and 4 more"
+    - "Downlink write: led_indicator_reserve and 1 more"
+    - "Downlink encode: overload_current_protection:enable"
+    - "Downlink encode: linked group delay_task (3 points)"
+    - "Downlink encode: linked group current_alarm_config (2 points)"
+    - "Downlink encode: linked group over_current_protection (2 points)"
+    - "Downlink encode: linked group child_lock_config (2 points)"
+    - "Downlink encode: linked group temperature_calibration_settings (2 points)"
+    - "Downlink encode: linked group temperature_alarm_config (5 points)"
+    - "Downlink encode: overload_current_protection:enable"
+    - "Downlink encode: linked group delay_task (3 points)"
+    - "Downlink encode: linked group current_alarm_config (2 points)"
+    - "Downlink encode: linked group over_current_protection (2 points)"
+    - "Downlink encode: linked group child_lock_config (2 points)"
+    - "Downlink encode: linked group temperature_calibration_settings (2 points)"
+    - "Downlink encode: linked group temperature_alarm_config (5 points)"
+    - "Downlink encode: overload_current_protection:enable"
+    - "Uplink coverage: delay_task:frame_count, delay_task:delay_time, delay_task:socket_status and 1 more"
+    - "Uplink coverage: cancel_delay_task"
+    - "Uplink coverage: reboot, report_status, d2d_command"
+    - "Uplink coverage: temperature_mutation"
   msight:ws513:1:
     - Uplink example for WS513 v3
     - "Downlink encode: power_consumption_enable"

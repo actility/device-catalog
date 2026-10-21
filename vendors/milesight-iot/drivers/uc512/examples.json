@@ -24,46 +24,6 @@
                 "record": 5,
                 "nature": "Valve 1 pulses"
             }
-        },
-        "BACnet": {
-            "battery": {
-                "object": "ANALOG_INPUT",
-                "presentValue": 92,
-                "units": "PERCENT"
-            },
-            "valve_1": {
-                "object": "BINARY_INPUT",
-                "presentValue": 0
-            },
-            "valve_1_pulse": [
-                {
-                    "object": "ANALOG_INPUT",
-                    "presentValue": 5,
-                    "units": "NO_UNITS"
-                },
-                {
-                    "object": "ANALOG_VALUE",
-                    "presentValue": 5,
-                    "units": "NO_UNITS"
-                }
-            ]
-        },
-        "Modbus": {
-            "battery": {
-                "table": "inputRegister",
-                "value": 92,
-                "value_type": "UINT8"
-            },
-            "valve_1": {
-                "table": "discreteInput",
-                "value": 0,
-                "value_type": "UINT8"
-            },
-            "valve_1_pulse": {
-                "table": "inputRegister",
-                "value": 5,
-                "value_type": "UINT32"
-            }
         }
     },
     {
@@ -103,38 +63,11 @@
                 "record": true,
                 "nature": "device status"
             }
-        },
-        "BACnet": {
-            "device_status": {
-                "object": "BINARY_INPUT",
-                "presentValue": 1
-            }
-        },
-        "Modbus": {
-            "device_status": {
-                "table": "discreteInput",
-                "value": 1,
-                "value_type": "UINT8"
-            }
         }
     },
     {
         "description": "Downlink encode: retransmit_enable",
         "type": "downlink-encode",
-        "inputBACnet": {
-            "retransmit_enable": {
-                "object": "BINARY_VALUE",
-                "property": "PRESENT_VALUE",
-                "value": 1
-            }
-        },
-        "inputModbus": {
-            "retransmit_enable": {
-                "table": "coil",
-                "operation": "setCoil",
-                "value": 1
-            }
-        },
         "input": {
             "data": {
                 "retransmit_enable": "enable"

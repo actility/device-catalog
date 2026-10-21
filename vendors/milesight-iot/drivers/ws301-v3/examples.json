@@ -1,0 +1,295 @@
+[
+    {
+        "description": "Example 1 v2",
+        "type": "uplink",
+        "input": {
+            "bytes": "01755D030001040000",
+            "fPort": 100,
+            "time": "2022-11-03T17:00:00.000+02:00"
+        },
+        "output": {
+            "data": {
+                "battery": 93,
+                "magnet_status": "open",
+                "tamper_status": "installed"
+            }
+        },
+        "points": {
+            "batteryLevel": {
+                "unitId": "%",
+                "record": 93
+            }
+        },
+        "BACnet": {
+            "battery": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 93,
+                "units": "PERCENT"
+            },
+            "magnet_status": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            },
+            "tamper_status": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            }
+        },
+        "Modbus": {
+            "battery": {
+                "table": "inputRegister",
+                "value": 93,
+                "value_type": "UINT8"
+            },
+            "magnet_status": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "tamper_status": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Downlink encode: report_interval",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "report_interval": 600
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                3,
+                88,
+                2
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Uplink coverage: ipso_version, hardware_version, firmware_version and 4 more",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff0bffff0101ff086141056a1da5ff090110ff0a0115ff0f00fe03",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "device_status": "on",
+                "ipso_version": "v0.1",
+                "sn": "6141056a1da5",
+                "hardware_version": "v1.1",
+                "firmware_version": "v1.15",
+                "lorawan_class": "Class A",
+                "report_interval": 0
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "ipso_version": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "v0.1"
+            },
+            "hardware_version": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "v1.1"
+            },
+            "firmware_version": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "v1.15"
+            },
+            "sn": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "6141056a1da5"
+            },
+            "lorawan_class": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "device_status": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            },
+            "report_interval": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "SECONDS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 60,
+                    "units": "SECONDS"
+                }
+            ]
+        },
+        "Modbus": {
+            "ipso_version": {
+                "table": "inputRegister",
+                "value": "v0.1",
+                "value_type": "STRING"
+            },
+            "hardware_version": {
+                "table": "inputRegister",
+                "value": "v1.1",
+                "value_type": "STRING"
+            },
+            "firmware_version": {
+                "table": "inputRegister",
+                "value": "v1.15",
+                "value_type": "STRING"
+            },
+            "sn": {
+                "table": "inputRegister",
+                "value": "6141056a1da5",
+                "value_type": "STRING"
+            },
+            "lorawan_class": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "device_status": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "report_interval": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: reset_event",
+        "type": "uplink",
+        "input": {
+            "bytes": "fffe",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "reset_event": "reset"
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "reset_event": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            }
+        },
+        "Modbus": {
+            "reset_event": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: tsl_version",
+        "type": "uplink",
+        "input": {
+            "bytes": "ffff",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "tsl_version": "v0.0"
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "tsl_version": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "v0.0"
+            }
+        },
+        "Modbus": {
+            "tsl_version": {
+                "table": "inputRegister",
+                "value": "v0.0",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Downlink write: report_interval",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "report_interval": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 60
+            }
+        },
+        "inputModbus": {
+            "report_interval": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 60
+            }
+        },
+        "input": {
+            "data": {
+                "report_interval": 60
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                3,
+                60,
+                0
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Uplink coverage: reboot, query_device_status",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff10ffff28ff",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "reboot": "yes",
+                "query_device_status": "yes"
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "reboot": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            },
+            "query_device_status": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            }
+        },
+        "Modbus": {
+            "reboot": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "query_device_status": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            }
+        }
+    }
+]

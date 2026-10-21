@@ -25,6 +25,7 @@ LoRaWANCertified: false
 modelId: msight:ts601:1
 # <vendorId>:<protocolName>:<protocolVersion>
 protocolId:
+  - msight:ts601:2
   - msight:ts601:1
 # Informative, maintained by Netmore: true when the driver of the first protocolId above ships a
 # BACnet/Modbus mapping (mapping.json, in Netmore's private catalog), so that the device can be
@@ -40,6 +41,56 @@ sensors:
   - humidity:%RH
 # Driver examples
 examples:
+  msight:ts601:2:
+    - "Downlink encode: reboot"
+    - "Uplink coverage: daylight_saving_time:daylight_saving_time_offset, daylight_saving_time:enable, daylight_saving_time:end_hour_min and 7 more"
+    - "Uplink coverage: temperature_alarm_settings:celsius_threshold_max, temperature_alarm_settings:celsius_threshold_min, temperature_alarm_settings:enable and 13 more"
+    - "Uplink coverage: airplane_mode_time_period_settings:end_timestamp:day, airplane_mode_time_period_settings:end_timestamp:hour, airplane_mode_time_period_settings:end_timestamp:minute and 7 more"
+    - "Uplink coverage: temperature_calibration_settings:calibration_value, temperature_calibration_settings:celsius_calibration_value, temperature_calibration_settings:enable and 12 more"
+    - "Uplink coverage: relative_surface_info:angle_x, relative_surface_info:angle_y, relative_surface_info:angle_z"
+    - "Uplink coverage: button_lock:collect_report_enable, button_lock:enable, button_lock:power_off_enable"
+    - "Uplink coverage: light_alarm_settings:enable, light_alarm_settings:threshold_condition, light_alarm_settings:threshold_max and 2 more"
+    - "Uplink coverage: base_station_position:latitude, base_station_position:longitude"
+    - "Uplink coverage: collection_interval:minutes_of_time, collection_interval:unit, humidity_calibration_settings:calibration_value and 6 more"
+    - "Uplink coverage: alarm_deactivation_enable, auto_p_enable, base_station_position_enable and 4 more"
+    - "Uplink coverage: airplane_mode_state, temperature_alarm_types, humidity_alarm_types and 5 more"
+    - "Uplink coverage: oem_id"
+    - "Uplink coverage: product_sn"
+    - "Uplink coverage: battery, airplane_mode_time_period_settings:enable, data_storage_settings:enable and 5 more"
+    - "Downlink encode: linked group airplane_mode_time_period_settings (13 points)"
+    - "Downlink encode: linked group data_storage_settings (3 points)"
+    - "Downlink encode: linked group humidity_alarm_settings (2 points)"
+    - "Downlink encode: linked group retrieve_historical_data_by_time_range (2 points)"
+    - "Downlink encode: linked group temperature_alarm_settings (2 points)"
+    - "Downlink encode: linked group tilt_alarm_settings (2 points)"
+    - "Downlink write: alarm_deactivation_enable and 4 more"
+    - "Downlink write: clear_historical_data and 4 more"
+    - "Downlink write: synchronize_time and 2 more"
+    - "Downlink encode: daylight_saving_time:daylight_saving_time_offset and 4 more"
+    - "Downlink encode: retrieve_historical_data_by_time:time and 4 more"
+    - "Downlink encode: linked group airplane_mode_time_period_settings (13 points)"
+    - "Downlink encode: linked group data_storage_settings (3 points)"
+    - "Downlink encode: linked group humidity_alarm_settings (2 points)"
+    - "Downlink encode: linked group retrieve_historical_data_by_time_range (2 points)"
+    - "Downlink encode: linked group temperature_alarm_settings (2 points)"
+    - "Downlink encode: linked group tilt_alarm_settings (2 points)"
+    - "Downlink encode: daylight_saving_time:daylight_saving_time_offset and 4 more"
+    - "Downlink encode: retrieve_historical_data_by_time:time and 4 more"
+    - "Uplink coverage: device_info:model, device_info:submodel_1, device_info:submodel_2 and 6 more"
+    - "Uplink coverage: debugging_commands:length, debugging_commands:content"
+    - "Uplink coverage: set_retrieval_initial_surface:operation, device_status, base_station_position_auth_token"
+    - "Uplink coverage: retrieve_historical_data_by_time_range:start_time, retrieve_historical_data_by_time_range:end_time, clear_alarm_item and 6 more"
+    - "Uplink coverage: product_frequency_band"
+    - "Uplink coverage: product_pn"
+    - "Uplink coverage: product_name"
+    - "Uplink coverage: all_configurations_request_by_device, check_order_reply:order"
+    - "Uplink coverage: retrieve_historical_data_by_time:time"
+    - "Uplink coverage: cellular_status:sim_status, tsl_version, ipso_device_upgrade_result:value and 1 more"
+    - "Uplink coverage: battery_alarm:lower_battery_alarm:battery, cellular_status:imei"
+    - "Uplink coverage: cellular_status:imsi"
+    - "Uplink coverage: cellular_status:iccid"
+    - "Uplink coverage: cellular_status:csq"
+    - "Uplink coverage: cellular_status:connected_status, cellular_status:milesight_mqtt_status, cellular_status:milesight_dtls_status"
   msight:ts601:1:
     - "Downlink encode: reboot"
 LoRaWANRelay:

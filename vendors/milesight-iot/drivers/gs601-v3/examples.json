@@ -1,0 +1,3081 @@
+[
+    {
+        "description": "Example 1",
+        "type": "uplink",
+        "input": {
+            "bytes": "01000302000502000702000A020B43020D30000F001100",
+            "fPort": 100,
+            "time": "2024-11-03T17:00:00.000+02:00"
+        },
+        "output": {
+            "data": {
+                "vaping_index": 0,
+                "pm1_0": 2,
+                "pm2_5": 2,
+                "pm10": 2,
+                "temperature_alarm": {
+                    "type": 2,
+                    "over_range_error": {}
+                },
+                "humidity": 57.9,
+                "tvoc": 48,
+                "tamper_status": 0,
+                "buzzer": 0
+            }
+        },
+        "points": {
+            "humidity": {
+                "unitId": "%RH",
+                "record": 57.9
+            },
+            "concentration:1": {
+                "unitId": "ug/m3",
+                "record": 2,
+                "nature": "pm1_0"
+            },
+            "concentration:2": {
+                "unitId": "ug/m3",
+                "record": 2,
+                "nature": "pm2_5"
+            },
+            "concentration:3": {
+                "unitId": "ug/m3",
+                "record": 2,
+                "nature": "pm10"
+            },
+            "concentration:4": {
+                "unitId": "ug/m3",
+                "record": 48,
+                "nature": "tvoc"
+            },
+            "index": {
+                "unitId": "index",
+                "record": 0,
+                "nature": "Vaping"
+            }
+        },
+        "BACnet": {
+            "buzzer": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "humidity": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 57.9,
+                "units": "PERCENT_RELATIVE_HUMIDITY"
+            },
+            "pm1_0": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 2,
+                "units": "MICROGRAMS_PER_CUBIC_METER"
+            },
+            "pm10": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 2,
+                "units": "MICROGRAMS_PER_CUBIC_METER"
+            },
+            "pm2_5": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 2,
+                "units": "MICROGRAMS_PER_CUBIC_METER"
+            },
+            "tamper_status": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "temperature_alarm:type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 2,
+                "units": "NO_UNITS"
+            },
+            "tvoc": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 48,
+                "units": "MICROGRAMS_PER_CUBIC_METER"
+            },
+            "vaping_index": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "buzzer": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "humidity": {
+                "table": "inputRegister",
+                "value": 57.9,
+                "value_type": "FLOAT"
+            },
+            "pm1_0": {
+                "table": "inputRegister",
+                "value": 2,
+                "value_type": "UINT16"
+            },
+            "pm10": {
+                "table": "inputRegister",
+                "value": 2,
+                "value_type": "UINT16"
+            },
+            "pm2_5": {
+                "table": "inputRegister",
+                "value": 2,
+                "value_type": "UINT16"
+            },
+            "tamper_status": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "temperature_alarm:type": {
+                "table": "inputRegister",
+                "value": 2,
+                "value_type": "UINT8"
+            },
+            "tvoc": {
+                "table": "inputRegister",
+                "value": 48,
+                "value_type": "UINT16"
+            },
+            "vaping_index": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Downlink encode: reboot",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "reboot": 1
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                190
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink encode: alarm_deactivation_enable",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "alarm_deactivation_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "alarm_deactivation_enable": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "alarm_deactivation_enable": 1
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                112,
+                1
+            ]
+        }
+    },
+    {
+        "description": "Uplink coverage: daylight_saving_time:daylight_saving_time_offset, daylight_saving_time:enable, daylight_saving_time:end_hour_min and 35 more",
+        "type": "uplink",
+        "input": {
+            "bytes": "c6003c032700000b110000690000000038ff710000006e000000056a0000000000006c0000000000006b000000000000",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "daylight_saving_time": {
+                    "enable": 0,
+                    "daylight_saving_time_offset": 60,
+                    "start_month": 3,
+                    "start_week_num": 2,
+                    "start_week_day": 7,
+                    "start_hour_min": 0,
+                    "end_month": 11,
+                    "end_week_num": 1,
+                    "end_week_day": 1,
+                    "end_hour_min": 0
+                },
+                "temperature_alarm_settings": {
+                    "enable": 0,
+                    "threshold_condition": 0,
+                    "threshold_min": 0,
+                    "threshold_max": -20,
+                    "fahrenheit_threshold_min": 32,
+                    "celsius_threshold_min": 0,
+                    "fahrenheit_threshold_max": -4,
+                    "celsius_threshold_max": -20
+                },
+                "temperature_calibration_settings": {
+                    "enable": 0,
+                    "calibration_value": 0,
+                    "fahrenheit_calibration_value": 32,
+                    "celsius_calibration_value": 0
+                },
+                "vaping_index_alarm_settings": {
+                    "enable": 0,
+                    "threshold_condition": 0,
+                    "threshold_min": 0,
+                    "threshold_max": 5
+                },
+                "pm1_0_alarm_settings": {
+                    "enable": 0,
+                    "threshold_condition": 0,
+                    "threshold_min": 0,
+                    "threshold_max": 0
+                },
+                "pm10_alarm_settings": {
+                    "enable": 0,
+                    "threshold_condition": 0,
+                    "threshold_min": 0,
+                    "threshold_max": 0
+                },
+                "pm2_5_alarm_settings": {
+                    "enable": 0,
+                    "threshold_condition": 0,
+                    "threshold_min": 0,
+                    "threshold_max": 0
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "daylight_saving_time:daylight_saving_time_offset": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 60,
+                    "units": "MINUTES"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "MINUTES"
+                }
+            ],
+            "daylight_saving_time:enable": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "daylight_saving_time:end_hour_min": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "MINUTES"
+            },
+            "daylight_saving_time:end_month": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 11,
+                "units": "NO_UNITS"
+            },
+            "daylight_saving_time:end_week_day": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 1,
+                "units": "NO_UNITS"
+            },
+            "daylight_saving_time:end_week_num": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 1,
+                "units": "NO_UNITS"
+            },
+            "daylight_saving_time:start_hour_min": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "MINUTES"
+            },
+            "daylight_saving_time:start_month": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 3,
+                "units": "NO_UNITS"
+            },
+            "daylight_saving_time:start_week_day": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 7,
+                "units": "NO_UNITS"
+            },
+            "daylight_saving_time:start_week_num": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 2,
+                "units": "NO_UNITS"
+            },
+            "pm1_0_alarm_settings:enable": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "pm1_0_alarm_settings:threshold_condition": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "pm1_0_alarm_settings:threshold_max": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "MICROGRAMS_PER_CUBIC_METER"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "MICROGRAMS_PER_CUBIC_METER"
+                }
+            ],
+            "pm1_0_alarm_settings:threshold_min": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "MICROGRAMS_PER_CUBIC_METER"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "MICROGRAMS_PER_CUBIC_METER"
+                }
+            ],
+            "pm10_alarm_settings:enable": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "pm10_alarm_settings:threshold_condition": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "pm10_alarm_settings:threshold_max": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "MICROGRAMS_PER_CUBIC_METER"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "MICROGRAMS_PER_CUBIC_METER"
+                }
+            ],
+            "pm10_alarm_settings:threshold_min": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "MICROGRAMS_PER_CUBIC_METER"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "MICROGRAMS_PER_CUBIC_METER"
+                }
+            ],
+            "pm2_5_alarm_settings:enable": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "pm2_5_alarm_settings:threshold_condition": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "pm2_5_alarm_settings:threshold_max": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "MICROGRAMS_PER_CUBIC_METER"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "MICROGRAMS_PER_CUBIC_METER"
+                }
+            ],
+            "pm2_5_alarm_settings:threshold_min": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "MICROGRAMS_PER_CUBIC_METER"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "MICROGRAMS_PER_CUBIC_METER"
+                }
+            ],
+            "temperature_alarm_settings:celsius_threshold_max": {
+                "object": "ANALOG_INPUT",
+                "presentValue": -20,
+                "units": "DEGREES_CELSIUS"
+            },
+            "temperature_alarm_settings:celsius_threshold_min": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "DEGREES_CELSIUS"
+            },
+            "temperature_alarm_settings:enable": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "temperature_alarm_settings:fahrenheit_threshold_max": {
+                "object": "ANALOG_INPUT",
+                "presentValue": -4,
+                "units": "DEGREES_FAHRENHEIT"
+            },
+            "temperature_alarm_settings:fahrenheit_threshold_min": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 32,
+                "units": "DEGREES_FAHRENHEIT"
+            },
+            "temperature_alarm_settings:threshold_condition": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "temperature_alarm_settings:threshold_max": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": -20,
+                    "units": "DEGREES_CELSIUS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "DEGREES_CELSIUS"
+                }
+            ],
+            "temperature_alarm_settings:threshold_min": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "DEGREES_CELSIUS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "DEGREES_CELSIUS"
+                }
+            ],
+            "temperature_calibration_settings:calibration_value": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "DEGREES_CELSIUS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "DEGREES_CELSIUS"
+                }
+            ],
+            "temperature_calibration_settings:celsius_calibration_value": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "DEGREES_CELSIUS"
+            },
+            "temperature_calibration_settings:enable": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "temperature_calibration_settings:fahrenheit_calibration_value": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 32,
+                "units": "DEGREES_FAHRENHEIT"
+            },
+            "vaping_index_alarm_settings:enable": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "vaping_index_alarm_settings:threshold_condition": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "vaping_index_alarm_settings:threshold_max": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 5,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "vaping_index_alarm_settings:threshold_min": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ]
+        },
+        "Modbus": {
+            "daylight_saving_time:daylight_saving_time_offset": {
+                "table": "inputRegister",
+                "value": 60,
+                "value_type": "UINT8"
+            },
+            "daylight_saving_time:enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "daylight_saving_time:end_hour_min": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            },
+            "daylight_saving_time:end_month": {
+                "table": "inputRegister",
+                "value": 11,
+                "value_type": "UINT8"
+            },
+            "daylight_saving_time:end_week_day": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "daylight_saving_time:end_week_num": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "daylight_saving_time:start_hour_min": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            },
+            "daylight_saving_time:start_month": {
+                "table": "inputRegister",
+                "value": 3,
+                "value_type": "UINT8"
+            },
+            "daylight_saving_time:start_week_day": {
+                "table": "inputRegister",
+                "value": 7,
+                "value_type": "UINT8"
+            },
+            "daylight_saving_time:start_week_num": {
+                "table": "inputRegister",
+                "value": 2,
+                "value_type": "UINT8"
+            },
+            "pm1_0_alarm_settings:enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "pm1_0_alarm_settings:threshold_condition": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "pm1_0_alarm_settings:threshold_max": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            },
+            "pm1_0_alarm_settings:threshold_min": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            },
+            "pm10_alarm_settings:enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "pm10_alarm_settings:threshold_condition": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "pm10_alarm_settings:threshold_max": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            },
+            "pm10_alarm_settings:threshold_min": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            },
+            "pm2_5_alarm_settings:enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "pm2_5_alarm_settings:threshold_condition": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "pm2_5_alarm_settings:threshold_max": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            },
+            "pm2_5_alarm_settings:threshold_min": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            },
+            "temperature_alarm_settings:celsius_threshold_max": {
+                "table": "inputRegister",
+                "value": -20,
+                "value_type": "FLOAT"
+            },
+            "temperature_alarm_settings:celsius_threshold_min": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "FLOAT"
+            },
+            "temperature_alarm_settings:enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "temperature_alarm_settings:fahrenheit_threshold_max": {
+                "table": "inputRegister",
+                "value": -4,
+                "value_type": "FLOAT"
+            },
+            "temperature_alarm_settings:fahrenheit_threshold_min": {
+                "table": "inputRegister",
+                "value": 32,
+                "value_type": "FLOAT"
+            },
+            "temperature_alarm_settings:threshold_condition": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "temperature_alarm_settings:threshold_max": {
+                "table": "inputRegister",
+                "value": -20,
+                "value_type": "FLOAT"
+            },
+            "temperature_alarm_settings:threshold_min": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "FLOAT"
+            },
+            "temperature_calibration_settings:calibration_value": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "FLOAT"
+            },
+            "temperature_calibration_settings:celsius_calibration_value": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "FLOAT"
+            },
+            "temperature_calibration_settings:enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "temperature_calibration_settings:fahrenheit_calibration_value": {
+                "table": "inputRegister",
+                "value": 32,
+                "value_type": "FLOAT"
+            },
+            "vaping_index_alarm_settings:enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "vaping_index_alarm_settings:threshold_condition": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "vaping_index_alarm_settings:threshold_max": {
+                "table": "inputRegister",
+                "value": 5,
+                "value_type": "UINT8"
+            },
+            "vaping_index_alarm_settings:threshold_min": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: tvoc_alarm_settings:enable, tvoc_alarm_settings:threshold_condition, tvoc_alarm_settings:threshold_max and 4 more",
+        "type": "uplink",
+        "input": {
+            "bytes": "6d0000000000000200015223",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "tvoc_alarm_settings": {
+                    "enable": 0,
+                    "threshold_condition": 0,
+                    "threshold_min": 0,
+                    "threshold_max": 0
+                },
+                "vaping_index_alarm": {
+                    "type": 0,
+                    "collection_error": {}
+                },
+                "vaping_index": 82,
+                "tvoc_raw_data_4": {
+                    "rmox_6": 0,
+                    "rmox_7": 0
+                }
+            }
+        },
+        "points": {
+            "index": {
+                "unitId": "index",
+                "record": 82,
+                "nature": "Vaping"
+            }
+        },
+        "BACnet": {
+            "tvoc_alarm_settings:enable": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "tvoc_alarm_settings:threshold_condition": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "tvoc_alarm_settings:threshold_max": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "MICROGRAMS_PER_CUBIC_METER"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "MICROGRAMS_PER_CUBIC_METER"
+                }
+            ],
+            "tvoc_alarm_settings:threshold_min": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "MICROGRAMS_PER_CUBIC_METER"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "MICROGRAMS_PER_CUBIC_METER"
+                }
+            ],
+            "tvoc_raw_data_4:rmox_6": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "tvoc_raw_data_4:rmox_7": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "vaping_index": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 82,
+                "units": "NO_UNITS"
+            },
+            "vaping_index_alarm:type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "tvoc_alarm_settings:enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "tvoc_alarm_settings:threshold_condition": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "tvoc_alarm_settings:threshold_max": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            },
+            "tvoc_alarm_settings:threshold_min": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            },
+            "tvoc_raw_data_4:rmox_6": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "tvoc_raw_data_4:rmox_7": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "vaping_index": {
+                "table": "inputRegister",
+                "value": 82,
+                "value_type": "UINT8"
+            },
+            "vaping_index_alarm:type": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: buzzer_sleep:item_1:enable, buzzer_sleep:item_1:end_time, buzzer_sleep:item_1:start_time and 20 more",
+        "type": "uplink",
+        "input": {
+            "bytes": "640100a401e001640200380474047700007200000073000000750000007400000060010a0076000000700065006300",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "buzzer_sleep": {
+                    "item_1": {
+                        "enable": 0,
+                        "start_time": 420,
+                        "end_time": 480
+                    },
+                    "item_2": {
+                        "enable": 0,
+                        "start_time": 1080,
+                        "end_time": 1140
+                    }
+                },
+                "vaping_index_calibration_settings": {
+                    "enable": 0,
+                    "calibration_value": 0
+                },
+                "humidity_calibration_settings": {
+                    "enable": 0,
+                    "calibration_value": 0
+                },
+                "pm1_0_calibration_settings": {
+                    "enable": 0,
+                    "calibration_value": 0
+                },
+                "pm10_calibration_settings": {
+                    "enable": 0,
+                    "calibration_value": 0
+                },
+                "pm2_5_calibration_settings": {
+                    "enable": 0,
+                    "calibration_value": 0
+                },
+                "reporting_interval": {
+                    "unit": 1,
+                    "minutes_of_time": 10
+                },
+                "tvoc_calibration_settings": {
+                    "enable": 0,
+                    "calibration_value": 0
+                },
+                "alarm_deactivation_enable": 0,
+                "buzzer_button_stop_enable": 0,
+                "buzzer_enable": 0
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "alarm_deactivation_enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "buzzer_button_stop_enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "buzzer_enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "buzzer_sleep:item_1:enable": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "buzzer_sleep:item_1:end_time": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 480,
+                    "units": "MINUTES"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "MINUTES"
+                }
+            ],
+            "buzzer_sleep:item_1:start_time": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 420,
+                    "units": "MINUTES"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "MINUTES"
+                }
+            ],
+            "buzzer_sleep:item_2:enable": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "buzzer_sleep:item_2:end_time": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 1140,
+                    "units": "MINUTES"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "MINUTES"
+                }
+            ],
+            "buzzer_sleep:item_2:start_time": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 1080,
+                    "units": "MINUTES"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "MINUTES"
+                }
+            ],
+            "humidity_calibration_settings:calibration_value": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "PERCENT"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "PERCENT"
+                }
+            ],
+            "humidity_calibration_settings:enable": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "pm1_0_calibration_settings:calibration_value": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "MICROGRAMS_PER_CUBIC_METER"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "MICROGRAMS_PER_CUBIC_METER"
+                }
+            ],
+            "pm1_0_calibration_settings:enable": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "pm10_calibration_settings:calibration_value": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "MICROGRAMS_PER_CUBIC_METER"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "MICROGRAMS_PER_CUBIC_METER"
+                }
+            ],
+            "pm10_calibration_settings:enable": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "pm2_5_calibration_settings:calibration_value": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "MICROGRAMS_PER_CUBIC_METER"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "MICROGRAMS_PER_CUBIC_METER"
+                }
+            ],
+            "pm2_5_calibration_settings:enable": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "reporting_interval:minutes_of_time": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 10,
+                "units": "MINUTES"
+            },
+            "reporting_interval:unit": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 1,
+                "units": "NO_UNITS"
+            },
+            "tvoc_calibration_settings:calibration_value": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "MICROGRAMS_PER_CUBIC_METER"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "MICROGRAMS_PER_CUBIC_METER"
+                }
+            ],
+            "tvoc_calibration_settings:enable": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "vaping_index_calibration_settings:calibration_value": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "vaping_index_calibration_settings:enable": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            }
+        },
+        "Modbus": {
+            "alarm_deactivation_enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "buzzer_button_stop_enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "buzzer_enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "buzzer_sleep:item_1:enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "buzzer_sleep:item_1:end_time": {
+                "table": "inputRegister",
+                "value": 480,
+                "value_type": "UINT16"
+            },
+            "buzzer_sleep:item_1:start_time": {
+                "table": "inputRegister",
+                "value": 420,
+                "value_type": "UINT16"
+            },
+            "buzzer_sleep:item_2:enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "buzzer_sleep:item_2:end_time": {
+                "table": "inputRegister",
+                "value": 1140,
+                "value_type": "UINT16"
+            },
+            "buzzer_sleep:item_2:start_time": {
+                "table": "inputRegister",
+                "value": 1080,
+                "value_type": "UINT16"
+            },
+            "humidity_calibration_settings:calibration_value": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "FLOAT"
+            },
+            "humidity_calibration_settings:enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "pm1_0_calibration_settings:calibration_value": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT16"
+            },
+            "pm1_0_calibration_settings:enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "pm10_calibration_settings:calibration_value": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT16"
+            },
+            "pm10_calibration_settings:enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "pm2_5_calibration_settings:calibration_value": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT16"
+            },
+            "pm2_5_calibration_settings:enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "reporting_interval:minutes_of_time": {
+                "table": "inputRegister",
+                "value": 10,
+                "value_type": "UINT16"
+            },
+            "reporting_interval:unit": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "tvoc_calibration_settings:calibration_value": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT16"
+            },
+            "tvoc_calibration_settings:enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "vaping_index_calibration_settings:calibration_value": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT8"
+            },
+            "vaping_index_calibration_settings:enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: led_status, tamper_alarm_enable, temperature_unit and 7 more",
+        "type": "uplink",
+        "input": {
+            "bytes": "62006700610068006f0100660f00cf0000d90000c730fd60000000",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "led_status": 0,
+                "tamper_alarm_enable": 0,
+                "temperature_unit": 0,
+                "tvoc_raw_reporting_enable": 0,
+                "alarm_reporting_times": 1,
+                "buzzer_silent_time": 15,
+                "lorawan_configuration_settings": {
+                    "mode": 0
+                },
+                "oem_id": "0000",
+                "time_zone": -720,
+                "reporting_interval": {
+                    "unit": 0,
+                    "seconds_of_time": 0
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "alarm_reporting_times": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 1,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 1,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "buzzer_silent_time": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 15,
+                    "units": "MINUTES"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "MINUTES"
+                }
+            ],
+            "led_status": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "lorawan_configuration_settings:mode": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "oem_id": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "0000"
+            },
+            "reporting_interval:seconds_of_time": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "SECONDS"
+            },
+            "reporting_interval:unit": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "tamper_alarm_enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "temperature_unit": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "time_zone": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": -720,
+                    "units": "MINUTES"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": -720,
+                    "units": "MINUTES"
+                }
+            ],
+            "tvoc_raw_reporting_enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ]
+        },
+        "Modbus": {
+            "alarm_reporting_times": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT16"
+            },
+            "buzzer_silent_time": {
+                "table": "inputRegister",
+                "value": 15,
+                "value_type": "UINT16"
+            },
+            "led_status": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "lorawan_configuration_settings:mode": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "oem_id": {
+                "table": "inputRegister",
+                "value": "0000",
+                "value_type": "STRING"
+            },
+            "reporting_interval:seconds_of_time": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            },
+            "reporting_interval:unit": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "tamper_alarm_enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "temperature_unit": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "time_zone": {
+                "table": "inputRegister",
+                "value": -720,
+                "value_type": "INT16"
+            },
+            "tvoc_raw_reporting_enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Downlink encode: linked group buzzer_sleep (4 points)",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "buzzer_sleep": {
+                    "item_1": {
+                        "end_time": 0,
+                        "start_time": 0
+                    },
+                    "item_2": {
+                        "end_time": 0,
+                        "start_time": 0
+                    }
+                }
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                100,
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                100,
+                2,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink encode: linked group pm1_0_alarm_settings (2 points)",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "pm1_0_alarm_settings": {
+                    "threshold_max": 0,
+                    "threshold_min": 0
+                }
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                106,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink encode: linked group pm10_alarm_settings (2 points)",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "pm10_alarm_settings": {
+                    "threshold_max": 0,
+                    "threshold_min": 0
+                }
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                108,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink encode: linked group pm2_5_alarm_settings (2 points)",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "pm2_5_alarm_settings": {
+                    "threshold_max": 0,
+                    "threshold_min": 0
+                }
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                107,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink encode: linked group temperature_alarm_settings (2 points)",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "temperature_alarm_settings": {
+                    "threshold_max": 0,
+                    "threshold_min": 0
+                }
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                105,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink encode: linked group tvoc_alarm_settings (2 points)",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "tvoc_alarm_settings": {
+                    "threshold_max": 0,
+                    "threshold_min": 0
+                }
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                109,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink encode: linked group vaping_index_alarm_settings (2 points)",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "vaping_index_alarm_settings": {
+                    "threshold_max": 0,
+                    "threshold_min": 0
+                }
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                110,
+                0,
+                0,
+                0,
+                0
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink write: alarm_reporting_times and 4 more",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "alarm_reporting_times": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            },
+            "buzzer_button_stop_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            },
+            "buzzer_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            },
+            "buzzer_silent_time": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            },
+            "execute_tvoc_self_clean": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            }
+        },
+        "inputModbus": {
+            "alarm_reporting_times": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 1
+            },
+            "buzzer_button_stop_enable": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 0
+            },
+            "buzzer_enable": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 0
+            },
+            "buzzer_silent_time": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 0
+            },
+            "execute_tvoc_self_clean": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 0
+            }
+        },
+        "input": {
+            "data": {
+                "alarm_reporting_times": 1,
+                "buzzer_button_stop_enable": "disable",
+                "buzzer_enable": "disable",
+                "buzzer_silent_time": 0,
+                "execute_tvoc_self_clean": "no"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                99,
+                0,
+                101,
+                0,
+                102,
+                0,
+                0,
+                111,
+                1,
+                0,
+                94
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink write: led_status and 4 more",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "led_status": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            },
+            "query_device_status": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            },
+            "reboot": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            },
+            "reconnect": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            },
+            "stop_buzzer_alarm": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            }
+        },
+        "inputModbus": {
+            "led_status": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 0
+            },
+            "query_device_status": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 0
+            },
+            "reboot": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 0
+            },
+            "reconnect": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 0
+            },
+            "stop_buzzer_alarm": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 0
+            }
+        },
+        "input": {
+            "data": {
+                "led_status": "disable",
+                "query_device_status": "no",
+                "reboot": "no",
+                "reconnect": "no",
+                "stop_buzzer_alarm": "no"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                98,
+                0,
+                190,
+                185,
+                182,
+                95
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink write: synchronize_time and 4 more",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "synchronize_time": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            },
+            "tamper_alarm_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            },
+            "temperature_unit": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            },
+            "time_zone": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": -720
+            },
+            "tvoc_raw_reporting_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            }
+        },
+        "inputModbus": {
+            "synchronize_time": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 0
+            },
+            "tamper_alarm_enable": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 0
+            },
+            "temperature_unit": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 0
+            },
+            "time_zone": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": -720
+            },
+            "tvoc_raw_reporting_enable": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 0
+            }
+        },
+        "input": {
+            "data": {
+                "synchronize_time": "no",
+                "tamper_alarm_enable": "disable",
+                "temperature_unit": "℃",
+                "time_zone": "UTC-12(IDLW)",
+                "tvoc_raw_reporting_enable": "disable"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                97,
+                0,
+                103,
+                0,
+                199,
+                0,
+                0,
+                104,
+                0,
+                184
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink encode: daylight_saving_time:daylight_saving_time_offset and 4 more",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "daylight_saving_time": {
+                    "daylight_saving_time_offset": 0
+                },
+                "humidity_calibration_settings": {
+                    "calibration_value": 0
+                },
+                "lorawan_configuration_settings": {
+                    "mode": "ClassA"
+                },
+                "pm1_0_calibration_settings": {
+                    "calibration_value": 0
+                },
+                "pm10_calibration_settings": {
+                    "calibration_value": 0
+                }
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                207,
+                0,
+                0,
+                198,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                114,
+                0,
+                0,
+                0,
+                115,
+                0,
+                0,
+                0,
+                117,
+                0,
+                0,
+                0
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink encode: pm2_5_calibration_settings:calibration_value and 3 more",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "pm2_5_calibration_settings": {
+                    "calibration_value": 0
+                },
+                "temperature_calibration_settings": {
+                    "calibration_value": 0
+                },
+                "tvoc_calibration_settings": {
+                    "calibration_value": 0
+                },
+                "vaping_index_calibration_settings": {
+                    "calibration_value": 0
+                }
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                113,
+                0,
+                0,
+                0,
+                116,
+                0,
+                0,
+                0,
+                118,
+                0,
+                0,
+                0,
+                119,
+                0,
+                0
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Uplink coverage: execute_tvoc_self_clean, query_device_status, reboot and 5 more",
+        "type": "uplink",
+        "input": {
+            "bytes": "5eb9beb65fb800000210",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "execute_tvoc_self_clean": 1,
+                "query_device_status": 1,
+                "reboot": 1,
+                "reconnect": 1,
+                "stop_buzzer_alarm": 1,
+                "synchronize_time": 1,
+                "battery": 0,
+                "vaping_index_alarm": {
+                    "type": 16,
+                    "alarm_deactivation": {
+                        "vaping_index": 0
+                    }
+                },
+                "vaping_index": 0
+            }
+        },
+        "points": {
+            "batteryLevel": {
+                "unitId": "%",
+                "record": 0
+            },
+            "index": {
+                "unitId": "index",
+                "record": 0,
+                "nature": "Vaping"
+            }
+        },
+        "BACnet": {
+            "vaping_index": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "vaping_index_alarm:type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 16,
+                "units": "NO_UNITS"
+            },
+            "execute_tvoc_self_clean": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "query_device_status": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "reboot": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "reconnect": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "stop_buzzer_alarm": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "synchronize_time": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "battery": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "vaping_index_alarm:alarm_deactivation:vaping_index": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "vaping_index": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "vaping_index_alarm:type": {
+                "table": "inputRegister",
+                "value": 16,
+                "value_type": "UINT8"
+            },
+            "execute_tvoc_self_clean": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "query_device_status": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "reboot": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "reconnect": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "stop_buzzer_alarm": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "synchronize_time": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "battery": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT32"
+            },
+            "vaping_index_alarm:alarm_deactivation:vaping_index": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT32"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: vaping_index_alarm:alarm_trigger:vaping_index",
+        "type": "uplink",
+        "input": {
+            "bytes": "0211",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "vaping_index_alarm": {
+                    "type": 17,
+                    "alarm_trigger": {
+                        "vaping_index": 0
+                    }
+                },
+                "vaping_index": 0
+            }
+        },
+        "points": {
+            "index": {
+                "unitId": "index",
+                "record": 0,
+                "nature": "Vaping"
+            }
+        },
+        "BACnet": {
+            "vaping_index": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "vaping_index_alarm:type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 17,
+                "units": "NO_UNITS"
+            },
+            "vaping_index_alarm:alarm_trigger:vaping_index": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "vaping_index": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "vaping_index_alarm:type": {
+                "table": "inputRegister",
+                "value": 17,
+                "value_type": "UINT8"
+            },
+            "vaping_index_alarm:alarm_trigger:vaping_index": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT32"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: celsius_temperature, fahrenheit_temperature, temperature and 2 more",
+        "type": "uplink",
+        "input": {
+            "bytes": "090001200001",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "temperature": 25.6,
+                "tvoc_raw_data_1": {
+                    "rmox_0": 3.587324068671532e-43,
+                    "rmox_1": 0
+                },
+                "fahrenheit_temperature": 78.1,
+                "celsius_temperature": 25.6
+            }
+        },
+        "points": {
+            "temperature": {
+                "unitId": "Cel",
+                "record": 25.6
+            }
+        },
+        "BACnet": {
+            "celsius_temperature": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 25.6,
+                "units": "DEGREES_CELSIUS"
+            },
+            "fahrenheit_temperature": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 78.1,
+                "units": "DEGREES_FAHRENHEIT"
+            },
+            "temperature": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 25.6,
+                "units": "DEGREES_CELSIUS"
+            },
+            "tvoc_raw_data_1:rmox_0": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 3.587324068671532e-43,
+                "units": "NO_UNITS"
+            },
+            "tvoc_raw_data_1:rmox_1": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "celsius_temperature": {
+                "table": "inputRegister",
+                "value": 25.6,
+                "value_type": "FLOAT"
+            },
+            "fahrenheit_temperature": {
+                "table": "inputRegister",
+                "value": 78.1,
+                "value_type": "FLOAT"
+            },
+            "temperature": {
+                "table": "inputRegister",
+                "value": 25.6,
+                "value_type": "FLOAT"
+            },
+            "tvoc_raw_data_1:rmox_0": {
+                "table": "inputRegister",
+                "value": 3.587324068671532e-43,
+                "value_type": "UINT8"
+            },
+            "tvoc_raw_data_1:rmox_1": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: tvoc_raw_data_2:rmox_2, tvoc_raw_data_2:rmox_3",
+        "type": "uplink",
+        "input": {
+            "bytes": "210001",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "tvoc_raw_data_2": {
+                    "rmox_2": 3.587324068671532e-43,
+                    "rmox_3": 0
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "tvoc_raw_data_2:rmox_2": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 3.587324068671532e-43,
+                "units": "NO_UNITS"
+            },
+            "tvoc_raw_data_2:rmox_3": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "tvoc_raw_data_2:rmox_2": {
+                "table": "inputRegister",
+                "value": 3.587324068671532e-43,
+                "value_type": "UINT8"
+            },
+            "tvoc_raw_data_2:rmox_3": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: tvoc_raw_data_3:rmox_4, tvoc_raw_data_3:rmox_5",
+        "type": "uplink",
+        "input": {
+            "bytes": "220001",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "tvoc_raw_data_3": {
+                    "rmox_4": 3.587324068671532e-43,
+                    "rmox_5": 0
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "tvoc_raw_data_3:rmox_4": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 3.587324068671532e-43,
+                "units": "NO_UNITS"
+            },
+            "tvoc_raw_data_3:rmox_5": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "tvoc_raw_data_3:rmox_4": {
+                "table": "inputRegister",
+                "value": 3.587324068671532e-43,
+                "value_type": "UINT8"
+            },
+            "tvoc_raw_data_3:rmox_5": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: tvoc_raw_data_5:rmox_8, tvoc_raw_data_5:rmox_9",
+        "type": "uplink",
+        "input": {
+            "bytes": "240001",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "tvoc_raw_data_5": {
+                    "rmox_8": 3.587324068671532e-43,
+                    "rmox_9": 0
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "tvoc_raw_data_5:rmox_8": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 3.587324068671532e-43,
+                "units": "NO_UNITS"
+            },
+            "tvoc_raw_data_5:rmox_9": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "tvoc_raw_data_5:rmox_8": {
+                "table": "inputRegister",
+                "value": 3.587324068671532e-43,
+                "value_type": "UINT8"
+            },
+            "tvoc_raw_data_5:rmox_9": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: tvoc_raw_data_6:rmox_10, tvoc_raw_data_6:rmox_11",
+        "type": "uplink",
+        "input": {
+            "bytes": "250001",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "tvoc_raw_data_6": {
+                    "rmox_10": 3.587324068671532e-43,
+                    "rmox_11": 0
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "tvoc_raw_data_6:rmox_10": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 3.587324068671532e-43,
+                "units": "NO_UNITS"
+            },
+            "tvoc_raw_data_6:rmox_11": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "tvoc_raw_data_6:rmox_10": {
+                "table": "inputRegister",
+                "value": 3.587324068671532e-43,
+                "value_type": "UINT8"
+            },
+            "tvoc_raw_data_6:rmox_11": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: tvoc_raw_data_7:rmox_12, tvoc_raw_data_7:zmod4510_rmox_3",
+        "type": "uplink",
+        "input": {
+            "bytes": "260001",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "tvoc_raw_data_7": {
+                    "rmox_12": 3.587324068671532e-43,
+                    "zmod4510_rmox_3": 0
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "tvoc_raw_data_7:rmox_12": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 3.587324068671532e-43,
+                "units": "NO_UNITS"
+            },
+            "tvoc_raw_data_7:zmod4510_rmox_3": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "tvoc_raw_data_7:rmox_12": {
+                "table": "inputRegister",
+                "value": 3.587324068671532e-43,
+                "value_type": "UINT8"
+            },
+            "tvoc_raw_data_7:zmod4510_rmox_3": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: tvoc_raw_data_8:log_rcda, tvoc_raw_data_8:rhtr",
+        "type": "uplink",
+        "input": {
+            "bytes": "270001",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "tvoc_raw_data_8": {
+                    "log_rcda": 3.587324068671532e-43,
+                    "rhtr": 0
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "tvoc_raw_data_8:log_rcda": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 3.587324068671532e-43,
+                "units": "NO_UNITS"
+            },
+            "tvoc_raw_data_8:rhtr": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "tvoc_raw_data_8:log_rcda": {
+                "table": "inputRegister",
+                "value": 3.587324068671532e-43,
+                "value_type": "UINT8"
+            },
+            "tvoc_raw_data_8:rhtr": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: tvoc_raw_data_9:iaq, tvoc_raw_data_9:temperature",
+        "type": "uplink",
+        "input": {
+            "bytes": "280001",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "tvoc_raw_data_9": {
+                    "temperature": 3.587324068671532e-43,
+                    "iaq": 0
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "tvoc_raw_data_9:iaq": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "tvoc_raw_data_9:temperature": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 3.587324068671532e-43,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "tvoc_raw_data_9:iaq": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "tvoc_raw_data_9:temperature": {
+                "table": "inputRegister",
+                "value": 3.587324068671532e-43,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: tvoc_raw_data_10:etoh, tvoc_raw_data_10:tvoc",
+        "type": "uplink",
+        "input": {
+            "bytes": "290001",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "tvoc_raw_data_10": {
+                    "tvoc": 3.587324068671532e-43,
+                    "etoh": 0
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "tvoc_raw_data_10:etoh": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "tvoc_raw_data_10:tvoc": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 3.587324068671532e-43,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "tvoc_raw_data_10:etoh": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "tvoc_raw_data_10:tvoc": {
+                "table": "inputRegister",
+                "value": 3.587324068671532e-43,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: tvoc_raw_data_11:eco2, tvoc_raw_data_11:rel_iaq",
+        "type": "uplink",
+        "input": {
+            "bytes": "2a0001",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "tvoc_raw_data_11": {
+                    "eco2": 3.587324068671532e-43,
+                    "rel_iaq": 0
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "tvoc_raw_data_11:eco2": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 3.587324068671532e-43,
+                "units": "NO_UNITS"
+            },
+            "tvoc_raw_data_11:rel_iaq": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "tvoc_raw_data_11:eco2": {
+                "table": "inputRegister",
+                "value": 3.587324068671532e-43,
+                "value_type": "UINT8"
+            },
+            "tvoc_raw_data_11:rel_iaq": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: version:firmware_version, version:hardware_version",
+        "type": "uplink",
+        "input": {
+            "bytes": "5eda01",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "execute_tvoc_self_clean": 1,
+                "version": {
+                    "hardware_version": "v1.0",
+                    "firmware_version": "v0.0"
+                }
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "version:firmware_version": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "v0.0"
+            },
+            "version:hardware_version": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "v1.0"
+            },
+            "execute_tvoc_self_clean": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ]
+        },
+        "Modbus": {
+            "version:firmware_version": {
+                "table": "inputRegister",
+                "value": "v0.0",
+                "value_type": "STRING"
+            },
+            "version:hardware_version": {
+                "table": "inputRegister",
+                "value": "v1.0",
+                "value_type": "STRING"
+            },
+            "execute_tvoc_self_clean": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: pm2_5_alarm:type, device_status, product_sn",
+        "type": "uplink",
+        "input": {
+            "bytes": "0600015ec8015edb01",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "pm2_5_alarm": {
+                    "type": 0,
+                    "collection_error": {}
+                },
+                "vaping_index": 94,
+                "device_status": 1,
+                "execute_tvoc_self_clean": 1,
+                "product_sn": "01"
+            }
+        },
+        "points": {
+            "index": {
+                "unitId": "index",
+                "record": 94,
+                "nature": "Vaping"
+            }
+        },
+        "BACnet": {
+            "device_status": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            },
+            "pm2_5_alarm:type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "product_sn": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "01"
+            },
+            "vaping_index": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 94,
+                "units": "NO_UNITS"
+            },
+            "execute_tvoc_self_clean": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ]
+        },
+        "Modbus": {
+            "device_status": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "pm2_5_alarm:type": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "product_sn": {
+                "table": "inputRegister",
+                "value": "01",
+                "value_type": "STRING"
+            },
+            "vaping_index": {
+                "table": "inputRegister",
+                "value": 94,
+                "value_type": "UINT8"
+            },
+            "execute_tvoc_self_clean": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: pm10_alarm:type, tsl_version",
+        "type": "uplink",
+        "input": {
+            "bytes": "0800015edf01",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "pm10_alarm": {
+                    "type": 0,
+                    "collection_error": {}
+                },
+                "vaping_index": 94,
+                "tsl_version": "v1.0"
+            }
+        },
+        "points": {
+            "index": {
+                "unitId": "index",
+                "record": 94,
+                "nature": "Vaping"
+            }
+        },
+        "BACnet": {
+            "pm10_alarm:type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "tsl_version": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "v1.0"
+            },
+            "vaping_index": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 94,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "pm10_alarm:type": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "tsl_version": {
+                "table": "inputRegister",
+                "value": "v1.0",
+                "value_type": "STRING"
+            },
+            "vaping_index": {
+                "table": "inputRegister",
+                "value": 94,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: pm1_0_alarm:type",
+        "type": "uplink",
+        "input": {
+            "bytes": "040001",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "pm1_0_alarm": {
+                    "type": 0,
+                    "collection_error": {}
+                },
+                "vaping_index": 0
+            }
+        },
+        "points": {
+            "index": {
+                "unitId": "index",
+                "record": 0,
+                "nature": "Vaping"
+            }
+        },
+        "BACnet": {
+            "pm1_0_alarm:type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "vaping_index": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "pm1_0_alarm:type": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "vaping_index": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: humidity_alarm:type",
+        "type": "uplink",
+        "input": {
+            "bytes": "0c0001",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "humidity_alarm": {
+                    "type": 0,
+                    "collection_error": {}
+                },
+                "vaping_index": 0
+            }
+        },
+        "points": {
+            "index": {
+                "unitId": "index",
+                "record": 0,
+                "nature": "Vaping"
+            }
+        },
+        "BACnet": {
+            "humidity_alarm:type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "vaping_index": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "humidity_alarm:type": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "vaping_index": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: tvoc_alarm:type",
+        "type": "uplink",
+        "input": {
+            "bytes": "0e0001",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "tvoc_alarm": {
+                    "type": 0,
+                    "collection_error": {}
+                },
+                "vaping_index": 0
+            }
+        },
+        "points": {
+            "index": {
+                "unitId": "index",
+                "record": 0,
+                "nature": "Vaping"
+            }
+        },
+        "BACnet": {
+            "tvoc_alarm:type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "vaping_index": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "tvoc_alarm:type": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "vaping_index": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: tamper_status_alarm:type",
+        "type": "uplink",
+        "input": {
+            "bytes": "100001",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "tamper_status_alarm": {
+                    "type": 0
+                },
+                "vaping_index": 0
+            }
+        },
+        "points": {
+            "index": {
+                "unitId": "index",
+                "record": 0,
+                "nature": "Vaping"
+            }
+        },
+        "BACnet": {
+            "tamper_status_alarm:type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "vaping_index": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "tamper_status_alarm:type": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "vaping_index": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: occupancy_status",
+        "type": "uplink",
+        "input": {
+            "bytes": "120001",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "occupancy_status": 0,
+                "vaping_index": 0
+            }
+        },
+        "points": {
+            "index": {
+                "unitId": "index",
+                "record": 0,
+                "nature": "Vaping"
+            }
+        },
+        "BACnet": {
+            "occupancy_status": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "vaping_index": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "occupancy_status": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "vaping_index": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: pm_sensor_working_time",
+        "type": "uplink",
+        "input": {
+            "bytes": "2b0001",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "pm_sensor_working_time": 256
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "pm_sensor_working_time": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 256,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "pm_sensor_working_time": {
+                "table": "inputRegister",
+                "value": 256,
+                "value_type": "UINT8"
+            }
+        }
+    }
+]

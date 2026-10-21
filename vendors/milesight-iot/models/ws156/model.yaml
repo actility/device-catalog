@@ -10,6 +10,7 @@ deviceProfileIds:
 LoRaWANCertified: false
 modelId: msight:ws156:1
 protocolId:
+  - msight:ws156:2
   - msight:ws156:1
 # Informative, maintained by Netmore: true when the driver of the first protocolId above ships a
 # BACnet/Modbus mapping (mapping.json, in Netmore's private catalog), so that the device can be
@@ -20,6 +21,15 @@ userGuideURL:
 sensors:
   - batteryLevel:%
 examples:
+  msight:ws156:2:
+    - "Uplink example for WS156"
+    - "Uplink coverage: ipso_version"
+    - "Uplink coverage: hardware_version"
+    - "Uplink coverage: firmware_version"
+    - "Uplink coverage: sn"
+    - "Uplink coverage: tsl_version"
+    - "Uplink coverage (synthetic frame): device_status, lorawan_class, reset_event and 8 more"
+    - "BACnet example"
   msight:ws156:1:
     - "Uplink example for WS156"
     - "BACnet example"

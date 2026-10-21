@@ -113,5 +113,1033 @@
                 255
             ]
         }
+    },
+    {
+        "description": "Uplink coverage: current_max, current_min, current_alarm:current_threshold_alarm and 3 more",
+        "type": "uplink",
+        "input": {
+            "bytes": "8498",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "current_max": 0,
+                "current_min": 0,
+                "current": 0,
+                "current_alarm": {
+                    "current_threshold_alarm": "no",
+                    "current_threshold_alarm_release": "no",
+                    "current_over_range_alarm": "no",
+                    "current_over_range_alarm_release": "no"
+                }
+            }
+        },
+        "points": {
+            "current": {
+                "unitId": "A",
+                "record": 0
+            }
+        },
+        "BACnet": {
+            "current": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "AMPERES"
+            },
+            "current_max": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "AMPERES"
+            },
+            "current_min": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "AMPERES"
+            },
+            "current_alarm:current_threshold_alarm": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "current_alarm:current_threshold_alarm_release": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "current_alarm:current_over_range_alarm": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "current_alarm:current_over_range_alarm_release": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            }
+        },
+        "Modbus": {
+            "current": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            },
+            "current_max": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            },
+            "current_min": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            },
+            "current_alarm:current_threshold_alarm": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "current_alarm:current_threshold_alarm_release": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "current_alarm:current_over_range_alarm": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "current_alarm:current_over_range_alarm_release": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: current_alarm_config:condition, current_alarm_config:threshold_min, current_alarm_config:threshold_max and 6 more",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff06080100010001000100ff06200f000f00000000000967",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "current_alarm_config": {
+                    "condition": "disable",
+                    "threshold_min": 1,
+                    "threshold_max": 1,
+                    "alarm_counts": 1,
+                    "alarm_interval": 1
+                },
+                "temperature_alarm_config": {
+                    "condition": "disable",
+                    "threshold_min": 1.5,
+                    "threshold_max": 1.5
+                },
+                "temperature": 0
+            }
+        },
+        "points": {
+            "temperature": {
+                "unitId": "Cel",
+                "record": 0,
+                "nature": "probe"
+            }
+        },
+        "BACnet": {
+            "temperature": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "DEGREES_CELSIUS"
+            },
+            "temperature_alarm_config:condition": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 1,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "temperature_alarm_config:threshold_min": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 1.5,
+                    "units": "DEGREES_CELSIUS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 100,
+                    "units": "DEGREES_CELSIUS"
+                }
+            ],
+            "temperature_alarm_config:threshold_max": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 1.5,
+                    "units": "DEGREES_CELSIUS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 200,
+                    "units": "DEGREES_CELSIUS"
+                }
+            ],
+            "current_alarm_config:condition": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "current_alarm_config:threshold_min": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 1,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "current_alarm_config:threshold_max": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 1,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "current_alarm_config:alarm_counts": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 1,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "current_alarm_config:alarm_interval": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 1,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ]
+        },
+        "Modbus": {
+            "temperature": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "FLOAT"
+            },
+            "temperature_alarm_config:condition": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "temperature_alarm_config:threshold_min": {
+                "table": "inputRegister",
+                "value": 1.5,
+                "value_type": "FLOAT"
+            },
+            "temperature_alarm_config:threshold_max": {
+                "table": "inputRegister",
+                "value": 1.5,
+                "value_type": "FLOAT"
+            },
+            "current_alarm_config:condition": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "current_alarm_config:threshold_min": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT16"
+            },
+            "current_alarm_config:threshold_max": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT16"
+            },
+            "current_alarm_config:alarm_counts": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT16"
+            },
+            "current_alarm_config:alarm_interval": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT16"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: ch1_sumkwh",
+        "type": "uplink",
+        "input": {
+            "bytes": "1063",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "ch1_sumkwh": 0
+            }
+        },
+        "points": {
+            "energy": {
+                "unitId": "kWh",
+                "record": 0,
+                "nature": "channel 1"
+            }
+        },
+        "BACnet": {
+            "ch1_sumkwh": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "KILOWATT_HOURS"
+            }
+        },
+        "Modbus": {
+            "ch1_sumkwh": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "FLOAT"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: alarm_report_interval",
+        "type": "uplink",
+        "input": {
+            "bytes": "fe02",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "alarm_report_interval": 0
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "alarm_report_interval": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "MINUTES"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "MINUTES"
+                }
+            ]
+        },
+        "Modbus": {
+            "alarm_report_interval": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: report_interval",
+        "type": "uplink",
+        "input": {
+            "bytes": "fe8e",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "report_interval": 0
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "report_interval": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "MINUTES"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 600,
+                    "units": "MINUTES"
+                }
+            ]
+        },
+        "Modbus": {
+            "report_interval": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: voltage",
+        "type": "uplink",
+        "input": {
+            "bytes": "fece",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "voltage": 0
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "voltage": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "VOLTS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 1,
+                    "units": "VOLTS"
+                }
+            ]
+        },
+        "Modbus": {
+            "voltage": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "FLOAT"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: power_factor",
+        "type": "uplink",
+        "input": {
+            "bytes": "fecf",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "power_factor": 0
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "power_factor": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 1,
+                    "units": "NO_UNITS"
+                }
+            ]
+        },
+        "Modbus": {
+            "power_factor": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "FLOAT"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: alarm_report_counts",
+        "type": "uplink",
+        "input": {
+            "bytes": "fef2",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "alarm_report_counts": 0
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "alarm_report_counts": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ]
+        },
+        "Modbus": {
+            "alarm_report_counts": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: ipso_version",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff01",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "ipso_version": "v0.0"
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "ipso_version": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "v0.0"
+            }
+        },
+        "Modbus": {
+            "ipso_version": {
+                "table": "inputRegister",
+                "value": "v0.0",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: hardware_version",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff09",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "hardware_version": "v0.0"
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "hardware_version": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "v0.0"
+            }
+        },
+        "Modbus": {
+            "hardware_version": {
+                "table": "inputRegister",
+                "value": "v0.0",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: firmware_version",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff0a",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "firmware_version": "v0.0"
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "firmware_version": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "v0.0"
+            }
+        },
+        "Modbus": {
+            "firmware_version": {
+                "table": "inputRegister",
+                "value": "v0.0",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: sn",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff16",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "sn": ""
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "sn": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": ""
+            }
+        },
+        "Modbus": {
+            "sn": {
+                "table": "inputRegister",
+                "value": "",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: reset_event",
+        "type": "uplink",
+        "input": {
+            "bytes": "fffe",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "reset_event": "reset"
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "reset_event": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            }
+        },
+        "Modbus": {
+            "reset_event": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: tsl_version",
+        "type": "uplink",
+        "input": {
+            "bytes": "ffff",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "tsl_version": "v0.0"
+            }
+        },
+        "points": {},
+        "BACnet": {
+            "tsl_version": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "v0.0"
+            }
+        },
+        "Modbus": {
+            "tsl_version": {
+                "table": "inputRegister",
+                "value": "v0.0",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage (synthetic frame): reboot, report_status, clear_current_cumulative and 6 more",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff10ffff28ffff2701137501fed001ff0f010498ffff0967ffff8967000000",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "reboot": "yes",
+                "report_status": "yes",
+                "clear_current_cumulative": "yes",
+                "low_voltage_alarm": {
+                    "alarm_type": "low voltage alarm"
+                },
+                "reporting_type": "cumulative Kwh",
+                "lorawan_class": "Class B",
+                "current_sensor_status": "read failed",
+                "temperature_sensor_status": "read failed",
+                "temperature": 0,
+                "temperature_alarm": "temperature threshold alarm release"
+            }
+        },
+        "points": {
+            "temperature": {
+                "unitId": "Cel",
+                "record": 0,
+                "nature": "probe"
+            }
+        },
+        "BACnet": {
+            "lorawan_class": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 1,
+                "units": "NO_UNITS"
+            },
+            "current_sensor_status": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 2,
+                "units": "NO_UNITS"
+            },
+            "temperature": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "DEGREES_CELSIUS"
+            },
+            "temperature_sensor_status": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 2,
+                "units": "NO_UNITS"
+            },
+            "temperature_alarm": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "reboot": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 1
+                }
+            ],
+            "report_status": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "clear_current_cumulative": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "low_voltage_alarm:alarm_type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "reporting_type": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 1,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ]
+        },
+        "Modbus": {
+            "lorawan_class": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "current_sensor_status": {
+                "table": "inputRegister",
+                "value": 2,
+                "value_type": "UINT8"
+            },
+            "temperature": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "FLOAT"
+            },
+            "temperature_sensor_status": {
+                "table": "inputRegister",
+                "value": 2,
+                "value_type": "UINT8"
+            },
+            "temperature_alarm": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "reboot": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "report_status": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "clear_current_cumulative": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "low_voltage_alarm:alarm_type": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "reporting_type": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Downlink encode: linked group current_alarm_config (5 points)",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "current_alarm_config": {
+                    "condition": "disable",
+                    "threshold_min": 0,
+                    "threshold_max": 0,
+                    "alarm_interval": 0,
+                    "alarm_counts": 0
+                }
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                6,
+                8,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink write: report_interval and 2 more",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "report_interval": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 600
+            },
+            "alarm_report_counts": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            },
+            "alarm_report_interval": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "report_interval": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 600
+            },
+            "alarm_report_counts": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 1
+            },
+            "alarm_report_interval": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "report_interval": 600,
+                "alarm_report_counts": 1,
+                "alarm_report_interval": 1
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                142,
+                0,
+                88,
+                2,
+                255,
+                242,
+                1,
+                0,
+                255,
+                2,
+                1,
+                0
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink write: report_status",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "report_status": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "report_status": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "report_status": "yes"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                40,
+                255
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink write: clear_current_cumulative",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "clear_current_cumulative": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "clear_current_cumulative": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "clear_current_cumulative": "yes"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                39,
+                1
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink write: reporting_type and 2 more",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "reporting_type": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": "cumulative Ah"
+            },
+            "voltage": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            },
+            "power_factor": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "reporting_type": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": "cumulative Ah"
+            },
+            "voltage": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 1
+            },
+            "power_factor": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "reporting_type": "cumulative Ah",
+                "voltage": 1,
+                "power_factor": 1
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                206,
+                100,
+                0,
+                255,
+                207,
+                100,
+                255,
+                208,
+                0
+            ],
+            "fPort": 100
+        }
     }
 ]

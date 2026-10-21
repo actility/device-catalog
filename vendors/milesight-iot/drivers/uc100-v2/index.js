@@ -195,13 +195,13 @@ function milesightDeviceDecode(bytes) {
         // DOWNLINK RESPONSE
         else if (channel_id === 0xfe || channel_id === 0xff) {
             var result = handle_downlink_response(channel_type, bytes, i);
-            decoded = mergeObjects(decoded, result.data);
+            decoded = Object.assign(decoded, result.data);
             i = result.offset;
         }
         // DOWNLINK RESPONSE
         else if (channel_id === 0xf8 || channel_id === 0xf9) {
             var result = handle_downlink_response_ext(channel_id, channel_type, bytes, i);
-            decoded = mergeObjects(decoded, result.data);
+            decoded = Object.assign(decoded, result.data);
             i = result.offset;
         }
         // HISTORY RESPONSE
@@ -345,7 +345,7 @@ function handle_downlink_response_ext(code, channel_type, bytes, offset) {
             decoded.rule_config = decoded.rule_config || [];
             for (var x = 0; x < decoded.rule_config.length; x++) {
                 if (decoded.rule_config[x].rule_id === rule_config.rule_id) {
-                    decoded.rule_config[x] = mergeObjects(decoded.rule_config[x], rule_config);
+                    decoded.rule_config[x] = Object.assign(decoded.rule_config[x], rule_config);
                     found = true;
                     break;
                 }
@@ -397,9 +397,19 @@ function readHardwareVersion(bytes) {
 }
 
 function readFirmwareVersion(bytes) {
-    var major = (bytes[0] & 0xff).toString(16);
-    var minor = (bytes[1] & 0xff).toString(16);
-    return "v" + major + "." + minor;
+	var major = (bytes[0] & 0xff).toString(16);
+	var minor = (bytes[1] & 0xff).toString(16);
+	var release = (bytes[2] & 0xff).toString(16);
+	var alpha = (bytes[3] & 0xff).toString(16);
+	var unit_test = (bytes[4] & 0xff).toString(16);
+	var test = (bytes[5] & 0xff).toString(16);
+
+	var version = 'v' + major + '.' + minor;
+	if (release !== '0') version += '-r' + release;
+	if (alpha !== '0') version += '-a' + alpha;
+	if (unit_test !== '0') version += '-u' + unit_test;
+	if (test !== '0') version += '-t' + test;
+	return version;
 }
 
 function readTslVersion(bytes) {
@@ -867,11 +877,13 @@ function readModbusValueCondition(bytes) {
     }
     modbus_value_condition.continue_time = continue_time;
     modbus_value_condition.lock_time = lock_time;
-    if (condition_value === 2 || condition_value === 4) {
+    if (condition_value === 2 || condition_value === 4 || condition_value === 5) {
         modbus_value_condition.threshold_min = value_1;
-    } else if (condition_value === 3 || condition_value === 4) {
+    }
+    if (condition_value === 3 || condition_value === 4 || condition_value === 5) {
         modbus_value_condition.threshold_max = value_2;
-    } else if (condition_value === 6 || condition_value === 7) {
+    }
+    if (condition_value === 6 || condition_value === 7) {
         modbus_value_condition.mutation_duration = value_1;
         modbus_value_condition.mutation = value_2;
     }
@@ -1131,35 +1143,43 @@ function getValue(map, key) {
     return value;
 }
 
-function mergeObjects(target) {
-    "use strict";
-    if (target == null) {
-        throw new TypeError("Cannot convert first argument to object");
-    }
+//if (!Object.assign) {
+    Object.defineProperty(Object, "assign", {
+        enumerable: false,
+        configurable: true,
+        writable: true,
+        value: function (target) {
+            "use strict";
+            if (target == null) {
+                throw new TypeError("Cannot convert first argument to object");
+            }
 
-    var to = Object(target);
-    for (var i = 1; i < arguments.length; i++) {
-        var nextSource = arguments[i];
-        if (nextSource == null) {
-            continue;
-        }
-        nextSource = Object(nextSource);
+            var to = Object(target);
+            for (var i = 1; i < arguments.length; i++) {
+                var nextSource = arguments[i];
+                if (nextSource == null) {
+                    continue;
+                }
+                nextSource = Object(nextSource);
 
-        var keysArray = Object.keys(Object(nextSource));
-        for (var nextIndex = 0, len = keysArray.length; nextIndex < len; nextIndex++) {
-            var nextKey = keysArray[nextIndex];
-            var desc = Object.getOwnPropertyDescriptor(nextSource, nextKey);
-            if (desc !== undefined && desc.enumerable) {
-                if (Array.isArray(to[nextKey]) && Array.isArray(nextSource[nextKey])) {
-                    to[nextKey] = to[nextKey].concat(nextSource[nextKey]);
-                } else {
-                    to[nextKey] = nextSource[nextKey];
+                var keysArray = Object.keys(Object(nextSource));
+                for (var nextIndex = 0, len = keysArray.length; nextIndex < len; nextIndex++) {
+                    var nextKey = keysArray[nextIndex];
+                    var desc = Object.getOwnPropertyDescriptor(nextSource, nextKey);
+                    if (desc !== undefined && desc.enumerable) {
+                        // concat array
+                        if (Array.isArray(to[nextKey]) && Array.isArray(nextSource[nextKey])) {
+                            to[nextKey] = to[nextKey].concat(nextSource[nextKey]);
+                        } else {
+                            to[nextKey] = nextSource[nextKey];
+                        }
+                    }
                 }
             }
-        }
-    }
-    return to;
-}
+            return to;
+        },
+    });
+//}
 
 exports.decodeUplink = decodeUplink;
 
@@ -2264,12 +2284,13 @@ function writeModbusValueCondition(modbus_value_condition) {
     condition_data |= holding_mode_value << 4;
     var value_1 = 0x00;
     var value_2 = 0x00;
-    // condition(below, between)
-    if (condition_value === 2 || condition_value === 4) {
+    if (condition_value === 2 || condition_value === 4 || condition_value === 5) {
         value_1 = threshold_min;
-    } else if (condition_value === 3 || condition_value === 4) {
+    }
+    if (condition_value === 3 || condition_value === 4 || condition_value === 5) {
         value_2 = threshold_max;
-    } else if (condition_value === 6 || condition_value === 7) {
+    }
+    if (condition_value === 6 || condition_value === 7) {
         value_1 = mutation_duration;
         value_2 = mutation;
     }
@@ -2651,7 +2672,6 @@ function getValue(map, value) {
 
     throw new Error("not match in " + JSON.stringify(map));
 }
-
     return {
         encodeDownlink: encodeDownlink,
         Encode: Encode,

@@ -37,6 +37,7 @@ modelId: msight:vs321:1
 # Format: `<8 characters max>:<16 characters max>:<digits only>`
 # Be careful: Once you chose a protocolId, it cannot be changed later
 protocolId:
+  - msight:vs321:2
   - msight:vs321:1
 # Informative, maintained by Netmore: true when the driver of the first protocolId above ships a
 # BACnet/Modbus mapping (mapping.json, in Netmore's private catalog), so that the device can be
@@ -57,6 +58,41 @@ sensors:
 # Driver examples
 # A list of examples description that are compatible with this model
 examples: 
+  msight:vs321:2:
+    - "Example 1"
+    - "Downlink encode: report_interval"
+    - "Downlink encode: adr_enable"
+    - "Uplink coverage: temperature_alarm_config:condition, temperature_alarm_config:threshold_min, temperature_alarm_config:threshold_max and 13 more"
+    - "Uplink coverage: timestamp"
+    - "Uplink coverage: collection_interval"
+    - "Uplink coverage: d2d_key"
+    - "Uplink coverage: lora_port"
+    - "Uplink coverage: retransmit_interval"
+    - "Uplink coverage: report_interval"
+    - "Uplink coverage: ipso_version"
+    - "Uplink coverage: hardware_version"
+    - "Uplink coverage: firmware_version"
+    - "Uplink coverage: device_status"
+    - "Uplink coverage: sn"
+    - "Uplink coverage: reset_event"
+    - "Uplink coverage: tsl_version"
+    - "Uplink coverage: report_type, detection_mode, adr_enable and 4 more"
+    - "Uplink coverage (synthetic frame): lorawan_class, humidity_sensor_status, temperature_sensor_status and 2 more"
+    - "Downlink encode: linked group temperature_alarm_config (5 points)"
+    - "Downlink encode: linked group humidity_alarm_config (5 points)"
+    - "Downlink encode: linked group illuminance_alarm_config (5 points)"
+    - "Downlink write: report_interval and 4 more"
+    - "Downlink write: history_enable and 4 more"
+    - "Downlink encode: linked group temperature_alarm_config (5 points)"
+    - "Downlink encode: linked group humidity_alarm_config (5 points)"
+    - "Downlink encode: linked group illuminance_alarm_config (5 points)"
+    - "Downlink encode: linked group temperature_alarm_config (5 points)"
+    - "Downlink encode: linked group humidity_alarm_config (5 points)"
+    - "Downlink encode: linked group illuminance_alarm_config (5 points)"
+    - "Uplink coverage: device_response_result:channel_type, device_response_result:result, device_response_result:request:report_type and 1 more"
+    - "Uplink coverage: reboot, detect, reset and 1 more"
+    - "Uplink coverage: device_response_result:request:detect"
+    - "Uplink coverage: device_response_result:request:reset"
   msight:vs321:1:
     - "Downlink encode: adr_enable"
     - "Example 1"
