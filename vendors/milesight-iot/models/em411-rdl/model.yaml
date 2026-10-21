@@ -1,0 +1,95 @@
+# Commercial name of the model
+name: EM411-RDL
+# Functional description of the product. Maximum 500 characters.
+description: "Milesight EM411-RDL radar distance sensor. It reports distance, temperature, battery level and tilt position, and supports distance, mutation and tank-mode alarms, history storage and retransmission."
+# Logo of the device
+logo: em411-rdl.png
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
+# id: as defined under /profiles.
+deviceProfileIds:
+  - id: msight_RFGroup1_1.0.3a_classA
+
+# You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings.
+# Maximum device TX Conducted output power in dBm.
+maxTxPower:
+# Minimum device TX Conducted output power in dBm.
+minTxPower:
+# Maximum device TX Radiated output power in dBm.
+maxTxEIRP:
+# Minimum device TX Radiated output power in dBm.
+minTxEIRP:
+# Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'
+# or 'random' (not known, changes over time).
+motionIndicator:
+
+# Is your device certified by the LoRa Alliance? Possible values: true, false.
+LoRaWANCertified: false
+# Format: `<8 characters max>:<16 characters max>:<digits only>`
+# Be careful: Once you chose a model, it cannot be changed later
+modelId: msight:em411-rdl:1
+# <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
+# Format: `<8 characters max>:<16 characters max>:<digits only>`
+# Be careful: Once you chose a protocolId, it cannot be changed later
+protocolId:
+  - msight:em411-rdl:1
+# Informative, maintained by Netmore: true when the driver of the first protocolId above ships a
+# BACnet/Modbus mapping (mapping.json, in Netmore's private catalog), so that the device can be
+# exposed through the BACnet and Modbus gateways. Checked: true requires that mapping.
+supportedBACnetModbus: true
+# DataSheet URL (optional)
+specificationURL:
+# User Guide URL (optional)
+userGuideURL:
+# <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
+sensors:
+  - batteryLevel:%
+  - temperature:Cel
+  - distance:mm
+  - status:state
+# Driver examples
+# A list of examples description that are compatible with this model
+examples:
+  msight:em411-rdl:1:
+    - "Uplink coverage: distance_alarm_config:enable, distance_alarm_config:condition, distance_alarm_config:alarm_release_enable and 16 more"
+    - "Uplink coverage: tank_mode_distance_mutation_alarm_config:enable, tank_mode_distance_mutation_alarm_config:alarm_release_enable, tank_mode_distance_mutation_alarm_config:mutation and 2 more"
+    - "Uplink coverage: recollection_config:counts, recollection_config:interval"
+    - "Uplink coverage: distance_calibration_settings:enable, distance_calibration_settings:calibration_value"
+    - "Uplink coverage: battery"
+    - "Uplink coverage: temperature"
+    - "Uplink coverage: distance"
+    - "Uplink coverage: radar_signal_rssi"
+    - "Uplink coverage: signal_quality"
+    - "Uplink coverage: distance_threshold_sensitive"
+    - "Uplink coverage: collection_interval"
+    - "Uplink coverage: tilt_distance_link"
+    - "Uplink coverage: retransmit_interval"
+    - "Uplink coverage: report_interval"
+    - "Uplink coverage: time_zone"
+    - "Uplink coverage: alarm_counts"
+    - "Uplink coverage: ipso_version"
+    - "Uplink coverage: hardware_version"
+    - "Uplink coverage: firmware_version"
+    - "Uplink coverage: device_status"
+    - "Uplink coverage: sn"
+    - "Uplink coverage: reset_event"
+    - "Uplink coverage: tsl_version"
+    - "Uplink coverage: reboot, report_status, sync_time and 10 more"
+    - "Uplink coverage: lorawan_class, device_response_result:request:distance_mode"
+    - "Uplink coverage: device_response_result:request:blind_detection_enable"
+    - "Uplink coverage: device_response_result:request:peak_sorting"
+    - "Uplink coverage: device_response_result:request:signal_quality"
+    - "Uplink coverage: device_response_result:request:distance_threshold_sensitive"
+    - "Uplink coverage: device_response_result:request:collection_interval"
+    - "Downlink encode: linked group distance_range (2 points)"
+    - "Downlink encode: linked group distance_alarm_config (5 points)"
+    - "Downlink encode: linked group tank_mode_distance_alarm_config (5 points)"
+    - "Downlink encode: linked group distance_mutation_alarm_config (3 points)"
+    - "Downlink encode: linked group tank_mode_distance_mutation_alarm_config (3 points)"
+    - "Downlink encode: linked group distance_calibration_settings (2 points)"
+    - "Downlink encode: linked group recollection_config (2 points)"
+    - "Downlink write: report_interval and 4 more"
+    - "Downlink write: blind_detection_enable and 4 more"
+    - "Downlink write: retransmit_interval and 3 more"
+LoRaWANRelay:
+  canOperateAsARelay: false
+  defaultRelayActivation: false

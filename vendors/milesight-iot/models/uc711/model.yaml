@@ -1,0 +1,80 @@
+# Commercial name of the model
+name: UC711
+# Functional description of the product. Maximum 500 characters.
+description: "Milesight UC711 controller. It reports temperature and humidity and manages heating and cooling setpoints, fan control, reversing valve and relays, anti-freeze, dehumidification and energy-saving settings."
+# Logo of the device
+logo: uc711.png
+# ID(s) of the profile that defines the LoRaWAN characteristics of this model.
+# id: as defined under /profiles.
+deviceProfileIds:
+  - id: msight_RFGroup1_1.0.3a_classA
+
+# You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings.
+# Maximum device TX Conducted output power in dBm.
+maxTxPower:
+# Minimum device TX Conducted output power in dBm.
+minTxPower:
+# Maximum device TX Radiated output power in dBm.
+maxTxEIRP:
+# Minimum device TX Radiated output power in dBm.
+minTxEIRP:
+# Typical mobility profile of the device. Possible values are 'near_static' (also valid for static devices), 'walking_speed', 'vehicular_speed'
+# or 'random' (not known, changes over time).
+motionIndicator:
+
+# Is your device certified by the LoRa Alliance? Possible values: true, false.
+LoRaWANCertified: false
+# Format: `<8 characters max>:<16 characters max>:<digits only>`
+# Be careful: Once you chose a model, it cannot be changed later
+modelId: msight:uc711:1
+# <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
+# Format: `<8 characters max>:<16 characters max>:<digits only>`
+# Be careful: Once you chose a protocolId, it cannot be changed later
+protocolId:
+  - msight:uc711:1
+# Informative, maintained by Netmore: true when the driver of the first protocolId above ships a
+# BACnet/Modbus mapping (mapping.json, in Netmore's private catalog), so that the device can be
+# exposed through the BACnet and Modbus gateways. Checked: true requires that mapping.
+supportedBACnetModbus: true
+# DataSheet URL (optional)
+specificationURL:
+# User Guide URL (optional)
+userGuideURL:
+# <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
+sensors:
+  - temperature:Cel
+  - humidity:%RH
+# Driver examples
+# A list of examples description that are compatible with this model
+examples:
+  msight:uc711:1:
+    - "Uplink coverage: enabled_relay, relay_status_change:Y1, relay_status_change:W1 and 11 more"
+    - "Uplink coverage: target_temperature_range:cool:celsius_max, target_temperature_range:cool:celsius_min, target_temperature_range:cool:fahrenheit_max and 8 more"
+    - "Uplink coverage: temperature_alarm:open_window_alarm_deactivation:fahrenheit_temperature, temperature_alarm:open_window_alarm_deactivation:celsius_temperature"
+    - "Uplink coverage: temperature_alarm:open_window_alarm_trigger:fahrenheit_temperature, temperature_alarm:open_window_alarm_trigger:celsius_temperature"
+    - "Uplink coverage: temperature_alarm:anti_freeze_protection_trigger:fahrenheit_temperature, temperature_alarm:anti_freeze_protection_trigger:celsius_temperature"
+    - "Uplink coverage: temperature_alarm:over_range_alarm_trigger:fahrenheit_temperature, temperature_alarm:over_range_alarm_trigger:celsius_temperature"
+    - "Uplink coverage: temperature_alarm:persistent_low_temp_deactivation:fahrenheit_temperature, temperature_alarm:persistent_low_temp_deactivation:celsius_temperature"
+    - "Uplink coverage: anti_freezing:celsius_target_temperature, anti_freezing:fahrenheit_target_temperature, target_temperature_settings:celsius_cool and 19 more"
+    - "Uplink coverage: filter_clean_remind:usage_time, system_protect:enable"
+    - "Uplink coverage: temperature_unit, unilateral_tolerance_enable, temperature_abnormal:type and 14 more"
+    - "Uplink coverage: product_sn"
+    - "Uplink coverage: tsl_version"
+    - "Uplink coverage (synthetic frame): lorawan_configuration_settings:mode, dehumidify_settings:humidify_high_threshold, dehumidify_settings:humidify_low_threshold and 8 more"
+    - "Uplink coverage (synthetic frame): fan_control_info:status, fan_control_info:mode"
+    - "Downlink encode: linked group anti_freezing (2 points)"
+    - "Downlink encode: linked group dehumidify_settings (2 points)"
+    - "Downlink encode: linked group energy_saving (6 points)"
+    - "Downlink encode: linked group fan_delay_settings (2 points)"
+    - "Downlink encode: linked group fan_settings (4 points)"
+    - "Downlink encode: linked group install_configuration (2 points)"
+    - "Downlink encode: linked group reporting_interval (2 points)"
+    - "Downlink encode: linked group target_temperature_range (4 points)"
+    - "Downlink encode: linked group target_temperature_settings (2 points)"
+    - "Downlink encode: linked group target_temperature_tolerance (2 points)"
+    - "Downlink encode: linked group temperature_control_level_switch (2 points)"
+    - "Downlink write: energy_saving_enable and 4 more"
+    - "Downlink encode: temperature_control_mode:ctrl_mode"
+LoRaWANRelay:
+  canOperateAsARelay: false
+  defaultRelayActivation: false

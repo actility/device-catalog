@@ -1,0 +1,2414 @@
+[
+    {
+        "description": "Uplink coverage: distance_alarm_config:enable, distance_alarm_config:condition, distance_alarm_config:alarm_release_enable and 16 more",
+        "type": "uplink",
+        "input": {
+            "bytes": "fe06080000000000000000fe06180000000000000000f80d01522374fe06100000000000000000f80d",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "distance_alarm_config": {
+                    "enable": "disable",
+                    "condition": "disable",
+                    "alarm_release_enable": "disable",
+                    "threshold_min": 0,
+                    "threshold_max": 0
+                },
+                "tank_mode_distance_alarm_config": {
+                    "enable": "disable",
+                    "condition": "disable",
+                    "alarm_release_enable": "disable",
+                    "threshold_min": 0,
+                    "threshold_max": 0
+                },
+                "device_response_result": {
+                    "channel_type": 13,
+                    "result": "unknown",
+                    "request": {
+                        "retransmit_config": {
+                            "enable": "enable",
+                            "retransmit_interval": 9042
+                        }
+                    }
+                },
+                "distance_mutation_alarm_config": {
+                    "enable": "disable",
+                    "alarm_release_enable": "disable",
+                    "mutation": 0
+                },
+                "retransmit_config": {
+                    "enable": "disable",
+                    "retransmit_interval": 0
+                }
+            }
+        },
+        "points": {
+            "status:2": {
+                "unitId": "state",
+                "record": false,
+                "nature": "tilt"
+            },
+            "status:3": {
+                "unitId": "state",
+                "record": false,
+                "nature": "reset"
+            }
+        },
+        "BACnet": {
+            "distance_alarm_config:enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "distance_alarm_config:condition": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "distance_alarm_config:alarm_release_enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "distance_alarm_config:threshold_min": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "MILLIMETERS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "MILLIMETERS"
+                }
+            ],
+            "distance_alarm_config:threshold_max": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "MILLIMETERS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "MILLIMETERS"
+                }
+            ],
+            "tank_mode_distance_alarm_config:enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "tank_mode_distance_alarm_config:condition": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "tank_mode_distance_alarm_config:alarm_release_enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "tank_mode_distance_alarm_config:threshold_min": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "MILLIMETERS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "MILLIMETERS"
+                }
+            ],
+            "tank_mode_distance_alarm_config:threshold_max": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "MILLIMETERS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "MILLIMETERS"
+                }
+            ],
+            "distance_mutation_alarm_config:enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "distance_mutation_alarm_config:alarm_release_enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "distance_mutation_alarm_config:mutation": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "MILLIMETERS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "MILLIMETERS"
+                }
+            ],
+            "retransmit_config:enable": {
+                "object": "BINARY_INPUT",
+                "presentValue": 0
+            },
+            "retransmit_config:retransmit_interval": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "device_response_result:channel_type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 13,
+                "units": "NO_UNITS"
+            },
+            "device_response_result:result": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "device_response_result:request:retransmit_config:enable": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            },
+            "device_response_result:request:retransmit_config:retransmit_interval": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 9042,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "distance_alarm_config:enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "distance_alarm_config:condition": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "distance_alarm_config:alarm_release_enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "distance_alarm_config:threshold_min": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT16"
+            },
+            "distance_alarm_config:threshold_max": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT16"
+            },
+            "tank_mode_distance_alarm_config:enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "tank_mode_distance_alarm_config:condition": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "tank_mode_distance_alarm_config:alarm_release_enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "tank_mode_distance_alarm_config:threshold_min": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT16"
+            },
+            "tank_mode_distance_alarm_config:threshold_max": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT16"
+            },
+            "distance_mutation_alarm_config:enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "distance_mutation_alarm_config:alarm_release_enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "distance_mutation_alarm_config:mutation": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT16"
+            },
+            "retransmit_config:enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "BOOL"
+            },
+            "retransmit_config:retransmit_interval": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT32"
+            },
+            "device_response_result:channel_type": {
+                "table": "inputRegister",
+                "value": 13,
+                "value_type": "INT32"
+            },
+            "device_response_result:result": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "device_response_result:request:retransmit_config:enable": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "BOOL"
+            },
+            "device_response_result:request:retransmit_config:retransmit_interval": {
+                "table": "inputRegister",
+                "value": 9042,
+                "value_type": "INT32"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: tank_mode_distance_mutation_alarm_config:enable, tank_mode_distance_mutation_alarm_config:alarm_release_enable, tank_mode_distance_mutation_alarm_config:mutation and 2 more",
+        "type": "uplink",
+        "input": {
+            "bytes": "fe06200000000000000000fe1b",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "tank_mode_distance_mutation_alarm_config": {
+                    "enable": "disable",
+                    "alarm_release_enable": "disable",
+                    "mutation": 0
+                },
+                "distance_range": {
+                    "mode": "general",
+                    "max": 0
+                }
+            }
+        },
+        "points": {
+            "status:2": {
+                "unitId": "state",
+                "record": false,
+                "nature": "tilt"
+            },
+            "status:3": {
+                "unitId": "state",
+                "record": false,
+                "nature": "reset"
+            }
+        },
+        "BACnet": {
+            "distance_range:mode": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "distance_range:max": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "MILLIMETERS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "MILLIMETERS"
+                }
+            ],
+            "tank_mode_distance_mutation_alarm_config:enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "tank_mode_distance_mutation_alarm_config:alarm_release_enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "tank_mode_distance_mutation_alarm_config:mutation": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "MILLIMETERS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "MILLIMETERS"
+                }
+            ]
+        },
+        "Modbus": {
+            "distance_range:mode": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "distance_range:max": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            },
+            "tank_mode_distance_mutation_alarm_config:enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "tank_mode_distance_mutation_alarm_config:alarm_release_enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "tank_mode_distance_mutation_alarm_config:mutation": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT16"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: recollection_config:counts, recollection_config:interval",
+        "type": "uplink",
+        "input": {
+            "bytes": "fe1c",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "recollection_config": {
+                    "counts": 0,
+                    "interval": 0
+                }
+            }
+        },
+        "points": {
+            "status:2": {
+                "unitId": "state",
+                "record": false,
+                "nature": "tilt"
+            },
+            "status:3": {
+                "unitId": "state",
+                "record": false,
+                "nature": "reset"
+            }
+        },
+        "BACnet": {
+            "recollection_config:counts": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 1,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "recollection_config:interval": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "SECONDS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 1,
+                    "units": "SECONDS"
+                }
+            ]
+        },
+        "Modbus": {
+            "recollection_config:counts": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "recollection_config:interval": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: distance_calibration_settings:enable, distance_calibration_settings:calibration_value",
+        "type": "uplink",
+        "input": {
+            "bytes": "feab",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "distance_calibration_settings": {
+                    "enable": "disable",
+                    "calibration_value": 0
+                }
+            }
+        },
+        "points": {
+            "status:2": {
+                "unitId": "state",
+                "record": false,
+                "nature": "tilt"
+            },
+            "status:3": {
+                "unitId": "state",
+                "record": false,
+                "nature": "reset"
+            }
+        },
+        "BACnet": {
+            "distance_calibration_settings:enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "distance_calibration_settings:calibration_value": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "MILLIMETERS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "MILLIMETERS"
+                }
+            ]
+        },
+        "Modbus": {
+            "distance_calibration_settings:enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "distance_calibration_settings:calibration_value": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT16"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: battery",
+        "type": "uplink",
+        "input": {
+            "bytes": "0175",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "battery": 0
+            }
+        },
+        "points": {
+            "batteryLevel": {
+                "unitId": "%",
+                "record": 0
+            },
+            "status:2": {
+                "unitId": "state",
+                "record": false,
+                "nature": "tilt"
+            },
+            "status:3": {
+                "unitId": "state",
+                "record": false,
+                "nature": "reset"
+            }
+        },
+        "BACnet": {
+            "battery": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "PERCENT"
+            }
+        },
+        "Modbus": {
+            "battery": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: temperature",
+        "type": "uplink",
+        "input": {
+            "bytes": "0367",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "temperature": 0
+            }
+        },
+        "points": {
+            "status:2": {
+                "unitId": "state",
+                "record": false,
+                "nature": "tilt"
+            },
+            "status:3": {
+                "unitId": "state",
+                "record": false,
+                "nature": "reset"
+            },
+            "temperature:2": {
+                "unitId": "Cel",
+                "record": 0
+            }
+        },
+        "BACnet": {
+            "temperature": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "DEGREES_CELSIUS"
+            }
+        },
+        "Modbus": {
+            "temperature": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "FLOAT"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: distance",
+        "type": "uplink",
+        "input": {
+            "bytes": "0482",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "distance": 0
+            }
+        },
+        "points": {
+            "status:2": {
+                "unitId": "state",
+                "record": false,
+                "nature": "tilt"
+            },
+            "status:3": {
+                "unitId": "state",
+                "record": false,
+                "nature": "reset"
+            },
+            "distance:3": {
+                "unitId": "mm",
+                "record": 0
+            }
+        },
+        "BACnet": {
+            "distance": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "MILLIMETERS"
+            }
+        },
+        "Modbus": {
+            "distance": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "FLOAT"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: radar_signal_rssi",
+        "type": "uplink",
+        "input": {
+            "bytes": "06c7",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "radar_signal_rssi": 0
+            }
+        },
+        "points": {
+            "status:2": {
+                "unitId": "state",
+                "record": false,
+                "nature": "tilt"
+            },
+            "status:3": {
+                "unitId": "state",
+                "record": false,
+                "nature": "reset"
+            }
+        },
+        "BACnet": {
+            "radar_signal_rssi": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "radar_signal_rssi": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "FLOAT"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: signal_quality",
+        "type": "uplink",
+        "input": {
+            "bytes": "f814",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "signal_quality": 0
+            }
+        },
+        "points": {
+            "status:2": {
+                "unitId": "state",
+                "record": false,
+                "nature": "tilt"
+            },
+            "status:3": {
+                "unitId": "state",
+                "record": false,
+                "nature": "reset"
+            }
+        },
+        "BACnet": {
+            "signal_quality": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ]
+        },
+        "Modbus": {
+            "signal_quality": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT16"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: distance_threshold_sensitive",
+        "type": "uplink",
+        "input": {
+            "bytes": "f815",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "distance_threshold_sensitive": 0
+            }
+        },
+        "points": {
+            "status:2": {
+                "unitId": "state",
+                "record": false,
+                "nature": "tilt"
+            },
+            "status:3": {
+                "unitId": "state",
+                "record": false,
+                "nature": "reset"
+            }
+        },
+        "BACnet": {
+            "distance_threshold_sensitive": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ]
+        },
+        "Modbus": {
+            "distance_threshold_sensitive": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "FLOAT"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: collection_interval",
+        "type": "uplink",
+        "input": {
+            "bytes": "f839",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "collection_interval": 0
+            }
+        },
+        "points": {
+            "status:2": {
+                "unitId": "state",
+                "record": false,
+                "nature": "tilt"
+            },
+            "status:3": {
+                "unitId": "state",
+                "record": false,
+                "nature": "reset"
+            }
+        },
+        "BACnet": {
+            "collection_interval": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "MINUTES"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 1,
+                    "units": "MINUTES"
+                }
+            ]
+        },
+        "Modbus": {
+            "collection_interval": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: tilt_distance_link",
+        "type": "uplink",
+        "input": {
+            "bytes": "fe3e",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "tilt_distance_link": "disable"
+            }
+        },
+        "points": {
+            "status:2": {
+                "unitId": "state",
+                "record": false,
+                "nature": "tilt"
+            },
+            "status:3": {
+                "unitId": "state",
+                "record": false,
+                "nature": "reset"
+            }
+        },
+        "BACnet": {
+            "tilt_distance_link": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ]
+        },
+        "Modbus": {
+            "tilt_distance_link": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: retransmit_interval",
+        "type": "uplink",
+        "input": {
+            "bytes": "fe6a",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "retransmit_interval": 0
+            }
+        },
+        "points": {
+            "status:2": {
+                "unitId": "state",
+                "record": false,
+                "nature": "tilt"
+            },
+            "status:3": {
+                "unitId": "state",
+                "record": false,
+                "nature": "reset"
+            }
+        },
+        "BACnet": {
+            "retransmit_interval": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "SECONDS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "SECONDS"
+                }
+            ]
+        },
+        "Modbus": {
+            "retransmit_interval": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: report_interval",
+        "type": "uplink",
+        "input": {
+            "bytes": "fe8e",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "report_interval": 0
+            }
+        },
+        "points": {
+            "status:2": {
+                "unitId": "state",
+                "record": false,
+                "nature": "tilt"
+            },
+            "status:3": {
+                "unitId": "state",
+                "record": false,
+                "nature": "reset"
+            }
+        },
+        "BACnet": {
+            "report_interval": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "MINUTES"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 1,
+                    "units": "MINUTES"
+                }
+            ]
+        },
+        "Modbus": {
+            "report_interval": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: time_zone",
+        "type": "uplink",
+        "input": {
+            "bytes": "febd",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "time_zone": "UTC"
+            }
+        },
+        "points": {
+            "status:2": {
+                "unitId": "state",
+                "record": false,
+                "nature": "tilt"
+            },
+            "status:3": {
+                "unitId": "state",
+                "record": false,
+                "nature": "reset"
+            }
+        },
+        "BACnet": {
+            "time_zone": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": -720,
+                    "units": "NO_UNITS"
+                }
+            ]
+        },
+        "Modbus": {
+            "time_zone": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "INT16"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: alarm_counts",
+        "type": "uplink",
+        "input": {
+            "bytes": "fef2",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "alarm_counts": 0
+            }
+        },
+        "points": {
+            "status:2": {
+                "unitId": "state",
+                "record": false,
+                "nature": "tilt"
+            },
+            "status:3": {
+                "unitId": "state",
+                "record": false,
+                "nature": "reset"
+            }
+        },
+        "BACnet": {
+            "alarm_counts": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 1,
+                    "units": "NO_UNITS"
+                }
+            ]
+        },
+        "Modbus": {
+            "alarm_counts": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: ipso_version",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff01",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "ipso_version": "v0.0"
+            }
+        },
+        "points": {
+            "status:2": {
+                "unitId": "state",
+                "record": false,
+                "nature": "tilt"
+            },
+            "status:3": {
+                "unitId": "state",
+                "record": false,
+                "nature": "reset"
+            }
+        },
+        "BACnet": {
+            "ipso_version": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "v0.0"
+            }
+        },
+        "Modbus": {
+            "ipso_version": {
+                "table": "inputRegister",
+                "value": "v0.0",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: hardware_version",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff09",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "hardware_version": "v0.0"
+            }
+        },
+        "points": {
+            "status:2": {
+                "unitId": "state",
+                "record": false,
+                "nature": "tilt"
+            },
+            "status:3": {
+                "unitId": "state",
+                "record": false,
+                "nature": "reset"
+            }
+        },
+        "BACnet": {
+            "hardware_version": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "v0.0"
+            }
+        },
+        "Modbus": {
+            "hardware_version": {
+                "table": "inputRegister",
+                "value": "v0.0",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: firmware_version",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff0a",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "firmware_version": "v0.0"
+            }
+        },
+        "points": {
+            "status:2": {
+                "unitId": "state",
+                "record": false,
+                "nature": "tilt"
+            },
+            "status:3": {
+                "unitId": "state",
+                "record": false,
+                "nature": "reset"
+            }
+        },
+        "BACnet": {
+            "firmware_version": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "v0.0"
+            }
+        },
+        "Modbus": {
+            "firmware_version": {
+                "table": "inputRegister",
+                "value": "v0.0",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: device_status",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff0b",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "device_status": "on"
+            }
+        },
+        "points": {
+            "status:2": {
+                "unitId": "state",
+                "record": false,
+                "nature": "tilt"
+            },
+            "status:3": {
+                "unitId": "state",
+                "record": false,
+                "nature": "reset"
+            }
+        },
+        "BACnet": {
+            "device_status": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            }
+        },
+        "Modbus": {
+            "device_status": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: sn",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff16",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "sn": ""
+            }
+        },
+        "points": {
+            "status:2": {
+                "unitId": "state",
+                "record": false,
+                "nature": "tilt"
+            },
+            "status:3": {
+                "unitId": "state",
+                "record": false,
+                "nature": "reset"
+            }
+        },
+        "BACnet": {
+            "sn": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": ""
+            }
+        },
+        "Modbus": {
+            "sn": {
+                "table": "inputRegister",
+                "value": "",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: reset_event",
+        "type": "uplink",
+        "input": {
+            "bytes": "fffe",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "reset_event": "reset"
+            }
+        },
+        "points": {
+            "status:2": {
+                "unitId": "state",
+                "record": false,
+                "nature": "tilt"
+            },
+            "status:3": {
+                "unitId": "state",
+                "record": true,
+                "nature": "reset"
+            }
+        },
+        "BACnet": {
+            "reset_event": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            }
+        },
+        "Modbus": {
+            "reset_event": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: tsl_version",
+        "type": "uplink",
+        "input": {
+            "bytes": "ffff",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "tsl_version": "v0.0"
+            }
+        },
+        "points": {
+            "status:2": {
+                "unitId": "state",
+                "record": false,
+                "nature": "tilt"
+            },
+            "status:3": {
+                "unitId": "state",
+                "record": false,
+                "nature": "reset"
+            }
+        },
+        "BACnet": {
+            "tsl_version": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "v0.0"
+            }
+        },
+        "Modbus": {
+            "tsl_version": {
+                "table": "inputRegister",
+                "value": "v0.0",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: reboot, report_status, sync_time and 10 more",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff10ffff2801ff4affff2a00ff2a01f91200f91300f91600ff6900ff6800ff2701050001fe6a01",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "reboot": "yes",
+                "report_status": "yes",
+                "sync_time": "yes",
+                "radar_calibration": "yes",
+                "radar_blind_calibration": "yes",
+                "distance_mode": "general",
+                "blind_detection_enable": "disable",
+                "peak_sorting": "closest",
+                "retransmit_enable": "disable",
+                "history_enable": "disable",
+                "clear_history": "yes",
+                "position": "tilt",
+                "resend_interval": 0
+            }
+        },
+        "points": {
+            "status:2": {
+                "unitId": "state",
+                "record": true,
+                "nature": "tilt"
+            },
+            "status:3": {
+                "unitId": "state",
+                "record": false,
+                "nature": "reset"
+            }
+        },
+        "BACnet": {
+            "position": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            },
+            "distance_mode": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "blind_detection_enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "peak_sorting": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "retransmit_enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "resend_interval": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "SECONDS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "SECONDS"
+                }
+            ],
+            "history_enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "reboot": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            },
+            "report_status": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            },
+            "sync_time": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            },
+            "radar_calibration": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            },
+            "radar_blind_calibration": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            },
+            "clear_history": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            }
+        },
+        "Modbus": {
+            "position": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "distance_mode": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "blind_detection_enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "peak_sorting": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "retransmit_enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "resend_interval": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "UINT16"
+            },
+            "history_enable": {
+                "table": "discreteInput",
+                "value": 0,
+                "value_type": "UINT8"
+            },
+            "reboot": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "report_status": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "sync_time": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "radar_calibration": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "radar_blind_calibration": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "clear_history": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: lorawan_class, device_response_result:request:distance_mode",
+        "type": "uplink",
+        "input": {
+            "bytes": "ff0f01f8120152",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "lorawan_class": "Class B",
+                "device_response_result": {
+                    "channel_type": 18,
+                    "result": "unknown",
+                    "request": {
+                        "distance_mode": "rainwater"
+                    }
+                }
+            }
+        },
+        "points": {
+            "status:2": {
+                "unitId": "state",
+                "record": false,
+                "nature": "tilt"
+            },
+            "status:3": {
+                "unitId": "state",
+                "record": false,
+                "nature": "reset"
+            }
+        },
+        "BACnet": {
+            "lorawan_class": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 1,
+                "units": "NO_UNITS"
+            },
+            "device_response_result:channel_type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 18,
+                "units": "NO_UNITS"
+            },
+            "device_response_result:result": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "device_response_result:request:distance_mode": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "rainwater"
+            }
+        },
+        "Modbus": {
+            "lorawan_class": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "device_response_result:channel_type": {
+                "table": "inputRegister",
+                "value": 18,
+                "value_type": "INT32"
+            },
+            "device_response_result:result": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "device_response_result:request:distance_mode": {
+                "table": "inputRegister",
+                "value": "rainwater",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: device_response_result:request:blind_detection_enable",
+        "type": "uplink",
+        "input": {
+            "bytes": "f8130152",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "device_response_result": {
+                    "channel_type": 19,
+                    "result": "unknown",
+                    "request": {
+                        "blind_detection_enable": "enable"
+                    }
+                }
+            }
+        },
+        "points": {
+            "status:2": {
+                "unitId": "state",
+                "record": false,
+                "nature": "tilt"
+            },
+            "status:3": {
+                "unitId": "state",
+                "record": false,
+                "nature": "reset"
+            }
+        },
+        "BACnet": {
+            "device_response_result:channel_type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 19,
+                "units": "NO_UNITS"
+            },
+            "device_response_result:result": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "device_response_result:request:blind_detection_enable": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            }
+        },
+        "Modbus": {
+            "device_response_result:channel_type": {
+                "table": "inputRegister",
+                "value": 19,
+                "value_type": "INT32"
+            },
+            "device_response_result:result": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "device_response_result:request:blind_detection_enable": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "BOOL"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: device_response_result:request:peak_sorting",
+        "type": "uplink",
+        "input": {
+            "bytes": "f8160152",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "device_response_result": {
+                    "channel_type": 22,
+                    "result": "unknown",
+                    "request": {
+                        "peak_sorting": "strongest"
+                    }
+                }
+            }
+        },
+        "points": {
+            "status:2": {
+                "unitId": "state",
+                "record": false,
+                "nature": "tilt"
+            },
+            "status:3": {
+                "unitId": "state",
+                "record": false,
+                "nature": "reset"
+            }
+        },
+        "BACnet": {
+            "device_response_result:channel_type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 22,
+                "units": "NO_UNITS"
+            },
+            "device_response_result:result": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "device_response_result:request:peak_sorting": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "strongest"
+            }
+        },
+        "Modbus": {
+            "device_response_result:channel_type": {
+                "table": "inputRegister",
+                "value": 22,
+                "value_type": "INT32"
+            },
+            "device_response_result:result": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "device_response_result:request:peak_sorting": {
+                "table": "inputRegister",
+                "value": "strongest",
+                "value_type": "STRING"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: device_response_result:request:signal_quality",
+        "type": "uplink",
+        "input": {
+            "bytes": "f814015223",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "device_response_result": {
+                    "channel_type": 20,
+                    "result": "unknown",
+                    "request": {
+                        "signal_quality": 20993
+                    }
+                }
+            }
+        },
+        "points": {
+            "status:2": {
+                "unitId": "state",
+                "record": false,
+                "nature": "tilt"
+            },
+            "status:3": {
+                "unitId": "state",
+                "record": false,
+                "nature": "reset"
+            }
+        },
+        "BACnet": {
+            "device_response_result:channel_type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 20,
+                "units": "NO_UNITS"
+            },
+            "device_response_result:result": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "device_response_result:request:signal_quality": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 20993,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "device_response_result:channel_type": {
+                "table": "inputRegister",
+                "value": 20,
+                "value_type": "INT32"
+            },
+            "device_response_result:result": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "device_response_result:request:signal_quality": {
+                "table": "inputRegister",
+                "value": 20993,
+                "value_type": "INT32"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: device_response_result:request:distance_threshold_sensitive",
+        "type": "uplink",
+        "input": {
+            "bytes": "f815015223",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "device_response_result": {
+                    "channel_type": 21,
+                    "result": "unknown",
+                    "request": {
+                        "distance_threshold_sensitive": 2099.3
+                    }
+                }
+            }
+        },
+        "points": {
+            "status:2": {
+                "unitId": "state",
+                "record": false,
+                "nature": "tilt"
+            },
+            "status:3": {
+                "unitId": "state",
+                "record": false,
+                "nature": "reset"
+            }
+        },
+        "BACnet": {
+            "device_response_result:channel_type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 21,
+                "units": "NO_UNITS"
+            },
+            "device_response_result:result": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "device_response_result:request:distance_threshold_sensitive": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 2099.3,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "device_response_result:channel_type": {
+                "table": "inputRegister",
+                "value": 21,
+                "value_type": "INT32"
+            },
+            "device_response_result:result": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "device_response_result:request:distance_threshold_sensitive": {
+                "table": "inputRegister",
+                "value": 2099.3,
+                "value_type": "FLOAT"
+            }
+        }
+    },
+    {
+        "description": "Uplink coverage: device_response_result:request:collection_interval",
+        "type": "uplink",
+        "input": {
+            "bytes": "f839015223",
+            "fPort": 85
+        },
+        "output": {
+            "data": {
+                "device_response_result": {
+                    "channel_type": 57,
+                    "result": "unknown",
+                    "request": {
+                        "collection_interval": 20993
+                    }
+                }
+            }
+        },
+        "points": {
+            "status:2": {
+                "unitId": "state",
+                "record": false,
+                "nature": "tilt"
+            },
+            "status:3": {
+                "unitId": "state",
+                "record": false,
+                "nature": "reset"
+            }
+        },
+        "BACnet": {
+            "device_response_result:channel_type": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 57,
+                "units": "NO_UNITS"
+            },
+            "device_response_result:result": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "unknown"
+            },
+            "device_response_result:request:collection_interval": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 20993,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "device_response_result:channel_type": {
+                "table": "inputRegister",
+                "value": 57,
+                "value_type": "INT32"
+            },
+            "device_response_result:result": {
+                "table": "inputRegister",
+                "value": "unknown",
+                "value_type": "STRING"
+            },
+            "device_response_result:request:collection_interval": {
+                "table": "inputRegister",
+                "value": 20993,
+                "value_type": "INT32"
+            }
+        }
+    },
+    {
+        "description": "Downlink encode: linked group distance_range (2 points)",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "distance_range": {
+                    "mode": "general",
+                    "max": 0
+                }
+            }
+        },
+        "output": {
+            "bytes": [
+                255,
+                27,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink encode: linked group distance_alarm_config (5 points)",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "distance_alarm_config": {
+                    "enable": "disable",
+                    "condition": "disable",
+                    "alarm_release_enable": "disable",
+                    "threshold_min": 0,
+                    "threshold_max": 0
+                }
+            }
+        },
+        "output": {
+            "bytes": [
+                255,
+                6,
+                8,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink encode: linked group tank_mode_distance_alarm_config (5 points)",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "tank_mode_distance_alarm_config": {
+                    "enable": "disable",
+                    "condition": "disable",
+                    "alarm_release_enable": "disable",
+                    "threshold_min": 0,
+                    "threshold_max": 0
+                }
+            }
+        },
+        "output": {
+            "bytes": [
+                255,
+                6,
+                24,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink encode: linked group distance_mutation_alarm_config (3 points)",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "distance_mutation_alarm_config": {
+                    "enable": "disable",
+                    "alarm_release_enable": "disable",
+                    "mutation": 0
+                }
+            }
+        },
+        "output": {
+            "bytes": [
+                255,
+                6,
+                16,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink encode: linked group tank_mode_distance_mutation_alarm_config (3 points)",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "tank_mode_distance_mutation_alarm_config": {
+                    "enable": "disable",
+                    "alarm_release_enable": "disable",
+                    "mutation": 0
+                }
+            }
+        },
+        "output": {
+            "bytes": [
+                255,
+                6,
+                32,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink encode: linked group distance_calibration_settings (2 points)",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "distance_calibration_settings": {
+                    "enable": "disable",
+                    "calibration_value": 0
+                }
+            }
+        },
+        "output": {
+            "bytes": [
+                255,
+                171,
+                0,
+                0,
+                0
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink encode: linked group recollection_config (2 points)",
+        "type": "downlink-encode",
+        "input": {
+            "data": {
+                "recollection_config": {
+                    "counts": 1,
+                    "interval": 1
+                }
+            }
+        },
+        "output": {
+            "bytes": [
+                255,
+                28,
+                1,
+                1
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink write: report_interval and 4 more",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "report_interval": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            },
+            "collection_interval": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            },
+            "time_zone": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": -720
+            },
+            "alarm_counts": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            },
+            "distance_mode": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            }
+        },
+        "inputModbus": {
+            "report_interval": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 1
+            },
+            "collection_interval": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 1
+            },
+            "time_zone": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": -720
+            },
+            "alarm_counts": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 1
+            },
+            "distance_mode": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 0
+            }
+        },
+        "input": {
+            "data": {
+                "report_interval": 1,
+                "collection_interval": 1,
+                "time_zone": "UTC-12",
+                "alarm_counts": 1,
+                "distance_mode": "general"
+            }
+        },
+        "output": {
+            "bytes": [
+                255,
+                142,
+                0,
+                1,
+                0,
+                249,
+                57,
+                1,
+                0,
+                255,
+                189,
+                48,
+                253,
+                255,
+                242,
+                1,
+                0,
+                249,
+                18,
+                0
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink write: blind_detection_enable and 4 more",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "blind_detection_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            },
+            "signal_quality": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            },
+            "distance_threshold_sensitive": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            },
+            "peak_sorting": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            },
+            "retransmit_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            }
+        },
+        "inputModbus": {
+            "blind_detection_enable": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 0
+            },
+            "signal_quality": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 0
+            },
+            "distance_threshold_sensitive": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 0
+            },
+            "peak_sorting": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 0
+            },
+            "retransmit_enable": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 0
+            }
+        },
+        "input": {
+            "data": {
+                "blind_detection_enable": "disable",
+                "signal_quality": 0,
+                "distance_threshold_sensitive": 0,
+                "peak_sorting": "closest",
+                "retransmit_enable": "disable"
+            }
+        },
+        "output": {
+            "bytes": [
+                249,
+                19,
+                0,
+                249,
+                20,
+                0,
+                0,
+                249,
+                21,
+                0,
+                0,
+                249,
+                22,
+                0,
+                255,
+                105,
+                0
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink write: retransmit_interval and 3 more",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "retransmit_interval": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            },
+            "resend_interval": {
+                "object": "ANALOG_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            },
+            "history_enable": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            },
+            "tilt_distance_link": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 0
+            }
+        },
+        "inputModbus": {
+            "retransmit_interval": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 0
+            },
+            "resend_interval": {
+                "table": "holdingRegister",
+                "operation": "setRegister",
+                "value": 0
+            },
+            "history_enable": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 0
+            },
+            "tilt_distance_link": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 0
+            }
+        },
+        "input": {
+            "data": {
+                "retransmit_interval": 0,
+                "resend_interval": 0,
+                "history_enable": "disable",
+                "tilt_distance_link": "disable"
+            }
+        },
+        "output": {
+            "bytes": [
+                255,
+                106,
+                0,
+                0,
+                0,
+                255,
+                106,
+                1,
+                0,
+                0,
+                255,
+                104,
+                0,
+                255,
+                62,
+                0
+            ],
+            "fPort": 100
+        }
+    }
+]
