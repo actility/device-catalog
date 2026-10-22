@@ -23,7 +23,8 @@ motionIndicator: RANDOM
 
 mac:
     # This value defines the minimal required RX1 delay that allows the application server managing the device to quickly respond to an uplink packet with a downlink applicative packet.
-    minRx1Delay:
+    minRx1Delay:    
+
     # Activation modes supported by the device (put true where applicable).
     # (ABP)
     activationByPersonalization: false
@@ -38,14 +39,13 @@ mac:
     # The device Tx Power Capabilities here will not be taken into consideration if it is overwritten in the model.yaml
     devicesTxPowerCapabilities:
         # Minimum device TX Conducted output power in dBm.
-        minTxPower: 10
+        minTxPower: 5
         # Maximum device TX Conducted output power in dBm.
-        maxTxPower: 13
+        maxTxPower: 5
         # Minimum device TX Radiated output power in dBm.
         minTxEIRP: 3
         # Maximum device TX Radiated output power in dBm.
-        maxTxEIRP: 6
-
+        maxTxEIRP: 3
     uplinkFrameRepetition: 
         # Maximum number of transmissions per uplink frame, supported by the device. 
         maxNbTrans:
@@ -62,9 +62,9 @@ bootSettings:
     rx1DROffset:
     # Rx2 DataRate, used to send DL packets over RX2 slot. Note: Data Rate encoding is region-specific, see the applicable LoRaWAN Regional 
     # Profile.
-    rx2DataRate: 2
+    rx2DataRate:
     # Rx2 Frequency expressed in MHz, used to send DL packets over RX2 slot.
-    rx2Frequency: 505.3
+    rx2Frequency:
     # Default data rate used for Class B ping slots. Note: Data Rate encoding is region-specific, see the applicable LoRaWAN Regional Profile.
     pingSlotChannelDataRate:
     # Default frequency (in MHz) used for Class B ping slots.
@@ -90,8 +90,8 @@ supportedMACCommands:
     dlChannelReqAns: false
     txParamSetupReqAns: false
     pingSlotChannelReqAns: false
-    pingSlotInfoReqAns: false
-    deviceTimeReqAns: false
+    pingSlotInfoReqAns: true
+    deviceTimeReqAns: true
     beaconFreqReqAns: false
     extendedNotifyNewEndDeviceReq: false
 
@@ -99,3 +99,4 @@ supportedMACCommands:
 # OTAA devices? See https://lora-alliance.org/resource_hub/technical-recommendations-for-preventing-state-synchronization-issues-around-lorawan-1-0-x-join-procedure/
 # Possible values: true, false. This field is automatically forced to true for LoRaWAN MAC versions 1.0.4 and 1.1.
 devNonceCounterBased: false
+
