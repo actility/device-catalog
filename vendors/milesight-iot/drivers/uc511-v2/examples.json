@@ -2783,26 +2783,56 @@
         },
         "points": null,
         "BACnet": {
-            "report_status": {
-                "object": "BINARY_INPUT",
-                "presentValue": 1
-            },
-            "sync_time": {
-                "object": "BINARY_INPUT",
-                "presentValue": 1
-            },
-            "clear_valve_1_pulse": {
-                "object": "BINARY_INPUT",
-                "presentValue": 1
-            },
-            "clear_valve_2_pulse": {
-                "object": "BINARY_INPUT",
-                "presentValue": 1
-            },
-            "clear_history": {
-                "object": "BINARY_INPUT",
-                "presentValue": 1
-            },
+            "report_status": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "sync_time": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "clear_valve_1_pulse": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "clear_valve_2_pulse": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "clear_history": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
             "query_rule_config:rule_1": {
                 "object": "BINARY_INPUT",
                 "presentValue": 1
@@ -2839,6 +2869,232 @@
                 "value": 1,
                 "value_type": "BOOL"
             }
+        }
+    },
+    {
+        "description": "Downlink write: clear_history",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "clear_history": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "clear_history": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "clear_history": "yes"
+            },
+            "fPort": 85
+        },
+        "output": {
+            "bytes": [
+                255,
+                39,
+                255
+            ],
+            "fPort": 85
+        }
+    },
+    {
+        "description": "Downlink write: clear_valve_1_pulse",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "clear_valve_1_pulse": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "clear_valve_1_pulse": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "clear_valve_1_pulse": "yes"
+            },
+            "fPort": 85
+        },
+        "output": {
+            "bytes": [
+                255,
+                78,
+                1,
+                0
+            ],
+            "fPort": 85
+        }
+    },
+    {
+        "description": "Downlink write: clear_valve_2_pulse",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "clear_valve_2_pulse": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "clear_valve_2_pulse": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "clear_valve_2_pulse": "yes"
+            },
+            "fPort": 85
+        },
+        "output": {
+            "bytes": [
+                255,
+                78,
+                2,
+                0
+            ],
+            "fPort": 85
+        }
+    },
+    {
+        "description": "Downlink write: reboot",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "reboot": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "reboot": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "reboot": "yes"
+            },
+            "fPort": 85
+        },
+        "output": {
+            "bytes": [
+                255,
+                16,
+                255
+            ],
+            "fPort": 85
+        }
+    },
+    {
+        "description": "Downlink write: report_status",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "report_status": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "report_status": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "report_status": "yes"
+            },
+            "fPort": 85
+        },
+        "output": {
+            "bytes": [
+                255,
+                40,
+                255
+            ],
+            "fPort": 85
+        }
+    },
+    {
+        "description": "Downlink write: stop_transmit",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "stop_transmit": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "stop_transmit": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "stop_transmit": "yes"
+            },
+            "fPort": 85
+        },
+        "output": {
+            "bytes": [
+                253,
+                109,
+                255
+            ],
+            "fPort": 85
+        }
+    },
+    {
+        "description": "Downlink write: sync_time",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "sync_time": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "sync_time": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "sync_time": "yes"
+            },
+            "fPort": 85
+        },
+        "output": {
+            "bytes": [
+                255,
+                74,
+                0
+            ],
+            "fPort": 85
         }
     }
 ]

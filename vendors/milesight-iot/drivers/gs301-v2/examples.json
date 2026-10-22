@@ -871,14 +871,26 @@
         },
         "points": {},
         "BACnet": {
-            "reboot": {
-                "object": "BINARY_INPUT",
-                "presentValue": 1
-            },
-            "query_life_remain": {
-                "object": "BINARY_INPUT",
-                "presentValue": 1
-            }
+            "reboot": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "query_life_remain": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ]
         },
         "Modbus": {
             "reboot": {
@@ -891,6 +903,70 @@
                 "value": 1,
                 "value_type": "UINT8"
             }
+        }
+    },
+    {
+        "description": "Downlink write: query_life_remain",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "query_life_remain": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "query_life_remain": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "query_life_remain": "yes"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                125,
+                255
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink write: reboot",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "reboot": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "reboot": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "reboot": "yes"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                16,
+                1
+            ],
+            "fPort": 100
         }
     }
 ]

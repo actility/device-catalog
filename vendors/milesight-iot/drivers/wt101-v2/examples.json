@@ -2048,10 +2048,16 @@
         },
         "points": {},
         "BACnet": {
-            "reboot": {
-                "object": "BINARY_INPUT",
-                "presentValue": 1
-            },
+            "reboot": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
             "sync_time": [
                 {
                     "object": "BINARY_INPUT",
@@ -2062,18 +2068,36 @@
                     "presentValue": 0
                 }
             ],
-            "report_status": {
-                "object": "BINARY_INPUT",
-                "presentValue": 1
-            },
-            "restore_open_window_detection": {
-                "object": "BINARY_INPUT",
-                "presentValue": 1
-            },
-            "valve_calibration": {
-                "object": "BINARY_INPUT",
-                "presentValue": 1
-            },
+            "report_status": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "restore_open_window_detection": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "valve_calibration": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
             "device_response_result:channel_type": {
                 "object": "ANALOG_INPUT",
                 "presentValue": 53,
@@ -2361,6 +2385,198 @@
                 "value": 1,
                 "value_type": "BOOL"
             }
+        }
+    },
+    {
+        "description": "Downlink write: reboot",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "reboot": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "reboot": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "reboot": "yes"
+            },
+            "fPort": 1
+        },
+        "output": {
+            "bytes": [
+                255,
+                16,
+                255
+            ],
+            "fPort": 1
+        }
+    },
+    {
+        "description": "Downlink write: report_heating_date",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "report_heating_date": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "report_heating_date": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "report_heating_date": "yes"
+            },
+            "fPort": 1
+        },
+        "output": {
+            "bytes": [
+                255,
+                40,
+                1
+            ],
+            "fPort": 1
+        }
+    },
+    {
+        "description": "Downlink write: report_heating_schedule",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "report_heating_schedule": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "report_heating_schedule": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "report_heating_schedule": "yes"
+            },
+            "fPort": 1
+        },
+        "output": {
+            "bytes": [
+                255,
+                40,
+                2
+            ],
+            "fPort": 1
+        }
+    },
+    {
+        "description": "Downlink write: report_status",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "report_status": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "report_status": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "report_status": "yes"
+            },
+            "fPort": 1
+        },
+        "output": {
+            "bytes": [
+                255,
+                40,
+                0
+            ],
+            "fPort": 1
+        }
+    },
+    {
+        "description": "Downlink write: restore_open_window_detection",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "restore_open_window_detection": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "restore_open_window_detection": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "restore_open_window_detection": "yes"
+            },
+            "fPort": 1
+        },
+        "output": {
+            "bytes": [
+                255,
+                87,
+                255
+            ],
+            "fPort": 1
+        }
+    },
+    {
+        "description": "Downlink write: valve_calibration",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "valve_calibration": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "valve_calibration": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "valve_calibration": "yes"
+            },
+            "fPort": 1
+        },
+        "output": {
+            "bytes": [
+                255,
+                173,
+                255
+            ],
+            "fPort": 1
         }
     }
 ]

@@ -1135,22 +1135,46 @@
         },
         "points": {},
         "BACnet": {
-            "reboot": {
-                "object": "BINARY_INPUT",
-                "presentValue": 1
-            },
-            "report_status": {
-                "object": "BINARY_INPUT",
-                "presentValue": 1
-            },
-            "sync_time": {
-                "object": "BINARY_INPUT",
-                "presentValue": 1
-            },
-            "clear_history": {
-                "object": "BINARY_INPUT",
-                "presentValue": 1
-            }
+            "reboot": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "report_status": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "sync_time": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
+            "clear_history": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ]
         },
         "Modbus": {
             "reboot": {
@@ -1173,6 +1197,166 @@
                 "value": 1,
                 "value_type": "UINT8"
             }
+        }
+    },
+    {
+        "description": "Downlink write: clear_history",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "clear_history": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "clear_history": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "clear_history": "yes"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                39,
+                1
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink write: reboot",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "reboot": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "reboot": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "reboot": "yes"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                16,
+                255
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink write: report_status",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "report_status": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "report_status": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "report_status": "yes"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                40,
+                255
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink write: stop_transmit",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "stop_transmit": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "stop_transmit": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "stop_transmit": "yes"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                253,
+                109,
+                255
+            ],
+            "fPort": 100
+        }
+    },
+    {
+        "description": "Downlink write: sync_time",
+        "type": "downlink-encode",
+        "inputBACnet": {
+            "sync_time": {
+                "object": "BINARY_VALUE",
+                "property": "PRESENT_VALUE",
+                "value": 1
+            }
+        },
+        "inputModbus": {
+            "sync_time": {
+                "table": "coil",
+                "operation": "setCoil",
+                "value": 1
+            }
+        },
+        "input": {
+            "data": {
+                "sync_time": "yes"
+            },
+            "fPort": 100
+        },
+        "output": {
+            "bytes": [
+                255,
+                74,
+                0
+            ],
+            "fPort": 100
         }
     }
 ]
