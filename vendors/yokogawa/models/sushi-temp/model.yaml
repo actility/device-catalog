@@ -3,7 +3,7 @@ name: Sushi Temperature sensor (XS110A/XS550)
 # Functional description of the product. Maximum 500 characters. 
 description: "Yokogawa's wireless temperature sensor."
 # Logo of the device
-logo: sushi_temp.png
+logo: sushi-temp.png
 # Product name & Version
 product:
     name: YOKO/TEMP
@@ -16,7 +16,11 @@ deviceProfileIds:
     - id: YOKO/TempA.1.0.2b_AS923
     - id: YOKO/TempA.1.0.2b_CN470
     - id: YOKO/TempA.1.0.2b_ETSI
+      distinction: LoRaWAN v1.0.2
     - id: YOKO/TempA.1.0.2b_FCC
+    - id: yokogawa_RFGroup1_1.0.4-RP2-1.0.3_classA
+      deviceProfileId: YOKO/TempA.1.0.4_ETSI
+      distinction: LoRaWAN v1.0.4
  
 # You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
 # Maximum device TX Conducted output power in dBm. 
@@ -42,14 +46,12 @@ protocolId: yokogawa:sushi:1
 # exposed through the BACnet and Modbus gateways. Checked: true requires that mapping.
 supportedBACnetModbus: false
 # DataSheet URL (optional) 
-specificationURL: 
+specificationURL: https://web-material3.yokogawa.com/GS01W06F02-01EN.pdf
 # User Guide URL (optional) 
-userGuideURL: 
+userGuideURL: https://web-material3.yokogawa.com/IM01W06F02-01EN.pdf
 # <sensor>:<unitId> Available sensors following Actility ontology: https://github.com/actility/device-catalog/blob/main/template/sample-vendor/drivers/ONTOLOGY.md
-sensors:
+sensors: 
 - temperature:Cel
-- acceleration:m/s2
-- velocity:m/s
 
 LoRaWANRelay:
   canOperateAsARelay: false
