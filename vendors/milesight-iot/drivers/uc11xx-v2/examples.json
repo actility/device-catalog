@@ -130,7 +130,51 @@
                 "adc_1_avg": 0
             }
         },
-        "points": {}
+        "points": {},
+        "BACnet": {
+            "adc_1": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "adc_1_max": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "adc_1_min": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            },
+            "adc_1_avg": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "adc_1": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "FLOAT"
+            },
+            "adc_1_max": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "FLOAT"
+            },
+            "adc_1_min": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "FLOAT"
+            },
+            "adc_1_avg": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "FLOAT"
+            }
+        }
     },
     {
         "description": "Uplink coverage: gpio_input_2",
@@ -144,7 +188,20 @@
                 "gpio_input_2": "unknown"
             }
         },
-        "points": {}
+        "points": {},
+        "BACnet": {
+            "gpio_input_2": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            }
+        },
+        "Modbus": {
+            "gpio_input_2": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            }
+        }
     },
     {
         "description": "Uplink coverage: gpio_output_2",
@@ -158,7 +215,20 @@
                 "gpio_output_2": "unknown"
             }
         },
-        "points": {}
+        "points": {},
+        "BACnet": {
+            "gpio_output_2": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            }
+        },
+        "Modbus": {
+            "gpio_output_2": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            }
+        }
     },
     {
         "description": "Uplink coverage: ipso_version",
@@ -172,7 +242,20 @@
                 "ipso_version": "v0.0"
             }
         },
-        "points": {}
+        "points": {},
+        "BACnet": {
+            "ipso_version": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "v0.0"
+            }
+        },
+        "Modbus": {
+            "ipso_version": {
+                "table": "inputRegister",
+                "value": "v0.0",
+                "value_type": "STRING"
+            }
+        }
     },
     {
         "description": "Uplink coverage: sn",
@@ -186,7 +269,20 @@
                 "sn": ""
             }
         },
-        "points": {}
+        "points": {},
+        "BACnet": {
+            "sn": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": ""
+            }
+        },
+        "Modbus": {
+            "sn": {
+                "table": "inputRegister",
+                "value": "",
+                "value_type": "STRING"
+            }
+        }
     },
     {
         "description": "Uplink coverage: hardware_version, gpio_input_1",
@@ -201,7 +297,29 @@
                 "gpio_input_1": "unknown"
             }
         },
-        "points": {}
+        "points": {},
+        "BACnet": {
+            "hardware_version": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "v0.0"
+            },
+            "gpio_input_1": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            }
+        },
+        "Modbus": {
+            "hardware_version": {
+                "table": "inputRegister",
+                "value": "v0.0",
+                "value_type": "STRING"
+            },
+            "gpio_input_1": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            }
+        }
     },
     {
         "description": "Uplink coverage: firmware_version",
@@ -215,7 +333,20 @@
                 "firmware_version": "v0.0"
             }
         },
-        "points": {}
+        "points": {},
+        "BACnet": {
+            "firmware_version": {
+                "object": "CHARACTERSTRING_VALUE",
+                "presentValue": "v0.0"
+            }
+        },
+        "Modbus": {
+            "firmware_version": {
+                "table": "inputRegister",
+                "value": "v0.0",
+                "value_type": "STRING"
+            }
+        }
     },
     {
         "description": "Uplink coverage: device_status",
@@ -229,7 +360,20 @@
                 "device_status": "on"
             }
         },
-        "points": {}
+        "points": {},
+        "BACnet": {
+            "device_status": {
+                "object": "BINARY_INPUT",
+                "presentValue": 1
+            }
+        },
+        "Modbus": {
+            "device_status": {
+                "table": "discreteInput",
+                "value": 1,
+                "value_type": "UINT8"
+            }
+        }
     },
     {
         "description": "Uplink coverage: lorawan_class, modbus_chn_1",
@@ -244,7 +388,31 @@
                 "modbus_chn_1": 0
             }
         },
-        "points": {}
+        "points": {},
+        "BACnet": {
+            "lorawan_class": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 1,
+                "units": "NO_UNITS"
+            },
+            "modbus_chn_1": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "lorawan_class": {
+                "table": "inputRegister",
+                "value": 1,
+                "value_type": "UINT8"
+            },
+            "modbus_chn_1": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "FLOAT"
+            }
+        }
     },
     {
         "description": "Uplink coverage (synthetic frame): modbus_chn_2",
@@ -258,7 +426,21 @@
                 "modbus_chn_2": 0
             }
         },
-        "points": {}
+        "points": {},
+        "BACnet": {
+            "modbus_chn_2": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "modbus_chn_2": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "FLOAT"
+            }
+        }
     },
     {
         "description": "Uplink coverage (synthetic frame): modbus_chn_3",
@@ -272,6 +454,20 @@
                 "modbus_chn_3": 0
             }
         },
-        "points": {}
+        "points": {},
+        "BACnet": {
+            "modbus_chn_3": {
+                "object": "ANALOG_INPUT",
+                "presentValue": 0,
+                "units": "NO_UNITS"
+            }
+        },
+        "Modbus": {
+            "modbus_chn_3": {
+                "table": "inputRegister",
+                "value": 0,
+                "value_type": "FLOAT"
+            }
+        }
     }
 ]
