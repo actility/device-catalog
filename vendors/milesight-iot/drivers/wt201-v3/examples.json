@@ -68,10 +68,16 @@
                 "object": "CHARACTERSTRING_VALUE",
                 "presentValue": "standby"
             },
-            "plan_type": {
-                "object": "CHARACTERSTRING_VALUE",
-                "presentValue": "not executed"
-            }
+            "plan_type": [
+                {
+                    "object": "CHARACTERSTRING_VALUE",
+                    "presentValue": ""
+                },
+                {
+                    "object": "CHARACTERSTRING_VALUE",
+                    "presentValue": "not executed"
+                }
+            ]
         },
         "Modbus": {
             "celsius_ambient_temperature": {
@@ -501,7 +507,7 @@
         },
         "inputModbus": {
             "d2d_master_enable": {
-                "table": "discreteInput",
+                "table": "coil",
                 "operation": "setCoil",
                 "value": 1
             }
@@ -2785,11 +2791,18 @@
         },
         "points": null,
         "BACnet": {
-            "dst_config:offset": {
-                "object": "ANALOG_INPUT",
-                "presentValue": 0,
-                "units": "NO_UNITS"
-            },
+            "dst_config:offset": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
             "dst_config:start_month": {
                 "object": "ANALOG_INPUT",
                 "presentValue": 0,
@@ -2930,25 +2943,52 @@
                 "presentValue": 2973.1,
                 "units": "NO_UNITS"
             },
-            "temperature_alarm_config:alarm_type": {
-                "object": "CHARACTERSTRING_VALUE",
-                "presentValue": "temperature threshold"
-            },
-            "temperature_alarm_config:lock_time": {
-                "object": "ANALOG_INPUT",
-                "presentValue": 0,
-                "units": "NO_UNITS"
-            },
-            "temperature_alarm_config:continue_time": {
-                "object": "ANALOG_INPUT",
-                "presentValue": 0,
-                "units": "NO_UNITS"
-            },
-            "temperature_alarm_config:threshold_min": {
-                "object": "ANALOG_INPUT",
-                "presentValue": 0,
-                "units": "NO_UNITS"
-            }
+            "temperature_alarm_config:alarm_type": [
+                {
+                    "object": "CHARACTERSTRING_VALUE",
+                    "presentValue": ""
+                },
+                {
+                    "object": "CHARACTERSTRING_VALUE",
+                    "presentValue": "temperature threshold"
+                }
+            ],
+            "temperature_alarm_config:lock_time": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "temperature_alarm_config:continue_time": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "temperature_alarm_config:threshold_min": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ]
         },
         "Modbus": {
             "device_response_result:channel_type": {
@@ -3215,16 +3255,30 @@
         },
         "points": null,
         "BACnet": {
-            "humidity_range:min": {
-                "object": "ANALOG_INPUT",
-                "presentValue": 0,
-                "units": "NO_UNITS"
-            },
-            "humidity_range:max": {
-                "object": "ANALOG_INPUT",
-                "presentValue": 0,
-                "units": "NO_UNITS"
-            }
+            "humidity_range:min": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 10,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "humidity_range:max": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 90,
+                    "units": "NO_UNITS"
+                }
+            ]
         },
         "Modbus": {
             "humidity_range:min": {
@@ -3256,15 +3310,28 @@
         },
         "points": null,
         "BACnet": {
-            "temperature_dehumidify:enable": {
-                "object": "BINARY_INPUT",
-                "presentValue": 0
-            },
-            "temperature_dehumidify:temperature_tolerance": {
-                "object": "ANALOG_INPUT",
-                "presentValue": 0,
-                "units": "NO_UNITS"
-            }
+            "temperature_dehumidify:enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 1
+                }
+            ],
+            "temperature_dehumidify:temperature_tolerance": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 1,
+                    "units": "NO_UNITS"
+                }
+            ]
         },
         "Modbus": {
             "temperature_dehumidify:enable": {
@@ -3457,15 +3524,28 @@
         },
         "points": null,
         "BACnet": {
-            "freeze_protection_config:enable": {
-                "object": "BINARY_INPUT",
-                "presentValue": 0
-            },
-            "freeze_protection_config:temperature": {
-                "object": "ANALOG_INPUT",
-                "presentValue": 0,
-                "units": "NO_UNITS"
-            }
+            "freeze_protection_config:enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 1
+                }
+            ],
+            "freeze_protection_config:temperature": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 5,
+                    "units": "NO_UNITS"
+                }
+            ]
         },
         "Modbus": {
             "freeze_protection_config:enable": {
@@ -3497,16 +3577,30 @@
         },
         "points": null,
         "BACnet": {
-            "temperature_tolerance:target_temperature_tolerance": {
-                "object": "ANALOG_INPUT",
-                "presentValue": 0,
-                "units": "NO_UNITS"
-            },
-            "temperature_tolerance:auto_temperature_tolerance": {
-                "object": "ANALOG_INPUT",
-                "presentValue": 0,
-                "units": "NO_UNITS"
-            }
+            "temperature_tolerance:target_temperature_tolerance": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 1,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "temperature_tolerance:auto_temperature_tolerance": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 1,
+                    "units": "NO_UNITS"
+                }
+            ]
         },
         "Modbus": {
             "temperature_tolerance:target_temperature_tolerance": {
@@ -3618,15 +3712,28 @@
         },
         "points": null,
         "BACnet": {
-            "fan_dehumidify:enable": {
-                "object": "BINARY_INPUT",
-                "presentValue": 1
-            },
-            "fan_dehumidify:execute_time": {
-                "object": "ANALOG_INPUT",
-                "presentValue": 0,
-                "units": "NO_UNITS"
-            }
+            "fan_dehumidify:enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 1
+                }
+            ],
+            "fan_dehumidify:execute_time": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 30,
+                    "units": "NO_UNITS"
+                }
+            ]
         },
         "Modbus": {
             "fan_dehumidify:enable": {
@@ -3825,11 +3932,18 @@
                 "object": "CHARACTERSTRING_VALUE",
                 "presentValue": "unknown"
             },
-            "fan_execute_time": {
-                "object": "ANALOG_INPUT",
-                "presentValue": 0,
-                "units": "NO_UNITS"
-            },
+            "fan_execute_time": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
             "device_response_result:request:humidity_range:min": {
                 "object": "ANALOG_INPUT",
                 "presentValue": 1,
@@ -4242,11 +4356,18 @@
         },
         "points": null,
         "BACnet": {
-            "collection_interval": {
-                "object": "ANALOG_INPUT",
-                "presentValue": 0,
-                "units": "NO_UNITS"
-            }
+            "collection_interval": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ]
         },
         "Modbus": {
             "collection_interval": {
@@ -4270,11 +4391,18 @@
         },
         "points": null,
         "BACnet": {
-            "outside_temperature": {
-                "object": "ANALOG_INPUT",
-                "presentValue": 0,
-                "units": "NO_UNITS"
-            }
+            "outside_temperature": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ]
         },
         "Modbus": {
             "outside_temperature": {
@@ -4298,10 +4426,16 @@
         },
         "points": null,
         "BACnet": {
-            "report_status": {
-                "object": "CHARACTERSTRING_VALUE",
-                "presentValue": "plan"
-            }
+            "report_status": [
+                {
+                    "object": "CHARACTERSTRING_VALUE",
+                    "presentValue": ""
+                },
+                {
+                    "object": "CHARACTERSTRING_VALUE",
+                    "presentValue": "plan"
+                }
+            ]
         },
         "Modbus": {
             "report_status": {
@@ -4325,11 +4459,18 @@
         },
         "points": null,
         "BACnet": {
-            "retransmit_interval": {
-                "object": "ANALOG_INPUT",
-                "presentValue": 0,
-                "units": "NO_UNITS"
-            }
+            "retransmit_interval": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ]
         },
         "Modbus": {
             "retransmit_interval": {
@@ -4382,10 +4523,16 @@
         },
         "points": null,
         "BACnet": {
-            "time_zone": {
-                "object": "CHARACTERSTRING_VALUE",
-                "presentValue": "UTC"
-            }
+            "time_zone": [
+                {
+                    "object": "CHARACTERSTRING_VALUE",
+                    "presentValue": ""
+                },
+                {
+                    "object": "CHARACTERSTRING_VALUE",
+                    "presentValue": "UTC"
+                }
+            ]
         },
         "Modbus": {
             "time_zone": {
@@ -4440,10 +4587,16 @@
         },
         "points": null,
         "BACnet": {
-            "control_permission": {
-                "object": "CHARACTERSTRING_VALUE",
-                "presentValue": "thermostat"
-            }
+            "control_permission": [
+                {
+                    "object": "CHARACTERSTRING_VALUE",
+                    "presentValue": ""
+                },
+                {
+                    "object": "CHARACTERSTRING_VALUE",
+                    "presentValue": "thermostat"
+                }
+            ]
         },
         "Modbus": {
             "control_permission": {
@@ -4467,10 +4620,16 @@
         },
         "points": null,
         "BACnet": {
-            "offline_control_mode": {
-                "object": "CHARACTERSTRING_VALUE",
-                "presentValue": "keep"
-            }
+            "offline_control_mode": [
+                {
+                    "object": "CHARACTERSTRING_VALUE",
+                    "presentValue": ""
+                },
+                {
+                    "object": "CHARACTERSTRING_VALUE",
+                    "presentValue": "keep"
+                }
+            ]
         },
         "Modbus": {
             "offline_control_mode": {
@@ -4617,10 +4776,16 @@
                     "presentValue": 0
                 }
             ],
-            "d2d_master_enable": {
-                "object": "BINARY_INPUT",
-                "presentValue": 1
-            },
+            "d2d_master_enable": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 1
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 0
+                }
+            ],
             "temperature_up_down_enable:forward_enable": {
                 "object": "BINARY_INPUT",
                 "presentValue": 0
@@ -4670,10 +4835,16 @@
         },
         "points": null,
         "BACnet": {
-            "child_lock_config:power_button": {
-                "object": "BINARY_INPUT",
-                "presentValue": 0
-            }
+            "child_lock_config:power_button": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 1
+                }
+            ]
         },
         "Modbus": {
             "child_lock_config:power_button": {
@@ -4697,11 +4868,18 @@
         },
         "points": null,
         "BACnet": {
-            "resend_interval": {
-                "object": "ANALOG_INPUT",
-                "presentValue": 0,
-                "units": "NO_UNITS"
-            }
+            "resend_interval": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ]
         },
         "Modbus": {
             "resend_interval": {
@@ -4734,10 +4912,16 @@
                 "object": "CHARACTERSTRING_VALUE",
                 "presentValue": "fahrenheit"
             },
-            "wires_relay_config:y1": {
-                "object": "BINARY_INPUT",
-                "presentValue": 0
-            }
+            "wires_relay_config:y1": [
+                {
+                    "object": "BINARY_INPUT",
+                    "presentValue": 0
+                },
+                {
+                    "object": "BINARY_VALUE",
+                    "presentValue": 1
+                }
+            ]
         },
         "Modbus": {
             "temperature_unit:unit": {

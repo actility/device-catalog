@@ -49,11 +49,18 @@
                 "presentValue": 26.6,
                 "units": "DEGREES_CELSIUS"
             },
-            "target_temperature": {
-                "object": "ANALOG_INPUT",
-                "presentValue": 30,
-                "units": "DEGREES_CELSIUS"
-            },
+            "target_temperature": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 30,
+                    "units": "DEGREES_CELSIUS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 30,
+                    "units": "DEGREES_CELSIUS"
+                }
+            ],
             "valve_opening": [
                 {
                     "object": "ANALOG_INPUT",
@@ -458,11 +465,18 @@
                     "units": "NO_UNITS"
                 }
             ],
-            "dst_config:end_week_day": {
-                "object": "ANALOG_INPUT",
-                "presentValue": 8,
-                "units": "NO_UNITS"
-            },
+            "dst_config:end_week_day": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 8,
+                    "units": "NO_UNITS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 1,
+                    "units": "NO_UNITS"
+                }
+            ],
             "dst_config:end_time": [
                 {
                     "object": "ANALOG_INPUT",
@@ -1083,16 +1097,30 @@
             }
         },
         "BACnet": {
-            "target_temperature": {
-                "object": "ANALOG_INPUT",
-                "presentValue": 0,
-                "units": "DEGREES_CELSIUS"
-            },
-            "temperature_tolerance": {
-                "object": "ANALOG_INPUT",
-                "presentValue": 0,
-                "units": "DEGREES_CELSIUS"
-            }
+            "target_temperature": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "DEGREES_CELSIUS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 30,
+                    "units": "DEGREES_CELSIUS"
+                }
+            ],
+            "temperature_tolerance": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": "DEGREES_CELSIUS"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "DEGREES_CELSIUS"
+                }
+            ]
         },
         "Modbus": {
             "target_temperature": {

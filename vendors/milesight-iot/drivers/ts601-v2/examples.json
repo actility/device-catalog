@@ -52,50 +52,112 @@
           "units": "MINUTES"
         }
       ],
-      "daylight_saving_time:enable": {
-        "object": "BINARY_INPUT",
-        "presentValue": 0
-      },
-      "daylight_saving_time:end_hour_min": {
-        "object": "ANALOG_INPUT",
-        "presentValue": 0,
-        "units": "MINUTES"
-      },
-      "daylight_saving_time:end_month": {
-        "object": "ANALOG_INPUT",
-        "presentValue": 0,
-        "units": "NO_UNITS"
-      },
-      "daylight_saving_time:end_week_day": {
-        "object": "ANALOG_INPUT",
-        "presentValue": 0,
-        "units": "NO_UNITS"
-      },
-      "daylight_saving_time:end_week_num": {
-        "object": "ANALOG_INPUT",
-        "presentValue": 0,
-        "units": "NO_UNITS"
-      },
-      "daylight_saving_time:start_hour_min": {
-        "object": "ANALOG_INPUT",
-        "presentValue": 0,
-        "units": "MINUTES"
-      },
-      "daylight_saving_time:start_month": {
-        "object": "ANALOG_INPUT",
-        "presentValue": 0,
-        "units": "NO_UNITS"
-      },
-      "daylight_saving_time:start_week_day": {
-        "object": "ANALOG_INPUT",
-        "presentValue": 0,
-        "units": "NO_UNITS"
-      },
-      "daylight_saving_time:start_week_num": {
-        "object": "ANALOG_INPUT",
-        "presentValue": 0,
-        "units": "NO_UNITS"
-      }
+      "daylight_saving_time:enable": [
+        {
+          "object": "BINARY_INPUT",
+          "presentValue": 0
+        },
+        {
+          "object": "BINARY_VALUE",
+          "presentValue": 0
+        }
+      ],
+      "daylight_saving_time:end_hour_min": [
+        {
+          "object": "ANALOG_INPUT",
+          "presentValue": 0,
+          "units": "MINUTES"
+        },
+        {
+          "object": "ANALOG_VALUE",
+          "presentValue": 0,
+          "units": "MINUTES"
+        }
+      ],
+      "daylight_saving_time:end_month": [
+        {
+          "object": "ANALOG_INPUT",
+          "presentValue": 0,
+          "units": "NO_UNITS"
+        },
+        {
+          "object": "ANALOG_VALUE",
+          "presentValue": 1,
+          "units": "NO_UNITS"
+        }
+      ],
+      "daylight_saving_time:end_week_day": [
+        {
+          "object": "ANALOG_INPUT",
+          "presentValue": 0,
+          "units": "NO_UNITS"
+        },
+        {
+          "object": "ANALOG_VALUE",
+          "presentValue": 7,
+          "units": "NO_UNITS"
+        }
+      ],
+      "daylight_saving_time:end_week_num": [
+        {
+          "object": "ANALOG_INPUT",
+          "presentValue": 0,
+          "units": "NO_UNITS"
+        },
+        {
+          "object": "ANALOG_VALUE",
+          "presentValue": 1,
+          "units": "NO_UNITS"
+        }
+      ],
+      "daylight_saving_time:start_hour_min": [
+        {
+          "object": "ANALOG_INPUT",
+          "presentValue": 0,
+          "units": "MINUTES"
+        },
+        {
+          "object": "ANALOG_VALUE",
+          "presentValue": 0,
+          "units": "MINUTES"
+        }
+      ],
+      "daylight_saving_time:start_month": [
+        {
+          "object": "ANALOG_INPUT",
+          "presentValue": 0,
+          "units": "NO_UNITS"
+        },
+        {
+          "object": "ANALOG_VALUE",
+          "presentValue": 1,
+          "units": "NO_UNITS"
+        }
+      ],
+      "daylight_saving_time:start_week_day": [
+        {
+          "object": "ANALOG_INPUT",
+          "presentValue": 0,
+          "units": "NO_UNITS"
+        },
+        {
+          "object": "ANALOG_VALUE",
+          "presentValue": 7,
+          "units": "NO_UNITS"
+        }
+      ],
+      "daylight_saving_time:start_week_num": [
+        {
+          "object": "ANALOG_INPUT",
+          "presentValue": 0,
+          "units": "NO_UNITS"
+        },
+        {
+          "object": "ANALOG_VALUE",
+          "presentValue": 1,
+          "units": "NO_UNITS"
+        }
+      ]
     },
     "Modbus": {
       "daylight_saving_time:daylight_saving_time_offset": {
@@ -260,35 +322,76 @@
           "units": "NO_UNITS"
         }
       ],
-      "temperature_alarm_settings:celsius_threshold_max": {
-        "object": "ANALOG_INPUT",
-        "presentValue": -35,
-        "units": "DEGREES_CELSIUS"
-      },
-      "temperature_alarm_settings:celsius_threshold_min": {
-        "object": "ANALOG_INPUT",
-        "presentValue": 0,
-        "units": "DEGREES_CELSIUS"
-      },
-      "temperature_alarm_settings:enable": {
-        "object": "BINARY_INPUT",
-        "presentValue": 0
-      },
-      "temperature_alarm_settings:fahrenheit_threshold_max": {
-        "object": "ANALOG_INPUT",
-        "presentValue": -31,
-        "units": "DEGREES_FAHRENHEIT"
-      },
-      "temperature_alarm_settings:fahrenheit_threshold_min": {
-        "object": "ANALOG_INPUT",
-        "presentValue": 32,
-        "units": "DEGREES_FAHRENHEIT"
-      },
-      "temperature_alarm_settings:threshold_condition": {
-        "object": "ANALOG_INPUT",
-        "presentValue": 0,
-        "units": "NO_UNITS"
-      },
+      "temperature_alarm_settings:celsius_threshold_max": [
+        {
+          "object": "ANALOG_INPUT",
+          "presentValue": -35,
+          "units": "DEGREES_CELSIUS"
+        },
+        {
+          "object": "ANALOG_VALUE",
+          "presentValue": 0,
+          "units": "DEGREES_CELSIUS"
+        }
+      ],
+      "temperature_alarm_settings:celsius_threshold_min": [
+        {
+          "object": "ANALOG_INPUT",
+          "presentValue": 0,
+          "units": "DEGREES_CELSIUS"
+        },
+        {
+          "object": "ANALOG_VALUE",
+          "presentValue": 0,
+          "units": "DEGREES_CELSIUS"
+        }
+      ],
+      "temperature_alarm_settings:enable": [
+        {
+          "object": "BINARY_INPUT",
+          "presentValue": 0
+        },
+        {
+          "object": "BINARY_VALUE",
+          "presentValue": 0
+        }
+      ],
+      "temperature_alarm_settings:fahrenheit_threshold_max": [
+        {
+          "object": "ANALOG_INPUT",
+          "presentValue": -31,
+          "units": "DEGREES_FAHRENHEIT"
+        },
+        {
+          "object": "ANALOG_VALUE",
+          "presentValue": 32,
+          "units": "DEGREES_FAHRENHEIT"
+        }
+      ],
+      "temperature_alarm_settings:fahrenheit_threshold_min": [
+        {
+          "object": "ANALOG_INPUT",
+          "presentValue": 32,
+          "units": "DEGREES_FAHRENHEIT"
+        },
+        {
+          "object": "ANALOG_VALUE",
+          "presentValue": 32,
+          "units": "DEGREES_FAHRENHEIT"
+        }
+      ],
+      "temperature_alarm_settings:threshold_condition": [
+        {
+          "object": "ANALOG_INPUT",
+          "presentValue": 0,
+          "units": "NO_UNITS"
+        },
+        {
+          "object": "ANALOG_VALUE",
+          "presentValue": 0,
+          "units": "NO_UNITS"
+        }
+      ],
       "temperature_alarm_settings:threshold_max": [
         {
           "object": "ANALOG_INPUT",
@@ -533,15 +636,28 @@
           "units": "SECONDS"
         }
       ],
-      "tilt_alarm_settings:enable": {
-        "object": "BINARY_INPUT",
-        "presentValue": 0
-      },
-      "tilt_alarm_settings:threshold_condition": {
-        "object": "ANALOG_INPUT",
-        "presentValue": 0,
-        "units": "NO_UNITS"
-      },
+      "tilt_alarm_settings:enable": [
+        {
+          "object": "BINARY_INPUT",
+          "presentValue": 0
+        },
+        {
+          "object": "BINARY_VALUE",
+          "presentValue": 0
+        }
+      ],
+      "tilt_alarm_settings:threshold_condition": [
+        {
+          "object": "ANALOG_INPUT",
+          "presentValue": 0,
+          "units": "NO_UNITS"
+        },
+        {
+          "object": "ANALOG_VALUE",
+          "presentValue": 0,
+          "units": "NO_UNITS"
+        }
+      ],
       "tilt_alarm_settings:threshold_max": [
         {
           "object": "ANALOG_INPUT",
@@ -657,15 +773,28 @@
         "presentValue": 32,
         "units": "DEGREES_FAHRENHEIT"
       },
-      "humidity_alarm_settings:enable": {
-        "object": "BINARY_INPUT",
-        "presentValue": 0
-      },
-      "humidity_alarm_settings:threshold_condition": {
-        "object": "ANALOG_INPUT",
-        "presentValue": 0,
-        "units": "NO_UNITS"
-      },
+      "humidity_alarm_settings:enable": [
+        {
+          "object": "BINARY_INPUT",
+          "presentValue": 0
+        },
+        {
+          "object": "BINARY_VALUE",
+          "presentValue": 0
+        }
+      ],
+      "humidity_alarm_settings:threshold_condition": [
+        {
+          "object": "ANALOG_INPUT",
+          "presentValue": 0,
+          "units": "NO_UNITS"
+        },
+        {
+          "object": "ANALOG_VALUE",
+          "presentValue": 0,
+          "units": "NO_UNITS"
+        }
+      ],
       "humidity_alarm_settings:threshold_max": [
         {
           "object": "ANALOG_INPUT",
@@ -707,34 +836,74 @@
           "units": "DEGREES_CELSIUS"
         }
       ],
-      "temperature_calibration_settings:celsius_calibration_value": {
-        "object": "ANALOG_INPUT",
-        "presentValue": 0,
-        "units": "DEGREES_CELSIUS"
-      },
-      "temperature_calibration_settings:enable": {
-        "object": "BINARY_INPUT",
-        "presentValue": 0
-      },
-      "temperature_calibration_settings:fahrenheit_calibration_value": {
-        "object": "ANALOG_INPUT",
-        "presentValue": 32,
-        "units": "DEGREES_FAHRENHEIT"
-      },
-      "temperature_mutation_alarm_settings:celsius_mutation_max": {
-        "object": "ANALOG_INPUT",
-        "presentValue": 100,
-        "units": "DEGREES_CELSIUS"
-      },
-      "temperature_mutation_alarm_settings:enable": {
-        "object": "BINARY_INPUT",
-        "presentValue": 0
-      },
-      "temperature_mutation_alarm_settings:fahrenheit_mutation_max": {
-        "object": "ANALOG_INPUT",
-        "presentValue": 212,
-        "units": "DEGREES_FAHRENHEIT"
-      },
+      "temperature_calibration_settings:celsius_calibration_value": [
+        {
+          "object": "ANALOG_INPUT",
+          "presentValue": 0,
+          "units": "DEGREES_CELSIUS"
+        },
+        {
+          "object": "ANALOG_VALUE",
+          "presentValue": 0,
+          "units": "DEGREES_CELSIUS"
+        }
+      ],
+      "temperature_calibration_settings:enable": [
+        {
+          "object": "BINARY_INPUT",
+          "presentValue": 0
+        },
+        {
+          "object": "BINARY_VALUE",
+          "presentValue": 0
+        }
+      ],
+      "temperature_calibration_settings:fahrenheit_calibration_value": [
+        {
+          "object": "ANALOG_INPUT",
+          "presentValue": 32,
+          "units": "DEGREES_FAHRENHEIT"
+        },
+        {
+          "object": "ANALOG_VALUE",
+          "presentValue": 0,
+          "units": "DEGREES_FAHRENHEIT"
+        }
+      ],
+      "temperature_mutation_alarm_settings:celsius_mutation_max": [
+        {
+          "object": "ANALOG_INPUT",
+          "presentValue": 100,
+          "units": "DEGREES_CELSIUS"
+        },
+        {
+          "object": "ANALOG_VALUE",
+          "presentValue": 0,
+          "units": "DEGREES_CELSIUS"
+        }
+      ],
+      "temperature_mutation_alarm_settings:enable": [
+        {
+          "object": "BINARY_INPUT",
+          "presentValue": 0
+        },
+        {
+          "object": "BINARY_VALUE",
+          "presentValue": 0
+        }
+      ],
+      "temperature_mutation_alarm_settings:fahrenheit_mutation_max": [
+        {
+          "object": "ANALOG_INPUT",
+          "presentValue": 212,
+          "units": "DEGREES_FAHRENHEIT"
+        },
+        {
+          "object": "ANALOG_VALUE",
+          "presentValue": 0,
+          "units": "DEGREES_FAHRENHEIT"
+        }
+      ],
       "temperature_mutation_alarm_settings:mutation_max": [
         {
           "object": "ANALOG_INPUT",
@@ -897,18 +1066,36 @@
     },
     "points": null,
     "BACnet": {
-      "button_lock:collect_report_enable": {
-        "object": "BINARY_INPUT",
-        "presentValue": 0
-      },
-      "button_lock:enable": {
-        "object": "BINARY_INPUT",
-        "presentValue": 0
-      },
-      "button_lock:power_off_enable": {
-        "object": "BINARY_INPUT",
-        "presentValue": 0
-      },
+      "button_lock:collect_report_enable": [
+        {
+          "object": "BINARY_INPUT",
+          "presentValue": 0
+        },
+        {
+          "object": "BINARY_VALUE",
+          "presentValue": 0
+        }
+      ],
+      "button_lock:enable": [
+        {
+          "object": "BINARY_INPUT",
+          "presentValue": 0
+        },
+        {
+          "object": "BINARY_VALUE",
+          "presentValue": 1
+        }
+      ],
+      "button_lock:power_off_enable": [
+        {
+          "object": "BINARY_INPUT",
+          "presentValue": 0
+        },
+        {
+          "object": "BINARY_VALUE",
+          "presentValue": 1
+        }
+      ],
       "button_lock:reserve": {
         "object": "ANALOG_INPUT",
         "presentValue": 0,
@@ -960,15 +1147,28 @@
     },
     "points": null,
     "BACnet": {
-      "light_alarm_settings:enable": {
-        "object": "BINARY_INPUT",
-        "presentValue": 0
-      },
-      "light_alarm_settings:threshold_condition": {
-        "object": "ANALOG_INPUT",
-        "presentValue": 0,
-        "units": "NO_UNITS"
-      },
+      "light_alarm_settings:enable": [
+        {
+          "object": "BINARY_INPUT",
+          "presentValue": 0
+        },
+        {
+          "object": "BINARY_VALUE",
+          "presentValue": 0
+        }
+      ],
+      "light_alarm_settings:threshold_condition": [
+        {
+          "object": "ANALOG_INPUT",
+          "presentValue": 0,
+          "units": "NO_UNITS"
+        },
+        {
+          "object": "ANALOG_VALUE",
+          "presentValue": 0,
+          "units": "NO_UNITS"
+        }
+      ],
       "light_alarm_settings:threshold_max": [
         {
           "object": "ANALOG_INPUT",
@@ -1097,16 +1297,30 @@
         "presentValue": 0,
         "units": "NO_UNITS"
       },
-      "collection_interval:minutes_of_time": {
-        "object": "ANALOG_INPUT",
-        "presentValue": 15,
-        "units": "MINUTES"
-      },
-      "collection_interval:unit": {
-        "object": "ANALOG_INPUT",
-        "presentValue": 1,
-        "units": "NO_UNITS"
-      },
+      "collection_interval:minutes_of_time": [
+        {
+          "object": "ANALOG_INPUT",
+          "presentValue": 15,
+          "units": "MINUTES"
+        },
+        {
+          "object": "ANALOG_VALUE",
+          "presentValue": 15,
+          "units": "MINUTES"
+        }
+      ],
+      "collection_interval:unit": [
+        {
+          "object": "ANALOG_INPUT",
+          "presentValue": 1,
+          "units": "NO_UNITS"
+        },
+        {
+          "object": "ANALOG_VALUE",
+          "presentValue": 1,
+          "units": "NO_UNITS"
+        }
+      ],
       "humidity_calibration_settings:calibration_value": [
         {
           "object": "ANALOG_INPUT",
@@ -1119,14 +1333,26 @@
           "units": "PERCENT_RELATIVE_HUMIDITY"
         }
       ],
-      "humidity_calibration_settings:enable": {
-        "object": "BINARY_INPUT",
-        "presentValue": 0
-      },
-      "humidity_mutation_alarm_settings:enable": {
-        "object": "BINARY_INPUT",
-        "presentValue": 0
-      },
+      "humidity_calibration_settings:enable": [
+        {
+          "object": "BINARY_INPUT",
+          "presentValue": 0
+        },
+        {
+          "object": "BINARY_VALUE",
+          "presentValue": 0
+        }
+      ],
+      "humidity_mutation_alarm_settings:enable": [
+        {
+          "object": "BINARY_INPUT",
+          "presentValue": 0
+        },
+        {
+          "object": "BINARY_VALUE",
+          "presentValue": 0
+        }
+      ],
       "humidity_mutation_alarm_settings:mutation_max": [
         {
           "object": "ANALOG_INPUT",
@@ -1139,16 +1365,30 @@
           "units": "PERCENT_RELATIVE_HUMIDITY"
         }
       ],
-      "reporting_interval:minutes_of_time": {
-        "object": "ANALOG_INPUT",
-        "presentValue": 30,
-        "units": "NO_UNITS"
-      },
-      "reporting_interval:unit": {
-        "object": "ANALOG_INPUT",
-        "presentValue": 1,
-        "units": "NO_UNITS"
-      }
+      "reporting_interval:minutes_of_time": [
+        {
+          "object": "ANALOG_INPUT",
+          "presentValue": 30,
+          "units": "NO_UNITS"
+        },
+        {
+          "object": "ANALOG_VALUE",
+          "presentValue": 30,
+          "units": "NO_UNITS"
+        }
+      ],
+      "reporting_interval:unit": [
+        {
+          "object": "ANALOG_INPUT",
+          "presentValue": 1,
+          "units": "NO_UNITS"
+        },
+        {
+          "object": "ANALOG_VALUE",
+          "presentValue": 1,
+          "units": "NO_UNITS"
+        }
+      ]
     },
     "Modbus": {
       "cellular_status:register_status": {
@@ -1515,10 +1755,16 @@
     },
     "points": null,
     "BACnet": {
-      "oem_id": {
-        "object": "CHARACTERSTRING_VALUE",
-        "presentValue": ""
-      }
+      "oem_id": [
+        {
+          "object": "CHARACTERSTRING_VALUE",
+          "presentValue": ""
+        },
+        {
+          "object": "CHARACTERSTRING_VALUE",
+          "presentValue": ""
+        }
+      ]
     },
     "Modbus": {
       "oem_id": {
@@ -1606,16 +1852,30 @@
         "presentValue": 2,
         "units": "PERCENT"
       },
-      "collection_interval:seconds_of_time": {
-        "object": "ANALOG_INPUT",
-        "presentValue": 0,
-        "units": "SECONDS"
-      },
-      "collection_interval:unit": {
-        "object": "ANALOG_INPUT",
-        "presentValue": 0,
-        "units": "NO_UNITS"
-      },
+      "collection_interval:seconds_of_time": [
+        {
+          "object": "ANALOG_INPUT",
+          "presentValue": 0,
+          "units": "SECONDS"
+        },
+        {
+          "object": "ANALOG_VALUE",
+          "presentValue": 900,
+          "units": "SECONDS"
+        }
+      ],
+      "collection_interval:unit": [
+        {
+          "object": "ANALOG_INPUT",
+          "presentValue": 0,
+          "units": "NO_UNITS"
+        },
+        {
+          "object": "ANALOG_VALUE",
+          "presentValue": 1,
+          "units": "NO_UNITS"
+        }
+      ],
       "data_storage_settings:enable": [
         {
           "object": "BINARY_INPUT",
@@ -1648,16 +1908,30 @@
           "units": "SECONDS"
         }
       ],
-      "reporting_interval:seconds_of_time": {
-        "object": "ANALOG_INPUT",
-        "presentValue": 0,
-        "units": "NO_UNITS"
-      },
-      "reporting_interval:unit": {
-        "object": "ANALOG_INPUT",
-        "presentValue": 0,
-        "units": "NO_UNITS"
-      },
+      "reporting_interval:seconds_of_time": [
+        {
+          "object": "ANALOG_INPUT",
+          "presentValue": 0,
+          "units": "NO_UNITS"
+        },
+        {
+          "object": "ANALOG_VALUE",
+          "presentValue": 1800,
+          "units": "NO_UNITS"
+        }
+      ],
+      "reporting_interval:unit": [
+        {
+          "object": "ANALOG_INPUT",
+          "presentValue": 0,
+          "units": "NO_UNITS"
+        },
+        {
+          "object": "ANALOG_VALUE",
+          "presentValue": 1,
+          "units": "NO_UNITS"
+        }
+      ],
       "time_zone": [
         {
           "object": "ANALOG_INPUT",

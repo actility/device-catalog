@@ -235,16 +235,30 @@
                     "units": "DEGREES_CELSIUS"
                 }
             ],
-            "target_temperature_range:cool:fahrenheit_max": {
-                "object": "ANALOG_INPUT",
-                "presentValue": 95,
-                "units": "DEGREES_FAHRENHEIT"
-            },
-            "target_temperature_range:cool:fahrenheit_min": {
-                "object": "ANALOG_INPUT",
-                "presentValue": 73.4,
-                "units": "DEGREES_FAHRENHEIT"
-            },
+            "target_temperature_range:cool:fahrenheit_max": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 95,
+                    "units": "DEGREES_FAHRENHEIT"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 95,
+                    "units": "DEGREES_FAHRENHEIT"
+                }
+            ],
+            "target_temperature_range:cool:fahrenheit_min": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 73.4,
+                    "units": "DEGREES_FAHRENHEIT"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 73.4,
+                    "units": "DEGREES_FAHRENHEIT"
+                }
+            ],
             "target_temperature_range:heat:celsius_max": [
                 {
                     "object": "ANALOG_INPUT",
@@ -269,16 +283,30 @@
                     "units": "DEGREES_CELSIUS"
                 }
             ],
-            "target_temperature_range:heat:fahrenheit_max": {
-                "object": "ANALOG_INPUT",
-                "presentValue": 66.2,
-                "units": "DEGREES_FAHRENHEIT"
-            },
-            "target_temperature_range:heat:fahrenheit_min": {
-                "object": "ANALOG_INPUT",
-                "presentValue": 50,
-                "units": "DEGREES_FAHRENHEIT"
-            },
+            "target_temperature_range:heat:fahrenheit_max": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 66.2,
+                    "units": "DEGREES_FAHRENHEIT"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 66.2,
+                    "units": "DEGREES_FAHRENHEIT"
+                }
+            ],
+            "target_temperature_range:heat:fahrenheit_min": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 50,
+                    "units": "DEGREES_FAHRENHEIT"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 50,
+                    "units": "DEGREES_FAHRENHEIT"
+                }
+            ],
             "version:firmware_version": {
                 "object": "CHARACTERSTRING_VALUE",
                 "presentValue": "v0.0"
@@ -838,11 +866,18 @@
                     "units": "DEGREES_CELSIUS"
                 }
             ],
-            "anti_freezing:fahrenheit_target_temperature": {
-                "object": "ANALOG_INPUT",
-                "presentValue": 33.8,
-                "units": "DEGREES_FAHRENHEIT"
-            },
+            "anti_freezing:fahrenheit_target_temperature": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 33.8,
+                    "units": "DEGREES_FAHRENHEIT"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "DEGREES_FAHRENHEIT"
+                }
+            ],
             "energy_saving_enable": [
                 {
                     "object": "BINARY_INPUT",
@@ -865,11 +900,18 @@
                     "units": "DEGREES_KELVIN"
                 }
             ],
-            "energy_saving:level_1:fahrenheit_target_temp_tolerance": {
-                "object": "ANALOG_INPUT",
-                "presentValue": 0.18,
-                "units": null
-            },
+            "energy_saving:level_1:fahrenheit_target_temp_tolerance": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0.18,
+                    "units": null
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
             "energy_saving:level_2:celsius_target_temp_tolerance": [
                 {
                     "object": "ANALOG_INPUT",
@@ -882,11 +924,18 @@
                     "units": "DEGREES_KELVIN"
                 }
             ],
-            "energy_saving:level_2:fahrenheit_target_temp_tolerance": {
-                "object": "ANALOG_INPUT",
-                "presentValue": 0.18,
-                "units": null
-            },
+            "energy_saving:level_2:fahrenheit_target_temp_tolerance": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0.18,
+                    "units": null
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
             "reporting_interval:ble_lora:unit": [
                 {
                     "object": "ANALOG_INPUT",
@@ -933,16 +982,30 @@
                     "units": "DEGREES_CELSIUS"
                 }
             ],
-            "target_temperature_settings:fahrenheit_cool": {
-                "object": "ANALOG_INPUT",
-                "presentValue": 41,
-                "units": "DEGREES_FAHRENHEIT"
-            },
-            "target_temperature_settings:fahrenheit_heat": {
-                "object": "ANALOG_INPUT",
-                "presentValue": 41,
-                "units": "DEGREES_FAHRENHEIT"
-            },
+            "target_temperature_settings:fahrenheit_cool": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 41,
+                    "units": "DEGREES_FAHRENHEIT"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "DEGREES_FAHRENHEIT"
+                }
+            ],
+            "target_temperature_settings:fahrenheit_heat": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 41,
+                    "units": "DEGREES_FAHRENHEIT"
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "DEGREES_FAHRENHEIT"
+                }
+            ],
             "target_temperature_tolerance:celsius_cool_value": [
                 {
                     "object": "ANALOG_INPUT",
@@ -967,16 +1030,30 @@
                     "units": "DEGREES_KELVIN"
                 }
             ],
-            "target_temperature_tolerance:fahrenheit_cool_value": {
-                "object": "ANALOG_INPUT",
-                "presentValue": 0.18,
-                "units": null
-            },
-            "target_temperature_tolerance:fahrenheit_heat_value": {
-                "object": "ANALOG_INPUT",
-                "presentValue": 0.18,
-                "units": null
-            },
+            "target_temperature_tolerance:fahrenheit_cool_value": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0.18,
+                    "units": null
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "target_temperature_tolerance:fahrenheit_heat_value": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0.18,
+                    "units": null
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
             "temperature_control_level_switch:celsius_threshold_t1": [
                 {
                     "object": "ANALOG_INPUT",
@@ -1001,16 +1078,30 @@
                     "units": "DEGREES_KELVIN"
                 }
             ],
-            "temperature_control_level_switch:fahrenheit_threshold_t1": {
-                "object": "ANALOG_INPUT",
-                "presentValue": 0,
-                "units": null
-            },
-            "temperature_control_level_switch:fahrenheit_threshold_t2": {
-                "object": "ANALOG_INPUT",
-                "presentValue": 0,
-                "units": null
-            },
+            "temperature_control_level_switch:fahrenheit_threshold_t1": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": null
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
+            "temperature_control_level_switch:fahrenheit_threshold_t2": [
+                {
+                    "object": "ANALOG_INPUT",
+                    "presentValue": 0,
+                    "units": null
+                },
+                {
+                    "object": "ANALOG_VALUE",
+                    "presentValue": 0,
+                    "units": "NO_UNITS"
+                }
+            ],
             "reporting_interval:ble_lora:seconds_of_time": {
                 "object": "ANALOG_INPUT",
                 "presentValue": 0,
@@ -1328,10 +1419,16 @@
                     "units": "NO_UNITS"
                 }
             ],
-            "oem_id": {
-                "object": "CHARACTERSTRING_VALUE",
-                "presentValue": "0000"
-            },
+            "oem_id": [
+                {
+                    "object": "CHARACTERSTRING_VALUE",
+                    "presentValue": ""
+                },
+                {
+                    "object": "CHARACTERSTRING_VALUE",
+                    "presentValue": "0000"
+                }
+            ],
             "temperature_control_mode:ctrl_mode": [
                 {
                     "object": "ANALOG_INPUT",
