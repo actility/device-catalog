@@ -2489,16 +2489,6 @@
                     "units": "NO_UNITS"
                 }
             ],
-            "oem_id": [
-                {
-                    "object": "CHARACTERSTRING_VALUE",
-                    "presentValue": ""
-                },
-                {
-                    "object": "CHARACTERSTRING_VALUE",
-                    "presentValue": "0000"
-                }
-            ],
             "pir_common:enable": [
                 {
                     "object": "BINARY_INPUT",
@@ -2662,11 +2652,6 @@
                 "table": "inputRegister",
                 "value": 0,
                 "value_type": "UINT8"
-            },
-            "oem_id": {
-                "table": "inputRegister",
-                "value": "0000",
-                "value_type": "STRING"
             },
             "pir_common:enable": {
                 "table": "discreteInput",
@@ -3117,26 +3102,6 @@
         },
         "points": null,
         "BACnet": {
-            "ble_configuration_settings:local_name_first": [
-                {
-                    "object": "CHARACTERSTRING_VALUE",
-                    "presentValue": ""
-                },
-                {
-                    "object": "CHARACTERSTRING_VALUE",
-                    "presentValue": "test"
-                }
-            ],
-            "ble_configuration_settings:local_name_last": [
-                {
-                    "object": "CHARACTERSTRING_VALUE",
-                    "presentValue": ""
-                },
-                {
-                    "object": "CHARACTERSTRING_VALUE",
-                    "presentValue": "test"
-                }
-            ],
             "reporting_interval:lora:minutes_of_time": [
                 {
                     "object": "ANALOG_INPUT",
@@ -3187,16 +3152,6 @@
             ]
         },
         "Modbus": {
-            "ble_configuration_settings:local_name_first": {
-                "table": "inputRegister",
-                "value": "test",
-                "value_type": "STRING"
-            },
-            "ble_configuration_settings:local_name_last": {
-                "table": "inputRegister",
-                "value": "test",
-                "value_type": "STRING"
-            },
             "reporting_interval:lora:minutes_of_time": {
                 "table": "inputRegister",
                 "value": 0,
@@ -3232,25 +3187,8 @@
             }
         },
         "points": null,
-        "BACnet": {
-            "ble_name": [
-                {
-                    "object": "CHARACTERSTRING_VALUE",
-                    "presentValue": ""
-                },
-                {
-                    "object": "CHARACTERSTRING_VALUE",
-                    "presentValue": "test"
-                }
-            ]
-        },
-        "Modbus": {
-            "ble_name": {
-                "table": "inputRegister",
-                "value": "test",
-                "value_type": "STRING"
-            }
-        }
+        "BACnet": {},
+        "Modbus": {}
     },
     {
         "description": "Downlink encode: linked group collection_interval (3 points)",
@@ -4369,18 +4307,6 @@
         },
         "points": null,
         "BACnet": {
-            "ble_configuration_settings:pair_info:addr": {
-                "object": "CHARACTERSTRING_VALUE",
-                "presentValue": ""
-            },
-            "ble_configuration_settings:pair_info:mac": {
-                "object": "CHARACTERSTRING_VALUE",
-                "presentValue": ""
-            },
-            "ble_configuration_settings:pair_info:name": {
-                "object": "CHARACTERSTRING_VALUE",
-                "presentValue": ""
-            },
             "ble_configuration_settings:pair_info:name_length": {
                 "object": "ANALOG_INPUT",
                 "presentValue": 0,
@@ -4393,21 +4319,6 @@
             }
         },
         "Modbus": {
-            "ble_configuration_settings:pair_info:addr": {
-                "table": "inputRegister",
-                "value": "",
-                "value_type": "STRING"
-            },
-            "ble_configuration_settings:pair_info:mac": {
-                "table": "inputRegister",
-                "value": "",
-                "value_type": "STRING"
-            },
-            "ble_configuration_settings:pair_info:name": {
-                "table": "inputRegister",
-                "value": "",
-                "value_type": "STRING"
-            },
             "ble_configuration_settings:pair_info:name_length": {
                 "table": "inputRegister",
                 "value": 0,
@@ -4442,10 +4353,6 @@
         },
         "points": null,
         "BACnet": {
-            "ble_configuration_settings:local_id:address": {
-                "object": "CHARACTERSTRING_VALUE",
-                "presentValue": ""
-            },
             "ble_configuration_settings:local_id:type": {
                 "object": "ANALOG_INPUT",
                 "presentValue": 0,
@@ -4473,11 +4380,6 @@
             ]
         },
         "Modbus": {
-            "ble_configuration_settings:local_id:address": {
-                "table": "inputRegister",
-                "value": "",
-                "value_type": "STRING"
-            },
             "ble_configuration_settings:local_id:type": {
                 "table": "inputRegister",
                 "value": 0,
@@ -4518,14 +4420,6 @@
         },
         "points": null,
         "BACnet": {
-            "version:firmware_version": {
-                "object": "CHARACTERSTRING_VALUE",
-                "presentValue": "v0.0"
-            },
-            "version:hardware_version": {
-                "object": "CHARACTERSTRING_VALUE",
-                "presentValue": "v1.0"
-            },
             "reset_ble_name": [
                 {
                     "object": "BINARY_INPUT",
@@ -4538,16 +4432,6 @@
             ]
         },
         "Modbus": {
-            "version:firmware_version": {
-                "table": "inputRegister",
-                "value": "v0.0",
-                "value_type": "STRING"
-            },
-            "version:hardware_version": {
-                "table": "inputRegister",
-                "value": "v1.0",
-                "value_type": "STRING"
-            },
             "reset_ble_name": {
                 "table": "discreteInput",
                 "value": 1,
@@ -4598,11 +4482,7 @@
                     "presentValue": 0,
                     "units": "NO_UNITS"
                 }
-            ],
-            "product_sn": {
-                "object": "CHARACTERSTRING_VALUE",
-                "presentValue": "01"
-            }
+            ]
         },
         "Modbus": {
             "pir_energy:plan:occupied": {
@@ -4614,11 +4494,6 @@
                 "table": "inputRegister",
                 "value": 84,
                 "value_type": "UINT8"
-            },
-            "product_sn": {
-                "table": "inputRegister",
-                "value": "01",
-                "value_type": "STRING"
             }
         }
     },
@@ -5095,10 +4970,6 @@
         },
         "points": null,
         "BACnet": {
-            "tsl_version": {
-                "object": "CHARACTERSTRING_VALUE",
-                "presentValue": "v1.0"
-            },
             "reset_ble_name": [
                 {
                     "object": "BINARY_INPUT",
@@ -5111,11 +4982,6 @@
             ]
         },
         "Modbus": {
-            "tsl_version": {
-                "table": "inputRegister",
-                "value": "v1.0",
-                "value_type": "STRING"
-            },
             "reset_ble_name": {
                 "table": "discreteInput",
                 "value": 1,
