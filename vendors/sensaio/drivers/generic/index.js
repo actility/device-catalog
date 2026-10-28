@@ -230,7 +230,7 @@ function decodeSensorPayload(sensorType, binary) {
         binary = binary.slice(0, -32);
         output.bitLength = 32;
     } else if (sensorType === 'MOTION') {
-        output.data.motion_position = parseInt(binary.slice(-8),2);
+        output.data.motion_position = (parseInt(binary.slice(-8), 2) << 24) >> 24;
         binary = binary.slice(0, -8);
         output.data.motion_time = parseInt(binary.slice(-8),2);
         binary = binary.slice(0, -8);
@@ -339,10 +339,10 @@ function decodeTrameData(binary, type) {
             "FLAG_LORA_FAILURE",
             "FLAG_SENSOR_I2C_FAILURE",
             "FLAG_EEPROM_FAILURE",
-            "FLAG_ACCEL_FAILURE",
+            "FLAG_QOL",
             "FLAG_SENSOR_WARNING",
             "FLAG_SWAP_FAILURE",
-            "FLAG_UNKNOWN"
+            "FLAG_DEGRADED_MODE"
         ];
 
         for (var i = 0; i < flags.length; i++) {
