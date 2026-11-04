@@ -1,7 +1,7 @@
 # Commercial name of the model 
 name: Cyble 5
 # Functional description of the product. Maximum 500 characters. 
-description: "Itron's Cyble 5 sensors."
+description: "Itron's Cyble 5 communication module for water and gas meters. The LoRaWAN 1.0.2 profiles are for the first firmware, the LoRaWAN 1.0.4 profiles for the newer one. The extended frame repetition profiles raise the transmissions at SF10-SF12 to 5, 2 and 2 and require the setting enabled with Itron's RFCT field tool; use the LoRaWAN 1.0.4 profiles when it has not been applied"
 # Logo of the device
 logo: itron-cyble5.png
 # Product name & Version
@@ -14,7 +14,21 @@ product:
 # The lorawanDeviceProfileID consists of 8 upper-case hexadecimal characters, 4 characters for VendorID + 4 characters for VendorProfileID. Please consider using single (') or double (") quotation.
 deviceProfileIds: 
     - id: ITRON/Cyble5A.1.0.2b_ETSI
+      distinction: LoRaWAN 1.0.2
     - id: itron_RFGroup4_1.0.2b_classA
+      distinction: LoRaWAN 1.0.2
+    - id: itron-cyble5v2_G1_1.0.4-RP2-1.0.4_classA
+      deviceProfileId: itron_cyble5-v2_G1_1.0.4-RP2-1.0.4_A
+      distinction: LoRaWAN 1.0.4
+    - id: itron-cyble5v2_G4_1.0.4-RP2-1.0.4_classA
+      deviceProfileId: itron_cyble5-v2_G4_1.0.4-RP2-1.0.4_A
+      distinction: LoRaWAN 1.0.4
+    - id: itron-cyble5v21_G1_1.0.4-RP2-1.0.4_classA
+      deviceProfileId: itron_cyble5-v21_G1_1.0.4-RP2-1.0.4_A
+      distinction: LoRaWAN 1.0.4, extended frame repetition
+    - id: itron-cyble5v2_G4_1.0.4-RP2-1.0.4_classA
+      deviceProfileId: itron_cyble5-v21_G4_1.0.4-RP2-1.0.4_A
+      distinction: LoRaWAN 1.0.4, extended frame repetition
  
 # You may optionally customize any of the following settings to override the generic value set in LoRaWAN device profiles associated with your model. Leave empty if you want to keep the Device Profile settings. 
 # Maximum device TX Conducted output power in dBm. 
