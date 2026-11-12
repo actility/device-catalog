@@ -34,7 +34,7 @@ LoRaWANCertified: false
 modelId: dragino:lht65ne5:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 # Be careful: Once you chose a protocolId, it cannot be changed later
-protocolId:
+protocolId: dragino:lht65:1
 # Informative, maintained by Netmore: true when the driver of the first protocolId above ships a
 # BACnet/Modbus mapping (mapping.json, in Netmore's private catalog), so that the device can be
 # exposed through the BACnet and Modbus gateways. Checked: true requires that mapping.
@@ -52,6 +52,8 @@ sensors:
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
+  dragino:lht65:1:
+    - "LHT65N-E5 temperature, humidity and illuminance"
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false

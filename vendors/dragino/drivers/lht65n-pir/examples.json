@@ -1,0 +1,64 @@
+[
+    {
+        "type": "uplink",
+        "description": "PIR sensor data with activity flag and movement count",
+        "input": {
+            "bytes": "CBF60ABB025C0A0100E509",
+            "fPort": 2,
+            "recvTime": "2026-11-04T10:00:00.000Z"
+        },
+        "output": {
+            "data": {
+                "Node_type": "LHT65N-PIR",
+                "BatV": 3.062,
+                "Bat_status": "Good",
+                "TempC_SHT": 27.47,
+                "Hum_SHT": 60.4,
+                "PIR_Activity": true,
+                "Movement_Count": 58633
+            }
+        },
+        "points": {
+            "batteryVoltage": {
+                "unitId": "V",
+                "record": 3.062
+            },
+            "temperature": {
+                "unitId": "Cel",
+                "record": 27.47
+            },
+            "humidity": {
+                "unitId": "%RH",
+                "record": 60.4
+            },
+            "counter": {
+                "unitId": "count",
+                "record": 58633
+            }
+        }
+    },
+    {
+        "type": "uplink",
+        "description": "Device status: LHT65N-PIR, firmware 1.0.0, EU868, battery 2.885 V",
+        "input": {
+            "bytes": "1A010001000B45",
+            "fPort": 5,
+            "recvTime": "2026-11-04T10:00:00.000Z"
+        },
+        "output": {
+            "data": {
+                "SENSOR_MODEL": "LHT65N-PIR",
+                "FIRMWARE_VERSION": "1.0.0",
+                "FREQUENCY_BAND": "EU868",
+                "SUB_BAND": 0,
+                "BAT": 2.885
+            }
+        },
+        "points": {
+            "batteryVoltage": {
+                "unitId": "V",
+                "record": 2.885
+            }
+        }
+    }
+]

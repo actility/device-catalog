@@ -34,7 +34,7 @@ LoRaWANCertified: false
 modelId: dragino:lht52:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 # Be careful: Once you chose a protocolId, it cannot be changed later
-protocolId:
+protocolId: actility:lht52:1
 # Informative, maintained by Netmore: true when the driver of the first protocolId above ships a
 # BACnet/Modbus mapping (mapping.json, in Netmore's private catalog), so that the device can be
 # exposed through the BACnet and Modbus gateways. Checked: true requires that mapping.
@@ -51,6 +51,12 @@ sensors:
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
+  actility:lht52:1:
+    - "Real-time temperature and humidity with no valid external probe reading"
+    - "Real-time temperature, humidity and external probe temperature"
+    - "Datalog with two readings using the documented 11-byte record layout"
+    - "External DS18B20 identifier from the LHT52 guide"
+    - "Device status: LHT52, firmware 1.0.0, EU868, battery 2.874 V"
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false

@@ -1,7 +1,7 @@
 # Commercial name of the model 
 name: LHT65N-PIR
 # Functional description of the product. Maximum 500 characters.
-description: "Outdoor LoRaWAN temperature, humidity and motion sensor based on the Sensirion SHT31 and a passive infrared detector. Temperature and humidity alarms, datalog of the readings while the network is down, Bluetooth configuration and OTA firmware update."
+description: "Outdoor LoRaWAN temperature and humidity sensor based on the Sensirion SHT31, with an external passive infrared probe for detecting people activity. Bluetooth configuration and OTA firmware update."
 # Logo of the device
 logo: dragino-lht65n-pir.png
 # ID(s) of the profile that defines the LoRaWAN characteristics of this model.
@@ -34,7 +34,7 @@ LoRaWANCertified: false
 modelId: dragino:lht65npir:1
 # <vendorId>:<protocolName>:<protocolVersion> Needed for linking the model with a specific driver -> must be the same one used in driver.yaml in the corresponding model (You might have several ones)
 # Be careful: Once you chose a protocolId, it cannot be changed later
-protocolId:
+protocolId: actility:lht65npir:1
 # Informative, maintained by Netmore: true when the driver of the first protocolId above ships a
 # BACnet/Modbus mapping (mapping.json, in Netmore's private catalog), so that the device can be
 # exposed through the BACnet and Modbus gateways. Checked: true requires that mapping.
@@ -47,11 +47,14 @@ userGuideURL: https://wiki.dragino.com/docs/LoRaWAN-End-Node/temperature-humidit
 sensors:
   - temperature:Cel
   - humidity:%RH
-  - presence:state
+  - counter:count
   - batteryVoltage:V
 # Driver examples
 # A list of examples description that are compatible with this model
 examples:
+  actility:lht65npir:1:
+    - "PIR sensor data with activity flag and movement count"
+    - "Device status: LHT65N-PIR, firmware 1.0.0, EU868, battery 2.885 V"
 LoRaWANRelay:
   canOperateAsARelay: false
   defaultRelayActivation: false

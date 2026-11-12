@@ -1,0 +1,156 @@
+[
+    {
+        "type": "uplink",
+        "description": "Real-time temperature and humidity with no valid external probe reading",
+        "input": {
+            "bytes": "08CD02207FFF0161CD4EDD",
+            "fPort": 2,
+            "recvTime": "2026-11-04T10:00:00.000Z"
+        },
+        "output": {
+            "data": {
+                "Node_type": "LHT52",
+                "TempC": 22.53,
+                "Hum": 54.4,
+                "Ext_sensor": "Temperature Sensor",
+                "Data_time": "2021-12-30T06:17:01.000Z"
+            }
+        },
+        "points": {
+            "temperature": {
+                "unitId": "Cel",
+                "record": 22.53
+            },
+            "humidity": {
+                "unitId": "%RH",
+                "record": 54.4
+            }
+        }
+    },
+    {
+        "type": "uplink",
+        "description": "Datalog with two readings using the documented 11-byte record layout",
+        "input": {
+            "bytes": "7FFF022008CD0161CD4EDD7FFF022108CE0161CD4EEB",
+            "fPort": 3,
+            "recvTime": "2026-11-04T10:00:00.000Z"
+        },
+        "output": {
+            "data": {
+                "Node_type": "LHT52",
+                "samples": [
+                    {
+                        "TempC": 22.53,
+                        "Hum": 54.4,
+                        "timestamp": "2021-12-30T06:17:01.000Z"
+                    },
+                    {
+                        "TempC": 22.54,
+                        "Hum": 54.5,
+                        "timestamp": "2021-12-30T06:17:15.000Z"
+                    }
+                ]
+            }
+        },
+        "points": {
+            "temperature": {
+                "unitId": "Cel",
+                "records": [
+                    {
+                        "value": 22.53,
+                        "eventTime": "2021-12-30T06:17:01.000Z"
+                    },
+                    {
+                        "value": 22.54,
+                        "eventTime": "2021-12-30T06:17:15.000Z"
+                    }
+                ]
+            },
+            "humidity": {
+                "unitId": "%RH",
+                "records": [
+                    {
+                        "value": 54.4,
+                        "eventTime": "2021-12-30T06:17:01.000Z"
+                    },
+                    {
+                        "value": 54.5,
+                        "eventTime": "2021-12-30T06:17:15.000Z"
+                    }
+                ]
+            }
+        }
+    },
+    {
+        "type": "uplink",
+        "description": "Real-time temperature, humidity and external probe temperature",
+        "input": {
+            "bytes": "08CD022007F10161CD4EDD",
+            "fPort": 2,
+            "recvTime": "2026-11-12T10:00:00.000Z"
+        },
+        "output": {
+            "data": {
+                "Node_type": "LHT52",
+                "TempC": 22.53,
+                "Hum": 54.4,
+                "Ext_sensor": "Temperature Sensor",
+                "Data_time": "2021-12-30T06:17:01.000Z",
+                "Ext_TempC": 20.33
+            }
+        },
+        "points": {
+            "temperature:1": {
+                "unitId": "Cel",
+                "record": 22.53
+            },
+            "temperature:2": {
+                "unitId": "Cel",
+                "record": 20.33
+            },
+            "humidity": {
+                "unitId": "%RH",
+                "record": 54.4
+            }
+        }
+    },
+    {
+        "type": "uplink",
+        "description": "External DS18B20 identifier from the LHT52 guide",
+        "input": {
+            "bytes": "288663B20000009F",
+            "fPort": 4,
+            "recvTime": "2026-11-04T10:00:00.000Z"
+        },
+        "output": {
+            "data": {
+                "ExternalSensorId": "288663B20000009F"
+            }
+        },
+        "points": null
+    },
+    {
+        "type": "uplink",
+        "description": "Device status: LHT52, firmware 1.0.0, EU868, battery 2.874 V",
+        "input": {
+            "bytes": "09010001000B3A",
+            "fPort": 5,
+            "recvTime": "2026-11-04T10:00:00.000Z"
+        },
+        "output": {
+            "data": {
+                "SENSOR_MODEL": "LHT52",
+                "FIRMWARE_VERSION": "1.0.0",
+                "FREQUENCY_BAND": "EU868",
+                "SUB_BAND": 0,
+                "BAT": 2.874
+            }
+        },
+        "points": {
+            "batteryVoltage": {
+                "unitId": "V",
+                "record": 2.874
+            }
+        }
+    }
+]

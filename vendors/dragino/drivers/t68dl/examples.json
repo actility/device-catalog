@@ -1,0 +1,137 @@
+[
+    {
+        "type": "uplink",
+        "description": "Real-time temperature with battery and alarm flags",
+        "input": {
+            "bytes": "0CBF0AFE02671F024A",
+            "fPort": 2,
+            "recvTime": "2026-11-04T10:00:00.000Z"
+        },
+        "output": {
+            "data": {
+                "Node_type": "T68DL",
+                "BatV": 3.263,
+                "TempC_TMP117": 28.14,
+                "TEMPH_flag": false,
+                "TEMPL_flag": true,
+                "Data_time": "2024-10-28T03:17:30.000Z"
+            }
+        },
+        "points": {
+            "temperature": {
+                "unitId": "Cel",
+                "record": 28.14
+            },
+            "batteryVoltage": {
+                "unitId": "V",
+                "record": 3.263
+            }
+        }
+    },
+    {
+        "type": "uplink",
+        "description": "Datalog with two timestamped readings",
+        "input": {
+            "bytes": "FFFFFFFF0B404067180C82FFFFFFFF0B424067181132",
+            "fPort": 3,
+            "recvTime": "2026-11-04T10:00:00.000Z"
+        },
+        "output": {
+            "data": {
+                "Node_type": "T68DL",
+                "samples": [
+                    {
+                        "temperature": 28.8,
+                        "noAckMessage": false,
+                        "pollMessage": true,
+                        "timestamp": "2024-10-22T20:35:14.000Z"
+                    },
+                    {
+                        "temperature": 28.82,
+                        "noAckMessage": false,
+                        "pollMessage": true,
+                        "timestamp": "2024-10-22T20:55:14.000Z"
+                    }
+                ]
+            }
+        },
+        "points": {
+            "temperature": {
+                "unitId": "Cel",
+                "records": [
+                    {
+                        "value": 28.8,
+                        "eventTime": "2024-10-22T20:35:14.000Z"
+                    },
+                    {
+                        "value": 28.82,
+                        "eventTime": "2024-10-22T20:55:14.000Z"
+                    }
+                ]
+            }
+        }
+    },
+    {
+        "type": "uplink",
+        "description": "Multi-sampled temperature uplink",
+        "input": {
+            "bytes": "0BEA0109920A4109C4",
+            "fPort": 3,
+            "recvTime": "2026-11-04T10:00:00.000Z"
+        },
+        "output": {
+            "data": {
+                "Node_type": "T68DL",
+                "BatV": 3.05,
+                "Sensor_Type": "DS18B20",
+                "TempC_Samples": [
+                    24.5,
+                    26.25,
+                    25
+                ]
+            }
+        },
+        "points": {
+            "batteryVoltage": {
+                "unitId": "V",
+                "record": 3.05
+            },
+            "temperature:1": {
+                "unitId": "Cel",
+                "record": 24.5
+            },
+            "temperature:2": {
+                "unitId": "Cel",
+                "record": 26.25
+            },
+            "temperature:3": {
+                "unitId": "Cel",
+                "record": 25
+            }
+        }
+    },
+    {
+        "type": "uplink",
+        "description": "Device status: T68DL, firmware 1.0.0, EU868, battery 3.285 V",
+        "input": {
+            "bytes": "34010001000CD5",
+            "fPort": 5,
+            "recvTime": "2026-11-04T10:00:00.000Z"
+        },
+        "output": {
+            "data": {
+                "SENSOR_MODEL": "T68DL",
+                "FIRMWARE_VERSION": "1.0.0",
+                "FREQUENCY_BAND": "EU868",
+                "SUB_BAND": 0,
+                "BAT": 3.285
+            }
+        },
+        "points": {
+            "batteryVoltage": {
+                "unitId": "V",
+                "record": 3.285
+            }
+        }
+    }
+]
