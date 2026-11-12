@@ -133,5 +133,39 @@
                 "record": 3.285
             }
         }
+    },
+    {
+        "type": "downlink-encode",
+        "description": "Set the T68DL temperature threshold alarm",
+        "input": {
+            "data": {
+                "command": "setAlarmConfiguration",
+                "mode": 1,
+                "samplingSeconds": 60,
+                "minimumTemperature": -10,
+                "maximumTemperature": 20
+            }
+        },
+        "output": {
+            "bytes": "A5013CFC1807D0",
+            "fPort": 2
+        }
+    },
+    {
+        "type": "downlink-decode",
+        "description": "Decode the T68DL temperature threshold alarm",
+        "input": {
+            "bytes": "A5013CFC1807D0",
+            "fPort": 2
+        },
+        "output": {
+            "data": {
+                "command": "setAlarmConfiguration",
+                "mode": 1,
+                "samplingSeconds": 60,
+                "minimumTemperature": -10,
+                "maximumTemperature": 20
+            }
+        }
     }
 ]

@@ -13,6 +13,31 @@ function uint24(bytes, offset) {
     return bytes[offset] * 65536 + bytes[offset + 1] * 256 + bytes[offset + 2];
 }
 
+function isIntegerInRange(value, min, max) {
+    return typeof value === "number" && isFinite(value) && Math.floor(value) === value &&
+        value >= min && value <= max;
+}
+
+function downlinkBytes(input) {
+    var bytes = input && input.bytes;
+    if (typeof bytes === "string") {
+        if (bytes.length % 2 !== 0 || !/^[0-9a-f]*$/i.test(bytes)) {
+            return null;
+        }
+        var parsed = [];
+        for (var index = 0; index < bytes.length; index += 2) {
+            parsed.push(parseInt(bytes.slice(index, index + 2), 16));
+        }
+        return parsed;
+    }
+    if (!Array.isArray(bytes) || bytes.some(function(byte) {
+        return !isIntegerInRange(byte, 0, 255);
+    })) {
+        return null;
+    }
+    return bytes;
+}
+
 function frequencyBand(code) {
     var bands = {
         1: "EU868",
@@ -85,3 +110,78 @@ function decodeUplink(input) {
 }
 
 exports.decodeUplink = decodeUplink;
+
+function encodeDownlink(input) {
+    var data = input && input.data;
+    if (!data || typeof data.command !== "string") {
+        return { errors: ["LHT65N-PIR downlink data.command is required"] };
+    }
+
+    switch (data.command) {
+    case "setUplinkInterval":
+        if (!isIntegerInRange(data.seconds, 1, 0xFFFFFF)) {
+            return { errors: ["LHT65N-PIR uplink interval must be 1..16777215 seconds"] };
+        }
+        return { bytes: [0x01, data.seconds >> 16, data.seconds >> 8 & 0xFF, data.seconds & 0xFF], fPort: 2 };
+    case "reboot":
+        return { bytes: [0x04, 0xFF], fPort: 2 };
+    case "factoryReset":
+        return { bytes: [0x04, 0xFE], fPort: 2 };
+    case "requestStatus":
+        return { bytes: [0x26, 0x01], fPort: 2 };
+    case "setUplinkOnActivity":
+        if (typeof data.enabled !== "boolean") {
+            return { errors: ["LHT65N-PIR uplink-on-activity requires enabled: true or false"] };
+        }
+        if (!data.enabled) {
+            return { bytes: [0xA1, 0x00], fPort: 2 };
+        }
+        if (!isIntegerInRange(data.cooldownMinutes, 1, 0xFFFF)) {
+            return { errors: ["LHT65N-PIR activity cooldown must be 1..65535 minutes"] };
+        }
+        return {
+            bytes: [0xA1, 0x01, data.cooldownMinutes >> 8, data.cooldownMinutes & 0xFF],
+            fPort: 2
+        };
+    default:
+        return { errors: ["Unsupported LHT65N-PIR downlink command: " + data.command] };
+    }
+}
+
+function decodeDownlink(input) {
+    var bytes = downlinkBytes(input);
+    if (!bytes || bytes.length === 0) {
+        return { errors: ["Invalid LHT65N-PIR downlink bytes"] };
+    }
+    if (input.fPort !== undefined && input.fPort !== 2) {
+        return { errors: ["Unsupported LHT65N-PIR downlink fPort: " + input.fPort] };
+    }
+
+    var data;
+    if (bytes.length === 4 && bytes[0] === 0x01) {
+        data = {
+            command: "setUplinkInterval",
+            seconds: bytes[1] * 65536 + bytes[2] * 256 + bytes[3]
+        };
+    } else if (bytes.length === 2 && bytes[0] === 0x04 && bytes[1] === 0xFF) {
+        data = { command: "reboot" };
+    } else if (bytes.length === 2 && bytes[0] === 0x04 && bytes[1] === 0xFE) {
+        data = { command: "factoryReset" };
+    } else if (bytes.length === 2 && bytes[0] === 0x26 && bytes[1] === 0x01) {
+        data = { command: "requestStatus" };
+    } else if (bytes.length === 2 && bytes[0] === 0xA1 && bytes[1] === 0x00) {
+        data = { command: "setUplinkOnActivity", enabled: false };
+    } else if (bytes.length === 4 && bytes[0] === 0xA1 && bytes[1] === 0x01 &&
+        uint16(bytes, 2) > 0) {
+        data = {
+            command: "setUplinkOnActivity",
+            enabled: true,
+            cooldownMinutes: uint16(bytes, 2)
+        };
+    }
+
+    return data ? { data: data } : { errors: ["Unsupported or malformed LHT65N-PIR downlink command"] };
+}
+
+exports.encodeDownlink = encodeDownlink;
+exports.decodeDownlink = decodeDownlink;

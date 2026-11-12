@@ -1,0 +1,185 @@
+[
+    {
+        "type": "uplink",
+        "description": "LHT65N-E5 temperature, humidity, illuminance and battery",
+        "input": {
+            "bytes": "CBF60B0D037605001E0000",
+            "fPort": 2,
+            "recvTime": "2026-11-12T10:00:00.000Z"
+        },
+        "output": {
+            "data": {
+                "Node_type": "LHT65N-E5",
+                "BatV": 3.062,
+                "Bat_status": "Good",
+                "TempC_SHT": 28.29,
+                "Hum_SHT": 88.6,
+                "Ext_sensor": "Illuminance Sensor",
+                "ILL_lx": 30
+            }
+        },
+        "points": {
+            "batteryVoltage": {
+                "unitId": "V",
+                "record": 3.062
+            },
+            "temperature": {
+                "unitId": "Cel",
+                "record": 28.29
+            },
+            "humidity": {
+                "unitId": "%RH",
+                "record": 88.6
+            },
+            "illuminance": {
+                "unitId": "lx",
+                "record": 30
+            }
+        }
+    },
+    {
+        "type": "uplink",
+        "description": "LHT65N-E5 datalog temperature and humidity sample",
+        "input": {
+            "bytes": "7FFF089801464160065F97",
+            "fPort": 3
+        },
+        "output": {
+            "data": {
+                "Node_type": "LHT65N-E5",
+                "samples": [
+                    {
+                        "temperature": 22,
+                        "timestamp": "2021-01-19T04:27:03.000Z",
+                        "pollMessage": true,
+                        "noAckMessage": false,
+                        "humidity": 32.6
+                    }
+                ]
+            }
+        },
+        "points": {
+            "temperature": {
+                "unitId": "Cel",
+                "records": [
+                    {
+                        "value": 22,
+                        "eventTime": "2021-01-19T04:27:03.000Z"
+                    }
+                ]
+            },
+            "humidity": {
+                "unitId": "%RH",
+                "records": [
+                    {
+                        "value": 32.6,
+                        "eventTime": "2021-01-19T04:27:03.000Z"
+                    }
+                ]
+            }
+        }
+    },
+    {
+        "type": "uplink",
+        "description": "LHT65N-E5 temperature and illuminance with Unix timestamp",
+        "input": {
+            "bytes": "0AFC0B09C01E2960066009",
+            "fPort": 2
+        },
+        "output": {
+            "data": {
+                "Node_type": "LHT65N-E5",
+                "Work_mode": "External temperature with Unix timestamp",
+                "TempC_SHT": 28.25,
+                "Bat_status": "Good",
+                "ILL_lx": 30,
+                "No_ack": false,
+                "Poll_message": false,
+                "Time_sync_ok": true,
+                "Time_request": false,
+                "Systimestamp": 1611030537,
+                "TempC_DS": 28.12
+            }
+        },
+        "points": {
+            "temperature": {
+                "unitId": "Cel",
+                "records": [
+                    {
+                        "value": 28.25,
+                        "eventTime": "2021-01-19T04:28:57.000Z"
+                    },
+                    {
+                        "value": 28.12,
+                        "eventTime": "2021-01-19T04:28:57.000Z"
+                    }
+                ]
+            },
+            "illuminance": {
+                "unitId": "lx",
+                "records": [
+                    {
+                        "value": 30,
+                        "eventTime": "2021-01-19T04:28:57.000Z"
+                    }
+                ]
+            }
+        }
+    },
+    {
+        "type": "downlink-encode",
+        "description": "Select the LHT65N-E5 illuminance sensor",
+        "input": {
+            "data": {
+                "command": "setExternalSensorMode",
+                "mode": 5
+            }
+        },
+        "output": {
+            "bytes": "A205",
+            "fPort": 2
+        }
+    },
+    {
+        "type": "downlink-decode",
+        "description": "Decode the LHT65N-E5 illuminance sensor selection",
+        "input": {
+            "bytes": "A205",
+            "fPort": 2
+        },
+        "output": {
+            "data": {
+                "command": "setExternalSensorMode",
+                "mode": 5
+            }
+        }
+    },
+    {
+        "type": "downlink-encode",
+        "description": "Set LHT65N-E5 Unix time",
+        "input": {
+            "data": {
+                "command": "setSystemTime",
+                "unixTime": 1611889405
+            }
+        },
+        "output": {
+            "bytes": "3060137AFD00",
+            "fPort": 2
+        }
+    },
+    {
+        "type": "downlink-decode",
+        "description": "Decode the LHT65N-E5 Unix time command",
+        "input": {
+            "bytes": "3060137AFD00",
+            "fPort": 2
+        },
+        "output": {
+            "data": {
+                "command": "setSystemTime",
+                "unixTime": 1611889405
+            }
+        }
+    }
+]

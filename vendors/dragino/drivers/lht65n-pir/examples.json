@@ -60,5 +60,35 @@
                 "record": 2.885
             }
         }
+    },
+    {
+        "type": "downlink-encode",
+        "description": "Enable PIR activity uplinks with a two-minute cooldown",
+        "input": {
+            "data": {
+                "command": "setUplinkOnActivity",
+                "enabled": true,
+                "cooldownMinutes": 2
+            }
+        },
+        "output": {
+            "bytes": "A1010002",
+            "fPort": 2
+        }
+    },
+    {
+        "type": "downlink-decode",
+        "description": "Decode the PIR activity uplink configuration",
+        "input": {
+            "bytes": "A1010002",
+            "fPort": 2
+        },
+        "output": {
+            "data": {
+                "command": "setUplinkOnActivity",
+                "enabled": true,
+                "cooldownMinutes": 2
+            }
+        }
     }
 ]

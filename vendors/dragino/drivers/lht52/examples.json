@@ -152,5 +152,39 @@
                 "record": 2.874
             }
         }
+    },
+    {
+        "type": "downlink-encode",
+        "description": "Set the LHT52 temperature alarm limits",
+        "input": {
+            "data": {
+                "command": "setAlarmConfiguration",
+                "enabled": true,
+                "intervalMinutes": 2,
+                "minimumTemperature": 15,
+                "maximumTemperature": 50
+            }
+        },
+        "output": {
+            "bytes": "AA010002000F0032",
+            "fPort": 2
+        }
+    },
+    {
+        "type": "downlink-decode",
+        "description": "Decode the LHT52 temperature alarm configuration",
+        "input": {
+            "bytes": "AA010002000F0032",
+            "fPort": 2
+        },
+        "output": {
+            "data": {
+                "command": "setAlarmConfiguration",
+                "enabled": true,
+                "intervalMinutes": 2,
+                "minimumTemperature": 15,
+                "maximumTemperature": 50
+            }
+        }
     }
 ]
