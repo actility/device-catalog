@@ -1,0 +1,524 @@
+[
+  {
+    "type": "uplink",
+    "description": "measurement uplink, probe range not set (raw counts only)",
+    "input": {
+      "bytes": "81F98000FFFF80017FFF8002",
+      "fPort": 48,
+      "recvTime": "2026-11-21T12:00:00.000Z"
+    },
+    "output": {
+      "data": {
+        "messageType": "measurement",
+        "pressures": [
+          {
+            "raw": 33273,
+            "disconnected": false
+          },
+          {
+            "raw": 32768,
+            "disconnected": false
+          },
+          {
+            "raw": 65535,
+            "disconnected": true
+          },
+          {
+            "raw": 32769,
+            "disconnected": false
+          },
+          {
+            "raw": 32767,
+            "disconnected": false
+          },
+          {
+            "raw": 32770,
+            "disconnected": false
+          }
+        ]
+      },
+      "errors": [],
+      "warnings": [
+        "Pressure range not set: raw counts only"
+      ]
+    },
+    "points": null
+  },
+  {
+    "type": "uplink",
+    "description": "measurement uplink, 10 bar probe (5 mbar/count), one value with the probe disconnected",
+    "input": {
+      "bytes": "81F98000FFFF80017FFF8002",
+      "fPort": 48,
+      "recvTime": "2026-11-21T12:00:00.000Z",
+      "thing": {
+        "setup": {
+          "pressureRange": "10"
+        }
+      }
+    },
+    "output": {
+      "data": {
+        "messageType": "measurement",
+        "pressures": [
+          {
+            "raw": 33273,
+            "disconnected": false,
+            "mbar": 2525
+          },
+          {
+            "raw": 32768,
+            "disconnected": false,
+            "mbar": 0
+          },
+          {
+            "raw": 65535,
+            "disconnected": true
+          },
+          {
+            "raw": 32769,
+            "disconnected": false,
+            "mbar": 5
+          },
+          {
+            "raw": 32767,
+            "disconnected": false,
+            "mbar": -5
+          },
+          {
+            "raw": 32770,
+            "disconnected": false,
+            "mbar": 10
+          }
+        ]
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "pressure": {
+        "unitId": "mbar",
+        "records": [
+          {
+            "value": 2525,
+            "eventTime": "2026-11-21T11:10:00.000Z"
+          },
+          {
+            "value": 0,
+            "eventTime": "2026-11-21T11:20:00.000Z"
+          },
+          {
+            "value": 5,
+            "eventTime": "2026-11-21T11:40:00.000Z"
+          },
+          {
+            "value": -5,
+            "eventTime": "2026-11-21T11:50:00.000Z"
+          },
+          {
+            "value": 10,
+            "eventTime": "2026-11-21T12:00:00.000Z"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "measurement uplink, 20 bar probe (10 mbar/count), 48 reports per day",
+    "input": {
+      "bytes": "81F981F481F081EC81E881E4",
+      "fPort": 48,
+      "recvTime": "2026-11-21T12:00:00.000Z",
+      "thing": {
+        "setup": {
+          "pressureRange": "20",
+          "reportsPerDay": "48"
+        }
+      }
+    },
+    "output": {
+      "data": {
+        "messageType": "measurement",
+        "pressures": [
+          {
+            "raw": 33273,
+            "disconnected": false,
+            "mbar": 5050
+          },
+          {
+            "raw": 33268,
+            "disconnected": false,
+            "mbar": 5000
+          },
+          {
+            "raw": 33264,
+            "disconnected": false,
+            "mbar": 4960
+          },
+          {
+            "raw": 33260,
+            "disconnected": false,
+            "mbar": 4920
+          },
+          {
+            "raw": 33256,
+            "disconnected": false,
+            "mbar": 4880
+          },
+          {
+            "raw": 33252,
+            "disconnected": false,
+            "mbar": 4840
+          }
+        ]
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "pressure": {
+        "unitId": "mbar",
+        "records": [
+          {
+            "value": 5050,
+            "eventTime": "2026-11-21T11:35:00.000Z"
+          },
+          {
+            "value": 5000,
+            "eventTime": "2026-11-21T11:40:00.000Z"
+          },
+          {
+            "value": 4960,
+            "eventTime": "2026-11-21T11:45:00.000Z"
+          },
+          {
+            "value": 4920,
+            "eventTime": "2026-11-21T11:50:00.000Z"
+          },
+          {
+            "value": 4880,
+            "eventTime": "2026-11-21T11:55:00.000Z"
+          },
+          {
+            "value": 4840,
+            "eventTime": "2026-11-21T12:00:00.000Z"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "measurement uplink, scale set directly (2 mbar/count)",
+    "input": {
+      "bytes": "80648064806480648064807D",
+      "fPort": 48,
+      "recvTime": "2026-11-21T12:00:00.000Z",
+      "thing": {
+        "setup": {
+          "scaleMbarPerCount": "2"
+        }
+      }
+    },
+    "output": {
+      "data": {
+        "messageType": "measurement",
+        "pressures": [
+          {
+            "raw": 32868,
+            "disconnected": false,
+            "mbar": 200
+          },
+          {
+            "raw": 32868,
+            "disconnected": false,
+            "mbar": 200
+          },
+          {
+            "raw": 32868,
+            "disconnected": false,
+            "mbar": 200
+          },
+          {
+            "raw": 32868,
+            "disconnected": false,
+            "mbar": 200
+          },
+          {
+            "raw": 32868,
+            "disconnected": false,
+            "mbar": 200
+          },
+          {
+            "raw": 32893,
+            "disconnected": false,
+            "mbar": 250
+          }
+        ]
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "pressure": {
+        "unitId": "mbar",
+        "records": [
+          {
+            "value": 200,
+            "eventTime": "2026-11-21T11:10:00.000Z"
+          },
+          {
+            "value": 200,
+            "eventTime": "2026-11-21T11:20:00.000Z"
+          },
+          {
+            "value": 200,
+            "eventTime": "2026-11-21T11:30:00.000Z"
+          },
+          {
+            "value": 200,
+            "eventTime": "2026-11-21T11:40:00.000Z"
+          },
+          {
+            "value": 200,
+            "eventTime": "2026-11-21T11:50:00.000Z"
+          },
+          {
+            "value": 250,
+            "eventTime": "2026-11-21T12:00:00.000Z"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "power-on uplink, 10 bar probe: pressure, battery above 90 %, firmware 1D600C, 24 reports per day and 1 measurement per value",
+    "input": {
+      "bytes": "81F9C91D600C1801",
+      "fPort": 48,
+      "recvTime": "2026-11-21T12:00:00.000Z",
+      "thing": {
+        "setup": {
+          "pressureRange": "10"
+        }
+      }
+    },
+    "output": {
+      "data": {
+        "messageType": "startup",
+        "batteryCode": 201,
+        "firmware": "1D600C",
+        "reportsPerDay": 24,
+        "measurementsPerValue": 1,
+        "batteryLevel": 90,
+        "pressure": {
+          "raw": 33273,
+          "disconnected": false,
+          "mbar": 2525
+        }
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "pressure": {
+        "unitId": "mbar",
+        "record": 2525
+      },
+      "batteryLevel": {
+        "unitId": "%",
+        "record": 90
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "daily system uplink: battery above 80 %, firmware 1D600C, 24 reports per day and 1 measurement per value",
+    "input": {
+      "bytes": "C81D600C1801",
+      "fPort": 48,
+      "recvTime": "2026-11-21T12:00:00.000Z"
+    },
+    "output": {
+      "data": {
+        "messageType": "daily",
+        "batteryCode": 200,
+        "firmware": "1D600C",
+        "reportsPerDay": 24,
+        "measurementsPerValue": 1,
+        "batteryLevel": 80
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "batteryLevel": {
+        "unitId": "%",
+        "record": 80
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "daily system uplink: battery above 10 %, 48 reports per day and 2 measurements per value",
+    "input": {
+      "bytes": "C11D600C3002",
+      "fPort": 48,
+      "recvTime": "2026-11-21T12:00:00.000Z"
+    },
+    "output": {
+      "data": {
+        "messageType": "daily",
+        "batteryCode": 193,
+        "firmware": "1D600C",
+        "reportsPerDay": 48,
+        "measurementsPerValue": 2,
+        "batteryLevel": 10
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "points": {
+      "batteryLevel": {
+        "unitId": "%",
+        "record": 10
+      }
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "daily system uplink with an undocumented battery code",
+    "input": {
+      "bytes": "C01D600C1801",
+      "fPort": 48,
+      "recvTime": "2026-11-21T12:00:00.000Z"
+    },
+    "output": {
+      "data": {
+        "messageType": "daily",
+        "batteryCode": 192,
+        "firmware": "1D600C",
+        "reportsPerDay": 24,
+        "measurementsPerValue": 1
+      },
+      "errors": [],
+      "warnings": [
+        "Unknown battery code: 192"
+      ]
+    },
+    "points": null
+  },
+  {
+    "type": "uplink",
+    "description": "fail decode uplink wrong FPort",
+    "input": {
+      "bytes": "C81D600C1801",
+      "fPort": 2,
+      "recvTime": "2026-11-21T12:00:00.000Z"
+    },
+    "output": {
+      "errors": [
+        "Expected uplink FPort 48"
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "fail decode uplink unsupported length",
+    "input": {
+      "bytes": "0001020304",
+      "fPort": 48,
+      "recvTime": "2026-11-21T12:00:00.000Z"
+    },
+    "output": {
+      "errors": [
+        "Unsupported payload length: 5"
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "encode configuration 48 reports per day and 2 measurements per value",
+    "input": {
+      "data": {
+        "reportsPerDay": 48,
+        "measurementsPerValue": 2
+      }
+    },
+    "output": {
+      "bytes": "33303032303030303030303030303030",
+      "fPort": 2,
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "encode configuration 24 reports per day and 1 measurement per value (factory default)",
+    "input": {
+      "data": {
+        "reportsPerDay": 24,
+        "measurementsPerValue": 1
+      }
+    },
+    "output": {
+      "bytes": "31383031303030303030303030303030",
+      "fPort": 2,
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "fail encode downlink unsupported reports per day",
+    "input": {
+      "data": {
+        "reportsPerDay": 3,
+        "measurementsPerValue": 2
+      }
+    },
+    "output": {
+      "errors": [
+        "Unsupported reportsPerDay"
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "fail encode downlink unsupported measurements per value",
+    "input": {
+      "data": {
+        "reportsPerDay": 48,
+        "measurementsPerValue": 3
+      }
+    },
+    "output": {
+      "errors": [
+        "Unsupported measurementsPerValue"
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "decode configuration downlink 48 reports per day and 2 measurements per value",
+    "input": {
+      "bytes": "33303032303030303030303030303030",
+      "fPort": 2,
+      "recvTime": "2026-11-21T12:00:00.000Z"
+    },
+    "output": {
+      "data": {
+        "reportsPerDay": 48,
+        "measurementsPerValue": 2
+      },
+      "errors": [],
+      "warnings": []
+    }
+  }
+]

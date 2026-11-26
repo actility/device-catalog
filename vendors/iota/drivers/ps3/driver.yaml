@@ -1,0 +1,24 @@
+# Formal driver name
+name: IOTA PS-3 Codec
+# Simple description of the driver functionalities
+description: "Codec for the IOTA PS-3 pressure sensor, firmware 1D600C, LoRaWAN mode. Decodes the regular measurement uplink (six consecutive gauge pressure values, oldest first), the power-on and the daily system uplinks (battery indication, firmware version, active configuration), and encodes and decodes the configuration downlink (reports per day, measurements averaged per value). The device does not transmit the range of its detachable probe: pressure is converted to mbar only when the device setup gives the probe range (pressureRange: 10 or 20 bar) or the scale (scaleMbarPerCount); otherwise only raw counts are returned."
+# Mandatory - id of the company that developed the driver
+# This id will be used to construct the id of the driver (Should be in lowercase, no special characters, maximum 8 characters)
+producerId: iota
+# Email of the developer
+developerEmail: inquiries@iota-devices.com
+# In case of a driver per model: `<vendorId>:<modelName>:<modelVersion>`
+# In case of a driver for multiples model: `<vendorId>:generic:<genericVersion>`
+# Format: `<8 characters max>:<16 characters max>:<digits only>`
+# Needed for linking the model with a specific driver -> must be the same one used in model.yaml in the corresponding model
+# You should have only one protocolId per driver
+protocolId: iota:ps3:1
+# This is to specify the type of functions signature used in this driver. Possible values: actility, lora-alliance, ttn, chirpstack.
+# Keep it empty if you followed the lora-alliance payload codec api
+signature: lora-alliance
+packageName: iota-ps3
+# Overall package version (packaging/build changes included), not just the manufacturer's codec version
+packageVersion: 1.0.0
+# Optional, managed by Actility only after security code review.
+# If present and valid, it marks the driver as trusted and allows execution outside sandbox.
+# trustedCRC: 01234567
